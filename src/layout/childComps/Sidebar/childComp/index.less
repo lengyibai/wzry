@@ -1,0 +1,56 @@
+.menu {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  user-select: none;
+  cursor: pointer;
+  color: var(--theme-color-five);
+}
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+  &:hover {
+    color: var(--blue);
+  }
+  .icon :deep(.icon) {
+    width: 35px !important;
+    height: 35px !important;
+    margin-right: 15px !important;
+  }
+  .arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    transition: all 0.25s;
+    width: 25px;
+  }
+}
+
+.menuList {
+  font-size: 20px;
+}
+
+.active {
+  background-image: linear-gradient(225deg, rgba(34, 58, 94, 0) 25%, rgba(34, 130, 199, 0.25) 100%);
+  color: #fff !important;
+}
+
+.arrow-active {
+  transform: translate(-100%, -50%) rotate(180deg) !important;
+}
+/* 进入前状态 */
+.menuList-enter-from,
+.menuList-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+/* 进入和离开动画属性 */
+.menuList-leave-active,
+.menuList-enter-active {
+  transition: all 0.25s;
+}

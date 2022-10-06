@@ -1,0 +1,65 @@
+/* 淡入淡出 */
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active{
+  transition: all 0.5s;
+}
+/* 侧边栏出场 */
+.sidebar-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+.sidebar-leave-to {
+  opacity: 0;
+}
+.sidebar-leave-active,
+.sidebar-enter-active {
+  transition: all 0.25s;
+}
+/* 输入框线条 */
+.border-enter-from,
+.border-leave-active {
+  width: 0% !important;
+}
+.border-leave-active,
+.border-enter-active {
+  transition: all 0.5s;
+}
+/* 输入框不合法 */
+.tip-leave-active {
+  height: 0 !important;
+}
+.tip-leave-active {
+  transition: all 0.5s;
+}
+/* 选择器列表内容动画 */
+.selectList-enter-from,
+.selectList-leave-active {
+  opacity: 0;
+}
+.selectList-leave-active,
+.selectList-enter-active {
+  transition: all 0.5s;
+}
+.selectList-move {
+  transition: all 0.5s;
+}
+.selectList-leave-active {
+  position: absolute;
+}
+/* 提交成功√放大显示 */
+.bounce-enter-from,
+.bounce-leave-active {
+  opacity: 0;
+  transform: scale(0);
+}
+.bounce-leave-active,
+.bounce-enter-active {
+  transition: all 0.5s 0.2s;
+}
+.bounce-leave-active {
+  position: absolute;
+}

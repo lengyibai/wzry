@@ -1,0 +1,98 @@
+:root {
+  --size: 20px;
+}
+.LybRange {
+  position: relative;
+  width: 100%;
+  .sliderValue {
+    position: absolute;
+    width: 100%;
+    top: -75px;
+    span {
+      position: absolute;
+      padding: 0 15px;
+      border-radius: 30px;
+      height: 50px;
+      font-size: 25px;
+      font-weight: 500;
+      color: var(--theme-color-eight);
+      background-color: var(--theme-color-two);
+      text-align: center;
+      transform: translateX(-50%) scale(0);
+      transform-origin: bottom;
+      transition: transform 0.3s ease-in-out;
+      line-height: 50px;
+      z-index: 2;
+    }
+  }
+  .field {
+    @height: 3px;
+    display: flex;
+    justify-content: center;
+    .bar {
+      position: absolute;
+      left: 0;
+      width: 0%;
+      height: @height;
+      border-radius: @height;
+      pointer-events: none;
+      background-image: linear-gradient(90deg, #2d59a0 0%, #6bb8ff 100%);
+
+      img,
+      span {
+        position: absolute;
+        transform: translateX(50%) translateY(-50%);
+        top: 1.5px;
+        right: 0;
+        border-radius: 50%;
+        transition: transform 0.5s;
+      }
+    }
+    input {
+      appearance: none;
+      width: 100%;
+      height: @height;
+      border-radius: @height;
+      margin: 0;
+      background-color: var(--theme-color-nine);
+      outline: none;
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: var(--size);
+        height: var(--size);
+        background-size: cover;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+    }
+    .value {
+      position: relative;
+      font-size: 18px;
+      font-weight: 600;
+      color: #000;
+      &.left {
+        left: -22px;
+      }
+      &.right {
+        right: -43px;
+      }
+    }
+  }
+}
+
+/* 拖动显示数字 */
+.showNum {
+  transform: translateX(-50%) scale(1) !important;
+}
+
+/* 淡入淡出 */
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}

@@ -1,0 +1,35 @@
+:root {
+  --gray: rgba(255, 255, 255, 0.75);
+  --white: #fff;
+  --black: #111;
+  --red: #e74c3c;
+  --orange: #e67e22;
+  --yellow: #f1c40f;
+  --green: #2ecc71;
+  --cyan: #1abc9c;
+  --blue: #3498db;
+  --purple: #9b59b6;
+  --pink: #fd79a8;
+  --black-25: rgba(0, 0, 0, 0.25);
+  --black-50: rgba(0, 0, 0, 0.5);
+  --black-75: rgba(0, 0, 0, 0.75);
+}
+
+:root {
+  --theme-color-one: #1c293b;
+  --theme-color-two: #233c5b;
+  --theme-color-three: #4d6b8f;
+  --theme-color-four: #3774b4;
+  --theme-color-five: #8097bb;
+  --theme-color-seven: #73b1d5;
+  --theme-color-eight: #84ade2;
+  --theme-color-nine: #cdd0e2;
+  --theme-color-ten: #ccde2c;
+  --theme-color-eleven: #49698f;
+}
+
+:root {
+  --t-shadow: 0px 2px 3px #000;
+  --b-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  --font-f: "微软雅黑";
+}

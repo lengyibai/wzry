@@ -1,0 +1,60 @@
+.FormInput {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.FormInput .label {
+  position: relative;
+  margin-right: 0.25em;
+  color: var(--theme-color-eight);
+  text-align: right;
+}
+.FormInput .label span {
+  position: relative;
+  font-size: 30px;
+}
+.FormInput .label span .star {
+  position: absolute;
+  left: 0;
+  color: var(--theme-color-seven);
+  font-size: 20px;
+  transform: translateX(-150%);
+}
+.FormInput .input {
+  position: relative;
+  flex: 1;
+}
+.FormInput .input input {
+  padding: 0 0.25em;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--theme-color-nine);
+  background-color: transparent;
+  color: var(--theme-color-five);
+  font-size: 26px;
+}
+.FormInput .input input::-webkit-input-placeholder {
+  color: var(--theme-color-two);
+}
+.FormInput .input .border,
+.FormInput .input .focus {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: var(--red);
+  transition: all 0.5s;
+  transform: translateY(-1px);
+}
+.FormInput .input .focus {
+  background-color: var(--theme-color-four);
+}
+.FormInput .input .tip {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  height: 16px;
+  color: var(--red);
+  font-size: 16px;
+  transform: translateY(125%);
+  transform-origin: center top;
+}

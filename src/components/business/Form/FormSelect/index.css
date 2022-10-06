@@ -1,0 +1,114 @@
+.FormSelect {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+.FormSelect .label {
+  position: relative;
+  margin-right: 0.25em;
+  width: 150px;
+  color: var(--theme-color-eight);
+  text-align: right;
+}
+.FormSelect .label span {
+  position: relative;
+  background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 30px;
+}
+.FormSelect .label span .star {
+  position: absolute;
+  left: 0;
+  color: var(--theme-color-seven);
+  font-size: 20px;
+  transform: translateX(-150%);
+}
+.FormSelect .select {
+  position: relative;
+  width: 250px;
+}
+.FormSelect .select .select-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  border-bottom: 1px solid var(--theme-color-nine);
+}
+.FormSelect .select .select-box input {
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: var(--theme-color-five);
+  font-size: 26px;
+}
+.FormSelect .select .select-box .border,
+.FormSelect .select .select-box .focus {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--red);
+  transition: all 0.5s;
+  transform: translateY(1px);
+}
+.FormSelect .select .select-box .focus {
+  background-color: var(--theme-color-four);
+}
+.FormSelect .select .select-box .tip {
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  height: 16px;
+  color: var(--red);
+  font-size: 16px;
+  transform: translateY(125%);
+  transform-origin: center top;
+}
+.FormSelect .select .select-box .arrow {
+  width: 25px;
+  transition: all 0.25s;
+  transform: rotate(0deg);
+  pointer-events: none;
+}
+.FormSelect .select .select-list {
+  position: absolute;
+  bottom: -15px;
+  z-index: 1;
+  overflow: auto;
+  width: 100%;
+  height: 300px;
+  border: 1px solid var(--theme-color-four);
+  border-radius: 5px;
+  background-color: var(--black);
+  transition: all 0.25s;
+  transform: translateY(100%);
+  transform-origin: top center;
+  overscroll-behavior: contain;
+}
+.FormSelect .select .select-list .box {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.39);
+  color: var(--theme-color-nine);
+}
+.FormSelect .select .select-list .box .item {
+  font-size: 26px;
+  transition: all 0.25s;
+}
+.rotate {
+  transform: rotate(180deg) !important;
+}
+.unfold {
+  opacity: 0;
+  transform: translateY(100%) scaleY(0) !important;
+}
+.active {
+  background-color: rgba(35, 60, 91, 0.5) !important;
+  color: var(--theme-color-four) !important;
+}
+.active .item {
+  transform: translateX(10px);
+}

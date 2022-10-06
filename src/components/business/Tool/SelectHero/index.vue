@@ -1,0 +1,37 @@
+<template>
+  <div class="SelectHero">
+    <FormSelect label="指派英雄" :data="hero_list" v-model="id" required @change="selectHero" />
+  </div>
+</template>
+<script setup>
+import {
+  ref, watch, toRefs,
+} from 'vue';
+import { heroList } from '@/api/main/hero/basis/index.js';
+
+const props = defineProps({
+  modelValue: {
+    type: Number,
+    default: 0,
+  },
+});
+const { modelValue } = toRefs(props);
+
+/* 选择的英雄id */
+const id = ref(0);
+watch(modelValue, (v) => {
+  id.value = v;
+});
+
+/* 英雄基础列表 */
+const hero_list = ref([]);
+heroList().then((res) => {
+  hero_list.value = res;
+});
+
+/* 选择英雄后触发 */
+const emit = defineEmits(['update:modelValue']);
+const selectHero = (id) => {
+  emit('update:modelValue', id);
+};
+</script>

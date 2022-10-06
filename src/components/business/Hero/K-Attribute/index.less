@@ -1,0 +1,34 @@
+.K-Attribute {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin-bottom: 15px;
+  span {
+    color: #fff;
+    font-size: 26px;
+    margin-right: 1em;
+    text-shadow: var(--t-shadow);
+  }
+  .ico {
+    width: 26px;
+    height: 26px;
+    background-image: url('@/assets/img/sprite/k-attribute.png');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+  }
+  .bar {
+    position: relative;
+    width: 200px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 0 4px 4px 0;
+    i {
+      position: absolute;
+      width: 0%;
+      height: 100%;
+      background-color: #fff;
+      border-radius: 0 5px 5px 0;
+      transition: all 0.5s;
+    }
+  }
+}

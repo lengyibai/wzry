@@ -1,0 +1,45 @@
+.view_add {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.view_add > .content {
+  position: relative;
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.view_add .LibCommitBtn,
+.view_add .LibCancelBtn {
+  position: fixed!important;
+  right: 0;
+  bottom: 0;
+  transition: all 0.1s;
+}
+.view_add .LibCommitBtn:hover,
+.view_add .LibCancelBtn:hover {
+  filter: saturate(2);
+}
+.view_add .LibCommitBtn:active,
+.view_add .LibCancelBtn:active {
+  filter: brightness(0.75);
+}
+.view_add .LibCommitBtn {
+  transform: translateX(-25%) translateY(-25%);
+}
+.view_add .LibCommitBtn:active {
+  transform: translateX(-25%) translateY(-25%) scale(0.9);
+}
+.view_add .LibCancelBtn {
+  transform: translateX(-155%) translateY(-25%);
+}
+.view_add .LibCancelBtn:active {
+  transform: translateX(-155%) translateY(-25%) scale(0.9);
+}

@@ -1,0 +1,46 @@
+
+.LibLoading {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 998;
+  img {
+    position: absolute;
+    width: 40vw;
+    left: 0;
+    bottom: 0;
+  }
+  span {
+    display: inline-block;
+    width: 1.5vw;
+    height: 1.5vw;
+    transform: scale(0.2);
+    animation: animate 1s infinite;
+  }
+  h1 {
+    position: absolute;
+    right: 2vh;
+    top: 2vh;
+    font-size: 2vw;
+    color: #fff;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0%) scale(0.2);
+  }
+  25% {
+    transform: translateY(-200%) scale(1);
+    border-radius: 50%;
+  }
+  50% {
+    transform: translateY(200%) scale(1);
+    border-radius: 50%;
+  }
+  100% {
+    transform: translateY(0%) scale(0.2);
+  }
+}
