@@ -9,7 +9,7 @@
     <div
       class="title cursor-pointer"
       :class="{ active: currentIndex === index }"
-      @click="toggle(index)"
+      @click="toggle(index, item.title)"
       v-for="(item, index) in epigraph"
       :key="index"
     >
@@ -20,6 +20,7 @@
 <script setup>
 import { ref } from 'vue';
 import switchStore from '@/store/globalSwitch.js';
+import epigraphStore from '@/store/epigraph.js';
 
 const currentIndex = ref(0);
 const epigraph = [
@@ -34,10 +35,17 @@ const epigraph = [
   { title: '穿透' },
 ];
 
-const $store = switchStore();
-const toggle = (index) => {
-  $store.$clickAudio(`tab${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
+const $switchStore = switchStore();
+const $epigraphStore = epigraphStore();
+
+currentIndex.value = epigraph.findIndex((item) => {
+  return $epigraphStore.type === item.title;
+});
+
+const toggle = (index, type) => {
+  $switchStore.$clickAudio(`tab${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
   currentIndex.value = index;
+  $epigraphStore.setFilter(type);
 };
 </script>
 <style scoped lang="less">

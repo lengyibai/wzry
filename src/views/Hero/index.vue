@@ -1,6 +1,6 @@
 <template>
   <div class="Hero">
-    <div class="HeroMain">
+    <div class="HeroMain" :style="{ opacity: show ? 1 : 0 }">
       <transition name="fade">
         <LibGridLayout gap="25px" v-if="$heroStore.filter_list.length" :count="count" :eqhMultiple="1.5">
           <div
@@ -37,9 +37,7 @@
 </template>
 
 <script setup>
-import {
-  onBeforeUnmount, onMounted, ref,
-} from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import $bus from '@/utils/eventBus.js';
 import switchStore from '@/store/globalSwitch.js';
@@ -56,6 +54,7 @@ const $switchStore = switchStore();
 const $heroStore = heroStore();
 
 const count = ref(0); //一行显示的数目
+const show = ref(false); //显示列表
 const show_HeroDetail = ref(false); //显示英雄详情
 const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
 const hero_info = ref({}); //英雄信息
@@ -84,11 +83,17 @@ if (id) {
   viewClick(id);
 } else if ($heroStore.hero_list.length === 0) {
   $switchStore.$loading.show('正在请求英雄列表');
-  hero().then((res) => {
-    $switchStore.$loading.close().then(() => {
-      $heroStore.setHeroList(res);
-    });
+  hero().then(async (res) => {
+    $switchStore.$loading.close();
+    $heroStore.setHeroList(res);
+    setTimeout(() => {
+      show.value = true;
+    }, 250);
   });
+} else {
+  setTimeout(() => {
+    show.value = true;
+  }, 250);
 }
 
 onMounted(() => {
@@ -134,6 +139,7 @@ onBeforeUnmount(() => {
   .HeroMain {
     flex: 1;
     padding-right: calc(25px * 8);
+    transition: all 0.25s 0.25s;
   }
 }
 

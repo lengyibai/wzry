@@ -14,7 +14,9 @@ useRouter.beforeEach((to, from, next) => {
   const store = authStore();
   /* 如果状态为 true、则正常跳转 */
   if (store.userStatus) {
-    next();
+    setTimeout(() => {
+      next();
+    }, 500);
     return;
   }
 

@@ -4,33 +4,36 @@
       <EpigraphCategory v-show="show_epigraph" />
     </transition>
     <div class="EpigraphMain">
-      <EpigraphList :data="epigraph_list" />
+      <EpigraphList :data="$epigraphStore.filter_list" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { getEpigraph } from '@/api/main/other/epigraph';
 import switchStore from '@/store/globalSwitch.js';
+import epigraphStore from '@/store/epigraph.js';
 import EpigraphCategory from './childComps/EpigraphCategory/index.vue'; //铭文类型分类
-import EpigraphList from './childComps/EpigraphList/index.vue';
-//铭文列表
+import EpigraphList from './childComps/EpigraphList/index.vue'; //铭文列表
+
 const show_epigraph = ref(false); //显示铭文顶部分类
-const epigraph_list = ref([]);
 
-const $store = switchStore();
-$store.$loading.show('正在请求铭文列表');
-getEpigraph().then((res) => {
-  $store.$loading.close();
-  epigraph_list.value = res;
-});
+const $switchStore = switchStore();
+const $epigraphStore = epigraphStore();
 
-onMounted(() => {
+if ($epigraphStore.epigraph_list.length === 0) {
+  $switchStore.$loading.show('正在请求铭文列表');
+  getEpigraph().then(async (res) => {
+    await $switchStore.$loading.close();
+    show_epigraph.value = true;
+    $epigraphStore.setEpigraphList(res);
+  });
+} else {
   setTimeout(() => {
     show_epigraph.value = true;
-  }, 250);
-});
+  });
+}
 </script>
 <style scoped lang="less">
 .Epigraph {
@@ -42,11 +45,11 @@ onMounted(() => {
     flex: 1;
     overflow: auto;
     padding-right: 15px;
+    transition: all 0.25s;
   }
 }
 
-/* 路由 */
-.epigraph-enter {
+.epigraph-enter-from {
   opacity: 0;
   transform: translateY(-100%);
 }
