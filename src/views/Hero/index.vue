@@ -1,20 +1,20 @@
 <template>
   <div class="Hero">
-    <div class="HeroMain">
-      <transition name="fade">
-        <LibGridLayout gap="25px" v-if="$heroStore.filter_list.length" :count="count" :eqhMultiple="1.5">
+    <div class="HeroMain" :style="{ opacity: show ? 1 : 0 }">
+      <LibGridLayout gap="25px" v-if="hero_list.length" :count="count" :eqhMultiple="1.5">
+        <transition-group name="Hero" appear>
           <div
             class="box"
-            v-for="(item, index) in $heroStore.filter_list"
+            v-for="(item, index) in hero_list"
             :style="{
-              transitionDelay: 0.01 * index + 's',
+              transitionDelay: 0.025 * index + 's',
             }"
-            :key="index"
+            :key="item.id"
           >
             <HeroCard :data="item" @view="viewClick(item.id)" />
           </div>
-        </LibGridLayout>
-      </transition>
+        </transition-group>
+      </LibGridLayout>
     </div>
 
     <!--//%%%%%··········右侧英雄职业分类侧边栏··········%%%%%//-->
@@ -37,7 +37,9 @@
 </template>
 
 <script setup name="Hero">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import {
+  onBeforeUnmount, onMounted, ref, watch,
+} from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import $bus from '@/utils/eventBus.js';
 import switchStore from '@/store/globalSwitch.js';
@@ -55,8 +57,10 @@ const $switchStore = switchStore();
 const $heroStore = heroStore();
 
 const count = ref(0); //一行显示的数目
+const show = ref(false);
 const show_HeroDetail = ref(false); //显示英雄详情
 const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
+const hero_list = ref([]); //英雄列表
 const hero_info = ref({}); //英雄信息
 
 /* 显示英雄详情 */
@@ -90,6 +94,18 @@ if (id) {
     $heroStore.setHeroList(res);
   });
 }
+
+watch(
+  () => $heroStore.filter_list,
+  (v) => {
+    show.value = false;
+    setTimeout(() => {
+      hero_list.value = v;
+      show.value = true;
+    }, 250);
+  },
+  { deep: true, immediate: true },
+);
 
 onMounted(() => {
   /* 延迟显示右侧边栏 */
@@ -134,7 +150,7 @@ onBeforeUnmount(() => {
   .HeroMain {
     flex: 1;
     padding-right: calc(25px * 8);
-    transition: all 0.25s 0.25s;
+    transition: all 0.25s;
   }
 }
 
@@ -172,13 +188,14 @@ onBeforeUnmount(() => {
 }
 
 /* 进入前状态 */
-.fade-enter-from,
-.fade-leave-active {
+.Hero-enter-from,
+.Hero-leave-active {
   opacity: 0;
+  transform: translateY(-25px);
 }
 /* 进入和离开动画属性 */
-.fade-leave-active,
-.fade-enter-active {
+.Hero-leave-active,
+.Hero-enter-active {
   transition: all 0.25s;
 }
 </style>

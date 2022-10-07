@@ -92,7 +92,7 @@ const active_id = computed(() => $equipStore.active_id); //获取点击的装备
   opacity: 0;
 }
 .borderFade-enter-active {
-  transition: all 0.25s 0.25s;
+  transition: all 0.25s;
 }
 
 .borderFade-leave-active {
