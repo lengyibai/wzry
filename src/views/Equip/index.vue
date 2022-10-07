@@ -25,18 +25,12 @@ const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 
 const $switchStore = switchStore();
 const $equiqStore = equiqStore();
-if ($equiqStore.equip_list.length === 0) {
-  $switchStore.$loading.show('正在请求装备列表');
-  getEquip().then(async (res) => {
-    await $switchStore.$loading.close();
-    $equiqStore.setEquipList(res);
-    show_EquipSidebar.value = true;
-  });
-} else {
-  setTimeout(() => {
-    show_EquipSidebar.value = true;
-  }, 250);
-}
+$switchStore.$loading.show('正在请求装备列表');
+getEquip().then(async (res) => {
+  await $switchStore.$loading.close();
+  $equiqStore.setEquipList(res);
+  show_EquipSidebar.value = true;
+});
 </script>
 <style scoped lang="less">
 .Equip {

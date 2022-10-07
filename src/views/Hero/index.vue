@@ -1,6 +1,6 @@
 <template>
   <div class="Hero">
-    <div class="HeroMain" :style="{ opacity: show ? 1 : 0 }">
+    <div class="HeroMain">
       <transition name="fade">
         <LibGridLayout gap="25px" v-if="$heroStore.filter_list.length" :count="count" :eqhMultiple="1.5">
           <div
@@ -36,17 +36,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="Hero">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import $bus from '@/utils/eventBus.js';
-import switchStore from '@/store/globalSwitch.js';
-import heroStore from '@/store/hero.js';
 import { hero } from '@/api/main/hero/self';
+import $bus from '@/utils/eventBus.js';
+import heroStore from '@/store/hero.js';
+import switchStore from '@/store/globalSwitch.js';
 
 import HeroCard from './childComps/HeroCard/index.vue';
 import HeroSidebar from './childComps/HeroSidebar/index.vue';
-import HeroDetail from './childViews/HeroDetail/index.vue';
+
+const HeroDetail = () => import('./childViews/HeroDetail/index.vue');
 
 const $route = useRoute();
 const $router = useRouter();
@@ -54,7 +55,6 @@ const $switchStore = switchStore();
 const $heroStore = heroStore();
 
 const count = ref(0); //一行显示的数目
-const show = ref(false); //显示列表
 const show_HeroDetail = ref(false); //显示英雄详情
 const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
 const hero_info = ref({}); //英雄信息
@@ -83,7 +83,7 @@ const viewClick = (id) => {
 /* 判断地址栏及是否存在缓存 */
 if (id) {
   viewClick(id);
-} else if ($heroStore.hero_list.length === 0) {
+} else {
   $switchStore.$loading.show('正在请求英雄列表');
   hero().then(async (res) => {
     $switchStore.$loading.close();
@@ -95,7 +95,6 @@ onMounted(() => {
   /* 延迟显示右侧边栏 */
   setTimeout(() => {
     show_HeroSidebar.value = true;
-    show.value = true;
   }, 250);
 
   /* 实时修改一行个数 */

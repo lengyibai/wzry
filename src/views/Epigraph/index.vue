@@ -22,18 +22,12 @@ const show_epigraph = ref(false); //显示铭文顶部分类
 const $switchStore = switchStore();
 const $epigraphStore = epigraphStore();
 
-if ($epigraphStore.epigraph_list.length === 0) {
-  $switchStore.$loading.show('正在请求铭文列表');
-  getEpigraph().then(async (res) => {
-    await $switchStore.$loading.close();
-    show_epigraph.value = true;
-    $epigraphStore.setEpigraphList(res);
-  });
-} else {
-  setTimeout(() => {
-    show_epigraph.value = true;
-  });
-}
+$switchStore.$loading.show('正在请求铭文列表');
+getEpigraph().then(async (res) => {
+  await $switchStore.$loading.close();
+  show_epigraph.value = true;
+  $epigraphStore.setEpigraphList(res);
+});
 </script>
 <style scoped lang="less">
 .Epigraph {

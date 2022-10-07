@@ -5,10 +5,11 @@ import { resolve } from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 export default defineConfig({
   base: './',
-  plugins: [vue(),
+  plugins: [vue(), VueSetupExtend(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),

@@ -4,20 +4,21 @@
 
     <!--//%%%%%··········发布列表··········%%%%%//-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
-      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
+      <component v-if="v.show" :is="components[v.i]" />
     </transition>
   </div>
 </template>
 <script setup>
 import { reactive } from 'vue';
-import AddHero from './childViews/AddHero/index.vue'; //英雄
-import AddSkin from './childViews/AddSkin/index.vue'; //皮肤
-import AddSkill from './childViews/AddSkill/index.vue'; //技能
-import AddVoice from './childViews/AddVoice/index.vue'; //语音
-import AddStory from './childViews/AddStory/index.vue'; //故事
-import AddEquip from './childViews/AddEquip/index.vue'; //装备
-import AddEpigraph from './childViews/AddEpigraph/index.vue'; //铭文
 import useManageCard from '../../hooks/useManageCard.js';
+
+const AddHero = () => import('./childViews/AddHero/index.vue'); //英雄
+const AddSkin = () => import('./childViews/AddSkin/index.vue'); //皮肤
+const AddSkill = () => import('./childViews/AddSkill/index.vue'); //技能
+const AddVoice = () => import('./childViews/AddVoice/index.vue'); //语音
+const AddStory = () => import('./childViews/AddStory/index.vue'); //故事
+const AddEquip = () => import('./childViews/AddEquip/index.vue'); //装备
+const AddEpigraph = () => import('./childViews/AddEpigraph/index.vue'); //铭文
 
 const { card, box, list } = useManageCard;
 const components = [AddHero, AddSkin, AddVoice, AddSkill, AddStory, AddEquip, AddEpigraph];
