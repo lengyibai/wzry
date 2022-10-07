@@ -31,9 +31,7 @@
 </template>
 
 <script setup>
-//#####··········图标··········#####//
 import icon from './img/icon.js';
-//#####··········子组件··········#####//
 import Hamburger from './childComps/Hamburger/index.vue';
 import UserMenu from './childComps/UserMenu/index.vue';
 </script>

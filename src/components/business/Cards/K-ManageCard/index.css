@@ -1,6 +1,9 @@
 .K-ManageCard {
   position: relative;
   box-shadow: var(--b-shadow);
+  width: 200px;
+  height: 300px;
+  margin: 40px;
 }
 .K-ManageCard .box {
   position: absolute;

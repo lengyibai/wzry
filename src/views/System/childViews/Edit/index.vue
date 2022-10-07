@@ -1,6 +1,8 @@
 <template>
   <div class="Edit flex" :style="box">
-    <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" :style="card" type="edit" />
+    <transition-group name="fade" appear>
+      <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" type="edit" />
+    </transition-group>
 
     <!--//%%%%%··········发布列表··········%%%%%//-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
@@ -19,7 +21,7 @@ import EditEquip from './childViews/EditEquip/index.vue'; //装备
 import EditEpigraph from './childViews/EditEpigraph/index.vue'; //铭文
 import useManageCard from '../../hooks/useManageCard.js';
 
-const { card, box, list } = useManageCard;
+const { box, list } = useManageCard;
 const components = [EditHero, EditSkin, EditVoice, EditSkill, EditStory, EditEquip, EditEpigraph];
 const options = reactive({
   Hero: {

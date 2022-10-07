@@ -31,17 +31,12 @@ const form = reactive({
   password: 'lengyibai.',
 });
 
-const login = () => {
+const login = async () => {
   store.$loading.show('登录中');
   store.$clickAudio('login');
-  setTimeout(() => {
-    store.$loading.close();
-  }, 1000);
-  authStore()
-    .login(form)
-    .then(() => {
-      $router.push('/');
-    });
+  await store.$loading.close();
+  await authStore().login(form);
+  $router.push('/');
 };
 </script>
 <style scoped lang="less">

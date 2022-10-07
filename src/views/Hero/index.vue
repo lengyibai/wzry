@@ -68,18 +68,17 @@ const id = $route.query.id;
 const viewClick = (id) => {
   const params = { id };
   $switchStore.$loading.show('正在请求英雄数据');
-  hero(params).then((res) => {
+  hero(params).then(async (res) => {
+    await $switchStore.$loading.close();
     hero_info.value = res;
-    $switchStore.$loading.close().then(() => {
-      show_HeroDetail.value = true;
+    show_HeroDetail.value = true;
 
-      /* 只用于记录，并不会跳转 */
-      $router.push({
-        path: '/hero',
-        query: {
-          id: res.id,
-        },
-      });
+    /* 只用于记录，并不会跳转 */
+    $router.push({
+      path: '/hero',
+      query: {
+        id: res.id,
+      },
     });
   });
 };
@@ -92,6 +91,7 @@ if (id) {
   hero().then(async (res) => {
     $switchStore.$loading.close();
     $heroStore.setHeroList(res);
+    show_HeroSidebar.value = true;
   });
 }
 
@@ -108,11 +108,6 @@ watch(
 );
 
 onMounted(() => {
-  /* 延迟显示右侧边栏 */
-  setTimeout(() => {
-    show_HeroSidebar.value = true;
-  }, 250);
-
   /* 实时修改一行个数 */
   const change = [
     [1450, 5],

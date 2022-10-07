@@ -1,6 +1,8 @@
 <template>
   <div class="Del flex" :style="box">
-    <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" :style="card" type="delete" />
+    <transition-group name="Del" appear>
+      <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" type="delete" />
+    </transition-group>
 
     <!--//%%%%%··········发布列表··········%%%%%//-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
@@ -19,7 +21,7 @@ import DelEquip from './childViews/DelEquip/index.vue'; //装备
 import DelEpigraph from './childViews/DelEpigraph/index.vue'; //铭文
 import useManageCard from '../../hooks/useManageCard.js';
 
-const { card, box, list } = useManageCard;
+const { box, list } = useManageCard;
 const components = [DelHero, DelSkin, DelVoice, DelSkill, DelStory, DelEquip, DelEpigraph];
 const options = reactive({
   Hero: {
@@ -94,5 +96,25 @@ const open = (key) => {
   100% {
     clip-path: inset(50% 50% 50% 50%);
   }
+}
+
+/* 进入前状态 */
+.Del-enter-from,
+.Del-leave-active {
+  opacity: 0;
+  transform: translateY(25%) scale(0.75);
+}
+/* 进入和离开动画属性 */
+.Del-leave-active,
+.Del-enter-active {
+  transition: all 0.5s;
+}
+/* 解决添加元素占位时无动画，替代 width: 0 与 overflow: hidden */
+.Del-move {
+  transition: all 0.5s;
+}
+/* 解决删除元素时，其他元素补位无动画 */
+.Del-leave-active {
+  position: absolute; /* 必须为绝对定位 */
 }
 </style>

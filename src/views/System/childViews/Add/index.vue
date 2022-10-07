@@ -1,6 +1,14 @@
 <template>
   <div class="Add flex" :style="box">
-    <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" :style="card" type="add" />
+    <transition-group name="Add" appear>
+      <K-ManageCard
+        @click="open(k)"
+        v-for="(v, k) in list"
+        :title="v"
+        :key="k"
+        type="add"
+      />
+    </transition-group>
 
     <!--//%%%%%··········发布列表··········%%%%%//-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
@@ -19,7 +27,7 @@ import AddEquip from './childViews/AddEquip/index.vue'; //装备
 import AddEpigraph from './childViews/AddEpigraph/index.vue'; //铭文
 import useManageCard from '../../hooks/useManageCard.js';
 
-const { card, box, list } = useManageCard;
+const { box, list } = useManageCard;
 const components = [AddHero, AddSkin, AddVoice, AddSkill, AddStory, AddEquip, AddEpigraph];
 const options = reactive({
   Hero: {
@@ -94,5 +102,17 @@ const open = (key) => {
   100% {
     clip-path: inset(50% 50% 50% 50%);
   }
+}
+
+/* 进入前状态 */
+.Add-enter-from,
+.Add-leave-active {
+  opacity: 0;
+  transform: translateY(-25%) scale(1.25);
+}
+/* 进入和离开动画属性 */
+.Add-leave-active,
+.Add-enter-active {
+  transition: all 0.5s;
 }
 </style>

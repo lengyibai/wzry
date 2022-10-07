@@ -27,12 +27,12 @@ const userInfo = computed(() => {
   return $authStore.userInfo;
 });
 const timeGreet = computed(() => $timeGreet());
-async function logout() {
+const logout = async () => {
   $switchStore.$loading.show('正在退出');
   $switchStore.$clickAudio();
-  await $authStore.logout();
-  $switchStore.$loading.close();
-}
+  await $switchStore.$loading.close();
+  $authStore.logout();
+};
 </script>
 <style scoped lang="less">
 .UserMenu {
