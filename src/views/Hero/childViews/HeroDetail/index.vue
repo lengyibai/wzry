@@ -7,12 +7,12 @@
     </HeroDetailParallaxBg>
 
     <!--//%%%%%··········技能··········%%%%%//-->
-    <HeroDetailParallaxBg :bg="data.poster">
+    <HeroDetailParallaxBg :bg="data.poster" v-if="data.skill">
       <HeroSkill />
     </HeroDetailParallaxBg>
 
     <!--//%%%%%··········故事··········%%%%%//-->
-    <HeroDetailParallaxBg :bg="data.poster">
+    <HeroDetailParallaxBg :bg="data.poster" v-if="data.story">
       <HeroStory />
     </HeroDetailParallaxBg>
   </div>

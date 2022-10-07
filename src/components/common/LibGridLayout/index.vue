@@ -74,5 +74,7 @@ onBeforeMount(() => {
   display: grid;
   grid-auto-flow: row dense;
   align-content: flex-start;
+  overflow: auto;
+  padding: 15px;
 }
 </style>

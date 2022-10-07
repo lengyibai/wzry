@@ -11,8 +11,7 @@ import { getSkin } from '@/api/main/hero/skin';
 //技能列表
 import { getSkill } from '@/api/main/hero/skill';
 
-//#####········获取英雄列表········#####//
-import { getHeros } from './transfer.js';
+import { getHeros, addHero } from './transfer.js';
 
 export const hero = (data) => new Promise((resolve) => {
   getHeros(data).then(async (res) => {

@@ -40,9 +40,9 @@
         <transition-group name="selectList">
           <div
             class="box"
-            :class="{ active: currentIndex === index || modelValue === item.id }"
+            :class="{ active: currentIndex === index || modelValue === item.name }"
             v-for="(item, index) in select_list"
-            @click="select(item.id)"
+            @click="select(item.name)"
             @mouseenter="currentIndex = index"
             @mouseleave="currentIndex = null"
             :key="item.name"
@@ -73,8 +73,8 @@ const props = defineProps({
   },
   /* 选择的值 */
   modelValue: {
-    type: Number,
-    default: 0,
+    type: String,
+    default: '',
   },
   /* 是否必填 */
   required: {
@@ -123,9 +123,9 @@ const blur = () => {
 };
 
 /* 选择的数据 */
-const select = (id) => {
-  emit('update:modelValue', id);
-  emit('change', id);
+const select = (name) => {
+  emit('update:modelValue', name);
+  emit('change', name);
   is_unfold.value = false;
   select_list.value = data.value;
 };
@@ -149,11 +149,8 @@ $bus.on('click', (v) => {
 
 /* 选择后替换输入框 */
 watch(modelValue, (v) => {
-  const d = data.value.filter((item) => {
-    return item.id === v;
-  });
-  select_value.value = d[0]?.name;
-  active_value.value = d[0]?.name;
+  select_value.value = v;
+  active_value.value = v;
 });
 
 /* 在created会赋空值，只能通过侦听器 */

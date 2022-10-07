@@ -9,7 +9,7 @@
     <div class="id">No.{{ data.id }}</div>
     <transition name="fade">
       <div class="select-mask" v-if="show">
-        <img :src="data.head_img" class="head" />
+        <img :src="data.headImg" class="head" />
         <h1
           class="view cursor-pointer"
           @click="viewClick"
@@ -40,7 +40,7 @@
 <script setup>
 import { ref } from 'vue';
 
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     default() {
@@ -48,7 +48,7 @@ defineProps({
     },
   },
 });
-
+console.log(props);
 const show = ref(false);
 const lineActive = ref(false);
 
@@ -173,13 +173,105 @@ const viewClick = () => {
     .name {
       width: fit-content;
       color: var(--white);
-      font-size: 35px;
+      font-size: 34px;
       line-height: 1;
       margin-bottom: 5px;
     }
     .mark {
       color: var(--gray);
       font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 1655px) {
+    .bottom {
+      .name {
+        font-size: 28px;
+      }
+    }
+  }
+  @media screen and (max-width: 1655px) {
+    .bottom {
+      .name {
+        font-size: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 1129px) {
+    .bottom {
+      .name {
+        font-size: 26px;
+      }
+    }
+  }
+  @media screen and (max-width: 1010px) {
+    .bottom {
+      .name {
+        font-size: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .bottom {
+      .name {
+        font-size: 28px;
+      }
+    }
+  }
+  @media screen and (max-width: 845px) {
+    .bottom {
+      .name {
+        font-size: 22px;
+      }
+    }
+  }
+  @media screen and (max-width: 800px) {
+    .id {
+      font-size: 16px;
+    }
+    .bottom {
+      .name {
+        font-size: 50px;
+      }
+      .mark {
+        color: var(--gray);
+        font-size: 24px;
+      }
+    }
+  }
+  @media screen and (max-width: 765px) {
+    .id {
+      font-size: 16px;
+    }
+    .bottom {
+      .name {
+        font-size: 40px;
+      }
+      .mark {
+        color: var(--gray);
+        font-size: 20px;
+      }
+    }
+  }
+  @media screen and (max-width: 725px) {
+    .bottom {
+      .name {
+        font-size: 30px;
+      }
+      .mark {
+        color: var(--gray);
+        font-size: 16px;
+      }
+    }
+  }
+  @media screen and (max-width: 680px) {
+    .bottom {
+      .name {
+        font-size: 24px;
+      }
+      .mark {
+        color: var(--gray);
+        font-size: 14px;
+      }
     }
   }
 }

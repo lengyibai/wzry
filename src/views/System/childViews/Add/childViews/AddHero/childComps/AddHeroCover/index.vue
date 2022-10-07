@@ -1,6 +1,6 @@
 <template>
   <div class="AddHeroCover">
-    <span class="text-gradient-one">英雄封面：</span>
+    <span class="text-gradient-one"><i class="star">*</i>英雄封面：</span>
 
     <!--//%%%%%··········选择封面··········%%%%%//-->
     <AddHeroCoverImg :p="p" />
@@ -76,7 +76,15 @@ const scale = (s) => {
   margin-bottom: 35px;
   width: 100%;
   span {
+    position: relative;
     font-size: 30px;
+    .star {
+      position: absolute;
+      left: 0;
+      color: var(--theme-color-seven);
+      font-size: 20px;
+      transform: translateX(-150%);
+    }
   }
 }
 </style>

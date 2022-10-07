@@ -11,10 +11,10 @@
       <HerSkinType :skinTypeImg="active_skin_type" :toggle="skin_type_toggle" />
 
       <!-- 英雄语音 -->
-      <HeroVoice :voices="hero_data.voices" v-if="show_info" />
+      <HeroVoice :voices="hero_data.voices" v-if="show_info && hero_data.voices?.length" />
 
       <!-- 中心皮肤切换 -->
-      <HeroSkinHeadImg :skins="hero_data.skins" @bg-imgs="bgImgs" />
+      <HeroSkinHeadImg :skins="hero_data.skins" @bg-imgs="bgImgs" v-if="hero_data.skins?.length" />
 
       <!-- 皮肤名 -->
       <HeroSkinName :toggle="skin_name_toggle" :name="active_skin_name" />

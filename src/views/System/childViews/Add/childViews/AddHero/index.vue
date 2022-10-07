@@ -4,6 +4,7 @@
       <div class="content" v-if="show">
         <!--//%%%%%··········英雄名、代号、身高··········%%%%%//-->
         <div class="flex-box">
+          <FormInput label="id" required v-model="hero_data.id" />
           <FormInput label="英雄名" required v-model="hero_data.name" />
           <FormInput label="代号" required v-model="hero_data.mark" />
           <FormInput label="身高" :validate="validate" v-model="hero_data.height" />
@@ -30,7 +31,7 @@
     </transition>
 
     <!--//%%%%%··········发布按钮··········%%%%%//-->
-    <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" title="发布" />
+    <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" v-model="status" title="发布" />
 
     <!--//%%%%%··········取消发布··········%%%%%//-->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
@@ -41,6 +42,7 @@
 </template>
 <script setup>
 import { provide, reactive, ref } from 'vue';
+import { addHero } from '@/api/main/hero/self/transfer.js';
 import { getAreaType } from '@/api/main/tree/areaType'; //区域
 import { getCampType } from '@/api/main/tree/campType'; //阵营
 import { getEnergyType } from '@/api/main/tree/energyType'; //能量
@@ -55,7 +57,9 @@ import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
 
 const emit = defineEmits(['update:modelValue']);
-const { show, finish, close } = viewHide(emit);
+const {
+  show, finish, status, close,
+} = viewHide(emit);
 
 const validate = (v) => {
   if (isNaN(v)) return '限制为数字';
@@ -92,11 +96,12 @@ const show_AddLink = ref(false); //显示添加链接弹窗
 const AddLink_key = ref(''); //当前谁在使用弹窗(字段名)
 const AddLink_title = ref(''); //弹窗左上角标题
 const AddLink_placeholder = ref(''); //弹窗输入框描述
+
 /* 英雄数据 */
 const hero_data = reactive({
+  id: '',
   name: '',
   mark: '',
-  survival: 0,
 });
 const type_tree = reactive({
   areaType: [],
@@ -108,28 +113,26 @@ const type_tree = reactive({
   professionType: [],
   specialtyType: [],
 });
-/* 区域列表 */
-// const areaType_list = [];
 
-const $store = switchStore();
+const $switchStore = switchStore();
 setTimeout(async () => {
-  $store.$loading.show('正在加载区域类型表0/7');
+  $switchStore.$loading.show('正在加载区域类型表0/7');
   type_tree.areaType = await getAreaType();
-  $store.$loading.show('正在加载阵营类型表1/7');
+  $switchStore.$loading.show('正在加载阵营类型表1/7');
   type_tree.campType = await getCampType();
-  $store.$loading.show('正在加载能量类型表2/7');
+  $switchStore.$loading.show('正在加载能量类型表2/7');
   type_tree.energyType = await getEnergyType();
-  $store.$loading.show('正在加载身份类型表3/7');
+  $switchStore.$loading.show('正在加载身份类型表3/7');
   type_tree.identityType = await getIdentityType();
-  $store.$loading.show('正在加载定位类型表4/7');
+  $switchStore.$loading.show('正在加载定位类型表4/7');
   type_tree.locationType = await getLocationType();
-  $store.$loading.show('正在加载时期类型表5/7');
+  $switchStore.$loading.show('正在加载时期类型表5/7');
   type_tree.periodType = await getPeriodType();
-  $store.$loading.show('正在加载职业类型表6/7');
+  $switchStore.$loading.show('正在加载职业类型表6/7');
   type_tree.professionType = await getProfessionType();
-  $store.$loading.show('正在加载特长类型表7/7');
+  $switchStore.$loading.show('正在加载特长类型表7/7');
   type_tree.specialtyType = await getSpecialtyType();
-  await $store.$loading.close();
+  await $switchStore.$loading.close();
   show.value = true;
 }, 1000);
 
@@ -153,12 +156,22 @@ const setKeyVs = (k, v) => {
 
 /* 发布及取消 */
 const commit = () => {
-  setTimeout(() => {
-    finish.value = true;
-    setTimeout(() => {
-      close();
-    }, 250);
-  }, 250);
+  const {
+    id, mark, name, cover, headImg, poster,
+  } = hero_data;
+  if (id && mark && name && cover && headImg && poster) {
+    addHero(hero_data).then(() => {
+      setTimeout(() => {
+        finish.value = true;
+        setTimeout(() => {
+          close();
+        }, 250);
+      }, 250);
+    });
+  } else {
+    $switchStore.$tip('请完整填写', 'error');
+    status.value = 0;
+  }
 };
 
 provide('hero_data', hero_data);
