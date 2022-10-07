@@ -39,15 +39,15 @@
 <script setup name="Hero">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { hero } from '@/api/main/hero/self';
 import $bus from '@/utils/eventBus.js';
-import heroStore from '@/store/hero.js';
 import switchStore from '@/store/globalSwitch.js';
+import heroStore from '@/store/hero.js';
+import { hero } from '@/api/main/hero/self';
 
 import HeroCard from './childComps/HeroCard/index.vue';
 import HeroSidebar from './childComps/HeroSidebar/index.vue';
 
-const HeroDetail = () => import('./childViews/HeroDetail/index.vue');
+import HeroDetail from './childViews/HeroDetail/index.vue';
 
 const $route = useRoute();
 const $router = useRouter();

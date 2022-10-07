@@ -14,6 +14,10 @@ export default [
   },
   {
     path: '/404',
+    meta: {
+      title: 'NotFound',
+      hidden: true,
+    },
     component: () => import(/* webpackChunkName: "NotFound" */ '@/views/Base/NotFound/index.vue'),
   },
   {

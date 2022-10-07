@@ -4,21 +4,20 @@
 
     <!--//%%%%%··········发布列表··········%%%%%//-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
-      <component v-if="v.show" :is="components[v.i]" />
+      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
     </transition>
   </div>
 </template>
 <script setup>
 import { reactive } from 'vue';
+import DelHero from './childViews/DelHero/index.vue'; //英雄
+import DelSkin from './childViews/DelSkin/index.vue'; //皮肤
+import DelSkill from './childViews/DelSkill/index.vue'; //技能
+import DelVoice from './childViews/DelVoice/index.vue'; //语音
+import DelStory from './childViews/DelStory/index.vue'; //故事
+import DelEquip from './childViews/DelEquip/index.vue'; //装备
+import DelEpigraph from './childViews/DelEpigraph/index.vue'; //铭文
 import useManageCard from '../../hooks/useManageCard.js';
-
-const DelHero = () => import('./childViews/DelHero/index.vue'); //英雄
-const DelSkin = () => import('./childViews/DelSkin/index.vue'); //皮肤
-const DelSkill = () => import('./childViews/DelSkill/index.vue'); //技能
-const DelVoice = () => import('./childViews/DelVoice/index.vue'); //语音
-const DelStory = () => import('./childViews/DelStory/index.vue'); //故事
-const DelEquip = () => import('./childViews/DelEquip/index.vue'); //装备
-const DelEpigraph = () => import('./childViews/DelEpigraph/index.vue'); //铭文
 
 const { card, box, list } = useManageCard;
 const components = [DelHero, DelSkin, DelVoice, DelSkill, DelStory, DelEquip, DelEpigraph];
