@@ -79,6 +79,8 @@ const viewClick = (id) => {
     });
   });
 };
+
+/* 判断地址栏及是否存在缓存 */
 if (id) {
   viewClick(id);
 } else if ($heroStore.hero_list.length === 0) {
@@ -86,20 +88,14 @@ if (id) {
   hero().then(async (res) => {
     $switchStore.$loading.close();
     $heroStore.setHeroList(res);
-    setTimeout(() => {
-      show.value = true;
-    }, 250);
   });
-} else {
-  setTimeout(() => {
-    show.value = true;
-  }, 250);
 }
 
 onMounted(() => {
   /* 延迟显示右侧边栏 */
   setTimeout(() => {
     show_HeroSidebar.value = true;
+    show.value = true;
   }, 250);
 
   /* 实时修改一行个数 */
