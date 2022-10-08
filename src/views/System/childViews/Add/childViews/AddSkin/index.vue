@@ -32,21 +32,19 @@
             <FormSelect label="皮肤类型" required :data="skin_type" v-model="item.type" />
 
             <!--//%%%%········皮肤头像、海报········%%%%//-->
-            <div class="head-poster text-gradient-one">
-              <span>皮肤头像&海报：</span>
-
-              <!--//%%%······海报······%%%//-->
-              <SelectImg :src="item.img" type="width" @select="setKeyValues" keyword="img" />
-
-              <!--//%%%······海报头像······%%%//-->
-              <SelectImg :src="item.head" @select="setKeyValues" keyword="head" />
-            </div>
+            <FormImg
+              label="皮肤头像&海报"
+              :getLink="getLink"
+              :imgs="[item.head, item.img]"
+              :keys="['head', 'img']"
+              :values="{ head: '头像', img: '海报' }"
+            />
 
             <!--//%%%%········右上角删除········%%%%//-->
             <transition name="fade">
               <LibSvg
                 class="del"
-                @click="del(index)"
+                @click="delOne(index)"
                 :svg="icon.X"
                 color="var(--theme-color-seven)"
                 enter-color="var(--theme-color-four)"
@@ -65,9 +63,6 @@
 
     <!--//%%%%%··········取消发布··········%%%%%//-->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
-
-    <!--//%%%%%··········添加图片链接弹窗组件··········%%%%%//-->
-    <AddLink v-model="show_AddLink" :title="AddLink_title" :placeholder="AddLink_placeholder" @get-link="getLink" />
   </div>
 </template>
 <script setup>
@@ -80,11 +75,6 @@ import switchStore from '@/store/globalSwitch.js';
 const emit = defineEmits(['update:modelValue']);
 const { show, finish, close } = viewHide(emit);
 
-const AddLink_set_desc = {
-  img: '海报',
-  head: '头像',
-};
-
 /* 添加的皮肤 */
 const skin_data = reactive({
   id: 0,
@@ -94,10 +84,6 @@ const skin_data = reactive({
 const skin_type = ref([]); //皮肤类型表
 const currentIndex = ref(null); //根据悬浮的位置显示垃圾桶
 /* 弹窗相关 */
-const show_AddLink = ref(false); //显示添加链接弹窗
-const AddLink_key = ref(''); //当前谁在使用弹窗(字段名)
-const AddLink_title = ref(''); //弹窗左上角标题
-const AddLink_placeholder = ref(''); //弹窗输入框描述
 
 const $store = switchStore();
 setTimeout(async () => {
@@ -108,20 +94,12 @@ setTimeout(async () => {
 }, 1000);
 
 /* 获取链接 */
-const getLink = (link) => {
+const getLink = (link, key) => {
   const data = skin_data.data;
   data[data.length === 0 ? 0 : data.length - 1] = {
     ...data.slice(-1)[0],
-    [AddLink_key.value]: link,
+    [key]: link,
   };
-};
-
-/* 设置头像及名字 */
-const setKeyValues = (key) => {
-  show_AddLink.value = true;
-  AddLink_title.value = `设置${AddLink_set_desc[key]}`;
-  AddLink_placeholder.value = `请输入${AddLink_set_desc[key]}`;
-  AddLink_key.value = key;
 };
 
 /* 增加一项 */
@@ -143,13 +121,14 @@ const addOne = () => {
 };
 
 /* 删除一项 */
-const commit = (i) => {
+const delOne = (i) => {
   skin_data.data.splice(i, 1);
   currentIndex.value = null;
 };
 
 /* 发布 */
-const add = () => {
+const commit = () => {
+  console.log(skin_data);
   setTimeout(() => {
     finish.value = true;
     setTimeout(() => {

@@ -60,6 +60,19 @@
         "left": -7,
         "transform": "scale(2.3)"
       }
+    },
+    {
+      "id": "setKey",
+      "name": "setKey",
+      "mark": "setKey",
+      "cover": "setKey",
+      "headImg": "setKey",
+      "poster": "setKey",
+      "offset": {
+        "top": 1,
+        "left": -1,
+        "transform": "scale(1.1)"
+      }
     }
   ],
   "heroList": [
@@ -70,6 +83,10 @@
     {
       "id": 67,
       "name": "鬼谷子"
+    },
+    {
+      "id": "setKey",
+      "name": "setKey"
     }
   ],
   "allhero": [

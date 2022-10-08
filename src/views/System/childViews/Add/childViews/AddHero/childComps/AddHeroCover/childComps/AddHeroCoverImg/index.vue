@@ -1,5 +1,5 @@
 <template>
-  <div class="AddHeroCoverImg flex cursor-pointer" @click="setKeyValue('cover')">
+  <div class="AddHeroCoverImg flex cursor-pointer" @click="setKey('cover')">
     <LibSvg
       :svg="icon.ADD"
       color="var(--theme-color-eight)"
@@ -34,7 +34,7 @@ defineProps({
 });
 
 const hero_data = inject('hero_data', {});
-const setKeyValue = inject('setKeyValue', '');
+const setKey = inject('setKey', '');
 </script>
 <style scoped lang="less">
 .AddHeroCoverImg {

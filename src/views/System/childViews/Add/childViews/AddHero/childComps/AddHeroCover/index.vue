@@ -29,10 +29,10 @@ const p = reactive({
 });
 
 const hero_data = inject('hero_data', {});
-const setKeyV = inject('setKeyV', '');
+const setValue = inject('setValue', '');
 
 const emit = () => {
-  setKeyV('offset', p);
+  setValue('offset', p);
 };
 
 /* 设置偏移量 */

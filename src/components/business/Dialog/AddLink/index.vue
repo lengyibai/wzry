@@ -48,6 +48,11 @@ const props = defineProps({
     type: String,
     default: '更改名字',
   },
+  /* 字段名 */
+  keyword: {
+    type: String,
+    default: '',
+  },
   /* 输入框描述 */
   placeholder: {
     type: String,
@@ -71,7 +76,7 @@ const input = ref();
 const close = () => {
   store.$clickAudio('关闭');
   emit('update:modelValue', false);
-  emit('get-link', link.value);
+  emit('get-link', link.value, props.keyword);
   link.value = '';
 };
 

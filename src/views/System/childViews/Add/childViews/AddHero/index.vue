@@ -26,7 +26,13 @@
         <AddHeroCover />
 
         <!--//%%%%%··········设置头像&海报··········%%%%%//-->
-        <AddHeroHeadPoster />
+        <FormImg
+          label="皮肤头像&海报"
+          :getLink="getLink"
+          :imgs="[hero_data.headImg, hero_data.poster]"
+          :keys="['headImg', 'poster']"
+          :values="{ headImg: '头像', poster: '海报' }"
+        />
       </div>
     </transition>
 
@@ -37,7 +43,13 @@
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
 
     <!--//%%%%%··········添加图片链接弹窗组件··········%%%%%//-->
-    <AddLink v-model="show_AddLink" :title="AddLink_title" :placeholder="AddLink_placeholder" @get-link="getLink" />
+    <AddLink
+      v-model="show_AddLink"
+      :title="AddLink_title"
+      :placeholder="AddLink_placeholder"
+      @get-link="getLink"
+      :keyword="AddLink_key"
+    />
   </div>
 </template>
 <script setup>
@@ -53,7 +65,7 @@ import { getProfessionType } from '@/api/main/tree/professionType'; //职业
 import { getSpecialtyType } from '@/api/main/tree/specialtyType'; //特长
 import { addHeroList } from '@/api/main/hero/basis/index.js';
 import AddHeroCover from './childComps/AddHeroCover/index.vue'; //设置封面
-import AddHeroHeadPoster from './childComps/AddHeroHeadPoster/index.vue'; //设置头像
+// import AddHeroHeadPoster from './childComps/AddHeroHeadPoster/index.vue'; //设置头像
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
 
@@ -103,6 +115,9 @@ const hero_data = reactive({
   id: '',
   name: '',
   mark: '',
+  cover: '',
+  headImg: '',
+  poster: '',
 });
 const type_tree = reactive({
   areaType: [],
@@ -138,12 +153,12 @@ setTimeout(async () => {
 }, 1000);
 
 /* 获取链接 */
-const getLink = (link) => {
-  hero_data[AddLink_key.value] = link;
+const getLink = (link, key) => {
+  hero_data[key] = link;
 };
 
-/* 设置置头像及名字 */
-const setKeyValues = (key) => {
+/* 设置头像及名字 */
+const setKey = (key) => {
   show_AddLink.value = true;
   AddLink_title.value = `设置${AddLink_set_desc[key]}`;
   AddLink_placeholder.value = `请输入${AddLink_set_desc[key]}`;
@@ -151,7 +166,7 @@ const setKeyValues = (key) => {
 };
 
 /* 设置属性值 */
-const setKeyVs = (k, v) => {
+const setValue = (k, v) => {
   hero_data[k] = v;
 };
 
@@ -177,8 +192,8 @@ const commit = () => {
 };
 
 provide('hero_data', hero_data);
-provide('setKeyValue', setKeyValues);
-provide('setKeyV', setKeyVs);
+provide('setKey', setKey);
+provide('setValue', setValue);
 </script>
 <style scoped lang="less">
 .Hero {
