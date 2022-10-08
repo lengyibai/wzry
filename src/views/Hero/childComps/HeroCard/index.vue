@@ -40,7 +40,7 @@
 <script setup>
 import { ref } from 'vue';
 
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
     default() {
@@ -48,7 +48,7 @@ const props = defineProps({
     },
   },
 });
-console.log(props);
+
 const show = ref(false);
 const lineActive = ref(false);
 

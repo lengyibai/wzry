@@ -40,12 +40,12 @@
         <transition-group name="selectList">
           <div
             class="box"
-            :class="{ active: currentIndex === index || modelValue === item.name }"
+            :class="{ active: currentIndex === index || modelValue === item.name || modelValue === item.id }"
             v-for="(item, index) in select_list"
-            @click="select(item.name)"
+            @click="select(item.id, item.name)"
             @mouseenter="currentIndex = index"
             @mouseleave="currentIndex = null"
-            :key="item.name"
+            :key="item.id"
           >
             <div class="item cursor-pointer">{{ item.name }}</div>
           </div>
@@ -64,6 +64,11 @@ import { $search, $debounce } from '@/utils/index.js';
 import $bus from '@/utils/eventBus.js';
 
 const props = defineProps({
+  /* 传递id还是name */
+  id: {
+    type: Boolean,
+    default: false,
+  },
   /* 数据 */
   data: {
     type: Array,
@@ -73,8 +78,7 @@ const props = defineProps({
   },
   /* 选择的值 */
   modelValue: {
-    type: String,
-    default: '',
+    type: [String, Number],
   },
   /* 是否必填 */
   required: {
@@ -123,11 +127,12 @@ const blur = () => {
 };
 
 /* 选择的数据 */
-const select = (name) => {
-  emit('update:modelValue', name);
-  emit('change', name);
+const select = (id, name) => {
+  emit('update:modelValue', props.id ? id : name);
+  emit('change', props.id ? id : name);
   is_unfold.value = false;
   select_list.value = data.value;
+  active_value.value = name;
 };
 
 /* 点击空白隐藏列表 */
@@ -145,12 +150,6 @@ const hideList = (e) => {
 };
 $bus.on('click', (v) => {
   hideList(v);
-});
-
-/* 选择后替换输入框 */
-watch(modelValue, (v) => {
-  select_value.value = v;
-  active_value.value = v;
 });
 
 /* 在created会赋空值，只能通过侦听器 */

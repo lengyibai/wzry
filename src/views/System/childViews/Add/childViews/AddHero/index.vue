@@ -51,6 +51,7 @@ import { getLocationType } from '@/api/main/tree/locationType'; //定位
 import { getPeriodType } from '@/api/main/tree/periodType'; //时期
 import { getProfessionType } from '@/api/main/tree/professionType'; //职业
 import { getSpecialtyType } from '@/api/main/tree/specialtyType'; //特长
+import { addHeroList } from '@/api/main/hero/basis/index.js';
 import AddHeroCover from './childComps/AddHeroCover/index.vue'; //设置封面
 import AddHeroHeadPoster from './childComps/AddHeroHeadPoster/index.vue'; //设置头像
 import viewHide from '../../../../hooks/useViewHide.js';
@@ -161,6 +162,7 @@ const commit = () => {
   } = hero_data;
   if (id && mark && name && cover && headImg && poster) {
     addHero(hero_data).then(() => {
+      addHeroList({ id: hero_data.id, name: hero_data.name });
       setTimeout(() => {
         finish.value = true;
         setTimeout(() => {

@@ -75,13 +75,13 @@ const close = () => {
   link.value = '';
 };
 
-// watch(modelValue, (v) => {
-//   if (v) {
-//     nextTick(() => {
-//       input.value.focus();
-//     });
-//   }
-// });
+watch(modelValue, (v) => {
+  if (v) {
+    nextTick(() => {
+      input.value.focus();
+    });
+  }
+});
 </script>
 <style scoped lang="less">
 @import './index.less';
