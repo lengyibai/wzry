@@ -28,7 +28,7 @@ const $equiqStore = equiqStore();
 $switchStore.$loading.show('正在请求装备列表');
 getEquip().then(async (res) => {
   await $switchStore.$loading.close();
-  $equiqStore.setEquipList(res);
+  $equiqStore.setEquipList(res.data);
   show_EquipSidebar.value = true;
 });
 </script>

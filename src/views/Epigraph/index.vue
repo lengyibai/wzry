@@ -11,22 +11,21 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getEpigraph } from '@/api/main/other/epigraph';
+import { getEpigraph } from '@/api/main/other/epigraph/index.js';
 import switchStore from '@/store/globalSwitch.js';
 import epigraphStore from '@/store/epigraph.js';
 import EpigraphCategory from './childComps/EpigraphCategory/index.vue'; //铭文类型分类
 import EpigraphList from './childComps/EpigraphList/index.vue'; //铭文列表
 
-const show_epigraph = ref(false); //显示铭文顶部分类
-
 const $switchStore = switchStore();
 const $epigraphStore = epigraphStore();
+const show_epigraph = ref(false); //显示铭文顶部分类
 
 $switchStore.$loading.show('正在请求铭文列表');
 getEpigraph().then(async (res) => {
   await $switchStore.$loading.close();
   show_epigraph.value = true;
-  $epigraphStore.setEpigraphList(res);
+  $epigraphStore.setEpigraphList(res.data);
 });
 </script>
 <style scoped lang="less">

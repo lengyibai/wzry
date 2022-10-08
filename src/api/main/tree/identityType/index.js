@@ -1,6 +1,19 @@
-import { getIdentityTypes } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-//#####········获取身份类型········#####//
-export const getIdentityType = (data) => new Promise((resolve) => {
-  getIdentityTypes(data).then((res) => (data ? resolve(res.data[0].name) : resolve(res.data)));
-});
+//#####··········GET请求··········#####//
+//####········获取身份类型········####//
+export const getIdentityType = (data) => getReq('/identityType', data);
+
+//#####··········POST请求··········#####//
+//####········添加身份类型········####//
+export const addIdentityType = (data) => postReq('/identityType', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改身份类型········####//
+export const updateIdentityType = (id, data) => patchReq(`/identityType/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除身份类型········####//
+export const delIdentityType = (id) => deleteReq(`/identityType/${id}`);

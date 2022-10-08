@@ -2,41 +2,33 @@
   <div class="HeroDetail">
     <LibMaskClose @close="hide" />
     <!--//%%%%%··········资料皮肤··········%%%%%//-->
-    <HeroDetailParallaxBg :bg="data.poster">
-      <HeroMaterialSkins :data="data" />
+    <HeroDetailParallaxBg :bg="hero_data.poster">
+      <HeroMaterialSkins />
     </HeroDetailParallaxBg>
 
     <!--//%%%%%··········技能··········%%%%%//-->
-    <HeroDetailParallaxBg :bg="data.poster" v-if="data.skill">
+    <HeroDetailParallaxBg :bg="hero_data.poster" v-if="hero_data.skills">
       <HeroSkill />
     </HeroDetailParallaxBg>
 
     <!--//%%%%%··········故事··········%%%%%//-->
-    <HeroDetailParallaxBg :bg="data.poster" v-if="data.story">
+    <HeroDetailParallaxBg :bg="hero_data.poster" v-if="hero_data.gameStory">
       <HeroStory />
     </HeroDetailParallaxBg>
   </div>
 </template>
 <script setup>
-//#####··········子组件··········#####//
-import { provide, ref } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import heroStore from '@/store/hero.js';
 import HeroDetailParallaxBg from './childComps/HeroDetailParallaxBg/index.vue'; //滚动视差背景
 import HeroMaterialSkins from './childComps/HeroMaterialSkins/index.vue'; //资料、皮肤页
 import HeroSkill from './childComps/HeroSkill/index.vue'; //技能页
 import HeroStory from './childComps/HeroStory/index.vue'; //历史页
 
-const { data } = defineProps({
-  /* 英雄基本数据 */
-  data: {
-    type: Object,
-    default() {
-      return {};
-    },
-  },
-});
+const $heroStore = heroStore();
 
-provide('hero_data', data);
+const hero_data = $heroStore.hero_info;
 
 const show_info = ref(false);
 

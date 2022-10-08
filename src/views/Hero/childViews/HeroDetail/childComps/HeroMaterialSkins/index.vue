@@ -25,8 +25,9 @@
   </div>
 </template>
 <script setup>
-import { inject, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import { getSkinType } from '@/api/main/tree/skinType/index.js';
+import heroStore from '@/store/hero.js';
 import HeroBgImg from './childComps/HeroBgImg/index.vue'; //背景图
 import HeroVoice from './childComps/HeroVoice/index.vue'; //英雄语音
 import HerSkinType from './childComps/HerSkinType/index.vue'; //皮肤类型图
@@ -35,6 +36,9 @@ import HeroSkinHeadImg from './childComps/HeroSkinHeadImg/index.vue'; //切换�
 import HeroMaterialAttribute from './childComps/HeroMaterialAttribute/index.vue'; //右侧属性详情
 import HeroMaterialBasicInfo from './childComps/HeroMaterialBasicInfo/index.vue'; //左侧资料详情
 
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info; //英雄数据
+
 const active_skin_name = ref(''); //皮肤名
 const active_skin_type = ref(''); //皮肤类型
 const show_info = ref(false); //用于延迟显示卡片
@@ -42,7 +46,6 @@ const toggle = ref(true); //用于切换背景
 const skin_name_toggle = ref(true); //皮肤切换
 const skin_type_toggle = ref(true); //皮肤类型切换
 const bg_imgs = reactive([]); //背景图
-const hero_data = inject('hero_data', {}); //英雄数据
 
 /* 延迟显示卡片 */
 setTimeout(() => {

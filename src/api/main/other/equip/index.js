@@ -1,12 +1,19 @@
-//#####········获取装备········#####//
-import { getEquips } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-export const getEquip = (data) => new Promise((resolve) => {
-  getEquips(data).then(async (res) => {
-    if (data) {
-      resolve(data);
-    } else {
-      resolve(res.data);
-    }
-  });
-});
+//#####··········GET请求··········#####//
+//####········获取装备········####//
+export const getEquip = (data) => getReq('/equip', data);
+
+//#####··········POST请求··········#####//
+//####········添加装备········####//
+export const addEquip = (data) => postReq('/equip', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改装备········####//
+export const updateEquip = (id, data) => patchReq(`/equip/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除装备········####//
+export const delEquip = (id) => deleteReq(`/equip/${id}`);

@@ -1,6 +1,19 @@
-import { getSkillEffects } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-//#####········获取技能效果········#####//
-export const getSkillEffect = (data) => new Promise((resolve) => {
-  getSkillEffects(data).then((res) => (data ? resolve(res.data[0].name) : resolve(res.data)));
-});
+//#####··········GET请求··········#####//
+//####········获取技能效果········####//
+export const getSkillEffect = (data) => getReq('/skillEffect', data);
+
+//#####··········POST请求··········#####//
+//####········添加技能效果········####//
+export const addSkillEffect = (data) => postReq('/skillEffect', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改技能效果········####//
+export const updateSkillEffect = (id, data) => patchReq(`/skillEffect/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除技能效果········####//
+export const delSkillEffect = (id) => deleteReq(`/skillEffect/${id}`);

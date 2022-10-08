@@ -9,6 +9,8 @@ import { computed, inject, toRefs } from 'vue';
 import HeroSkillContentLeft from './childComps/HeroSkillContentLeft/index.vue';
 import HeroSkillContentRight from './childComps/HeroSkillContentRight/index.vue';
 
+import heroStore from '@/store/hero.js';
+
 const props = defineProps({
   /* 当前展示技能的索引 */
   index: {
@@ -17,9 +19,10 @@ const props = defineProps({
   },
 });
 
-const { index } = toRefs(props);
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info;
 
-const hero_data = inject('hero_data', {});
+const { index } = toRefs(props);
 
 const activeSkill = computed(() => {
   return hero_data.skills[index.value];

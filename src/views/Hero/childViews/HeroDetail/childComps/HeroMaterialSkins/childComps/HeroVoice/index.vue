@@ -26,10 +26,13 @@
   </div>
 </template>
 <script setup>
-import { inject, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import heroStore from '@/store/hero.js';
 import icon from './svg/index.js';
 
-const hero_data = inject('hero_data', []);
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info;
+
 const voices = hero_data.voices; //语音数据
 
 const currentIndex = ref(null); //当前播放索引

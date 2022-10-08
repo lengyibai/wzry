@@ -10,11 +10,13 @@
   </div>
 </template>
 <script setup>
-import { inject, ref } from 'vue';
+import { ref } from 'vue';
+import heroStore from '@/store/hero.js';
 
+const $heroStore = heroStore();
+
+const hero_data = $heroStore.hero_info;
 const currentIndex = ref(0); //处于展示的技能索引
-
-const hero_data = inject('hero_data', {});
 
 /* 点击需要展示的技能 */
 const emit = defineEmits(['select-skill']);

@@ -1,6 +1,19 @@
-import { getAreaTypes } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-//#####········获取区域类型········#####//
-export const getAreaType = (data) => new Promise((resolve) => {
-  getAreaTypes(data).then((res) => (data ? resolve(res.data[0].name) : resolve(res.data)));
-});
+//#####··········GET请求··········#####//
+//####········获取区域类型········####//
+export const getAreaType = (data) => getReq('/areaType', data);
+
+//#####··········POST请求··········#####//
+//####········添加区域类型········####//
+export const addAreaType = (data) => postReq('/areaType', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改区域类型········####//
+export const updateAreaType = (id, data) => patchReq(`/areaType/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除区域类型········####//
+export const delAreaType = (id) => deleteReq(`/areaType/${id}`);

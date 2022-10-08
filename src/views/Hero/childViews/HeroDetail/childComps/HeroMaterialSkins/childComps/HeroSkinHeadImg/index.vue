@@ -24,11 +24,11 @@
   </div>
 </template>
 <script setup>
-import {
-  inject, onMounted, reactive, ref,
-} from 'vue';
+import { onMounted, reactive, ref } from 'vue';
+import heroStore from '@/store/hero.js';
 
-const hero_data = inject('hero_data', {});
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info;
 
 const toggle = ref(true); //用于切换背景
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围

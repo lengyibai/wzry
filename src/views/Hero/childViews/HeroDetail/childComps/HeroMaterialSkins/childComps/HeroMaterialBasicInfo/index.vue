@@ -13,10 +13,14 @@
   </div>
 </template>
 <script setup>
-import { inject, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+
+import heroStore from '@/store/hero.js';
+
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info;
 
 const HeroDetailBasicInfo = ref();
-const hero_data = inject('hero_data', {});
 const hero_info = [
   [hero_data.location, 'location', '定位'],
   [hero_data.specialty, 'specialty', '特长'],
@@ -25,9 +29,9 @@ const hero_info = [
   [hero_data.area, 'area', '区域'],
   [hero_data.height, 'height', '身高'],
 ];
-function getImg(src) {
+const getImg = (src) => {
   return new URL(`../../../../../../../../assets/img/svg/${src}.svg`, import.meta.url).href;
-}
+};
 
 onMounted(() => {
   const list = HeroDetailBasicInfo.value.querySelectorAll('.info');

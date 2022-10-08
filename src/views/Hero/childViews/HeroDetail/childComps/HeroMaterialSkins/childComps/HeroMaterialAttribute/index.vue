@@ -9,9 +9,10 @@
   </div>
 </template>
 <script setup>
-import { inject } from 'vue';
+import heroStore from '@/store/hero.js';
 
-const hero_data = inject('hero_data', {});
+const $heroStore = heroStore();
+const hero_data = $heroStore.hero_info;
 </script>
 <style scoped lang="less">
 .HeroMaterialAttribute {
