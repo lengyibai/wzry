@@ -5,6 +5,7 @@ export default defineStore('hero', {
     profession: '全部',
     hero_list: [],
     filter_list: [],
+    hero_info: {},
   }),
   actions: {
     /* 设置英雄列表 */

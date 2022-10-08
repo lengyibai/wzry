@@ -1,33 +1,20 @@
-//#####··········资料聚合处理··········#####//
-/* 详细信息 */
-//英雄故事
-import { getGameStory } from '@/api/main/hero/gameStory';
-//历史故事
-import { getHistory } from '@/api/main/hero/history';
-//语音列表
-import { getVoice } from '@/api/main/hero/voice';
-//皮肤列表
-import { getSkin } from '@/api/main/hero/skin';
-//技能列表
-import { getSkill } from '@/api/main/hero/skill';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-import { getHeros, addHero } from './transfer.js';
+//#####··········GET请求··········#####//
+// let { id, _page, _limit, token } = data;
+//####········获取英雄········####//
+export const getHero = (data) => getReq('/hero', data);
 
-export const hero = (data) => new Promise((resolve) => {
-  getHeros(data).then(async (res) => {
-    if (data) {
-      const params = { id: data.id };
+//#####··········POST请求··········#####//
+//####········添加英雄········####//
+export const addHero = (data) => postReq('/hero', data);
 
-      /* 详细信息 */
-      const k2 = ['voices', 'skins', 'skills', 'gameStory', 'history'];
-      const r2 = [getVoice, getSkin, getSkill, getGameStory, getHistory];
-      for (let i = 0; i < r2.length; i++) {
-        res.data[0][k2[i]] = await r2[i](params);
-      }
+//#####··········PATCH请求··········#####//
+//####········修改英雄········####//
+export const updateHero = (id, data) => patchReq(`/hero/${id}`, data);
 
-      resolve(res.data[0]);
-    } else {
-      resolve(res.data);
-    }
-  });
-});
+//#####··········DELETE请求··········#####//
+//####········删除英雄········####//
+export const delHero = (id) => deleteReq(`/hero/${id}`);

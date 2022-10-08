@@ -40,60 +40,24 @@
 import {
   onBeforeUnmount, onMounted, ref, watch,
 } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import $bus from '@/utils/eventBus.js';
-import switchStore from '@/store/globalSwitch.js';
 import heroStore from '@/store/hero.js';
-import { hero } from '@/api/main/hero/self';
-
+import useIntegrationData from './hooks/useIntegrationData.js';
 import HeroCard from './childComps/HeroCard/index.vue';
 import HeroSidebar from './childComps/HeroSidebar/index.vue';
-
 import HeroDetail from './childViews/HeroDetail/index.vue';
 
 const $route = useRoute();
-const $router = useRouter();
-const $switchStore = switchStore();
 const $heroStore = heroStore();
 
-const count = ref(0); //一行显示的数目
-const show = ref(false);
-const show_HeroDetail = ref(false); //显示英雄详情
-const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
-const hero_list = ref([]); //英雄列表
-const hero_info = ref({}); //英雄信息
-
-/* 显示英雄详情 */
 const id = $route.query.id;
-const viewClick = (id) => {
-  const params = { id };
-  $switchStore.$loading.show('正在请求英雄数据');
-  hero(params).then(async (res) => {
-    await $switchStore.$loading.close();
-    hero_info.value = res;
-    show_HeroDetail.value = true;
+const count = ref(0); //一行显示的数目
+const show = ref(false); //是否显示列表
 
-    /* 只用于记录，并不会跳转 */
-    $router.push({
-      path: '/hero',
-      query: {
-        id: res.id,
-      },
-    });
-  });
-};
-
-/* 判断地址栏及是否存在缓存 */
-if (id) {
-  viewClick(id);
-} else {
-  $switchStore.$loading.show('正在请求英雄列表');
-  hero().then(async (res) => {
-    $switchStore.$loading.close();
-    $heroStore.setHeroList(res);
-    show_HeroSidebar.value = true;
-  });
-}
+const {
+  hero_info, hero_list, show_HeroDetail, show_HeroSidebar, viewClick,
+} = useIntegrationData(id);
 
 watch(
   () => $heroStore.filter_list,
@@ -116,7 +80,7 @@ onMounted(() => {
     [960, 2],
     [800, 1],
   ];
-  const initCount = () => {
+  const changeCount = () => {
     const v = document.documentElement.clientWidth;
     if (v > 1400) {
       count.value = 6;
@@ -127,9 +91,9 @@ onMounted(() => {
       }
     }
   };
-  initCount();
+  changeCount();
   $bus.on('resize', () => {
-    initCount();
+    changeCount();
   });
 });
 

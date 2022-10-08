@@ -1,12 +1,19 @@
-//#####········获取皮肤········#####//
-import { getSkins } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-export const getSkin = (data) => new Promise((resolve) => {
-  getSkins(data).then(async (res) => {
-    if (data) {
-      resolve(res.data[0]?.data);
-    } else {
-      resolve(res.data);
-    }
-  });
-});
+//#####··········GET请求··········#####//
+//####········获取皮肤········####//
+export const getSkin = (data) => getReq('/skin', data);
+
+//#####··········POST请求··········#####//
+//####········添加皮肤········####//
+export const addSkin = (data) => postReq('/skin', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改皮肤········####//
+export const updateSkin = (id, data) => patchReq(`/skin/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除皮肤········####//
+export const delSkin = (id) => deleteReq(`/skin/${id}`);

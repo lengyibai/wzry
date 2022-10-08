@@ -1,12 +1,19 @@
-//#####········获取技能········#####//
-import { getSkills } from './transfer.js';
+import {
+  getReq, postReq, patchReq, deleteReq,
+} from '@/api/network';
 
-export const getSkill = (data) => new Promise((resolve) => {
-  getSkills(data).then(async (res) => {
-    if (data) {
-      resolve(res.data[0]?.data);
-    } else {
-      resolve(res.data);
-    }
-  });
-});
+//#####··········GET请求··········#####//
+//####········获取技能········####//
+export const getSkill = (data) => getReq('/skill', data);
+
+//#####··········POST请求··········#####//
+//####········添加技能········####//
+export const addSkill = (data) => postReq('/skill', data);
+
+//#####··········PATCH请求··········#####//
+//####········修改技能········####//
+export const updateSkill = (id, data) => patchReq(`/skill/${id}`, data);
+
+//#####··········DELETE请求··········#####//
+//####········删除技能········####//
+export const delSkill = (id) => deleteReq(`/skill/${id}`);
