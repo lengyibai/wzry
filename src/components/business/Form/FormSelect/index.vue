@@ -95,6 +95,14 @@ const props = defineProps({
     type: String,
     default: '请选择',
   },
+  keyword: {
+    type: String,
+    default: '',
+  },
+  value: {
+    type: String,
+    default: '',
+  },
 });
 const { modelValue, data, required } = toRefs(props);
 

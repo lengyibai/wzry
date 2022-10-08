@@ -60,19 +60,6 @@
         "left": -7,
         "transform": "scale(2.3)"
       }
-    },
-    {
-      "id": "setKey",
-      "name": "setKey",
-      "mark": "setKey",
-      "cover": "setKey",
-      "headImg": "setKey",
-      "poster": "setKey",
-      "offset": {
-        "top": 1,
-        "left": -1,
-        "transform": "scale(1.1)"
-      }
     }
   ],
   "heroList": [
@@ -83,10 +70,6 @@
     {
       "id": 67,
       "name": "鬼谷子"
-    },
-    {
-      "id": "setKey",
-      "name": "setKey"
     }
   ],
   "allhero": [
@@ -717,13 +700,13 @@
           "name": "幻乐之宴",
           "img": "http://lengyibai.gitee.io/wzry-material/hero/67/pi_fu/2.jpg",
           "head": "http://lengyibai.gitee.io/wzry-material/hero/67/tou_xiang/2.jpg",
-          "type": "勇者"
+          "type": 1
         },
         {
           "name": "原初探秘者",
           "img": "http://lengyibai.gitee.io/wzry-material/hero/67/pi_fu/3.jpg",
           "head": "http://lengyibai.gitee.io/wzry-material/hero/67/tou_xiang/3.jpg",
-          "type": "峡谷异闻"
+          "type": 2
         }
       ]
     }
@@ -731,247 +714,13 @@
   "skinType": [
     {
       "id": 1,
-      "name": "伴生"
+      "name": "勇者",
+      "icon": "http://lengyibai.gitee.io/wzry-material/skinType/yongzhe.png"
     },
     {
       "id": 2,
-      "name": "不夜长安"
-    },
-    {
-      "id": 3,
-      "name": "沉稳"
-    },
-    {
-      "id": 4,
-      "name": "成就限定"
-    },
-    {
-      "id": 5,
-      "name": "传说"
-    },
-    {
-      "id": 6,
-      "name": "敦煌研究院"
-    },
-    {
-      "id": 7,
-      "name": "二周年限定"
-    },
-    {
-      "id": 8,
-      "name": "凤仪之诏"
-    },
-    {
-      "id": 9,
-      "name": "狗年限定"
-    },
-    {
-      "id": 10,
-      "name": "贵族限定"
-    },
-    {
-      "id": 11,
-      "name": "猴年限定"
-    },
-    {
-      "id": 12,
-      "name": "虎年限定"
-    },
-    {
-      "id": 13,
-      "name": "活动专属"
-    },
-    {
-      "id": 14,
-      "name": "鸡年限定"
-    },
-    {
-      "id": 15,
-      "name": "坚韧"
-    },
-    {
-      "id": 16,
-      "name": "浪一夏限定"
-    },
-    {
-      "id": 17,
-      "name": "六周年限定"
-    },
-    {
-      "id": 18,
-      "name": "敏锐"
-    },
-    {
-      "id": 19,
-      "name": "牛年限定"
-    },
-    {
-      "id": 20,
-      "name": "朋友节"
-    },
-    {
-      "id": 21,
-      "name": "千色云中"
-    },
-    {
-      "id": 22,
-      "name": "情人节限定"
-    },
-    {
-      "id": 23,
-      "name": "荣耀典藏"
-    },
-    {
-      "id": 24,
-      "name": "赛季隐龙之影"
-    },
-    {
-      "id": 25,
-      "name": "三周年限定"
-    },
-    {
-      "id": 26,
-      "name": "赏金赛限定"
-    },
-    {
-      "id": 27,
-      "name": "圣诞限定"
-    },
-    {
-      "id": 28,
-      "name": "圣斗士正版授权"
-    },
-    {
-      "id": 29,
-      "name": "胜利之神"
-    },
-    {
-      "id": 30,
-      "name": "史诗"
-    },
-    {
-      "id": 31,
-      "name": "世冠2019"
-    },
-    {
-      "id": 32,
-      "name": "世冠2020"
-    },
-    {
-      "id": 33,
-      "name": "世冠2021"
-    },
-    {
-      "id": 34,
-      "name": "守护"
-    },
-    {
-      "id": 35,
-      "name": "授权梅西正版"
-    },
-    {
-      "id": 36,
-      "name": "鼠年限定"
-    },
-    {
-      "id": 37,
-      "name": "四周年限定"
-    },
-    {
-      "id": 38,
-      "name": "王者之征"
-    },
-    {
-      "id": 39,
-      "name": "无畏之灵"
-    },
-    {
-      "id": 40,
-      "name": "五虎上将"
-    },
-    {
-      "id": 41,
-      "name": "五周年限定"
-    },
-    {
-      "id": 42,
-      "name": "西游记"
-    },
-    {
-      "id": 43,
-      "name": "峡谷异闻"
-    },
-    {
-      "id": 44,
-      "name": "仙剑限定"
-    },
-    {
-      "id": 45,
-      "name": "限定"
-    },
-    {
-      "id": 46,
-      "name": "新春专属"
-    },
-    {
-      "id": 47,
-      "name": "信誉专属"
-    },
-    {
-      "id": 48,
-      "name": "一周年限定"
-    },
-    {
-      "id": 49,
-      "name": "勇者"
-    },
-    {
-      "id": 50,
-      "name": "御龙在天"
-    },
-    {
-      "id": 51,
-      "name": "源梦"
-    },
-    {
-      "id": 52,
-      "name": "战队赛"
-    },
-    {
-      "id": 53,
-      "name": "战令限定"
-    },
-    {
-      "id": 54,
-      "name": "珍宝阁"
-    },
-    {
-      "id": 55,
-      "name": "猪年限定"
-    },
-    {
-      "id": 56,
-      "name": "DC正版授权"
-    },
-    {
-      "id": 57,
-      "name": "FMVP"
-    },
-    {
-      "id": 58,
-      "name": "KPL限定"
-    },
-    {
-      "id": 59,
-      "name": "SNK正版授权"
-    },
-    {
-      "id": 60,
-      "name": "幻乐之宴"
-    },
-    {
-      "id": 1,
-      "name": "520限定"
+      "name": "峡谷异闻",
+      "icon": "http://lengyibai.gitee.io/wzry-material/skinType/xiaguyiwen.png"
     }
   ],
   "voice": [

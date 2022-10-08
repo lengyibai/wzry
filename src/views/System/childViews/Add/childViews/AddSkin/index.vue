@@ -29,7 +29,7 @@
             <FormInput label="皮肤名" required v-model="item.name" />
 
             <!--//%%%%········皮肤类型········%%%%//-->
-            <FormSelect label="皮肤类型" required :data="skin_type" v-model="item.type" />
+            <FormSelect label="皮肤类型" required :data="skin_types" v-model="item.type" />
 
             <!--//%%%%········皮肤头像、海报········%%%%//-->
             <FormImg
@@ -81,14 +81,14 @@ const skin_data = reactive({
   data: [],
 });
 
-const skin_type = ref([]); //皮肤类型表
+const skin_types = ref([]); //皮肤类型表
 const currentIndex = ref(null); //根据悬浮的位置显示垃圾桶
 /* 弹窗相关 */
 
 const $store = switchStore();
 setTimeout(async () => {
   $store.$loading.show('正在加载皮肤类型表');
-  skin_type.value = await getSkinType();
+  skin_types.value = (await getSkinType()).data;
   await $store.$loading.close();
   show.value = true;
 }, 1000);

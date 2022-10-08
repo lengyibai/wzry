@@ -34,7 +34,7 @@ defineProps({
     filter: drop-shadow(0px 3px 3px #000);
   }
 }
-.updown-enter {
+.updown-enter-from {
   opacity: 0;
   transform: translateY(-100%);
 }

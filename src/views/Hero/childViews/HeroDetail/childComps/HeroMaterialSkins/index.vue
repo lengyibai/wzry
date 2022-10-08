@@ -26,6 +26,7 @@
 </template>
 <script setup>
 import { inject, reactive, ref } from 'vue';
+import { getSkinType } from '@/api/main/tree/skinType/index.js';
 import HeroBgImg from './childComps/HeroBgImg/index.vue'; //背景图
 import HeroVoice from './childComps/HeroVoice/index.vue'; //英雄语音
 import HerSkinType from './childComps/HerSkinType/index.vue'; //皮肤类型图
@@ -58,10 +59,12 @@ const bgImgs = ([i, index]) => {
   skin_name_toggle.value = !skin_name_toggle.value;
 
   /* 切换时延迟设置顶部皮肤类型标志 */
-  setTimeout(() => {
+  setTimeout(async () => {
     const skin_type = hero_data.skins[index].type;
-    if (skin_type && skin_type !== '伴生') {
-      active_skin_type.value = new URL(`../../../../../../assets/img/skinType/${skin_type}`, import.meta.url).href;
+    if (skin_type !== '伴生') {
+      getSkinType({ id: skin_type }).then((res) => {
+        active_skin_type.value = res.data[0].icon;
+      });
     } else {
       active_skin_type.value = false; //伴生皮肤没有标志
     }
