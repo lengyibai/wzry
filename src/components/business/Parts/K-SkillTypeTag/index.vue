@@ -1,13 +1,12 @@
 <template>
   <div class="K-SkillTypeTag">
-    <div class="skill-type skill-type-zs flex" v-if="type === '真实'">真实</div>
-    <div class="skill-type skill-type-wl flex" v-else-if="type === '物理'">物理</div>
-    <div class="skill-type skill-type-fs flex" v-else-if="type === '法术'">法术</div>
-    <div class="skill-type skill-type-kz flex" v-else-if="type === '控制'">控制</div>
+    <div class="skill-type" :class="name">{{type}}</div>
   </div>
 </template>
 <script setup>
-defineProps({
+import { $pinyin } from '@/utils/index.js';
+
+const props = defineProps({
   type: {
     type: String,
     default: '真实',
@@ -16,31 +15,36 @@ defineProps({
     },
   },
 });
+
+const name = $pinyin(props.type)[2];
 </script>
 <style scoped lang="less">
 .K-SkillTypeTag {
   display: flex;
   .skill-type {
+    width: 4.75em;
     height: 35px;
+    text-align: center;
+    line-height: 35px;
     font-size: 20px;
     border-radius: 5px;
     padding: 0 25px;
     margin-right: 5px;
     box-shadow: var(--b-shadow);
   }
-  .skill-type-zs {
+  .zs {
     color: #e5b14b;
     background-color: #8a7138;
   }
-  .skill-type-wl {
+  .wl {
     color: #e08b88;
     background-color: #762728;
   }
-  .skill-type-fs {
+  .fs {
     color: #8b8ef7;
     background-color: #4c4c96;
   }
-  .skill-type-kz {
+  .kz {
     color: #6cd9b0;
     border: 1px solid #6cd9b0;
     background-color: #114433;

@@ -1,0 +1,57 @@
+.Skill {
+  color: #fff;
+}
+.Skill .content {
+  flex-direction: row;
+}
+.Skill .content .left {
+  flex: 1;
+  padding: 30px;
+  height: 100%;
+  overflow: auto;
+  border-right: 1px solid #fff;
+}
+.Skill .content .left .type-list {
+  display: flex;
+  height: 60px;
+  margin-bottom: 25px;
+}
+.Skill .content .left .type-list .skill-type {
+  width: fit-content;
+  padding: 0.5em 0.5em;
+  font-size: 25px;
+}
+.Skill .content .left .type-list .skill-type .name {
+  color: var(--theme-color-four);
+  margin-right: 0.5em;
+}
+.Skill .content .left .type-list .skill-type .del {
+  color: var(--theme-color-three);
+}
+.Skill .content .left .type-list .skill-type .del:hover {
+  color: var(--red);
+}
+.Skill .content .right {
+  flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+/* 进入前状态 */
+.delSkillType-enter-from,
+.delSkillType-leave-active {
+  opacity: 0;
+}
+/* 进入和离开动画属性 */
+.delSkillType-leave-active,
+.delSkillType-enter-active {
+  transition: all 0.5s;
+}
+/* 解决添加元素占位时无动画，替代 width: 0 与 overflow: hidden */
+.delSkillType-move {
+  transition: all 0.5s;
+}
+/* 解决删除元素时，其他元素补位无动画 */
+.delSkillType-leave-active {
+  position: absolute;
+  /* 必须为绝对定位 */
+}

@@ -28,6 +28,10 @@ const props = defineProps({
     type: String,
     default: '<p>Hello World!</p>',
   },
+  placeholder: {
+    type: String,
+    default: '请输入内容...',
+  },
 });
 
 const editorRef = shallowRef();
@@ -42,7 +46,7 @@ watch(valueHtml, (v) => {
 const toolbarConfig = {
   toolbarKeys: ['color', 'clearStyle'],
 };
-const editorConfig = { placeholder: '请输入内容...' };
+const editorConfig = { placeholder: props.placeholder };
 const mode = 'simple'; // 或 'simple'
 
 onBeforeUnmount(() => {
@@ -65,7 +69,7 @@ const handleCreated = (editor) => {
   --w-e-textarea-slight-color: #4d6b8f; /* 编辑器描述色 */
   --w-e-toolbar-disabled-color: #4d6b8f; /* 编辑器失去焦点色 */
   --w-e-toolbar-active-bg-color: #395e8b; /* 选中背景色 */
-  --w-e-toolbar-active-color:#8097bb;/* 工具栏悬浮背景色 */
+  --w-e-toolbar-active-color: #8097bb; /* 工具栏悬浮背景色 */
   /* ...其他... */
 }
 

@@ -1,4 +1,5 @@
 .FormInput {
+  width: fit-content;
   display: flex;
   align-items: center;
   margin-bottom: 35px;

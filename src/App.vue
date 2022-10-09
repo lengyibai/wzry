@@ -21,7 +21,7 @@ import GlobalSwitch from '@/components/business/GlobalSwitch/index.vue';
 
 import switchStore from '@/store/globalSwitch.js';
 
-const LOCAL_VERSION = ref('22.8.8.01');
+const LOCAL_VERSION = ref('22.10.9.16.2');
 const REMOTE_VERSION = ref('正在检查更新...');
 
 function update() {

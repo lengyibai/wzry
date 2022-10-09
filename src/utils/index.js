@@ -112,7 +112,7 @@ export function $isArray(type) {
   return Object.prototype.toString.call(type) === '[object Array]';
 }
 
-function $pinyin(keyword) {
+export function $pinyin(keyword) {
   const pinyin = ((...args) => {
     const Pinyin = function (ops) {
       this.initialize(ops);

@@ -14,7 +14,7 @@
           @input="debounce"
           @focus="focus"
           @blur="blur($event.target.value)"
-          v-model="select_value"
+          v-model="modelValue"
           :placeholder="active_value || '搜索'"
         />
 
@@ -90,25 +90,21 @@ const props = defineProps({
     type: String,
     default: '标题',
   },
-  /* 选择器描述 */
-  placeholder: {
-    type: String,
-    default: '请选择',
-  },
   keyword: {
     type: String,
     default: '',
   },
   value: {
-    type: String,
+    type: [String, Number],
     default: '',
   },
 });
-const { modelValue, data, required } = toRefs(props);
+const {
+  modelValue, data, required, value,
+} = toRefs(props);
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
-const select_value = ref(''); //输入框的值
 const active_value = ref(''); //选中的值
 const no_legal = ref(false); //是否合法
 const is_unfold = ref(false); //是否展开
@@ -117,13 +113,13 @@ const select_list = ref([]); //下拉列表
 
 /* 防抖 */
 const debounce = $debounce(() => {
-  select_list.value = $search(data.value, select_value.value, ['name']);
+  select_list.value = $search(data.value, modelValue.value, ['name']);
 }, 100);
 
 /* 获取焦点 */
 const focus = () => {
   is_unfold.value = true;
-  select_value.value = '';
+  emit('update:modelValue', '');
 };
 
 /* 失去焦点 */
@@ -152,8 +148,8 @@ const hideList = (e) => {
   }
   is_unfold.value = false;
   // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
-  if (select_value.value !== active_value.value) {
-    select_value.value = active_value.value;
+  if (modelValue.value !== active_value.value) {
+    emit('update:modelValue', active_value.value);
   }
 };
 $bus.on('click', (v) => {
@@ -168,6 +164,11 @@ watch(
   },
   { immediate: true },
 );
+
+watch(value, (v) => {
+  active_value.value = v;
+});
+
 onBeforeUnmount(() => {
   $bus.off('click'); //关闭监听
 });
