@@ -54,11 +54,11 @@ const props = defineProps({
   },
 });
 
-const show = ref(false); //是否显示第二个选择图片
-const AddLink_title = ref(''); //弹窗左上角标题
-const show_AddLink = ref(false);
-const AddLink_placeholder = ref('');
 const AddLink_key = ref(''); //当前谁在使用弹窗(字段名)
+const AddLink_placeholder = ref(''); //弹窗输入框描述
+const AddLink_title = ref(''); //弹窗左上角标题
+const show = ref(false); //是否显示第二个选择图片
+const show_AddLink = ref(false); //是否显示弹窗
 show.value = props.imgs.length > 1;
 
 /* 设置头像及名字 */

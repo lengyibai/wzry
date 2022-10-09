@@ -25,12 +25,12 @@
 
         <!-- 输入不合法拉长线条 -->
         <transition name="border">
-          <div class="border" v-show="no_legal"></div>
+          <div class="border" v-show="!legal"></div>
         </transition>
 
         <!-- 输入不合法提示 -->
         <transition name="tip">
-          <div class="tip" v-if="no_legal" v-typewriter="tip"></div>
+          <div class="tip" v-if="!legal" v-typewriter="tip"></div>
         </transition>
       </slot>
     </div>
@@ -68,29 +68,38 @@ const props = defineProps({
   /* 自定义表单验证 */
   validate: {
     type: Function,
-    default: () => false,
+    default: () => true,
   },
   /* 是否必填 */
   required: {
     type: Boolean,
     default: false,
   },
+  /* 是否为数字 */
+  number: {
+    type: Boolean,
+    default: false,
+  },
 });
-const { validate, required } = toRefs(props);
+const { validate, required, number } = toRefs(props);
 
 const tip = ref(''); //不合法提示
-const no_legal = ref(false); //是否合法
+const legal = ref(true); //是否合法
 const is_focus = ref(false); //是否获取焦点
 const blur = (v) => {
   is_focus.value = false;
-  if (validate.value(v)) {
+  legal.value = true;
+  if (!validate.value(v)) {
     tip.value = validate.value(v);
-    no_legal.value = true;
-  } else if (required.value && v === '') {
+    legal.value = false;
+  }
+  if (required.value && v === '') {
     tip.value = '必填项';
-    no_legal.value = true;
-  } else {
-    no_legal.value = false;
+    legal.value = false;
+  }
+  if (number.value && v && isNaN(v)) {
+    tip.value = '限制为数字';
+    legal.value = false;
   }
 };
 

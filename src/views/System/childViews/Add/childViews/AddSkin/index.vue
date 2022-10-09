@@ -15,21 +15,20 @@
           />
 
           <!--//%%%%%··········指派英雄··········%%%%%//-->
-          <SelectHero class="SelectHero" v-model="skin_data.id" key="SelectHero" />
+          <SelectHero class="SelectHero" v-model="hero_id" key="SelectHero" />
 
           <!--//%%%%%··········皮肤盒子列表··········%%%%%//-->
           <div
             class="skin"
             @mouseenter="currentIndex = index"
             @mouseleave="currentIndex = null"
-            v-for="(item, index) in skin_data.data"
+            v-for="(item, index) in skin_data"
             :key="item.id"
           >
             <!--//%%%%········皮肤名········%%%%//-->
-            <FormInput label="皮肤编号" required v-model="item.id" placeholder="第几款皮肤" />
+            <FormInput label="皮肤编号" required v-model="item.num" placeholder="第几款皮肤" />
             <FormInput label="皮肤名" required v-model="item.name" />
-            <FormInput label="价格" required v-model="item.price" />
-            <FormInput label="赛季专属" required v-model="item.season" placeholder="第几赛季" />
+            <FormInput label="价格" v-model="item.price" placeholder="请输入"  number />
 
             <!-- 在输入框内部限制数字 -->
 
@@ -78,22 +77,19 @@ import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
 
+const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);
 const {
   show, finish, status, close,
 } = viewHide(emit);
 
-/* 添加的皮肤 */
-const skin_data = reactive({
-  id: 0,
-  data: [],
-});
+const hero_id = ref(0);
+const skin_data = reactive([]); //添加的皮肤
 
 const skin_types = ref([]); //皮肤类型表
 const currentIndex = ref(null); //根据悬浮的位置显示垃圾桶
-/* 弹窗相关 */
 
-const $switchStore = switchStore();
+/* 获取皮肤类型表 */
 setTimeout(async () => {
   $switchStore.$loading.show('正在加载皮肤类型表');
   skin_types.value = (await getSkinType()).data;
@@ -103,9 +99,9 @@ setTimeout(async () => {
 
 /* 获取链接 */
 const getLink = (link, key) => {
-  const data = skin_data.data;
-  data[data.length === 0 ? 0 : data.length - 1] = {
-    ...data.slice(-1)[0],
+  const last_index = skin_data.length === 0 ? 0 : skin_data.length - 1;
+  skin_data[last_index] = {
+    ...skin_data.slice(-1)[0],
     [key]: link,
   };
 };
@@ -113,15 +109,17 @@ const getLink = (link, key) => {
 /* 增加一项 */
 const scrollBox = ref();
 const addOne = () => {
-  skin_data.data.push({
-    id: '',
+  skin_data.push({
+    id: Date.now(),
+    num: '',
+    hero: hero_id.value,
     name: '',
-    price: '',
-    season: '',
     img: '',
     head: '',
     type: 0,
+    price: '',
   });
+  // 滚动到底部
   setTimeout(() => {
     scrollBox.value.scroll({
       top: scrollBox.value.scrollHeight,
@@ -132,26 +130,28 @@ const addOne = () => {
 
 /* 删除一项 */
 const delOne = (i) => {
-  skin_data.data.splice(i, 1);
+  skin_data.splice(i, 1);
   currentIndex.value = null;
 };
 
 /* 发布 */
 const commit = async () => {
-  const {
-    id, img, name, type,
-  } = skin_data.data[0];
-  console.log(skin_data);
-  if (id && img && name && type) {
-    await addSkin(skin_data);
-    finish.value = true;
-    setTimeout(() => {
-      close();
-      $switchStore.$tip('发布成功', 'info');
-    }, 500);
-  } else {
-    $switchStore.$tip('请完整填写', 'error');
-    status.value = 0;
+  for (let i = 0; i < skin_data.length; i++) {
+    const item = skin_data[i];
+    const {
+      num, hero, head, img, price, name, type,
+    } = item;
+    if (num && hero && head && img && name && type) {
+      await addSkin(item);
+      finish.value = true;
+      setTimeout(() => {
+        close();
+        $switchStore.$tip('发布成功', 'info');
+      }, 500);
+    } else {
+      $switchStore.$tip('请完整填写', 'error');
+      status.value = 0;
+    }
   }
 };
 </script>

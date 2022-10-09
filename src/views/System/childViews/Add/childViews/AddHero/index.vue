@@ -7,7 +7,7 @@
           <FormInput label="id" required v-model="hero_data.id" />
           <FormInput label="英雄名" required v-model="hero_data.name" />
           <FormInput label="代号" required v-model="hero_data.mark" />
-          <FormInput label="身高" :validate="validate" v-model="hero_data.height" />
+          <FormInput label="身高" number v-model="hero_data.height" />
         </div>
 
         <!-- 选择器相关 -->
@@ -72,11 +72,6 @@ const emit = defineEmits(['update:modelValue']);
 const {
   show, finish, status, close,
 } = viewHide(emit);
-
-const validate = (v) => {
-  if (isNaN(v)) return '限制为数字';
-  return false;
-};
 
 const AddLink_set_desc = {
   headImg: '头像链接',

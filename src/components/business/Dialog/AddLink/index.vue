@@ -15,7 +15,7 @@
           <div class="content" v-if="modelValue">
             <input type="text" ref="input" :placeholder="placeholder" v-model="link" />
             <!-- v-if解决按钮隐式显示，高度却未知，导致粒子无法正常显示 -->
-            <K-Button type="warning" @click="close">确定</K-Button>
+            <K-Button type="warning" @click="confirm">确定</K-Button>
           </div>
         </transition>
       </div>
@@ -76,6 +76,9 @@ const input = ref();
 const close = () => {
   store.$clickAudio('关闭');
   emit('update:modelValue', false);
+};
+const confirm = () => {
+  close();
   emit('get-link', link.value, props.keyword);
   link.value = '';
 };
