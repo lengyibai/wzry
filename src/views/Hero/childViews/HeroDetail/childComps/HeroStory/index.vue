@@ -1,7 +1,7 @@
 <template>
   <div class="HeroStory">
     <div class="title">TA的故事</div>
-    <p class="content" v-html="hero_data.gameStory"></p>
+    <p class="content" v-html="hero_data.gamestory"></p>
     <div class="title">历史上的他</div>
     <p class="content" v-html="hero_data.history"></p>
   </div>

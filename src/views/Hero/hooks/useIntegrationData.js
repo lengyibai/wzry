@@ -3,19 +3,7 @@ import { useRouter } from 'vue-router';
 import { getHero } from '@/api/main/hero/self/index.js';
 import switchStore from '@/store/globalSwitch.js';
 import heroStore from '@/store/hero.js';
-
-//#####··········资料聚合处理··········#####//
-/* 详细信息 */
-//英雄故事
-import { getGameStory } from '@/api/main/hero/gameStory/index.js';
-//历史故事
-import { getHistory } from '@/api/main/hero/history/index.js';
-//语音列表
-import { getVoice } from '@/api/main/hero/voice/index.js';
-//皮肤列表
 import { getSkin } from '@/api/main/hero/skin/index.js';
-//技能列表
-import { getSkill } from '@/api/main/hero/skill/index.js';
 
 export default (id) => {
   const $router = useRouter();
@@ -39,14 +27,8 @@ export default (id) => {
   const viewClick = (id) => {
     $switchStore.$loading.show('正在请求英雄数据');
     const params = { id };
-    const k2 = ['voices', 'skills', 'gameStory', 'history'];
-    const r2 = [getVoice, getSkill, getGameStory, getHistory];
     getHero(params).then(async (res) => {
       const data = res.data[0];
-      await $switchStore.$loading.close();
-      for (let i = 0; i < r2.length; i++) {
-        data[k2[i]] = (await r2[i](params)).data[0]?.data;
-      }
       data.skins = (await getSkin(params)).data;
       hero_info.value = data;
       $heroStore.hero_info = data;
