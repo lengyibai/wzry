@@ -3,13 +3,13 @@
     <transition name="fade">
       <div class="content" v-if="show">
         <transition-group name="fade">
-          <SelectHero v-model="voice_list.id" key="SelectHero" />
+          <SelectHero v-model="hero_id" key="SelectHero" />
 
           <!--//%%%%%··········添加完毕的语音列表··········%%%%%//-->
-          <div class="voiceList" v-show="voice_list.data.length" key="b">
+          <div class="voiceList" v-show="voice_list.length" key="b">
             <div
               class="voice"
-              v-for="(item, index) in voice_list.data"
+              v-for="(item, index) in voice_list"
               @mouseleave="voiceEnter(null)"
               @mouseenter="voiceEnter(index)"
               :key="item.desc"
@@ -63,8 +63,8 @@
             key="d"
             enter-color="var(--theme-color-four)"
             color="var(--theme-color-seven)"
-            @click="addVoice(status)"
-            :svg="icon[voice_link ? 'FINISH' : status]"
+            @click="addVoice(add_status)"
+            :svg="icon[voice_link ? 'FINISH' : add_status]"
           />
         </transition-group>
       </div>
@@ -77,34 +77,38 @@
     <AddLink v-model="show_AddLink" title="设置语音" placeholder="请输入语音链接" @get-link="getLink" />
 
     <!--//%%%%%··········发布按钮··········%%%%%//-->
-    <LibCommitBtn title="发布" size="50px" class="LibCommitBtn" @commit="commit" :finish="finish" />
+    <LibCommitBtn v-model="status"  title="发布" size="50px" class="LibCommitBtn" @commit="commit" :finish="finish" />
 
     <!--//%%%%%··········取消发布··········%%%%%//-->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
   </div>
 </template>
 <script setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
+import { updateHero } from '@/api/main/hero/self/index.js';
 import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
 
 const emit = defineEmits(['update:modelValue']);
-const { show, finish, close } = viewHide(emit);
+const {
+  show, finish, status, close,
+} = viewHide(emit);
 
-const currentIndex = ref(null); //点击的语音
-const show_box = ref(false); //是否显示填写盒子
-const voice_list = reactive({ id: 0, data: [] }); //用于发布
-const voice_text = ref(''); //语音文字
 const voice_link = ref(''); //语音链接
-const show_AddLink = ref(false); //显示设置语音链接弹窗
-const status = ref('ADDC'); //添加&&删除&&保存状态
+const voice_text = ref(''); //语音文字
 const play_link = ref(''); //用于播放
+const add_status = ref('ADDC'); //添加&&删除&&保存状态
+const hero_id = ref(0); //英雄id
+const currentIndex = ref(null); //点击的语音
+const show_AddLink = ref(false); //显示设置语音链接弹窗
+const show_box = ref(false); //是否显示填写盒子
+const voice_list = reactive([]); //用于发布
 
-const $store = switchStore();
+const $switchStore = switchStore();
 setTimeout(async () => {
-  $store.$loading.show('正在加载皮肤类型表');
-  $store.$loading.close().then(() => {
+  $switchStore.$loading.show('正在加载皮肤类型表');
+  $switchStore.$loading.close().then(() => {
     show.value = true;
   });
 }, 1000);
@@ -112,26 +116,27 @@ setTimeout(async () => {
 /* 添加一项 */
 const addVoice = (s) => {
   if (voice_link.value) {
-    voice_list.data.push({
+    voice_list.push({
       desc: voice_text.value,
       voice: voice_link.value,
     });
     voice_text.value = '';
     voice_link.value = '';
-    status.value = 'ADDC';
+    add_status.value = 'ADDC';
     show_box.value = false;
     return;
   }
   if (s === 'ADDC') {
     show_box.value = true;
-    status.value = 'DELC';
+    add_status.value = 'DELC';
   }
   if (s === 'DELC') {
-    status.value = 'ADDC';
+    add_status.value = 'ADDC';
     voice_text.value = '';
     show_box.value = false;
   }
 };
+
 /* 设置语音 */
 const setVoice = () => {
   if (voice_link.value) {
@@ -140,6 +145,7 @@ const setVoice = () => {
     show_AddLink.value = true;
   }
 };
+
 /* 重置语音 */
 const resetVoice = () => {
   voice_link.value = '';
@@ -159,16 +165,31 @@ const play = (link) => {
 };
 /* 删除语音 */
 const del = (i) => {
-  voice_list.data.splice(i, 1);
+  voice_list.splice(i, 1);
 };
+
+watch(
+  voice_list,
+  (v) => {
+    console.log(v);
+  },
+  {
+    deep: true,
+  },
+);
 /* 发布 */
-const commit = () => {
-  setTimeout(() => {
-    finish.value = true;
+const commit = async () => {
+  if (voice_list.length !== 0) {
+    await updateHero(hero_id.value, { voices: voice_list });
     setTimeout(() => {
+      finish.value = true;
       close();
-    }, 250);
-  }, 250);
+      $switchStore.$tip('发布成功', 'info');
+    }, 500);
+  } else {
+    $switchStore.$tip('你还没有添加语音', 'error');
+    status.value = 0;
+  }
 };
 </script>
 <style scoped lang="less">

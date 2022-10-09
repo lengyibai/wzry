@@ -139,7 +139,7 @@ const commit = async () => {
   for (let i = 0; i < skin_data.length; i++) {
     const item = skin_data[i];
     const {
-      num, hero, head, img, price, name, type,
+      num, hero, head, img, name, type,
     } = item;
     if (num && hero && head && img && name && type) {
       await addSkin(item);
