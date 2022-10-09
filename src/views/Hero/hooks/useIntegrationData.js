@@ -39,14 +39,15 @@ export default (id) => {
   const viewClick = (id) => {
     $switchStore.$loading.show('正在请求英雄数据');
     const params = { id };
-    const k2 = ['voices', 'skins', 'skills', 'gameStory', 'history'];
-    const r2 = [getVoice, getSkin, getSkill, getGameStory, getHistory];
+    const k2 = ['voices', 'skills', 'gameStory', 'history'];
+    const r2 = [getVoice, getSkill, getGameStory, getHistory];
     getHero(params).then(async (res) => {
       const data = res.data[0];
       await $switchStore.$loading.close();
       for (let i = 0; i < r2.length; i++) {
         data[k2[i]] = (await r2[i](params)).data[0]?.data;
       }
+      data.skins = (await getSkin(params)).data;
       hero_info.value = data;
       $heroStore.hero_info = data;
       await $switchStore.$loading.close();

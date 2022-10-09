@@ -170,20 +170,18 @@ const setValue = (k, v) => {
 };
 
 /* 发布及取消 */
-const commit = () => {
+const commit = async () => {
   const {
     id, mark, name, cover, headImg, poster,
   } = hero_data;
   if (id && mark && name && cover && headImg && poster) {
-    addHero(hero_data).then(() => {
-      addHeroList({ id: hero_data.id, name: hero_data.name });
-      setTimeout(() => {
-        finish.value = true;
-        setTimeout(() => {
-          close();
-        }, 250);
-      }, 250);
-    });
+    await addHero(hero_data);
+    await addHeroList({ id: hero_data.id, name: hero_data.name });
+    finish.value = true;
+    setTimeout(() => {
+      close();
+      $switchStore.$tip('发布成功', 'info');
+    }, 500);
   } else {
     $switchStore.$tip('请完整填写', 'error');
     status.value = 0;

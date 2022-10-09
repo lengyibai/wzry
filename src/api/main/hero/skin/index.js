@@ -4,7 +4,10 @@ import {
 
 //#####··········GET请求··········#####//
 //####········获取皮肤········####//
-export const getSkin = (data) => getReq('/skin', data);
+export const getSkin = (data) => {
+  const params = data ? `?hero=${data.id}` : '';
+  return getReq(`/skin${params}`);
+};
 
 //#####··········POST请求··········#####//
 //####········添加皮肤········####//
