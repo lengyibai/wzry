@@ -4,7 +4,7 @@
       <K-ManageCard @click="open(k)" v-for="(v, k) in list" :title="v" :key="k" type="edit" />
     </transition-group>
 
-    <!--//%%%%%··········发布列表··········%%%%%//-->
+    <!--发布列表-->
     <transition name="clip" v-for="(v, k) in options" :key="k">
       <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
     </transition>

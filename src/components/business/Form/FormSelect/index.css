@@ -26,7 +26,6 @@
 }
 .FormSelect .select {
   position: relative;
-  width: 250px;
 }
 .FormSelect .select .select-box {
   position: relative;
@@ -111,4 +110,8 @@
 }
 .active .item {
   transform: translateX(10px);
+}
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }

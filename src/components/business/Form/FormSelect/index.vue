@@ -1,11 +1,11 @@
 <template>
-  <div class="FormSelect">
+  <div class="FormSelect" :class="{ disabled: disabled }">
     <!-- 左侧描述 -->
     <div class="label">
       <span><i class="star" v-if="required">*</i>{{ label }}：</span>
     </div>
 
-    <div class="select">
+    <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
       <!-- 选择器框 -->
       <div class="select-box cursor-pointer" ref="selectBox">
         <input
@@ -14,7 +14,7 @@
           @input="debounce"
           @focus="focus"
           @blur="blur($event.target.value)"
-          v-model="modelValue"
+          v-model="input_value"
           :placeholder="active_value || '搜索'"
         />
 
@@ -59,8 +59,6 @@ import {
   onBeforeUnmount, ref, toRefs, watch,
 } from 'vue';
 import { $search, $debounce } from '@/utils/index.js';
-//#####··········图标··········#####//
-
 import $bus from '@/utils/eventBus.js';
 
 const props = defineProps({
@@ -76,9 +74,19 @@ const props = defineProps({
       return [];
     },
   },
+  /* 自适应大小 */
+  autoSize: {
+    type: Boolean,
+    default: false,
+  },
   /* 选择的值 */
   modelValue: {
     type: [String, Number],
+  },
+  /* 是否禁用 */
+  disabled: {
+    type: Boolean,
+    default: false,
   },
   /* 是否必填 */
   required: {
@@ -105,6 +113,7 @@ const {
 
 const emit = defineEmits(['change', 'update:modelValue']);
 
+const input_value = ref(''); //输入框的值
 const active_value = ref(''); //选中的值
 const no_legal = ref(false); //是否合法
 const is_unfold = ref(false); //是否展开
@@ -113,13 +122,13 @@ const select_list = ref([]); //下拉列表
 
 /* 防抖 */
 const debounce = $debounce(() => {
-  select_list.value = $search(data.value, modelValue.value, ['name']);
+  select_list.value = $search(data.value, input_value.value, ['name']);
 }, 100);
 
 /* 获取焦点 */
 const focus = () => {
   is_unfold.value = true;
-  emit('update:modelValue', '');
+  input_value.value = '';
 };
 
 /* 失去焦点 */
@@ -127,6 +136,10 @@ const blur = () => {
   setTimeout(() => {
     no_legal.value = required.value && active_value.value === '';
     select_list.value = data.value;
+    // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
+    if (input_value.value !== active_value.value) {
+      input_value.value = active_value.value;
+    }
   }, 100);
 };
 
@@ -137,6 +150,7 @@ const select = (id, name) => {
   is_unfold.value = false;
   select_list.value = data.value;
   active_value.value = name;
+  input_value.value = name;
 };
 
 /* 点击空白隐藏列表 */
@@ -148,8 +162,8 @@ const hideList = (e) => {
   }
   is_unfold.value = false;
   // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
-  if (modelValue.value !== active_value.value) {
-    emit('update:modelValue', active_value.value);
+  if (input_value.value !== active_value.value) {
+    input_value.value = active_value.value;
   }
 };
 $bus.on('click', (v) => {

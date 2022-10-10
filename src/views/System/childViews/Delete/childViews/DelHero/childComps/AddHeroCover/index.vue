@@ -2,13 +2,13 @@
   <div class="delHeroCover">
     <span class="text-gradient-one">英雄封面：</span>
 
-    <!--//%%%%%··········选择封面··········%%%%%//-->
+    <!--选择封面-->
     <delHeroCoverImg :p="p" />
 
-    <!--//%%%%%··········偏移量··········%%%%%//-->
+    <!--偏移量-->
     <delHeroCoverOffset @direction="direction" />
 
-    <!--//%%%%%··········缩放量··········%%%%%//-->
+    <!--缩放量-->
     <delHeroCoverScale @scale="scale" />
   </div>
 </template>

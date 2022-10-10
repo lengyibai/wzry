@@ -1,6 +1,10 @@
 <template>
   <transition name="fade">
-    <div class="LibMask" v-if="modelValue" @click="hide">
+    <div class="LibMask" v-if="modelValue" @click="hide" v-maskGradient="{
+      color: 'rgba(40, 100, 195, 0.5)',
+      num1: '0%',
+      num2: '50%',
+    }">
       <slot></slot>
     </div>
   </transition>
@@ -16,7 +20,7 @@ defineProps({
 const emit = defineEmits(['update:modelValue']);
 const hide = (e) => {
   if (e.target._prevClass === 'LibMask') {
-    this.$emit('update:modelValue', false);
+    emit('update:modelValue', false);
   }
 };
 </script>

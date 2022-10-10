@@ -5,7 +5,7 @@
         <transition-group name="fade">
           <SelectHero v-model="hero_id" key="SelectHero" />
 
-          <!--//%%%%%··········添加完毕的语音列表··········%%%%%//-->
+          <!--添加完毕的语音列表-->
           <div class="voiceList" v-show="voice_list.length" key="b">
             <div
               class="voice"
@@ -28,12 +28,12 @@
             </div>
           </div>
 
-          <!--//%%%%%··········正在添加语音的输入框盒子··········%%%%%//-->
+          <!--正在添加语音的输入框盒子-->
           <div class="addBox" v-if="show_box" key="c">
             <transition-group v-if="show_box" name="fade" key="c">
               <FormInput v-model="voice_text" required placeholder="请输入语音文字" label="语音文字" key="a" autoSize />
 
-              <!--//%%%%%··········设置/播放语音··········%%%%%//-->
+              <!--设置/播放语音-->
               <LibSvg
                 v-show="voice_text"
                 size="50px"
@@ -44,7 +44,7 @@
                 :svg="icon[voice_link ? 'VOICEPRINT' : 'MIC']"
               />
 
-              <!--//%%%%%··········重置语音链接··········%%%%%//-->
+              <!--重置语音链接-->
               <LibSvg
                 v-show="voice_link"
                 size="50px"
@@ -57,7 +57,7 @@
             </transition-group>
           </div>
 
-          <!--//%%%%%··········添加/删除/保存按钮··········%%%%%//-->
+          <!--添加/删除/保存按钮-->
           <LibSvg
             size="50px"
             key="d"
@@ -70,16 +70,16 @@
       </div>
     </transition>
 
-    <!--//%%%%%··········播放语音··········%%%%%//-->
+    <!--播放语音-->
     <PlayVoice @ended="play_link = ''" v-if="play_link" :link="play_link" />
 
-    <!--//%%%%%··········设置语音链接··········%%%%%//-->
+    <!--设置语音链接-->
     <AddLink v-model="show_AddLink" title="设置语音" placeholder="请输入语音链接" @get-link="getLink" />
 
-    <!--//%%%%%··········发布按钮··········%%%%%//-->
+    <!-- 发布按钮 -->
     <LibCommitBtn v-model="status"  title="发布" size="50px" class="LibCommitBtn" @commit="commit" :finish="finish" />
 
-    <!--//%%%%%··········取消发布··········%%%%%//-->
+    <!-- 取消发布 -->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
   </div>
 </template>

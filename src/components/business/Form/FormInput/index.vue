@@ -1,5 +1,5 @@
 <template>
-  <div class="FormInput" :style="{ width: autoSize && '100%' }">
+  <div class="FormInput" :class="{ disabled: disabled }" :style="{ width: autoSize && '100%' }">
     <!-- 右侧描述 -->
     <div class="label" :style="{ width: labelWidth }">
       <span class="text-gradient-one"><i class="star" v-if="required">*</i>{{ label }}： </span>
@@ -44,6 +44,11 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: '',
+  },
+  /* 是否禁用 */
+  disabled: {
+    type: Boolean,
+    default: false,
   },
   /* 左侧文字 */
   label: {

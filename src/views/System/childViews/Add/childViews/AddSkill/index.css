@@ -5,11 +5,17 @@
   flex-direction: row;
 }
 .Skill .content .left {
+  position: relative;
   flex: 1;
   padding: 30px;
   height: 100%;
   overflow: auto;
-  border-right: 1px solid #fff;
+}
+.Skill .content .left .addOne {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 2;
 }
 .Skill .content .left .type-list {
   display: flex;
@@ -31,6 +37,37 @@
 .Skill .content .left .type-list .skill-type .del:hover {
   color: var(--red);
 }
+.Skill .content .left .select-effect {
+  display: flex;
+  align-items: center;
+}
+.Skill .content .left .select-effect .add,
+.Skill .content .left .select-effect .confirm,
+.Skill .content .left .select-effect .del {
+  margin-left: 25px;
+  font-size: 25px;
+  color: var(--theme-color-three);
+}
+.Skill .content .left .select-effect .del:hover {
+  color: var(--red);
+}
+.Skill .content .left .select-effect :is(.add, .confirm):hover {
+  color: var(--theme-color-ten);
+}
+.Skill .content .left .effect-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+.Skill .content .left .effect-list .skill-effect {
+  display: flex;
+  width: fit-content;
+  font-size: 25px;
+  color: var(--gray);
+}
+.Skill .content .left .effect-list .activeEffect {
+  color: #fff;
+}
 .Skill .content .right {
   flex: 1;
   height: 100%;
@@ -43,10 +80,7 @@
 }
 /* 进入和离开动画属性 */
 .delSkillType-leave-active,
-.delSkillType-enter-active {
-  transition: all 0.5s;
-}
-/* 解决添加元素占位时无动画，替代 width: 0 与 overflow: hidden */
+.delSkillType-enter-active,
 .delSkillType-move {
   transition: all 0.5s;
 }

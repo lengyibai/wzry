@@ -4,171 +4,326 @@
       <div class="content" v-if="show">
         <!-- 左边 -->
         <div class="left">
-          <FormInput label="名称" v-model="skill_data.name" placeholder="技能名称" />
-          <FormInput label="CD" v-model="skill_data.cd" placeholder="冷却时间" />
-          <FormInput label="消耗" v-model="skill_data.consume" placeholder="法力消耗" />
+          <!-- 左上角新增 -->
+          <LibSvg
+            :svg="icon.ADDC"
+            @click="addOne"
+            class="addOne"
+            color="var(--theme-color-seven)"
+            enter-color="var(--theme-color-four)"
+            key="LibSvg"
+            size="50px"
+            title="添加技能"
+          />
+          <!-- 设置图标 -->
+          <FormImg
+            :getLink="getLink"
+            :imgs="[skill_list[currentIndex].img]"
+            :keys="['img']"
+            :values="{ img: '图标' }"
+            label="图标"
+            required
+          />
+          <SelectHero v-model="hero_id" key="SelectHero" />
+          <FormInput label="名称" required v-model="skill_list[currentIndex].name" placeholder="技能名称" />
+          <FormInput v-if="noFirst" label="CD" v-model="skill_list[currentIndex].cd" placeholder="冷却时间" number />
+          <FormInput
+            v-if="noFirst"
+            label="消耗"
+            v-model="skill_list[currentIndex].consume"
+            placeholder="法力消耗"
+            number
+          />
 
           <!-- 设置技能类型 -->
           <FormSelect :data="types" v-model="skill_type" :value="skill_type" label="技能类型" @change="selectType" />
-          <div class="type-list">
+          <div class="type-list" v-show="skill_list[currentIndex].type.length">
             <transition-group name="delSkillType">
-              <div class="skill-type" v-for="(item) in select_types" :key="item">
+              <div class="skill-type" v-for="(item, index) in skill_list[currentIndex].type" :key="item">
                 <span class="name">{{ item }}</span>
                 <span class="del cursor-pointer" @click="delSkillType(index)">×</span>
               </div>
             </transition-group>
           </div>
 
+          <!-- 设置技能效果 -->
+          <div class="select-effect" v-if="noFirst">
+            <FormSelect
+              :data="effects"
+              v-model="skill_effect"
+              :value="skill_effect"
+              label="技能效果"
+              @change="selectEffect"
+              :disabled="!skill_list[currentIndex].effect[effectIndex]"
+            />
+            <span class="add cursor-pointer" @click="addEffect">添加/下一行</span>
+            <span class="add cursor-pointer" @click="editEffect">上一行</span>
+            <span class="del cursor-pointer" @click="delEffect">删除一行</span>
+          </div>
+          <div class="select-effect" v-if="noFirst" v-show="skill_effect">
+            <FormInput label="阶段值" v-model="skill_consume" placeholder="升级后的值" @keyup.enter="addConsume" />
+            <span class="confirm cursor-pointer" @click="addConsume">确定</span>
+            <span class="del cursor-pointer" @click="delConsume">删除一值</span>
+          </div>
+          <div class="effect-list">
+            <transition-group name="delSkillType">
+              <div
+                class="skill-effect"
+                :class="{ activeEffect: effectIndex === index }"
+                v-for="(item, index) in skill_list[currentIndex].effect"
+                :key="item"
+              >
+                <span class="type">{{ item.type || '待选择' }}：</span>
+                <div class="phase">{{ item.phase?.join(' | ') }} |</div>
+              </div>
+            </transition-group>
+          </div>
+
           <!-- 技能描述 -->
-          <LibRichText v-model="skill_data.desc" placeholder="技能描述" />
+          <LibRichText v-model="skill_list[currentIndex].desc" placeholder="技能描述" :key="skill_list[currentIndex]" />
         </div>
 
         <!-- 右边 -->
         <div class="right">
-          <div class="skill" v-for="(item, index) in skills" :key="index">
-            <AddSkillBasic :data="item" :index="index" :activeIndex="currentIndex" @click="currentIndex = index" />
+          <div class="skill" v-for="(item, index) in skill_list" :key="index">
+            <AddSkillBasic :data="item" :index="index" :activeIndex="currentIndex" @click="selectSkill(index)" />
           </div>
         </div>
       </div>
     </transition>
 
-    <!--//%%%%%··········发布按钮··········%%%%%//-->
-    <LibCommitBtn class="LibCommitBtn" size="50px" @commit="add" :finish="finish" title="发布" />
+    <!-- 发布按钮 -->
+    <LibCommitBtn v-model="status" class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" title="发布" />
 
-    <!--//%%%%%··········取消发布··········%%%%%//-->
+    <!-- 取消发布 -->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
+
+    <!-- 确认关闭 -->
+    <ConfirmClose v-model="show_ConfirmClose" />
   </div>
 </template>
 <script setup>
-import { reactive, ref } from 'vue';
+import { computed, onBeforeUnmount, ref } from 'vue';
+import { updateHero } from '@/api/main/hero/self/index.js';
+import { $removeEmptyField } from '@/utils/index.js';
+import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
 import AddSkillBasic from './childComps/AddSkillBasic.vue';
 
-const $store = switchStore();
+const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);
-const { show, finish, close } = viewHide(emit);
+const {
+  show, finish, status, close,
+} = viewHide(emit);
+const show_ConfirmClose = ref(false);
 
-const skill_type = ref('');
+const skill_type = ref(''); //选择的技能类型
+const skill_effect = ref(''); //选择的技能效果
+const skill_consume = ref(''); //阶段值
+const hero_id = ref(0); //英雄id
+const effectIndex = ref(-1); //处于编辑状态的技能效果索引
 const currentIndex = ref(0); //用于设置编辑状态
-const select_types = ref([]);
-const skill_data = reactive({
-  name: '',
-  desc: '',
-  cd: '',
-  consume: '',
-  img: '',
-  type: [],
-  effect: [],
-});
-const skills = [
+const skill_list = ref([
   {
-    name: '纵横兵法',
-    desc: '鬼谷子脱离敌方视野3秒后，玄微子会再次归巢到法杖中，下一次普通攻击变更为强化攻击，强化攻击会造成300（+45%法术加成）点法术伤害并将范围内的敌人减少50%移动速度，持续1.5秒；如果使用强化攻击时，鬼谷子不处于敌方视野，则纵横兵法的冷却时间将会增加至10秒',
-    img: 'http://lengyibai.gitee.io/wzry-material/hero/67/ji_neng/0.png',
-    type: ['法术', '控制'],
+    name: '',
+    desc: '',
+    img: '',
+    type: [],
   },
-  {
-    name: '先知·神隐',
-    desc: '鬼谷子命令玄微子包裹自身和1500距离内的队友，准备1秒后进入伪装状态；伪装状态下鬼谷子和队友将增加30%移动速度；同时将会探查到距离鬼谷子最近的一名敌方英雄视野，伪装状态最多持续4秒；伪装状态下，如果使用普通攻击、技能或敌方造成负面效果时会立即解除伪装状态',
-    cd: 10,
-    consume: 70,
-    img: 'http://lengyibai.gitee.io/wzry-material/hero/67/ji_neng/1.png',
-    type: ['法术'],
-    effect: [
-      {
-        type: '基础伤害',
-        phase: [450, 540, 630, 720, 810, 900],
-      },
-      {
-        type: '降低双防',
-        phase: ['25%', '28%', '31%', '34%', '37%', '40%'],
-      },
-    ],
-  },
-  {
-    name: '万物有灵',
-    desc: '<p>鬼谷子召唤大量玄微子在自身周围聚集，对范围内敌人每0.5秒造成<span style="color: rgb(153, 51, 255);">100/120/140/160/180/200（+15%法术加成）点法术伤害</span>，持续2秒；2秒后玄微子集结完毕，对范围内敌人造成<span style="color: rgb(153, 51, 255);">400（+60%法术加成）</span>点法术伤害，同时将敌人拉扯到鬼谷子身旁并将其晕眩1秒；如果该伤害命中敌方英雄，鬼谷子和范围内的队友将获得可抵免<span style="color: rgb(153, 51, 255);">500/600/700/800/900/1000（+100%法术加成）</span>点伤害的护盾。</p>',
-    type: ['法术', '控制'],
-    cd: 10,
-    consume: 60,
-    img: 'http://lengyibai.gitee.io/wzry-material/hero/67/ji_neng/2.png',
-    effect: [
-      {
-        type: '基础伤害',
-        phase: [100, 120, 140, 160, 180, 200],
-      },
-      {
-        type: '冷却时间',
-        phase: [10, 9.8, 9.6, 9.4, 9.2, 9],
-      },
-      {
-        type: '护盾减免',
-        phase: [500, 600, 700, 800, 900, 1000],
-      },
-    ],
-  },
-  {
-    name: '先知·雾隐',
-    desc: '鬼谷子命令玄微子包裹自身和1500距离内的队友，准备1秒后进入伪装状态；伪装状态下鬼谷子和队友将增加30%移动速度；同时将会探查到距离鬼谷子最近的一名敌方英雄视野，伪装状态最多持续4秒；伪装状态下，如果使用普通攻击、技能或敌方造成负面效果时会立即解除伪装状态',
-    cd: 35,
-    consume: 120,
-    img: 'http://lengyibai.gitee.io/wzry-material/hero/67/ji_neng/3.png',
-    effect: [
-      {
-        type: '冷却时间',
-        phase: [35, 30, 25],
-      },
-    ],
-  },
-];
+]);
+
+const cache = localStorage.getItem('add_skill_list');
+if (cache) {
+  skill_list.value = JSON.parse(cache);
+}
 const types = [
-  {
-    id: 1,
-    name: '真实',
-  },
-  {
-    id: 2,
-    name: '物理',
-  },
-  {
-    id: 3,
-    name: '法术',
-  },
   {
     id: 4,
     name: '控制',
   },
+  {
+    id: 5,
+    name: '金币',
+  },
+  {
+    id: 6,
+    name: '伤害',
+  },
+  {
+    id: 7,
+    name: '护盾',
+  },
+  {
+    id: 8,
+    name: '冷却',
+  },
+  {
+    id: 9,
+    name: '回复',
+  },
+  {
+    id: 10,
+    name: '复活',
+  },
+];
+const effects = [
+  {
+    id: 1,
+    name: '基础伤害',
+  },
+  {
+    id: 2,
+    name: '降低双防',
+  },
+  {
+    id: 3,
+    name: '冷却时间',
+  },
+  {
+    id: 4,
+    name: '护盾减免',
+  },
+  {
+    id: 5,
+    name: '最大伤害',
+  },
+  {
+    id: 6,
+    name: '护盾',
+  },
+  {
+    id: 6,
+    name: '复活生命',
+  },
 ];
 
-const selectType = (v) => {
-  setTimeout(() => {
-    select_types.value.push(v);
-    select_types.value = [...new Set(select_types.value)];
-    skill_type.value = '请选择';
+const noFirst = computed(() => currentIndex.value !== 0);
+
+/* 增加技能 */
+const addOne = () => {
+  skill_effect.value = '';
+  effectIndex.value = -1;
+  currentIndex.value = skill_list.value.length;
+  skill_list.value.push({
+    name: '',
+    desc: '',
+    cd: '',
+    consume: '',
+    img: '',
+    type: [],
+    effect: [],
   });
 };
 
+/* 选择技能后触发 */
+const selectSkill = (index) => {
+  skill_effect.value = '';
+  currentIndex.value = index;
+  skill_list.value[currentIndex.value] ??= {};
+};
+
+/* 设置头像后触发 */
+const getLink = (v) => {
+  skill_list.value[currentIndex.value].img = v;
+};
+
+/* 选择类型后触发 */
+const selectType = (v) => {
+  setTimeout(() => {
+    skill_list.value[currentIndex.value].type.push(v);
+    skill_list.value[currentIndex.value].type = [...new Set(skill_list.value[currentIndex.value].type)];
+    skill_type.value = '请选择';
+  });
+};
+/* 删除类型 */
 const delSkillType = (index) => {
-  select_types.value.splice(index, 1);
+  skill_list.value[currentIndex.value].type.splice(index, 1);
+};
+
+/* 选择效果后触发 */
+const selectEffect = (v) => {
+  skill_list.value[currentIndex.value].effect[effectIndex.value].type = v;
+};
+/* 添加一行 */
+const addEffect = () => {
+  if (effectIndex.value !== -1 && !skill_effect.value) return;
+  effectIndex.value++;
+  skill_list.value[currentIndex.value].effect[effectIndex.value] ??= {};
+  skill_effect.value = skill_list.value[currentIndex.value].effect[effectIndex.value].type;
+};
+/* 上一行 */
+const editEffect = () => {
+  if (effectIndex.value <= 0) return;
+  effectIndex.value--;
+  skill_effect.value = skill_list.value[currentIndex.value].effect[effectIndex.value].type;
+};
+/* 删除一行 */
+const delEffect = () => {
+  skill_effect.value = ''; //选择器值置空
+
+  /* 技能效果索引大于等于0才执行 */
+  if (effectIndex.value >= 0) {
+    skill_list.value[currentIndex.value].effect.splice(effectIndex.value, 1); //删除自身
+    const flag1 = effectIndex.value > 0;
+    const flag2 = skill_list.value[currentIndex.value].effect.length > 0;
+    if (flag1) {
+      effectIndex.value--;
+    }
+    if (flag2) {
+      skill_effect.value = skill_list.value[currentIndex.value].effect[effectIndex.value].type; //当技能效果数量大于0，将技能效果类型赋给选择器
+    }
+    if (!flag1 && !flag2) {
+      effectIndex.value = -1; //当技能效果数量为空，且技能效果索引大于小于等于0，则赋初始值
+    }
+  }
+};
+/* 添加阶段值触发 */
+const addConsume = () => {
+  skill_list.value[currentIndex.value].effect[effectIndex.value].phase ??= [];
+  skill_list.value[currentIndex.value].effect[effectIndex.value].phase.push(skill_consume.value);
+  skill_consume.value = '';
+};
+/* 删除阶段值 */
+const delConsume = () => {
+  skill_list.value[currentIndex.value].effect[effectIndex.value].phase?.pop();
 };
 
 setTimeout(async () => {
-  $store.$loading.show('正在加载');
-  $store.$loading.close().then(() => {
+  $switchStore.$loading.show('正在加载');
+  $switchStore.$loading.close().then(() => {
     show.value = true;
   });
 }, 1000);
 
-const add = () => {
-  setTimeout(() => {
-    finish.value = true;
+const timer = setInterval(() => {
+  localStorage.setItem('add_skill_list', JSON.stringify(skill_list.value));
+}, 1000);
+
+/* 发布 */
+const commit = async () => {
+  const is_Finish = skill_list.value.every((item) => {
+    return item.img && item.name && hero_id.value;
+  });
+  if (skill_list.value.length >= 3 && is_Finish) {
+    await updateHero(hero_id.value, { skills: $removeEmptyField(skill_list.value) });
     setTimeout(() => {
+      finish.value = true;
       close();
-    }, 250);
-  }, 250);
+      $switchStore.$tip('发布成功', 'info');
+      localStorage.removeItem('add_skill_list');
+    }, 500);
+  } else {
+    $switchStore.$tip('至少包含3个技能，且完整填写必填项', 'error');
+    status.value = 0;
+  }
 };
+
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
 </script>
+
 <style scoped lang="less">
 @import './index.less';
 </style>

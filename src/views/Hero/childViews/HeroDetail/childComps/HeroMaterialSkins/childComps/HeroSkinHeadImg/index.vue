@@ -1,6 +1,6 @@
 <template>
   <div class="HeroSkinHeadImg flex">
-    <!--//%%%%%··········中心头衔框··········%%%%%//-->
+    <!--中心头衔框-->
     <div class="show-skin flex" ref="showSkin">
       {{ is_into_drap ? '松开' : '拖过来' }}
     </div>
@@ -9,7 +9,7 @@
       <div class="show-skin flex clone" v-show="is_into_drap"></div>
     </transition>
 
-    <!--//%%%%%··········皮肤头像··········%%%%%//-->
+    <!--皮肤头像-->
     <div
       class="skin"
       v-drag="{ fn, index }"

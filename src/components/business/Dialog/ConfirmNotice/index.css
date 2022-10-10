@@ -1,0 +1,95 @@
+.ConfirmNotice {
+  position: absolute;
+  z-index: 3;
+}
+.ConfirmNotice > .title {
+  position: absolute;
+  left: 70px;
+  top: 35px;
+  font-size: 30px;
+  color: var(--theme-color-nine);
+}
+.ConfirmNotice .close {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  width: 40px;
+  filter: drop-shadow(0px 0px 3px #cce5ff);
+  z-index: 2;
+}
+.ConfirmNotice .bg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.ConfirmNotice > .content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-48%, -44%);
+  width: 80%;
+  height: 75%;
+}
+.ConfirmNotice > .content .desc {
+  width: 100%;
+}
+.ConfirmNotice > .content .desc .title,
+.ConfirmNotice > .content .desc .content {
+  display: flex;
+  margin-bottom: 30px;
+}
+.ConfirmNotice > .content .desc .title .label,
+.ConfirmNotice > .content .desc .content .label {
+  color: var(--theme-color-five);
+  margin-right: 0.75em;
+  font-size: 35px;
+}
+.ConfirmNotice > .content .desc .title .text,
+.ConfirmNotice > .content .desc .content .text {
+  font-family: initial;
+  transform: translateY(-5px);
+  font-size: 35px;
+}
+.ConfirmNotice > .content .desc .content .text {
+  flex: 1;
+  background-color: var(--theme-color-one);
+  height: 10em;
+  font-size: 30px;
+  color: var(--theme-color-twelve);
+  padding: 0.25em;
+}
+.ConfirmNotice > .content .button {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+.ConfirmNotice > .content .button .last {
+  margin-left: 25px;
+}
+/* 缩放 */
+.default-enter-from,
+.default-leave-active {
+  transform: scale(0.75);
+  opacity: 0;
+}
+.default-enter-active {
+  transition: all 0.25s cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.default-leave-active {
+  transition: all 0.25s;
+}
+/* 由下而上 */
+.confirm-enter-from,
+.confirm-leave-active {
+  transform: translateY(25%);
+}
+.confirm-enter-active {
+  transition: all 0.25s cubic-bezier(0.26, 0.89, 0.29, 1.4);
+}
+.confirm-leave-active {
+  transition: all 0.25s 0.25s;
+}

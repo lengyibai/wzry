@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="content" ref="scrollBox" v-if="show">
         <transition-group name="fade">
-          <!--//%%%%%··········左上角新增··········%%%%%//-->
+          <!--左上角新增-->
           <LibSvg
             :svg="icon.ADDC"
             @click="addOne"
@@ -14,10 +14,10 @@
             size="50px"
           />
 
-          <!--//%%%%%··········指派英雄··········%%%%%//-->
+          <!--指派英雄-->
           <SelectHero class="SelectHero" v-model="hero_id" key="SelectHero" />
 
-          <!--//%%%%%··········皮肤盒子列表··········%%%%%//-->
+          <!--皮肤盒子列表-->
           <div
             class="skin"
             @mouseenter="currentIndex = index"
@@ -62,10 +62,10 @@
       </div>
     </transition>
 
-    <!--//%%%%%··········发布按钮··········%%%%%//-->
+    <!-- 发布按钮 -->
     <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" v-model="status" title="发布" />
 
-    <!--//%%%%%··········取消发布··········%%%%%//-->
+    <!-- 取消发布 -->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
   </div>
 </template>

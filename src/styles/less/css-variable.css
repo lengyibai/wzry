@@ -1,5 +1,5 @@
 :root {
-  --gray: rgba(255, 255, 255, 0.75);
+  --gray: rgba(255, 255, 255, 0.5);
   --white: #fff;
   --black: #111;
   --red: #e74c3c;
@@ -16,7 +16,7 @@
 }
 
 :root {
-  --theme-color-one: #1c293b;
+  --theme-color-one: #162743;
   --theme-color-two: #233c5b;
   --theme-color-three: #4d6b8f;
   --theme-color-four: #3774b4;
@@ -26,6 +26,7 @@
   --theme-color-nine: #cdd0e2;
   --theme-color-ten: #ccde2c;
   --theme-color-eleven: #49698f;
+  --theme-color-twelve: #aec8e3;
 }
 
 :root {

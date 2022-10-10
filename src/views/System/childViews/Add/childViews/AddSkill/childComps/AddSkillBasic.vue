@@ -1,7 +1,7 @@
 <template>
   <div class="AddSkillBasic" :class="{ active: active }">
     <div class="title">
-      <img :src="data.img" alt="" />
+      <img :src="data.img || head_default" alt="" />
       <div class="name">{{ data.name }}</div>
       <div class="types">
         <K-SkillTypeTag v-for="(item, index) in data.type" :type="item" :key="index" />
@@ -16,13 +16,14 @@
     <div class="effect" v-if="data.effect">
       <div class="box" v-for="(item, index) in data.effect" :key="index">
         <div class="type">{{ item.type }}：</div>
-        <div class="phase">{{ item.phase.join(' | ') }}</div>
+        <div class="phase">{{ item.phase?.join(' | ') }}</div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
 import { ref, watch } from 'vue';
+import head_default from './img/default.png';
 
 const props = defineProps({
   data: {

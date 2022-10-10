@@ -1,13 +1,12 @@
 <template>
-  <div class="SelectImg flex cursor-pointer" :class="type" @click="set(keyword)">
+  <div class="SelectImg flex cursor-pointer" :class="[type, { border: !src }]" @click="set(keyword)">
     <img class="cursor-pointer" :src="src" alt="" v-show="src" />
     <LibSvg
       class="add cursor-pointer"
       :svg="icon.ADD"
       v-show="!src"
       color="var(--theme-color-eight)"
-      enter-color="var(--theme-color-four)"
-      size="75px"
+      size="50px"
     />
   </div>
 </template>
@@ -45,9 +44,15 @@ const set = (key) => {
   position: relative;
   width: 150px;
   height: 150px;
-  transition: 0.25s;
   background-color: transparent;
-  border: 5px solid #fff;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+.border {
+  border: 3px solid #fff;
   border-image: linear-gradient(315deg, #3774b4 0%, #73b1d5 100%) 1 1 !important;
   &:hover {
     border-image: linear-gradient(315deg, #5989a5 0%, #295686 100%) 1 1 !important;
@@ -58,23 +63,18 @@ const set = (key) => {
   &:active {
     transform: scale(0.95);
   }
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .width {
-  width: 300px !important;
-  height: 200px !important;
+  width: 200px !important;
+  height: 100px !important;
 }
 .height {
-  width: 200px !important;
-  height: 300px !important;
+  width: 100px !important;
+  height: 200px !important;
 }
 .square {
-  width: 200px !important;
-  height: 200px !important;
+  width: 100px !important;
+  height: 100px !important;
 }
 </style>

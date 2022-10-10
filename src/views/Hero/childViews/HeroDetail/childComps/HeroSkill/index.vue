@@ -1,10 +1,10 @@
 <template>
   <div class="HeroSkill">
     <div class="title">技能</div>
-    <!--//%%%%%··········技能图标··········%%%%%//-->
+    <!--技能图标-->
     <HeroSkillIcon @select-skill="selectSkill" />
 
-    <!--//%%%%%··········主体内容··········%%%%%//-->
+    <!--主体内容-->
     <transition name="fade">
       <HeroSkillContent :index="index" v-show="toggle" />
     </transition>

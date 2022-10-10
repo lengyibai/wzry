@@ -205,6 +205,136 @@
           "desc": "道生一，一生二，二生……太二组合！",
           "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios//music/20180824/67416aebfab89c2f73f21af6dc13acba.mp3"
         }
+      ],
+      "skills": [
+        {
+          "name": "黄金闪闪",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人附近800范围内的敌方非英雄单位死亡时，太乙真人和附近的队友都会额外获得20％金币</span></p>",
+          "img": "http://lengyibai.gitee.io/wzry-material/hero/60/ji_neng/0.png",
+          "type": [
+            "金币"
+          ]
+        },
+        {
+          "name": "意外事故",
+          "desc": "<p style=\"text-align: start;\">太乙真人使用炉子炼制药剂，最多持续5秒，炼制结束时或发生爆炸，对周围敌人造成165<span style=\"color: rgb(146, 84, 222);\">（+50%法术攻击）</span>~495<span style=\"color: rgb(146, 84, 222);\">(+165%法术攻击)法术伤害</span>并将其晕眩0.5秒~0.75秒(随技能等级成长最高晕眩1.25秒)。药剂炼制完毕时爆炸命中英雄单位可自动刷新并再释放本技能。</p><p style=\"text-align: start;\"><span style=\"color: rgb(89, 89, 89);\">炼制时间越长，伤害越高，晕眩时间越长。</span></p>",
+          "cd": "5",
+          "consume": "65",
+          "img": "http://lengyibai.gitee.io/wzry-material/hero/60/ji_neng/1.png",
+          "type": [
+            "控制",
+            "伤害",
+            "护盾"
+          ],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": [
+                "165",
+                "225",
+                "285",
+                "345",
+                "405",
+                "465"
+              ]
+            },
+            {
+              "type": "最大伤害",
+              "phase": [
+                "495",
+                "675",
+                "855",
+                "1035",
+                "1215",
+                "1395"
+              ]
+            },
+            {
+              "type": "护盾",
+              "phase": [
+                "300",
+                "350",
+                "400",
+                "450",
+                "500",
+                "550"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "第三只手",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人伸出触手将自身拉向触手命中的第一个目标，如果是敌方目标，还会造成450</span><span style=\"color: rgb(146, 84, 222);\">(+80%法术攻击)法术伤害</span><span style=\"color: rgb(255, 255, 255);\">并将其晕眩0.5秒。</span></p>",
+          "cd": "10",
+          "consume": "65",
+          "img": "http://lengyibai.gitee.io/wzry-material/hero/60/ji_neng/2.png",
+          "type": [
+            "控制",
+            "伤害"
+          ],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": [
+                "450",
+                "500",
+                "550",
+                "600",
+                "650",
+                "700"
+              ]
+            },
+            {
+              "type": "冷却时间",
+              "phase": [
+                "10",
+                "9.2",
+                "8.4",
+                "7.6",
+                "6.8",
+                "6"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "大变活人",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人召唤替身傀儡，保护自身和附近800范围内血量最低队友，持续3秒，持续期间保护对象被敌方击杀会在2秒后原地复活并获得1600</span><span style=\"color: rgb(146, 84, 222);\">(+200%法术攻击)</span><span style=\"color: rgb(255, 255, 255);\">点生命。没有成功复活任何一个人则返还30%冷却。</span></p>",
+          "cd": "70",
+          "consume": "150",
+          "img": "http://lengyibai.gitee.io/wzry-material/hero/60/ji_neng/3.png",
+          "type": [
+            "复活",
+            "冷却",
+            "回复"
+          ],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": [
+                "600",
+                "750",
+                "900"
+              ]
+            },
+            {
+              "type": "冷却时间",
+              "phase": [
+                "70",
+                "65",
+                "60"
+              ]
+            },
+            {
+              "type": "复活生命",
+              "phase": [
+                "1600",
+                "1350",
+                "3100"
+              ]
+            }
+          ]
+        }
       ]
     }
   ],

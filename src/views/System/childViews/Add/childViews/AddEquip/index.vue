@@ -6,10 +6,10 @@
       </div>
     </transition>
 
-    <!--//%%%%%··········发布按钮··········%%%%%//-->
+    <!-- 发布按钮 -->
     <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" title="发布" />
 
-    <!--//%%%%%··········取消发布··········%%%%%//-->
+    <!-- 取消发布 -->
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
   </div>
 </template>

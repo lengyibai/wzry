@@ -1,13 +1,12 @@
 <template>
-  <!--
+  <div
+    class="K-Button cursor-pointer"
     v-particle="{
       color: particle_color[type],
       size: 5,
       brightness: 1.25,
       contrast: 1.1,
-    }" -->
-  <div
-    class="K-Button cursor-pointer"
+    }"
     :style="{
       width: autoSize ? '100%' : width,
       height: autoSize ? '100%' : height,

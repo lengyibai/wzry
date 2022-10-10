@@ -2,13 +2,13 @@
   <div class="AddHeroCover">
     <span class="text-gradient-one">英雄封面：</span>
 
-    <!--//%%%%%··········选择封面··········%%%%%//-->
+    <!--选择封面-->
     <AddHeroCoverImg :p="p" />
 
-    <!--//%%%%%··········偏移量··········%%%%%//-->
+    <!--偏移量-->
     <AddHeroCoverOffset @direction="direction" />
 
-    <!--//%%%%%··········缩放量··········%%%%%//-->
+    <!--缩放量-->
     <AddHeroCoverScale @scale="scale" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="K-SkillTypeTag">
-    <div class="skill-type" :class="name">{{type}}</div>
+    <div class="skill-type" :class="name">{{ type }}</div>
   </div>
 </template>
 <script setup>
@@ -9,10 +9,7 @@ import { $pinyin } from '@/utils/index.js';
 const props = defineProps({
   type: {
     type: String,
-    default: '真实',
-    validator: (value) => {
-      return ['真实', '物理', '法术', '控制'].includes(value);
-    },
+    default: '金币',
   },
 });
 
@@ -22,32 +19,37 @@ const name = $pinyin(props.type)[2];
 .K-SkillTypeTag {
   display: flex;
   .skill-type {
-    width: 4.75em;
+    width: fit-content;
     height: 35px;
     text-align: center;
     line-height: 35px;
     font-size: 20px;
-    border-radius: 5px;
-    padding: 0 25px;
-    margin-right: 5px;
+    padding: 0 0.75em;
+    margin-right: 10px;
     box-shadow: var(--b-shadow);
   }
-  .zs {
-    color: #e5b14b;
-    background-color: #8a7138;
-  }
-  .wl {
-    color: #e08b88;
-    background-color: #762728;
-  }
-  .fs {
-    color: #8b8ef7;
-    background-color: #4c4c96;
-  }
   .kz {
-    color: #6cd9b0;
-    border: 1px solid #6cd9b0;
-    background-color: #114433;
+    color: #2dc4fb;
+    border: 2px solid rgba(45, 196, 251, 0.25);
+    background-color: rgba(45, 196, 251, 0.25);
+  }
+  .jb,
+  .fh {
+    color: #e5b14b;
+    background-color: rgba(229, 178, 75, 0.25);
+    border: 2px solid rgba(229, 178, 75, 0.25);
+  }
+  .sh {
+    color: #e65ff7;
+    background-color: rgba(229, 95, 247, 0.25);
+    border: 2px solid rgba(229, 95, 247, 0.25);
+  }
+  .hd,
+  .lq,
+  .hf {
+    color: #69c570;
+    background-color: rgba(105, 197, 113, 0.25);
+    border: 2px solid rgba(105, 197, 113, 0.25);
   }
 }
 </style>

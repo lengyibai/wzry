@@ -1,17 +1,17 @@
 <template>
   <div class="HeroDetail">
     <LibMaskClose @close="hide" />
-    <!--//%%%%%··········资料皮肤··········%%%%%//-->
+    <!--资料皮肤-->
     <HeroDetailParallaxBg :bg="hero_data.poster">
       <HeroMaterialSkins />
     </HeroDetailParallaxBg>
 
-    <!--//%%%%%··········技能··········%%%%%//-->
+    <!--技能-->
     <HeroDetailParallaxBg :bg="hero_data.poster" v-if="hero_data.skills">
       <HeroSkill />
     </HeroDetailParallaxBg>
 
-    <!--//%%%%%··········故事··········%%%%%//-->
+    <!--故事-->
     <HeroDetailParallaxBg :bg="hero_data.poster" v-if="hero_data.gamestory">
       <HeroStory />
     </HeroDetailParallaxBg>

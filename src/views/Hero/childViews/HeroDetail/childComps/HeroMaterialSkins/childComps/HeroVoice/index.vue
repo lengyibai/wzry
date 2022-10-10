@@ -21,7 +21,7 @@
         />
       </transition>
     </div>
-    <!--//%%%%%··········播放语音··········%%%%%//-->
+    <!--播放语音-->
     <PlayVoice @ended="ended" @info="voiceInfo" v-if="play_link" :link="play_link" />
   </div>
 </template>

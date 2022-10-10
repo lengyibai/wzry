@@ -1,19 +1,19 @@
 <template>
   <div class="HeroSkillContentLeft">
-    <!--//%%%%%··········名称及类型··········%%%%%//-->
+    <!--名称及类型-->
     <div class="name-type">
       <div class="name">{{ activeSkill.name }}</div>
       <K-SkillTypeTag v-for="(item, index) in activeSkill.type" :type="item" :key="index" />
     </div>
 
-    <!--//%%%%%··········数字相关··········%%%%%//-->
+    <!--数字相关-->
     <div class="cd-consume">
       <div class="cd" v-if="activeSkill.cd">CD：{{ activeSkill.cd }}秒</div>
       <div class="consume" v-if="activeSkill.cd">法力消耗：{{ activeSkill.consume }}</div>
       <div class="passive" v-else>被动</div>
     </div>
 
-    <!--//%%%%%··········描述··········%%%%%//-->
+    <!--描述-->
     <div class="desc" v-html="activeSkill.desc"></div>
   </div>
 </template>

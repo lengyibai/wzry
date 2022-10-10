@@ -26,13 +26,15 @@
         <AddHeroCover />
 
         <!-- 设置头像&海报 -->
-        <FormImg
-          label="皮肤头像&海报"
-          :getLink="getLink"
-          :imgs="[hero_data.headImg, hero_data.poster]"
-          :keys="['headImg', 'poster']"
-          :values="{ headImg: '头像', poster: '海报' }"
-        />
+        <div class="flex-box">
+          <FormImg
+            label="皮肤头像&海报"
+            :getLink="getLink"
+            :imgs="[hero_data.headImg, hero_data.poster]"
+            :keys="['headImg', 'poster']"
+            :values="{ headImg: '头像', poster: '海报' }"
+          />
+        </div>
       </div>
     </transition>
 

@@ -2,13 +2,13 @@
   <div class="head-poster">
     <span class="text-gradient-one"><i class="star">*</i>{{ label }}：</span>
 
-    <!--//%%%······海报头像······%%%//-->
+    <!-- 方图 -->
     <SelectImg :src="imgs[0]" @select="setKeyValues" :keyword="keys[0]" />
 
-    <!--//%%%······海报······%%%//-->
-    <SelectImg v-if="show" :src="imgs[1]" type="width" @select="setKeyValues" :keyword="keys[1]" />
+    <!-- 宽图 -->
+    <SelectImg class="wide" v-if="show" :src="imgs[1]" type="width" @select="setKeyValues" :keyword="keys[1]" />
 
-    <!--//%%%%%··········添加图片链接弹窗组件··········%%%%%//-->
+    <!--添加图片链接弹窗组件-->
     <AddLink
       v-model="show_AddLink"
       :keyword="AddLink_key"
@@ -24,7 +24,7 @@ import { ref } from 'vue';
 const props = defineProps({
   label: {
     type: String,
-    default: '啊啊啊啊',
+    default: '标题',
   },
   keys: {
     type: Array,
@@ -73,7 +73,6 @@ const setKeyValues = (key) => {
 .head-poster {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
   margin-bottom: 25px;
   width: 100%;
   span {
@@ -86,6 +85,9 @@ const setKeyValues = (key) => {
       font-size: 20px;
       transform: translateX(-150%);
     }
+  }
+  .wide{
+    margin-left: 25px;
   }
 }
 </style>
