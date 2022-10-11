@@ -3,7 +3,7 @@
     <!--名称及类型-->
     <div class="name-type">
       <div class="name">{{ activeSkill.name }}</div>
-      <K-SkillTypeTag v-for="(item, index) in activeSkill.type" :type="item" :key="index" />
+      <K-SkillTypeTag v-for="(item) in activeSkill.type" :type="item" :key="item" />
     </div>
 
     <!--数字相关-->

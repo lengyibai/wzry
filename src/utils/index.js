@@ -1096,3 +1096,14 @@ export function $removeEmptyField(data, excludes = ["", null, undefined]) {
   }
   return newObj;
 }
+
+/* 对象深度去重 */
+export function $objDelRep(arr, key) {
+  let data = arr;
+  let obj = {};
+  data = data.reduce((a, b) => {
+    obj[b[key]] ? "" : (obj[b[key]] = true && a.push(b));
+    return a;
+  }, []);
+  return data;
+}

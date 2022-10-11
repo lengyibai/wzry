@@ -2,26 +2,34 @@
   <div class="EquipDetail" :style="{ opacity: show ? 1 : 0 }">
     <div class="name">{{ equip.name }}</div>
     <div class="info">
-      <div class="effect" :class="abbreviations[item.name]" v-for="(item, index) in equip.info" :key="index">
-        +{{ item.num }}{{ item.unit }} {{ item.name }}
+      <div class="effect" :class="abbreviations[item.name]" v-for="(item, index) in equip.effect" :key="index">
+        +{{ item.num }} {{ item.name }}
       </div>
     </div>
     <div class="details" v-if="equip?.name">
-      <div class="motivation" v-for="(item, index) in equip.details" :key="index">
+      <div class="motivation" v-for="(item, index) in equip.motivation" :key="index">
         <div class="title">{{ item.type }}-{{ item.name }}</div>
-        <div class="desc">{{ item.desc }}</div>
+        <div class="desc" v-html="item.desc"></div>
         <div class="time lq" v-if="item.time">{{ item.time }}秒</div>
-        <div class="note">{{ item.note }}</div>
       </div>
     </div>
-    <div class="note" v-if="equip?.name">{{ equip.note }}</div>
+    <div class="note" v-if="equip.note" v-html="equip.note"></div>
   </div>
 </template>
 <script setup>
-import { ref, watch } from 'vue';
-import equipStore from '@/store/equip.js';
+defineProps({
+  equip: {
+    type: Object,
+    default() {
+      return {};
+    },
+  },
+  show: {
+    type: Boolean,
+    default: false,
+  },
+});
 
-const $store = equipStore();
 const abbreviations = {
   最大生命: 'zdsm',
   每5秒回血: 'hx',
@@ -38,25 +46,6 @@ const abbreviations = {
   法术防御: 'fsfy',
   法术攻击: 'fsgj',
 };
-const equip = ref({});
-const show = ref(false);
-
-watch(
-  () => $store.active_id,
-  (v) => {
-    show.value = false;
-    setTimeout(() => {
-      if (v === 0) {
-        equip.value = {};
-      } else {
-        equip.value = $store.equip_list.find((item) => {
-          return item.id === v;
-        });
-      }
-      show.value = true;
-    }, 250);
-  },
-);
 </script>
 <style scoped lang="less">
 .EquipDetail {

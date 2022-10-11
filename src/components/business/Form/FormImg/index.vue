@@ -1,6 +1,8 @@
 <template>
-  <div class="head-poster">
-    <span class="text-gradient-one"><i class="star">*</i>{{ label }}：</span>
+  <div class="head-poster" :class="{ center: center }">
+    <div class="label" :style="{ width: labelWidth }">
+      <span class="text-gradient-one"><i class="star">*</i>{{ label }}： </span>
+    </div>
 
     <!-- 方图 -->
     <SelectImg :src="imgs[0]" @select="setKeyValues" :keyword="keys[0]" />
@@ -25,6 +27,14 @@ const props = defineProps({
   label: {
     type: String,
     default: '标题',
+  },
+  labelWidth: {
+    type: String,
+    default: '150px',
+  },
+  center: {
+    type: Boolean,
+    default: false,
   },
   keys: {
     type: Array,
@@ -75,19 +85,29 @@ const setKeyValues = (key) => {
   align-items: center;
   margin-bottom: 25px;
   width: 100%;
-  span {
+  .label {
     position: relative;
-    font-size: 30px;
-    .star {
-      position: absolute;
-      color: var(--theme-color-seven);
-      left: 0;
-      font-size: 20px;
-      transform: translateX(-150%);
+    margin-right: 0.25em;
+    color: var(--theme-color-eight);
+    text-align: right;
+    span {
+      position: relative;
+      font-size: 30px;
+      .star {
+        position: absolute;
+        left: 0;
+        color: var(--theme-color-seven);
+        font-size: 20px;
+        transform: translateX(-150%);
+      }
     }
   }
-  .wide{
+  .wide {
     margin-left: 25px;
   }
+}
+
+.center {
+  justify-content: center;
 }
 </style>

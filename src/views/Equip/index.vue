@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="EquipMain" v-if="show_EquipSidebar">
         <EquipList />
-        <EquipDetail />
+        <EquipDetail :show="show_Details" :equip="equip" />
       </div>
     </transition>
     <transition name="sidebar">
@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { getEquip } from '@/api/main/other/equip/index.js';
 import equiqStore from '@/store/equip.js';
 import switchStore from '@/store/globalSwitch.js';
@@ -31,6 +31,26 @@ getEquip().then(async (res) => {
   $equiqStore.setEquipList(res.data);
   show_EquipSidebar.value = true;
 });
+
+const show_Details = ref(false); //显示装备详情
+const equip = ref({}); //被点击的装备信息
+
+watch(
+  () => $equiqStore.active_id,
+  (v) => {
+    show_Details.value = false;
+    setTimeout(() => {
+      if (v === 0) {
+        equip.value = {};
+      } else {
+        equip.value = $equiqStore.equip_list.find((item) => {
+          return item.id === v;
+        });
+      }
+      show_Details.value = true;
+    }, 250);
+  },
+);
 </script>
 <style scoped lang="less">
 .Equip {

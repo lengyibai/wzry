@@ -1,5 +1,5 @@
 <template>
-  <div style="border: 1px solid var(--theme-color-eight)">
+  <div style="border: 1px solid var(--theme-color-eight); margin-bottom: 50px" :style="{ width: width }">
     <Toolbar
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"
@@ -19,7 +19,7 @@
 // https://www.wangeditor.com/
 import '@wangeditor/editor/dist/css/style.css'; // 引入 css
 import {
-  onBeforeUnmount, ref, shallowRef, onMounted, watch,
+  onBeforeUnmount, ref, shallowRef, watch,
 } from 'vue';
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
 
@@ -27,6 +27,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: '<p>Hello World!</p>',
+  },
+  width: {
+    type: String,
+    default: '100%',
   },
   placeholder: {
     type: String,

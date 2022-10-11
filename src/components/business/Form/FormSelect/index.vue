@@ -179,9 +179,14 @@ watch(
   { immediate: true },
 );
 
-watch(value, (v) => {
-  active_value.value = v;
-});
+watch(
+  value,
+  (v) => {
+    active_value.value = v;
+    input_value.value = v;
+  },
+  { immediate: true },
+);
 
 onBeforeUnmount(() => {
   $bus.off('click'); //关闭监听

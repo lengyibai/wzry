@@ -1,6 +1,6 @@
 <template>
   <div class="EquipListPrimary" :style="{ opacity: show ? 1 : 0 }">
-    <EquipCard v-for="(item, index) in equip_list" :equip="item" :key="index" />
+    <EquipCard v-for="(item) in equip_list" :equip="item" :key="item.id" />
   </div>
 </template>
 <script setup>

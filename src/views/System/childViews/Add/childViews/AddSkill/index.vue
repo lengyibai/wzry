@@ -36,7 +36,13 @@
           />
 
           <!-- 设置技能类型 -->
-          <FormSelect :data="types" v-model="skill_type" :value="skill_type" label="技能类型" @change="selectType" />
+          <FormSelect
+            :data="skill_types"
+            v-model="skill_type"
+            :value="skill_type"
+            label="技能类型"
+            @change="selectType"
+          />
           <div class="type-list" v-show="skill_list[currentIndex].type.length">
             <transition-group name="delSkillType">
               <div class="skill-type" v-for="(item, index) in skill_list[currentIndex].type" :key="item">
@@ -49,7 +55,7 @@
           <!-- 设置技能效果 -->
           <div class="select-effect" v-if="noFirst">
             <FormSelect
-              :data="effects"
+              :data="skill_effects"
               v-model="skill_effect"
               :value="skill_effect"
               label="技能效果"
@@ -105,6 +111,8 @@
 <script setup>
 import { computed, onBeforeUnmount, ref } from 'vue';
 import { updateHero } from '@/api/main/hero/self/index.js';
+import { getSkillType } from '@/api/main/tree/skillType/index.js';
+import { getSkillEffect } from '@/api/main/tree/skillEffect/index.js';
 import { $removeEmptyField } from '@/utils/index.js';
 import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
@@ -133,70 +141,22 @@ const skill_list = ref([
   },
 ]);
 
+/* 判断是否存在草稿 */
 const cache = localStorage.getItem('add_skill_list');
 if (cache) {
   skill_list.value = JSON.parse(cache);
 }
-const types = [
-  {
-    id: 4,
-    name: '控制',
-  },
-  {
-    id: 5,
-    name: '金币',
-  },
-  {
-    id: 6,
-    name: '伤害',
-  },
-  {
-    id: 7,
-    name: '护盾',
-  },
-  {
-    id: 8,
-    name: '冷却',
-  },
-  {
-    id: 9,
-    name: '回复',
-  },
-  {
-    id: 10,
-    name: '复活',
-  },
-];
-const effects = [
-  {
-    id: 1,
-    name: '基础伤害',
-  },
-  {
-    id: 2,
-    name: '降低双防',
-  },
-  {
-    id: 3,
-    name: '冷却时间',
-  },
-  {
-    id: 4,
-    name: '护盾减免',
-  },
-  {
-    id: 5,
-    name: '最大伤害',
-  },
-  {
-    id: 6,
-    name: '护盾',
-  },
-  {
-    id: 6,
-    name: '复活生命',
-  },
-];
+
+/* 技能类型 */
+const skill_types = ref([]);
+getSkillType().then((res) => {
+  skill_types.value = res.data;
+});
+/* 技能效果 */
+const skill_effects = ref([]);
+getSkillEffect().then((res) => {
+  skill_effects.value = res.data;
+});
 
 const noFirst = computed(() => currentIndex.value !== 0);
 

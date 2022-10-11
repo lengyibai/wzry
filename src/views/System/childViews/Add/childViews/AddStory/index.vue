@@ -2,10 +2,11 @@
   <div class="Story view_add">
     <transition name="fade">
       <div class="content" v-show="show">
+        <SelectHero v-model="hero_id" key="SelectHero" />
         <div class="title">英雄故事</div>
-        <LibRichText class="LibRichText" v-model="a" />
+        <LibRichText class="LibRichText" v-model="story_data.gamestory" />
         <div class="title">历史故事</div>
-        <LibRichText class="LibRichText" v-model="b" />
+        <LibRichText class="LibRichText" v-model="story_data.history" />
       </div>
     </transition>
 
@@ -18,13 +19,15 @@
 </template>
 <script setup>
 import { onMounted, reactive, ref } from 'vue';
+import { updateHero } from '@/api/main/hero/self/index.js';
+import switchStore from '@/store/globalSwitch.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 
+const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);
 const { show, finish, close } = viewHide(emit);
 
-const a = ref('');
-const b = ref('');
+const hero_id = ref(0);
 const story_data = reactive({
   gamestory: '',
   history: '',
@@ -36,13 +39,13 @@ onMounted(() => {
   }, 1000);
 });
 
-const commit = () => {
+const commit = async () => {
+  await updateHero(hero_id.value, story_data);
   setTimeout(() => {
     finish.value = true;
-    setTimeout(() => {
-      close();
-    }, 250);
-  }, 250);
+    close();
+    $switchStore.$tip('发布成功', 'info');
+  }, 500);
 };
 </script>
 <style scoped lang="less">
@@ -55,7 +58,6 @@ const commit = () => {
       font-size: 35px;
     }
     .LibRichText {
-      margin-bottom: 50px;
       width: 75%;
     }
   }

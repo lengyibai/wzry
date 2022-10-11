@@ -28,13 +28,16 @@ const name = $pinyin(props.type)[2];
     margin-right: 10px;
     box-shadow: var(--b-shadow);
   }
-  .kz {
+  .kz,
+  .js {
     color: #2dc4fb;
     border: 2px solid rgba(45, 196, 251, 0.25);
     background-color: rgba(45, 196, 251, 0.25);
   }
   .jb,
-  .fh {
+  .fh,
+  .wz,
+  .sy {
     color: #e5b14b;
     background-color: rgba(229, 178, 75, 0.25);
     border: 2px solid rgba(229, 178, 75, 0.25);
@@ -44,6 +47,7 @@ const name = $pinyin(props.type)[2];
     background-color: rgba(229, 95, 247, 0.25);
     border: 2px solid rgba(229, 95, 247, 0.25);
   }
+  .qh,
   .hd,
   .lq,
   .hf {
