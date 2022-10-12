@@ -1,7 +1,7 @@
 <template>
   <LibMask v-model="modelValue">
     <transition name="confirm">
-      <div class="ConfirmClose" :style="{ width: width }" v-show="modelValue">
+      <div class="ConfirmClose" :style="{ width: '750px' }" v-show="modelValue">
         <div class="title">{{ title }}</div>
         <img
           class="close cursor-pointer"
@@ -15,8 +15,8 @@
           <div class="content" v-if="modelValue">
             <div class="text">{{ text }}</div>
             <div class="button">
-              <K-Button type="info" @click="confirm">取消</K-Button>
-              <K-Button class="last" type="warning" @click="confirm">确定</K-Button>
+              <K-Button type="info" @click="confirm(false)">取消</K-Button>
+              <K-Button class="last" type="warning" @click="confirm(true)">确定</K-Button>
             </div>
           </div>
         </transition>
@@ -25,9 +25,7 @@
   </LibMask>
 </template>
 <script setup>
-import {
-  nextTick, ref, toRefs, watch,
-} from 'vue';
+import { toRefs } from 'vue';
 
 import switchStore from '@/store/globalSwitch.js';
 
@@ -35,10 +33,6 @@ const props = defineProps({
   modelValue: {
     type: Boolean,
     default: true,
-  },
-  width: {
-    type: String,
-    default: '50%',
   },
   /* 是否显示右上角关闭按钮 */
   showClose: {
@@ -52,32 +46,21 @@ const props = defineProps({
   },
   text: {
     type: String,
-    default: '确定关闭这个页面吗？',
+    default: '即将关闭，是否保存为草稿？',
   },
 });
 const { modelValue } = toRefs(props);
 
 const emit = defineEmits(['update:modelValue', 'close']);
 const store = switchStore();
-const link = ref('');
-const input = ref();
 const close = () => {
   store.$clickAudio('关闭');
   emit('update:modelValue', false);
 };
-const confirm = () => {
+const confirm = (status) => {
+  emit('close', status);
   close();
-  emit('close', link.value, props.keyword);
-  link.value = '';
 };
-
-watch(modelValue, (v) => {
-  if (v) {
-    nextTick(() => {
-      input.value.focus();
-    });
-  }
-});
 </script>
 <style scoped lang="less">
 @import './index.less';

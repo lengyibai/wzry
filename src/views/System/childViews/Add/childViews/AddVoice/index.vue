@@ -6,10 +6,10 @@
           <SelectHero v-model="hero_id" key="SelectHero" />
 
           <!--添加完毕的语音列表-->
-          <div class="voiceList" v-show="voice_list.length" key="b">
+          <div class="voiceList" v-show="form_data.length" key="b">
             <div
               class="voice"
-              v-for="(item, index) in voice_list"
+              v-for="(item, index) in form_data"
               @mouseleave="voiceEnter(null)"
               @mouseenter="voiceEnter(index)"
               :key="item.desc"
@@ -31,7 +31,15 @@
           <!--正在添加语音的输入框盒子-->
           <div class="addBox" v-if="show_box" key="c">
             <transition-group v-if="show_box" name="fade" key="c">
-              <FormInput v-model="voice_text" required placeholder="请输入语音文字" label="语音文字" key="a" autoSize />
+              <FormInput
+                v-model="voice_text"
+                required
+                placeholder="请输入语音文字"
+                label="语音文字"
+                labelWidth="190px"
+                key="a"
+                autoSize
+              />
 
               <!--设置/播放语音-->
               <LibSvg
@@ -77,14 +85,17 @@
     <AddLink v-model="show_AddLink" title="设置语音" placeholder="请输入语音链接" @get-link="getLink" />
 
     <!-- 发布按钮 -->
-    <LibCommitBtn v-model="status"  title="发布" size="50px" class="LibCommitBtn" @commit="commit" :finish="finish" />
+    <LibCommitBtn v-model="status" title="发布" size="50px" class="LibCommitBtn" @commit="commit" :finish="finish" />
 
     <!-- 取消发布 -->
-    <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
+    <LibCancelBtn class="LibCancelBtn" size="50px" @close="cancel" title="取消" />
+
+    <!-- 确认关闭 -->
+    <ConfirmClose v-model="show_ConfirmClose" @close="close" />
   </div>
 </template>
 <script setup>
-import { reactive, ref, watch } from 'vue';
+import { ref } from 'vue';
 import { updateHero } from '@/api/main/hero/self/index.js';
 import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
@@ -92,18 +103,19 @@ import switchStore from '@/store/globalSwitch.js';
 
 const emit = defineEmits(['update:modelValue']);
 const {
-  show, finish, status, close,
-} = viewHide(emit);
+  hero_id, show, finish, status, form_data, show_ConfirmClose, cancel, close,
+} = viewHide(emit, 'add_voice_list');
 
 const voice_link = ref(''); //语音链接
 const voice_text = ref(''); //语音文字
 const play_link = ref(''); //用于播放
 const add_status = ref('ADDC'); //添加&&删除&&保存状态
-const hero_id = ref(0); //英雄id
 const currentIndex = ref(null); //点击的语音
 const show_AddLink = ref(false); //显示设置语音链接弹窗
 const show_box = ref(false); //是否显示填写盒子
-const voice_list = reactive([]); //用于发布
+if (!form_data.value) {
+  form_data.value = [];
+}
 
 const $switchStore = switchStore();
 setTimeout(async () => {
@@ -116,7 +128,7 @@ setTimeout(async () => {
 /* 添加一项 */
 const addVoice = (s) => {
   if (voice_link.value) {
-    voice_list.push({
+    form_data.value.push({
       desc: voice_text.value,
       voice: voice_link.value,
     });
@@ -165,22 +177,13 @@ const play = (link) => {
 };
 /* 删除语音 */
 const del = (i) => {
-  voice_list.splice(i, 1);
+  form_data.value.splice(i, 1);
 };
 
-watch(
-  voice_list,
-  (v) => {
-    console.log(v);
-  },
-  {
-    deep: true,
-  },
-);
 /* 发布 */
 const commit = async () => {
-  if (voice_list.length !== 0) {
-    await updateHero(hero_id.value, { voices: voice_list });
+  if (form_data.value.length !== 0) {
+    await updateHero(hero_id.value, { voices: form_data.value });
     setTimeout(() => {
       finish.value = true;
       close();

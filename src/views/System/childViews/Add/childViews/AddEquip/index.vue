@@ -4,28 +4,28 @@
       <div class="content" ref="content" v-if="show">
         <div class="left">
           <!-- 装备名 -->
-          <FormInput label="名称" required v-model="equip_data.name" />
+          <FormInput label="名称" required v-model="form_data.name" />
           <!-- 描述 -->
-          <FormInput label="描述" placeholder="装备名下方描述" v-model="equip_data.desc" />
+          <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data.desc" />
           <!-- 装备类型 -->
-          <FormSelect label="类型" :data="equip_types" v-model="equip_data.type" :value="equip_data.type" required />
+          <FormSelect label="类型" :data="equip_types" v-model="form_data.type" :value="form_data.type" required />
           <!-- 阶段 -->
-          <FormInput label="阶段" placeholder="1-3" required v-model="equip_data.level" number />
+          <FormInput label="阶段" placeholder="1-3" required v-model="form_data.level" number />
           <!-- 排名 -->
-          <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="equip_data.num" number />
+          <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data.num" number />
           <!-- 价格 -->
-          <FormInput label="价格" required v-model="equip_data.price" number />
+          <FormInput label="价格" required v-model="form_data.price" number />
           <!-- 设置图标 -->
           <FormImg
             :getLink="getLink"
-            :imgs="[equip_data.icon]"
+            :imgs="[form_data.icon]"
             :keys="['icon']"
             :values="{ icon: '图标' }"
             label="图标"
             required
           />
           <!-- 最底部灰色备注 -->
-          <LibRichText width="500px" v-model="equip_data.note" placeholder="最底部灰色备注" :key="equip_data.note" />
+          <LibRichText width="500px" v-model="form_data.note" placeholder="最底部灰色备注" :key="form_data.note" />
 
           <!-- 装备效果 -->
           <div class="equip-effect">
@@ -46,7 +46,7 @@
                   :label="item.name"
                   v-model="item.num"
                   required
-                  v-for="item in equip_data.effect"
+                  v-for="item in form_data.effect"
                   :key="item.name"
                 />
               </transition-group>
@@ -69,43 +69,39 @@
           </div>
         </div>
         <div class="right">
-          <EquipDetail :show="true" :equip="equip_data" />
+          <EquipDetail :show="true" :equip="form_data" />
         </div>
       </div>
     </transition>
 
     <!-- 发布按钮 -->
-    <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" title="发布" />
+    <LibCommitBtn class="LibCommitBtn" size="50px" @commit="commit" :finish="finish" v-model="status" title="发布" />
 
     <!-- 取消发布 -->
-    <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
+    <LibCancelBtn class="LibCancelBtn" size="50px" @close="cancel" title="取消" />
+
+    <!-- 确认关闭 -->
+    <ConfirmClose v-model="show_ConfirmClose" @close="close" />
   </div>
 </template>
 <script setup>
-import { onBeforeUnmount, ref } from 'vue';
+import { ref } from 'vue';
 import { getEquipType } from '@/api/main/tree/equipType/index.js';
-// import { $objDelRep } from '@/utils/index.js';
-import viewHide from '../../../../hooks/useViewHide.js';
+import { getEquipEffect } from '@/api/main/tree/equipEffect/index.js';
+import { addEquip } from '@/api/main/other/equip/index.js';
 import switchStore from '@/store/globalSwitch.js';
+import equipStore from '@/store/equip.js';
+import viewHide from '../../../../hooks/useViewHide.js';
 import EquipDetail from '@/views/Equip/childComps/EquipDetail/index.vue';
 
 const emit = defineEmits(['update:modelValue']);
-const { show, finish, close } = viewHide(emit);
+const {
+  show, finish, status, form_data, show_ConfirmClose, cancel, close,
+} = viewHide(emit, 'add_equip');
 
-const $store = switchStore();
+const $switchStore = switchStore();
+const $equipStore = equipStore();
 
-const equip_data = ref({
-  type: '',
-  level: '',
-  num: '',
-  name: '',
-  desc: '',
-  price: '',
-  icon: '',
-  note: '',
-  effect: [],
-  motivation: [],
-}); //装备数据
 const equip_effect_type = ref(''); //当前选中的效果类型
 const equip_types = ref([]); //装备类型
 const motivation = ref({
@@ -114,84 +110,39 @@ const motivation = ref({
   desc: '',
   time: '',
 });
-const equip_effects = [
-  {
-    id: 1,
-    name: '最大生命',
-  },
-  {
-    id: 2,
-    name: '每5秒回血',
-  },
-  {
-    id: 3,
-    name: '移速',
-  },
-  {
-    id: 4,
-    name: '攻击速度',
-  },
-  {
-    id: 5,
-    name: '冷却缩减',
-  },
-  {
-    id: 6,
-    name: '物理吸血',
-  },
-  {
-    id: 7,
-    name: '物理攻击',
-  },
-  {
-    id: 8,
-    name: '暴击率',
-  },
-  {
-    id: 9,
-    name: '物理防御',
-  },
-  {
-    id: 10,
-    name: '法术吸血',
-  },
-  {
-    id: 11,
-    name: '最大法力',
-  },
-  {
-    id: 12,
-    name: '每5秒回蓝',
-  },
-  {
-    id: 13,
-    name: '法术防御',
-  },
-  {
-    id: 14,
-    name: '法术攻击',
-  },
-];
+const equip_effects = ref([]);
+getEquipEffect().then((res) => {
+  equip_effects.value = res.data;
+});
 
 getEquipType().then((res) => {
   equip_types.value = res.data;
 });
 
-/* 判断是否存在草稿 */
-const cache = localStorage.getItem('add_equip_data');
-if (cache) {
-  equip_data.value = JSON.parse(cache);
+if (!form_data.value) {
+  form_data.value = {
+    type: '',
+    level: '',
+    num: '',
+    name: '',
+    desc: '',
+    price: '',
+    icon: '',
+    note: '',
+    effect: [],
+    motivation: [],
+  };
 }
 
 /* 获取装备图标链接 */
 const getLink = (v) => {
-  equip_data.value.icon = v;
+  form_data.value.icon = v;
 };
 
 /* 添加装备效果 */
 const addEffect = () => {
   if (!equip_effect_type.value) return;
-  equip_data.value.effect.push({
+  form_data.value.effect.push({
     name: equip_effect_type.value,
     num: '',
   });
@@ -201,13 +152,13 @@ const addEffect = () => {
 /* 删除装备效果 */
 const delEffect = () => {
   equip_effect_type.value = '';
-  equip_data.value.effect.pop();
+  form_data.value.effect.pop();
 };
 
 /* 添加被动 */
 const addMotivation = () => {
   if (!motivation.value.name) return;
-  equip_data.value.motivation.push({
+  form_data.value.motivation.push({
     ...motivation.value,
     type: motivation.value.type ? '主动' : '被动',
     time: Number(motivation.value.time),
@@ -222,41 +173,48 @@ const addMotivation = () => {
 
 /* 删除被动 */
 const delMotivation = () => {
-  equip_data.value.motivation.pop();
+  form_data.value.motivation.pop();
 };
 
 setTimeout(async () => {
-  $store.$loading.show('正在加载');
-  $store.$loading.close().then(() => {
+  $switchStore.$loading.show('正在加载');
+  $switchStore.$loading.close().then(() => {
     show.value = true;
   });
 }, 1000);
 
-const timer = setInterval(() => {
-  localStorage.setItem('add_equip_data', JSON.stringify(equip_data.value));
-}, 1000);
-
-const commit = () => {
-  const { level, num, price } = equip_data.value;
-  equip_data.value.id = Number(
-    `${equip_types.value.find((item) => equip_data.value.type === item.name).id}${level}${num}`,
-  );
-  const data = {
-    ...equip_data.value,
-    level: Number(level),
-    num: Number(num),
-    price: Number(price),
-  };
-  console.log(data);
-  setTimeout(() => {
-    finish.value = true;
-    close();
-  }, 500);
+const commit = async () => {
+  const {
+    level, num, price, type, name, icon,
+  } = form_data.value;
+  if (level && num && price && type && name && icon) {
+    form_data.value.id = Number(
+      `${equip_types.value.find((item) => form_data.value.type === item.name).id}${level}${num}`,
+    );
+    const data = {
+      ...form_data.value,
+      level: Number(level),
+      num: Number(num),
+      price: Number(price),
+    };
+    try {
+      await addEquip(data);
+    } catch (error) {
+      $switchStore.$tip('装备位置已被占用，请重新填写阶段排名', 'error');
+      status.value = 0;
+      return;
+    }
+    setTimeout(async () => {
+      finish.value = true;
+      await $equipStore.getEquipList();
+      $switchStore.$tip('发布成功', 'info');
+      close();
+    }, 500);
+  } else {
+    $switchStore.$tip('请完整填写', 'error');
+    status.value = 0;
+  }
 };
-
-onBeforeUnmount(() => {
-  clearInterval(timer);
-});
 </script>
 <style scoped lang="less">
 .options {

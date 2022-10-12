@@ -22,7 +22,7 @@ import AddHeroCoverScale from './childComps/AddHeroCoverScale/index.vue';
 //调整缩放量
 
 const size = ref(1); //缩放量
-const p = reactive({
+const p = ref({
   top: 0,
   left: 0,
   transform: 'scale(1)',
@@ -31,8 +31,12 @@ const p = reactive({
 const hero_data = inject('hero_data', {});
 const setValue = inject('setValue', '');
 
+if (hero_data.offset) {
+  p.value = hero_data.offset;
+}
+
 const emit = () => {
-  setValue('offset', p);
+  setValue('offset', p.value);
 };
 
 /* 设置偏移量 */
@@ -43,13 +47,13 @@ const direction = (d) => {
     return;
   }
   if (d === 'left') {
-    p.left -= 1;
+    p.value.left -= 1;
   } else if (d === 'right') {
-    p.left += 1;
+    p.value.left += 1;
   } else if (d === 'top') {
-    p.top -= 1;
+    p.value.top -= 1;
   } else if (d === 'bottom') {
-    p.top += 1;
+    p.value.top += 1;
   }
   emit();
 };
@@ -61,9 +65,9 @@ const scale = (s) => {
     return;
   }
   if (s === 'left') {
-    p.transform = `scale(${(size.value += 0.1).toFixed(1)})`;
+    p.value.transform = `scale(${(size.value += 0.1).toFixed(1)})`;
   } else if (s === 'right') {
-    p.transform = `scale(${(size.value -= 0.1).toFixed(1)})`;
+    p.value.transform = `scale(${(size.value -= 0.1).toFixed(1)})`;
   }
   emit();
 };

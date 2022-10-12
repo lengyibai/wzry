@@ -1,11 +1,42 @@
 import { ref } from 'vue';
 
-export default (emit) => {
+export default (emit, key) => {
   const show = ref(false);
+  const timer = ref(null);
   const finish = ref(false); //是否发布成功
   const status = ref(0); //发布状态
+  const hero_id = ref(null); //发布状态
+  const show_ConfirmClose = ref(false); //是否显示确认关闭弹窗
+  const form_data = ref(null);
 
-  const close = () => {
+  /* 判断是否存在草稿 */
+  const cache = localStorage.getItem(key);
+  if (cache) {
+    const data = JSON.parse(cache);
+    form_data.value = data.form_data;
+    hero_id.value = data.hero_id;
+  }
+  /* 实时保存为草稿 */
+  timer.value = setInterval(() => {
+    localStorage.setItem(
+      key,
+      JSON.stringify({
+        hero_id: hero_id.value,
+        form_data: form_data.value,
+      }),
+    );
+  }, 1000);
+
+  /* 点击关闭显示确认关闭弹窗 */
+  const cancel = () => {
+    show_ConfirmClose.value = true;
+  };
+
+  const close = (status) => {
+    clearInterval(timer.value);
+    if (!status) {
+      localStorage.removeItem(key);
+    }
     show.value = false;
     setTimeout(() => {
       emit('update:modelValue', false);
@@ -16,6 +47,11 @@ export default (emit) => {
     show,
     finish,
     status,
+    show_ConfirmClose,
+    timer,
+    form_data,
+    hero_id,
+    cancel,
     close,
   };
 };

@@ -1,16 +1,15 @@
 <template>
   <div class="FormInput" :class="{ disabled: disabled }" :style="{ width: autoSize && '100%' }">
     <!-- 右侧描述 -->
-    <div class="label" :style="{ width: labelWidth }">
+    <div class="label" :style="{ minWidth: labelWidth }">
       <span class="text-gradient-one"><i class="star" v-if="required">*</i>{{ label }}： </span>
     </div>
 
     <!-- 输入框 -->
-    <div class="input">
+    <div class="input" :style="{ width: autoSize ? '100%' : '250px' }">
       <slot>
         <input
           type="text"
-          :style="{ width: autoSize ? '100%' : '250px' }"
           @input="input"
           :value="modelValue"
           :placeholder="placeholder"
@@ -115,5 +114,69 @@ const input = (e) => {
 };
 </script>
 <style scoped lang="less">
-@import './index.less';
+.FormInput {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+  .label {
+    position: relative;
+    margin-right: 0.25em;
+    color: var(--theme-color-eight);
+    text-align: right;
+    span {
+      position: relative;
+      font-size: 30px;
+      .star {
+        position: absolute;
+        left: 0;
+        color: var(--theme-color-seven);
+        font-size: 20px;
+        transform: translateX(-150%);
+      }
+    }
+  }
+  .input {
+    position: relative;
+    input {
+      width: 100%;
+      padding: 0 0.25em;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid var(--theme-color-nine);
+      background-color: transparent;
+      color: var(--theme-color-five);
+      font-size: 26px;
+      &::-webkit-input-placeholder {
+        color: var(--theme-color-two);
+      }
+    }
+    .border,
+    .focus {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background-color: var(--red);
+      transition: all 0.5s;
+      transform: translateY(-1px);
+    }
+    .focus {
+      background-color: var(--theme-color-four);
+    }
+    .tip {
+      position: absolute;
+      bottom: 0;
+      overflow: hidden;
+      height: 16px;
+      color: var(--red);
+      font-size: 16px;
+      transform: translateY(125%);
+      transform-origin: center top;
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 </style>

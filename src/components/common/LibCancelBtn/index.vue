@@ -7,7 +7,7 @@
       height: size,
     }"
   >
-    <img class="close cursor-pointer" v-show="show_up" :class="{ move: status === 1 }" src="./icon.svg" alt="" />
+    <img class="close cursor-pointer" v-show="show_up" src="./icon.svg" alt="" />
   </div>
 </template>
 <script setup>
@@ -21,11 +21,9 @@ defineProps({
 });
 
 const show_up = ref(true);
-const status = ref(0);
 
 const emit = defineEmits(['close']);
 const close = () => {
-  status.value = 1;
   emit('close');
 };
 </script>
@@ -42,9 +40,5 @@ const close = () => {
     height: 75%;
     transition: all 0.5s;
   }
-}
-
-.move {
-  transform: scale(0);
 }
 </style>

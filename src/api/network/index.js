@@ -40,14 +40,14 @@ server.interceptors.request.use((config) => {
   return config;
 });
 //####·······响应拦截器········####//
-server.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    console.error(err);
-    switchStore().$tip(
-      '请求失败，请检查是否启动本地服务器：npm run wzry',
-      'error',
-    );
-    switchStore().$loading.close();
-  },
-);
+// server.interceptors.response.use(
+//   (res) => res,
+//   (err) => {
+//     console.error(err);
+//     switchStore().$tip(
+//       '请求失败，请检查是否启动本地服务器：npm run wzry',
+//       'error',
+//     );
+//     switchStore().$loading.close();
+//   },
+// );

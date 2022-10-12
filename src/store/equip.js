@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
+import switchStore from '@/store/globalSwitch.js';
+import { getEquip } from '@/api/main/other/equip/index.js';
 
+const $switchStore = switchStore();
 export default defineStore('equip', {
   state: () => ({
     active_id: 0,
@@ -16,6 +19,16 @@ export default defineStore('equip', {
     equip_list_column: [],
   }),
   actions: {
+    getEquipList() {
+      return new Promise((resolve) => {
+        $switchStore.$loading.show('正在请求装备列表');
+        getEquip().then(async (res) => {
+          await $switchStore.$loading.close();
+          this.setEquipList(res.data);
+          resolve();
+        });
+      });
+    },
     /* 获取装备列表 */
     setEquipList(data) {
       this.equip_list = data;

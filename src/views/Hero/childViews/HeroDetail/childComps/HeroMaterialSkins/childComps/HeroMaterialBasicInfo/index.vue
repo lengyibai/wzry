@@ -26,7 +26,6 @@ const hero_info = [
   [hero_data.specialty, 'specialty', '特长'],
   [hero_data.period, 'period', '时期'],
   [hero_data.camp, 'camp', '阵营'],
-  [hero_data.area, 'area', '区域'],
   [hero_data.height, 'height', '身高'],
 ];
 const getImg = (src) => {

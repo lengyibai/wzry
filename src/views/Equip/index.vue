@@ -14,26 +14,21 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import { getEquip } from '@/api/main/other/equip/index.js';
 import equiqStore from '@/store/equip.js';
-import switchStore from '@/store/globalSwitch.js';
 import EquipList from './childComps/EquipList/index.vue'; //装备列表
 import EquipDetail from './childComps/EquipDetail/index.vue'; //装备详情
 import EquipSidebar from './childComps/EquipSidebar/index.vue'; //右侧边栏
 
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 
-const $switchStore = switchStore();
 const $equiqStore = equiqStore();
-$switchStore.$loading.show('正在请求装备列表');
-getEquip().then(async (res) => {
-  await $switchStore.$loading.close();
-  $equiqStore.setEquipList(res.data);
-  show_EquipSidebar.value = true;
-});
 
 const show_Details = ref(false); //显示装备详情
 const equip = ref({}); //被点击的装备信息
+
+$equiqStore.getEquipList().then(() => {
+  show_EquipSidebar.value = true;
+});
 
 watch(
   () => $equiqStore.active_id,
