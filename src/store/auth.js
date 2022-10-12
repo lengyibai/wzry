@@ -22,7 +22,6 @@ export default defineStore('auth', {
           window.localStorage.setItem('wzryToken', res.data.wzryToken);
           // 获取用户信息
           this.userInfo = res.data;
-          useRouter.push('/');
         }
       });
     },
@@ -53,9 +52,7 @@ export default defineStore('auth', {
 
     //#####··········退出登录··········#####//
     logout() {
-      logout(this.userInfo.id).then(() => {
-        this.clearToken();
-      });
+      return logout(this.userInfo.id);
     },
 
     //#####··········下线··········#####//

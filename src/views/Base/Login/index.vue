@@ -21,7 +21,7 @@ import LoginBtn from './childComp/LoginBtn/index.vue';
 import LoginUpdate from './childComp/LoginUpdate/index.vue';
 
 const $router = useRouter();
-const store = switchStore();
+const $switchStore = switchStore();
 
 const video = new URL('../../../assets/video/loginBg.mp4', import.meta.url).href;
 
@@ -32,10 +32,10 @@ const form = reactive({
 });
 
 const login = async () => {
-  store.$loading.show('登录中');
-  store.$clickAudio('login');
-  await store.$loading.close();
+  $switchStore.$loading.show('登录中');
+  $switchStore.$clickAudio('login');
   await authStore().login(form);
+  await $switchStore.$loading.close();
   $router.push('/');
 };
 </script>

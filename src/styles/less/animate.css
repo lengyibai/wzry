@@ -3,9 +3,11 @@
 .fade-leave-active {
   opacity: 0;
 }
-.fade-enter-active,
-.fade-leave-active{
+.fade-enter-active {
   transition: all 0.5s;
+}
+.fade-leave-active {
+  transition: all 0.25s;
 }
 /* 侧边栏出场 */
 .sidebar-enter-from {

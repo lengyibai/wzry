@@ -28,10 +28,11 @@ const userInfo = computed(() => {
 });
 const timeGreet = computed(() => $timeGreet());
 const logout = async () => {
-  $switchStore.$loading.show('正在退出');
   $switchStore.$clickAudio();
+  $switchStore.$loading.show('正在退出');
+  await $authStore.logout();
   await $switchStore.$loading.close();
-  $authStore.logout();
+  $authStore.clearToken();
 };
 </script>
 <style scoped lang="less">
