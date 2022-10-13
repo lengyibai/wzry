@@ -74,8 +74,8 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { getSkinType } from '@/api/main/tree/skinType/index.js';
-import { addSkin } from '@/api/main/hero/skin/index.js';
+import { getSkinType } from '@/api/main/game/index.js';
+import { addSkin } from '@/api/main/game//index.js';
 import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';

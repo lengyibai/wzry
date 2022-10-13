@@ -3,8 +3,7 @@ import switchStore from '@/store/globalSwitch.js';
 
 //#####··········域名管理··········#####//
 const server = axios.create({
-  baseURL: 'http://localhost:9876',
-  timeout: 10000,
+  baseURL: 'http://localhost:9876'
 });
 
 //#####·········配置默认请求··········#####//

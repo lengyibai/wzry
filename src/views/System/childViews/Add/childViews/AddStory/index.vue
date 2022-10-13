@@ -22,7 +22,7 @@
 </template>
 <script setup>
 import { onMounted } from 'vue';
-import { updateHero } from '@/api/main/hero/self/index.js';
+import { updateHero } from '@/api/main/game//index.js';
 import switchStore from '@/store/globalSwitch.js';
 import viewHide from '../../../../hooks/useViewHide.js';
 

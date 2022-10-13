@@ -110,9 +110,9 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-import { updateHero } from '@/api/main/hero/self/index.js';
-import { getSkillType } from '@/api/main/tree/skillType/index.js';
-import { getSkillEffect } from '@/api/main/tree/skillEffect/index.js';
+import { updateHero } from '@/api/main/game//index.js';
+import { getSkillType } from '@/api/main/game/index.js';
+import { getSkillEffect } from '@/api/main/game/index.js';
 import { $removeEmptyField } from '@/utils/index.js';
 import icon from '@/assets/icon/svg/icon.js';
 import viewHide from '../../../../hooks/useViewHide.js';

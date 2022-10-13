@@ -86,9 +86,9 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { getEquipType } from '@/api/main/tree/equipType/index.js';
-import { getEquipEffect } from '@/api/main/tree/equipEffect/index.js';
-import { addEquip } from '@/api/main/other/equip/index.js';
+import { getEquipType } from '@/api/main/game/index.js';
+import { getEquipEffect } from '@/api/main/game/index.js';
+import { addEquip } from '@/api/main/game/index.js';
 import switchStore from '@/store/globalSwitch.js';
 import equipStore from '@/store/equip.js';
 import viewHide from '../../../../hooks/useViewHide.js';

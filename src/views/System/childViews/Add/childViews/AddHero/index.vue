@@ -90,14 +90,14 @@
 </template>
 <script setup>
 import { provide, reactive, ref } from 'vue';
-import { addHero } from '@/api/main/hero/self/index.js';
-import { addHeroList } from '@/api/main/hero/basis/index.js';
-import { getCampType } from '@/api/main/tree/campType/index.js'; //阵营
-import { getEnergyType } from '@/api/main/tree/energyType/index.js'; //能量
-import { getLocationType } from '@/api/main/tree/locationType/index.js'; //定位
-import { getPeriodType } from '@/api/main/tree/periodType/index.js'; //时期
-import { getProfessionType } from '@/api/main/tree/professionType/index.js'; //职业
-import { getSpecialtyType } from '@/api/main/tree/specialtyType/index.js'; //特长
+import { addHero } from '@/api/main/game//index.js';
+import { addHeroList } from '@/api/main/game//index.js';
+import { getCampType } from '@/api/main/game/index.js'; //阵营
+import { getEnergyType } from '@/api/main/game/index.js'; //能量
+import { getLocationType } from '@/api/main/game/index.js'; //定位
+import { getPeriodType } from '@/api/main/game/index.js'; //时期
+import { getProfessionType } from '@/api/main/game/index.js'; //职业
+import { getSpecialtyType } from '@/api/main/game/index.js'; //特长
 import AddHeroCover from './childComps/AddHeroCover/index.vue'; //设置封面
 import viewHide from '../../../../hooks/useViewHide.js';
 import switchStore from '@/store/globalSwitch.js';
