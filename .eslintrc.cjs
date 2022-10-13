@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: ['plugin:vue/vue3-essential', 'airbnb-base'],
   overrides: [],
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
