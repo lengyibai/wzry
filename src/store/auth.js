@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import useRouter from '@/router/index.js';
 import switchStore from './globalSwitch.js';
-import { login, logout, userInfo } from '@/api/main/other/user/index.js';
+import { login, logout, userInfo } from '@/api/main/user/index.js';
 
 export default defineStore('auth', {
   state: () => ({
