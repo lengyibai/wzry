@@ -1,13 +1,10 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import Mitt from 'mitt';
-import ElementPlus from 'element-plus';
 import App from './App.vue';
 import useRouter from './router/index.js';
 
 import directives from '@/utils/directives.js';
-
-import 'element-plus/dist/index.css';
 
 import '@/styles/index.css';
 
@@ -18,6 +15,6 @@ const app = createApp(App);
 //挂载事件总线
 app.config.globalProperties.$bus = new Mitt();
 
-app.use(createPinia()).use(useRouter).use(ElementPlus).use(directives)
+app.use(createPinia()).use(useRouter).use(directives)
   .use(components)
   .mount('#app');
