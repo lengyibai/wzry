@@ -20,7 +20,7 @@ const progress = ref(0); //播放进度
 const status = ref(true); //当前音乐状态
 const timer = ref(null); //进度条计时器
 const bgm = new Audio();
-const getIcon = (src) => new URL(`../../../../assets/music/${src}.mp3`, import.meta.url).href;
+const getIcon = (src) => `/music/${src}.mp3`;
 const musics = [
   getIcon('wzzg'), //王者战歌
   getIcon('yxgl'), //英雄归来

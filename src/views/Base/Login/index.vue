@@ -8,7 +8,7 @@
     <input type="password" v-model="form.password" />
 
     <LoginBtn @click="login" />
-    <LibBgVideo :video="video" />
+    <LibBgVideo video="/video/loginBg.mp4" />
     <LoginUpdate v-model="show_KDialog" />
   </div>
 </template>
@@ -22,8 +22,6 @@ import LoginUpdate from './childComp/LoginUpdate/index.vue';
 
 const $router = useRouter();
 const $switchStore = switchStore();
-
-const video = import('@/assets/video/loginBg.mp4');
 
 const show_KDialog = ref(true);
 const form = reactive({

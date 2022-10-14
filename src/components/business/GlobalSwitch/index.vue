@@ -64,7 +64,7 @@ const sound_type: Sound = {
 };
 /* 获取音效路径 */
 const getAudio = (src: string) => {
-  return new URL(`../../../../assets/audios/${src}.mp3`, import.meta.url).href;
+  return `/audios/${src}.mp3`;
 };
 /* 设置方法 */
 const clickAudio = (name: string) => {

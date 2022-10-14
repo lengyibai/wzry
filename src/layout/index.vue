@@ -14,8 +14,7 @@
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <LibBgVideo :video="video" />
-    <!-- parallaxSize="small" -->
+    <LibBgVideo video="/video/bg.mp4" parallaxSize="small" />
   </div>
 </template>
 
@@ -30,7 +29,6 @@ const show_sidebar = ref(false);
 const show_navbar = ref(false);
 const show_footbar = ref(false);
 const show_appMain = ref(false);
-const video = new URL('../assets/video/bg.mp4', import.meta.url).href;
 
 onMounted(() => {
   setTimeout(() => {
