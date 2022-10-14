@@ -1,9 +1,9 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { getHero } from '@/api/main/game//index.js';
-import switchStore from '@/store/globalSwitch.js';
-import heroStore from '@/store/hero.js';
-import { getSkin } from '@/api/main/game//index.js';
+import { getHero } from '@/api/main/game//index';
+import switchStore from '@/store/globalSwitch';
+import heroStore from '@/store/hero';
+import { getSkin } from '@/api/main/game//index';
 
 export default (id) => {
   const $router = useRouter();

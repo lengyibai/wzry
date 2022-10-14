@@ -32,9 +32,9 @@
 <script setup>
 import { reactive, ref, toRefs } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 import SideItem from './SideItem.vue';
-import icon from '@/assets/icon/svg/sidebar.js';
+import icon from '@/assets/icon/svg/sidebar';
 
 const $router = useRouter();
 const $route = useRoute();

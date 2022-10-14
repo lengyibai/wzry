@@ -90,17 +90,17 @@
 </template>
 <script setup>
 import { provide, reactive, ref } from 'vue';
-import { addHero } from '@/api/main/game//index.js';
-import { addHeroList } from '@/api/main/game//index.js';
-import { getCampType } from '@/api/main/game/index.js'; //阵营
-import { getEnergyType } from '@/api/main/game/index.js'; //能量
-import { getLocationType } from '@/api/main/game/index.js'; //定位
-import { getPeriodType } from '@/api/main/game/index.js'; //时期
-import { getProfessionType } from '@/api/main/game/index.js'; //职业
-import { getSpecialtyType } from '@/api/main/game/index.js'; //特长
+import { addHero } from '@/api/main/game//index';
+import { addHeroList } from '@/api/main/game//index';
+import { getCampType } from '@/api/main/game/index'; //阵营
+import { getEnergyType } from '@/api/main/game/index'; //能量
+import { getLocationType } from '@/api/main/game/index'; //定位
+import { getPeriodType } from '@/api/main/game/index'; //时期
+import { getProfessionType } from '@/api/main/game/index'; //职业
+import { getSpecialtyType } from '@/api/main/game/index'; //特长
 import AddHeroCover from './childComps/AddHeroCover/index.vue'; //设置封面
-import viewHide from '../../../../hooks/useViewHide.js';
-import switchStore from '@/store/globalSwitch.js';
+import viewHide from '../../../../hooks/useViewHide';
+import switchStore from '@/store/globalSwitch';
 
 const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);

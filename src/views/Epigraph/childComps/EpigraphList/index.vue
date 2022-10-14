@@ -8,7 +8,7 @@
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue';
 import EpigraphCard from './childComps/EpigraphCard/index.vue';
-import $bus from '@/utils/eventBus.js';
+import $bus from '@/utils/eventBus';
 
 const props = defineProps({
   data: {

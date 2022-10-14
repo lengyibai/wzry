@@ -16,8 +16,8 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import icon from './svg/index.js';
-import $bus from '@/utils/eventBus.js';
+import icon from './svg/index';
+import $bus from '@/utils/eventBus';
 
 const timer = ref(null);
 const direction = ref(''); //点击的方向

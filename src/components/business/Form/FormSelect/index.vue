@@ -59,7 +59,7 @@ import {
   onBeforeUnmount, ref, toRefs, watch,
 } from 'vue';
 import { $search, $debounce } from '@/utils/index.js';
-import $bus from '@/utils/eventBus.js';
+import $bus from '@/utils/eventBus';
 
 const props = defineProps({
   /* 传递id还是name */

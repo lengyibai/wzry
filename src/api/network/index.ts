@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-// import switchStore from '@/store/globalSwitch.js';
+// import switchStore from '@/store/globalSwitch';
 
 //#####··········域名管理··········#####//
 const server = axios.create({

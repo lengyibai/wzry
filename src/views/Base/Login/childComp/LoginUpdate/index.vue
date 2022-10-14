@@ -28,7 +28,7 @@
   </transition>
 </template>
 <script setup>
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 import KButton from '@/components/business/Parts/K-Button/index.vue';
 
 defineProps({

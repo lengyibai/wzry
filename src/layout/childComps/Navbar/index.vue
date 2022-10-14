@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import icon from './img/icon.js';
+import icon from './img/icon';
 import Hamburger from './childComps/Hamburger/index.vue';
 import UserMenu from './childComps/UserMenu/index.vue';
 </script>

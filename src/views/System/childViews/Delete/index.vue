@@ -19,7 +19,7 @@ import DelVoice from './childViews/DelVoice/index.vue'; //语音
 import DelStory from './childViews/DelStory/index.vue'; //故事
 import DelEquip from './childViews/DelEquip/index.vue'; //装备
 import DelEpigraph from './childViews/DelEpigraph/index.vue'; //铭文
-import useManageCard from '../../hooks/useManageCard.js';
+import useManageCard from '../../hooks/useManageCard';
 
 const { box, list } = useManageCard;
 const components = [DelHero, DelSkin, DelVoice, DelSkill, DelStory, DelEquip, DelEpigraph];

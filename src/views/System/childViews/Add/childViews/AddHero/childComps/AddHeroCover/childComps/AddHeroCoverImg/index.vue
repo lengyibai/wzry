@@ -21,7 +21,7 @@
 </template>
 <script setup>
 import { inject } from 'vue';
-import icon from '@/assets/icon/svg/icon.js';
+import icon from '@/assets/icon/svg/icon';
 
 defineProps({
   /* 偏移量及缩放量 */

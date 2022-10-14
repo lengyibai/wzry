@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { Form } from '@/api/main/user/interface'
 import { AuthState } from './interface'
-import useRouter from '@/router/index.js';
-import switchStore from './globalSwitch.js';
-import { login, logout, userInfo } from '@/api/main/user/index.js';
+import useRouter from '@/router/index';
+import switchStore from './globalSwitch';
+import { login, logout, userInfo } from '@/api/main/user/index';
 
 export default defineStore('auth', {
   state: (): AuthState => ({

@@ -24,7 +24,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 
 defineProps({
   modelValue: {

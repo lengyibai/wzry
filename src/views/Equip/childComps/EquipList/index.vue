@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup>
-import equipStore from '@/store/equip.js';
+import equipStore from '@/store/equip';
 import EquipListColumn from './childComps/EquipListColumn/index.vue'; //装备栏
 
 const $equipStore = equipStore();

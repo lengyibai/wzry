@@ -11,7 +11,7 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import heroStore from '@/store/hero.js';
+import heroStore from '@/store/hero';
 
 const $heroStore = heroStore();
 

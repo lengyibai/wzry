@@ -11,9 +11,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import { getEpigraph } from '@/api/main/game/index.js';
-import switchStore from '@/store/globalSwitch.js';
-import epigraphStore from '@/store/epigraph.js';
+import { getEpigraph } from '@/api/main/game/index';
+import switchStore from '@/store/globalSwitch';
+import epigraphStore from '@/store/epigraph';
 import EpigraphCategory from './childComps/EpigraphCategory/index.vue'; //铭文类型分类
 import EpigraphList from './childComps/EpigraphList/index.vue'; //铭文列表
 

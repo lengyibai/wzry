@@ -22,9 +22,9 @@
 </template>
 <script setup>
 import { onMounted } from 'vue';
-import { updateHero } from '@/api/main/game//index.js';
-import switchStore from '@/store/globalSwitch.js';
-import viewHide from '../../../../hooks/useViewHide.js';
+import { updateHero } from '@/api/main/game//index';
+import switchStore from '@/store/globalSwitch';
+import viewHide from '../../../../hooks/useViewHide';
 
 const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);

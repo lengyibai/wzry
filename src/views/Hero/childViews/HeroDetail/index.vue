@@ -20,7 +20,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import heroStore from '@/store/hero.js';
+import heroStore from '@/store/hero';
 import HeroDetailParallaxBg from './childComps/HeroDetailParallaxBg/index.vue'; //滚动视差背景
 import HeroMaterialSkins from './childComps/HeroMaterialSkins/index.vue'; //资料、皮肤页
 import HeroSkill from './childComps/HeroSkill/index.vue'; //技能页

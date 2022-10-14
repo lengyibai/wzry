@@ -27,7 +27,7 @@ import {
   nextTick, ref, toRefs, watch,
 } from 'vue';
 
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 
 const props = defineProps({
   modelValue: {

@@ -1,9 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import routes from './routes.js';
+import routes from './routes';
 
-import authStore from '@/store/auth.js';
-import switchStore from '@/store/globalSwitch.js';
+import authStore from '@/store/auth';
+import switchStore from '@/store/globalSwitch';
 
 const useRouter = createRouter({
   history: createWebHashHistory(),

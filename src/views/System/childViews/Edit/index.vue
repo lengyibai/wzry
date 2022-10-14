@@ -19,7 +19,7 @@ import EditVoice from './childViews/EditVoice/index.vue'; //语音
 import EditStory from './childViews/EditStory/index.vue'; //故事
 import EditEquip from './childViews/EditEquip/index.vue'; //装备
 import EditEpigraph from './childViews/EditEpigraph/index.vue'; //铭文
-import useManageCard from '../../hooks/useManageCard.js';
+import useManageCard from '../../hooks/useManageCard';
 
 const { box, list } = useManageCard;
 const components = [EditHero, EditSkin, EditVoice, EditSkill, EditStory, EditEquip, EditEpigraph];

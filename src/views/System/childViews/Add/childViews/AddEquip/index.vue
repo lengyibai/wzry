@@ -86,12 +86,12 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { getEquipType } from '@/api/main/game/index.js';
-import { getEquipEffect } from '@/api/main/game/index.js';
-import { addEquip } from '@/api/main/game/index.js';
-import switchStore from '@/store/globalSwitch.js';
-import equipStore from '@/store/equip.js';
-import viewHide from '../../../../hooks/useViewHide.js';
+import { getEquipType } from '@/api/main/game/index';
+import { getEquipEffect } from '@/api/main/game/index';
+import { addEquip } from '@/api/main/game/index';
+import switchStore from '@/store/globalSwitch';
+import equipStore from '@/store/equip';
+import viewHide from '../../../../hooks/useViewHide';
 import EquipDetail from '@/views/Equip/childComps/EquipDetail/index.vue';
 
 const emit = defineEmits(['update:modelValue']);

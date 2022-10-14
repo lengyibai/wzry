@@ -41,9 +41,9 @@ import {
   onBeforeUnmount, onMounted, ref, watch,
 } from 'vue';
 import { useRoute } from 'vue-router';
-import $bus from '@/utils/eventBus.js';
-import heroStore from '@/store/hero.js';
-import useIntegrationData from './hooks/useIntegrationData.js';
+import $bus from '@/utils/eventBus';
+import heroStore from '@/store/hero';
+import useIntegrationData from './hooks/useIntegrationData';
 import HeroCard from './childComps/HeroCard/index.vue';
 import HeroSidebar from './childComps/HeroSidebar/index.vue';
 import HeroDetail from './childViews/HeroDetail/index.vue';

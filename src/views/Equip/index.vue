@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import equiqStore from '@/store/equip.js';
+import equiqStore from '@/store/equip';
 import EquipList from './childComps/EquipList/index.vue'; //装备列表
 import EquipDetail from './childComps/EquipDetail/index.vue'; //装备详情
 import EquipSidebar from './childComps/EquipSidebar/index.vue'; //右侧边栏

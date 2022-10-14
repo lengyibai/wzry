@@ -25,7 +25,7 @@ import AddVoice from './childViews/AddVoice/index.vue'; //语音
 import AddStory from './childViews/AddStory/index.vue'; //故事
 import AddEquip from './childViews/AddEquip/index.vue'; //装备
 import AddEpigraph from './childViews/AddEpigraph/index.vue'; //铭文
-import useManageCard from '../../hooks/useManageCard.js';
+import useManageCard from '../../hooks/useManageCard';
 
 const { box, list } = useManageCard;
 const components = [AddHero, AddSkin, AddVoice, AddSkill, AddStory, AddEquip, AddEpigraph];

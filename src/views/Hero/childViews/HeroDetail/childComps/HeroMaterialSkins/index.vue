@@ -26,8 +26,8 @@
 </template>
 <script setup>
 import { reactive, ref } from 'vue';
-import { getSkinType } from '@/api/main/game/index.js';
-import heroStore from '@/store/hero.js';
+import { getSkinType } from '@/api/main/game/index';
+import heroStore from '@/store/hero';
 import HeroBgImg from './childComps/HeroBgImg/index.vue'; //背景图
 import HeroVoice from './childComps/HeroVoice/index.vue'; //英雄语音
 import HerSkinType from './childComps/HerSkinType/index.vue'; //皮肤类型图

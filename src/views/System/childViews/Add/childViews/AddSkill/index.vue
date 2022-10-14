@@ -110,13 +110,13 @@
 </template>
 <script setup>
 import { computed, ref } from 'vue';
-import { updateHero } from '@/api/main/game//index.js';
-import { getSkillType } from '@/api/main/game/index.js';
-import { getSkillEffect } from '@/api/main/game/index.js';
+import { updateHero } from '@/api/main/game//index';
+import { getSkillType } from '@/api/main/game/index';
+import { getSkillEffect } from '@/api/main/game/index';
 import { $removeEmptyField } from '@/utils/index.js';
-import icon from '@/assets/icon/svg/icon.js';
-import viewHide from '../../../../hooks/useViewHide.js';
-import switchStore from '@/store/globalSwitch.js';
+import icon from '@/assets/icon/svg/icon';
+import viewHide from '../../../../hooks/useViewHide';
+import switchStore from '@/store/globalSwitch';
 import AddSkillBasic from './childComps/AddSkillBasic.vue';
 
 const $switchStore = switchStore();

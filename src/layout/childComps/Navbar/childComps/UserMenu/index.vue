@@ -18,8 +18,8 @@
 //方法信息：{ 根据时间问候 }
 import { computed } from 'vue';
 import { $timeGreet } from '@/utils/index.js';
-import authStore from '@/store/auth.js';
-import switchStore from '@/store/globalSwitch.js';
+import authStore from '@/store/auth';
+import switchStore from '@/store/globalSwitch';
 
 const $authStore = authStore();
 const $switchStore = switchStore();

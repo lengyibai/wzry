@@ -19,8 +19,8 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import switchStore from '@/store/globalSwitch.js';
-import epigraphStore from '@/store/epigraph.js';
+import switchStore from '@/store/globalSwitch';
+import epigraphStore from '@/store/epigraph';
 
 const currentIndex = ref(0);
 const epigraph = [

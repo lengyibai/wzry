@@ -1,6 +1,6 @@
 import {
   getReq, postReq, patchReq, deleteReq,
-} from '@/api/network/index.js';
+} from '@/api/network/index';
 
 //#####··········GET请求··········#####//
 //####········获取用户信息········####//

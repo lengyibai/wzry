@@ -5,7 +5,7 @@
 </template>
 <script setup>
 import { ref, watch, toRefs } from 'vue';
-import { getHeroList } from '@/api/main/game//index.js';
+import { getHeroList } from '@/api/main/game//index';
 
 const props = defineProps({
   modelValue: {

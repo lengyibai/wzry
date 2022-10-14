@@ -13,9 +13,9 @@
   </div>
 </template>
 <script setup>
-import switchStore from '@/store/globalSwitch.js';
-import heroStore from '@/store/hero.js';
-import icon from '@/assets/icon/svg/sidebar.js';
+import switchStore from '@/store/globalSwitch';
+import heroStore from '@/store/hero';
+import icon from '@/assets/icon/svg/sidebar';
 
 const $switchStore = switchStore();
 const $heroStore = heroStore();

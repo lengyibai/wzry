@@ -13,7 +13,7 @@
 </template>
 <script setup>
 import { computed } from 'vue';
-import equipStore from '@/store/equip.js';
+import equipStore from '@/store/equip';
 
 defineProps({
   /* 装备信息 */

@@ -74,11 +74,11 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import { getSkinType } from '@/api/main/game/index.js';
-import { addSkin } from '@/api/main/game//index.js';
-import icon from '@/assets/icon/svg/icon.js';
-import viewHide from '../../../../hooks/useViewHide.js';
-import switchStore from '@/store/globalSwitch.js';
+import { getSkinType } from '@/api/main/game/index';
+import { addSkin } from '@/api/main/game//index';
+import icon from '@/assets/icon/svg/icon';
+import viewHide from '../../../../hooks/useViewHide';
+import switchStore from '@/store/globalSwitch';
 
 const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);

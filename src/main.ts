@@ -1,13 +1,13 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import App from './App.vue';
-import useRouter from './router/index.js';
+import useRouter from './router/index';
 
-import directives from '@/utils/directives.js';
+import directives from '@/utils/directives';
 
 import '@/styles/index.css';
 
-import components from '@/components/index.js';
+import components from '@/components/index';
 
 const app = createApp(App);
 

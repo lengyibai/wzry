@@ -57,7 +57,7 @@
 import path from 'path';
 /* 用于路由跳转 */
 import AppLink from './Link';
-import icon from '@/assets/icon/svg/sidebar.js';
+import icon from '@/assets/icon/svg/sidebar';
 
 export default {
   props: {

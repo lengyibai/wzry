@@ -9,7 +9,7 @@ import { computed, inject, toRefs } from 'vue';
 import HeroSkillContentLeft from './childComps/HeroSkillContentLeft/index.vue';
 import HeroSkillContentRight from './childComps/HeroSkillContentRight/index.vue';
 
-import heroStore from '@/store/hero.js';
+import heroStore from '@/store/hero';
 
 const props = defineProps({
   /* 当前展示技能的索引 */

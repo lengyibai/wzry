@@ -9,9 +9,9 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue';
 import { Sound, MsgText, Message } from './interface/index';
-import $bus from '@/utils/eventBus.js'; //事件总线
+import $bus from '@/utils/eventBus'; //事件总线
 
-import switchStore from '@/store/globalSwitch.js'; //全局开关
+import switchStore from '@/store/globalSwitch'; //全局开关
 const $switchStore = switchStore();
 
 //#####··········loading··········#####//

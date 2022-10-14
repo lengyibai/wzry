@@ -1,7 +1,7 @@
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 import { Form } from './interface'
 
-import { getUserInfo, updateUser } from './transfer.js';
+import { getUserInfo, updateUser } from './transfer';
 
 function tip(code: number, msg: string) {
   if (code === 200) {

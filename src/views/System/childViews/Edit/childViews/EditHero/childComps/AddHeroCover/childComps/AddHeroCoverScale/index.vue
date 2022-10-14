@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup>
-import icon from './svg/index.js';
+import icon from './svg/index';
 
 const emit = defineEmits(['scale']);
 const scale = (scale) => {

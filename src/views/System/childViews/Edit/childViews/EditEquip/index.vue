@@ -15,8 +15,8 @@
   </div>
 </template>
 <script setup>
-import viewHide from '../../../../hooks/useViewHide.js';
-import switchStore from '@/store/globalSwitch.js';
+import viewHide from '../../../../hooks/useViewHide';
+import switchStore from '@/store/globalSwitch';
 
 const emit = defineEmits(['update:modelValue']);
 const { show, finish, close } = viewHide(emit);

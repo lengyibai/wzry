@@ -15,7 +15,7 @@
 <script setup>
 //#####··········子组件··········#####//
 import { inject, reactive, ref } from 'vue';
-import switchStore from '@/store/globalSwitch.js';
+import switchStore from '@/store/globalSwitch';
 import AddHeroCoverImg from './childComps/AddHeroCoverImg/index.vue';
 import AddHeroCoverOffset from './childComps/AddHeroCoverOffset/index.vue'; //调整偏移量
 import AddHeroCoverScale from './childComps/AddHeroCoverScale/index.vue';

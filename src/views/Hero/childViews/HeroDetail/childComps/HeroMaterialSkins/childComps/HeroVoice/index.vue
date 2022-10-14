@@ -27,8 +27,8 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
-import heroStore from '@/store/hero.js';
-import icon from './svg/index.js';
+import heroStore from '@/store/hero';
+import icon from './svg/index';
 
 const $heroStore = heroStore();
 const hero_data = $heroStore.hero_info;

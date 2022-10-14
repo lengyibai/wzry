@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup>
-import heroStore from '@/store/hero.js';
+import heroStore from '@/store/hero';
 
 const $heroStore = heroStore();
 const hero_data = $heroStore.hero_info;

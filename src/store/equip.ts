@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
 import { Equip } from '@/interface/equip'
 import { EquipState } from './interface'
-import switchStore from '@/store/globalSwitch.js';
-import { getEquip } from '@/api/main/game/index.js';
+import switchStore from '@/store/globalSwitch';
+import { getEquip } from '@/api/main/game/index';
 
 const $switchStore = switchStore();
 export default defineStore('equip', {

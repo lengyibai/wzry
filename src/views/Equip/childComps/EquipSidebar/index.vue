@@ -13,9 +13,9 @@
   </div>
 </template>
 <script setup>
-import switchStore from '@/store/globalSwitch.js';
-import equipStore from '@/store/equip.js';
-import icon from '@/assets/icon/svg/sidebar.js';
+import switchStore from '@/store/globalSwitch';
+import equipStore from '@/store/equip';
+import icon from '@/assets/icon/svg/sidebar';
 
 const hero_type = [
   { name: '攻击', icon: 'ATTACK' },

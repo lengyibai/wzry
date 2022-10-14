@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup>
-import icon from '@/assets/icon/svg/icon.js';
+import icon from '@/assets/icon/svg/icon';
 
 defineProps({
   /* 图片路径 */

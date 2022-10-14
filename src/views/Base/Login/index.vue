@@ -12,18 +12,18 @@
     <LoginUpdate v-model="show_KDialog" />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import switchStore from '@/store/globalSwitch.js';
-import authStore from '@/store/auth.js';
+import switchStore from '@/store/globalSwitch';
+import authStore from '@/store/auth';
 import LoginBtn from './childComp/LoginBtn/index.vue';
 import LoginUpdate from './childComp/LoginUpdate/index.vue';
 
 const $router = useRouter();
 const $switchStore = switchStore();
 
-const video = new URL('../../../assets/video/loginBg.mp4', import.meta.url).href;
+const video = import('@/assets/video/loginBg.mp4');
 
 const show_KDialog = ref(true);
 const form = reactive({
