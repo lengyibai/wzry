@@ -1,0 +1,27 @@
+.Epigraph {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .EpigraphMain {
+    flex: 1;
+    overflow: auto;
+    padding-right: 15px;
+    transition: all 0.25s;
+  }
+}
+
+.epigraph-enter-from {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.epigraph-leave-to {
+  opacity: 0;
+}
+
+.epigraph-leave-active,
+.epigraph-enter-active {
+  transition: all 0.25s;
+}

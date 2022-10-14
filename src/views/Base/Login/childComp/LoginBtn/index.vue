@@ -1,6 +1,5 @@
 <template>
-  <!-- v-particle -->
-  <div class="LoginBtn cursor-pointer">
+  <div class="LoginBtn cursor-pointer" v-particle>
     <span>登录</span>
     <span>LOGIN</span>
   </div>

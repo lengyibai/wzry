@@ -32,5 +32,17 @@ onBeforeUnmount(() => {
 });
 </script>
 <style scoped lang="less">
-@import './index.less';
+.LibBgVideo {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  inset: 0;
+  transition: transform 0.25s ease-out;
+  .video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 </style>

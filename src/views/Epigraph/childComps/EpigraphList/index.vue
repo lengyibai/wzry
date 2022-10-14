@@ -5,27 +5,28 @@
     </LibGridLayout>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onBeforeUnmount, ref, watch } from 'vue';
-import EpigraphCard from './childComps/EpigraphCard/index.vue';
 import $bus from '@/utils/eventBus';
+import { Epigraph } from '@/interface/epigraph'
+import EpigraphCard from './childComps/EpigraphCard/index.vue';
 
-const props = defineProps({
-  data: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
+interface Props {
+  data: Epigraph[];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  data: () => []
 });
 
-const show = ref(false);
-const count = ref(5);
-const epigraph_list = ref([]);
+const show = ref(false); //淡入显示列表
+const count = ref(5); //一行的个数
+const epigraph_list = ref<Epigraph[]>([]); //铭文列表
 
+/* 每次修改更新列表 */
 watch(
   () => props.data,
-  (v) => {
+  (v: Epigraph[]) => {
     show.value = false;
     setTimeout(() => {
       epigraph_list.value = v;
@@ -34,7 +35,8 @@ watch(
   },
   { deep: true, immediate: true },
 );
-//#####··········实时修改一行个数··········#####//
+
+/* 实时修改一行个数 */
 const change = [
   [1550, 3],
   [1250, 2],

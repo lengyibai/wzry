@@ -38,7 +38,7 @@ export const getEquipType = (data: Params) => getReq('/equipType', data);
 //获取装备效果
 export const getEquipEffect = (data: Params) => getReq('/equipEffect', data);
 //获取铭文
-export const getEpigraph = (data: Params) => getReq('/epigraph', data);
+export const getEpigraph = (data?: Params) => getReq('/epigraph', data);
 //获取铭文类型
 export const getEpigraphType = (data: Params) => getReq('/epigraphType', data);
 //获取铭文效果

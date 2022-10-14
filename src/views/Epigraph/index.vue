@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { getEpigraph } from '@/api/main/game/index';
 import switchStore from '@/store/globalSwitch';
@@ -19,6 +19,7 @@ import EpigraphList from './childComps/EpigraphList/index.vue'; //铭文列表
 
 const $switchStore = switchStore();
 const $epigraphStore = epigraphStore();
+
 const show_epigraph = ref(false); //显示铭文顶部分类
 
 $switchStore.$loading.show('正在请求铭文列表');
@@ -29,30 +30,5 @@ getEpigraph().then(async (res) => {
 });
 </script>
 <style scoped lang="less">
-.Epigraph {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  .EpigraphMain {
-    flex: 1;
-    overflow: auto;
-    padding-right: 15px;
-    transition: all 0.25s;
-  }
-}
-
-.epigraph-enter-from {
-  opacity: 0;
-  transform: translateY(-100%);
-}
-
-.epigraph-leave-to {
-  opacity: 0;
-}
-
-.epigraph-leave-active,
-.epigraph-enter-active {
-  transition: all 0.25s;
-}
+@import './index.less';
 </style>

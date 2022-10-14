@@ -13,40 +13,36 @@
         <KButton type="warning" @click="$clickAudio('确定'), close()">此次不再弹出</KButton>
       </div>
       <div class="desc">
-        <span
-          >新版本已发布，请前往项目内拉取进行更新，或前往当前项目的
-          <a
-            href="https://github.com/lengyibai/wzry-background-management-system"
-            target="_blank"
-            class="link cursor-pointer"
-            >Github仓库</a
-          >
-          了解更多！</span
-        >
+        <span>新版本已发布，请前往项目内拉取进行更新，或前往当前项目的
+          <a href="https://github.com/lengyibai/wzry-background-management-system" target="_blank" class="link cursor-pointer">Github仓库</a>
+          了解更多！</span>
       </div>
     </div>
   </transition>
 </template>
-<script setup>
+<script setup lang="ts">
 import switchStore from '@/store/globalSwitch';
 import KButton from '@/components/business/Parts/K-Button/index.vue';
 
-defineProps({
-  modelValue: {
-    type: Boolean,
-    default: true,
-  },
-});
+interface Props {
+  modelValue: boolean;
+}
 
-const $clickAudio = (name) => {
-  switchStore().$clickAudio(name);
-};
+withDefaults(defineProps<Props>(), {
+  modelValue: true,
+});
 
 const emit = defineEmits(['update:modelValue']);
 
-function close() {
+/* 播放点击关闭音效 */
+const $clickAudio = (name: string) => {
+  switchStore().$clickAudio(name);
+};
+
+/* 关闭弹窗 */
+const close = () => {
   emit('update:modelValue', false);
-}
+};
 </script>
 <style scoped lang="less">
 @import './index.less';

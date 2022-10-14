@@ -15,20 +15,23 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import switchStore from '@/store/globalSwitch';
 import authStore from '@/store/auth';
+import switchStore from '@/store/globalSwitch';
 import LoginBtn from './childComp/LoginBtn/index.vue';
 import LoginUpdate from './childComp/LoginUpdate/index.vue';
 
 const $router = useRouter();
 const $switchStore = switchStore();
 
-const show_KDialog = ref(true);
+const show_KDialog = ref(true); //是否显示公告
+
+/* 表单 */
 const form = reactive({
   id: 1329670984,
   password: 'lengyibai.',
 });
 
+/* 登录 */
 const login = async () => {
   $switchStore.$loading.show('登录中');
   $switchStore.$clickAudio('login');

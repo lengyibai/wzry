@@ -15,19 +15,20 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import GlobalSwitch from '@/components/business/GlobalSwitch/index.vue';
 
 import switchStore from '@/store/globalSwitch';
 
-const LOCAL_VERSION = ref('22.10.13.00');
-const REMOTE_VERSION = ref('正在检查更新...');
+const LOCAL_VERSION = ref('22.10.13.00'); //本地版本
+const REMOTE_VERSION = ref('正在检查更新...'); //远程版本
 
-function update() {
-  REMOTE_VERSION.value = window.REMOTE_VERSION;
-  const local_version = LOCAL_VERSION.value.replaceAll('.', '');
-  const remote_version = REMOTE_VERSION.value.replaceAll('.', '');
+/* 检查更新 */
+const update = () => {
+  REMOTE_VERSION.value = window.REMOTE_VERSION; //来自外部链接的 REMOTE_VERSION
+  const local_version = Number(LOCAL_VERSION.value.replaceAll('.', '')); //将本地版本转成数字
+  const remote_version = Number(REMOTE_VERSION.value.replaceAll('.', '')); //将远程版本转成数字
   const test = remote_version - local_version;
   if (test > 0) {
     switchStore().$tip('作者已推送最新代码至GitHub，请git pull或重新克隆进行更新', 'warning');
@@ -36,11 +37,12 @@ function update() {
   } else {
     switchStore().$tip('当前版本已是最新版，请放心使用！', 'info');
   }
-}
+};
 
+/* 每隔五秒检查更新，获取最新版后停止 */
 onMounted(() => {
   const timer = setInterval(() => {
-    if (window.REMOTE_VERSION) {
+    if (REMOTE_VERSION.value) {
       clearInterval(timer);
       update();
     }
@@ -51,6 +53,7 @@ onMounted(() => {
 .app {
   width: 100vw;
   height: 100vh;
+
   .watermark {
     position: fixed;
     bottom: 0;
@@ -65,9 +68,11 @@ onMounted(() => {
 .clip-enter-active {
   animation: clip-in 0.75s;
 }
+
 .clip-leave-active {
   animation: clip-out 1.25s;
 }
+
 @keyframes clip-in {
   0% {
     -webkit-clip-path: circle(0% at 50% 50%);
@@ -79,11 +84,13 @@ onMounted(() => {
     clip-path: circle(100% at 50% 50%);
   }
 }
+
 @keyframes clip-out {
   0% {
     -webkit-clip-path: circle(100% at 50% 50%);
     clip-path: circle(100% at 50% 50%);
   }
+
   100% {
     -webkit-clip-path: circle(0% at 50% 50%);
     clip-path: circle(0% at 50% 50%);

@@ -1,0 +1,33 @@
+.EpigraphCategory {
+  width: 100%;
+  position: relative;
+  padding-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+
+  img {
+    width: 11.25%;
+    position: absolute;
+    left: 0;
+    height: 150%;
+    bottom: -6px;
+    transition: left 0.25s;
+  }
+
+  .title {
+    text-align: center;
+    position: relative;
+    flex: 1;
+    color: var(--theme-color-five);
+    transition: color 0.25s 0.1s;
+
+    span {
+      font-size: 26px;
+    }
+  }
+}
+
+.active {
+  color: #fff !important;
+}

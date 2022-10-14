@@ -3,8 +3,7 @@
     <h1>主页</h1>
   </div>
 </template>
-<script setup>
-</script>
+<script setup lang="ts"></script>
 <style scoped lang="less">
 .Home {
   width: 100%;
