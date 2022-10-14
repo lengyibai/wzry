@@ -1,20 +1,22 @@
 import { defineStore } from 'pinia';
+import { Epigraph } from '@/interface/epigraph'
+import { EpigraphState } from './interface'
 
 export default defineStore('epigraph', {
-  state: () => ({
+  state: (): EpigraphState => ({
     type: '全部',
     epigraph_list: [],
     filter_list: [],
   }),
   actions: {
-    /* 设置英雄列表 */
-    setEpigraphList(data) {
+    /* 设置铭文列表 */
+    setEpigraphList(data: Epigraph[]) {
       this.epigraph_list = data;
       this.setFilter('全部');
     },
 
     /* 筛选显示 */
-    setFilter(type) {
+    setFilter(type: string) {
       this.type = type;
       if (type === '全部') {
         this.filter_list = this.epigraph_list;

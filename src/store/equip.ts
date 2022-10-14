@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
+import { Equip } from '@/interface/equip'
+import { EquipState } from './interface'
 import switchStore from '@/store/globalSwitch.js';
 import { getEquip } from '@/api/main/game/index.js';
 
 const $switchStore = switchStore();
 export default defineStore('equip', {
-  state: () => ({
+  state: (): EquipState => ({
     active_id: 0,
     type: '攻击',
     type_list: {
@@ -25,28 +27,28 @@ export default defineStore('equip', {
         getEquip().then(async (res) => {
           await $switchStore.$loading.close();
           this.setEquipList(res.data);
-          resolve();
+          resolve(res);
         });
       });
     },
     /* 获取装备列表 */
-    setEquipList(data) {
+    setEquipList(data: Equip[]) {
       this.equip_list = data;
-      this.equip_list.forEach((item) => {
+      this.equip_list.forEach((item: Equip) => {
         this.type_list[item.type][item.level - 1].push(item);
       });
       this.setType('攻击');
     },
 
     /* 设置装备类型 */
-    setType(type) {
+    setType(type: string) {
       this.active_id = 0;
       this.type = type;
       this.equip_list_column = this.type_list[type];
     },
 
     /* 装备卡片被点击的id */
-    editActive(id) {
+    editActive(id: number) {
       this.active_id = id;
     },
   },

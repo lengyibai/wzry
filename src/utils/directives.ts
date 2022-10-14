@@ -1,18 +1,18 @@
-//#####··········全屏背景视差··········#####//
-//####········视频········####//
-//#####··········粒子效果··········#####//
-import { $random } from '@/utils/index.js';
+import type { DirectiveBinding, App } from 'vue'
+/* 全屏背景视差 */
+//视频
+import { $random } from '@/utils/index';
 
 const parallaxVideo = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const size = binding.value === 'small' ? [15, 1.1] : [5, 1.35];
     const multiple = size[0];
     const body = document.body;
-    function transformElement(x, y) {
+    function transformElement(x: number, y: number) {
       const box = el.getBoundingClientRect();
       const calcY = (box.height / 2 - (y - box.y)) / multiple;
       const calcX = (box.width / 2 - (x - box.x)) / multiple;
-      el.style.transform = `translateY(${calcY}px) translateX(${calcX}px) scale(${size[1]})`;
+      el.style.transform = `translateY(${ calcY }px) translateX(${ calcX }px) scale(${ size[1] })`;
     }
 
     body.addEventListener('mousemove', (e) => {
@@ -23,16 +23,16 @@ const parallaxVideo = {
   },
 };
 
-//####········图片········####//
+//图片
 const parallaxBody = {
-  mounted(el) {
+  mounted(el: HTMLElement) {
     const multiple = 10;
 
-    function transformElement(x, y) {
+    function transformElement(x: number, y: number) {
       const box = el.getBoundingClientRect();
       const calcY = (box.height / 2 - (y - box.y)) / multiple;
       const calcX = (box.width / 2 - (x - box.x)) / multiple;
-      el.style.backgroundPosition = `calc(${calcX}px - 5vw) calc(${calcY}px - 5vh)`;
+      el.style.backgroundPosition = `calc(${ calcX }px - 5vw) calc(${ calcY }px - 5vh)`;
     }
     el.addEventListener('mousemove', (e) => {
       requestAnimationFrame(() => {
@@ -41,10 +41,11 @@ const parallaxBody = {
     });
   },
 };
-let particle_timer = null;
-//####········纵向········####//
+
+let particle_timer: any = null;
+//纵向
 const particle = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const box = el;
     const {
       color = '#cfb45c', size = 10, brightness = 1.5, contrast = 1.1, filter = true,
@@ -52,12 +53,12 @@ const particle = {
     if (filter) el.style.transition = 'all 0.25s';
     const style = `
       position: absolute;
-      background-color: ${color};
+      background-color: ${ color };
       pointer-events: none;
-      width: ${size}px;
-      height: ${size}px;
+      width: ${ size }px;
+      height: ${ size }px;
       bottom:0;
-      box-shadow: 0 0 10px 0 ${color};
+      box-shadow: 0 0 10px 0 ${ color };
       filter: contrast(125%) brightness(125%);
       `;
     const box_width = box.offsetWidth;
@@ -70,15 +71,15 @@ const particle = {
       const time = $random(0.5, 2, 1);
       const c = document.createElement('span');
       c.style.cssText = style;
-      c.style.left = `${left}px`;
-      c.style.transform = `scale(${scale})`;
-      c.style.transition = `all ${time}s linear`;
+      c.style.left = `${ left }px`;
+      c.style.transform = `scale(${ scale })`;
+      c.style.transition = `all ${ time }s linear`;
       box.appendChild(c);
       setTimeout(() => {
-        c.style.bottom = `${top / 1.5}px`;
+        c.style.bottom = `${ top / 1.5 }px`;
         setTimeout(() => {
-          c.style.transition = `all ${time / 4}s linear`;
-          c.style.opacity = 0;
+          c.style.transition = `all ${ time / 4 }s linear`;
+          c.style.opacity = '0';
         }, time * 1000 - (time * 1000) / 4);
         setTimeout(() => {
           c.remove();
@@ -87,7 +88,7 @@ const particle = {
     }, 50);
     el.addEventListener('mouseenter', () => {
       if (!filter) return;
-      el.style.filter = `brightness(${brightness * 100}%) contrast(${contrast * 100}%)`;
+      el.style.filter = `brightness(${ brightness * 100 }%) contrast(${ contrast * 100 }%)`;
     });
     el.addEventListener('mouseleave', () => {
       el.style.filter = '';
@@ -98,9 +99,9 @@ const particle = {
   },
 };
 
-//####········横向········####//
+//横向
 /* const particle1 = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const box = el;
     el.style.transition = "all 0.25s";
     let {
@@ -158,9 +159,9 @@ const particle = {
   },
 }; */
 
-//#####··········底部渐变··········#####//
+/* 底部渐变 */
 const maskGradient = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const {
       color = 'rgba(0, 0, 0, 0.75)', rotate = '0deg', num1 = '0%', num2 = '50%',
     } = binding.value || {};
@@ -168,16 +169,16 @@ const maskGradient = {
     mask.style.cssText = `
     position: absolute;
     inset:0;
-    background-image: linear-gradient(${rotate}, ${color} ${num1}, transparent ${num2});
+    background-image: linear-gradient(${ rotate }, ${ color } ${ num1 }, transparent ${ num2 });
     pointer-events: none;
     `;
     el.appendChild(mask);
   },
 };
 
-//#####··········卡片扫光··········#####//
+/* 卡片扫光 */
 const sweepLight = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     setTimeout(() => {
       const auto = binding.value !== false;
       const light = document.createElement('div');
@@ -186,36 +187,36 @@ const sweepLight = {
       position: absolute;
       top: 0px;
       left: 0px;
-      width: ${el.offsetWidth / 3}px;
+      width: ${ el.offsetWidth / 3 }px;
       height: 100%;
       background-color: rgba(255, 255, 255, 0.5);
-      transform: skewX(45deg) translateX(${el.offsetWidth * 2}px);
+      transform: skewX(45deg) translateX(${ el.offsetWidth * 2 }px);
       transition: all 1s;
       filter: blur(5px)
     `;
       el.appendChild(light);
       if (auto) {
-        light.style.transitionDelay = ` ${binding.value}s`;
-        light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
+        light.style.transitionDelay = ` ${ binding.value }s`;
+        light.style.transform = `skewX(45deg) translateX(${ -el.offsetWidth * 1.5 }px)`;
       } else {
         el.addEventListener('mouseenter', () => {
-          light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
+          light.style.transform = `skewX(45deg) translateX(${ -el.offsetWidth * 1.5 }px)`;
         });
 
         el.addEventListener('mouseleave', () => {
-          light.style.transform = `skewX(45deg) translateX(${el.offsetWidth * 2}px)`;
+          light.style.transform = `skewX(45deg) translateX(${ el.offsetWidth * 2 }px)`;
         });
       }
     });
   },
 };
 
-//#####··········打字机··········#####//
+/* 打字机 */
 const typewriter = {
-  mounted(el, binding) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     setTimeout(() => {
       const say = binding.value;
-      let timer = null;
+      let timer: any = null;
       let num = 0; //用于累加遍历字符串
       let text = ''; //用于输出在屏幕上
       timer = setInterval(() => {
@@ -231,9 +232,9 @@ const typewriter = {
   },
 };
 
-//#####··········文字悬浮变色··········#####//
+/* 文字悬浮变色 */
 const textHoverColor = {
-  mounted(el) {
+  mounted(el: HTMLElement) {
     const mask = document.createElement('div');
     el.style.position = 'relative';
     mask.innerHTML = el.innerHTML;
@@ -261,9 +262,9 @@ const textHoverColor = {
   },
 };
 
-//#####··········元素支持拖动··········#####//
+/* 元素支持拖动 */
 const drag = {
-  mounted(el, arg) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     el.style.userSelect = 'none';
     el.style.position = 'absolute';
     let x = 0;
@@ -277,24 +278,24 @@ const drag = {
       y = e.pageY;
       startX = el.offsetLeft;
       startY = el.offsetTop;
-      function fn(e) {
+      function fn(e: MouseEvent) {
         moveX = e.pageX - x;
         moveY = e.pageY - y;
-        el.style.left = `${moveX + startX}px`;
-        el.style.top = `${moveY + startY}px`;
-        arg.value.fn(
+        el.style.left = `${ moveX + startX }px`;
+        el.style.top = `${ moveY + startY }px`;
+        binding.value.fn(
           el,
           {
             x: el.getBoundingClientRect().left + el.offsetWidth / 2,
             y: el.getBoundingClientRect().top + el.offsetHeight / 2,
           },
-          arg.value.index,
+          binding.value.index,
         );
       }
       window.addEventListener('mousemove', fn);
 
       function up() {
-        arg.value.fn(el, false, arg.value.index);
+        binding.value.fn(el, false, binding.value.index);
         window.removeEventListener('mousemove', fn);
         setTimeout(() => {
           window.removeEventListener('mouseup', up);
@@ -305,15 +306,15 @@ const drag = {
   },
 };
 
-//#####··········单行打字机··········#####//
+/* 单行打字机 */
 const typewriterSingle = {
-  mounted(el) {
+  mounted(el: HTMLElement) {
     const lyb = el;
 
     const say = lyb.innerHTML;
     function again() {
       lyb.innerHTML = '';
-      let timer = null;
+      let timer: any = null;
       let num = 0; //用于累加遍历字符串
       let text = ''; //用于输出在屏幕上
       lyb.innerHTML = '';
@@ -332,7 +333,8 @@ const typewriterSingle = {
   },
 };
 
-const directives = {
+interface directives { [propName: string]: any }
+const directives: directives = {
   parallaxVideo,
   parallaxBody,
   particle,
@@ -345,7 +347,7 @@ const directives = {
 };
 
 export default {
-  install(app) {
+  install(app: App) {
     Object.keys(directives).forEach((key) => {
       app.directive(key, directives[key]);
     });

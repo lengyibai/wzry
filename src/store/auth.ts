@@ -1,20 +1,29 @@
 import { defineStore } from 'pinia';
+import { Form } from '@/api/main/user/interface'
+import { AuthState } from './interface'
 import useRouter from '@/router/index.js';
 import switchStore from './globalSwitch.js';
 import { login, logout, userInfo } from '@/api/main/user/index.js';
 
 export default defineStore('auth', {
-  state: () => ({
-    wzryToken: localStorage.getItem('wzryToken'), //token
+  state: (): AuthState => ({
+    wzryToken: localStorage.getItem('wzryToken') as string, //token
     userStatus: false, // 用户状态
-    userInfo: {}, // 用户相关信息
+
+    // 用户相关信息
+    userInfo: {
+      id: 0,
+      password: '',
+      name: '',
+      headImg: '',
+    },
     smooth: false,
   }),
   actions: {
     //#####··········登录··········#####//
-    login(account) {
+    login(form: Form) {
       // 请求登录接口
-      return login(account).then((res) => {
+      return login(form).then((res: any) => {
         if (res.code === 200) {
           // 存储 token 到本地
           this.userStatus = true;
@@ -29,7 +38,7 @@ export default defineStore('auth', {
     getUserInfo() {
       return new Promise((resolve) => {
         userInfo({
-          wzryToken: this.wzryToken,
+          wzryToken: this.wzryToken as string,
         })
           .then((res) => {
             if (!this.wzryToken) throw 'no token';
@@ -40,7 +49,7 @@ export default defineStore('auth', {
               // 获取成功后存储用户信息
               this.userStatus = true;
               this.userInfo = res.data[0];
-              resolve();
+              resolve(res);
             }
           })
           .catch((err) => {
@@ -59,7 +68,12 @@ export default defineStore('auth', {
     clearToken() {
       this.wzryToken = '';
       this.userStatus = false;
-      this.userInfo = {};
+      this.userInfo = {
+        id: 0,
+        password: '',
+        name: '',
+        headImg: '',
+      };
       window.localStorage.removeItem('wzryToken');
       useRouter.push('/login');
     },
