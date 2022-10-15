@@ -9,28 +9,17 @@
     </div>
   </div>
 </template>
-<script setup>
-defineProps({
-  toggle: {
-    type: Boolean,
-    default: false,
-  },
-  name: {
-    type: String,
-    default: '',
-  },
-});
+<script setup lang="ts">
+interface Props {
+  toggle: boolean; //触发打字机
+  name: string; //皮肤名
+}
+
+withDefaults(defineProps<Props>(), {
+  toggle: false,
+  name: ''
+})
 </script>
 <style scoped lang="less">
-.HeroSkinName {
-  .skin-name {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    text-align: center;
-    transform: translateY(-50%);
-    font-size: 50px;
-    text-shadow: 0 5px 3px #000;
-  }
-}
+@import './index.less';
 </style>

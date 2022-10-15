@@ -17,16 +17,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Equip } from '@/interface/equip'
+import { Equip } from '@/interface/items'
+import { equip } from '@/interface/defaults'
 
 interface Props {
-  equip: Partial<Equip>;
+  equip: Equip;
   show: boolean
 }
 withDefaults(defineProps<Props>(), {
-  equip: () => {
-    return {}
-  },
+  equip: () => equip,
   show: false
 });
 

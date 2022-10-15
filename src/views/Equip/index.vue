@@ -19,7 +19,7 @@ import EquipList from './childComps/EquipList/index.vue'; //装备列表
 import EquipDetail from './childComps/EquipDetail/index.vue'; //装备详情
 import EquipSidebar from './childComps/EquipSidebar/index.vue'; //右侧边栏
 
-import { Equip } from '@/interface/equip'
+import { Equip } from '@/interface/items'
 import { equip } from '@/interface/defaults'
 
 

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Equip } from '@/interface/equip';
+import { Equip } from '@/interface/items';
 import { EquipState } from './interface';
 import switchStore from '@/store/globalSwitch';
 import { getEquip } from '@/api/main/game/index';

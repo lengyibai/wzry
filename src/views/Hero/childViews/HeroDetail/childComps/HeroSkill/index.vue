@@ -10,7 +10,7 @@
     </transition>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import HeroSkillIcon from './childComps/HeroSkillIcon/index.vue'; //技能图标
 import HeroSkillContent from './childComps/HeroSkillContent/index.vue'; //主体内容
@@ -18,7 +18,8 @@ import HeroSkillContent from './childComps/HeroSkillContent/index.vue'; //主体
 const toggle = ref(true); //用于切换动画
 const index = ref(0); //当前展示技能的索引
 
-const selectSkill = (i) => {
+/* 切换技能 */
+const selectSkill = (i: number) => {
   toggle.value = false;
   setTimeout(() => {
     toggle.value = true;
@@ -27,18 +28,5 @@ const selectSkill = (i) => {
 };
 </script>
 <style scoped lang="less">
-.HeroSkill {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  color: var(--white);
-  background-color: rgba(0, 0, 0, 0.5);
-  .title {
-    font-size: 50px;
-    text-align: center;
-    margin-top: 1em;
-    text-shadow: var(--t-shadow);
-    margin-bottom: 25px;
-  }
-}
+@import './index.less';
 </style>

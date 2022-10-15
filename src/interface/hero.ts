@@ -19,23 +19,25 @@ export interface SkillEffect {
 
 /* 技能信息 */
 export interface Skill {
+  cd?: number; //技能冷却
+  consume?: number; //消耗
   name: string; //名称
   desc: string; //简述
   img: string; //图标
   type: string[]; //类型
-  effect?: SkillEffect; //效果
+  effect?: SkillEffect[]; //效果
 }
 
 /* 皮肤信息 */
 export interface Skin {
   id: number; //标识
-  num: number; //序号
   hero: number; //所属英雄id
+  num: number; //序号
+  price: number; //价格
+  type: number; //类型
   name: string; //名称
   img: string; //图片
   head: string; //头像
-  type: number; //类型
-  price: number; //价格
 }
 
 /* 英雄信息 */

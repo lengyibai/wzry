@@ -25,7 +25,6 @@ import { hero } from '@/interface/defaults'
 
 const $heroStore = heroStore();
 const hero_data = ref<Hero>(hero); //英雄数据
-
 hero_data.value = $heroStore.hero_info
 
 const toggle = ref(true); //用于切换背景

@@ -1,5 +1,5 @@
-import { Equip } from '@/interface/equip';
-import { Epigraph } from '@/interface/epigraph';
+import { Equip } from '@/interface/items';
+import { Epigraph } from '@/interface/items';
 import { Hero } from '@/interface/hero';
 export interface Loading {
   show: (text: string) => void;

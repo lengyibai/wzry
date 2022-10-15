@@ -25,15 +25,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Hero } from '@/interface/hero'
+import { hero } from '@/interface/defaults'
 
 interface Props {
-  data: Partial<Hero>
+  data: Hero
 }
 
 withDefaults(defineProps<Props>(), {
-  data: () => {
-    return {}
-  }
+  data: () => hero
 });
 
 const show = ref(false); //显示查看详情选项

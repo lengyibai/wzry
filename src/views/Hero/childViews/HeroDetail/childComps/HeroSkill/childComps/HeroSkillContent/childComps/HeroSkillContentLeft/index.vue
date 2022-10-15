@@ -3,7 +3,7 @@
     <!--名称及类型-->
     <div class="name-type">
       <div class="name">{{ activeSkill.name }}</div>
-      <K-SkillTypeTag v-for="(item) in activeSkill.type" :type="item" :key="item" />
+      <K-SkillTypeTag v-for="item in activeSkill.type" :type="item" :key="item" />
     </div>
 
     <!--数字相关-->
@@ -17,53 +17,16 @@
     <div class="desc" v-html="activeSkill.desc"></div>
   </div>
 </template>
-<script setup>
-defineProps({
-  activeSkill: {
-    type: Object,
-    default() {
-      return {};
-    },
-  },
+<script setup lang="ts">
+import { Skill } from '@/interface/hero';
+import { skill } from '@/interface/defaults';
+interface Props {
+  activeSkill: Skill;
+}
+withDefaults(defineProps<Props>(), {
+  activeSkill: () => skill,
 });
 </script>
 <style scoped lang="less">
-.HeroSkillContentLeft {
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  .name-type {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    .name {
-      font-size: 50px;
-      margin-right: 15px;
-      text-shadow: var(--t-shadow);
-    }
-  }
-  .cd-consume {
-    display: flex;
-    margin-bottom: 15px;
-    .cd,
-    .consume,
-    .passive {
-      font-size: 35px;
-      margin-right: 35px;
-      text-shadow: var(--t-shadow);
-    }
-    .passive {
-      color: var(--gray);
-    }
-  }
-  .desc {
-    font-size: 26px;
-    text-shadow: var(--t-shadow);
-    :deep(*) {
-      font-size: inherit;
-    }
-  }
-}
+@import './index.less';
 </style>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Epigraph } from '@/interface/epigraph'
+import { Epigraph } from '@/interface/items'
 import { EpigraphState } from './interface'
 
 export default defineStore('epigraph', {

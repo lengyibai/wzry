@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { Equip } from '@/interface/equip'
+import { Equip } from '@/interface/items'
 import EquipCard from '../common/EquipCard/index.vue'; //装备卡片
 
 interface Props {

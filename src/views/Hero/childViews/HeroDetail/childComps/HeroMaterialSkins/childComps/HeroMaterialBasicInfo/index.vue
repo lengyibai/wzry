@@ -15,10 +15,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { Hero } from '@/interface/hero'
+import { hero } from '@/interface/defaults'
 import heroStore from '@/store/hero';
 
 const $heroStore = heroStore();
-const hero_data = ref<Partial<Hero>>({}); //英雄数据
+const hero_data = ref<Hero>(hero); //英雄数据
 hero_data.value = $heroStore.hero_info
 
 const HeroDetailBasicInfo = ref();

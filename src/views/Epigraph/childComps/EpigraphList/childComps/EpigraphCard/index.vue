@@ -10,16 +10,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Epigraph } from '@/interface/epigraph'
+import { Epigraph } from '@/interface/items'
+import { epigraph } from '@/interface/defaults'
 
 interface Props {
-  data: Partial<Epigraph>
+  data: Epigraph
 }
 
 withDefaults(defineProps<Props>(), {
-  data: () => {
-    return {}
-  }
+  data: () => epigraph
 })
 </script>
 <style scoped lang="less">

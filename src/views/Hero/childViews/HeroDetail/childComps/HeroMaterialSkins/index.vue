@@ -28,6 +28,7 @@
 import { reactive, ref } from 'vue';
 import { getSkinType } from '@/api/main/game/index';
 import { Hero } from '@/interface/hero'
+import { hero } from '@/interface/defaults'
 import heroStore from '@/store/hero';
 import HeroBgImg from './childComps/HeroBgImg/index.vue'; //背景图
 import HeroVoice from './childComps/HeroVoice/index.vue'; //英雄语音
@@ -38,7 +39,7 @@ import HeroMaterialAttribute from './childComps/HeroMaterialAttribute/index.vue'
 import HeroMaterialBasicInfo from './childComps/HeroMaterialBasicInfo/index.vue'; //左侧资料详情
 
 const $heroStore = heroStore();
-const hero_data = ref<Partial<Hero>>({}); //英雄数据
+const hero_data = ref<Hero>(hero); //英雄数据
 hero_data.value = $heroStore.hero_info
 
 const active_skin_name = ref(''); //皮肤名

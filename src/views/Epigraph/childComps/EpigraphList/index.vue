@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watch } from 'vue';
 import $bus from '@/utils/eventBus';
-import { Epigraph } from '@/interface/epigraph'
+import { Epigraph } from '@/interface/items'
 import EpigraphCard from './childComps/EpigraphCard/index.vue';
 
 interface Props {

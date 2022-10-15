@@ -13,16 +13,15 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Equip } from '@/interface/equip'
+import { Equip } from '@/interface/items'
+import { equip } from '@/interface/defaults'
 import equipStore from '@/store/equip';
 
 interface Props {
-  equip: Partial<Equip>
+  equip: Equip
 }
 withDefaults(defineProps<Props>(), {
-  equip: () => {
-    return {}
-  },
+  equip: () => equip,
   show: false
 });
 const $equipStore = equipStore();

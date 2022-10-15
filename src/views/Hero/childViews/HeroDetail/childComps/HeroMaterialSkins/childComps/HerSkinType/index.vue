@@ -6,51 +6,17 @@
     </transition-group>
   </div>
 </template>
-<script setup>
-defineProps({
-  /* 皮肤类型图 */
-  skinTypeImg: {
-    type: [String, Boolean],
-    default: '',
-  },
-  /* 用于皮肤类型切换动画 */
-  toggle: {
-    type: Boolean,
-    default: false,
-  },
-});
-</script>
-<style scoped lang="less">
-.HerSkinType {
-  display: flex;
-  justify-content: center;
-  transform: translateY(25%);
-  span {
-    margin-top: 0.5em;
-    font-size: 50px;
-  }
-  img {
-    width: 200px;
-    filter: drop-shadow(0px 3px 3px #000);
-  }
-}
-.updown-enter-from {
-  opacity: 0;
-  transform: translateY(-100%);
-}
-.updown-leave-active {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.updown-leave-active,
-.updown-enter-active {
-  transition: all 0.5s;
+<script setup lang="ts">
+interface Props {
+  skinTypeImg: string | string;//皮肤类型图
+  toggle: boolean;//用于皮肤类型切换动画
 }
 
-.updown-move {
-  transition: all 0.5s;
-}
-.updown-leave-active {
-  position: absolute;
-}
+withDefaults(defineProps<Props>(), {
+  skinTypeImg: '',
+  toggle: false,
+})
+</script>
+<style scoped lang="less">
+@import './index.less';
 </style>
