@@ -8,7 +8,7 @@ interface Params {
 //获取英雄基础列表
 export const getHeroList = (data: Params) => getReq('/heroList', data);
 //获取英雄
-export const getHero = (data: Params) => getReq('/hero', data);
+export const getHero = (data?: Params) => getReq('/hero', data);
 //获取皮肤
 export const getSkin = (data: Params) => getReq(`/skin${ data ? `?hero=${ data.id }` : '' }`);
 //获取皮肤类型

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { Equip } from '@/interface/equip'
-import { EquipState } from './interface'
+import { Equip } from '@/interface/equip';
+import { EquipState } from './interface';
 import switchStore from '@/store/globalSwitch';
 import { getEquip } from '@/api/main/game/index';
 
@@ -48,8 +48,8 @@ export default defineStore('equip', {
     },
 
     /* 装备卡片被点击的id */
-    editActive(id: number) {
-      this.active_id = id;
+    editActive(id: number | undefined): void {
+      this.active_id = id || 0;
     },
   },
 });

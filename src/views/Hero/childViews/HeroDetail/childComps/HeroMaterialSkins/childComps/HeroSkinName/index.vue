@@ -3,7 +3,7 @@
     <div class="skin-name" v-if="toggle && name" v-typewriterSingle key="a">
       {{ name }}
     </div>
-    <!--//%%%%··········用于触发打字机··········%%%%//-->
+    <!--····用于触发打字机····-->
     <div class="skin-name" v-if="!toggle && name" v-typewriterSingle key="b">
       {{ name }}
     </div>

@@ -1,5 +1,6 @@
-import { Equip } from '@/interface/equip'
-import { Epigraph } from '@/interface/epigraph'
+import { Equip } from '@/interface/equip';
+import { Epigraph } from '@/interface/epigraph';
+import { Hero } from '@/interface/hero';
 export interface Loading {
   show: (text: string) => void;
   close: () => Promise<void>;
@@ -15,10 +16,10 @@ export interface EquipState {
   active_id: number;
   type: string;
   type_list: {
-    [propName: string]: Equip[][]
+    [propName: string]: Equip[][];
   };
-  equip_list: Equip[]
-  equip_list_column: Equip[][]
+  equip_list: Equip[];
+  equip_list_column: Equip[][];
 }
 
 export interface UserInfo {
@@ -29,7 +30,7 @@ export interface UserInfo {
 }
 
 export interface AuthState {
-  wzryToken: string;
+  wzryToken: string | null;
   userStatus: boolean;
   userInfo: UserInfo;
   smooth: boolean;
@@ -39,4 +40,11 @@ export interface EpigraphState {
   type: string;
   epigraph_list: Epigraph[];
   filter_list: Epigraph[];
+}
+
+export interface HeroState {
+  profession: string;
+  hero_list: Hero[];
+  filter_list: Hero[];
+  hero_info: Hero;
 }

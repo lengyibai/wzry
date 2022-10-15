@@ -13,17 +13,12 @@
 import { Epigraph } from '@/interface/epigraph'
 
 interface Props {
-  data: Epigraph
+  data: Partial<Epigraph>
 }
 
 withDefaults(defineProps<Props>(), {
   data: () => {
-    return {
-      name: '',
-      type: '',
-      img: '',
-      effect: [],
-    }
+    return {}
   }
 })
 </script>

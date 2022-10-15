@@ -4,44 +4,42 @@
     <div class="show-skin flex" ref="showSkin">
       {{ is_into_drap ? '松开' : '拖过来' }}
     </div>
-    <!--//%%%%······光晕······%%%%//-->
+    <!--光晕-->
     <transition name="fade">
       <div class="show-skin flex clone" v-show="is_into_drap"></div>
     </transition>
 
     <!--皮肤头像-->
-    <div
-      class="skin"
-      v-drag="{ fn, index }"
-      v-for="(item, index) in skins"
-      :key="index"
-      :style="{
-        transform: show_skin_head ? 'rotate(' + (360 / skins.length) * (index + 1) + 'deg) translateY(-150%)' : '',
-      }"
-    >
+    <div class="skin" v-drag="{ handleDrag, index }" v-for="(item, index) in skins" :key="index" :style="{
+      transform: show_skin_head ? 'rotate(' + (360 / skins!.length||0) * (index + 1) + 'deg) translateY(-150%)' : '',
+    }">
       <img @dragstart.prevent :src="item.head" alt="" />
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onMounted, reactive, ref } from 'vue';
 import heroStore from '@/store/hero';
+import { Hero, Skin } from '@/interface/hero'
+import { hero } from '@/interface/defaults'
 
 const $heroStore = heroStore();
-const hero_data = $heroStore.hero_info;
+const hero_data = ref<Hero>(hero); //英雄数据
+
+hero_data.value = $heroStore.hero_info
 
 const toggle = ref(true); //用于切换背景
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围
-const show_skin_head = ref(false);
+const show_skin_head = ref(false); //用于头像初次加载显示
 
 /* 当前处于展示的皮肤的DOM元素及坐标 */
-const active_skin = reactive({
-  el: null,
-  transform: null,
+const active_skin: { el: HTMLElement, transform: string } = reactive({
+  el: document.body,
+  transform: '',
 });
 
-const skins = ref([]);
-skins.value = hero_data.skins;
+const skins = ref<Skin[] | undefined>([]);
+skins.value = hero_data.value.skins;
 
 onMounted(() => {
   setTimeout(() => {
@@ -50,7 +48,9 @@ onMounted(() => {
 });
 
 /* 皮肤头像拖动事件 */
-const emit = defineEmits(['bg-imgs']);
+const emit = defineEmits<{
+  (e: 'bg-imgs', data: number[]): void
+}>()
 const showSkin = ref();
 
 const initPosition = () => {
@@ -61,19 +61,21 @@ const initPosition = () => {
     active_skin.el.style.transform = active_skin.transform;
   }
 };
-const setPosition = (data) => {
+const setPosition = (data: HTMLElement) => {
   /* 将要展示的皮肤头像过渡到头像框的位置 */
   if (data) {
     data.style.pointerEvents = 'none';
     data.style.transition = 'all 1s';
-    data.style.left = `calc(50% - ${data.offsetWidth / 2}px)`;
-    data.style.top = `calc(50% - ${data.offsetHeight / 2}px)`;
+    data.style.left = `calc(50% - ${ data.offsetWidth / 2 }px)`;
+    data.style.top = `calc(50% - ${ data.offsetHeight / 2 }px)`;
     data.style.transform = '';
   }
 };
-const fn = (data, offset, index) => {
+
+/* 自定义指令函数回调 */
+const handleDrag = (data: HTMLElement, offset: { x: number, y: number }, index: number) => {
   data.style.transition = 'all 0s'; //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
-  data.style.zIndex = 2;
+  data.style.zIndex = '2';
 
   /* offset用来判断是移动触发的还是松开触发的 */
   if (offset) {
@@ -95,7 +97,7 @@ const fn = (data, offset, index) => {
 
     /* 有一秒的过渡动画，动画结束后执行以下 */
     setTimeout(() => {
-      data.style.zIndex = 1;
+      data.style.zIndex = '1';
 
       /* 切换背景图 */
       if (toggle.value) {
@@ -111,47 +113,5 @@ const fn = (data, offset, index) => {
 };
 </script>
 <style scoped lang="less">
-.HeroSkinHeadImg {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 200px;
-  height: 200px;
-  opacity: 0;
-  transform: translateX(-50%) translateY(-250%) scale(2);
-  animation: into 1s 1s forwards;
-  @keyframes into {
-    100% {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-50%) scale(1);
-    }
-  }
-  .show-skin {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: url('@/assets/img/part/icon/head_bg.png') no-repeat center center;
-    background-size: cover;
-    filter: drop-shadow(0px 5px 3px black);
-    &.clone {
-      background-image: url('@/assets/img/part/icon/head_bg_clone.png');
-      filter: blur(5px) brightness(150%);
-    }
-  }
-  .skin {
-    position: absolute;
-    z-index: 1;
-    width: 90px;
-    height: 90px;
-    transition: all 1s;
-    transform-origin: center center;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      filter: drop-shadow(0px 0px 3px #000);
-    }
-  }
-}
+@import './index.less';
 </style>

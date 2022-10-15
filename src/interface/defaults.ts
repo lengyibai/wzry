@@ -1,0 +1,45 @@
+import { Hero } from './hero';
+import { Equip } from './equip';
+export const hero: Hero = {
+  id: 0,
+  attack: 0,
+  difficulty: 0,
+  effect: 0,
+  survival: 0,
+  camp: '',
+  cover: '',
+  energy: '',
+  gamestory: '',
+  headImg: '',
+  height: '',
+  history: '',
+  identity: '',
+  location: '',
+  mark: '',
+  name: '',
+  period: '',
+  poster: '',
+  profession: '',
+  specialty: '',
+  offset: {
+    top: 0,
+    left: 0,
+    transform: '',
+  },
+  voices: [],
+  skills: [],
+  skins: [],
+};
+
+export const equip: Equip = {
+  id: 0,
+  level: 0,
+  price: 0,
+  type: '',
+  name: '',
+  icon: '',
+  note: '',
+  desc: '',
+  effect: [],
+  motivation: [],
+};

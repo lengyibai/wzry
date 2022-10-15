@@ -1,0 +1,54 @@
+/* 滚动条整体背景 */
+*::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+  background: #999;
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb {
+  background: var(--white);
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--white);
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--white);
+}
+
+.HeroDetail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  overflow: hidden auto;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+
+  scroll-snap-type: y mandatory;
+
+  .basis {
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+
+    transform-style: preserve-3d;
+    perspective: 2000px;
+  }
+}
+
+/* 从左到右 */
+.leftToRight-enter-from,
+.leftToRight-leave-to {
+  transform: translateX(-100%) !important;
+}
+
+.leftToRight-leave-active,
+.leftToRight-enter-active {
+  transition: all 0.5s;
+}

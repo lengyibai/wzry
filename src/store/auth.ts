@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
-import { Form } from '@/api/main/user/interface'
-import { AuthState } from './interface'
+import { Form } from '@/api/main/user/interface';
+import { AuthState } from './interface';
 import useRouter from '@/router/index';
 import switchStore from './globalSwitch';
 import { login, logout, userInfo } from '@/api/main/user/index';
 
 export default defineStore('auth', {
   state: (): AuthState => ({
-    wzryToken: localStorage.getItem('wzryToken') as string, //token
+    wzryToken: localStorage.getItem('wzryToken'), //token
     userStatus: false, // 用户状态
 
     // 用户相关信息
@@ -38,7 +38,7 @@ export default defineStore('auth', {
     getUserInfo() {
       return new Promise((resolve) => {
         userInfo({
-          wzryToken: this.wzryToken as string,
+          wzryToken: this.wzryToken,
         })
           .then((res) => {
             if (!this.wzryToken) throw 'no token';

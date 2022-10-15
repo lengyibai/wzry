@@ -7,7 +7,7 @@
           <FormInput label="id" required v-model="form_data.id" />
           <FormInput label="英雄名" required v-model="form_data.name" />
           <FormInput label="代号" required v-model="form_data.mark" />
-          <FormInput label="身高" number v-model="form_data.height" />
+          <FormInput label="身高" v-model="form_data.height" />
           <FormInput label="身份" number v-model="form_data.identity" />
         </div>
 

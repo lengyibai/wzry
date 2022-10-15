@@ -24,9 +24,10 @@
     <HeroBgImg :bgImg="bg_imgs" :toggle="toggle" />
   </div>
 </template>
-<script setup>
+<script setup lang='ts'>
 import { reactive, ref } from 'vue';
 import { getSkinType } from '@/api/main/game/index';
+import { Hero } from '@/interface/hero'
 import heroStore from '@/store/hero';
 import HeroBgImg from './childComps/HeroBgImg/index.vue'; //背景图
 import HeroVoice from './childComps/HeroVoice/index.vue'; //英雄语音
@@ -37,7 +38,8 @@ import HeroMaterialAttribute from './childComps/HeroMaterialAttribute/index.vue'
 import HeroMaterialBasicInfo from './childComps/HeroMaterialBasicInfo/index.vue'; //左侧资料详情
 
 const $heroStore = heroStore();
-const hero_data = $heroStore.hero_info; //英雄数据
+const hero_data = ref<Partial<Hero>>({}); //英雄数据
+hero_data.value = $heroStore.hero_info
 
 const active_skin_name = ref(''); //皮肤名
 const active_skin_type = ref(''); //皮肤类型
@@ -45,7 +47,7 @@ const show_info = ref(false); //用于延迟显示卡片
 const toggle = ref(true); //用于切换背景
 const skin_name_toggle = ref(true); //皮肤切换
 const skin_type_toggle = ref(true); //皮肤类型切换
-const bg_imgs = reactive([]); //背景图
+const bg_imgs: string[] = reactive([]); //背景图
 
 /* 延迟显示卡片 */
 setTimeout(() => {
@@ -53,23 +55,23 @@ setTimeout(() => {
 }, 1000);
 
 /* 通过切换背景图组件传过来的索引设置背景 */
-const bgImgs = ([i, index]) => {
-  bg_imgs[i] = hero_data.skins[index].img; //设置背景图
+const bgImgs = ([i, index]: number[]) => {
+  bg_imgs[i] = hero_data.value.skins![index].img; //设置背景图
   toggle.value = !toggle.value; //用于皮肤背景的切换动画
 
   /* 设置皮肤名，皮肤名需要有切换时的打字机效果 */
-  active_skin_name.value = hero_data.skins[index].name;
+  active_skin_name.value = hero_data.value.skins![index].name;
   skin_name_toggle.value = !skin_name_toggle.value;
 
   /* 切换时延迟设置顶部皮肤类型标志 */
   setTimeout(async () => {
-    const skin_type = hero_data.skins[index].type;
-    if (skin_type !== '伴生') {
+    const skin_type = hero_data.value.skins![index].type;
+    if (skin_type !== 0) {
       getSkinType({ id: skin_type }).then((res) => {
         active_skin_type.value = res.data[0].icon;
       });
     } else {
-      active_skin_type.value = false; //伴生皮肤没有标志
+      active_skin_type.value = ''; //伴生皮肤没有标志
     }
     skin_type_toggle.value = !skin_type_toggle.value; //使切换标志时有淡入淡出效果
   }, 250);
@@ -82,6 +84,7 @@ const bgImgs = ([i, index]) => {
   width: 100%;
   height: 100%;
   color: var(--white);
+
   .box {
     position: absolute;
     z-index: 1;

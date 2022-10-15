@@ -1,25 +1,21 @@
 <template>
-  <div
-    class="LibIcon"
-    @mouseenter="toggle = true"
-    @mouseleave="toggle = false"
-    :style="{
-      width: `${size}`,
-      height: `${size}`,
-      margin: `${top} ${right} ${bottom} ${left}`,
-      backgroundImage: `url(${!toggle ? imgUrl : imgUrlHover || imgUrl})`,
-    }"
-    :title="title"
-  ></div>
+  <div class="LibIcon" @mouseenter="toggle = true" @mouseleave="toggle = false" :style="{
+    width: `${size}`,
+    height: `${size}`,
+    margin: `${top} ${right} ${bottom} ${left}`,
+    backgroundImage: `url(${!toggle ? imgUrl : imgUrlHover || imgUrl})`,
+  }" :title="title"></div>
 </template>
 <script setup>
 import { ref } from 'vue';
 
 defineProps({
   imgUrl: {
+    type: String,
     default: null,
   },
   imgUrlHover: {
+    type: String,
     default: null,
   },
   title: {

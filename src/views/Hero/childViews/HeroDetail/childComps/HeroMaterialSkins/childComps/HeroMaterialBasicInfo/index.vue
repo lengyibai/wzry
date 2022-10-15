@@ -12,100 +12,42 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from 'vue';
-
+import { Hero } from '@/interface/hero'
 import heroStore from '@/store/hero';
 
 const $heroStore = heroStore();
-const hero_data = $heroStore.hero_info;
+const hero_data = ref<Partial<Hero>>({}); //英雄数据
+hero_data.value = $heroStore.hero_info
 
 const HeroDetailBasicInfo = ref();
-const hero_info = [
-  [hero_data.location, 'location', '定位'],
-  [hero_data.specialty, 'specialty', '特长'],
-  [hero_data.period, 'period', '时期'],
-  [hero_data.camp, 'camp', '阵营'],
-  [hero_data.height, 'height', '身高'],
+
+type HeroInfo = string | undefined
+const hero_info: HeroInfo[][] = [
+  [hero_data.value.location, 'location', '定位'],
+  [hero_data.value.specialty, 'specialty', '特长'],
+  [hero_data.value.period, 'period', '时期'],
+  [hero_data.value.camp, 'camp', '阵营'],
+  [hero_data.value.height, 'height', '身高'],
 ];
-const getImg = (src) => {
-  return new URL(`../../../../../../../../assets/img/svg/${src}.svg`, import.meta.url).href;
+
+const getImg = (src: string | undefined) => {
+  return new URL(`../../../../../../../../assets/img/svg/${ src }.svg`, import.meta.url).href;
 };
 
 onMounted(() => {
+  /* 设置按顺序出场的动画 */
   const list = HeroDetailBasicInfo.value.querySelectorAll('.info');
-  list.forEach((item, index) => {
-    item.style.transitionDelay = `${index / 10}s`;
+  list.forEach((item: HTMLElement, index: number) => {
+    item.style.transitionDelay = `${ index / 10 }s`;
     setTimeout(() => {
       item.style.transform = 'translateX(0)';
-      item.style.opacity = 1;
+      item.style.opacity = '1';
     }, 250);
   });
 });
 </script>
 <style scoped lang="less">
-.HeroDetailBasicInfo {
-  opacity: 0;
-  position: absolute;
-  height: 100%;
-  padding: 25px;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: all 0.5s;
-  animation: into 1s forwards;
-  transform: translateZ(335px);
-  transform-origin: left center;
-  // animation: updownleft 2.5s 1s infinite, into 1s;
-  @keyframes updownleft {
-    0%,
-    100% {
-      transform: translateX(216px) translateY(0px) translateZ(335px) rotateY(45deg) rotateX(10deg) scale(0.8);
-    }
-    50% {
-      transform: translateX(216px) translateY(-20px) translateZ(335px) rotateY(45deg) rotateX(10deg) scale(0.8);
-    }
-  }
-  @keyframes into {
-    100% {
-      opacity: 1;
-      transform: translateX(216px) translateY(0px) translateZ(335px) rotateY(45deg) rotateX(10deg) scale(0.8);
-    }
-  }
-  .name {
-    display: flex;
-    margin-bottom: 25px;
-    > span {
-      color: var(--white);
-      font-size: 75px;
-      margin-right: 10px;
-      text-shadow: var(--t-shadow);
-    }
-    .box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      span {
-        text-shadow: var(--t-shadow);
-        &:nth-child(1) {
-          color: var(--gray);
-          font-size: 26px;
-          margin-bottom: 10px;
-        }
-        &:nth-child(2) {
-          color: var(--gray);
-          font-size: 16px;
-        }
-      }
-    }
-  }
-  .info {
-    display: flex;
-    color: var(--white);
-    font-size: 26px;
-    margin-bottom: 15px;
-    transform: translateX(-100%);
-    opacity: 0;
-    transition: all 0.5s;
-    text-shadow: var(--t-shadow);
-  }
-}
+@import './index.less';
 </style>

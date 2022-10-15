@@ -1,19 +1,16 @@
 <template>
-  <div
-    class="HeroDetailParallaxBg"
-    :style="{
-      backgroundImage: 'url(' + bg + ')',
-    }"
-  >
+  <div class="HeroDetailParallaxBg" :style="{
+    backgroundImage: 'url(' + bg + ')',
+  }">
     <slot></slot>
   </div>
 </template>
-<script setup>
-defineProps({
-  bg: {
-    type: String,
-    default: '',
-  },
+<script setup lang="ts">
+interface Props {
+  bg: string;
+}
+withDefaults(defineProps<Props>(), {
+  bg: ''
 });
 </script>
 <style scoped lang="less">

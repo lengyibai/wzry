@@ -20,32 +20,29 @@ import EquipDetail from './childComps/EquipDetail/index.vue'; //装备详情
 import EquipSidebar from './childComps/EquipSidebar/index.vue'; //右侧边栏
 
 import { Equip } from '@/interface/equip'
+import { equip } from '@/interface/defaults'
 
 
 const $equiqStore = equiqStore();
 
+const equip_data = ref<Equip | undefined>(equip); //被点击的装备信息
 const show_Details = ref(false); //显示装备详情
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
-const equip = ref<Equip>(); //被点击的装备信息
-console.log(equip.value);
 
-
+/* 列表请求完毕之后显示装备分类侧边栏 */
 $equiqStore.getEquipList().then(() => {
   show_EquipSidebar.value = true;
 });
 
+/* 监听被点击装备的id，点击后更新装备详情 */
 watch(
   () => $equiqStore.active_id,
   (v) => {
-    show_Details.value = false;
+    show_Details.value = false; //隐藏装备详情，再延迟显示
     setTimeout(() => {
-      if (v === 0) {
-        equip.value = undefined;
-      } else {
-        equip.value = $equiqStore.equip_list.find((item) => {
-          return item.id === v;
-        }) as Equip;
-      }
+      equip_data.value = $equiqStore.equip_list.find((item) => {
+        return item.id === v;
+      });
       show_Details.value = true;
     }, 250);
   },

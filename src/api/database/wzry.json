@@ -27,7 +27,7 @@
       "period": "均衡",
       "profession": "辅助",
       "specialty": "团控",
-      "height": 150,
+      "height": "150",
       "offset": {
         "top": 10,
         "left": -40,
@@ -887,7 +887,7 @@
       "name": "阿莫斯公爵",
       "img": "http://lengyibai.gitee.io/wzry-material/hero/67/pi_fu/1.jpg",
       "head": "http://lengyibai.gitee.io/wzry-material/hero/67/tou_xiang/1.jpg",
-      "type": "伴生",
+      "type": 0,
       "price": 288
     },
     {
@@ -1380,7 +1380,6 @@
       "desc": "暂时增加免伤",
       "price": 3370,
       "icon": "http://lengyibai.gitee.io/wzry-material/equip/physical/3_12.png",
-      "info": [],
       "effect": [
         {
           "name": "物理攻击",

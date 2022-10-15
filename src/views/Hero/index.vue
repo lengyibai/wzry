@@ -3,14 +3,9 @@
     <div class="HeroMain" :style="{ opacity: show ? 1 : 0 }">
       <LibGridLayout gap="25px" v-if="hero_list.length" :count="count" :eqhMultiple="1.5">
         <transition-group name="Hero" appear>
-          <div
-            class="box"
-            v-for="(item, index) in hero_list"
-            :style="{
-              transitionDelay: 0.025 * index + 's',
-            }"
-            :key="item.id"
-          >
+          <div class="box" v-for="(item, index) in hero_list" :style="{
+            transitionDelay: 0.025 * index + 's',
+          }" :key="item.id">
             <HeroCard :data="item" @view="viewClick(item.id)" />
           </div>
         </transition-group>
@@ -24,19 +19,12 @@
 
     <!--英雄详情页-->
     <transition name="clip">
-      <HeroDetail
-        v-if="show_HeroDetail"
-        v-model="show_HeroDetail"
-        :data="hero_info"
-        :voices="hero_info.voices"
-        :skins="hero_info.skins"
-        :skills="hero_info.skills"
-      />
+      <HeroDetail v-if="show_HeroDetail" v-model="show_HeroDetail" :data="hero_info" :voices="hero_info.voices" :skins="hero_info.skins" :skills="hero_info.skills" />
     </transition>
   </div>
 </template>
 
-<script setup name="Hero">
+<script setup lang="ts">
 import {
   onBeforeUnmount, onMounted, ref, watch,
 } from 'vue';
@@ -51,7 +39,7 @@ import HeroDetail from './childViews/HeroDetail/index.vue';
 const $route = useRoute();
 const $heroStore = heroStore();
 
-const id = $route.query.id;
+const id: unknown = $route.query.id;
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 
@@ -59,6 +47,7 @@ const {
   hero_info, hero_list, show_HeroDetail, show_HeroSidebar, viewClick,
 } = useIntegrationData(id);
 
+/* 监听筛选后的英雄列表 */
 watch(
   () => $heroStore.filter_list,
   (v) => {
@@ -102,59 +91,5 @@ onBeforeUnmount(() => {
 });
 </script>
 <style scoped lang="less">
-.Hero {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  .HeroMain {
-    flex: 1;
-    padding-right: calc(25px * 8);
-    transition: all 0.25s;
-  }
-}
-
-/* 蒙版裁剪 */
-.clip-enter-active {
-  animation: clip-in 1s;
-}
-
-.clip-leave-active {
-  animation: clip-out 1.5s;
-}
-
-@keyframes clip-in {
-  0% {
-    clip-path: polygon(0 0, 0 100%, 0 50%, 0 100%);
-  }
-  50% {
-    clip-path: polygon(0 0, 100% 0, 0 50%, 0% 100%);
-  }
-  100% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-}
-
-@keyframes clip-out {
-  0% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-  50% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 50%);
-  }
-  100% {
-    clip-path: polygon(100% 100%, 100% 0, 100% 100%, 100% 50%);
-  }
-}
-
-/* 进入前状态 */
-.Hero-enter-from,
-.Hero-leave-active {
-  opacity: 0;
-  transform: translateY(-25px);
-}
-/* 进入和离开动画属性 */
-.Hero-leave-active,
-.Hero-enter-active {
-  transition: all 0.25s;
-}
+@import './index.less';
 </style>

@@ -25,17 +25,17 @@
             v-for="(item, index) in form_data"
             :key="item.id"
           >
-            <!--//%%%%········皮肤名········%%%%//-->
+            <!--··皮肤名··-->
             <FormInput label="皮肤编号" required v-model="item.num" placeholder="第几款皮肤" />
             <FormInput label="皮肤名" required v-model="item.name" />
             <FormInput label="价格" v-model="item.price" placeholder="请输入" number />
 
             <!-- 在输入框内部限制数字 -->
 
-            <!--//%%%%········皮肤类型········%%%%//-->
+            <!--··皮肤类型··-->
             <FormSelect label="皮肤类型" required :data="skin_types" v-model="item.type" />
 
-            <!--//%%%%········皮肤头像、海报········%%%%//-->
+            <!--··皮肤头像、海报··-->
             <FormImg
               label="皮肤头像&海报"
               :getLink="getLink"
@@ -44,7 +44,7 @@
               :values="{ head: '头像', img: '海报' }"
             />
 
-            <!--//%%%%········右上角删除········%%%%//-->
+            <!--··右上角删除··-->
             <transition name="fade">
               <LibSvg
                 class="del"

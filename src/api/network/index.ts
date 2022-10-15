@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 //#####··········域名管理··········#####//
 const server = axios.create({
-  baseURL: 'http://localhost:9876'
+  baseURL: 'http://localhost:9876',
 });
 
 //#####·········配置默认请求··········#####//
@@ -35,7 +35,7 @@ export function deleteReq(url: string) {
 //#####·········拦截器··········#####//
 //####·······请求拦截器········####//
 server.interceptors.request.use((config: AxiosRequestConfig) => {
-  config.headers!.authorization = localStorage.getItem('wzryToken') as string;
+  config.headers!.authorization = localStorage.getItem('wzryToken') || '';
   return config;
 });
 //####·······响应拦截器········####//

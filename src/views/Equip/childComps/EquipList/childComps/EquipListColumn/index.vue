@@ -3,25 +3,27 @@
     <EquipCard v-for="(item) in equip_list" :equip="item" :key="item.id" />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref, watch } from 'vue';
+import { Equip } from '@/interface/equip'
 import EquipCard from '../common/EquipCard/index.vue'; //装备卡片
 
-const props = defineProps({
-  equipList: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
+interface Props {
+  equipList: Equip[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  equipList: () => []
 });
 
-const equip_list = ref([]);
-const show = ref(true);
+const equip_list = ref<Equip[]>([]); //装备列表
+const show = ref(true); //淡入显示列表
+
+/* 监听列表，实时更新列表 */
 watch(
   () => props.equipList,
   (v) => {
-    show.value = false;
+    show.value = false; //隐藏，延迟显示
     setTimeout(() => {
       equip_list.value = v;
       show.value = true;
