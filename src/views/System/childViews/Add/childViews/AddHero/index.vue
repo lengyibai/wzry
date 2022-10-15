@@ -13,24 +13,11 @@
 
         <!-- 选择器相关 -->
         <div class="flex-box">
-          <FormSelect
-            v-for="(v, k) in info"
-            :key="k"
-            :label="v[0]"
-            :data="type_list[v[1]]"
-            v-model="form_data[v[2]]"
-            :value="form_data[v[2]]"
-          />
+          <FormSelect v-for="(v, k) in info" :key="k" :label="v[0]" :data="type_list[v[1]]" v-model="form_data[v[2]]" :value="form_data[v[2]]" />
         </div>
 
         <!-- 特长 -->
-        <FormSelect
-          :data="type_list.specialtyType"
-          v-model="specialty_type"
-          :value="specialty_type"
-          label="特长"
-          @change="selectSpecialtyType"
-        />
+        <FormSelect :data="type_list.specialtyType" v-model="specialty_type" :value="specialty_type" label="特长" @change="selectSpecialtyType" />
         <div class="type-list">
           <transition-group name="delspecialtyType">
             <div class="specialty-type" v-for="(item, index) in form_data.specialty" :key="item">
@@ -42,14 +29,7 @@
 
         <!-- 属性相关 -->
         <div class="flex-box">
-          <FormRange
-            :label="v"
-            label-width="200px"
-            :text="form_data[k] + '%'"
-            v-model="form_data[k]"
-            v-for="(v, k) in attr"
-            :key="k"
-          />
+          <FormRange :label="v" label-width="200px" :text="form_data[k] + '%'" v-model="form_data[k]" v-for="(v, k) in attr" :key="k" />
         </div>
 
         <!-- 设置封面 -->
@@ -57,14 +37,7 @@
 
         <!-- 设置头像&海报 -->
         <div class="flex-box">
-          <FormImg
-            labelWidth="240px"
-            label="皮肤头像&海报"
-            :getLink="getLink"
-            :imgs="[form_data.headImg, form_data.poster]"
-            :keys="['headImg', 'poster']"
-            :values="{ headImg: '头像', poster: '海报' }"
-          />
+          <FormImg labelWidth="240px" label="皮肤头像&海报" :getLink="getLink" :imgs="[form_data.headImg, form_data.poster]" :keys="['headImg', 'poster']" :values="{ headImg: '头像', poster: '海报' }" />
         </div>
       </div>
     </transition>
@@ -76,37 +49,33 @@
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="cancel" title="取消" />
 
     <!-- 添加图片链接弹窗组件 -->
-    <AddLink
-      v-model="show_AddLink"
-      :title="AddLink_title"
-      :placeholder="AddLink_placeholder"
-      @get-link="getLink"
-      :keyword="AddLink_key"
-    />
+    <AddLink v-model="show_AddLink" :title="AddLink_title" :placeholder="AddLink_placeholder" @get-link="getLink" :keyword="AddLink_key" />
 
     <!-- 确认关闭 -->
     <ConfirmClose v-model="show_ConfirmClose" @close="close" />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { provide, reactive, ref } from 'vue';
-import { addHero } from '@/api/main/game//index';
-import { addHeroList } from '@/api/main/game//index';
-import { getCampType } from '@/api/main/game/index'; //阵营
-import { getEnergyType } from '@/api/main/game/index'; //能量
-import { getLocationType } from '@/api/main/game/index'; //定位
-import { getPeriodType } from '@/api/main/game/index'; //时期
-import { getProfessionType } from '@/api/main/game/index'; //职业
-import { getSpecialtyType } from '@/api/main/game/index'; //特长
+import {
+  addHero,
+  addHeroList,
+  getCampType,
+  getEnergyType,
+  getLocationType,
+  getPeriodType,
+  getProfessionType,
+  getSpecialtyType,
+} from '@/api/main/game//index';
+import { Hero } from '@/interface/hero'
+import { heroDefault } from '@/interface/defaults'
 import AddHeroCover from './childComps/AddHeroCover/index.vue'; //设置封面
 import viewHide from '../../../../hooks/useViewHide';
 import switchStore from '@/store/globalSwitch';
 
 const $switchStore = switchStore();
 const emit = defineEmits(['update:modelValue']);
-const {
-  show, finish, status, form_data, show_ConfirmClose, cancel, close,
-} = viewHide(emit, 'add_hero');
+const { show, finish, status, form_data, show_ConfirmClose, cancel, close } = viewHide<Hero>(emit, 'add_hero');
 
 const AddLink_set_desc = {
   headImg: '头像链接',
@@ -138,16 +107,7 @@ const AddLink_title = ref(''); //弹窗左上角标题
 const AddLink_placeholder = ref(''); //弹窗输入框描述
 
 if (!form_data.value) {
-  form_data.value = {
-    id: '',
-    name: '',
-    mark: '',
-    identity: '',
-    cover: '',
-    headImg: '',
-    poster: '',
-    specialty: [],
-  };
+  form_data.value = heroDefault;
 }
 
 /* 类型列表 */
@@ -157,6 +117,7 @@ const type_list = reactive({
   locationType: [],
   periodType: [],
   professionType: [],
+  specialtyType: []
 });
 
 setTimeout(async () => {
@@ -178,7 +139,7 @@ setTimeout(async () => {
 
 /* 选择特长后触发 */
 const specialty_type = ref('');
-const selectSpecialtyType = (v) => {
+const selectSpecialtyType = (v: string) => {
   setTimeout(() => {
     form_data.value.specialty.push(v);
     form_data.value.specialty = [...new Set(form_data.value.specialty)];
@@ -199,8 +160,8 @@ const getLink = (link, key) => {
 /* 设置头像及名字 */
 const setKey = (key) => {
   show_AddLink.value = true;
-  AddLink_title.value = `设置${AddLink_set_desc[key]}`;
-  AddLink_placeholder.value = `请输入${AddLink_set_desc[key]}`;
+  AddLink_title.value = `设置${ AddLink_set_desc[key] }`;
+  AddLink_placeholder.value = `请输入${ AddLink_set_desc[key] }`;
   AddLink_key.value = key;
 };
 
@@ -211,9 +172,7 @@ const setValue = (k, v) => {
 
 /* 发布及取消 */
 const commit = async () => {
-  const {
-    id, mark, name, cover, headImg, poster,
-  } = form_data.value;
+  const { id, mark, name, cover, headImg, poster } = form_data.value;
   if (id && mark && name && cover && headImg && poster) {
     await addHero(form_data.value);
     await addHeroList({ id: form_data.value.id, name: form_data.value.name });
@@ -241,20 +200,25 @@ provide('setValue', setValue);
       justify-content: space-evenly;
       margin-top: 25px;
     }
+
     .type-list {
       display: flex;
       min-height: 60px;
       margin-bottom: 25px;
+
       .specialty-type {
         width: fit-content;
         padding: 0.5em 0.5em;
         font-size: 25px;
+
         .name {
           color: var(--theme-color-four);
           margin-right: 0.5em;
         }
+
         .del {
           color: var(--theme-color-three);
+
           &:hover {
             color: var(--red);
           }
@@ -269,14 +233,17 @@ provide('setValue', setValue);
 .delspecialtyType-leave-active {
   opacity: 0;
 }
+
 /* 进入和离开动画属性 */
 .delspecialtyType-leave-active,
 .delspecialtyType-enter-active,
 .delspecialtyType-move {
   transition: all 0.5s;
 }
+
 /* 解决删除元素时，其他元素补位无动画 */
 .delspecialtyType-leave-active {
-  position: absolute; /* 必须为绝对定位 */
+  position: absolute;
+  /* 必须为绝对定位 */
 }
 </style>

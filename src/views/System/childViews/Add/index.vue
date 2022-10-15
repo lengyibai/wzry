@@ -1,13 +1,7 @@
 <template>
   <div class="Add flex" :style="box">
     <transition-group name="Add" appear>
-      <K-ManageCard
-        @click="open(k)"
-        v-for="(v, k) in list"
-        :title="v"
-        :key="k"
-        type="add"
-      />
+      <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="add" />
     </transition-group>
 
     <!--发布列表-->
@@ -16,7 +10,7 @@
     </transition>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { reactive } from 'vue';
 import AddHero from './childViews/AddHero/index.vue'; //英雄
 import AddSkin from './childViews/AddSkin/index.vue'; //皮肤
@@ -29,7 +23,16 @@ import useManageCard from '../../hooks/useManageCard';
 
 const { box, list } = useManageCard;
 const components = [AddHero, AddSkin, AddVoice, AddSkill, AddStory, AddEquip, AddEpigraph];
-const options = reactive({
+
+interface Options {
+  [propName: string]: {
+    i: number,
+    show: boolean
+  }
+}
+
+/* 循环判断打开页面 */
+const options: Options = reactive({
   Hero: {
     i: 0,
     show: false,
@@ -60,59 +63,11 @@ const options = reactive({
   },
 });
 
-const open = (key) => {
+/* 根据点击卡片索引打开页面 */
+const open = (key: string) => {
   options[key].show = true;
 };
 </script>
 <style scoped lang="less">
-.Add {
-}
-
-/* 蒙版裁剪 */
-.clip-enter-active {
-  animation: clip-in 1s;
-}
-
-.clip-leave-active {
-  animation: clip-out 0.35s;
-}
-
-@keyframes clip-in {
-  0% {
-    clip-path: inset(50% 49.75% 50% 49.75%);
-  }
-  50% {
-    clip-path: inset(0 49.75% 0 49.75%);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes clip-out {
-  0% {
-    clip-path: inset(0 0 0 0);
-  }
-  80% {
-    clip-path: inset(49.75% 0 49.75% 0%);
-  }
-  95% {
-    clip-path: inset(49.75% 49.75% 49.75% 49.75%);
-  }
-  100% {
-    clip-path: inset(50% 50% 50% 50%);
-  }
-}
-
-/* 进入前状态 */
-.Add-enter-from,
-.Add-leave-active {
-  opacity: 0;
-  transform: translateY(-25%) scale(1.25);
-}
-/* 进入和离开动画属性 */
-.Add-leave-active,
-.Add-enter-active {
-  transition: all 0.5s;
-}
+@import './index.less';
 </style>

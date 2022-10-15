@@ -1,0 +1,57 @@
+.options {
+
+  .add,
+  .del {
+    margin-left: 25px;
+    font-size: 25px;
+    color: var(--theme-color-three);
+  }
+
+  .del:hover {
+    color: var(--red);
+  }
+
+  .add:hover {
+    color: var(--theme-color-ten);
+  }
+}
+
+.Equip {
+  .content {
+    flex-direction: row;
+
+    .left {
+      position: relative;
+      min-width: 666px;
+      flex: 1;
+      padding: 30px;
+      height: 100%;
+      overflow: auto;
+
+      .equip-effect {
+        margin-bottom: 100px;
+
+        .select-effect {
+          .options();
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .motivation {
+        .box {
+          .options();
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .right {
+      flex: 1;
+      height: 100%;
+      overflow: auto;
+      padding: 30px;
+    }
+  }
+}

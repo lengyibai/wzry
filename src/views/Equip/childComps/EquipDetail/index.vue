@@ -18,14 +18,14 @@
 </template>
 <script setup lang="ts">
 import { Equip } from '@/interface/items'
-import { equip } from '@/interface/defaults'
+import { equipDefault } from '@/interface/defaults';
 
 interface Props {
   equip: Equip;
   show: boolean
 }
 withDefaults(defineProps<Props>(), {
-  equip: () => equip,
+  equip: () => equipDefault,
   show: false
 });
 

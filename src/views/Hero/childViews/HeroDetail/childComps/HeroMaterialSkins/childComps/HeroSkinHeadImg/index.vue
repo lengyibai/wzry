@@ -10,7 +10,7 @@
     </transition>
 
     <!--皮肤头像-->
-    <div class="skin" v-drag="{ handleDrag, index }" v-for="(item, index) in skins" :key="index" :style="{
+    <div class="skin" v-drag="{ fn:handleDrag, index }" v-for="(item, index) in skins" :key="index" :style="{
       transform: show_skin_head ? 'rotate(' + (360 / skins!.length||0) * (index + 1) + 'deg) translateY(-150%)' : '',
     }">
       <img @dragstart.prevent :src="item.head" alt="" />
@@ -21,10 +21,10 @@
 import { onMounted, reactive, ref } from 'vue';
 import heroStore from '@/store/hero';
 import { Hero, Skin } from '@/interface/hero'
-import { hero } from '@/interface/defaults'
+import { heroDefault } from '@/interface/defaults';
 
 const $heroStore = heroStore();
-const hero_data = ref<Hero>(hero); //英雄数据
+const hero_data = ref<Hero>(heroDefault); //英雄数据
 hero_data.value = $heroStore.hero_info
 
 const toggle = ref(true); //用于切换背景

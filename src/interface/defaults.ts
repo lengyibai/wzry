@@ -1,7 +1,7 @@
 import { Hero, Voice, Skill } from './hero';
 import { Equip } from './items';
-import { Epigraph } from './items';
-export const hero: Hero = {
+import { Epigraph, EquipMotivation } from './items';
+export const heroDefault: Hero = {
   id: 0, //标识符
   attack: 0, //攻击
   difficulty: 0, //难度
@@ -32,12 +32,12 @@ export const hero: Hero = {
   skins: [], //皮肤
 };
 
-export const voice: Voice = {
+export const voiceDefault: Voice = {
   desc: '', //语音文字
   voice: '', //语音链接
 };
 
-export const skill: Skill = {
+export const skillDefault: Skill = {
   cd: 0, //技能冷却
   consume: 0, //消耗
   name: '', //名称
@@ -47,9 +47,10 @@ export const skill: Skill = {
   effect: [], //效果
 };
 
-export const equip: Equip = {
+export const equipDefault: Equip = {
   id: 0, //标识符
   level: 0, //等级
+  num: 0, //当前列第几个
   price: 0, //价格
   type: '', //类型
   name: '', //名称
@@ -60,7 +61,14 @@ export const equip: Equip = {
   motivation: [], //动机
 };
 
-export const epigraph: Epigraph = {
+export const equipMotivationDefault: EquipMotivation = {
+  type: '',
+  name: '',
+  desc: '',
+  time: 0,
+};
+
+export const epigraphDefault: Epigraph = {
   name: '', //名称
   type: '', //类型
   img: '', //图标

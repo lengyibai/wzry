@@ -6,36 +6,12 @@
     <p class="content" v-html="hero_data.history"></p>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import heroStore from '@/store/hero';
 
 const $heroStore = heroStore();
 const hero_data = $heroStore.hero_info;
 </script>
 <style scoped lang="less">
-.HeroStory {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  color: var(--white);
-  background-color: rgba(0, 0, 0, 0.5);
-  .title {
-    font-size: 50px;
-    text-align: center;
-    margin-top: 1em;
-    text-shadow: var(--t-shadow);
-  }
-  .content {
-    font-size: 26px;
-    text-indent: 2em;
-    padding: 2em;
-    text-shadow: var(--t-shadow);
-    :deep(p) {
-      text-indent: inherit;
-    }
-    :deep(*) {
-      font-size: inherit;
-    }
-  }
-}
+@import './index.less';
 </style>

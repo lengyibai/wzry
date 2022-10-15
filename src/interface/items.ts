@@ -6,16 +6,17 @@ export interface EquipEffect {
 
 /* 动机信息 */
 export interface EquipMotivation {
-  type: string; //主/被动
+  type: boolean | string; //主/被动
   name: string; //名称
   desc: string; //描述
-  time: string; //冷却时间
+  time: number; //冷却时间
 }
 
 /* 装备信息 */
 export interface Equip {
   id: number; //标识符
   level: number; //等级
+  num: number; //当前列第几个
   price: number; //价格
   type: string; //类型
   name: string; //名称

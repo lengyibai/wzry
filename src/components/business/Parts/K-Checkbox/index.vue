@@ -11,7 +11,7 @@ import { computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
-    type: Boolean,
+    type: [Boolean, String],
     default: false,
   },
   label: {
@@ -28,7 +28,7 @@ const props = defineProps({
   },
 });
 
-const icon = computed(() => new URL(`./img/${props.modelValue}.png`, import.meta.url).href);
+const icon = computed(() => new URL(`./img/${ props.modelValue }.png`, import.meta.url).href);
 
 const emit = defineEmits(['update:modelValue']);
 const fn = () => {
@@ -40,14 +40,17 @@ const fn = () => {
   display: flex;
   align-items: center;
   margin-bottom: 35px;
+
   .label {
     position: relative;
     margin-right: 0.25em;
     color: var(--theme-color-eight);
     text-align: right;
     font-size: 30px;
+
     span {
       position: relative;
+
       .star {
         position: absolute;
         left: 0;
@@ -57,6 +60,7 @@ const fn = () => {
       }
     }
   }
+
   img {
     width: 30px;
     height: 30px;

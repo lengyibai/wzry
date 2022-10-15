@@ -19,12 +19,12 @@
 </template>
 <script setup lang="ts">
 import { Skill } from '@/interface/hero';
-import { skill } from '@/interface/defaults';
+import { skillDefault } from '@/interface/defaults';
 interface Props {
   activeSkill: Skill;
 }
 withDefaults(defineProps<Props>(), {
-  activeSkill: () => skill,
+  activeSkill: () => skillDefault,
 });
 </script>
 <style scoped lang="less">

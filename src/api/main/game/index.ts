@@ -1,5 +1,4 @@
 import { getReq, postReq, patchReq, deleteReq } from '@/api/network';
-import { Hero } from '@/interface/hero'
 
 interface Params {
   id: Number
@@ -20,23 +19,23 @@ export const getSkillType = (data: Params) => getReq('/skillType', data);
 //获取关系表
 export const getRelation = (data: Params) => getReq('/relation', data);
 //获取职业类型
-export const getProfessionType = (data: Params) => getReq('/professionType', data);
+export const getProfessionType = (data?: Params) => getReq('/professionType', data);
 //获取阵营类型
-export const getCampType = (data: Params) => getReq('/campType', data);
+export const getCampType = (data?: Params) => getReq('/campType', data);
 //获取能量类型
-export const getEnergyType = (data: Params) => getReq('/energyType', data);
+export const getEnergyType = (data?: Params) => getReq('/energyType', data);
 //获取定位类型
-export const getLocationType = (data: Params) => getReq('/locationType', data);
+export const getLocationType = (data?: Params) => getReq('/locationType', data);
 //获取时期类型
-export const getPeriodType = (data: Params) => getReq('/periodType', data);
+export const getPeriodType = (data?: Params) => getReq('/periodType', data);
 //获取特长类型
-export const getSpecialtyType = (data: Params) => getReq('/specialtyType', data);
+export const getSpecialtyType = (data?: Params) => getReq('/specialtyType', data);
 //获取装备
 export const getEquip = (data?: Params) => getReq('/equip', data);
 //获取装备类型
-export const getEquipType = (data: Params) => getReq('/equipType', data);
+export const getEquipType = (data?: Params) => getReq('/equipType', data);
 //获取装备效果
-export const getEquipEffect = (data: Params) => getReq('/equipEffect', data);
+export const getEquipEffect = (data?: Params) => getReq('/equipEffect', data);
 //获取铭文
 export const getEpigraph = (data?: Params) => getReq('/epigraph', data);
 //获取铭文类型

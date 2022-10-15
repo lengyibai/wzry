@@ -13,16 +13,18 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Equip } from '@/interface/items'
-import { equip } from '@/interface/defaults'
+import { Equip } from '@/interface/items';
+import { equipDefault } from '@/interface/defaults';
 import equipStore from '@/store/equip';
 
 interface Props {
-  equip: Equip
+  equip: Equip;
 }
 withDefaults(defineProps<Props>(), {
-  equip: () => equip,
-  show: false
+  equip: () => {
+    return equipDefault;
+  },
+  show: false,
 });
 const $equipStore = equipStore();
 

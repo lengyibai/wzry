@@ -25,9 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  onBeforeUnmount, onMounted, ref, watch,
-} from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import $bus from '@/utils/eventBus';
 import heroStore from '@/store/hero';
@@ -39,13 +37,11 @@ import HeroDetail from './childViews/HeroDetail/index.vue';
 const $route = useRoute();
 const $heroStore = heroStore();
 
-const id: unknown = $route.query.id;
+const id: unknown = $route.query.id; //地址栏参数
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 
-const {
-  hero_info, hero_list, show_HeroDetail, show_HeroSidebar, viewClick,
-} = useIntegrationData(id);
+const { hero_info, hero_list, show_HeroDetail, show_HeroSidebar, viewClick } = useIntegrationData(id);
 
 /* 监听筛选后的英雄列表 */
 watch(
@@ -57,7 +53,7 @@ watch(
       show.value = true;
     }, 250);
   },
-  { deep: true, immediate: true },
+  { deep: true, immediate: true }
 );
 
 onMounted(() => {

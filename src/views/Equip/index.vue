@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="EquipMain" v-if="show_EquipSidebar">
         <EquipList />
-        <EquipDetail :show="show_Details" :equip="equip" />
+        <EquipDetail :show="show_Details" :equip="equip_data" />
       </div>
     </transition>
     <transition name="sidebar">
@@ -20,12 +20,12 @@ import EquipDetail from './childComps/EquipDetail/index.vue'; //装备详情
 import EquipSidebar from './childComps/EquipSidebar/index.vue'; //右侧边栏
 
 import { Equip } from '@/interface/items'
-import { equip } from '@/interface/defaults'
+import { equipDefault } from '@/interface/defaults';
 
 
 const $equiqStore = equiqStore();
 
-const equip_data = ref<Equip | undefined>(equip); //被点击的装备信息
+const equip_data = ref<Equip | undefined>(equipDefault); //被点击的装备信息
 const show_Details = ref(false); //显示装备详情
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 

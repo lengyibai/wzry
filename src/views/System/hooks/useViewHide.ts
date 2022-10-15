@@ -1,13 +1,13 @@
 import { ref } from 'vue';
 
-export default (emit, key) => {
+export default <T>(emit: (event: 'update:modelValue', ...args: any[]) => void, key: string) => {
   const show = ref(false);
-  const timer = ref(null);
+  const timer = ref(0);
   const finish = ref(false); //是否发布成功
   const status = ref(0); //发布状态
   const hero_id = ref(null); //发布状态
   const show_ConfirmClose = ref(false); //是否显示确认关闭弹窗
-  const form_data = ref(null);
+  const form_data = ref<T>();
 
   /* 判断是否存在草稿 */
   const cache = localStorage.getItem(key);
@@ -23,7 +23,7 @@ export default (emit, key) => {
       JSON.stringify({
         hero_id: hero_id.value,
         form_data: form_data.value,
-      }),
+      })
     );
   }, 1000);
 
@@ -32,7 +32,7 @@ export default (emit, key) => {
     show_ConfirmClose.value = true;
   };
 
-  const close = (status) => {
+  const close = (status?: number) => {
     clearInterval(timer.value);
     if (!status) {
       localStorage.removeItem(key);

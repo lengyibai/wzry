@@ -11,14 +11,14 @@
 </template>
 <script setup lang="ts">
 import { Epigraph } from '@/interface/items'
-import { epigraph } from '@/interface/defaults'
+import { epigraphDefault } from '@/interface/defaults';
 
 interface Props {
   data: Epigraph
 }
 
 withDefaults(defineProps<Props>(), {
-  data: () => epigraph
+  data: () => epigraphDefault
 })
 </script>
 <style scoped lang="less">

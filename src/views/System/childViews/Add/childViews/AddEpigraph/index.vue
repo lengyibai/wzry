@@ -14,21 +14,26 @@
     <LibCancelBtn class="LibCancelBtn" size="50px" @close="close" title="取消" />
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import viewHide from '../../../../hooks/useViewHide';
 import switchStore from '@/store/globalSwitch';
 
-const emit = defineEmits(['update:modelValue']);
-const { show, finish, close } = viewHide(emit);
-
 const $store = switchStore();
+
+const emit = defineEmits<{
+  (e: 'update:modelValue'): void
+}>();
+
+const { show, finish, close } = viewHide(emit, "add_epigraph");
+
+/* 延迟显示页面 */
 setTimeout(async () => {
   $store.$loading.show('正在加载');
-  $store.$loading.close().then(() => {
-    show.value = true;
-  });
+  await $store.$loading.close()
+  show.value = true;
 }, 1000);
 
+/* 提交表单 */
 const commit = () => {
   setTimeout(() => {
     finish.value = true;
@@ -40,7 +45,6 @@ const commit = () => {
 </script>
 <style scoped lang="less">
 .Epigraph {
-  .content {
-  }
+  .content {}
 }
 </style>

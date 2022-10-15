@@ -1,3 +1,5 @@
+import { StyleValue } from 'vue';
+
 export default {
   box: {
     position: 'relative',
@@ -22,4 +24,9 @@ export default {
     { name: "铭文类型", key: "" },
     { name: "铭文效果", key: "" }, */
   },
+} as {
+  box: StyleValue;
+  list: {
+    [propName: string]: string;
+  };
 };

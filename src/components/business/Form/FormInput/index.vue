@@ -41,7 +41,7 @@ import { ref, toRefs } from 'vue';
 const props = defineProps({
   /* 值 */
   modelValue: {
-    type: String,
+    type: String | Number,
     default: '',
   },
   /* 是否禁用 */

@@ -1,14 +1,14 @@
 import { defineStore } from 'pinia';
 import { Hero } from '@/interface/hero';
 import { HeroState } from './interface';
-import { hero } from '@/interface/defaults';
+import { heroDefault } from '@/interface/defaults';
 
 export default defineStore('hero', {
   state: (): HeroState => ({
     profession: '全部',
     hero_list: [],
     filter_list: [],
-    hero_info: hero,
+    hero_info: heroDefault,
   }),
   actions: {
     /* 设置英雄列表 */

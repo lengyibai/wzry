@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { getHero, getSkin } from '@/api/main/game';
 import { useRouter } from 'vue-router';
 import { Hero } from '@/interface/hero';
-import { hero } from '@/interface/defaults';
+import { heroDefault } from '@/interface/defaults';
 import heroStore from '@/store/hero';
 import switchStore from '@/store/globalSwitch';
 
@@ -11,7 +11,7 @@ export default (id: number | unknown) => {
   const $switchStore = switchStore();
   const $heroStore = heroStore();
 
-  const hero_info = ref<Hero>(hero); //英雄信息
+  const hero_info = ref<Hero>(heroDefault); //英雄信息
   const hero_list = ref<Hero[]>([]); //英雄列表
   const show_HeroDetail = ref(false); //显示英雄详情
   const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
