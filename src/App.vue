@@ -9,6 +9,7 @@
     <!-- 全局开关 -->
     <GlobalSwitch />
     <div class="watermark">
+      <p>浏览器内核版本：{{ $chromeV() }}</p>
       <p>当前版本：{{ LOCAL_VERSION }}</p>
       <p>最新版本：{{ REMOTE_VERSION }}</p>
     </div>
@@ -16,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+import { $chromeV } from "@/utils/index";
 import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
 import useGetData from "@/hooks/useGetData";
 import useVersion from "@/hooks/useVersion";
