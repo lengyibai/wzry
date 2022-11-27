@@ -1,0 +1,35 @@
+.her-skin-type {
+  display: flex;
+  justify-content: center;
+  transform: translateY(25%);
+
+  span {
+    margin-top: 0.5em;
+    font-size: 50px;
+  }
+
+  img {
+    height: 50px;
+    filter: drop-shadow(0 3px 3px #000);
+  }
+}
+
+.updown-enter-from {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.updown-leave-active {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.updown-leave-active,
+.updown-enter-active {
+  transition: all 0.5s;
+}
+
+.updown-move {
+  transition: all 0.5s;
+}

@@ -1,0 +1,37 @@
+<template>
+  <div class="hero-skill-icon">
+    <div class="icon" ref="skillImg" v-for="(item, index) in hero_data.skills" :key="index">
+      <transition name="border-fade">
+        <div class="border" v-show="currentIndex === index"></div>
+      </transition>
+      <img :src="item.img" @click="selectSkill(index)" />
+      <img :src="item.img" :class="{ active: currentIndex === index }" />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from "vue";
+import { $deepCopy } from "@/utils";
+import { heroDefault } from "@/defaultValue/defaults";
+import heroStore from "@/store/hero";
+
+const $heroStore = heroStore();
+
+const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
+hero_data.value = $heroStore.hero_info;
+const currentIndex = ref(0); //处于展示的技能索引
+
+/* 点击需要展示的技能 */
+const emit = defineEmits<{
+  (e: "select-skill", index: number): void;
+}>();
+
+/* 点击技能后传递索引号 */
+const selectSkill = (index: number) => {
+  currentIndex.value = index;
+  emit("select-skill", index);
+};
+</script>
+<style scoped lang="less">
+@import url("./index.less");
+</style>

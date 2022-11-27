@@ -1,0 +1,55 @@
+.hero {
+  .content {
+    .flex-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin-top: 25px;
+    }
+
+    .type-list {
+      display: flex;
+      min-height: 60px;
+      margin-bottom: 25px;
+
+      .specialty-type {
+        width: fit-content;
+        padding: 0.5em;
+        font-size: 25px;
+
+        .name {
+          margin-right: 0.5em;
+          color: var(--theme-color-four);
+        }
+
+        .del {
+          color: var(--theme-color-three);
+
+          &:hover {
+            color: var(--red);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* 进入前状态 */
+.delspecialty-type-enter-from,
+.delspecialty-type-leave-active {
+  opacity: 0;
+}
+
+/* 进入和离开动画属性 */
+.delspecialty-type-leave-active,
+.delspecialty-type-enter-active,
+.delspecialty-type-move {
+  transition: all 0.5s;
+}
+
+/* 解决删除元素时，其他元素补位无动画 */
+.delspecialty-type-leave-active {
+  position: absolute;
+
+  /* 必须为绝对定位 */
+}

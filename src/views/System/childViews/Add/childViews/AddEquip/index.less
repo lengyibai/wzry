@@ -1,0 +1,58 @@
+.options {
+  .add,
+  .del {
+    margin-left: 25px;
+    color: var(--theme-color-three);
+    font-size: 25px;
+  }
+
+  .del:hover {
+    color: var(--red);
+  }
+
+  .add:hover {
+    color: var(--theme-color-ten);
+  }
+}
+
+.equip {
+  .content {
+    flex-direction: row;
+
+    .left {
+      position: relative;
+      overflow: auto;
+      min-width: 666px;
+      height: 100%;
+      padding: 30px;
+      flex: 1;
+
+      .equip-effect {
+        margin-bottom: 100px;
+
+        .select-effect {
+          .options();
+
+          display: flex;
+          align-items: center;
+        }
+      }
+
+      .motivation {
+        .box {
+          .options();
+
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+
+    .right {
+      overflow: auto;
+      height: 100%;
+      padding: 30px;
+      flex: 1;
+    }
+  }
+}

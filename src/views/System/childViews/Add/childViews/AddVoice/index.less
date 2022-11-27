@@ -1,0 +1,69 @@
+.voice {
+  .content {
+    justify-content: center;
+
+    .voice-list {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 10px;
+
+      .voice {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100vw;
+        height: 35px;
+        margin-bottom: 20px;
+        flex-direction: column;
+
+        .desc {
+          position: absolute;
+          color: var(--theme-color-four);
+          font-size: 35px;
+        }
+
+        .voice-box {
+          position: absolute;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+
+    .add-box {
+      position: relative;
+      bottom: 0;
+      display: flex;
+      width: 50%;
+    }
+
+    .iconfont {
+      color: var(--theme-color-seven);
+      font-size: 50px;
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+}
+
+.voice-box-enter,
+.voice-box-leave-active {
+  opacity: 0;
+}
+
+.voice-box-enter-active,
+.voice-box-leave-active {
+  transition: all 0.5s;
+}
+
+.fade-move {
+  transition: all 0.5s;
+}
+
+/* 解决删除元素时，其他元素补位无动画 */
+.fade-leave-active {
+  position: absolute; /* 必须为绝对定位 */
+}

@@ -1,0 +1,63 @@
+.lib-commit-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+
+  img {
+    width: 75%;
+    height: 75%;
+
+    &.up {
+      transition: all 1s cubic-bezier(1, -0.67, 0.5, 1);
+    }
+  }
+}
+
+.move {
+  transform: translateX(200%) translateY(-200%);
+}
+
+.rotate {
+  animation: rotate 1s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.25s;
+}
+
+.fade-leave-active {
+  position: absolute;
+}
+
+.bounce-enter-from,
+.bounce-leave-active {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.bounce-leave-active,
+.bounce-enter-active {
+  transition: all 0.5s 0.2s;
+}
+
+.bounce-leave-active {
+  position: absolute;
+}

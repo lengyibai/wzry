@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/wzry.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.45" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3767305_8qnzgmapcqn.css" />
+    <title>Vite + Vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      const scripts = document.createElement("script");
+      document.body.append(scripts);
+      scripts.setAttribute(
+        "src",
+        `https://lengyibai.gitee.io/wzry-background-management-system-version/version.js?temp=${Math.random()}`
+      );
+    </script>
+  </body>
+</html>

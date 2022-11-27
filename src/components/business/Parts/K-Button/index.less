@@ -1,0 +1,30 @@
+.K-Button {
+  position: relative;
+  color: var(--white);
+
+  &:active {
+    img {
+      filter: contrast(1.1) brightness(0.9);
+    }
+  }
+
+  span {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    user-select: none;
+    margin-top: 4px;
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: filter 0.05s;
+  }
+}
+
+.auto {
+  width: 100%;
+  height: 100%;
+}

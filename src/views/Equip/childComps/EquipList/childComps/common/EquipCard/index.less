@@ -1,0 +1,79 @@
+.equip-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+
+  .border {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 75px;
+    height: 75px;
+    border: 5px solid #fef5b2;
+    border-radius: 50%;
+    pointer-events: none;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 10px;
+      box-sizing: border-box;
+    }
+
+    &::before {
+      top: -4px;
+      border-color: #fff498 transparent transparent;
+    }
+
+    &::after {
+      bottom: -4px;
+      border-color: transparent transparent #fff498;
+    }
+  }
+
+  img {
+    width: 75px;
+    height: 75px;
+    margin-right: 5px;
+    border: 3px solid var(--theme-color-two);
+    border-radius: 50%;
+  }
+
+  .box {
+    color: var(--theme-color-nine);
+    font-size: 20px;
+    text-shadow: var(--t-shadow);
+
+    .name {
+      font-size: inherit;
+    }
+
+    .desc {
+      color: var(--theme-color-seven);
+      font-size: 16px;
+    }
+
+    .price {
+      color: var(--theme-color-five);
+      font-size: 16px;
+    }
+  }
+}
+
+.border-fade-enter-from,
+.border-fade-leave-to {
+  opacity: 0;
+}
+
+.border-fade-enter-active {
+  transition: all 0.25s;
+}
+
+.border-fade-leave-active {
+  transition: all 0.25s;
+}

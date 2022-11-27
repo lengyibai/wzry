@@ -1,0 +1,35 @@
+.epigraph-card {
+  position: relative;
+  padding: 20px 0;
+  box-shadow: var(--b-shadow);
+  background-color: var(--black-25);
+  background-color: rgb(27 43 66 / 50%);
+
+  img {
+    width: 100px;
+    margin-right: 25px;
+    filter: drop-shadow(0 3px 3px #000);
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--white);
+    text-shadow: var(--t-shadow);
+
+    .name {
+      margin-bottom: 10px;
+      font-size: 26px;
+    }
+
+    .attr {
+      color: var(--theme-color-nine);
+
+      .type {
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+    }
+  }
+}

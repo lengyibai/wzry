@@ -1,0 +1,49 @@
+.SelectImg {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background-color: transparent;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .iconfont {
+    color: var(--theme-color-eight);
+    font-size: 50px;
+  }
+}
+
+.border {
+  border: 3px solid var(--theme-color-eight);
+
+  &:hover {
+    border-style: dashed;
+    border-color: var(--theme-color-four);
+
+    .iconfont {
+      color: var(--theme-color-four);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.width {
+  width: 200px !important;
+  height: 100px !important;
+}
+
+.height {
+  width: 100px !important;
+  height: 200px !important;
+}
+
+.square {
+  width: 100px !important;
+  height: 100px !important;
+}

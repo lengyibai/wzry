@@ -1,0 +1,60 @@
+<template>
+  <div
+    class="hero-card cursor-pointer"
+    v-maskGradient
+    v-sweepLight
+    @mouseenter="show = true"
+    @mouseleave="show = false"
+  >
+    <div class="id">No.{{ data.id }}</div>
+    <transition name="fade">
+      <div class="select-mask" v-if="show">
+        <img :src="data.headImg" class="head" />
+        <h1
+          class="view cursor-pointer"
+          @click="viewClick"
+          @mouseenter="lineActive = true"
+          @mouseleave="lineActive = false"
+          v-textHoverColor
+        >
+          查看详情
+        </h1>
+        <div class="line" :class="{ 'line-active': lineActive }" ref="line"></div>
+      </div>
+    </transition>
+
+    <img class="bg" :src="data.cover" />
+    <div class="bottom">
+      <div class="name">{{ data.name }}</div>
+      <div class="mark">{{ data.mark }}</div>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from "vue";
+import { heroDefault } from "@/defaultValue/defaults";
+
+interface Props {
+  data: typeof heroDefault; //英雄数据
+}
+interface Emits {
+  (e: "view"): void;
+}
+
+withDefaults(defineProps<Props>(), {
+  data: () => heroDefault,
+});
+
+const emit = defineEmits<Emits>();
+
+const show = ref(false); //显示查看详情选项
+const lineActive = ref(false); //悬浮文字底部线条
+
+/* 查看详情 */
+const viewClick = () => {
+  emit("view");
+};
+</script>
+<style scoped lang="less">
+@import url("./index.less");
+</style>

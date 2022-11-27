@@ -1,0 +1,58 @@
+.K-Message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100vw;
+  height: 100%;
+  background-image: linear-gradient(180deg, #000 -25%, transparent 25%);
+  pointer-events: none;
+
+  .message {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: fit-content;
+    padding: 15px 50px;
+    border-radius: 0 0 10px 10px;
+    transition: all 0.5s;
+    transform: translateX(-50%) translateY(-3px);
+
+    span {
+      z-index: 2;
+      color: var(--theme-color-five);
+      font-size: 20px;
+    }
+
+    .bg {
+      position: absolute;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      // pointer-events: none;
+      filter: brightness(1.35);
+      opacity: 0.75;
+
+      img {
+        height: 100%;
+
+        &:nth-of-type(2) {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+/* 消息框 */
+.message-enter-from {
+  transform: translateX(-50%) translateY(-100%) !important;
+}
+
+.message-leave-to {
+  opacity: 0;
+}

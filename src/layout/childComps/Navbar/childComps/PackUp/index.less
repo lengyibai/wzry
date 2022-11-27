@@ -1,0 +1,17 @@
+.pack-up {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-right: 20px;
+  transition: transform 0.25s;
+  vertical-align: middle;
+  fill: var(--theme-color-five);
+
+  &:hover {
+    fill: var(--white);
+  }
+}
+
+.pack-up.is-active {
+  transform: rotate(180deg);
+}

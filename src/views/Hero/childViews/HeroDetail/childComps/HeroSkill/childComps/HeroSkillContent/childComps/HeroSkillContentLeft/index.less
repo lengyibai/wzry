@@ -1,0 +1,45 @@
+.hero-skill-content-left {
+  display: flex;
+  justify-content: flex-end;
+  width: 45%;
+  flex-direction: column;
+
+  .name-type {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    .name {
+      margin-right: 15px;
+      font-size: 50px;
+      text-shadow: var(--t-shadow);
+    }
+  }
+
+  .cd-consume {
+    display: flex;
+    margin-bottom: 15px;
+
+    .cd,
+    .consume,
+    .passive {
+      margin-right: 35px;
+      font-size: 35px;
+      text-shadow: var(--t-shadow);
+    }
+
+    .passive {
+      color: var(--gray);
+    }
+  }
+
+  .desc {
+    font-size: 26px;
+    text-shadow: var(--t-shadow);
+
+    :deep(*) {
+      font-size: inherit;
+    }
+  }
+}

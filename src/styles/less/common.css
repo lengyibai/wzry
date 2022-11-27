@@ -1,0 +1,67 @@
+/* 鼠标样式 */
+.cursor-default {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto !important;
+}
+
+.cursor-pointer {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto !important;
+}
+
+.cursor-pointer svg {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto !important;
+}
+
+.cursor-not-allowed {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/not-allowed.png"), auto !important;
+}
+
+.cursor-text {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto !important;
+}
+
+/* 文字渐变 */
+.text-gradient-one {
+  color: transparent;
+  background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
+  background-clip: text;
+}
+
+/* 溢出省略号显示单行 */
+.lyb-one-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+/* 溢出省略号显示多行 */
+.lyb-two-line,
+.lyb-three-line {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.lyb-two-line {
+  -webkit-line-clamp: 2;
+}
+
+.lyb-three-line {
+  -webkit-line-clamp: 3;
+}
+
+/* 按钮必加 */
+.lyb-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+/* 布局 */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

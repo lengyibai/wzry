@@ -1,0 +1,39 @@
+.side-bar {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  flex-direction: column;
+
+  .game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+
+    .iconfont {
+      margin-right: 10px;
+      color: var(--theme-color-five);
+      font-size: 50px;
+    }
+
+    span {
+      overflow: hidden;
+      color: var(--theme-color-five);
+      font-size: 30px;
+    }
+  }
+
+  .side-item {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 250px;
+    flex-direction: column;
+  }
+
+  .box {
+    position: relative;
+    flex: 1;
+  }
+}
+

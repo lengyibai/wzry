@@ -1,0 +1,38 @@
+.attribute {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  margin-bottom: 15px;
+
+  span {
+    margin-right: 1em;
+    color: #fff;
+    font-size: 26px;
+    text-shadow: var(--t-shadow);
+  }
+
+  .ico {
+    width: 26px;
+    height: 26px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-image: url('https://lengyibai.gitee.io/wzry-material/image/attribute.png');
+  }
+
+  .bar {
+    position: relative;
+    width: 200px;
+    height: 10px;
+    border-radius: 0 4px 4px 0;
+    background-color: #000;
+
+    i {
+      position: absolute;
+      width: 0%;
+      height: 100%;
+      border-radius: 0 5px 5px 0;
+      background-color: #fff;
+      transition: all 0.5s;
+    }
+  }
+}

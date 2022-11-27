@@ -1,0 +1,87 @@
+.LibDeleteBtn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+
+  .del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+
+    img {
+      position: absolute;
+      transition: all 0.5s;
+
+      &.lid {
+        width: 65%;
+        transform: translateY(-30%);
+      }
+
+      &.bucket {
+        width: 45%;
+        transform: translateY(10%);
+      }
+    }
+  }
+
+  img {
+    width: 75%;
+    height: 75%;
+  }
+}
+
+.moveUp {
+  transform: translateY(calc(-100% - 65px)) !important;
+}
+
+.moveDown {
+  transform: translateY(calc(100% + 21px)) !important;
+}
+
+.rotate {
+  animation: rotate 1s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.25s;
+}
+
+.fade-leave-active {
+  position: absolute;
+}
+
+.bounce-enter-from,
+.bounce-leave-active {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.bounce-leave-active,
+.bounce-enter-active {
+  transition: all 0.5s 0.2s;
+}
+
+.bounce-leave-active {
+  position: absolute;
+}

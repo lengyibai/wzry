@@ -1,0 +1,71 @@
+.hero {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  .hero-main {
+    flex: 1;
+    padding-right: calc(25px * 8);
+    transition: all 0.25s;
+  }
+}
+
+/* 蒙版裁剪 */
+.clip-enter-active {
+  animation: clip-in 1s;
+}
+
+.clip-leave-active {
+  animation: clip-out 1.5s;
+}
+
+@keyframes clip-in {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 50%, 0 100%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 0 50%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes clip-out {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 50%);
+  }
+
+  100% {
+    clip-path: polygon(100% 100%, 100% 0, 100% 100%, 100% 50%);
+  }
+}
+
+/* 进入前状态 */
+.hero-list-enter-from {
+  opacity: 0;
+}
+
+/* 进入和离开动画属性 */
+.hero-list-enter-active {
+  transition: all 0.25s;
+}
+
+
+
+/* 进入前状态 */
+.hero-enter-from {
+  opacity: 0;
+  transform: translateY(-25px);
+}
+
+/* 进入和离开动画属性 */
+.hero-enter-active {
+  transition: all 0.25s;
+}

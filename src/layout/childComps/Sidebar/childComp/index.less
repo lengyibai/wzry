@@ -1,0 +1,61 @@
+.menu {
+  position: relative;
+  display: flex;
+  width: 100%;
+  color: var(--theme-color-five);
+  font-size: 20px;
+  flex-direction: column;
+  user-select: none;
+  cursor: pointer;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+
+  &:hover {
+    color: var(--blue);
+  }
+
+  .iconfont  {
+    margin-right: 15px;
+    font-size: 35px;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 25px;
+    transition: all 0.25s;
+    transform: translate(-100%, -50%);
+  }
+}
+
+.menu-list {
+  font-size: 20px;
+}
+
+.active {
+  background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%);
+  color: #fff !important;
+}
+
+.arrow-active {
+  transform: translate(-100%, -50%) rotate(180deg) !important;
+}
+
+/* 进入前状态 */
+.menu-list-enter-from,
+.menu-list-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+/* 进入和离开动画属性 */
+.menu-list-leave-active,
+.menu-list-enter-active {
+  transition: all 0.25s;
+}

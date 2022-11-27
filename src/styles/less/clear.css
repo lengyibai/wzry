@@ -1,0 +1,107 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.25;
+}
+
+html {
+  overflow: auto;
+}
+
+/* 滚动条整体背景 */
+*::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+/* 外层轨道 */
+*::-webkit-scrollbar-track {
+  border-radius: 2px;
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background: rgb(255 255 255 / 25%);
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(255 255 255 / 50%);
+}
+
+/* 滚动条里面可以拖动的那部分 */
+*::-webkit-scrollbar-thumb:active {
+  background-color: rgb(255 255 255 / 75%);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+img,
+a {
+  /* 禁用手机端长按页面弹出菜单 */
+  -webkit-touch-callout: none;
+}
+
+img {
+  /* 禁止用户鼠标在页面上选中文字/图片等 */
+  user-select: none;
+
+  /* 清除图片与图片、文字之间的缝隙缝隙 */
+  vertical-align: middle;
+}
+
+img:not([src]) {
+  /* 使用图片标签，但没有图片，则隐藏 */
+  display: none;
+}
+
+button,
+input,
+select,
+textarea {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  /* 禁止用户拖拽文本域 */
+  resize: none;
+}
+
+textarea::-webkit-scrollbar {
+  /* 隐藏滚动条但能滚动 */
+  display: none;
+}
+
+input {
+  /* 在移动端iOS加上这个属性才能修改input样式 */
+  appearance: none;
+}
+
+label {
+  margin-bottom: 0;
+}

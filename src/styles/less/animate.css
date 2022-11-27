@@ -1,0 +1,167 @@
+/* 淡入淡出 */
+.fade-enter-from,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.5s;
+}
+
+.fade-leave-active {
+  transition: all 0.25s;
+}
+
+.fade-a-enter-from,
+.fade-a-leave-active {
+  opacity: 0;
+}
+
+.fade-a-enter-active,
+.fade-a-leave-active,
+.fade-a-move {
+  transition: all 0.25s;
+}
+
+.fade-a-leave-active {
+  position: absolute;
+}
+
+/* 侧边栏出场 */
+.sidebar-enter-from {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.sidebar-leave-to {
+  opacity: 0;
+}
+
+.sidebar-leave-active,
+.sidebar-enter-active {
+  transition: all 0.25s;
+}
+
+/* 输入框线条 */
+.border-enter-from,
+.border-leave-active {
+  width: 0% !important;
+}
+
+.border-leave-active,
+.border-enter-active {
+  transition: all 0.5s;
+}
+
+/* 输入框不合法 */
+.tip-leave-active {
+  height: 0 !important;
+  transition: all 0.5s;
+}
+
+/* 选择器列表内容动画 */
+.select-list-enter-from,
+.select-list-leave-active {
+  opacity: 0;
+}
+
+.select-list-leave-active,
+.select-list-enter-active {
+  transition: all 0.5s;
+}
+
+.select-list-move {
+  transition: all 0.5s;
+}
+
+.select-list-leave-active {
+  position: absolute;
+}
+
+/* 提交成功√放大显示 */
+.bounce-enter-from,
+.bounce-leave-active {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.bounce-leave-active,
+.bounce-enter-active {
+  transition: all 0.5s 0.2s;
+}
+
+.bounce-leave-active {
+  position: absolute;
+}
+
+/* 电视开关动画 */
+.tv-clip-enter-active {
+  animation: tv-clip-in 1s;
+}
+
+.tv-clip-leave-active {
+  animation: tv-clip-out 0.35s;
+}
+
+@keyframes tv-clip-in {
+  0% {
+    clip-path: inset(50% 49.75% 50% 49.75%);
+  }
+
+  50% {
+    clip-path: inset(0 49.75% 0 49.75%);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes tv-clip-out {
+  0% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  80% {
+    clip-path: inset(49.75% 0 49.75% 0%);
+  }
+
+  95% {
+    clip-path: inset(49.75% 49.75% 49.75% 49.75%);
+  }
+
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+  }
+}
+
+/* 圆形路由跳转 */
+
+/* 蒙版裁剪 */
+.round-clip-enter-active {
+  animation: round-clip-in 0.75s;
+}
+
+.round-clip-leave-active {
+  animation: round-clip-out 1.25s;
+}
+
+@keyframes round-clip-in {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  100% {
+    clip-path: circle(100% at 50% 50%);
+  }
+}
+
+@keyframes round-clip-out {
+  0% {
+    clip-path: circle(100% at 50% 50%);
+  }
+
+  100% {
+    clip-path: circle(0% at 50% 50%);
+  }
+}

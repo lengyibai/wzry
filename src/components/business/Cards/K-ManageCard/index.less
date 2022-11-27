@@ -1,0 +1,37 @@
+.K-ManageCard {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  margin: 40px;
+  box-shadow: var(--b-shadow);
+
+  .box {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+
+    .iconfont {
+      color: #fff;
+      font-size: 75px;
+      opacity: 0.25;
+    }
+
+    .title {
+      margin-top: 0.75em;
+      color: rgb(255 255 255 / 50%);
+      font-size: 35px;
+    }
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+  }
+}
