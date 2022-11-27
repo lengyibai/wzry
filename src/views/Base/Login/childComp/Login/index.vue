@@ -25,6 +25,7 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
+import { ACCOUNT } from "@/config/config";
 import LoginBtn from "./childComps/LoginBtn/index.vue";
 import authStore from "@/store/auth";
 
@@ -32,7 +33,7 @@ import authStore from "@/store/auth";
 
 /* 表单 */
 const form = reactive({
-  id: 3080572703,
+  id: ACCOUNT,
   password: "lengyibai.",
 });
 /* 注册及登录状态下要显示的输入框及按钮 */
