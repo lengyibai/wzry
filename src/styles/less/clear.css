@@ -83,6 +83,12 @@ textarea {
   outline: none;
 }
 
+button{
+  border: none;
+  user-select: none;
+  background-color: transparent;
+}
+
 input:focus {
   outline: none;
 }

@@ -7,7 +7,7 @@
 
     <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
       <!-- 选择器框 -->
-      <div class="select-box cursor-pointer" ref="selectBox">
+      <div class="select-box" ref="selectBox">
         <input
           type="text"
           ref="input"
@@ -43,7 +43,7 @@
       <!-- 展开列表 -->
       <div class="select-list" :class="{ unfold: !is_unfold }">
         <transition-group name="select-list">
-          <div
+          <button
             class="box"
             :class="{
               active: currentIndex === index || modelValue === item.name || modelValue === item.id,
@@ -54,8 +54,8 @@
             @mouseleave="currentIndex = null"
             :key="item.id"
           >
-            <div class="item cursor-pointer">{{ item.name }}</div>
-          </div>
+            <div class="item">{{ item.name }}</div>
+          </button>
         </transition-group>
       </div>
     </div>

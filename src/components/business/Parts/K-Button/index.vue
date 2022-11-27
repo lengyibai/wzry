@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="K-Button cursor-pointer flex"
+  <button
+    class="K-Button flex"
     v-particle="{
       color: particle_color[type],
       size: 5,
@@ -9,11 +9,11 @@
     }"
     :style="style1"
   >
-    <span class="cursor-pointer" :style="style2">
+    <span :style="style2">
       <slot>按钮</slot>
     </span>
-    <img class="cursor-pointer" :src="getIcon(type)" />
-  </div>
+    <img :src="getIcon(type)" />
+  </button>
 </template>
 <script setup lang="ts">
 interface Props {

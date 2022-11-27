@@ -16,8 +16,8 @@
             >
               <span class="desc" v-show="currentIndex !== index"> {{ item.desc }}</span>
               <div class="voice-box" v-show="currentIndex === index">
-                <i class="iconfont wzry-bofangyuyin" @click="play(item.voice)" />
-                <i class="iconfont wzry-lajitong" style="color: var(--red)" @click="del(index)" />
+                <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="play(item.voice)" />
+                <i class="iconfont wzry-lajitong cursor-pointer" style="color: var(--red)" @click="del(index)" />
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@
 
               <!--设置/播放语音-->
               <i
-                class="iconfont"
+                class="iconfont cursor-pointer"
                 :class="voice_link ? 'wzry-bofangyuyin' : 'wzry-mic'"
                 v-show="voice_text"
                 key="b"
@@ -45,12 +45,17 @@
               />
 
               <!--重置语音链接-->
-              <i class="iconfont wzry-zhongzhi" v-show="voice_link" key="c" @click="resetVoice" />
+              <i class="iconfont wzry-zhongzhi cursor-pointer" v-show="voice_link" key="c" @click="resetVoice" />
             </transition-group>
           </div>
 
           <!--添加/删除/保存按钮-->
-          <i class="iconfont" :class="voice_link ? 'wzry-finish' : add_status" key="d" @click="addVoice(add_status)" />
+          <i
+            class="iconfont cursor-pointer"
+            :class="voice_link ? 'wzry-finish' : add_status"
+            key="d"
+            @click="addVoice(add_status)"
+          />
         </transition-group>
       </div>
     </transition>

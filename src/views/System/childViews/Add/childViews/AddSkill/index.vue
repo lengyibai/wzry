@@ -5,7 +5,7 @@
         <!-- 左边 -->
         <div class="left">
           <!-- 左上角新增 -->
-          <i class="add-one iconfont wzry-addcircle" @click="addOne" key="LibSvg" title="添加技能" />
+          <i class="add-one iconfont wzry-addcircle cursor-pointer" @click="addOne" key="LibSvg" title="添加技能" />
           <!-- 设置图标 -->
           <FormImg
             :getLink="getLink"
@@ -38,7 +38,7 @@
             <transition-group name="delSkillType">
               <div class="skill-type" v-for="(item, index) in form_data![currentIndex].type" :key="item">
                 <span class="name">{{ item }}</span>
-                <span class="del cursor-pointer" @click="delSkillType(index)">×</span>
+                <span class="del" @click="delSkillType(index)">×</span>
               </div>
             </transition-group>
           </div>
@@ -53,14 +53,14 @@
               @change="selectEffect"
               :disabled="!form_data![currentIndex].effect![effectIndex]"
             />
-            <span class="add cursor-pointer" @click="addEffect">添加/下一行</span>
-            <span class="add cursor-pointer" @click="editEffect">上一行</span>
-            <span class="del cursor-pointer" @click="delEffect">删除一行</span>
+            <span class="add" @click="addEffect">添加/下一行</span>
+            <span class="add" @click="editEffect">上一行</span>
+            <span class="del" @click="delEffect">删除一行</span>
           </div>
           <div class="select-effect" v-if="noFirst" v-show="skill_effect">
             <FormInput label="阶段值" v-model="skill_consume" placeholder="升级后的值" @keyup.enter="addConsume" />
-            <span class="confirm cursor-pointer" @click="addConsume">确定</span>
-            <span class="del cursor-pointer" @click="delConsume">删除一值</span>
+            <span class="confirm" @click="addConsume">确定</span>
+            <span class="del" @click="delConsume">删除一值</span>
           </div>
           <div class="effect-list">
             <transition-group name="del-skill-type">

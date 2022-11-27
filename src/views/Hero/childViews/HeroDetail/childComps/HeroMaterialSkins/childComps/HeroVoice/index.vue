@@ -1,7 +1,7 @@
 <template>
   <div class="hero-voice">
-    <div
-      class="voice flex cursor-pointer"
+    <button
+      class="voice flex"
       :class="{ active: currentIndex === index }"
       :style="{ 'animation-duration': time + 's' }"
       @click="play(item.voice, index)"
@@ -13,7 +13,7 @@
       <transition name="fade-a">
         <i class="iconfont wzry-playing" v-if="currentIndex === index" />
       </transition>
-    </div>
+    </button>
     <!--播放语音-->
     <PlayVoice @ended="ended" @info="voiceInfo" v-if="play_link" :link="play_link" />
   </div>

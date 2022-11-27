@@ -1,5 +1,5 @@
 <template>
-  <div class="add-skill-basic" :class="{ active: active }">
+  <div class="add-skill-basic cursor-pointer" :class="{ active: active }">
     <div class="title">
       <img :src="data.img || 'https://lengyibai.gitee.io/wzry-material/image/unknown.png'" alt="" />
       <div class="name">{{ data.name }}</div>

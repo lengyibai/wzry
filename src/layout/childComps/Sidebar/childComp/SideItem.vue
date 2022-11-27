@@ -1,8 +1,8 @@
 <template>
   <div class="menu" v-if="route">
-    <div
+    <button
       @click="fn(route.path)"
-      class="menu-item cursor-pointer menu-list"
+      class="menu-item menu-list"
       :style="textStyle"
       :class="{
         active: route.path === $route.path,
@@ -18,7 +18,7 @@
         src="https://lengyibai.gitee.io/wzry-material/image/arrow.png"
         alt=""
       />
-    </div>
+    </button>
 
     <!-- 二级菜单 -->
     <div v-if="route.children">

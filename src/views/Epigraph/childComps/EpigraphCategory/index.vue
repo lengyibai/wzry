@@ -1,20 +1,19 @@
 <template>
   <div class="epigraph-category">
     <img
-      class="cursor-pointer"
       :style="{ left: currentIndex * 11.11 + '%' }"
       src="https://lengyibai.gitee.io/wzry-material/image/epigraph_active.png"
       alt=""
     />
-    <div
-      class="title cursor-pointer"
+    <button
+      class="title"
       :class="{ active: currentIndex === index }"
       @click="toggle(index, item.title)"
       v-for="(item, index) in epigraph"
       :key="index"
     >
-      <span class="cursor-pointer">{{ item.title }}</span>
-    </div>
+      <span>{{ item.title }}</span>
+    </button>
   </div>
 </template>
 <script setup lang="ts">

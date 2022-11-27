@@ -1,9 +1,9 @@
 <template>
-  <div class="equip-card" @click="$equipStore.editActive(equip.id)">
+  <div class="equip-card cursor-pointer" @click="$equipStore.editActive(equip.id)">
     <transition name="border-fade">
       <div class="border" v-show="active_id === equip.id"></div>
     </transition>
-    <img class="cursor-pointer" :src="equip.icon" alt="" />
+    <img :src="equip.icon" alt="" />
     <div class="box">
       <div class="name">{{ equip.name }}</div>
       <div class="desc" v-if="equip.desc">{{ equip.desc }}</div>

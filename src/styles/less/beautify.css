@@ -44,6 +44,9 @@ input {
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto;
 }
 
-button {
+input[type="range"],
+input ::-webkit-slider-thumb,
+button,
+a {
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
 }

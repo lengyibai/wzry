@@ -1,24 +1,18 @@
 <template>
-  <div
-    class="hero-card cursor-pointer"
-    v-maskGradient
-    v-sweepLight
-    @mouseenter="show = true"
-    @mouseleave="show = false"
-  >
+  <div class="hero-card" v-maskGradient v-sweepLight @mouseenter="show = true" @mouseleave="show = false">
     <div class="id">No.{{ data.id }}</div>
     <transition name="fade">
       <div class="select-mask" v-if="show">
         <img :src="data.headImg" class="head" />
-        <h1
-          class="view cursor-pointer"
+        <button
+          class="view"
           @click="viewClick"
           @mouseenter="lineActive = true"
           @mouseleave="lineActive = false"
           v-textHoverColor
         >
           查看详情
-        </h1>
+        </button>
         <div class="line" :class="{ 'line-active': lineActive }" ref="line"></div>
       </div>
     </transition>

@@ -10,7 +10,7 @@
     </transition>
 
     <!--皮肤头像-->
-    <div
+    <button
       class="skin"
       v-drag="{ fn: handleDrag, index }"
       v-for="(item, index) in skins"
@@ -20,7 +20,7 @@
     }"
     >
       <img @dragstart.prevent :src="item.head" alt="" />
-    </div>
+    </button>
   </div>
 </template>
 <script setup lang="ts">

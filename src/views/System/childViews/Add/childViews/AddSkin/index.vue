@@ -4,7 +4,7 @@
       <div class="content" ref="scrollBox" v-if="show">
         <transition-group name="fade">
           <!--左上角新增-->
-          <i class="add-one iconfont wzry-addcircle" @click="addOne" key="LibSvg" />
+          <i class="add-one iconfont wzry-addcircle cursor-pointer" @click="addOne" key="LibSvg" />
 
           <!--指派英雄-->
           <SelectHero class="select-hero" v-model="hero_id" key="SelectHero" />

@@ -1,8 +1,8 @@
 <template>
-  <div class="login-btn cursor-pointer" v-particle>
+  <button class="login-btn" v-particle>
     <span>登录</span>
     <span>LOGIN</span>
-  </div>
+  </button>
 </template>
 <style scoped lang="less">
 @import url("./index.less");
