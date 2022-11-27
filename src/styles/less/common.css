@@ -1,22 +1,18 @@
 /* 鼠标样式 */
 .cursor-default {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto !important;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
 }
 
 .cursor-pointer {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto !important;
-}
-
-.cursor-pointer svg {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto !important;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
 }
 
 .cursor-not-allowed {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/not-allowed.png"), auto !important;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/not-allowed.png"), auto;
 }
 
 .cursor-text {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto !important;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto;
 }
 
 /* 文字渐变 */
