@@ -1,14 +1,13 @@
 import { onMounted, ref } from "vue";
-
+import { LOCAL_VERSION } from "@/config/config";
 import switchStore from "@/store/globalSwitch";
 export default () => {
-  const LOCAL_VERSION = ref("22.10.13.00"); //本地版本
   const REMOTE_VERSION = ref("正在检查更新..."); //远程版本
 
   /* 检查更新 */
   const update = () => {
     REMOTE_VERSION.value = window.REMOTE_VERSION; //来自外部链接的 REMOTE_VERSION
-    const local_version = Number(LOCAL_VERSION.value.replaceAll(".", "")); //将本地版本转成数字
+    const local_version = Number(LOCAL_VERSION.replaceAll(".", "")); //将本地版本转成数字
     const remote_version = Number(REMOTE_VERSION.value.replaceAll(".", "")); //将远程版本转成数字
     const test = remote_version - local_version;
     if (test > 0) {
