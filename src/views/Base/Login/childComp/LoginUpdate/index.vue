@@ -13,16 +13,11 @@
         <KButton type="warning" @click="$clickAudio('确定'), close()">此次不再弹出</KButton>
       </div>
       <div class="desc">
-        <span
-          >新版本已发布，请前往项目内拉取进行更新，或前往当前项目的
-          <a
-            href="https://github.com/lengyibai/wzry-background-management-system"
-            target="_blank"
-            class="link cursor-pointer"
-            >Github仓库</a
-          >
-          了解更多！</span
-        >
+        <span>
+          新版本已发布，请前往项目内拉取进行更新，或前往当前项目的
+          <a href="https://github.com/lengyibai/wzry" target="_blank" class="link cursor-pointer">Github仓库</a>
+          了解更多！
+        </span>
       </div>
     </div>
   </transition>
