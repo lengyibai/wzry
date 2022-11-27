@@ -13,6 +13,9 @@
       <p>当前版本：{{ LOCAL_VERSION }}</p>
       <p>最新版本：{{ REMOTE_VERSION }}</p>
     </div>
+
+    <!-- 移动端提示横屏浏览 -->
+    <LibPhoneTip />
   </div>
 </template>
 
