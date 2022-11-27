@@ -1,8 +1,8 @@
 <template>
-  <div class="user-menu cursor-pointer">
+  <div class="user-menu">
     <LibFlipBox>
       <template #front>
-        <div class="user cursor-pointer">
+        <div class="user">
           <img v-if="userInfo.headImg" :src="userInfo.headImg" alt="" />
           <span>{{ timeGreet }}，{{ userInfo.name }}</span>
         </div>

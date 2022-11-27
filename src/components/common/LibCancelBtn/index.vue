@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     class="lib-cancel-btn"
     @click="close"
     :style="{
@@ -7,8 +7,8 @@
       height: size,
     }"
   >
-    <img class="close cursor-pointer" v-show="show_up" src="./icon.svg" alt="" />
-  </div>
+    <img class="close" v-show="show_up" src="./icon.svg" alt="" />
+  </button>
 </template>
 <script setup>
 import { ref } from "vue";

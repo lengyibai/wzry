@@ -1,15 +1,15 @@
 <template>
   <div class="equip-sidebar">
-    <div
-      class="hero-type cursor-pointer"
+    <button
+      class="hero-type"
       :class="{ active: item.name === $equipStore.type }"
       v-for="(item, index) in hero_type"
       @click="select(item.name, index)"
       :key="index"
     >
       <i class="iconfont" :class="item.icon" />
-      <span class="name cursor-pointer">{{ item.name }}</span>
-    </div>
+      <span class="name">{{ item.name }}</span>
+    </button>
   </div>
 </template>
 <script setup lang="ts">

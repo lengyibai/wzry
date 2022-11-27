@@ -1,7 +1,7 @@
 <template>
   <div class="SelectImg flex cursor-pointer" :class="[type, { border: !src }]" @click="set(keyword)">
-    <img class="cursor-pointer" :src="src" alt="" v-show="src" />
-    <i class="iconfont wzry-add cursor-pointer" v-show="!src" />
+    <img :src="src" alt="" v-show="src" />
+    <i class="iconfont wzry-add" v-show="!src" />
   </div>
 </template>
 <script setup lang="ts">

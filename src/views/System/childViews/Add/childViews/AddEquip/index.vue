@@ -36,8 +36,8 @@
                 :value="equip_effect_type"
                 :data="equip_effects"
               />
-              <span class="add cursor-pointer" @click="addEffect">添加</span>
-              <span class="del cursor-pointer" @click="delEffect">删除一行</span>
+              <button class="add" @click="addEffect">添加</button>
+              <button class="del" @click="delEffect">删除一行</button>
             </div>
             <div class="effect-list">
               <transition-group name="fade">
@@ -68,8 +68,8 @@
             />
 
             <div class="box">
-              <span class="add cursor-pointer" @click="addMotivation">添加</span>
-              <span class="del cursor-pointer" @click="delMotivation">删除一行</span>
+              <button class="add" @click="addMotivation">添加</button>
+              <button class="del" @click="delMotivation">删除一行</button>
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lib-commit-btn"
+    class="lib-commit-btn cursor-pointer"
     @click="commit"
     :style="{
       width: size,

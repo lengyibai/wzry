@@ -35,7 +35,7 @@
           <transition-group name="delspecialty-type">
             <div class="specialty-type" v-for="(item, index) in form_data!.specialty" :key="item">
               <span class="name">{{ item }}</span>
-              <span class="del cursor-pointer" @click="delspecialtyType(index)">×</span>
+              <button class="del" @click="delspecialtyType(index)">×</button>
             </div>
           </transition-group>
         </div>

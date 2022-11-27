@@ -1,6 +1,6 @@
 <template>
   <div
-    class="LibDeleteBtn"
+    class="LibDeleteBtn cursor-pointer"
     @click.once="add"
     :style="{
       width: size,
