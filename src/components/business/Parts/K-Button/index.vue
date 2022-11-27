@@ -1,6 +1,6 @@
 <template>
   <div
-    class="K-Button cursor-pointer"
+    class="K-Button cursor-pointer flex"
     v-particle="{
       color: particle_color[type],
       size: 5,
@@ -9,7 +9,7 @@
     }"
     :style="style1"
   >
-    <span class="cursor-pointer flex" :style="style2">
+    <span class="cursor-pointer" :style="style2">
       <slot>按钮</slot>
     </span>
     <img class="cursor-pointer" :src="getIcon(type)" />
