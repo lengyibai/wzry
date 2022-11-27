@@ -5,7 +5,6 @@
 
 * {
   font-family: "方正正准黑";
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
 }
 
 *::-webkit-scrollbar {
@@ -33,10 +32,7 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-
-  /* background: url("https://lengyibai.gitee.io/wzry-material/image/default_bg.jpg") no-repeat fixed; */
-
-  /* 虽然自定义指令设置了这行代码，但是此处不写当前这行，加载的时候会闪白 */
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
   background-size: 110% 110%;
   background-color: #000;
   transition: all 0.5s;
@@ -45,6 +41,9 @@ body {
 }
 
 input {
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto !important;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto;
 }
 
+button {
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
+}
