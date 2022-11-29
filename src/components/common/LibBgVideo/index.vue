@@ -34,7 +34,8 @@ onBeforeUnmount(() => {
   width: 100vw;
   height: 100vh;
   transition: transform 0.25s ease-out;
-  inset: 0;
+  left: 0;
+  top: 0;
 
   .video {
     width: 100%;
