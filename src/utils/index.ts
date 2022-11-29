@@ -1162,9 +1162,9 @@ export function $deepMearge(obj, target = {}) {
 
 /* 获取浏览器版本 */
 export function $chromeV() {
-  let v = '';
-  navigator.userAgent.split(' ').forEach((item) => {
+  let v = "";
+  navigator.userAgent.split(" ").forEach((item) => {
     /chrome/i.test(item) && (v = item);
   });
-  return Number(v.split('/')[1].split('.')[0]);
+  return Number(v.split("/")[1].split(".")[0]);
 }
