@@ -38,7 +38,7 @@ getHeroList().then((res) => {
 });
 
 /* 选择英雄后触发 */
-const selectHero = (id: string | number) => {
+const selectHero = (id: string | number | any[]) => {
   emit("update:modelValue", id as number);
 };
 </script>
