@@ -33,7 +33,7 @@ export default defineStore("hero", {
         this.filter_list = this.hero_list;
       } else {
         this.filter_list = this.hero_list.filter((item: Hero.Data) => {
-          return item.profession === profession;
+          return item.profession.includes(profession);
         });
       }
     },
