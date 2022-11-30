@@ -23,22 +23,23 @@
           />
         </div>
 
+        <!-- 职业 -->
+        <FormSelect
+          :data="type_list.professionType"
+          v-model="form_data!.profession"
+          :value="form_data!.profession"
+          label="职业"
+          multi
+        />
+
         <!-- 特长 -->
         <FormSelect
           :data="type_list.specialtyType"
-          v-model="specialty_type"
-          :value="specialty_type"
+          v-model="form_data!.specialty"
+          :value="form_data!.specialty"
           label="特长"
-          @change="selectSpecialtyType"
+          multi
         />
-        <div class="type-list">
-          <transition-group name="delspecialty-type">
-            <div class="specialty-type" v-for="(item, index) in form_data!.specialty" :key="item">
-              <span class="name">{{ item }}</span>
-              <button class="del" @click="delspecialtyType(index)">×</button>
-            </div>
-          </transition-group>
-        </div>
 
         <!-- 属性相关 -->
         <div class="flex-box">
@@ -52,19 +53,13 @@
           />
         </div>
 
-        <!-- 设置封面 -->
-        <!-- <AddHeroCover /> -->
-
         <!-- 设置头像&海报 -->
         <div class="flex-box">
-          <FormImg
-            labelWidth="240px"
-            label="皮肤头像&海报"
-            :getLink="getLink"
-            :imgs="[form_data!.headImg, form_data!.poster]"
-            :keys="['headImg', 'poster']"
-            :values="{ headImg: '头像', poster: '海报' }"
-          />
+          <FormLabel labelWidth="290px" label="头像&封面&&海报">
+            <SelectImg :src="form_data!.headImg" @select="setKey('headImg')" keyword="头像" />
+            <SelectImg class="wide" :src="form_data!.cover" type="height" @select="setKey('cover')" keyword="封面" />
+            <SelectImg class="wide" :src="form_data!.poster" type="width" @select="setKey('poster')" keyword="海报" />
+          </FormLabel>
         </div>
       </div>
     </transition>
@@ -91,15 +86,14 @@
 <script setup lang="ts">
 import { provide, reactive, ref } from "vue";
 import {
-  addHero,
-  addHeroList,
+  // addHero,
+  // addHeroList,
   getCampType,
-  getEnergyType,
   getLocationType,
   getPeriodType,
   getProfessionType,
   getSpecialtyType,
-} from "@/api/main/game/index";
+} from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import viewHide from "../../../../hooks/useViewHide";
@@ -132,7 +126,6 @@ form_data.value ??= $deepCopy(heroDefault);
 /* 类型列表 */
 const type_list: Record<string, any[]> = reactive({
   campType: [],
-  energyType: [],
   locationType: [],
   periodType: [],
   professionType: [],
@@ -141,35 +134,18 @@ const type_list: Record<string, any[]> = reactive({
 
 setTimeout(async () => {
   $switchStore.$loading.show("正在加载阵营类型表2/7");
-  type_list.campType = (await getCampType()).data;
-  $switchStore.$loading.show("正在加载能量类型表3/7");
-  type_list.energyType = (await getEnergyType()).data;
+  type_list.campType = await getCampType();
   $switchStore.$loading.show("正在加载定位类型表4/7");
-  type_list.locationType = (await getLocationType()).data;
+  type_list.locationType = await getLocationType();
   $switchStore.$loading.show("正在加载时期类型表5/7");
-  type_list.periodType = (await getPeriodType()).data;
+  type_list.periodType = await getPeriodType();
   $switchStore.$loading.show("正在加载职业类型表6/7");
-  type_list.professionType = (await getProfessionType()).data;
+  type_list.professionType = await getProfessionType();
   $switchStore.$loading.show("正在加载特长类型表7/7");
-  type_list.specialtyType = (await getSpecialtyType()).data;
+  type_list.specialtyType = await getSpecialtyType();
   await $switchStore.$loading.close();
   show.value = true;
 }, 1000);
-
-/* 选择特长后触发 */
-const specialty_type = ref("");
-const selectSpecialtyType: (v: string | number) => void = (v) => {
-  setTimeout(() => {
-    form_data.value!.specialty.push(v as string);
-    form_data.value!.specialty = [...new Set(form_data.value!.specialty)];
-    specialty_type.value = "请选择";
-  });
-};
-
-/* 删除特长 */
-const delspecialtyType = (index: number) => {
-  form_data.value!.specialty.splice(index, 1);
-};
 
 /* 获取链接 */
 const getLink = (link: string, key: string) => {
@@ -184,17 +160,12 @@ const setKey = (key: string) => {
   AddLink_key.value = key;
 };
 
-/* 设置属性值 */
-const setValue = (k: string, v: Hero.Offset) => {
-  form_data.value![k] = v;
-};
-
 /* 发布 */
 const commit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value!;
   if (id && mark && name && cover && headImg && poster) {
-    await addHero(form_data.value);
-    await addHeroList({ id: form_data.value!.id, name: form_data.value!.name });
+    // await addHero(form_data.value);
+    // await addHeroList({ id: form_data.value!.id, name: form_data.value!.name });
     finish.value = true;
     setTimeout(() => {
       close();
@@ -208,7 +179,6 @@ const commit = async () => {
 
 provide("hero_data", form_data.value);
 provide("set_key", setKey);
-provide("set_value", setValue);
 </script>
 <style scoped lang="less">
 @import url("./index.less");
