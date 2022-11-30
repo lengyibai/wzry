@@ -21,7 +21,7 @@ export default (id: number | unknown) => {
   };
 
   /* 查看详情 */
-  const viewClick = (id: string) => {
+  const viewClick = (id: number) => {
     /* 获取指定英雄数据 */
     getHeroDetail(id).then((res) => {
       hero_info.value = res;
@@ -38,7 +38,7 @@ export default (id: number | unknown) => {
       setTimeout(() => {
         /* 静默加载英雄列表 */
         if ($heroStore.profession === "") {
-          getList($heroStore.hero_info.profession);
+          getList($heroStore.hero_info.profession[0]);
         }
       }, 3000);
     });
@@ -46,7 +46,7 @@ export default (id: number | unknown) => {
 
   /* 如果地址栏存在id，则打开查看详情 */
   if (id) {
-    viewClick(id as string);
+    viewClick(Number(id));
   } else {
     getList();
   }
