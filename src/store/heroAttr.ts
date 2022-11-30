@@ -21,7 +21,7 @@ export default defineStore("heroAttr", {
     },
 
     /** @description: 获取指定皮肤类型数据 */
-    getAssignType(id: string) {
+    getAssignType(id: number) {
       const data = this.skinType.find((item) => {
         return item.id === id;
       });
