@@ -1,5 +1,5 @@
 <template>
-  <LibMask v-show="modelValue">
+  <LibMask :model-value="modelValue">
     <transition :name="type">
       <div class="AddLink" :style="{ width: '750px' }" v-show="modelValue">
         <div class="title">{{ title }}</div>
