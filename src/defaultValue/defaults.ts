@@ -7,7 +7,6 @@ export const heroDefault: Hero.Data = {
   survival: "0", //生存
   camp: "", //阵营
   cover: "", //封面
-  energy: "", //能量
   gamestory: "", //游戏故事
   headImg: "", //头像
   height: "", //身高
@@ -18,12 +17,12 @@ export const heroDefault: Hero.Data = {
   name: "", //名字
   period: "", //时期
   poster: "", //海报
-  profession: "", //职业
   offset: {
     top: 0, //向下偏移
     left: 0, //向右偏移
     transform: "", //缩放
   },
+  profession: [], //职业
   specialty: [], //特长
   voices: [], //语音
   skills: [], //技能
