@@ -60,6 +60,16 @@
       </div>
     </div>
   </div>
+
+  <!-- 选择的列表 -->
+  <div class="selected-list">
+    <transition-group name="fade-a">
+      <div class="selected" v-for="(item, index) in selected_list" :key="item">
+        <span class="name">{{ item }}</span>
+        <button class="del" @click="delsSelected(index)">×</button>
+      </div>
+    </transition-group>
+  </div>
 </template>
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watch } from "vue";
@@ -70,12 +80,13 @@ interface Props {
   id?: boolean; //传递id还是name
   data: any[]; //数据
   autoSize?: boolean; //自适应大小
-  modelValue?: string | number; //选择的值
+  modelValue?: string | number | any[]; //选择的值
   disabled?: boolean; //是否禁用
   required?: boolean; //是否必填
   label?: string; //左侧文字
   keyword?: string; //
-  value?: string; //
+  value?: string | any[]; //
+  multi?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -91,17 +102,18 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 interface Emits {
-  (e: "update:modelValue", v: string | number): void;
-  (e: "change", v: string | number): void;
+  (e: "update:modelValue", v: string | number | any[]): void;
+  (e: "change", v: string | number | any[]): void;
 }
 const emit = defineEmits<Emits>();
 
-const input_value = ref(""); //输入框的值
-const active_value = ref(""); //选中的值
+const input_value = ref<any>(""); //输入框的值
+const active_value = ref<any>(""); //选中的值
 const no_legal = ref(false); //是否合法
 const is_unfold = ref(false); //是否展开
 const currentIndex = ref<number | null>(null); //当前点击
 const select_list = ref<any[]>([]); //下拉列表
+const selected_list = ref<any[]>([]); //选择的列表
 
 /* 实时搜索 */
 const search = () => {
@@ -130,12 +142,30 @@ const blur = () => {
 
 /* 选择的数据 */
 const select = (id: number, name: string) => {
-  emit("update:modelValue", props.id ? Number(id) : name);
-  emit("change", props.id ? Number(id) : name);
-  is_unfold.value = false;
-  select_list.value = props.data;
-  active_value.value = name;
-  input_value.value = name;
+  if (props.multi) {
+    selected_list.value.push(name);
+    selected_list.value = [...new Set(selected_list.value)];
+    emit("update:modelValue", selected_list.value);
+    emit("change", selected_list.value);
+
+    setTimeout(() => {
+      input_value.value = "请选择";
+    });
+  } else {
+    emit("update:modelValue", props.id ? Number(id) : name);
+    emit("change", props.id ? Number(id) : name);
+    is_unfold.value = false;
+    select_list.value = props.data;
+    active_value.value = name;
+    input_value.value = name;
+  }
+};
+
+/* 删除选择的数据 */
+const delsSelected = (index: number) => {
+  selected_list.value.splice(index, 1);
+  emit("update:modelValue", selected_list.value);
+  emit("change", selected_list.value);
 };
 
 /* 点击空白隐藏列表 */
@@ -170,8 +200,12 @@ watch(
 watch(
   () => props.value,
   (v) => {
-    active_value.value = v;
-    input_value.value = v;
+    if (props.multi) {
+      selected_list.value = v as any[];
+    } else {
+      active_value.value = v;
+      input_value.value = v;
+    }
   },
   { immediate: true }
 );

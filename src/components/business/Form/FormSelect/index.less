@@ -98,6 +98,8 @@
       overscroll-behavior: contain;
 
       .box {
+        width: 100%;
+        text-align: left;
         padding: 20px;
         color: var(--theme-color-nine);
         background-color: rgb(0 0 0 / 39%);
@@ -111,6 +113,31 @@
   }
 }
 
+
+.selected-list {
+  display: flex;
+  min-height: 60px;
+  margin-bottom: 25px;
+
+  .selected {
+    width: fit-content;
+    padding: 0.5em;
+    font-size: 25px;
+
+    .name {
+      margin-right: 0.5em;
+      color: var(--theme-color-four);
+    }
+
+    .del {
+      color: var(--theme-color-three);
+
+      &:hover {
+        color: var(--red);
+      }
+    }
+  }
+}
 .rotate {
   transform: rotate(180deg) !important;
 }
