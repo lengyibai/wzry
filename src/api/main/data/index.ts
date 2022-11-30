@@ -48,9 +48,6 @@ export const getLocationtype = () => http.Get<any[]>("/locationType.json");
 /** @description: 获取特长列表 */
 export const getSpecialtytype = () => http.Get<any[]>("/specialtyType.json");
 
-/** @description: 获取力量列表 */
-export const getEnergytype = () => http.Get<any[]>("/energyType.json");
-
 /** @description: 获取时期列表 */
 export const getPeriodtype = () => http.Get<any[]>("/periodType.json");
 
