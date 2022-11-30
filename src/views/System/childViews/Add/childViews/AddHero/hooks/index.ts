@@ -35,10 +35,8 @@ export default () => {
 
   const info: string[][] = [
     ["阵营", "campType", "camp"],
-    ["能量", "energyType", "energy"],
     ["定位", "locationType", "location"],
     ["时期", "periodType", "period"],
-    ["职业", "professionType", "profession"],
   ];
 
   return {
