@@ -5,14 +5,13 @@ type Direction = "left" | "right" | "top" | "bottom";
 /** @description: 英雄信息 */
 declare namespace Hero {
   interface Data {
-    id: string | undefined; //标识符
+    id: number | undefined; //标识符
     attack: string; //攻击
     difficulty: string; //难度
     effect: string; //增益
     survival: string; //生存
     camp: string; //阵营
     cover: string; //封面
-    energy: string; //能量
     gamestory: string; //游戏故事
     headImg: string; //头像
     height: string; //身高
@@ -23,20 +22,12 @@ declare namespace Hero {
     name: string; //名字
     period: string; //时期
     poster: string; //海报
-    profession: string; //职业
-    offset: Offset; //封面偏移量
+    profession: string[]; //职业
     specialty: string[]; //特长
     voices: Voice[]; //语音
     skills: Skill[]; //技能
     skins: Skin[]; //皮肤
     [propName: string]: any;
-  }
-
-  /** @description: 封面偏移量 */
-  interface Offset {
-    top: number; //向下偏移
-    left: number; //向右偏移
-    transform: string; //缩放
   }
 
   /** @description: 语音 */
@@ -63,7 +54,7 @@ declare namespace Hero {
   }
   /** @description: 技能类型 */
   interface SkillType {
-    id: string;
+    id: number;
     name: string;
   }
 
@@ -80,8 +71,14 @@ declare namespace Hero {
   }
   /** @description: 皮肤类型 */
   interface SkinType {
-    id: string;
+    id: number;
     name: string;
     link: string;
+  }
+  /** @description: 英雄额外信息 */
+  /** @description: general */
+  interface General {
+    id: number;
+    name: string;
   }
 }
