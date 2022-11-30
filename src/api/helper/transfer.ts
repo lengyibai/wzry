@@ -1,20 +1,20 @@
 import { $deepMearge } from "@/utils";
-interface Get<V> {
+interface Get {
   name: string; //用于获取本地存储的键名
   key?: string; //从本地存储获取的数据的键名
-  value?: V; //匹配的值
+  value?: any; //匹配的值
   full?: boolean; //是否全字匹配
 }
 
-interface Patch<V> extends Get<V> {
+interface Patch extends Get {
   k: string; //需要被修改的键名
   v: any; //需要修改成什么
 }
 
 /** @description: 通过字段查询指定值 */
-export function get<V, R>(params: Get<V>, alone?: true): R;
-export function get<V, R>(params: Get<V>, alone?: false): R[];
-export function get<V, R>(params: Get<V>, alone = true): R | R[] | void {
+export function get<R>(params: Get, alone?: true): R;
+export function get<R>(params: Get, alone?: false): R[];
+export function get<R>(params: Get, alone = true): R | R[] | void {
   const { name, key, value, full = true } = params;
 
   const d = localStorage.getItem(name);
@@ -40,7 +40,7 @@ export function get<V, R>(params: Get<V>, alone = true): R | R[] | void {
 }
 
 /** @description: 修改 */
-export const patch = <V, R>(params: Patch<V>) => {
+export const patch = <R>(params: Patch) => {
   const { name, key, k, value, v } = params;
   const d = localStorage.getItem(name);
   const data: R[] = d && JSON.parse(d);
