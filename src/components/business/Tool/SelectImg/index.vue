@@ -1,29 +1,36 @@
 <template>
-  <div class="SelectImg flex cursor-pointer" :class="[type, { border: !src }]" @click="set(keyword)">
-    <img :src="src" alt="" v-show="src" />
-    <i class="iconfont wzry-add" v-show="!src" />
+  <div class="SelectImg flex cursor-pointer" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
+    <img :src="modelValue" alt="" v-show="modelValue" />
+    <i class="iconfont wzry-add" v-show="!modelValue" />
   </div>
+  <!-- 添加图片链接弹窗组件 -->
+  <AddLink v-model="show_AddLink" :title="title" @get-link="getLink" />
 </template>
 <script setup lang="ts">
+import { ref } from "vue";
+
 interface Props {
-  src: string; //图片路径
-  keyword?: string; //键值
+  modelValue: string; //图片路径
+  title: string;
   type?: "width" | "height" | "square"; //图片比例
 }
 interface Emits {
-  (e: "select", v: string): void;
+  (e: "update:modelValue", link: string): void;
 }
 
 withDefaults(defineProps<Props>(), {
-  src: "",
-  keyword: "",
+  modelValue: "",
+  title: "",
   type: "square",
 });
 
-const emit = defineEmits<Emits>();
+/* 弹窗相关 */
+const show_AddLink = ref(false); //显示添加链接弹窗
 
-const set = (key: string) => {
-  emit("select", key);
+/* 获取链接 */
+const emit = defineEmits<Emits>();
+const getLink = (link: string) => {
+  emit("update:modelValue", link);
 };
 </script>
 <style scoped lang="less">
