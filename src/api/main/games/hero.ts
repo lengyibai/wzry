@@ -4,7 +4,13 @@ import { getHeroSkin } from "@/api/main/games/skin";
 /**
  * @description: GET请求
  */
-/** @description: 获取英雄列表 */
+
+/** @description: 获取英雄基础列表 */
+export const getHeroBasic = () => {
+  return Promise.resolve(get<Hero.General[]>({ name: "data_herobasic" }));
+};
+
+/** @description: 获取英雄信息列表 */
 export const getHeroData = () => {
   return Promise.resolve(get<Hero.Data[]>({ name: "data_herodata" }));
 };
