@@ -7,14 +7,9 @@
           <!-- 左上角新增 -->
           <i class="add-one iconfont wzry-addcircle cursor-pointer" @click="addOne" key="LibSvg" title="添加技能" />
           <!-- 设置图标 -->
-          <FormImg
-            :getLink="getLink"
-            :imgs="[form_data![currentIndex].img]"
-            :keys="['img']"
-            :values="{ img: '图标' }"
-            label="图标"
-            required
-          />
+          <FormLabel label="图标" required>
+            <SelectImg v-model="form_data![currentIndex].img" title="图标" />
+          </FormLabel>
           <SelectHero v-model="hero_id" key="SelectHero" />
           <FormInput label="名称" required v-model="form_data![currentIndex].name" placeholder="技能名称" />
           <FormInput v-if="noFirst" label="CD" v-model="form_data![currentIndex].cd" placeholder="冷却时间" number />
@@ -166,13 +161,8 @@ const selectSkill = (index: number) => {
   form_data.value![currentIndex.value] ??= $deepCopy(skillDefault);
 };
 
-/* 设置头像后触发 */
-const getLink = (v: string) => {
-  form_data.value![currentIndex.value].img = v;
-};
-
 /* 选择类型后触发 */
-const selectType = (v: string | number) => {
+const selectType = (v: string | number | any[]) => {
   setTimeout(() => {
     form_data.value![currentIndex.value].type.push(v as string);
     form_data.value![currentIndex.value].type = [...new Set(form_data.value![currentIndex.value].type)];
@@ -186,8 +176,8 @@ const delSkillType = (index: number) => {
 };
 
 /* 选择效果后触发 */
-const selectEffect = (v: string) => {
-  form_data.value![currentIndex.value].effect![effectIndex.value].type = v;
+const selectEffect = (v: string | number | any[]) => {
+  form_data.value![currentIndex.value].effect![effectIndex.value].type = v as string;
 };
 
 /* 添加一行 */
