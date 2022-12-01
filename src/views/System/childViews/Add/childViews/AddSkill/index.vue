@@ -24,19 +24,11 @@
           <!-- 设置技能类型 -->
           <FormSelect
             :data="skill_types"
-            v-model="skill_type"
-            :value="skill_type"
+            v-model="form_data![currentIndex].type"
+            :value="form_data![currentIndex].type"
             label="技能类型"
-            @change="selectType"
+            multi
           />
-          <div class="type-list" v-show="form_data![currentIndex].type.length">
-            <transition-group name="delSkillType">
-              <div class="skill-type" v-for="(item, index) in form_data![currentIndex].type" :key="item">
-                <span class="name">{{ item }}</span>
-                <span class="del" @click="delSkillType(index)">×</span>
-              </div>
-            </transition-group>
-          </div>
 
           <!-- 设置技能效果 -->
           <div class="select-effect" v-if="noFirst">
@@ -100,7 +92,7 @@
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { updateHero, getSkillType, getSkillEffect } from "@/api/main/game/index";
+import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
 import { $removeEmptyField, $deepCopy } from "@/utils";
 import { skillDefault, skillEffectDefault } from "@/defaultValue/defaults";
 import switchStore from "@/store/globalSwitch";
@@ -128,12 +120,12 @@ form_data.value ??= [$deepCopy(skillDefault)];
 /* 技能类型 */
 const skill_types = ref<Hero.SkillType[]>([]);
 getSkillType().then((res) => {
-  skill_types.value = res.data;
+  skill_types.value = res;
 });
 /* 技能效果 */
-const skill_effects = ref<Hero.SkillEffect[]>([]);
+const skill_effects = ref<Hero.General[]>([]);
 getSkillEffect().then((res) => {
-  skill_effects.value = res.data;
+  skill_effects.value = res;
 });
 
 const noFirst = computed(() => currentIndex.value !== 0); //用于判断是否为被动技能
@@ -159,20 +151,6 @@ const selectSkill = (index: number) => {
   skill_effect.value = "";
   currentIndex.value = index;
   form_data.value![currentIndex.value] ??= $deepCopy(skillDefault);
-};
-
-/* 选择类型后触发 */
-const selectType = (v: string | number | any[]) => {
-  setTimeout(() => {
-    form_data.value![currentIndex.value].type.push(v as string);
-    form_data.value![currentIndex.value].type = [...new Set(form_data.value![currentIndex.value].type)];
-    skill_type.value = "请选择";
-  });
-};
-
-/* 删除类型 */
-const delSkillType = (index: number) => {
-  form_data.value![currentIndex.value].type.splice(index, 1);
 };
 
 /* 选择效果后触发 */
@@ -239,9 +217,9 @@ const commit = async () => {
     return item.img && item.name && hero_id.value;
   });
   if (form_data.value!.length >= 3 && is_Finish) {
-    await updateHero(hero_id.value, {
-      skills: $removeEmptyField(form_data.value),
-    });
+    // await updateHero(hero_id.value, {
+    //   skills: $removeEmptyField(form_data.value),
+    // });
     setTimeout(() => {
       finish.value = true;
       close();
