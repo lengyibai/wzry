@@ -9,18 +9,25 @@ import { getHeroSkin } from "@/api/main/games/skin";
 export const getHeroBasic = () => {
   return Promise.resolve(get<Hero.General[]>({ name: "data_herobasic" }));
 };
-
 /** @description: 获取英雄信息列表 */
 export const getHeroData = () => {
   return Promise.resolve(get<Hero.Data[]>({ name: "data_herodata" }));
 };
-
 /** @description: 获取英雄详情 */
 export const getHeroDetail = async (id: number) => {
   const hero = get<Hero.Data>({ name: "data_herodata", key: "id", value: id });
   const skins = await getHeroSkin(id); //获取皮肤列表
   hero.skins = skins;
   return Promise.resolve(hero);
+};
+
+/** @description: 获取技能类型列表 */
+export const getSkillType = () => {
+  return Promise.resolve(get<Hero.General[]>({ name: "data_skilltype" }));
+};
+/** @description: 获取技能效果列表 */
+export const getSkillEffect = () => {
+  return Promise.resolve(get<Hero.General[]>({ name: "data_skilleffect" }));
 };
 
 /** @description: 获取阵营列表 */
