@@ -62,7 +62,7 @@
   </div>
 
   <!-- 选择的列表 -->
-  <div class="selected-list">
+  <div class="selected-list" v-if="multi">
     <transition-group name="fade-a">
       <div class="selected" v-for="(item, index) in selected_list" :key="item">
         <span class="name">{{ item }}</span>
