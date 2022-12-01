@@ -56,9 +56,9 @@
         <!-- 设置头像&海报 -->
         <div class="flex-box">
           <FormLabel labelWidth="290px" label="头像&封面&&海报">
-            <SelectImg :src="form_data!.headImg" @select="setKey('headImg')" keyword="头像" />
-            <SelectImg class="wide" :src="form_data!.cover" type="height" @select="setKey('cover')" keyword="封面" />
-            <SelectImg class="wide" :src="form_data!.poster" type="width" @select="setKey('poster')" keyword="海报" />
+            <SelectImg v-model="form_data!.headImg" title="头像" />
+            <SelectImg v-model="form_data!.cover" type="height" title="封面" />
+            <SelectImg v-model="form_data!.poster" type="width" title="海报" />
           </FormLabel>
         </div>
       </div>
@@ -70,21 +70,12 @@
     <!-- 取消发布 -->
     <LibCancelBtn class="lib-cancel-btn" size="50px" @close="cancel" title="取消" />
 
-    <!-- 添加图片链接弹窗组件 -->
-    <AddLink
-      v-model="show_AddLink"
-      :title="AddLink_title"
-      :placeholder="AddLink_placeholder"
-      @get-link="getLink"
-      :keyword="AddLink_key"
-    />
-
     <!-- 确认关闭 -->
     <ConfirmClose v-model="show_ConfirmClose" @close="close" />
   </div>
 </template>
 <script setup lang="ts">
-import { provide, reactive, ref } from "vue";
+import { provide, reactive } from "vue";
 import {
   // addHero,
   // addHeroList,
@@ -112,13 +103,7 @@ const { show, finish, status, form_data, show_ConfirmClose, cancel, close } = vi
   emit,
   "add_hero"
 );
-const { AddLink_set_desc, attr, info } = staticData();
-
-/* 弹窗相关 */
-const show_AddLink = ref(false); //显示添加链接弹窗
-const AddLink_key = ref(""); //当前谁在使用弹窗(字段名)
-const AddLink_title = ref(""); //弹窗左上角标题
-const AddLink_placeholder = ref(""); //弹窗输入框描述
+const { attr, info } = staticData();
 
 /* 判断是否存在缓存 */
 form_data.value ??= $deepCopy(heroDefault);
@@ -147,19 +132,6 @@ setTimeout(async () => {
   show.value = true;
 }, 1000);
 
-/* 获取链接 */
-const getLink = (link: string, key: string) => {
-  form_data.value![key] = link;
-};
-
-/* 设置头像及名字 */
-const setKey = (key: string) => {
-  show_AddLink.value = true;
-  AddLink_title.value = `设置${AddLink_set_desc[key]}`;
-  AddLink_placeholder.value = `请输入${AddLink_set_desc[key]}`;
-  AddLink_key.value = key;
-};
-
 /* 发布 */
 const commit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value!;
@@ -178,7 +150,6 @@ const commit = async () => {
 };
 
 provide("hero_data", form_data.value);
-provide("set_key", setKey);
 </script>
 <style scoped lang="less">
 @import url("./index.less");
