@@ -1,6 +1,6 @@
 /** @description: 默认英雄信息 */
 export const heroDefault: Hero.Data = {
-  id: undefined, //标识符
+  id: 0, //标识符
   attack: "0", //攻击
   difficulty: "0", //难度
   effect: "0", //增益
