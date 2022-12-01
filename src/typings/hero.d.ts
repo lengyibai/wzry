@@ -5,7 +5,7 @@ type Direction = "left" | "right" | "top" | "bottom";
 /** @description: 英雄信息 */
 declare namespace Hero {
   interface Data {
-    id: number | undefined; //标识符
+    id: number; //标识符
     attack: string; //攻击
     difficulty: string; //难度
     effect: string; //增益
