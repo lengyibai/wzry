@@ -66,8 +66,8 @@ declare namespace Hero {
     price: number; //价格
     type: string; //类型
     name: string; //名称
-    img: string; //图片
-    head: string; //头像
+    poster: string; //图片
+    headImg: string; //头像
   }
   /** @description: 皮肤类型 */
   interface SkinType {
