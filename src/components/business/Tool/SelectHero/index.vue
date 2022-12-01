@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { getHeroList } from "@/api/main/game/index";
+import { getHeroBasic } from "@/api/main/games/hero";
 
 interface Props {
   modelValue: number; //英雄id
@@ -31,9 +31,9 @@ watch(
 );
 
 /* 获取英雄基础列表 */
-const hero_list = ref<Hero.Data[]>([]);
-getHeroList().then((res) => {
-  hero_list.value = res.data;
+const hero_list = ref<Hero.General[]>([]);
+getHeroBasic().then((res) => {
+  hero_list.value = res;
   hero_name.value = hero_list.value.find((item) => item.id === props.modelValue)?.name || "";
 });
 
