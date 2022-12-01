@@ -23,15 +23,24 @@ const musics = [
   "ryzt.mp3", //荣耀主题
   "ryzl.mp3", //荣耀之路
   "wzbr.mp3", //王者冰刃
-  "wwkh.mp3", //五五狂欢
+  "cac.mp3", //永远的长安城
+  "gjb.mp3", //冠军杯
+  "wzcz.mp3", //王者出征
+  "wzdl.mp3", //王者登录
+  "wzzj.mp3", //王者诸将
+  "ygxy.mp3", //云宫迅音
 ];
-
+musics.sort(() => 0.5 - Math.random()); //打乱顺序
 async function musicPlay(isReset = true) {
   // 判断是否为播放下一首，否则不执行随机播放，是则继续播放当前
   if (isReset) {
-    bgmIndex.value = $random(0, musics.length - 1);
+    if (bgmIndex.value === musics.length) {
+      bgmIndex.value = 0;
+    }
+
     bgm.src = "https://lengyibai.gitee.io/wzry-material/music/" + musics[bgmIndex.value];
     bgm.volume = 0.25;
+    bgmIndex.value += 1;
   }
 
   bgm.play().catch(() => {
@@ -45,10 +54,7 @@ async function musicPlay(isReset = true) {
 
   /* 播放结束后执行下一次播放 */
   bgm.onended = () => {
-    bgmIndex.value = $random(0, 3);
-    setTimeout(() => {
-      musicPlay();
-    }, 1000);
+    musicPlay();
   };
 }
 musicPlay(); //如果从登录页过来，可直接播放背景音乐
