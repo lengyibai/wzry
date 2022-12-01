@@ -30,20 +30,18 @@ interface Props {
   modelValue: boolean; //是否显示
   showClose?: boolean; //是否显示右上角关闭按钮
   title?: string; //左上角描述文字
-  keyword?: string; //字段名
   placeholder?: string; //输入框描述
   type?: "default" | "confirm"; //动画类型
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
-  (e: "get-link", v: string, k: string): void;
+  (e: "get-link", v: string): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   modelValue: true,
   showClose: true,
   title: "",
-  keyword: "",
   placeholder: "请输入",
   type: "default",
 });
@@ -62,7 +60,7 @@ const close = () => {
 /* 确定 */
 const confirm = () => {
   close();
-  emit("get-link", link.value, props.keyword);
+  emit("get-link", link.value);
   link.value = "";
 };
 </script>
