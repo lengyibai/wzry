@@ -22,20 +22,11 @@
             <FormInput label="皮肤名" required v-model="item.name" />
             <FormInput label="价格" v-model="item.price" placeholder="请输入" number />
 
-            <!-- 在输入框内部限制数字 -->
-
-            <!--··皮肤类型··-->
-            <FormSelect label="皮肤类型" required :data="skin_types" v-model="item.type" />
-
             <!--··皮肤头像、海报··-->
-            <FormImg
-              label="皮肤头像&海报"
-              label-width="240px"
-              :getLink="getLink"
-              :imgs="[item.head, item.img]"
-              :keys="['head', 'img']"
-              :values="{ head: '头像', img: '海报' }"
-            />
+            <FormLabel labelWidth="290px" label="头像&封面&海报">
+              <SelectImg v-model="item.headImg" title="头像" />
+              <SelectImg v-model="item.poster" type="width" title="海报" />
+            </FormLabel>
 
             <!--··右上角删除··-->
             <transition name="fade">
@@ -58,7 +49,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { getSkinType, addSkin } from "@/api/main/game/index";
+import { getSkinType } from "@/api/main/games/skin";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
 
@@ -76,25 +67,17 @@ const { hero_id, show, finish, status, form_data, show_ConfirmClose, cancel, clo
 /* 判断是否存在缓存 */
 form_data.value ??= [];
 
-const skin_types = ref([]); //皮肤类型表
+const skin_types = ref<Hero.SkinType[]>([]); //皮肤类型表
 const currentIndex = ref<number | null>(null); //根据悬浮的位置显示垃圾桶
 
 /* 获取皮肤类型表 */
 setTimeout(async () => {
   $switchStore.$loading.show("正在加载皮肤类型表");
-  skin_types.value = (await getSkinType()).data;
+  skin_types.value = await getSkinType();
+
   await $switchStore.$loading.close();
   show.value = true;
 }, 1000);
-
-/* 获取链接 */
-const getLink = (link: string, key: string) => {
-  const last_index = form_data.value!.length === 0 ? 0 : form_data.value!.length - 1;
-  form_data.value![last_index] = {
-    ...form_data.value!.slice(-1)[0],
-    [key]: link,
-  };
-};
 
 /* 增加一项 */
 const scrollBox = ref();
@@ -104,8 +87,8 @@ const addOne = () => {
     num: 0,
     hero: hero_id.value as number,
     name: "",
-    img: "",
-    head: "",
+    poster: "",
+    headImg: "",
     type: "",
     price: 0,
   });
@@ -133,7 +116,7 @@ const commit = async () => {
   if (flag) {
     for (let i = 0; i < form_data.value!.length; i++) {
       const item = form_data.value![i];
-      await addSkin(item);
+      // await addSkin(item);
       finish.value = true;
       setTimeout(() => {
         close();
