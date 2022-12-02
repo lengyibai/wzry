@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref, watch, onBeforeUnmount } from "vue";
-import { $random, $potEoPct, $frameInterval } from "@/utils";
+import { $potEoPct, $frameInterval } from "@/utils";
 
 interface Props {
   playProgress: number;
