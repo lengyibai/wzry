@@ -11,6 +11,7 @@
         <div class="title">{{ item.type }}-{{ item.name }}</div>
         <div class="desc" v-html="item.desc"></div>
         <div class="time lq" v-if="item.time">{{ item.time }}秒</div>
+        <div class="note" v-if="item.note" v-html="item.note"></div>
       </div>
     </div>
     <div class="note" v-if="equip.note" v-html="equip.note"></div>
