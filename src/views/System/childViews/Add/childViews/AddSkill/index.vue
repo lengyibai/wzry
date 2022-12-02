@@ -107,7 +107,6 @@ const { show, finish, status, show_ConfirmClose, form_data, cancel, close } = vi
   "add_skill_list"
 );
 
-const skill_type = ref(""); //选择的技能类型
 const skill_effect = ref(""); //选择的技能效果
 const skill_consume = ref(0); //阶段值
 const hero_id = ref(0); //英雄id
