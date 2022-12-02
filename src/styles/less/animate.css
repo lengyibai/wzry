@@ -78,6 +78,24 @@
   position: absolute;
 }
 
+/* 卡片列表及卡片入场 */
+.card-list-enter-from {
+  opacity: 0;
+}
+
+.card-list-enter-active {
+  transition: all 0.25s;
+}
+
+.card-enter-from {
+  opacity: 0;
+  transform: translateY(-25px);
+}
+
+.card-enter-active {
+  transition: all 0.25s;
+}
+
 /* 提交成功√放大显示 */
 .bounce-enter-from,
 .bounce-leave-active {

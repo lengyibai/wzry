@@ -1,9 +1,9 @@
 <template>
   <div class="hero">
-    <transition name="hero-list">
+    <transition name="card-list">
       <div class="hero-main" v-if="show">
         <LibGridLayout ref="heroListRef" gap="25px" v-if="hero_list.length" :count="count" :eqhMultiple="1.5">
-          <transition-group name="hero" appear>
+          <transition-group name="card" appear>
             <div
               v-for="(item, index) in hero_list"
               :style="{
