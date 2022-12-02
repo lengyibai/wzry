@@ -1,0 +1,2306 @@
+{
+  "data": [
+    {
+      "id": 111,
+      "type": "攻击",
+      "level": 1,
+      "name": "铁剑",
+      "price": 250,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_1.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 20
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "type": "攻击",
+      "level": 1,
+      "name": "匕首",
+      "price": 290,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_2.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "10%"
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "type": "攻击",
+      "level": 1,
+      "name": "搏击拳套",
+      "price": 320,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_3.jpg",
+      "effect": [
+        {
+          "name": "暴击率",
+          "num": "8%"
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "type": "攻击",
+      "level": 1,
+      "name": "吸血之镰",
+      "price": 290,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_4.jpg",
+      "effect": [
+        {
+          "name": "物理吸血",
+          "num": "8%"
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "type": "攻击",
+      "level": 1,
+      "name": "迅捷长矛",
+      "price": 300,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_5.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 10
+        },
+        {
+          "name": "冷却缩减",
+          "num": "4%"
+        }
+      ]
+    },
+    {
+      "id": 116,
+      "type": "攻击",
+      "level": 1,
+      "name": "雷鸣刃",
+      "price": 450,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_6.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 40
+        }
+      ]
+    },
+    {
+      "id": 117,
+      "type": "攻击",
+      "level": 1,
+      "name": "冲能拳套",
+      "price": 550,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_7.jpg",
+      "effect": [
+        {
+          "name": "暴击率",
+          "num": "15%"
+        }
+      ]
+    },
+    {
+      "id": 121,
+      "type": "攻击",
+      "level": 2,
+      "name": "风暴巨剑",
+      "price": 910,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_1.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 80
+        }
+      ]
+    },
+    {
+      "id": 122,
+      "type": "攻击",
+      "level": 2,
+      "name": "日冕",
+      "price": 740,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_2.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 20
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        },
+        {
+          "name": "最大生命",
+          "num": 300
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "残废",
+          "desc": "技能对首个目标的敌方英雄造成10%减速，持续3秒",
+          "time": 8
+        }
+      ]
+    },
+    {
+      "id": 123,
+      "type": "攻击",
+      "level": 2,
+      "name": "狂暴双刃",
+      "price": 890,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_3.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "15%"
+        },
+        {
+          "name": "暴击率",
+          "num": "10%"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ]
+    },
+    {
+      "id": 124,
+      "type": "攻击",
+      "level": 2,
+      "name": "陨星",
+      "price": 1080,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_4.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 45
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "切割",
+          "desc": "增加60物理穿透"
+        }
+      ]
+    },
+    {
+      "id": 125,
+      "type": "攻击",
+      "level": 2,
+      "name": "速击之枪",
+      "price": 880,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_5.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "20%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "精准",
+          "desc": "普攻伤害提升40点"
+        }
+      ]
+    },
+    {
+      "id": 126,
+      "type": "攻击",
+      "level": 2,
+      "name": "血魂刃",
+      "price": 830,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_6.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 30
+        },
+        {
+          "name": "物理吸血",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回魂",
+          "desc": "自身生命低于30%时，5秒内累计回复400~610点生命",
+          "time": 20
+        }
+      ]
+    },
+    {
+      "id": 127,
+      "type": "攻击",
+      "level": 2,
+      "name": "穿云弓",
+      "desc": "远程打坦克用",
+      "price": 1100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_7.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 40
+        },
+        {
+          "name": "攻击速度",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破甲",
+          "desc": "增加10%物理穿透(远程英雄效果翻倍)"
+        }
+      ]
+    },
+    {
+      "id": 128,
+      "type": "攻击",
+      "level": 2,
+      "name": "名刀·司命",
+      "desc": "保命",
+      "price": 1900,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_8.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 60
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "暗幕",
+          "desc": "受到致命伤害时不会立即死亡，获得短暂无敌并增加30%移速，持续1秒(远程英雄为0.5秒)",
+          "time": 120
+        }
+      ]
+    },
+    {
+      "id": 129,
+      "type": "攻击",
+      "level": 2,
+      "name": "碎星锤",
+      "desc": "打坦克用",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_9.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 80
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ]
+    },
+    {
+      "id": 1210,
+      "type": "攻击",
+      "level": 2,
+      "name": "破魔刀",
+      "desc": "增加法术防御",
+      "price": 2090,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_10.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 90
+        },
+        {
+          "name": "法术防御",
+          "num": 100
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破魔",
+          "desc": "获得(60%)法术防御，最多不超过300点"
+        }
+      ]
+    },
+    {
+      "id": 1211,
+      "type": "攻击",
+      "level": 2,
+      "name": "寒霜袭侵",
+      "price": 2050,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_11.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "30%"
+        },
+        {
+          "name": "最大生命",
+          "num": "600"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "寒霜",
+          "desc": "普攻减少3%的移速，持续2秒，可叠加5层。叠满后，对目标的普攻法球会额外造成30%的伤害"
+        },
+        {
+          "type": "被动",
+          "name": "精准",
+          "desc": "普攻额外造成60~130物理伤害"
+        }
+      ]
+    },
+    {
+      "id": 1212,
+      "type": "攻击",
+      "level": 2,
+      "name": "制裁之刃",
+      "price": 1860,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_12.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 100
+        },
+        {
+          "name": "物理吸血",
+          "num": "15%"
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回魂",
+          "desc": "自身生命低于30%时，5秒内累计回复400~610点生命",
+          "time": 20
+        },
+        {
+          "type": "被动",
+          "name": "重伤",
+          "desc": "普攻/技能命中敌人后降低其50%生命回复和吸血效果，持续3秒/1.5秒"
+        }
+      ]
+    },
+    {
+      "id": 1213,
+      "type": "攻击",
+      "level": 2,
+      "name": "纯净苍穹",
+      "desc": "暂时增加免伤",
+      "price": 2120,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_13.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 100
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "残废",
+          "desc": "技能对首个命中的敌方英雄造成30%减速，并使其对自己的伤害降低20%，持续3秒",
+          "time": 8
+        },
+        {
+          "type": "主动",
+          "name": "驱散",
+          "desc": "获得35%减伤，持续3秒，可以在被控制时使用",
+          "time": 90
+        }
+      ]
+    },
+    {
+      "id": 131,
+      "type": "攻击",
+      "level": 3,
+      "name": "末世",
+      "desc": "普攻额外伤害",
+      "price": 2160,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_1.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 60
+        },
+        {
+          "name": "攻击速度",
+          "num": "30%"
+        },
+        {
+          "name": "物理吸血",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破败",
+          "desc": "普工额外造成目标8%当前生命的物理伤害(伤害对野怪上限80点)"
+        }
+      ]
+    },
+    {
+      "id": 132,
+      "type": "攻击",
+      "level": 3,
+      "name": "泣血之刃",
+      "desc": "物理吸血",
+      "price": 1800,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_2.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 100
+        },
+        {
+          "name": "物理吸血",
+          "num": "25%"
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回魂",
+          "desc": "自身生命低于30%时，5秒内累计回复410~610点生命",
+          "time": 20
+        }
+      ]
+    },
+    {
+      "id": 133,
+      "type": "攻击",
+      "level": 3,
+      "name": "无尽战刃",
+      "desc": "高额暴击伤害",
+      "price": 2140,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_3.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 110
+        },
+        {
+          "name": "暴击率",
+          "num": "20%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "无尽",
+          "desc": "获得20%暴击效果，每2%暴击增加1%暴击效果，最多不超过50%"
+        }
+      ]
+    },
+    {
+      "id": 134,
+      "type": "攻击",
+      "level": 3,
+      "name": "宗师之力",
+      "desc": "强化普攻",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_4.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 80
+        },
+        {
+          "name": "暴击率",
+          "num": "20%"
+        },
+        {
+          "name": "最大法力",
+          "num": "500"
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "强击",
+          "desc": "使用技能后增加12%移速，持续2秒，并使5秒内的下次普攻额外造成(80%)物理伤害",
+          "time": 3
+        }
+      ]
+    },
+    {
+      "id": 135,
+      "type": "攻击",
+      "level": 3,
+      "name": "闪电匕首",
+      "desc": "普攻附带闪电",
+      "price": 1840,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_5.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "40%"
+        },
+        {
+          "name": "移速",
+          "num": "8%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "电弧",
+          "desc": "普攻额外造成40~82法术伤害，每3次普攻会释放一次连锁闪电，造成140~420法术伤害"
+        }
+      ]
+    },
+    {
+      "id": 136,
+      "type": "攻击",
+      "level": 3,
+      "name": "影刃",
+      "desc": "暴击增加移速",
+      "price": 1950,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_6.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "35%"
+        },
+        {
+          "name": "暴击率",
+          "num": "25%"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "暴风",
+          "desc": "普攻伤害提升40点，暴击后增加25%攻速和5%移速，持续3秒"
+        }
+      ]
+    },
+    {
+      "id": 137,
+      "type": "攻击",
+      "level": 3,
+      "name": "暗影战斧",
+      "desc": "打脆皮用",
+      "price": 2090,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_7.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "85"
+        },
+        {
+          "name": "冷却缩减",
+          "num": "15%"
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "切割",
+          "desc": "增加58~170物理穿透"
+        },
+        {
+          "type": "被动",
+          "name": "残废",
+          "desc": "技能对首个命中的敌方英雄造成10%减速，持续3秒",
+          "time": 8
+        }
+      ]
+    },
+    {
+      "id": 138,
+      "type": "攻击",
+      "level": 3,
+      "name": "破军",
+      "desc": "高额攻击",
+      "price": 2950,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_8.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "180"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破军",
+          "desc": "对生命低于50%的敌人额外造成30%的伤害"
+        }
+      ]
+    },
+    {
+      "id": 139,
+      "type": "攻击",
+      "level": 3,
+      "name": "逐日之弓",
+      "desc": "攻击距离变远",
+      "price": 2050,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_9.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "25%"
+        },
+        {
+          "name": "暴击率",
+          "num": "10%"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "精准",
+          "desc": "普攻伤害提升50点(远程英雄效果翻倍)"
+        },
+        {
+          "type": "主动",
+          "name": "逐日",
+          "desc": "增加150点普攻射程和20%移速，持续5秒(增加射程效果仅远程英雄生效)",
+          "time": 60
+        }
+      ]
+    },
+    {
+      "id": 1310,
+      "type": "攻击",
+      "level": 3,
+      "name": "破晓",
+      "desc": "射手神装",
+      "price": 3400,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_10.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "50"
+        },
+        {
+          "name": "攻击速度",
+          "num": "35%"
+        },
+        {
+          "name": "暴击率",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破甲",
+          "desc": "增加20%物理穿透(远程英雄效果翻倍)"
+        },
+        {
+          "type": "被动",
+          "name": "破晓",
+          "desc": "普攻伤害提升50点(远程英雄效果翻倍)"
+        }
+      ]
+    },
+    {
+      "id": 1311,
+      "type": "攻击",
+      "level": 3,
+      "name": "日渊",
+      "desc": "攻击距离变远",
+      "price": 3300,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_11.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "25%"
+        },
+        {
+          "name": "暴击率",
+          "num": "10%"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "精准",
+          "desc": "普攻伤害提升50点(远程英雄效果翻倍)"
+        },
+        {
+          "type": "被动",
+          "name": "逐日",
+          "desc": "增加150点普攻射程和40%移速，期间普攻会向目标附近一个目标造成30%额外伤害，持续5秒(增加射程和额外伤害效果，仅远程英雄生效)",
+          "time": 60
+        }
+      ]
+    },
+    {
+      "id": 1312,
+      "type": "攻击",
+      "level": 3,
+      "name": "天穹",
+      "desc": "暂时增加免伤",
+      "price": 3370,
+      "note": "<p>那一刻，徘徊而没落的王,在暗与光的彷徨中做出最终的抉择</p>",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_12.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "100"
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "驱散",
+          "desc": "<p>技能对首个命中的敌方英雄造成30%减速，并使其对自己的伤害降低20%，持续3秒</p>",
+          "time": 8
+        },
+        {
+          "type": "主动",
+          "name": "残废",
+          "desc": "<p>解除所有控制，获得40%减伤，增加30%移速并无视地形阻挡，持续3秒，期间击杀敌方英雄可刷新效果持续时间</p>",
+          "time": 90
+        }
+      ]
+    },
+    {
+      "id": 1313,
+      "type": "攻击",
+      "level": 3,
+      "name": "铸梦·逐风",
+      "desc": "爆发攻速",
+      "price": 2140,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_13.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "100"
+        },
+        {
+          "name": "暴击率",
+          "num": "15%"
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "逐风",
+          "desc": "技能命中后，下三次普攻获得50%攻速",
+          "time": 3
+        }
+      ],
+      "note": "无伤害的技能命中敌人也可获得逐风效果"
+    },
+    {
+      "id": 1314,
+      "type": "攻击",
+      "level": 3,
+      "name": "铸梦·破空",
+      "desc": "普攻击退目标",
+      "price": 2130,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_14.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": "100"
+        },
+        {
+          "name": "暴击率",
+          "num": "10%"
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "碎甲",
+          "desc": "普攻会降低目标10%物理防御，持续2秒"
+        },
+        {
+          "type": "主动",
+          "name": "破空",
+          "desc": "强化下一次普攻，击退目标并额外造成(50%)物理伤害，同时自身随之后退",
+          "time": 30
+        }
+      ]
+    },
+    {
+      "id": 211,
+      "type": "法术",
+      "level": 1,
+      "name": "咒术典籍",
+      "price": 300,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_1.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 40
+        }
+      ]
+    },
+    {
+      "id": 212,
+      "type": "法术",
+      "level": 1,
+      "name": "蓝宝石",
+      "price": 220,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_2.jpg",
+      "effect": [
+        {
+          "name": "最大法力",
+          "num": 300
+        }
+      ]
+    },
+    {
+      "id": 213,
+      "type": "法术",
+      "level": 1,
+      "name": "炼金护符",
+      "price": 120,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_3.jpg",
+      "effect": [
+        {
+          "name": "每5秒回蓝",
+          "num": 10
+        }
+      ]
+    },
+    {
+      "id": 214,
+      "type": "法术",
+      "level": 1,
+      "name": "圣者法典",
+      "price": 400,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_4.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 30
+        },
+        {
+          "name": "冷却缩减",
+          "num": "4%"
+        }
+      ]
+    },
+    {
+      "id": 221,
+      "type": "法术",
+      "level": 2,
+      "name": "大棒",
+      "price": 820,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_1.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 120
+        }
+      ]
+    },
+    {
+      "id": 222,
+      "type": "法术",
+      "level": 2,
+      "name": "血族之书",
+      "price": 1240,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_2.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 75
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "嗜血",
+          "desc": "增加20%法术吸血"
+        }
+      ]
+    },
+    {
+      "id": 223,
+      "type": "法术",
+      "level": 2,
+      "name": "光辉之剑",
+      "price": 730,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_3.jpg",
+      "effect": [
+        {
+          "name": "最大法力",
+          "num": 400
+        },
+        {
+          "name": "最大生命",
+          "num": 400
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "强击",
+          "desc": "使用技能后，5秒内的下次普攻额外造成(50%+30%)",
+          "time": 1.2
+        }
+      ]
+    },
+    {
+      "id": 224,
+      "type": "法术",
+      "level": 2,
+      "name": "魔道之石",
+      "price": 890,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_4.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 90
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "法力波",
+          "desc": "技能命中后额外造成200法术伤害",
+          "time": 5
+        }
+      ]
+    },
+    {
+      "id": 225,
+      "type": "法术",
+      "level": 2,
+      "name": "进化水晶",
+      "price": 720,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_5.jpg",
+      "effect": [
+        {
+          "name": "最大法力",
+          "num": 400
+        },
+        {
+          "name": "最大生命",
+          "num": 400
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "英勇奖赏",
+          "desc": "英雄升级后会在3秒内回复20%最大生命与最大法力"
+        }
+      ]
+    },
+    {
+      "id": 226,
+      "type": "法术",
+      "level": 2,
+      "name": "破碎圣杯",
+      "price": 900,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_6.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 60
+        },
+        {
+          "name": "冷区缩减",
+          "num": "8%"
+        },
+        {
+          "name": "每5秒回蓝",
+          "num": 20
+        }
+      ]
+    },
+    {
+      "id": 227,
+      "type": "法术",
+      "level": 2,
+      "name": "云灵木",
+      "price": 970,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_7.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 70
+        },
+        {
+          "name": "最大生命",
+          "num": 300
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破法",
+          "desc": "增加60法术穿透"
+        }
+      ]
+    },
+    {
+      "id": 228,
+      "type": "法术",
+      "level": 2,
+      "name": "辉月",
+      "desc": "暂时无敌",
+      "price": 1990,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_8.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 160
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "主动",
+          "name": "月之守护",
+          "desc": "免疫所有效果，不能移动、攻击和使用技能，持续1.5秒",
+          "time": 90
+        }
+      ]
+    },
+    {
+      "id": 229,
+      "type": "法术",
+      "level": 2,
+      "name": "炽热支配者",
+      "desc": "残血增加护盾",
+      "price": 1950,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_9.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 200
+        },
+        {
+          "name": "最大法力",
+          "num": 600
+        },
+        {
+          "name": "每5秒回蓝",
+          "num": 15
+        }
+      ]
+    },
+    {
+      "id": 2210,
+      "type": "法术",
+      "level": 2,
+      "name": "日暮之流",
+      "desc": "提升法术穿透",
+      "price": 2120,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_10.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 140
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "日暮时分",
+          "desc": "对英雄造成伤害会获得14~28点法术穿透，持续4秒，该效果可叠加10层"
+        }
+      ],
+      "note": "误入云梦泽的旅人取其大河沼泽之水制成，据说有人从水纹中看到一只鹿和一只鸟的倒影"
+    },
+    {
+      "id": 2211,
+      "type": "法术",
+      "level": 2,
+      "name": "金色圣剑",
+      "desc": "持续强化普攻",
+      "price": 2070,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_11.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "20%"
+        },
+        {
+          "name": "法术攻击",
+          "num": "160"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "精准",
+          "desc": "普攻伤害提升60点"
+        },
+        {
+          "type": "被动",
+          "name": "圣剑",
+          "desc": "普攻命中后获得10%攻速，持续5秒，可叠加2层，叠满后普攻会额外造成(30%)法术伤害",
+          "time": 0.2
+        }
+      ],
+      "note": "日落圣殿的神剑再放光芒，人们开始盛传一个古老的预言：那位密林深处的神女将再度归来"
+    },
+    {
+      "id": 2212,
+      "type": "法术",
+      "level": 2,
+      "name": "梦魇之牙",
+      "desc": "减少敌人回血",
+      "price": 2050,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_12.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 240
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "重伤",
+          "desc": "普攻/技能命中敌人后降低其50%生命回复和吸血效果，持续3秒/1.5秒"
+        }
+      ]
+    },
+    {
+      "id": 231,
+      "type": "法术",
+      "level": 3,
+      "name": "圣杯",
+      "desc": "快速回蓝回血",
+      "price": 1800,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_1.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 180
+        },
+        {
+          "name": "冷却缩减",
+          "num": "15%"
+        },
+        {
+          "name": "每5秒回蓝",
+          "num": 25
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "法力源泉",
+          "desc": "每秒回复1%最大法力，如果法力已满，每秒回复1%最大生命"
+        }
+      ]
+    },
+    {
+      "id": 232,
+      "type": "法术",
+      "level": 3,
+      "name": "虚无法杖",
+      "desc": "打坦克用",
+      "price": 2110,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_2.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": "500"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "破灭",
+          "desc": "增加45%法术穿透"
+        }
+      ]
+    },
+    {
+      "id": 233,
+      "type": "法术",
+      "level": 3,
+      "name": "博学者之怒",
+      "desc": "大幅提升法强",
+      "price": 2300,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_3.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 240
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "毁灭",
+          "desc": "增加30%法术攻击"
+        }
+      ]
+    },
+    {
+      "id": 234,
+      "type": "法术",
+      "level": 3,
+      "name": "回响之杖",
+      "desc": "技能命中爆炸",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_4.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 240
+        },
+        {
+          "name": "移速",
+          "num": "7%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回响",
+          "desc": "技能命中后触发范围爆炸，造成(120+40%)法术伤害",
+          "time": 5
+        }
+      ]
+    },
+    {
+      "id": 235,
+      "type": "法术",
+      "level": 3,
+      "name": "痛苦面具",
+      "desc": "技能额外伤害",
+      "price": 2040,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_5.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 120
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        },
+        {
+          "name": "最大生命",
+          "num": 800
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "折磨",
+          "desc": "技能命中后，目标在3秒内受到4次3%当前生命的法术伤害(伤害对野怪上限为200点)",
+          "time": 3
+        }
+      ]
+    },
+    {
+      "id": 236,
+      "type": "法术",
+      "level": 3,
+      "name": "巫术法杖",
+      "desc": "强化普攻",
+      "price": 2120,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_6.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 180
+        },
+        {
+          "name": "最大法力",
+          "num": 500
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        },
+        {
+          "name": "移速",
+          "num": "8%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "强击",
+          "desc": "使用技能后，5秒内的下次普攻额外造成(30%+70%)法术伤害",
+          "time": 3
+        }
+      ]
+    },
+    {
+      "id": 237,
+      "type": "法术",
+      "level": 3,
+      "name": "时之预言",
+      "desc": "攻防兼备",
+      "price": 2090,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_7.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 140
+        },
+        {
+          "name": "最大法力",
+          "num": 500
+        },
+        {
+          "name": "最大生命",
+          "num": 800
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "英勇奖赏",
+          "desc": "英雄升级后会在3秒内回复20%最大生命与最大法力"
+        },
+        {
+          "type": "被动",
+          "name": "预言",
+          "desc": "获得40%物理防御和法术防御，最多不超过250点"
+        }
+      ]
+    },
+    {
+      "id": 238,
+      "type": "法术",
+      "level": 3,
+      "name": "破茧之衣",
+      "desc": "降低近距离伤害",
+      "price": 2160,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_8.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 160
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "法力折射",
+          "desc": "1000范围内，距离攻击者越近，所受到的伤害越低，最多减少5%所受伤害。每100法术攻击可提升1.5%减伤比例，最多将减少比例提升至20%"
+        }
+      ]
+    },
+    {
+      "id": 239,
+      "type": "法术",
+      "level": 3,
+      "name": "贤者之书",
+      "desc": "法师神装",
+      "price": 2990,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_9.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 4000
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "刻印",
+          "desc": "每100法术攻击可提升0.8%增伤比例，最多将增伤比例提升至12%"
+        }
+      ]
+    },
+    {
+      "id": 2310,
+      "type": "法术",
+      "level": 3,
+      "name": "噬神之书",
+      "desc": "法术吸血",
+      "price": 2090,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_10.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 180
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "嗜血",
+          "desc": "增加25%法术吸血"
+        }
+      ]
+    },
+    {
+      "id": 2311,
+      "type": "法术",
+      "level": 3,
+      "name": "凝冰之息",
+      "desc": "技能命中减速",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_11.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 160
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        },
+        {
+          "name": "最大生命",
+          "num": 600
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "凝冰",
+          "desc": "技能命中目标时会减少20%移速，持续2秒"
+        },
+        {
+          "type": "被动",
+          "name": "冻伤",
+          "desc": "技能对移速受损(低于初始值)的目标额外造成120~400法术伤害",
+          "time": 5
+        }
+      ]
+    },
+    {
+      "id": 2312,
+      "type": "法术",
+      "level": 3,
+      "name": "月神",
+      "desc": "暂时无敌",
+      "price": 3240,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_12.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 160
+        },
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "主动",
+          "name": "月之守护",
+          "desc": "免疫所有效果，不能移动、攻击和使用技能，持续1.5秒，随后在2秒内增加60%持续衰减的移速，并累计回复(1000+100%)生命",
+          "time": 90
+        }
+      ],
+      "note": "那一刻，剑寒如星的月光之女，将唯一的暖意封锁在兄长早已失去的名字中"
+    },
+    {
+      "id": 311,
+      "type": "防御",
+      "level": 1,
+      "name": "红玛瑙",
+      "price": 300,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_1.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": "300"
+        }
+      ]
+    },
+    {
+      "id": 321,
+      "type": "防御",
+      "level": 2,
+      "name": "力量腰带",
+      "price": 900,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_1.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": "1000"
+        }
+      ]
+    },
+    {
+      "id": 331,
+      "type": "防御",
+      "level": 3,
+      "name": "红莲斗篷",
+      "desc": "灼烧周围敌人",
+      "price": 1800,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_1.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "业炎",
+          "desc": "每秒对300范围内的敌人造成(2%)法术伤害，对小兵额外造成(2%)法术伤害",
+          "time": 1.2
+        }
+      ]
+    },
+    {
+      "id": 3310,
+      "type": "防御",
+      "level": 3,
+      "name": "冰痕之握",
+      "desc": "强化普攻减速",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_10.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 40
+        },
+        {
+          "name": "冷却缩减",
+          "num": "20%"
+        },
+        {
+          "name": "最大法力",
+          "num": 500
+        },
+        {
+          "name": "物理防御",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": 500
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "强击",
+          "desc": "使用技能后，5秒内的下次普攻对范围内敌人额外造成140~420物理伤害，并减少30%移速(远程英雄为20%)，持续0.5秒",
+          "time": 1.2
+        }
+      ]
+    },
+    {
+      "id": 411,
+      "type": "移动",
+      "level": 1,
+      "name": "神速之靴",
+      "price": 250,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/1_1.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得30移速"
+        }
+      ]
+    },
+    {
+      "id": 421,
+      "type": "移动",
+      "level": 2,
+      "name": "影忍之足",
+      "price": 710,
+      "desc": "减少普攻伤害",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_1.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 110
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得60移速"
+        },
+        {
+          "type": "被动",
+          "name": "防护",
+          "desc": "减少15%受到的普攻伤害"
+        }
+      ]
+    },
+    {
+      "id": 422,
+      "type": "移动",
+      "level": 2,
+      "name": "抵抗之靴",
+      "price": 710,
+      "desc": "减少被控时长",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_2.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 110
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得60移速"
+        },
+        {
+          "type": "被动",
+          "name": "坚韧",
+          "desc": "获得35%韧性"
+        }
+      ]
+    },
+    {
+      "id": 423,
+      "type": "移动",
+      "level": 2,
+      "name": "冷静之靴",
+      "price": 710,
+      "desc": "加快技能冷却",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_3.jpg",
+      "effect": [
+        {
+          "name": "冷却缩减",
+          "num": "15%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得60移速"
+        },
+        {
+          "type": "被动",
+          "name": "静谧",
+          "desc": "冷却恢复速度加快3%~10%，该效果对剩余冷却时间小于5秒的技能不生效"
+        }
+      ]
+    },
+    {
+      "id": 424,
+      "type": "移动",
+      "level": 2,
+      "name": "秘法之靴",
+      "price": 710,
+      "desc": "法术穿透",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_4.jpg",
+      "effect": [
+        {
+          "name": "每5秒回蓝",
+          "num": 25
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得60移速"
+        },
+        {
+          "type": "被动",
+          "name": "法术精通",
+          "desc": "获得50~120法术穿透"
+        }
+      ]
+    },
+    {
+      "id": 425,
+      "type": "移动",
+      "level": 2,
+      "name": "急速战靴",
+      "price": 710,
+      "desc": "增加攻速",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_5.jpg",
+      "effect": [
+        {
+          "name": "攻击速度",
+          "num": "25%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得60移速"
+        }
+      ]
+    },
+    {
+      "id": 426,
+      "type": "移动",
+      "level": 2,
+      "name": "疾步之靴",
+      "price": 710,
+      "desc": "脱战后加移速",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_6.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "神速",
+          "desc": "获得80移速"
+        },
+        {
+          "type": "被动",
+          "name": "神行",
+          "desc": "脱战后增加60移速"
+        }
+      ]
+    },
+    {
+      "id": 511,
+      "type": "打野",
+      "level": 1,
+      "name": "狩猎宽刃",
+      "price": 250,
+      "desc": "加快打野速度",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/1_1.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "增加25%对野怪的伤害，受到野怪(远古生物除外)伤害降低25%，自己击杀或700范围内友方击杀野怪时，自己会额外获得20%经验"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ]
+    },
+    {
+      "id": 512,
+      "type": "打野",
+      "level": 1,
+      "name": "弃鳞短刃",
+      "price": 250,
+      "desc": "加快打野速度",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/1_2.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "击杀野怪提升20%经验。普攻/技能命中后，野怪每0.5秒受到60~130点真实伤害，持续2秒，受到野怪(远古生物除外)伤害降低25%"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ]
+    },
+    {
+      "id": 521,
+      "type": "打野",
+      "level": 2,
+      "name": "游击弯刀",
+      "price": 750,
+      "desc": "打野怪加法强",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_1.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回响",
+          "desc": "技能命中后，之后在地面留下2秒范围持续爆炸，共造成(200+10%)法术伤害",
+          "time": 5
+        },
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "增加30%对野怪的伤害，受到野怪(远古生物除外)伤害降低25%，自己击杀或700范围内友方击杀野怪时，自己会额外获得30%经验和20%金币"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身6点法术攻击，可叠加20层"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ]
+    },
+    {
+      "id": 522,
+      "type": "打野",
+      "level": 2,
+      "name": "追击刀锋",
+      "price": 750,
+      "desc": "打野怪加攻击",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_2.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "增加30%对野怪的伤害(仅近战英雄生效)，受到野怪(远古生物除外)伤害降低25%，自己击杀或700范围内友方击杀野怪时，自己会额外获得30%经验和20%金币"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身2点物理攻击和0.5%冷却缩减，可叠加20层"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ]
+    },
+    {
+      "id": 523,
+      "type": "打野",
+      "level": 2,
+      "name": "巡守利斧",
+      "price": 750,
+      "desc": "打野怪加生命",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_3.jpg",
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "燎火",
+          "desc": "技能或普攻对命中的英雄造成每秒(30+2%额外生命)法术伤害并减少其40移速，持续3秒(远程英雄伤害和减速效果减半)",
+          "time": 10
+        },
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "击杀野怪额外获得30%经验和20%金币。普攻/技能命中后，野怪每0.5秒受到90~440点真实伤害，持续2秒，受到野怪(远古生物除外)伤害降低25%"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身10点最大生命，效果最多叠加20层，叠满后额外增加200点生命值"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ]
+    },
+    {
+      "id": 524,
+      "type": "打野",
+      "level": 2,
+      "name": "龙鳞利剑",
+      "price": 750,
+      "desc": "真实伤害灼烧",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_4.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 400
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "击杀野怪额外获得30%经验和20%金币。普攻/技能命中后，野怪每0.5秒受到60~130点真实伤害(兵线受到40%的伤害，仅近战英雄生效)，持续2秒，受到野怪(远古生物除外)伤害降低25%"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "普攻/技能命中敌方英雄后，每0.5秒造成一次真实伤害，持续2秒。伤害量由奖赏层数决定，每30秒叠加一层，每层可提升1点真实伤害，效果最多叠加30层"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配小兵收益时，不参与分配，单独获得50%金币和经验",
+          "note": "该效果在4分钟时移除，分配时若存在多个游击效果，只一人生效，游走装优先"
+        }
+      ],
+      "note": "据闻峡谷异变之时，身披云狐的老者将嵌入龙王鳞片的短刃改造为利剑，赠与和其力量匹配的峡谷守护者"
+    },
+    {
+      "id": 531,
+      "type": "打野",
+      "level": 3,
+      "name": "符文大剑",
+      "price": 2160,
+      "desc": "打野怪加法强",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_1.jpg",
+      "effect": [
+        {
+          "name": "法术攻击",
+          "num": 80
+        },
+        {
+          "name": "冷却缩减",
+          "num": "5%"
+        },
+        {
+          "name": "移速",
+          "num": "7%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "回响",
+          "desc": "技能命中后触发范围爆炸，造成(150+25%)法术伤害，之后在地面留下2秒范围持续爆炸，共造成(200+10%)法术伤害",
+          "time": 5
+        },
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "增加30%对野怪的伤害，受到野怪(远古生物除外)伤害降低25%，自己击杀或700范围内友方击杀野怪时，自己会额外获得30%经验和20%金币"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身6点法术攻击，可叠加30层"
+        }
+      ]
+    },
+    {
+      "id": 532,
+      "type": "打野",
+      "level": 3,
+      "name": "贪婪之噬",
+      "price": 2160,
+      "desc": "打野怪加攻击",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_2.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 60
+        },
+        {
+          "name": "移速",
+          "num": "8%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "锋利",
+          "desc": "增加30~100点物理穿透"
+        },
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "增加30%对野怪的伤害(仅近战英雄生效)，受到野怪(远古生物除外)伤害降低25%，自己击杀或700范围内友方击杀野怪时，自己会额外获得30%经验和20%金币"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身6点法术攻击，可叠加30层"
+        }
+      ]
+    },
+    {
+      "id": 533,
+      "type": "打野",
+      "level": 3,
+      "name": "巨人之握",
+      "price": 2160,
+      "desc": "打野怪加生命",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_3.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 700
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "燎火",
+          "desc": "技能或普攻对命中的英雄造成每秒(100+5%额外生命)法术伤害并减少其40移速，持续3秒(远程英雄伤害和减速效果减半)",
+          "time": 10
+        },
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "击杀野怪额外获得30%经验和20%金币。普攻/技能命中后，野怪每0.5秒受到110~600点真实伤害，持续2秒，受到野怪(远古生物除外)伤害降低25%"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "自己击杀或700范围内友方击杀野怪会增加自身20点最大生命，效果最多叠加20层，叠满后额外增加600点生命值"
+        }
+      ]
+    },
+    {
+      "id": 534,
+      "type": "打野",
+      "level": 3,
+      "name": "浴火之怒",
+      "price": 2160,
+      "desc": "真实伤害灼烧",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_4.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 1100
+        },
+        {
+          "name": "移速",
+          "num": "8%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狩猎",
+          "desc": "击杀野怪额外获得30%经验和20%金币。普攻/技能命中后，野怪每0.5秒受到60~200点真实伤害(兵线受到40%的伤害，仅近战英雄生效)，持续2秒，受到野怪(远古生物除外)伤害降低25%"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "普攻/技能命中敌方英雄后，每0.5秒造成一次真实伤害，持续2秒。伤害量由奖赏层数决定，每30秒叠加一层，每层可提升3点真实伤害，效果最多叠加30层"
+        }
+      ],
+      "note": "那位身披云狐的老者将龙鳞利刃置于烈焰中千锤百炼，使它浴火而生"
+    },
+    {
+      "id": 611,
+      "type": "游走",
+      "level": 1,
+      "name": "学识宝石",
+      "price": 300,
+      "desc": "额外金币经验",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/1_1.jpg",
+      "effect": [
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配野怪和小兵收益时，不参与分配，单独获得30%金币和经验",
+          "note": "该效果在10分钟时移除，多人出游走装时，只有经济最低的出装者生效"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "经济为队伍4/5名时，每3秒获得5点金币和经验，每30秒获得1层奖赏效果，最多20层",
+          "note": "加金币和经验的效果在12分钟时移除，多人出游走装时，只有经济最低的出装者生效，该效果和打野刀的奖赏效果不同时生效"
+        }
+      ]
+    },
+    {
+      "id": 621,
+      "type": "游走",
+      "level": 2,
+      "name": "凤鸣指环",
+      "price": 900,
+      "desc": "光环加输出",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_1.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 500
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "光环",
+          "name": "迅捷",
+          "desc": "增加800范围友方10%攻速和5%冷却缩减",
+          "note": "多个游走光环无法同时生效"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配野怪和小兵收益时，不参与分配，单独获得30%金币和经验",
+          "note": "该效果在10分钟时移除，多人出游走装时，只有经济最低的出装者生效"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "经济为队伍4/5名时，每3秒获得5点金币和经验，每30秒获得1层奖赏效果，最多20层",
+          "note": "加金币和经验的效果在12分钟时移除，多人出游走装时，只有经济最低的出装者生效，该效果和打野刀的奖赏效果不同时生效"
+        },
+        {
+          "type": "被动",
+          "name": "强化",
+          "desc": "每层奖赏增加2物理攻击和4法术攻击"
+        }
+      ]
+    },
+    {
+      "id": 631,
+      "type": "游走",
+      "level": 3,
+      "name": "极影",
+      "price": 1900,
+      "desc": "光环加输出",
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_1.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 1200
+        },
+        {
+          "name": "移速",
+          "num": "8%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "光环",
+          "name": "迅捷",
+          "desc": "增加800范围友方20%攻速和10%冷却缩减",
+          "note": "多个游走光环无法同时生效"
+        },
+        {
+          "type": "被动",
+          "name": "游击",
+          "desc": "与队友分配野怪和小兵收益时，不参与分配，单独获得30%金币和经验",
+          "note": "该效果在10分钟时移除，多人出游走装时，只有经济最低的出装者生效"
+        },
+        {
+          "type": "被动",
+          "name": "奖赏",
+          "desc": "经济为队伍4/5名时，每3秒获得5点金币和经验，每30秒获得1层奖赏效果，最多20层",
+          "note": "加金币和经验的效果在12分钟时移除，多人出游走装时，只有经济最低的出装者生效，该效果和打野刀的奖赏效果不同时生效"
+        },
+        {
+          "type": "被动",
+          "name": "强化",
+          "desc": "每层奖赏增加2物理攻击和4法术攻击"
+        }
+      ]
+    }
+  ]
+}
