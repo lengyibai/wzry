@@ -27,6 +27,7 @@ declare namespace Equip {
     name: string; //名称
     desc: string; //描述
     time: number; //冷却时间
+    note: string; //备注
   }
 }
 
@@ -34,8 +35,9 @@ declare namespace Equip {
 declare namespace Epigraph {
   /** @description: 铭文数据 */
   interface Data {
+    id: number;
     name: string; //名称
-    type: string; //类型
+    type: string[]; //类型
     img: string; //图标
     effect: EpigraphEffect[]; //效果
   }
