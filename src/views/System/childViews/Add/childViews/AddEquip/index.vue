@@ -1,5 +1,5 @@
 <template>
-  <div class="Equip view-add">
+  <div class="equip view-add">
     <transition name="fade">
       <div class="content" ref="content" v-if="show">
         <div class="left">
@@ -16,14 +16,9 @@
           <!-- 价格 -->
           <FormInput label="价格" required v-model="form_data!.price" number />
           <!-- 设置图标 -->
-          <FormImg
-            :getLink="getLink"
-            :imgs="[form_data!.icon]"
-            :keys="['icon']"
-            :values="{ icon: '图标' }"
-            label="图标"
-            required
-          />
+          <FormLabel label="图标" required>
+            <SelectImg v-model="form_data!.icon" title="图标" />
+          </FormLabel>
           <!-- 最底部灰色备注 -->
           <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
 
@@ -91,7 +86,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { getEquipType, getEquipEffect, addEquip } from "@/api/main/game/index";
+import { getEquipType, getEquipEffect } from "@/api/main/games/equip";
 import { equipDefault, equipMotivationDefault } from "@/defaultValue/defaults";
 import { $deepCopy } from "@/utils/index";
 import switchStore from "@/store/globalSwitch";
@@ -122,18 +117,13 @@ form_data.value ??= $deepCopy(equipDefault);
 
 /* 获取装备效果 */
 getEquipEffect().then((res) => {
-  equip_effects.value = res.data;
+  equip_effects.value = res;
 });
 
 /* 获取装备类型 */
 getEquipType().then((res) => {
-  equip_types.value = res.data;
+  equip_types.value = res;
 });
-
-/* 获取装备图标链接 */
-const getLink = (v: string) => {
-  form_data.value!.icon = v;
-};
 
 /* 添加装备效果 */
 const addEffect = () => {
@@ -190,7 +180,7 @@ const commit = async () => {
       price: Number(price),
     };
     try {
-      await addEquip(data);
+      // await addEquip(data);
     } catch (error) {
       $switchStore.$tip("装备位置已被占用，请重新填写阶段排名", "error");
       status.value = 0;
