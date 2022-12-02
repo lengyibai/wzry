@@ -29,7 +29,7 @@ export default defineStore("epigraph", {
         this.filter_list = this.epigraph_list;
       } else {
         this.filter_list = this.epigraph_list.filter((item) => {
-          return item.type === type;
+          return item.type.includes(type);
         });
       }
     },
