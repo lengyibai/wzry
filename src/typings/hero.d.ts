@@ -64,9 +64,9 @@ declare namespace Hero {
     hero: number; //所属英雄id
     num: number; //序号
     price: number; //价格
-    type: string; //类型
+    type: number; //类型
     name: string; //名称
-    poster: string; //图片
+    poster: string; //海报
     headImg: string; //头像
   }
   /** @description: 皮肤类型 */
