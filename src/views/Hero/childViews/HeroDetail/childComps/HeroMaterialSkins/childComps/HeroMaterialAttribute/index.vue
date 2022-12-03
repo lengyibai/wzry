@@ -1,7 +1,7 @@
 <template>
   <div class="hero-material-attribute">
     <div class="title">英雄属性</div>
-    <HeroSort class="hero-sort" :occ="hero_data.profession" />
+    <HeroSort class="hero-sort" :occ="hero_data.profession[0]" />
     <Attribute attr="survival" :length="hero_data.survival" />
     <Attribute attr="attack" :length="hero_data.attack" />
     <Attribute attr="effect" :length="hero_data.effect" />
