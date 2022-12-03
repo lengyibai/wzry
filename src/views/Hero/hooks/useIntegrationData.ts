@@ -1,6 +1,7 @@
 import { ref } from "vue";
-import { getHeroDetail } from "@/api/main/games/hero";
 import { useRouter } from "vue-router";
+import { getHeroSkin } from "@/api/main/games/skin";
+import { getHeroDetail } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import heroStore from "@/store/hero";
@@ -23,24 +24,28 @@ export default (id: number | unknown) => {
   /* 查看详情 */
   const viewClick = (id: number) => {
     /* 获取指定英雄数据 */
-    getHeroDetail(id).then((res) => {
-      hero_info.value = res;
-      $heroStore.setHeroInfo(res);
-      show_HeroDetail.value = true;
+    getHeroDetail(id).then((hero) => {
+      /* 获取指定英雄皮肤 */
+      getHeroSkin(id).then((skins) => {
+        hero_info.value = hero;
+        hero_info.value.skins = skins;
+        $heroStore.setHeroInfo(hero_info.value);
+        show_HeroDetail.value = true;
 
-      /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
-      $router.push({
-        path: "/hero",
-        query: {
-          id: hero_info.value.id,
-        },
+        /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
+        $router.push({
+          path: "/hero",
+          query: {
+            id: hero_info.value.id,
+          },
+        });
+        setTimeout(() => {
+          /* 静默加载英雄列表 */
+          if ($heroStore.profession === "") {
+            getList($heroStore.hero_info.profession[0]);
+          }
+        }, 3000);
       });
-      setTimeout(() => {
-        /* 静默加载英雄列表 */
-        if ($heroStore.profession === "") {
-          getList($heroStore.hero_info.profession[0]);
-        }
-      }, 3000);
     });
   };
 
