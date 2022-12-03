@@ -1627,6 +1627,48 @@
       ]
     },
     {
+      "id": 312,
+      "type": "防御",
+      "level": 1,
+      "name": "布甲",
+      "price": 220,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_2.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 90
+        }
+      ]
+    },
+    {
+      "id": 313,
+      "type": "防御",
+      "level": 1,
+      "name": "抗魔披风",
+      "price": 220,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_3.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 90
+        }
+      ]
+    },
+    {
+      "id": 314,
+      "type": "防御",
+      "level": 1,
+      "name": "提神水晶",
+      "price": 140,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_4.jpg",
+      "effect": [
+        {
+          "name": "每5秒回血",
+          "num": 30
+        }
+      ]
+    },
+    {
       "id": 321,
       "type": "防御",
       "level": 2,
@@ -1636,9 +1678,265 @@
       "effect": [
         {
           "name": "最大生命",
-          "num": "1000"
+          "num": 1000
         }
       ]
+    },
+    {
+      "id": 322,
+      "type": "防御",
+      "level": 2,
+      "name": "熔炼之心",
+      "price": 800,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_2.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 700
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "业炎",
+          "desc": "每秒对300范围内的敌人造成(1%)法术伤害，对小兵额外造成(1%)法术伤害"
+        }
+      ]
+    },
+    {
+      "id": 323,
+      "type": "防御",
+      "level": 2,
+      "name": "神隐斗篷",
+      "price": 1020,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_3.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 120
+        },
+        {
+          "name": "最大生命",
+          "num": 700
+        },
+        {
+          "name": "每5秒回血",
+          "num": 50
+        }
+      ]
+    },
+    {
+      "id": 324,
+      "type": "防御",
+      "level": 2,
+      "name": "雪山圆盾",
+      "price": 900,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_4.jpg",
+      "effect": [
+        {
+          "name": "冷却缩减",
+          "num": "10%"
+        },
+        {
+          "name": "最大法力",
+          "num": 400
+        },
+        {
+          "name": "物理防御",
+          "num": 110
+        }
+      ]
+    },
+    {
+      "id": 325,
+      "type": "防御",
+      "level": 2,
+      "name": "守护者之铠",
+      "desc": "受击减速敌人",
+      "price": 730,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_5.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 210
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "寒铁",
+          "desc": "受到伤害后，减少攻击者15%移速，持续3秒"
+        }
+      ]
+    },
+    {
+      "id": 326,
+      "type": "防御",
+      "level": 2,
+      "name": "荆棘护手",
+      "desc": "攻防兼备",
+      "price": 710,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_6.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 30
+        },
+        {
+          "name": "物理防御",
+          "num": 160
+        }
+      ]
+    },
+    {
+      "id": 327,
+      "type": "防御",
+      "level": 2,
+      "name": "暗夜小甲",
+      "desc": "对抗爆发伤害",
+      "price": 710,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_7.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 180
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "守护",
+          "desc": "3秒内受到伤害超过40%最大生命时，会在接下来的3秒内累计回复(40+4%)生命",
+          "time": 7
+        }
+      ]
+    },
+    {
+      "id": 328,
+      "type": "防御",
+      "level": 2,
+      "name": "反伤刺甲",
+      "desc": "反弹物理伤害",
+      "price": 1950,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_8.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 30
+        },
+        {
+          "name": "物理防御",
+          "num": 400
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "荆棘",
+          "desc": "以法术伤害的形式将收到的物理伤害的25%回敬给对方(该伤害随攻击者距离衰减，最多在距离800时衰减至70%)"
+        },
+        {
+          "type": "被动",
+          "name": "反刺",
+          "desc": "2秒内受到物理伤害超过(1000+10%)最大生命时，发出刺击对400范围内的敌人造成(8%)法术伤害",
+          "time": 3
+        }
+      ]
+    },
+    {
+      "id": 329,
+      "type": "防御",
+      "level": 2,
+      "name": "血魔之怒",
+      "desc": "暂时获得攻击和护盾",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_9.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 40
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狂怒",
+          "desc": "普攻额外造成(4%额外)物理伤害，当自己生命低于50%时，该伤害提升100%"
+        },
+        {
+          "type": "主动",
+          "name": "血怒",
+          "desc": "逐渐扣除30%当前生命，逐渐获得累计(40%)护盾，并增加80点物理攻击，持续4秒",
+          "time": 60
+        }
+      ],
+      "note": "血族名将设计打造的狂战士装备，可吸取使用者的生命来转化成强大的力量"
+    },
+    {
+      "id": 3210,
+      "type": "防御",
+      "level": 2,
+      "name": "冰霜冲击",
+      "desc": "群体控制",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_10.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "冰甲",
+          "desc": "当自身受到除压制外的硬控后，获得(12%)护盾，持续5秒",
+          "time": 15
+        },
+        {
+          "type": "主动",
+          "name": "冲击",
+          "desc": "对范围450范围内敌人造成0.5秒晕眩，随后附带1秒50%减速。若目标移速或攻速受损，则眩晕时间分别延长0.25秒",
+          "time": 90
+        }
+      ],
+      "note": "上古战斗机甲的外壳，被海都的机工家族改良成人类可使用的防具"
+    },
+    {
+      "id": 3211,
+      "type": "防御",
+      "level": 2,
+      "name": "原初遗珠",
+      "desc": "装备进化",
+      "price": 1250,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_11.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 140
+        },
+        {
+          "name": "法术防御",
+          "num": 140
+        }
+      ],
+      "motivation": [
+        {
+          "type": "",
+          "name": "",
+          "desc": "贤者的庇护虽已损坏，但其能量内核在原初之息的浸染下拥有了强化装备的效果(20分钟后开放购买)",
+          "time": 1.2
+        }
+      ],
+      "note": "重生之力与原初之息的生命共鸣催生了原初遗珠。如果将其从坍塌的庇护之甲中拾起放在耳边，能听到万物之源的低语"
     },
     {
       "id": 331,
@@ -1666,6 +1964,244 @@
           "time": 1.2
         }
       ]
+    },
+    {
+      "id": 332,
+      "type": "防御",
+      "level": 3,
+      "name": "霸者重装",
+      "desc": "脱战快速回血",
+      "price": 2070,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_2.jpg",
+      "effect": [
+        {
+          "name": "最大生命",
+          "num": 2000
+        },
+        {
+          "name": "每5秒回血",
+          "num": 100
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "复苏",
+          "desc": "脱离战斗后每秒回复3%最大生命"
+        }
+      ]
+    },
+    {
+      "id": 333,
+      "type": "防御",
+      "level": 3,
+      "name": "不祥征兆",
+      "desc": "受击减速敌人",
+      "price": 2180,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_3.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 270
+        },
+        {
+          "name": "最大生命",
+          "num": 1200
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "寒铁",
+          "desc": "受到伤害后，减少攻击者30%攻速和15%移速，持续3秒"
+        }
+      ]
+    },
+    {
+      "id": 334,
+      "type": "防御",
+      "level": 3,
+      "name": "不死鸟之眼",
+      "desc": "增加回血效果",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_4.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": 1200
+        },
+        {
+          "name": "每5秒回血",
+          "num": 100
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "血统",
+          "desc": "每损失10%生命，生命恢复效果增加6%"
+        }
+      ]
+    },
+    {
+      "id": 335,
+      "type": "防御",
+      "level": 3,
+      "name": "魔女斗篷",
+      "desc": "吸收法术伤害",
+      "price": 2080,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_5.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 200
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        },
+        {
+          "name": "每5秒回血",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "迷雾",
+          "desc": "脱战后立即获得100~1500点吸收法术伤害护盾"
+        },
+        {
+          "type": "被动",
+          "name": "御魔",
+          "desc": "获得8~120点法术防御"
+        }
+      ]
+    },
+    {
+      "id": 336,
+      "type": "防御",
+      "level": 3,
+      "name": "极寒风暴",
+      "desc": "群体伤害减速",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_6.jpg",
+      "effect": [
+        {
+          "name": "冷却缩减",
+          "num": "20%"
+        },
+        {
+          "name": "最大法力",
+          "num": 500
+        },
+        {
+          "name": "物理防御",
+          "num": 360
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "冰心",
+          "desc": "受到单次伤害超过当前生命10%时触发寒冰冲击，对500范围内的敌人造成60~200点法术伤害，并降低其30%攻速和移速，持续2秒",
+          "time": 2
+        }
+      ]
+    },
+    {
+      "id": 337,
+      "type": "防御",
+      "level": 3,
+      "name": "贤者的庇护",
+      "desc": "原地复活",
+      "price": 2100,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_7.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 140
+        },
+        {
+          "name": "法术防御",
+          "num": 140
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "复生",
+          "desc": "死亡后2秒原地复活，并获得2100~3500点生命，该效果每局游戏最多触发2次",
+          "time": 150
+        }
+      ],
+      "note": "当锻造的别离侵蚀了剑冢，当藤萝缠绕上弩箭下的冰凉身躯，云梦泽最古老的呢喃中，是谁想要复活死去的爱人"
+    },
+    {
+      "id": 338,
+      "type": "防御",
+      "level": 3,
+      "name": "红莲斗篷",
+      "desc": "能扛能打",
+      "price": 1950,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_8.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 30
+        },
+        {
+          "name": "物理防御",
+          "num": 220
+        },
+        {
+          "name": "最大生命",
+          "num": 900
+        },
+        {
+          "name": "移速",
+          "num": "5%"
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "无畏",
+          "desc": "每次受到伤害后，自己增加2%伤害和1%移速，持续3秒，可叠加5层"
+        }
+      ]
+    },
+    {
+      "id": 339,
+      "type": "防御",
+      "level": 3,
+      "name": "永夜守护",
+      "desc": "对抗爆发伤害",
+      "price": 2110,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_9.jpg",
+      "effect": [
+        {
+          "name": "法术防御",
+          "num": 360
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "守护",
+          "desc": "3秒内受到伤害超过30%最大生命时，会在接下来的3秒内累计回复(320+8%)生命",
+          "time": 7
+        }
+      ],
+      "note": "峡谷的永夜中，那些永远冲在最前方的勇士，是谁最终记起了那个月光下的少女，和自己曾经丢失的名字"
     },
     {
       "id": 3310,
@@ -1705,6 +2241,72 @@
           "time": 1.2
         }
       ]
+    },
+    {
+      "id": 3311,
+      "type": "防御",
+      "level": 3,
+      "name": "怒魂",
+      "desc": "暂时获得攻击和护盾",
+      "price": 3350,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_11.jpg",
+      "effect": [
+        {
+          "name": "物理攻击",
+          "num": 40
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "狂怒",
+          "desc": "普攻额外造成(4%额外)物理伤害，当自己生命低于50%时，该伤害提升100%"
+        },
+        {
+          "type": "主动",
+          "name": "血怒",
+          "desc": "逐渐扣除30%当前生命，逐渐获得累计(50%)护盾，并增加80点物理攻击，持续4秒。在此期间对周围敌人每秒造成(8%额外)法术伤害(伤害对野怪上限为200点)",
+          "time": 60
+        }
+      ]
+    },
+    {
+      "id": 3312,
+      "type": "防御",
+      "level": 3,
+      "name": "凛冬",
+      "desc": "群体控制",
+      "price": 3350,
+      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_12.jpg",
+      "effect": [
+        {
+          "name": "物理防御",
+          "num": 240
+        },
+        {
+          "name": "最大生命",
+          "num": 1000
+        }
+      ],
+      "motivation": [
+        {
+          "type": "被动",
+          "name": "冰甲",
+          "desc": "当自身受到除压制外的硬控后，获得(12%)护盾，持续5秒",
+          "time": 15
+        },
+        {
+          "type": "主动",
+          "name": "冲击",
+          "desc": "对600范围内的敌人造成0.5秒冰冻，随后附带1秒90%减速。若目标移速或攻速受损，则冰冻时间分别延长0.5秒",
+          "time": 90
+        }
+      ],
+      "note": "那一刻，离开故土的公主，在凛冬之地得见傲雪之梅"
     },
     {
       "id": 411,

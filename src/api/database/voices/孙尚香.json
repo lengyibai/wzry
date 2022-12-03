@@ -1,0 +1,810 @@
+[
+  {
+    "voice": [
+      {
+        "text": "大小姐驾到！统统闪开！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736119448.wav"
+      },
+      {
+        "text": "来发子弹吗？满足你！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736263234.wav"
+      },
+      {
+        "text": "你也是本小姐的粉丝吗？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736424073.wav"
+      },
+      {
+        "text": "哈哈哈，轰得不要太爽！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736564278.wav"
+      },
+      {
+        "text": "送你个轰轰烈烈的退场，感谢本小姐大恩大德吧！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736722621.wav"
+      },
+      {
+        "text": "淑女什么的……哼，才不屑呢！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497736895584.wav"
+      },
+      {
+        "text": "没人气的家伙，不值得浪费炮火。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497737119308.wav"
+      },
+      {
+        "text": "野外徘徊的可怜家伙，能够收获的只有炮火。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497737422853.wav"
+      },
+      {
+        "text": "呜，可恶！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497737576305.wav"
+      },
+      {
+        "text": "3，2，1，BOOM！！！！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497739894564.wav"
+      },
+      {
+        "text": "指哪打哪！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497740203040.wav"
+      },
+      {
+        "text": "百发百中！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497740491149.wav"
+      },
+      {
+        "text": "除了炮弹，本小姐没别的跟你们交流了。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497740648057.wav"
+      }
+    ],
+    "name": "原皮"
+  },
+  {
+    "voice": [
+      {
+        "text": "华丽的末日大片，由本小姐主演！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497741796505.wav"
+      },
+      {
+        "text": "正义伙伴，暴走克星~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742023601.wav"
+      },
+      {
+        "text": "狂飙突进！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742151301.wav"
+      },
+      {
+        "text": "瞄准你的生命终点",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742348175.wav"
+      },
+      {
+        "text": "本小姐才是你在废墟中唯一的信仰！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742527706.wav"
+      },
+      {
+        "text": "有什么一闪而过，那是击中你的炮火~~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742666511.wav"
+      },
+      {
+        "text": "替你们准备好了死循环，立刻执行的那种",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497742947119.wav"
+      },
+      {
+        "text": "更重要的任务在等着我！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743125132.wav"
+      },
+      {
+        "text": "啊~嘿嘿嘿~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743293741.wav"
+      },
+      {
+        "text": "哦？这操作好可怕。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743446082.wav"
+      },
+      {
+        "text": "欸~本小姐不干啦！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743567807.wav"
+      },
+      {
+        "text": "敢对大小姐不敬，哼！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743718613.wav"
+      },
+      {
+        "text": "服不服！哈哈哈哈哈哈",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497743831656.wav"
+      },
+      {
+        "text": "不错嘛，本小姐很看好你哦。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744041600.wav"
+      },
+      {
+        "text": "嗨，拜拜~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744207650.wav"
+      },
+      {
+        "text": "额，浑身上下都写着拒绝。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744368161.wav"
+      },
+      {
+        "text": "嗨起来！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744527594.wav"
+      },
+      {
+        "text": "摇起来！哈哈哈哈哈哈",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744655088.wav"
+      },
+      {
+        "text": "清除障碍！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744853322.wav"
+      },
+      {
+        "text": "火力全开！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497744983491.wav"
+      },
+      {
+        "text": "放射性似乎对你们的大脑造成了不可逆转的伤害~~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497745104864.wav"
+      }
+    ],
+    "name": "末日机甲"
+  },
+  {
+    "voice": [
+      {
+        "text": "呵~哒哒哒！保持水准！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500021271047.mp3"
+      },
+      {
+        "text": "呵~哒哒哒！嘿！你们遗漏了某个小女孩！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500021381184.mp3"
+      },
+      {
+        "text": "呵~哒哒哒！26号在哪？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500021122038.mp3"
+      },
+      {
+        "text": "泡泡糖和枪，同等重要。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497750305861.wav"
+      },
+      {
+        "text": "普攻是为了说话，开大是为了思考",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497750476188.wav"
+      },
+      {
+        "text": "来玩儿个游戏吧",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497750759732.wav"
+      },
+      {
+        "text": "胆大心细有助于防止感冒",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497750891520.wav"
+      },
+      {
+        "text": "像小鸟一样自由",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751052562.wav"
+      },
+      {
+        "text": "呵呵，谁这么幸运，中了本小姐的瞄准镜。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751213019.wav"
+      },
+      {
+        "text": "啊，别开枪，我只是来送外卖的。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751356907.wav"
+      },
+      {
+        "text": "我想你了。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751536291.wav"
+      },
+      {
+        "text": "哼，我只配呆在这儿？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751688115.wav"
+      },
+      {
+        "text": "太棒了，amazing！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751813093.wav"
+      },
+      {
+        "text": "哼，弱爆了，啊哈哈哈哈哈哈哈哈",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497751947141.wav"
+      },
+      {
+        "text": "想想你输了该怎么办吧。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497752081985.wav"
+      },
+      {
+        "text": "永远不对弱者下手。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497752211391.wav"
+      },
+      {
+        "text": "猜猜，这是哪个电影里的舞蹈。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497752362877.wav"
+      },
+      {
+        "text": "嗨~认出我了吗~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497752497664.wav"
+      },
+      {
+        "text": "嘿，吃糖吗？ 来拿呀~嘿嘿~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497752728413.wav"
+      },
+      {
+        "text": "来杯牛奶，谢谢。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497753254881.wav"
+      },
+      {
+        "text": "有人会替我送个礼物给你。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497753404370.wav"
+      },
+      {
+        "text": "position!",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497753592701.wav"
+      },
+      {
+        "text": "别跑，朋友",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497753742533.wav"
+      },
+      {
+        "text": "别跑，哥们",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497753897315.wav"
+      },
+      {
+        "text": "哼，就是现在",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497754058573.wav"
+      },
+      {
+        "text": "我为自己工作~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497754224039.wav"
+      },
+      {
+        "text": "暗号不对",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497754341746.wav"
+      },
+      {
+        "text": "该听我的了",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497754476887.wav"
+      },
+      {
+        "text": "想杀我？本小姐睡觉都睁着一只眼。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497754717241.wav"
+      }
+    ],
+    "name": "杀手不太冷"
+  },
+  {
+    "voice": [
+      {
+        "text": "时间是一条逆流的河",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500021763179.mp3"
+      },
+      {
+        "text": "在无数的碎片中找到你",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500022043632.mp3"
+      },
+      {
+        "text": "你好吗？...我很好~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500021918172.mp3"
+      },
+      {
+        "text": "本时代最不流行的复古元素，叫浪漫~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497757702161.wav"
+      },
+      {
+        "text": "给我折个纸飞机，怎么样？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497757912412.wav"
+      },
+      {
+        "text": "雨天，正适合重温老电影",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758047318.wav"
+      },
+      {
+        "text": "emm,把雪花留在信纸上吧！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758189754.wav"
+      },
+      {
+        "text": "黄昏，重逢的最佳时刻！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758326407.wav"
+      },
+      {
+        "text": "前往过去……",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758676662.wav"
+      },
+      {
+        "text": "见字如面！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758806553.wav"
+      },
+      {
+        "text": "你的回信~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497758942264.wav"
+      },
+      {
+        "text": "留心天空的痕迹！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497759072000.wav"
+      },
+      {
+        "text": "再见~我赶时间！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497759244181.wav"
+      },
+      {
+        "text": "你不是我要找的人！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497759413527.wav"
+      },
+      {
+        "text": "记得提前练习角度~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220412/16497759558059.wav"
+      }
+    ],
+    "name": "时之恋人"
+  },
+  {
+    "voice": [
+      {
+        "text": "Round one！游戏开始",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220418/16502899248986.mp3"
+      },
+      {
+        "text": "糖果冒险新纪录！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220418/16502899419818.mp3"
+      },
+      {
+        "text": "一切美好的，都由糖果构成",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220418/16502899599355.mp3"
+      },
+      {
+        "text": "一流的勇气就是——接受脆弱，找回自我。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498203924275.wav"
+      },
+      {
+        "text": "困在城堡里的公主，跟罐子里的糖果没两样。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204075899.wav"
+      },
+      {
+        "text": "左转——新手村，这里没有公主需要你救。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204239489.wav"
+      },
+      {
+        "text": "要么给我换个结局，要么，我将换掉整个游戏。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204392858.wav"
+      },
+      {
+        "text": "当你扮演角色的时候，小心角色也在扮演你。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204559271.wav"
+      },
+      {
+        "text": "朋友，你需要一根棒棒糖当拐杖～",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204728019.wav"
+      },
+      {
+        "text": "啊~好吧，复活点见！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498204904740.wav"
+      },
+      {
+        "text": "哇哦，多谢款待。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498205051646.wav"
+      },
+      {
+        "text": "喂，菜鸟，你通关了吗？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498205229571.wav"
+      },
+      {
+        "text": "小怪兽，你完蛋了！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498205445413.wav"
+      },
+      {
+        "text": "通关密语是——嘭！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498205611398.wav"
+      },
+      {
+        "text": "轻松得分~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498205819778.wav"
+      },
+      {
+        "text": "只是外表甜美～",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206029640.wav"
+      },
+      {
+        "text": "送你出局！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206241800.wav"
+      },
+      {
+        "text": "化了，化了，全化了……",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206372722.wav"
+      },
+      {
+        "text": "哈哈哈哈哈哈，有时候，你比自己想象的更疯狂~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206565109.wav"
+      },
+      {
+        "text": "来吧，自己找找节奏~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206738798.wav"
+      },
+      {
+        "text": "糟糕，过量的糖粉！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498206946735.wav"
+      },
+      {
+        "text": "哈哈哈哈哈，你这个可爱的笨蛋~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498207099692.wav"
+      },
+      {
+        "text": "把这东西拿远点！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498207267167.wav"
+      },
+      {
+        "text": "今天可是糖果节～",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498207563149.wav"
+      },
+      {
+        "text": "输得很精彩，值得一点掌声。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498207728403.wav"
+      },
+      {
+        "text": "果然只有我，才能完成这一关~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498207879019.wav"
+      }
+    ],
+    "name": "水果甜心"
+  },
+  {
+    "voice": [
+      {
+        "text": "以守护为契，与世界缔约——准备好，你们的拯救者来了~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500022568945.mp3"
+      },
+      {
+        "text": "下一站是——不如留点悬念~到了再说！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500022425139.mp3"
+      },
+      {
+        "text": "异界穿梭指南——你需要一个最佳旅伴~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16500022716954.mp3"
+      },
+      {
+        "text": "嗯~，哎，逛过这么多地方，还是这里最有趣~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498217505837.wav"
+      },
+      {
+        "text": "什么时候才能集齐所有传送点啊？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498217646819.wav"
+      },
+      {
+        "text": "契约内容是——我可不属于任何世界，正相反，他们全都属于我~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498218588389.wav"
+      },
+      {
+        "text": "轻松解决危机，偶尔制造“惊喜”~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498218752198.wav"
+      },
+      {
+        "text": "另一个世界，也有人在守望我！~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498218881914.wav"
+      },
+      {
+        "text": "命运总会走向已知的终点，但要怎么走，我说了算！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498219214992.wav"
+      },
+      {
+        "text": "从今天起，你们这儿归我保护了！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498219356659.wav"
+      },
+      {
+        "text": "拜拜，我会回来看你的~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498219524733.wav"
+      },
+      {
+        "text": "到此一游的纪念~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498220505562.wav"
+      },
+      {
+        "text": "嗯~打卡完成~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498220675442.wav"
+      },
+      {
+        "text": "你和你的世界一样无聊~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498220841311.wav"
+      },
+      {
+        "text": "即刻启程！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221021531.wav"
+      },
+      {
+        "text": "突破界限！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221179705.wav"
+      },
+      {
+        "text": "开启新地图！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221375035.wav"
+      },
+      {
+        "text": "又见面了，这次有什么好玩的~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221514671.wav"
+      },
+      {
+        "text": "新的旅程，出发！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221629422.wav"
+      },
+      {
+        "text": "武器是唯一的搭档~喂！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221792413.wav"
+      },
+      {
+        "text": "提前出发！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498221998414.wav"
+      },
+      {
+        "text": "快点~跟上我的节奏！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498312364221.wav"
+      },
+      {
+        "text": "新世界，我来了！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498314371456.wav"
+      },
+      {
+        "text": "终于来了个有趣的~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498314594875.wav"
+      },
+      {
+        "text": "举手之劳，不用谢！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498317193951.wav"
+      },
+      {
+        "text": "嗯，你们已经不需要一个守护者了",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498317514288.wav"
+      },
+      {
+        "text": "我还没玩儿够呢！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498318794340.wav"
+      },
+      {
+        "text": "喂！别把契约当束缚！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498319058810.wav"
+      },
+      {
+        "text": "什么？禁止通行？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498319581143.wav"
+      },
+      {
+        "text": "才，才不会被困在原地！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498319842623.wav"
+      }
+    ],
+    "name": "异界灵契"
+  },
+  {
+    "voice": [
+      {
+        "text": "珍爱誓言的象征，藏在荆棘深处的花园中。",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16499955097588.mp3"
+      },
+      {
+        "text": "嘿，留下那枝花~想要摘下蔷薇，就得接受考验！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16499954939775.mp3"
+      },
+      {
+        "text": "没错～前方就是花园入口，真心已经指明方向",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220415/16499954576212.mp3"
+      },
+      {
+        "text": "这里不欢迎王子或骑士！诗人嘛倒是可以考虑~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498330681314.wav"
+      },
+      {
+        "text": "蔷薇不需要谁的保护，她们自己就是武器！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498331103633.wav"
+      },
+      {
+        "text": "检验真心，需要时刻保持清醒",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498331642458.wav"
+      },
+      {
+        "text": "面对虚情假意，我们一般选择立刻反击！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498331838957.wav"
+      },
+      {
+        "text": "啊~花言巧语听腻了，换个新鲜的再来吧~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498332002782.wav"
+      },
+      {
+        "text": "这里的花，只为真诚绽放",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498332177534.wav"
+      },
+      {
+        "text": "前方荆棘出没！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498332328388.wav"
+      },
+      {
+        "text": "粉色炮火，绝佳搭配！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498332712748.wav"
+      },
+      {
+        "text": "带刺的花可不好惹~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498333533061.wav"
+      },
+      {
+        "text": "刺痛你的，会让你永不忘记！~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498333697756.wav"
+      },
+      {
+        "text": "放下你的虚伪！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498333874222.wav"
+      },
+      {
+        "text": "啊~小睡一会儿",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498334074826.wav"
+      },
+      {
+        "text": "是真的就好~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498334368782.wav"
+      },
+      {
+        "text": "你说谎的时候不会良心不安吗？！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498334599629.wav"
+      },
+      {
+        "text": "啊~没有新访客的第二天，真无聊~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498334769422.wav"
+      },
+      {
+        "text": "传言有误！我们绝不会伤害有情人~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498334962129.wav"
+      },
+      {
+        "text": "为真诚欢呼，考验通过！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498335146921.wav"
+      },
+      {
+        "text": "粉色~为你的好品味加一分！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498335348615.wav"
+      },
+      {
+        "text": "别敷衍，拿出点真心瞧瞧~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498335517245.wav"
+      },
+      {
+        "text": "迎风绽放！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498335682242.wav"
+      },
+      {
+        "text": "庆祝的最佳姿态~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498336314093.wav"
+      },
+      {
+        "text": "真爱来袭~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220413/16498336532408.wav"
+      }
+    ],
+    "name": "蔷薇恋人"
+  },
+  {
+    "voice": [
+      {
+        "text": "过往织就梦境，通向城市云端的舞台！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597034769478.mp3"
+      },
+      {
+        "text": "保持气势，再加点放肆~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220808/16599244742737.mp3"
+      },
+      {
+        "text": "韵律平仄起伏，直言挥洒傲骨~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597035017383.mp3"
+      },
+      {
+        "text": "我可以成为任何样子，唯独不是他们想象的样子",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597035576281.mp3"
+      },
+      {
+        "text": "有限的叫音符，无限的才是音乐！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597035709908.mp3"
+      },
+      {
+        "text": "每个人都有过梦，只是一些人选择了遗忘",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597035831106.mp3"
+      },
+      {
+        "text": "拿起麦克风，别让你的声音被世界淹没！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597035971520.mp3"
+      },
+      {
+        "text": "韵脚写着昨日的过往，鼓点构筑明天的锋芒",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597036102474.mp3"
+      },
+      {
+        "text": "曾经的每个我，组成了你面前这个我",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597036231234.mp3"
+      },
+      {
+        "text": "音调必须准确无误，但人生拒绝按部就班！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597036389091.mp3"
+      },
+      {
+        "text": "炫技？即兴说唱而已~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597036522531.mp3"
+      },
+      {
+        "text": "换个节奏继续",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220808/16599238898880.wav"
+      },
+      {
+        "text": "燃爆全场！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597037388889.wav"
+      },
+      {
+        "text": "保持自我！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597037538979.wav"
+      },
+      {
+        "text": "服从我的节奏！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597037677151.wav"
+      },
+      {
+        "text": "乖乖听好了~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597037833575.wav"
+      },
+      {
+        "text": "漂亮的双押！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597038028130.wav"
+      },
+      {
+        "text": "下面是炸场时间！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597038166944.wav"
+      },
+      {
+        "text": "点睛之笔！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220808/16599239271662.wav"
+      },
+      {
+        "text": "陈词滥调，就此打住！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597038622459.mp3"
+      },
+      {
+        "text": "与其仰望星空，不如直接成为那颗星星！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597038877646.mp3"
+      },
+      {
+        "text": "来场实力派之间的比试吗？",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039085981.wav"
+      },
+      {
+        "text": "第一张专辑的名字，就叫《大小姐》~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039266272.mp3"
+      },
+      {
+        "text": "我在哪里，聚光灯就在哪里！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039401878.wav"
+      },
+      {
+        "text": "从不回避质疑，偶尔主动出击~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039535416.wav"
+      },
+      {
+        "text": "举起手，和我一起唱~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039669629.wav"
+      },
+      {
+        "text": "亲手签名的专辑，收好了~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039819300.wav"
+      },
+      {
+        "text": "安可的呼声，我听到了！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597039961469.wav"
+      },
+      {
+        "text": "光凭语速快，可赢不了我~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597040109130.wav"
+      },
+      {
+        "text": "任何阻碍，都是无关紧要的杂音！",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597040243918.mp3"
+      },
+      {
+        "text": "没胆量的家伙",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220808/16599239533535.wav"
+      },
+      {
+        "text": "灵感跑的太快……",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220808/16599239663082.wav"
+      },
+      {
+        "text": "每首歌都是代表作~",
+        "link": "//game.gtimg.cn/images/yxzj/zlkdatasys/audios/audio/20220805/16597040694982.wav"
+      }
+    ],
+    "name": "音你闪耀"
+  }
+]
