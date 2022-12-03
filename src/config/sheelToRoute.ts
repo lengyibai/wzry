@@ -6,6 +6,7 @@ const routePath: Record<string, any> = {
   "@/layout": () => import("@/layout/index.vue"),
   "@/views/Base/Home": () => import("@/views/Base/Home/index.vue"),
   "@/views/Hero": () => import("@/views/Hero/index.vue"),
+  "@/views/Skin": () => import("@/views/Skin/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
   "@/views/System/childViews/Add": () => import("@/views/System/childViews/Add/index.vue"),

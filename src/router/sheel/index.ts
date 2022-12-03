@@ -32,6 +32,21 @@ export const user: RouterSheel[] = [
     ],
   },
   {
+    title: "皮肤",
+    icon: "wzry-pifu",
+    path: "/skin",
+    name: "skin",
+    redirect: "",
+    component: "@/layout",
+    children: [
+      {
+        path: "",
+        name: "skinChild",
+        component: "@/views/Skin",
+      },
+    ],
+  },
+  {
     title: "装备",
     icon: "wzry-zhuangbei",
     path: "/equip",
