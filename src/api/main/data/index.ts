@@ -9,6 +9,9 @@ export const getHerobasic = () => http.Get<any[]>("/heroBasic.json");
 /** @description: 获取英雄信息列表 */
 export const getHerodata = () => http.Get<any[]>("/heroData.json");
 
+/** @description: 获取英雄语音列表 */
+export const getVoice = (hero_name: string) => http.Get<any[]>(`/voices/${hero_name}.json`);
+
 /** @description: 获取技能类型列表 */
 export const getSkilltype = () => http.Get<any[]>("/skillType.json");
 
