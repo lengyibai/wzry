@@ -1497,6 +1497,40 @@
       "camp": "蜀",
       "voices": [],
       "skills": [],
+      "relationship": [
+        {
+          "relation": "挚友",
+          "hero": 1
+        },
+        {
+          "relation": "君主",
+          "hero": 43
+        },
+        {
+          "relation": "徒弟",
+          "hero": 26
+        },
+        {
+          "relation": "学弟",
+          "hero": 81
+        },
+        {
+          "relation": "校友",
+          "hero": 34
+        },
+        {
+          "relation": "部下",
+          "hero": 63
+        },
+        {
+          "relation": "敌对",
+          "hero": 83
+        },
+        {
+          "relation": "武道老师",
+          "hero": 11
+        }
+      ],
       "gamestory": "待设置",
       "history": "待设置"
     },
