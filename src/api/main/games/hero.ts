@@ -1,13 +1,14 @@
 import { get } from "@/api/helper/transfer";
 import { getHeroSkin } from "@/api/main/games/skin";
-
-/**
- * @description: GET请求
- */
+import { getHeroSkinVoice } from "@/api/main/games/voice";
 
 /** @description: 获取英雄基础列表 */
 export const getHeroBasic = () => {
   return Promise.resolve(get<Hero.General[]>({ name: "data_herobasic" }));
+};
+/** @description: 获取英雄头像列表 */
+export const getHeroImg = (id: number) => {
+  return Promise.resolve(get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id }));
 };
 /** @description: 获取英雄信息列表 */
 export const getHeroData = () => {
@@ -17,7 +18,24 @@ export const getHeroData = () => {
 export const getHeroDetail = async (id: number) => {
   const hero = get<Hero.Data>({ name: "data_herodata", key: "id", value: id });
   const skins = await getHeroSkin(id); //获取皮肤列表
+  const voices = await getHeroSkinVoice(hero.name, "原皮"); //获取语音列表
+  for (let i = 0; i < hero.relationship.length; i++) {
+    hero.relationship[i].hero = await getHeroImg(hero.relationship[i].hero as unknown as number);
+  }
+
   hero.skins = skins;
+  hero.voices = voices;
+
+  hero.skins.unshift({
+    id: 0,
+    hero: hero.id,
+    num: 0,
+    price: "",
+    type: 0,
+    name: "原版皮肤",
+    poster: hero.poster,
+    headImg: hero.headImg,
+  });
   return Promise.resolve(hero);
 };
 
