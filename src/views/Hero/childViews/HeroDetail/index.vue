@@ -1,28 +1,31 @@
 <template>
   <div class="hero-detail">
     <LibMaskClose @close="hide" />
-    <!--资料皮肤-->
-    <HeroDetailParallaxBg :bg="hero_data.poster">
-      <HeroInfo />
-    </HeroDetailParallaxBg>
+    <LibFullScroll>
+      <!--资料皮肤-->
+      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.poster">
+        <HeroInfo />
+      </HeroDetailParallaxBg>
 
-    <!--皮肤-->
-    <HeroDetailParallaxBg :bg="hero_data.poster" v-if="hero_data.skins.length">
-      <HeroSkin />
-    </HeroDetailParallaxBg>
+      <!--皮肤-->
+      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.poster" v-if="hero_data.skins.length">
+        <HeroSkin />
+      </HeroDetailParallaxBg>
 
-    <!--技能-->
-    <HeroDetailParallaxBg :bg="hero_data.skins[1].poster" v-if="hero_data.skills.length">
-      <HeroSkill />
-    </HeroDetailParallaxBg>
+      <!--技能-->
+      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.skins[1].poster" v-if="hero_data.skills.length">
+        <HeroSkill />
+      </HeroDetailParallaxBg>
 
-    <!--故事-->
-    <HeroDetailParallaxBg
-      :bg="hero_data.skins[2] ? hero_data.skins[2].poster : hero_data.poster"
-      v-if="hero_data.gamestory"
-    >
-      <HeroStory />
-    </HeroDetailParallaxBg>
+      <!--故事-->
+      <HeroDetailParallaxBg
+        class="scroll-item"
+        :bg="hero_data.skins[2] ? hero_data.skins[2].poster : hero_data.poster"
+        v-if="hero_data.gamestory"
+      >
+        <HeroStory />
+      </HeroDetailParallaxBg>
+    </LibFullScroll>
   </div>
 </template>
 <script setup lang="ts">
