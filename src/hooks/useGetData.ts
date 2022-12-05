@@ -8,6 +8,8 @@ import {
   Skilleffect,
   Skin,
   Skintype,
+  Relationtype,
+  Relationship,
   Equip,
   Equiptype,
   Equipeffect,
@@ -19,7 +21,6 @@ import {
   Specialtytype,
   Periodtype,
   Camptype,
-  Relationtype,
   Voice,
 } from "@/api/main/data";
 import { getHeroBasic } from "@/api/main/games/hero";
@@ -36,6 +37,8 @@ export default async () => {
     ["skilleffect", Skilleffect, "技能效果"],
     ["skin", Skin, "皮肤"],
     ["skintype", Skintype, "皮肤类型"],
+    ["relationship", Relationship, "关系"],
+    ["relationtype", Relationtype, "关系类型"],
     ["equip", Equip, "装备"],
     ["equiptype", Equiptype, "装备类型"],
     ["equipeffect", Equipeffect, "装备效果"],
@@ -47,7 +50,6 @@ export default async () => {
     ["specialtytype", Specialtytype, "特长"],
     ["periodtype", Periodtype, "时期"],
     ["camptype", Camptype, "阵营"],
-    ["relationtype", Relationtype, "关系"],
   ];
 
   const setData = (name: string, data: any) => {
