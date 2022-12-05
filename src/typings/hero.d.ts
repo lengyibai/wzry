@@ -1,7 +1,3 @@
-/* 可选偏移量 */
-type Scale = "left" | "right";
-type Direction = "left" | "right" | "top" | "bottom";
-
 /** @description: 英雄信息 */
 declare namespace Hero {
   interface Data {
@@ -16,7 +12,7 @@ declare namespace Hero {
     headImg: string; //头像
     height: string; //身高
     history: string; //历史故事
-    identity: string; //身份
+    identity: string[]; //身份
     location: string; //区域
     mark: string; //代号
     name: string; //名字
@@ -27,13 +23,24 @@ declare namespace Hero {
     voices: Voice[]; //语音
     skills: Skill[]; //技能
     skins: Skin[]; //皮肤
+    relationship: RelationType[];
     [propName: string]: any;
+  }
+  /** @description: 头像列表 */
+  interface HeadImg {
+    id: number;
+    name: string;
+    headImg: string;
   }
 
   /** @description: 语音 */
   interface Voice {
-    desc: string; //语音文字
-    voice: string; //语音链接
+    text: string; //语音文字
+    link: string; //语音链接
+  }
+  interface Voices {
+    name: string;
+    voice: Voice[];
   }
 
   /** @description: 技能信息 */
@@ -57,13 +64,18 @@ declare namespace Hero {
     id: number;
     name: string;
   }
+  /** @description: 关系 */
+  interface RelationType {
+    relation: string;
+    hero: HeadImg;
+  }
 
   /** @description: 皮肤信息 */
   interface Skin {
     id: number; //标识
     hero: number; //所属英雄id
     num: number; //序号
-    price: number; //价格
+    price: string | number; //价格
     type: number; //类型
     name: string; //名称
     poster: string; //海报
