@@ -9,39 +9,6 @@
   background-color: rgb(0 0 0 / 50%);
   flex-direction: column;
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 25px 0;
-
-    .title-name {
-      left: 50%;
-      font-size: 60px;
-      text-align: center;
-    }
-
-    .title-mark {
-      display: flex;
-      align-items: center;
-      color: var(--gray);
-      font-size: 35px;
-
-      .text {
-        margin: 0 10px;
-      }
-
-      .left,
-      .right {
-        width: 100px;
-      }
-
-      .right {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
   .content {
     display: flex;
     padding: 0 25px;
@@ -61,71 +28,6 @@
         margin-bottom: 50px;
         @media screen and (max-width: 1500px) {
           flex-direction: column;
-        }
-
-        .list {
-          display: flex;
-          flex-direction: column;
-
-          .info {
-            display: flex;
-            width: 400px;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            font-size: 30px;
-            text-shadow: var(--t-shadow);
-            transition: all 0.5s;
-            opacity: 0;
-            transform: translateX(-100%);
-            border-bottom: 1px solid rgb(255 255 255 / 50%);
-            @media screen and (max-width: 1300px) {
-              font-size: 24px;
-            }
-
-            .iconfont {
-              margin-right: 5px;
-              color: var(--gray);
-              font-size: inherit;
-            }
-
-            .label {
-              color: var(--gray);
-            }
-
-            .name {
-              color: var(--white);
-            }
-          }
-        }
-
-        .relationship {
-          display: flex;
-          margin: 25px;
-          font-size: 34px;
-          flex-wrap: wrap;
-          flex: 1;
-          align-content: flex-start;
-          text-shadow: var(--t-shadow);
-
-          .relation {
-            margin: 0 25px 10px;
-
-            img {
-              width: 75px;
-              border-radius: 50%;
-            }
-          }
-          @media screen and (max-width: 1300px) {
-            margin: 15px;
-            font-size: 28px;
-
-            .relation {
-              img {
-                width: 50px;
-                border-radius: 50%;
-              }
-            }
-          }
         }
       }
 

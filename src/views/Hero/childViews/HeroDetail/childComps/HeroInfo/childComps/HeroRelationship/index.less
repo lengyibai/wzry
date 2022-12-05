@@ -1,0 +1,29 @@
+.hero-relationship {
+  display: flex;
+  margin: 25px;
+  font-size: 34px;
+  flex-wrap: wrap;
+  flex: 1;
+  align-content: flex-start;
+  text-shadow: var(--t-shadow);
+
+  .relation {
+    margin: 0 25px 10px;
+
+    img {
+      width: 75px;
+      border-radius: 50%;
+    }
+  }
+  @media screen and (max-width: 1300px) {
+    margin: 15px;
+    font-size: 28px;
+
+    .relation {
+      img {
+        width: 50px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
