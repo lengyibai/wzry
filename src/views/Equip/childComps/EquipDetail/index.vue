@@ -1,5 +1,5 @@
 <template>
-  <div class="equip-detail" :style="{ opacity: show ? 1 : 0 }">
+  <div class="equip-detail" :class="{ show: show }">
     <div class="name">{{ equip.name }}</div>
     <div class="info">
       <div class="effect" :class="abbreviations[item.name]" v-for="(item, index) in equip.effect" :key="index">
