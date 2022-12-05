@@ -13,7 +13,7 @@
     <!-- 主体 -->
     <div class="content">
       <!-- 左侧 -->
-      <div class="content-left">
+      <div class="content-left scroll-white" @mousewheel.stop>
         <!-- 基础信息表 -->
         <div class="basic-info">
           <div class="list">

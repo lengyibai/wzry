@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-voice">
+  <div class="hero-voice scroll-white" @mousewheel.stop>
     <button
       class="voice flex"
       :class="{ active: currentIndex === index }"
