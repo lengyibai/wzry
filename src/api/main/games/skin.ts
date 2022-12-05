@@ -2,7 +2,7 @@ import { get } from "@/api/helper/transfer";
 
 /** @description: 获取皮肤列表 */
 export const getSkin = () => {
-  return Promise.resolve(get<Hero.Data[]>({ name: "data_skin" }));
+  return Promise.resolve(get<Hero.Skin[]>({ name: "data_skin" }));
 };
 
 /** @description: 获取指定英雄皮肤 */
