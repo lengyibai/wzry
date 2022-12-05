@@ -89,7 +89,7 @@ const addOne = () => {
     name: "",
     poster: "",
     headImg: "",
-    type: "",
+    type: 0,
     price: 0,
   });
   // 滚动到底部
