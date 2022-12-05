@@ -18,7 +18,6 @@ const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vu
 const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue")); //皮肤
 const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue")); //技能
 const AddVoice = defineAsyncComponent(() => import("./childViews/AddVoice/index.vue")); //语音
-const AddStory = defineAsyncComponent(() => import("./childViews/AddStory/index.vue")); //故事
 const AddEquip = defineAsyncComponent(() => import("./childViews/AddEquip/index.vue")); //装备
 const AddEpigraph = defineAsyncComponent(() => import("./childViews/AddEpigraph/index.vue")); //铭文
 
@@ -32,7 +31,7 @@ type Options = Record<
 
 const { box, list } = useManageCard;
 
-const components = [AddHero, AddSkin, AddVoice, AddSkill, AddStory, AddEquip, AddEpigraph];
+const components = [AddHero, AddSkin, AddVoice, AddSkill, AddEquip, AddEpigraph];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({
@@ -50,10 +49,6 @@ const options: Options = reactive({
   },
   Skill: {
     i: 3,
-    show: false,
-  },
-  Story: {
-    i: 4,
     show: false,
   },
   Equip: {

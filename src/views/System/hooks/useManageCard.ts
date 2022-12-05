@@ -17,7 +17,6 @@ const data: Info = {
     Skin: "皮肤",
     Voice: "语音",
     Skill: "技能",
-    Story: "故事",
     Equip: "装备",
     Epigraph: "铭文",
     /* { name: "英雄关系", key: "" },

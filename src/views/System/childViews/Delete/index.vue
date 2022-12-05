@@ -18,7 +18,6 @@ const DelHero = defineAsyncComponent(() => import("./childViews/DelHero/index.vu
 const DelSkin = defineAsyncComponent(() => import("./childViews/DelSkin/index.vue")); //皮肤
 const DelSkill = defineAsyncComponent(() => import("./childViews/DelSkill/index.vue")); //技能
 const DelVoice = defineAsyncComponent(() => import("./childViews/DelVoice/index.vue")); //语音
-const DelStory = defineAsyncComponent(() => import("./childViews/DelStory/index.vue")); //故事
 const DelEquip = defineAsyncComponent(() => import("./childViews/DelEquip/index.vue")); //装备
 const DelEpigraph = defineAsyncComponent(() => import("./childViews/DelEpigraph/index.vue")); //铭文
 
@@ -31,7 +30,7 @@ type Options = Record<
 >;
 
 const { box, list } = useManageCard;
-const components = [DelHero, DelSkin, DelVoice, DelSkill, DelStory, DelEquip, DelEpigraph];
+const components = [DelHero, DelSkin, DelVoice, DelSkill, DelEquip, DelEpigraph];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({
@@ -49,10 +48,6 @@ const options: Options = reactive({
   },
   Skill: {
     i: 3,
-    show: false,
-  },
-  Story: {
-    i: 4,
     show: false,
   },
   Equip: {

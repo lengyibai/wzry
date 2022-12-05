@@ -8,10 +8,8 @@ declare namespace Hero {
     survival: string; //生存
     camp: string; //阵营
     cover: string; //封面
-    gamestory: string; //游戏故事
     headImg: string; //头像
     height: string; //身高
-    history: string; //历史故事
     identity: string[]; //身份
     location: string; //区域
     mark: string; //代号
@@ -23,7 +21,7 @@ declare namespace Hero {
     voices: Voice[]; //语音
     skills: Skill[]; //技能
     skins: Skin[]; //皮肤
-    relationship: RelationType[];
+    relationships: RelationType[];
     [propName: string]: any;
   }
   /** @description: 头像列表 */
@@ -64,8 +62,15 @@ declare namespace Hero {
     id: number;
     name: string;
   }
-  /** @description: 关系 */
+  /** @description: 关系信息 */
+  interface Relationship {
+    id: number;
+    name: string;
+    relationship: RelationType[];
+  }
+  /** @description: 关系类型 */
   interface RelationType {
+    id: number;
     relation: string;
     hero: HeadImg;
   }
