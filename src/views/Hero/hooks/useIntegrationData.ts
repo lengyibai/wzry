@@ -1,6 +1,5 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { getHeroSkin } from "@/api/main/games/skin";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
@@ -26,26 +25,23 @@ export default (id: number | unknown) => {
     /* 获取指定英雄数据 */
     getHeroDetail(id).then((hero) => {
       /* 获取指定英雄皮肤 */
-      getHeroSkin(id).then((skins) => {
-        hero_info.value = hero;
-        hero_info.value.skins = skins;
-        $heroStore.setHeroInfo(hero_info.value);
-        show_HeroDetail.value = true;
+      hero_info.value = hero;
+      $heroStore.setHeroInfo(hero_info.value);
+      show_HeroDetail.value = true;
 
-        /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
-        $router.push({
-          path: "/hero",
-          query: {
-            id: hero_info.value.id,
-          },
-        });
-        setTimeout(() => {
-          /* 静默加载英雄列表 */
-          if ($heroStore.profession === "") {
-            getList($heroStore.hero_info.profession[0]);
-          }
-        }, 3000);
+      /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
+      $router.push({
+        path: "/hero",
+        query: {
+          id: hero_info.value.id,
+        },
       });
+      setTimeout(() => {
+        /* 静默加载英雄列表 */
+        if ($heroStore.profession === "") {
+          getList($heroStore.hero_info.profession[0]);
+        }
+      }, 3000);
     });
   };
 
