@@ -9,7 +9,7 @@ interface Props {
 }
 interface Emits {
   (e: "ended"): void;
-  (e: "info", voice: string): void;
+  (e: "info", voice: HTMLMediaElement): void;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
-const voice = ref();
+const voice = ref<HTMLMediaElement>();
 
 /* 播放结束后触发 */
 const ended = () => {
@@ -27,9 +27,9 @@ const ended = () => {
 
 /* 组件一挂载就触发播放 */
 onMounted(() => {
-  voice.value.addEventListener("canplay", () => {
-    emit("info", voice.value);
-    voice.value.play().catch(() => {});
+  voice.value!.addEventListener("canplay", () => {
+    emit("info", voice.value as HTMLMediaElement);
+    voice.value!.play().catch(() => {});
   });
 });
 </script>
