@@ -1,0 +1,2341 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "赵云",
+      "relationship": [
+        {
+          "relation": "军师",
+          "id": 62
+        },
+        {
+          "relation": "主公",
+          "id": 43
+        },
+        {
+          "relation": "旧识",
+          "id": 38
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "妲己",
+      "relationship": [
+        {
+          "relation": "师父",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "高渐离",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 9
+        },
+        {
+          "relation": "敌人",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "白起",
+      "relationship": [
+        {
+          "relation": "君主",
+          "id": 8
+        },
+        {
+          "relation": "太后",
+          "id": 37
+        },
+        {
+          "relation": "医师",
+          "id": 27
+        },
+        {
+          "relation": "战友",
+          "id": 100
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "武则天",
+      "relationship": [
+        {
+          "relation": "臣子",
+          "id": 16
+        },
+        {
+          "relation": "臣子",
+          "id": 104
+        },
+        {
+          "relation": "侍女",
+          "id": 88
+        },
+        {
+          "relation": "谋士",
+          "id": 74
+        },
+        {
+          "relation": "臣子",
+          "id": 30
+        },
+        {
+          "relation": "师父",
+          "id": 12
+        },
+        {
+          "relation": "良才",
+          "id": 46
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "露娜",
+      "relationship": [
+        {
+          "relation": "哥哥",
+          "id": 68
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "廉颇",
+      "relationship": [
+        {
+          "relation": "校友",
+          "id": 15
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "对手",
+          "id": 4
+        },
+        {
+          "relation": "校友",
+          "id": 97
+        },
+        {
+          "relation": "校友",
+          "id": 94
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "嬴政",
+      "relationship": [
+        {
+          "relation": "臣子",
+          "id": 4
+        },
+        {
+          "relation": "祖母",
+          "id": 37
+        },
+        {
+          "relation": "魔道老师",
+          "id": 19
+        },
+        {
+          "relation": "下属",
+          "id": 100
+        },
+        {
+          "relation": "下属",
+          "id": 99
+        },
+        {
+          "relation": "敌人",
+          "id": 9
+        },
+        {
+          "relation": "敌人",
+          "id": 3
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "阿轲",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 3
+        },
+        {
+          "relation": "敌人",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "甄姬",
+      "relationship": [
+        {
+          "relation": "主公",
+          "id": 33
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "老夫子",
+      "relationship": [
+        {
+          "relation": "反目的朋友",
+          "id": 12
+        },
+        {
+          "relation": "同事",
+          "id": 19
+        },
+        {
+          "relation": "同事",
+          "id": 18
+        },
+        {
+          "relation": "学子",
+          "id": 62
+        },
+        {
+          "relation": "学子",
+          "id": 15
+        },
+        {
+          "relation": "学子",
+          "id": 7
+        },
+        {
+          "relation": "学子",
+          "id": 94
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "姜子牙",
+      "relationship": [
+        {
+          "relation": "统治神",
+          "id": 73
+        },
+        {
+          "relation": "背叛的部下",
+          "id": 59
+        },
+        {
+          "relation": "决裂的挚友",
+          "id": 11
+        },
+        {
+          "relation": "背叛的徒弟",
+          "id": 5
+        },
+        {
+          "relation": "徒弟",
+          "id": 17
+        },
+        {
+          "relation": "徒弟",
+          "id": 51
+        },
+        {
+          "relation": "人偶",
+          "id": 2
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "小乔",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 34
+        },
+        {
+          "relation": "姐姐",
+          "id": 64
+        },
+        {
+          "relation": "闺蜜",
+          "id": 25
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "鲁班七号",
+      "relationship": [
+        {
+          "relation": "父亲",
+          "id": 97
+        },
+        {
+          "relation": "父亲的朋友",
+          "id": 18
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "name": "钟无艳",
+      "relationship": [
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "校友",
+          "id": 7
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "狄仁杰",
+      "relationship": [
+        {
+          "relation": "助手",
+          "id": 48
+        },
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "同僚",
+          "id": 104
+        },
+        {
+          "relation": "助手",
+          "id": 106
+        },
+        {
+          "relation": "疑犯",
+          "id": 74
+        },
+        {
+          "relation": "同盟",
+          "id": 88
+        },
+        {
+          "relation": "逮捕对象",
+          "id": 46
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "name": "张良",
+      "relationship": [
+        {
+          "relation": "师父",
+          "id": 12
+        },
+        {
+          "relation": "君主",
+          "id": 49
+        },
+        {
+          "relation": "师妹",
+          "id": 51
+        },
+        {
+          "relation": "敌人",
+          "id": 29
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "name": "墨子",
+      "relationship": [
+        {
+          "relation": "同事",
+          "id": 11
+        },
+        {
+          "relation": "同事",
+          "id": 19
+        },
+        {
+          "relation": "校友",
+          "id": 97
+        },
+        {
+          "relation": "校友的孩子",
+          "id": 14
+        },
+        {
+          "relation": "学子",
+          "id": 20
+        },
+        {
+          "relation": "学子",
+          "id": 94
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "name": "庄周",
+      "relationship": [
+        {
+          "relation": "同事",
+          "id": 11
+        },
+        {
+          "relation": "同事",
+          "id": 18
+        },
+        {
+          "relation": "学子",
+          "id": 83
+        },
+        {
+          "relation": "学子",
+          "id": 96
+        },
+        {
+          "relation": "学子",
+          "id": 99
+        },
+        {
+          "relation": "学子",
+          "id": 8
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "孙膑",
+      "relationship": [
+        {
+          "relation": "机关老师",
+          "id": 18
+        },
+        {
+          "relation": "星之队队友",
+          "id": 97
+        },
+        {
+          "relation": "星之队队友",
+          "id": 94
+        },
+        {
+          "relation": "星之队队友",
+          "id": 96
+        },
+        {
+          "relation": "星之队队友",
+          "id": 98
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "name": "典韦",
+      "relationship": [
+        {
+          "relation": "被守护者",
+          "id": 53
+        },
+        {
+          "relation": "主公",
+          "id": 33
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "达摩",
+      "relationship": [
+        {
+          "relation": "相救之人",
+          "id": 107
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "韩信",
+      "relationship": [
+        {
+          "relation": "敌人",
+          "id": 29
+        },
+        {
+          "relation": "君主",
+          "id": 49
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "name": "亚瑟",
+      "relationship": [
+        {
+          "relation": "部下",
+          "id": 32
+        },
+        {
+          "relation": "队员",
+          "id": 105
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "name": "孙尚香",
+      "relationship": [
+        {
+          "relation": "钦慕之人",
+          "id": 43
+        },
+        {
+          "relation": "兄长",
+          "id": 82
+        },
+        {
+          "relation": "闺蜜",
+          "id": 13
+        },
+        {
+          "relation": "监护人",
+          "id": 34
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "刘禅",
+      "relationship": [
+        {
+          "relation": "父亲",
+          "id": 43
+        },
+        {
+          "relation": "师父",
+          "id": 62
+        },
+        {
+          "relation": "对手",
+          "id": 53
+        },
+        {
+          "relation": "大当家的",
+          "id": 101
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "扁鹊",
+      "relationship": [
+        {
+          "relation": "病人",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "name": "宫本武藏",
+      "relationship": [
+        {
+          "relation": "对手",
+          "id": 46
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "name": "项羽",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 51
+        },
+        {
+          "relation": "敌人",
+          "id": 49
+        },
+        {
+          "relation": "敌人",
+          "id": 23
+        },
+        {
+          "relation": "敌人",
+          "id": 17
+        },
+        {
+          "relation": "敌人",
+          "id": 65
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "程咬金",
+      "relationship": [
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "忘年之交",
+          "id": 106
+        },
+        {
+          "relation": "世侄",
+          "id": 112
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "name": "王昭君",
+      "relationship": []
+    },
+    {
+      "id": 32,
+      "name": "安琪拉",
+      "relationship": [
+        {
+          "relation": "统帅",
+          "id": 24
+        },
+        {
+          "relation": "闺蜜",
+          "id": 105
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "曹操",
+      "relationship": [
+        {
+          "relation": "棋子",
+          "id": 39
+        },
+        {
+          "relation": "敌人",
+          "id": 43
+        },
+        {
+          "relation": "义女",
+          "id": 53
+        },
+        {
+          "relation": "部下",
+          "id": 81
+        },
+        {
+          "relation": "部下",
+          "id": 83
+        },
+        {
+          "relation": "部下",
+          "id": 21
+        },
+        {
+          "relation": "部下",
+          "id": 54
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "周瑜",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 13
+        },
+        {
+          "relation": "挚友",
+          "id": 82
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "被监护者",
+          "id": 25
+        },
+        {
+          "relation": "妻姐",
+          "id": 64
+        },
+        {
+          "relation": "对手",
+          "id": 62
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "牛魔",
+      "relationship": [
+        {
+          "relation": "曾经的战友",
+          "id": 36
+        },
+        {
+          "relation": "统治神",
+          "id": 73
+        },
+        {
+          "relation": "曾经的战友",
+          "id": 90
+        },
+        {
+          "relation": "伙伴",
+          "id": 107
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "孙悟空",
+      "relationship": [
+        {
+          "relation": "战友",
+          "id": 90
+        },
+        {
+          "relation": "师傅",
+          "id": 107
+        },
+        {
+          "relation": "背叛的战友",
+          "id": 35
+        },
+        {
+          "relation": "统治神",
+          "id": 73
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "芈月",
+      "relationship": [
+        {
+          "relation": "孙子",
+          "id": 8
+        },
+        {
+          "relation": "臣子",
+          "id": 4
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "貂蝉",
+      "relationship": [
+        {
+          "relation": "爱慕之人",
+          "id": 39
+        },
+        {
+          "relation": "旧识",
+          "id": 1
+        },
+        {
+          "relation": "主公",
+          "id": 33
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "name": "吕布",
+      "relationship": [
+        {
+          "relation": "爱慕之人",
+          "id": 38
+        },
+        {
+          "relation": "敌人",
+          "id": 33
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "name": "花木兰",
+      "relationship": [
+        {
+          "relation": "对手",
+          "id": 44
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 68
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 69
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 70
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 71
+        },
+        {
+          "relation": "上司",
+          "id": 104
+        },
+        {
+          "relation": "偶遇",
+          "id": 108
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "name": "后羿",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 89
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "name": "张飞",
+      "relationship": [
+        {
+          "relation": "结拜兄弟",
+          "id": 43
+        },
+        {
+          "relation": "结拜兄弟",
+          "id": 52
+        },
+        {
+          "relation": "战友",
+          "id": 63
+        },
+        {
+          "relation": "可怜的小鬼",
+          "id": 101
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "name": "刘备",
+      "relationship": [
+        {
+          "relation": "结拜兄弟",
+          "id": 52
+        },
+        {
+          "relation": "结拜兄弟",
+          "id": 42
+        },
+        {
+          "relation": "儿子",
+          "id": 26
+        },
+        {
+          "relation": "钦慕之人",
+          "id": 25
+        },
+        {
+          "relation": "军师",
+          "id": 62
+        },
+        {
+          "relation": "仇敌",
+          "id": 33
+        },
+        {
+          "relation": "部下",
+          "id": 1
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "name": "兰陵王",
+      "relationship": [
+        {
+          "relation": "对手",
+          "id": 40
+        },
+        {
+          "relation": "徒弟",
+          "id": 70
+        },
+        {
+          "relation": "盟友与幼时同窗",
+          "id": 108
+        },
+        {
+          "relation": "盟友与幼时同窗",
+          "id": 85
+        },
+        {
+          "relation": "沙之盟盟友",
+          "id": 109
+        },
+        {
+          "relation": "沙之盟盟友",
+          "id": 110
+        },
+        {
+          "relation": "敌对",
+          "id": 111
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "name": "娜可露露",
+      "relationship": [
+        {
+          "relation": "寻找之人",
+          "id": 28
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "name": "李白",
+      "relationship": [
+        {
+          "relation": "好友",
+          "id": 71
+        },
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "治安官",
+          "id": 16
+        },
+        {
+          "relation": "对手",
+          "id": 28
+        },
+        {
+          "relation": "友人",
+          "id": 108
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "name": "钟馗",
+      "relationship": []
+    },
+    {
+      "id": 48,
+      "name": "李元芳",
+      "relationship": [
+        {
+          "relation": "长官",
+          "id": 16
+        },
+        {
+          "relation": "同僚",
+          "id": 106
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "刘邦",
+      "relationship": [
+        {
+          "relation": "敌人",
+          "id": 29
+        },
+        {
+          "relation": "臣子",
+          "id": 17
+        },
+        {
+          "relation": "臣子",
+          "id": 23
+        },
+        {
+          "relation": "敌人",
+          "id": 65
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "name": "不知火舞",
+      "relationship": []
+    },
+    {
+      "id": 51,
+      "name": "虞姬",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 29
+        },
+        {
+          "relation": "师兄",
+          "id": 17
+        },
+        {
+          "relation": "师父",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "name": "关羽",
+      "relationship": [
+        {
+          "relation": "结拜兄弟",
+          "id": 43
+        },
+        {
+          "relation": "结拜兄弟",
+          "id": 42
+        },
+        {
+          "relation": "兄弟",
+          "id": 63
+        },
+        {
+          "relation": "古怪的小鬼",
+          "id": 101
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "name": "蔡文姬",
+      "relationship": [
+        {
+          "relation": "义父",
+          "id": 33
+        },
+        {
+          "relation": "守护者",
+          "id": 21
+        },
+        {
+          "relation": "捡来的哥哥",
+          "id": 103
+        },
+        {
+          "relation": "父亲的挚友",
+          "id": 62
+        },
+        {
+          "relation": "对手",
+          "id": 26
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "name": "夏侯惇",
+      "relationship": [
+        {
+          "relation": "主公",
+          "id": 33
+        },
+        {
+          "relation": "沉默孤独少年",
+          "id": 103
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "name": "雅典娜",
+      "relationship": []
+    },
+    {
+      "id": 56,
+      "name": "马可波罗",
+      "relationship": [
+        {
+          "relation": "执政者",
+          "id": 80
+        },
+        {
+          "relation": "？",
+          "id": 110
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "name": "橘右京",
+      "relationship": []
+    },
+    {
+      "id": 58,
+      "name": "成吉思汗",
+      "relationship": []
+    },
+    {
+      "id": 59,
+      "name": "杨戬",
+      "relationship": [
+        {
+          "relation": "挚友",
+          "id": 61
+        },
+        {
+          "relation": "统治神",
+          "id": 73
+        },
+        {
+          "relation": "追随之人",
+          "id": 12
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "name": "太乙真人",
+      "relationship": [
+        {
+          "relation": "徒弟",
+          "id": 61
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "name": "哪吒",
+      "relationship": [
+        {
+          "relation": "师父",
+          "id": 60
+        },
+        {
+          "relation": "挚友",
+          "id": 59
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "name": "诸葛亮",
+      "relationship": [
+        {
+          "relation": "敌对",
+          "id": 83
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "挚友",
+          "id": 1
+        },
+        {
+          "relation": "君主",
+          "id": 43
+        },
+        {
+          "relation": "徒弟",
+          "id": 26
+        },
+        {
+          "relation": "学弟",
+          "id": 81
+        },
+        {
+          "relation": "校友",
+          "id": 34
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "name": "黄忠",
+      "relationship": [
+        {
+          "relation": "主公",
+          "id": 43
+        },
+        {
+          "relation": "军师",
+          "id": 62
+        },
+        {
+          "relation": "战友",
+          "id": 42
+        },
+        {
+          "relation": "战友",
+          "id": 52
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "name": "大乔",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 82
+        },
+        {
+          "relation": "妹妹",
+          "id": 13
+        },
+        {
+          "relation": "敌人",
+          "id": 83
+        },
+        {
+          "relation": "妹夫",
+          "id": 34
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "name": "东皇太一",
+      "relationship": [
+        {
+          "relation": "师父",
+          "id": 67
+        },
+        {
+          "relation": "臣子",
+          "id": 93
+        },
+        {
+          "relation": "棋子",
+          "id": 66
+        },
+        {
+          "relation": "敌人",
+          "id": 29
+        },
+        {
+          "relation": "敌人",
+          "id": 49
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "name": "干将莫邪",
+      "relationship": [
+        {
+          "relation": "敌人",
+          "id": 65
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "name": "鬼谷子",
+      "relationship": [
+        {
+          "relation": "徒弟",
+          "id": 92
+        },
+        {
+          "relation": "徒弟",
+          "id": 65
+        },
+        {
+          "relation": "被重造者",
+          "id": 93
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "name": "铠",
+      "relationship": [
+        {
+          "relation": "妹妹",
+          "id": 6
+        },
+        {
+          "relation": "长城守卫军队长",
+          "id": 40
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 70
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 69
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 71
+        },
+        {
+          "relation": "偶遇",
+          "id": 79
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "name": "百里守约",
+      "relationship": [
+        {
+          "relation": "弟弟",
+          "id": 70
+        },
+        {
+          "relation": "长城守卫军队长",
+          "id": 40
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 68
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 71
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 84
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 86
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "name": "百里玄策",
+      "relationship": [
+        {
+          "relation": "哥哥",
+          "id": 69
+        },
+        {
+          "relation": "师父",
+          "id": 44
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 68
+        },
+        {
+          "relation": "长城守卫军队长",
+          "id": 40
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 71
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 86
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "name": "苏烈",
+      "relationship": [
+        {
+          "relation": "知己",
+          "id": 85
+        },
+        {
+          "relation": "好友",
+          "id": 46
+        },
+        {
+          "relation": "长城守卫军队长",
+          "id": 40
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 69
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 68
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 70
+        },
+        {
+          "relation": "曾经部下",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "name": "梦奇",
+      "relationship": []
+    },
+    {
+      "id": 73,
+      "name": "女娲",
+      "relationship": [
+        {
+          "relation": "继承人",
+          "id": 59
+        },
+        {
+          "relation": "战友",
+          "id": 91
+        },
+        {
+          "relation": "敌人",
+          "id": 12
+        },
+        {
+          "relation": "叛乱者",
+          "id": 36
+        },
+        {
+          "relation": "归顺者",
+          "id": 35
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "name": "明世隐",
+      "relationship": [
+        {
+          "relation": "徒弟",
+          "id": 78
+        },
+        {
+          "relation": "敌人",
+          "id": 16
+        },
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "交易之人",
+          "id": 87
+        },
+        {
+          "relation": "下属",
+          "id": 75
+        },
+        {
+          "relation": "下属",
+          "id": 76
+        },
+        {
+          "relation": "下属",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "name": "公孙离",
+      "relationship": [
+        {
+          "relation": "同伴",
+          "id": 77
+        },
+        {
+          "relation": "仰慕之人",
+          "id": 87
+        },
+        {
+          "relation": "同伴",
+          "id": 76
+        },
+        {
+          "relation": "首领",
+          "id": 74
+        },
+        {
+          "relation": "同伴",
+          "id": 78
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "name": "杨玉环",
+      "relationship": [
+        {
+          "relation": "同伴",
+          "id": 75
+        },
+        {
+          "relation": "首领",
+          "id": 74
+        },
+        {
+          "relation": "同伴",
+          "id": 77
+        },
+        {
+          "relation": "同伴",
+          "id": 78
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "name": "裴擒虎",
+      "relationship": [
+        {
+          "relation": "同伴",
+          "id": 75
+        },
+        {
+          "relation": "过去的上级",
+          "id": 71
+        },
+        {
+          "relation": "首领",
+          "id": 74
+        },
+        {
+          "relation": "同伴",
+          "id": 76
+        },
+        {
+          "relation": "同伴",
+          "id": 78
+        },
+        {
+          "relation": "不打不相识",
+          "id": 106
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "name": "弈星",
+      "relationship": [
+        {
+          "relation": "首领",
+          "id": 74
+        },
+        {
+          "relation": "同伴",
+          "id": 75
+        },
+        {
+          "relation": "同伴",
+          "id": 76
+        },
+        {
+          "relation": "同伴",
+          "id": 77
+        },
+        {
+          "relation": "血亲",
+          "id": 104
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "name": "狂铁",
+      "relationship": [
+        {
+          "relation": "执政者",
+          "id": 80
+        },
+        {
+          "relation": "偶遇之人",
+          "id": 68
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "name": "米莱狄",
+      "relationship": [
+        {
+          "relation": "反抗者",
+          "id": 79
+        },
+        {
+          "relation": "属下",
+          "id": 56
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "name": "元歌",
+      "relationship": [
+        {
+          "relation": "学长",
+          "id": 62
+        },
+        {
+          "relation": "敌人",
+          "id": 33
+        },
+        {
+          "relation": "校友",
+          "id": 97
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "name": "孙策",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 64
+        },
+        {
+          "relation": "妹妹",
+          "id": 25
+        },
+        {
+          "relation": "挚友",
+          "id": 34
+        },
+        {
+          "relation": "凶手",
+          "id": 83
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "name": "司马懿",
+      "relationship": [
+        {
+          "relation": "对手",
+          "id": 62
+        },
+        {
+          "relation": "主公",
+          "id": 33
+        },
+        {
+          "relation": "恩师",
+          "id": 19
+        },
+        {
+          "relation": "后患无穷",
+          "id": 103
+        },
+        {
+          "relation": "棋子",
+          "id": 64
+        },
+        {
+          "relation": "被害者",
+          "id": 95
+        },
+        {
+          "relation": "被害者",
+          "id": 82
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "name": "盾山",
+      "relationship": [
+        {
+          "relation": "长城守卫军队友",
+          "id": 69
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "name": "伽罗",
+      "relationship": [
+        {
+          "relation": "知己",
+          "id": 71
+        },
+        {
+          "relation": "发小与盟友",
+          "id": 108
+        },
+        {
+          "relation": "盟友与幼时同窗",
+          "id": 44
+        },
+        {
+          "relation": "沙之盟伙伴",
+          "id": 109
+        },
+        {
+          "relation": "沙之盟伙伴",
+          "id": 110
+        },
+        {
+          "relation": "敌对",
+          "id": 111
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "name": "沈梦溪",
+      "relationship": [
+        {
+          "relation": "恩人",
+          "id": 74
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 69
+        },
+        {
+          "relation": "长城守卫军队友",
+          "id": 70
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "name": "李信",
+      "relationship": [
+        {
+          "relation": "交易之人",
+          "id": 74
+        },
+        {
+          "relation": "旧友",
+          "id": 75
+        },
+        {
+          "relation": "曾经的长官",
+          "id": 71
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "name": "上官婉儿",
+      "relationship": [
+        {
+          "relation": "仇敌",
+          "id": 74
+        },
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "治安官",
+          "id": 16
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "name": "嫦娥",
+      "relationship": [
+        {
+          "relation": "爱人",
+          "id": 41
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "name": "猪八戒",
+      "relationship": [
+        {
+          "relation": "战友",
+          "id": 36
+        },
+        {
+          "relation": "师傅",
+          "id": 107
+        },
+        {
+          "relation": "背叛的战友",
+          "id": 35
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "name": "盘古",
+      "relationship": [
+        {
+          "relation": "战友",
+          "id": 73
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "name": "瑶",
+      "relationship": [
+        {
+          "relation": "爱慕之人",
+          "id": 93
+        },
+        {
+          "relation": "师父",
+          "id": 67
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "name": "云中君",
+      "relationship": [
+        {
+          "relation": "爱慕之人",
+          "id": 92
+        },
+        {
+          "relation": "君主",
+          "id": 65
+        },
+        {
+          "relation": "恩人",
+          "id": 67
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "name": "曜",
+      "relationship": [
+        {
+          "relation": "姐姐",
+          "id": 99
+        },
+        {
+          "relation": "星之队队友",
+          "id": 96
+        },
+        {
+          "relation": "星之队队友",
+          "id": 98
+        },
+        {
+          "relation": "星之队队友",
+          "id": 97
+        },
+        {
+          "relation": "星之队队友",
+          "id": 20
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "偶像",
+          "id": 46
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "name": "马超",
+      "relationship": [
+        {
+          "relation": "老师",
+          "id": 83
+        },
+        {
+          "relation": "军师",
+          "id": 62
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "name": "西施",
+      "relationship": [
+        {
+          "relation": "星之队队长",
+          "id": 94
+        },
+        {
+          "relation": "星之队队友",
+          "id": 98
+        },
+        {
+          "relation": "星之队队友",
+          "id": 20
+        },
+        {
+          "relation": "星之队队友",
+          "id": 97
+        },
+        {
+          "relation": "魔道老师",
+          "id": 19
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "name": "鲁班大师",
+      "relationship": [
+        {
+          "relation": "儿子",
+          "id": 14
+        },
+        {
+          "relation": "星之队队友",
+          "id": 96
+        },
+        {
+          "relation": "星之队队友",
+          "id": 98
+        },
+        {
+          "relation": "星之队队友",
+          "id": 94
+        },
+        {
+          "relation": "星之队队友",
+          "id": 20
+        },
+        {
+          "relation": "校友",
+          "id": 18
+        },
+        {
+          "relation": "校友",
+          "id": 81
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "name": "蒙犽",
+      "relationship": [
+        {
+          "relation": "父亲",
+          "id": 100
+        },
+        {
+          "relation": "星之队队友",
+          "id": 97
+        },
+        {
+          "relation": "星之队队长",
+          "id": 94
+        },
+        {
+          "relation": "星之队队友",
+          "id": 96
+        },
+        {
+          "relation": "星之队队友",
+          "id": 20
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "机关老师",
+          "id": 18
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "name": "镜",
+      "relationship": [
+        {
+          "relation": "弟弟",
+          "id": 94
+        },
+        {
+          "relation": "武道老师",
+          "id": 11
+        },
+        {
+          "relation": "魔道老师",
+          "id": 19
+        },
+        {
+          "relation": "君主",
+          "id": 8
+        },
+        {
+          "relation": "战友",
+          "id": 100
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "name": "蒙恬",
+      "relationship": [
+        {
+          "relation": "儿子",
+          "id": 98
+        },
+        {
+          "relation": "君主",
+          "id": 8
+        },
+        {
+          "relation": "战友",
+          "id": 4
+        },
+        {
+          "relation": "战友",
+          "id": 99
+        }
+      ]
+    },
+    {
+      "id": 101,
+      "name": "阿古朵",
+      "relationship": [
+        {
+          "relation": "带头大哥",
+          "id": 62
+        },
+        {
+          "relation": "二当家的",
+          "id": 26
+        },
+        {
+          "relation": "偶尔很凶的战友",
+          "id": 42
+        },
+        {
+          "relation": "小马不错的战友",
+          "id": 52
+        },
+        {
+          "relation": "小鸡不错的战友",
+          "id": 43
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "name": "夏洛特",
+      "relationship": [
+        {
+          "relation": "偶遇",
+          "id": 105
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "name": "澜",
+      "relationship": [
+        {
+          "relation": "值得保护之人",
+          "id": 53
+        },
+        {
+          "relation": "曾经的主公",
+          "id": 33
+        },
+        {
+          "relation": "看不透彻",
+          "id": 83
+        },
+        {
+          "relation": "“教授”过刀法",
+          "id": 54
+        }
+      ]
+    },
+    {
+      "id": 104,
+      "name": "司空震",
+      "relationship": [
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "同僚",
+          "id": 16
+        },
+        {
+          "relation": "血亲",
+          "id": 78
+        },
+        {
+          "relation": "世侄",
+          "id": 106
+        },
+        {
+          "relation": "世侄",
+          "id": 112
+        },
+        {
+          "relation": "属下",
+          "id": 40
+        }
+      ]
+    },
+    {
+      "id": 105,
+      "name": "艾琳",
+      "relationship": [
+        {
+          "relation": "闺蜜",
+          "id": 32
+        },
+        {
+          "relation": "团长",
+          "id": 24
+        },
+        {
+          "relation": "偶遇",
+          "id": 102
+        }
+      ]
+    },
+    {
+      "id": 106,
+      "name": "云缨",
+      "relationship": [
+        {
+          "relation": "青梅竹马",
+          "id": 112
+        },
+        {
+          "relation": "老大",
+          "id": 16
+        },
+        {
+          "relation": "小弟",
+          "id": 48
+        },
+        {
+          "relation": "忘年之交",
+          "id": 30
+        },
+        {
+          "relation": "世叔",
+          "id": 104
+        },
+        {
+          "relation": "不打不相识",
+          "id": 77
+        }
+      ]
+    },
+    {
+      "id": 107,
+      "name": "金蝉",
+      "relationship": [
+        {
+          "relation": "徒弟",
+          "id": 36
+        },
+        {
+          "relation": "徒弟",
+          "id": 90
+        },
+        {
+          "relation": "君主",
+          "id": 5
+        },
+        {
+          "relation": "出手相救",
+          "id": 22
+        },
+        {
+          "relation": "伙伴",
+          "id": 35
+        },
+        {
+          "relation": "干戈化玉帛",
+          "id": 44
+        },
+        {
+          "relation": "辩道之人",
+          "id": 74
+        }
+      ]
+    },
+    {
+      "id": 108,
+      "name": "暃",
+      "relationship": [
+        {
+          "relation": "发小与盟友",
+          "id": 85
+        },
+        {
+          "relation": "盟友与幼时同窗",
+          "id": 44
+        },
+        {
+          "relation": "友人",
+          "id": 46
+        },
+        {
+          "relation": "沙之盟盟友",
+          "id": 109
+        },
+        {
+          "relation": "沙之盟盟友",
+          "id": 110
+        },
+        {
+          "relation": "敌对",
+          "id": 111
+        },
+        {
+          "relation": "偶遇",
+          "id": 40
+        }
+      ]
+    },
+    {
+      "id": 109,
+      "name": "桑启",
+      "relationship": [
+        {
+          "relation": "沙之盟伙伴",
+          "id": 85
+        },
+        {
+          "relation": "沙之盟伙伴",
+          "id": 44
+        },
+        {
+          "relation": "沙之盟伙伴",
+          "id": 108
+        },
+        {
+          "relation": "沙之盟伙伴",
+          "id": 110
+        },
+        {
+          "relation": "敌对",
+          "id": 111
+        }
+      ]
+    },
+    {
+      "id": 110,
+      "name": "戈娅",
+      "relationship": [
+        {
+          "relation": "盟友",
+          "id": 108
+        },
+        {
+          "relation": "盟友",
+          "id": 85
+        },
+        {
+          "relation": "盟友",
+          "id": 109
+        },
+        {
+          "relation": "盟友",
+          "id": 44
+        },
+        {
+          "relation": "？",
+          "id": 56
+        },
+        {
+          "relation": "敌对",
+          "id": 111
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "name": "海月",
+      "relationship": [
+        {
+          "relation": "敌对",
+          "id": 108
+        },
+        {
+          "relation": "敌对",
+          "id": 85
+        },
+        {
+          "relation": "敌对",
+          "id": 109
+        },
+        {
+          "relation": "敌对",
+          "id": 44
+        },
+        {
+          "relation": "敌对",
+          "id": 110
+        }
+      ]
+    },
+    {
+      "id": 112,
+      "name": "赵怀真",
+      "relationship": [
+        {
+          "relation": "青梅竹马",
+          "id": 106
+        },
+        {
+          "relation": "世伯",
+          "id": 30
+        },
+        {
+          "relation": "世叔",
+          "id": 104
+        },
+        {
+          "relation": "不知身份的老师",
+          "id": 12
+        }
+      ]
+    }
+  ]
+}

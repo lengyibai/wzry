@@ -18,10 +18,7 @@
       "height": "186",
       "identity": ["龙枪战士"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 2,
@@ -41,10 +38,7 @@
       "height": "165",
       "identity": ["姜子牙所造人偶"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 3,
@@ -64,10 +58,7 @@
       "height": "178",
       "identity": ["吟游乐师"],
       "camp": "南荒",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 4,
@@ -87,10 +78,7 @@
       "height": "193",
       "identity": ["玄雍武将"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 5,
@@ -110,10 +98,7 @@
       "height": "171",
       "identity": ["长安女帝"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 6,
@@ -133,10 +118,7 @@
       "height": "173",
       "identity": ["寒星家族继承人"],
       "camp": "海都家族",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 7,
@@ -156,10 +138,7 @@
       "height": "190",
       "identity": ["甘丹族长"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 8,
@@ -179,10 +158,7 @@
       "height": "182",
       "identity": ["玄雍君主"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 9,
@@ -202,10 +178,7 @@
       "height": "171",
       "identity": ["复仇刺客"],
       "camp": "南荒",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 10,
@@ -225,10 +198,7 @@
       "height": "171",
       "identity": ["魔道圣人之后"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 11,
@@ -248,10 +218,7 @@
       "height": "173",
       "identity": ["稷下三贤者"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 12,
@@ -271,10 +238,7 @@
       "height": "178",
       "identity": ["神职者"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 13,
@@ -294,10 +258,7 @@
       "height": "157",
       "identity": ["魔道名门之后"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 14,
@@ -317,10 +278,7 @@
       "height": "149",
       "identity": ["鲁班所造之物"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 15,
@@ -340,10 +298,7 @@
       "height": "177",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 16,
@@ -363,10 +318,7 @@
       "height": "178",
       "identity": ["长安治安官"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 17,
@@ -386,10 +338,7 @@
       "height": "180",
       "identity": ["天才学者"],
       "camp": "灞上",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 18,
@@ -409,10 +358,7 @@
       "height": "510",
       "identity": ["稷下三贤者"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 19,
@@ -432,10 +378,7 @@
       "height": "175",
       "identity": ["稷下三贤者"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 20,
@@ -455,10 +398,7 @@
       "height": "155",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 21,
@@ -478,10 +418,7 @@
       "height": "183",
       "identity": ["魏迪武将"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 22,
@@ -501,10 +438,7 @@
       "height": "177",
       "identity": ["拳僧"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 23,
@@ -524,10 +458,7 @@
       "height": "185",
       "identity": ["灞城武将"],
       "camp": "灞上",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 24,
@@ -547,10 +478,7 @@
       "height": "188",
       "identity": ["圣骑士团领袖"],
       "camp": "日落圣殿",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 25,
@@ -570,10 +498,7 @@
       "height": "166",
       "identity": ["吴地小公主"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 26,
@@ -593,10 +518,7 @@
       "height": "210",
       "identity": ["蜀地继承人"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 27,
@@ -616,10 +538,7 @@
       "height": "173",
       "identity": ["医者"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 28,
@@ -639,10 +558,7 @@
       "height": "181",
       "identity": ["扶桑剑客"],
       "camp": "扶桑",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 29,
@@ -662,10 +578,7 @@
       "height": "197",
       "identity": ["霸王"],
       "camp": "鸿门",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 30,
@@ -685,10 +598,7 @@
       "height": "200",
       "identity": ["名将"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 31,
@@ -708,10 +618,7 @@
       "height": "170",
       "identity": ["和亲公主"],
       "camp": "狼旗",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 32,
@@ -731,10 +638,7 @@
       "height": "153",
       "identity": ["神秘法师"],
       "camp": "日落圣殿",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 33,
@@ -754,10 +658,7 @@
       "height": "179",
       "identity": ["魏地主公"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 34,
@@ -777,10 +678,7 @@
       "height": "180",
       "identity": ["吴地都督"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 35,
@@ -800,10 +698,7 @@
       "height": "230",
       "identity": ["魔种起义军叛徒"],
       "camp": "日之塔",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 36,
@@ -823,10 +718,7 @@
       "height": "180",
       "identity": ["魔种起义军将领"],
       "camp": "日之塔",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 37,
@@ -846,10 +738,7 @@
       "height": "175",
       "identity": ["玄雍太后"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 38,
@@ -869,10 +758,7 @@
       "height": "172",
       "identity": ["绝世舞姬"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 39,
@@ -892,10 +778,7 @@
       "height": "192",
       "identity": ["重生的战神"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 40,
@@ -915,10 +798,7 @@
       "height": "174",
       "identity": ["长城守卫军队长"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 41,
@@ -938,10 +818,7 @@
       "height": "183",
       "identity": ["神职者", "神射手"],
       "camp": "日之塔",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 42,
@@ -961,10 +838,7 @@
       "height": "186",
       "identity": ["蜀地武将"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 43,
@@ -984,10 +858,7 @@
       "height": "178",
       "identity": ["蜀地主公"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 44,
@@ -1007,10 +878,7 @@
       "height": "179",
       "identity": ["金庭城王子"],
       "camp": "云中漠地",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 45,
@@ -1030,10 +898,7 @@
       "height": "154",
       "identity": ["扶桑巫女"],
       "camp": "扶桑",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 46,
@@ -1053,10 +918,7 @@
       "height": "184",
       "identity": ["天才刺客"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 47,
@@ -1076,10 +938,7 @@
       "height": "355",
       "identity": ["长安城守护者"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 48,
@@ -1099,10 +958,7 @@
       "height": "152",
       "identity": ["长安密保"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 49,
@@ -1122,10 +978,7 @@
       "height": "179",
       "identity": ["灞城统治者"],
       "camp": "灞上",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 50,
@@ -1145,10 +998,7 @@
       "height": "165",
       "identity": ["不知火流继承人"],
       "camp": "扶桑",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 51,
@@ -1168,10 +1018,7 @@
       "height": "173",
       "identity": ["自然巡游者"],
       "camp": "鸿门",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 52,
@@ -1191,10 +1038,7 @@
       "height": "191",
       "identity": ["蜀地武将"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 53,
@@ -1214,10 +1058,7 @@
       "height": "180",
       "identity": ["音乐天才少女"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 54,
@@ -1237,10 +1078,7 @@
       "height": "186",
       "identity": ["蜀地武将"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 55,
@@ -1260,10 +1098,7 @@
       "height": "178",
       "identity": ["神的继承者"],
       "camp": "日落圣殿",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 56,
@@ -1283,10 +1118,7 @@
       "height": "179",
       "identity": ["冒险家"],
       "camp": "海都家族",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 57,
@@ -1306,10 +1138,7 @@
       "height": "176",
       "identity": ["扶桑剑客"],
       "camp": "扶桑",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 58,
@@ -1329,10 +1158,7 @@
       "height": "177",
       "identity": ["狼旗首领"],
       "camp": "狼旗",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 59,
@@ -1352,10 +1178,7 @@
       "height": "185",
       "identity": ["神职者"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 60,
@@ -1373,7 +1196,7 @@
       "specialty": ["团队增益"],
       "period": "前期",
       "mark": "炼金大师",
-      "identity": "炼金师",
+      "identity": ["炼金师"],
       "camp": "倒悬天",
       "voices": [
         {
@@ -1450,9 +1273,7 @@
             }
           ]
         }
-      ],
-      "gamestory": "<p style=\"text-indent: 2em; text-align: start;\">“吾太乙，天下第一的傻瓜师父，曾经犯下三桩错误。现在，要以生命去填补。”</p><p style=\"text-indent: 2em; text-align: start;\"><span style=\"color: rgb(84, 141, 212);\">“吾也曾出入倒悬天，也曾被君主奉为上宾，乃皇家认证的特级炼金术师是也。</span>然而当吾参与奇迹的建造，难以遏止根源奥秘的诱惑……最终，最终……清醒过来时，已经带着启动奇迹的钥匙逃离倒悬天。这是吾犯下的第一桩错误。</p><p style=\"text-indent: 2em; text-align: start;\">“陈塘关最高长官的小儿子因心疾奄奄一息。<span style=\"color: rgb(84, 141, 212);\">吾用奇迹的钥匙替换了他病弱的心脏。既支撑孩子长大，也让吾得以逃过追捕，一举两得。”</span></p><p style=\"text-indent: 2em; text-align: start;\">“徒儿哪吒平安长大。关城中没人是他的对手，无论吾炼成多么强大的武器，他也能运用自如，但他不是完整的人，吾很清楚。除了愤怒，徒儿再没有更多的情绪。这是承受过分力量的后遗症，也是吾犯下的第二桩错误。”</p><p style=\"text-indent: 2em; text-align: start;\"><img src=\"https://ossweb-img.qq.com/upload/webplat/info/yxzj/20170421/1492765659571823.jpg\" alt=\"pic1 (3).jpg\" data-href=\"\" style=\"width: 797.922px;\"></p><p style=\"text-align: start;\"><br></p><p style=\"text-indent: 2em; text-align: start;\"><span style=\"color: rgb(84, 141, 212);\">“徒儿被召唤到倒悬天，吾无法放下担忧随行同往。</span>可吾禁不住再次接近知识根源的诱惑，重新尝试起终极的炼金术。啊，吾平生最大的错误，正莫过于此。”</p><p style=\"text-indent: 2em; text-align: start;\">“炼金术使吾暴露踪迹，被投入大牢。哪吒徒儿来了，不仅救了我，还有同牢那只无耻又刻薄的炉子。它用谄媚的口气恭维着徒儿，花言巧语欺骗他，强行冒充吾的炼金炉……”</p><p style=\"text-indent: 2em; text-align: start;\">“为这场逃亡付出代价的，是陈塘关。阴险的当权者，强迫长官大人剿灭海中的魔种。暴风雨中的关城，化作陷阱囚困了海中的魔种。倒灌的海水淹没了一切。徒儿的暴怒令他失控，濒死的魔种叫嚣着。吾拼命想要炼成屏障，但救下的，只有无声无息的身体。追究因果根源，一切都来自吾犯下的三桩大错。”</p><p style=\"text-indent: 2em; text-align: start;\">“‘怂在弟子背后的家伙！没用的矮子……’狼狈的炉子破口大骂。”</p><p style=\"text-indent: 2em; text-align: start;\">“说得对，吾，……一直被徒儿保护的人……没用的师父……如果还能有挽回错误的办法……只能是……”</p><p style=\"text-indent: 2em; text-align: start;\">“‘喂喂！这不可能！除了当权者，没有凡人成功！……还有祭品，等价交换的祭品！’”</p><p style=\"text-indent: 2em; text-align: start;\">“吾能办到的。一定……”</p><p style=\"text-indent: 2em; text-align: start;\"><span style=\"color: rgb(84, 141, 212);\">“徒儿身体之中，有奇迹的钥匙；吾身体之中，有人的心脏。钥匙，无生命之物。心脏，生命之源。”</span></p><p style=\"text-indent: 2em; text-align: start;\"><img src=\"https://ossweb-img.qq.com/upload/webplat/info/yxzj/20170421/1492765676118632.jpg\" alt=\"pic2 (3).jpg\" data-href=\"\" style=\"width: 797.922px;\"></p><p style=\"text-align: start;\"><br></p><p style=\"text-indent: 2em; text-align: start;\">“等价交换。”</p><p style=\"text-indent: 2em; text-align: start;\">“‘加上我！’炉子跳了起来。‘我可不是普通的炉子！好歹也偷窥过那根源的奥秘，啧啧，若非那看门的钟馗……’”</p><p style=\"text-indent: 2em; text-align: start;\">“魔道的火焰闪烁着，吾走入阵法……炼成的咒语灼烧着吾的身体。”</p><p style=\"text-indent: 2em; text-align: start;\"><span style=\"color: rgb(84, 141, 212);\">“吾乃太乙，胆小的太乙，懦弱的太乙，傻瓜的太乙。”</span></p><p style=\"text-indent: 2em; text-align: start;\">“徒儿，师父赋予你的枷锁，师父所犯下的错误，理所应当由师父来纠正！这才是作为师父所要身体力行的正确人生观！”</p><p style=\"text-indent: 2em; text-align: start;\">眼前陷入黑暗。模模糊糊中，唯有聒噪的声音在搅扰叫嚷。胸腔里，已经感受不到心脏的跳动，反倒有团火在燃烧。</p><p style=\"text-indent: 2em; text-align: start;\"><img src=\"https://ossweb-img.qq.com/upload/webplat/info/yxzj/20170421/1492765760112403.jpg\" alt=\"pic3 (3).jpg\" data-href=\"\" style=\"width: 797.922px;\"></p><p style=\"text-align: start;\"><br></p><p style=\"text-indent: 2em; text-align: start;\">“‘活过来了！’炉子不顾头上烟雾缭绕，猛地蹦起三丈高。‘哟，你也活着，不过被烧成了黑炭而已。’”</p><p style=\"text-indent: 2em; text-align: start;\">“炉子炼成的巴掌狠狠打在脸上，把吾敲醒。吾睁开眼，与哪吒徒儿四目相对。”</p><p style=\"text-indent: 2em; text-align: start;\">“奇迹，真正的奇迹……看不见的泪水，流淌在吾黑漆漆的脸上。”</p>",
-      "history": "<p><br></p>"
+      ]
     },
     {
       "id": 61,
@@ -1472,10 +1293,7 @@
       "height": "175",
       "identity": ["陈塘关长官之子"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 62,
@@ -1495,44 +1313,7 @@
       "height": "183",
       "identity": ["蜀地军师"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "relationship": [
-        {
-          "relation": "挚友",
-          "hero": 1
-        },
-        {
-          "relation": "君主",
-          "hero": 43
-        },
-        {
-          "relation": "徒弟",
-          "hero": 26
-        },
-        {
-          "relation": "学弟",
-          "hero": 81
-        },
-        {
-          "relation": "校友",
-          "hero": 34
-        },
-        {
-          "relation": "部下",
-          "hero": 63
-        },
-        {
-          "relation": "敌对",
-          "hero": 83
-        },
-        {
-          "relation": "武道老师",
-          "hero": 11
-        }
-      ],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 63,
@@ -1552,10 +1333,7 @@
       "height": "187",
       "identity": ["机关炮老兵"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 64,
@@ -1575,10 +1353,7 @@
       "height": "168",
       "identity": ["魔道名门继承人"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 65,
@@ -1598,10 +1373,7 @@
       "height": "215",
       "identity": ["东神之城统治者"],
       "camp": "云梦泽",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 66,
@@ -1621,10 +1393,7 @@
       "height": "237",
       "identity": ["铸剑师"],
       "camp": "云梦泽",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 67,
@@ -1642,7 +1411,7 @@
       "specialty": ["团控"],
       "period": "均衡",
       "height": "150",
-      "identity": "博学者",
+      "identity": ["博学者"],
       "camp": "云梦泽",
       "voices": [
         {
@@ -1735,14 +1504,7 @@
             }
           ]
         }
-      ],
-      "offset": {
-        "top": 10,
-        "left": -40,
-        "transform": "scale(1.2)"
-      },
-      "gamestory": "<p>很久以来，大陆就流传着关于“日之塔”的传说。那是黄金时代建造的奇迹，却毁于意外。因为这不幸的事故，极北才成为冰封苦寒的荒野。 有位学者对这个故事产生了好奇。他的性情天真纯良，对大陆和世界充满探求的渴望。于是在没有任何同伴的情况下，踏上前往北方的路——本意仅仅是想拜访史书里记载的旧墟。不幸中途迷失方向，误入陌生的峡谷。</p><p>“眼前是规模庞大的战斗遗痕，仍能分辨出四散的古老机关核心与萦绕的魔道之力。在仔细的以脚步丈量峡谷后，发现了高耸的雕像：超智慧体。先民们建造它，歌颂超智慧体的胜利。可经历漫长时光后，植物和泥土反过来又试图将这峡谷掩埋。就在这里，我分辨出新的声音：它似乎与魔道相通，却并非魔道；它微弱得难以感知，却纯净而深不见底。” 怀着疑问，他离开这峡谷。</p><p>又过了许多年，他的渊博被人们所熟知。那时候人类的君主掌握了越来越大的权力，而超智慧体的力量陷入衰退。于是，超智慧体的当权者开始谋划建造最后的奇迹：“转生之术”。许多饱学之士被召集到了倒悬天，这学者也在其中。 因为奇迹的建造，王者大陆智慧的根源时隔多年后向人类打开了大门。封神战争的爆发，当权者的隐退，战乱流离令所有人卷入灾难。</p><p>他逃离了倒悬天，追随他的，还有同样致力于建造奇迹的其他人。 他们在僻静而避世的大河流域，在森林和流水的环绕下，继续研究……不知道过去多少年，被所有人遗忘的地方，他们似乎真的实现了不可能之事：完成“转生之术”。这是所知的靠近知识根源的唯一办法了。 于是，奇迹的建造者，以这位学者鬼谷子为首——一个接一个接受了转生之术的洗礼，并拥有了神明般强大的力量，一道不可思议而危险的大门被打开了。 鬼谷子感受到不安。他从奇迹里看到了一个可怕的世界。这使得他对自己的造物产生了怀疑。但他刚刚提出疑问，就几乎遭遇不测。</p><p>奇迹完成后，作为领导者的他已经没用了。他的弟子们现在想要独霸奇迹，完全不能容忍任何对奇迹的质疑。为了保住性命，他不得不逃离。 很长时间里，他风餐露宿于大河畔的森林，拼命朝渺无人烟的沼泽深入。他好像又回到了青年时代，独自的旅行中。在没有注意到的时候，连行路的手杖也萦绕着萤光。他称它们为“玄微子”。玄微子们与这人类的博学者亲近，它们引领着他跋涉。</p><p>直到有一天，当他从藤蔓的保护下苏醒时，又听到了声音：自然的轻语，它似乎与魔道相通，却并非魔道；它微弱得难以感知，却纯净而深不见底。它是这个世界的法则之一。不是知识根源，不是超智慧体，就是脚下这片土地，这片森林的法则和力量。 几乎穷尽一生的探索后，他似乎终于寻求到了梦寐以求的真谛。 “万物皆有灵”</p>",
-      "history": "鬼谷子，姓王名诩，又名王禅，号玄微子，为春秋战国时期人。因隐居清溪鬼谷，故自称鬼谷先生。他精通百家学问，通天彻地，智慧卓绝，为兵法家尊为圣人，亦是纵横家开山祖师。《史记》中有《苏秦列传》和《张仪列传》记载其事迹，二人均师从鬼谷门下。鬼谷子的代表作为《鬼谷子》，又名《捭阖策》，一说由鬼谷先生后学者整理其言论而成。该书融合了鬼谷子毕生学术研究精华，总结了纵横家游说经验，为后世了解纵横家与道家思想提供了极有价值的参考，被称为“智慧禁果，旷世奇书”。"
+      ]
     },
     {
       "id": 68,
@@ -1762,10 +1524,7 @@
       "height": "188",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 69,
@@ -1785,10 +1544,7 @@
       "height": "182",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 70,
@@ -1808,10 +1564,7 @@
       "height": "171",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 71,
@@ -1831,10 +1584,7 @@
       "height": "208",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 72,
@@ -1854,10 +1604,7 @@
       "height": "97",
       "identity": ["食梦者"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 73,
@@ -1877,10 +1624,7 @@
       "height": "180",
       "identity": ["神"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 74,
@@ -1900,10 +1644,7 @@
       "height": "181",
       "identity": ["尧天组织首领"],
       "camp": "尧天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 75,
@@ -1923,10 +1664,7 @@
       "height": "169",
       "identity": ["长安坊舞者"],
       "camp": "尧天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 76,
@@ -1946,10 +1684,7 @@
       "height": "169",
       "identity": ["长安坊乐师"],
       "camp": "尧天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 77,
@@ -1969,10 +1704,7 @@
       "height": "177",
       "identity": ["拳师"],
       "camp": "尧天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 78,
@@ -1992,10 +1724,7 @@
       "height": "170",
       "identity": ["少年棋手"],
       "camp": "尧天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 79,
@@ -2015,10 +1744,7 @@
       "height": "171",
       "identity": ["海都佣兵"],
       "camp": "海都家族",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 80,
@@ -2038,10 +1764,7 @@
       "height": "169",
       "identity": ["海都执政者"],
       "camp": "海都家族",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 81,
@@ -2061,10 +1784,7 @@
       "height": "182",
       "identity": ["机关傀儡师"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 82,
@@ -2084,10 +1804,7 @@
       "height": "185",
       "identity": ["江东小霸王"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 83,
@@ -2107,10 +1824,7 @@
       "height": "184",
       "identity": ["魏地军师"],
       "camp": "魏",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 84,
@@ -2130,10 +1844,7 @@
       "height": "283",
       "identity": ["修筑长城的机械"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 85,
@@ -2153,10 +1864,7 @@
       "height": "172",
       "identity": ["千窟城继承者"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 86,
@@ -2176,10 +1884,7 @@
       "height": "151",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 87,
@@ -2199,10 +1904,7 @@
       "height": "187",
       "identity": ["长城守卫军成员"],
       "camp": "长城守卫军",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 88,
@@ -2222,10 +1924,7 @@
       "height": "170",
       "identity": ["女帝密探"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 89,
@@ -2245,10 +1944,7 @@
       "height": "171",
       "identity": ["魔道家族公主"],
       "camp": "日之塔",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 90,
@@ -2268,10 +1964,7 @@
       "height": "183",
       "identity": ["魔种起义军将领"],
       "camp": "日之塔",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 91,
@@ -2291,10 +1984,7 @@
       "height": "212",
       "identity": ["神"],
       "camp": "倒悬天",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 92,
@@ -2314,10 +2004,7 @@
       "height": "162",
       "identity": ["鹿灵转生者"],
       "camp": "云梦泽",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 93,
@@ -2337,10 +2024,7 @@
       "height": "182",
       "identity": ["孤鸟转生者"],
       "camp": "云梦泽",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 94,
@@ -2360,10 +2044,7 @@
       "height": "176",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 95,
@@ -2383,10 +2064,7 @@
       "height": "180",
       "identity": ["蜀地将领"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 96,
@@ -2406,10 +2084,7 @@
       "height": "163",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 97,
@@ -2429,10 +2104,7 @@
       "height": "192",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 98,
@@ -2452,10 +2124,7 @@
       "height": "150",
       "identity": ["稷下学生"],
       "camp": "稷下学院",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 99,
@@ -2475,10 +2144,7 @@
       "height": "170",
       "identity": ["阴曲情报专员"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 100,
@@ -2498,10 +2164,7 @@
       "height": "190",
       "identity": ["玄雍护国大将军"],
       "camp": "玄雍",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 101,
@@ -2521,10 +2184,7 @@
       "height": "145",
       "identity": ["狼孩"],
       "camp": "蜀",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 102,
@@ -2544,10 +2204,7 @@
       "height": "待调查",
       "identity": ["贵族剑士"],
       "camp": "日落圣殿",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 103,
@@ -2567,10 +2224,7 @@
       "height": "180",
       "identity": ["前魏都杀手"],
       "camp": "吴",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 104,
@@ -2590,10 +2244,7 @@
       "height": "190",
       "identity": ["长安大司空"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 105,
@@ -2613,10 +2264,7 @@
       "height": "165",
       "identity": ["精灵公主"],
       "camp": "日落圣殿",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 106,
@@ -2636,10 +2284,7 @@
       "height": "165",
       "identity": ["将门之后"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 107,
@@ -2659,10 +2304,7 @@
       "height": "180",
       "identity": ["西行修行者"],
       "camp": "长安",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 108,
@@ -2682,10 +2324,7 @@
       "height": "180",
       "identity": ["玉城大王子"],
       "camp": "云中漠地",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 109,
@@ -2705,10 +2344,7 @@
       "height": "166",
       "identity": ["萤火的旅行者"],
       "camp": "云中漠地",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 110,
@@ -2728,10 +2364,7 @@
       "height": "170",
       "identity": ["沙海船帮头子"],
       "camp": "云中漠地",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 111,
@@ -2751,10 +2384,7 @@
       "height": "170",
       "identity": ["月裔", "云中蝶饲养人"],
       "camp": "云中漠地",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     },
     {
       "id": 112,
@@ -2774,10 +2404,7 @@
       "height": "181",
       "identity": ["玄都观修道者"],
       "camp": "长安城",
-      "voices": [],
-      "skills": [],
-      "gamestory": "待设置",
-      "history": "待设置"
+      "skills": []
     }
   ]
 }
