@@ -5,24 +5,7 @@
   overflow-y: auto;
   height: 75vh;
   flex-direction: column;
-  overscroll-behavior: contain;
-
-  &::-webkit-scrollbar {
-    width: 3px;
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--white);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: var(--white);
-  }
-
-  &::-webkit-scrollbar-thumb:active {
-    background-color: var(--white);
-  }
+  padding-right: 10px;
 
   .voice {
     overflow: hidden;
@@ -64,6 +47,13 @@
 
       &:active {
         color: var(--red);
+      }
+    }
+    @media screen and (max-width: 1300px) {
+      padding: 0 25px;
+
+      .text {
+        font-size: 16px;
       }
     }
   }

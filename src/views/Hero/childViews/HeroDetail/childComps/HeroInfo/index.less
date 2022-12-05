@@ -49,14 +49,19 @@
 
     .content-left {
       display: flex;
-      flex-direction: column;
       overflow: auto;
+      height: 75vh;
+      margin-right: 25px;
+      padding-right: 25px;
+      flex-direction: column;
       flex: 1;
-      padding-right: 50px;
 
       .basic-info {
         display: flex;
         margin-bottom: 50px;
+        @media screen and (max-width: 1500px) {
+          flex-direction: column;
+        }
 
         .list {
           display: flex;
@@ -73,6 +78,9 @@
             opacity: 0;
             transform: translateX(-100%);
             border-bottom: 1px solid rgb(255 255 255 / 50%);
+            @media screen and (max-width: 1300px) {
+              font-size: 24px;
+            }
 
             .iconfont {
               margin-right: 5px;
@@ -95,16 +103,27 @@
           margin: 25px;
           font-size: 34px;
           flex-wrap: wrap;
-          flex:1;
+          flex: 1;
           align-content: flex-start;
           text-shadow: var(--t-shadow);
 
-          .relation{
+          .relation {
             margin: 0 25px 10px;
 
             img {
               width: 75px;
               border-radius: 50%;
+            }
+          }
+          @media screen and (max-width: 1300px) {
+            margin: 15px;
+            font-size: 28px;
+
+            .relation {
+              img {
+                width: 50px;
+                border-radius: 50%;
+              }
             }
           }
         }
@@ -116,7 +135,7 @@
         width: 100%;
         flex-direction: column;
 
-        .attribute{
+        .attribute {
           position: absolute;
           width: 0%;
           transition: all 1s;
