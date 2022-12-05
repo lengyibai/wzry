@@ -26,6 +26,7 @@ module.exports = {
     "**/*.yaml",
   ],
   rules: {
+    "custom-property-empty-line-before":null, //禁止内联css变量
     "no-descending-specificity": null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
     "declaration-block-trailing-semicolon": null, //内联样式尾随分号
     "font-family-no-missing-generic-family-keyword": null, //字体名称问题
