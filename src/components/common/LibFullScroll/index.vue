@@ -89,8 +89,7 @@ onMounted(() => {
     }, 10);
   });
   window.addEventListener("resize", () => {
-    LibFullScroll.value.style.transition = "all 0s";
-    change(props.modelValue);
+    change(props.modelValue - 1);
   });
 });
 </script>
