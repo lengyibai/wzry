@@ -1,6 +1,6 @@
 :root {
   --gray: rgb(255 255 255 / 75%);
-  --white: #f1f1f1;
+  --white: #fff;
   --black: #111;
   --red: #e74c3c;
   --orange: #e67e22;
@@ -32,7 +32,7 @@
 
   /* 样式 */
   --t-shadow: 0 2px 3px #000;
-  --b-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+  --b-shadow: 0 3px 6px rgb(0 0 0 / 50%);
   --font-f: "微软雅黑";
 
   /* 远程链接 */
