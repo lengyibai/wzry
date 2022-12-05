@@ -57,7 +57,7 @@ const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00",
     position: absolute;
     top: 2vh;
     right: 2vh;
-    color: #fff;
+    color: var(--white);
     font-size: 2vw;
   }
 }

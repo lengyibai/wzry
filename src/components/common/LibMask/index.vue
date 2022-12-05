@@ -38,7 +38,7 @@ const hide = (e) => {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  color: #fff;
+  color: var(--white);
   background-color: rgb(0 0 0 / 50%);
   inset: 0;
 }

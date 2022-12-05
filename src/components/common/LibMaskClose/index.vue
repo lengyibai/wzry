@@ -55,7 +55,7 @@ onMounted(() => {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    color: #fff;
+    color: var(--white);
     font-size: 25px;
     background-color: rgb(0 0 0 / 65%);
     cursor: pointer;

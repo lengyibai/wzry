@@ -51,7 +51,7 @@ onMounted(() => {
   align-items: center;
   font-size: 20px;
   font-weight: bold;
-  color: #fff;
+  color: var(--white);
   background-color: rgba(0, 0, 0, 0.9);
   z-index: 998;
   transform: scale(2);
