@@ -1,17 +1,21 @@
 /* 鼠标样式 */
 .cursor-default {
+  user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
 }
 
 .cursor-pointer {
+  user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
 }
 
 .cursor-not-allowed {
+  user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/not-allowed.png"), auto;
 }
 
 .cursor-text {
+  user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/text.png"), auto;
 }
 
@@ -23,7 +27,7 @@
 }
 
 /* 溢出省略号显示单行 */
-.lyb-one-line {
+.lib-one-line {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -31,28 +35,20 @@
 }
 
 /* 溢出省略号显示多行 */
-.lyb-two-line,
-.lyb-three-line {
+.lib-two-line,
+.lib-three-line {
   word-break: break-all;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-.lyb-two-line {
+.lib-two-line {
   -webkit-line-clamp: 2;
 }
 
-.lyb-three-line {
+.lib-three-line {
   -webkit-line-clamp: 3;
-}
-
-/* 按钮必加 */
-.lyb-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
 }
 
 /* 布局 */
@@ -60,4 +56,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+
+.scroll-white::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+
+.scroll-white::-webkit-scrollbar-thumb {
+  background: var(--white);
+}
+
+.scroll-white::-webkit-scrollbar-thumb:hover {
+  background-color: var(--white);
+}
+
+.scroll-white::-webkit-scrollbar-thumb:active {
+  background-color: var(--white);
 }

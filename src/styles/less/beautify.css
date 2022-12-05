@@ -48,5 +48,6 @@ input[type="range"],
 input ::-webkit-slider-thumb,
 button,
 a {
+  user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
 }
