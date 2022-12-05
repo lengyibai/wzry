@@ -6,14 +6,14 @@
     <!-- 主体 -->
     <div class="content">
       <!-- 左侧 -->
-      <div class="content-left scroll-white" @mousewheel.stop>
+      <div class="content-left scroll-white">
         <!-- 基础信息表 -->
         <div class="basic-info">
           <HeroBasic :heroData="hero_data" />
 
           <!-- 关系 -->
           <transition name="fade">
-            <HeroRelationship :relationship="hero_data.relationship" v-if="into" />
+            <HeroRelationship :relationship="hero_data.relationships" v-if="into" />
           </transition>
         </div>
 
