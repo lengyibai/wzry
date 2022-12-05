@@ -27,6 +27,12 @@ export const Skin = () => http.Get<any[]>("/skin.json");
 /** @description: 获取皮肤类型列表 */
 export const Skintype = () => http.Get<any[]>("/skinType.json");
 
+/** @description: 获取关系列表 */
+export const Relationship = () => http.Get<any[]>("/relationship.json");
+
+/** @description: 获取关系类型列表 */
+export const Relationtype = () => http.Get<any[]>("/relationType.json");
+
 /** @description: 获取装备列表 */
 export const Equip = () => http.Get<any[]>("/equip.json");
 
@@ -59,6 +65,3 @@ export const Periodtype = () => http.Get<any[]>("/periodType.json");
 
 /** @description: 获取阵营列表 */
 export const Camptype = () => http.Get<any[]>("/campType.json");
-
-/** @description: 获取关系列表 */
-export const Relationtype = () => http.Get<any[]>("/relationType.json");
