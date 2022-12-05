@@ -16,7 +16,6 @@ export function get<R>(params: Get, alone?: true): R;
 export function get<R>(params: Get, alone?: false): R[];
 export function get<R>(params: Get, alone = true): R | R[] | void {
   const { name, key, value, full = true } = params;
-
   const d = localStorage.getItem(name);
   const data: R[] = d && JSON.parse(d);
 
