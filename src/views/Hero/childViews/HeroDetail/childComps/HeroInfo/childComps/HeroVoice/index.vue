@@ -2,20 +2,24 @@
   <div class="hero-voice scroll-white" @mousewheel.stop>
     <button
       class="voice flex"
-      :class="{ active: currentIndex === index }"
-      :style="{ 'animation-duration': time + 's' }"
       @click="play(item.link, index)"
       v-for="(item, index) in voices"
       ref="voiceRef"
       :key="index"
     >
-      <div class="text" v-show="currentIndex !== index">
-        <span> {{ item.text }}</span>
-        <i class="iconfont wzry-laba" />
+      <div class="content" :class="{ 'active-color': currentIndex === index }">
+        <span v-if="currentIndex !== index" class="text lib-one-line"> {{ item.text }}</span>
+        <marquee v-else class="text" scrollamount="12"> {{ item.text }}</marquee>
+        <i
+          class="iconfont"
+          :style="{ 'animation-duration': time + 's' }"
+          :class="[
+            currentIndex === index ? 'wzry-playing' : 'wzry-laba',
+            { 'active-rotate': currentIndex === index },
+            { 'active-color': currentIndex === index },
+          ]"
+        />
       </div>
-      <transition name="fade-a">
-        <i class="iconfont wzry-playing" v-show="currentIndex === index" />
-      </transition>
     </button>
     <!--播放语音-->
     <PlayVoice @ended="ended" @info="voiceInfo" v-if="play_link" :link="play_link" />

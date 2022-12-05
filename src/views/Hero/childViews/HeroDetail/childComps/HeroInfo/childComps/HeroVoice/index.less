@@ -3,16 +3,18 @@
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
+  max-width: 35%;
   height: 75vh;
-  flex-direction: column;
   padding-right: 10px;
+  flex-direction: column;
 
   .voice {
+    display: flex;
     overflow: hidden;
     width: 100%;
-    height: 50px;
+    height: 65px;
     margin-bottom: 10px;
-    padding: 0 75px;
+    padding: 0 50px;
     border-radius: 10px;
     color: var(--white);
     white-space: nowrap;
@@ -20,38 +22,35 @@
     transition: all 0.5s;
 
     &:hover {
-      height: 60px;
+      height: 70px;
       color: var(--blue);
       transition: all 0s;
+
+      .content {
+        .iconfont {
+          color: var(--blue);
+        }
+      }
     }
 
-    .text {
+    .content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
       font-size: 22px;
 
-      .wzry-laba {
-        font-size: inherit;
+      .text {
+        width: 100%;
+      }
+
+      .iconfont {
+        color: var(--white);
+        font-size: 26px;
       }
     }
 
-    .wzry-playing {
-      color: var(--white);
-      font-size: 26px;
-
-      &:hover {
-        color: var(--blue);
-      }
-
-      &:active {
-        color: var(--red);
-      }
-    }
     @media screen and (max-width: 1560px) {
-      padding: 0 25px;
-
       .text {
         font-size: 16px;
       }
@@ -59,12 +58,13 @@
   }
 }
 
-.active {
-  width: 50px !important;
-  height: 50px !important;
-  padding: 0 !important;
-  border-radius: 50%;
+.active-rotate {
   animation: rotate 0s 0.5s linear;
+  color: var(--blue);
+}
+
+.active-color {
+  color: var(--blue) !important;
 }
 
 @keyframes rotate {
