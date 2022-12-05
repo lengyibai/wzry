@@ -3,35 +3,35 @@
     <LibMaskClose @close="hide" />
     <LibFullScroll>
       <!--资料皮肤-->
-      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.poster">
+      <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />
-      </HeroDetailParallaxBg>
+      </HeroParallax>
 
       <!--皮肤-->
-      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.poster" v-if="hero_data.skins.length">
+      <HeroParallax class="scroll-item" :bg="hero_data.poster" v-if="hero_data.skins.length">
         <HeroSkin />
-      </HeroDetailParallaxBg>
+      </HeroParallax>
 
       <!--技能-->
-      <HeroDetailParallaxBg class="scroll-item" :bg="hero_data.skins[1].poster" v-if="hero_data.skills.length">
+      <HeroParallax class="scroll-item" :bg="hero_data.skins[1].poster" v-if="hero_data.skills.length">
         <HeroSkill />
-      </HeroDetailParallaxBg>
+      </HeroParallax>
 
       <!--故事-->
-      <HeroDetailParallaxBg
+      <HeroParallax
         class="scroll-item"
         :bg="hero_data.skins[2] ? hero_data.skins[2].poster : hero_data.poster"
         v-if="hero_data.gamestory"
       >
         <HeroStory />
-      </HeroDetailParallaxBg>
+      </HeroParallax>
     </LibFullScroll>
   </div>
 </template>
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import heroStore from "@/store/hero";
-import HeroDetailParallaxBg from "./childComps/HeroDetailParallaxBg/index.vue"; //滚动视差背景
+import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
