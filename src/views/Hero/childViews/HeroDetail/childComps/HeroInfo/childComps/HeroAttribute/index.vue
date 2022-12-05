@@ -29,9 +29,9 @@ const progress = ref("0%");
 
 const y: Record<string, string> = {
   survival: "0 0px",
-  attack: "-30px 0px",
-  effect: "-60px 0px",
-  difficulty: "-90px 0px",
+  attack: "-60px 0px",
+  effect: "-120px 0px",
+  difficulty: "-180px 0px",
 };
 const bgc: Record<string, string> = {
   survival: "#1081d2",
