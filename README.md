@@ -1,5 +1,9 @@
 # 王者荣耀后台管理系统
 
+## 介绍
+
+> 通过从远程下载游戏数据，本地实现增删查改，并支持导出数据
+
 ## 技术栈
 
 > [Vue3](https://cn.vuejs.org/)、[Vite3](https://vitejs.cn/)、[Pinia2](https://pinia.vuejs.org/)、[Vue-Router4](https://router.vuejs.org/zh/)、[Axios](https://www.axios-http.cn/)、[Less](https://less.bootcss.com/)、[Mitt](https://github.com/developit/mitt)
