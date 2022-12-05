@@ -11,12 +11,13 @@ export const heroDefault: Hero.Data = {
   headImg: "", //头像
   height: "", //身高
   history: "", //历史故事
-  identity: "", //身份
+  identity: [], //身份
   location: "", //区域
   mark: "", //代号
   name: "", //名字
   period: "", //时期
   poster: "", //海报
+  relationship: [],
   offset: {
     top: 0, //向下偏移
     left: 0, //向右偏移
@@ -30,8 +31,8 @@ export const heroDefault: Hero.Data = {
 };
 
 export const voiceDefault: Hero.Voice = {
-  desc: "", //语音文字
-  voice: "", //语音链接
+  text: "", //语音文字
+  link: "", //语音链接
 };
 
 /** @description: 默认技能信息 */
@@ -72,12 +73,14 @@ export const equipMotivationDefault: Equip.EquipMotivation = {
   name: "",
   desc: "",
   time: 0,
+  note: "",
 };
 
 /** @description: 默认铭文信息 */
 export const epigraphDefault: Epigraph.Data = {
+  id: 0,
   name: "", //名称
-  type: "", //类型
+  type: [], //类型
   img: "", //图标
   effect: [], //效果
 };
