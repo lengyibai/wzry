@@ -1,6 +1,6 @@
 <template>
   <div class="hero-card" v-maskGradient v-sweepLight @mouseenter="show = true" @mouseleave="show = false">
-    <div class="id">No.{{ data.id }}</div>
+    <span class="id">No.{{ data.id }}</span>
     <transition name="fade">
       <div class="select-mask" v-if="show">
         <img :src="data.headImg" class="head" />
