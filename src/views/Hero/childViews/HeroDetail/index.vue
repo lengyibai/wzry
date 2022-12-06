@@ -2,7 +2,7 @@
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <LibMaskClose @close="hide" />
-    <LibFullScroll v-model="scroll_index">
+    <LibFullScroll v-model="scroll_index" @end="scrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />
@@ -24,13 +24,16 @@
     </LibFullScroll>
 
     <!-- 滚动进度 -->
-    <Heroprogress :index="scroll_index" :pageName="page_name" @toggle="toggle" />
+    <transition name="progress">
+      <Heroprogress v-show="show_progress" :index="scroll_index" :pageName="page_name" @toggle="toggle" />
+    </transition>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import heroStore from "@/store/hero";
+import $bus from "@/utils/eventBus";
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import Heroprogress from "./childComps/Heroprogress/index.vue";
 import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
@@ -46,7 +49,8 @@ const emit = defineEmits<Emits>();
 const $router = useRouter();
 const $heroStore = heroStore();
 
-const scroll_index = ref(0); //滚动索引
+const scroll_index = ref(1); //滚动索引
+const show_progress = ref(false); //显示滚动索引组件
 const hero_data = $heroStore.hero_info; //英雄信息
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"];
 
@@ -55,11 +59,22 @@ const toggle = (index: number) => {
   scroll_index.value = index;
 };
 
+/* 滚动结束触发 */
+const scrollEnd = (index: number) => {
+  $bus.emit("scroll-index", index);
+};
+
 /* 隐藏自身 */
 const hide = () => {
   emit("update:modelValue", false);
   $router.replace("/hero");
 };
+
+onMounted(() => {
+  setTimeout(() => {
+    show_progress.value = true;
+  }, 2000);
+});
 </script>
 <style scoped lang="less">
 @import url("./index.less");

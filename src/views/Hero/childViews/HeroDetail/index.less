@@ -8,3 +8,14 @@
   height: 100vh;
   background-color: #000;
 }
+
+/* 滚动索引出场动画 */
+.progress-enter-from,
+.progress-leave-active {
+  transform: translateX(100%) translateY(-50%);
+}
+
+.progress-leave-active,
+.progress-enter-active {
+  transition: all 0.5s;
+}
