@@ -2,6 +2,7 @@
   <div class="hero-voice scroll-white" @mousewheel.stop>
     <button
       class="voice flex"
+      :class="{ 'active-width': currentIndex === index }"
       @click="play(item.link, index)"
       v-for="(item, index) in voices"
       ref="voiceRef"
@@ -9,7 +10,7 @@
     >
       <div class="content" :class="{ 'active-color': currentIndex === index }">
         <span v-if="currentIndex !== index" class="text lib-one-line"> {{ item.text }}</span>
-        <marquee v-else class="text" scrollamount="12"> {{ item.text }}</marquee>
+        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
