@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-skin-head-img flex">
+  <div class="hero-skin-head-img flex" :class="{ into: show_skin_head }">
     <!--中心头衔框-->
     <div class="show-skin flex" ref="showSkin">
       {{ is_into_drap ? "松开" : "拖过来" }}
@@ -25,8 +25,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { nextTick, reactive, ref } from "vue";
 import heroStore from "@/store/hero";
+import $bus from "@/utils/eventBus";
 
 const skin = ref();
 const showSkin = ref();
@@ -68,6 +69,7 @@ const setPosition = (data: HTMLElement | null) => {
 
 /* 自定义指令函数回调 */
 const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolean, index: number) => {
+  if (!data) return;
   data.style.transition = "all 0s"; //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
   data.style.zIndex = "2";
   //offset用来判断是移动触发的还是松开触发的
@@ -104,18 +106,18 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
   }
 };
 
-onMounted(() => {
-  setTimeout(() => {
+$bus.on("scroll-index", (index) => {
+  if (index === 2 && !show_skin_head.value) {
     show_skin_head.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
     setTimeout(() => {
       is_into_drap.value = true;
-      handleDrag(skin.value[1], false, 1);
       nextTick(() => {
-        setPosition(skin.value[1]);
+        handleDrag(skin.value[0], false, 0);
+        setPosition(skin.value[0]);
       });
-    }, 2000);
-  }, 2000);
+    }, 1000);
+  }
 });
 </script>
 <style scoped lang="less">

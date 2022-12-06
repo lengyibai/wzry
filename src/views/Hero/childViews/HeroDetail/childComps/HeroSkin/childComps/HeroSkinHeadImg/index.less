@@ -6,14 +6,6 @@
   height: 175px;
   opacity: 0;
   transform: translateX(-50%) translateY(-50%) scale(2);
-  animation: into 1s 1s forwards;
-
-  @keyframes into {
-    100% {
-      opacity: 1;
-      transform: translateX(-55%) translateY(-50%) scale(1);
-    }
-  }
 
   .show-skin {
     position: absolute;
@@ -43,6 +35,17 @@
       height: 100%;
       border-radius: 50%;
       filter: drop-shadow(0 0 3px #000);
+    }
+  }
+}
+
+.into {
+  animation: into 1s forwards;
+
+  @keyframes into {
+    100% {
+      opacity: 1;
+      transform: translateX(-55%) translateY(-50%) scale(1);
     }
   }
 }
