@@ -2,6 +2,9 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import { staticRouter, errorRouter } from "@/router/modules/staticRouter";
 import switchStore from "@/store/globalSwitch";
 import authStore from "@/store/auth";
+import NProgress from "nprogress"; // 导入 nprogress模块
+import "nprogress/nprogress.css"; // 导入样式，否则看不到效果
+NProgress.configure({ showSpinner: false }); // 显示右上角螺旋加载提示
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -9,6 +12,7 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
+  NProgress.start(); //开启进度条
   const token = localStorage.getItem("wzryToken");
 
   const $authStore = authStore();
@@ -38,6 +42,7 @@ useRouter.beforeEach(async (to, from, next) => {
 
 useRouter.afterEach((to) => {
   document.title = `${to.meta.title || "正在进入"}-王者荣耀后台管理系统`;
+  NProgress.done(); //完成进度条
 });
 
 export default useRouter;
