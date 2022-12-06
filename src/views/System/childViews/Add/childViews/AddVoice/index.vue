@@ -12,11 +12,11 @@
               v-for="(item, index) in form_data"
               @mouseleave="voiceEnter(null)"
               @mouseenter="voiceEnter(index)"
-              :key="item.desc"
+              :key="item.text"
             >
-              <span class="desc" v-show="currentIndex !== index"> {{ item.desc }}</span>
+              <span class="desc" v-show="currentIndex !== index"> {{ item.text }}</span>
               <div class="voice-box" v-show="currentIndex === index">
-                <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="play(item.voice)" />
+                <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="play(item.link)" />
                 <i class="iconfont wzry-lajitong cursor-pointer" style="color: var(--red)" @click="del(index)" />
               </div>
             </div>
@@ -78,7 +78,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { updateHero } from "@/api/main/game/index";
+// import { updateHero } from "@/api/main/games/voice";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
 
@@ -117,8 +117,8 @@ setTimeout(async () => {
 const addVoice = (status: AddStatus) => {
   if (voice_link.value) {
     form_data.value!.push({
-      desc: voice_text.value,
-      voice: voice_link.value,
+      text: voice_text.value,
+      link: voice_link.value,
     });
     voice_text.value = "";
     voice_link.value = "";
@@ -175,7 +175,7 @@ const del = (index: number) => {
 /* 发布 */
 const commit = async () => {
   if (form_data.value!.length !== 0) {
-    await updateHero(hero_id.value!, { voices: form_data.value });
+    // await updateHero(hero_id.value!, { voices: form_data.value });
     setTimeout(() => {
       finish.value = true;
       close();
