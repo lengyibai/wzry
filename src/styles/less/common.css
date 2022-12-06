@@ -64,13 +64,13 @@
 }
 
 .scroll-white::-webkit-scrollbar-thumb {
-  background: var(--white);
+  background: rgb(255 255 255 / 25%);
 }
 
 .scroll-white::-webkit-scrollbar-thumb:hover {
-  background-color: var(--white);
+  background: rgb(255 255 255 / 35%);
 }
 
 .scroll-white::-webkit-scrollbar-thumb:active {
-  background-color: var(--white);
+  background: rgb(255 255 255 / 50%);
 }
