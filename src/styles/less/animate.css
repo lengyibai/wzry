@@ -4,10 +4,6 @@
   opacity: 0;
 }
 
-.fade-enter-active {
-  transition: all 0.5s;
-}
-
 .fade-leave-active {
   transition: all 0.25s;
 }
@@ -35,8 +31,24 @@
 }
 
 .scale-leave-active,
-.scale-enter-active {
+.scale-enter-active,
+.top-bottom-enter-active,
+.border-leave-active,
+.border-enter-active,
+.tip-leave-active,
+.fade-enter-active,
+.select-list-leave-active,
+.select-list-enter-active,
+.select-list-move,
+.bounce-leave-active,
+.bounce-enter-active {
   transition: all 0.5s;
+}
+
+/* 自上而下 */
+.top-bottom-enter-from {
+  opacity: 0;
+  transform: translateY(-50%);
 }
 
 /* 侧边栏出场 */
@@ -60,30 +72,15 @@
   width: 0% !important;
 }
 
-.border-leave-active,
-.border-enter-active {
-  transition: all 0.5s;
-}
-
 /* 输入框不合法 */
 .tip-leave-active {
   height: 0 !important;
-  transition: all 0.5s;
 }
 
 /* 选择器列表内容动画 */
 .select-list-enter-from,
 .select-list-leave-active {
   opacity: 0;
-}
-
-.select-list-leave-active,
-.select-list-enter-active {
-  transition: all 0.5s;
-}
-
-.select-list-move {
-  transition: all 0.5s;
 }
 
 .select-list-leave-active {
@@ -113,11 +110,6 @@
 .bounce-leave-active {
   opacity: 0;
   transform: scale(0);
-}
-
-.bounce-leave-active,
-.bounce-enter-active {
-  transition: all 0.5s 0.2s;
 }
 
 .bounce-leave-active {
