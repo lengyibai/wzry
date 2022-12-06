@@ -7,6 +7,7 @@
   height: 75vh;
   padding-right: 10px;
   flex-direction: column;
+  perspective: 1000px;
 
   .voice {
     display: flex;
@@ -24,7 +25,8 @@
     &:hover {
       height: 70px;
       color: var(--blue);
-      transition: all 0s;
+      transition: all 0.05s;
+      transform: scaleX(0.9)!important;
 
       .content {
         .iconfont {
@@ -52,10 +54,14 @@
 
     @media screen and (max-width: 1560px) {
       .text {
-        font-size: 16px;
+        font-size: 20px;
       }
     }
   }
+}
+
+.active-width {
+  transform: rotateX(25deg) scaleX(0.9)!important;
 }
 
 .active-rotate {
