@@ -7,6 +7,10 @@ export const getVoice = (hero_name: string) => {
 
 /** @description: 获取指定皮肤语音 */
 export const getSkinVoice = (hero_name: string, skin_name: string) => {
-  const voices = get<Hero.Voices>({ name: "voice_" + hero_name, key: "name", value: skin_name });
-  return Promise.resolve(voices.voice);
+  if (!["梦奇", "盾山"].includes(hero_name)) {
+    const voices = get<Hero.Voices>({ name: "voice_" + hero_name, key: "name", value: skin_name });
+    return Promise.resolve(voices.voice);
+  } else {
+    return Promise.resolve([]);
+  }
 };
