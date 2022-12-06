@@ -12,7 +12,7 @@ const updateUser = (id: number, token: string) => {
 /** @description: 登录 */
 export const login = async (form: FormData.User) => {
   //通过帐号查询用户
-  const data = get<number, ResultData.User>({ name: "data_user", key: "id", value: form.id });
+  const data = get<ResultData.User>({ name: "data_user", key: "id", value: form.id });
   /* 判断是否存在 */
   if (data) {
     /* 判断密码是否正确 */
@@ -32,5 +32,5 @@ export const login = async (form: FormData.User) => {
 /** @description: 获取用户信息 */
 export const userInfo = (token: string) => {
   //通过token来查询用户
-  return Promise.resolve(get<string, ResultData.User>({ name: "data_user", key: "wzryToken", value: token }));
+  return Promise.resolve(get<ResultData.User>({ name: "data_user", key: "wzryToken", value: token }));
 };
