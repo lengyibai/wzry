@@ -12,7 +12,7 @@
           <HeroBasic :heroData="hero_data" />
 
           <!-- 关系 -->
-          <transition name="fade">
+          <transition name="scale">
             <HeroRelationship :relationship="hero_data.relationships" v-if="into" />
           </transition>
         </div>
