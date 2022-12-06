@@ -1,13 +1,9 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
-import { AxiosCanceler } from "./helper/axiosCancel";
 import { ResultData } from "@/api/interface";
-import { ResultEnum } from "@/enums/httpEnum";
-
-const axiosCanceler = new AxiosCanceler();
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
-  timeout: ResultEnum.TIMEOUT as number,
+  timeout: 10000,
 };
 
 class RequestHttp {
@@ -16,7 +12,6 @@ class RequestHttp {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        axiosCanceler.addPending(config);
         return config;
       },
       async (error: AxiosError) => {
