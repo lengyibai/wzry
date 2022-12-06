@@ -44,6 +44,7 @@ const change = async (i: number) => {
   } catch (error) {
     /*  */
   }
+  emit("end", index.value + 1);
 };
 
 const $debounceDelay = (() => {
@@ -83,7 +84,6 @@ onMounted(() => {
         -index.value * (direction ? LibFullScroll.value.offsetHeight : LibFullScroll.value.offsetWidth) + "px";
       setTimeout(() => {
         scroll = true;
-        emit("end", index.value + 1);
         emit("update:modelValue", index.value + 1);
       }, props.duration);
     }, 10);
@@ -101,6 +101,7 @@ onMounted(() => {
   left: 0;
   width: 100%;
   height: 100%;
+
   :deep(.scroll-item) {
     position: relative;
     flex-shrink: 0;
