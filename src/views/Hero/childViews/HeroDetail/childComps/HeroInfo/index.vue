@@ -1,7 +1,7 @@
 <template>
   <div class="hero-material-skins" ref="HeroMaterialSkins">
     <!-- 英雄标题 -->
-    <HeroTitle :name="hero_data.name" :mark="hero_data.mark" />
+    <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
 
     <!-- 主体 -->
     <div class="content">
