@@ -23,7 +23,7 @@ import { reactive, ref } from "vue";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import heroStore from "@/store/hero";
-import heroAttrStore from "@/store/heroAttr";
+import { getAssignSkinType } from "@/api/main/games/skin";
 import HeroBgImg from "./childComps/HeroBgImg/index.vue"; //背景图
 import HerSkinType from "./childComps/HerSkinType/index.vue"; //皮肤类型图
 import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
@@ -32,7 +32,6 @@ import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换�
 
 const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
 const $heroStore = heroStore();
-const $heroAttrStore = heroAttrStore();
 hero_data.value = $heroStore.hero_info;
 
 const active_skin = ref<Hero.Skin>(); //处于展示的皮肤
@@ -42,11 +41,6 @@ const toggle = ref(true); //用于切换背景
 const skin_name_toggle = ref(true); //皮肤切换
 const skin_type_toggle = ref(true); //皮肤类型切换
 const bg_imgs: string[] = reactive([]); //背景图
-
-/* 判断是否存在缓存 */
-if ($heroAttrStore.skinType.length === 0) {
-  $heroAttrStore.getSkinType();
-}
 
 /* 通过切换背景图组件传过来的索引设置背景 */
 const bgImgs = ([i, index]: number[]) => {
@@ -63,7 +57,7 @@ const bgImgs = ([i, index]: number[]) => {
     const skin_type = hero_data.value.skins![index].type;
     // 0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = $heroAttrStore.getAssignType(skin_type).link;
+      active_skin_type.value = (await getAssignSkinType(skin_type)).link;
     } else {
       active_skin_type.value = ""; //伴生皮肤没有标志
     }

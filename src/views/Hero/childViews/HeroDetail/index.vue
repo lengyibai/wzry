@@ -33,9 +33,9 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import heroStore from "@/store/hero";
-import $bus from "@/utils/eventBus";
+import heroDetailStore from "@/store/heroDetail";
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
-import Heroprogress from "./childComps/Heroprogress/index.vue";
+import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
 import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
@@ -48,6 +48,7 @@ const emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $heroStore = heroStore();
+const $heroDetailStore = heroDetailStore();
 
 const scroll_index = ref(1); //滚动索引
 const show_progress = ref(false); //显示滚动索引组件
@@ -61,7 +62,7 @@ const toggle = (index: number) => {
 
 /* 滚动结束触发 */
 const scrollEnd = (index: number) => {
-  $bus.emit("scroll-index", index);
+  $heroDetailStore.setIndex(index);
 };
 
 /* 隐藏自身 */

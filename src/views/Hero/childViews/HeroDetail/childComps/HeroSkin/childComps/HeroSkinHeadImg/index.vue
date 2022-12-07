@@ -27,11 +27,13 @@
 <script setup lang="ts">
 import { nextTick, reactive, ref } from "vue";
 import heroStore from "@/store/hero";
-import $bus from "@/utils/eventBus";
+import heroDetailStore from "@/store/heroDetail";
 
 const skin = ref();
 const showSkin = ref();
 const $heroStore = heroStore();
+const $heroDetailStore = heroDetailStore();
+
 const skins = ref<Hero.Skin[] | undefined>([]);
 const toggle = ref(true); //用于切换背景
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围
@@ -106,7 +108,7 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
   }
 };
 
-$bus.on("scroll-index", (index) => {
+$heroDetailStore.setScollFn((index) => {
   if (index === 2 && !show_skin_head.value) {
     show_skin_head.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
