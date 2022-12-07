@@ -44,9 +44,11 @@ export namespace HeroStore {
 }
 
 /** @description: 英雄信息 */
-export namespace HeroAttrStore {
+export namespace HeroDetailStore {
   export interface State {
-    skinType: Hero.SkinType[];
+    scroll_index: number;
+    ScollFns: Array<(index: number) => void>;
+    skillToggleFn: () => void;
   }
 }
 
