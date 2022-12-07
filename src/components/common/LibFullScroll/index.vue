@@ -44,7 +44,9 @@ const change = async (i: number) => {
   } catch (error) {
     /*  */
   }
-  emit("end", index.value + 1);
+  setTimeout(() => {
+    emit("end", index.value + 1);
+  }, props.duration);
 };
 
 const $debounceDelay = (() => {
@@ -82,9 +84,9 @@ onMounted(() => {
         : "";
       LibFullScroll.value.style[direction ? "top" : "left"] =
         -index.value * (direction ? LibFullScroll.value.offsetHeight : LibFullScroll.value.offsetWidth) + "px";
+      emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;
-        emit("update:modelValue", index.value + 1);
       }, props.duration);
     }, 10);
   });
