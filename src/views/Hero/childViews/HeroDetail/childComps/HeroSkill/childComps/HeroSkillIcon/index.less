@@ -11,6 +11,9 @@
     height: 90px;
     border-radius: 50%;
     filter: drop-shadow(0 2px 5px #000);
+    transition: all 0.5s;
+    opacity: 0;
+    transform: translateY(-100%);
 
     .border {
       position: absolute;
@@ -31,7 +34,7 @@
         border-style: solid;
         border-width: 10px;
         box-sizing: border-box;
-        content: '';
+        content: "";
         transform: translateX(-50%);
       }
 
@@ -57,6 +60,7 @@
 
       &:nth-of-type(2) {
         transition: all 0.5s;
+        opacity: 0;
         transform: translateY(-100%);
       }
     }
@@ -65,6 +69,7 @@
 
 .active {
   transform: translateY(0) !important;
+  opacity: 1 !important;
 }
 
 .border-fade-enter-from,
