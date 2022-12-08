@@ -1,8 +1,10 @@
 .hero-skin-price {
   position: absolute;
   right: 0;
-  transform: translate(-25px, 25px);
+  transform: translate(100px, 25px);
   filter: drop-shadow(0 3.5px 2px rgb(0 0 0 / 50.2%));
+  transition: all 0.35s;
+  opacity: 0;
 
   img {
     width: 40px;
@@ -12,5 +14,11 @@
 
   span {
     font-size: 40px;
+    text-shadow: var(--t-shadow);
   }
+}
+
+.show{
+  transform: translate(-25px, 25px);
+  opacity: 1;
 }

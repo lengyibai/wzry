@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-skin-price">
+  <div class="hero-skin-price" :class="{ show: toggle }">
     <img v-show="show" src="https://lengyibai.gitee.io/wzry-material/image/coupon.png" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span>{{ price }}</span>
@@ -10,9 +10,11 @@ import { computed } from "vue";
 
 interface Props {
   price: number | string;
+  toggle: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   price: "",
+  toggle: false,
 });
 
 const show = computed(() => {
