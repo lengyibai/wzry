@@ -17,18 +17,9 @@
           "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/1.png",
           "type": ["控制", "伤害", "护盾"],
           "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["165", "225", "285", "345", "405", "465"]
-            },
-            {
-              "type": "最大伤害",
-              "phase": ["495", "675", "855", "1035", "1215", "1395"]
-            },
-            {
-              "type": "护盾",
-              "phase": ["300", "350", "400", "450", "500", "550"]
-            }
+            { "type": "基础伤害", "phase": ["165", "225", "285", "345", "405", "465"] },
+            { "type": "最大伤害", "phase": ["495", "675", "855", "1035", "1215", "1395"] },
+            { "type": "护盾", "phase": ["300", "350", "400", "450", "500", "550"] }
           ]
         },
         {
@@ -39,14 +30,8 @@
           "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/2.png",
           "type": ["控制", "伤害"],
           "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["450", "500", "550", "600", "650", "700"]
-            },
-            {
-              "type": "冷却时间",
-              "phase": ["10", "9.2", "8.4", "7.6", "6.8", "6"]
-            }
+            { "type": "基础伤害", "phase": ["450", "500", "550", "600", "650", "700"] },
+            { "type": "冷却时间", "phase": ["10", "9.2", "8.4", "7.6", "6.8", "6"] }
           ]
         },
         {
@@ -57,18 +42,9 @@
           "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/3.png",
           "type": ["复活", "冷却", "回复"],
           "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["600", "750", "900"]
-            },
-            {
-              "type": "冷却时间",
-              "phase": ["70", "65", "60"]
-            },
-            {
-              "type": "复活生命",
-              "phase": ["1600", "1350", "3100"]
-            }
+            { "type": "基础伤害", "phase": ["600", "750", "900"] },
+            { "type": "冷却时间", "phase": ["70", "65", "60"] },
+            { "type": "复活生命", "phase": ["1600", "1350", "3100"] }
           ]
         }
       ]
@@ -90,14 +66,8 @@
           "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/1.png",
           "type": ["加速", "伪装", "伤害"],
           "effect": [
-            {
-              "type": "基础伤害",
-              "phase": [450, 540, 630, 720, 810, 900]
-            },
-            {
-              "type": "降低双防",
-              "phase": ["25%", "28%", "31%", "34%", "37%", "40%"]
-            }
+            { "type": "基础伤害", "phase": [450, 540, 630, 720, 810, 900] },
+            { "type": "降低双防", "phase": ["25%", "28%", "31%", "34%", "37%", "40%"] }
           ]
         },
         {
@@ -108,18 +78,9 @@
           "consume": 60,
           "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/2.png",
           "effect": [
-            {
-              "type": "基础伤害",
-              "phase": [100, 120, 140, 160, 180, 200]
-            },
-            {
-              "type": "冷却时间",
-              "phase": [10, 9.8, 9.6, 9.4, 9.2, 9]
-            },
-            {
-              "type": "护盾减免",
-              "phase": [500, 600, 700, 800, 900, 1000]
-            }
+            { "type": "基础伤害", "phase": [100, 120, 140, 160, 180, 200] },
+            { "type": "冷却时间", "phase": [10, 9.8, 9.6, 9.4, 9.2, 9] },
+            { "type": "护盾减免", "phase": [500, 600, 700, 800, 900, 1000] }
           ]
         },
         {
@@ -129,11 +90,59 @@
           "consume": 120,
           "type": ["伪装", "视野", "加速"],
           "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/3.png",
+          "effect": [{ "type": "冷却时间", "phase": [35, 30, 25] }]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "skills": [
+        {
+          "cd": 0,
+          "consume": 0,
+          "name": "龙鸣",
+          "desc": "<p>被动：赵云每损失3%最大生命值，就会获得减少1%所受到的伤害</p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/zhaoyun/jineng/0.png",
+          "type": ["减伤"]
+        },
+        {
+          "name": "惊雷之云",
+          "desc": "<p>赵云执枪向前冲锋，造成190<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>。 </p><p>冲锋后下次普攻获得强化，对敌人造成65<span style=\"color: rgb(231, 95, 51);\">(+135%物理攻击)物理伤害</span>和25%减速，持续2秒。 </p>",
+          "cd": 7,
+          "consume": 30,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/zhaoyun/jineng/1.png",
+          "type": ["位移", "强化", "物伤"],
           "effect": [
-            {
-              "type": "冷却时间",
-              "phase": [35, 30, 25]
-            }
+            { "type": "基础伤害", "phase": ["190", "214", "238", "262", "286", "310"] },
+            { "type": "冷却时间", "phase": ["7", "6.4", "5.8", "5.2", "4.6", "4"] },
+            { "type": "额外伤害", "phase": ["65", "74", "83", "92", "101", "110"] },
+            { "type": "降低移速", "phase": ["25%", "30%", "35%", "40%", "45%", "50%"] }
+          ]
+        },
+        {
+          "name": "破云之龙",
+          "desc": "<p>赵云连续4次刺出龙枪，对命中的敌人每次造成120<span style=\"color: rgb(231, 95, 51);\">(+48%物理攻击)物理伤害</span>并回复25<span style=\"color: rgb(231, 95, 51);\">(+12%物理攻击)</span>点生命。</p>",
+          "cd": 6,
+          "consume": 40,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/zhaoyun/jineng/2.png",
+          "type": ["物伤", "回复"],
+          "effect": [
+            { "type": "基础伤害", "phase": ["120", "135", "150", "165", "180", "195"] },
+            { "type": "冷却时间", "phase": ["6", "5.6", "5.2", "4.8", "4.4", "4"] },
+            { "type": "回复生命", "phase": ["25", "32", "39", "46", "53", "60"] }
+          ]
+        },
+        {
+          "name": "天翔之龙",
+          "desc": "<p>赵云跃向空中发动雷霆一击，对范围内的敌人造成350<span style=\"color: rgb(231, 95, 51);\">(+130%物理攻击)物理伤害</span>，并标记为感电目标，范围中心的敌人还会被击飞1秒。</p><p>赵云的普攻和技能伤害对感电目标额外造成30(<span style=\"color: rgb(231, 95, 51);\">+13%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>。</p>",
+          "cd": 18,
+          "consume": 75,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/zhaoyun/jineng/3.png",
+          "type": ["控制", "位移", "物伤"],
+          "effect": [
+            { "type": "基础伤害", "phase": ["350", "450", "550"] },
+            { "type": "冷却时间", "phase": ["18", "15", "12"] },
+            { "type": "感电伤害", "phase": ["30", "45", "60"] }
           ]
         }
       ]
