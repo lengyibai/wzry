@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: "金币",
 });
 
-const name = $pinyin(props.type)[2];
+const name = $pinyin(props.type)[0];
 </script>
 <style scoped lang="less">
 @import url("./index.less");
