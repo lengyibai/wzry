@@ -1,5 +1,5 @@
 <template>
-  <div class="add flex" :style="box">
+  <div class="add" :style="box">
     <transition-group name="add" appear>
       <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="add" />
     </transition-group>

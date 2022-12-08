@@ -1,5 +1,5 @@
 <template>
-  <div class="del flex" :style="box">
+  <div class="del" :style="box">
     <transition-group name="del" appear>
       <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="delete" />
     </transition-group>

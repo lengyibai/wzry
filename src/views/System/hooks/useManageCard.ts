@@ -9,6 +9,8 @@ const data: Info = {
     position: "relative",
     width: "100%",
     height: "100%",
+    display: "flex",
+    justifyContent: "center",
     flexWrap: "wrap",
     overflow: "auto",
   },

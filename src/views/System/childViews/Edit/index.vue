@@ -1,5 +1,5 @@
 <template>
-  <div class="edit flex" :style="box">
+  <div class="edit" :style="box">
     <transition-group name="fade" appear>
       <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="edit" />
     </transition-group>
