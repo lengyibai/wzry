@@ -12,6 +12,7 @@ interface Props {
 }
 interface Emits {
   (e: "update:modelValue", v: number): void;
+  (e: "change", v: number): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -40,5 +41,6 @@ getHeroBasic().then((res) => {
 /* 选择英雄后触发 */
 const selectHero = (id: string | number | any[]) => {
   emit("update:modelValue", id as number);
+  emit("change", id as number);
 };
 </script>
