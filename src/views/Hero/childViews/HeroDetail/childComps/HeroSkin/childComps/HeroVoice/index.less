@@ -1,0 +1,84 @@
+.hero-voice {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 75%;
+  flex-direction: column;
+  perspective: 1000px;
+  padding-right: 10px;
+
+  .voice {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 65px;
+    margin-bottom: 10px;
+    padding: 0 50px;
+    border-radius: 10px;
+    color: var(--white);
+    white-space: nowrap;
+    background-color: rgb(0 0 0 / 50%);
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      height: 70px;
+      color: var(--blue);
+      transition: all 0.05s;
+      transform: scaleX(0.9) !important;
+
+      .content {
+        .iconfont {
+          color: var(--blue);
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 22px;
+
+      .text {
+        width: 100%;
+      }
+
+      .iconfont {
+        color: var(--white);
+        font-size: 26px;
+      }
+    }
+
+    @media screen and (max-width: 1560px) {
+      .text {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.active-width {
+  transform: rotateX(25deg) scaleX(0.9) !important;
+}
+
+.active-rotate {
+  animation: rotate 0s 0.5s linear;
+  color: var(--blue);
+}
+
+.active-color {
+  color: var(--blue) !important;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
