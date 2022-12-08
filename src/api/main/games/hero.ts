@@ -2,6 +2,7 @@ import { get } from "@/api/helper/transfer";
 import { getHeroSkin } from "@/api/main/games/skin";
 import { getSkinVoice } from "@/api/main/games/voice";
 import { getHeroRelationship } from "@/api/main/games/relationship";
+import { getHeroSkill } from "@/api/main/games/skill";
 
 /** @description: 获取英雄基础列表 */
 export const getHeroBasic = () => {
@@ -19,15 +20,16 @@ export const getHeroData = () => {
 export const getHeroDetail = async (id: number) => {
   const hero = get<Hero.Data>({ name: "data_herodata", key: "id", value: id });
   const skins = await getHeroSkin(id); //获取皮肤列表
+  const skills = await getHeroSkill(id); //获取技能列表
   const voices = await getSkinVoice(hero.name, "原皮"); //获取语音列表
   const relationships = await getHeroRelationship(id); //获取关系列表
-  for (let i = 0; i < relationships.relationship.length; i++) {
-    relationships.relationship[i].hero = await getHeroImg(relationships.relationship[i].id as unknown as number);
+  for (let i = 0; i < relationships.length; i++) {
+    relationships[i].hero = await getHeroImg(relationships[i].id as unknown as number);
   }
-
-  hero.skins = skins;
-  hero.voices = voices;
-  hero.relationships = relationships.relationship;
+  hero.skins = skins || [];
+  hero.skills = skills || [];
+  hero.voices = voices || [];
+  hero.relationships = relationships || [];
 
   hero.skins.unshift({
     id: 0,
