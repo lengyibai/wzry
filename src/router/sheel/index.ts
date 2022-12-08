@@ -111,6 +111,13 @@ export const admin: RouterSheel[] = [
         name: "delete",
         component: "@/views/System/childViews/Delete",
       },
+      {
+        title: "数据管理",
+        icon: "wzry-database",
+        path: "/System/data",
+        name: "data",
+        component: "@/views/System/childViews/Data",
+      },
     ],
   },
 ];
