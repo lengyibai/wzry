@@ -8,5 +8,5 @@ export const getRelationship = () => {
 /** @description: 获取指定英雄关系 */
 export const getHeroRelationship = (id: number) => {
   const Relationships = get<Hero.Relationship>({ name: "data_relationship", key: "id", value: id });
-  return Promise.resolve(Relationships);
+  return Promise.resolve(Relationships.relationship);
 };
