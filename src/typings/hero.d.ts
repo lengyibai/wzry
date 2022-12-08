@@ -52,6 +52,11 @@ declare namespace Hero {
     effect?: SkillEffect[]; //效果
   }
 
+  interface SkillParams {
+    id: number;
+    skills: Skill[];
+  }
+
   /** @description: 技能效果 */
   interface SkillEffect {
     type: string; //技能类型
