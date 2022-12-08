@@ -3,31 +3,25 @@
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
 
-    <!-- 主体 -->
-    <div class="content">
-      <!-- 左侧 -->
-      <div class="content-left scroll-white">
-        <!-- 基础信息表 -->
-        <div class="basic-info">
-          <HeroBasic :heroData="hero_data" />
+    <!-- 基础信息表 -->
+    <div class="basic-info">
+      <HeroBasic :heroData="hero_data" />
 
-          <!-- 关系 -->
-          <transition name="scale">
-            <HeroRelationship :relationship="hero_data.relationships" v-if="into" />
-          </transition>
-        </div>
-
-        <!-- 属性 -->
-        <transition name="fade">
-          <div class="hero-attribute" v-if="into">
-            <HeroAttribute style="--i: 0" class="attribute" attr="survival" :length="hero_data.survival" />
-            <HeroAttribute style="--i: 1" class="attribute" attr="attack" :length="hero_data.attack" />
-            <HeroAttribute style="--i: 2" class="attribute" attr="effect" :length="hero_data.effect" />
-            <HeroAttribute style="--i: 3" class="attribute" attr="difficulty" :length="hero_data.difficulty" />
-          </div>
-        </transition>
-      </div>
+      <!-- 关系 -->
+      <transition name="scale">
+        <HeroRelationship :relationship="hero_data.relationships" v-if="into" />
+      </transition>
     </div>
+
+    <!-- 属性 -->
+    <transition name="fade">
+      <div class="hero-attribute" v-if="into">
+        <HeroAttribute style="--i: 0" class="attribute" attr="survival" :length="hero_data.survival" />
+        <HeroAttribute style="--i: 1" class="attribute" attr="attack" :length="hero_data.attack" />
+        <HeroAttribute style="--i: 2" class="attribute" attr="effect" :length="hero_data.effect" />
+        <HeroAttribute style="--i: 3" class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+      </div>
+    </transition>
   </div>
 </template>
 <script setup lang="ts">
