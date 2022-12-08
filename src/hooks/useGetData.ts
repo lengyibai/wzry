@@ -28,7 +28,6 @@ import { getHeroBasic } from "@/api/main/games/hero";
 
 export default async () => {
   const $switchStore = switchStore();
-
   const requests: [string, () => Promise<any>, string][] = [
     ["user", User, "用户"],
     ["herobasic", HeroBasic, "英雄基础"],
@@ -57,13 +56,18 @@ export default async () => {
   const setData = (name: string, data: any) => {
     localStorage.setItem(name, JSON.stringify(data.data));
   };
+  const isExist = (name: string, prefix = "data_") => {
+    return !!localStorage.getItem(prefix + name);
+  };
 
   const getData = async () => {
     /* 下载数据 */
     let index = 1;
     for (const [key, request, name] of requests) {
-      $switchStore.$loading.show(`正在下载${name}列表${index++}/${requests.length}`);
-      setData("data_" + key, await request());
+      if (!isExist(key)) {
+        $switchStore.$loading.show(`正在下载${name}列表${index++}/${requests.length}`);
+        setData("data_" + key, await request());
+      }
     }
 
     /* 下载语音数据 */
@@ -71,14 +75,13 @@ export default async () => {
     const hero_list = await getHeroBasic();
     for (let i = 0; i < hero_list.length; i++) {
       if (!["梦奇", "盾山"].includes(hero_list[i].name)) {
-        setData(`voice_${hero_list[i].name}`, { data: await Voice(hero_list[i].name) });
-        $switchStore.$loading.show(`正在下载${hero_list[i].name}语音${voice_index++}/${hero_list.length - 2}`);
+        if (!isExist(hero_list[i].name, "voice_")) {
+          setData(`voice_${hero_list[i].name}`, { data: await Voice(hero_list[i].name) });
+          $switchStore.$loading.show(`正在下载${hero_list[i].name}语音${voice_index++}/${hero_list.length - 2}`);
+        }
       }
     }
     await $switchStore.$loading.close();
   };
-
-  if (!localStorage.getItem("data_user")) {
-    getData();
-  }
+  getData();
 };
