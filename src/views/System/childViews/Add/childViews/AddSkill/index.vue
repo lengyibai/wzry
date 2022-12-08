@@ -10,7 +10,7 @@
           <FormLabel label="图标" required>
             <SelectImg v-model="form_data![currentIndex].img" title="图标" />
           </FormLabel>
-          <SelectHero v-model="hero_id" key="SelectHero" />
+          <SelectHero v-model="hero_id" key="SelectHero" @change="selectHeroChange" />
           <FormInput label="名称" required v-model="form_data![currentIndex].name" placeholder="技能名称" />
           <FormInput v-if="noFirst" label="CD" v-model="form_data![currentIndex].cd" placeholder="冷却时间" number />
           <FormInput
@@ -64,11 +64,7 @@
           </div>
 
           <!-- 技能描述 -->
-          <LibRichText
-            v-model="form_data![currentIndex].desc"
-            placeholder="技能描述"
-            :key="form_data![currentIndex].name"
-          />
+          <LibRichText v-model="form_data![currentIndex].desc" placeholder="技能描述" :key="currentIndex" />
         </div>
 
         <!-- 右边 -->
@@ -93,6 +89,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
+import { addHeroSkill } from "@/api/main/games/skill";
 import { $removeEmptyField, $deepCopy } from "@/utils";
 import { skillDefault, skillEffectDefault } from "@/defaultValue/defaults";
 import switchStore from "@/store/globalSwitch";
@@ -128,6 +125,18 @@ getSkillEffect().then((res) => {
 });
 
 const noFirst = computed(() => currentIndex.value !== 0); //用于判断是否为被动技能
+
+/* 判断是否已存在该英雄技能 */
+const selectHeroChange = (id: number) => {
+  const d = localStorage.getItem("data_skill") as string;
+  const v = JSON.parse(d) as Hero.SkillParams[];
+  const isExist = v.some((item) => {
+    return item.id === id;
+  });
+  if (isExist) {
+    $switchStore.$tip("该英雄已拥有技能，如需修改请前往修改页面", "warning");
+  }
+};
 
 /* 增加技能 */
 const addOne = () => {
@@ -216,9 +225,10 @@ const commit = async () => {
     return item.img && item.name && hero_id.value;
   });
   if (form_data.value!.length >= 3 && is_Finish) {
-    // await updateHero(hero_id.value, {
-    //   skills: $removeEmptyField(form_data.value),
-    // });
+    await addHeroSkill({
+      id: hero_id.value,
+      skills: $removeEmptyField<Hero.Skill[]>(form_data.value),
+    });
     setTimeout(() => {
       finish.value = true;
       close();
