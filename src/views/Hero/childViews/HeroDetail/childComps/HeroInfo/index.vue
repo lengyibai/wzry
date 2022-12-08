@@ -27,9 +27,6 @@
           </div>
         </transition>
       </div>
-
-      <!-- 英雄语音 -->
-      <HeroVoice :voices="hero_data.voices" v-if="into && hero_data.voices?.length" />
     </div>
   </div>
 </template>
@@ -42,7 +39,6 @@ import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue";
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
-import HeroVoice from "./childComps/HeroVoice/index.vue"; //英雄语音
 
 const into = ref(false); //控制页面元素显示
 const $heroStore = heroStore();
