@@ -1,0 +1,142 @@
+{
+  "data": [
+    {
+      "id": 60,
+      "skills": [
+        {
+          "name": "黄金闪闪",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人附近800范围内的敌方非英雄单位死亡时，太乙真人和附近的队友都会额外获得20％金币</span></p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/0.png",
+          "type": ["金币"]
+        },
+        {
+          "name": "意外事故",
+          "desc": "<p style=\"text-align: start;\">太乙真人使用炉子炼制药剂，最多持续5秒，炼制结束时或发生爆炸，对周围敌人造成165<span style=\"color: rgb(146, 84, 222);\">（+50%法术攻击）</span>~495<span style=\"color: rgb(146, 84, 222);\">(+165%法术攻击)法术伤害</span>并将其晕眩0.5秒~0.75秒(随技能等级成长最高晕眩1.25秒)。药剂炼制完毕时爆炸命中英雄单位可自动刷新并再释放本技能。</p><p style=\"text-align: start;\"><span style=\"color: rgb(89, 89, 89);\">炼制时间越长，伤害越高，晕眩时间越长。</span></p>",
+          "cd": "5",
+          "consume": "65",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/1.png",
+          "type": ["控制", "伤害", "护盾"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["165", "225", "285", "345", "405", "465"]
+            },
+            {
+              "type": "最大伤害",
+              "phase": ["495", "675", "855", "1035", "1215", "1395"]
+            },
+            {
+              "type": "护盾",
+              "phase": ["300", "350", "400", "450", "500", "550"]
+            }
+          ]
+        },
+        {
+          "name": "第三只手",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人伸出触手将自身拉向触手命中的第一个目标，如果是敌方目标，还会造成450</span><span style=\"color: rgb(146, 84, 222);\">(+80%法术攻击)法术伤害</span><span style=\"color: rgb(255, 255, 255);\">并将其晕眩0.5秒。</span></p>",
+          "cd": "10",
+          "consume": "65",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/2.png",
+          "type": ["控制", "伤害"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["450", "500", "550", "600", "650", "700"]
+            },
+            {
+              "type": "冷却时间",
+              "phase": ["10", "9.2", "8.4", "7.6", "6.8", "6"]
+            }
+          ]
+        },
+        {
+          "name": "大变活人",
+          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人召唤替身傀儡，保护自身和附近800范围内血量最低队友，持续3秒，持续期间保护对象被敌方击杀会在2秒后原地复活并获得1600</span><span style=\"color: rgb(146, 84, 222);\">(+200%法术攻击)</span><span style=\"color: rgb(255, 255, 255);\">点生命。没有成功复活任何一个人则返还30%冷却。</span></p>",
+          "cd": "70",
+          "consume": "150",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/3.png",
+          "type": ["复活", "冷却", "回复"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["600", "750", "900"]
+            },
+            {
+              "type": "冷却时间",
+              "phase": ["70", "65", "60"]
+            },
+            {
+              "type": "复活生命",
+              "phase": ["1600", "1350", "3100"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "skills": [
+        {
+          "name": "纵横兵法",
+          "desc": "<p>鬼谷子脱离敌方视野3秒后，可强化下次普攻，对范围目标造成300<span style='color: rgb(106, 57, 201);'>(+45%法术攻击)法术伤害</span>和50%减速，持续1.5秒。</p><p><span style='color: rgb(89, 89, 89);'>如果使用强化攻击时，鬼谷子不处于敌方视野，则【纵横兵法】的冷却将会增加至10秒。</span></p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/0.png",
+          "type": ["强化", "伤害", "减速"]
+        },
+        {
+          "name": "先知·神隐",
+          "desc": "<p>用玄微子包裹自身进入伪装状态，持续4秒，期间增加40%移速，并对触碰到的每个敌人造成450<span style='color: rgb(106, 57, 201);'>(+60%法术攻击)法术伤害</span>，同时降低该敌人25%的物理和法术防御，持续4秒，每个敌人最多触发1次。</p><p><span style='color: rgb(89, 89, 89);'>伪装效果会在鬼谷子用其他方式伤害敌人时消失。</span><br></p>",
+          "cd": 10,
+          "consume": 70,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/1.png",
+          "type": ["加速", "伪装", "伤害"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": [450, 540, 630, 720, 810, 900]
+            },
+            {
+              "type": "降低双防",
+              "phase": ["25%", "28%", "31%", "34%", "37%", "40%"]
+            }
+          ]
+        },
+        {
+          "name": "万物有灵",
+          "desc": "<p>召唤大量玄微子在自身周围聚集，对范围内敌人每0.5秒造成100<span style='color: rgb(106, 57, 201);'>(+15%法术攻击）法术伤害</span>，持续2秒，2秒后将范围内敌人拉扯到鬼谷子身旁并将其晕眩1秒同时造成400<span style='color: rgb(106, 57, 201);'>(+60%法术攻击)法术伤害</span>。如果该伤害命中敌方英雄，鬼谷子和范围内的队友将获得<span style='color: rgb(106, 57, 201);'>500(+100%法术攻击)</span>点护盾。</p>",
+          "type": ["控制", "护盾", "伤害"],
+          "cd": 10,
+          "consume": 60,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/2.png",
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": [100, 120, 140, 160, 180, 200]
+            },
+            {
+              "type": "冷却时间",
+              "phase": [10, 9.8, 9.6, 9.4, 9.2, 9]
+            },
+            {
+              "type": "护盾减免",
+              "phase": [500, 600, 700, 800, 900, 1000]
+            }
+          ]
+        },
+        {
+          "name": "先知·雾隐",
+          "desc": "<p>命令玄微子包裹自身和1500范围内的队友，1秒后进入伪装状态，期间鬼谷子和队友将增<br>加30%移速，持续4秒，同时获取距离自身最近的敌方英雄视野。</p><p><span style='color: rgb(89, 89, 89);'>伪装状态下，如果使用普攻、技能或对敌方造成负面效果时会立即解除伪装状态。</span></p>",
+          "cd": 35,
+          "consume": 120,
+          "type": ["伪装", "视野", "加速"],
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/3.png",
+          "effect": [
+            {
+              "type": "冷却时间",
+              "phase": [35, 30, 25]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

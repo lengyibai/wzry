@@ -17,8 +17,7 @@
       "period": "均衡",
       "height": "186",
       "identity": ["龙枪战士"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 2,
@@ -37,8 +36,7 @@
       "period": "后期",
       "height": "165",
       "identity": ["姜子牙所造人偶"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 3,
@@ -57,8 +55,7 @@
       "period": "均衡",
       "height": "178",
       "identity": ["吟游乐师"],
-      "camp": "南荒",
-      "skills": []
+      "camp": "南荒"
     },
     {
       "id": 4,
@@ -77,8 +74,7 @@
       "period": "均衡",
       "height": "193",
       "identity": ["玄雍武将"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 5,
@@ -97,8 +93,7 @@
       "period": "均衡",
       "height": "171",
       "identity": ["长安女帝"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 6,
@@ -117,8 +112,7 @@
       "period": "均衡",
       "height": "173",
       "identity": ["寒星家族继承人"],
-      "camp": "海都家族",
-      "skills": []
+      "camp": "海都家族"
     },
     {
       "id": 7,
@@ -137,8 +131,7 @@
       "period": "均衡",
       "height": "190",
       "identity": ["甘丹族长"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 8,
@@ -157,8 +150,7 @@
       "period": "后期",
       "height": "182",
       "identity": ["玄雍君主"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 9,
@@ -177,8 +169,7 @@
       "period": "后期",
       "height": "171",
       "identity": ["复仇刺客"],
-      "camp": "南荒",
-      "skills": []
+      "camp": "南荒"
     },
     {
       "id": 10,
@@ -197,8 +188,7 @@
       "period": "均衡",
       "height": "171",
       "identity": ["魔道圣人之后"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 11,
@@ -217,8 +207,7 @@
       "period": "后期",
       "height": "173",
       "identity": ["稷下三贤者"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 12,
@@ -237,8 +226,7 @@
       "period": "后期",
       "height": "178",
       "identity": ["神职者"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 13,
@@ -257,8 +245,7 @@
       "period": "后期",
       "height": "157",
       "identity": ["魔道名门之后"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 14,
@@ -277,8 +264,7 @@
       "period": "后期",
       "height": "149",
       "identity": ["鲁班所造之物"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 15,
@@ -297,8 +283,7 @@
       "period": "前期",
       "height": "177",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 16,
@@ -317,8 +302,7 @@
       "period": "均衡",
       "height": "178",
       "identity": ["长安治安官"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 17,
@@ -337,8 +321,7 @@
       "period": "均衡",
       "height": "180",
       "identity": ["天才学者"],
-      "camp": "灞上",
-      "skills": []
+      "camp": "灞上"
     },
     {
       "id": 18,
@@ -357,8 +340,7 @@
       "period": "后期",
       "height": "510",
       "identity": ["稷下三贤者"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 19,
@@ -377,8 +359,7 @@
       "period": "后期",
       "height": "175",
       "identity": ["稷下三贤者"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 20,
@@ -397,8 +378,7 @@
       "period": "后期",
       "height": "155",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 21,
@@ -417,8 +397,7 @@
       "period": "后期",
       "height": "183",
       "identity": ["魏迪武将"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 22,
@@ -437,8 +416,7 @@
       "period": "均衡",
       "height": "177",
       "identity": ["拳僧"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 23,
@@ -457,8 +435,7 @@
       "period": "均衡",
       "height": "185",
       "identity": ["灞城武将"],
-      "camp": "灞上",
-      "skills": []
+      "camp": "灞上"
     },
     {
       "id": 24,
@@ -477,8 +454,7 @@
       "period": "均衡",
       "height": "188",
       "identity": ["圣骑士团领袖"],
-      "camp": "日落圣殿",
-      "skills": []
+      "camp": "日落圣殿"
     },
     {
       "id": 25,
@@ -497,8 +473,7 @@
       "period": "后期",
       "height": "166",
       "identity": ["吴地小公主"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 26,
@@ -517,8 +492,7 @@
       "period": "前期",
       "height": "210",
       "identity": ["蜀地继承人"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 27,
@@ -537,8 +511,7 @@
       "period": "后期",
       "height": "173",
       "identity": ["医者"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 28,
@@ -557,8 +530,7 @@
       "period": "均衡",
       "height": "181",
       "identity": ["扶桑剑客"],
-      "camp": "扶桑",
-      "skills": []
+      "camp": "扶桑"
     },
     {
       "id": 29,
@@ -577,8 +549,7 @@
       "period": "后期",
       "height": "197",
       "identity": ["霸王"],
-      "camp": "鸿门",
-      "skills": []
+      "camp": "鸿门"
     },
     {
       "id": 30,
@@ -597,8 +568,7 @@
       "period": "均衡",
       "height": "200",
       "identity": ["名将"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 31,
@@ -617,8 +587,7 @@
       "period": "均衡",
       "height": "170",
       "identity": ["和亲公主"],
-      "camp": "狼旗",
-      "skills": []
+      "camp": "狼旗"
     },
     {
       "id": 32,
@@ -637,8 +606,7 @@
       "period": "均衡",
       "height": "153",
       "identity": ["神秘法师"],
-      "camp": "日落圣殿",
-      "skills": []
+      "camp": "日落圣殿"
     },
     {
       "id": 33,
@@ -657,8 +625,7 @@
       "period": "均衡",
       "height": "179",
       "identity": ["魏地主公"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 34,
@@ -677,8 +644,7 @@
       "period": "前期",
       "height": "180",
       "identity": ["吴地都督"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 35,
@@ -697,8 +663,7 @@
       "period": "前期",
       "height": "230",
       "identity": ["魔种起义军叛徒"],
-      "camp": "日之塔",
-      "skills": []
+      "camp": "日之塔"
     },
     {
       "id": 36,
@@ -717,8 +682,7 @@
       "period": "后期",
       "height": "180",
       "identity": ["魔种起义军将领"],
-      "camp": "日之塔",
-      "skills": []
+      "camp": "日之塔"
     },
     {
       "id": 37,
@@ -737,8 +701,7 @@
       "period": "前期",
       "height": "175",
       "identity": ["玄雍太后"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 38,
@@ -757,8 +720,7 @@
       "period": "后期",
       "height": "172",
       "identity": ["绝世舞姬"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 39,
@@ -777,8 +739,7 @@
       "period": "后期",
       "height": "192",
       "identity": ["重生的战神"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 40,
@@ -797,8 +758,7 @@
       "period": "均衡",
       "height": "174",
       "identity": ["长城守卫军队长"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 41,
@@ -817,8 +777,7 @@
       "period": "后期",
       "height": "183",
       "identity": ["神职者", "神射手"],
-      "camp": "日之塔",
-      "skills": []
+      "camp": "日之塔"
     },
     {
       "id": 42,
@@ -837,8 +796,7 @@
       "period": "均衡",
       "height": "186",
       "identity": ["蜀地武将"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 43,
@@ -857,8 +815,7 @@
       "period": "前期",
       "height": "178",
       "identity": ["蜀地主公"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 44,
@@ -877,8 +834,7 @@
       "period": "前期",
       "height": "179",
       "identity": ["金庭城王子"],
-      "camp": "云中漠地",
-      "skills": []
+      "camp": "云中漠地"
     },
     {
       "id": 45,
@@ -897,8 +853,7 @@
       "period": "后期",
       "height": "154",
       "identity": ["扶桑巫女"],
-      "camp": "扶桑",
-      "skills": []
+      "camp": "扶桑"
     },
     {
       "id": 46,
@@ -917,8 +872,7 @@
       "period": "后期",
       "height": "184",
       "identity": ["天才刺客"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 47,
@@ -937,8 +891,7 @@
       "period": "前期",
       "height": "355",
       "identity": ["长安城守护者"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 48,
@@ -957,8 +910,7 @@
       "period": "前期",
       "height": "152",
       "identity": ["长安密保"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 49,
@@ -977,8 +929,7 @@
       "period": "均衡",
       "height": "179",
       "identity": ["灞城统治者"],
-      "camp": "灞上",
-      "skills": []
+      "camp": "灞上"
     },
     {
       "id": 50,
@@ -997,8 +948,7 @@
       "period": "均衡",
       "height": "165",
       "identity": ["不知火流继承人"],
-      "camp": "扶桑",
-      "skills": []
+      "camp": "扶桑"
     },
     {
       "id": 51,
@@ -1017,8 +967,7 @@
       "period": "均衡",
       "height": "173",
       "identity": ["自然巡游者"],
-      "camp": "鸿门",
-      "skills": []
+      "camp": "鸿门"
     },
     {
       "id": 52,
@@ -1037,8 +986,7 @@
       "period": "均衡",
       "height": "191",
       "identity": ["蜀地武将"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 53,
@@ -1057,8 +1005,7 @@
       "period": "均衡",
       "height": "180",
       "identity": ["音乐天才少女"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 54,
@@ -1077,8 +1024,7 @@
       "period": "前期",
       "height": "186",
       "identity": ["蜀地武将"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 55,
@@ -1097,8 +1043,7 @@
       "period": "前期",
       "height": "178",
       "identity": ["神的继承者"],
-      "camp": "日落圣殿",
-      "skills": []
+      "camp": "日落圣殿"
     },
     {
       "id": 56,
@@ -1117,8 +1062,7 @@
       "period": "均衡",
       "height": "179",
       "identity": ["冒险家"],
-      "camp": "海都家族",
-      "skills": []
+      "camp": "海都家族"
     },
     {
       "id": 57,
@@ -1137,8 +1081,7 @@
       "period": "前期",
       "height": "176",
       "identity": ["扶桑剑客"],
-      "camp": "扶桑",
-      "skills": []
+      "camp": "扶桑"
     },
     {
       "id": 58,
@@ -1157,8 +1100,7 @@
       "period": "后期",
       "height": "177",
       "identity": ["狼旗首领"],
-      "camp": "狼旗",
-      "skills": []
+      "camp": "狼旗"
     },
     {
       "id": 59,
@@ -1177,8 +1119,7 @@
       "period": "均衡",
       "height": "185",
       "identity": ["神职者"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 60,
@@ -1197,83 +1138,7 @@
       "period": "前期",
       "mark": "炼金大师",
       "identity": ["炼金师"],
-      "camp": "倒悬天",
-      "voices": [
-        {
-          "desc": "道生一，一生二，二生……太二组合！",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios//music/20180824/67416aebfab89c2f73f21af6dc13acba.mp3"
-        }
-      ],
-      "skills": [
-        {
-          "name": "黄金闪闪",
-          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人附近800范围内的敌方非英雄单位死亡时，太乙真人和附近的队友都会额外获得20％金币</span></p>",
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/0.png",
-          "type": ["金币"]
-        },
-        {
-          "name": "意外事故",
-          "desc": "<p style=\"text-align: start;\">太乙真人使用炉子炼制药剂，最多持续5秒，炼制结束时或发生爆炸，对周围敌人造成165<span style=\"color: rgb(146, 84, 222);\">（+50%法术攻击）</span>~495<span style=\"color: rgb(146, 84, 222);\">(+165%法术攻击)法术伤害</span>并将其晕眩0.5秒~0.75秒(随技能等级成长最高晕眩1.25秒)。药剂炼制完毕时爆炸命中英雄单位可自动刷新并再释放本技能。</p><p style=\"text-align: start;\"><span style=\"color: rgb(89, 89, 89);\">炼制时间越长，伤害越高，晕眩时间越长。</span></p>",
-          "cd": "5",
-          "consume": "65",
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/1.png",
-          "type": ["控制", "伤害", "护盾"],
-          "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["165", "225", "285", "345", "405", "465"]
-            },
-            {
-              "type": "最大伤害",
-              "phase": ["495", "675", "855", "1035", "1215", "1395"]
-            },
-            {
-              "type": "护盾",
-              "phase": ["300", "350", "400", "450", "500", "550"]
-            }
-          ]
-        },
-        {
-          "name": "第三只手",
-          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人伸出触手将自身拉向触手命中的第一个目标，如果是敌方目标，还会造成450</span><span style=\"color: rgb(146, 84, 222);\">(+80%法术攻击)法术伤害</span><span style=\"color: rgb(255, 255, 255);\">并将其晕眩0.5秒。</span></p>",
-          "cd": "10",
-          "consume": "65",
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/2.png",
-          "type": ["控制", "伤害"],
-          "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["450", "500", "550", "600", "650", "700"]
-            },
-            {
-              "type": "冷却时间",
-              "phase": ["10", "9.2", "8.4", "7.6", "6.8", "6"]
-            }
-          ]
-        },
-        {
-          "name": "大变活人",
-          "desc": "<p><span style=\"color: rgb(255, 255, 255);\">太乙真人召唤替身傀儡，保护自身和附近800范围内血量最低队友，持续3秒，持续期间保护对象被敌方击杀会在2秒后原地复活并获得1600</span><span style=\"color: rgb(146, 84, 222);\">(+200%法术攻击)</span><span style=\"color: rgb(255, 255, 255);\">点生命。没有成功复活任何一个人则返还30%冷却。</span></p>",
-          "cd": "70",
-          "consume": "150",
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/jineng/3.png",
-          "type": ["复活", "冷却", "回复"],
-          "effect": [
-            {
-              "type": "基础伤害",
-              "phase": ["600", "750", "900"]
-            },
-            {
-              "type": "冷却时间",
-              "phase": ["70", "65", "60"]
-            },
-            {
-              "type": "复活生命",
-              "phase": ["1600", "1350", "3100"]
-            }
-          ]
-        }
-      ]
+      "camp": "倒悬天"
     },
     {
       "id": 61,
@@ -1292,8 +1157,7 @@
       "period": "后期",
       "height": "175",
       "identity": ["陈塘关长官之子"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 62,
@@ -1312,8 +1176,7 @@
       "period": "后期",
       "height": "183",
       "identity": ["蜀地军师"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 63,
@@ -1332,8 +1195,7 @@
       "period": "后期",
       "height": "187",
       "identity": ["机关炮老兵"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 64,
@@ -1352,8 +1214,7 @@
       "period": "均衡",
       "height": "168",
       "identity": ["魔道名门继承人"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 65,
@@ -1372,8 +1233,7 @@
       "period": "前期",
       "height": "215",
       "identity": ["东神之城统治者"],
-      "camp": "云梦泽",
-      "skills": []
+      "camp": "云梦泽"
     },
     {
       "id": 66,
@@ -1392,8 +1252,7 @@
       "period": "后期",
       "height": "237",
       "identity": ["铸剑师"],
-      "camp": "云梦泽",
-      "skills": []
+      "camp": "云梦泽"
     },
     {
       "id": 67,
@@ -1412,99 +1271,7 @@
       "period": "均衡",
       "height": "150",
       "identity": ["博学者"],
-      "camp": "云梦泽",
-      "voices": [
-        {
-          "desc": "万物皆有灵！",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/ca820bd01b8559ccae5e3ded20710842.mp3"
-        },
-        {
-          "desc": "理解世界，而非享受它",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/7cc20ac127d4c910ab661e6147d2951f.mp3"
-        },
-        {
-          "desc": "名为世外高人，实乃异类！",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/bed7aa774308b7ecf027435dc8c79231.mp3"
-        },
-        {
-          "desc": "自然不会忽悠你，我可不一定！",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/04083efbe9c7550c544334b3eda3d8d7.mp3"
-        },
-        {
-          "desc": "噢，野性的呼唤，叫对面回家吃饭",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/ead8c9558fe554d00d009fc19da51f98.mp3"
-        },
-        {
-          "desc": "唉，唉，随地乱扔，砸到花花草草也是会疼的！",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/93def75c624089a8e30b323451ac38eb.mp3"
-        },
-        {
-          "desc": "唉，唉，比老人家还迟钝，提前退化了吗？",
-          "voice": "https://game.gtimg.cn/images/yxzj/zlkdatasys/audios/music/20180823/28a5cefe9fada8c10be1615e32d4b318.mp3"
-        }
-      ],
-      "skills": [
-        {
-          "name": "纵横兵法",
-          "desc": "<p>鬼谷子脱离敌方视野3秒后，可强化下次普攻，对范围目标造成300<span style='color: rgb(106, 57, 201);'>(+45%法术攻击)法术伤害</span>和50%减速，持续1.5秒。</p><p><span style='color: rgb(89, 89, 89);'>如果使用强化攻击时，鬼谷子不处于敌方视野，则【纵横兵法】的冷却将会增加至10秒。</span></p>",
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/0.png",
-          "type": ["强化", "伤害", "减速"]
-        },
-        {
-          "name": "先知·神隐",
-          "desc": "<p>用玄微子包裹自身进入伪装状态，持续4秒，期间增加40%移速，并对触碰到的每个敌人造成450<span style='color: rgb(106, 57, 201);'>(+60%法术攻击)法术伤害</span>，同时降低该敌人25%的物理和法术防御，持续4秒，每个敌人最多触发1次。</p><p><span style='color: rgb(89, 89, 89);'>伪装效果会在鬼谷子用其他方式伤害敌人时消失。</span><br></p>",
-          "cd": 10,
-          "consume": 70,
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/1.png",
-          "type": ["加速", "伪装", "伤害"],
-          "effect": [
-            {
-              "type": "基础伤害",
-              "phase": [450, 540, 630, 720, 810, 900]
-            },
-            {
-              "type": "降低双防",
-              "phase": ["25%", "28%", "31%", "34%", "37%", "40%"]
-            }
-          ]
-        },
-        {
-          "name": "万物有灵",
-          "desc": "<p>召唤大量玄微子在自身周围聚集，对范围内敌人每0.5秒造成100<span style='color: rgb(106, 57, 201);'>(+15%法术攻击）法术伤害</span>，持续2秒，2秒后将范围内敌人拉扯到鬼谷子身旁并将其晕眩1秒同时造成400<span style='color: rgb(106, 57, 201);'>(+60%法术攻击)法术伤害</span>。如果该伤害命中敌方英雄，鬼谷子和范围内的队友将获得<span style='color: rgb(106, 57, 201);'>500(+100%法术攻击)</span>点护盾。</p>",
-          "type": ["控制", "护盾", "伤害"],
-          "cd": 10,
-          "consume": 60,
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/2.png",
-          "effect": [
-            {
-              "type": "基础伤害",
-              "phase": [100, 120, 140, 160, 180, 200]
-            },
-            {
-              "type": "冷却时间",
-              "phase": [10, 9.8, 9.6, 9.4, 9.2, 9]
-            },
-            {
-              "type": "护盾减免",
-              "phase": [500, 600, 700, 800, 900, 1000]
-            }
-          ]
-        },
-        {
-          "name": "先知·雾隐",
-          "desc": "<p>命令玄微子包裹自身和1500范围内的队友，1秒后进入伪装状态，期间鬼谷子和队友将增<br>加30%移速，持续4秒，同时获取距离自身最近的敌方英雄视野。</p><p><span style='color: rgb(89, 89, 89);'>伪装状态下，如果使用普攻、技能或对敌方造成负面效果时会立即解除伪装状态。</span></p>",
-          "cd": 35,
-          "consume": 120,
-          "type": ["伪装", "视野", "加速"],
-          "img": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/jineng/3.png",
-          "effect": [
-            {
-              "type": "冷却时间",
-              "phase": [35, 30, 25]
-            }
-          ]
-        }
-      ]
+      "camp": "云梦泽"
     },
     {
       "id": 68,
@@ -1523,8 +1290,7 @@
       "period": "后期",
       "height": "188",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 69,
@@ -1543,8 +1309,7 @@
       "period": "前期",
       "height": "182",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 70,
@@ -1563,8 +1328,7 @@
       "period": "均衡",
       "height": "171",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 71,
@@ -1583,8 +1347,7 @@
       "period": "前期",
       "height": "208",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 72,
@@ -1603,8 +1366,7 @@
       "period": "均衡",
       "height": "97",
       "identity": ["食梦者"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 73,
@@ -1623,8 +1385,7 @@
       "period": "后期",
       "height": "180",
       "identity": ["神"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 74,
@@ -1643,8 +1404,7 @@
       "period": "均衡",
       "height": "181",
       "identity": ["尧天组织首领"],
-      "camp": "尧天",
-      "skills": []
+      "camp": "尧天"
     },
     {
       "id": 75,
@@ -1663,8 +1423,7 @@
       "period": "均衡",
       "height": "169",
       "identity": ["长安坊舞者"],
-      "camp": "尧天",
-      "skills": []
+      "camp": "尧天"
     },
     {
       "id": 76,
@@ -1683,8 +1442,7 @@
       "period": "后期",
       "height": "169",
       "identity": ["长安坊乐师"],
-      "camp": "尧天",
-      "skills": []
+      "camp": "尧天"
     },
     {
       "id": 77,
@@ -1703,8 +1461,7 @@
       "period": "前期",
       "height": "177",
       "identity": ["拳师"],
-      "camp": "尧天",
-      "skills": []
+      "camp": "尧天"
     },
     {
       "id": 78,
@@ -1723,8 +1480,7 @@
       "period": "均衡",
       "height": "170",
       "identity": ["少年棋手"],
-      "camp": "尧天",
-      "skills": []
+      "camp": "尧天"
     },
     {
       "id": 79,
@@ -1743,8 +1499,7 @@
       "period": "前期",
       "height": "171",
       "identity": ["海都佣兵"],
-      "camp": "海都家族",
-      "skills": []
+      "camp": "海都家族"
     },
     {
       "id": 80,
@@ -1763,8 +1518,7 @@
       "period": "前期",
       "height": "169",
       "identity": ["海都执政者"],
-      "camp": "海都家族",
-      "skills": []
+      "camp": "海都家族"
     },
     {
       "id": 81,
@@ -1783,8 +1537,7 @@
       "period": "均衡",
       "height": "182",
       "identity": ["机关傀儡师"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 82,
@@ -1803,8 +1556,7 @@
       "period": "均衡",
       "height": "185",
       "identity": ["江东小霸王"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 83,
@@ -1823,8 +1575,7 @@
       "period": "前期",
       "height": "184",
       "identity": ["魏地军师"],
-      "camp": "魏",
-      "skills": []
+      "camp": "魏"
     },
     {
       "id": 84,
@@ -1843,8 +1594,7 @@
       "period": "均衡",
       "height": "283",
       "identity": ["修筑长城的机械"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 85,
@@ -1863,8 +1613,7 @@
       "period": "后期",
       "height": "172",
       "identity": ["千窟城继承者"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 86,
@@ -1883,8 +1632,7 @@
       "period": "前期",
       "height": "151",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 87,
@@ -1903,8 +1651,7 @@
       "period": "均衡",
       "height": "187",
       "identity": ["长城守卫军成员"],
-      "camp": "长城守卫军",
-      "skills": []
+      "camp": "长城守卫军"
     },
     {
       "id": 88,
@@ -1923,8 +1670,7 @@
       "period": "前期",
       "height": "170",
       "identity": ["女帝密探"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 89,
@@ -1943,8 +1689,7 @@
       "period": "前期",
       "height": "171",
       "identity": ["魔道家族公主"],
-      "camp": "日之塔",
-      "skills": []
+      "camp": "日之塔"
     },
     {
       "id": 90,
@@ -1963,8 +1708,7 @@
       "period": "均衡",
       "height": "183",
       "identity": ["魔种起义军将领"],
-      "camp": "日之塔",
-      "skills": []
+      "camp": "日之塔"
     },
     {
       "id": 91,
@@ -1983,8 +1727,7 @@
       "period": "前期",
       "height": "212",
       "identity": ["神"],
-      "camp": "倒悬天",
-      "skills": []
+      "camp": "倒悬天"
     },
     {
       "id": 92,
@@ -2003,8 +1746,7 @@
       "period": "均衡",
       "height": "162",
       "identity": ["鹿灵转生者"],
-      "camp": "云梦泽",
-      "skills": []
+      "camp": "云梦泽"
     },
     {
       "id": 93,
@@ -2023,8 +1765,7 @@
       "period": "前期",
       "height": "182",
       "identity": ["孤鸟转生者"],
-      "camp": "云梦泽",
-      "skills": []
+      "camp": "云梦泽"
     },
     {
       "id": 94,
@@ -2043,8 +1784,7 @@
       "period": "均衡",
       "height": "176",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 95,
@@ -2063,8 +1803,7 @@
       "period": "均衡",
       "height": "180",
       "identity": ["蜀地将领"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 96,
@@ -2083,8 +1822,7 @@
       "period": "均衡",
       "height": "163",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 97,
@@ -2103,8 +1841,7 @@
       "period": "前期",
       "height": "192",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 98,
@@ -2123,8 +1860,7 @@
       "period": "前期",
       "height": "150",
       "identity": ["稷下学生"],
-      "camp": "稷下学院",
-      "skills": []
+      "camp": "稷下学院"
     },
     {
       "id": 99,
@@ -2143,8 +1879,7 @@
       "period": "均衡",
       "height": "170",
       "identity": ["阴曲情报专员"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 100,
@@ -2163,8 +1898,7 @@
       "period": "前期",
       "height": "190",
       "identity": ["玄雍护国大将军"],
-      "camp": "玄雍",
-      "skills": []
+      "camp": "玄雍"
     },
     {
       "id": 101,
@@ -2183,8 +1917,7 @@
       "period": "前期",
       "height": "145",
       "identity": ["狼孩"],
-      "camp": "蜀",
-      "skills": []
+      "camp": "蜀"
     },
     {
       "id": 102,
@@ -2203,8 +1936,7 @@
       "period": "均衡",
       "height": "待调查",
       "identity": ["贵族剑士"],
-      "camp": "日落圣殿",
-      "skills": []
+      "camp": "日落圣殿"
     },
     {
       "id": 103,
@@ -2223,8 +1955,7 @@
       "period": "均衡",
       "height": "180",
       "identity": ["前魏都杀手"],
-      "camp": "吴",
-      "skills": []
+      "camp": "吴"
     },
     {
       "id": 104,
@@ -2243,8 +1974,7 @@
       "period": "均衡",
       "height": "190",
       "identity": ["长安大司空"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 105,
@@ -2263,8 +1993,7 @@
       "period": "中期",
       "height": "165",
       "identity": ["精灵公主"],
-      "camp": "日落圣殿",
-      "skills": []
+      "camp": "日落圣殿"
     },
     {
       "id": 106,
@@ -2283,8 +2012,7 @@
       "period": "中期",
       "height": "165",
       "identity": ["将门之后"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 107,
@@ -2303,8 +2031,7 @@
       "period": "无期",
       "height": "180",
       "identity": ["西行修行者"],
-      "camp": "长安",
-      "skills": []
+      "camp": "长安"
     },
     {
       "id": 108,
@@ -2323,8 +2050,7 @@
       "period": "均衡",
       "height": "180",
       "identity": ["玉城大王子"],
-      "camp": "云中漠地",
-      "skills": []
+      "camp": "云中漠地"
     },
     {
       "id": 109,
@@ -2343,8 +2069,7 @@
       "period": "均衡",
       "height": "166",
       "identity": ["萤火的旅行者"],
-      "camp": "云中漠地",
-      "skills": []
+      "camp": "云中漠地"
     },
     {
       "id": 110,
@@ -2363,8 +2088,7 @@
       "period": "均衡",
       "height": "170",
       "identity": ["沙海船帮头子"],
-      "camp": "云中漠地",
-      "skills": []
+      "camp": "云中漠地"
     },
     {
       "id": 111,
@@ -2383,8 +2107,7 @@
       "period": "前期",
       "height": "170",
       "identity": ["月裔", "云中蝶饲养人"],
-      "camp": "云中漠地",
-      "skills": []
+      "camp": "云中漠地"
     },
     {
       "id": 112,
@@ -2403,8 +2126,7 @@
       "period": "均很",
       "height": "181",
       "identity": ["玄都观修道者"],
-      "camp": "长安城",
-      "skills": []
+      "camp": "长安城"
     }
   ]
 }
