@@ -69,6 +69,7 @@ const scrollEnd = (index: number) => {
 const hide = () => {
   emit("update:modelValue", false);
   $router.replace("/hero");
+  $heroDetailStore.setSkinVoice("盾山"); //置空语音
 };
 
 onMounted(() => {
