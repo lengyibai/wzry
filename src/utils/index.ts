@@ -1018,7 +1018,7 @@ export const $debounce = (() => {
 })();
 
 /* 清除无意义值 */
-export function $removeEmptyField(data, excludes = ["", null, undefined]) {
+export function $removeEmptyField<T>(data, excludes = ["", null, undefined]) {
   let newObj = {};
   if (typeof data === "string") {
     data = JSON.parse(data);
@@ -1053,7 +1053,7 @@ export function $removeEmptyField(data, excludes = ["", null, undefined]) {
       }
     }
   }
-  return newObj;
+  return newObj as T;
 }
 
 /* 对象深度去重 */
@@ -1150,7 +1150,7 @@ export function $deepMearge(obj, target = {}) {
     let isA = Object.prototype.toString.call(obj[key]) === "[object Object]",
       isB = Object.prototype.toString.call(target[key]) === "[object Object]";
     if (isA && isB) {
-      obj[key] = deepMearge(obj[key], target[key]);
+      obj[key] = $deepMearge(obj[key], target[key]);
     } else if (Array.isArray(obj[key]) && Array.isArray(target[key])) {
       obj[key] = Array.from(new Set(obj[key].concat(target[key])));
     } else {
