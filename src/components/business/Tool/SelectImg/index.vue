@@ -4,7 +4,9 @@
     <i class="iconfont wzry-add" v-show="!modelValue" />
   </div>
   <!-- 添加图片链接弹窗组件 -->
-  <AddLink v-model="show_AddLink" :title="title" @get-link="getLink" />
+  <transition name="fade">
+    <AddLink v-model="show_AddLink" :title="title" v-if="show_AddLink" :link="modelValue" @get-link="getLink" />
+  </transition>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
