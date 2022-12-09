@@ -10,7 +10,7 @@
             key: head_key[index],
             item,
             index,
-            sort_id: sort_id[index],
+            id: sort_id[index],
           })
         "
       >
@@ -32,64 +32,48 @@
     </tbody>
   </table>
 </template>
-<script>
+<script setup lang="ts">
+import { ref } from "vue";
 import TableSort from "./childComps/table-sort/index.vue";
-export default {
-  props: {
-    /* 表头名 */
-    head: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-    /* 表格数据 */
-    data: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-    /* 规定哪些列进行排序，从0开始 */
-    sort: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
-  },
-  name: "LibTable",
-  data() {
-    return {
-      head_key: [],
-      sort_id: [],
-    };
-  },
-  created() {
-    this.head_key = this.data.map((item, index) => {
-      return Object.keys(item)[index];
-    });
-    this.sort_id = this.head.map(() => {
-      return 0;
-    });
-  },
-  methods: {
-    sortChange({ key, index, sort_id, item }) {
-      if (!this.sort.includes(item)) return;
-      let status = sort_id;
-      if (status === 2) {
-        this.$set(this.sort_id, index, 0);
-        status = -1;
-      }
-      status += 1;
-      this.$set(this.sort_id, index, status);
-      this.$emit("sort-change", [key, status]);
-      this.sort_id = this.sort_id.map((item, i) => {
-        return index === i ? item : 0;
-      });
-    },
-  },
-  components: { TableSort },
+interface Props {
+  head: string[]; //表头名
+  data: any[]; //表格数据
+  sort: string[]; //规定哪些列进行排序，从0开始
+}
+const props = withDefaults(defineProps<Props>(), {
+  head: () => [],
+  data: () => [],
+  sort: () => [],
+});
+
+const head_key = ref<any[]>([]);
+const sort_id = ref<any[]>([]);
+
+head_key.value = props.data.map((item, index) => {
+  return Object.keys(item)[index];
+});
+
+sort_id.value = props.head.map(() => {
+  return 0;
+});
+
+interface Emits {
+  (e: "sort-change", v: [any, any]): void;
+}
+const emit = defineEmits<Emits>();
+const sortChange = ({ key, index, id, item }: any) => {
+  if (!props.sort.includes(item)) return;
+  let status = id;
+  if (status === 2) {
+    sort_id.value[index] = 0;
+    status = -1;
+  }
+  status += 1;
+  sort_id.value[index] = status;
+  emit("sort-change", [key, status]);
+  sort_id.value = sort_id.value.map((item: any, i: any) => {
+    return index === i ? item : 0;
+  });
 };
 </script>
 <style scoped lang="less">
@@ -97,50 +81,34 @@ export default {
   width: 100%;
   border-collapse: collapse;
   overflow-x: auto;
+
   thead {
     position: sticky;
     top: 0;
     backdrop-filter: blur(10px);
+
     th {
       .head {
         height: 50px;
         display: flex;
         align-items: center;
-        color: var(--white);
-      }
-      &:first-child {
-        padding-left: 35px;
+        color: #fff;
       }
     }
   }
+
   th,
-  td {
+  tr {
     text-align: left;
-    padding: 5px;
-    color: var(--gray);
-    border-bottom: 1px solid var(--theme-color-two);
+    color: #fff;
     word-break: break-all;
-    font-size: 20px;
+    font-size: 24px;
+    padding: 0.5em 1em;
   }
+
   tr {
     &:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.01);
-    }
-  }
-  @media screen and (max-width: 960px) {
-    thead {
-      th {
-        .head {
-          height: 35px;
-        }
-        &:first-child {
-          padding-left: 25px;
-        }
-      }
-    }
-    th,
-    td {
-      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0.05);
     }
   }
 }
