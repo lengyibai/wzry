@@ -33,7 +33,7 @@ export function $fmtTime(date, fmt = "YYYY-MM-DD hh:mm:ss") {
     n: new Date(date).valueOf(),
   };
   for (const k in opt) {
-    ret = new RegExp(`(${k})`).exec(fmt);
+    ret = new RegExp(`(${ k })`).exec(fmt);
     if (ret) {
       fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
     }
@@ -1167,4 +1167,37 @@ export function $chromeV() {
     /chrome/i.test(item) && (v = item);
   });
   return Number(v.split("/")[1].split(".")[0]);
+}
+
+/* 排序 */
+export function $typeSort(data, key, rev = true) {
+  const num = typeof key == "boolean" ? (key ? 1 : -1) : rev ? 1 : -1;
+  return data.sort((a, b) => {
+    if (typeof data[0] == "object") {
+      if (typeof a[key] == "number") {
+        return (a[key] - b[key]) * num;
+      }
+      if (typeof a[key] == "string") {
+        return a[key].toString().localeCompare(b[key].toString()) * num;
+      }
+    }
+
+    if (typeof a == "number") {
+      return (a - b) * num;
+    }
+
+    if (typeof a == "string") {
+      return a.toString().localeCompare(b.toString()) * num;
+    }
+  });
+}
+
+/* 保存为文件 */
+export function $savefiles(data, name) {
+  var urlObject = window.URL || window.webkitURL || window;
+  var export_blob = new Blob([data]);
+  var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+  save_link.href = urlObject.createObjectURL(export_blob);
+  save_link.download = name;
+  save_link.click();
 }
