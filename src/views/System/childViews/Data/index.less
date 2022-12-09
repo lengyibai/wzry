@@ -1,0 +1,31 @@
+.data {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+
+  .update,
+  .export{
+    margin-right: 20px;
+    padding: 0.5em 1em;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 22px;
+    user-select: none;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      opacity: 0.75;
+    }
+  }
+
+  .update {
+    background-color: rgb(39 174 95 / 75%);
+  }
+
+  .export {
+    background-color: rgb(41 127 185 / 75%);
+  }
+}
