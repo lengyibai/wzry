@@ -11,4 +11,4 @@ export const ACCOUNT = 1329670984;
 // export const ACCOUNT = 3080572703;
 
 /** @description: 本地版本 */
-export const LOCAL_VERSION = "22.11.27.13";
+export const LOCAL_VERSION = "22.12.10.1";
