@@ -5,3 +5,4 @@
 **/*.md
 
 /public/*
+src/utils/index.ts
