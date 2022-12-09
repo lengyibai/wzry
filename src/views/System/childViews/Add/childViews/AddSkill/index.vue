@@ -40,20 +40,20 @@
               @change="selectEffect"
               :disabled="!form_data![currentIndex].effect![effectIndex]"
             />
-            <span class="add" @click="addEffect">添加/下一行</span>
-            <span class="add" @click="editEffect">上一行</span>
-            <span class="del" @click="delEffect">删除一行</span>
+            <button class="add" @click="addEffect">添加/下一行</button>
+            <button class="add" @click="editEffect">上一行</button>
+            <button class="del" @click="delEffect">删除一行</button>
           </div>
           <div class="select-effect" v-if="noFirst" v-show="skill_effect">
             <FormInput label="阶段值" v-model="skill_consume" placeholder="升级后的值" @keyup.enter="addConsume" />
-            <span class="confirm" @click="addConsume">确定</span>
-            <span class="del" @click="delConsume">删除一值</span>
+            <button class="confirm" @click="addConsume">确定</button>
+            <button class="del" @click="delConsume">删除一值</button>
           </div>
           <div class="effect-list">
             <transition-group name="del-skill-type">
               <div
                 class="skill-effect"
-                :class="{ activeEffect: effectIndex === index }"
+                :class="{ 'active-effect': effectIndex === index }"
                 v-for="(item, index) in form_data![currentIndex].effect"
                 :key="item.type"
               >
@@ -64,7 +64,11 @@
           </div>
 
           <!-- 技能描述 -->
-          <LibRichText v-model="form_data![currentIndex].desc" placeholder="技能描述" :key="currentIndex" />
+          <LibRichText
+            v-model="form_data![currentIndex].desc"
+            placeholder="技能描述"
+            :key="form_data![currentIndex].img"
+          />
         </div>
 
         <!-- 右边 -->
