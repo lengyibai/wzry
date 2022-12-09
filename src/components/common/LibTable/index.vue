@@ -80,7 +80,6 @@ const sortChange = ({ key, index, id, item }: any) => {
 .LibTable {
   width: 100%;
   border-collapse: collapse;
-  overflow-x: auto;
 
   thead {
     position: sticky;

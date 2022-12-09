@@ -1,5 +1,5 @@
 <template>
-  <td :style="{ minWidth: minWidth + 'px' }">
+  <td :style="{ minWidth: minWidth, width: width, padding: '0.5em 1em' }">
     <slot></slot>
   </td>
 </template>
@@ -10,6 +10,10 @@ export default {
     minWidth: {
       type: String,
       default: "0",
+    },
+    width: {
+      type: [String, Number],
+      default: "",
     },
   },
 };
