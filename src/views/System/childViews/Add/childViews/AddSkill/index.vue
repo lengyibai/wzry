@@ -74,7 +74,13 @@
         <!-- 右边 -->
         <div class="right">
           <div class="skill" v-for="(item, index) in form_data" :key="index">
-            <AddSkillBasic :data="item" :index="index" :activeIndex="currentIndex" @click="selectSkill(index)" />
+            <AddSkillBasic
+              :data="item"
+              :index="index"
+              :activeIndex="currentIndex"
+              @click="selectSkill(index)"
+              @del="delSkill"
+            />
           </div>
         </div>
       </div>
@@ -130,6 +136,13 @@ getSkillEffect().then((res) => {
 
 const noFirst = computed(() => currentIndex.value !== 0); //用于判断是否为被动技能
 
+setTimeout(async () => {
+  $switchStore.$loading.show("正在加载");
+  $switchStore.$loading.close().then(() => {
+    show.value = true;
+  });
+}, 1000);
+
 /* 判断是否已存在该英雄技能 */
 const selectHeroChange = (id: number) => {
   const d = localStorage.getItem("data_skill") as string;
@@ -162,7 +175,7 @@ const addOne = () => {
 const selectSkill = (index: number) => {
   skill_effect.value = "";
   currentIndex.value = index;
-  form_data.value![currentIndex.value] ??= $deepCopy(skillDefault);
+  // form_data.value![currentIndex.value] ??= $deepCopy(skillDefault);
 };
 
 /* 选择效果后触发 */
@@ -216,12 +229,15 @@ const delConsume = () => {
   form_data.value![currentIndex.value].effect![effectIndex.value].phase?.pop();
 };
 
-setTimeout(async () => {
-  $switchStore.$loading.show("正在加载");
-  $switchStore.$loading.close().then(() => {
-    show.value = true;
-  });
-}, 1000);
+/* 删除技能 */
+const delSkill = (index: number) => {
+  if (currentIndex.value === 0) {
+    $switchStore.$tip("至少保留一个技能", "error");
+    return;
+  }
+  selectSkill(currentIndex.value - 1);
+  form_data.value?.splice(index, 1);
+};
 
 /* 发布 */
 const commit = async () => {
@@ -239,7 +255,7 @@ const commit = async () => {
       $switchStore.$tip("发布成功", "info");
     }, 500);
   } else {
-    $switchStore.$tip("至少包含3个技能，且完整填写必填项", "error");
+    $switchStore.$tip("请完整填写必填项，且至少包含3个技能", "error");
     status.value = 0;
   }
 };

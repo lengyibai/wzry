@@ -6,6 +6,7 @@
       <div class="types">
         <K-SkillTypeTag v-for="(item, index) in data.type" :type="item" :key="index" />
       </div>
+      <button class="del lib-click" v-show="active" @click.stop="del">删除</button>
       <div class="editing" v-show="active">编辑中...</div>
     </div>
     <div class="nums" v-if="data.cd">
@@ -38,6 +39,16 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const active = ref(false); //是否处于被编辑中
+
+interface Emits {
+  (e: "del", v: number): void;
+}
+const emit = defineEmits<Emits>();
+
+/* 删除技能 */
+const del = () => {
+  emit("del", props.index);
+};
 
 /* 通过判断点击的索引号设置编辑中 */
 watch(
