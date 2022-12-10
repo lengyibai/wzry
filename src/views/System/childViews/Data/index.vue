@@ -11,17 +11,15 @@
         <TableColumn minWidth="100px">{{ data.data.length }}</TableColumn>
         <TableColumn minWidth="200px">{{ data.status }}</TableColumn>
         <TableColumn width="500px" minWidth="425px">
-          <button class="export cursor-pointer" @click="handleExport(data)">导出</button>
-          <button
-            class="replace cursor-pointer"
+          <button class="export lib-click" @click="handleExport(data)">导出</button>
+          <button class="update lib-click" v-if="data.status === '待更新'" @click="handleUpdate(data)">更新</button>
+          <button class="check lib-click" @click="handleCheck(data)">检查更新</button
+          ><button
+            class="replace lib-click"
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
             @click="handleReplace(data)"
           >
             重置
-          </button>
-          <button class="check cursor-pointer" @click="handleCheck(data)">检查更新</button>
-          <button class="update cursor-pointer" v-if="data.status === '待更新'" @click="handleUpdate(data)">
-            更新
           </button>
         </TableColumn>
       </template>
