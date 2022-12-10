@@ -58,6 +58,7 @@
   align-items: center;
 }
 
+/* 白色滚动条 */
 .scroll-white::-webkit-scrollbar {
   width: 3px;
   background: transparent;
@@ -73,4 +74,13 @@
 
 .scroll-white::-webkit-scrollbar-thumb:active {
   background: rgb(255 255 255 / 50%);
+}
+
+/* 可点击按钮 */
+.lib-click:hover {
+  opacity: 0.75;
+}
+
+.lib-click:active {
+  opacity: 0.5;
 }
