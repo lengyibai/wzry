@@ -11,11 +11,6 @@ interface Patch extends Get {
   v: any; //需要修改成什么
 }
 
-interface Post {
-  name: string; //需要被修改的键名
-  value: any; //需要修改成什么
-}
-
 /** @description: 通过字段查询指定值 */
 export function get<R>(params: Get, alone?: true): R;
 export function get<R>(params: Get, alone?: false): R[];
