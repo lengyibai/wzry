@@ -64,7 +64,15 @@
     <PlayVoice @ended="play_link = ''" v-if="play_link" :link="play_link" />
 
     <!--设置语音链接-->
-    <AddLink v-model="show_AddLink" title="设置语音" placeholder="请输入语音链接" @get-link="getLink" />
+    <transition name="fade">
+      <AddLink
+        v-if="show_AddLink"
+        v-model="show_AddLink"
+        title="设置语音"
+        placeholder="请输入语音链接"
+        @get-link="getLink"
+      />
+    </transition>
 
     <!-- 发布按钮 -->
     <LibCommitBtn v-model="status" title="发布" size="50px" class="lib-commit-btn" @commit="commit" :finish="finish" />
