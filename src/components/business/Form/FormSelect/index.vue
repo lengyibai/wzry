@@ -72,9 +72,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { $search, $debounce } from "@/utils";
-import $bus from "@/utils/eventBus";
 
 interface Props {
   id?: boolean; //传递id还是name
@@ -130,6 +129,7 @@ const focus = () => {
 
 /* 失去焦点 */
 const blur = () => {
+  is_unfold.value = false;
   setTimeout(() => {
     no_legal.value = props.required && active_value.value === "";
     select_list.value = props.data;
@@ -168,25 +168,6 @@ const delsSelected = (index: number) => {
   emit("change", selected_list.value);
 };
 
-/* 点击空白隐藏列表 */
-const input = ref();
-const selectBox = ref();
-const hideList = (el: HTMLElement) => {
-  if (el === selectBox.value || el === input.value) {
-    return;
-  }
-  is_unfold.value = false;
-  // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
-  if (input_value.value !== active_value.value) {
-    input_value.value = active_value.value;
-  }
-};
-
-/* 点击非选择器部分，收起选择器 */
-$bus.on("click", (el: any) => {
-  hideList(el);
-});
-
 /* 在created会赋空值，只能通过侦听器 */
 watch(
   () => props.data,
@@ -209,10 +190,6 @@ watch(
   },
   { immediate: true }
 );
-
-onBeforeUnmount(() => {
-  $bus.off("click"); //关闭监听
-});
 </script>
 <style scoped lang="less">
 @import url("./index.less");
