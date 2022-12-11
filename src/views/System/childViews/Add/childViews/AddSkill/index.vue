@@ -175,7 +175,14 @@ const addOne = () => {
 const selectSkill = (index: number) => {
   skill_effect.value = "";
   currentIndex.value = index;
-  // form_data.value![currentIndex.value] ??= $deepCopy(skillDefault);
+  const effect = form_data.value![currentIndex.value].effect;
+  const data = effect?.at(-1);
+  if (data && data.type) {
+    skill_effect.value = data.type;
+    effectIndex.value = effect!.length - 1; //重置效果索引
+  } else {
+    effectIndex.value = -1; //重置效果索引
+  }
 };
 
 /* 选择效果后触发 */
