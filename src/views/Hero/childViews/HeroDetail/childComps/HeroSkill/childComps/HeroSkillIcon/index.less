@@ -1,8 +1,8 @@
 .hero-skill-icon {
-  position: relative;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 50px;
 
   .icon {
     position: relative;
@@ -65,11 +65,36 @@
       }
     }
   }
+
+  .toggle {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white-50);
+    font-size: 50px;
+    transition: all 0.25s;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
 }
 
 .active {
   transform: translateY(0) !important;
   opacity: 1 !important;
+}
+
+.deputy {
+  color: var(--blue) !important;
+  transform: rotateZ(180deg) rotateY(180deg);
+}
+
+.hide-bottom {
+  transform: translateY(100%);
 }
 
 .border-fade-enter-from,
@@ -85,3 +110,4 @@
 .border-fade-leave-active {
   transition: all 0.5s;
 }
+
