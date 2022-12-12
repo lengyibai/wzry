@@ -26,8 +26,11 @@ export const getHeroDetail = async (id: number) => {
   for (let i = 0; i < relationships.length; i++) {
     relationships[i].hero = await getHeroImg(relationships[i].id as unknown as number);
   }
+
   hero.skins = skins || [];
-  hero.skills = skills || [];
+  hero.skins = skins || [];
+  hero.skills = skills.skills || [];
+  hero.deputy = skills.deputy || [];
   hero.voices = voices || [];
   hero.relationships = relationships || [];
 
