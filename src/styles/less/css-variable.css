@@ -10,6 +10,9 @@
   --blue: #3498db;
   --purple: #9b59b6;
   --pink: #fd79a8;
+  --white-25: rgb(255 255 255 / 25%);
+  --white-50: rgb(255 255 255 / 50%);
+  --white-75: rgb(255 255 255 / 75%);
   --black-25: rgb(0 0 0 / 25%);
   --black-50: rgb(0 0 0 / 50%);
   --black-75: rgb(0 0 0 / 75%);
