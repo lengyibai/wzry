@@ -50,7 +50,7 @@ export namespace HeroDetailStore {
     ScollFns: Array<(index: number) => void>;
     SkinToggleFns: Array<(hero_name: string, skin_name: string) => void>;
     voice: Hero.Voice[];
-    skillToggleFn: () => void;
+    skillSelectFn: (index: number) => void;
   }
 }
 

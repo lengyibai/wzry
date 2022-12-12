@@ -8,7 +8,7 @@ const heroDetailStore = defineStore("heroDetail", {
     ScollFns: [], //滚动结束后触发函数组
     SkinToggleFns: [], //皮肤切换后触发函数组
     voice: [], //皮肤语音
-    skillToggleFn: () => {}, //技能切换触发
+    skillSelectFn: () => {}, //技能选择触发
   }),
   actions: {
     /** @description: 设置滚动索引 */
@@ -36,14 +36,14 @@ const heroDetailStore = defineStore("heroDetail", {
       this.SkinToggleFns.push(fn);
     },
 
-    /** @description: 设置技能切换函数 */
-    setSkillToggleFn(fn: () => void) {
-      this.skillToggleFn = fn;
+    /** @description: 设置技能选择函数 */
+    setSkillSelectFn(fn: () => void) {
+      this.skillSelectFn = fn;
     },
 
-    /** @description: 技能切换触发 */
-    skillToggler() {
-      this.skillToggleFn();
+    /** @description: 技能选择触发 */
+    skillToggler(i: number) {
+      this.skillSelectFn(i);
     },
 
     /** @description: 设置皮肤语音 */
