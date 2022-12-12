@@ -21,8 +21,8 @@ declare namespace Hero {
     voices: Voice[]; //语音
     skills: Skill[]; //技能
     skins: Skin[]; //皮肤
+    deputy: Skill[]; //皮肤
     relationships: RelationType[];
-    [propName: string]: any;
   }
   /** @description: 头像列表 */
   interface HeadImg {
@@ -55,6 +55,7 @@ declare namespace Hero {
   interface SkillParams {
     id: number;
     skills: Skill[];
+    deputy?: Skill[]; //副技能
   }
 
   /** @description: 技能效果 */
