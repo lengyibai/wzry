@@ -20,6 +20,7 @@ export const heroDefault: Hero.Data = {
   specialty: [], //特长
   voices: [], //语音
   skills: [], //技能
+  deputy: [], //副技能
   skins: [], //皮肤
 };
 
