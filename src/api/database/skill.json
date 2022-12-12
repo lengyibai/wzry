@@ -2704,6 +2704,184 @@
           ]
         }
       ]
+    },
+    {
+      "id": 38,
+      "skills": [
+        {
+          "cd": 0,
+          "consume": 0,
+          "name": "语·花印",
+          "desc": "<p>貂蝉的技能会为敌人叠加花之印记，持续8秒，叠加满4层后印记触发，回复120点生命，同时会对周围敌人造成180<span style=\"color: rgb(106, 57, 201);\">(+43%法术攻击)</span>真实伤害并减少其50%移速，持续1秒。</p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/0.png",
+          "type": ["印记", "真伤", "回复"]
+        },
+        {
+          "name": "落·红雨",
+          "desc": "<p>貂蝉挥出一个可往返的花球，挥出和返回会对路径上的敌人造成180<span style=\"color: rgb(106, 57, 201);\">(+57%法术攻击)法术伤害</span>。</p>",
+          "cd": 5,
+          "consume": 40,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/1.png",
+          "type": ["法伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["180", "220", "260", "300", "340", "380"]
+            }
+          ]
+        },
+        {
+          "name": "缘·心结",
+          "desc": "<p>貂蝉瞬移到指定位置，散发3枚花球攻击附近的敌人，每枚造成140<span style=\"color: rgb(106, 57, 201);\">(+24%法术攻击)法术伤害</span>，如果花球命中敌人，还会减少4秒【缘·心结】的冷却。</p>",
+          "cd": 10,
+          "consume": 45,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/2.png",
+          "type": ["位移", "法伤", "免疫"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["140", "155", "170", "185", "200", "215"]
+            }
+          ]
+        },
+        {
+          "name": "绽·风华",
+          "desc": "<p>貂蝉结成一个生成及消失时都会造成210<span style=\"color: rgb(106, 57, 201);\">(+50%法术攻击)法术伤害</span>的法阵，当貂蝉处于法阵范围内，【落·红雨】和【缘·心结】会获得额外的冷却缩减。</p>",
+          "cd": 40,
+          "consume": 80,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/3.png",
+          "type": ["冷却", "法伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["210", "245", "280"]
+            },
+            {
+              "type": "冷却时间",
+              "phase": ["40", "35", "30"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "skills": [
+        {
+          "cd": 0,
+          "consume": 0,
+          "name": "饕餮血统",
+          "desc": "<p>吕布挥斩方天画戟的技能命中敌方英雄后会给武器附魔，持续8秒。方天画戟在附魔状态下造成的是等额的真实伤害。</p><p>附魔状态下，吕布挥斩方天画戟的技能每命中一名敌方英雄，回复<span style=\"color: rgb(231, 95, 51);\">(±50%额外物理攻击)</span><span style=\"color: rgb(114, 192, 64);\">(+4%已损生命)</span>点生命。</p><p>附魔状态下，吕布每次普攻命中敌人，回复<span style=\"color: rgb(231, 95, 51);\">(+25%额外物理攻击)</span><span style=\"color: rgb(114, 192, 64);\">(+1%已损生命)</span>点生命。</p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/lvbu/jineng/0.png",
+          "type": ["强化", "回复", "真伤"]
+        },
+        {
+          "name": "方天画斩",
+          "desc": "<p>吕布向前挥斩方天画戟，造成600<span style=\"color: rgb(231, 95, 51);\">(+260%额外物理攻击)物理伤害</span>。如果挥斩没有命中敌方英雄，则方天画戟会立即失去附魔。</p>",
+          "cd": 5,
+          "consume": 0,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/lvbu/jineng/1.png",
+          "type": ["物伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["600", "720", "840", "960", "1080", "1200"]
+            }
+          ]
+        },
+        {
+          "name": "贪狼之握",
+          "desc": "<p>吕布夺取范围内敌人的魂灵，造成30%减速，持续3秒。</p><p>每夺取一个魂灵，吕布获得175<span style=\"color: rgb(231, 95, 51);\">(+150%额外物理攻击)</span>点护盾，护盾最多叠加3层。吕布每秒将当前25%的护盾转化为生命，每2点护盾转化为1点生命。</p>",
+          "cd": 8,
+          "consume": 0,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/lvbu/jineng/2.png",
+          "type": ["护盾", "减速", "回复"],
+          "effect": [
+            {
+              "type": "护盾抵免",
+              "phase": ["525", "600", "795", "930", "1063", "1200"]
+            }
+          ]
+        },
+        {
+          "name": "魔神降世",
+          "desc": "<p>吕布从天而降，圈定杀戮场展开杀戮，对范围内的敌人造成1秒击飞。落地后吕布奋力挥斩方天画戟，造成550<span style=\"color: rgb(231, 95, 51);\">(+300%额外物理攻击)物理伤害</span>。</p><p>吕布在杀戮场内获得150点物理和法术防御。触碰场地边缘的敌人会受到150<span style=\"color: rgb(231, 95, 51);\">(+87%额外物理攻击)物理伤害</span>和50%减速，持续2秒，若为英雄则还会为吕布额外回复<span style=\"color: rgb(231, 95, 51);\">(+450%额外物理攻击)</span><span style=\"color: rgb(114, 192, 64);\">(+4%已损生命)</span>点生命。</p>",
+          "cd": 50,
+          "consume": 0,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/lvbu/jineng/3.png",
+          "type": ["控制", "位移", "法伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["550", "800", "1050"]
+            },
+            {
+              "type": "触碰伤害",
+              "phase": ["1500", "200", "250"]
+            },
+            {
+              "type": "提升双抗",
+              "phase": ["150", "200", "250"]
+            }
+          ]
+        }
+      ],
+      "deputy": [
+        {
+          "cd": 0,
+          "consume": 0,
+          "name": "语·花印",
+          "desc": "<p>貂蝉的技能会为敌人叠加花之印记，持续8秒，叠加满4层后印记触发，回复120点生命，同时会对周围敌人造成180<span style=\"color: rgb(106, 57, 201);\">(+43%法术攻击)</span>真实伤害并减少其50%移速，持续1秒。</p>",
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/0.png",
+          "type": ["印记", "真伤", "回复"]
+        },
+        {
+          "name": "落·红雨",
+          "desc": "<p>貂蝉挥出一个可往返的花球，挥出和返回会对路径上的敌人造成180<span style=\"color: rgb(106, 57, 201);\">(+57%法术攻击)法术伤害</span>。</p>",
+          "cd": 5,
+          "consume": 40,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/1.png",
+          "type": ["法伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["180", "220", "260", "300", "340", "380"]
+            }
+          ]
+        },
+        {
+          "name": "缘·心结",
+          "desc": "<p>貂蝉瞬移到指定位置，散发3枚花球攻击附近的敌人，每枚造成140<span style=\"color: rgb(106, 57, 201);\">(+24%法术攻击)法术伤害</span>，如果花球命中敌人，还会减少4秒【缘·心结】的冷却。</p>",
+          "cd": 10,
+          "consume": 45,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/2.png",
+          "type": ["位移", "法伤", "免疫"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["140", "155", "170", "185", "200", "215"]
+            }
+          ]
+        },
+        {
+          "name": "绽·风华",
+          "desc": "<p>貂蝉结成一个生成及消失时都会造成210<span style=\"color: rgb(106, 57, 201);\">(+50%法术攻击)法术伤害</span>的法阵，当貂蝉处于法阵范围内，【落·红雨】和【缘·心结】会获得额外的冷却缩减。</p>",
+          "cd": 40,
+          "consume": 80,
+          "img": "https://lengyibai.gitee.io/wzry-material/hero/diaochan/jineng/3.png",
+          "type": ["冷却", "法伤"],
+          "effect": [
+            {
+              "type": "基础伤害",
+              "phase": ["210", "245", "280"]
+            },
+            {
+              "type": "冷却时间",
+              "phase": ["40", "35", "30"]
+            }
+          ]
+        }
+      ]
     }
   ]
 }
