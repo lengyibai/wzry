@@ -19,9 +19,8 @@ declare namespace Hero {
     profession: string[]; //职业
     specialty: string[]; //特长
     voices: Voice[]; //语音
-    skills: Skill[]; //技能
+    skills: Skill[][]; //技能
     skins: Skin[]; //皮肤
-    deputy: Skill[]; //皮肤
     relationships: RelationType[];
   }
   /** @description: 头像列表 */
@@ -54,8 +53,7 @@ declare namespace Hero {
 
   interface SkillParams {
     id: number;
-    skills: Skill[];
-    deputy?: Skill[]; //副技能
+    skills: Skill[][];
   }
 
   /** @description: 技能效果 */
