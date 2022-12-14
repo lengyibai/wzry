@@ -190,8 +190,8 @@ const EmitSelectHeroChange = (id: number) => {
 const handleAddOne = () => {
   skill_effect.value = "";
   effectIndex.value = -1;
-  active_index.value = activeSkills.length;
   activeSkills().push($deepCopy(skillDefault));
+  active_index.value = activeSkills().length - 1;
 };
 /* 增加副技能 */
 const handleAddDeputys = () => {
