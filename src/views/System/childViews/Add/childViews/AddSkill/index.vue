@@ -3,7 +3,7 @@
     <transition name="fade">
       <div class="content" v-if="show">
         <!-- 左边 -->
-        <div class="left">
+        <div class="content-left" ref="left">
           <!-- 右上角新增 -->
           <div class="add-skill">
             <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
@@ -134,6 +134,7 @@ const emit = defineEmits(["update:modelValue"]);
 const { show, finish, status, show_ConfirmClose, form_data, EmitCancelRelease, EmitConfirmRemove, EmitConfirmSave } =
   viewHide<Hero.Skill[][]>(emit, "add_skill_list");
 
+const left = ref<HTMLElement>(); //左侧元素
 const skill_effect = ref(""); //选择的技能效果
 const skill_types = ref<Hero.SkillType[]>([]);
 const skill_consume = ref(0); //阶段值
@@ -251,6 +252,7 @@ const EmitSelectSkill = (index: number) => {
   } else {
     effectIndex.value = -1; //重置效果索引
   }
+  left.value && left.value.scroll({ behavior: "smooth", top: 0 }); //选择技能后，左侧回到顶部
 };
 
 /* 选择效果后触发 */
