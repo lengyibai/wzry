@@ -8,15 +8,15 @@
           v-show="showClose"
           src="https://lengyibai.gitee.io/wzry-material/image/close.png"
           @dragstart.prevent
-          @click="close"
+          @click="handleClose"
         />
         <img class="bg" src="https://lengyibai.gitee.io/wzry-material/image/dialog.png" />
         <transition name="fade">
           <div class="content" v-if="modelValue">
             <div class="text">{{ text }}</div>
             <div class="button">
-              <K-Button type="info" @click="confirm(false)">取消</K-Button>
-              <K-Button class="last" type="warning" @click="confirm(true)">确定</K-Button>
+              <K-Button type="info" @click="handleCancel">取消</K-Button>
+              <K-Button class="last" type="warning" @click="handleConfirm">确定</K-Button>
             </div>
           </div>
         </transition>
@@ -37,7 +37,8 @@ interface Props {
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
-  (e: "close", v: boolean): void;
+  (e: "cancel"): void;
+  (e: "confirm"): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -52,16 +53,22 @@ const { modelValue } = toRefs(props);
 
 const $switchStore = switchStore();
 
-/* 取消 */
-const close = () => {
+/* 关闭 */
+const handleClose = () => {
   $switchStore.$clickAudio("关闭");
   emit("update:modelValue", false);
 };
 
+/* 取消 */
+const handleCancel = () => {
+  emit("cancel");
+  handleClose();
+};
+
 /* 确定 */
-const confirm = (status: boolean) => {
-  emit("close", status);
-  close();
+const handleConfirm = () => {
+  emit("confirm");
+  handleClose();
 };
 </script>
 <style scoped lang="less">
