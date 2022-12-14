@@ -38,13 +38,15 @@
 .tip-leave-active,
 .fade-enter-active,
 .bounce-leave-active,
-.bounce-enter-active {
+.bounce-enter-active,
+.sidebar-leave-active,
+.sidebar-enter-active {
   transition: all 0.5s;
 }
 
 .select-list-leave-active,
 .select-list-enter-active,
-.select-list-move{
+.select-list-move {
   transition: all 0.25s;
 }
 
@@ -62,11 +64,6 @@
 
 .sidebar-leave-to {
   opacity: 0;
-}
-
-.sidebar-leave-active,
-.sidebar-enter-active {
-  transition: all 0.25s;
 }
 
 /* 输入框线条 */
@@ -190,3 +187,4 @@
     clip-path: circle(0% at 50% 50%);
   }
 }
+
