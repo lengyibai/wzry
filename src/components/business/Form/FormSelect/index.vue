@@ -129,7 +129,6 @@ const focus = () => {
 
 /* 失去焦点 */
 const blur = () => {
-  is_unfold.value = false;
   setTimeout(() => {
     no_legal.value = props.required && active_value.value === "";
     select_list.value = props.data;
@@ -137,6 +136,7 @@ const blur = () => {
     if (input_value.value !== active_value.value) {
       input_value.value = active_value.value;
     }
+    is_unfold.value = false;
   }, 100);
 };
 
@@ -146,6 +146,7 @@ const select = (id: number, name: string) => {
     selected_list.value.push(name);
     selected_list.value = [...new Set(selected_list.value)];
     emit("update:modelValue", selected_list.value);
+
     emit("change", selected_list.value);
 
     setTimeout(() => {
@@ -154,7 +155,6 @@ const select = (id: number, name: string) => {
   } else {
     emit("update:modelValue", props.id ? Number(id) : name);
     emit("change", props.id ? Number(id) : name);
-    is_unfold.value = false;
     select_list.value = props.data;
     active_value.value = name;
     input_value.value = name;
