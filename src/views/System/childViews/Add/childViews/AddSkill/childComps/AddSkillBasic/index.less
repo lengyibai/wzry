@@ -4,11 +4,15 @@
   flex: 1;
 
   .add-skill-basic {
+    position: relative;
     margin: 15px;
     padding: 15px;
 
+    &:hover {
+      background-color: rgb(255 255 255 / 10%);
+    }
+
     .title {
-      position: relative;
       display: flex;
       align-items: center;
       margin-bottom: 15px;
@@ -32,16 +36,19 @@
       .del {
         position: absolute;
         right: 0;
+        bottom: 0;
         color: var(--red);
+        transform: translate(-10px, -10px);
         font-size: 25px;
       }
 
       .editing {
         position: absolute;
+        top: 0;
         right: 0;
         color: var(--theme-color-two);
         font-size: 25px;
-        transform: translateX(-75px);
+        transform: translate(-10px, 20px);
       }
     }
 
@@ -69,3 +76,4 @@
 .active {
   outline: 1px dashed var(--white);
 }
+
