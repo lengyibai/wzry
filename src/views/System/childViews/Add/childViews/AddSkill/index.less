@@ -11,16 +11,28 @@
       padding: 30px;
       flex: 1;
 
-      .add-one {
+      .add-skill {
         position: absolute;
         top: 30px;
         right: 30px;
         z-index: 2;
-        color: var(--theme-color-seven);
-        font-size: 50px;
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
 
-        &:hover {
-          color: var(--theme-color-four);
+        .add {
+          color: var(--theme-color-seven);
+          font-size: 26px;
+
+          &:hover {
+            color: var(--theme-color-four);
+          }
+        }
+
+        .deputy-index {
+          margin-bottom: 25px;
+          color: var(--theme-color-seven);
+          font-size: 26px;
         }
       }
 
@@ -78,7 +90,7 @@
         .skill-effect {
           display: flex;
           width: fit-content;
-          color: var(--gray);
+          color: var(--white-75);
           font-size: 25px;
         }
 
@@ -86,12 +98,6 @@
           color: var(--theme-color-ten);
         }
       }
-    }
-
-    .right {
-      overflow: auto;
-      height: 100%;
-      flex: 1;
     }
   }
 }
@@ -113,3 +119,4 @@
 .del-skill-type-leave-active {
   position: absolute; /* 必须为绝对定位 */
 }
+
