@@ -19,8 +19,8 @@
     </transition>
 
     <!--右侧英雄职业分类侧边栏-->
-    <transition name="sidebar">
-      <HeroSidebar v-show="show_HeroSidebar" />
+    <transition name="sidebar" appear>
+      <HeroSidebar />
     </transition>
 
     <!--英雄详情页-->
@@ -55,7 +55,7 @@ const id: unknown = $route.query.id; //地址栏参数
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 
-const { hero_info, hero_list, show_HeroDetail, show_HeroSidebar, viewClick } = useIntegrationData(id);
+const { hero_info, hero_list, show_HeroDetail, viewClick } = useIntegrationData(id);
 
 /* 监听筛选后的英雄列表 */
 watch(
