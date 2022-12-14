@@ -12,13 +12,6 @@ export default (id: number | unknown) => {
   const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const show_HeroDetail = ref(false); //显示英雄详情
-  const show_HeroSidebar = ref(false); //显示英雄分类侧边栏
-
-  /* 获取列表 */
-  const getList = (profession?: string) => {
-    $heroStore.getHeroList(profession);
-    show_HeroSidebar.value = true;
-  };
 
   /* 查看详情 */
   const viewClick = (id: number) => {
@@ -36,12 +29,6 @@ export default (id: number | unknown) => {
           id: hero_info.value.id,
         },
       });
-      setTimeout(() => {
-        /* 静默加载英雄列表 */
-        if ($heroStore.profession === "") {
-          getList($heroStore.hero_info.profession[0]);
-        }
-      }, 3000);
     });
   };
 
@@ -49,14 +36,13 @@ export default (id: number | unknown) => {
   if (id) {
     viewClick(Number(id));
   } else {
-    getList();
+    $heroStore.getHeroList($heroStore.hero_info.profession[0]);
   }
 
   return {
     hero_info,
     hero_list,
     show_HeroDetail,
-    show_HeroSidebar,
     viewClick,
   };
 };
