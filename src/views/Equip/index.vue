@@ -47,17 +47,5 @@ watch(
 );
 </script>
 <style scoped lang="less">
-.equip {
-  display: flex;
-  width: 100%;
-  height: 100%;
-
-  .equip-main {
-    position: relative;
-    flex: 1;
-    display: flex;
-    height: 100%;
-    padding-right: calc(25px * 8);
-  }
-}
+@import url("./index.less");
 </style>
