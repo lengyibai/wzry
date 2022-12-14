@@ -29,8 +29,7 @@ export const getHeroDetail = async (id: number) => {
 
   hero.skins = skins || [];
   hero.skins = skins || [];
-  hero.skills = skills.skills || [];
-  hero.deputy = skills.deputy || [];
+  hero.skills = skills || [];
   hero.voices = voices || [];
   hero.relationships = relationships || [];
 
