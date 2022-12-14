@@ -14,7 +14,7 @@
         <div class="types">
           <K-SkillTypeTag v-for="(type, index) in item.type" :type="type" :key="index" />
         </div>
-        <button class="del lib-click" v-show="active(index)" @click.stop="del">删除</button>
+        <button class="del lib-click" v-show="active(index)" v-if="index !== 0" @click.stop="del">删除</button>
         <div class="editing" v-show="active(index)">编辑中...</div>
       </div>
 
