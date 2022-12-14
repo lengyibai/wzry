@@ -3,9 +3,9 @@
     <HeroSkillContentLeft
       :class="{ 'hide-left': !show || toggle }"
       :activeSkill="skill"
-      :style="{ width: skill.effect ? '45%' : '100%' }"
+      :style="{ width: is_passive ? '45%' : '100%' }"
     />
-    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="skill.effect" />
+    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="is_passive" />
   </div>
 </template>
 <script setup lang="ts">
@@ -19,9 +19,11 @@ interface Props {
   skill: Hero.Skill;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   skill: () => skillDefault,
 });
+
+const is_passive = props.skill.effect?.length;
 
 const $heroDetail = heroDetail();
 
