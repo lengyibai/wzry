@@ -5,10 +5,15 @@
   margin-bottom: 50px;
 
   .icon {
+    @size: 100px;
+
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    width: 90px;
-    height: 90px;
+    width: @size;
+    height: @size;
     border-radius: 50%;
     filter: drop-shadow(0 2px 5px #000);
     transition: all 0.5s;
@@ -19,8 +24,8 @@
       position: absolute;
       left: 0;
       z-index: 1;
-      width: 90px;
-      height: 90px;
+      width: @size;
+      height: @size;
       border: 5px solid #f9ca24;
       border-radius: 50%;
       box-shadow: 0 0 10px 5px #000 inset;
@@ -50,8 +55,8 @@
     }
 
     img {
-      width: 100%;
-      height: 100%;
+      width: 85%;
+      height: 85%;
 
       &:nth-of-type(1) {
         position: absolute;
@@ -80,17 +85,17 @@
     &:hover {
       color: var(--white);
     }
+
+    &:active {
+      color: var(--white-25);
+      transition: all 0.1s;
+    }
   }
 }
 
 .active {
   transform: translateY(0) !important;
   opacity: 1 !important;
-}
-
-.deputy {
-  color: var(--blue) !important;
-  transform: rotateZ(180deg) rotateY(180deg);
 }
 
 .hide-bottom {
