@@ -1,4 +1,8 @@
-import { RouterSheel } from "@/router/interface";
+import { RouterSheel } from "../interface";
+import { static_paths } from "./staticRouter";
+import getSheelPath from "../helper/getSheelPath";
+
+/** @description: 用户路由 */
 export const user: RouterSheel[] = [
   {
     title: "主页",
@@ -79,6 +83,7 @@ export const user: RouterSheel[] = [
   },
 ];
 
+/** @description: 管理员路由 */
 export const admin: RouterSheel[] = [
   ...user,
   {
@@ -122,8 +127,11 @@ export const admin: RouterSheel[] = [
   },
 ];
 
-export const errorRoute = {
-  path: "/:error*",
-  name: "error",
-  redirect: "/404",
-};
+/** @description: 动态路由path组 */
+const dynamic_paths: string[] = getSheelPath(admin)[0];
+
+/** @description: 路由表里是否存在该路径 */
+export const isExist = (path: string) => [
+  [...static_paths, ...dynamic_paths].indexOf(path) !== -1,
+  dynamic_paths.indexOf(path) !== -1,
+];
