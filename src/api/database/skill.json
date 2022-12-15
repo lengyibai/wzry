@@ -3175,6 +3175,159 @@
           }
         ]
       ]
+    },
+    {
+      "id": 43,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "强化霰弹",
+            "desc": "<p>刘备霞弹枪的每颗弹丸会对敌人造成<span style=\"color: rgb(231, 95, 51);\">(40%物理攻击)物理伤害</span>。每颗弹丸命中敌方英雄,会增加1层战斗本能，每层增加3~11点物理穿透，持续6秒，最多叠加12层。</p><p><span style=\"color: rgb(140, 140, 140);\">每次射击只有中间的2颗弹丸能够暴击并触发装备效果。建筑不受额外弹丸影响。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/liubei/jineng/0.png",
+            "type": ["强化"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 60,
+            "name": "双重射击",
+            "desc": "<p>刘备增加40%移速，持续1.5秒，并且下次普攻变为两连射，每颗弹丸会造成150<span style=\"color: rgb(231, 95, 51);\">(+25%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/liubei/jineng/1.png",
+            "type": ["强化", "加速", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "170", "190", "210", "230"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.6", "7.2", "6.8", "6.4", "6"]
+              }
+            ]
+          },
+          {
+            "cd": 10,
+            "consume": 80,
+            "name": "身先士卒",
+            "desc": "<p>刘备冲撞击退敌人同时造成180<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)</span>物理伤害并停止冲撞。</p><p>若撞击到敌方英雄将减少2秒【身先士卒】的冷却。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/liubei/jineng/2.png",
+            "type": ["位移", "控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["180", "200", "220", "240", "260", "280"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.4", "8.8", "7.6", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 60,
+            "consume": 130,
+            "name": "以德服人",
+            "desc": "<p>刘备解除自身控制，并在3秒内免控，同时获得50点物理攻击和1000点护盾，持续6秒。刘备在护盾存在期间将对敌方英雄造成伤害的60%转化为护盾值，对小兵和野怪造成伤害的20%转化为护盾值。</p><p><span style=\"color: rgb(140, 140, 140);\">护盾上限为初始值的150%。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/liubei/jineng/3.png",
+            "type": ["强化", "护盾", "解控"],
+            "effect": [
+              {
+                "type": "护盾抵免",
+                "phase": ["1000", "1500", "2000"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["60", "55", "50"]
+              },
+              {
+                "type": "提升攻击",
+                "phase": ["50", "100", "150"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 44,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "秘技·极意",
+            "desc": "<p>兰陵王朝敌方英雄移动时会增加20%移速。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lanlingwang/jineng/0.png",
+            "type": ["加速"],
+            "effect": []
+          },
+          {
+            "cd": 5,
+            "consume": 50,
+            "name": "秘技·分身",
+            "desc": "<p>兰陵王挥砍身边的敌人，造成220<span style=\"color: rgb(231, 95, 51);\">(+90%物理攻击)物理伤害</span>，同时召唤出影分身随机攻击附近一名敌人，影分身会造成等量的伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">影分身优先攻击低血量的英雄。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lanlingwang/jineng/1.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["220", "265", "310", "355", "400", "445"]
+              }
+            ]
+          },
+          {
+            "cd": 9.6,
+            "consume": 60,
+            "name": "秘技·影蚀",
+            "desc": "<p>兰陵王投射暗影匕首，对路径上的敌人造成165<span style=\"color: rgb(231, 95, 51);\">(+57%物理攻击)物理伤害</span>并减少其90%移速，持续2秒，该效果会持续衰减。</p><p>匕首会标记敌人，持续3秒，期间兰陵王攻击会将其晕眩1秒并回复140<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)</span>点生命。标记消失时目标受到24%已损生命的<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">当匕首命中敌方英雄时会停止移动并销毁。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lanlingwang/jineng/2.png",
+            "type": ["控制", "物伤", "回复"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["165", "186", "207", "228", "249", "270"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["9.6", "8.8", "8", "7.2", "6.4", "5.6"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["140", "168", "196", "224", "252", "280"]
+              }
+            ]
+          },
+          {
+            "cd": 24,
+            "consume": 100,
+            "name": "秘技·暗袭",
+            "desc": "<p>立即解除隐身，向指定方向冲锋并对路径上敌人造成660<span style=\"color: rgb(231, 95, 51);\">(+188%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lanlingwang/jineng/3.png",
+            "type": ["位移", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["660", "830", "1000"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["24", "22", "20"]
+              }
+            ]
+          },
+          {
+            "cd": 24,
+            "consume": 0,
+            "name": "秘技·隐匿",
+            "desc": "<p>兰陵王1.5秒后进入隐身状态，持续30秒，并增加20%移速，持续5秒。解除隐身状态后兰陵王会增加50%攻速，持续5秒。</p><p><span style=\"color: rgb(140, 140, 140);\">隐身时若处于敌人附近超过3秒，隐身状态将会自动解除。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lanlingwang/jineng/4.png",
+            "type": ["隐身", "加速", "强化"],
+            "effect": []
+          }
+        ]
+      ]
     }
   ]
 }
