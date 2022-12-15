@@ -1,16 +1,10 @@
+import getSheelPath from "../helper/getSheelPath";
+
 /** @description: 静态路由 */
 export const staticRouter = [
   {
     path: "/",
     redirect: "/login",
-  },
-  {
-    path: "/404",
-    meta: {
-      title: "NotFound",
-      hidden: true,
-    },
-    component: () => import("@/views/Base/NotFound/index.vue"),
   },
   {
     path: "/login",
@@ -38,7 +32,7 @@ export const errorRouter = [
     name: "404",
     component: () => import("@/components/ErrorMessage/404.vue"),
     meta: {
-      title: "404页面",
+      title: "404",
     },
   },
   {
@@ -46,7 +40,10 @@ export const errorRouter = [
     name: "500",
     component: () => import("@/components/ErrorMessage/500.vue"),
     meta: {
-      title: "500页面",
+      title: "500",
     },
   },
 ];
+
+/** @description: 静态路由path组 */
+export const static_paths = getSheelPath([...staticRouter, ...errorRouter])[0];
