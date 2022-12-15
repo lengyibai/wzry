@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { FormData } from "@/api/interface/form";
-import { login, userInfo } from "@/api/main/user/index";
+import { login } from "@/api/main/user/index";
 import { AuthStore } from "./interface";
+import { ResultData } from "@/api/interface/result";
 import switchStore from "./globalSwitch";
 import router from "@/router";
 import routesStore from "@/store/routes";
@@ -22,6 +23,16 @@ export default defineStore("auth", {
   }),
 
   actions: {
+    /** @description: 设置用户状态 */
+    setUserStatus(status: boolean) {
+      this.userStatus = status;
+    },
+
+    /** @description: 设置用户信息 */
+    setUserInfo(data: ResultData.User) {
+      this.userInfo = data;
+    },
+
     /** @description: 登录 */
     async login(form: FormData.User) {
       switchStore().$loading.show("登录中");
@@ -35,7 +46,7 @@ export default defineStore("auth", {
           // 获取用户信息
           this.userInfo = res;
           // 存储 token 到本地
-          window.localStorage.setItem("wzryToken", res.wzryToken);
+          window.localStorage.setItem("user", JSON.stringify(res));
           router.push("/home");
           this.watchStatus();
         })
@@ -43,30 +54,6 @@ export default defineStore("auth", {
         .finally(() => {
           switchStore().$loading.close();
         });
-    },
-
-    /** @description: 获取用户信息 */
-    getUserInfo() {
-      const token = localStorage.getItem("wzryToken");
-      return new Promise((resolve) => {
-        if (token) {
-          userInfo(token).then((res) => {
-            if (res) {
-              // 获取成功后存储用户信息
-              this.userStatus = true;
-              this.userInfo = res;
-              routesStore().addRoutes(res.role);
-              this.watchStatus();
-            } else {
-              switchStore().$tip("身份校验失败，请重新登录", "error");
-              this.clearToken();
-            }
-            resolve(null);
-          });
-        } else {
-          resolve(null);
-        }
-      });
     },
 
     /** @description: 退出登录 */
@@ -88,14 +75,14 @@ export default defineStore("auth", {
         role: 1,
       };
       routesStore().removeRoutes();
-      window.localStorage.removeItem("wzryToken");
+      window.localStorage.removeItem("user");
       router.replace("/login");
     },
 
     /** @description: 实时检测帐号状态 */
     watchStatus() {
       this.timer = setInterval(() => {
-        if (!localStorage.getItem("wzryToken")) {
+        if (!localStorage.getItem("user")) {
           this.offline();
         }
       }, 1000);
