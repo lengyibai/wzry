@@ -1,22 +1,23 @@
 import { defineStore } from "pinia";
-import router from "@/router";
-import { admin, user, errorRoute } from "@/router/sheel";
-import sheelToRoute from "@/config/sheelToRoute";
-import { RouterSheel } from "@/router/interface";
 import { RoutesStore } from "./interface";
+import { RouterSheel } from "@/router/interface";
 import { RouteRecordName, RouteRecordRaw } from "vue-router";
+import { admin, user } from "@/router/modules/routeSheel";
+import router from "@/router";
+import sheelToRoute from "@/router/helper/sheelToRoute";
 
 export default defineStore("router", {
   state: (): RoutesStore.State => ({
     routes: [], //当前路由列表，针对侧边栏，解决通过vue-router提供的方法获取的路由列表与侧边栏要求的格式不匹配
-    asyncRoutesName: [], //动态路由 name
+    asyncRoutesName: [], //添加的路由name组，用于匹配并删除路由
   }),
   actions: {
     /** @description: 添加路由及存储路由侧边栏 */
     addRoutes(role: 0 | 1) {
+      if (this.routes.length) return;
       const dynamicRouter: RouteRecordRaw[] = [];
       //根据用户权限设置路由表
-      const initDynamicRouter: RouterSheel[] = role === 0 ? [...admin, errorRoute] : [...user, errorRoute];
+      const initDynamicRouter: RouterSheel[] = role === 0 ? admin : user;
       //获取路由 name 组
       this.asyncRoutesName = initDynamicRouter.map((item) => {
         return item.name as RouteRecordName;
