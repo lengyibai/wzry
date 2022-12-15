@@ -1,10 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { staticRouter, errorRouter } from "@/router/modules/staticRouter";
+import { isExist } from "./modules/routeSheel";
+import { staticRouter, errorRouter } from "./modules/staticRouter";
 import switchStore from "@/store/globalSwitch";
 import authStore from "@/store/auth";
-import NProgress from "nprogress"; // 导入 nprogress模块
-import "nprogress/nprogress.css"; // 导入样式，否则看不到效果
-NProgress.configure({ showSpinner: false }); // 显示右上角螺旋加载提示
+import NProgress from "@/config/nprogress"; // 导入 nprogress模块
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -12,31 +11,40 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  NProgress.start(); //开启进度条
-  const token = localStorage.getItem("wzryToken");
+  NProgress.start(); // 开启进度条
 
   const $authStore = authStore();
   const $switchStore = switchStore();
 
-  /* 未登录，但存在token */
-  if (!$authStore.userStatus && token) {
-    //获取用户信息
-    await $authStore.getUserInfo();
-    //回到上次位置
-    next({ path: to.path, query: to.query, replace: true });
-    $switchStore.$tip("自动登录成功");
+  const token = $authStore.userInfo?.wzryToken;
+  const is_exist = isExist(to.path);
+
+  // 如果路径不存在
+  if (!is_exist[0]) {
+    next("/404");
     return;
-  } else if (!token && !to.meta.noVerify) {
-    /*不存在token，需要权限，跳转登录 */
-    next({ path: "/login", replace: true });
+  }
+  // 如果需要登录，但是没有用户信息
+  else if (is_exist[1] && !token) {
+    next("/login");
     return;
-  } else if (token && to.meta.noVerify) {
-    /* 如果本地存在token，但状态为false，在登录页面，则直接跳转到首页 */
+  }
+  // 如果当前处于登录页面，但是本地有用户信息
+  else if (token && to.meta.noVerify) {
     next("/home");
     return;
   }
+  // 如果未登录，但是本地存在用户信息，且能匹配权限
+  else if (!$authStore.userStatus && token && to.matched.length !== 0) {
+    $authStore.setUserStatus(true);
+    $switchStore.$tip("自动登录成功");
+  }
+  //如果没有权限
+  else if (to.matched.length === 0) {
+    next("/403");
+    return;
+  }
 
-  /* 正常访问页面 */
   next();
 });
 
