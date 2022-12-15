@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
 import useRouter from "./router/index";
+import useAutoLogin from "@/hooks/useAutoLogin";
 
 import directives from "@/utils/directives";
 
@@ -11,4 +12,8 @@ const pinia = createPinia();
 
 const app = createApp(App);
 
-app.use(pinia).use(useRouter).use(directives).mount("#app");
+app.use(pinia).use(directives);
+
+useAutoLogin();
+
+app.use(useRouter).mount("#app");
