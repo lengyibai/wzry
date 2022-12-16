@@ -26,7 +26,7 @@ const hero_info: string[][] = [
   [props.heroData.period, "period", "时期"],
   [props.heroData.camp, "camp", "阵营"],
   [props.heroData.height, "height", "身高"],
-  [props.heroData.identity.join("/"), "identity", "身份"],
+  [props.heroData.identity, "identity", "身份"],
 ];
 
 onMounted(() => {
