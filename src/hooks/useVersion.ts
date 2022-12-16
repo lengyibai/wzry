@@ -21,7 +21,7 @@ export default () => {
 
   /* 每隔五秒检查更新，获取最新版后停止 */
   onMounted(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       if (REMOTE_VERSION.value) {
         clearInterval(timer);
         update();
