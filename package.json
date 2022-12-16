@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "tslint": "tsc --noEmit",
     "eslint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
-    "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
     "stylelint": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
-    "tslint": "tsc --noEmit"
+    "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\""
   },
   "dependencies": {
     "@wangeditor/editor": "^5.1.23",
