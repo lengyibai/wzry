@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import heroDetail from "@/store/heroDetail";
 import { skillDefault } from "@/defaultValue/defaults";
 import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue";
@@ -23,12 +23,12 @@ const props = withDefaults(defineProps<Props>(), {
   skill: () => skillDefault,
 });
 
-const is_passive = props.skill.effect?.length;
-
 const $heroDetail = heroDetail();
 
 const show = ref(false); // 左右两边的入场动画
 const toggle = ref(false); //用于技能选择
+
+const is_passive = computed(() => props.skill.effect?.length); //是否为被动
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn((index) => {
