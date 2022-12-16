@@ -1,6 +1,6 @@
 <template>
   <div class="skin">
-    <h1>皮肤</h1>
+    <h1>待开发</h1>
   </div>
 </template>
 <script setup lang="ts"></script>
