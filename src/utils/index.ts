@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import pinyin from './pinyin'
 //随机数
 export function $random(min, max, num = 0) {
