@@ -3,6 +3,7 @@
     <div class="content-left" ref="left">
       <!-- 右上角新增 -->
       <div class="add-skill">
+        <span class="desc" v-show="exist_deputys">副技能无被动或低于3个，可以留空，但要与主技能数量一致</span>
         <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
         <button class="add" @click="handleAddOne">添加技能</button>
         <button class="add" @click="handleAddDeputys">添加副技能</button>
@@ -124,7 +125,6 @@ const skill_consume = ref(0); //阶段值
 const hero_id = ref(0); //英雄id
 const effectIndex = ref(-1); //处于编辑状态的技能效果索引
 const active_index = ref(0); //处于编辑状态的技能
-const exist_deputys = ref(false); //是否存在副技能
 const deputy_index = ref(0); //用于切换副技能的索引
 const show_DelDeputys = ref(false); //显示技能组删除弹窗
 const show_DelSkill = ref(false); //显示技能删除弹窗
@@ -134,8 +134,10 @@ const activeSkills = () => form_data.value![deputy_index.value];
 //处于编辑的技能
 const activeSkill = () => activeSkills()[active_index.value];
 
-//用于判断是否为被动技能
+//判断是否为被动技能
 const noFirst = computed(() => active_index.value !== 0);
+//判断是否为被动技能
+const exist_deputys = computed(() => form_data.value!.length > 1);
 //技能组数量
 const skills_num = computed(() => (form_data.value ? form_data.value.length : 0));
 //当前技能数量
@@ -145,7 +147,6 @@ const skill_num = computed(() => form_data.value![deputy_index.value].length);
 form_data.value ??= [[$deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
 
 //是否存在副技能
-exist_deputys.value = form_data.value.length > 1;
 
 /* 获取技能类型 */
 getSkillType().then((res) => {
@@ -190,6 +191,7 @@ const handleToggleSkill = () => {
   } else {
     deputy_index.value += 1;
   }
+  active_index.value = 0;
 };
 /* 删除技能 */
 const EmitDelSkill = () => {
@@ -221,7 +223,6 @@ const EmitConfirmDelDeputys = () => {
   } else {
     deputy_index.value -= 1;
   }
-  console.log(deputy_index.value);
 };
 /* 选择技能后触发 */
 const EmitSelectSkill = (index: number) => {
@@ -294,12 +295,8 @@ const handleDelConsume = () => {
 
 /* 发布 */
 const EmitCommit = async () => {
-  const is_Finish = form_data.value!.every((item) => {
-    return item.every((item) => {
-      return item.img && item.name && hero_id.value;
-    });
-  });
-  if (form_data.value![0].length >= 3 && is_Finish) {
+  const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
+  if (is_Finish && form_data.value![0].length >= 3) {
     await addHeroSkill({
       id: hero_id.value,
       skills: form_data.value!,
@@ -310,7 +307,7 @@ const EmitCommit = async () => {
       $switchStore.$tip("发布成功", "info");
     }, 500);
   } else {
-    $switchStore.$tip("请完整填写必填项，且至少包含3个技能", "error");
+    $switchStore.$tip("请完整填写必填项，且主技能个数不低于3个", "error");
     status.value = 0;
   }
 };
