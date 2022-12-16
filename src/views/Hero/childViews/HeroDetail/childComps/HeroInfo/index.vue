@@ -43,7 +43,7 @@ onMounted(() => {
   /* 设置按顺序出场的动画 */
   setTimeout(() => {
     into.value = true;
-  }, 1000);
+  }, 1500);
 });
 </script>
 <style scoped lang="less">
