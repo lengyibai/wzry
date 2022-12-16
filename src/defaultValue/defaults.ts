@@ -9,7 +9,7 @@ export const heroDefault: Hero.Data = {
   cover: "", //封面
   headImg: "", //头像
   height: "", //身高
-  identity: [], //身份
+  identity: "", //身份
   location: "", //区域
   mark: "", //代号
   name: "", //名字
