@@ -1,122 +1,101 @@
 <template>
-  <div class="skill view-add">
-    <transition name="fade">
-      <div class="content" v-if="show">
-        <!-- 左边 -->
-        <div class="content-left" ref="left">
-          <!-- 右上角新增 -->
-          <div class="add-skill">
-            <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
-            <button class="add" @click="handleAddOne">添加技能</button>
-            <button class="add" @click="handleAddDeputys">添加副技能</button>
-            <button class="add" v-if="exist_deputys" @click="handleToggleSkill">切换主/副技能</button>
-            <button class="add" @click="handleDelDeputys" v-if="skills_num > 1">删除当前技能组</button>
-          </div>
-
-          <!-- 设置图标 -->
-          <FormLabel label="图标" required>
-            <SelectImg v-model="activeSkill().img" title="图标" />
-          </FormLabel>
-
-          <!-- 选择英雄 -->
-          <SelectHero v-model="hero_id" key="SelectHero" @change="EmitSelectHeroChange" />
-
-          <!-- 技能名称 -->
-          <FormInput label="名称" required v-model="activeSkill().name" placeholder="技能名称" />
-
-          <!-- 冷却时间 -->
-          <FormInput v-if="noFirst" label="CD" v-model="activeSkill().cd" placeholder="冷却时间" number />
-
-          <!-- 消耗 -->
-          <FormInput v-if="noFirst" label="消耗" v-model="activeSkill().consume" placeholder="法力消耗" number />
-
-          <!-- 设置技能类型 -->
-          <FormSelect
-            :data="skill_types"
-            v-model="activeSkill().type"
-            :value="activeSkill().type"
-            label="技能类型"
-            multi
-          />
-
-          <!-- 设置技能效果 -->
-          <div class="select-effect" v-if="noFirst">
-            <FormSelect
-              :data="skill_effects"
-              v-model="skill_effect"
-              :value="skill_effect"
-              label="技能效果"
-              @change="EmitSelectEffect"
-              :disabled="!activeSkill().effect![effectIndex]"
-            />
-            <button class="add" @click="handleAddEffect">添加/下一行</button>
-            <button class="add" @click="handleEditEffect">上一行</button>
-            <button class="del" @click="handleDelEffect">删除一行</button>
-          </div>
-
-          <!-- 设置阶段值 -->
-          <div class="select-effect" v-if="noFirst" v-show="skill_effect">
-            <FormInput
-              label="阶段值"
-              v-model="skill_consume"
-              placeholder="升级后的值"
-              @keyup.enter="HandleAddConsume"
-            />
-            <button class="confirm" @click="HandleAddConsume">确定</button>
-            <button class="del" @click="handleDelConsume">删除一值</button>
-          </div>
-
-          <!-- 阶段值列表 -->
-          <div class="effect-list">
-            <transition-group name="del-skill-type">
-              <div
-                class="skill-effect"
-                :class="{ 'active-effect': effectIndex === index }"
-                v-for="(item, index) in activeSkill().effect"
-                :key="item.type"
-              >
-                <span class="type">{{ item.type || "待选择" }}：</span>
-                <div class="phase">{{ item.phase?.join(" | ") }} |</div>
-              </div>
-            </transition-group>
-          </div>
-
-          <!-- 技能描述 -->
-          <LibRichText v-model="activeSkill().desc" placeholder="技能描述" :key="activeSkill().img" />
-        </div>
-
-        <!-- 右边 -->
-        <AddSkillBasic
-          :activeIndex="active_index"
-          :skills="form_data![deputy_index]"
-          @select="EmitSelectSkill"
-          @del="EmitDelSkill"
-        />
+  <ManageMask class="content" :show="show">
+    <div class="content-left" ref="left">
+      <!-- 右上角新增 -->
+      <div class="add-skill">
+        <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
+        <button class="add" @click="handleAddOne">添加技能</button>
+        <button class="add" @click="handleAddDeputys">添加副技能</button>
+        <button class="add" v-if="exist_deputys" @click="handleToggleSkill">切换主/副技能</button>
+        <button class="add" @click="handleDelDeputys" v-if="skills_num > 1">删除当前技能组</button>
       </div>
-    </transition>
 
-    <!-- 发布按钮 -->
-    <LibCommitBtn
-      v-model="status"
-      class="lib-commit-btn"
-      size="50px"
-      @commit="EmitCommit"
-      :finish="finish"
-      title="发布"
+      <!-- 设置图标 -->
+      <FormLabel label="图标" required>
+        <SelectImg v-model="activeSkill().img" title="图标" />
+      </FormLabel>
+
+      <!-- 选择英雄 -->
+      <SelectHero v-model="hero_id" key="SelectHero" @change="EmitSelectHeroChange" />
+
+      <!-- 技能名称 -->
+      <FormInput label="名称" required v-model="activeSkill().name" placeholder="技能名称" />
+
+      <!-- 冷却时间 -->
+      <FormInput v-if="noFirst" label="CD" v-model="activeSkill().cd" placeholder="冷却时间" number />
+
+      <!-- 消耗 -->
+      <FormInput v-if="noFirst" label="消耗" v-model="activeSkill().consume" placeholder="法力消耗" number />
+
+      <!-- 设置技能类型 -->
+      <FormSelect :data="skill_types" v-model="activeSkill().type" :value="activeSkill().type" label="技能类型" multi />
+
+      <!-- 设置技能效果 -->
+      <div class="select-effect" v-if="noFirst">
+        <FormSelect
+          :data="skill_effects"
+          v-model="skill_effect"
+          :value="skill_effect"
+          label="技能效果"
+          @change="EmitSelectEffect"
+          :disabled="!activeSkill().effect![effectIndex]"
+        />
+        <button class="add" @click="handleAddEffect">添加/下一行</button>
+        <button class="add" @click="handleEditEffect">上一行</button>
+        <button class="del" @click="handleDelEffect">删除一行</button>
+      </div>
+
+      <!-- 设置阶段值 -->
+      <div class="select-effect" v-if="noFirst" v-show="skill_effect">
+        <FormInput label="阶段值" v-model="skill_consume" placeholder="升级后的值" @keyup.enter="HandleAddConsume" />
+        <button class="confirm" @click="HandleAddConsume">确定</button>
+        <button class="del" @click="handleDelConsume">删除一值</button>
+      </div>
+
+      <!-- 阶段值列表 -->
+      <div class="effect-list">
+        <transition-group name="del-skill-type">
+          <div
+            class="skill-effect"
+            :class="{ 'active-effect': effectIndex === index }"
+            v-for="(item, index) in activeSkill().effect"
+            :key="item.type"
+          >
+            <span class="type">{{ item.type || "待选择" }}：</span>
+            <div class="phase">{{ item.phase?.join(" | ") }} |</div>
+          </div>
+        </transition-group>
+      </div>
+
+      <!-- 技能描述 -->
+      <LibRichText v-model="activeSkill().desc" placeholder="技能描述" :key="activeSkill().img" />
+    </div>
+
+    <!-- 右边 -->
+    <AddSkillBasic
+      :activeIndex="active_index"
+      :skills="form_data![deputy_index]"
+      @select="EmitSelectSkill"
+      @del="EmitDelSkill"
     />
 
-    <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="EmitCancelRelease" title="取消" />
-
-    <!-- 确认关闭 -->
-    <ConfirmClose v-model="show_ConfirmClose" @confirm="EmitConfirmSave" @cancel="EmitConfirmRemove" />
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
 
     <!-- 确认删除技能 -->
     <ConfirmClose v-model="show_DelSkill" text="确认删除当前技能？" @confirm="EmitConfirmDelSkill" />
 
     <!-- 确认删除技能组 -->
     <ConfirmClose v-model="show_DelDeputys" text="确认删除当前技能组？" @confirm="EmitConfirmDelDeputys" />
-  </div>
+  </ManageMask>
 </template>
 <script setup lang="ts">
 import { computed, ref } from "vue";
@@ -130,7 +109,11 @@ import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 const $switchStore = switchStore();
 
-const emit = defineEmits(["update:modelValue"]);
+interface Emits {
+  (e: "update:modelValue", v: boolean): void;
+}
+
+const emit = defineEmits<Emits>();
 const { show, finish, status, show_ConfirmClose, form_data, EmitCancelRelease, EmitConfirmRemove, EmitConfirmSave } =
   viewHide<Hero.Skill[][]>(emit, "add_skill_list");
 

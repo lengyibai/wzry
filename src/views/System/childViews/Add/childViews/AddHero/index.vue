@@ -1,78 +1,83 @@
 <template>
-  <div class="hero view-add">
-    <transition name="fade">
-      <div class="content" v-if="show">
-        <!-- 英雄名、代号、身高 -->
-        <div class="flex-box">
-          <FormInput label="id" required number v-model="form_data!.id" />
-          <FormInput label="英雄名" required v-model="form_data!.name" />
-          <FormInput label="代号" required v-model="form_data!.mark" />
-          <FormInput label="身高" v-model="form_data!.height" />
-          <FormInput label="身份" v-model="form_data!.identity" />
-        </div>
+  <ManageMask
+    class="content"
+    :show="show"
+    :styles="{
+      flexDirection: 'column',
+      alignItems: 'center',
+    }"
+  >
+    <!-- 英雄名、代号、身高 -->
+    <div class="flex-box">
+      <FormInput label="id" required number v-model="form_data!.id" labelWidth="0px" />
+      <FormInput label="英雄名" required v-model="form_data!.name" />
+      <FormInput label="代号" required v-model="form_data!.mark" />
+      <FormInput label="身高" v-model="form_data!.height" />
+      <FormInput label="身份" placeholder="多个身份/分隔" v-model="form_data!.identity" />
+    </div>
 
-        <!-- 选择器相关 -->
-        <div class="flex-box">
-          <FormSelect
-            v-for="(v, k) in info"
-            :key="k"
-            :label="v[0]"
-            :data="type_list[v[1]]"
-            v-model="form_data![v[2]]"
-            :value="form_data![v[2]]"
-          />
-        </div>
+    <!-- 选择器相关 -->
+    <div class="flex-box">
+      <FormSelect
+        v-for="(v, k) in info"
+        :key="k"
+        :label="v[0]"
+        :data="type_list[v[1]]"
+        v-model="form_data![v[2]]"
+        :value="form_data![v[2]]"
+      />
+    </div>
 
-        <!-- 职业 -->
-        <FormSelect
-          :data="type_list.professionType"
-          v-model="form_data!.profession"
-          :value="form_data!.profession"
-          label="职业"
-          multi
-        />
+    <!-- 职业 -->
+    <FormSelect
+      :data="type_list.professionType"
+      v-model="form_data!.profession"
+      :value="form_data!.profession"
+      label="职业"
+      multi
+    />
 
-        <!-- 特长 -->
-        <FormSelect
-          :data="type_list.specialtyType"
-          v-model="form_data!.specialty"
-          :value="form_data!.specialty"
-          label="特长"
-          multi
-        />
+    <!-- 特长 -->
+    <FormSelect
+      :data="type_list.specialtyType"
+      v-model="form_data!.specialty"
+      :value="form_data!.specialty"
+      label="特长"
+      multi
+    />
 
-        <!-- 属性相关 -->
-        <div class="flex-box">
-          <FormRange
-            :label="v"
-            labelWidth="200px"
-            :text="form_data![k] + '%'"
-            v-model="form_data![k]"
-            v-for="(v, k) in attr"
-            :key="k"
-          />
-        </div>
+    <!-- 属性相关 -->
+    <div class="flex-box">
+      <FormRange
+        :label="v"
+        labelWidth="200px"
+        :text="form_data![k] + '%'"
+        v-model="form_data![k]"
+        v-for="(v, k) in attr"
+        :key="k"
+      />
+    </div>
 
-        <!-- 设置头像&海报 -->
-        <div class="flex-box">
-          <FormLabel labelWidth="290px" label="头像&封面&&海报">
-            <SelectImg v-model="form_data!.headImg" title="头像" />
-            <SelectImg v-model="form_data!.cover" type="height" title="封面" />
-            <SelectImg v-model="form_data!.poster" type="width" title="海报" />
-          </FormLabel>
-        </div>
-      </div>
-    </transition>
+    <!-- 设置头像&海报 -->
+    <div class="flex-box">
+      <FormLabel labelWidth="290px" label="头像&封面&&海报">
+        <SelectImg v-model="form_data!.headImg" title="头像" />
+        <SelectImg v-model="form_data!.cover" type="height" title="封面" />
+        <SelectImg v-model="form_data!.poster" type="width" title="海报" />
+      </FormLabel>
+    </div>
 
-    <!-- 发布按钮 -->
-    <LibCommitBtn class="lib-commit-btn" size="50px" @commit="commit" :finish="finish" v-model="status" title="发布" />
-
-    <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="cancel" title="取消" />
-
-    <!-- 确认关闭 -->
-    <ConfirmClose v-model="show_ConfirmClose" @close="close" />
-  </div>
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
 </template>
 <script setup lang="ts">
 import { provide, reactive } from "vue";
@@ -99,11 +104,10 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const { show, finish, status, form_data, show_ConfirmClose, cancel, close } = viewHide<typeof heroDefault>(
-  emit,
-  "add_hero"
-);
 const { attr, info } = staticData();
+
+const { status, show, show_ConfirmClose, form_data, finish, EmitConfirmSave, EmitConfirmRemove, EmitCancelRelease } =
+  viewHide<typeof heroDefault>(emit, "add_hero");
 
 /* 判断是否存在缓存 */
 form_data.value ??= $deepCopy(heroDefault);
@@ -133,7 +137,7 @@ setTimeout(async () => {
 }, 1000);
 
 /* 发布 */
-const commit = async () => {
+const EmitCommit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value!;
   if (id && mark && name && cover && headImg && poster) {
     // await addHero(form_data.value);
