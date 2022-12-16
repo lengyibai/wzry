@@ -32,10 +32,11 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
+  color: var(--white);
   background-size: 110% 110%;
   background-color: #000;
   transition: all 0.5s;
+  cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/default.png"), auto;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
@@ -51,3 +52,4 @@ a {
   user-select: none;
   cursor: url("https://lengyibai.gitee.io/wzry-material/cursor/pointer.png"), auto;
 }
+
