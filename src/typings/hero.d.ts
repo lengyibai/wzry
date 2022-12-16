@@ -10,7 +10,7 @@ declare namespace Hero {
     cover: string; //封面
     headImg: string; //头像
     height: string; //身高
-    identity: string[]; //身份
+    identity: string; //身份
     location: string; //区域
     mark: string; //代号
     name: string; //名字
@@ -22,6 +22,7 @@ declare namespace Hero {
     skills: Skill[][]; //技能
     skins: Skin[]; //皮肤
     relationships: RelationType[];
+    [propsName: string]: any;
   }
   /** @description: 头像列表 */
   interface HeadImg {
