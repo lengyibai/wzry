@@ -127,6 +127,7 @@ const focus = () => {
 
 /* 失去焦点 */
 const blur = () => {
+  is_unfold.value = false;
   setTimeout(() => {
     no_legal.value = props.required && active_value.value === "";
     select_list.value = props.data;
@@ -134,8 +135,7 @@ const blur = () => {
     if (input_value.value !== active_value.value) {
       input_value.value = active_value.value;
     }
-    is_unfold.value = false;
-  }, 100);
+  }, 250);
 };
 
 /* 选择的数据 */
