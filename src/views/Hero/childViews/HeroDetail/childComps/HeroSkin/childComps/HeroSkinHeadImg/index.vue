@@ -17,7 +17,7 @@
       v-for="(item, index) in skins"
       :key="index"
       :style="{
-      transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-250%)' : '',
+      transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
     }"
     >
       <img @dragstart.prevent :src="item.headImg" alt="" />
