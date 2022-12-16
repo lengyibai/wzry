@@ -36,15 +36,11 @@ const show_ConfirmClose = ref(false); //是否显示确认关闭弹窗
 watch(
   () => props.status,
   (v) => {
-    console.log(v);
-
     commit_status.value = v;
   }
 );
 
 watch(commit_status, (v) => {
-  console.log(v);
-
   emit("update:status", v);
 });
 
