@@ -52,7 +52,7 @@ const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索�
 
 //技能数量
 const skill_num = computed(() => {
-  return hero_data.skills[0].length;
+  return hero_data.skills.length;
 });
 
 //皮肤数量
