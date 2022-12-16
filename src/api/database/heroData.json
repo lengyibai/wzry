@@ -17,7 +17,7 @@
       "specialty": ["突进"],
       "period": "均衡",
       "height": "186",
-      "identity": ["龙枪战士"],
+      "identity": "龙枪战士",
       "camp": "蜀"
     },
     {
@@ -37,7 +37,7 @@
       "specialty": ["爆发", "先手"],
       "period": "后期",
       "height": "165",
-      "identity": ["姜子牙所造人偶"],
+      "identity": "姜子牙所造人偶",
       "camp": "倒悬天"
     },
     {
@@ -57,7 +57,7 @@
       "specialty": ["持续输出", "减伤"],
       "period": "均衡",
       "height": "178",
-      "identity": ["吟游乐师"],
+      "identity": "吟游乐师",
       "camp": "南荒"
     },
     {
@@ -77,7 +77,7 @@
       "specialty": ["团控"],
       "period": "均衡",
       "height": "193",
-      "identity": ["玄雍武将"],
+      "identity": "玄雍武将",
       "camp": "玄雍"
     },
     {
@@ -97,7 +97,7 @@
       "specialty": ["控制", "全图支援"],
       "period": "均衡",
       "height": "171",
-      "identity": ["长安女帝"],
+      "identity": "长安女帝",
       "camp": "长安"
     },
     {
@@ -117,7 +117,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "173",
-      "identity": ["寒星家族继承人"],
+      "identity": "寒星家族继承人",
       "camp": "海都家族"
     },
     {
@@ -137,7 +137,7 @@
       "specialty": ["团控", "先手"],
       "period": "均衡",
       "height": "190",
-      "identity": ["甘丹族长"],
+      "identity": "甘丹族长",
       "camp": "稷下学院"
     },
     {
@@ -157,7 +157,7 @@
       "specialty": ["消耗", "加速"],
       "period": "后期",
       "height": "182",
-      "identity": ["玄雍君主"],
+      "identity": "玄雍君主",
       "camp": "玄雍"
     },
     {
@@ -177,7 +177,7 @@
       "specialty": ["突进", "收割"],
       "period": "后期",
       "height": "171",
-      "identity": ["复仇刺客"],
+      "identity": "复仇刺客",
       "camp": "南荒"
     },
     {
@@ -197,7 +197,7 @@
       "specialty": ["控制", "冰冻"],
       "period": "均衡",
       "height": "171",
-      "identity": ["魔道圣人之后"],
+      "identity": "魔道圣人之后",
       "camp": "魏"
     },
     {
@@ -217,7 +217,7 @@
       "specialty": ["突进"],
       "period": "后期",
       "height": "173",
-      "identity": ["稷下三贤者"],
+      "identity": "稷下三贤者",
       "camp": "稷下学院"
     },
     {
@@ -237,7 +237,7 @@
       "specialty": ["消耗", "团队增益"],
       "period": "后期",
       "height": "178",
-      "identity": ["神职者"],
+      "identity": "神职者",
       "camp": "倒悬天"
     },
     {
@@ -257,7 +257,7 @@
       "specialty": ["消耗", "群伤"],
       "period": "后期",
       "height": "157",
-      "identity": ["魔道名门之后"],
+      "identity": "魔道名门之后",
       "camp": "吴"
     },
     {
@@ -277,7 +277,7 @@
       "specialty": ["远程消耗"],
       "period": "后期",
       "height": "149",
-      "identity": ["鲁班所造之物"],
+      "identity": "鲁班所造之物",
       "camp": "玄雍"
     },
     {
@@ -297,7 +297,7 @@
       "specialty": ["团控", "突进"],
       "period": "前期",
       "height": "177",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -317,7 +317,7 @@
       "specialty": ["无"],
       "period": "均衡",
       "height": "178",
-      "identity": ["长安治安官"],
+      "identity": "长安治安官",
       "camp": "长安"
     },
     {
@@ -337,7 +337,7 @@
       "specialty": ["控制", "先手"],
       "period": "均衡",
       "height": "180",
-      "identity": ["天才学者"],
+      "identity": "天才学者",
       "camp": "灞上"
     },
     {
@@ -357,7 +357,7 @@
       "specialty": ["控制", "护盾"],
       "period": "后期",
       "height": "510",
-      "identity": ["稷下三贤者"],
+      "identity": "稷下三贤者",
       "camp": "稷下学院"
     },
     {
@@ -377,7 +377,7 @@
       "specialty": ["团队增益"],
       "period": "后期",
       "height": "175",
-      "identity": ["稷下三贤者"],
+      "identity": "稷下三贤者",
       "camp": "稷下学院"
     },
     {
@@ -397,7 +397,7 @@
       "specialty": ["团控", "团队增益"],
       "period": "后期",
       "height": "155",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -417,7 +417,7 @@
       "specialty": ["收割"],
       "period": "后期",
       "height": "183",
-      "identity": ["魏迪武将"],
+      "identity": "魏迪武将",
       "camp": "魏"
     },
     {
@@ -437,7 +437,7 @@
       "specialty": ["突进", "团控"],
       "period": "均衡",
       "height": "177",
-      "identity": ["拳僧"],
+      "identity": "拳僧",
       "camp": "长安"
     },
     {
@@ -457,7 +457,7 @@
       "specialty": ["突进"],
       "period": "均衡",
       "height": "185",
-      "identity": ["灞城武将"],
+      "identity": "灞城武将",
       "camp": "灞上"
     },
     {
@@ -477,7 +477,7 @@
       "specialty": ["无"],
       "period": "均衡",
       "height": "188",
-      "identity": ["圣骑士团领袖"],
+      "identity": "圣骑士团领袖",
       "camp": "日落圣殿"
     },
     {
@@ -497,7 +497,7 @@
       "specialty": ["突进", "收割"],
       "period": "后期",
       "height": "166",
-      "identity": ["吴地小公主"],
+      "identity": "吴地小公主",
       "camp": "吴"
     },
     {
@@ -517,7 +517,7 @@
       "specialty": ["推进", "团控"],
       "period": "前期",
       "height": "210",
-      "identity": ["蜀地继承人"],
+      "identity": "蜀地继承人",
       "camp": "蜀"
     },
     {
@@ -537,7 +537,7 @@
       "specialty": ["持续输出", "治疗"],
       "period": "后期",
       "height": "173",
-      "identity": ["医者"],
+      "identity": "医者",
       "camp": "玄雍"
     },
     {
@@ -557,7 +557,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "181",
-      "identity": ["扶桑剑客"],
+      "identity": "扶桑剑客",
       "camp": "扶桑"
     },
     {
@@ -577,7 +577,7 @@
       "specialty": ["团控", "承伤"],
       "period": "后期",
       "height": "197",
-      "identity": ["霸王"],
+      "identity": "霸王",
       "camp": "鸿门"
     },
     {
@@ -597,7 +597,7 @@
       "specialty": ["单带", "回复"],
       "period": "均衡",
       "height": "200",
-      "identity": ["名将"],
+      "identity": "名将",
       "camp": "长安"
     },
     {
@@ -617,7 +617,7 @@
       "specialty": ["控制", "冰冻"],
       "period": "均衡",
       "height": "170",
-      "identity": ["和亲公主"],
+      "identity": "和亲公主",
       "camp": "狼旗"
     },
     {
@@ -637,7 +637,7 @@
       "specialty": ["爆发", "护盾"],
       "period": "均衡",
       "height": "153",
-      "identity": ["神秘法师"],
+      "identity": "神秘法师",
       "camp": "日落圣殿"
     },
     {
@@ -657,7 +657,7 @@
       "specialty": ["吸血"],
       "period": "均衡",
       "height": "179",
-      "identity": ["魏地主公"],
+      "identity": "魏地主公",
       "camp": "魏"
     },
     {
@@ -677,7 +677,7 @@
       "specialty": ["持续输出", "推进"],
       "period": "前期",
       "height": "180",
-      "identity": ["吴地都督"],
+      "identity": "吴地都督",
       "camp": "吴"
     },
     {
@@ -697,7 +697,7 @@
       "specialty": ["团控", "团队增益"],
       "period": "前期",
       "height": "230",
-      "identity": ["魔种起义军叛徒"],
+      "identity": "魔种起义军叛徒",
       "camp": "日之塔"
     },
     {
@@ -717,7 +717,7 @@
       "specialty": ["突进", "团控"],
       "period": "后期",
       "height": "180",
-      "identity": ["魔种起义军将领"],
+      "identity": "魔种起义军将领",
       "camp": "日之塔"
     },
     {
@@ -737,7 +737,7 @@
       "specialty": ["持续输出", "回复"],
       "period": "前期",
       "height": "175",
-      "identity": ["玄雍太后"],
+      "identity": "玄雍太后",
       "camp": "玄雍"
     },
     {
@@ -757,7 +757,7 @@
       "specialty": ["持续输出", "真伤"],
       "period": "后期",
       "height": "172",
-      "identity": ["绝世舞姬"],
+      "identity": "绝世舞姬",
       "camp": "魏"
     },
     {
@@ -777,7 +777,7 @@
       "specialty": ["收割"],
       "period": "后期",
       "height": "192",
-      "identity": ["重生的战神"],
+      "identity": "重生的战神",
       "camp": "魏"
     },
     {
@@ -797,7 +797,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "174",
-      "identity": ["长城守卫军队长"],
+      "identity": "长城守卫军队长",
       "camp": "长城守卫军"
     },
     {
@@ -817,7 +817,7 @@
       "specialty": ["团控", "先手"],
       "period": "后期",
       "height": "183",
-      "identity": ["神职者", "神射手"],
+      "identity": "神职者/神射手",
       "camp": "日之塔"
     },
     {
@@ -837,7 +837,7 @@
       "specialty": ["团控", "团队增益"],
       "period": "均衡",
       "height": "186",
-      "identity": ["蜀地武将"],
+      "identity": "蜀地武将",
       "camp": "蜀"
     },
     {
@@ -857,7 +857,7 @@
       "specialty": ["突进", "收割"],
       "period": "前期",
       "height": "178",
-      "identity": ["蜀地主公"],
+      "identity": "蜀地主公",
       "camp": "蜀"
     },
     {
@@ -877,7 +877,7 @@
       "specialty": ["突进", "收割"],
       "period": "前期",
       "height": "179",
-      "identity": ["金庭城王子"],
+      "identity": "金庭城王子",
       "camp": "云中漠地"
     },
     {
@@ -897,7 +897,7 @@
       "specialty": ["突进"],
       "period": "后期",
       "height": "154",
-      "identity": ["扶桑巫女"],
+      "identity": "扶桑巫女",
       "camp": "扶桑"
     },
     {
@@ -917,7 +917,7 @@
       "specialty": ["突进", "收割"],
       "period": "后期",
       "height": "184",
-      "identity": ["天才刺客"],
+      "identity": "天才刺客",
       "camp": "长安"
     },
     {
@@ -937,7 +937,7 @@
       "specialty": ["控制", "先手"],
       "period": "前期",
       "height": "355",
-      "identity": ["长安城守护者"],
+      "identity": "长安城守护者",
       "camp": "长安"
     },
     {
@@ -957,7 +957,7 @@
       "specialty": ["突进", "收割"],
       "period": "前期",
       "height": "152",
-      "identity": ["长安密保"],
+      "identity": "长安密保",
       "camp": "长安"
     },
     {
@@ -977,7 +977,7 @@
       "specialty": ["支援"],
       "period": "均衡",
       "height": "179",
-      "identity": ["灞城统治者"],
+      "identity": "灞城统治者",
       "camp": "灞上"
     },
     {
@@ -997,7 +997,7 @@
       "specialty": ["爆发", "突进"],
       "period": "均衡",
       "height": "165",
-      "identity": ["不知火流继承人"],
+      "identity": "不知火流继承人",
       "camp": "扶桑"
     },
     {
@@ -1017,7 +1017,7 @@
       "specialty": ["突进", "远程消耗"],
       "period": "均衡",
       "height": "173",
-      "identity": ["自然巡游者"],
+      "identity": "自然巡游者",
       "camp": "鸿门"
     },
     {
@@ -1037,7 +1037,7 @@
       "specialty": ["突进", "先手"],
       "period": "均衡",
       "height": "191",
-      "identity": ["蜀地武将"],
+      "identity": "蜀地武将",
       "camp": "蜀"
     },
     {
@@ -1057,7 +1057,7 @@
       "specialty": ["团队增益", "回复"],
       "period": "均衡",
       "height": "180",
-      "identity": ["音乐天才少女"],
+      "identity": "音乐天才少女",
       "camp": "魏"
     },
     {
@@ -1077,7 +1077,7 @@
       "specialty": ["突进", "团控"],
       "period": "前期",
       "height": "186",
-      "identity": ["蜀地武将"],
+      "identity": "蜀地武将",
       "camp": "魏"
     },
     {
@@ -1097,7 +1097,7 @@
       "specialty": ["突进"],
       "period": "前期",
       "height": "178",
-      "identity": ["神的继承者"],
+      "identity": "神的继承者",
       "camp": "日落圣殿"
     },
     {
@@ -1117,7 +1117,7 @@
       "specialty": ["远程消耗"],
       "period": "均衡",
       "height": "179",
-      "identity": ["冒险家"],
+      "identity": "冒险家",
       "camp": "海都家族"
     },
     {
@@ -1137,7 +1137,7 @@
       "specialty": ["突进", "回复"],
       "period": "前期",
       "height": "176",
-      "identity": ["扶桑剑客"],
+      "identity": "扶桑剑客",
       "camp": "扶桑"
     },
     {
@@ -1157,7 +1157,7 @@
       "specialty": ["先手", "收割"],
       "period": "后期",
       "height": "177",
-      "identity": ["狼旗首领"],
+      "identity": "狼旗首领",
       "camp": "狼旗"
     },
     {
@@ -1177,7 +1177,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "185",
-      "identity": ["神职者"],
+      "identity": "神职者",
       "camp": "倒悬天"
     },
     {
@@ -1197,7 +1197,7 @@
       "specialty": ["团队增益"],
       "period": "前期",
       "mark": "炼金大师",
-      "identity": ["炼金师"],
+      "identity": "炼金师",
       "camp": "倒悬天"
     },
     {
@@ -1217,7 +1217,7 @@
       "specialty": ["突进", "吸收伤害"],
       "period": "后期",
       "height": "175",
-      "identity": ["陈塘关长官之子"],
+      "identity": "陈塘关长官之子",
       "camp": "倒悬天"
     },
     {
@@ -1237,7 +1237,7 @@
       "specialty": ["爆发", "收割"],
       "period": "后期",
       "height": "183",
-      "identity": ["蜀地军师"],
+      "identity": "蜀地军师",
       "camp": "蜀"
     },
     {
@@ -1257,7 +1257,7 @@
       "specialty": ["收割", "远程消耗"],
       "period": "后期",
       "height": "187",
-      "identity": ["机关炮老兵"],
+      "identity": "机关炮老兵",
       "camp": "蜀"
     },
     {
@@ -1277,7 +1277,7 @@
       "specialty": ["团队增益"],
       "period": "均衡",
       "height": "168",
-      "identity": ["魔道名门继承人"],
+      "identity": "魔道名门继承人",
       "camp": "吴"
     },
     {
@@ -1297,7 +1297,7 @@
       "specialty": ["回复", "持续控制"],
       "period": "前期",
       "height": "215",
-      "identity": ["东神之城统治者"],
+      "identity": "东神之城统治者",
       "camp": "云梦泽"
     },
     {
@@ -1317,7 +1317,7 @@
       "specialty": ["爆发", "超远视距"],
       "period": "后期",
       "height": "237",
-      "identity": ["铸剑师"],
+      "identity": "铸剑师",
       "camp": "云梦泽"
     },
     {
@@ -1337,7 +1337,7 @@
       "specialty": ["团控"],
       "period": "均衡",
       "height": "150",
-      "identity": ["博学者"],
+      "identity": "博学者",
       "camp": "云梦泽"
     },
     {
@@ -1357,7 +1357,7 @@
       "specialty": ["无"],
       "period": "后期",
       "height": "188",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1377,7 +1377,7 @@
       "specialty": ["远程消耗"],
       "period": "前期",
       "height": "182",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1397,7 +1397,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "171",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1417,7 +1417,7 @@
       "specialty": ["团控", "先手"],
       "period": "前期",
       "height": "208",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1437,7 +1437,7 @@
       "specialty": ["单带", "突进"],
       "period": "均衡",
       "height": "97",
-      "identity": ["食梦者"],
+      "identity": "食梦者",
       "camp": "倒悬天"
     },
     {
@@ -1457,7 +1457,7 @@
       "specialty": ["消耗", "传送"],
       "period": "后期",
       "height": "180",
-      "identity": ["神"],
+      "identity": "神",
       "camp": "倒悬天"
     },
     {
@@ -1477,7 +1477,7 @@
       "specialty": ["团队增益"],
       "period": "均衡",
       "height": "181",
-      "identity": ["尧天组织首领"],
+      "identity": "尧天组织首领",
       "camp": "尧天"
     },
     {
@@ -1497,7 +1497,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "169",
-      "identity": ["长安坊舞者"],
+      "identity": "长安坊舞者",
       "camp": "尧天"
     },
     {
@@ -1517,7 +1517,7 @@
       "specialty": ["持续输出", "治疗"],
       "period": "后期",
       "height": "169",
-      "identity": ["长安坊乐师"],
+      "identity": "长安坊乐师",
       "camp": "尧天"
     },
     {
@@ -1537,7 +1537,7 @@
       "specialty": ["远程消耗", "收割"],
       "period": "前期",
       "height": "177",
-      "identity": ["拳师"],
+      "identity": "拳师",
       "camp": "尧天"
     },
     {
@@ -1557,7 +1557,7 @@
       "specialty": ["消耗", "团控"],
       "period": "均衡",
       "height": "170",
-      "identity": ["少年棋手"],
+      "identity": "少年棋手",
       "camp": "尧天"
     },
     {
@@ -1577,7 +1577,7 @@
       "specialty": ["突进", "团控"],
       "period": "前期",
       "height": "171",
-      "identity": ["海都佣兵"],
+      "identity": "海都佣兵",
       "camp": "海都家族"
     },
     {
@@ -1597,7 +1597,7 @@
       "specialty": ["持续输出", "推进"],
       "period": "前期",
       "height": "169",
-      "identity": ["海都执政者"],
+      "identity": "海都执政者",
       "camp": "海都家族"
     },
     {
@@ -1617,7 +1617,7 @@
       "specialty": ["先手"],
       "period": "均衡",
       "height": "182",
-      "identity": ["机关傀儡师"],
+      "identity": "机关傀儡师",
       "camp": "蜀"
     },
     {
@@ -1637,7 +1637,7 @@
       "specialty": ["团控", "先手"],
       "period": "均衡",
       "height": "185",
-      "identity": ["江东小霸王"],
+      "identity": "江东小霸王",
       "camp": "吴"
     },
     {
@@ -1657,7 +1657,7 @@
       "specialty": ["突进"],
       "period": "前期",
       "height": "184",
-      "identity": ["魏地军师"],
+      "identity": "魏地军师",
       "camp": "魏"
     },
     {
@@ -1677,7 +1677,7 @@
       "specialty": ["持续控制", "格挡"],
       "period": "均衡",
       "height": "283",
-      "identity": ["修筑长城的机械"],
+      "identity": "修筑长城的机械",
       "camp": "长城守卫军"
     },
     {
@@ -1697,7 +1697,7 @@
       "specialty": ["远程消耗", "团队增益"],
       "period": "后期",
       "height": "172",
-      "identity": ["千窟城继承者"],
+      "identity": "千窟城继承者",
       "camp": "长城守卫军"
     },
     {
@@ -1717,7 +1717,7 @@
       "specialty": ["消耗", "加速"],
       "period": "前期",
       "height": "151",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1737,7 +1737,7 @@
       "specialty": ["突进", "团控"],
       "period": "均衡",
       "height": "187",
-      "identity": ["长城守卫军成员"],
+      "identity": "长城守卫军成员",
       "camp": "长城守卫军"
     },
     {
@@ -1757,7 +1757,7 @@
       "specialty": ["爆发", "突进"],
       "period": "前期",
       "height": "170",
-      "identity": ["女帝密探"],
+      "identity": "女帝密探",
       "camp": "长安"
     },
     {
@@ -1777,7 +1777,7 @@
       "specialty": ["持续输出", "法力护盾"],
       "period": "前期",
       "height": "171",
-      "identity": ["魔道家族公主"],
+      "identity": "魔道家族公主",
       "camp": "日之塔"
     },
     {
@@ -1797,7 +1797,7 @@
       "specialty": ["团控", "回复"],
       "period": "均衡",
       "height": "183",
-      "identity": ["魔种起义军将领"],
+      "identity": "魔种起义军将领",
       "camp": "日之塔"
     },
     {
@@ -1817,7 +1817,7 @@
       "specialty": ["突进", "收割"],
       "period": "前期",
       "height": "212",
-      "identity": ["神"],
+      "identity": "神",
       "camp": "倒悬天"
     },
     {
@@ -1837,7 +1837,7 @@
       "specialty": ["团队增益"],
       "period": "均衡",
       "height": "162",
-      "identity": ["鹿灵转生者"],
+      "identity": "鹿灵转生者",
       "camp": "云梦泽"
     },
     {
@@ -1857,7 +1857,7 @@
       "specialty": ["突进", "收割"],
       "period": "前期",
       "height": "182",
-      "identity": ["孤鸟转生者"],
+      "identity": "孤鸟转生者",
       "camp": "云梦泽"
     },
     {
@@ -1877,7 +1877,7 @@
       "specialty": ["无"],
       "period": "均衡",
       "height": "176",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -1897,7 +1897,7 @@
       "specialty": ["突进", "远程消耗"],
       "period": "均衡",
       "height": "180",
-      "identity": ["蜀地将领"],
+      "identity": "蜀地将领",
       "camp": "蜀"
     },
     {
@@ -1917,7 +1917,7 @@
       "specialty": ["控制", "距离增伤"],
       "period": "均衡",
       "height": "163",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -1937,7 +1937,7 @@
       "specialty": ["无"],
       "period": "前期",
       "height": "192",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -1957,7 +1957,7 @@
       "specialty": ["远程消耗"],
       "period": "前期",
       "height": "150",
-      "identity": ["稷下学生"],
+      "identity": "稷下学生",
       "camp": "稷下学院"
     },
     {
@@ -1977,7 +1977,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "170",
-      "identity": ["阴曲情报专员"],
+      "identity": "阴曲情报专员",
       "camp": "玄雍"
     },
     {
@@ -1997,7 +1997,7 @@
       "specialty": ["突进"],
       "period": "前期",
       "height": "190",
-      "identity": ["玄雍护国大将军"],
+      "identity": "玄雍护国大将军",
       "camp": "玄雍"
     },
     {
@@ -2017,7 +2017,7 @@
       "specialty": ["团队增益", "团控"],
       "period": "前期",
       "height": "145",
-      "identity": ["狼孩"],
+      "identity": "狼孩",
       "camp": "蜀"
     },
     {
@@ -2037,7 +2037,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "待调查",
-      "identity": ["贵族剑士"],
+      "identity": "贵族剑士",
       "camp": "日落圣殿"
     },
     {
@@ -2057,7 +2057,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "180",
-      "identity": ["前魏都杀手"],
+      "identity": "前魏都杀手",
       "camp": "吴"
     },
     {
@@ -2077,7 +2077,7 @@
       "specialty": ["爆发"],
       "period": "均衡",
       "height": "190",
-      "identity": ["长安大司空"],
+      "identity": "长安大司空",
       "camp": "长安"
     },
     {
@@ -2097,7 +2097,7 @@
       "specialty": ["持续输出"],
       "period": "中期",
       "height": "165",
-      "identity": ["精灵公主"],
+      "identity": "精灵公主",
       "camp": "日落圣殿"
     },
     {
@@ -2117,7 +2117,7 @@
       "specialty": ["突进", "灵活"],
       "period": "中期",
       "height": "165",
-      "identity": ["将门之后"],
+      "identity": "将门之后",
       "camp": "长安"
     },
     {
@@ -2137,7 +2137,7 @@
       "specialty": ["远程消耗", "团队增益"],
       "period": "无期",
       "height": "180",
-      "identity": ["西行修行者"],
+      "identity": "西行修行者",
       "camp": "长安"
     },
     {
@@ -2157,7 +2157,7 @@
       "specialty": ["突进", "收割"],
       "period": "均衡",
       "height": "180",
-      "identity": ["玉城大王子"],
+      "identity": "玉城大王子",
       "camp": "云中漠地"
     },
     {
@@ -2177,7 +2177,7 @@
       "specialty": ["团控", "团队增益"],
       "period": "均衡",
       "height": "166",
-      "identity": ["萤火的旅行者"],
+      "identity": "萤火的旅行者",
       "camp": "云中漠地"
     },
     {
@@ -2197,7 +2197,7 @@
       "specialty": ["远程消耗"],
       "period": "均衡",
       "height": "170",
-      "identity": ["沙海船帮头子"],
+      "identity": "沙海船帮头子",
       "camp": "云中漠地"
     },
     {
@@ -2217,7 +2217,7 @@
       "specialty": ["远程消耗"],
       "period": "前期",
       "height": "170",
-      "identity": ["月裔", "云中蝶饲养人"],
+      "identity": "月裔/云中蝶饲养人",
       "camp": "云中漠地"
     },
     {
@@ -2237,7 +2237,7 @@
       "specialty": ["防御反击"],
       "period": "均很",
       "height": "181",
-      "identity": ["玄都观修道者"],
+      "identity": "玄都观修道者",
       "camp": "长安城"
     }
   ]
