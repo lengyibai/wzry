@@ -83,9 +83,8 @@ interface Props {
   disabled?: boolean; //是否禁用
   required?: boolean; //是否必填
   label?: string; //左侧文字
-  keyword?: string; //
-  value?: string | any[]; //
-  multi?: boolean;
+  value?: string | any[]; //输入框默认值
+  multi?: boolean; //是否支持多选
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -96,7 +95,6 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   required: false,
   label: "标题",
-  keyword: "",
   value: "",
 });
 
