@@ -1,6 +1,10 @@
 import { ref } from "vue";
 
-export default <T>(emit: (event: "update:modelValue", ...args: any[]) => void, key: string) => {
+interface Emits {
+  (e: "update:modelValue", v: boolean): void;
+}
+
+export default <T>(emit: Emits, key: string) => {
   const show = ref(false); //是否显示页面
   const timer = ref<Interval>(); //自动保存计时器
   const finish = ref(false); //是否发布成功
@@ -51,15 +55,13 @@ export default <T>(emit: (event: "update:modelValue", ...args: any[]) => void, k
     close();
   };
   return {
-    show,
-    finish,
     status,
+    show,
     show_ConfirmClose,
-    timer,
     form_data,
-    hero_id,
-    EmitCancelRelease,
-    EmitConfirmRemove,
+    finish,
     EmitConfirmSave,
+    EmitConfirmRemove,
+    EmitCancelRelease,
   };
 };
