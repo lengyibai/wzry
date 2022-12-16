@@ -36,6 +36,14 @@ const close = () => {
   overflow: hidden;
   border-radius: 50%;
 
+  &:hover {
+    filter: saturate(2);
+  }
+
+  &:active {
+    filter: brightness(0.75);
+  }
+
   img {
     width: 75%;
     height: 75%;
