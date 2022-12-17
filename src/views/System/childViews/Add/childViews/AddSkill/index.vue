@@ -246,6 +246,9 @@ const EmitSelectEffect = (v: string | number | any[]) => {
 
 /* 添加一行 */
 const handleAddEffect = () => {
+  if (effectIndex.value === -1) {
+    effectIndex.value = activeSkill().effect!.length - 1;
+  }
   if (effectIndex.value !== -1 && !skill_effect.value) return;
   effectIndex.value++;
   activeSkill().effect![effectIndex.value] ??= $deepCopy(skillEffectDefault);
