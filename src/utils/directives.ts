@@ -57,8 +57,8 @@ const parallaxImg = {
   },
 };
 
-let particle_timer: Timeout = 0;
 //纵向
+let particle_timer: Timeout = 0;
 const particle = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const box = el;
@@ -107,7 +107,7 @@ const particle = {
       el.style.filter = "";
     });
   },
-  unbind() {
+  beforeUnmount() {
     clearInterval(particle_timer);
   },
 };
