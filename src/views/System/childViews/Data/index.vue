@@ -4,17 +4,17 @@
       :data="tableData"
       :head="['数据类型', '数量', '状态', '操作']"
       :sort="['数据量']"
-      @sortChange="sortChange"
+      @sortChange="EmitsSortChange"
     >
       <template v-slot:body="{ data }">
         <TableColumn minWidth="175px">{{ data.name }}</TableColumn>
         <TableColumn minWidth="100px">{{ data.data.length }}</TableColumn>
         <TableColumn minWidth="200px">{{ data.status }}</TableColumn>
         <TableColumn width="500px" minWidth="425px">
-          <button class="export lib-click" @click="handleExport(data)">导出</button>
+          <button class="check lib-click" @click="handleCheck(data)">检查更新</button>
+          <button class="export lib-click" @click="handleExport(data)" v-if="data.status === '本地已更改'">导出</button>
           <button class="update lib-click" v-if="data.status === '待更新'" @click="handleUpdate(data)">更新</button>
-          <button class="check lib-click" @click="handleCheck(data)">检查更新</button
-          ><button
+          <button
             class="replace lib-click"
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
             @click="handleReplace(data)"
@@ -26,7 +26,7 @@
     </LibTable>
     <ConfirmClose
       v-model="show_ConfirmClose"
-      @close="closeConfirmClose"
+      @confirm="EmitConfirmReset"
       text="即将从远程下载当前数据进行覆盖"
       title="确认重置"
     />
@@ -63,12 +63,10 @@ const handleReplace = (data: any) => {
 };
 
 /* 确认覆盖 */
-const closeConfirmClose = async (status: boolean) => {
-  if (status) {
-    const v = (await requests[replace_data.key]()).data;
-    updateData(replace_data.key, v);
-    handleCheck(replace_data);
-  }
+const EmitConfirmReset = async () => {
+  const v = (await requests[replace_data.key]()).data;
+  updateData(replace_data.key, v);
+  handleCheck(replace_data);
 };
 
 /* 更新指定 */
@@ -80,7 +78,7 @@ const handleUpdate = async (data: any) => {
 };
 
 /* 排序触发 */
-const sortChange = (v: number[]) => {
+const EmitsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
     tableData.value = $typeSort(tableData.value, "length", v[1] === 1 ? true : false);
   } else {
