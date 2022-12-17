@@ -19,7 +19,7 @@
       </div>
 
       <!-- 数字 -->
-      <div class="nums" v-if="item.cd">
+      <div class="nums" v-if="item.cd || item.consume">
         <div class="cd">CD：{{ item.cd }}</div>
         <div class="consume">法力消耗：{{ item.consume }}</div>
       </div>
