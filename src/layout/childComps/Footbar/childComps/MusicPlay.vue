@@ -50,7 +50,7 @@ async function musicPlay(isReset = true) {
   /* 实时设置播放进度 */
   $frameInterval(() => {
     progress.value = $potEoPct(bgm.currentTime / bgm.duration);
-  }, 300);
+  }, 500);
 
   /* 播放结束后执行下一次播放 */
   bgm.onended = () => {
