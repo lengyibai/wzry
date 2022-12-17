@@ -49,7 +49,7 @@
               active: currentIndex === index || modelValue === item.name || modelValue === item.id,
             }"
             v-for="(item, index) in select_list"
-            @click="select(item.id, item.name)"
+            @mousedown="select(item.id, item.name)"
             @mouseenter="currentIndex = index"
             @mouseleave="currentIndex = null"
             :key="item.id"
@@ -128,14 +128,12 @@ const focus = () => {
 /* 失去焦点 */
 const blur = () => {
   is_unfold.value = false;
-  setTimeout(() => {
-    no_legal.value = props.required && active_value.value === "";
-    select_list.value = props.data;
-    // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
-    if (input_value.value !== active_value.value) {
-      input_value.value = active_value.value;
-    }
-  }, 250);
+  no_legal.value = props.required && active_value.value === "";
+  select_list.value = props.data;
+  // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
+  if (input_value.value !== active_value.value) {
+    input_value.value = active_value.value;
+  }
 };
 
 /* 选择的数据 */
