@@ -11,32 +11,6 @@
   flex-direction: column;
   user-select: none;
 
-  &:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 5px 15px 2.5px rgb(0 0 0 / 75%);
-
-    .bottom {
-      .name {
-        transform: translateX(-100px) scale(1.25);
-        opacity: 0;
-      }
-
-      .mark {
-        transform: translateX(100px) scale(1.25);
-        opacity: 0;
-      }
-    }
-
-    .id {
-      transform: scale(1.5);
-      opacity: 0;
-    }
-
-    .bg {
-      transform: scale(1.15);
-    }
-  }
-
   .id {
     z-index: 1;
     margin: 15px;
@@ -242,5 +216,31 @@
         font-size: 14px;
       }
     }
+  }
+}
+
+.hide {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 5px 15px 2.5px rgb(0 0 0 / 75%);
+
+  .bottom {
+    .name {
+      transform: translateX(-100px) scale(1.25);
+      opacity: 0;
+    }
+
+    .mark {
+      transform: translateX(100px) scale(1.25);
+      opacity: 0;
+    }
+  }
+
+  .id {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+
+  .bg {
+    transform: scale(1.15);
   }
 }

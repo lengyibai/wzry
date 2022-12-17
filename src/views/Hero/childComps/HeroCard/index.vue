@@ -1,5 +1,12 @@
 <template>
-  <div class="hero-card" v-maskGradient v-sweepLight @mouseenter="show = true" @mouseleave="show = false">
+  <div
+    class="hero-card"
+    :class="{ hide: show }"
+    v-maskGradient
+    v-sweepLight
+    @mousedown="show = true"
+    @mouseleave="show = false"
+  >
     <span class="id">No.{{ data.id }}</span>
     <transition name="fade">
       <div class="select-mask" v-if="show">
