@@ -54,14 +54,14 @@ $heroDetailStore.setScollFn((index) => {
 
 /* 点击需要展示的技能 */
 const emit = defineEmits<{
-  (e: "select-skill", skills: Hero.Skill): void;
+  (e: "select-skill", skills: [Hero.Skill, number]): void;
 }>();
 
 /* 点击技能后传递索引号 */
 const handleSelectSkill = (index: number) => {
   currentIndex.value = index;
   $heroDetailStore.skillToggler(index);
-  emit("select-skill", calcActiveSkill.value);
+  emit("select-skill", [calcActiveSkill.value, index]);
 };
 handleSelectSkill(0);
 

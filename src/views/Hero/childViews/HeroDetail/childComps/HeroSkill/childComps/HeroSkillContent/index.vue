@@ -3,9 +3,10 @@
     <HeroSkillContentLeft
       :class="{ 'hide-left': !show || toggle }"
       :activeSkill="skill"
-      :style="{ width: is_passive ? '45%' : '100%' }"
+      :isPassive="index === 0"
+      :style="{ width: exist_effect ? '45%' : '100%' }"
     />
-    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="is_passive" />
+    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="exist_effect" />
   </div>
 </template>
 <script setup lang="ts">
@@ -17,10 +18,12 @@ import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"
 
 interface Props {
   skill: Hero.Skill;
+  index: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   skill: () => skillDefault,
+  index: 0,
 });
 
 const $heroDetail = heroDetail();
@@ -28,7 +31,7 @@ const $heroDetail = heroDetail();
 const show = ref(false); // 左右两边的入场动画
 const toggle = ref(false); //用于技能选择
 
-const is_passive = computed(() => props.skill.effect?.length); //是否为被动
+const exist_effect = computed(() => props.skill.effect?.length); //是否存在技能效果
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn((index) => {
