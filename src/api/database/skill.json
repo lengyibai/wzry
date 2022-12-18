@@ -6340,6 +6340,1930 @@
           }
         ]
       ]
+    },
+    {
+      "id": 85,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "破魔之箭",
+            "desc": "<p>普攻与技能伤害会优先对目标的护盾效果造成一次等额的伤害。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jialuo/jineng/0.png",
+            "type": ["破盾"],
+            "effect": []
+          },
+          {
+            "cd": 1,
+            "consume": 0,
+            "name": "渡灵之箭",
+            "desc": "<p>展开长弓，攻击间隔增长25%并提升150点射程，同时每次射击消耗50点法力，并对目标每0.5秒额外造成45<span style=\"color: rgb(231, 95, 51);\">(+5%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>持续2秒。</p><p><span style=\"color: rgb(245, 219, 77);\">关闭长弓：提升20点移速，恢复攻速和射程，同时每次射击回复5</span><span style=\"color: rgb(231, 95, 51);\">(+1%物理攻击)</span><span style=\"color: rgb(245, 219, 77);\">点法力，攻击英雄回复量额外提升200%。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jialuo/jineng/1.png",
+            "type": ["强化", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["45", "47", "49", "51", "53", "55"]
+              }
+            ]
+          },
+          {
+            "cd": 12,
+            "consume": 75,
+            "name": "静默之箭",
+            "desc": "<p>向指定方向射出破魔之箭，对路径上的敌人造成250<span style=\"color: rgb(231, 95, 51);\">(+40%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>与0.5秒沉默及50%减速持续1秒，箭矢穿过区域在1秒后会爆炸对范围内敌人造成500<span style=\"color: rgb(231, 95, 51);\">(+80%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jialuo/jineng/2.png",
+            "type": ["法伤", "控制"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "280", "310", "340", "370", "400"]
+              },
+              {
+                "type": "二段伤害",
+                "phase": ["500", "560", "620", "680", "740", "800"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.2", "10.4", "9.6", "8.8", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 100,
+            "name": "纯净之域",
+            "desc": "<p>张开法阵持续8秒，在法阵范围内时提升自身30%暴击率和攻速，法阵在张开和关闭的瞬间会对范围内敌军造成250<span style=\"color: rgb(231, 95, 51);\">(+75%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>，关闭时会对尚在法阵中的友军产生持续3秒的20%暴击率与20%移速增加效果。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：暴击会对目标造成30%减速持续0.5秒，如果1秒内再次触发此效果，减速比例会提升为50%。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jialuo/jineng/3.png",
+            "type": ["强化", "加速", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "350", "450"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 86,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "暴躁节奏",
+            "desc": "<p>沈梦溪的技能会点燃敌人并暴露其视野，持续3秒。普攻命中被点燃的敌人会造成100<span style=\"color: rgb(106, 57, 201);\">(+16%法术攻击)法术伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">沈梦溪死亡后复活时获得3颗炸弹。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shenmengxi/jineng/0.png",
+            "type": ["视野", "法伤"],
+            "effect": []
+          },
+          {
+            "cd": 3,
+            "consume": 1,
+            "name": "猫咪炸弹",
+            "desc": "<p>蓄力状态下每0.75秒朝目标位置投掷炸弹造成340<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>。</p><p><span style=\"color: rgb(245, 219, 77);\">自燃状态：【猫咪炸弹】将锁定敌人，命中后将敌人击退造成360</span><span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span><span style=\"color: rgb(245, 219, 77);\">，同时炸弹会弹落爆炸造成405</span><span style=\"color: rgb(106, 57, 201);\">(+45%法术攻击)法术伤害</span><span style=\"color: rgb(245, 219, 77);\">。</span></p><p><span style=\"color: rgb(140, 140, 140);\">自燃状态下使用【猫咪炸弹】的冷却为5秒。沈梦溪共拥有10颗炸弹，每次投掷消耗1颗，最多可以连续投掷5颗。炸弹每5秒获得一枚，受冷却影响。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shenmengxi/jineng/1.png",
+            "type": ["法伤", "控制"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["340", "390", "440", "490", "540", "590"]
+              },
+              {
+                "type": "击退伤害",
+                "phase": ["360", "408", "456", "504", "552", "600"]
+              },
+              {
+                "type": "爆炸伤害",
+                "phase": ["405", "459", "513", "567", "621", "675"]
+              }
+            ]
+          },
+          {
+            "cd": 12,
+            "consume": 1,
+            "name": "正常操作",
+            "desc": "<p>点燃一颗炸弹，增加100%移速并持续衰减，5秒后炸弹会被引爆将沈梦溪朝前炸出一段距离，同时会将路径上的敌人炸晕并造成500<span style=\"color: rgb(106, 57, 201);\">(+65%法术攻击)法术伤害</span>。自燃期间可手动熄灭火焰并返还一颗炸弹，冷却根据已燃烧的时间增加。</p><p><span style=\"color: rgb(140, 140, 140);\">自燃期间【猫咪炸弹】的投掷方式和冷却将会发生变化。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shenmengxi/jineng/2.png",
+            "type": ["加速", "控制", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["500", "560", "620", "680", "740", "800"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.5", "11", "10.5", "10", "9.5"]
+              }
+            ]
+          },
+          {
+            "cd": 5,
+            "consume": 0,
+            "name": "综合爆款",
+            "desc": "<p>蓄力后投掷一枚混合炸弹对敌人造成500<span style=\"color: rgb(106, 57, 201);\">(+50%法术攻击)法术伤害</span>，并在2秒内造成250<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>，同时分裂出3枚猫咪炸弹朝四周散落，对敌人造成250<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>。</p><p>炸弹投掷的最远距离和蓄力时间成正比，蓄力2秒后射程达到上限。混合炸弹每50秒获得一枚，最多可以储存2枚，获取速度受冷却影响。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shenmengxi/jineng/3.png",
+            "type": ["法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["500", "700", "900"]
+              },
+              {
+                "type": "二段伤害",
+                "phase": ["250", "350", "450"]
+              },
+              {
+                "type": "持续伤害",
+                "phase": ["250", "350", "450"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 87,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "灰暗利刃",
+            "desc": "<p>逐渐解放力量，普攻与2技能命中英雄能够额外获得10点经验值。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/0.png",
+            "type": ["经验"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "急速突进",
+            "desc": "<p>向指定方向进行突进。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/1.png",
+            "type": ["位移"],
+            "effect": [
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7", "6", "5", "4", "3"]
+              }
+            ]
+          },
+          {
+            "cd": 5,
+            "consume": 0,
+            "name": "强力斩击",
+            "desc": "<p>向指定方向斩出剑气，对路径上敌人造成300<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>和50%减速持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/2.png",
+            "type": ["减速", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["300", "350", "400", "450", "500", "550"]
+              }
+            ]
+          },
+          {
+            "cd": 30,
+            "consume": 0,
+            "name": "力量觉醒·光",
+            "desc": "<p>学习大招的瞬间解放魔道家族的力量，改变战斗形态至统御。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/3.png",
+            "type": ["转换"],
+            "effect": []
+          },
+          {
+            "cd": 30,
+            "consume": 0,
+            "name": "力量觉醒·暗",
+            "desc": "<p>学习大招的瞬间解放狂暴复仇的力量，改变战斗形态至狂暴。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/4.png",
+            "type": ["转换"],
+            "effect": []
+          }
+        ],
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "狂暴利刃",
+            "desc": "<p>李信进行普攻后暗影会追加一次普攻，李信造成<span style=\"color: rgb(231, 95, 51);\">(100%物理攻击)物理伤害</span>，暗影造成65~205<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，在该形态下增加30点移速。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/00.png",
+            "type": ["加速", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 10,
+            "consume": 0,
+            "name": "无畏冲锋",
+            "desc": "<p>李信积蓄力量发起冲锋，移除自身减速效果、增加150点移动速度和每0.5秒50点生命回复，蓄力冲锋期间免疫控制。</p><p>蓄力超过1秒，会提升40%攻速持续3秒，同时蓄力增加的移速会在2秒内缓慢结束。</p><p><span style=\"color: rgb(245, 219, 77);\">李信每次普攻命中敌人都可以减少【无畏冲锋】1秒的冷却时间。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/11.png",
+            "type": ["加速", "霸体", "回复"],
+            "effect": [
+              {
+                "type": "回复生命",
+                "phase": ["50", "70", "90", "110", "130", "150"]
+              },
+              {
+                "type": "提升攻速",
+                "phase": ["40", "46", "52", "58", "64", "70"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "残暴撕裂",
+            "desc": "<p>李信向指定方向斩出剑气，对命中的敌人造成280<span style=\"color: rgb(231, 95, 51);\">(+80%物理攻击)物理伤害</span>和50%减速持续2秒，同时撕裂敌人，普攻对撕裂目标额外造成90<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，若撕裂目标是英雄，则额外回复55点生命。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/22.png",
+            "type": ["减速", "回复", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["280", "330", "380", "430", "480", "530"]
+              },
+              {
+                "type": "额外伤害",
+                "phase": ["90", "108", "126", "144", "162", "180"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["55", "65", "75", "85", "95", "105"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.4", "6.8", "6.2", "5.6", "5"]
+              }
+            ]
+          },
+          {
+            "cd": 25,
+            "consume": 0,
+            "name": "暗影爆发",
+            "desc": "<p>李信释放力量布下法阵，法阵短暂延迟后爆发，对范围内敌人造成600<span style=\"color: rgb(231, 95, 51);\">(+120%物理攻击)物理伤害</span>和0.75秒击飞。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/33.png",
+            "type": ["控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["600", "900", "1200"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["25", "20", "15"]
+              }
+            ]
+          },
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "力量掌控",
+            "desc": "<p>压制身体内狂暴的力量，转化为统御形态，变身过程无法被控制技能打断。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/4.png",
+            "type": ["转换"],
+            "effect": []
+          }
+        ],
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "辉耀利刃",
+            "desc": "<p>李信释放技能后会强化下一次普攻，强化普攻具有穿透效果和更远的射程，并额外造成50%伤害，强化普攻或技能命中敌人将会减少所有技能1秒的冷却。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/000.png",
+            "type": ["强化", "冷却", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "希望之跃",
+            "desc": "<p>李信进行蓄力，在蓄力过程中获得免控和25%免伤效果，蓄力后向指定方向突进并造成50<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)</span>~150<span style=\"color: rgb(231, 95, 51);\">(+150%物理攻击)物理伤害</span>并附加目标12%已损生命的物理伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">蓄力1秒后伤害达到上限，蓄力打断返还40%的冷却。在突进时仍会有免控效果。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/111.png",
+            "type": ["位移", "霸体", "减伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["50", "60", "70", "80", "90", "100"]
+              },
+              {
+                "type": "最大伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "迅烈之华",
+            "desc": "<p>李信朝指定方向持续斩出最多四道剑气，对命中的敌人造成100<span style=\"color: rgb(231, 95, 51);\">(+150%物理攻击)物理伤害</span>，并回复自身30<span style=\"color: rgb(231, 95, 51);\">(+15%物理攻击)</span>点生命。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/222.png",
+            "type": ["物伤", "回复"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["100", "120", "140", "160", "180", "200"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["30", "35", "40", "45", "50", "55"]
+              }
+            ]
+          },
+          {
+            "cd": 35,
+            "consume": 0,
+            "name": "光翼连斩",
+            "desc": "<p>李信进行蓄力，在蓄力过程中获得免控和25%免伤效果，蓄力后向指定方向斩出三道剑气，对命中的敌人造成150<span style=\"color: rgb(231, 95, 51);\">(+75%物理攻击)</span>~450<span style=\"color: rgb(231, 95, 51);\">(+225%物理攻击)物理伤害</span>，除第一道剑气外，多道剑气重复命中只能造成30%的伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">蓄力1秒后伤害达到上限，蓄力打断返还40%的冷却。在释放剑气时仍会有免控效果。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/333.png",
+            "type": ["物伤", "霸体", "减伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "200", "250"]
+              },
+              {
+                "type": "最大伤害",
+                "phase": ["450", "600", "750"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["35", "30", "25"]
+              }
+            ]
+          },
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "力量解放",
+            "desc": "<p>解放身体内狂暴的力量，转化为狂暴形态，变身过程无法被控制技能打断。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lixin/jineng/444.png",
+            "type": ["转换"],
+            "effect": []
+          }
+        ]
+      ]
+    },
+    {
+      "id": 88,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "笔阵",
+            "desc": "<p>每第三次普攻获得强化，对一条路径上的敌人额外造成300<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>。各个技能的笔墨相互触碰时会对附近敌人造成300<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>(1秒内连续命中伤害衰减50%)。</p><p>触碰笔力恢复150<span style=\"color: rgb(106, 57, 201);\">(+20%法术攻击)</span>点生命并激活强化普攻。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/jineng/0.png",
+            "type": ["强化", "法伤", "回复"],
+            "effect": []
+          },
+          {
+            "cd": 5,
+            "consume": 50,
+            "name": "篆法·疾势",
+            "desc": "<p>朝指定方向挥出一记笔墨对触碰的敌人造成270<span style=\"color: rgb(106, 57, 201);\">(+35%法术攻击)法术伤害</span>，达到最远距离时笔墨爆炸散开，造成270<span style=\"color: rgb(106, 57, 201);\">(+35%法术攻击)法术伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/jineng/1.png",
+            "type": ["法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["270", "310", "350", "390", "430", "470"]
+              }
+            ]
+          },
+          {
+            "cd": 1.5,
+            "consume": 60,
+            "name": "飞白·藏锋",
+            "desc": "<p>选择一个点，以自己位置为终点书写，落笔瞬间对敌人造成150<span style=\"color: rgb(106, 57, 201);\">(+20%法术攻击)法术伤害</span>，书写过程对触碰的敌人造成300<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>和50%减速持续2秒。</p><p><span style=\"color: rgb(140, 140, 140);\">每12秒储存一次笔势，最多可储备2次，技能受减冷却影响。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/jineng/2.png",
+            "type": ["法伤", "减速"],
+            "effect": [
+              {
+                "type": "落笔伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "过程伤害",
+                "phase": ["300", "360", "420", "480", "540", "600"]
+              },
+              {
+                "type": "存储间隔",
+                "phase": ["12", "11", "10", "9", "8", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 100,
+            "name": "章草·横鳞",
+            "desc": "<p>与笔墨共舞对一条路径上的敌人造成300<span style=\"color: rgb(106, 57, 201);\">(+24%法术攻击)法术伤害</span>。如果在冲刺过程中命中了敌人或其它主动技能的笔势，则可在3秒内再次通过移动指令发出冲刺。如果完成5次冲刺，会跳跃至高空（期间不可被选中并解除所有控制效果)，不断朝附近敌人发出攻击造成600<span style=\"color: rgb(106, 57, 201);\">(+45%法术攻击)法术伤害</span>(累计10次攻击，对同一单位伤害衰减到25%)。</p><p><span style=\"color: rgb(140, 140, 140);\">至多可冲刺5次，停止期间可以攻击和施法，中断时根据释放次数返还20%到80%冷却。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/jineng/3.png",
+            "type": ["法伤", "免疫"],
+            "effect": [
+              {
+                "type": "冲刺伤害",
+                "phase": ["300", "385", "470"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              },
+              {
+                "type": "基础伤害",
+                "phase": ["600", "800", "1000"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 89,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "月盈",
+            "desc": "<p>嫦娥每1点法术攻击会提升1.5点最大法力，每1点法力产生2点法力护盾，受到伤害的60%优先由法力护盾承担。嫦娥的法力越高造成的伤害越高，满法力时可增加100%伤害。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/change/jineng/0.png",
+            "type": ["护盾", "强化"],
+            "effect": []
+          },
+          {
+            "cd": 12,
+            "consume": 0,
+            "name": "月辰",
+            "desc": "<p>嫦娥释放能量，标记首个命中的目标，并对其造成150<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>和1秒定身(每100点法术攻击额外造成0.15秒定身，最高定身2.5秒)，命中后自身增加30%移速，持续3秒。</p><p>嫦娥的普攻和技能会引爆标记，对范围内的敌人造成150<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>和50%减速，持续1秒。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：嫦娥引动游离在身边的能量，普攻造成80</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span><span style=\"color: rgb(245, 219, 77);\">，每隔5秒的首次普攻射程提升，额外造成80</span><span style=\"color: rgb(106, 57, 201);\">(+10%法术攻击)法术伤害</span><span style=\"color: rgb(245, 219, 77);\">并回复5%最大法力。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/change/jineng/1.png",
+            "type": ["控制", "法伤", "加速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.2", "10.4", "9.6", "8.8", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "月璇",
+            "desc": "<p>嫦娥在身边和指定位置召唤法力旋涡持续4秒，每次消耗范围内敌人15点法力并回复0.5~1%最大法力，对小兵额外回蓝20%，对野怪减少50%，造成30<span style=\"color: rgb(106, 57, 201);\">(+7%法术攻击)法术伤害</span>。敌方法力不足时，不足消耗的法力将转成对其造成同等的法术伤害（对小兵额外造成50%伤害，对野怪不生效)。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/change/jineng/2.png",
+            "type": ["吸收", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["30", "37", "44", "51", "58", "65"]
+              },
+              {
+                "type": "抽取法力",
+                "phase": ["15", "20", "25", "30", "35", "40"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "月芒",
+            "desc": "<p>嫦娥随机向周围持续倾泻法力弹幕，每颗子弹消耗48点法力，对命中的敌人造成100<span style=\"color: rgb(106, 57, 201);\">法术伤害</span>，倾泻法力期间自身增加30%移速。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/change/jineng/3.png",
+            "type": ["法伤", "加速"],
+            "effect": [
+              {
+                "type": "每秒弹幕",
+                "phase": ["8", "12", "16"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 90,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "毫发无伤",
+            "desc": "<p>损失生命会以残血形态暂存，期间对英雄|非英雄造成伤害40%120%的等值残血会转化为真实血量。残血产生7秒后开始以每秒3%最大生命的速度自动消减。</p><p>普攻附带40<span style=\"color: rgb(114, 192, 64);\">(+0.5%最大生命)</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/zhubajie/jineng/0.png",
+            "type": ["回复", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "肉弹蹦床",
+            "desc": "<p>奋力跳起，落地时对砸到的敌人造成105<span style=\"color: rgb(114, 192, 64);\">(+8%最大生命)</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。之后再次弹起，落地时造成相同伤害以及0.5秒击飞效果。</p><p>同时攻击多个敌人时，每增加一位敌人伤害衰减20%，最低衰减至60%。对小兵伤害额外提升30%，对野怪提升50%。</p><p><span style=\"color: rgb(140, 140, 140);\">再次落地时由于惯性极大，猪八戒会快速翻滚一段距离。跳跃期间处于霸体状态。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/zhubajie/jineng/1.png",
+            "type": ["控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["105", "130", "155", "180", "205", "230"]
+              }
+            ]
+          },
+          {
+            "cd": 11,
+            "consume": 0,
+            "name": "倒打一耙",
+            "desc": "<p>将钉耙变长直击前方敌人，造成150<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>和1.5秒60%减速。钉耙若嵌入墙体，猪八戒会借力将自己与敌人冲撞至该处。撞击墙体时，造成150<span style=\"color: rgb(114, 192, 64);\">(+6%最大生命)</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span>和0.5秒晕眩。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：使用【倒打一耙】后，3秒内的下次普攻会用钉耙把敌人拉回来。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/zhubajie/jineng/2.png",
+            "type": ["控制", "物伤", "减速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "撞击伤害",
+                "phase": ["150", "165", "180", "195", "210", "225"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["11", "10.4", "9.8", "9.2", "8.6", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 36,
+            "consume": 0,
+            "name": "圈养时刻",
+            "desc": "<p>筑起一堵最多存在4秒的高墙，高墙能够阻拦英雄单位，筑起瞬间对身前敌人造成250<span style=\"color: rgb(231, 95, 51);\">(+90%初理攻击)物理伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">施法时猪八戒霸体。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/zhubajie/jineng/3.png",
+            "type": ["地形", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "325", "400"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["36", "32", "28"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 91,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "盘古斧",
+            "desc": "<p>灵能之斧有10点耐久度，每20秒回复1点耐久度，普攻命中英雄消耗1点，耐久消耗完斧头碎裂。无斧头时，盘古使用能量臂攻击。</p><p>盘古斧碎裂的瞬间，盘古无法攻击且不可选中，并减少【狂怒突袭】和【压制之握】50%冷却。</p><p><span style=\"color: rgb(245, 219, 77);\">盘古斧：普攻使敌人流血，2秒内每0.5秒造成目标1.3%~2%最大生命的</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span><span style=\"color: rgb(245, 219, 77);\">。能量臂：普攻和技能命中可对敌人叠加1层标记，满5层时会使其晕眩1秒并造成200</span><span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span><span style=\"color: rgb(245, 219, 77);\">，该效果对同一目标有3秒的冷却。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/pangu/jineng/0.png",
+            "type": ["物伤", "免疫", "冷却"],
+            "effect": []
+          },
+          {
+            "cd": 12,
+            "consume": 0,
+            "name": "狂怒突袭",
+            "desc": "<p>盘古跃向指定位置，落地时造成200<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>，若落地时没有攻击到敌人，则盘古增加50%移速，持续3秒。</p><p>拥有盘古斧时，在跳跃期间可再次使用【狂怒突袭】锁定一名敌人，落地后对其发起冲锋，击退路径上敌人并造成100<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)物理伤害</span>，同时增加10%攻速，持续3秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/pangu/jineng/1.png",
+            "type": ["位移", "加速", "控制"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "240", "280", "320", "360", "400"]
+              },
+              {
+                "type": "冲撞伤害",
+                "phase": ["100", "130", "160", "190", "220", "250"]
+              },
+              {
+                "type": "提升攻速",
+                "phase": ["10", "20", "30", "40", "50", "60"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.2", "10.4", "9.6", "8.8", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 12,
+            "consume": 0,
+            "name": "压制之握",
+            "desc": "<p>盘古在指定敌人处召唤正义之手进行攻击，标记被命中的敌人并造成200<span style=\"color: rgb(231, 95, 51);\">(+75%物理攻击)物理伤害</span>和30%减速，持续2秒，盘古普攻命中标记目标会回复6%最大生命。</p><p>拥有盘古斧时，【压制之握】会缴械敌人，使其无法普攻，持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/pangu/jineng/2.png",
+            "type": ["控制", "回复", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "230", "260", "290", "320", "350"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.6", "11.2", "10.8", "10.4", "10"]
+              }
+            ]
+          },
+          {
+            "cd": 60,
+            "consume": 0,
+            "name": "开天辟地",
+            "desc": "<p>盘古跃起蓄力，使用灵能之斧劈开地面，造成500<span style=\"color: rgb(231, 95, 51);\">(+90%物理攻击)物理伤害</span>，并造成缴械和90%减速，持续2秒，减速效果在2秒内持续衰减。</p><p>蓄力期间盘古附近每有一名友方英雄，就能多劈2道裂缝，最多劈出5道，当多道裂缝命中同一目标时，后续裂缝只造成25%伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">拥有盘古斧时才可以使用该技能，蓄力期间盘古处于霸体状态，取消蓄力可减少70%冷却。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/pangu/jineng/3.png",
+            "type": ["物伤", "控制", "霸体"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["500", "750", "1000"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["60", "55", "50"]
+              }
+            ]
+          },
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "聚合为一",
+            "desc": "<p>盘古斧碎裂后，充能30秒后可以选择重铸斧头，重铸后5秒内的下次普攻可以击飞敌人0.5秒。盘古在切换攻击形态期间无法攻击且处于不可选中状态，同时减少【狂怒突袭】和【压制之握】50%冷却。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/pangu/jineng/4.png",
+            "type": ["重铸", "免疫", "控制"],
+            "effect": []
+          }
+        ]
+      ]
+    },
+    {
+      "id": 92,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "山鬼·白鹿",
+            "desc": "<p>瑶被除压制以外的硬控技能命中后会立即解除控制并变为鹿灵，持续4秒，鹿灵状态将会刷新技能冷却，并且获得无法被攻击但也失去自己攻击别人的能力，灵鹿静怡的灵光会将敌人减速30%。</p><p><span style=\"color: rgb(140, 140, 140);\">每60秒最多触发一次。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao1/jineng/0.png",
+            "type": ["免疫"],
+            "effect": []
+          },
+          {
+            "cd": 10,
+            "consume": 50,
+            "name": "若有人兮",
+            "desc": "<p>举杖引魄击退敌人，造成250<span style=\"color: rgb(106, 57, 201);\">(+30%法术攻击)法术伤害</span>，在飞行过程中会检测前方范围的</p><p>英雄并跟踪打击造成250<span style=\"color: rgb(106, 57, 201);\">(+30%法术攻击)法术伤害</span>和0.5秒击飞和5秒显形效果。</p><p><span style=\"color: rgb(140, 140, 140);\">附身状态：提升20%检测范围。</span></p><p><span style=\"color: rgb(140, 140, 140);\">鹿灵状态：提前结束鹿灵状态，清除所有技能冷却进入战斗。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao1/jineng/1.png",
+            "type": ["控制", "法伤", "视野"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "290", "330", "370", "410", "450"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.6", "9.2", "8.8", "8.4", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 12,
+            "consume": 50,
+            "name": "风飒木萧",
+            "desc": "<p>瑶持续5秒自动打击身边敌人，最多3个目标。每次攻击造成200<span style=\"color: rgb(106, 57, 201);\">(+30%法术攻击)法术伤害</span>，技能开启期间内无法普攻。</p><p><span style=\"color: rgb(140, 140, 140);\">附身状态：提升20%打击距离。</span></p><p><span style=\"color: rgb(140, 140, 140);\">鹿灵状态：白鹿·动 跳跃一段距离。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao1/jineng/2.png",
+            "type": ["法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "240", "280", "320", "360", "400"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["12", "11.6", "11.2", "10.8", "10.4", "10"]
+              }
+            ]
+          },
+          {
+            "cd": 15,
+            "consume": 50,
+            "name": "独立兮山之上",
+            "desc": "<p>瑶附身到其他英雄，赋予附身目标750<span style=\"color: rgb(106, 57, 201);\">(+50%法术攻击)</span><span style=\"color: rgb(114, 192, 64);\">(+10%最大生命)</span>点真实护盾，附身状态会使得技能增强并且立即减少30%的冷却。</p><p><span style=\"color: rgb(140, 140, 140);\">附身状态：盾破会被击落下来进入冷却，主动脱离附身目标会返还50%冷却。</span></p><p><span style=\"color: rgb(140, 140, 140);\">鹿灵状态：白鹿·静 扩大减速范围。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao1/jineng/3.png",
+            "type": ["护盾", "强化"],
+            "effect": [
+              {
+                "type": "额外护盾",
+                "phase": ["750", "1125", "1500"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 93,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "云间游",
+            "desc": "<p>调息后可飞行，增加50点移速，普攻变为爪击，发起攻击会冲向目标，每0.25秒额外造成<span style=\"color: rgb(231, 95, 51);\">(4%物理攻击)物理伤害</span>，持续5秒。普攻可叠加印记和伤害，印记叠满5层后目标被撕裂，5秒内目标每移动100码，受到40<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，每升1级增加3点。</p><p>每次撕裂目标或使用一技能可以对野怪和小兵造成50%的已损生命伤害，上限300点。</p><p><span style=\"color: rgb(140, 140, 140);\">战斗状态每0.5秒消耗10点气息，脱战每0.5秒回复25点气息，普攻回复25点气息，气息为0时落到地面，此时普攻射程增加并可以穿透目标。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunzhongjun/jineng/0.png",
+            "type": ["加速", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 15,
+            "consume": 0,
+            "name": "天隙鸣",
+            "desc": "<p>在2秒内振翅加速，最多提升150%，向当前方向俯冲，命中目标叠加一层爪击印记并造成0.5秒的晕眩与150<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)物理伤害</span>，同时威慑该目标，在一定范围内降低30%对云中君的伤害，持续5秒。</p><p><span style=\"color: rgb(140, 140, 140);\">1技能持续过程中每0.5秒回复10点气息，非展翅状态下云中君无法使用1技能。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunzhongjun/jineng/1.png",
+            "type": ["加速", "物伤", "控制"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["15", "13.5", "12", "10.5", "9", "7.5"]
+              }
+            ]
+          },
+          {
+            "cd": 6,
+            "consume": 0,
+            "name": "若萸·华彩",
+            "desc": "<p>展翅舞蹈，1秒内免疫控制效果，并射出羽箭对范围内目标造成200<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">成功免疫控制回复50点气息。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunzhongjun/jineng/2.png",
+            "type": ["霸体", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "240", "280", "320", "360", "400"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 0,
+            "name": "风雷引",
+            "desc": "<p>冲天而上解除所有控制效果进入不可选中状态并回复50点气息，短暂延迟后向下俯冲击飞中心位置的目标0.5秒，叠加一层爪击印记并造成250<span style=\"color: rgb(231, 95, 51);\">(+75%物理攻击)物理伤害</span>，而后引发羽箭阵雨，每0.5秒造成50<span style=\"color: rgb(231, 95, 51);\">(+15%物理攻击)物理伤害</span>，持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunzhongjun/jineng/3.png",
+            "type": ["免疫", "控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "375", "500"]
+              },
+              {
+                "type": "额外伤害",
+                "phase": ["50", "75", "100"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              },
+              {
+                "type": "回复气息",
+                "phase": ["50", "75", "100"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 94,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "星辰之赐",
+            "desc": "<p>曜技能命中敌方单位时将回复2%最大生命，每次释放技能时，获得一层星辰之力，当星辰之力充盈时，曜获得一次强化技能使用权，持续三秒，强化技能释放后会强化下次普攻，使用强化普攻会向敌人发起冲锋，额外造成70<span style=\"color: rgb(231, 95, 51);\">(+20%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/0.png",
+            "type": ["强化", "回复"],
+            "effect": []
+          },
+          {
+            "cd": 6,
+            "consume": 0,
+            "name": "裂空斩",
+            "desc": "<p>快速旋转剑刃，对周围的敌人造成175<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/1.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["175", "225", "275", "325", "375", "425"]
+              }
+            ]
+          },
+          {
+            "cd": 7,
+            "consume": 0,
+            "name": "逐星",
+            "desc": "<p>向左侧快速移动，对路径上的敌人造成100<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>与50%减速持续1~2秒。</p><p><span style=\"color: rgb(140, 140, 140);\">——半招剑法，得自游历四方的少年剑客，取神来一笔，飞燕逐星之意。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/2.png",
+            "type": ["位移", "减速", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["100", "120", "140", "160", "180", "200"]
+              },
+              {
+                "type": "减速时长",
+                "phase": ["1", "1.2", "1.4", "1.6", "1.8", "2"]
+              }
+            ]
+          },
+          {
+            "cd": 15,
+            "consume": 0,
+            "name": "归尘",
+            "desc": "<p>回到2秒前的位置(无法移动超过600距离)，清除星削，并对路径与终点的敌人造成250<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：曜所受伤害的40%将会转化为星削在2秒内结算。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/3.png",
+            "type": ["位移", "星削", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "375", "500"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["15", "12", "9"]
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "",
+            "desc": "<p><br></p>",
+            "img": "",
+            "type": [],
+            "effect": []
+          },
+          {
+            "cd": 6,
+            "consume": 3,
+            "name": "辉光·裂空斩",
+            "desc": "<p>快速旋转剑刃，对周围的敌人造成175<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>，并强化下次普攻。</p><p>星辰之力会将这个技能再次释放，曜与星辰同时命中单位将会为自身增加30%攻速。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/11.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["175", "225", "275", "325", "375", "425"]
+              },
+              {
+                "type": "攻速加成",
+                "phase": ["30%", "40%", "50%", "60%", "70%", "80%"]
+              }
+            ]
+          },
+          {
+            "cd": 7,
+            "consume": 3,
+            "name": "辉光·逐星",
+            "desc": "<p>向右侧快速移动，对路径上的敌人造成100<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>与50%减速持续1~2秒并强化下次普攻。</p><p>星辰之力将沿左侧将这个技能再次释放，被曜与星辰同时命中的单位将会被击飞0.75秒。</p><p><span style=\"color: rgb(140, 140, 140);\">——半招剑法，得自游历四方的少年剑客，取神来一笔，飞燕逐星之意。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/22.png",
+            "type": ["位移", "减速", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["100", "120", "140", "160", "180", "200"]
+              },
+              {
+                "type": "减速时长",
+                "phase": ["1", "1.2", "1.4", "1.6", "1.8", "2"]
+              }
+            ]
+          },
+          {
+            "cd": 15,
+            "consume": 3,
+            "name": "辉光·归尘",
+            "desc": "<p>回到2秒前的位置（无法移动超过600距离)，清除星削，并对路径与终点的敌人造成250<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>，并强化下次普攻。</p><p>星辰之力会模仿这个技能，被曜与星辰同时命中的单位将会被减速50%持续2秒。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：曜所受伤害的40%将会转化为星削在2秒内结算。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yao2/jineng/33.png",
+            "type": ["位移", "星削", "法伤"],
+            "effect": []
+          }
+        ]
+      ]
+    },
+    {
+      "id": 95,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "魔影突袭",
+            "desc": "<p>释放技能增加2%移速，可叠加至多3次，持续5秒。每次拾取到冷晖枪时2秒内增加20~55点移速，并强化下次普攻，命中敌人时恢复30<span style=\"color: rgb(114, 192, 64);\">(+3%最大生命)</span>点生命并减少所有技能冷却1秒。</p><p>释放【万刃归鞘】接住冷晖枪时伤害、生命回复和攻击距离都将再增加20%。每1点额外移速增加1~2点基础伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">每5秒获得一把冷晖枪，只有冷晖枪从地图上消失的时候进入获取状态。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/machao/jineng/0.png",
+            "type": ["强化", "加速"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 1,
+            "name": "萧索之刃",
+            "desc": "<p>朝指定方向投掷一把冷晖枪，对触碰的敌人造成200<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)物理伤害</span>，并插入到敌人身后位置，如果直接击败目标，将会继续飞行一段固定距离，并对后续目标造成额外50%伤害。</p><p><span style=\"color: rgb(140, 140, 140);\">当马超接近该冷晖枪的时候，将会拾取冷晖枪，冷晖枪在地面至多持续10秒。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/machao/jineng/1.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "240", "280", "320", "360", "400"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.8", "7.6", "7.4", "7.2", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 1,
+            "name": "日落孤枪",
+            "desc": "<p>指定位置召唤一把冷晖枪，对附近范围的敌人造成150<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>和30%的减速，持续2秒。</p><p><span style=\"color: rgb(140, 140, 140);\">当马超接近该冷晖枪的时候，将会拾取冷晖枪，冷晖枪在地面至多持续10秒。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/machao/jineng/2.png",
+            "type": ["物伤", "减速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.8", "7.6", "7.4", "7.2", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 50,
+            "consume": 0,
+            "name": "万刃归鞘",
+            "desc": "<p>每次释放召唤一把距离自己最近的冷晖枪飞回，冷晖枪对飞行路径上的敌人造成200<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>(每1点额外移速增加1~2点基础伤害)和附带目标5%已损生命的<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。</p><p>整个召唤的过程持续10秒(至多可召唤4次)。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/machao/jineng/3.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "300", "400"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["50", "47.5", "45"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 96,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "少女的把戏",
+            "desc": "<p>西施的技能伤害会随着自身与敌人间的距离增加而增加，距离每增加100，伤害增加5%,最多提升40%。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xishi/jineng/0.png",
+            "type": ["强化"],
+            "effect": []
+          },
+          {
+            "cd": 11,
+            "consume": 40,
+            "name": "纱缚之印",
+            "desc": "<p>西施将法器扔向指定位置，对区域内的敌人造成120<span style=\"color: rgb(106, 57, 201);\">(+18%法术攻击)法术伤害</span>并朝法器的位置聚拢，同时纱会缠绕在一名敌人英雄身上，5秒内再次点击【纱缚之印】，纱会牵引敌人一段距离。</p><p><span style=\"color: rgb(140, 140, 140);\">如果敌人距离西施过远，则不会受到影响。【纱缚之印】可以对非英雄单位造成双倍伤害。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xishi/jineng/1.png",
+            "type": ["控制", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["120", "144", "168", "192", "216", "240"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["11", "10.8", "10.6", "10.4", "10.2", "10"]
+              }
+            ]
+          },
+          {
+            "cd": 7,
+            "consume": 40,
+            "name": "幻纱之灵",
+            "desc": "<p>西施抛出能量球，遇到野怪则会停下，爆炸前每0.5秒会攻击附近敌人，造成150<span style=\"color: rgb(106, 57, 201);\">(+50%法术攻击)法术伤害</span>，除首次命中外，持续多次命中同个目标则伤害衰减为25%。首次命中减少敌人30%移速，持续1.5秒。</p><p>2秒后能量球会爆炸造成150<span style=\"color: rgb(106, 57, 201);\">(+27%法术攻击)法术伤害</span>，处于爆炸中心的敌人受到双倍的伤害。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xishi/jineng/2.png",
+            "type": ["法伤", "减速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              },
+              {
+                "type": "爆炸伤害",
+                "phase": ["150", "180", "210", "240", "270", "300"]
+              }
+            ]
+          },
+          {
+            "cd": 45,
+            "consume": 90,
+            "name": "心无旁骛",
+            "desc": "<p>西施强化自身，获得视野提升，持续8秒，并刷新【幻纱之灵】的冷却。强化期间【纱缚之印】命中后可以连续控制敌人移动两次，同时【幻纱之灵】的冷却减半。大招开启时西施增加50%移速，持续0.5秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xishi/jineng/3.png",
+            "type": ["冷却", "加速"],
+            "effect": [
+              {
+                "type": "冷却时间",
+                "phase": ["45", "40", "35"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 97,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "稷下科技",
+            "desc": "<p>技能在施法或命中目标时会为自己提供1层50<span style=\"color: rgb(106, 57, 201);\">(+15%法术攻击)</span><span style=\"color: rgb(114, 192, 64);\">(+2%最大生命)</span>的护盾，持续5秒，可叠加4层。</p><p>每5秒，强化下次普攻附带400<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/jineng/0.png",
+            "type": ["护盾", "强化", "法伤"],
+            "effect": []
+          },
+          {
+            "cd": 10,
+            "consume": 50,
+            "name": "助推跳跃",
+            "desc": "<p>鲁班大师借助机械臂喷气动力向前跳跃，并在落地时展开力场击飞周围敌人0.5秒并造成350<span style=\"color: rgb(106, 57, 201);\">(+40%法术攻击)法术伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/jineng/1.png",
+            "type": ["位移", "控制", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["350", "480", "610", "740", "870", "1000"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.6", "9.2", "8.8", "8.4", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 10,
+            "consume": 45,
+            "name": "助手驰援",
+            "desc": "<p>鲁班大师为一名队友和自己赋予护盾，并在他和自己之间创造链接，持续6秒，队友确认交互后会立即位移到鲁班大师的位置，并对路径上敌人造成450<span style=\"color: rgb(106, 57, 201);\">(+45%法术攻击)法术伤害</span>。开始施法时鲁班大师提升50%移速持续1.5秒。如果链接期间队友没有交互，则返还30%的冷却时间。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/jineng/2.png",
+            "type": ["牵引", "加速", "护盾"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["450", "540", "630", "720", "810", "900"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.8", "9.6", "9.4", "9.2", "9"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 60,
+            "name": "强力收纳",
+            "desc": "<p>鲁班大师向前方扇形区域发射机械臂，并连接区域内最多6个敌人，优先英雄单位。被连接的敌人会受到250<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>。</p><p>若被连接的敌人与鲁班大师拉开足够的距离，则连接会被扯断。否则，敌人会在1.25秒后被拉到鲁班大师身边，每个扯回的单位都会在鲁班大师身边引发一次小范围600<span style=\"color: rgb(106, 57, 201);\">(+60%法术攻击)法术伤害</span>，从第二个敌人开始只造成25%的伤害。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/jineng/3.png",
+            "type": ["控制", "法伤"],
+            "effect": [
+              {
+                "type": "连接伤害",
+                "phase": ["250", "300", "350"]
+              },
+              {
+                "type": "范围伤害",
+                "phase": ["600", "900", "1200"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 98,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "炽热浑天",
+            "desc": "<p>每提升5%的攻速，增加1%的冷却缩减。普攻命中目标时，增加自身5点炽怒值(暴击时增加10点)。当炽怒值达到最大时，进入兴奋状态。</p><p><span style=\"color: rgb(245, 219, 77);\">兴奋状态：强化自身所有技能，并使【狂轰火线】和【爆裂重炮】冷却加快50%,每溢出1点炽怒值回复0~3</span><span style=\"color: rgb(231, 95, 51);\">(+1%物理攻击)</span><span style=\"color: rgb(245, 219, 77);\">点生命。</span></p><p><span style=\"color: rgb(140, 140, 140);\">若无法持续获得炽怒值，炽怒值将在三秒后持续衰减。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengya/jineng/0.png",
+            "type": ["强化", "回复"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "狂轰火线",
+            "desc": "<p>5秒内使用“浑天”进行持续扫射，每颗子弹造成6<span style=\"color: rgb(231, 95, 51);\">(+34%物理攻击)物理伤害</span>，扫射时移速降低50点，施法完毕后进入冷却。</p><p><span style=\"color: rgb(245, 219, 77);\">强化：当能量达到最大时，子弹将具备贯穿效果，会对后续敌人造成50%的伤害。</span></p><p><span style=\"color: rgb(140, 140, 140);\">需要持续按压，伤害可暴击，扫射过程中可以短暂停止并施放其它技能，每次命中敌人增加5点炽怒值，暴击时增加10点。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengya/jineng/1.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["6", "20", "34", "48", "62", "76"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.6", "7.2", "6.8", "6.4", "6"]
+              }
+            ]
+          },
+          {
+            "cd": 10,
+            "consume": 0,
+            "name": "爆裂重炮",
+            "desc": "<p>朝指定方向发射一枚重炮，对触碰的敌人造成150<span style=\"color: rgb(231, 95, 51);\">(+25%物理攻击)物理伤害</span>并减速50%持续2秒。重炮触碰敌人或墙体以及飞行到最远距离时会发生爆炸，并分裂出5颗飞星霰弹，可在墙体间弹射，并对第一个敌人造成300<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>。</p><p><span style=\"color: rgb(245, 219, 77);\">强化：当能量处于最大状态时，分裂的飞星霰弹数量5-9。</span></p><p><span style=\"color: rgb(140, 140, 140);\">重炮和飞星霰弹每次命中敌人都会增加自身5点炽怒值，单个目标在1秒内被多颗飞星霰弹命中时伤害衰减到25%。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengya/jineng/2.png",
+            "type": ["物伤", "减速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "165", "180", "195", "210", "225"]
+              },
+              {
+                "type": "流星伤害",
+                "phase": ["300", "330", "360", "390", "420", "450"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.6", "9.2", "8.8", "8.4", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 60,
+            "consume": 0,
+            "name": "飞弹援袭",
+            "desc": "<p>搜索周围的环境，范围内敌人受到友军英雄伤害会标记目标位置（至多标记5个位置)，搜索结束发射导弹，对命中的敌人造成350<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>，同一目标后续命中伤害衰减75%，并增加自身10点炽怒值。搜索完成后还会持续引导8秒，每秒至多引导1枚导弹（取消或被打断会减少50%冷却）。</p><p><span style=\"color: rgb(245, 219, 77);\">强化：后续导弹的引导的最小间隔时间1秒→0.5秒。</span></p><p><span style=\"color: rgb(140, 140, 140);\">按压释放，不断扩大搜索范围，最多搜索3秒，搜索过程中蒙狩增加50%移速。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengya/jineng/3.png",
+            "type": ["物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["350", "425", "500"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["60", "55", "50"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 99,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "铸镜",
+            "desc": "<p>本体和镜像对敌人造成伤害时会给敌人留下2种印记，如果敌人同时拥有2种印记会触发碎裂受到4%已损生命的<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>同时刷新镜【开锋】和【裂空】的冷却，此效果触发后，镜将暂时失去此被动效果5秒，大招期间为2秒。</p><p><span style=\"color: rgb(140, 140, 140);\">镜像造成本体30%的伤害和回复，镜像和本体的距离越远，造成的伤害和回复就越多，最多可以增长至本体的80%(镜像对防御塔只能造成本体10%的伤害)。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jing/jineng/0.png",
+            "type": ["印记", "物伤", "冷却"],
+            "effect": []
+          },
+          {
+            "cd": 9,
+            "consume": 50,
+            "name": "开锋",
+            "desc": "<p>快速朝前突进并对路径上的敌人造成40<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>和30%的减速，同时强化下次普攻，额外造成两次<span style=\"color: rgb(231, 95, 51);\">(+10%物理攻击)物理伤害</span>。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：当场上没有镜像存在时，会产生镜像一起朝前冲出，镜像存在2秒会复制本体除了大招外的所有行为。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jing/jineng/1.png",
+            "type": ["位移", "物伤", "减速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["40", "105", "170", "235", "300", "365"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["9", "8.8", "8.6", "8.4", "8.2", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 50,
+            "name": "裂空",
+            "desc": "<p>对周围的敌人造成40<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)物理伤害</span>并获得1秒50%的衰减加速，每命中一个目</p><p>标回复60<span style=\"color: rgb(231, 95, 51);\">(+24%物理攻击)</span>点生命，从第二个目标开始回复量衰减至25%。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：当场上没有镜像存在时，会产生镜像一起攻击，镜像存在2秒会复制本体除了大招外的所有行为。</span></p><p><span style=\"color: rgb(140, 140, 140);\">——从小与曜一同练的招式</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jing/jineng/2.png",
+            "type": ["回复", "物伤", "加速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["40", "95", "150", "205", "260", "315"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["60", "76", "92", "108", "124", "140"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 90,
+            "name": "见影",
+            "desc": "<p>朝前飞出并将路径上的敌人拉到镜像空间中心定身1秒，到达最远距离后张开镜像空间，本体和镜像会从镜面两侧飞出，期间再次使用后本体与镜像冲向彼此的位置，飞行过程中减免30%的伤害，每飞行0.05秒回复10<span style=\"color: rgb(231, 95, 51);\">(+4%物理攻击)</span>点生命。交换后会有1.5秒的禁用时间，如果对敌人造成伤害会立刻重新解锁。镜像空间存在10秒，提前享开倍便零向么届之销毁。</p><p>镜像场成形后，在场的边缘会生成8个镜子碎片，期间本体或镜像对敌人造成伤害时，最近的碎片会飞向敌人并造成2%已损生命的<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/jing/jineng/3.png",
+            "type": ["位移", "免疫", "减伤"],
+            "effect": [
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["10", "15", "20"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 100,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "玄雍防线",
+            "desc": "<p>技能命中敌方或在防御姿态期间所受到的伤害会成为兵势，兵势最大值为1000~4500。蓄力猛击会附加兵势20%<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，兵势盛极后的蓄力猛击还可额外造成20%伤害和<span style=\"color: rgb(114, 192, 64);\">(8%已损生命)</span>的回复。</p><p><span style=\"color: rgb(245, 219, 77);\">防御姿态：普攻消耗所有兵势强化为蓄力猛击，造成40</span><span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span><span style=\"color: rgb(245, 219, 77);\">，蓄力可积蓄兵势，蓄力期间可减少10%来自正面的伤害、免疫控制并获得额外100%的兵势。如果蒙恬在此期间受到伤害，则会对前方目标造成90%减速效果，持续0.5秒。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengtian/jineng/0.png",
+            "type": ["兵势", "强化", "回复"],
+            "effect": []
+          },
+          {
+            "cd": 10,
+            "consume": 0,
+            "name": "方阵突刺",
+            "desc": "<p>朝指定方向突刺冲锋，对路径上的敌人造成200<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>，冲锋结束时击</p><p>退前方目标并增加大量兵势。冲锋期间可以使用【以守为攻】打断冲锋过程。</p><p><span style=\"color: rgb(245, 219, 77);\">防御姿态：不再冲锋，不能击退敌方，但技能冷却获得大幅缩减并且可以改变防御的朝向。</span></p><p><span style=\"color: rgb(140, 140, 140);\">命中敌人后，减少2技能2~4秒冷却</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengtian/jineng/1.png",
+            "type": ["位移", "控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "240", "280", "320", "360", "400"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.6", "9.2", "8.8", "8.4", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 6,
+            "consume": 0,
+            "name": "以守为攻",
+            "desc": "<p>举盾踏步进入防御姿态，击退周围的敌人并造成100<span style=\"color: rgb(231, 95, 51);\">(+35%物理攻击)物理伤害</span>。再次释放可解除防御姿态并增加50%移速持续1秒。</p><p><span style=\"color: rgb(245, 219, 77);\">防御姿态：减少20%来自正面的伤害。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengtian/jineng/2.png",
+            "type": ["控制", "减伤", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["100", "120", "140", "160", "180", "200"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 0,
+            "name": "玄雍众将",
+            "desc": "<p>召唤4名玄雍士兵跟随自身作战，持续20秒，士兵从选择的方向冲向蒙恬并对路径上的敌人造成125<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>和1秒减速（根据蒙恬的兵势值百分比实时决定，最高90%）并增加大量兵势。士兵和蒙恬一起攻击和释放技能。</p><p>士兵拥有自己的属性（受蒙恬各项属性加成)。再次释放该技能会指挥士兵进行阵型切换，切换方圆阵时蒙恬军可以额外减少20%来自正面的伤害。</p><p><span style=\"color: rgb(245, 219, 77);\">防御姿态：玄雍士兵会和蒙恬一同进入防御姿态</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/mengtian/jineng/3.png",
+            "type": ["召唤", "减伤", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["125", "195", "265"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 101,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "山林奇缘",
+            "desc": "<p>惩击替换为放生，放生后野怪会赠与她金币和经验，同时获得野怪助战效果。</p><p>每次普攻英雄或建筑时，她的动物伙伴会提升移速并一同攻击该目标。动物伙伴对防御塔只造成默认伤害的50%。阿古朵使用弹弓普攻只造成<span style=\"color: rgb(231, 95, 51);\">(60%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/aguduo/jineng/0.png",
+            "type": ["放生", "强化"],
+            "effect": []
+          },
+          {
+            "cd": 14,
+            "consume": 0,
+            "name": "野蛮生长",
+            "desc": "<p>播种一片灌木，区域内友军（除兵线外)提高30%移速并每0.5秒回复30点生命，阿古朵和她的召唤物获得2倍治疗量，并在区域内提升30%攻速。敌人在区域受到10%减速，且持续处于其中3秒后会被定身1秒。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：放生蜥蜴的数量超过2/4/6时，会召唤小/中/大蜥蜴前来助战。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/aguduo/jineng/1.png",
+            "type": ["回复", "加速", "控制"],
+            "effect": [
+              {
+                "type": "回复生命",
+                "phase": ["30", "36", "42", "48", "54", "60"]
+              },
+              {
+                "type": "提升移速",
+                "phase": ["30%", "34%", "38%", "42%", "46%", "50%"]
+              },
+              {
+                "type": "提升攻速",
+                "phase": ["30%", "36%", "42%", "48%", "54%", "60%"]
+              }
+            ]
+          },
+          {
+            "cd": 13,
+            "consume": 0,
+            "name": "翻滚吧！球球",
+            "desc": "<p>翻滚蓄力，每0.25秒对周围造成40<span style=\"color: rgb(114, 192, 64);\">(+1.5%最大生命)</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span>。</p><p>蓄力完成后冲锋而出，对触碰的敌人造成120<span style=\"color: rgb(114, 192, 64);\">(+4.5%最大生命)</span><span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，多次命中同个目标时，冲锋伤害衰减至75%，冲锋距离随蓄力时间而增加，整个施法期间可免疫1次硬控效果，取消施法执行70%冷却。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：放生红隼的数量超过214/6时，会在冲锋首次命中敌人处或终点处召唤小/中/大红隼前来助战。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/aguduo/jineng/2.png",
+            "type": ["物伤", "免疫"],
+            "effect": [
+              {
+                "type": "蓄力伤害",
+                "phase": ["40", "48", "56", "64", "72", "80"]
+              },
+              {
+                "type": "冲锋伤害",
+                "phase": ["120", "144", "168", "192", "216", "240"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 0,
+            "name": "峡谷总动员",
+            "desc": "<p>球球离开阿古朵，冲锋到指定地点造成450<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>和击飞效果，并在之后独自作战。施法后会刷新爆弹雷种的冷却，并将球球的血量至少回复到10%，同时为阿古朵回复25%最大生命。施法会清除自身所受控制效果，再次施法可召回球球。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：放生熊、猎豹的数量超过2/4/6时，会召唤小/中/大熊、猎豹前来助战。放生猩红石像、蔚蓝石像的数量超过2/3/4时，球球的攻击效果获得不同程度强化。</span></p><p><span style=\"color: rgb(245, 219, 77);\">被动：球球提升自己10%的移速、30%的攻速并获得一个1500点生命的护盾。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/aguduo/jineng/3.png",
+            "type": ["召唤", "物伤", "控制"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["450", "750", "1050"]
+              },
+              {
+                "type": "提升移速",
+                "phase": ["10%", "20%", "30%"]
+              },
+              {
+                "type": "提升攻速",
+                "phase": ["30%", "45%", "60%"]
+              },
+              {
+                "type": "提升护盾",
+                "phase": ["1500", "2500", "3500"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "33", "26"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 102,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "七星光芒剑",
+            "desc": "<p>夏洛特任意技能命中敌人后，会将下次释放的其他技能强化为追加技，并获得一层印记，持续4秒。</p><p>叠满3层印记后普攻将强化为追加技【七星光芒剑】，追击锁定敌人打出7段伤害，每段造成50<span style=\"color: rgb(231, 95, 51);\">(+25%物理攻击)物理伤害</span>和20%减速，最后一段额外造成12%已损生命的<span style=\"color: rgb(231, 95, 51);\">物理伤害</span>，释放期间获得35%免伤。</p><p>追加技对敌人附带伤残效果，每层减少7%攻速，最多叠加7层。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/0.png",
+            "type": ["强化"],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "迅光三角剑",
+            "desc": "<p>起手技：短暂延迟后，向指定方向释放迅光三角剑，对路径上的敌人造成200<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>，命中后增加80%持续衰减的移速，持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/1.png",
+            "type": ["物伤", "加速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["200", "230", "260", "290", "320", "350"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.8", "7.6", "7.4", "7.2", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 6,
+            "consume": 0,
+            "name": "前进喷泉",
+            "desc": "<p>起手技：向指定方向冲刺，同时快速刺击六次，每段造成40<span style=\"color: rgb(231, 95, 51);\">(+15%物理攻击)物理伤害</span>，并回复27<span style=\"color: rgb(231, 95, 51);\">(+7%物理攻击)</span>点生命。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/2.png",
+            "type": ["位移", "回复", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["40", "48", "56", "64", "72", "80"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["27", "32", "37", "42", "47", "52"]
+              }
+            ]
+          },
+          {
+            "cd": 18,
+            "consume": 0,
+            "name": "破空光剑",
+            "desc": "<p>起手技：原地画出七道剑痕，每道剑痕造成150<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>和50%减速，持续1秒，从第二道剑痕开始将只造成30%伤害，技能释放期间处于霸体状态，并获得35%免伤。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/3.png",
+            "type": ["霸体", "减伤", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "250", "350"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["18", "15.5", "13"]
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "",
+            "desc": "<p><br></p>",
+            "img": "",
+            "type": [],
+            "effect": []
+          },
+          {
+            "cd": 8,
+            "consume": 0,
+            "name": "迅光三角剑",
+            "desc": "<p>追加技：向指定方向迅速释放迅光三角剑，对路径上的敌人造成260<span style=\"color: rgb(231, 95, 51);\">(+130%物理攻击)物理伤害</span>，命中后增加80%持续衰减的移速，持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/11.png",
+            "type": ["物伤", "加速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["260", "299", "338", "377", "416", "455"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.8", "7.6", "7.4", "7.2", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 3,
+            "consume": 0,
+            "name": "前进喷泉",
+            "desc": "<p>追加技：向指定方向冲刺，同时迅速刺击六次，每段造成40<span style=\"color: rgb(231, 95, 51);\">(+15%物理攻击)物理伤害</span>，并回复27<span style=\"color: rgb(231, 95, 51);\">(+7%物理攻击)</span>点生命。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/22.png",
+            "type": ["位移", "回复", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["40", "48", "56", "64", "72", "80"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["3", "2.8", "2.6", "2.4", "2.2", "2"]
+              }
+            ]
+          },
+          {
+            "cd": 18,
+            "consume": 0,
+            "name": "破空光剑",
+            "desc": "<p>追加技：迅速画出七道剑痕，每道剑痕造成150<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>和50%减速，持续1秒，从第二道剑痕开始将只造成30%伤害。</p><p>剑痕成型后发出破空光剑，对范围中心的敌人再次造成同等伤害和0.75秒击飞。技能释放期间处于霸体状态，并获得35%兔伤。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/xialuote/jineng/33.png",
+            "type": ["控制", "霸体", "减伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["150", "250", "350"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["18", "15.5", "13"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 103,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "狩猎",
+            "desc": "<p>当敌人的生命值低于30%，会被澜视作“猎物”。澜的技能和普攻对“猎物”额外造成15%真实伤害。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lan/jineng/0.png",
+            "type": ["真伤"],
+            "effect": []
+          },
+          {
+            "cd": 11,
+            "consume": 40,
+            "name": "破浪",
+            "desc": "<p>澜用魔道力量覆盖全身进入“下潜”状态并增加60点移速，持续3秒，到时间后会跳出水面并返还50%的冷却。下潜状态下使用【破浪】澜会冲出水面完成破浪一击，造成300<span style=\"color: rgb(231, 95, 51);\">(+120%额外物理攻击)物理伤害</span>，并对目标附带50%减速效果，持续1.5秒。</p><p><span style=\"color: rgb(245, 219, 77);\">被动：在河道区域没有持续时间的限制。如果1500范围内有“英雄猎物出现”，加速效果会额外提升450点。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lan/jineng/1.png",
+            "type": ["下潜", "位移", "加速"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["300", "350", "400", "450", "500", "550"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["11", "10.4", "9.8", "9.2", "8.6", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 8,
+            "consume": 40,
+            "name": "断空",
+            "desc": "<p>攻击附近的敌人割开他们的伤口连续2次造成225<span style=\"color: rgb(231, 95, 51);\">(+30%额外物理攻击)物理伤害</span>，每命中一名敌人一次澜可以获得一个印记，最多获得3层印记，使用普攻会追击敌人并清除自身一层印记，造成35<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>，同时回复80<span style=\"color: rgb(231, 95, 51);\">(+28%额外物理攻击)</span>点生命，每触发一次追击减少【断空】1秒冷却。</p><p>下潜状态下释放【断空】会附带一个指定方向的位移，并减少【破浪】50%的冷却。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lan/jineng/2.png",
+            "type": ["物伤", "印记", "回复"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["225", "260", "295", "330", "365", "400"]
+              },
+              {
+                "type": "普攻伤害",
+                "phase": ["35", "50", "65", "80", "95", "110"]
+              },
+              {
+                "type": "回复生命",
+                "phase": ["80", "95", "110", "125", "140", "155"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["8", "7.8", "7.6", "7.4", "7.2", "7"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 100,
+            "name": "处决",
+            "desc": "<p>澜将匕首扔出并对路径上敌人造成90%减速效果，持续0.5秒，短暂延迟后将向匕首位置突袭，并将路径上的敌人拖到终点处进行处决，造成480<span style=\"color: rgb(231, 95, 51);\">(+150%额外物理攻击)物理伤害</span>。下潜状态下释放【处决】不会投掷匕首，直接触发后续效果，并减少【破浪】50%的冷却。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/lan/jineng/3.png",
+            "type": ["控制", "物伤", "位移"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["480", "660", "840"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "35", "30"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 104,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "天雷引",
+            "desc": "<p>司空震的普通攻击造成140<span style=\"color: rgb(231, 95, 51);\">(+30%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>。近距离会触发近战攻击，攻击间隔降低。</p><p>普攻获得1点天雷之力，上限6点。达到上限时引动天雷，获得一次额外释放基础技能的机会。</p><p>释放基础技能后，获得强化普攻，对大范围内敌人造成300<span style=\"color: rgb(106, 57, 201);\">(+25%法术攻击)法术伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">远程强化普攻锁定目标以外单位受到75%伤害，不触发法球效果。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/sikongzhen/jineng/0.png",
+            "type": ["强化"],
+            "effect": []
+          },
+          {
+            "cd": 10,
+            "consume": 0,
+            "name": "奔雷疾",
+            "desc": "<p>司空震化身奔雷向前疾行，对路径上敌人造成180<span style=\"color: rgb(106, 57, 201);\">(+20%法术攻击)法术伤害</span>并获得210<span style=\"color: rgb(106, 57, 201);\">(+10%法术攻击)</span>点护盾，持续2秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/sikongzhen/jineng/1.png",
+            "type": ["位移", "法伤", "护盾"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["180", "216", "252", "288", "324", "360"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.6", "9.2", "8.8", "8.4", "8"]
+              }
+            ]
+          },
+          {
+            "cd": 13,
+            "consume": 0,
+            "name": "狂雷击",
+            "desc": "<p>司空震向前释放出一道狂雷之力，达到最大射程，或触碰到单位短暂延迟后爆炸，造成击退和250<span style=\"color: rgb(106, 57, 201);\">(+30%法术攻击)法术伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">离司空震距离越近的单位被击退得越远。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/sikongzhen/jineng/2.png",
+            "type": ["控制", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["250", "300", "350", "400", "450", "500"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["13", "12.6", "12.2", "11.8", "11.4", "11"]
+              }
+            ]
+          },
+          {
+            "cd": 70,
+            "consume": 0,
+            "name": "雷霆万钧",
+            "desc": "<p>司空震升入空中，化身为雷霆之王。变身过程持续1.5秒，期间获得霸体，</p><p>增加30%移动速度，无视地形阻挡，并让五个雷鼓依次随机轰击附近的敌人（优先英雄）。每次雷击造成80<span style=\"color: rgb(106, 57, 201);\">(+4%法术攻击)法术伤害</span>，并使司空震获得1点天雷之力和180<span style=\"color: rgb(106, 57, 201);\">(+10%法术攻击)</span>点护盾，持续1秒。落地时会对附近敌人造成360<span style=\"color: rgb(106, 57, 201);\">(+35%法术攻击)法术伤害</span>。</p><p>变身持续10秒，期间普攻改为获得2点天雷之力，远程普攻会产生雷电链，在多个敌人间弹射，造成100<span style=\"color: rgb(106, 57, 201);\">(+10%法术攻击)法术伤害</span>。强化普攻的范围增加。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/sikongzhen/jineng/3.png",
+            "type": ["强化", "霸体", "加速"],
+            "effect": [
+              {
+                "type": "冷却时间",
+                "phase": ["70", "60", "50"]
+              },
+              {
+                "type": "雷击伤害",
+                "phase": ["80", "100", "120"]
+              },
+              {
+                "type": "落地伤害",
+                "phase": ["360", "540", "720"]
+              },
+              {
+                "type": "每次护盾",
+                "phase": ["180", "210", "240"]
+              },
+              {
+                "type": "弹射伤害",
+                "phase": ["100", "150", "200"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 105,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "精灵舞步",
+            "desc": "<p>艾琳普攻命中敌人后造成150<span style=\"color: rgb(106, 57, 201);\">(+20%法术攻击)法术伤害</span>，并获得能量，能量满后艾琳消耗能量急速飞行。</p><p>能量满后艾琳获得一次强化普攻，对首个命中的目标造成180<span style=\"color: rgb(106, 57, 201);\">(+30%法术攻击)法术伤害</span>。艾琳每100点法术攻击可以转化为1%暴击率。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/ailin/jineng/0.png",
+            "type": ["加速", "强化", "法伤"],
+            "effect": []
+          },
+          {
+            "cd": 7,
+            "consume": 0,
+            "name": "叶舞·致意",
+            "desc": "<p>艾琳射出一束月桂叶，对命中的目标造成320<span style=\"color: rgb(106, 57, 201);\">(+45%法术攻击)法术伤害</span>，并叠加一层月桂印记，命中敌方英雄或飞行到最远处后展开成环，对触碰的敌人造成150<span style=\"color: rgb(106, 57, 201);\">(+22%法术攻击)法术伤害</span>和50%减速，持续1秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/ailin/jineng/1.png",
+            "type": ["减速", "法伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["320", "360", "400", "440", "480", "520"]
+              },
+              {
+                "type": "触碰伤害",
+                "phase": ["150", "170", "190", "210", "230", "250"]
+              }
+            ]
+          },
+          {
+            "cd": 10,
+            "consume": 0,
+            "name": "旋舞·轻语",
+            "desc": "<p>艾琳受到黄金森林的祝福，立即回满能量，同时叠加两层月桂印记，获得免疫减速效果并增加30%攻速，持续3秒。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/ailin/jineng/2.png",
+            "type": ["强化"],
+            "effect": [
+              {
+                "type": "增加攻速",
+                "phase": ["30%", "34%", "38%", "42%", "46%", "50%"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.2", "8.4", "7.6", "6.8", "6"]
+              }
+            ]
+          },
+          {
+            "cd": 20,
+            "consume": 0,
+            "name": "月桂之舞·盛放",
+            "desc": "<p>艾琳能量满后会叠加一层月桂印记。当月桂印记达到6层时【月桂之舞·盛放】解锁，印记叠加上限为12层。</p><p>技能开启时，艾琳增加10%移速，不断消耗印记发出月桂飞叶，对范围内血量最低的目标造成80<span style=\"color: rgb(106, 57, 201);\">(+22%法术攻击)法术伤害</span>，并减少【旋舞·轻语】0.2秒的冷却时间。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/ailin/jineng/3.png",
+            "type": ["法伤", "加速", "冷却"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["80", "110", "140"]
+              },
+              {
+                "type": "印记上限",
+                "phase": ["12", "15", "18"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["20", "17.5", "15"]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "id": 106,
+      "skills": [
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "枪意·掠火",
+            "desc": "<p>云缨与神兵“掠火”心念相通，释放技能会领悟一层枪意，使用普攻会消耗所有枪意，释放对应的枪意技【坚意·止戈】、【锐意·摧城】和【真意·燎原】，并减少【断月】和【追云】1.5秒冷却时间。枪意技不可暴击，受15%攻速影响。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/0.png",
+            "type": ["强化", "冷却"],
+            "effect": []
+          },
+          {
+            "cd": 9,
+            "consume": 45,
+            "name": "断月",
+            "desc": "<p>云缨举枪向前方上挑后下劈，上挑可造成0.5秒击飞，每段造成100<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)物理伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/1.png",
+            "type": ["控制", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["100", "115", "130", "145", "160", "175"]
+              }
+            ]
+          },
+          {
+            "cd": 10,
+            "consume": 40,
+            "name": "追云",
+            "desc": "<p>云缨提枪蓄力冲锋，获得最高增加30%移速，结束时向前突进横扫，对敌人造成80<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)</span>~160<span style=\"color: rgb(231, 95, 51);\">(+100%物理攻击)物理伤害</span>和30%减速，持续1秒。</p><p><span style=\"color: rgb(140, 140, 140);\">蓄力冲锋时间越长，加速越高，结束突进越远，伤害越高。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/2.png",
+            "type": ["位移", "加速", "物伤"],
+            "effect": [
+              {
+                "type": "基础伤害",
+                "phase": ["80", "110", "140", "170", "200", "230"]
+              },
+              {
+                "type": "最大伤害",
+                "phase": ["160", "220", "280", "340", "400", "460"]
+              },
+              {
+                "type": "最大加速",
+                "phase": ["30%", "32%", "34%", "36%", "38%", "40%"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["10", "9.8", "9.6", "9.4", "9.2", "9"]
+              }
+            ]
+          },
+          {
+            "cd": 40,
+            "consume": 100,
+            "name": "逐星",
+            "desc": "<p>云缨引燃“掠火”枪尖，向前方区域来回突击，每段都对敌人造成70<span style=\"color: rgb(231, 95, 51);\">(+55%物理攻击)物理伤害</span>和击飞。在突击至最远处时会连续刺击4次，每次造成35<span style=\"color: rgb(231, 95, 51);\">(+27%物理攻击)物理伤害</span>。技能释放期间处于霸体状态并减少10%受到的伤害。</p><p>激活技能二段【啸日】，挥动“掠火”向前横扫并留下火径，持续3秒。横扫造成70<span style=\"color: rgb(231, 95, 51);\">(+55%物理攻击)物理伤害</span>，火径每0.2秒造成30<span style=\"color: rgb(231, 95, 51);\">(+10%物理攻击)</span><span style=\"color: rgb(106, 57, 201);\">法术伤害</span>。</p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/3.png",
+            "type": ["控制", "减伤", "物伤"],
+            "effect": [
+              {
+                "type": "突击伤害",
+                "phase": ["70", "140", "210"]
+              },
+              {
+                "type": "刺击伤害",
+                "phase": ["35", "70", "105"]
+              },
+              {
+                "type": "伤害减免",
+                "phase": ["10%", "40%", "70%"]
+              },
+              {
+                "type": "冷却时间",
+                "phase": ["40", "37.5", "35"]
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "cd": 0,
+            "consume": 0,
+            "name": "",
+            "desc": "<p><br></p>",
+            "img": "",
+            "type": [],
+            "effect": []
+          },
+          {
+            "cd": 1,
+            "consume": 0,
+            "name": "坚意·止戈",
+            "desc": "<p>云缨舞出枪花连续攻击4次，每次造成50<span style=\"color: rgb(231, 95, 51);\">(+40%物理攻击)物理伤害</span>，并获得100<span style=\"color: rgb(231, 95, 51);\">(+50%物理攻击)</span>护盾，持续2秒。</p><p><span style=\"color: rgb(140, 140, 140);\">领悟一层枪意时使用普攻释放，增加10%移速，持续1秒。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/1.png",
+            "type": ["护盾", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 1,
+            "consume": 0,
+            "name": "锐意·摧城",
+            "desc": "<p>云缨连续刺出3次攻击，前两刺击每击对敌人造成30<span style=\"color: rgb(231, 95, 51);\">(+35%物理攻击)物理伤害</span>并回复自身12<span style=\"color: rgb(231, 95, 51);\">(+10%物理攻击)</span>点生命，最后一击造成170<span style=\"color: rgb(231, 95, 51);\">(+70%物理攻击)物理伤害</span>并回复自身24(+20%物理攻击）点生命。</p><p><span style=\"color: rgb(140, 140, 140);\">领悟二层枪意时使用普攻释放，血量越低回复越高，最高额外获得3倍回复。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/2.png",
+            "type": ["回复", "物伤"],
+            "effect": []
+          },
+          {
+            "cd": 1,
+            "consume": 0,
+            "name": "真意·燎原",
+            "desc": "<p>云缨跃至空中，蓄势1秒后劈出燎原一击，对路径上的敌人造成100<span style=\"color: rgb(231, 95, 51);\">(+60%物理攻击)物理伤害</span>，目标血量越低，造成伤害越高，当目标生命低于50%时达到伤害上限，造成300<span style=\"color: rgb(231, 95, 51);\">(+180%物理攻击)物理伤害</span>。</p><p><span style=\"color: rgb(140, 140, 140);\">领悟三层枪意时使用普攻释放，跃起期间可无视地形移动，增加200%移速，并减少10%受到的伤害。</span></p>",
+            "img": "https://lengyibai.gitee.io/wzry-material/hero/yunying/jineng/3.png",
+            "type": ["物伤", "加速", "减伤"],
+            "effect": []
+          }
+        ]
+      ]
     }
   ]
 }
