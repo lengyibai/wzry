@@ -3,7 +3,7 @@
     <HeroSkillContentLeft
       :class="{ 'hide-left': !show || toggle }"
       :activeSkill="skill"
-      :isPassive="index === 0"
+      :isPassive="$heroDetail.skill_index === 0"
       :style="{ width: exist_effect ? '45%' : '100%' }"
     />
     <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="exist_effect" />
@@ -18,12 +18,10 @@ import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"
 
 interface Props {
   skill: Hero.Skill;
-  index: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   skill: () => skillDefault,
-  index: 0,
 });
 
 const $heroDetail = heroDetail();
