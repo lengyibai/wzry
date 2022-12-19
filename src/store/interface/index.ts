@@ -39,7 +39,6 @@ export namespace HeroStore {
     profession: string;
     hero_list: Hero.Data[];
     filter_list: Hero.Data[];
-    hero_info: Hero.Data;
   }
 }
 
@@ -47,8 +46,10 @@ export namespace HeroStore {
 export namespace HeroDetailStore {
   export interface State {
     scroll_index: number;
+    skill_index: number;
     ScollFns: Array<(index: number) => void>;
     SkinToggleFns: Array<(hero_name: string, skin_name: string) => void>;
+    hero_info: Hero.Data;
     voice: Hero.Voice[];
     skillSelectFn: (index: number) => void;
   }

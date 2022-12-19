@@ -29,6 +29,7 @@
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import heroStore from "@/store/hero";
+import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
@@ -42,12 +43,13 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $router = useRouter();
+const $heroDetail = heroDetail();
 const $heroStore = heroStore();
 const $heroDetailStore = heroDetailStore();
 
 const scroll_index = ref(1); //滚动索引
 const show_progress = ref(false); //显示滚动索引组件
-const hero_data = $heroStore.hero_info; //英雄信息
+const hero_data = $heroDetail.hero_info; //英雄信息
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
 
 //技能数量

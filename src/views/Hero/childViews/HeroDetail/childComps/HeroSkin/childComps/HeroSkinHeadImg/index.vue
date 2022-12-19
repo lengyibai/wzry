@@ -26,19 +26,19 @@
 </template>
 <script setup lang="ts">
 import { nextTick, reactive, ref } from "vue";
-import heroStore from "@/store/hero";
+import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 
 const skin = ref();
 const showSkin = ref();
-const $heroStore = heroStore();
+const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
 
 const skins = ref<Hero.Skin[] | undefined>([]);
 const toggle = ref(true); //用于切换背景
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围
 const show_skin_head = ref(false); //用于头像初次加载显示
-skins.value = $heroStore.hero_info.skins;
+skins.value = $heroDetail.hero_info.skins;
 const active_skin = reactive<{ el: HTMLElement | null; transform: string }>({
   el: null,
   transform: "",

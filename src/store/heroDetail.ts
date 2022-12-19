@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { HeroDetailStore } from "./interface";
 import { getSkinVoice } from "@/api/main/games/voice";
+import { $deepCopy } from "@/utils";
+import { heroDefault } from "@/defaultValue/defaults";
 
 const heroDetailStore = defineStore("heroDetail", {
   state: (): HeroDetailStore.State => ({
@@ -8,15 +10,30 @@ const heroDetailStore = defineStore("heroDetail", {
     ScollFns: [], //滚动结束后触发函数组
     SkinToggleFns: [], //皮肤切换后触发函数组
     voice: [], //皮肤语音
+    skill_index: 0, //处于展示的技能索引
+    hero_info: $deepCopy(heroDefault), //英雄信息
     skillSelectFn: () => {}, //技能选择触发
   }),
   actions: {
+    /** @description: 设置英雄数据 */
+    setHeroInfo(data: Hero.Data) {
+      this.hero_info = data;
+    },
+
     /** @description: 设置滚动索引 */
     setIndex(index: number) {
       this.scroll_index = index;
       this.ScollFns.forEach((item) => {
         item(index);
       });
+    },
+
+    /** @description: 设置技能索引 */
+    setSkillIndex(index: number) {
+      // 延迟设置是为了配合切换动画
+      setTimeout(() => {
+        this.skill_index = index;
+      }, 500);
     },
 
     /** @description: 设置需要滚动触发的函数 */

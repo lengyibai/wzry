@@ -1,15 +1,12 @@
 import { defineStore } from "pinia";
 import { getHeroData } from "@/api/main/games/hero";
 import { HeroStore } from "./interface";
-import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue/defaults";
 
 export default defineStore("hero", {
   state: (): HeroStore.State => ({
     profession: "", //职业类型
     hero_list: [], //英雄列表
     filter_list: [], //筛选后的列表
-    hero_info: $deepCopy(heroDefault), //英雄信息
   }),
   actions: {
     /** @description: 获取英雄列表 */
@@ -36,11 +33,6 @@ export default defineStore("hero", {
           return item.profession.includes(profession);
         });
       }
-    },
-
-    /** @description: 设置英雄数据 */
-    setHeroInfo(data: Hero.Data) {
-      this.hero_info = data;
     },
   },
 });

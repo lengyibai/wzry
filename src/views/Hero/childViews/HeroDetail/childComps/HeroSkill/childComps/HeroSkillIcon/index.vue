@@ -28,20 +28,22 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, toRef, computed } from "vue";
-import heroStore from "@/store/hero";
+import { ref, computed } from "vue";
+import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 
-const $heroStore = heroStore();
+const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
 
 const show = ref(false); //是否显示技能
 const currentIndex = ref(0); //处于展示的技能索引
-const hero_data = toRef($heroStore, "hero_info"); //设置英雄详情
 const deputy_index = ref(0); //主副技能索引
 const active_skills = ref<Hero.Skill[]>([]); //展示的技能组
-active_skills.value = hero_data.value.skills[deputy_index.value];
 
+//设置英雄详情
+const hero_data = computed(() => {
+  return $heroDetail.hero_info;
+});
 //处于展示的技能
 const calcActiveSkill = computed(() => {
   return active_skills.value[currentIndex.value];
@@ -52,16 +54,19 @@ $heroDetailStore.setScollFn((index) => {
   show.value = index === 3;
 });
 
+active_skills.value = hero_data.value.skills[deputy_index.value];
+
 /* 点击需要展示的技能 */
 const emit = defineEmits<{
-  (e: "select-skill", skills: [Hero.Skill, number]): void;
+  (e: "select-skill", skills: Hero.Skill): void;
 }>();
 
 /* 点击技能后传递索引号 */
 const handleSelectSkill = (index: number) => {
   currentIndex.value = index;
   $heroDetailStore.skillToggler(index);
-  emit("select-skill", [calcActiveSkill.value, index]);
+  $heroDetailStore.setSkillIndex(index);
+  emit("select-skill", calcActiveSkill.value);
 };
 handleSelectSkill(0);
 

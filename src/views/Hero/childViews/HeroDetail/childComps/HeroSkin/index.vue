@@ -33,7 +33,7 @@ import { reactive, ref } from "vue";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import { getAssignSkinType } from "@/api/main/games/skin";
-import heroStore from "@/store/hero";
+import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 import HeroBgImg from "./childComps/HeroBgImg/index.vue"; //背景图
 import HeroVoice from "./childComps/HeroVoice/index.vue"; //皮肤语音
@@ -43,9 +43,9 @@ import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
 
 const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
-const $heroStore = heroStore();
+const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
-hero_data.value = $heroStore.hero_info;
+hero_data.value = $heroDetail.hero_info;
 
 const active_skin_name = ref(""); //皮肤名
 const active_skin_type = ref(""); //皮肤类型

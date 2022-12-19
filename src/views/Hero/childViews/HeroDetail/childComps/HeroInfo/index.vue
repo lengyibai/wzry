@@ -28,16 +28,16 @@
 import { ref, onMounted } from "vue";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
-import heroStore from "@/store/hero";
+import heroDetail from "@/store/heroDetail";
 import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue";
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 const into = ref(false); //控制页面元素显示
-const $heroStore = heroStore();
+const $heroDetail = heroDetail();
 const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
-hero_data.value = $heroStore.hero_info;
+hero_data.value = $heroDetail.hero_info;
 
 onMounted(() => {
   /* 设置按顺序出场的动画 */
