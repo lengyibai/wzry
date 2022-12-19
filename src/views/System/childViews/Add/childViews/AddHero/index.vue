@@ -80,7 +80,7 @@
   </ManageMask>
 </template>
 <script setup lang="ts">
-import { provide, reactive } from "vue";
+import { reactive } from "vue";
 import {
   // addHero,
   // addHeroList,
@@ -121,6 +121,24 @@ const type_list: Record<string, any[]> = reactive({
   specialtyType: [],
 });
 
+/* 发布 */
+const EmitCommit = async () => {
+  const { id, mark, name, cover, headImg, poster } = form_data.value!;
+  if (id && mark && name && cover && headImg && poster) {
+    // await addHero(form_data.value);
+    // await addHeroList({ id: form_data.value!.id, name: form_data.value!.name });
+    finish.value = true;
+    setTimeout(() => {
+      EmitConfirmRemove();
+      $switchStore.$tip("发布成功", "info");
+    }, 500);
+  } else {
+    $switchStore.$tip("请完整填写", "error");
+    status.value = 0;
+  }
+};
+
+/* 延迟显示 */
 setTimeout(async () => {
   $switchStore.$loading.show("正在加载阵营类型表2/7");
   type_list.campType = await getCampType();
@@ -135,25 +153,6 @@ setTimeout(async () => {
   await $switchStore.$loading.close();
   show.value = true;
 }, 1000);
-
-/* 发布 */
-const EmitCommit = async () => {
-  const { id, mark, name, cover, headImg, poster } = form_data.value!;
-  if (id && mark && name && cover && headImg && poster) {
-    // await addHero(form_data.value);
-    // await addHeroList({ id: form_data.value!.id, name: form_data.value!.name });
-    finish.value = true;
-    setTimeout(() => {
-      close();
-      $switchStore.$tip("发布成功", "info");
-    }, 500);
-  } else {
-    $switchStore.$tip("请完整填写", "error");
-    status.value = 0;
-  }
-};
-
-provide("hero_data", form_data.value);
 </script>
 <style scoped lang="less">
 @import url("./index.less");
