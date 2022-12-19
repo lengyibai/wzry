@@ -1,17 +1,19 @@
 <template>
-  <div class="epigraph view-add">
-    <transition name="fade">
-      <div class="content" ref="content" v-if="show">
-        <transition-group name="fade"></transition-group>
-      </div>
-    </transition>
+  <ManageMask class="content" :show="show">
+    <transition-group name="fade"></transition-group>
 
-    <!-- 发布按钮 -->
-    <LibCommitBtn class="lib-commit-btn" size="50px" @commit="commit" :finish="finish" title="发布" />
-
-    <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="close" title="取消" />
-  </div>
+    <!-- 发布相关 -->
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
 </template>
 <script setup lang="ts">
 import viewHide from "../../../../hooks/useViewHide";
@@ -24,7 +26,10 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const { show, finish, close } = viewHide(emit, "add_epigraph");
+const { show, status, show_ConfirmClose, finish, EmitCancelRelease, EmitConfirmRemove, EmitConfirmSave } = viewHide(
+  emit,
+  "add_epigraph"
+);
 
 /* 延迟显示页面 */
 setTimeout(async () => {
@@ -34,7 +39,7 @@ setTimeout(async () => {
 }, 1000);
 
 /* 提交表单 */
-const commit = () => {
+const EmitCommit = () => {
   setTimeout(() => {
     finish.value = true;
     setTimeout(() => {

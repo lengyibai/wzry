@@ -1,64 +1,68 @@
 <template>
-  <div class="voice view-add">
-    <transition name="fade">
-      <div class="content" v-if="show">
-        <transition-group name="fade">
-          <SelectHero v-model="hero_id" key="SelectHero" />
+  <ManageMask
+    class="content"
+    :show="show"
+    :styles="{
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }"
+  >
+    <transition-group name="fade">
+      <SelectHero v-model="hero_id" key="SelectHero" />
 
-          <!--添加完毕的语音列表-->
-          <div class="voice-list" v-show="form_data!.length" key="b">
-            <div
-              class="voice"
-              v-for="(item, index) in form_data"
-              @mouseleave="voiceEnter(null)"
-              @mouseenter="voiceEnter(index)"
-              :key="item.text"
-            >
-              <span class="desc" v-show="currentIndex !== index"> {{ item.text }}</span>
-              <div class="voice-box" v-show="currentIndex === index">
-                <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="play(item.link)" />
-                <i class="iconfont wzry-lajitong cursor-pointer" style="color: var(--red)" @click="del(index)" />
-              </div>
-            </div>
+      <!--添加完毕的语音列表-->
+      <div class="voice-list" v-show="form_data!.length" key="b">
+        <div
+          class="voice"
+          v-for="(item, index) in form_data"
+          @mouseleave="voiceEnter(null)"
+          @mouseenter="voiceEnter(index)"
+          :key="item.text"
+        >
+          <span class="desc" v-show="currentIndex !== index"> {{ item.text }}</span>
+          <div class="voice-box" v-show="currentIndex === index">
+            <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="play(item.link)" />
+            <i class="iconfont wzry-lajitong cursor-pointer" style="color: var(--red)" @click="del(index)" />
           </div>
+        </div>
+      </div>
 
-          <!--正在添加语音的输入框盒子-->
-          <div class="add-box" v-if="show_box" key="c">
-            <transition-group v-if="show_box" name="fade" key="c">
-              <FormInput
-                v-model="voice_text"
-                required
-                placeholder="请输入语音文字"
-                label="语音文字"
-                labelWidth="190px"
-                key="a"
-                autoSize
-              />
+      <!--正在添加语音的输入框盒子-->
+      <div class="add-box" v-if="show_box" key="c">
+        <transition-group v-if="show_box" name="fade" key="c">
+          <FormInput
+            v-model="voice_text"
+            required
+            autoWidth
+            placeholder="请输入语音文字"
+            label="语音文字"
+            labelWidth="190px"
+            key="a"
+          />
 
-              <!--设置/播放语音-->
-              <i
-                class="iconfont cursor-pointer"
-                :class="voice_link ? 'wzry-bofangyuyin' : 'wzry-mic'"
-                v-show="voice_text"
-                key="b"
-                @click="setVoice"
-              />
-
-              <!--重置语音链接-->
-              <i class="iconfont wzry-zhongzhi cursor-pointer" v-show="voice_link" key="c" @click="resetVoice" />
-            </transition-group>
-          </div>
-
-          <!--添加/删除/保存按钮-->
+          <!--设置/播放语音-->
           <i
             class="iconfont cursor-pointer"
-            :class="voice_link ? 'wzry-finish' : add_status"
-            key="d"
-            @click="addVoice(add_status)"
+            :class="voice_link ? 'wzry-bofangyuyin' : 'wzry-mic'"
+            v-show="voice_text"
+            key="b"
+            @click="setVoice"
           />
+
+          <!--重置语音链接-->
+          <i class="iconfont wzry-zhongzhi cursor-pointer" v-show="voice_link" key="c" @click="resetVoice" />
         </transition-group>
       </div>
-    </transition>
+
+      <!--添加/删除/保存按钮-->
+      <i
+        class="iconfont cursor-pointer"
+        :class="voice_link ? 'wzry-finish' : add_status"
+        key="d"
+        @click="addVoice(add_status)"
+      />
+    </transition-group>
 
     <!--播放语音-->
     <PlayVoice @ended="play_link = ''" v-if="play_link" :link="play_link" />
@@ -74,15 +78,18 @@
       />
     </transition>
 
-    <!-- 发布按钮 -->
-    <LibCommitBtn v-model="status" title="发布" size="50px" class="lib-commit-btn" @commit="commit" :finish="finish" />
-
-    <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="cancel" title="取消" />
-
-    <!-- 确认关闭 -->
-    <ConfirmClose v-model="show_ConfirmClose" @close="close" />
-  </div>
+    <!-- 发布相关 -->
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -99,10 +106,17 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const { hero_id, show, finish, status, form_data, show_ConfirmClose, cancel, close } = viewHide<Hero.Voice[]>(
-  emit,
-  "add_voice_list"
-);
+const {
+  hero_id,
+  show,
+  finish,
+  status,
+  form_data,
+  show_ConfirmClose,
+  EmitCancelRelease,
+  EmitConfirmRemove,
+  EmitConfirmSave,
+} = viewHide<Hero.Voice[]>(emit, "add_voice_list");
 
 const voice_link = ref(""); //语音链接
 const voice_text = ref(""); //语音文字
@@ -181,12 +195,12 @@ const del = (index: number) => {
 };
 
 /* 发布 */
-const commit = async () => {
+const EmitCommit = async () => {
   if (form_data.value!.length !== 0) {
     // await updateHero(hero_id.value!, { voices: form_data.value });
     setTimeout(() => {
       finish.value = true;
-      close();
+      EmitConfirmRemove();
       $switchStore.$tip("发布成功", "info");
     }, 500);
   } else {

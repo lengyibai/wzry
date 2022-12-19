@@ -1,65 +1,62 @@
+.select-hero {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 25px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  backdrop-filter: blur(10px);
+}
+
 .skin {
-  .content {
-    .select-hero {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding-top: 25px;
-      border-bottom: 1px solid rgb(255 255 255 / 10%);
-      backdrop-filter: blur(10px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 35px;
+  flex-direction: column;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+
+  .del {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 25px;
+    margin-right: 25px;
+    color: var(--theme-color-seven);
+    font-size: 25px;
+
+    &:hover {
+      color: var(--theme-color-four);
     }
+  }
 
-    .skin {
-      position: relative;
-      display: flex;
-      align-items: center;
-      width: 100%;
-      padding: 35px;
-      flex-direction: column;
-      border-bottom: 1px solid rgb(255 255 255 / 10%);
+  .head-poster {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
 
-      .del {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin-top: 25px;
-        margin-right: 25px;
-        color: var(--theme-color-seven);
-        font-size: 25px;
-
-        &:hover {
-          color: var(--theme-color-four);
-        }
-      }
-
-      .head-poster {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 25px;
-
-        span {
-          font-size: 30px;
-        }
-      }
-    }
-
-    .add-one {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 2;
-      color: var(--theme-color-seven);
-      font-size: 50px;
-
-      &:hover {
-        color: var(--theme-color-four);
-      }
+    span {
+      font-size: 30px;
     }
   }
 }
+
+.add-one {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  color: var(--theme-color-seven);
+  font-size: 50px;
+
+  &:hover {
+    color: var(--theme-color-four);
+  }
+}
+

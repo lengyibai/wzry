@@ -15,44 +15,39 @@
   }
 }
 
-.equip {
-  .content {
-    flex-direction: row;
+.left {
+  position: relative;
+  overflow: auto;
+  min-width: 666px;
+  height: 100%;
+  padding: 30px;
+  flex: 1;
 
-    .left {
-      position: relative;
-      overflow: auto;
-      min-width: 666px;
-      height: 100%;
-      padding: 30px;
-      flex: 1;
+  .equip-effect {
+    margin-bottom: 100px;
 
-      .equip-effect {
-        margin-bottom: 100px;
+    .select-effect {
+      .options();
 
-        .select-effect {
-          .options();
-
-          display: flex;
-          align-items: center;
-        }
-      }
-
-      .motivation {
-        .box {
-          .options();
-
-          display: flex;
-          align-items: center;
-        }
-      }
+      display: flex;
+      align-items: center;
     }
+  }
 
-    .right {
-      overflow: auto;
-      height: 100%;
-      padding: 30px;
-      flex: 1;
+  .motivation {
+    .box {
+      .options();
+
+      display: flex;
+      align-items: center;
     }
   }
 }
+
+.right {
+  overflow: auto;
+  height: 100%;
+  padding: 30px;
+  flex: 1;
+}
+

@@ -1,88 +1,82 @@
 <template>
-  <div class="equip view-add">
-    <transition name="fade">
-      <div class="content" ref="content" v-if="show">
-        <div class="left">
-          <!-- 装备名 -->
-          <FormInput label="名称" required v-model="form_data!.name" />
-          <!-- 描述 -->
-          <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data!.desc" />
-          <!-- 装备类型 -->
-          <FormSelect label="类型" :data="equip_types" v-model="form_data!.type" :value="form_data!.type" required />
-          <!-- 阶段 -->
-          <FormInput label="阶段" placeholder="1-3" required v-model="form_data!.level" number />
-          <!-- 排名 -->
-          <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data!.num" number />
-          <!-- 价格 -->
-          <FormInput label="价格" required v-model="form_data!.price" number />
-          <!-- 设置图标 -->
-          <FormLabel label="图标" required>
-            <SelectImg v-model="form_data!.icon" title="图标" />
-          </FormLabel>
-          <!-- 最底部灰色备注 -->
-          <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
+  <ManageMask class="content" :show="show">
+    <div class="left">
+      <!-- 装备名 -->
+      <FormInput label="名称" required v-model="form_data!.name" />
+      <!-- 描述 -->
+      <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data!.desc" />
+      <!-- 装备类型 -->
+      <FormSelect label="类型" :data="equip_types" v-model="form_data!.type" :value="form_data!.type" required />
+      <!-- 阶段 -->
+      <FormInput label="阶段" placeholder="1-3" required v-model="form_data!.level" number />
+      <!-- 排名 -->
+      <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data!.num" number />
+      <!-- 价格 -->
+      <FormInput label="价格" required v-model="form_data!.price" number />
+      <!-- 设置图标 -->
+      <FormLabel label="图标" required>
+        <SelectImg v-model="form_data!.icon" title="图标" />
+      </FormLabel>
+      <!-- 最底部灰色备注 -->
+      <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
 
-          <!-- 装备效果 -->
-          <div class="equip-effect">
-            <div class="select-effect">
-              <FormSelect
-                label="效果类型"
-                v-model="equip_effect_type"
-                :value="equip_effect_type"
-                :data="equip_effects"
-              />
-              <button class="add" @click="addEffect">添加</button>
-              <button class="del" @click="delEffect">删除一行</button>
-            </div>
-            <div class="effect-list">
-              <transition-group name="fade">
-                <FormInput
-                  labelWidth="175px"
-                  :label="item.name"
-                  v-model="item.num"
-                  required
-                  v-for="item in form_data!.effect"
-                  :key="item.name"
-                />
-              </transition-group>
-            </div>
-          </div>
-
-          <!-- 被动及主动 -->
-          <div class="motivation">
-            <!-- 名称 -->
-            <FormInput label="主/被动名称" labelWidth="195px" v-model="motivation.name" />
-            <FormInput label="冷却时间" labelWidth="195px" v-model="motivation.time" number />
-            <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
-            <!-- 主/被动描述 -->
-            <LibRichText
-              width="500px"
-              v-model="motivation.desc"
-              placeholder="主/被动描述"
-              :key="form_data!.motivation.length"
-            />
-
-            <div class="box">
-              <button class="add" @click="addMotivation">添加</button>
-              <button class="del" @click="delMotivation">删除一行</button>
-            </div>
-          </div>
+      <!-- 装备效果 -->
+      <div class="equip-effect">
+        <div class="select-effect">
+          <FormSelect label="效果类型" v-model="equip_effect_type" :value="equip_effect_type" :data="equip_effects" />
+          <button class="add" @click="addEffect">添加</button>
+          <button class="del" @click="delEffect">删除一行</button>
         </div>
-        <div class="right">
-          <EquipDetail :show="true" :equip="form_data" />
+        <div class="effect-list">
+          <transition-group name="fade">
+            <FormInput
+              labelWidth="175px"
+              :label="item.name"
+              v-model="item.num"
+              required
+              v-for="item in form_data!.effect"
+              :key="item.name"
+            />
+          </transition-group>
         </div>
       </div>
-    </transition>
 
-    <!-- 发布按钮 -->
-    <LibCommitBtn class="lib-commit-btn" size="50px" @commit="commit" :finish="finish" v-model="status" title="发布" />
+      <!-- 被动及主动 -->
+      <div class="motivation">
+        <!-- 名称 -->
+        <FormInput label="主/被动名称" labelWidth="195px" v-model="motivation.name" />
+        <FormInput label="冷却时间" labelWidth="195px" v-model="motivation.time" number />
+        <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
+        <!-- 主/被动描述 -->
+        <LibRichText
+          width="500px"
+          v-model="motivation.desc"
+          placeholder="主/被动描述"
+          :key="form_data!.motivation.length"
+        />
 
-    <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="cancel" title="取消" />
+        <div class="box">
+          <button class="add" @click="addMotivation">添加</button>
+          <button class="del" @click="delMotivation">删除一行</button>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <EquipDetail :equip="form_data" />
+    </div>
 
-    <!-- 确认关闭 -->
-    <ConfirmClose v-model="show_ConfirmClose" @close="close" />
-  </div>
+    <!-- 发布相关 -->
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
@@ -99,10 +93,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const { show, finish, status, form_data, show_ConfirmClose, cancel, close } = viewHide<typeof equipDefault>(
-  emit,
-  "add_equip"
-);
+const { show, finish, status, form_data, show_ConfirmClose, EmitCancelRelease, EmitConfirmSave, EmitConfirmRemove } =
+  viewHide<typeof equipDefault>(emit, "add_equip");
 
 const $switchStore = switchStore();
 const $equipStore = equipStore();
@@ -157,16 +149,8 @@ const delMotivation = () => {
   form_data.value!.motivation.pop();
 };
 
-/* 延迟显示 */
-setTimeout(async () => {
-  $switchStore.$loading.show("正在加载");
-  $switchStore.$loading.close().then(() => {
-    show.value = true;
-  });
-}, 1000);
-
 /* 提交表单 */
-const commit = async () => {
+const EmitCommit = async () => {
   const { level, num, price, type, name, icon } = form_data.value!;
   /* 非空验证 */
   if (level && num && price && type && name && icon) {
@@ -190,13 +174,21 @@ const commit = async () => {
       finish.value = true;
       await $equipStore.getEquipList();
       $switchStore.$tip("发布成功", "info");
-      close();
+      EmitConfirmRemove();
     }, 500);
   } else {
     $switchStore.$tip("请完整填写", "error");
     status.value = 0;
   }
 };
+
+/* 延迟显示 */
+setTimeout(async () => {
+  $switchStore.$loading.show("正在加载");
+  $switchStore.$loading.close().then(() => {
+    show.value = true;
+  });
+}, 1000);
 </script>
 <style scoped lang="less">
 @import url("./index.less");

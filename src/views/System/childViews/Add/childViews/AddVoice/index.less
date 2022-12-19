@@ -1,51 +1,45 @@
-.voice {
-  .content {
-    justify-content: center;
+.voice-list {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10px;
 
-    .voice-list {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      margin-bottom: 10px;
+  .voice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 35px;
+    margin-bottom: 20px;
+    flex-direction: column;
 
-      .voice {
-        position: relative;
-        display: flex;
-        align-items: center;
-        width: 100vw;
-        height: 35px;
-        margin-bottom: 20px;
-        flex-direction: column;
-
-        .desc {
-          position: absolute;
-          color: var(--theme-color-four);
-          font-size: 35px;
-        }
-
-        .voice-box {
-          position: absolute;
-          width: 100%;
-          text-align: center;
-        }
-      }
+    .desc {
+      position: absolute;
+      color: var(--theme-color-four);
+      font-size: 35px;
     }
 
-    .add-box {
-      position: relative;
-      bottom: 0;
-      display: flex;
-      width: 50%;
+    .voice-box {
+      position: absolute;
+      width: 100%;
+      text-align: center;
     }
+  }
+}
 
-    .iconfont {
-      color: var(--theme-color-seven);
-      font-size: 50px;
+.add-box {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  width: 50%;
+}
 
-      &:hover {
-        opacity: 0.85;
-      }
-    }
+.iconfont {
+  color: var(--theme-color-seven);
+  font-size: 50px;
+
+  &:hover {
+    opacity: 0.85;
   }
 }
 
@@ -67,3 +61,4 @@
 .fade-leave-active {
   position: absolute; /* 必须为绝对定位 */
 }
+
