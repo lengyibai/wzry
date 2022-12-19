@@ -6,7 +6,12 @@
     </div>
 
     <!-- 输入框 -->
-    <div class="input" :style="{ width: autoSize ? '100%' : '250px' }">
+    <div
+      class="input"
+      :style="{
+        width: width,
+      }"
+    >
       <slot>
         <input
           type="text"
@@ -36,14 +41,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, StyleValue, toRefs } from "vue";
+import { ref, StyleValue } from "vue";
 
 interface Props {
+  autoWidth?: boolean; //自适应
   modelValue: number | string; //值
+  width?: string; //整体宽度
   disabled?: boolean; //是否禁用
   label: string; //左侧文字
   labelWidth?: string; //左侧文字宽度
-  autoSize?: boolean; //自适应大小
   placeholder?: string; //输入框描述
   validate?: (val: string) => string; //自定义表单验证
   required?: boolean; //是否必填
@@ -54,11 +60,12 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  width: "250px",
+  autoWidth: false,
   modelValue: "",
   disabled: false,
   label: "标题",
   labelWidth: "150px",
-  autoSize: false,
   placeholder: "请输入",
   validate: () => "",
   required: false,
@@ -66,8 +73,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const { validate, required, number, autoSize } = toRefs(props);
-const autoStyle: StyleValue = props.autoSize ? { width: "100%" } : {};
+const autoStyle: StyleValue = props.autoWidth ? { width: "100%" } : {};
 
 const tip = ref(""); //不合法提示
 const legal = ref(true); //是否合法
@@ -79,16 +85,16 @@ const blur = (e: Event) => {
   is_focus.value = false;
   legal.value = true;
   setTimeout(() => {
-    if (validate.value(v)) {
-      tip.value = validate.value(v);
+    if (props.validate(v)) {
+      tip.value = props.validate(v);
       legal.value = false;
     }
 
-    if (required.value && v === "") {
+    if (props.required && v === "") {
       tip.value = "必填项";
       legal.value = false;
     }
-    if (number.value && v && isNaN(Number(v))) {
+    if (props.number && v && isNaN(Number(v))) {
       tip.value = "限制为数字";
       legal.value = false;
     }
@@ -97,7 +103,7 @@ const blur = (e: Event) => {
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  emit("update:modelValue", number.value ? (isNaN(Number(v)) ? v : Number(v)) : v);
+  emit("update:modelValue", props.number ? (isNaN(Number(v)) ? v : Number(v)) : v);
 };
 </script>
 <style scoped lang="less">
