@@ -16,12 +16,13 @@ declare namespace Hero {
     name: string; //名字
     period: string; //时期
     poster: string; //海报
+    skillUnit: string; //技能消耗单位
     profession: string[]; //职业
     specialty: string[]; //特长
     voices: Voice[]; //语音
     skills: Skill[][]; //技能
     skins: Skin[]; //皮肤
-    relationships: RelationType[];
+    relationships: RelationType[]; //关系表
     [propsName: string]: any;
   }
   /** @description: 头像列表 */
@@ -52,6 +53,7 @@ declare namespace Hero {
     effect?: SkillEffect[]; //效果
   }
 
+  /** @description: 返回的技能 */
   interface SkillParams {
     id: number;
     skills: Skill[][];
