@@ -80,6 +80,7 @@
       @del="EmitDelSkill"
     />
 
+    <!-- 发布相关 -->
     <ReleaseConfirm
       v-model:showConfirmclose="show_ConfirmClose"
       v-model:status="status"
@@ -120,7 +121,7 @@ const { show, finish, status, show_ConfirmClose, form_data, EmitCancelRelease, E
 
 const left = ref<HTMLElement>(); //左侧元素
 const skill_effect = ref(""); //选择的技能效果
-const skill_types = ref<Hero.SkillType[]>([]);
+const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
 const skill_consume = ref(0); //阶段值
 const hero_id = ref(0); //英雄id
 const effectIndex = ref(-1); //处于编辑状态的技能效果索引
@@ -315,6 +316,7 @@ const EmitCommit = async () => {
   }
 };
 
+/* 延迟显示 */
 setTimeout(async () => {
   $switchStore.$loading.show("正在加载");
   $switchStore.$loading.close().then(() => {
