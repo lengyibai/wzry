@@ -9,7 +9,7 @@
     <!--数字相关-->
     <div class="cd-consume">
       <div class="cd" v-if="!isPassive">CD：{{ activeSkill.cd }}秒</div>
-      <div class="consume" v-if="!isPassive">法力消耗：{{ activeSkill.consume }}</div>
+      <div class="consume" v-if="!isPassive">{{ $heroDetail.hero_info.skillUnit }}消耗：{{ activeSkill.consume }}</div>
       <div class="passive" v-else>被动</div>
     </div>
 
@@ -18,6 +18,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import heroDetail from "@/store/heroDetail";
 import { skillDefault } from "@/defaultValue/defaults";
 interface Props {
   activeSkill: typeof skillDefault;
@@ -27,6 +28,8 @@ withDefaults(defineProps<Props>(), {
   activeSkill: () => skillDefault,
   isPassive: false,
 });
+
+const $heroDetail = heroDetail();
 </script>
 <style scoped lang="less">
 @import url("./index.less");
