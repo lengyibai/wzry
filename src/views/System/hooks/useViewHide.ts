@@ -54,7 +54,9 @@ export default <T>(emit: Emits, key: string) => {
     localStorage.removeItem(key);
     close();
   };
+
   return {
+    hero_id,
     status,
     show,
     show_ConfirmClose,
