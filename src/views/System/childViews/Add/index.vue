@@ -52,11 +52,11 @@ const options: Options = reactive({
     show: false,
   },
   Equip: {
-    i: 5,
+    i: 4,
     show: false,
   },
   Epigraph: {
-    i: 6,
+    i: 5,
     show: false,
   },
 });
