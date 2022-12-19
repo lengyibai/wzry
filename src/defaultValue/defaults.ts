@@ -15,6 +15,7 @@ export const heroDefault: Hero.Data = {
   name: "", //名字
   period: "", //时期
   poster: "", //海报
+  skillUnit: "无", //技能消耗单位
   relationships: [], //关系列表
   profession: [], //职业
   specialty: [], //特长
