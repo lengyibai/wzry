@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="right">
-      <EquipDetail :equip="form_data" />
+      <EquipDetail :equip="form_data" :show="true" />
     </div>
 
     <!-- 发布相关 -->
