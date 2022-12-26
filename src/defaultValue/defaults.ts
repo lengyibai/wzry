@@ -62,7 +62,7 @@ export const equipDefault: Equip.Data = {
 };
 
 /** @description: 默认装备动机信息 */
-export const equipMotivationDefault: Equip.EquipMotivation = {
+export const equipMotivationDefault: Equip.Motivation = {
   type: false,
   name: "",
   desc: "",
