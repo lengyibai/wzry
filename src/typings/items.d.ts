@@ -11,23 +11,31 @@ declare namespace Equip {
     icon: string; //图标
     note: string; //备注
     desc: string; //简述
-    effect: EquipEffect[]; //效果
-    motivation: EquipMotivation[]; //动机
+    effect: Effect[]; //效果
+    motivation: Motivation[]; //动机
   }
 
   /** @description: 装备效果 */
-  interface EquipEffect {
+  interface Effect {
     name: string; //名称
     num: number; // +增益量
   }
 
   /** @description: 被动/主动信息 */
-  interface EquipMotivation {
+  interface Motivation {
     type: boolean | string; //主/被动
     name: string; //名称
     desc: string; //描述
     time: number; //冷却时间
     note: string; //备注
+  }
+
+  /** @description: 合成 */
+  interface Synthetic {
+    id: number;
+    name: string;
+    to?: { id: number; name: string }[];
+    need?: { id: number; name: string }[];
   }
 }
 

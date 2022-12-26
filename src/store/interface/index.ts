@@ -59,7 +59,14 @@ export namespace HeroDetailStore {
 export namespace EquipStore {
   export interface State {
     active_id: number;
+    vertical_line: { top?: string; height?: string }[];
+    active_array: string[];
+    equipSelectFn: (() => void)[];
+    synthetic_id: Equip.Synthetic[][];
+    synthetic_element: { id: number; to?: number[] }[][];
     type: string;
+    equip_element: { name: string; el: HTMLElement | undefined; id: number }[];
+    synthetic: Equip.Synthetic;
     type_list: {
       [propName: string]: Equip.Data[][];
     };

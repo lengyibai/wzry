@@ -1,7 +1,6 @@
 .equip-card {
   position: relative;
   display: flex;
-  align-items: center;
   margin-bottom: 40px;
 
   .border {
@@ -16,7 +15,7 @@
 
     &::before,
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -44,23 +43,50 @@
     border-radius: 50%;
   }
 
+  .left-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform-origin: right;
+    transform: translate(-100%, -50%);
+    width: 20px;
+    height: 3px;
+    background-color: var(--blue);
+  }
+
+  .right-line {
+    position: absolute;
+    top: 50%;
+    transform-origin: left;
+    left: 0;
+    transform: translate(75px, -50%);
+    width: calc(100% - 75px - 20px);
+    height: 3px;
+    background-color: var(--blue);
+  }
+
   .box {
     color: var(--theme-color-nine);
     font-size: 20px;
     text-shadow: var(--t-shadow);
 
     .name {
+      transform: translateY(15px);
       font-size: inherit;
     }
 
-    .desc {
-      color: var(--theme-color-seven);
-      font-size: 16px;
-    }
+    .info {
+      transform: translateY(15px);
 
-    .price {
-      color: var(--theme-color-five);
-      font-size: 16px;
+      .desc {
+        color: var(--theme-color-seven);
+        font-size: 16px;
+      }
+
+      .price {
+        color: var(--theme-color-five);
+        font-size: 16px;
+      }
     }
   }
 }
@@ -76,4 +102,32 @@
 
 .border-fade-leave-active {
   transition: all 0.25s;
+}
+
+/* 左边 */
+.left-line-enter-from,
+.left-line-leave-active {
+  transform: translate(-100%, -50%) scaleX(0) !important;
+}
+
+.left-line-enter-active {
+  transition: all 0.25s;
+}
+
+.left-line-leave-active {
+  transition: all 0.5s 0.25s;
+}
+
+/* 右边 */
+.right-line-enter-from,
+.right-line-leave-active {
+  transform: translate(75px, -50%) scaleX(0) !important;
+}
+
+.right-line-enter-active {
+  transition: all 0.1s;
+}
+
+.right-line-leave-active {
+  transition: all 0.5s 0.25s;
 }

@@ -39,6 +39,9 @@ export const Relationtype = () => http.Get<any[]>("/relationType.json");
 /** @description: 获取装备列表 */
 export const Equip = () => http.Get<any[]>("/equip.json");
 
+/** @description: 获取装备合成列表 */
+export const EquipSynthetic = () => http.Get<any[]>("/equipSynthetic.json");
+
 /** @description: 获取装备类型列表 */
 export const Equiptype = () => http.Get<any[]>("/equipType.json");
 

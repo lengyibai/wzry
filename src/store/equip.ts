@@ -2,12 +2,13 @@ import { defineStore } from "pinia";
 import { EquipStore } from "./interface";
 import { getEquip } from "@/api/main/games/equip";
 import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
+import { t, h } from "./helper";
 
 export default defineStore("equip", {
   state: (): EquipStore.State => ({
     type: "攻击", //列表装备类型显示
     active_id: 0, //当前被点击的装备id
-    synthetic: { id: 0 }, //当前点击的装备合成
+    synthetic: { id: 0, name: "" }, //当前点击的装备合成
     synthetic_id: [[], [], []], //当前点击的装备合成相关id
     synthetic_element: [[], [], []], //当前点击的装备合成相关元素
     equip_list: [], //装备列表
@@ -56,6 +57,7 @@ export default defineStore("equip", {
       this.active_id = 0;
       this.type = type;
       this.equip_list_column = this.type_list[type];
+      this.clearSynthetic();
     },
 
     /** @description: 设置需要点击装备触发的函数 */
@@ -64,7 +66,7 @@ export default defineStore("equip", {
     },
 
     /** @description: 装备卡片被点击的id */
-    editActive(id = 0): void {
+    setEquipActive(id = 0): void {
       this.vertical_line = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
       if (this.active_id === id) {
         this.active_id = 0;
@@ -73,160 +75,158 @@ export default defineStore("equip", {
       }
       this.active_id = id;
       getEquipSynthetic(id).then((res) => {
+        this.clearSynthetic();
         if (res) {
           this.active_array = res.id.toString().split("") || [];
           this.synthetic = res;
-          this.addSynthetic();
+          this.addSynthetic(res);
         }
       });
     },
 
     /** @description: 添加合成组 */
-    async addSynthetic() {
-      const data = this.synthetic;
+    async addSynthetic(synthetic: Equip.Synthetic) {
       /* 当点击的是第一列 */
       if (this.active_array[1] === "1") {
-        this.synthetic_id[0] = [this.active_id];
-        this.synthetic_id[1] = data.synthetic!.to;
+        this.synthetic_id[0][0] = synthetic; //获取第一列id组
+
+        // 通过第一列获取第二列
+
+        this.synthetic_id[1] = [];
+        try {
+          for (let i = 0; i < synthetic.to!.length; i++) {
+            const to = synthetic.to![i];
+            const res = await getEquipSynthetic(to.id);
+            this.synthetic_id[1].push(res);
+          }
+        } catch (error) {
+          /*  */
+        }
+        this.synthetic_id[1].sort(function (a, b) {
+          return a.id - b.id;
+        });
+
+        // 通过第二列获取第三列
+        this.synthetic_id[2] = [];
         for (let i = 0; i < this.synthetic_id[1].length; i++) {
-          const item = this.synthetic_id[1][i];
-          const res = await getEquipSynthetic(item);
-          if (res) {
-            this.synthetic_id[2] = res.synthetic!.to;
-          }
+          const to = this.synthetic_id[1][i];
+          const res = await getEquipSynthetic(to.id);
+          res?.to && this.synthetic_id[2].push(...res.to);
+          this.synthetic_id[2].sort(function (a, b) {
+            return a.id - b.id;
+          });
         }
 
-        for (let i = 0; i < this.equip_element.length; i++) {
-          const equip = this.equip_element[i];
-          for (let j = 0; j < this.synthetic_id.length; j++) {
-            const ids = this.synthetic_id[j];
-            for (let k = 0; k < ids.length; k++) {
-              const id = ids[k];
-              if (equip.id === id) {
-                this.synthetic_element[j][k] = equip;
-                const res = await getEquipSynthetic(equip.id);
-                if (res) {
-                  this.synthetic_element[j][k].to = res.synthetic?.to;
-                }
-              }
-            }
-          }
+        //计算二三列竖线距离顶部及高度
+        try {
+          this.vertical_line[1] = {
+            top: t(this.active_id, this.synthetic_id[1][0].id),
+            height: h(this.active_id, this.synthetic_id[1][0].id, this.synthetic_id[1].at(-1)!.id),
+          };
+          this.vertical_line[2] = {
+            top: t(this.synthetic_id[1][0]?.id, this.synthetic_id[2][0]?.id),
+            height: h(this.synthetic_id[1][0].id, this.synthetic_id[2][0].id, this.synthetic_id[2].at(-1)?.id || 0),
+          };
+        } catch (error) {
+          /*  */
         }
-
-        const num = (id: number) => {
-          return Number(id.toString().slice(2));
-        };
-
-        this.vertical_line[1] = {
-          top: (num(this.active_id) - 1) * 115 + "px",
-          height: Math.abs(num(this.active_id) - num(this.synthetic_element[1].at(-1)!.id)) * 115 + "px",
-        };
-        this.vertical_line[2] = {
-          top: (num(this.synthetic_element[1][0].id) - 1) * 115 + "px",
-          height:
-            (Math.abs(num(this.synthetic_element[1][0].id) - num(this.synthetic_element[2].at(-1)!.id)) + 1) * 115 +
-            "px",
-        };
       }
 
       /* 当点击的是第二列 */
       if (this.active_array[1] === "2") {
-        this.synthetic_id[0] = data.need?.main || [];
-        this.synthetic_id[1] = [this.active_id];
-        this.synthetic_id[2] = data.synthetic!.to;
+        this.synthetic_id[1][0] = synthetic; //获取第二列id组
 
-        for (let i = 0; i < this.synthetic_id[1].length; i++) {
-          const item = this.synthetic_id[1][i];
-          const res = await getEquipSynthetic(item);
-          if (res) {
-            this.synthetic_id[2] = res.synthetic!.to;
+        // 通过第二列获取第一列
+        this.synthetic_id[0] = [];
+        try {
+          for (let i = 0; i < synthetic.need!.length; i++) {
+            const need = synthetic.need![i];
+            const res = await getEquipSynthetic(need.id);
+            this.synthetic_id[0].push(res);
           }
+        } catch (error) {
+          /*  */
         }
+        this.synthetic_id[0].sort(function (a, b) {
+          return a.id - b.id;
+        });
 
-        this.synthetic_element[0] = this.synthetic_element[0].filter((item) => {
-          return this.synthetic_id[0].includes(item.id);
-        });
-        this.synthetic_element[1] = this.synthetic_element[1].filter((item) => {
-          return item.id === this.active_id;
-        });
-        for (let i = 0; i < this.equip_element.length; i++) {
-          const equip = this.equip_element[i];
-          for (let j = 0; j < this.synthetic_id.length; j++) {
-            const ids = this.synthetic_id[j];
-            for (let k = 0; k < ids.length; k++) {
-              const id = ids[k];
-              if (equip.id === id) {
-                this.synthetic_element[j][k] = equip;
-                const res = await getEquipSynthetic(equip.id);
-                if (res) {
-                  this.synthetic_element[j][k].to = res.synthetic?.to;
-                }
-              }
-            }
-          }
+        // 通过第二列获取第三列
+        this.synthetic_id[2] = [];
+        this.synthetic_id[2] = synthetic.to || [];
+
+        // 计算二三列竖线距离顶部及高度;
+        try {
+          this.vertical_line[1] = {
+            top: t(this.synthetic_id[0][0].id, this.synthetic_id[1][0].id),
+            height: h(this.synthetic_id[1][0].id, this.synthetic_id[0][0].id, this.synthetic_id[0].at(-1)!.id),
+          };
+        } catch (error) {
+          /*  */
         }
-
-        const num = (id: number) => {
-          return Number(id.toString().slice(2));
-        };
-
-        this.vertical_line[1] = {
-          top: (num(this.active_id) - 1) * 115 + "px",
-          height: Math.abs(num(this.active_id) - num(this.synthetic_element[1].at(-1)!.id)) * 115 + "px",
-        };
-        this.vertical_line[2] = {
-          top: (num(this.synthetic_element[1][0].id) - 1) * 115 + "px",
-          height:
-            (Math.abs(num(this.synthetic_element[1][0].id) - num(this.synthetic_element[2].at(-1)!.id)) + 1) * 115 +
-            "px",
-        };
+        if (this.synthetic_id[2][0]) {
+          this.vertical_line[2] = {
+            top: t(this.synthetic_id[1][0].id, this.synthetic_id[2][0].id),
+            height: h(this.synthetic_id[1][0].id, this.synthetic_id[2][0].id, this.synthetic_id[2].at(-1)?.id || 0),
+          };
+        }
       }
 
-      /* 当点击的是第三列 */
+      // /* 当点击的是第三列 */
       if (this.active_array[1] === "3") {
-        this.synthetic_id[1] = data.need!.main || [];
-        this.synthetic_id[2] = [this.active_id];
+        this.synthetic_id[2][0] = synthetic; //获取第二列id组
 
-        for (let i = 0; i < this.synthetic_id[1].length; i++) {
-          const item = this.synthetic_id[1][i];
-          const res = await getEquipSynthetic(item);
-          if (res) {
-            this.synthetic_id[0] = res.need?.main || [];
+        // 通过第三列获取第二列
+        this.synthetic_id[1] = [];
+        try {
+          for (let i = 0; i < synthetic.need!.length; i++) {
+            const need = synthetic.need![i];
+            const res = await getEquipSynthetic(need.id);
+            this.synthetic_id[1].push(res);
           }
+
+          this.synthetic_id[1].sort(function (a, b) {
+            return a.id - b.id;
+          });
+        } catch (error) {
+          /*  */
         }
 
-        this.synthetic_element[1] = this.synthetic_element[1].filter((item) => {
-          return this.synthetic_id[1].includes(item.id);
-        });
-        this.synthetic_element[2] = this.synthetic_element[2].filter((item) => {
-          return item.id === this.active_id;
-        });
-        for (let i = 0; i < this.equip_element.length; i++) {
-          const equip = this.equip_element[i];
-          for (let j = 0; j < this.synthetic_id.length; j++) {
-            const ids = this.synthetic_id[j];
-            for (let k = 0; k < ids.length; k++) {
-              const id = ids[k];
-              if (equip.id === id) {
-                this.synthetic_element[j][k] = equip;
-                const res = await getEquipSynthetic(equip.id);
-                if (res) {
-                  this.synthetic_element[j][k].to = res.synthetic?.to;
-                }
-              }
+        // 通过第二列获取第一列
+        this.synthetic_id[0] = [];
+        for (let i = 0; i < this.synthetic_id[1]!.length; i++) {
+          const need = this.synthetic_id[1][i].need;
+          if (need) {
+            for (let i = 0; i < need?.length; i++) {
+              const res = await getEquipSynthetic(need[i].id);
+              this.synthetic_id[0].push(res);
             }
           }
         }
+        this.synthetic_id[0].sort(function (a, b) {
+          return a.id - b.id;
+        });
 
-        const num = (id: number) => {
-          return Number(id.toString().slice(2));
-        };
+        // 计算二三列竖线距离顶部及高度;
+        try {
+          this.vertical_line[1] = {
+            top: t(this.synthetic_id[0][0].id, this.synthetic_id[1][0].id),
+            height: h(this.synthetic_id[1].at(-1)!.id, this.synthetic_id[0][0].id, this.synthetic_id[0].at(-1)!.id),
+          };
 
-        this.vertical_line[2] = {
-          top: (num(this.synthetic_element[1][0].id) - 1) * 115 + "px",
-          height:
-            Math.abs(num(this.synthetic_element[1][0].id) - num(this.synthetic_element[2].at(-1)!.id)) * 115 + "px",
-        };
+          if (this.synthetic_id[2][0]) {
+            this.vertical_line[2] = {
+              top: t(this.synthetic_id[1][0].id, this.synthetic_id[2][0].id),
+              height: h(
+                this.synthetic_id[2].at(-1)?.id || 0,
+                this.synthetic_id[1][0].id,
+                this.synthetic_id[1].at(-1)!.id
+              ),
+            };
+          }
+        } catch (error) {
+          /*  */
+        }
       }
 
       this.equipSelectFn.forEach((item) => {
@@ -237,7 +237,7 @@ export default defineStore("equip", {
     /** @description: 清空合成组 */
     clearSynthetic() {
       this.vertical_line = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
-      this.synthetic_element = [[], [], []];
+      this.synthetic_id = [[], [], []];
     },
   },
 });

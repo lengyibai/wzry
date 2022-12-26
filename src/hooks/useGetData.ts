@@ -23,6 +23,7 @@ import {
   Periodtype,
   Camptype,
   Voice,
+  EquipSynthetic,
 } from "@/api/main/data";
 import { getHeroBasic } from "@/api/main/games/hero";
 
@@ -41,6 +42,7 @@ export default async () => {
     ["relationship", Relationship, "关系"],
     ["relationtype", Relationtype, "关系类型"],
     ["equip", Equip, "装备"],
+    ["equipSynthetic", EquipSynthetic, "装备合成"],
     ["equiptype", Equiptype, "装备类型"],
     ["equipeffect", Equipeffect, "装备效果"],
     ["epigraph", Epigraph, "铭文"],
