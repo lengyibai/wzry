@@ -4,9 +4,9 @@ export const num = (id: number) => {
 };
 export const t = (a: number, b: number) => {
   if (num(a) < num(b)) {
-    return (num(a) - 1) * 115 + "px";
+    return (num(a) - 1) * 100 + "px";
   } else {
-    return (num(b) - 1) * 115 + "px";
+    return (num(b) - 1) * 100 + "px";
   }
 };
 export const h = (a: number, b: number, c: number) => {
@@ -26,5 +26,5 @@ export const h = (a: number, b: number, c: number) => {
     total = Math.abs(x - y);
   }
 
-  return total * 115 + "px";
+  return total * 100 + "px";
 };
