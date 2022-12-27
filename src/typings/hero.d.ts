@@ -88,10 +88,13 @@ declare namespace Hero {
     hero: number; //所属英雄id
     num: number; //序号
     price: string | number; //价格
-    type: number; //类型
+    type: number | string; //类型
     name: string; //名称
     poster: string; //海报
+    cover: string; //封面
     headImg: string; //头像
+    profession: string[]; //职业
+    heroName: string; //英雄名称
   }
   /** @description: 皮肤类型 */
   interface SkinType {
