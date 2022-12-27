@@ -10,6 +10,7 @@
   --blue: #3498db;
   --purple: #9b59b6;
   --pink: #fd79a8;
+  --white-10: rgb(255 255 255 / 10%);
   --white-25: rgb(255 255 255 / 25%);
   --white-50: rgb(255 255 255 / 50%);
   --white-75: rgb(255 255 255 / 75%);
@@ -39,5 +40,5 @@
   --font-f: "微软雅黑";
 
   /* 远程链接 */
-  --img-url:'https://lengyibai.gitee.io/wzry-material/image/'
+  --img-url: "https://lengyibai.gitee.io/wzry-material/image/";
 }
