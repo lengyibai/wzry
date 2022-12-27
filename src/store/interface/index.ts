@@ -41,6 +41,19 @@ export namespace HeroStore {
     filter_list: Hero.Data[];
   }
 }
+/** @description: 皮肤 */
+export namespace SkinStore {
+  export interface State {
+    profession: string;
+    skin_list: Hero.Skin[];
+    filter_list: Hero.Skin[];
+    type_logo: {
+      id: number;
+      name: string;
+      link: string;
+    }[];
+  }
+}
 
 /** @description: 英雄信息 */
 export namespace HeroDetailStore {
