@@ -1,13 +1,119 @@
 <template>
-  <div class="skin">
-    <h1>待开发</h1>
+  <div class="hero">
+    <transition name="card-list">
+      <div class="hero-main" v-if="show">
+        <LibGridLayout
+          ref="heroListRef"
+          gap="25px"
+          v-if="skin_list.length"
+          :count="count"
+          :eqhMultiple="0.46"
+          @load-more="EmitLoadMore"
+        >
+          <div
+            v-for="(item, index) in skin_list"
+            @click="handleViewImg(item.poster)"
+            :style="{
+              'transition-delay': 0.025 * index + 's',
+            }"
+            :key="item.id"
+          >
+            <SkinCard :data="item" />
+          </div>
+        </LibGridLayout>
+      </div>
+    </transition>
+
+    <!--右侧职业分类侧边栏-->
+    <transition name="sidebar" appear>
+      <SkinSidebar />
+    </transition>
   </div>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+import { nextTick, onBeforeUnmount, onMounted, onActivated, ref, watch } from "vue";
+import { ViewImg } from "@/utils/index";
+import $bus from "@/utils/eventBus";
+import skinStore from "@/store/skin";
+import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
+import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
+
+const $skinStore = skinStore();
+
+const heroListRef = ref();
+const cache_list = ref<Hero.Skin[]>([]);
+const skin_list = ref<Hero.Skin[]>([]);
+const count = ref(0); //一行显示的数目
+const show = ref(false); //是否显示列表
+const page = ref(1); //当前页数
+
+$skinStore.getSkin();
+
+/* 监听筛选后的英雄列表 */
+watch(
+  () => $skinStore.filter_list,
+  (v) => {
+    show.value = false;
+    page.value = 1;
+    skin_list.value = [];
+    cache_list.value = v;
+    skin_list.value = cache_list.value.slice(0, page.value * 30);
+    nextTick(() => {
+      show.value = true;
+      console.log(v);
+    });
+  },
+  { deep: true, immediate: true }
+);
+
+/* 加载更多 */
+const EmitLoadMore = () => {
+  page.value += 1;
+  skin_list.value.push(...cache_list.value.slice(page.value * 30, (page.value + 1) * 30));
+  heroListRef.value.updateHeight();
+};
+
+/* 查看海报 */
+const handleViewImg = (img: string) => {
+  new ViewImg(img);
+};
+
+/* 进入页面后更新高度 */
+onActivated(() => {
+  nextTick(() => {
+    heroListRef.value.updateHeight();
+  }).catch(() => {});
+});
+onMounted(() => {
+  /* 实时修改一行个数 */
+  const change = [
+    [1550, 3],
+    [1450, 2],
+    [1300, 1],
+  ];
+  const changeCount = () => {
+    const v = document.documentElement.clientWidth;
+
+    if (v > 1400) {
+      count.value = 3;
+    }
+    for (const [a, b] of change) {
+      if (v < a) {
+        count.value = b;
+      }
+    }
+  };
+  changeCount();
+  $bus.on("resize", () => {
+    changeCount();
+  });
+});
+
+onBeforeUnmount(() => {
+  $bus.off("resize");
+});
+</script>
 <style scoped lang="less">
-.skin {
-  width: 100%;
-  height: 100%;
-  font-size: 26px;
-}
+@import url("./index.less");
 </style>
