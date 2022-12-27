@@ -24,6 +24,20 @@ export const heroDefault: Hero.Data = {
   skins: [], //皮肤
 };
 
+export const skinDefault: Hero.Skin = {
+  id: 0, //标识
+  hero: 0, //所属英雄id
+  num: 0, //序号
+  price: 0, //价格
+  type: 0, //类型
+  name: "", //名称
+  poster: "", //海报
+  cover: "", //封面
+  headImg: "", //头像
+  profession: [], //职业
+  heroName: "", //英雄名称
+};
+
 export const voiceDefault: Hero.Voice = {
   text: "", //语音文字
   link: "", //语音链接
