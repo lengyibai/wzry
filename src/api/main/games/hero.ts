@@ -40,8 +40,11 @@ export const getHeroDetail = async (id: number) => {
     price: "",
     type: 0,
     name: "原版皮肤",
+    heroName: "",
     poster: hero.poster,
     headImg: hero.headImg,
+    cover: "",
+    profession: [],
   });
   return Promise.resolve(hero);
 };
