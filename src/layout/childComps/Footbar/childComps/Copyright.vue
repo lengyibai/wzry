@@ -1,5 +1,5 @@
 <template>
-  <div class="copyright">© Coded with by lengyibai.</div>
+  <div class="copyright">@lengyibai</div>
 </template>
 <style scoped lang="less">
 .copyright {

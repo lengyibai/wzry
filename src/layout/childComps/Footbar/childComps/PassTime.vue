@@ -7,11 +7,11 @@ import { $getCountTime, $frameInterval } from "@/utils";
 
 const time = ref("");
 
-$frameInterval(() => {
+setInterval(() => {
   const { y, mon, d, h, min, s } = $getCountTime("2022-3-17") as any;
   const year = y !== "00" ? `${y}y` : "";
-  const month = mon !== "00" ? `${mon}mon` : "";
-  time.value = `${year} ${month} ${d}d ${h}h ${min}min ${s}s`;
+  const month = mon !== "00" ? mon : "";
+  time.value = `已过去${year} ${month}月 ${d}天 ${h}时 ${min}分 ${s}秒`;
 }, 1000);
 </script>
 <style scoped lang="less">
