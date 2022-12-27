@@ -1,7 +1,7 @@
 <template>
   <div class="FormSelect" :class="{ disabled: disabled }">
     <!-- 左侧描述 -->
-    <div class="label">
+    <div class="label" v-if="label">
       <span><i class="star" v-if="required">*</i>{{ label }}：</span>
     </div>
 
@@ -94,7 +94,7 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: "",
   disabled: false,
   required: false,
-  label: "标题",
+  label: "",
   value: "",
 });
 
