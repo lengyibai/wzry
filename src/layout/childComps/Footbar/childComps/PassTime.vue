@@ -3,7 +3,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { $getCountTime, $frameInterval } from "@/utils";
+import { $getCountTime } from "@/utils";
 
 const time = ref("");
 
