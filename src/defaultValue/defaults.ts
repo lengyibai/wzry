@@ -36,6 +36,7 @@ export const skinDefault: Hero.Skin = {
   headImg: "", //头像
   profession: [], //职业
   heroName: "", //英雄名称
+  gender: "", //英雄名称
 };
 
 export const voiceDefault: Hero.Voice = {
