@@ -11,7 +11,8 @@
       "type": 1,
       "price": "888",
       "name": "忍·炎影",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 12,
@@ -24,7 +25,8 @@
       "type": 12,
       "price": "888",
       "name": "未来纪元",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 13,
@@ -37,7 +39,8 @@
       "type": 6,
       "price": "贵族专属",
       "name": "皇家上将",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 14,
@@ -50,7 +53,8 @@
       "type": 1,
       "price": "限时活动获取",
       "name": "嘻哈天王",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 15,
@@ -63,7 +67,8 @@
       "type": 1,
       "price": "588",
       "name": "白执事",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 16,
@@ -76,7 +81,8 @@
       "type": 5,
       "price": "888",
       "name": "引擎之心",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 17,
@@ -89,7 +95,8 @@
       "type": 72,
       "price": "888",
       "name": "龙胆",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 18,
@@ -102,7 +109,8 @@
       "type": 85,
       "price": "1688",
       "name": "淬星耀世",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 19,
@@ -115,7 +123,8 @@
       "type": 5,
       "price": "888",
       "name": "百木心枪",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 21,
@@ -128,7 +137,8 @@
       "type": 12,
       "price": "888",
       "name": "女仆咖啡",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 22,
@@ -141,7 +151,8 @@
       "type": 12,
       "price": "588",
       "name": "魅力维加斯",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 23,
@@ -154,7 +165,8 @@
       "type": 0,
       "price": "288",
       "name": "仙境爱丽丝",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 24,
@@ -167,7 +179,8 @@
       "type": 1,
       "price": "新手训练营",
       "name": "少女阿狸",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 25,
@@ -180,7 +193,8 @@
       "type": 5,
       "price": "998",
       "name": "热情桑巴",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 26,
@@ -193,7 +207,8 @@
       "type": 5,
       "price": "888",
       "name": "时之彼端",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 27,
@@ -206,7 +221,8 @@
       "type": 1,
       "price": "60",
       "name": "紫罗兰之誓",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 28,
@@ -219,7 +235,8 @@
       "type": 5,
       "price": "888",
       "name": "时之奇旅",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 31,
@@ -232,7 +249,8 @@
       "type": 0,
       "price": "288",
       "name": "金属狂潮",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 32,
@@ -245,7 +263,8 @@
       "type": 9,
       "price": "战队赛专属",
       "name": "死亡摇滚",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 33,
@@ -258,7 +277,8 @@
       "type": 50,
       "price": "珍宝阁",
       "name": "玩趣恶龙",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 34,
@@ -271,7 +291,8 @@
       "type": 12,
       "price": "888",
       "name": "天秀·音浪",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 41,
@@ -284,7 +305,8 @@
       "type": 1,
       "price": "488",
       "name": "白色死神",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 42,
@@ -297,7 +319,8 @@
       "type": 59,
       "price": "S8赛季专属",
       "name": "狰",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 43,
@@ -310,7 +333,8 @@
       "type": 12,
       "price": "888",
       "name": "星夜王子",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 44,
@@ -323,7 +347,8 @@
       "type": 40,
       "price": "194",
       "name": "夜都怪侠",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 51,
@@ -336,7 +361,8 @@
       "type": 1,
       "price": "888",
       "name": "东方不败",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 52,
@@ -349,7 +375,8 @@
       "type": 42,
       "price": "1688",
       "name": "海洋之心",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 53,
@@ -362,7 +389,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "倪克斯神谕",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 61,
@@ -375,7 +403,8 @@
       "type": 1,
       "price": "488",
       "name": "哥特玫瑰",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 62,
@@ -388,7 +417,8 @@
       "type": 0,
       "price": "288",
       "name": "绯红之刃",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 63,
@@ -401,7 +431,8 @@
       "type": 12,
       "price": "788",
       "name": "紫霞仙子",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 64,
@@ -414,7 +445,8 @@
       "type": 44,
       "price": "888",
       "name": "一生所爱",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 65,
@@ -427,7 +459,8 @@
       "type": 1,
       "price": "60",
       "name": "瓷语鉴心",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 66,
@@ -440,7 +473,8 @@
       "type": 5,
       "price": "1788",
       "name": "启示之音",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "女"
     },
     {
       "id": 71,
@@ -453,7 +487,8 @@
       "type": 12,
       "price": "888",
       "name": "地狱岩魂",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 72,
@@ -466,7 +501,8 @@
       "type": 1,
       "price": "60",
       "name": "无尽征程",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 73,
@@ -479,7 +515,8 @@
       "type": 92,
       "price": "888",
       "name": "寅虎·御盾",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 81,
@@ -492,7 +529,8 @@
       "type": 12,
       "price": "888",
       "name": "摇滚巨星",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 82,
@@ -505,7 +543,8 @@
       "type": 12,
       "price": "888",
       "name": "暗夜贵公子",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 83,
@@ -518,7 +557,8 @@
       "type": 12,
       "price": "内测专属",
       "name": "优雅恋人",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 84,
@@ -531,7 +571,8 @@
       "type": 40,
       "price": "194",
       "name": "白昼王子",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 91,
@@ -544,7 +585,8 @@
       "type": 1,
       "price": "888",
       "name": "爱心护理",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 92,
@@ -557,7 +599,8 @@
       "type": 12,
       "price": "2888",
       "name": "暗夜猫娘",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 93,
@@ -567,10 +610,11 @@
       "poster": "https://lengyibai.gitee.io/wzry-material/hero/ake/haibao/3.jpg",
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/ake/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/ake/touxiang/3.jpg",
-      "type": 11,
+      "type": 1,
       "price": "10",
       "name": "致命风华",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 94,
@@ -583,7 +627,8 @@
       "type": 12,
       "price": "888",
       "name": "节奏热浪",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 95,
@@ -596,7 +641,8 @@
       "type": 40,
       "price": "194",
       "name": "迷踪丽影",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 101,
@@ -609,7 +655,8 @@
       "type": 12,
       "price": "888",
       "name": "冰雪圆舞曲",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 102,
@@ -622,7 +669,8 @@
       "type": 16,
       "price": "488",
       "name": "花好人间",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 103,
@@ -635,7 +683,8 @@
       "type": 23,
       "price": "888",
       "name": "游园惊梦",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 104,
@@ -648,7 +697,8 @@
       "type": 67,
       "price": "888",
       "name": "幽恒",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 105,
@@ -661,7 +711,8 @@
       "type": 88,
       "price": "888",
       "name": "女儿国国王",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 106,
@@ -674,7 +725,8 @@
       "type": 40,
       "price": "荣耀战令获取",
       "name": "落雪兰心",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 111,
@@ -687,7 +739,8 @@
       "type": 0,
       "price": "288",
       "name": "潮流仙人",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 112,
@@ -700,7 +753,8 @@
       "type": 37,
       "price": "师徒系统",
       "name": "圣诞老人",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 113,
@@ -713,7 +767,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "功夫老勺",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 114,
@@ -726,7 +781,8 @@
       "type": 73,
       "price": "S20赛季专属",
       "name": "醍醐杖",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 115,
@@ -739,7 +795,8 @@
       "type": 40,
       "price": "194",
       "name": "航海奇遇记",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 121,
@@ -752,7 +809,8 @@
       "type": 0,
       "price": "288",
       "name": "时尚教父",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 122,
@@ -765,7 +823,8 @@
       "type": 1,
       "price": "限时活动获取",
       "name": "炽热元素使",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 131,
@@ -778,7 +837,8 @@
       "type": 0,
       "price": "288",
       "name": "万圣前夜",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 132,
@@ -791,7 +851,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "天鹅之梦",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 133,
@@ -804,7 +865,8 @@
       "type": 11,
       "price": "788",
       "name": "纯白花嫁",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 134,
@@ -817,7 +879,8 @@
       "type": 12,
       "price": "888",
       "name": "缤纷独角兽",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 135,
@@ -830,7 +893,8 @@
       "type": 1,
       "price": "60",
       "name": "丁香结",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 136,
@@ -843,7 +907,8 @@
       "type": 12,
       "price": "888",
       "name": "青蛇",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 137,
@@ -856,7 +921,8 @@
       "type": 15,
       "price": "1688",
       "name": "音你心动",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 141,
@@ -869,7 +935,8 @@
       "type": 0,
       "price": "288",
       "name": "木偶奇遇记",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 142,
@@ -882,7 +949,8 @@
       "type": 0,
       "price": "288",
       "name": "福禄兄弟",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 143,
@@ -895,7 +963,8 @@
       "type": 12,
       "price": "2888",
       "name": "电玩小子",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 144,
@@ -908,7 +977,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "星空梦想",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 145,
@@ -921,7 +991,8 @@
       "type": 40,
       "price": "194",
       "name": "狮舞东方",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 146,
@@ -934,7 +1005,8 @@
       "type": 1,
       "price": "60",
       "name": "黑桃队长",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 147,
@@ -947,7 +1019,8 @@
       "type": 5,
       "price": "888",
       "name": "乒乒小将",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 148,
@@ -960,7 +1033,8 @@
       "type": 92,
       "price": "1788",
       "name": "寅虎·瑞焰",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 151,
@@ -973,7 +1047,8 @@
       "type": 0,
       "price": "288",
       "name": "生化警戒",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "女"
     },
     {
       "id": 152,
@@ -986,7 +1061,8 @@
       "type": 8,
       "price": "赏金联赛",
       "name": "王者之锤",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "女"
     },
     {
       "id": 153,
@@ -999,7 +1075,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "海滩丽影",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "女"
     },
     {
       "id": 154,
@@ -1012,7 +1089,8 @@
       "type": 40,
       "price": "荣耀战令获取",
       "name": "超时空战士",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "女"
     },
     {
       "id": 161,
@@ -1025,7 +1103,8 @@
       "type": 0,
       "price": "288",
       "name": "锦衣卫",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 162,
@@ -1038,7 +1117,8 @@
       "type": 6,
       "price": "贵族专属",
       "name": "魔术师",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 163,
@@ -1051,7 +1131,8 @@
       "type": 15,
       "price": "988",
       "name": "超时空战士",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 164,
@@ -1064,7 +1145,8 @@
       "type": 3,
       "price": "成就专属",
       "name": "阴阳师",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 165,
@@ -1077,7 +1159,8 @@
       "type": 47,
       "price": "信誉系统专属",
       "name": "鹰眼统帅",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 166,
@@ -1090,7 +1173,8 @@
       "type": 79,
       "price": "S22赛季专属",
       "name": "万华元夜",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 167,
@@ -1103,7 +1187,8 @@
       "type": 42,
       "price": "988",
       "name": "星际治安官",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 168,
@@ -1116,7 +1201,8 @@
       "type": 102,
       "price": "1788",
       "name": "神器·狴犴令",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 171,
@@ -1129,7 +1215,8 @@
       "type": 0,
       "price": "288",
       "name": "天堂福音",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 172,
@@ -1142,7 +1229,8 @@
       "type": 0,
       "price": "288",
       "name": "一千零一夜",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 173,
@@ -1155,7 +1243,8 @@
       "type": 1,
       "price": "60",
       "name": "幽兰居士",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 174,
@@ -1168,7 +1257,8 @@
       "type": 33,
       "price": "1688",
       "name": "黄金白羊座",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 175,
@@ -1181,7 +1271,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "缤纷绘卷",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 176,
@@ -1194,7 +1285,8 @@
       "type": 12,
       "price": "888",
       "name": "千筹问战",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 181,
@@ -1207,7 +1299,8 @@
       "type": 12,
       "price": "888",
       "name": "金属风暴",
-      "profession": ["法师", "战士"]
+      "profession": ["法师", "战士"],
+      "gender": "男"
     },
     {
       "id": 182,
@@ -1220,7 +1313,8 @@
       "type": 12,
       "price": "2888",
       "name": "龙骑士",
-      "profession": ["法师", "战士"]
+      "profession": ["法师", "战士"],
+      "gender": "男"
     },
     {
       "id": 183,
@@ -1233,7 +1327,8 @@
       "type": 1,
       "price": "60",
       "name": "进击墨子号",
-      "profession": ["法师", "战士"]
+      "profession": ["法师", "战士"],
+      "gender": "男"
     },
     {
       "id": 184,
@@ -1246,7 +1341,8 @@
       "type": 40,
       "price": "194",
       "name": "神迹守卫",
-      "profession": ["法师", "战士"]
+      "profession": ["法师", "战士"],
+      "gender": "男"
     },
     {
       "id": 191,
@@ -1259,7 +1355,8 @@
       "type": 1,
       "price": "288",
       "name": "鲤鱼之梦",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 192,
@@ -1272,7 +1369,8 @@
       "type": 14,
       "price": "S4赛季专属",
       "name": "蜃楼王",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 193,
@@ -1285,7 +1383,8 @@
       "type": 5,
       "price": "888",
       "name": "云端筑梦师",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 194,
@@ -1298,7 +1397,8 @@
       "type": 1,
       "price": "60",
       "name": "奇妙博物学",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 195,
@@ -1311,7 +1411,8 @@
       "type": 67,
       "price": "888",
       "name": "玄嵩",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 196,
@@ -1324,7 +1425,8 @@
       "type": 89,
       "price": "888",
       "name": "高山流水",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 197,
@@ -1337,7 +1439,8 @@
       "type": 12,
       "price": "888",
       "name": "天秀·幻梦",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 201,
@@ -1350,7 +1453,8 @@
       "type": 0,
       "price": "288",
       "name": "未来旅行",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 202,
@@ -1363,7 +1467,8 @@
       "type": 1,
       "price": "888",
       "name": "天使之翼",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 203,
@@ -1376,7 +1481,8 @@
       "type": 56,
       "price": "S5赛季专属",
       "name": "妖精王",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 204,
@@ -1389,7 +1495,8 @@
       "type": 1,
       "price": "云端梦境",
       "name": "归虚梦演",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 205,
@@ -1402,7 +1509,8 @@
       "type": 19,
       "price": "888",
       "name": "天狼运算者",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 206,
@@ -1415,7 +1523,8 @@
       "type": 92,
       "price": "888",
       "name": "寅虎·展翼",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 211,
@@ -1428,7 +1537,8 @@
       "type": 1,
       "price": "888",
       "name": "黄金武士",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 212,
@@ -1441,7 +1551,8 @@
       "type": 63,
       "price": "S12赛季专属",
       "name": "穷奇",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 213,
@@ -1454,7 +1565,8 @@
       "type": 40,
       "price": "194",
       "name": "蓝屏警告",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 214,
@@ -1467,7 +1579,8 @@
       "type": 67,
       "price": "888",
       "name": "岱宗",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 215,
@@ -1480,7 +1593,8 @@
       "type": 1,
       "price": "60",
       "name": "铁甲之心",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 221,
@@ -1493,7 +1607,8 @@
       "type": 1,
       "price": "60",
       "name": "拳王",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 222,
@@ -1506,7 +1621,8 @@
       "type": 1,
       "price": "888",
       "name": "大发明家",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 223,
@@ -1519,7 +1635,8 @@
       "type": 33,
       "price": "1688",
       "name": "黄金狮子座",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 224,
@@ -1532,7 +1649,8 @@
       "type": 40,
       "price": "194",
       "name": "星际陆战队",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 225,
@@ -1545,7 +1663,8 @@
       "type": 90,
       "price": "S28赛季专属",
       "name": "沙漠行僧",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 231,
@@ -1558,7 +1677,8 @@
       "type": 1,
       "price": "888",
       "name": "街头霸王",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 232,
@@ -1571,7 +1691,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "教廷特使",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 233,
@@ -1584,7 +1705,8 @@
       "type": 1,
       "price": "1188",
       "name": "白龙吟",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 234,
@@ -1597,7 +1719,8 @@
       "type": 19,
       "price": "888",
       "name": "逐梦之影",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 235,
@@ -1610,7 +1733,8 @@
       "type": 67,
       "price": "888",
       "name": "飞衡",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 236,
@@ -1623,7 +1747,8 @@
       "type": 5,
       "price": "888",
       "name": "傲雪梅枪",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 241,
@@ -1636,7 +1761,8 @@
       "type": 1,
       "price": "碎片商店",
       "name": "死亡骑士",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 242,
@@ -1649,7 +1775,8 @@
       "type": 13,
       "price": "S3赛季专属",
       "name": "狮心王",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 243,
@@ -1662,7 +1789,8 @@
       "type": 12,
       "price": "888",
       "name": "心灵战警",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 244,
@@ -1675,7 +1803,8 @@
       "type": 40,
       "price": "194",
       "name": "潮玩骑士王",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 251,
@@ -1688,7 +1817,8 @@
       "type": 0,
       "price": "288",
       "name": "火炮千金",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 252,
@@ -1701,7 +1831,8 @@
       "type": 12,
       "price": "888",
       "name": "水果甜心",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 253,
@@ -1714,7 +1845,8 @@
       "type": 12,
       "price": "内测专属",
       "name": "蔷薇恋人",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 254,
@@ -1727,7 +1859,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "杀手不太冷",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 255,
@@ -1740,7 +1873,8 @@
       "type": 15,
       "price": "1688",
       "name": "末日机甲",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 256,
@@ -1753,7 +1887,8 @@
       "type": 27,
       "price": "488",
       "name": "沉稳之力",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 257,
@@ -1766,7 +1901,8 @@
       "type": 12,
       "price": "888",
       "name": "时之恋人",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 258,
@@ -1779,7 +1915,8 @@
       "type": 5,
       "price": "1788",
       "name": "异界灵契",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 259,
@@ -1792,7 +1929,8 @@
       "type": 15,
       "price": "1688",
       "name": "音你闪耀",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 261,
@@ -1805,7 +1943,8 @@
       "type": 0,
       "price": "288",
       "name": "英喵野望",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 262,
@@ -1818,7 +1957,8 @@
       "type": 12,
       "price": "888",
       "name": "绅士熊喵",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 263,
@@ -1831,7 +1971,8 @@
       "type": 12,
       "price": "888",
       "name": "天才门将",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 264,
@@ -1844,7 +1985,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "秘密基地",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 265,
@@ -1857,7 +1999,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "唤灵魔甲",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 271,
@@ -1870,7 +2013,8 @@
       "type": 1,
       "price": "888",
       "name": "救世之瞳",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 272,
@@ -1883,7 +2027,8 @@
       "type": 1,
       "price": "限时活动获取",
       "name": "化身博士",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 273,
@@ -1896,7 +2041,8 @@
       "type": 57,
       "price": "S6赛季专属",
       "name": "炼金王",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 281,
@@ -1909,7 +2055,8 @@
       "type": 12,
       "price": "888",
       "name": "鬼剑武藏",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 282,
@@ -1922,7 +2069,8 @@
       "type": 1,
       "price": "588",
       "name": "未来纪元",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 283,
@@ -1935,7 +2083,8 @@
       "type": 16,
       "price": "488",
       "name": "万象初新",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 284,
@@ -1948,7 +2097,8 @@
       "type": 15,
       "price": "1688",
       "name": "地狱之眼",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 285,
@@ -1961,7 +2111,8 @@
       "type": 64,
       "price": "588",
       "name": "霸王丸",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 291,
@@ -1974,7 +2125,8 @@
       "type": 0,
       "price": "288",
       "name": "帝国元帅",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 292,
@@ -1987,7 +2139,8 @@
       "type": 12,
       "price": "2888",
       "name": "苍穹之光",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 293,
@@ -2000,7 +2153,8 @@
       "type": 6,
       "price": "贵族专属",
       "name": "海滩派对",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 294,
@@ -2013,7 +2167,8 @@
       "type": 1,
       "price": "会员限定",
       "name": "职棒王牌",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 295,
@@ -2026,7 +2181,8 @@
       "type": 5,
       "price": "788",
       "name": "霸王别姬",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 296,
@@ -2039,7 +2195,8 @@
       "type": 1,
       "price": "60",
       "name": "科学大爆炸",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 301,
@@ -2052,7 +2209,8 @@
       "type": 1,
       "price": "288",
       "name": "爱与正义",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 302,
@@ -2065,7 +2223,8 @@
       "type": 1,
       "price": "888",
       "name": "星际陆战队",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 303,
@@ -2078,7 +2237,8 @@
       "type": 0,
       "price": "288",
       "name": "华尔街大亨",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 304,
@@ -2091,7 +2251,8 @@
       "type": 12,
       "price": "888",
       "name": "功夫厨神",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 305,
@@ -2104,7 +2265,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "活力突击",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 306,
@@ -2117,7 +2279,8 @@
       "type": 82,
       "price": "S23赛季专属",
       "name": "演武夺筹",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 307,
@@ -2130,7 +2293,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "无双福将",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 311,
@@ -2143,7 +2307,8 @@
       "type": 0,
       "price": "288",
       "name": "精灵公主",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 312,
@@ -2156,7 +2321,8 @@
       "type": 12,
       "price": "积分夺宝",
       "name": "偶像歌手",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 313,
@@ -2169,7 +2335,8 @@
       "type": 20,
       "price": "888",
       "name": "凤凰于飞",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 314,
@@ -2182,7 +2349,8 @@
       "type": 1,
       "price": "60",
       "name": "幻想奇妙夜",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 315,
@@ -2195,7 +2363,8 @@
       "type": 15,
       "price": "1688",
       "name": "乞巧织情",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 316,
@@ -2208,7 +2377,8 @@
       "type": 40,
       "price": "194",
       "name": "午后时光",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 317,
@@ -2221,7 +2391,8 @@
       "type": 5,
       "price": "1788",
       "name": "星穹之声",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 321,
@@ -2234,7 +2405,8 @@
       "type": 1,
       "price": "488",
       "name": "玩偶对对碰",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 322,
@@ -2247,7 +2419,8 @@
       "type": 5,
       "price": "788",
       "name": "魔法小厨娘",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 323,
@@ -2260,7 +2433,8 @@
       "type": 12,
       "price": "888",
       "name": "心灵骇客",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 324,
@@ -2273,7 +2447,8 @@
       "type": 1,
       "price": "60",
       "name": "如懿",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 325,
@@ -2286,7 +2461,8 @@
       "type": 12,
       "price": "888",
       "name": "时之奇旅",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 331,
@@ -2299,7 +2475,8 @@
       "type": 0,
       "price": "388",
       "name": "超能战警",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 332,
@@ -2312,7 +2489,8 @@
       "type": 12,
       "price": "788",
       "name": "幽灵船长",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 333,
@@ -2325,7 +2503,8 @@
       "type": 0,
       "price": "积分夺宝",
       "name": "死神来了",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 334,
@@ -2338,7 +2517,8 @@
       "type": 61,
       "price": "S10赛季专属",
       "name": "烛龙",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 335,
@@ -2351,7 +2531,8 @@
       "type": 19,
       "price": "888",
       "name": "天狼征服者",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 341,
@@ -2364,7 +2545,8 @@
       "type": 0,
       "price": "288",
       "name": "海军大将",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 342,
@@ -2377,7 +2559,8 @@
       "type": 11,
       "price": "788",
       "name": "真爱至上",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 343,
@@ -2390,7 +2573,8 @@
       "type": 40,
       "price": "194",
       "name": "赤莲之焰",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 344,
@@ -2403,7 +2587,8 @@
       "type": 15,
       "price": "1688",
       "name": "音你心动",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 351,
@@ -2416,7 +2601,8 @@
       "type": 1,
       "price": "388",
       "name": "西部大镖客",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 352,
@@ -2429,7 +2615,8 @@
       "type": 1,
       "price": "60",
       "name": "制霸全明星",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 353,
@@ -2442,7 +2629,8 @@
       "type": 46,
       "price": "S15赛季专属",
       "name": "御旌",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 354,
@@ -2455,7 +2643,8 @@
       "type": 80,
       "price": "888",
       "name": "奔雷神使",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 361,
@@ -2468,7 +2657,8 @@
       "type": 15,
       "price": "1688",
       "name": "地狱火",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 362,
@@ -2481,7 +2671,8 @@
       "type": 0,
       "price": "288",
       "name": "西部大镖客",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 363,
@@ -2494,7 +2685,8 @@
       "type": 2,
       "price": "588",
       "name": "美猴王",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 364,
@@ -2507,7 +2699,8 @@
       "type": 21,
       "price": "888",
       "name": "至尊宝",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 365,
@@ -2520,7 +2713,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "全息碎影",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 366,
@@ -2533,7 +2727,8 @@
       "type": 45,
       "price": "888",
       "name": "大圣娶亲",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 367,
@@ -2546,7 +2741,8 @@
       "type": 5,
       "price": "1788",
       "name": "零号·赤焰",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 368,
@@ -2559,7 +2755,8 @@
       "type": 88,
       "price": "888",
       "name": "孙行者",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 371,
@@ -2572,7 +2769,8 @@
       "type": 1,
       "price": "388",
       "name": "红桃皇后",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 372,
@@ -2585,7 +2783,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "大秦宣太后",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 373,
@@ -2598,7 +2797,8 @@
       "type": 62,
       "price": "S11赛季专属",
       "name": "重明",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 374,
@@ -2611,7 +2811,8 @@
       "type": 5,
       "price": "888",
       "name": "白晶晶",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 375,
@@ -2624,7 +2825,8 @@
       "type": 40,
       "price": "194",
       "name": "幻夜卜梦",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 381,
@@ -2637,7 +2839,8 @@
       "type": 0,
       "price": "288",
       "name": "异域舞娘",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 382,
@@ -2650,7 +2853,8 @@
       "type": 12,
       "price": "788",
       "name": "圣诞恋歌",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 383,
@@ -2663,7 +2867,8 @@
       "type": 15,
       "price": "1688",
       "name": "仲夏夜之梦",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 384,
@@ -2676,7 +2881,8 @@
       "type": 19,
       "price": "888",
       "name": "逐梦之音",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 385,
@@ -2689,7 +2895,8 @@
       "type": 38,
       "price": "1688",
       "name": "猫影幻舞",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 386,
@@ -2702,7 +2909,8 @@
       "type": 87,
       "price": "1788",
       "name": "遇见胡旋",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 387,
@@ -2715,7 +2923,8 @@
       "type": 95,
       "price": "888",
       "name": "唤灵魅影",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 391,
@@ -2728,7 +2937,8 @@
       "type": 12,
       "price": "788",
       "name": "圣诞狂欢",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 392,
@@ -2741,7 +2951,8 @@
       "type": 5,
       "price": "1788",
       "name": "天魔缭乱",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 393,
@@ -2754,7 +2965,8 @@
       "type": 12,
       "price": "888",
       "name": "末日机甲",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 394,
@@ -2767,7 +2979,8 @@
       "type": 40,
       "price": "194",
       "name": "猎兽之王",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 395,
@@ -2780,7 +2993,8 @@
       "type": 1,
       "price": "488",
       "name": "野性能量",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 396,
@@ -2793,7 +3007,8 @@
       "type": 80,
       "price": "888",
       "name": "御风骁将",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 401,
@@ -2806,7 +3021,8 @@
       "type": 0,
       "price": "288",
       "name": "剑舞者",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 402,
@@ -2819,7 +3035,8 @@
       "type": 1,
       "price": "588",
       "name": "兔女郎",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 403,
@@ -2832,7 +3049,8 @@
       "type": 71,
       "price": "888",
       "name": "水晶猎龙者",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 404,
@@ -2845,7 +3063,8 @@
       "type": 5,
       "price": "888",
       "name": "青春决赛季",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 405,
@@ -2858,7 +3077,8 @@
       "type": 38,
       "price": "1688",
       "name": "冠军飞将",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 406,
@@ -2871,7 +3091,8 @@
       "type": 43,
       "price": "888",
       "name": "瑞麟志",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 407,
@@ -2884,7 +3105,8 @@
       "type": 81,
       "price": "888",
       "name": "默契交锋",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 408,
@@ -2897,7 +3119,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "九霄神辉",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 411,
@@ -2910,7 +3133,8 @@
       "type": 0,
       "price": "288",
       "name": "精灵王",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 412,
@@ -2923,7 +3147,8 @@
       "type": 1,
       "price": "588",
       "name": "阿尔法小队",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 413,
@@ -2936,7 +3161,8 @@
       "type": 25,
       "price": "888",
       "name": "辉光之辰",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 414,
@@ -2949,7 +3175,8 @@
       "type": 33,
       "price": "1688",
       "name": "黄金射手座",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 415,
@@ -2962,7 +3189,8 @@
       "type": 69,
       "price": "888",
       "name": "如梦令",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 416,
@@ -2975,7 +3203,8 @@
       "type": 40,
       "price": "194",
       "name": "圣弓游侠",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 417,
@@ -2988,7 +3217,8 @@
       "type": 5,
       "price": "1788",
       "name": "无尽星芒",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 421,
@@ -3001,7 +3231,8 @@
       "type": 16,
       "price": "488",
       "name": "五福同心",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 422,
@@ -3014,7 +3245,8 @@
       "type": 17,
       "price": "788",
       "name": "乱世虎臣",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 423,
@@ -3027,7 +3259,8 @@
       "type": 72,
       "price": "888",
       "name": "虎魄",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 431,
@@ -3040,7 +3273,8 @@
       "type": 16,
       "price": "488",
       "name": "万事如意",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 432,
@@ -3053,7 +3287,8 @@
       "type": 1,
       "price": "限时活动获取",
       "name": "纽约教父",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 433,
@@ -3066,7 +3301,8 @@
       "type": 17,
       "price": "588",
       "name": "汉昭烈帝",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 434,
@@ -3079,7 +3315,8 @@
       "type": 15,
       "price": "1688",
       "name": "时之恋人",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 435,
@@ -3092,7 +3329,8 @@
       "type": 1,
       "price": "限时出售",
       "name": "潮玩造梦师",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 441,
@@ -3105,7 +3343,8 @@
       "type": 0,
       "price": "288",
       "name": "隐刃",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 442,
@@ -3118,7 +3357,8 @@
       "type": 12,
       "price": "888",
       "name": "暗隐猎兽者",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 443,
@@ -3131,7 +3371,8 @@
       "type": 40,
       "price": "194",
       "name": "驯魔猎人",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 444,
@@ -3144,7 +3385,8 @@
       "type": 81,
       "price": "1788",
       "name": "默契交锋",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 445,
@@ -3157,7 +3399,8 @@
       "type": 90,
       "price": "S28赛季专属",
       "name": "金庭之子",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 451,
@@ -3170,7 +3413,8 @@
       "type": 12,
       "price": "888",
       "name": "晚萤",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 452,
@@ -3183,7 +3427,8 @@
       "type": 5,
       "price": "限时出售",
       "name": "前尘镜",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 461,
@@ -3196,7 +3441,8 @@
       "type": 0,
       "price": "288",
       "name": "范海辛",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 462,
@@ -3209,7 +3455,8 @@
       "type": 12,
       "price": "788",
       "name": "千年之狐",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 463,
@@ -3222,7 +3469,8 @@
       "type": 20,
       "price": "1788",
       "name": "凤求凰",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 464,
@@ -3235,7 +3483,8 @@
       "type": 30,
       "price": "488",
       "name": "敏锐之力",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 465,
@@ -3248,7 +3497,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "鸣剑·曳影",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 471,
@@ -3261,7 +3511,8 @@
       "type": 0,
       "price": "288",
       "name": "地府判官",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 472,
@@ -3274,7 +3525,8 @@
       "type": 40,
       "price": "194",
       "name": "神迹守卫",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 473,
@@ -3287,7 +3539,8 @@
       "type": 84,
       "price": "S24赛季专属",
       "name": "驱傩正仪",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 474,
@@ -3300,7 +3553,8 @@
       "type": 12,
       "price": "888",
       "name": "乐园奇幻夜",
-      "profession": ["辅助", "法师"]
+      "profession": ["辅助", "法师"],
+      "gender": "男"
     },
     {
       "id": 481,
@@ -3313,7 +3567,8 @@
       "type": 0,
       "price": "288",
       "name": "特种部队",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 482,
@@ -3326,7 +3581,8 @@
       "type": 1,
       "price": "60",
       "name": "黑猫爱糖果",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 483,
@@ -3339,7 +3595,8 @@
       "type": 12,
       "price": "888",
       "name": "逐浪之夏",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 484,
@@ -3352,7 +3609,8 @@
       "type": 40,
       "price": "194",
       "name": "银河之约",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 485,
@@ -3365,7 +3623,8 @@
       "type": 15,
       "price": "1688",
       "name": "飞鸢探春",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 486,
@@ -3378,7 +3637,8 @@
       "type": 98,
       "price": "S29赛季专属",
       "name": "云中旅人",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 491,
@@ -3391,7 +3651,8 @@
       "type": 0,
       "price": "288",
       "name": "圣殿之光",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 492,
@@ -3404,7 +3665,8 @@
       "type": 12,
       "price": "788",
       "name": "德古拉伯爵",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 493,
@@ -3417,7 +3679,8 @@
       "type": 40,
       "price": "194",
       "name": "夺宝奇兵",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 494,
@@ -3430,7 +3693,8 @@
       "type": 1,
       "price": "60",
       "name": "虎啸剑宗",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 501,
@@ -3443,7 +3707,8 @@
       "type": 12,
       "price": "888",
       "name": "魅语",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 502,
@@ -3456,7 +3721,8 @@
       "type": 5,
       "price": "1788",
       "name": "绯月行",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 511,
@@ -3469,7 +3735,8 @@
       "type": 0,
       "price": "288",
       "name": "加勒比小姐",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 512,
@@ -3482,7 +3749,8 @@
       "type": 5,
       "price": "788",
       "name": "霸王别姬",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 513,
@@ -3495,7 +3763,8 @@
       "type": 58,
       "price": "S7赛季专属",
       "name": "凯尔特女王",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 514,
@@ -3508,7 +3777,8 @@
       "type": 49,
       "price": "1688",
       "name": "云霓雀翎",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 515,
@@ -3521,7 +3791,8 @@
       "type": 78,
       "price": "贵族专属",
       "name": "启明星使",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 521,
@@ -3534,7 +3805,8 @@
       "type": 16,
       "price": "488",
       "name": "龙腾万里",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 522,
@@ -3547,7 +3819,8 @@
       "type": 0,
       "price": "288",
       "name": "天启骑士",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 523,
@@ -3560,7 +3833,8 @@
       "type": 18,
       "price": "888",
       "name": "冰锋战神",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 524,
@@ -3573,7 +3847,8 @@
       "type": 72,
       "price": "1788",
       "name": "武圣",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 531,
@@ -3586,7 +3861,8 @@
       "type": 0,
       "price": "288",
       "name": "蔷薇王座",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 532,
@@ -3599,7 +3875,8 @@
       "type": 37,
       "price": "888",
       "name": "奇迹圣诞",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 533,
@@ -3612,7 +3889,8 @@
       "type": 12,
       "price": "888",
       "name": "舞动绿茵",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 534,
@@ -3625,7 +3903,8 @@
       "type": 65,
       "price": "60",
       "name": "繁星吟游",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 535,
@@ -3638,7 +3917,8 @@
       "type": 15,
       "price": "1688",
       "name": "花朝如约",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 541,
@@ -3651,7 +3931,8 @@
       "type": 0,
       "price": "288",
       "name": "战争骑士",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 542,
@@ -3664,7 +3945,8 @@
       "type": 12,
       "price": "888",
       "name": "乘风破浪",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 543,
@@ -3677,7 +3959,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "无限飓风号",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 544,
@@ -3690,7 +3973,8 @@
       "type": 52,
       "price": "S17赛季专属",
       "name": "朔风刀",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 545,
@@ -3703,7 +3987,8 @@
       "type": 19,
       "price": "888",
       "name": "匿光决锋者",
-      "profession": ["坦克", "战士"]
+      "profession": ["坦克", "战士"],
+      "gender": "男"
     },
     {
       "id": 551,
@@ -3716,7 +4001,8 @@
       "type": 0,
       "price": "288",
       "name": "战争女神",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 552,
@@ -3729,7 +4015,8 @@
       "type": 12,
       "price": "积分夺宝",
       "name": "冰冠公主",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 553,
@@ -3742,7 +4029,8 @@
       "type": 32,
       "price": "888",
       "name": "神奇女侠",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 554,
@@ -3755,7 +4043,8 @@
       "type": 40,
       "price": "194",
       "name": "单词大作战",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 555,
@@ -3768,7 +4057,8 @@
       "type": 91,
       "price": "赛年专属",
       "name": "黎明之约",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 561,
@@ -3781,7 +4071,8 @@
       "type": 0,
       "price": "288",
       "name": "激情绿茵",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 562,
@@ -3794,7 +4085,8 @@
       "type": 19,
       "price": "888",
       "name": "逐梦之星",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 563,
@@ -3807,7 +4099,8 @@
       "type": 40,
       "price": "194",
       "name": "暗影游猎",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 564,
@@ -3820,7 +4113,8 @@
       "type": 1,
       "price": "60",
       "name": "潮玩牛仔",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 565,
@@ -3833,7 +4127,8 @@
       "type": 5,
       "price": "1788",
       "name": "深海之息",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 571,
@@ -3846,7 +4141,8 @@
       "type": 12,
       "price": "888",
       "name": "修罗",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 572,
@@ -3859,7 +4155,8 @@
       "type": 5,
       "price": "限时出售",
       "name": "枫霜尽",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 581,
@@ -3872,7 +4169,8 @@
       "type": 0,
       "price": "288",
       "name": "维京掠夺者",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 591,
@@ -3885,7 +4183,8 @@
       "type": 0,
       "price": "288",
       "name": "埃及法老",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 592,
@@ -3898,7 +4197,8 @@
       "type": 25,
       "price": "1788",
       "name": "永曜之星",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 593,
@@ -3908,10 +4208,11 @@
       "poster": "https://lengyibai.gitee.io/wzry-material/hero/yangjian/haibao/3.jpg",
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yangjian/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yangjian/touxiang/3.jpg",
-      "type": 12,
-      "price": "1",
+      "type": 1,
+      "price": "60",
       "name": "次元傲视",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 594,
@@ -3924,7 +4225,8 @@
       "type": 12,
       "price": "888",
       "name": "天秀·启明",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 601,
@@ -3937,7 +4239,8 @@
       "type": 0,
       "price": "288",
       "name": "圆桌骑士",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 602,
@@ -3950,7 +4253,8 @@
       "type": 60,
       "price": "S9赛季专属",
       "name": "饕餮",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 603,
@@ -3963,7 +4267,8 @@
       "type": 9,
       "price": "战队赛专属",
       "name": "华丽摇滚",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 611,
@@ -3976,7 +4281,8 @@
       "type": 0,
       "price": "288",
       "name": "三太子",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 612,
@@ -3989,7 +4295,8 @@
       "type": 19,
       "price": "888",
       "name": "逐梦之翼",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 613,
@@ -4002,7 +4309,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "次元突破",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 614,
@@ -4015,7 +4323,8 @@
       "type": 12,
       "price": "888",
       "name": "雪上飞焰",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 621,
@@ -4028,7 +4337,8 @@
       "type": 0,
       "price": "288",
       "name": "星航指挥官",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 622,
@@ -4041,7 +4351,8 @@
       "type": 12,
       "price": "888",
       "name": "黄金分割率",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 623,
@@ -4054,7 +4365,8 @@
       "type": 24,
       "price": "1788",
       "name": "武陵仙君",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 624,
@@ -4067,7 +4379,8 @@
       "type": 31,
       "price": "488",
       "name": "掌控之力",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 625,
@@ -4080,7 +4393,8 @@
       "type": 80,
       "price": "1788",
       "name": "时雨天司",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 626,
@@ -4093,7 +4407,8 @@
       "type": 26,
       "price": "积分夺宝",
       "name": "星域神启",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 631,
@@ -4106,7 +4421,8 @@
       "type": 0,
       "price": "288",
       "name": "芝加哥教父",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 632,
@@ -4119,7 +4435,8 @@
       "type": 72,
       "price": "888",
       "name": "烈魂",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 633,
@@ -4132,7 +4449,8 @@
       "type": 40,
       "price": "194",
       "name": "火炮绅士",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 641,
@@ -4145,7 +4463,8 @@
       "type": 0,
       "price": "288",
       "name": "伊势巫女",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 642,
@@ -4158,7 +4477,8 @@
       "type": 34,
       "price": "488",
       "name": "守护之力",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 643,
@@ -4171,7 +4491,8 @@
       "type": 12,
       "price": "888",
       "name": "猫狗日记",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 644,
@@ -4184,7 +4505,8 @@
       "type": 12,
       "price": "888",
       "name": "白蛇",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 645,
@@ -4197,7 +4519,8 @@
       "type": 5,
       "price": "888",
       "name": "白鹤梁神女",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 646,
@@ -4210,7 +4533,8 @@
       "type": 96,
       "price": "1788",
       "name": "挚爱花嫁",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 651,
@@ -4223,7 +4547,8 @@
       "type": 0,
       "price": "288",
       "name": "东海龙王",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 652,
@@ -4236,7 +4561,8 @@
       "type": 19,
       "price": "888",
       "name": "逐梦之光",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 661,
@@ -4249,7 +4575,8 @@
       "type": 0,
       "price": "288",
       "name": "第七人偶",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 662,
@@ -4262,7 +4589,8 @@
       "type": 5,
       "price": "888",
       "name": "冰霜恋舞曲",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 663,
@@ -4275,7 +4603,8 @@
       "type": 51,
       "price": "1688",
       "name": "久胜战神",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 664,
@@ -4288,7 +4617,8 @@
       "type": 40,
       "price": "194",
       "name": "真爱魔法",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 665,
@@ -4301,7 +4631,8 @@
       "type": 50,
       "price": "珍宝阁",
       "name": "胡桃夹子",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 671,
@@ -4314,7 +4645,8 @@
       "type": 0,
       "price": "288",
       "name": "阿摩司公爵",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 672,
@@ -4327,7 +4659,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "幻乐之宴",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 673,
@@ -4340,7 +4673,8 @@
       "type": 77,
       "price": "S21赛季专属",
       "name": "原初探秘者",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 674,
@@ -4353,7 +4687,8 @@
       "type": 99,
       "price": "限时活动获取",
       "name": "五谷丰年",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 681,
@@ -4366,7 +4701,8 @@
       "type": 0,
       "price": "288",
       "name": "龙域领主",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 682,
@@ -4379,7 +4715,8 @@
       "type": 71,
       "price": "888",
       "name": "曙光守护者",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 683,
@@ -4392,7 +4729,8 @@
       "type": 43,
       "price": "888",
       "name": "青龙志",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 684,
@@ -4405,7 +4743,8 @@
       "type": 15,
       "price": "1688",
       "name": "绛天战甲",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 691,
@@ -4418,7 +4757,8 @@
       "type": 0,
       "price": "288",
       "name": "绝影神枪",
-      "profession": ["射手", "刺客"]
+      "profession": ["射手", "刺客"],
+      "gender": "男"
     },
     {
       "id": 692,
@@ -4431,7 +4771,8 @@
       "type": 12,
       "price": "888",
       "name": "特工魅影",
-      "profession": ["射手", "刺客"]
+      "profession": ["射手", "刺客"],
+      "gender": "男"
     },
     {
       "id": 693,
@@ -4444,7 +4785,8 @@
       "type": 43,
       "price": "888",
       "name": "朱雀志",
-      "profession": ["射手", "刺客"]
+      "profession": ["射手", "刺客"],
+      "gender": "男"
     },
     {
       "id": 694,
@@ -4457,7 +4799,8 @@
       "type": 15,
       "price": "1688",
       "name": "碎云",
-      "profession": ["射手", "刺客"]
+      "profession": ["射手", "刺客"],
+      "gender": "男"
     },
     {
       "id": 701,
@@ -4470,7 +4813,8 @@
       "type": 0,
       "price": "288",
       "name": "威尼斯狂欢",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 702,
@@ -4483,7 +4827,8 @@
       "type": 43,
       "price": "1788",
       "name": "白虎志",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 703,
@@ -4496,7 +4841,8 @@
       "type": 75,
       "price": "时空之境",
       "name": "原初追逐者",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 704,
@@ -4509,7 +4855,8 @@
       "type": 71,
       "price": "888",
       "name": "热力回旋",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 711,
@@ -4522,7 +4869,8 @@
       "type": 0,
       "price": "288",
       "name": "爱与和平",
-      "profession": ["坦克", "辅助"]
+      "profession": ["坦克", "辅助"],
+      "gender": "男"
     },
     {
       "id": 712,
@@ -4535,7 +4883,8 @@
       "type": 35,
       "price": "488",
       "name": "坚韧之力",
-      "profession": ["坦克", "辅助"]
+      "profession": ["坦克", "辅助"],
+      "gender": "男"
     },
     {
       "id": 713,
@@ -4548,7 +4897,8 @@
       "type": 43,
       "price": "888",
       "name": "玄武志",
-      "profession": ["坦克", "辅助"]
+      "profession": ["坦克", "辅助"],
+      "gender": "男"
     },
     {
       "id": 714,
@@ -4561,7 +4911,8 @@
       "type": 86,
       "price": "S25赛季专属",
       "name": "千军破阵",
-      "profession": ["坦克", "辅助"]
+      "profession": ["坦克", "辅助"],
+      "gender": "男"
     },
     {
       "id": 721,
@@ -4574,7 +4925,8 @@
       "type": 0,
       "price": "288",
       "name": "美梦成真",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "男"
     },
     {
       "id": 722,
@@ -4587,7 +4939,8 @@
       "type": 15,
       "price": "1688",
       "name": "胖达荣荣",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "男"
     },
     {
       "id": 723,
@@ -4600,7 +4953,8 @@
       "type": 100,
       "price": "限时活动获取",
       "name": "天降福星",
-      "profession": ["战士", "法师"]
+      "profession": ["战士", "法师"],
+      "gender": "男"
     },
     {
       "id": 731,
@@ -4613,7 +4967,8 @@
       "type": 0,
       "price": "288",
       "name": "尼罗河女神",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 732,
@@ -4626,7 +4981,8 @@
       "type": 40,
       "price": "194",
       "name": "朔望之晖",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 733,
@@ -4639,7 +4995,8 @@
       "type": 5,
       "price": "1788",
       "name": "补天",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 741,
@@ -4652,7 +5009,8 @@
       "type": 0,
       "price": "288",
       "name": "占星师",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 742,
@@ -4665,7 +5023,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "虹云星官",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 743,
@@ -4678,7 +5037,8 @@
       "type": 70,
       "price": "S19赛季专属",
       "name": "疑决卦",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 744,
@@ -4691,7 +5051,8 @@
       "type": 40,
       "price": "194",
       "name": "吟游魔法",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 751,
@@ -4704,7 +5065,8 @@
       "type": 0,
       "price": "288",
       "name": "花间舞",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 752,
@@ -4717,7 +5079,8 @@
       "type": 29,
       "price": "888",
       "name": "蜜橘之夏",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 753,
@@ -4730,7 +5093,8 @@
       "type": 12,
       "price": "888",
       "name": "无限星赏官",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 754,
@@ -4743,7 +5107,8 @@
       "type": 80,
       "price": "限时出售",
       "name": "祈雪灵祝",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 755,
@@ -4756,7 +5121,8 @@
       "type": 88,
       "price": "888",
       "name": "玉兔公主",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 761,
@@ -4769,7 +5135,8 @@
       "type": 0,
       "price": "288",
       "name": "霓裳曲",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 762,
@@ -4782,7 +5149,8 @@
       "type": 36,
       "price": "888",
       "name": "遇见飞天",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 763,
@@ -4795,7 +5163,8 @@
       "type": 92,
       "price": "888",
       "name": "寅虎·心曲",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 771,
@@ -4808,7 +5177,8 @@
       "type": 0,
       "price": "288",
       "name": "街头旋风",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 772,
@@ -4821,7 +5191,8 @@
       "type": 28,
       "price": "888",
       "name": "梅西",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 773,
@@ -4834,7 +5205,8 @@
       "type": 19,
       "price": "888",
       "name": "天狼狩猎者",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 774,
@@ -4847,7 +5219,8 @@
       "type": 76,
       "price": "888",
       "name": "李小龙",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 775,
@@ -4860,7 +5233,8 @@
       "type": 92,
       "price": "1788",
       "name": "寅虎·赤拳",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 781,
@@ -4873,7 +5247,8 @@
       "type": 0,
       "price": "288",
       "name": "踏雪寻梅",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 782,
@@ -4886,7 +5261,8 @@
       "type": 54,
       "price": "S13赛季专属",
       "name": "混沌棋",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 783,
@@ -4899,7 +5275,8 @@
       "type": 12,
       "price": "888",
       "name": "滕王阁序",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 791,
@@ -4912,7 +5289,8 @@
       "type": 0,
       "price": "288",
       "name": "命运角斗场",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 792,
@@ -4925,7 +5303,8 @@
       "type": 54,
       "price": "S13赛季专属",
       "name": "御狮",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 793,
@@ -4938,7 +5317,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "特工战影",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 794,
@@ -4951,7 +5331,8 @@
       "type": 40,
       "price": "194",
       "name": "电玩高手",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 801,
@@ -4964,7 +5345,8 @@
       "type": 0,
       "price": "288",
       "name": "精准探案法",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 802,
@@ -4977,7 +5359,8 @@
       "type": 39,
       "price": "S14赛季专属",
       "name": "御霄",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 803,
@@ -4990,7 +5373,8 @@
       "type": 40,
       "price": "194",
       "name": "胡桃异想国",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 804,
@@ -5003,7 +5387,8 @@
       "type": 1,
       "price": "60",
       "name": "契约魔法",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 811,
@@ -5016,7 +5401,8 @@
       "type": 0,
       "price": "288",
       "name": "午夜歌剧院",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 812,
@@ -5029,7 +5415,8 @@
       "type": 40,
       "price": "194",
       "name": "云间偶戏",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 821,
@@ -5042,7 +5429,8 @@
       "type": 0,
       "price": "288",
       "name": "海之征途",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 822,
@@ -5055,7 +5443,8 @@
       "type": 12,
       "price": "888",
       "name": "猫狗日记",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 823,
@@ -5068,7 +5457,8 @@
       "type": 15,
       "price": "1688",
       "name": "末日机甲",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 824,
@@ -5081,7 +5471,8 @@
       "type": 97,
       "price": "1788",
       "name": "挚爱之约",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 831,
@@ -5094,7 +5485,8 @@
       "type": 0,
       "price": "288",
       "name": "魇语军师",
-      "profession": ["刺客", "法师"]
+      "profession": ["刺客", "法师"],
+      "gender": "男"
     },
     {
       "id": 832,
@@ -5107,7 +5499,8 @@
       "type": 12,
       "price": "888",
       "name": "暗渊魔法",
-      "profession": ["刺客", "法师"]
+      "profession": ["刺客", "法师"],
+      "gender": "男"
     },
     {
       "id": 841,
@@ -5120,7 +5513,8 @@
       "type": 0,
       "price": "288",
       "name": "极冰防御线",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 842,
@@ -5133,7 +5527,8 @@
       "type": 48,
       "price": "S16赛季专属",
       "name": "御銮",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 843,
@@ -5146,7 +5541,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "圆桌骑士",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 844,
@@ -5159,7 +5555,8 @@
       "type": 101,
       "price": "710",
       "name": "梦圆繁星",
-      "profession": ["辅助", "坦克"]
+      "profession": ["辅助", "坦克"],
+      "gender": "男"
     },
     {
       "id": 851,
@@ -5172,7 +5569,8 @@
       "type": 0,
       "price": "288",
       "name": "花见巫女",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 852,
@@ -5185,7 +5583,8 @@
       "type": 71,
       "price": "888",
       "name": "箭羽风息",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 853,
@@ -5198,7 +5597,8 @@
       "type": 67,
       "price": "1788",
       "name": "太华",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 854,
@@ -5211,7 +5611,8 @@
       "type": 19,
       "price": "888",
       "name": "天狼溯光者",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 861,
@@ -5224,7 +5625,8 @@
       "type": 0,
       "price": "288",
       "name": "棒球奇才",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 862,
@@ -5237,7 +5639,8 @@
       "type": 1,
       "price": "钻石夺宝",
       "name": "鲨炮海盗猫",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 863,
@@ -5250,7 +5653,8 @@
       "type": 40,
       "price": "194",
       "name": "星空之诺",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 864,
@@ -5263,7 +5667,8 @@
       "type": 12,
       "price": "888",
       "name": "月团寄思",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 865,
@@ -5276,7 +5681,8 @@
       "type": 90,
       "price": "S28赛季专属",
       "name": "大漠名商",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 871,
@@ -5289,7 +5695,8 @@
       "type": 0,
       "price": "288",
       "name": "灼热之刃",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 872,
@@ -5302,7 +5709,8 @@
       "type": 74,
       "price": "1688",
       "name": "一念神魔",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 881,
@@ -5315,7 +5723,8 @@
       "type": 0,
       "price": "288",
       "name": "修竹墨客",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 882,
@@ -5328,7 +5737,8 @@
       "type": 53,
       "price": "888",
       "name": "梁祝",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 883,
@@ -5341,7 +5751,8 @@
       "type": 19,
       "price": "888",
       "name": "天狼绘梦者",
-      "profession": ["法师", "刺客"]
+      "profession": ["法师", "刺客"],
+      "gender": "女"
     },
     {
       "id": 891,
@@ -5354,7 +5765,8 @@
       "type": 0,
       "price": "288",
       "name": "露花倒影",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 892,
@@ -5367,7 +5779,8 @@
       "type": 68,
       "price": "888",
       "name": "如梦令",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 893,
@@ -5380,7 +5793,8 @@
       "type": 65,
       "price": "60",
       "name": "拒霜思",
-      "profession": ["法师", "坦克"]
+      "profession": ["法师", "坦克"],
+      "gender": "女"
     },
     {
       "id": 901,
@@ -5393,7 +5807,8 @@
       "type": 0,
       "price": "288",
       "name": "年年有余",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 902,
@@ -5406,7 +5821,8 @@
       "type": 40,
       "price": "194",
       "name": "西部大镖客",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 903,
@@ -5419,7 +5835,8 @@
       "type": 88,
       "price": "888",
       "name": "猪悟能",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "男"
     },
     {
       "id": 911,
@@ -5432,7 +5849,8 @@
       "type": 0,
       "price": "288",
       "name": "创世神祝",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 912,
@@ -5445,7 +5863,8 @@
       "type": 1,
       "price": "60",
       "name": "重装意志",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 921,
@@ -5458,7 +5877,8 @@
       "type": 0,
       "price": "288",
       "name": "森",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 922,
@@ -5471,7 +5891,8 @@
       "type": 71,
       "price": "888",
       "name": "遇见神鹿",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 923,
@@ -5484,7 +5905,8 @@
       "type": 93,
       "price": "限时出售",
       "name": "时之祈愿",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 924,
@@ -5497,7 +5919,8 @@
       "type": 42,
       "price": "限时兑换",
       "name": "时之愿境",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 931,
@@ -5510,7 +5933,8 @@
       "type": 0,
       "price": "288",
       "name": "荷鲁斯之眼",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 932,
@@ -5523,7 +5947,8 @@
       "type": 65,
       "price": "60",
       "name": "纤云弄巧",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 933,
@@ -5536,7 +5961,8 @@
       "type": 94,
       "price": "888",
       "name": "时之祈愿",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 941,
@@ -5549,7 +5975,8 @@
       "type": 0,
       "price": "288",
       "name": "归虚梦演",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 942,
@@ -5562,7 +5989,8 @@
       "type": 51,
       "price": "1688",
       "name": "云鹰飞将",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 943,
@@ -5575,7 +6003,8 @@
       "type": 83,
       "price": "限时出售",
       "name": "李逍遥",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "男"
     },
     {
       "id": 951,
@@ -5588,7 +6017,8 @@
       "type": 0,
       "price": "288",
       "name": "幸存者",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 952,
@@ -5601,7 +6031,8 @@
       "type": 72,
       "price": "888",
       "name": "神威",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 953,
@@ -5614,7 +6045,8 @@
       "type": 38,
       "price": "1688",
       "name": "无双飞将",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "男"
     },
     {
       "id": 961,
@@ -5627,7 +6059,8 @@
       "type": 0,
       "price": "288",
       "name": "归虚梦演",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 962,
@@ -5640,7 +6073,8 @@
       "type": 12,
       "price": "888",
       "name": "诗语江南",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 963,
@@ -5653,7 +6087,8 @@
       "type": 51,
       "price": "1688",
       "name": "游龙清影",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "女"
     },
     {
       "id": 971,
@@ -5666,7 +6101,8 @@
       "type": 0,
       "price": "288",
       "name": "归虚梦演",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 972,
@@ -5679,7 +6115,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "乓乓大师",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 973,
@@ -5692,7 +6129,8 @@
       "type": 19,
       "price": "限时出售",
       "name": "匿光启智者",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "男"
     },
     {
       "id": 981,
@@ -5705,7 +6143,8 @@
       "type": 0,
       "price": "288",
       "name": "归虚梦演",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 982,
@@ -5718,7 +6157,8 @@
       "type": 40,
       "price": "荣耀战令获取",
       "name": "狂想玩偶喵",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 983,
@@ -5731,7 +6171,8 @@
       "type": 12,
       "price": "888",
       "name": "龙鼓争鸣",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 984,
@@ -5744,7 +6185,8 @@
       "type": 1,
       "price": "60",
       "name": "胡桃狂想曲",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "男"
     },
     {
       "id": 991,
@@ -5757,7 +6199,8 @@
       "type": 0,
       "price": "288",
       "name": "冰刃幻境",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 992,
@@ -5770,7 +6213,8 @@
       "type": 38,
       "price": "1688",
       "name": "炽阳神光",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 993,
@@ -5783,7 +6227,8 @@
       "type": 19,
       "price": "888",
       "name": "匿光追影者",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "女"
     },
     {
       "id": 1001,
@@ -5796,7 +6241,8 @@
       "type": 0,
       "price": "288",
       "name": "秩序猎龙将",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 1002,
@@ -5809,7 +6255,8 @@
       "type": 50,
       "price": "限时活动获取",
       "name": "蔚蓝守将",
-      "profession": ["战士", "坦克"]
+      "profession": ["战士", "坦克"],
+      "gender": "男"
     },
     {
       "id": 1011,
@@ -5822,7 +6269,8 @@
       "type": 0,
       "price": "288",
       "name": "熊喵少女",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "女"
     },
     {
       "id": 1012,
@@ -5835,7 +6283,8 @@
       "type": 12,
       "price": "888",
       "name": "顽趣",
-      "profession": ["坦克"]
+      "profession": ["坦克"],
+      "gender": "女"
     },
     {
       "id": 1021,
@@ -5848,7 +6297,8 @@
       "type": 12,
       "price": "888",
       "name": "永昼",
-      "profession": ["战士"]
+      "profession": ["战士"],
+      "gender": "女"
     },
     {
       "id": 1031,
@@ -5861,7 +6311,8 @@
       "type": 0,
       "price": "288",
       "name": "孤猎",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 1032,
@@ -5874,7 +6325,8 @@
       "type": 12,
       "price": "888",
       "name": "赏金猎手",
-      "profession": ["刺客"]
+      "profession": ["刺客"],
+      "gender": "男"
     },
     {
       "id": 1041,
@@ -5887,7 +6339,8 @@
       "type": 0,
       "price": "288",
       "name": "启蛰",
-      "profession": ["坦克", "法师"]
+      "profession": ["坦克", "法师"],
+      "gender": "男"
     },
     {
       "id": 1051,
@@ -5900,7 +6353,8 @@
       "type": 1,
       "price": "珍宝阁",
       "name": "女武神",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 1052,
@@ -5913,7 +6367,8 @@
       "type": 12,
       "price": "888",
       "name": "奇遇舞章",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     },
     {
       "id": 1061,
@@ -5926,7 +6381,8 @@
       "type": 0,
       "price": "288",
       "name": "赤焰之缨",
-      "profession": ["战士", "刺客"]
+      "profession": ["战士", "刺客"],
+      "gender": "女"
     },
     {
       "id": 1071,
@@ -5939,7 +6395,8 @@
       "type": 0,
       "price": "288",
       "name": "前尘",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 1072,
@@ -5952,7 +6409,8 @@
       "type": 88,
       "price": "888",
       "name": "唐三藏",
-      "profession": ["法师"]
+      "profession": ["法师"],
+      "gender": "男"
     },
     {
       "id": 1081,
@@ -5965,7 +6423,8 @@
       "type": 0,
       "price": "288",
       "name": "碧珀绯影",
-      "profession": ["刺客", "战士"]
+      "profession": ["刺客", "战士"],
+      "gender": "男"
     },
     {
       "id": 1091,
@@ -5978,7 +6437,8 @@
       "type": 0,
       "price": "288",
       "name": "画中游",
-      "profession": ["辅助"]
+      "profession": ["辅助"],
+      "gender": "女"
     },
     {
       "id": 1101,
@@ -5991,7 +6451,8 @@
       "type": 0,
       "price": "288",
       "name": "危途狂花",
-      "profession": ["射手"]
+      "profession": ["射手"],
+      "gender": "女"
     }
   ]
 }
