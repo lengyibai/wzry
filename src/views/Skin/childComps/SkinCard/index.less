@@ -15,6 +15,18 @@
     .bg {
       transform: scale(1.1);
     }
+
+    .type {
+      transform: translateX(-100%);
+    }
+
+    .price {
+      transform: translateX(100%);
+    }
+
+    .bottom {
+      transform: translateY(100%);
+    }
   }
 
   .bg {
@@ -30,6 +42,7 @@
     position: absolute;
     width: 30%;
     transform: translate(5px, 5px);
+    transition: all 0.25s;
   }
 
   .price {
@@ -38,6 +51,7 @@
     display: flex;
     align-items: center;
     transform: translate(-5px, 5px);
+    transition: all 0.25s;
 
     img {
       width: 30px;
@@ -61,6 +75,7 @@
     width: 100%;
     padding: 15px;
     pointer-events: none;
+    transition: all 0.25s;
 
     .name {
       width: fit-content;
