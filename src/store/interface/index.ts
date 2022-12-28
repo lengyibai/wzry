@@ -45,6 +45,8 @@ export namespace HeroStore {
 export namespace SkinStore {
   export interface State {
     profession: string;
+    sort_type: number;
+    gender_type: number;
     skin_list: Hero.Skin[];
     filter_list: Hero.Skin[];
     type_logo: {
