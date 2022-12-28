@@ -1,11 +1,12 @@
 <template>
   <div class="hero">
-    <transition name="card-list">
-      <div class="hero-main" v-if="show">
+    <div class="hero-main">
+      <SkinToolbar />
+      <transition name="card-list">
         <LibGridLayout
           ref="heroListRef"
           gap="25px"
-          v-if="skin_list.length"
+          v-if="skin_list.length && show"
           :count="count"
           :eqhMultiple="0.46"
           @load-more="EmitLoadMore"
@@ -21,21 +22,25 @@
             <SkinCard :data="item" />
           </div>
         </LibGridLayout>
-      </div>
-    </transition>
+      </transition>
+    </div>
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
       <SkinSidebar />
+    </transition>
+
+    <transition name="fade">
+      <LibViewImg v-model="show_poster" v-if="show_poster" :link="poster" />
     </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, onActivated, ref, watch } from "vue";
-import { ViewImg } from "@/utils/index";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
+import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
 
@@ -47,6 +52,8 @@ const skin_list = ref<Hero.Skin[]>([]);
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 const page = ref(1); //当前页数
+const show_poster = ref(false); //查看海报
+const poster = ref(""); // 查看的海报链接
 
 $skinStore.getSkin();
 
@@ -61,7 +68,6 @@ watch(
     skin_list.value = cache_list.value.slice(0, page.value * 30);
     nextTick(() => {
       show.value = true;
-      console.log(v);
     });
   },
   { deep: true, immediate: true }
@@ -76,7 +82,8 @@ const EmitLoadMore = () => {
 
 /* 查看海报 */
 const handleViewImg = (img: string) => {
-  new ViewImg(img);
+  show_poster.value = true;
+  poster.value = img;
 };
 
 /* 进入页面后更新高度 */
