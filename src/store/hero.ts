@@ -4,6 +4,7 @@ import { ref } from "vue";
 
 export default defineStore("hero", () => {
   const profession = ref(""); //职业类型
+  const camp_type = ref(""); // 当前阵营排序类型
   const gender_type = ref(0); // 当前性别排序类型
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
@@ -25,6 +26,13 @@ export default defineStore("hero", () => {
   const setProfessional = (p: string) => {
     if (profession.value === p) return;
     profession.value = p;
+    sortAll();
+  };
+
+  /** @description: 阵营排序 */
+  const sortCamp = (type: string) => {
+    if (camp_type.value === type) return;
+    camp_type.value = type;
     sortAll();
   };
 
@@ -62,6 +70,13 @@ export default defineStore("hero", () => {
     } else if (gender_type.value === 2) {
       filter_list.value = girl;
     }
+
+    // 阵营排序
+    if (camp_type.value && camp_type.value !== "全部阵营") {
+      filter_list.value = filter_list.value.filter((item) => {
+        return item.camp === camp_type.value;
+      });
+    }
   };
 
   return {
@@ -71,6 +86,7 @@ export default defineStore("hero", () => {
     getHeroList,
     setHeroList,
     setProfessional,
+    sortCamp,
     sortGender,
   };
 });

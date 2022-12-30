@@ -1,10 +1,27 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { getCampType } from "@/api/main/games/hero";
 import heroStore from "@/store/hero";
 
 const $heroStore = heroStore();
 
 const gender = ref(0); //性别排序
+const select_list = ref([{ label: "全部阵营", value: "全部阵营" }]);
+
+// 获取阵营列表
+getCampType().then((res) => {
+  res.forEach((item) => {
+    select_list.value.push({
+      label: item.name,
+      value: item.name,
+    });
+  });
+});
+
+/* 选择筛选 */
+const EmitSelectFilter = (v: string) => {
+  $heroStore.sortCamp(v);
+};
 
 /* 设置性别 */
 const handerSetGender = (type: number) => {
@@ -15,6 +32,9 @@ const handerSetGender = (type: number) => {
 
 <template>
   <div class="hero-toolbar">
+    <!-- 筛选按钮 -->
+    <FilterTool :data="select_list" @select="EmitSelectFilter" listHeight="500px" />
+
     <!-- 只看性别 -->
     <div class="gender">
       <span>只看：</span>
