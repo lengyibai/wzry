@@ -3,7 +3,6 @@ import { getEpigraphList } from "@/api/main/games/epigraph";
 import { ref } from "vue";
 
 export default defineStore("epigraph", () => {
-  const category = ref("全部");
   const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
   const filter_list = ref<Epigraph.Data[]>([]); //筛选后的列表
 
@@ -13,6 +12,7 @@ export default defineStore("epigraph", () => {
       setEpigraphList(res);
     });
   };
+  getEpigraph();
 
   /** @description: 设置铭文列表 */
   const setEpigraphList = (data: Epigraph.Data[]) => {
@@ -22,7 +22,6 @@ export default defineStore("epigraph", () => {
 
   /** @description: 筛选显示 */
   const setFilter = (type: string) => {
-    category.value = type;
     if (type === "全部") {
       filter_list.value = epigraph_list.value;
     } else {
@@ -33,7 +32,6 @@ export default defineStore("epigraph", () => {
   };
 
   return {
-    category,
     epigraph_list,
     filter_list,
     getEpigraph,

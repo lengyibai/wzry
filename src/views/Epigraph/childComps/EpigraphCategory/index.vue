@@ -21,11 +21,6 @@ const epigraph = [
   { title: "穿透" },
 ];
 
-/* 获取上次铭文类型的索引位置 */
-currentIndex.value = epigraph.findIndex((item) => {
-  return $epigraphStore.category === item.title;
-});
-
 /* 点击分类标题 */
 const handleToggle = (index: number, type: string) => {
   $switchStore.$clickAudio(`tab${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
