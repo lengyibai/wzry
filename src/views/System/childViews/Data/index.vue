@@ -2,7 +2,7 @@
   <div class="data">
     <LibTable
       :data="tableData"
-      :head="['数据类型', '数量', '状态', '操作']"
+      :head="['数据类型', '数据量', '状态', '操作']"
       :sort="['数据量']"
       @sortChange="EmitsSortChange"
     >
@@ -33,7 +33,7 @@
   </div>
 </template>
 <script setup lang="ts" name="Data">
-import { $typeSort, $savefiles } from "@/utils/index";
+import { $typeSort, $savefiles, $deepCopy } from "@/utils/index";
 import { ref } from "vue";
 import hooks from "./hooks/index";
 
@@ -82,7 +82,7 @@ const EmitsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
     tableData.value = $typeSort(tableData.value, "length", v[1] === 1 ? true : false);
   } else {
-    tableData.value = [...cache];
+    tableData.value = $deepCopy(cache.value);
   }
 };
 </script>

@@ -76,7 +76,7 @@ export default () => {
   };
 
   const tableData = ref<any[]>([]);
-  let cache: any[] = [];
+  const cache = ref<any[]>([]);
 
   /* 获取本地数据 */
   const getLocalData = (name: string, prefix = "data_") => {
@@ -109,6 +109,7 @@ export default () => {
         key: item[0],
         data: v,
         status: "正在检查...",
+        length: v.length,
       };
     });
     for (let i = 0; i < tableData.value.length; i++) {
@@ -116,7 +117,8 @@ export default () => {
       const v = (await requests[data.key]()).data;
       setStatus(data, v);
     }
-    cache = $deepCopy<any[]>(tableData.value);
+
+    cache.value = $deepCopy<any[]>(tableData.value);
   };
 
   return { keywords, requests, load, setStatus, cache, tableData, updateData };
