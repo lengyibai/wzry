@@ -1859,7 +1859,7 @@
       "attack": "90%",
       "effect": "40%",
       "difficulty": "20%",
-      "gender": "男",
+      "gender": "女",
       "profession": ["射手"],
       "location": "连珠射手",
       "specialty": ["远程消耗", "团队增益"],
