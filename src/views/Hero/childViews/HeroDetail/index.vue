@@ -1,30 +1,3 @@
-<template>
-  <div class="hero-detail">
-    <!-- 顶部关闭 -->
-    <LibMaskClose @close="EmitHide" />
-    <LibFullScroll v-model="scroll_index" @end="EmitScrollEnd">
-      <!--资料皮肤-->
-      <HeroParallax class="scroll-item" :bg="hero_data.poster">
-        <HeroInfo />
-      </HeroParallax>
-
-      <!--皮肤-->
-      <HeroParallax class="scroll-item" :bg="hero_data.poster" v-if="skin_num">
-        <HeroSkin />
-      </HeroParallax>
-
-      <!--技能-->
-      <HeroParallax class="scroll-item" :bg="hero_data.skins[skin_num - 1].poster" v-if="skill_num">
-        <HeroSkill />
-      </HeroParallax>
-    </LibFullScroll>
-
-    <!-- 滚动进度 -->
-    <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" :pageName="page_name" @toggle="EmitToggle" />
-    </transition>
-  </div>
-</template>
 <script setup lang="ts">
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
@@ -66,10 +39,12 @@ const skin_num = computed(() => {
 const EmitToggle = (index: number) => {
   scroll_index.value = index;
 };
+
 /* 滚动结束触发 */
 const EmitScrollEnd = (index: number) => {
   $heroDetailStore.setIndex(index);
 };
+
 /* 隐藏自身 */
 const EmitHide = () => {
   emit("update:modelValue", false);
@@ -90,6 +65,35 @@ onMounted(() => {
   }, 1500);
 });
 </script>
+
+<template>
+  <div class="hero-detail">
+    <!-- 顶部关闭 -->
+    <LibMaskClose @close="EmitHide" />
+    <LibFullScroll v-model="scroll_index" @end="EmitScrollEnd">
+      <!--资料皮肤-->
+      <HeroParallax class="scroll-item" :bg="hero_data.poster">
+        <HeroInfo />
+      </HeroParallax>
+
+      <!--皮肤-->
+      <HeroParallax class="scroll-item" :bg="hero_data.poster" v-if="skin_num">
+        <HeroSkin />
+      </HeroParallax>
+
+      <!--技能-->
+      <HeroParallax class="scroll-item" :bg="hero_data.skins[skin_num - 1].poster" v-if="skill_num">
+        <HeroSkill />
+      </HeroParallax>
+    </LibFullScroll>
+
+    <!-- 滚动进度 -->
+    <transition name="progress">
+      <Heroprogress v-show="show_progress" :index="scroll_index" :pageName="page_name" @toggle="EmitToggle" />
+    </transition>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

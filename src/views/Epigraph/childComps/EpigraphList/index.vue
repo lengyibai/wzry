@@ -1,24 +1,3 @@
-<template>
-  <div>
-    <transition name="card-list">
-      <div class="epigraph-list" v-if="show">
-        <LibGridLayout ref="epigraphListRef" v-if="epigraph_list.length" gap="15px" :count="count" :eqhMultiple="0.5">
-          <transition-group name="card" appear>
-            <div
-              v-for="(item, index) in epigraph_list"
-              :style="{
-                'transition-delay': 0.025 * index + 's',
-              }"
-              :key="item.id"
-            >
-              <EpigraphCard :data="item" />
-            </div>
-          </transition-group>
-        </LibGridLayout>
-      </div>
-    </transition>
-  </div>
-</template>
 <script setup lang="ts">
 import { onActivated, onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
 import $bus from "@/utils/eventBus";
@@ -27,7 +6,6 @@ import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 interface Props {
   data: Epigraph.Data[];
 }
-
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
 });
@@ -85,6 +63,29 @@ onBeforeUnmount(() => {
   $bus.off("resize");
 });
 </script>
+
+<template>
+  <div>
+    <transition name="card-list">
+      <div class="epigraph-list" v-if="show">
+        <LibGridLayout ref="epigraphListRef" v-if="epigraph_list.length" gap="15px" :count="count" :eqhMultiple="0.5">
+          <transition-group name="card" appear>
+            <div
+              v-for="(item, index) in epigraph_list"
+              :style="{
+                'transition-delay': 0.025 * index + 's',
+              }"
+              :key="item.id"
+            >
+              <EpigraphCard :data="item" />
+            </div>
+          </transition-group>
+        </LibGridLayout>
+      </div>
+    </transition>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

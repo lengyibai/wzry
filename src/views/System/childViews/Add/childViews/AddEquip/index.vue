@@ -1,83 +1,3 @@
-<template>
-  <ManageMask class="content" :show="show">
-    <div class="left">
-      <!-- 装备名 -->
-      <FormInput label="名称" required v-model="form_data!.name" />
-      <!-- 描述 -->
-      <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data!.desc" />
-      <!-- 装备类型 -->
-      <FormSelect label="类型" :data="equip_types" v-model="form_data!.type" :value="form_data!.type" required />
-      <!-- 阶段 -->
-      <FormInput label="阶段" placeholder="1-3" required v-model="form_data!.level" number />
-      <!-- 排名 -->
-      <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data!.num" number />
-      <!-- 价格 -->
-      <FormInput label="价格" required v-model="form_data!.price" number />
-      <!-- 设置图标 -->
-      <FormLabel label="图标" required>
-        <SelectImg v-model="form_data!.icon" title="图标" />
-      </FormLabel>
-      <!-- 最底部灰色备注 -->
-      <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
-
-      <!-- 装备效果 -->
-      <div class="equip-effect">
-        <div class="select-effect">
-          <FormSelect label="效果类型" v-model="equip_effect_type" :value="equip_effect_type" :data="equip_effects" />
-          <button class="add" @click="addEffect">添加</button>
-          <button class="del" @click="delEffect">删除一行</button>
-        </div>
-        <div class="effect-list">
-          <transition-group name="fade">
-            <FormInput
-              labelWidth="175px"
-              :label="item.name"
-              v-model="item.num"
-              required
-              v-for="item in form_data!.effect"
-              :key="item.name"
-            />
-          </transition-group>
-        </div>
-      </div>
-
-      <!-- 被动及主动 -->
-      <div class="motivation">
-        <!-- 名称 -->
-        <FormInput label="主/被动名称" labelWidth="195px" v-model="motivation.name" />
-        <FormInput label="冷却时间" labelWidth="195px" v-model="motivation.time" number />
-        <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
-        <!-- 主/被动描述 -->
-        <LibRichText
-          width="500px"
-          v-model="motivation.desc"
-          placeholder="主/被动描述"
-          :key="form_data!.motivation.length"
-        />
-
-        <div class="box">
-          <button class="add" @click="addMotivation">添加</button>
-          <button class="del" @click="delMotivation">删除一行</button>
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <EquipDetail :equip="form_data" :show="true" />
-    </div>
-
-    <!-- 发布相关 -->
-    <ReleaseConfirm
-      v-model:showConfirmclose="show_ConfirmClose"
-      v-model:status="status"
-      size="50px"
-      :finish="finish"
-      @commit="EmitCommit"
-      @confirm="EmitConfirmSave"
-      @cancel="EmitConfirmRemove"
-      @close="EmitCancelRelease"
-    />
-  </ManageMask>
-</template>
 <script setup lang="ts">
 import { ref } from "vue";
 import { getEquipType, getEquipEffect } from "@/api/main/games/equip";
@@ -118,7 +38,7 @@ getEquipType().then((res) => {
 });
 
 /* 添加装备效果 */
-const addEffect = () => {
+const handleAddEffect = () => {
   if (!equip_effect_type.value) return;
   form_data.value!.effect.push({
     name: equip_effect_type.value,
@@ -128,13 +48,13 @@ const addEffect = () => {
 };
 
 /* 删除装备效果 */
-const delEffect = () => {
+const handleDelEffect = () => {
   equip_effect_type.value = "";
   form_data.value!.effect.pop();
 };
 
 /* 添加被动 */
-const addMotivation = () => {
+const handleAddMotivation = () => {
   if (!motivation.value.name) return;
   form_data.value!.motivation.push({
     ...motivation.value,
@@ -145,17 +65,17 @@ const addMotivation = () => {
 };
 
 /* 删除被动 */
-const delMotivation = () => {
+const handleDelMotivation = () => {
   form_data.value!.motivation.pop();
 };
 
 /* 提交表单 */
 const EmitCommit = async () => {
   const { level, num, price, type, name, icon } = form_data.value!;
-  /* 非空验证 */
+  //非空验证
   if (level && num && price && type && name && icon) {
     const type_id = equip_types.value.find((item) => form_data.value!.type === item.name); // 查找装备分类id
-    /* 生成装备id */
+    //生成装备id
     form_data.value!.id = Number(`${type_id!.id}${level}${num}`);
     const data = {
       ...form_data.value!,
@@ -190,6 +110,88 @@ setTimeout(async () => {
   });
 }, 1000);
 </script>
+
+<template>
+  <ManageMask class="content" :show="show">
+    <div class="left">
+      <!-- 装备名 -->
+      <FormInput label="名称" required v-model="form_data!.name" />
+      <!-- 描述 -->
+      <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data!.desc" />
+      <!-- 装备类型 -->
+      <FormSelect label="类型" :data="equip_types" v-model="form_data!.type" :value="form_data!.type" required />
+      <!-- 阶段 -->
+      <FormInput label="阶段" placeholder="1-3" required v-model="form_data!.level" number />
+      <!-- 排名 -->
+      <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data!.num" number />
+      <!-- 价格 -->
+      <FormInput label="价格" required v-model="form_data!.price" number />
+      <!-- 设置图标 -->
+      <FormLabel label="图标" required>
+        <SelectImg v-model="form_data!.icon" title="图标" />
+      </FormLabel>
+      <!-- 最底部灰色备注 -->
+      <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
+
+      <!-- 装备效果 -->
+      <div class="equip-effect">
+        <div class="select-effect">
+          <FormSelect label="效果类型" v-model="equip_effect_type" :value="equip_effect_type" :data="equip_effects" />
+          <button class="add" @click="handleAddEffect">添加</button>
+          <button class="del" @click="handleDelEffect">删除一行</button>
+        </div>
+        <div class="effect-list">
+          <transition-group name="fade">
+            <FormInput
+              labelWidth="175px"
+              :label="item.name"
+              v-model="item.num"
+              required
+              v-for="item in form_data!.effect"
+              :key="item.name"
+            />
+          </transition-group>
+        </div>
+      </div>
+
+      <!-- 被动及主动 -->
+      <div class="motivation">
+        <!-- 名称 -->
+        <FormInput label="主/被动名称" labelWidth="195px" v-model="motivation.name" />
+        <FormInput label="冷却时间" labelWidth="195px" v-model="motivation.time" number />
+        <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
+        <!-- 主/被动描述 -->
+        <LibRichText
+          width="500px"
+          v-model="motivation.desc"
+          placeholder="主/被动描述"
+          :key="form_data!.motivation.length"
+        />
+
+        <div class="box">
+          <button class="add" @click="handleAddMotivation">添加</button>
+          <button class="del" @click="handleDelMotivation">删除一行</button>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <EquipDetail :equip="form_data" :show="true" />
+    </div>
+
+    <!-- 发布相关 -->
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

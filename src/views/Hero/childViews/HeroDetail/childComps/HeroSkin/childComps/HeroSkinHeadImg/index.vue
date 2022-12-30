@@ -29,6 +29,10 @@ import { nextTick, reactive, ref } from "vue";
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 
+interface Emits {
+  (e: "bg-imgs", data: number[]): void;
+}
+
 const skin = ref();
 const showSkin = ref();
 const $heroDetail = heroDetail();
@@ -45,9 +49,7 @@ const active_skin = reactive<{ el: HTMLElement | null; transform: string }>({
 }); //当前处于展示的皮肤的DOM元素及坐标
 
 /* 皮肤头像拖动事件 */
-const emit = defineEmits<{
-  (e: "bg-imgs", data: number[]): void;
-}>();
+const emit = defineEmits<Emits>();
 
 /* 判断是否存在正在展示的皮肤，存在就将此皮肤头像过渡到初始位置 */
 const initPosition = () => {

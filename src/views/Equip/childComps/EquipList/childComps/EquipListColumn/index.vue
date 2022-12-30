@@ -1,23 +1,3 @@
-<template>
-  <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
-    <EquipCard
-      ref="card"
-      :leftLine="showLine(item.id, 'left')"
-      :rightLine="showLine(item.id, 'right')"
-      v-for="item in equip_list"
-      :equip="item"
-      :key="item.id"
-    />
-    <div
-      class="vertical-line"
-      v-if="index !== 0"
-      :style="{
-        top: $equipStore.vertical_line[index].top,
-        height: $equipStore.vertical_line[index].height,
-      }"
-    ></div>
-  </div>
-</template>
 <script setup lang="ts">
 import equipStore from "@/store/equip";
 import { ref, watch } from "vue";
@@ -28,13 +8,13 @@ interface Props {
   lineData: any[];
   index: number;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   equipList: () => [],
 });
 
 const $equipStore = equipStore();
 
+const card = ref();
 const equip_list = ref<Equip.Data[]>([]); //装备列表
 const show = ref(true); //淡入显示列表
 
@@ -60,9 +40,29 @@ watch(
   },
   { deep: true, immediate: true }
 );
-
-const card = ref();
 </script>
+
+<template>
+  <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
+    <EquipCard
+      ref="card"
+      :leftLine="showLine(item.id, 'left')"
+      :rightLine="showLine(item.id, 'right')"
+      v-for="item in equip_list"
+      :equip="item"
+      :key="item.id"
+    />
+    <div
+      class="vertical-line"
+      v-if="index !== 0"
+      :style="{
+        top: $equipStore.vertical_line[index].top,
+        height: $equipStore.vertical_line[index].height,
+      }"
+    ></div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

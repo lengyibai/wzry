@@ -1,17 +1,3 @@
-<template>
-  <div class="equip">
-    <transition name="fade">
-      <div class="equip-main" v-if="show_EquipSidebar">
-        <EquipList />
-        <EquipDetail :show="show_Details" :equip="equip_data" />
-      </div>
-    </transition>
-    <transition name="sidebar">
-      <EquipSidebar v-show="show_EquipSidebar" />
-    </transition>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { $deepCopy } from "@/utils";
@@ -46,6 +32,21 @@ watch(
   }
 );
 </script>
+
+<template>
+  <div class="equip">
+    <transition name="fade">
+      <div class="equip-main" v-if="show_EquipSidebar">
+        <EquipList />
+        <EquipDetail :show="show_Details" :equip="equip_data" />
+      </div>
+    </transition>
+    <transition name="sidebar">
+      <EquipSidebar v-show="show_EquipSidebar" />
+    </transition>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

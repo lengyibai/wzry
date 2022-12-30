@@ -1,17 +1,3 @@
-<template>
-  <div class="attribute" ref="attribute">
-    <span>{{ text[attr] }}</span>
-    <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
-    <div class="bar">
-      <i
-        :style="{
-          backgroundColor: bgc[attr],
-          width: progress,
-        }"
-      />
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
@@ -62,6 +48,22 @@ onMounted(() => {
   });
 });
 </script>
+
+<template>
+  <div class="attribute" ref="attribute">
+    <span>{{ text[attr] }}</span>
+    <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
+    <div class="bar">
+      <i
+        :style="{
+          backgroundColor: bgc[attr],
+          width: progress,
+        }"
+      />
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

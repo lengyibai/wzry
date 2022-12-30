@@ -58,6 +58,8 @@ import { ref } from "vue";
 import { getSkinType } from "@/api/main/games/skin";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
+import { skinDefault } from "@/defaultValue/defaults";
+import { $deepCopy } from "@/utils/index";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -87,16 +89,7 @@ const currentIndex = ref<number | null>(null); //根据悬浮的位置显示垃�
 const scrollBox = ref();
 
 const addOne = () => {
-  form_data.value!.push({
-    id: Date.now(),
-    num: 0,
-    hero: hero_id.value as number,
-    name: "",
-    poster: "",
-    headImg: "",
-    type: 0,
-    price: 0,
-  });
+  form_data.value!.push($deepCopy(skinDefault));
   // 滚动到底部
   setTimeout(() => {
     scrollBox.value.el.scroll({

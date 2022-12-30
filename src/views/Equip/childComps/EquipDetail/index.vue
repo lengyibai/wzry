@@ -1,22 +1,3 @@
-<template>
-  <div class="equip-detail" :class="{ show: show }">
-    <div class="name">{{ equip.name }}</div>
-    <div class="info">
-      <div class="effect" :class="abbreviations[item.name]" v-for="(item, index) in equip.effect" :key="index">
-        +{{ item.num }} {{ item.name }}
-      </div>
-    </div>
-    <div class="details" v-if="equip?.name">
-      <div class="motivation" v-for="(item, index) in equip.motivation" :key="index">
-        <div class="title">{{ item.type }}-{{ item.name }}</div>
-        <div class="desc" v-html="item.desc"></div>
-        <div class="time lq" v-if="item.time">{{ item.time }}秒</div>
-        <div class="note" v-if="item.note" v-html="item.note"></div>
-      </div>
-    </div>
-    <div class="note" v-if="equip.note" v-html="equip.note"></div>
-  </div>
-</template>
 <script setup lang="ts">
 import { equipDefault } from "@/defaultValue/defaults";
 
@@ -47,6 +28,27 @@ const abbreviations: Record<string, string> = {
   法术攻击: "fsgj",
 };
 </script>
+
+<template>
+  <div class="equip-detail" :class="{ show: show }">
+    <div class="name">{{ equip.name }}</div>
+    <div class="info">
+      <div class="effect" :class="abbreviations[item.name]" v-for="(item, index) in equip.effect" :key="index">
+        +{{ item.num }} {{ item.name }}
+      </div>
+    </div>
+    <div class="details" v-if="equip?.name">
+      <div class="motivation" v-for="(item, index) in equip.motivation" :key="index">
+        <div class="title">{{ item.type }}-{{ item.name }}</div>
+        <div class="desc" v-html="item.desc"></div>
+        <div class="time lq" v-if="item.time">{{ item.time }}秒</div>
+        <div class="note" v-if="item.note" v-html="item.note"></div>
+      </div>
+    </div>
+    <div class="note" v-if="equip.note" v-html="equip.note"></div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

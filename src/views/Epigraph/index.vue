@@ -1,14 +1,3 @@
-<template>
-  <div class="epigraph">
-    <transition name="epigraph">
-      <EpigraphCategory v-show="show_epigraph" />
-    </transition>
-    <div class="epigraph-main">
-      <EpigraphList :data="$epigraphStore.filter_list" />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from "vue";
 import epigraphStore from "@/store/epigraph";
@@ -24,6 +13,18 @@ $epigraphStore.getEpigraph().then(() => {
   show_epigraph.value = true;
 });
 </script>
+
+<template>
+  <div class="epigraph">
+    <transition name="epigraph">
+      <EpigraphCategory v-show="show_epigraph" />
+    </transition>
+    <div class="epigraph-main">
+      <EpigraphList :data="$epigraphStore.filter_list" />
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

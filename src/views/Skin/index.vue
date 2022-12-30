@@ -1,41 +1,3 @@
-<template>
-  <div class="hero">
-    <div class="hero-main">
-      <SkinToolbar />
-      <transition name="card-list">
-        <LibGridLayout
-          ref="heroListRef"
-          gap="25px"
-          v-if="skin_list.length && show"
-          :count="count"
-          :eqhMultiple="0.46"
-          @load-more="EmitLoadMore"
-        >
-          <div
-            v-for="(item, index) in skin_list"
-            @click="handleViewImg(item.poster)"
-            :style="{
-              'transition-delay': 0.025 * index + 's',
-            }"
-            :key="item.id"
-          >
-            <SkinCard :data="item" />
-          </div>
-        </LibGridLayout>
-      </transition>
-    </div>
-
-    <!--右侧职业分类侧边栏-->
-    <transition name="sidebar" appear>
-      <SkinSidebar />
-    </transition>
-
-    <transition name="fade">
-      <LibViewImg v-model="show_poster" v-if="show_poster" :link="poster" />
-    </transition>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, onActivated, ref, watch } from "vue";
 import $bus from "@/utils/eventBus";
@@ -92,8 +54,9 @@ onActivated(() => {
     heroListRef.value.updateHeight();
   }).catch(() => {});
 });
+
 onMounted(() => {
-  /* 实时修改一行个数 */
+  //实时修改一行个数
   const change = [
     [1550, 3],
     [1450, 2],
@@ -121,6 +84,45 @@ onBeforeUnmount(() => {
   $bus.off("resize");
 });
 </script>
+
+<template>
+  <div class="hero">
+    <div class="hero-main">
+      <SkinToolbar />
+      <transition name="card-list">
+        <LibGridLayout
+          ref="heroListRef"
+          gap="25px"
+          v-if="skin_list.length && show"
+          :count="count"
+          :eqhMultiple="0.46"
+          @load-more="EmitLoadMore"
+        >
+          <div
+            v-for="(item, index) in skin_list"
+            @click="handleViewImg(item.poster)"
+            :style="{
+              'transition-delay': 0.025 * index + 's',
+            }"
+            :key="item.id"
+          >
+            <SkinCard :data="item" />
+          </div>
+        </LibGridLayout>
+      </transition>
+    </div>
+
+    <!--右侧职业分类侧边栏-->
+    <transition name="sidebar" appear>
+      <SkinSidebar />
+    </transition>
+
+    <transition name="fade">
+      <LibViewImg v-model="show_poster" v-if="show_poster" :link="poster" />
+    </transition>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

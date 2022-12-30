@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { $chromeV } from "@/utils/index";
+import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
+import useGetData from "@/hooks/useGetData";
+import useVersion from "@/hooks/useVersion";
+
+const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
+useGetData();
+</script>
+
 <template>
   <div class="app">
     <router-view v-slot="{ Component }">
@@ -19,15 +29,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { $chromeV } from "@/utils/index";
-import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
-import useGetData from "@/hooks/useGetData";
-import useVersion from "@/hooks/useVersion";
-
-const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
-useGetData();
-</script>
 <style scoped lang="less">
 .app {
   width: 100vw;

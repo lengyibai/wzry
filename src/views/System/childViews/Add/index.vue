@@ -1,15 +1,3 @@
-<template>
-  <div class="add" :style="box">
-    <transition-group name="add" appear>
-      <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="add" />
-    </transition-group>
-
-    <!--发布列表-->
-    <transition name="tv-clip" v-for="(v, k) in options" :key="k">
-      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
-    </transition>
-  </div>
-</template>
 <script setup lang="ts">
 import { defineAsyncComponent, reactive } from "vue";
 import useManageCard from "../../hooks/useManageCard";
@@ -66,6 +54,20 @@ const open = (key: string) => {
   options[key].show = true;
 };
 </script>
+
+<template>
+  <div class="add" :style="box">
+    <transition-group name="add" appear>
+      <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="add" />
+    </transition-group>
+
+    <!--发布列表-->
+    <transition name="tv-clip" v-for="(v, k) in options" :key="k">
+      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
+    </transition>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

@@ -1,6 +1,3 @@
-<template>
-  <div class="k-herosort" :style="{ backgroundPositionY: '-' + y[occ] + 'px' }"></div>
-</template>
 <script setup lang="ts">
 interface Props {
   occ: string; //职业
@@ -18,6 +15,11 @@ const y: Record<string, number> = {
   射手: 350,
 };
 </script>
+
+<template>
+  <div class="k-herosort" :style="{ backgroundPositionY: '-' + y[occ] + 'px' }"></div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import heroDetail from "@/store/heroDetail";
+import { skillDefault } from "@/defaultValue/defaults";
+interface Props {
+  activeSkill: typeof skillDefault;
+  isPassive: boolean;
+}
+withDefaults(defineProps<Props>(), {
+  activeSkill: () => skillDefault,
+  isPassive: false,
+});
+
+const $heroDetail = heroDetail();
+</script>
+
 <template>
   <div class="hero-skill-content-left">
     <!--名称及类型-->
@@ -17,20 +32,7 @@
     <div class="desc" v-html="activeSkill.desc"></div>
   </div>
 </template>
-<script setup lang="ts">
-import heroDetail from "@/store/heroDetail";
-import { skillDefault } from "@/defaultValue/defaults";
-interface Props {
-  activeSkill: typeof skillDefault;
-  isPassive: boolean;
-}
-withDefaults(defineProps<Props>(), {
-  activeSkill: () => skillDefault,
-  isPassive: false,
-});
 
-const $heroDetail = heroDetail();
-</script>
 <style scoped lang="less">
 @import url("./index.less");
 </style>

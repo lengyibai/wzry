@@ -34,6 +34,10 @@ interface Props {
   placeholder?: string; //输入框描述
   type?: "default" | "confirm"; //动画类型
 }
+interface Emits {
+  (e: "update:modelValue", arg: boolean): void;
+  (e: "get-link", link: string): void;
+}
 
 withDefaults(defineProps<Props>(), {
   modelValue: true,
@@ -43,17 +47,14 @@ withDefaults(defineProps<Props>(), {
   placeholder: "请输入",
   type: "default",
 });
+const emit = defineEmits<Emits>();
 
-const $store = switchStore();
-const emit = defineEmits<{
-  (e: "update:modelValue", arg: boolean): void;
-  (e: "get-link", link: string): void;
-}>();
+const $switchStore = switchStore();
 
 const link = ref("");
 
 const close = () => {
-  $store.$clickAudio("关闭");
+  $switchStore.$clickAudio("关闭");
   emit("update:modelValue", false);
   emit("get-link", link.value);
   link.value = "";

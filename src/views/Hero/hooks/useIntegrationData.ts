@@ -16,7 +16,7 @@ export default (id: number | unknown) => {
   const show_HeroDetail = ref(false); //显示英雄详情
 
   /* 查看详情 */
-  const viewClick = (id: number) => {
+  const EmitViewClick = (id: number) => {
     /* 获取指定英雄数据 */
     getHeroDetail(id).then((hero) => {
       /* 获取指定英雄皮肤 */
@@ -36,7 +36,7 @@ export default (id: number | unknown) => {
 
   /* 如果地址栏存在id，则打开查看详情 */
   if (id) {
-    viewClick(Number(id));
+    EmitViewClick(Number(id));
   } else {
     $heroStore.getHeroList($heroDetail.hero_info.profession[0]);
   }
@@ -45,6 +45,6 @@ export default (id: number | unknown) => {
     hero_info,
     hero_list,
     show_HeroDetail,
-    viewClick,
+    EmitViewClick,
   };
 };

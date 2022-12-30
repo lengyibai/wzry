@@ -1,3 +1,37 @@
+<script setup lang="ts">
+import { skillDefault } from "@/defaultValue/defaults";
+
+interface Props {
+  skills: Hero.Skill[]; //技能列表
+  activeIndex: number;
+}
+interface Emits {
+  (e: "select", v: number): void;
+  (e: "del"): void;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  skills: () => [skillDefault],
+  activeIndex: 0,
+});
+const emit = defineEmits<Emits>();
+
+/* 是否处于被编辑中 */
+const active = (index: number) => {
+  return props.activeIndex === index;
+};
+
+/* 选择技能 */
+const handleSelectSkill = (index: number) => {
+  emit("select", index);
+};
+
+/* 删除技能 */
+const handleDel = () => {
+  emit("del");
+};
+</script>
+
 <template>
   <div class="right">
     <div
@@ -14,7 +48,7 @@
         <div class="types">
           <K-SkillTypeTag v-for="(type, index) in item.type" :type="type" :key="index" />
         </div>
-        <button class="del lib-click" v-show="active(index)" v-if="index !== 0" @click.stop="del">删除</button>
+        <button class="del lib-click" v-show="active(index)" v-if="index !== 0" @click.stop="handleDel">删除</button>
         <div class="editing" v-show="active(index)">编辑中...</div>
       </div>
 
@@ -37,40 +71,7 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { skillDefault } from "@/defaultValue/defaults";
 
-interface Props {
-  skills: Hero.Skill[]; //技能列表
-  activeIndex: number;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  skills: () => [skillDefault],
-  activeIndex: 0,
-});
-
-interface Emits {
-  (e: "select", v: number): void;
-  (e: "del"): void;
-}
-const emit = defineEmits<Emits>();
-
-/* 是否处于被编辑中 */
-const active = (index: number) => {
-  return props.activeIndex === index;
-};
-
-/* 选择技能 */
-const handleSelectSkill = (index: number) => {
-  emit("select", index);
-};
-
-/* 删除技能 */
-const del = () => {
-  emit("del");
-};
-</script>
 <style scoped lang="less">
 @import url("./index.less");
 </style>

@@ -1,23 +1,3 @@
-<template>
-  <div class="epigraph-tool">
-    <div class="epigraph-category">
-      <img
-        :style="{ left: currentIndex * 11.11 + '%' }"
-        src="https://lengyibai.gitee.io/wzry-material/image/epigraph_active.png"
-        alt=""
-      />
-      <button
-        class="title"
-        :class="{ active: currentIndex === index }"
-        @click="toggle(index, item.title)"
-        v-for="(item, index) in epigraph"
-        :key="index"
-      >
-        <span>{{ item.title }}</span>
-      </button>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref } from "vue";
 import epigraphStore from "@/store/epigraph";
@@ -47,12 +27,34 @@ currentIndex.value = epigraph.findIndex((item) => {
 });
 
 /* 点击分类标题 */
-const toggle = (index: number, type: string) => {
+const handleToggle = (index: number, type: string) => {
   $switchStore.$clickAudio(`tab${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
   currentIndex.value = index;
   $epigraphStore.setFilter(type); //每次点击重新筛选数据
 };
 </script>
+
+<template>
+  <div class="epigraph-tool">
+    <div class="epigraph-category">
+      <img
+        :style="{ left: currentIndex * 11.11 + '%' }"
+        src="https://lengyibai.gitee.io/wzry-material/image/epigraph_active.png"
+        alt=""
+      />
+      <button
+        class="title"
+        :class="{ active: currentIndex === index }"
+        @click="handleToggle(index, item.title)"
+        v-for="(item, index) in epigraph"
+        :key="index"
+      >
+        <span>{{ item.title }}</span>
+      </button>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

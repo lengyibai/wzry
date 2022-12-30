@@ -1,24 +1,3 @@
-<template>
-  <div class="equip-card cursor-pointer" @click="$equipStore.setEquipActive(equip.id)">
-    <transition name="border-fade">
-      <div class="border" v-show="active_id === equip.id"></div>
-    </transition>
-    <img :src="equip.icon" alt="" ref="icon" />
-    <transition name="left-line">
-      <div class="left-line" v-if="leftLine"></div>
-    </transition>
-    <transition name="right-line" mode="in-out">
-      <div class="right-line" v-if="rightLine"></div>
-    </transition>
-    <div class="box">
-      <div class="name">{{ equip.name }}</div>
-      <div class="info">
-        <div class="desc" v-if="equip.desc">{{ equip.desc }}</div>
-        <div class="price">{{ equip.price }}</div>
-      </div>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 import { equipDefault } from "@/defaultValue/defaults";
@@ -29,7 +8,6 @@ interface Props {
   leftLine?: boolean;
   rightLine?: boolean;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   equip: () => {
     return equipDefault;
@@ -51,6 +29,29 @@ nextTick(() => {
   });
 });
 </script>
+
+<template>
+  <div class="equip-card cursor-pointer" @click="$equipStore.setEquipActive(equip.id)">
+    <transition name="border-fade">
+      <div class="border" v-show="active_id === equip.id"></div>
+    </transition>
+    <img :src="equip.icon" alt="" ref="icon" />
+    <transition name="left-line">
+      <div class="left-line" v-if="leftLine"></div>
+    </transition>
+    <transition name="right-line" mode="in-out">
+      <div class="right-line" v-if="rightLine"></div>
+    </transition>
+    <div class="box">
+      <div class="name">{{ equip.name }}</div>
+      <div class="info">
+        <div class="desc" v-if="equip.desc">{{ equip.desc }}</div>
+        <div class="price">{{ equip.price }}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

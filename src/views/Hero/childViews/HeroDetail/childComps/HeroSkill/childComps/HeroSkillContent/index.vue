@@ -1,14 +1,3 @@
-<template>
-  <div class="hero-skill-content">
-    <HeroSkillContentLeft
-      :class="{ 'hide-left': !show || toggle }"
-      :activeSkill="skill"
-      :isPassive="$heroDetail.skill_index === 0"
-      :style="{ width: exist_effect ? '45%' : '100%' }"
-    />
-    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="exist_effect" />
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import heroDetail from "@/store/heroDetail";
@@ -19,7 +8,6 @@ import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"
 interface Props {
   skill: Hero.Skill;
 }
-
 const props = withDefaults(defineProps<Props>(), {
   skill: () => skillDefault,
 });
@@ -46,6 +34,19 @@ $heroDetail.setSkillSelectFn(() => {
   }, 375);
 });
 </script>
+
+<template>
+  <div class="hero-skill-content">
+    <HeroSkillContentLeft
+      :class="{ 'hide-left': !show || toggle }"
+      :activeSkill="skill"
+      :isPassive="$heroDetail.skill_index === 0"
+      :style="{ width: exist_effect ? '45%' : '100%' }"
+    />
+    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="exist_effect" />
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

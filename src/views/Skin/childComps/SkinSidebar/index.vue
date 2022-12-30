@@ -1,17 +1,3 @@
-<template>
-  <div class="skin-sidebar">
-    <div
-      class="skin-type cursor-pointer"
-      :class="{ active: item.name === $skinStore.profession }"
-      v-for="(item, index) in hero_type"
-      @click="select(item.name, index)"
-      :key="index"
-    >
-      <i class="iconfont" :class="item.icon" />
-      <span class="name">{{ item.name }}</span>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import switchStore from "@/store/globalSwitch";
 import skinStore from "@/store/skin";
@@ -30,11 +16,27 @@ const hero_type = [
 ];
 
 /* 选择职业并筛选显示英雄 */
-const select = (name: string, index: number) => {
+const handleSelect = (name: string, index: number) => {
   $switchStore.$clickAudio(`默认${index}`);
   $skinStore.setProfessional(name);
 };
 </script>
+
+<template>
+  <div class="skin-sidebar">
+    <div
+      class="skin-type cursor-pointer"
+      :class="{ active: item.name === $skinStore.profession }"
+      v-for="(item, index) in hero_type"
+      @click="handleSelect(item.name, index)"
+      :key="index"
+    >
+      <i class="iconfont" :class="item.icon" />
+      <span class="name">{{ item.name }}</span>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

@@ -1,36 +1,13 @@
-<template>
-  <div class="hero-skill-icon">
-    <div
-      class="icon cursor-pointer"
-      :class="{ active: show }"
-      ref="skillImg"
-      v-for="(item, index) in active_skills"
-      :style="{
-        'transition-delay': 0.05 * index + 's',
-      }"
-      :key="index"
-    >
-      <transition name="border-fade">
-        <div class="border" v-show="currentIndex === index"></div>
-      </transition>
-      <img :src="item.img" @click="handleSelectSkill(index)" />
-      <img :src="item.img" :class="{ active: currentIndex === index }" />
-    </div>
-
-    <!-- 底部内容 -->
-    <i
-      v-if="hero_data.skills.length > 1"
-      class="toggle iconfont wzry-qiehuan cursor-pointer"
-      :class="{ 'hide-bottom': !show }"
-      @click="handleToggleSkill"
-      title="切换技能"
-    ></i>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
+
+interface Emits {
+  (e: "select-skill", skills: Hero.Skill): void;
+}
+
+const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
@@ -55,11 +32,6 @@ $heroDetailStore.setScollFn((index) => {
 });
 
 active_skills.value = hero_data.value.skills[deputy_index.value];
-
-/* 点击需要展示的技能 */
-const emit = defineEmits<{
-  (e: "select-skill", skills: Hero.Skill): void;
-}>();
 
 /* 点击技能后传递索引号 */
 const handleSelectSkill = (index: number) => {
@@ -90,6 +62,37 @@ const handleToggleSkill = () => {
   handleSelectSkill(currentIndex.value);
 };
 </script>
+
+<template>
+  <div class="hero-skill-icon">
+    <div
+      class="icon cursor-pointer"
+      :class="{ active: show }"
+      ref="skillImg"
+      v-for="(item, index) in active_skills"
+      :style="{
+        'transition-delay': 0.05 * index + 's',
+      }"
+      :key="index"
+    >
+      <transition name="border-fade">
+        <div class="border" v-show="currentIndex === index"></div>
+      </transition>
+      <img :src="item.img" @click="handleSelectSkill(index)" />
+      <img :src="item.img" :class="{ active: currentIndex === index }" />
+    </div>
+
+    <!-- 底部内容 -->
+    <i
+      v-if="hero_data.skills.length > 1"
+      class="toggle iconfont wzry-qiehuan cursor-pointer"
+      :class="{ 'hide-bottom': !show }"
+      @click="handleToggleSkill"
+      title="切换技能"
+    ></i>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

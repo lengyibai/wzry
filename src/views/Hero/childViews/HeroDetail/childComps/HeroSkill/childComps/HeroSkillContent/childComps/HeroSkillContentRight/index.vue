@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { skillDefault } from "@/defaultValue/defaults";
+interface Props {
+  activeSkill: typeof skillDefault;
+}
+withDefaults(defineProps<Props>(), {
+  activeSkill: () => skillDefault,
+});
+</script>
+
 <template>
   <div class="hero-skill-content-right">
     <table class="table">
@@ -16,15 +26,7 @@
     </table>
   </div>
 </template>
-<script setup lang="ts">
-import { skillDefault } from "@/defaultValue/defaults";
-interface Props {
-  activeSkill: typeof skillDefault;
-}
-withDefaults(defineProps<Props>(), {
-  activeSkill: () => skillDefault,
-});
-</script>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>
