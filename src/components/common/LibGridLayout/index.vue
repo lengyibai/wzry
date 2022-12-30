@@ -88,7 +88,6 @@ defineExpose({
   overflow: auto;
   width: 100%;
   flex: 1;
-  padding: 15px;
   grid-auto-flow: row dense;
   align-content: flex-start;
 }
