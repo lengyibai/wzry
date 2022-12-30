@@ -10,7 +10,7 @@ const updateUser = (id: number, token: string) => {
 };
 
 /** @description: 登录 */
-export const login = async (form: FormData.User) => {
+export const _login = async (form: FormData.User) => {
   //通过帐号查询用户
   const data = get<ResultData.User>({ name: "data_user", key: "id", value: form.id });
   /* 判断是否存在 */

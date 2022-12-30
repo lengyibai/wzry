@@ -43,7 +43,7 @@ const epigraph = [
 
 /* 获取上次铭文类型的索引位置 */
 currentIndex.value = epigraph.findIndex((item) => {
-  return $epigraphStore.type === item.title;
+  return $epigraphStore.category === item.title;
 });
 
 /* 点击分类标题 */

@@ -2,7 +2,7 @@
   <div class="equip-sidebar">
     <button
       class="hero-type"
-      :class="{ active: item.name === $equipStore.type }"
+      :class="{ active: item.name === $equipStore.category }"
       v-for="(item, index) in hero_type"
       @click="select(item.name, index)"
       :key="index"
