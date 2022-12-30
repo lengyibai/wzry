@@ -4,25 +4,18 @@ import SkinStore from "@/store/skin";
 
 const $SkinStore = SkinStore();
 
-const sort_text = ref("默认排序"); //价格排序
 const gender = ref(0); //性别排序
-const is_unfold = ref(false);
-const currentIndex = ref(0);
 const select_list = ref([
   { label: "默认排序", value: 0 },
   { label: "价格由低到高", value: 1 },
   { label: "价格由高到低", value: 2 },
 ]);
 
-/* 显示列表 */
-const handleShowList = () => {
-  is_unfold.value = !is_unfold.value;
-};
-
 /* 选择后触发 */
-const handleSelect = (v: { label: string; value: number }) => {
-  $SkinStore.sortPrice(v.value);
-  sort_text.value = v.label;
+const EmitSelectFilter = (v: number) => {
+  console.log(v);
+
+  $SkinStore.sortPrice(v);
 };
 
 /* 设置性别 */
@@ -34,29 +27,8 @@ const handerSetGender = (type: number) => {
 
 <template>
   <div class="skin-toolbar">
-    <!-- 按钮 -->
-    <div class="select-filter" @click="handleShowList">
-      <div class="title">{{ sort_text }}</div>
-      <img src="https://lengyibai.gitee.io/wzry-material/image/arrow.png" alt="arrow" class="arrow" />
-      <!-- 展开列表 -->
-      <div class="select-list" :class="{ unfold: !is_unfold }">
-        <transition-group name="select-list">
-          <button
-            class="box"
-            :class="{
-              active: currentIndex === index || sort_text === item.label,
-            }"
-            v-for="(item, index) in select_list"
-            @mousedown="handleSelect(item)"
-            @mouseenter="currentIndex = index"
-            @mouseleave="currentIndex = -1"
-            :key="item.label"
-          >
-            <div class="item">{{ item.label }}</div>
-          </button>
-        </transition-group>
-      </div>
-    </div>
+    <!-- 筛选按钮 -->
+    <FilterTool :data="select_list" @select="EmitSelectFilter" />
 
     <!-- 只看性别 -->
     <div class="gender">
