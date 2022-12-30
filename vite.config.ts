@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+// @ts-nocheck
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
@@ -22,7 +24,6 @@ export default defineConfig({
     eslintPlugin({
       include: ["src/**/*.js", "src/**/*.vue", "src/*.js", "src/*.vue"],
     }),
-
     visualizer({
       emitFile: true,
       filename: "visualizer.html", //分析图生成的文件名
