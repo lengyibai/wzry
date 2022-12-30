@@ -4,6 +4,7 @@ import { ref } from "vue";
 
 export default defineStore("hero", () => {
   const profession = ref(""); //职业类型
+  const gender_type = ref(0); // 当前性别排序类型
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
 
@@ -22,14 +23,44 @@ export default defineStore("hero", () => {
 
   /** @description: 设置职业 */
   const setProfessional = (p: string) => {
-    if (profession.value === p) return; //避免重复触发
+    if (profession.value === p) return;
     profession.value = p;
-    if (p === "全部") {
+    sortAll();
+  };
+
+  /** @description: 性别排序 */
+  const sortGender = (type: number) => {
+    if (gender_type.value === type) return;
+    gender_type.value = type;
+    sortAll();
+  };
+
+  /** @description: 一键排序 */
+  const sortAll = () => {
+    // 职业排序
+    if (profession.value === "全部") {
       filter_list.value = hero_list.value;
     } else {
       filter_list.value = hero_list.value.filter((item: Hero.Data) => {
-        return item.profession.includes(p);
+        return item.profession.includes(profession.value);
       });
+    }
+
+    // 性别排序
+    const boy: Hero.Data[] = [];
+    const girl: Hero.Data[] = [];
+    filter_list.value.forEach((item) => {
+      if (item.gender === "男") {
+        boy.push(item);
+      } else {
+        girl.push(item);
+      }
+    });
+
+    if (gender_type.value === 1) {
+      filter_list.value = boy;
+    } else if (gender_type.value === 2) {
+      filter_list.value = girl;
     }
   };
 
@@ -40,5 +71,6 @@ export default defineStore("hero", () => {
     getHeroList,
     setHeroList,
     setProfessional,
+    sortGender,
   };
 });

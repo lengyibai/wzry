@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import $bus from "@/utils/eventBus";
 import heroStore from "@/store/hero";
 import useIntegrationData from "./hooks/useIntegrationData";
+import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue")); //详情页
@@ -72,8 +73,9 @@ onBeforeUnmount(() => {
 <template>
   <div class="hero">
     <transition name="card-list">
-      <div class="hero-main" v-if="show">
-        <LibGridLayout ref="heroListRef" gap="25px" v-if="hero_list.length" :count="count" :eqhMultiple="1.5">
+      <div class="hero-main">
+        <HeroToolbar />
+        <LibGridLayout ref="heroListRef" gap="25px" v-if="hero_list.length && show" :count="count" :eqhMultiple="1.5">
           <transition-group name="card" appear>
             <div
               v-for="(item, index) in hero_list"
