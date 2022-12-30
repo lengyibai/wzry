@@ -1,15 +1,24 @@
 import { defineStore } from "pinia";
-import { GlobalSwitch } from "./interface";
+import { ref } from "vue";
 
-const switchStore = defineStore("globalSwitch", {
-  state: (): GlobalSwitch.State => ({
-    $clickAudio: () => {}, //点击音效
-    $tip: () => {}, //消息提示
-    $loading: {
-      show: () => {},
-      close: () => new Promise(() => {}),
-    },
-  }),
+type msgType = "info" | "warning" | "error";
+interface Loading {
+  show: (text?: string) => void;
+  close: () => Promise<void>;
+}
+const switchStore = defineStore("globalSwitch", () => {
+  const $clickAudio = ref<(name?: string) => void>(() => {}); //点击音效
+  const $tip = ref<(text: string, type?: msgType) => void>(() => {}); //消息提示
+  const $loading = ref<Loading>({
+    show: () => {},
+    close: () => new Promise(() => {}),
+  }); //loading
+
+  return {
+    $clickAudio,
+    $tip,
+    $loading,
+  };
 });
 
 export default switchStore;

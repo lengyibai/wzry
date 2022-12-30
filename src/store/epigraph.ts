@@ -1,37 +1,43 @@
 import { defineStore } from "pinia";
-import { getEpigraph } from "@/api/main/games/epigraph";
-import { EpigraphStore } from "./interface";
+import { getEpigraphList } from "@/api/main/games/epigraph";
+import { ref } from "vue";
 
-export default defineStore("epigraph", {
-  state: (): EpigraphStore.State => ({
-    type: "全部",
-    epigraph_list: [], //铭文列表
-    filter_list: [], //筛选后的列表
-  }),
-  actions: {
-    /** @description: 获取铭文列表 */
-    getEpigraph() {
-      return getEpigraph().then((res) => {
-        this.setEpigraphList(res);
+export default defineStore("epigraph", () => {
+  const category = ref("全部");
+  const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
+  const filter_list = ref<Epigraph.Data[]>([]); //筛选后的列表
+
+  /** @description: 获取铭文列表 */
+  const getEpigraph = () => {
+    return getEpigraphList().then((res) => {
+      setEpigraphList(res);
+    });
+  };
+
+  /** @description: 设置铭文列表 */
+  const setEpigraphList = (data: Epigraph.Data[]) => {
+    epigraph_list.value = data;
+    setFilter("全部");
+  };
+
+  /** @description: 筛选显示 */
+  const setFilter = (type: string) => {
+    category.value = type;
+    if (type === "全部") {
+      filter_list.value = epigraph_list.value;
+    } else {
+      filter_list.value = epigraph_list.value.filter((item) => {
+        return item.type.includes(type);
       });
-    },
+    }
+  };
 
-    /** @description: 设置铭文列表 */
-    setEpigraphList(data: Epigraph.Data[]) {
-      this.epigraph_list = data;
-      this.setFilter("全部");
-    },
-
-    /** @description: 筛选显示 */
-    setFilter(type: string) {
-      this.type = type;
-      if (type === "全部") {
-        this.filter_list = this.epigraph_list;
-      } else {
-        this.filter_list = this.epigraph_list.filter((item) => {
-          return item.type.includes(type);
-        });
-      }
-    },
-  },
+  return {
+    category,
+    epigraph_list,
+    filter_list,
+    getEpigraph,
+    setEpigraphList,
+    setFilter,
+  };
 });
