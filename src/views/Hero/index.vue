@@ -26,22 +26,49 @@ const heroListRef = ref();
 const id: unknown = $route.query.id; //地址栏参数
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
+const hero_list = ref<Hero.Data[]>([]); //英雄列表
+const cache_list = ref<Hero.Data[]>([]); //总数据
+const page = ref(1); //当前页数
+const page_count = ref(20); //一页显示的个数
+const page_total = ref(0); //总页数
 
-const { hero_info, hero_list, show_HeroDetail, EmitViewClick } =
-  useIntegrationData(id);
+const { hero_info, show_HeroDetail, EmitViewClick } = useIntegrationData(id);
 
 /* 监听筛选后的英雄列表 */
 watch(
   () => $heroStore.filter_list,
   (v) => {
     show.value = false;
+    page.value = 0;
+    hero_list.value = [];
+    cache_list.value = v;
+    hero_list.value = cache_list.value.slice(
+      page.value * page_count.value,
+      (page.value + 1) * page_count.value
+    );
+    page_total.value = Math.round(cache_list.value.length / page_count.value);
+
     nextTick(() => {
-      hero_list.value = v;
       show.value = true;
     });
   },
   { deep: true, immediate: true }
 );
+
+/* 加载更多 */
+const EmitLoadMore = () => {
+  if (page_total.value > page.value) {
+    page.value += 1;
+
+    hero_list.value.push(
+      ...cache_list.value.slice(
+        page.value * page_count.value,
+        (page.value + 1) * page_count.value
+      )
+    );
+    heroListRef.value.updateHeight();
+  }
+};
 
 /* 进入页面后更新高度 */
 onActivated(() => {
@@ -93,6 +120,7 @@ onBeforeUnmount(() => {
           v-if="hero_list.length && show"
           :count="count"
           :eqhMultiple="1.5"
+          @load-more="EmitLoadMore"
         >
           <transition-group name="card" appear>
             <div
