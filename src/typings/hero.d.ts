@@ -16,6 +16,7 @@ declare namespace Hero {
     name: string; //名字
     period: string; //时期
     poster: string; //海报
+    race: string; //种族
     skillUnit: string; //技能消耗单位
     profession: string[]; //职业
     specialty: string[]; //特长

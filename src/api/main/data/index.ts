@@ -13,7 +13,8 @@ export const HeroImg = () => http.Get<any[]>("/heroImg.json");
 export const Herodata = () => http.Get<any[]>("/heroData.json");
 
 /** @description: 获取英雄语音列表 */
-export const Voice = (hero_name: string) => http.Get<any[]>(`/voices/${hero_name}.json`);
+export const Voice = (hero_name: string) =>
+  http.Get<any[]>(`/voices/${hero_name}.json`);
 
 /** @description: 获取技能列表 */
 export const Skill = () => http.Get<any[]>("/skill.json");
@@ -71,3 +72,6 @@ export const Periodtype = () => http.Get<any[]>("/periodType.json");
 
 /** @description: 获取阵营列表 */
 export const Camptype = () => http.Get<any[]>("/campType.json");
+
+/** @description: 获取种族列表 */
+export const RaceType = () => http.Get<any[]>("/raceType.json");

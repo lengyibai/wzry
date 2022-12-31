@@ -23,6 +23,7 @@ import {
   Specialtytype,
   Periodtype,
   Camptype,
+  RaceType,
 } from "@/api/main/data";
 export default () => {
   const keywords: [string, string][] = [
@@ -48,6 +49,7 @@ export default () => {
     ["specialtytype", "特长"],
     ["periodtype", "时期"],
     ["camptype", "阵营"],
+    ["racetype", "种族"],
   ];
 
   const requests: Record<string, () => Promise<any>> = {
@@ -73,6 +75,7 @@ export default () => {
     specialtytype: Specialtytype,
     periodtype: Periodtype,
     camptype: Camptype,
+    racetype: RaceType,
   };
 
   const tableData = ref<any[]>([]);

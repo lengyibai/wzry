@@ -1,29 +1,30 @@
 import switchStore from "@/store/globalSwitch";
 import {
-  User,
+  Camptype,
+  RaceType,
+  Epigraph,
+  Epigrapheffect,
+  Epigraphtype,
+  Equip,
+  Equipeffect,
+  EquipSynthetic,
+  Equiptype,
   HeroBasic,
-  HeroImg,
   Herodata,
+  HeroImg,
+  Locationtype,
+  Periodtype,
+  Professiontype,
+  Relationship,
+  Relationtype,
   Skill,
-  Skilltype,
   Skilleffect,
+  Skilltype,
   Skin,
   Skintype,
-  Relationtype,
-  Relationship,
-  Equip,
-  Equiptype,
-  Equipeffect,
-  Epigraph,
-  Epigraphtype,
-  Epigrapheffect,
-  Professiontype,
-  Locationtype,
   Specialtytype,
-  Periodtype,
-  Camptype,
+  User,
   Voice,
-  EquipSynthetic,
 } from "@/api/main/data";
 import { getHeroBasic } from "@/api/main/games/hero";
 
@@ -53,6 +54,7 @@ export default async () => {
     ["specialtytype", Specialtytype, "特长"],
     ["periodtype", Periodtype, "时期"],
     ["camptype", Camptype, "阵营"],
+    ["racetype", RaceType, "种族"],
   ];
 
   const setData = (name: string, data: any) => {
@@ -67,7 +69,9 @@ export default async () => {
     let index = 1;
     for (const [key, request, name] of requests) {
       if (!isExist(key)) {
-        $switchStore.$loading.show(`正在下载${name}列表${index++}/${requests.length}`);
+        $switchStore.$loading.show(
+          `正在下载${name}列表${index++}/${requests.length}`
+        );
         setData("data_" + key, await request());
       }
     }
@@ -78,8 +82,14 @@ export default async () => {
     for (let i = 0; i < hero_list.length; i++) {
       if (!["梦奇", "盾山"].includes(hero_list[i].name)) {
         if (!isExist(hero_list[i].name, "voice_")) {
-          setData(`voice_${hero_list[i].name}`, { data: await Voice(hero_list[i].name) });
-          $switchStore.$loading.show(`正在下载${hero_list[i].name}语音${voice_index++}/${hero_list.length - 2}`);
+          setData(`voice_${hero_list[i].name}`, {
+            data: await Voice(hero_list[i].name),
+          });
+          $switchStore.$loading.show(
+            `正在下载${hero_list[i].name}语音${voice_index++}/${
+              hero_list.length - 2
+            }`
+          );
         }
       }
     }
