@@ -12,7 +12,6 @@ export default (id: number | unknown) => {
   const $heroStore = heroStore();
 
   const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
-  const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const show_HeroDetail = ref(false); //显示英雄详情
 
   /* 查看详情 */
@@ -43,7 +42,6 @@ export default (id: number | unknown) => {
 
   return {
     hero_info,
-    hero_list,
     show_HeroDetail,
     EmitViewClick,
   };
