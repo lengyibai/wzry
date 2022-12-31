@@ -1,13 +1,7 @@
-<template>
-  <div class="home">
-    <h1>待开发</h1>
-  </div>
-</template>
 <script setup lang="ts"></script>
+<template>
+  <div class="home"></div>
+</template>
 <style scoped lang="less">
-.home {
-  width: 100%;
-  height: 100%;
-  font-size: 26px;
-}
+@import url("./index.less");
 </style>
