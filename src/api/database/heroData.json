@@ -20,6 +20,7 @@
       "height": "186",
       "identity": "龙枪战士",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -42,6 +43,7 @@
       "height": "165",
       "identity": "姜子牙所造人偶",
       "camp": "倒悬天",
+      "race": "人造人",
       "skillUnit": "法力"
     },
     {
@@ -64,6 +66,7 @@
       "height": "178",
       "identity": "吟游乐师",
       "camp": "南荒",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -86,6 +89,7 @@
       "height": "193",
       "identity": "玄雍武将",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -108,6 +112,7 @@
       "height": "171",
       "identity": "长安女帝",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -130,6 +135,7 @@
       "height": "173",
       "identity": "寒星家族继承人",
       "camp": "海都家族",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -152,6 +158,7 @@
       "height": "190",
       "identity": "甘丹族长",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -174,6 +181,7 @@
       "height": "182",
       "identity": "玄雍君主",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -196,6 +204,7 @@
       "height": "171",
       "identity": "复仇刺客",
       "camp": "南荒",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -218,6 +227,7 @@
       "height": "171",
       "identity": "魔道圣人之后",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -240,6 +250,7 @@
       "height": "173",
       "identity": "稷下三贤者",
       "camp": "稷下学院",
+      "race": "神职者",
       "skillUnit": "无"
     },
     {
@@ -262,6 +273,7 @@
       "height": "178",
       "identity": "神职者",
       "camp": "倒悬天",
+      "race": "神职者",
       "skillUnit": "法力"
     },
     {
@@ -284,6 +296,7 @@
       "height": "157",
       "identity": "魔道名门之后",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -306,6 +319,7 @@
       "height": "149",
       "identity": "鲁班所造之物",
       "camp": "玄雍",
+      "race": "人造人",
       "skillUnit": "法力"
     },
     {
@@ -328,6 +342,7 @@
       "height": "177",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人魔混血",
       "skillUnit": "法力"
     },
     {
@@ -350,6 +365,7 @@
       "height": "178",
       "identity": "长安治安官",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -372,6 +388,7 @@
       "height": "180",
       "identity": "天才学者",
       "camp": "灞上",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -394,6 +411,7 @@
       "height": "510",
       "identity": "稷下三贤者",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -416,6 +434,7 @@
       "height": "175",
       "identity": "稷下三贤者",
       "camp": "稷下学院",
+      "race": "未知",
       "skillUnit": "法力"
     },
     {
@@ -438,6 +457,7 @@
       "height": "155",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -460,6 +480,7 @@
       "height": "183",
       "identity": "魏迪武将",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -482,6 +503,7 @@
       "height": "177",
       "identity": "拳僧",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -504,6 +526,7 @@
       "height": "185",
       "identity": "灞城武将",
       "camp": "灞上",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -526,6 +549,7 @@
       "height": "188",
       "identity": "圣骑士团领袖",
       "camp": "日落圣殿",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -548,6 +572,7 @@
       "height": "166",
       "identity": "吴地小公主",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -570,6 +595,7 @@
       "height": "210",
       "identity": "蜀地继承人",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -592,6 +618,7 @@
       "height": "173",
       "identity": "医者",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -614,6 +641,7 @@
       "height": "181",
       "identity": "扶桑剑客",
       "camp": "扶桑",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -636,6 +664,7 @@
       "height": "197",
       "identity": "霸王",
       "camp": "鸿门",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -658,6 +687,7 @@
       "height": "200",
       "identity": "名将",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -680,6 +710,7 @@
       "height": "170",
       "identity": "和亲公主",
       "camp": "狼旗",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -702,6 +733,7 @@
       "height": "153",
       "identity": "神秘法师",
       "camp": "日落圣殿",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -724,6 +756,7 @@
       "height": "179",
       "identity": "魏地主公",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -746,6 +779,7 @@
       "height": "180",
       "identity": "吴地都督",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -768,6 +802,7 @@
       "height": "230",
       "identity": "魔种起义军叛徒",
       "camp": "日之塔",
+      "race": "魔种",
       "skillUnit": "法力"
     },
     {
@@ -790,6 +825,7 @@
       "height": "180",
       "identity": "魔种起义军将领",
       "camp": "日之塔",
+      "race": "魔种",
       "skillUnit": "法力"
     },
     {
@@ -812,6 +848,7 @@
       "height": "175",
       "identity": "玄雍太后",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -834,6 +871,7 @@
       "height": "172",
       "identity": "绝世舞姬",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -856,6 +894,7 @@
       "height": "192",
       "identity": "重生的战神",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -878,6 +917,7 @@
       "height": "174",
       "identity": "长城守卫军队长",
       "camp": "长城守卫军",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -900,6 +940,7 @@
       "height": "183",
       "identity": "神职者/神射手",
       "camp": "日之塔",
+      "race": "神职者",
       "skillUnit": "法力"
     },
     {
@@ -922,6 +963,7 @@
       "height": "186",
       "identity": "蜀地武将",
       "camp": "蜀",
+      "race": "人魔混血",
       "skillUnit": "狂意"
     },
     {
@@ -944,6 +986,7 @@
       "height": "178",
       "identity": "蜀地主公",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -966,6 +1009,7 @@
       "height": "179",
       "identity": "金庭城王子",
       "camp": "云中漠地",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -988,6 +1032,7 @@
       "height": "154",
       "identity": "扶桑巫女",
       "camp": "扶桑",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1010,6 +1055,7 @@
       "height": "184",
       "identity": "天才刺客",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1032,6 +1078,7 @@
       "height": "355",
       "identity": "长安城守护者",
       "camp": "长安",
+      "race": "人造人",
       "skillUnit": "法力"
     },
     {
@@ -1054,6 +1101,7 @@
       "height": "152",
       "identity": "长安密保",
       "camp": "长安",
+      "race": "人造人",
       "skillUnit": "法力"
     },
     {
@@ -1076,6 +1124,7 @@
       "height": "179",
       "identity": "灞城统治者",
       "camp": "灞上",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1098,6 +1147,7 @@
       "height": "165",
       "identity": "不知火流继承人",
       "camp": "扶桑",
+      "race": "人类",
       "skillUnit": "能量"
     },
     {
@@ -1120,6 +1170,7 @@
       "height": "173",
       "identity": "自然巡游者",
       "camp": "鸿门",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1142,6 +1193,7 @@
       "height": "191",
       "identity": "蜀地武将",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -1164,6 +1216,7 @@
       "height": "180",
       "identity": "音乐天才少女",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1186,6 +1239,7 @@
       "height": "186",
       "identity": "蜀地武将",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1208,6 +1262,7 @@
       "height": "178",
       "identity": "神的继承者",
       "camp": "日落圣殿",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1230,6 +1285,7 @@
       "height": "179",
       "identity": "冒险家",
       "camp": "海都家族",
+      "race": "人类",
       "skillUnit": "能量"
     },
     {
@@ -1252,6 +1308,7 @@
       "height": "176",
       "identity": "扶桑剑客",
       "camp": "扶桑",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -1274,6 +1331,7 @@
       "height": "177",
       "identity": "狼旗首领",
       "camp": "狼旗",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1296,6 +1354,7 @@
       "height": "185",
       "identity": "神职者",
       "camp": "倒悬天",
+      "race": "神职者",
       "skillUnit": "法力"
     },
     {
@@ -1318,6 +1377,7 @@
       "mark": "炼金大师",
       "identity": "炼金师",
       "camp": "倒悬天",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1340,6 +1400,7 @@
       "height": "175",
       "identity": "陈塘关长官之子",
       "camp": "倒悬天",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1362,6 +1423,7 @@
       "height": "183",
       "identity": "蜀地军师",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1384,6 +1446,7 @@
       "height": "187",
       "identity": "机关炮老兵",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1406,6 +1469,7 @@
       "height": "168",
       "identity": "魔道名门继承人",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1428,6 +1492,7 @@
       "height": "215",
       "identity": "东神之城统治者",
       "camp": "云梦泽",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -1450,6 +1515,7 @@
       "height": "237",
       "identity": "铸剑师",
       "camp": "云梦泽",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1471,7 +1537,9 @@
       "period": "均衡",
       "height": "150",
       "identity": "博学者",
-      "camp": "云梦泽"
+      "camp": "云梦泽",
+      "race": "人类",
+      "skillUnit": "法力"
     },
     {
       "id": 68,
@@ -1493,6 +1561,7 @@
       "height": "188",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1515,6 +1584,7 @@
       "height": "182",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人魔混血",
       "skillUnit": "法力"
     },
     {
@@ -1537,6 +1607,7 @@
       "height": "171",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人魔混血",
       "skillUnit": "法力"
     },
     {
@@ -1559,6 +1630,7 @@
       "height": "208",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1581,6 +1653,7 @@
       "height": "97",
       "identity": "食梦者",
       "camp": "倒悬天",
+      "race": "魔种",
       "skillUnit": "无"
     },
     {
@@ -1603,6 +1676,7 @@
       "height": "180",
       "identity": "神",
       "camp": "倒悬天",
+      "race": "超智慧体",
       "skillUnit": "法力"
     },
     {
@@ -1625,6 +1699,7 @@
       "height": "181",
       "identity": "尧天组织首领",
       "camp": "尧天",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1647,6 +1722,7 @@
       "height": "169",
       "identity": "长安坊舞者",
       "camp": "尧天",
+      "race": "人魔混血",
       "skillUnit": "法力"
     },
     {
@@ -1669,6 +1745,7 @@
       "height": "169",
       "identity": "长安坊乐师",
       "camp": "尧天",
+      "race": "人造人",
       "skillUnit": "法力"
     },
     {
@@ -1691,6 +1768,7 @@
       "height": "177",
       "identity": "拳师",
       "camp": "尧天",
+      "race": "人魔混血",
       "skillUnit": "能量"
     },
     {
@@ -1713,6 +1791,7 @@
       "height": "170",
       "identity": "少年棋手",
       "camp": "尧天",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1735,6 +1814,7 @@
       "height": "171",
       "identity": "海都佣兵",
       "camp": "海都家族",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -1757,6 +1837,7 @@
       "height": "169",
       "identity": "海都执政者",
       "camp": "海都家族",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1779,6 +1860,7 @@
       "height": "182",
       "identity": "机关傀儡师",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1801,6 +1883,7 @@
       "height": "185",
       "identity": "江东小霸王",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1823,6 +1906,7 @@
       "height": "184",
       "identity": "魏地军师",
       "camp": "魏",
+      "race": "人类",
       "skillUnit": "能量"
     },
     {
@@ -1845,6 +1929,7 @@
       "height": "283",
       "identity": "修筑长城的机械",
       "camp": "长城守卫军",
+      "race": "人造人",
       "skillUnit": "无"
     },
     {
@@ -1867,6 +1952,7 @@
       "height": "172",
       "identity": "千窟城继承者",
       "camp": "长城守卫军",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1889,6 +1975,7 @@
       "height": "151",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人魔混血",
       "skillUnit": "弹药"
     },
     {
@@ -1911,6 +1998,7 @@
       "height": "187",
       "identity": "长城守卫军成员",
       "camp": "长城守卫军",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -1933,6 +2021,7 @@
       "height": "170",
       "identity": "女帝密探",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1955,6 +2044,7 @@
       "height": "171",
       "identity": "魔道家族公主",
       "camp": "日之塔",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -1977,6 +2067,7 @@
       "height": "183",
       "identity": "魔种起义军将领",
       "camp": "日之塔",
+      "race": "魔种",
       "skillUnit": "无"
     },
     {
@@ -1999,6 +2090,7 @@
       "height": "212",
       "identity": "神",
       "camp": "倒悬天",
+      "race": "超智慧体",
       "skillUnit": "无"
     },
     {
@@ -2021,6 +2113,7 @@
       "height": "162",
       "identity": "鹿灵转生者",
       "camp": "云梦泽",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2043,6 +2136,7 @@
       "height": "182",
       "identity": "孤鸟转生者",
       "camp": "云梦泽",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2065,6 +2159,7 @@
       "height": "176",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2087,6 +2182,7 @@
       "height": "180",
       "identity": "蜀地将领",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "标枪"
     },
     {
@@ -2109,6 +2205,7 @@
       "height": "163",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2131,6 +2228,7 @@
       "height": "192",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2153,6 +2251,7 @@
       "height": "150",
       "identity": "稷下学生",
       "camp": "稷下学院",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2175,6 +2274,7 @@
       "height": "170",
       "identity": "阴曲情报专员",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2197,6 +2297,7 @@
       "height": "190",
       "identity": "玄雍护国大将军",
       "camp": "玄雍",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2219,6 +2320,7 @@
       "height": "145",
       "identity": "狼孩",
       "camp": "蜀",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2241,6 +2343,7 @@
       "height": "待调查",
       "identity": "贵族剑士",
       "camp": "日落圣殿",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2263,6 +2366,7 @@
       "height": "180",
       "identity": "前魏都杀手",
       "camp": "吴",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2285,6 +2389,7 @@
       "height": "190",
       "identity": "长安大司空",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "无"
     },
     {
@@ -2307,6 +2412,7 @@
       "height": "165",
       "identity": "精灵公主",
       "camp": "日落圣殿",
+      "race": "精灵",
       "skillUnit": "无"
     },
     {
@@ -2329,6 +2435,7 @@
       "height": "165",
       "identity": "将门之后",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2351,6 +2458,7 @@
       "height": "180",
       "identity": "西行修行者",
       "camp": "长安",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2373,6 +2481,7 @@
       "height": "180",
       "identity": "玉城大王子",
       "camp": "云中漠地",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2395,6 +2504,7 @@
       "height": "166",
       "identity": "萤火的旅行者",
       "camp": "云中漠地",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2417,6 +2527,7 @@
       "height": "170",
       "identity": "沙海船帮头子",
       "camp": "云中漠地",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2439,6 +2550,7 @@
       "height": "170",
       "identity": "月裔/云中蝶饲养人",
       "camp": "云中漠地",
+      "race": "人类",
       "skillUnit": "法力"
     },
     {
@@ -2461,6 +2573,7 @@
       "height": "181",
       "identity": "玄都观修道者",
       "camp": "长安城",
+      "race": "人类",
       "skillUnit": "无"
     }
   ]
