@@ -1,11 +1,21 @@
 <template>
-  <div class="SelectImg flex cursor-pointer" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
+  <div
+    class="SelectImg flex cursor-pointer"
+    :class="[type, { border: !modelValue }]"
+    @click="show_AddLink = true"
+  >
     <img :src="modelValue" alt="" v-show="modelValue" />
     <i class="iconfont wzry-add" v-show="!modelValue" />
   </div>
   <!-- 添加图片链接弹窗组件 -->
   <transition name="fade">
-    <AddLink v-model="show_AddLink" :title="title" v-if="show_AddLink" :link="modelValue" @get-link="getLink" />
+    <AddLink
+      v-model="show_AddLink"
+      :title="title"
+      v-if="show_AddLink"
+      :link="modelValue"
+      @get-link="getLink"
+    />
   </transition>
 </template>
 <script setup lang="ts">

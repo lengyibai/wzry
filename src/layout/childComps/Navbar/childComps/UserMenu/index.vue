@@ -8,7 +8,9 @@
         </div>
       </template>
       <template #back>
-        <K-Button @click="logout" type="error" :autoSize="true">退出登录</K-Button>
+        <K-Button @click="logout" type="error" :autoSize="true"
+          >退出登录</K-Button
+        >
       </template>
     </LibFlipBox>
   </div>

@@ -12,12 +12,19 @@ const updateUser = (id: number, token: string) => {
 /** @description: 登录 */
 export const _login = async (form: FormData.User) => {
   //通过帐号查询用户
-  const data = get<ResultData.User>({ name: "data_user", key: "id", value: form.id });
+  const data = get<ResultData.User>({
+    name: "data_user",
+    key: "id",
+    value: form.id,
+  });
   /* 判断是否存在 */
   if (data) {
     /* 判断密码是否正确 */
     if (form.password === data.password) {
-      const token = await updateUser(form.id, new Date().getTime().toString().slice(0, 8));
+      const token = await updateUser(
+        form.id,
+        new Date().getTime().toString().slice(0, 8)
+      );
       return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
     } else {
       checkError("密码错误");
@@ -32,5 +39,7 @@ export const _login = async (form: FormData.User) => {
 /** @description: 获取用户信息 */
 export const userInfo = (token: string) => {
   //通过token来查询用户
-  return Promise.resolve(get<ResultData.User>({ name: "data_user", key: "wzryToken", value: token }));
+  return Promise.resolve(
+    get<ResultData.User>({ name: "data_user", key: "wzryToken", value: token })
+  );
 };

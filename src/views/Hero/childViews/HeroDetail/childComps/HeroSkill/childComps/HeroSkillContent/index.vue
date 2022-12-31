@@ -43,7 +43,11 @@ $heroDetail.setSkillSelectFn(() => {
       :isPassive="$heroDetail.skill_index === 0"
       :style="{ width: exist_effect ? '45%' : '100%' }"
     />
-    <HeroSkillContentRight :class="{ 'hide-right': !show || toggle }" :activeSkill="skill" v-if="exist_effect" />
+    <HeroSkillContentRight
+      :class="{ 'hide-right': !show || toggle }"
+      :activeSkill="skill"
+      v-if="exist_effect"
+    />
   </div>
 </template>
 

@@ -7,7 +7,9 @@ export const getSkin = () => {
 
 /** @description: 获取指定英雄皮肤 */
 export const getHeroSkin = (id: number) => {
-  return Promise.resolve(get<Hero.Skin>({ name: "data_skin", key: "hero", value: id }, false));
+  return Promise.resolve(
+    get<Hero.Skin>({ name: "data_skin", key: "hero", value: id }, false)
+  );
 };
 
 /** @description: 获取皮肤类型列表 */
@@ -17,5 +19,7 @@ export const getSkinType = () => {
 
 /** @description: 获取指定皮肤类型 */
 export const getAssignSkinType = (id: number) => {
-  return Promise.resolve(get<Hero.SkinType>({ name: "data_skintype", key: "id", value: id }));
+  return Promise.resolve(
+    get<Hero.SkinType>({ name: "data_skintype", key: "id", value: id })
+  );
 };

@@ -1,9 +1,15 @@
 <template>
   <div class="LibFlipBox" @mouseenter="show = true" @mouseleave="show = false">
-    <div class="card-side card-side-front" :style="{ transitionDuration: duration + 'ms' }">
+    <div
+      class="card-side card-side-front"
+      :style="{ transitionDuration: duration + 'ms' }"
+    >
       <slot name="front">正面</slot>
     </div>
-    <div class="card-side card-side-back" :style="{ transitionDuration: duration + 'ms' }">
+    <div
+      class="card-side card-side-back"
+      :style="{ transitionDuration: duration + 'ms' }"
+    >
       <transition name="fade">
         <slot name="back" v-if="show">反面</slot>
       </transition>

@@ -1,6 +1,14 @@
 <template>
   <div class="SelectHero">
-    <FormSelect label="指派英雄" :data="hero_list" v-model="id" :value="hero_name" required @change="selectHero" id />
+    <FormSelect
+      label="指派英雄"
+      :data="hero_list"
+      v-model="id"
+      :value="hero_name"
+      required
+      @change="selectHero"
+      id
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -35,7 +43,8 @@ watch(
 const hero_list = ref<Hero.General[]>([]);
 getHeroBasic().then((res) => {
   hero_list.value = res;
-  hero_name.value = hero_list.value.find((item) => item.id === props.modelValue)?.name || "";
+  hero_name.value =
+    hero_list.value.find((item) => item.id === props.modelValue)?.name || "";
 });
 
 /* 选择英雄后触发 */

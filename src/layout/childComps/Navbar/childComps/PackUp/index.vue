@@ -1,5 +1,9 @@
 <template>
-  <i class="iconfont wzry-packup cursor-pointer" :class="{ 'is-active': isActive }" @click="toggleClick" />
+  <i
+    class="iconfont wzry-packup cursor-pointer"
+    :class="{ 'is-active': isActive }"
+    @click="toggleClick"
+  />
 </template>
 <script setup lang="ts">
 import { ref } from "vue";

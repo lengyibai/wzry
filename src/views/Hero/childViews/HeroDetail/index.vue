@@ -82,14 +82,23 @@ onMounted(() => {
       </HeroParallax>
 
       <!--技能-->
-      <HeroParallax class="scroll-item" :bg="hero_data.skins[skin_num - 1].poster" v-if="skill_num">
+      <HeroParallax
+        class="scroll-item"
+        :bg="hero_data.skins[skin_num - 1].poster"
+        v-if="skill_num"
+      >
         <HeroSkill />
       </HeroParallax>
     </LibFullScroll>
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" :pageName="page_name" @toggle="EmitToggle" />
+      <Heroprogress
+        v-show="show_progress"
+        :index="scroll_index"
+        :pageName="page_name"
+        @toggle="EmitToggle"
+      />
     </transition>
   </div>
 </template>

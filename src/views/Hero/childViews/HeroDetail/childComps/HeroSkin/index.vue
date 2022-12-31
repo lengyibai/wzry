@@ -41,7 +41,9 @@ const bgImgs = ([i, index]: number[]) => {
     const skin_type = hero_data.value.skins![index].type;
     // 0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = (await getAssignSkinType(skin_type as number)).link;
+      active_skin_type.value = (
+        await getAssignSkinType(skin_type as number)
+      ).link;
     } else {
       active_skin_type.value = ""; //伴生皮肤没有标志
     }
@@ -61,7 +63,10 @@ const bgImgs = ([i, index]: number[]) => {
     <div class="box">
       <div class="left">
         <!-- 皮肤类型 -->
-        <HerSkinType :skinTypeImg="active_skin_type" :toggle="skin_type_toggle" />
+        <HerSkinType
+          :skinTypeImg="active_skin_type"
+          :toggle="skin_type_toggle"
+        />
 
         <!-- 皮肤语音 -->
         <HeroVoice />
@@ -71,7 +76,11 @@ const bgImgs = ([i, index]: number[]) => {
         <HeroSkinPrice :toggle="skin_price_toggle" :price="skin_price" />
 
         <!-- 中心皮肤切换 -->
-        <HeroSkinHeadImg v-if="hero_data.skins.length" :skins="hero_data.skins" @bg-imgs="bgImgs" />
+        <HeroSkinHeadImg
+          v-if="hero_data.skins.length"
+          :skins="hero_data.skins"
+          @bg-imgs="bgImgs"
+        />
       </div>
 
       <!-- 皮肤名 -->

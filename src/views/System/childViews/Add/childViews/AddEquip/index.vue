@@ -13,15 +13,25 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const { show, finish, status, form_data, show_ConfirmClose, EmitCancelRelease, EmitConfirmSave, EmitConfirmRemove } =
-  viewHide<typeof equipDefault>(emit, "add_equip");
+const {
+  show,
+  finish,
+  status,
+  form_data,
+  show_ConfirmClose,
+  EmitCancelRelease,
+  EmitConfirmSave,
+  EmitConfirmRemove,
+} = viewHide<typeof equipDefault>(emit, "add_equip");
 
 const $switchStore = switchStore();
 const $equipStore = equipStore();
 
 const equip_effect_type = ref(""); //当前选中的效果类型
 const equip_types = ref<{ id: number; name: string }[]>([]); //装备类型
-const motivation = ref<typeof equipMotivationDefault>($deepCopy(equipMotivationDefault)); //动机信息
+const motivation = ref<typeof equipMotivationDefault>(
+  $deepCopy(equipMotivationDefault)
+); //动机信息
 const equip_effects = ref<{ id: number; name: string }[]>([]);
 
 /* 判断是否存在缓存 */
@@ -74,7 +84,9 @@ const EmitCommit = async () => {
   const { level, num, price, type, name, icon } = form_data.value!;
   //非空验证
   if (level && num && price && type && name && icon) {
-    const type_id = equip_types.value.find((item) => form_data.value!.type === item.name); // 查找装备分类id
+    const type_id = equip_types.value.find(
+      (item) => form_data.value!.type === item.name
+    ); // 查找装备分类id
     //生成装备id
     form_data.value!.id = Number(`${type_id!.id}${level}${num}`);
     const data = {
@@ -117,13 +129,35 @@ setTimeout(async () => {
       <!-- 装备名 -->
       <FormInput label="名称" required v-model="form_data!.name" />
       <!-- 描述 -->
-      <FormInput label="描述" placeholder="装备名下方描述" v-model="form_data!.desc" />
+      <FormInput
+        label="描述"
+        placeholder="装备名下方描述"
+        v-model="form_data!.desc"
+      />
       <!-- 装备类型 -->
-      <FormSelect label="类型" :data="equip_types" v-model="form_data!.type" :value="form_data!.type" required />
+      <FormSelect
+        label="类型"
+        :data="equip_types"
+        v-model="form_data!.type"
+        :value="form_data!.type"
+        required
+      />
       <!-- 阶段 -->
-      <FormInput label="阶段" placeholder="1-3" required v-model="form_data!.level" number />
+      <FormInput
+        label="阶段"
+        placeholder="1-3"
+        required
+        v-model="form_data!.level"
+        number
+      />
       <!-- 排名 -->
-      <FormInput label="阶段排名" placeholder="当前列第几个" required v-model="form_data!.num" number />
+      <FormInput
+        label="阶段排名"
+        placeholder="当前列第几个"
+        required
+        v-model="form_data!.num"
+        number
+      />
       <!-- 价格 -->
       <FormInput label="价格" required v-model="form_data!.price" number />
       <!-- 设置图标 -->
@@ -131,12 +165,21 @@ setTimeout(async () => {
         <SelectImg v-model="form_data!.icon" title="图标" />
       </FormLabel>
       <!-- 最底部灰色备注 -->
-      <LibRichText width="500px" v-model="form_data!.note" placeholder="最底部灰色备注" />
+      <LibRichText
+        width="500px"
+        v-model="form_data!.note"
+        placeholder="最底部灰色备注"
+      />
 
       <!-- 装备效果 -->
       <div class="equip-effect">
         <div class="select-effect">
-          <FormSelect label="效果类型" v-model="equip_effect_type" :value="equip_effect_type" :data="equip_effects" />
+          <FormSelect
+            label="效果类型"
+            v-model="equip_effect_type"
+            :value="equip_effect_type"
+            :data="equip_effects"
+          />
           <button class="add" @click="handleAddEffect">添加</button>
           <button class="del" @click="handleDelEffect">删除一行</button>
         </div>
@@ -157,8 +200,17 @@ setTimeout(async () => {
       <!-- 被动及主动 -->
       <div class="motivation">
         <!-- 名称 -->
-        <FormInput label="主/被动名称" labelWidth="195px" v-model="motivation.name" />
-        <FormInput label="冷却时间" labelWidth="195px" v-model="motivation.time" number />
+        <FormInput
+          label="主/被动名称"
+          labelWidth="195px"
+          v-model="motivation.name"
+        />
+        <FormInput
+          label="冷却时间"
+          labelWidth="195px"
+          v-model="motivation.time"
+          number
+        />
         <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
         <!-- 主/被动描述 -->
         <LibRichText

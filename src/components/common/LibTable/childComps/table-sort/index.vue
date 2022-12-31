@@ -22,7 +22,11 @@
       xmlns="http://www.w3.org/2000/svg"
       p-id="2438"
     >
-      <path d="M542.797672 783.398836L0 240.601164h1085.595343z" p-id="2439" fill="currentColor"></path>
+      <path
+        d="M542.797672 783.398836L0 240.601164h1085.595343z"
+        p-id="2439"
+        fill="currentColor"
+      ></path>
     </svg>
   </div>
 </template>

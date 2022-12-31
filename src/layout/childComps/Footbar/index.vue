@@ -16,7 +16,11 @@ import MusicPlay from "./childComps/MusicPlay.vue"; //音乐进度条
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const getPoint = (e: MouseEvent) => {
-  playProgress.value = parseFloat(((e.pageX - Footbar.value.offsetLeft) / Footbar.value.offsetWidth).toFixed(2));
+  playProgress.value = parseFloat(
+    ((e.pageX - Footbar.value.offsetLeft) / Footbar.value.offsetWidth).toFixed(
+      2
+    )
+  );
 };
 
 const Footbar = ref();

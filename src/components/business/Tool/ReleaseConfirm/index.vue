@@ -4,7 +4,12 @@
     <LibCancelBtn class="lib-cancel-btn" v-bind="$attrs" title="取消" />
 
     <!-- 发布按钮 -->
-    <LibCommitBtn class="lib-commit-btn" v-model="commit_status" v-bind="$attrs" title="发布" />
+    <LibCommitBtn
+      class="lib-commit-btn"
+      v-model="commit_status"
+      v-bind="$attrs"
+      title="发布"
+    />
 
     <!-- 确认关闭 -->
     <ConfirmClose v-model="show_ConfirmClose" v-bind="$attrs" />

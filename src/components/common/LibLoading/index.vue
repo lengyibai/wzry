@@ -1,7 +1,10 @@
 <template>
   <transition name="fade">
     <div class="LibLoading flex" v-show="show">
-      <img src="https://lengyibai.gitee.io/wzry-material/image/daji.png" alt="妲己" />
+      <img
+        src="https://lengyibai.gitee.io/wzry-material/image/daji.png"
+        alt="妲己"
+      />
       <span
         v-for="(item, index) in color"
         :key="index"
@@ -27,7 +30,15 @@ defineProps({
   },
 });
 
-const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
+const color = [
+  "#ffff00",
+  "#76ff03",
+  "#f06292",
+  "#4fc3f7",
+  "#ba68c8",
+  "#f57c00",
+  "#673ab7",
+];
 </script>
 <style scoped lang="less">
 .LibLoading {

@@ -43,12 +43,29 @@ const handleDel = () => {
     >
       <!-- 标题 -->
       <div class="title">
-        <img :src="item.img || 'https://lengyibai.gitee.io/wzry-material/image/unknown.png'" alt="" />
+        <img
+          :src="
+            item.img ||
+            'https://lengyibai.gitee.io/wzry-material/image/unknown.png'
+          "
+          alt=""
+        />
         <div class="name">{{ item.name }}</div>
         <div class="types">
-          <K-SkillTypeTag v-for="(type, index) in item.type" :type="type" :key="index" />
+          <K-SkillTypeTag
+            v-for="(type, index) in item.type"
+            :type="type"
+            :key="index"
+          />
         </div>
-        <button class="del lib-click" v-show="active(index)" v-if="index !== 0" @click.stop="handleDel">删除</button>
+        <button
+          class="del lib-click"
+          v-show="active(index)"
+          v-if="index !== 0"
+          @click.stop="handleDel"
+        >
+          删除
+        </button>
         <div class="editing" v-show="active(index)">编辑中...</div>
       </div>
 

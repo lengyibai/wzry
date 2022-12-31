@@ -10,7 +10,10 @@ const show_KDialog = ref(true); //是否显示公告
 <template>
   <div class="login">
     <div class="logo">
-      <img src="https://lengyibai.gitee.io/wzry-material/image/logo.png" alt="" />
+      <img
+        src="https://lengyibai.gitee.io/wzry-material/image/logo.png"
+        alt=""
+      />
     </div>
 
     <Login />

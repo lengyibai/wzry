@@ -10,10 +10,19 @@
           @dragstart.prevent
           @click="close"
         />
-        <img class="bg" src="https://lengyibai.gitee.io/wzry-material/image/dialog.png" />
+        <img
+          class="bg"
+          src="https://lengyibai.gitee.io/wzry-material/image/dialog.png"
+        />
         <transition name="fade">
           <div class="content" v-if="modelValue">
-            <input type="text" v-focus :placeholder="placeholder" v-model="input_link" @keyup.enter="confirm" />
+            <input
+              type="text"
+              v-focus
+              :placeholder="placeholder"
+              v-model="input_link"
+              @keyup.enter="confirm"
+            />
             <!-- v-if解决按钮隐式显示，高度却未知，导致粒子无法正常显示 -->
             <K-Button type="warning" @click="confirm">确定</K-Button>
           </div>

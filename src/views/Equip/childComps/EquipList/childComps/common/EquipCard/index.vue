@@ -31,7 +31,10 @@ nextTick(() => {
 </script>
 
 <template>
-  <div class="equip-card cursor-pointer" @click="$equipStore.setEquipActive(equip.id)">
+  <div
+    class="equip-card cursor-pointer"
+    @click="$equipStore.setEquipActive(equip.id)"
+  >
     <transition name="border-fade">
       <div class="border" v-show="active_id === equip.id"></div>
     </transition>

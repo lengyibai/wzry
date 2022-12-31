@@ -36,11 +36,19 @@ const handleSelect = (v: { label: string; value: number | string }) => {
 </script>
 
 <template>
-  <div class="select-filter" @click="handleShowList">
+  <div class="select-filter cursor-pointer" @click="handleShowList">
     <div class="title">{{ sort_text }}</div>
-    <img src="https://lengyibai.gitee.io/wzry-material/image/arrow.png" alt="arrow" class="arrow" />
+    <img
+      src="https://lengyibai.gitee.io/wzry-material/image/arrow.png"
+      alt="arrow"
+      class="arrow"
+    />
     <!-- 展开列表 -->
-    <div class="select-list" :class="{ unfold: !is_unfold }" :style="{ height: listHeight }">
+    <div
+      class="select-list"
+      :class="{ unfold: !is_unfold }"
+      :style="{ height: listHeight }"
+    >
       <transition-group name="select-list">
         <button
           class="box"

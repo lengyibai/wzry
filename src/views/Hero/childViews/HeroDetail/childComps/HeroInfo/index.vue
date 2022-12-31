@@ -25,7 +25,11 @@ onMounted(() => {
 <template>
   <div class="hero-material-skins" ref="HeroMaterialSkins">
     <!-- 英雄标题 -->
-    <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
+    <HeroTitle
+      :class="{ show: !into }"
+      :name="hero_data.name"
+      :mark="hero_data.mark"
+    />
 
     <!-- 基础信息表 -->
     <div class="basic-info">
@@ -40,10 +44,30 @@ onMounted(() => {
     <!-- 属性 -->
     <transition name="fade">
       <div class="hero-attribute" v-if="into">
-        <HeroAttribute style="--i: 0" class="attribute" attr="survival" :length="hero_data.survival" />
-        <HeroAttribute style="--i: 1" class="attribute" attr="attack" :length="hero_data.attack" />
-        <HeroAttribute style="--i: 2" class="attribute" attr="effect" :length="hero_data.effect" />
-        <HeroAttribute style="--i: 3" class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+        <HeroAttribute
+          style="--i: 0"
+          class="attribute"
+          attr="survival"
+          :length="hero_data.survival"
+        />
+        <HeroAttribute
+          style="--i: 1"
+          class="attribute"
+          attr="attack"
+          :length="hero_data.attack"
+        />
+        <HeroAttribute
+          style="--i: 2"
+          class="attribute"
+          attr="effect"
+          :length="hero_data.effect"
+        />
+        <HeroAttribute
+          style="--i: 3"
+          class="attribute"
+          attr="difficulty"
+          :length="hero_data.difficulty"
+        />
       </div>
     </transition>
   </div>

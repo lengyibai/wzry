@@ -10,12 +10,17 @@
           @dragstart.prevent
           @click="close"
         />
-        <img class="bg" src="https://lengyibai.gitee.io/wzry-material/image/dialog.png" />
+        <img
+          class="bg"
+          src="https://lengyibai.gitee.io/wzry-material/image/dialog.png"
+        />
         <div class="content">
           <div class="box"></div>
           <!-- v-if解决按钮隐式显示，高度却未知，导致粒子无法正常显示 -->
           <transition name="fade">
-            <K-Button type="warning" v-if="modelValue" @click="close">确定</K-Button>
+            <K-Button type="warning" v-if="modelValue" @click="close"
+              >确定</K-Button
+            >
           </transition>
         </div>
       </div>

@@ -24,8 +24,16 @@ const $switchStore = switchStore();
 
 const { attr, info } = staticData();
 
-const { status, show, show_ConfirmClose, form_data, finish, EmitConfirmSave, EmitConfirmRemove, EmitCancelRelease } =
-  viewHide<typeof heroDefault>(emit, "add_hero");
+const {
+  status,
+  show,
+  show_ConfirmClose,
+  form_data,
+  finish,
+  EmitConfirmSave,
+  EmitConfirmRemove,
+  EmitCancelRelease,
+} = viewHide<typeof heroDefault>(emit, "add_hero");
 
 //判断是否存在缓存
 form_data.value ??= $deepCopy(heroDefault);
@@ -84,11 +92,21 @@ setTimeout(async () => {
   >
     <!-- 英雄名、代号、身高 -->
     <div class="flex-box">
-      <FormInput label="id" required number v-model="form_data!.id" labelWidth="0px" />
+      <FormInput
+        label="id"
+        required
+        number
+        v-model="form_data!.id"
+        labelWidth="0px"
+      />
       <FormInput label="英雄名" required v-model="form_data!.name" />
       <FormInput label="代号" required v-model="form_data!.mark" />
       <FormInput label="身高" v-model="form_data!.height" />
-      <FormInput label="身份" placeholder="多个身份/分隔" v-model="form_data!.identity" />
+      <FormInput
+        label="身份"
+        placeholder="多个身份/分隔"
+        v-model="form_data!.identity"
+      />
     </div>
 
     <!-- 选择器相关 -->

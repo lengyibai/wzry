@@ -22,7 +22,11 @@
     </thead>
 
     <tbody>
-      <tr v-for="(item, index) in data" :style="{ backgroundColor: item.bgColor }" :key="index">
+      <tr
+        v-for="(item, index) in data"
+        :style="{ backgroundColor: item.bgColor }"
+        :key="index"
+      >
         <slot :data="item" name="body">
           <td v-for="(_item, _index) in Object.values(item)" :key="_index">
             {{ _item }}

@@ -9,10 +9,18 @@
   >
     <div class="del" v-show="show_del">
       <img class="lid" :class="{ moveUp: status === 1 }" src="./img/lid.svg" />
-      <img class="bucket" :class="{ moveDown: status === 1 }" src="./img/bucket.svg" />
+      <img
+        class="bucket"
+        :class="{ moveDown: status === 1 }"
+        src="./img/bucket.svg"
+      />
     </div>
     <transition name="fade">
-      <img v-show="!show_del && status === 1 && !finish" class="rotate" src="./img/loading.svg" />
+      <img
+        v-show="!show_del && status === 1 && !finish"
+        class="rotate"
+        src="./img/loading.svg"
+      />
     </transition>
     <transition name="bounce">
       <img v-show="finish" src="./img/success.svg" />

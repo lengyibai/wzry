@@ -59,7 +59,11 @@ const handleLogin = () => {
 
 <template>
   <div class="login-box">
-    <img src="https://lengyibai.gitee.io/wzry-material/image/login_logo.png" alt="logo" class="logo" />
+    <img
+      src="https://lengyibai.gitee.io/wzry-material/image/login_logo.png"
+      alt="logo"
+      class="logo"
+    />
     <div class="title">欢迎{{ show.reg ? "注册" : "登录" }}</div>
     <div class="box">
       <div class="nickname" v-if="show.nickname">

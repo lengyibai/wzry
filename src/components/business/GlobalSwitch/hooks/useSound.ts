@@ -28,12 +28,18 @@ export default () => {
     //获取点击触发的音效名
     sound_name.value =
       (typeof name === "string" &&
-        Object.keys(sound_type).find((item) => sound_type[item].find((item: string) => name.includes(item)))) ||
+        Object.keys(sound_type).find((item) =>
+          sound_type[item].find((item: string) => name.includes(item))
+        )) ||
       "默认";
 
-    new Audio(`https://lengyibai.gitee.io/wzry-material/audio/${sound_name.value}.mp3`).play().catch(() => {
-      // console.error('音频播放失败，用户未与页面交互');
-    });
+    new Audio(
+      `https://lengyibai.gitee.io/wzry-material/audio/${sound_name.value}.mp3`
+    )
+      .play()
+      .catch(() => {
+        // console.error('音频播放失败，用户未与页面交互');
+      });
   };
 
   return { clickAudio };

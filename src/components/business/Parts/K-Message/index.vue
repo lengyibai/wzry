@@ -7,7 +7,10 @@
           v-for="(item, index) in messages"
           :key="item.id"
           :style="{
-            transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
+            transform:
+              'translateX(-50%) translateY(' +
+              (index * 100 + index * 25) +
+              '%)',
           }"
         >
           <span :style="{ color: color[item.type] }" v-html="item.text"></span>
@@ -37,7 +40,8 @@ const color: Record<string, string> = {
   warning: "#e2c484",
   error: "#e28484",
 };
-const getImg = (src: string) => `https://lengyibai.gitee.io/wzry-material/image/msg_${src}.png`;
+const getImg = (src: string) =>
+  `https://lengyibai.gitee.io/wzry-material/image/msg_${src}.png`;
 
 const imgs: Record<string, Record<string, string>> = {
   info: {

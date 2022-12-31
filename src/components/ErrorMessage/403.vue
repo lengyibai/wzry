@@ -1,6 +1,10 @@
 <template>
   <div class="not-container">
-    <img src="https://lengyibai.gitee.io/wzry-material/image/status_403.png" class="not-img" alt="403" />
+    <img
+      src="https://lengyibai.gitee.io/wzry-material/image/status_403.png"
+      class="not-img"
+      alt="403"
+    />
     <div class="not-detail">
       <h2>403</h2>
       <h4>抱歉，您无权访问该页面~🙅‍♂️🙅‍♀️</h4>

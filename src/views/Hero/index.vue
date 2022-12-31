@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, onActivated, ref, watch, defineAsyncComponent } from "vue";
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  onActivated,
+  ref,
+  watch,
+  defineAsyncComponent,
+} from "vue";
 import { useRoute } from "vue-router";
 import $bus from "@/utils/eventBus";
 import heroStore from "@/store/hero";
@@ -7,7 +15,9 @@ import useIntegrationData from "./hooks/useIntegrationData";
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
-const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue")); //详情页
+const HeroDetail = defineAsyncComponent(
+  () => import("./childViews/HeroDetail/index.vue")
+); //详情页
 
 const $route = useRoute();
 const $heroStore = heroStore();
@@ -17,7 +27,8 @@ const id: unknown = $route.query.id; //地址栏参数
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 
-const { hero_info, hero_list, show_HeroDetail, EmitViewClick } = useIntegrationData(id);
+const { hero_info, hero_list, show_HeroDetail, EmitViewClick } =
+  useIntegrationData(id);
 
 /* 监听筛选后的英雄列表 */
 watch(

@@ -9,7 +9,11 @@
   >
     <transition-group name="fade">
       <!--左上角新增-->
-      <i class="add-one iconfont wzry-addcircle cursor-pointer" @click="addOne" key="LibSvg" />
+      <i
+        class="add-one iconfont wzry-addcircle cursor-pointer"
+        @click="addOne"
+        key="LibSvg"
+      />
 
       <!--指派英雄-->
       <SelectHero class="select-hero" v-model="hero_id" key="SelectHero" />
@@ -23,9 +27,20 @@
         :key="item.id"
       >
         <!--··皮肤名··-->
-        <FormInput label="皮肤编号" required v-model="item.num" placeholder="第几款皮肤" number />
+        <FormInput
+          label="皮肤编号"
+          required
+          v-model="item.num"
+          placeholder="第几款皮肤"
+          number
+        />
         <FormInput label="皮肤名" required v-model="item.name" />
-        <FormInput label="价格" v-model="item.price" placeholder="请输入" number />
+        <FormInput
+          label="价格"
+          v-model="item.price"
+          placeholder="请输入"
+          number
+        />
 
         <!--··皮肤头像、海报··-->
         <FormLabel labelWidth="290px" label="头像&封面&海报">

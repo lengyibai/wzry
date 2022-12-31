@@ -7,7 +7,11 @@
     </div>
     <div class="field">
       <div class="bar" :style="{ width: barWidth, backgroundColor: color }">
-        <img :src="icon" v-show="showIcon && showDot" :style="{ width: size + 'px', height: size + 'px' }" />
+        <img
+          :src="icon"
+          v-show="showIcon && showDot"
+          :style="{ width: size + 'px', height: size + 'px' }"
+        />
         <span
           v-show="showDot && !showIcon"
           :style="{
@@ -97,7 +101,9 @@ const show_num = ref(false);
 const barWidth = computed(() => {
   const value = modelValue.value - min.value;
   const maxs = max.value - min.value;
-  return `calc(${value / (maxs / 100)}% + ${((size.value - (showDot.value ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
+  return `calc(${value / (maxs / 100)}% + ${
+    ((size.value - (showDot.value ? 0 : 25)) * (maxs / 2 - value)) / maxs
+  }px)`;
 });
 
 onMounted(() => {

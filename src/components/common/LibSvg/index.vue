@@ -96,7 +96,8 @@ const down = (el) => {
     el.parentNode.style.color = downColor.value || enterColor || color.value;
     downFn.value(el.parentNode);
   } else {
-    el.parentNode.parentNode.style.color = downColor.value || enterColor || color.value;
+    el.parentNode.parentNode.style.color =
+      downColor.value || enterColor || color.value;
     downFn.value(el.parentNode.parentNode);
   }
 };

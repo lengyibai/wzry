@@ -1,7 +1,13 @@
 <template>
   <div class="del" :style="box">
     <transition-group name="del" appear>
-      <K-ManageCard @click="open(k as string)" v-for="(v, k) in list" :title="v" :key="k" type="delete" />
+      <K-ManageCard
+        @click="open(k as string)"
+        v-for="(v, k) in list"
+        :title="v"
+        :key="k"
+        type="delete"
+      />
     </transition-group>
 
     <!--发布列表-->
@@ -14,12 +20,24 @@
 import { reactive, defineAsyncComponent } from "vue";
 import useManageCard from "../../hooks/useManageCard";
 
-const DelHero = defineAsyncComponent(() => import("./childViews/DelHero/index.vue")); //英雄
-const DelSkin = defineAsyncComponent(() => import("./childViews/DelSkin/index.vue")); //皮肤
-const DelSkill = defineAsyncComponent(() => import("./childViews/DelSkill/index.vue")); //技能
-const DelVoice = defineAsyncComponent(() => import("./childViews/DelVoice/index.vue")); //语音
-const DelEquip = defineAsyncComponent(() => import("./childViews/DelEquip/index.vue")); //装备
-const DelEpigraph = defineAsyncComponent(() => import("./childViews/DelEpigraph/index.vue")); //铭文
+const DelHero = defineAsyncComponent(
+  () => import("./childViews/DelHero/index.vue")
+); //英雄
+const DelSkin = defineAsyncComponent(
+  () => import("./childViews/DelSkin/index.vue")
+); //皮肤
+const DelSkill = defineAsyncComponent(
+  () => import("./childViews/DelSkill/index.vue")
+); //技能
+const DelVoice = defineAsyncComponent(
+  () => import("./childViews/DelVoice/index.vue")
+); //语音
+const DelEquip = defineAsyncComponent(
+  () => import("./childViews/DelEquip/index.vue")
+); //装备
+const DelEpigraph = defineAsyncComponent(
+  () => import("./childViews/DelEpigraph/index.vue")
+); //铭文
 
 type Options = Record<
   string,
@@ -30,7 +48,14 @@ type Options = Record<
 >;
 
 const { box, list } = useManageCard;
-const components = [DelHero, DelSkin, DelVoice, DelSkill, DelEquip, DelEpigraph];
+const components = [
+  DelHero,
+  DelSkin,
+  DelVoice,
+  DelSkill,
+  DelEquip,
+  DelEpigraph,
+];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({

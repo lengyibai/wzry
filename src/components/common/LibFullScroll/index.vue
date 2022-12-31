@@ -40,7 +40,11 @@ const change = async (i: number) => {
   let direction = props.direction === "y";
   try {
     LibFullScroll.value.style[direction ? "top" : "left"] =
-      -i * (direction ? LibFullScroll.value.offsetHeight : LibFullScroll.value.offsetWidth) + "px";
+      -i *
+        (direction
+          ? LibFullScroll.value.offsetHeight
+          : LibFullScroll.value.offsetWidth) +
+      "px";
   } catch (error) {
     /*  */
   }
@@ -83,7 +87,11 @@ onMounted(() => {
         ? index.value--
         : "";
       LibFullScroll.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? LibFullScroll.value.offsetHeight : LibFullScroll.value.offsetWidth) + "px";
+        -index.value *
+          (direction
+            ? LibFullScroll.value.offsetHeight
+            : LibFullScroll.value.offsetWidth) +
+        "px";
       emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;

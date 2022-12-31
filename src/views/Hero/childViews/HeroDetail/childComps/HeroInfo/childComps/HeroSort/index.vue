@@ -17,7 +17,10 @@ const y: Record<string, number> = {
 </script>
 
 <template>
-  <div class="k-herosort" :style="{ backgroundPositionY: '-' + y[occ] + 'px' }"></div>
+  <div
+    class="k-herosort"
+    :style="{ backgroundPositionY: '-' + y[occ] + 'px' }"
+  ></div>
 </template>
 
 <style scoped lang="less">

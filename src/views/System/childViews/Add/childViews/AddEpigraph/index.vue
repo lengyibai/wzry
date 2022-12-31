@@ -9,10 +9,15 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const { show, status, show_ConfirmClose, finish, EmitCancelRelease, EmitConfirmRemove, EmitConfirmSave } = viewHide(
-  emit,
-  "add_epigraph"
-);
+const {
+  show,
+  status,
+  show_ConfirmClose,
+  finish,
+  EmitCancelRelease,
+  EmitConfirmRemove,
+  EmitConfirmSave,
+} = viewHide(emit, "add_epigraph");
 
 /* 延迟显示页面 */
 setTimeout(async () => {

@@ -2,7 +2,9 @@
   <div class="FormInput" :class="{ disabled: disabled }">
     <!-- 右侧描述 -->
     <div class="label" :style="{ width: labelWidth }">
-      <span class="text-gradient-one"><i class="star" v-if="required">*</i>{{ label }}： </span>
+      <span class="text-gradient-one"
+        ><i class="star" v-if="required">*</i>{{ label }}：
+      </span>
     </div>
 
     <!-- 输入框 -->
@@ -14,7 +16,11 @@
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth, backgroundColor: color }">
-          <img :src="icon" v-show="showIcon && showDot" :style="{ width: size + 'px', height: size + 'px' }" />
+          <img
+            :src="icon"
+            v-show="showIcon && showDot"
+            :style="{ width: size + 'px', height: size + 'px' }"
+          />
           <span
             v-show="showDot && !showIcon"
             :style="{
@@ -88,7 +94,9 @@ const show_num = ref(false); //是否在滑动的时候显示数字
 const barWidth = computed(() => {
   const value = Number(props.modelValue) - props.min;
   const maxs = props.max - props.min;
-  return `calc(${value / (maxs / 100)}% + ${((props.size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
+  return `calc(${value / (maxs / 100)}% + ${
+    ((props.size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs
+  }px)`;
 });
 
 /* 设置按钮大小 */

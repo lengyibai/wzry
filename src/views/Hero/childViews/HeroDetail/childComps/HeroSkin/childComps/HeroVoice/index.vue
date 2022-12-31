@@ -9,8 +9,12 @@
       :key="index"
     >
       <div class="content" :class="{ 'active-color': currentIndex === index }">
-        <span v-if="currentIndex !== index" class="text lib-one-line"> {{ item.text }}</span>
-        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
+        <span v-if="currentIndex !== index" class="text lib-one-line">
+          {{ item.text }}</span
+        >
+        <marquee v-else class="text" scrollamount="8.5">
+          {{ item.text }}</marquee
+        >
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
@@ -23,7 +27,12 @@
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice @ended="ended" @info="voiceInfo" v-if="play_link" :link="play_link" />
+    <PlayVoice
+      @ended="ended"
+      @info="voiceInfo"
+      v-if="play_link"
+      :link="play_link"
+    />
   </div>
 </template>
 <script setup lang="ts">

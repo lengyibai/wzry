@@ -10,7 +10,10 @@
           @dragstart.prevent
           @click="close"
         />
-        <img class="bg" src="https://lengyibai.gitee.io/wzry-material/image/dialog.png" />
+        <img
+          class="bg"
+          src="https://lengyibai.gitee.io/wzry-material/image/dialog.png"
+        />
         <div class="content">
           <div class="desc">
             <div class="title">
@@ -24,7 +27,9 @@
           </div>
           <div class="button">
             <K-Button type="info" @click="confirm(false)">取消</K-Button>
-            <K-Button class="last" type="warning" @click="confirm(true)">确定</K-Button>
+            <K-Button class="last" type="warning" @click="confirm(true)"
+              >确定</K-Button
+            >
           </div>
         </div>
       </div>

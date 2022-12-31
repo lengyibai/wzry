@@ -15,8 +15,16 @@ interface Emits {
 }
 
 const emit = defineEmits<Emits>();
-const { show, finish, status, show_ConfirmClose, form_data, EmitCancelRelease, EmitConfirmRemove, EmitConfirmSave } =
-  viewHide<Hero.Skill[][]>(emit, "add_skill_list");
+const {
+  show,
+  finish,
+  status,
+  show_ConfirmClose,
+  form_data,
+  EmitCancelRelease,
+  EmitConfirmRemove,
+  EmitConfirmSave,
+} = viewHide<Hero.Skill[][]>(emit, "add_skill_list");
 
 const left = ref<HTMLElement>(); //左侧元素
 const skill_effect = ref(""); //选择的技能效果
@@ -39,7 +47,9 @@ const noFirst = computed(() => active_index.value !== 0);
 //判断是否为被动技能
 const exist_deputys = computed(() => form_data.value!.length > 1);
 //技能组数量
-const skills_num = computed(() => (form_data.value ? form_data.value.length : 0));
+const skills_num = computed(() =>
+  form_data.value ? form_data.value.length : 0
+);
 //当前技能数量
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
@@ -197,7 +207,9 @@ const handleDelConsume = () => {
 
 /* 发布 */
 const EmitCommit = async () => {
-  const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
+  const is_Finish = form_data.value![0].every(
+    (item) => item.img && item.name && hero_id.value
+  );
   if (is_Finish && form_data.value![0].length >= 3) {
     await addHeroSkill({
       id: hero_id.value,
@@ -228,12 +240,18 @@ setTimeout(async () => {
     <div class="content-left" ref="left">
       <!-- 右上角新增 -->
       <div class="add-skill">
-        <span class="desc" v-show="exist_deputys">副技能无被动或低于3个，可以留空，但要与主技能数量一致</span>
+        <span class="desc" v-show="exist_deputys"
+          >副技能无被动或低于3个，可以留空，但要与主技能数量一致</span
+        >
         <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
         <button class="add" @click="handleAddOne">添加技能</button>
         <button class="add" @click="handleAddDeputys">添加副技能</button>
-        <button class="add" v-if="exist_deputys" @click="handleToggleSkill">切换主/副技能</button>
-        <button class="add" @click="handleDelDeputys" v-if="skills_num > 1">删除当前技能组</button>
+        <button class="add" v-if="exist_deputys" @click="handleToggleSkill">
+          切换主/副技能
+        </button>
+        <button class="add" @click="handleDelDeputys" v-if="skills_num > 1">
+          删除当前技能组
+        </button>
       </div>
 
       <!-- 设置图标 -->
@@ -242,19 +260,46 @@ setTimeout(async () => {
       </FormLabel>
 
       <!-- 选择英雄 -->
-      <SelectHero v-model="hero_id" key="SelectHero" @change="EmitSelectHeroChange" />
+      <SelectHero
+        v-model="hero_id"
+        key="SelectHero"
+        @change="EmitSelectHeroChange"
+      />
 
       <!-- 技能名称 -->
-      <FormInput label="名称" required v-model="activeSkill().name" placeholder="技能名称" />
+      <FormInput
+        label="名称"
+        required
+        v-model="activeSkill().name"
+        placeholder="技能名称"
+      />
 
       <!-- 冷却时间 -->
-      <FormInput v-if="noFirst" label="CD" v-model="activeSkill().cd" placeholder="冷却时间" number />
+      <FormInput
+        v-if="noFirst"
+        label="CD"
+        v-model="activeSkill().cd"
+        placeholder="冷却时间"
+        number
+      />
 
       <!-- 消耗 -->
-      <FormInput v-if="noFirst" label="消耗" v-model="activeSkill().consume" placeholder="法力消耗" number />
+      <FormInput
+        v-if="noFirst"
+        label="消耗"
+        v-model="activeSkill().consume"
+        placeholder="法力消耗"
+        number
+      />
 
       <!-- 设置技能类型 -->
-      <FormSelect :data="skill_types" v-model="activeSkill().type" :value="activeSkill().type" label="技能类型" multi />
+      <FormSelect
+        :data="skill_types"
+        v-model="activeSkill().type"
+        :value="activeSkill().type"
+        label="技能类型"
+        multi
+      />
 
       <!-- 设置技能效果 -->
       <div class="select-effect" v-if="noFirst">
@@ -273,7 +318,12 @@ setTimeout(async () => {
 
       <!-- 设置阶段值 -->
       <div class="select-effect" v-if="noFirst" v-show="skill_effect">
-        <FormInput label="阶段值" v-model="skill_consume" placeholder="升级后的值" @keyup.enter="HandleAddConsume" />
+        <FormInput
+          label="阶段值"
+          v-model="skill_consume"
+          placeholder="升级后的值"
+          @keyup.enter="HandleAddConsume"
+        />
         <button class="confirm" @click="HandleAddConsume">确定</button>
         <button class="del" @click="handleDelConsume">删除一值</button>
       </div>
@@ -294,7 +344,11 @@ setTimeout(async () => {
       </div>
 
       <!-- 技能描述 -->
-      <LibRichText v-model="activeSkill().desc" placeholder="技能描述" :key="activeSkill().img" />
+      <LibRichText
+        v-model="activeSkill().desc"
+        placeholder="技能描述"
+        :key="activeSkill().img"
+      />
     </div>
 
     <!-- 右边 -->
@@ -318,10 +372,18 @@ setTimeout(async () => {
     />
 
     <!-- 确认删除技能 -->
-    <ConfirmClose v-model="show_DelSkill" text="确认删除当前技能？" @confirm="EmitConfirmDelSkill" />
+    <ConfirmClose
+      v-model="show_DelSkill"
+      text="确认删除当前技能？"
+      @confirm="EmitConfirmDelSkill"
+    />
 
     <!-- 确认删除技能组 -->
-    <ConfirmClose v-model="show_DelDeputys" text="确认删除当前技能组？" @confirm="EmitConfirmDelDeputys" />
+    <ConfirmClose
+      v-model="show_DelDeputys"
+      text="确认删除当前技能组？"
+      @confirm="EmitConfirmDelDeputys"
+    />
   </ManageMask>
 </template>
 

@@ -8,10 +8,21 @@
     </transition>
 
     <!-- 发布按钮 -->
-    <LibCommitBtn class="lib-commit-btn" size="50px" @commit="commit" :finish="finish" title="发布" />
+    <LibCommitBtn
+      class="lib-commit-btn"
+      size="50px"
+      @commit="commit"
+      :finish="finish"
+      title="发布"
+    />
 
     <!-- 取消发布 -->
-    <LibCancelBtn class="lib-cancel-btn" size="50px" @close="close" title="取消" />
+    <LibCancelBtn
+      class="lib-cancel-btn"
+      size="50px"
+      @close="close"
+      title="取消"
+    />
   </div>
 </template>
 <script setup lang="ts">

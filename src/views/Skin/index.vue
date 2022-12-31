@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, onActivated, ref, watch } from "vue";
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  onActivated,
+  ref,
+  watch,
+} from "vue";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -38,7 +45,9 @@ watch(
 /* 加载更多 */
 const EmitLoadMore = () => {
   page.value += 1;
-  skin_list.value.push(...cache_list.value.slice(page.value * 30, (page.value + 1) * 30));
+  skin_list.value.push(
+    ...cache_list.value.slice(page.value * 30, (page.value + 1) * 30)
+  );
   heroListRef.value.updateHeight();
 };
 

@@ -10,7 +10,9 @@ export default defineStore("equip", () => {
   const active_array = ref<string[]>([]); //当前被点击装备排列位置
   const equip_list = ref<Equip.Data[]>([]); //装备列表
   const equip_list_column = ref<Equip.Data[][]>([]); //三列装备
-  const equip_element = ref<{ name: string; el: HTMLElement | undefined; id: number }[]>([]); //装备列表的所有元素
+  const equip_element = ref<
+    { name: string; el: HTMLElement | undefined; id: number }[]
+  >([]); //装备列表的所有元素
   const equipSelectFn = ref<(() => void)[]>([]); //点击装备触发的函数
   const synthetic = ref<Equip.Synthetic>({ id: 0, name: "" }); //当前点击的装备合成
   const synthetic_id = ref<Equip.Synthetic[][]>([[], [], []]); //当前点击的装备合成相关id
@@ -50,7 +52,11 @@ export default defineStore("equip", () => {
   };
 
   /** @description: 存储列表所有装备元素 */
-  const setEquipElement = (data: { name: string; el: HTMLElement | undefined; id: number }) => {
+  const setEquipElement = (data: {
+    name: string;
+    el: HTMLElement | undefined;
+    id: number;
+  }) => {
     equip_element.value.push(data);
   };
 
@@ -69,7 +75,11 @@ export default defineStore("equip", () => {
 
   /** @description: 装备卡片被点击的id */
   const setEquipActive = (id = 0) => {
-    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
+    vertical_line.value = [
+      {},
+      { top: "0", height: "0" },
+      { top: "0", height: "0" },
+    ];
     if (active_id.value === id) {
       active_id.value = 0;
       clearSynthetic();
@@ -123,11 +133,19 @@ export default defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: t(active_id.value, synthetic_id.value[1][0].id),
-          height: h(active_id.value, synthetic_id.value[1][0].id, synthetic_id.value[1].at(-1)!.id),
+          height: h(
+            active_id.value,
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[1].at(-1)!.id
+          ),
         };
         vertical_line.value[2] = {
           top: t(synthetic_id.value[1][0]?.id, synthetic_id.value[2][0]?.id),
-          height: h(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id, synthetic_id.value[2].at(-1)?.id || 0),
+          height: h(
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[2][0].id,
+            synthetic_id.value[2].at(-1)?.id || 0
+          ),
         };
       } catch (error) {
         /*  */
@@ -161,7 +179,11 @@ export default defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: t(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
-          height: h(synthetic_id.value[1][0].id, synthetic_id.value[0][0].id, synthetic_id.value[0].at(-1)!.id),
+          height: h(
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[0][0].id,
+            synthetic_id.value[0].at(-1)!.id
+          ),
         };
       } catch (error) {
         /*  */
@@ -169,7 +191,11 @@ export default defineStore("equip", () => {
       if (synthetic_id.value[2][0]) {
         vertical_line.value[2] = {
           top: t(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
-          height: h(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id, synthetic_id.value[2].at(-1)?.id || 0),
+          height: h(
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[2][0].id,
+            synthetic_id.value[2].at(-1)?.id || 0
+          ),
         };
       }
     }
@@ -213,7 +239,11 @@ export default defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: t(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
-          height: h(synthetic_id.value[1].at(-1)!.id, synthetic_id.value[0][0].id, synthetic_id.value[0].at(-1)!.id),
+          height: h(
+            synthetic_id.value[1].at(-1)!.id,
+            synthetic_id.value[0][0].id,
+            synthetic_id.value[0].at(-1)!.id
+          ),
         };
 
         if (synthetic_id.value[2][0]) {
@@ -238,7 +268,11 @@ export default defineStore("equip", () => {
 
   /** @description: 清空合成组 */
   const clearSynthetic = () => {
-    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
+    vertical_line.value = [
+      {},
+      { top: "0", height: "0" },
+      { top: "0", height: "0" },
+    ];
     synthetic_id.value = [[], [], []];
   };
 

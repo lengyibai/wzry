@@ -8,7 +8,9 @@ const heroDetailStore = defineStore("heroDetail", () => {
   const skill_index = ref(0); //处于展示的技能索引
   const scroll_index = ref(1); //滚动索引
   const ScollFns = ref<((index: number) => void)[]>([]); //滚动结束后触发函数组
-  const SkinToggleFns = ref<((hero_name: string, skin_name: string) => void)[]>([]); //皮肤切换后触发函数组
+  const SkinToggleFns = ref<((hero_name: string, skin_name: string) => void)[]>(
+    []
+  ); //皮肤切换后触发函数组
   const voice = ref<Hero.Voice[]>([]); //皮肤语音
   const skillSelectFn = ref<(index: number) => void>(() => {}); //技能选择触发
   const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
@@ -47,7 +49,9 @@ const heroDetailStore = defineStore("heroDetail", () => {
   };
 
   /** @description: 设置需要切换皮肤触发的函数 */
-  const setSkinToggleFn = (fn: (hero_name: string, skin_name: string) => void) => {
+  const setSkinToggleFn = (
+    fn: (hero_name: string, skin_name: string) => void
+  ) => {
     SkinToggleFns.value.push(fn);
   };
 

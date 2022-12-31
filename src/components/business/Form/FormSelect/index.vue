@@ -46,7 +46,10 @@
           <button
             class="box"
             :class="{
-              active: currentIndex === index || modelValue === item.name || modelValue === item.id,
+              active:
+                currentIndex === index ||
+                modelValue === item.name ||
+                modelValue === item.id,
             }"
             v-for="(item, index) in select_list"
             @mousedown="select(item.id, item.name)"

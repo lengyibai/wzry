@@ -13,7 +13,13 @@ withDefaults(defineProps<Props>(), {
     <table class="table">
       <tr>
         <td></td>
-        <td class="lv" v-for="(item, index) in activeSkill.effect![0].phase.length" :key="index">LV{{ item }}</td>
+        <td
+          class="lv"
+          v-for="(item, index) in activeSkill.effect![0].phase.length"
+          :key="index"
+        >
+          LV{{ item }}
+        </td>
       </tr>
       <tr v-for="(item, index) in activeSkill.effect" :key="index">
         <td class="effect">

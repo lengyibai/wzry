@@ -1,5 +1,8 @@
 <template>
-  <div style="margin-bottom: 50px; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
+  <div
+    style="margin-bottom: 50px; border: 1px solid var(--theme-color-eight)"
+    :style="{ width: width }"
+  >
     <Toolbar
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"

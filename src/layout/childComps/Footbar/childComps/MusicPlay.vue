@@ -1,5 +1,9 @@
 <template>
-  <div class="music-play" :style="{ width: progress + '%' }" @click="playToggle"></div>
+  <div
+    class="music-play"
+    :style="{ width: progress + '%' }"
+    @click="playToggle"
+  ></div>
 </template>
 <script setup lang="ts">
 import { ref, watch, onBeforeUnmount } from "vue";
@@ -38,7 +42,9 @@ async function musicPlay(isReset = true) {
       bgmIndex.value = 0;
     }
 
-    bgm.src = "https://lengyibai.gitee.io/wzry-material/music/" + musics[bgmIndex.value];
+    bgm.src =
+      "https://lengyibai.gitee.io/wzry-material/music/" +
+      musics[bgmIndex.value];
     bgm.volume = 0.25;
     bgmIndex.value += 1;
   }

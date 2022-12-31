@@ -2,7 +2,9 @@
   <div class="FormInput" :class="{ disabled: disabled }" :style="autoStyle">
     <!-- 右侧描述 -->
     <div class="label" :style="{ minWidth: labelWidth }">
-      <span class="text-gradient-one"><i class="star" v-if="required">*</i>{{ label }}： </span>
+      <span class="text-gradient-one"
+        ><i class="star" v-if="required">*</i>{{ label }}：
+      </span>
     </div>
 
     <!-- 输入框 -->
@@ -103,7 +105,10 @@ const blur = (e: Event) => {
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  emit("update:modelValue", props.number ? (isNaN(Number(v)) ? v : Number(v)) : v);
+  emit(
+    "update:modelValue",
+    props.number ? (isNaN(Number(v)) ? v : Number(v)) : v
+  );
 };
 </script>
 <style scoped lang="less">

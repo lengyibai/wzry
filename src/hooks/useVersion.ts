@@ -11,7 +11,10 @@ export default () => {
     const remote_version = Number(REMOTE_VERSION.value.replaceAll(".", "")); //将远程版本转成数字
     const test = remote_version - local_version;
     if (test > 0) {
-      switchStore().$tip("作者已推送最新代码至GitHub，请git pull或重新克隆进行更新", "warning");
+      switchStore().$tip(
+        "作者已推送最新代码至GitHub，请git pull或重新克隆进行更新",
+        "warning"
+      );
     } else if (test < 0) {
       switchStore().$tip("当前版本大于远程版本", "error");
     } else {

@@ -37,13 +37,25 @@ const handleClose = () => {
         </div>
       </div>
       <div class="btns">
-        <KButton class="btn" type="info" @click="handleClickAudio('关闭'), handleClose()">暂时跳过</KButton>
-        <KButton type="warning" @click="handleClickAudio('确定'), handleClose()">此次不再弹出</KButton>
+        <KButton
+          class="btn"
+          type="info"
+          @click="handleClickAudio('关闭'), handleClose()"
+          >暂时跳过</KButton
+        >
+        <KButton type="warning" @click="handleClickAudio('确定'), handleClose()"
+          >此次不再弹出</KButton
+        >
       </div>
       <div class="desc">
         <span>
           新版本已发布，请前往项目内拉取进行更新，或前往当前项目的
-          <a href="https://github.com/lengyibai/wzry" target="_blank" class="link">Github仓库</a>
+          <a
+            href="https://github.com/lengyibai/wzry"
+            target="_blank"
+            class="link"
+            >Github仓库</a
+          >
           了解更多！
         </span>
       </div>

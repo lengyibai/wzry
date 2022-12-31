@@ -33,7 +33,11 @@ const handerSetGender = (type: number) => {
 <template>
   <div class="hero-toolbar">
     <!-- 筛选按钮 -->
-    <FilterTool :data="select_list" @select="EmitSelectFilter" listHeight="500px" />
+    <FilterTool
+      :data="select_list"
+      @select="EmitSelectFilter"
+      listHeight="500px"
+    />
 
     <!-- 只看性别 -->
     <div class="gender">

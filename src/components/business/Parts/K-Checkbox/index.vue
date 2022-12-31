@@ -1,7 +1,9 @@
 <template>
   <div class="K-Checkbox" @click="toggle">
     <div class="label" :style="{ width: labelWidth }">
-      <span class="text-gradient-one"><i class="star" v-if="required">*</i>{{ label }}： </span>
+      <span class="text-gradient-one"
+        ><i class="star" v-if="required">*</i>{{ label }}：
+      </span>
     </div>
     <img class="cursor-pointer" :src="icon" />
   </div>
@@ -28,7 +30,10 @@ const props = withDefaults(defineProps<Props>(), {
   required: false,
 });
 
-const icon = computed(() => `https://lengyibai.gitee.io/wzry-material/image/select_${props.modelValue}.png`);
+const icon = computed(
+  () =>
+    `https://lengyibai.gitee.io/wzry-material/image/select_${props.modelValue}.png`
+);
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);

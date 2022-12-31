@@ -139,10 +139,19 @@ const EmitCommit = async () => {
           @mouseenter="handleVoiceEnter(index)"
           :key="item.text"
         >
-          <span class="desc" v-show="currentIndex !== index"> {{ item.text }}</span>
+          <span class="desc" v-show="currentIndex !== index">
+            {{ item.text }}</span
+          >
           <div class="voice-box" v-show="currentIndex === index">
-            <i class="iconfont wzry-bofangyuyin cursor-pointer" @click="handlePlay(item.link)" />
-            <i class="iconfont wzry-lajitong cursor-pointer" style="color: var(--red)" @click="handleDel(index)" />
+            <i
+              class="iconfont wzry-bofangyuyin cursor-pointer"
+              @click="handlePlay(item.link)"
+            />
+            <i
+              class="iconfont wzry-lajitong cursor-pointer"
+              style="color: var(--red)"
+              @click="handleDel(index)"
+            />
           </div>
         </div>
       </div>
@@ -170,7 +179,12 @@ const EmitCommit = async () => {
           />
 
           <!--重置语音链接-->
-          <i class="iconfont wzry-zhongzhi cursor-pointer" v-show="voice_link" key="c" @click="handleResetVoice" />
+          <i
+            class="iconfont wzry-zhongzhi cursor-pointer"
+            v-show="voice_link"
+            key="c"
+            @click="handleResetVoice"
+          />
         </transition-group>
       </div>
 

@@ -7,9 +7,18 @@
       height: size,
     }"
   >
-    <img class="up" v-show="show_up" :class="{ move: status === 1 }" src="./img/update.svg" />
+    <img
+      class="up"
+      v-show="show_up"
+      :class="{ move: status === 1 }"
+      src="./img/update.svg"
+    />
     <transition name="fade">
-      <img v-show="!show_up && status === 1 && !finish" class="rotate" src="./img/loading.svg" />
+      <img
+        v-show="!show_up && status === 1 && !finish"
+        class="rotate"
+        src="./img/loading.svg"
+      />
     </transition>
     <transition name="bounce">
       <img v-show="finish" src="./img/success.svg" />

@@ -46,7 +46,11 @@ const handleViewClick = () => {
         >
           查看详情
         </button>
-        <div class="line" :class="{ 'line-active': lineActive }" ref="line"></div>
+        <div
+          class="line"
+          :class="{ 'line-active': lineActive }"
+          ref="line"
+        ></div>
       </div>
     </transition>
 

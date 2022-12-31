@@ -10,7 +10,9 @@ export const getHeroBasic = () => {
 };
 /** @description: 获取英雄头像列表 */
 export const getHeroImg = (id: number) => {
-  return Promise.resolve(get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id }));
+  return Promise.resolve(
+    get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id })
+  );
 };
 /** @description: 获取英雄信息列表 */
 export const getHeroData = () => {
@@ -24,7 +26,9 @@ export const getHeroDetail = async (id: number) => {
   const voices = await getSkinVoice(hero.name, "原皮"); //获取语音列表
   const relationships = await getHeroRelationship(id); //获取关系列表
   for (let i = 0; i < relationships.length; i++) {
-    relationships[i].hero = await getHeroImg(relationships[i].id as unknown as number);
+    relationships[i].hero = await getHeroImg(
+      relationships[i].id as unknown as number
+    );
   }
 
   hero.skins = skins || [];
@@ -58,7 +62,10 @@ export const getSkillType = () => {
 export const getSkillEffect = () => {
   return Promise.resolve(get<Hero.General[]>({ name: "data_skilleffect" }));
 };
-
+/** @description: 获取种族列表 */
+export const getRaceType = () => {
+  return Promise.resolve(get<Hero.General[]>({ name: "data_racetype" }));
+};
 /** @description: 获取阵营列表 */
 export const getCampType = () => {
   return Promise.resolve(get<Hero.General[]>({ name: "data_camptype" }));

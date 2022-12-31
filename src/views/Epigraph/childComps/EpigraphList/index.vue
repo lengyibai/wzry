@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { onActivated, onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
+import {
+  onActivated,
+  onBeforeUnmount,
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+} from "vue";
 import $bus from "@/utils/eventBus";
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
@@ -68,7 +75,13 @@ onBeforeUnmount(() => {
   <div>
     <transition name="card-list">
       <div class="epigraph-list" v-if="show">
-        <LibGridLayout ref="epigraphListRef" v-if="epigraph_list.length" gap="15px" :count="count" :eqhMultiple="0.5">
+        <LibGridLayout
+          ref="epigraphListRef"
+          v-if="epigraph_list.length"
+          gap="15px"
+          :count="count"
+          :eqhMultiple="0.5"
+        >
           <transition-group name="card" appear>
             <div
               v-for="(item, index) in epigraph_list"
