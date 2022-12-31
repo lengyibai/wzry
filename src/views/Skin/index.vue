@@ -21,6 +21,8 @@ const skin_list = ref<Hero.Skin[]>([]);
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 const page = ref(1); //当前页数
+const page_count = ref(30); //一页显示的个数
+const page_total = ref(0); //总页数
 const show_poster = ref(false); //查看海报
 const poster = ref(""); // 查看的海报链接
 
@@ -31,12 +33,16 @@ watch(
   () => $skinStore.filter_list,
   (v) => {
     show.value = false;
-    page.value = 1;
+    page.value = 0;
     skin_list.value = [];
     cache_list.value = v;
-    skin_list.value = cache_list.value.slice(0, page.value * 30);
+    skin_list.value = cache_list.value.slice(
+      page.value * page_count.value,
+      (page.value + 1) * page_count.value
+    );
     nextTick(() => {
       show.value = true;
+      page_total.value = Math.round(cache_list.value.length / page_count.value);
     });
   },
   { deep: true, immediate: true }
@@ -44,11 +50,16 @@ watch(
 
 /* 加载更多 */
 const EmitLoadMore = () => {
-  page.value += 1;
-  skin_list.value.push(
-    ...cache_list.value.slice(page.value * 30, (page.value + 1) * 30)
-  );
-  heroListRef.value.updateHeight();
+  if (page_total.value > page.value) {
+    page.value += 1;
+    skin_list.value.push(
+      ...cache_list.value.slice(
+        page.value * page_count.value,
+        (page.value + 1) * page_count.value
+      )
+    );
+    heroListRef.value.updateHeight();
+  }
 };
 
 /* 查看海报 */
