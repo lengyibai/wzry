@@ -1,22 +1,17 @@
+/* eslint-env node */
+require("@rushstack/eslint-patch/modern-module-resolution");
+
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
+  root: true,
   extends: [
-    "eslint:recommended",
     "plugin:vue/vue3-essential",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript",
+    "@vue/eslint-config-prettier",
   ],
-  parser: "vue-eslint-parser",
   parserOptions: {
     ecmaVersion: "latest",
-    parser: "@typescript-eslint/parser",
-    sourceType: "module",
   },
-  plugins: ["vue", "@typescript-eslint"],
   rules: {
     camelcase: "off",
     semi: "off", //额外的分号
@@ -55,4 +50,3 @@ module.exports = {
     "@typescript-eslint/no-namespace": "off", //禁止使用命名空间
   },
 };
-
