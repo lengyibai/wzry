@@ -4,22 +4,22 @@ import getSheelPath from "../helper/getSheelPath";
 
 /** @description: 用户路由 */
 export const user: RouterSheel[] = [
-  {
-    title: "主页",
-    icon: "wzry-zhuye",
-    path: "/home",
-    name: "home",
-    redirect: "",
-    leftHidden: true,
-    component: "@/layout",
-    children: [
-      {
-        path: "",
-        name: "homeChild",
-        component: "@/views/Base/Home",
-      },
-    ],
-  },
+  // {
+  //   title: "主页",
+  //   icon: "wzry-zhuye",
+  //   path: "/home",
+  //   name: "home",
+  //   redirect: "",
+  //   leftHidden: true,
+  //   component: "@/layout",
+  //   children: [
+  //     {
+  //       path: "",
+  //       name: "homeChild",
+  //       component: "@/views/Base/Home",
+  //     },
+  //   ],
+  // },
   {
     title: "英雄",
     icon: "wzry-yingxiong",
