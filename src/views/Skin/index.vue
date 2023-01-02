@@ -15,50 +15,28 @@ import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
 
 const $skinStore = skinStore();
 
-const heroListRef = ref();
-const cache_list = ref<Hero.Skin[]>([]);
-const skin_list = ref<Hero.Skin[]>([]);
+let page = 1; //当前页数
+let page_count = 30; //一页显示的个数
+let page_total = 0; //总页数
+
+const skinListRef = ref(); //布局容器
+const poster = ref(""); // 查看的海报链接
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
-const page = ref(1); //当前页数
-const page_count = ref(30); //一页显示的个数
-const page_total = ref(0); //总页数
 const show_poster = ref(false); //查看海报
-const poster = ref(""); // 查看的海报链接
+const cache_list = ref<Hero.Skin[]>([]); //所有数据缓存
+const skin_list = ref<Hero.Skin[]>([]); //当前展示的皮肤列表
 
-$skinStore.getSkin();
-
-/* 监听筛选后的英雄列表 */
-watch(
-  () => $skinStore.filter_list,
-  (v) => {
-    show.value = false;
-    page.value = 0;
-    skin_list.value = [];
-    cache_list.value = v;
-    skin_list.value = cache_list.value.slice(
-      page.value * page_count.value,
-      (page.value + 1) * page_count.value
-    );
-    nextTick(() => {
-      show.value = true;
-      page_total.value = Math.round(cache_list.value.length / page_count.value);
-    });
-  },
-  { deep: true, immediate: true }
-);
+$skinStore.getSkin(); //获取皮肤列表
 
 /* 加载更多 */
 const EmitLoadMore = () => {
-  if (page_total.value > page.value) {
-    page.value += 1;
+  if (page_total > page) {
+    page += 1;
     skin_list.value.push(
-      ...cache_list.value.slice(
-        page.value * page_count.value,
-        (page.value + 1) * page_count.value
-      )
+      ...cache_list.value.slice(page * page_count, (page + 1) * page_count)
     );
-    heroListRef.value.updateHeight();
+    skinListRef.value.updateHeight();
   }
 };
 
@@ -68,10 +46,30 @@ const handleViewImg = (img: string) => {
   poster.value = img;
 };
 
+/* 监听筛选后的英雄列表 */
+watch(
+  () => $skinStore.filter_list,
+  (v) => {
+    show.value = false;
+    page = 0;
+    skin_list.value = [];
+    cache_list.value = v;
+    skin_list.value = cache_list.value.slice(
+      page * page_count,
+      (page + 1) * page_count
+    );
+    nextTick(() => {
+      show.value = true;
+      page_total = Math.round(cache_list.value.length / page_count);
+    });
+  },
+  { deep: true, immediate: true }
+);
+
 /* 进入页面后更新高度 */
 onActivated(() => {
   nextTick(() => {
-    heroListRef.value.updateHeight();
+    skinListRef.value.updateHeight();
   }).catch(() => {});
 });
 
@@ -111,7 +109,7 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
-          ref="heroListRef"
+          ref="skinListRef"
           gap="25px"
           v-if="skin_list.length && show"
           :count="count"
