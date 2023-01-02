@@ -1,40 +1,3 @@
-<template>
-  <div class="hero-voice scroll-white" @mousewheel.stop>
-    <button
-      class="voice flex"
-      :class="{ 'active-width': currentIndex === index }"
-      @click="play(item.link, index)"
-      v-for="(item, index) in voices.length ? voices : $heroDetailStore.voice"
-      ref="voiceRef"
-      :key="index"
-    >
-      <div class="content" :class="{ 'active-color': currentIndex === index }">
-        <span v-if="currentIndex !== index" class="text lib-one-line">
-          {{ item.text }}</span
-        >
-        <marquee v-else class="text" scrollamount="8.5">
-          {{ item.text }}</marquee
-        >
-        <i
-          class="iconfont"
-          :style="{ 'animation-duration': time + 's' }"
-          :class="[
-            currentIndex === index ? 'wzry-playing' : 'wzry-laba',
-            { 'active-rotate': currentIndex === index },
-            { 'active-color': currentIndex === index },
-          ]"
-        />
-      </div>
-    </button>
-    <!--播放语音-->
-    <PlayVoice
-      @ended="ended"
-      @info="voiceInfo"
-      v-if="play_link"
-      :link="play_link"
-    />
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 import heroDetailStore from "@/store/heroDetail";
@@ -42,16 +5,17 @@ import heroDetailStore from "@/store/heroDetail";
 const $heroDetailStore = heroDetailStore();
 const voiceRef = ref();
 
+let voice_length = 1; //当前语音数量
+
 const play_link = ref(""); //播放链接
 const time = ref(0); //当前播放时长
-const currentIndex = ref(-1); //当前播放索引
+const current_index = ref(-1); //当前播放索引
 const voices = ref<Hero.Voice[]>([]); //英雄数据
-const voice_length = ref(1); //当前语音数量
 
 $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
   await $heroDetailStore.setSkinVoice(hero_name, skin_name);
-  if (voice_length.value === $heroDetailStore.voice.length) return;
-  voice_length.value = $heroDetailStore.voice.length;
+  if (voice_length === $heroDetailStore.voice.length) return;
+  voice_length = $heroDetailStore.voice.length;
   nextTick(() => {
     voiceRef.value.forEach((item: HTMLElement, index: number) => {
       /* 决定是从左还是从右入场 */
@@ -76,12 +40,12 @@ $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
 /* 点击播放 */
 const play = (voice: string, index: number) => {
   // 如果再次点击，则停止播放
-  if (currentIndex.value === index) {
-    currentIndex.value = -1;
+  if (current_index.value === index) {
+    current_index.value = -1;
     play_link.value = "";
     return;
   }
-  currentIndex.value = index;
+  current_index.value = index;
   play_link.value = voice;
 };
 
@@ -93,14 +57,53 @@ const voiceInfo = (info: HTMLMediaElement) => {
 /* 语音播放结束后触发 */
 let ended: () => void = () => {
   //如果播放完最后一个，则停止播放
-  if (currentIndex.value + 1 === voices.value!.length) {
-    currentIndex.value += 1;
+  if (current_index.value + 1 === voices.value!.length) {
+    current_index.value += 1;
     return;
   }
   //等待播放动画结束后再播放
-  play(voices.value![currentIndex.value + 1].link, currentIndex.value + 1);
+  play(voices.value![current_index.value + 1].link, current_index.value + 1);
 };
 </script>
+
+<template>
+  <div class="hero-voice scroll-white" @mousewheel.stop>
+    <button
+      class="voice flex"
+      :class="{ 'active-width': current_index === index }"
+      @click="play(item.link, index)"
+      v-for="(item, index) in voices.length ? voices : $heroDetailStore.voice"
+      ref="voiceRef"
+      :key="index"
+    >
+      <div class="content" :class="{ 'active-color': current_index === index }">
+        <span v-if="current_index !== index" class="text lib-one-line">
+          {{ item.text }}</span
+        >
+        <marquee v-else class="text" scrollamount="8.5">
+          {{ item.text }}</marquee
+        >
+        <i
+          class="iconfont"
+          :style="{ 'animation-duration': time + 's' }"
+          :class="[
+            current_index === index ? 'wzry-playing' : 'wzry-laba',
+            { 'active-rotate': current_index === index },
+            { 'active-color': current_index === index },
+          ]"
+        />
+      </div>
+    </button>
+    <!--播放语音-->
+    <PlayVoice
+      @ended="ended"
+      @info="voiceInfo"
+      v-if="play_link"
+      :link="play_link"
+    />
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

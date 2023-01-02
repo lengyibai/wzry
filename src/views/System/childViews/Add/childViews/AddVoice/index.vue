@@ -29,7 +29,7 @@ const voice_link = ref(""); //语音链接
 const voice_text = ref(""); //语音文字
 const play_link = ref(""); //用于播放
 const add_status = ref<AddStatus>("wzry-addcircle"); //添加&&删除&&保存状态
-const currentIndex = ref<number | null>(null); //点击的语音
+const current_index = ref<number | null>(null); //点击的语音
 const show_AddLink = ref(false); //显示设置语音链接弹窗
 const show_box = ref(false); //是否显示填写盒子
 if (!form_data.value) {
@@ -83,12 +83,12 @@ const handleResetVoice = () => {
 /* 获取语音链接 */
 const EmitGetLink = (link: string) => {
   voice_link.value = link;
-  currentIndex.value = null;
+  current_index.value = null;
 };
 
 /* 点击语音列表 */
 const handleVoiceEnter = (index: number | null) => {
-  currentIndex.value = index;
+  current_index.value = index;
 };
 
 /* 播放语音 */
@@ -139,10 +139,10 @@ const EmitCommit = async () => {
           @mouseenter="handleVoiceEnter(index)"
           :key="item.text"
         >
-          <span class="desc" v-show="currentIndex !== index">
+          <span class="desc" v-show="current_index !== index">
             {{ item.text }}</span
           >
-          <div class="voice-box" v-show="currentIndex === index">
+          <div class="voice-box" v-show="current_index === index">
             <i
               class="iconfont wzry-bofangyuyin cursor-pointer"
               @click="handlePlay(item.link)"

@@ -15,8 +15,8 @@ const props = withDefaults(defineProps<Props>(), {
 const $equipStore = equipStore();
 
 const card = ref();
-const equip_list = ref<Equip.Data[]>([]); //装备列表
 const show = ref(true); //淡入显示列表
+const equip_list = ref<Equip.Data[]>([]); //装备列表
 
 const showLine = (id: number, line: string) => {
   return props.lineData.some((item) => {

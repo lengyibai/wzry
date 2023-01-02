@@ -4,17 +4,16 @@ import SkinStore from "@/store/skin";
 
 const $SkinStore = SkinStore();
 
-const gender = ref(0); //性别排序
-const select_list = ref([
+const select_list = [
   { label: "默认排序", value: 0 },
   { label: "价格由低到高", value: 1 },
   { label: "价格由高到低", value: 2 },
-]);
+];
+
+const gender = ref(0); //性别排序
 
 /* 选择后触发 */
 const EmitSelectFilter = (v: number) => {
-  console.log(v);
-
   $SkinStore.sortPrice(v);
 };
 

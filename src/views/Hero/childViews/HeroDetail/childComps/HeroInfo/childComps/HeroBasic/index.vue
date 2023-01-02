@@ -9,7 +9,6 @@ const props = withDefaults(defineProps<Props>(), {
   heroData: () => heroDefault,
 });
 
-const info = ref();
 const hero_info: string[][] = [
   [props.heroData.profession.join("/"), "profession", "职业"],
   [props.heroData.location, "location", "定位"],
@@ -19,6 +18,8 @@ const hero_info: string[][] = [
   [props.heroData.height, "height", "身高"],
   [props.heroData.identity, "identity", "身份"],
 ];
+
+const info = ref();
 
 onMounted(() => {
   //设置按顺序出场的动画

@@ -1,29 +1,3 @@
-<template>
-  <div class="hero-skin-head-img flex" :class="{ into: show_skin_head }">
-    <!--中心头衔框-->
-    <div class="show-skin flex" ref="showSkin">
-      {{ is_into_drap ? "松开" : "拖过来" }}
-    </div>
-    <!--光晕-->
-    <transition name="fade">
-      <div class="show-skin flex clone" v-show="is_into_drap"></div>
-    </transition>
-
-    <!--皮肤头像-->
-    <button
-      ref="skin"
-      class="skin"
-      v-drag="{ fn: handleDrag, index }"
-      v-for="(item, index) in skins"
-      :key="index"
-      :style="{
-      transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
-    }"
-    >
-      <img @dragstart.prevent :src="item.headImg" alt="" />
-    </button>
-  </div>
-</template>
 <script setup lang="ts">
 import { nextTick, reactive, ref } from "vue";
 import heroDetail from "@/store/heroDetail";
@@ -33,20 +7,23 @@ interface Emits {
   (e: "bg-imgs", data: number[]): void;
 }
 
-const skin = ref();
-const showSkin = ref();
 const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
 
-const skins = ref<Hero.Skin[] | undefined>([]);
-const toggle = ref(true); //用于切换背景
+const skin = ref();
+const showSkin = ref();
+
+let toggle = true; //用于切换背景
+
+const skins = $heroDetail.hero_info.skins;
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围
 const show_skin_head = ref(false); //用于头像初次加载显示
-skins.value = $heroDetail.hero_info.skins;
-const active_skin = reactive<{ el: HTMLElement | null; transform: string }>({
+
+//当前处于展示的皮肤的DOM元素及坐标
+const active_skin: { el: HTMLElement | null; transform: string } = {
   el: null,
   transform: "",
-}); //当前处于展示的皮肤的DOM元素及坐标
+};
 
 /* 皮肤头像拖动事件 */
 const emit = defineEmits<Emits>();
@@ -102,12 +79,12 @@ const handleDrag = (
     setTimeout(() => {
       data.style.zIndex = "1";
       //切换背景图
-      if (toggle.value) {
+      if (toggle) {
         emit("bg-imgs", [1, index]);
       } else {
         emit("bg-imgs", [0, index]);
       }
-      toggle.value = !toggle.value; //用于皮肤背景的切换动画
+      toggle = !toggle; //用于皮肤背景的切换动画
     }, 1000);
   } else {
     setPosition(active_skin.el);
@@ -128,6 +105,34 @@ $heroDetailStore.setScollFn((index) => {
   }
 });
 </script>
+
+<template>
+  <div class="hero-skin-head-img flex" :class="{ into: show_skin_head }">
+    <!--中心头衔框-->
+    <div class="show-skin flex" ref="showSkin">
+      {{ is_into_drap ? "松开" : "拖过来" }}
+    </div>
+    <!--光晕-->
+    <transition name="fade">
+      <div class="show-skin flex clone" v-show="is_into_drap"></div>
+    </transition>
+
+    <!--皮肤头像-->
+    <button
+      ref="skin"
+      class="skin"
+      v-drag="{ fn: handleDrag, index }"
+      v-for="(item, index) in skins"
+      :key="index"
+      :style="{
+      transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
+    }"
+    >
+      <img @dragstart.prevent :src="item.headImg" alt="" />
+    </button>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

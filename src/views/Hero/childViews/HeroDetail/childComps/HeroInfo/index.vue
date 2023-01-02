@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue/defaults";
 import heroDetail from "@/store/heroDetail";
 import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
@@ -11,8 +9,7 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 const $heroDetail = heroDetail();
 
 const into = ref(false); //控制页面元素显示
-const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
-hero_data.value = $heroDetail.hero_info;
+const hero_data = $heroDetail.hero_info; //英雄数据
 
 onMounted(() => {
   //设置按顺序出场的动画

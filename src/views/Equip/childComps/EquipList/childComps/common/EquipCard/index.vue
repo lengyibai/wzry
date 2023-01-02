@@ -19,7 +19,7 @@ const $equipStore = equipStore();
 
 const active_id = computed(() => $equipStore.active_id); //获取点击的装备id
 
-const icon = ref<HTMLElement>();
+const icon = ref();
 
 nextTick(() => {
   $equipStore.setEquipElement({

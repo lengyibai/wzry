@@ -8,13 +8,13 @@ import switchStore from "@/store/globalSwitch";
 import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
-const $switchStore = switchStore();
-
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-
 const emit = defineEmits<Emits>();
+
+const $switchStore = switchStore();
+
 const {
   show,
   finish,
@@ -26,9 +26,8 @@ const {
   EmitConfirmSave,
 } = viewHide<Hero.Skill[][]>(emit, "add_skill_list");
 
-const left = ref<HTMLElement>(); //左侧元素
+const left = ref(); //左侧元素
 const skill_effect = ref(""); //选择的技能效果
-const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
 const skill_consume = ref(0); //阶段值
 const hero_id = ref(0); //英雄id
 const effectIndex = ref(-1); //处于编辑状态的技能效果索引
@@ -36,6 +35,7 @@ const active_index = ref(0); //处于编辑状态的技能
 const deputy_index = ref(0); //用于切换副技能的索引
 const show_DelDeputys = ref(false); //显示技能组删除弹窗
 const show_DelSkill = ref(false); //显示技能删除弹窗
+const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
 
 //处于编辑的技能组
 const activeSkills = () => form_data.value![deputy_index.value];

@@ -3,14 +3,11 @@ import { ref } from "vue";
 import HeroSkillIcon from "./childComps/HeroSkillIcon/index.vue"; //技能图标
 import HeroSkillContent from "./childComps/HeroSkillContent/index.vue"; //主体内容
 
-const toggle = ref(true); //用于切换动画
 const hero_skill = ref<Hero.Skill>(); //技能信息
 
 /* 选择技能 */
 const EmitSelectSkill = (skill: Hero.Skill) => {
-  toggle.value = false;
   setTimeout(() => {
-    toggle.value = true;
     hero_skill.value = skill;
   }, 375);
 };

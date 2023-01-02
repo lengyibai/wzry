@@ -10,9 +10,6 @@ const props = withDefaults(defineProps<Props>(), {
   length: "0%",
 });
 
-const attribute = ref();
-const progress = ref("0%");
-
 const y: Record<string, string> = {
   survival: "0 0px",
   attack: "-60px 0px",
@@ -39,6 +36,9 @@ const text: Text = {
   effect: "技能效果",
   difficulty: "上手难度",
 };
+
+const attribute = ref(); //属性元素
+const progress = ref("0%"); //进度条
 
 onMounted(() => {
   setTimeout(() => {

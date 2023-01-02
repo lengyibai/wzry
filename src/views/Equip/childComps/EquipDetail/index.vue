@@ -5,7 +5,6 @@ interface Props {
   equip: typeof equipDefault;
   show: boolean;
 }
-
 withDefaults(defineProps<Props>(), {
   equip: () => equipDefault,
   show: false,

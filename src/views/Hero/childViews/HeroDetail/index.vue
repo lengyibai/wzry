@@ -20,19 +20,20 @@ const $heroDetail = heroDetail();
 const $heroStore = heroStore();
 const $heroDetailStore = heroDetailStore();
 
-const scroll_index = ref(1); //滚动索引
-const show_progress = ref(false); //显示滚动索引组件
 const hero_data = $heroDetail.hero_info; //英雄信息
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
 
+const scroll_index = ref(1); //滚动索引
+const show_progress = ref(false); //显示滚动索引组件
+
 //技能数量
 const skill_num = computed(() => {
-  return hero_data.skills.length;
+  return hero_data.skills!.length;
 });
 
 //皮肤数量
 const skin_num = computed(() => {
-  return hero_data.skins.length;
+  return hero_data.skins!.length;
 });
 
 /* 点击滚动索引 */
@@ -84,7 +85,7 @@ onMounted(() => {
       <!--技能-->
       <HeroParallax
         class="scroll-item"
-        :bg="hero_data.skins[skin_num - 1].poster"
+        :bg="hero_data.skins![skin_num - 1].poster"
         v-if="skill_num"
       >
         <HeroSkill />

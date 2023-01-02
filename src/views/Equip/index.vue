@@ -9,11 +9,12 @@ import EquipSidebar from "./childComps/EquipSidebar/index.vue"; //右侧边栏
 
 const $equiqStore = equiqStore();
 
+const show_Details = ref(false); //显示装备详情
+const show_EquipSidebar = ref(false); //显示装备分类侧边栏
+
 const equip_data = ref<typeof equipDefault | undefined>(
   $deepCopy(equipDefault)
 ); //被点击的装备信息
-const show_Details = ref(false); //显示装备详情
-const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
 $equiqStore.getEquipList().then(() => {

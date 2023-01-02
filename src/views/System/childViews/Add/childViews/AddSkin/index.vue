@@ -1,80 +1,9 @@
-<template>
-  <ManageMask
-    class="content"
-    ref="scrollBox"
-    :show="show"
-    :styles="{
-      flexDirection: 'column',
-    }"
-  >
-    <transition-group name="fade">
-      <!--左上角新增-->
-      <i
-        class="add-one iconfont wzry-addcircle cursor-pointer"
-        @click="addOne"
-        key="LibSvg"
-      />
-
-      <!--指派英雄-->
-      <SelectHero class="select-hero" v-model="hero_id" key="SelectHero" />
-
-      <!--皮肤盒子列表-->
-      <div
-        class="skin"
-        @mouseenter="currentIndex = index"
-        @mouseleave="currentIndex = null"
-        v-for="(item, index) in form_data"
-        :key="item.id"
-      >
-        <!--··皮肤名··-->
-        <FormInput
-          label="皮肤编号"
-          required
-          v-model="item.num"
-          placeholder="第几款皮肤"
-          number
-        />
-        <FormInput label="皮肤名" required v-model="item.name" />
-        <FormInput
-          label="价格"
-          v-model="item.price"
-          placeholder="请输入"
-          number
-        />
-
-        <!--··皮肤头像、海报··-->
-        <FormLabel labelWidth="290px" label="头像&封面&海报">
-          <SelectImg v-model="item.headImg" title="头像" />
-          <SelectImg v-model="item.poster" type="width" title="海报" />
-        </FormLabel>
-
-        <!--··右上角删除··-->
-        <transition name="fade">
-          <i class="del iconfont wzry-guanbi" @click="delOne(index)" />
-        </transition>
-      </div>
-    </transition-group>
-
-    <!-- 发布相关 -->
-    <ReleaseConfirm
-      v-model:showConfirmclose="show_ConfirmClose"
-      v-model:status="status"
-      size="50px"
-      :finish="finish"
-      @commit="EmitCommit"
-      @confirm="EmitConfirmSave"
-      @cancel="EmitConfirmRemove"
-      @close="EmitCancelRelease"
-    />
-  </ManageMask>
-</template>
 <script setup lang="ts">
 import { ref } from "vue";
-import { getSkinType } from "@/api/main/games/skin";
+import { getSkinType, getHeroSkin, addSkin } from "@/api/main/games/skin";
+import { getHeroDetail } from "@/api/main/games/hero";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
-import { skinDefault } from "@/defaultValue/defaults";
-import { $deepCopy } from "@/utils/index";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -82,6 +11,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+
 const {
   hero_id,
   show,
@@ -97,14 +27,42 @@ const {
 /* 判断是否存在缓存 */
 form_data.value ??= [];
 
+let skins: Hero.Skin[] = []; //英雄皮肤列表
+
+let skin_num = ref(0); //当前英雄的皮肤数量
+let hero_info: Hero.Data; //当前英雄的信息
 const skin_types = ref<Hero.SkinType[]>([]); //皮肤类型表
-const currentIndex = ref<number | null>(null); //根据悬浮的位置显示垃圾桶
+const current_index = ref<number | null>(null); //根据悬浮的位置显示垃圾桶
+
+/* 选择英雄后触发 */
+const EmitSelectHero = (id: number) => {
+  getHeroSkin(id).then((res) => {
+    skin_num.value = res.length;
+    skins = res;
+  });
+  getHeroDetail(id).then((res) => {
+    hero_info = res;
+  });
+};
+hero_id.value && EmitSelectHero(hero_id.value);
 
 /* 增加一项 */
 const scrollBox = ref();
-
-const addOne = () => {
-  form_data.value!.push($deepCopy(skinDefault));
+const handleAddOne = () => {
+  form_data.value!.push({
+    id: 0,
+    hero: hero_info.id, //所属英雄id
+    num: 0,
+    price: 0, //价格
+    type: "", //类型
+    name: "", //名称
+    poster: "", //海报
+    cover: "", //封面
+    headImg: "", //头像
+    profession: hero_info.profession, //职业
+    heroName: hero_info.name, //英雄名称
+    gender: hero_info.gender, //英雄名称
+  });
   // 滚动到底部
   setTimeout(() => {
     scrollBox.value.el.scroll({
@@ -114,25 +72,39 @@ const addOne = () => {
   });
 };
 
+/* 判断皮肤是否存在 */
+const EmitExist = (v: number | string) => {
+  let isExist = skins.some((item: Hero.Skin) => {
+    return item.name === v;
+  });
+  isExist && $switchStore.$tip("该皮肤已存在", "warning");
+};
+
 /* 删除一项 */
-const delOne = (i: number) => {
+const handleDelOne = (i: number) => {
   form_data.value!.splice(i, 1);
-  currentIndex.value = null;
+  current_index.value = null;
 };
 
 /* 发布 */
 const EmitCommit = async () => {
-  const flag = form_data.value!.every((item) => {
+  console.log(form_data.value);
+
+  // 设置皮肤id
+  form_data.value!.forEach((item, index) => {
+    item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
+  });
+  const pass = form_data.value!.every((item) => {
     return item.hero !== 0;
   });
 
-  if (flag) {
+  if (pass) {
     for (let i = 0; i < form_data.value!.length; i++) {
       const item = form_data.value![i];
-      // await addSkin(item);
+      await addSkin(item);
       finish.value = true;
       setTimeout(() => {
-        close();
+        EmitConfirmRemove();
         $switchStore.$tip("发布成功", "info");
       }, 500);
     }
@@ -150,6 +122,94 @@ setTimeout(async () => {
   show.value = true;
 }, 1000);
 </script>
+
+<template>
+  <ManageMask
+    class="content"
+    ref="scrollBox"
+    :show="show"
+    :styles="{
+      flexDirection: 'column',
+    }"
+  >
+    <transition-group name="fade">
+      <!--左上角新增-->
+      <i
+        class="add-one iconfont wzry-addcircle cursor-pointer"
+        @click="handleAddOne"
+        key="LibSvg"
+      />
+      <!--指派英雄-->
+      <SelectHero
+        class="select-hero"
+        v-model="hero_id"
+        :disabled="!!form_data!.length"
+        @change="EmitSelectHero"
+        key="SelectHero"
+      />
+      <span class="skin-num" key="SkinNum">拥有皮肤：{{ skin_num }}款</span>
+
+      <!--皮肤盒子列表-->
+      <div
+        class="skin"
+        @mouseenter="current_index = index"
+        @mouseleave="current_index = null"
+        v-for="(item, index) in form_data"
+        :key="item.id"
+      >
+        <!--··皮肤名··-->
+        <FormInput
+          label="皮肤编号"
+          required
+          v-model="item.num"
+          placeholder="第几款皮肤"
+          number
+        />
+        <FormInput
+          label="皮肤名"
+          required
+          v-model="item.name"
+          @blur="EmitExist"
+        />
+        <FormInput label="价格" v-model="item.price" placeholder="请输入" />
+
+        <!-- 皮肤类型 -->
+        <FormSelect
+          label="皮肤类型"
+          v-model="item.type"
+          :data="skin_types"
+          :value="item.type"
+          id
+        />
+
+        <!--··皮肤头像、海报··-->
+        <FormLabel labelWidth="355px" label="头像&海报&小尺寸海报">
+          <SelectImg v-model="item.headImg" title="头像" />
+          <SelectImg v-model="item.poster" type="width" title="海报" />
+          <SelectImg v-model="item.cover" type="width" title="小尺寸海报" />
+        </FormLabel>
+
+        <!--··右上角删除··-->
+        <transition name="fade">
+          <i class="del iconfont wzry-guanbi" @click="handleDelOne(index)" />
+        </transition>
+      </div>
+    </transition-group>
+
+    <!-- 发布相关 -->
+    <ReleaseConfirm
+      v-model:showConfirmclose="show_ConfirmClose"
+      v-model:status="status"
+      size="50px"
+      :finish="finish"
+      @commit="EmitCommit"
+      @confirm="EmitConfirmSave"
+      @cancel="EmitConfirmRemove"
+      @close="EmitCancelRelease"
+    />
+  </ManageMask>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

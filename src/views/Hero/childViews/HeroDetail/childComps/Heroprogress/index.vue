@@ -3,14 +3,15 @@ interface Props {
   index: number;
   pageName: string[];
 }
+interface Emits {
+  (e: "toggle", v: number): void;
+}
+
 withDefaults(defineProps<Props>(), {
   index: 0,
   pageName: () => [],
 });
 
-interface Emits {
-  (e: "toggle", v: number): void;
-}
 const emit = defineEmits<Emits>();
 
 /* 设置进度 */
