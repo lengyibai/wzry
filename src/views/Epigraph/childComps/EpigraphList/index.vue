@@ -74,27 +74,26 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <transition name="card-list">
-      <div class="epigraph-list" v-if="show">
-        <LibGridLayout
-          ref="epigraphListRef"
-          v-if="epigraph_list.length"
-          gap="15px"
-          :count="count"
-          :eqhMultiple="0.5"
-        >
-          <transition-group name="card" appear>
-            <div
-              v-for="(item, index) in epigraph_list"
-              :style="{
-                'transition-delay': 0.025 * index + 's',
-              }"
-              :key="item.id"
-            >
-              <EpigraphCard :data="item" />
-            </div>
-          </transition-group>
-        </LibGridLayout>
-      </div>
+      <LibGridLayout
+        v-if="show && epigraph_list.length"
+        ref="epigraphListRef"
+        class="epigraph-list"
+        gap="15px"
+        :count="count"
+        :eqhMultiple="0.5"
+      >
+        <transition-group name="card" appear>
+          <div
+            v-for="(item, index) in epigraph_list"
+            :style="{
+              'transition-delay': 0.025 * index + 's',
+            }"
+            :key="item.id"
+          >
+            <EpigraphCard :data="item" />
+          </div>
+        </transition-group>
+      </LibGridLayout>
     </transition>
   </div>
 </template>
