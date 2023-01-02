@@ -17,12 +17,8 @@ export const heroDefault: Hero.Data = {
   poster: "", //海报
   race: "", //种族
   skillUnit: "无", //技能消耗单位
-  relationships: [], //关系列表
   profession: [], //职业
   specialty: [], //特长
-  voices: [], //语音
-  skills: [], //技能
-  skins: [], //皮肤
 };
 
 export const skinDefault: Hero.Skin = {
@@ -37,7 +33,7 @@ export const skinDefault: Hero.Skin = {
   headImg: "", //头像
   profession: [], //职业
   heroName: "", //英雄名称
-  gender: "", //英雄名称
+  gender: "", //性别
 };
 
 export const voiceDefault: Hero.Voice = {
