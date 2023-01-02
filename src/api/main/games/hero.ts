@@ -1,4 +1,4 @@
-import { get } from "@/api/helper/transfer";
+import { get, post } from "@/api/helper/transfer";
 import { getHeroSkin } from "@/api/main/games/skin";
 import { getSkinVoice } from "@/api/main/games/voice";
 import { getHeroRelationship } from "@/api/main/games/relationship";
@@ -8,16 +8,31 @@ import { getHeroSkill } from "@/api/main/games/skill";
 export const getHeroBasic = () => {
   return Promise.resolve(get<Hero.General[]>({ name: "data_herobasic" }));
 };
+/** @description: 添加英雄基础列表 */
+export const addHeroBasic = (data: Hero.General) => {
+  return Promise.resolve(post<Hero.General>("data_herobasic", data));
+};
+
 /** @description: 获取英雄头像列表 */
 export const getHeroImg = (id: number) => {
   return Promise.resolve(
     get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id })
   );
 };
+/** @description: 添加英雄头像列表 */
+export const addHeroImg = (data: Hero.HeadImg) => {
+  return Promise.resolve(post<Hero.HeadImg>("data_heroimg", data));
+};
+
 /** @description: 获取英雄信息列表 */
 export const getHeroData = () => {
   return Promise.resolve(get<Hero.Data[]>({ name: "data_herodata" }));
 };
+/** @description: 添加英雄信息列表 */
+export const addHeroData = (data: Hero.Data) => {
+  return Promise.resolve(post<Hero.Data>("data_herodata", data));
+};
+
 /** @description: 获取英雄详情 */
 export const getHeroDetail = async (id: number) => {
   const hero = get<Hero.Data>({ name: "data_herodata", key: "id", value: id });

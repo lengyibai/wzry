@@ -1,8 +1,13 @@
-import { get } from "@/api/helper/transfer";
+import { get, post } from "@/api/helper/transfer";
 
 /** @description: 获取皮肤列表 */
 export const getSkin = () => {
   return Promise.resolve(get<Hero.Skin[]>({ name: "data_skin" }));
+};
+
+/** @description: 添加皮肤列表 */
+export const addSkin = (data: Hero.Skin) => {
+  return Promise.resolve(post<Hero.Skin>("data_skin", data));
 };
 
 /** @description: 获取指定英雄皮肤 */
