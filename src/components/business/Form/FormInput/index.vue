@@ -59,6 +59,7 @@ interface Props {
 }
 interface Emits {
   (e: "update:modelValue", v: string | number): void;
+  (e: "blur", v: string | number): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -101,6 +102,8 @@ const blur = (e: Event) => {
       legal.value = false;
     }
   });
+
+  emit("blur", v);
 };
 
 const input = (e: Event) => {
