@@ -20,10 +20,10 @@ declare namespace Hero {
     skillUnit: string; //技能消耗单位
     profession: string[]; //职业
     specialty: string[]; //特长
-    voices: Voice[]; //语音
-    skills: Skill[][]; //技能
-    skins: Skin[]; //皮肤
-    relationships: RelationType[]; //关系表
+    voices?: Voice[]; //语音
+    skills?: Skill[][]; //技能
+    skins?: Skin[]; //皮肤
+    relationships?: RelationType[]; //关系表
     [propsName: string]: any;
   }
   /** @description: 头像列表 */
