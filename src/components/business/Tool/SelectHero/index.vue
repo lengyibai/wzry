@@ -5,6 +5,7 @@
       :data="hero_list"
       v-model="id"
       :value="hero_name"
+      :disabled="disabled"
       required
       @change="selectHero"
       id
@@ -17,6 +18,7 @@ import { getHeroBasic } from "@/api/main/games/hero";
 
 interface Props {
   modelValue: number; //英雄id
+  disabled: boolean; //是否禁用
 }
 interface Emits {
   (e: "update:modelValue", v: number): void;
@@ -25,6 +27,7 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
+  disabled: false,
 });
 
 const emit = defineEmits<Emits>();
