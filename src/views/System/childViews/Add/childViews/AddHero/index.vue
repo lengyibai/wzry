@@ -1,19 +1,28 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import {
-  // addHero,
-  // addHeroList,
+  addHeroBasic,
+  addHeroImg,
+  addHeroData,
+  getHeroBasic,
   getCampType,
   getLocationType,
   getPeriodType,
   getProfessionType,
   getSpecialtyType,
+  getRaceType,
 } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import viewHide from "../../../../hooks/useViewHide";
-import staticData from "./hooks";
 import switchStore from "@/store/globalSwitch";
+
+interface Attr extends Record<string, string> {
+  survival: string;
+  attack: string;
+  effect: string;
+  difficulty: string;
+}
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -22,7 +31,19 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const { attr, info } = staticData();
+const attr: Attr = {
+  survival: "生存能力",
+  attack: "攻击伤害",
+  effect: "技能效果",
+  difficulty: "上手难度",
+};
+
+const info: string[][] = [
+  ["阵营", "campType", "camp"],
+  ["定位", "locationType", "location"],
+  ["时期", "periodType", "period"],
+  ["种族", "raceType", "race"],
+];
 
 const {
   status,
@@ -35,6 +56,11 @@ const {
   EmitCancelRelease,
 } = viewHide<typeof heroDefault>(emit, "add_hero");
 
+// 根据英雄总数设置id
+getHeroBasic().then((res) => {
+  form_data.value!.id = res.length + 1;
+});
+
 //判断是否存在缓存
 form_data.value ??= $deepCopy(heroDefault);
 
@@ -45,14 +71,23 @@ const type_list: Record<string, any[]> = reactive({
   periodType: [],
   professionType: [],
   specialtyType: [],
+  raceType: [],
 });
 
 /* 发布 */
 const EmitCommit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value!;
   if (id && mark && name && cover && headImg && poster) {
-    // await addHero(form_data.value);
-    // await addHeroList({ id: form_data.value!.id, name: form_data.value!.name });
+    await addHeroBasic({
+      id,
+      name,
+    });
+    await addHeroImg({
+      id,
+      name,
+      headImg,
+    });
+    await addHeroData(form_data.value!);
     finish.value = true;
     setTimeout(() => {
       EmitConfirmRemove();
@@ -68,6 +103,8 @@ const EmitCommit = async () => {
 setTimeout(async () => {
   $switchStore.$loading.show("正在加载阵营类型表2/7");
   type_list.campType = await getCampType();
+  $switchStore.$loading.show("正在加载种族类型表3/7");
+  type_list.raceType = await getRaceType();
   $switchStore.$loading.show("正在加载定位类型表4/7");
   type_list.locationType = await getLocationType();
   $switchStore.$loading.show("正在加载时期类型表5/7");
@@ -92,13 +129,6 @@ setTimeout(async () => {
   >
     <!-- 英雄名、代号、身高 -->
     <div class="flex-box">
-      <FormInput
-        label="id"
-        required
-        number
-        v-model="form_data!.id"
-        labelWidth="0px"
-      />
       <FormInput label="英雄名" required v-model="form_data!.name" />
       <FormInput label="代号" required v-model="form_data!.mark" />
       <FormInput label="身高" v-model="form_data!.height" />

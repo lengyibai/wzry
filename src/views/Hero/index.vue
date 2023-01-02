@@ -8,10 +8,14 @@ import {
   watch,
   defineAsyncComponent,
 } from "vue";
+import { useRouter } from "vue-router";
+import { getHeroDetail } from "@/api/main/games/hero";
+import { $deepCopy } from "@/utils";
+import { heroDefault } from "@/defaultValue/defaults";
+import heroDetail from "@/store/heroDetail";
+import heroStore from "@/store/hero";
 import { useRoute } from "vue-router";
 import $bus from "@/utils/eventBus";
-import heroStore from "@/store/hero";
-import useIntegrationData from "./hooks/useIntegrationData";
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
@@ -20,33 +24,74 @@ const HeroDetail = defineAsyncComponent(
 ); //详情页
 
 const $route = useRoute();
+const $router = useRouter();
 const $heroStore = heroStore();
+const $heroDetail = heroDetail();
 
-const heroListRef = ref();
-const id: unknown = $route.query.id; //地址栏参数
+let page = 1; //当前页数
+let page_total = 0; //总页数
+let page_count = 20; //一页显示的个数
+let id: unknown = $route.query.id; //地址栏参数
+let cache_list: Hero.Data[] = []; //总数据
+
+const heroListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
+const show_HeroDetail = ref(false); //显示英雄详情
 const hero_list = ref<Hero.Data[]>([]); //英雄列表
-const cache_list = ref<Hero.Data[]>([]); //总数据
-const page = ref(1); //当前页数
-const page_count = ref(20); //一页显示的个数
-const page_total = ref(0); //总页数
+const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
-const { hero_info, show_HeroDetail, EmitViewClick } = useIntegrationData(id);
+/* 查看详情 */
+const EmitViewClick = (id: number) => {
+  /* 获取指定英雄数据 */
+  getHeroDetail(id).then((hero) => {
+    /* 获取指定英雄皮肤 */
+    hero_info.value = hero;
+    $heroDetail.setHeroInfo(hero_info.value);
+    show_HeroDetail.value = true;
+
+    /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
+    $router.push({
+      path: "/hero",
+      query: {
+        id: hero_info.value.id,
+      },
+    });
+  });
+};
+
+/* 如果地址栏存在id，则打开查看详情 */
+if (id) {
+  EmitViewClick(Number(id));
+} else {
+  $heroStore.getHeroList($heroDetail.hero_info.profession[0]);
+}
+
+/* 加载更多 */
+const EmitLoadMore = () => {
+  if (page_total > page) {
+    page += 1;
+
+    hero_list.value.push(
+      ...cache_list.slice(page * page_count, (page + 1) * page_count)
+    );
+  }
+  heroListRef.value.updateHeight();
+};
 
 /* 监听筛选后的英雄列表 */
 watch(
   () => $heroStore.filter_list,
   (v) => {
     show.value = false;
-    page.value = 0;
+    page = 0;
     hero_list.value = [];
-    cache_list.value = v;
-    hero_list.value = cache_list.value.slice(
-      page.value * page_count.value,
-      (page.value + 1) * page_count.value
+    cache_list = v;
+    hero_list.value = cache_list.slice(
+      page * page_count,
+      (page + 1) * page_count
     );
-    page_total.value = Math.round(cache_list.value.length / page_count.value);
+    page_total = Math.round(cache_list.length / page_count);
 
     nextTick(() => {
       show.value = true;
@@ -54,21 +99,6 @@ watch(
   },
   { deep: true, immediate: true }
 );
-
-/* 加载更多 */
-const EmitLoadMore = () => {
-  if (page_total.value > page.value) {
-    page.value += 1;
-
-    hero_list.value.push(
-      ...cache_list.value.slice(
-        page.value * page_count.value,
-        (page.value + 1) * page_count.value
-      )
-    );
-    heroListRef.value.updateHeight();
-  }
-};
 
 /* 进入页面后更新高度 */
 onActivated(() => {
