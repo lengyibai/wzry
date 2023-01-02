@@ -47,14 +47,14 @@
             class="box"
             :class="{
               active:
-                currentIndex === index ||
+                current_index === index ||
                 modelValue === item.name ||
                 modelValue === item.id,
             }"
             v-for="(item, index) in select_list"
             @mousedown="select(item.id, item.name)"
-            @mouseenter="currentIndex = index"
-            @mouseleave="currentIndex = null"
+            @mouseenter="current_index = index"
+            @mouseleave="current_index = null"
             :key="item.id"
           >
             <div class="item">{{ item.name }}</div>
@@ -86,7 +86,7 @@ interface Props {
   disabled?: boolean; //是否禁用
   required?: boolean; //是否必填
   label?: string; //左侧文字
-  value?: string | any[]; //输入框默认值
+  value?: string | number | any[]; //输入框默认值
   multi?: boolean; //是否支持多选
 }
 
@@ -111,7 +111,7 @@ const input_value = ref<any>(""); //输入框的值
 const active_value = ref<any>(""); //选中的值
 const no_legal = ref(false); //是否合法
 const is_unfold = ref(false); //是否展开
-const currentIndex = ref<number | null>(null); //当前点击
+const current_index = ref<number | null>(null); //当前点击
 const select_list = ref<any[]>([]); //下拉列表
 const selected_list = ref<any[]>([]); //选择的列表
 
@@ -183,12 +183,43 @@ watch(
     if (props.multi) {
       selected_list.value = v as any[];
     } else {
-      active_value.value = v;
-      input_value.value = v;
+      if (v) {
+        if (typeof v === "number") {
+          input_value.value = props.data.find((item) => {
+            return item.id === v;
+          }).name;
+        } else {
+          input_value.value = v;
+        }
+      } else {
+        input_value.value = v;
+      }
     }
   },
   { immediate: true }
 );
+watch(
+  () => input_value.value,
+  (v) => {
+    if (!props.multi) {
+      if (v) {
+        if (typeof v === "number") {
+          input_value.value = props.data.find((item) => {
+            return item.id === v;
+          }).name;
+        } else {
+          input_value.value = v;
+          active_value.value = v;
+        }
+      } else {
+        input_value.value = v;
+      }
+    }
+  },
+  { immediate: true }
+);
+
+setInterval(() => {}, 1000);
 </script>
 <style scoped lang="less">
 @import url("./index.less");
