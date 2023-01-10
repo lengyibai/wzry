@@ -9,11 +9,11 @@ const props = withDefaults(defineProps<Props>(), {
   heroData: () => heroDefault,
 });
 
-const hero_info: string[][] = [
-  [props.heroData.profession.join("/"), "profession", "职业"],
-  [props.heroData.location, "location", "定位"],
-  [props.heroData.specialty.join("/"), "specialty", "特长"],
-  [props.heroData.period, "period", "时期"],
+const hero_info: (string | number)[][] = [
+  [props.heroData.profession.join("/"), "profession", "游戏职业"],
+  [props.heroData.location, "location", "细分定位"],
+  [props.heroData.specialty.join("/"), "specialty", "游戏特长"],
+  [props.heroData.period, "period", "强势时期"],
   [props.heroData.camp, "camp", "阵营"],
   [props.heroData.height, "height", "身高"],
   [props.heroData.identity, "identity", "身份"],
