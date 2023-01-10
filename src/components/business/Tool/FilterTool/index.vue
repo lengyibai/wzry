@@ -39,6 +39,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
   <div class="select-filter cursor-pointer" @click="handleShowList">
     <div class="title">{{ sort_text }}</div>
     <img
+      :class="{ 'arrow-active': is_unfold }"
       src="https://lengyibai.gitee.io/wzry-material/image/arrow.png"
       alt="arrow"
       class="arrow"
