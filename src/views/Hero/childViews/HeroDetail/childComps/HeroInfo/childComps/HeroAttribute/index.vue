@@ -57,7 +57,7 @@ onMounted(() => {
       <i
         :style="{
           backgroundColor: bgc[attr],
-          width: progress,
+          width: progress + '%',
         }"
       />
     </div>
