@@ -6,6 +6,7 @@ import switchStore from "./globalSwitch";
 import router from "@/router";
 import routesStore from "@/store/routes";
 import { ref } from "vue";
+import { HOME_URL } from "@/config/config";
 
 export default defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
@@ -44,7 +45,7 @@ export default defineStore("auth", () => {
         userInfo.value = res;
         // 存储 token 到本地
         window.localStorage.setItem("user", JSON.stringify(res));
-        router.push("/home");
+        router.push(HOME_URL);
         watchStatus();
       })
       .catch(() => {})

@@ -9,3 +9,6 @@ export const ACCOUNT = 1329670984;
 
 /** @description: 本地版本 */
 export const LOCAL_VERSION = "22.12.10.01";
+
+/** @description: 首页地址 */
+export const HOME_URL = "/hero";

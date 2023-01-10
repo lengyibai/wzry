@@ -3,7 +3,8 @@ import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 import switchStore from "@/store/globalSwitch";
 import authStore from "@/store/auth";
-import NProgress from "@/config/nprogress"; // 导入 nprogress模块
+import NProgress from "@/config/nprogress";
+import { HOME_URL } from "@/config/config";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -31,7 +32,7 @@ useRouter.beforeEach(async (to, from, next) => {
   }
   // 如果当前处于登录页面，但是本地有用户信息
   else if (token && to.meta.noVerify) {
-    next("/hero");
+    next(HOME_URL);
     return;
   }
   // 如果未登录，但是本地存在用户信息，且能匹配权限
