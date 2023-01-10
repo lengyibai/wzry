@@ -104,11 +104,12 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="hero">
-    <div class="hero-main">
+  <div class="skin">
+    <div class="skin-main">
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
+          class="skin-list"
           ref="skinListRef"
           gap="25px"
           v-if="skin_list.length && show"
