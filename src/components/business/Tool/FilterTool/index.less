@@ -2,10 +2,10 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-right: 50px;
+  margin: 10px;
   padding: 0.25em 1.4em;
   border: 1px solid #2e4e75;
-  font-size: 20px;
+  font-size: 16px;
   background-color: #13233c;
   background-image: linear-gradient(180deg, #13233c 0%, #263657 100%);
 
@@ -17,6 +17,7 @@
     width: 15px;
     height: 9px;
     margin-left: 15px;
+    transition: all 0.25s;
   }
 
   .select-list {
@@ -26,7 +27,7 @@
     z-index: 2;
     overflow: auto;
     width: 100%;
-    min-width: 190px;
+    min-width: 100px;
     border: 1px solid var(--theme-color-four);
     border-radius: 5px;
     background-color: #13233c;
@@ -42,7 +43,7 @@
       text-align: left;
 
       .item {
-        font-size: 22px;
+        font-size: 16px;
         transition: all 0.25s;
       }
     }
@@ -57,4 +58,8 @@
 .unfold {
   opacity: 0;
   transform: translateY(100%) scaleY(0) !important;
+}
+
+.arrow-active {
+  transform: rotate(180deg);
 }
