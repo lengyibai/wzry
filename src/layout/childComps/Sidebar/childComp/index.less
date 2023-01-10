@@ -36,10 +36,24 @@
   .menu-list {
     font-size: 20px;
   }
+
+  @media screen and (max-width: 1300px) {
+    span {
+      display: none;
+    }
+
+    .arrow {
+      display: none;
+    }
+  }
 }
 
 .active {
-  background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%);
+  background-image: linear-gradient(
+    225deg,
+    rgb(34 58 94 / 0%) 25%,
+    rgb(34 130 199 / 25%) 100%
+  );
   color: var(--white) !important;
 }
 

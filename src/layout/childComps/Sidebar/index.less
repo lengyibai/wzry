@@ -23,16 +23,24 @@
       font-size: 30px;
     }
   }
+  @media screen and (max-width: 1300px) {
+    width: initial;
 
-  .side-item {
-    display: flex;
-    overflow-x: hidden;
-    overflow-y: auto;
-    flex-direction: column;
-  }
+    .game {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 0;
 
-  .box {
-    position: relative;
-    flex: 1;
+      .iconfont {
+        margin-right: 10px;
+        color: var(--theme-color-five);
+        font-size: 50px;
+      }
+
+      span {
+        display: none;
+      }
+    }
   }
 }
