@@ -25,16 +25,35 @@
     .name {
       font-size: 20px;
     }
+  }
 
-    :deep(.icon) {
-      width: 35px;
-      height: 35px;
-      margin-right: 20px;
+  @media screen and (max-width: 1300px) {
+    width: initial;
+
+    .hero-type {
+      padding: 10px;
+
+      .name {
+        display: none;
+      }
+
+      .iconfont {
+        margin-right: 0;
+        font-size: 25px;
+      }
+
+      :deep(.icon) {
+        margin-right: 0;
+      }
     }
   }
 }
 
 .active {
   color: var(--white) !important;
-  background-image: linear-gradient(135deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgb(34 58 94 / 0%) 25%,
+    rgb(34 130 199 / 25%) 100%
+  ) !important;
 }
