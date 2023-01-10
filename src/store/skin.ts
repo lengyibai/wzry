@@ -2,6 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import { getSkin } from "@/api/main/games/skin";
 import { getSkinType } from "@/api/main/games/skinType";
+import { $debounce, $search } from "@/utils/index";
 
 export default defineStore("skin", () => {
   const profession = ref(""); //职业类型
@@ -125,6 +126,20 @@ export default defineStore("skin", () => {
     }
   };
 
+  /** @description: 搜索皮肤 */
+  const searchSkin = (name: string) => {
+    $debounce(() => {
+      if (name) {
+        filter_list.value = $search(skin_list.value, name, [
+          "name",
+          "heroName",
+        ]);
+      } else {
+        sortAll();
+      }
+    }, 500);
+  };
+
   return {
     profession,
     skin_list,
@@ -138,5 +153,6 @@ export default defineStore("skin", () => {
     sortPrice,
     sortGender,
     sortAll,
+    searchSkin,
   };
 });

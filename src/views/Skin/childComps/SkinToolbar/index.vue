@@ -11,6 +11,7 @@ const select_list = [
 ];
 
 const gender = ref(0); //性别排序
+const search_value = ref(""); //搜索值
 
 /* 选择后触发 */
 const EmitSelectFilter = (v: number) => {
@@ -21,6 +22,11 @@ const EmitSelectFilter = (v: number) => {
 const handerSetGender = (type: number) => {
   gender.value = type;
   $SkinStore.sortGender(type);
+};
+
+/** @description: 搜索皮肤 */
+const handSearch = () => {
+  $SkinStore.searchSkin(search_value.value);
 };
 </script>
 
@@ -51,6 +57,15 @@ const handerSetGender = (type: number) => {
         title="全部"
       ></i>
     </div>
+
+    <!-- 搜索 -->
+    <input
+      class="search"
+      placeholder="皮肤/英雄名"
+      type="text"
+      @input="handSearch"
+      v-model="search_value"
+    />
   </div>
 </template>
 
