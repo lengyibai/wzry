@@ -2,13 +2,13 @@
 export const heroDefault: Hero.Data = {
   id: 0, //标识符
   attack: "0", //攻击
-  difficulty: "0", //难度
+  difficulty: 0, //难度
   effect: "0", //增益
   survival: "0", //生存
   camp: "", //阵营
   cover: "", //封面
   headImg: "", //头像
-  height: "", //身高
+  height: 0, //身高
   identity: "", //身份
   location: "", //区域
   mark: "", //代号
