@@ -3,13 +3,13 @@ declare namespace Hero {
   interface Data {
     id: number; //标识符
     attack: string; //攻击
-    difficulty: string; //难度
+    difficulty: number; //难度
     effect: string; //增益
     survival: string; //生存
     camp: string; //阵营
     cover: string; //封面
     headImg: string; //头像
-    height: string; //身高
+    height: number; //身高
     identity: string; //身份
     location: string; //区域
     mark: string; //代号
