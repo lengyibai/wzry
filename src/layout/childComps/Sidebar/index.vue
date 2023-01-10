@@ -12,13 +12,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Route, Routes } from "@/router/interface";
+import { RouteRecordRaw } from "vue-router";
+import { Route } from "@/router/interface";
 import routerStore from "@/store/routes";
 import sideItem from "./childComp/SideItem.vue";
 
 const options = routerStore().routes; //路由数据
 
-const formatRoute = (a: Routes[]) => {
+const formatRoute = (a: RouteRecordRaw[]) => {
   const routes: Route[] = [];
   const fn = (b: Route[] | null | undefined, zIndex: number) => {
     const route: Route[] = [];
@@ -44,7 +45,7 @@ const formatRoute = (a: Routes[]) => {
     if (item?.meta?.hidden) return;
     routes.push({
       path: item.path,
-      title: item.meta.title,
+      title: item.meta.title as string,
       meta: item.meta,
       children: fn(item.children as Route[], 1),
       zIndex: 1,
