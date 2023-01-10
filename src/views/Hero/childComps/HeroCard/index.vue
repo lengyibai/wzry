@@ -26,7 +26,7 @@ const handleViewClick = () => {
 
 <template>
   <div
-    class="hero-card"
+    class="hero-card cursor-pointer"
     :class="{ hide: show }"
     v-maskGradient
     v-sweepLight
