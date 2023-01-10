@@ -15,14 +15,19 @@
     transform: translateY(-10px) scale(1.05);
   }
 
-  .id {
+  .id,
+  .num {
     z-index: 1;
     margin: 15px;
-    color: var(--white);
     font-size: 16px;
     text-shadow: 0 1px 2px rgb(0 0 0 / 50%);
     transition: all 0.5s;
     pointer-events: none;
+  }
+
+  .num {
+    position: absolute;
+    right: 0;
   }
 
   .select-mask {
@@ -228,22 +233,23 @@
 
   .bottom {
     .name {
-      transform: translateX(-100px) scale(1.25);
+      transform: translateX(-100px);
       opacity: 0;
     }
 
     .mark {
-      transform: translateX(100px) scale(1.25);
+      transform: translateX(100px);
       opacity: 0;
     }
   }
 
-  .id {
+  .id,
+  .num {
     transform: scale(1.5);
     opacity: 0;
   }
 
   .bg {
-    transform: scale(1.15);
+    transform: scale(1.25);
   }
 }
