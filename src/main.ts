@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
-import useRouter from "./router/index";
+import useRouter from "./router";
 import useAutoLogin from "@/hooks/useAutoLogin";
 
 import directives from "@/utils/directives";

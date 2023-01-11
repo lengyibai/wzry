@@ -1,7 +1,7 @@
 import type { DirectiveBinding, App } from "vue";
 /* 全屏背景视差 */
 //视频
-import { $random } from "../utils/index";
+import { $random } from "../utils";
 
 const parallaxVideo = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {

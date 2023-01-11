@@ -1,4 +1,4 @@
-import http from "@/api/index";
+import http from "@/api";
 
 /** @description: 获取用户列表 */
 export const User = () => http.Get<any[]>("/user.json");

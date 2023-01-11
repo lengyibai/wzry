@@ -1,6 +1,6 @@
 <script setup lang="ts" name="Data">
 import { ref } from "vue";
-import { $typeSort, $savefiles, $deepCopy } from "@/utils/index";
+import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 
 import {
   HeroBasic,

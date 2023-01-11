@@ -25,7 +25,7 @@
   </transition>
 </template>
 <script setup lang="ts">
-import { MsgText } from "@/components/business/GlobalSwitch/interface/index";
+import { MsgText } from "@/components/business/GlobalSwitch/interface";
 
 interface Props {
   messages: MsgText[];

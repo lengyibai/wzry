@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { $chromeV } from "@/utils/index";
+import { $chromeV } from "@/utils";
 import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
 import useGetData from "@/hooks/useGetData";
 import useVersion from "@/hooks/useVersion";

@@ -12,6 +12,7 @@ import skinStore from "@/store/skin";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
+import { $lazyLoadImages } from "@/utils";
 
 const $skinStore = skinStore();
 
@@ -36,7 +37,13 @@ const EmitLoadMore = () => {
     skin_list.value.push(
       ...cache_list.value.slice(page * page_count, (page + 1) * page_count)
     );
-    skinListRef.value.updateHeight();
+    nextTick(() => {
+      skinListRef.value.updateHeight();
+      const imgs = skinListRef.value.childrens.map((item: HTMLElement) => {
+        return item.children[0].firstChild;
+      });
+      $lazyLoadImages(imgs);
+    });
   }
 };
 
@@ -109,6 +116,7 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
+          scrollId="skin_list"
           class="skin-list"
           ref="skinListRef"
           gap="25px"
