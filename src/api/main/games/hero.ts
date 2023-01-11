@@ -40,10 +40,12 @@ export const getHeroDetail = async (id: number) => {
   const skills = await getHeroSkill(id); //获取技能列表
   const voices = await getSkinVoice(hero.name, "原皮"); //获取语音列表
   const relationships = await getHeroRelationship(id); //获取关系列表
-  for (let i = 0; i < relationships.length; i++) {
-    relationships[i].hero = await getHeroImg(
-      relationships[i].id as unknown as number
-    );
+  if (relationships) {
+    for (let i = 0; i < relationships.length; i++) {
+      relationships[i].hero = await getHeroImg(
+        relationships[i].id as unknown as number
+      );
+    }
   }
 
   hero.skins = skins || [];
