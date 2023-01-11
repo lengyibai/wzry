@@ -110,13 +110,6 @@ export const admin: RouterSheel[] = [
         component: "@/views/System/childViews/Edit",
       },
       {
-        title: "删除",
-        icon: "wzry-lajitong",
-        path: "/System/delete",
-        name: "delete",
-        component: "@/views/System/childViews/Delete",
-      },
-      {
         title: "本地数据管理",
         icon: "wzry-database",
         path: "/System/data",
