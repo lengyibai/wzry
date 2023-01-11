@@ -10,7 +10,7 @@ import {
 } from "vue";
 import { useRouter } from "vue-router";
 import { getHeroDetail } from "@/api/main/games/hero";
-import { $deepCopy } from "@/utils";
+import { $deepCopy, $lazyLoadImages } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
@@ -76,7 +76,13 @@ const EmitLoadMore = () => {
       ...cache_list.slice(page * page_count, (page + 1) * page_count)
     );
   }
-  heroListRef.value.updateHeight();
+  nextTick(() => {
+    heroListRef.value.updateHeight();
+    const imgs = heroListRef.value.childrens.map((item: HTMLElement) => {
+      return item.children[0].children[1];
+    });
+    $lazyLoadImages(imgs);
+  });
 };
 
 /* 监听筛选后的英雄列表 */
@@ -145,6 +151,7 @@ onBeforeUnmount(() => {
         <HeroToolbar />
         <LibGridLayout
           class="hero-list"
+          scrollId="hero_list"
           ref="heroListRef"
           gap="25px"
           v-if="hero_list.length && show"
