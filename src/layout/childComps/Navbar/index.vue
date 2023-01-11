@@ -2,12 +2,6 @@
   <!-- 导航栏 -->
   <div class="navbar border-1">
     <div class="right">
-      <!-- 搜索 -->
-      <i
-        class="iconfont wzry-search cursor-pointer"
-        @click="$switchStore.$tip('开发中...', 'warning')"
-        title="搜索"
-      />
       <!-- 设置 -->
       <i
         class="iconfont wzry-setting cursor-pointer"
