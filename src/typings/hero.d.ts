@@ -2,10 +2,10 @@
 declare namespace Hero {
   interface Data {
     id: number; //标识符
-    attack: string; //攻击
+    attack: number; //攻击
     difficulty: number; //难度
-    effect: string; //增益
-    survival: string; //生存
+    effect: number; //增益
+    survival: number; //生存
     camp: string; //阵营
     cover: string; //封面
     headImg: string; //头像
@@ -57,6 +57,7 @@ declare namespace Hero {
   /** @description: 返回的技能 */
   interface SkillParams {
     id: number;
+    unit: string;
     skills: Skill[][];
   }
 
@@ -90,13 +91,14 @@ declare namespace Hero {
     num: number; //序号
     price: string | number; //价格
     type: number | string; //类型
+    category?: string; //皮肤类型名
     gender: string; //性别
     name: string; //名称
     poster: string; //海报
     cover: string; //封面
     headImg: string; //头像
-    profession: string[]; //职业
     heroName: string; //英雄名称
+    profession: string[]; //职业
   }
   /** @description: 皮肤类型 */
   interface SkinType {
