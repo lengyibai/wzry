@@ -34,7 +34,10 @@ onMounted(() => {
 
       <!-- 关系 -->
       <transition name="scale">
-        <HeroRelationship :relationship="hero_data.relationships" v-if="into" />
+        <HeroRelationship
+          :relationship="hero_data.relationships"
+          v-if="into && hero_data.relationships"
+        />
       </transition>
     </div>
 
