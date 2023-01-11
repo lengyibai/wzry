@@ -3,11 +3,11 @@ import { onMounted, ref } from "vue";
 
 interface Props {
   attr: string;
-  length: string;
+  length: number;
 }
 const props = withDefaults(defineProps<Props>(), {
   attr: "",
-  length: "0%",
+  length: 0,
 });
 
 const y: Record<string, string> = {
@@ -38,7 +38,7 @@ const text: Text = {
 };
 
 const attribute = ref(); //属性元素
-const progress = ref("0%"); //进度条
+const progress = ref(0); //进度条
 
 onMounted(() => {
   setTimeout(() => {
