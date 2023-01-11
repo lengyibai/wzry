@@ -9,39 +9,36 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref, toRefs, nextTick } from "vue";
-
-const props = defineProps({
-  count: {
-    type: Number,
-    default: 3,
-  },
-  gap: {
-    type: String,
-    default: "0px",
-  },
-  eqhMultiple: {
-    type: Number,
-    default: 0,
-  },
+import { onBeforeMount, onMounted, onActivated, ref, nextTick } from "vue";
+interface Props {
+  count: number;
+  gap: string;
+  eqhMultiple: number;
+  scrollId?: string;
+}
+const props = withDefaults(defineProps<Props>(), {
+  count: 3,
+  gap: "0px",
+  eqhMultiple: 0,
+  scrollId: "",
 });
 
-const { eqhMultiple } = toRefs(props);
-
-let childrens: HTMLElement[] = [];
 const LibGridLayout = ref();
+
+let childrens = ref<HTMLElement[]>([]);
+
 const fn = () => {
   requestAnimationFrame(() => {
-    childrens.forEach((item) => {
-      item.style.height = `${item.offsetWidth * eqhMultiple.value}px`;
+    childrens.value.forEach((item) => {
+      item.style.height = `${item.offsetWidth * props.eqhMultiple}px`;
     });
   });
 };
 const updateHeight = () => {
-  childrens = [...LibGridLayout.value.children];
+  childrens.value = [...LibGridLayout.value.children];
   nextTick(() => {
-    childrens.forEach((item) => {
-      item.style.height = `${item.scrollWidth * eqhMultiple.value}px`;
+    childrens.value.forEach((item) => {
+      item.style.height = `${item.scrollWidth * props.eqhMultiple}px`;
     });
     window.addEventListener("resize", fn);
   });
@@ -58,20 +55,31 @@ const scroll = (e: Event) => {
   if (el.scrollHeight < el.scrollTop + el.clientHeight * 1.5 && !lock) {
     emit("load-more");
   }
+  if (props.scrollId) {
+    sessionStorage.setItem(props.scrollId, el.scrollTop.toString());
+  }
 };
 
 onMounted(() => {
   let a: any = null;
+  a = requestAnimationFrame(fn);
   (function fn() {
-    if (eqhMultiple.value > 0 && childrens?.length === 0) {
+    if (props.eqhMultiple > 0 && childrens.value?.length === 0) {
       updateHeight();
+    } else if (childrens.value?.length > 0) {
+      cancelAnimationFrame(a);
     }
-    a = requestAnimationFrame(fn);
   })();
-  // 3秒后还未获取到插槽元素，则取消获取
+  // 5秒后还未获取到插槽元素，则取消获取
   setTimeout(() => {
     cancelAnimationFrame(a);
   }, 5000);
+});
+
+onActivated(() => {
+  if (props.scrollId) {
+    LibGridLayout.value.scroll({ top: sessionStorage.getItem(props.scrollId) });
+  }
 });
 
 onBeforeMount(() => {
@@ -79,6 +87,7 @@ onBeforeMount(() => {
 });
 
 defineExpose({
+  childrens,
   updateHeight,
 });
 </script>
