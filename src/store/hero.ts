@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { getHeroData } from "@/api/main/games/hero";
 import { getHeroSkill } from "@/api/main/games/skill";
 import { getHeroSkin } from "@/api/main/games/skin";
-import { $debounce, $search } from "@/utils/index";
+import { $debounce, $search } from "@/utils";
 import { ref } from "vue";
 
 export default defineStore("hero", () => {

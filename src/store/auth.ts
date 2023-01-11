@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { FormData } from "@/api/interface/form";
-import { _login } from "@/api/main/user/index";
+import { _login } from "@/api/main/user";
 import { ResultData } from "@/api/interface/result";
 import switchStore from "./globalSwitch";
 import router from "@/router";
