@@ -49,27 +49,31 @@ hero_id.value && EmitSelectHero(hero_id.value);
 /* 增加一项 */
 const scrollBox = ref();
 const handleAddOne = () => {
-  form_data.value!.push({
-    id: 0,
-    hero: hero_info.id, //所属英雄id
-    num: 0,
-    price: 0, //价格
-    type: "", //类型
-    name: "", //名称
-    poster: "", //海报
-    cover: "", //封面
-    headImg: "", //头像
-    profession: hero_info.profession, //职业
-    heroName: hero_info.name, //英雄名称
-    gender: hero_info.gender, //英雄名称
-  });
-  // 滚动到底部
-  setTimeout(() => {
-    scrollBox.value.el.scroll({
-      top: scrollBox.value.el.scrollHeight,
-      behavior: "smooth",
+  if (hero_id.value) {
+    form_data.value!.push({
+      id: 0,
+      hero: hero_info.id, //所属英雄id
+      num: 0,
+      price: 0, //价格
+      type: "", //类型
+      name: "", //名称
+      poster: "", //海报
+      cover: "", //封面
+      headImg: "", //头像
+      profession: hero_info.profession, //职业
+      heroName: hero_info.name, //英雄名称
+      gender: hero_info.gender, //英雄名称
     });
-  });
+    // 滚动到底部
+    setTimeout(() => {
+      scrollBox.value.el.scroll({
+        top: scrollBox.value.el.scrollHeight,
+        behavior: "smooth",
+      });
+    });
+  } else {
+    $switchStore.$tip("请选择英雄后新增", "error");
+  }
 };
 
 /* 判断皮肤是否存在 */
@@ -88,11 +92,10 @@ const handleDelOne = (i: number) => {
 
 /* 发布 */
 const EmitCommit = async () => {
-  console.log(form_data.value);
-
   // 设置皮肤id
   form_data.value!.forEach((item, index) => {
     item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
+    item.num = skin_num.value + 1;
   });
   const pass = form_data.value!.every((item) => {
     return item.hero !== 0;
@@ -155,16 +158,8 @@ setTimeout(async () => {
         @mouseenter="current_index = index"
         @mouseleave="current_index = null"
         v-for="(item, index) in form_data"
-        :key="item.id"
+        :key="index"
       >
-        <!--··皮肤名··-->
-        <FormInput
-          label="皮肤编号"
-          required
-          v-model="item.num"
-          placeholder="第几款皮肤"
-          number
-        />
         <FormInput
           label="皮肤名"
           required
