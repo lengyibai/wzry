@@ -13,9 +13,14 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士", "刺客"],
+      "profession": [
+        "战士",
+        "刺客"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "均衡",
       "height": 186,
       "identity": "龙枪战士",
@@ -36,9 +41,14 @@
       "effect": 80,
       "difficulty": 20,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["爆发", "先手"],
+      "specialty": [
+        "爆发",
+        "先手"
+      ],
       "period": "后期",
       "height": 165,
       "identity": "姜子牙所造人偶",
@@ -59,9 +69,14 @@
       "effect": 90,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "减伤"],
+      "specialty": [
+        "持续输出",
+        "减伤"
+      ],
       "period": "均衡",
       "height": 178,
       "identity": "吟游乐师",
@@ -82,9 +97,13 @@
       "effect": 40,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "先锋坦克",
-      "specialty": ["团控"],
+      "specialty": [
+        "团控"
+      ],
       "period": "均衡",
       "height": 193,
       "identity": "玄雍武将",
@@ -105,9 +124,14 @@
       "effect": 100,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "全图支援"],
+      "specialty": [
+        "控制",
+        "全图支援"
+      ],
       "period": "均衡",
       "height": 171,
       "identity": "长安女帝",
@@ -128,9 +152,15 @@
       "effect": 70,
       "difficulty": 90,
       "gender": "女",
-      "profession": ["战士", "法师"],
+      "profession": [
+        "战士",
+        "法师"
+      ],
       "location": "冲锋战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 173,
       "identity": "寒星家族继承人",
@@ -151,9 +181,14 @@
       "effect": 40,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "先锋坦克",
-      "specialty": ["团控", "先手"],
+      "specialty": [
+        "团控",
+        "先手"
+      ],
       "period": "均衡",
       "height": 190,
       "identity": "甘丹族长",
@@ -174,9 +209,14 @@
       "effect": 100,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["消耗", "加速"],
+      "specialty": [
+        "消耗",
+        "加速"
+      ],
       "period": "后期",
       "height": 182,
       "identity": "玄雍君主",
@@ -197,9 +237,14 @@
       "effect": 40,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "后期",
       "height": 171,
       "identity": "复仇刺客",
@@ -220,9 +265,14 @@
       "effect": 70,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "冰冻"],
+      "specialty": [
+        "控制",
+        "冰冻"
+      ],
       "period": "均衡",
       "height": 171,
       "identity": "魔道圣人之后",
@@ -243,9 +293,13 @@
       "effect": 40,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "后期",
       "height": 173,
       "identity": "稷下三贤者",
@@ -266,9 +320,14 @@
       "effect": 80,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["消耗", "团队增益"],
+      "specialty": [
+        "消耗",
+        "团队增益"
+      ],
       "period": "后期",
       "height": 178,
       "identity": "神职者",
@@ -289,9 +348,14 @@
       "effect": 80,
       "difficulty": 30,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["消耗", "群伤"],
+      "specialty": [
+        "消耗",
+        "群伤"
+      ],
       "period": "后期",
       "height": 157,
       "identity": "魔道名门之后",
@@ -312,9 +376,13 @@
       "effect": 30,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "后期",
       "height": 149,
       "identity": "鲁班所造之物",
@@ -335,9 +403,15 @@
       "effect": 70,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "重装战士",
-      "specialty": ["团控", "突进"],
+      "specialty": [
+        "团控",
+        "突进"
+      ],
       "period": "前期",
       "height": 177,
       "identity": "稷下学生",
@@ -358,9 +432,13 @@
       "effect": 30,
       "difficulty": 20,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["无"],
+      "specialty": [
+        "无"
+      ],
       "period": "均衡",
       "height": 178,
       "identity": "长安治安官",
@@ -381,9 +459,14 @@
       "effect": 80,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "先手"],
+      "specialty": [
+        "控制",
+        "先手"
+      ],
       "period": "均衡",
       "height": 180,
       "identity": "天才学者",
@@ -404,9 +487,15 @@
       "effect": 50,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["法师", "战士"],
+      "profession": [
+        "法师",
+        "战士"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "护盾"],
+      "specialty": [
+        "控制",
+        "护盾"
+      ],
       "period": "后期",
       "height": 510,
       "identity": "稷下三贤者",
@@ -427,9 +516,14 @@
       "effect": 40,
       "difficulty": 20,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "守护辅助",
-      "specialty": ["团队增益"],
+      "specialty": [
+        "团队增益"
+      ],
       "period": "后期",
       "height": 175,
       "identity": "稷下三贤者",
@@ -450,9 +544,15 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["辅助", "法师"],
+      "profession": [
+        "辅助",
+        "法师"
+      ],
       "location": "战术辅助",
-      "specialty": ["团控", "团队增益"],
+      "specialty": [
+        "团控",
+        "团队增益"
+      ],
       "period": "后期",
       "height": 155,
       "identity": "稷下学生",
@@ -473,9 +573,13 @@
       "effect": 30,
       "difficulty": 10,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["收割"],
+      "specialty": [
+        "收割"
+      ],
       "period": "后期",
       "height": 183,
       "identity": "魏迪武将",
@@ -496,9 +600,15 @@
       "effect": 20,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "冲锋战士",
-      "specialty": ["突进", "团控"],
+      "specialty": [
+        "突进",
+        "团控"
+      ],
       "period": "均衡",
       "height": 177,
       "identity": "拳僧",
@@ -519,9 +629,13 @@
       "effect": 30,
       "difficulty": 80,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "均衡",
       "height": 185,
       "identity": "灞城武将",
@@ -542,9 +656,14 @@
       "effect": 50,
       "difficulty": 20,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "冲锋战士",
-      "specialty": ["无"],
+      "specialty": [
+        "无"
+      ],
       "period": "均衡",
       "height": 188,
       "identity": "圣骑士团领袖",
@@ -565,9 +684,14 @@
       "effect": 50,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "重炮射手",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "后期",
       "height": 166,
       "identity": "吴地小公主",
@@ -588,9 +712,15 @@
       "effect": 50,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "战术辅助",
-      "specialty": ["推进", "团控"],
+      "specialty": [
+        "推进",
+        "团控"
+      ],
       "period": "前期",
       "height": 210,
       "identity": "蜀地继承人",
@@ -611,9 +741,14 @@
       "effect": 30,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "治疗"],
+      "specialty": [
+        "持续输出",
+        "治疗"
+      ],
       "period": "后期",
       "height": 173,
       "identity": "医者",
@@ -634,9 +769,14 @@
       "effect": 50,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 181,
       "identity": "扶桑剑客",
@@ -657,9 +797,14 @@
       "effect": 50,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "守护坦克",
-      "specialty": ["团控", "承伤"],
+      "specialty": [
+        "团控",
+        "承伤"
+      ],
       "period": "后期",
       "height": 197,
       "identity": "霸王",
@@ -680,9 +825,15 @@
       "effect": 50,
       "difficulty": 10,
       "gender": "男",
-      "profession": ["坦克", "战士"],
+      "profession": [
+        "坦克",
+        "战士"
+      ],
       "location": "先锋坦克",
-      "specialty": ["单带", "回复"],
+      "specialty": [
+        "单带",
+        "回复"
+      ],
       "period": "均衡",
       "height": 200,
       "identity": "名将",
@@ -703,9 +854,14 @@
       "effect": 80,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "冰冻"],
+      "specialty": [
+        "控制",
+        "冰冻"
+      ],
       "period": "均衡",
       "height": 170,
       "identity": "和亲公主",
@@ -726,9 +882,14 @@
       "effect": 80,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["爆发", "护盾"],
+      "specialty": [
+        "爆发",
+        "护盾"
+      ],
       "period": "均衡",
       "height": 153,
       "identity": "神秘法师",
@@ -749,9 +910,13 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["吸血"],
+      "specialty": [
+        "吸血"
+      ],
       "period": "均衡",
       "height": 179,
       "identity": "魏地主公",
@@ -772,9 +937,14 @@
       "effect": 90,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "推进"],
+      "specialty": [
+        "持续输出",
+        "推进"
+      ],
       "period": "前期",
       "height": 180,
       "identity": "吴地都督",
@@ -795,9 +965,15 @@
       "effect": 50,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "守护辅助",
-      "specialty": ["团控", "团队增益"],
+      "specialty": [
+        "团控",
+        "团队增益"
+      ],
       "period": "前期",
       "height": 230,
       "identity": "魔种起义军叛徒",
@@ -818,9 +994,15 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["刺客", "战士"],
+      "profession": [
+        "刺客",
+        "战士"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进", "团控"],
+      "specialty": [
+        "突进",
+        "团控"
+      ],
       "period": "后期",
       "height": 180,
       "identity": "魔种起义军将领",
@@ -841,9 +1023,15 @@
       "effect": 70,
       "difficulty": 50,
       "gender": "女",
-      "profession": ["法师", "坦克"],
+      "profession": [
+        "法师",
+        "坦克"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "回复"],
+      "specialty": [
+        "持续输出",
+        "回复"
+      ],
       "period": "前期",
       "height": 175,
       "identity": "玄雍太后",
@@ -864,9 +1052,15 @@
       "effect": 70,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["法师", "刺客"],
+      "profession": [
+        "法师",
+        "刺客"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "真伤"],
+      "specialty": [
+        "持续输出",
+        "真伤"
+      ],
       "period": "后期",
       "height": 172,
       "identity": "绝世舞姬",
@@ -887,9 +1081,14 @@
       "effect": 30,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "重装战士",
-      "specialty": ["收割"],
+      "specialty": [
+        "收割"
+      ],
       "period": "后期",
       "height": 192,
       "identity": "重生的战神",
@@ -910,9 +1109,15 @@
       "effect": 50,
       "difficulty": 80,
       "gender": "女",
-      "profession": ["战士", "刺客"],
+      "profession": [
+        "战士",
+        "刺客"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 174,
       "identity": "长城守卫军队长",
@@ -933,9 +1138,14 @@
       "effect": 40,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["团控", "先手"],
+      "specialty": [
+        "团控",
+        "先手"
+      ],
       "period": "后期",
       "height": 183,
       "identity": "神职者/神射手",
@@ -956,9 +1166,15 @@
       "effect": 50,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "守护辅助",
-      "specialty": ["团控", "团队增益"],
+      "specialty": [
+        "团控",
+        "团队增益"
+      ],
       "period": "均衡",
       "height": 186,
       "identity": "蜀地武将",
@@ -979,9 +1195,14 @@
       "effect": 40,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "前期",
       "height": 178,
       "identity": "蜀地主公",
@@ -1002,9 +1223,14 @@
       "effect": 40,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "前期",
       "height": 179,
       "identity": "金庭城王子",
@@ -1025,9 +1251,13 @@
       "effect": 60,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "后期",
       "height": 154,
       "identity": "扶桑巫女",
@@ -1048,9 +1278,14 @@
       "effect": 60,
       "difficulty": 90,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "后期",
       "height": 184,
       "identity": "天才刺客",
@@ -1071,9 +1306,15 @@
       "effect": 70,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["辅助", "法师"],
+      "profession": [
+        "辅助",
+        "法师"
+      ],
       "location": "进攻辅助",
-      "specialty": ["控制", "先手"],
+      "specialty": [
+        "控制",
+        "先手"
+      ],
       "period": "前期",
       "height": 355,
       "identity": "长安城守护者",
@@ -1094,9 +1335,14 @@
       "effect": 50,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "重炮射手",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "前期",
       "height": 152,
       "identity": "长安密保",
@@ -1117,9 +1363,13 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "守护坦克",
-      "specialty": ["支援"],
+      "specialty": [
+        "支援"
+      ],
       "period": "均衡",
       "height": 179,
       "identity": "灞城统治者",
@@ -1140,9 +1390,15 @@
       "effect": 80,
       "difficulty": 80,
       "gender": "女",
-      "profession": ["法师", "刺客"],
+      "profession": [
+        "法师",
+        "刺客"
+      ],
       "location": "突袭法师",
-      "specialty": ["爆发", "突进"],
+      "specialty": [
+        "爆发",
+        "突进"
+      ],
       "period": "均衡",
       "height": 165,
       "identity": "不知火流继承人",
@@ -1163,9 +1419,14 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["突进", "远程消耗"],
+      "specialty": [
+        "突进",
+        "远程消耗"
+      ],
       "period": "均衡",
       "height": 173,
       "identity": "自然巡游者",
@@ -1186,9 +1447,14 @@
       "effect": 60,
       "difficulty": 80,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "冲锋战士",
-      "specialty": ["突进", "先手"],
+      "specialty": [
+        "突进",
+        "先手"
+      ],
       "period": "均衡",
       "height": 191,
       "identity": "蜀地武将",
@@ -1209,9 +1475,14 @@
       "effect": 80,
       "difficulty": 30,
       "gender": "女",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "增益辅助",
-      "specialty": ["团队增益", "回复"],
+      "specialty": [
+        "团队增益",
+        "回复"
+      ],
       "period": "均衡",
       "height": 180,
       "identity": "音乐天才少女",
@@ -1232,9 +1503,15 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["坦克", "战士"],
+      "profession": [
+        "坦克",
+        "战士"
+      ],
       "location": "守护坦克",
-      "specialty": ["突进", "团控"],
+      "specialty": [
+        "突进",
+        "团控"
+      ],
       "period": "前期",
       "height": 186,
       "identity": "蜀地武将",
@@ -1255,9 +1532,13 @@
       "effect": 40,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "前期",
       "height": 178,
       "identity": "神的继承者",
@@ -1278,9 +1559,13 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "灵巧射手",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "均衡",
       "height": 179,
       "identity": "冒险家",
@@ -1301,9 +1586,15 @@
       "effect": 50,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["刺客", "战士"],
+      "profession": [
+        "刺客",
+        "战士"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "回复"],
+      "specialty": [
+        "突进",
+        "回复"
+      ],
       "period": "前期",
       "height": 176,
       "identity": "扶桑剑客",
@@ -1324,9 +1615,14 @@
       "effect": 30,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "重炮射手",
-      "specialty": ["先手", "收割"],
+      "specialty": [
+        "先手",
+        "收割"
+      ],
       "period": "后期",
       "height": 177,
       "identity": "狼旗首领",
@@ -1347,9 +1643,14 @@
       "effect": 50,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 185,
       "identity": "神职者",
@@ -1364,7 +1665,10 @@
       "poster": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/haibao/0.jpg",
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/taiyizhenren/haibao/cover.jpg",
       "suitable": "https://lengyibai.gitee.io/wzry-material/hero/suitable/haibao/cover.jpg",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "survival": 50,
       "attack": 10,
       "effect": 60,
@@ -1372,7 +1676,9 @@
       "gender": "男",
       "height": 120,
       "location": "守护辅助",
-      "specialty": ["团队增益"],
+      "specialty": [
+        "团队增益"
+      ],
       "period": "前期",
       "mark": "炼金大师",
       "identity": "炼金师",
@@ -1393,9 +1699,14 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "冲锋战士",
-      "specialty": ["突进", "吸收伤害"],
+      "specialty": [
+        "突进",
+        "吸收伤害"
+      ],
       "period": "后期",
       "height": 175,
       "identity": "陈塘关长官之子",
@@ -1416,9 +1727,14 @@
       "effect": 80,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "突进法师",
-      "specialty": ["爆发", "收割"],
+      "specialty": [
+        "爆发",
+        "收割"
+      ],
       "period": "后期",
       "height": 183,
       "identity": "蜀地军师",
@@ -1439,9 +1755,14 @@
       "effect": 40,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["收割", "远程消耗"],
+      "specialty": [
+        "收割",
+        "远程消耗"
+      ],
       "period": "后期",
       "height": 187,
       "identity": "机关炮老兵",
@@ -1462,9 +1783,13 @@
       "effect": 60,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "战术辅助",
-      "specialty": ["团队增益"],
+      "specialty": [
+        "团队增益"
+      ],
       "period": "均衡",
       "height": 168,
       "identity": "魔道名门继承人",
@@ -1485,9 +1810,15 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "进攻辅助",
-      "specialty": ["回复", "持续控制"],
+      "specialty": [
+        "回复",
+        "持续控制"
+      ],
       "period": "前期",
       "height": 215,
       "identity": "东神之城统治者",
@@ -1508,9 +1839,14 @@
       "effect": 80,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["爆发", "超远视距"],
+      "specialty": [
+        "爆发",
+        "超远视距"
+      ],
       "period": "后期",
       "height": 237,
       "identity": "铸剑师",
@@ -1531,9 +1867,13 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "进攻辅助",
-      "specialty": ["团控"],
+      "specialty": [
+        "团控"
+      ],
       "period": "均衡",
       "height": 150,
       "identity": "博学者",
@@ -1554,9 +1894,14 @@
       "effect": 40,
       "difficulty": 20,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "刺杀战士",
-      "specialty": ["无"],
+      "specialty": [
+        "无"
+      ],
       "period": "后期",
       "height": 188,
       "identity": "长城守卫军成员",
@@ -1577,9 +1922,14 @@
       "effect": 40,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["射手", "刺客"],
+      "profession": [
+        "射手",
+        "刺客"
+      ],
       "location": "重炮射手",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "前期",
       "height": 182,
       "identity": "长城守卫军成员",
@@ -1600,9 +1950,14 @@
       "effect": 40,
       "difficulty": 100,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 171,
       "identity": "长城守卫军成员",
@@ -1623,9 +1978,15 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["坦克", "辅助"],
+      "profession": [
+        "坦克",
+        "辅助"
+      ],
       "location": "先锋坦克",
-      "specialty": ["团控", "先手"],
+      "specialty": [
+        "团控",
+        "先手"
+      ],
       "period": "前期",
       "height": 208,
       "identity": "长城守卫军成员",
@@ -1646,9 +2007,15 @@
       "effect": 40,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["战士", "法师"],
+      "profession": [
+        "战士",
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["单带", "突进"],
+      "specialty": [
+        "单带",
+        "突进"
+      ],
       "period": "均衡",
       "height": 97,
       "identity": "食梦者",
@@ -1669,9 +2036,14 @@
       "effect": 90,
       "difficulty": 70,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["消耗", "传送"],
+      "specialty": [
+        "消耗",
+        "传送"
+      ],
       "period": "后期",
       "height": 180,
       "identity": "神",
@@ -1692,9 +2064,13 @@
       "effect": 60,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "增益辅助",
-      "specialty": ["团队增益"],
+      "specialty": [
+        "团队增益"
+      ],
       "period": "均衡",
       "height": 181,
       "identity": "尧天组织首领",
@@ -1715,9 +2091,14 @@
       "effect": 30,
       "difficulty": 70,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "灵巧射手",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 169,
       "identity": "长安坊舞者",
@@ -1738,9 +2119,14 @@
       "effect": 90,
       "difficulty": 50,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "治疗"],
+      "specialty": [
+        "持续输出",
+        "治疗"
+      ],
       "period": "后期",
       "height": 169,
       "identity": "长安坊乐师",
@@ -1761,9 +2147,15 @@
       "effect": 50,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["刺客", "战士"],
+      "profession": [
+        "刺客",
+        "战士"
+      ],
       "location": "游斗刺客",
-      "specialty": ["远程消耗", "收割"],
+      "specialty": [
+        "远程消耗",
+        "收割"
+      ],
       "period": "前期",
       "height": 177,
       "identity": "拳师",
@@ -1784,9 +2176,14 @@
       "effect": 70,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["消耗", "团控"],
+      "specialty": [
+        "消耗",
+        "团控"
+      ],
       "period": "均衡",
       "height": 170,
       "identity": "少年棋手",
@@ -1807,9 +2204,14 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "重装战士",
-      "specialty": ["突进", "团控"],
+      "specialty": [
+        "突进",
+        "团控"
+      ],
       "period": "前期",
       "height": 171,
       "identity": "海都佣兵",
@@ -1830,9 +2232,14 @@
       "effect": 80,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "推进"],
+      "specialty": [
+        "持续输出",
+        "推进"
+      ],
       "period": "前期",
       "height": 169,
       "identity": "海都执政者",
@@ -1853,9 +2260,13 @@
       "effect": 90,
       "difficulty": 100,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["先手"],
+      "specialty": [
+        "先手"
+      ],
       "period": "均衡",
       "height": 182,
       "identity": "机关傀儡师",
@@ -1876,9 +2287,15 @@
       "effect": 70,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "冲锋战士",
-      "specialty": ["团控", "先手"],
+      "specialty": [
+        "团控",
+        "先手"
+      ],
       "period": "均衡",
       "height": 185,
       "identity": "江东小霸王",
@@ -1899,9 +2316,14 @@
       "effect": 90,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["刺客", "法师"],
+      "profession": [
+        "刺客",
+        "法师"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "前期",
       "height": 184,
       "identity": "魏地军师",
@@ -1922,9 +2344,15 @@
       "effect": 40,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["辅助", "坦克"],
+      "profession": [
+        "辅助",
+        "坦克"
+      ],
       "location": "进攻辅助",
-      "specialty": ["持续控制", "格挡"],
+      "specialty": [
+        "持续控制",
+        "格挡"
+      ],
       "period": "均衡",
       "height": 283,
       "identity": "修筑长城的机械",
@@ -1945,9 +2373,14 @@
       "effect": 40,
       "difficulty": 20,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["远程消耗", "团队增益"],
+      "specialty": [
+        "远程消耗",
+        "团队增益"
+      ],
       "period": "后期",
       "height": 172,
       "identity": "千窟城继承者",
@@ -1968,9 +2401,14 @@
       "effect": 80,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "炮台法师",
-      "specialty": ["消耗", "加速"],
+      "specialty": [
+        "消耗",
+        "加速"
+      ],
       "period": "前期",
       "height": 151,
       "identity": "长城守卫军成员",
@@ -1991,9 +2429,14 @@
       "effect": 60,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["突进", "团控"],
+      "specialty": [
+        "突进",
+        "团控"
+      ],
       "period": "均衡",
       "height": 187,
       "identity": "长城守卫军成员",
@@ -2014,9 +2457,15 @@
       "effect": 90,
       "difficulty": 80,
       "gender": "女",
-      "profession": ["法师", "刺客"],
+      "profession": [
+        "法师",
+        "刺客"
+      ],
       "location": "突袭法师",
-      "specialty": ["爆发", "突进"],
+      "specialty": [
+        "爆发",
+        "突进"
+      ],
       "period": "前期",
       "height": 170,
       "identity": "女帝密探",
@@ -2037,9 +2486,15 @@
       "effect": 80,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["法师", "坦克"],
+      "profession": [
+        "法师",
+        "坦克"
+      ],
       "location": "阵地法师",
-      "specialty": ["持续输出", "法力护盾"],
+      "specialty": [
+        "持续输出",
+        "法力护盾"
+      ],
       "period": "前期",
       "height": 171,
       "identity": "魔道家族公主",
@@ -2060,9 +2515,14 @@
       "effect": 50,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "先锋坦克",
-      "specialty": ["团控", "回复"],
+      "specialty": [
+        "团控",
+        "回复"
+      ],
       "period": "均衡",
       "height": 183,
       "identity": "魔种起义军将领",
@@ -2083,9 +2543,14 @@
       "effect": 40,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "狂战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "前期",
       "height": 212,
       "identity": "神",
@@ -2106,9 +2571,13 @@
       "effect": 90,
       "difficulty": 30,
       "gender": "女",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "增益辅助",
-      "specialty": ["团队增益"],
+      "specialty": [
+        "团队增益"
+      ],
       "period": "均衡",
       "height": 162,
       "identity": "鹿灵转生者",
@@ -2129,9 +2598,15 @@
       "effect": 30,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["刺客", "战士"],
+      "profession": [
+        "刺客",
+        "战士"
+      ],
       "location": "爆发刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "前期",
       "height": 182,
       "identity": "孤鸟转生者",
@@ -2152,9 +2627,13 @@
       "effect": 60,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "刺杀战士",
-      "specialty": ["无"],
+      "specialty": [
+        "无"
+      ],
       "period": "均衡",
       "height": 176,
       "identity": "稷下学生",
@@ -2175,9 +2654,15 @@
       "effect": 50,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["战士", "刺客"],
+      "profession": [
+        "战士",
+        "刺客"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "远程消耗"],
+      "specialty": [
+        "突进",
+        "远程消耗"
+      ],
       "period": "均衡",
       "height": 180,
       "identity": "蜀地将领",
@@ -2198,9 +2683,14 @@
       "effect": 60,
       "difficulty": 60,
       "gender": "女",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["控制", "距离增伤"],
+      "specialty": [
+        "控制",
+        "距离增伤"
+      ],
       "period": "均衡",
       "height": 163,
       "identity": "稷下学生",
@@ -2221,9 +2711,13 @@
       "effect": 50,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "进攻辅助",
-      "specialty": ["无"],
+      "specialty": [
+        "无"
+      ],
       "period": "前期",
       "height": 192,
       "identity": "稷下学生",
@@ -2244,9 +2738,13 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "男",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "前期",
       "height": 150,
       "identity": "稷下学生",
@@ -2267,9 +2765,14 @@
       "effect": 90,
       "difficulty": 50,
       "gender": "女",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 170,
       "identity": "阴曲情报专员",
@@ -2290,9 +2793,14 @@
       "effect": 70,
       "difficulty": 60,
       "gender": "男",
-      "profession": ["战士", "坦克"],
+      "profession": [
+        "战士",
+        "坦克"
+      ],
       "location": "重装战士",
-      "specialty": ["突进"],
+      "specialty": [
+        "突进"
+      ],
       "period": "前期",
       "height": 190,
       "identity": "玄雍护国大将军",
@@ -2313,9 +2821,14 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["坦克"],
+      "profession": [
+        "坦克"
+      ],
       "location": "先锋坦克",
-      "specialty": ["团队增益", "团控"],
+      "specialty": [
+        "团队增益",
+        "团控"
+      ],
       "period": "前期",
       "height": 145,
       "identity": "狼孩",
@@ -2336,9 +2849,14 @@
       "effect": 50,
       "difficulty": 70,
       "gender": "女",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "冲锋战士",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 183,
       "identity": "贵族剑士",
@@ -2359,9 +2877,14 @@
       "effect": 40,
       "difficulty": 70,
       "gender": "男",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 180,
       "identity": "前魏都杀手",
@@ -2382,9 +2905,14 @@
       "effect": 40,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["坦克", "法师"],
+      "profession": [
+        "坦克",
+        "法师"
+      ],
       "location": "狂战士",
-      "specialty": ["爆发"],
+      "specialty": [
+        "爆发"
+      ],
       "period": "均衡",
       "height": 190,
       "identity": "长安大司空",
@@ -2405,9 +2933,13 @@
       "effect": 50,
       "difficulty": 40,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "灵巧射手",
-      "specialty": ["持续输出"],
+      "specialty": [
+        "持续输出"
+      ],
       "period": "中期",
       "height": 165,
       "identity": "精灵公主",
@@ -2428,9 +2960,15 @@
       "effect": 80,
       "difficulty": 80,
       "gender": "女",
-      "profession": ["战士", "刺客"],
+      "profession": [
+        "战士",
+        "刺客"
+      ],
       "location": "刺杀战士",
-      "specialty": ["突进", "灵活"],
+      "specialty": [
+        "突进",
+        "灵活"
+      ],
       "period": "中期",
       "height": 165,
       "identity": "将门之后",
@@ -2451,9 +2989,14 @@
       "effect": 50,
       "difficulty": 30,
       "gender": "男",
-      "profession": ["法师"],
+      "profession": [
+        "法师"
+      ],
       "location": "控场法师",
-      "specialty": ["远程消耗", "团队增益"],
+      "specialty": [
+        "远程消耗",
+        "团队增益"
+      ],
       "period": "未知",
       "height": 180,
       "identity": "西行修行者",
@@ -2474,9 +3017,15 @@
       "effect": 40,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["刺客", "战士"],
+      "profession": [
+        "刺客",
+        "战士"
+      ],
       "location": "游斗刺客",
-      "specialty": ["突进", "收割"],
+      "specialty": [
+        "突进",
+        "收割"
+      ],
       "period": "均衡",
       "height": 180,
       "identity": "玉城大王子",
@@ -2497,9 +3046,14 @@
       "effect": 80,
       "difficulty": 20,
       "gender": "男",
-      "profession": ["辅助"],
+      "profession": [
+        "辅助"
+      ],
       "location": "增益辅助",
-      "specialty": ["团控", "团队增益"],
+      "specialty": [
+        "团控",
+        "团队增益"
+      ],
       "period": "均衡",
       "height": 166,
       "identity": "萤火的旅行者",
@@ -2520,9 +3074,13 @@
       "effect": 40,
       "difficulty": 50,
       "gender": "女",
-      "profession": ["射手"],
+      "profession": [
+        "射手"
+      ],
       "location": "连珠射手",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "均衡",
       "height": 170,
       "identity": "沙海船帮头子",
@@ -2543,9 +3101,13 @@
       "effect": 70,
       "difficulty": 30,
       "gender": "女",
-      "profession": ["刺客"],
+      "profession": [
+        "刺客"
+      ],
       "location": "炮台法师",
-      "specialty": ["远程消耗"],
+      "specialty": [
+        "远程消耗"
+      ],
       "period": "前期",
       "height": 170,
       "identity": "月裔/云中蝶饲养人",
@@ -2566,15 +3128,44 @@
       "effect": 70,
       "difficulty": 50,
       "gender": "男",
-      "profession": ["战士"],
+      "profession": [
+        "战士"
+      ],
       "location": "重装战士",
-      "specialty": ["防御反击"],
+      "specialty": [
+        "防御反击"
+      ],
       "period": "均衡",
       "height": 181,
       "identity": "玄都观修道者",
       "camp": "长安",
       "race": "人类",
       "skillUnit": "无"
+    },
+    {
+      "id": 113,
+      "attack": 80,
+      "difficulty": 30,
+      "effect": 60,
+      "survival": 30,
+      "camp": "海都家族",
+      "cover": "https://lengyibai.gitee.io/wzry-material/hero/laixiao/haibao/cover.jpg",
+      "headImg": "https://lengyibai.gitee.io/wzry-material/hero/laixiao/touxiang/0.jpg",
+      "height": "183",
+      "identity": "海都外城区守护者",
+      "location": "灵巧射手",
+      "mark": "火鹰船长",
+      "name": "莱西奥",
+      "period": "均衡",
+      "poster": "https://lengyibai.gitee.io/wzry-material/hero/laixiao/haibao/0.jpg",
+      "race": "人类",
+      "skillUnit": "无",
+      "profession": [
+        "射手"
+      ],
+      "specialty": [
+        "远程消耗"
+      ]
     }
   ]
 }

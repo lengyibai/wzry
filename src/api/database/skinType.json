@@ -62,12 +62,12 @@
     },
     {
       "id": 13,
-      "name": "S3胜利之神",
+      "name": "S3赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/13.png"
     },
     {
       "id": 14,
-      "name": "S4胜利之神",
+      "name": "S4赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/14.png"
     },
     {
@@ -187,12 +187,12 @@
     },
     {
       "id": 38,
-      "name": "FMVP",
+      "name": "FMVP/gold",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/38.png"
     },
     {
       "id": 39,
-      "name": "S14隐龙之影",
+      "name": "S14赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/39.png"
     },
     {
@@ -227,7 +227,7 @@
     },
     {
       "id": 46,
-      "name": "S15隐龙之影",
+      "name": "S15赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/46.png"
     },
     {
@@ -237,7 +237,7 @@
     },
     {
       "id": 48,
-      "name": "S16隐龙之影",
+      "name": "S16赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/48.png"
     },
     {
@@ -252,12 +252,12 @@
     },
     {
       "id": 51,
-      "name": "FMVP",
+      "name": "FMVP/blue",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/51.png"
     },
     {
       "id": 52,
-      "name": "S17凤仪之诏",
+      "name": "S17赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/52.png"
     },
     {
@@ -267,7 +267,7 @@
     },
     {
       "id": 54,
-      "name": "S13隐龙之影",
+      "name": "S13赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/54.png"
     },
     {
@@ -277,42 +277,42 @@
     },
     {
       "id": 56,
-      "name": "S5胜利之神",
+      "name": "S5赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/56.png"
     },
     {
       "id": 57,
-      "name": "S6胜利之神",
+      "name": "S6赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/57.png"
     },
     {
       "id": 58,
-      "name": "S7胜利之神",
+      "name": "S7赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/58.png"
     },
     {
       "id": 59,
-      "name": "S8无畏之灵",
+      "name": "S8赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/59.png"
     },
     {
       "id": 60,
-      "name": "S9无畏之灵",
+      "name": "S9赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/60.png"
     },
     {
       "id": 61,
-      "name": "S10无畏之灵",
+      "name": "S10赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/61.png"
     },
     {
       "id": 62,
-      "name": "S11无畏之灵",
+      "name": "S11赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/62.png"
     },
     {
       "id": 63,
-      "name": "S12无畏之灵",
+      "name": "S12赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/63.png"
     },
     {
@@ -327,7 +327,7 @@
     },
     {
       "id": 66,
-      "name": "S18凤仪之诏",
+      "name": "S18赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/66.png"
     },
     {
@@ -347,7 +347,7 @@
     },
     {
       "id": 70,
-      "name": "S19凤仪之诏",
+      "name": "S19赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/70.png"
     },
     {
@@ -362,7 +362,7 @@
     },
     {
       "id": 73,
-      "name": "S20凤仪之诏",
+      "name": "S20赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/73.png"
     },
     {
@@ -372,7 +372,7 @@
     },
     {
       "id": 75,
-      "name": "2020王者之征",
+      "name": "2020王者之证",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/75.png"
     },
     {
@@ -382,7 +382,7 @@
     },
     {
       "id": 77,
-      "name": "S21峡谷异闻",
+      "name": "S21赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/77.png"
     },
     {
@@ -392,7 +392,7 @@
     },
     {
       "id": 79,
-      "name": "S22不夜长安",
+      "name": "S22赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/79.png"
     },
     {
@@ -407,7 +407,7 @@
     },
     {
       "id": 82,
-      "name": "S23不夜长安",
+      "name": "S23赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/82.png"
     },
     {
@@ -417,7 +417,7 @@
     },
     {
       "id": 84,
-      "name": "S24不夜长安",
+      "name": "S24赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/84.png"
     },
     {
@@ -427,7 +427,7 @@
     },
     {
       "id": 86,
-      "name": "S25不夜长安",
+      "name": "S25赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/86.png"
     },
     {
@@ -447,12 +447,12 @@
     },
     {
       "id": 90,
-      "name": "S28千色云中",
+      "name": "S28赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/90.png"
     },
     {
       "id": 91,
-      "name": "2021王者之征",
+      "name": "2021王者之证",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/91.png"
     },
     {
@@ -487,7 +487,7 @@
     },
     {
       "id": 98,
-      "name": "S29千色云中",
+      "name": "S29赛季专属",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/98.png"
     },
     {
@@ -509,6 +509,21 @@
       "id": 102,
       "name": "永宁纪",
       "link": "https://lengyibai.gitee.io/wzry-material/skinType/102.png"
+    },
+    {
+      "id": 103,
+      "name": "世冠2022",
+      "link": "https://lengyibai.gitee.io/wzry-material/skinType/103.png"
+    },
+    {
+      "id": 104,
+      "name": "S30赛季专属",
+      "link": "https://lengyibai.gitee.io/wzry-material/skinType/104.png"
+    },
+    {
+      "id": 105,
+      "name": "2022王者之证",
+      "link": "https://lengyibai.gitee.io/wzry-material/skinType/105.png"
     }
   ]
 }
