@@ -428,7 +428,7 @@
       "poster": "https://lengyibai.gitee.io/wzry-material/hero/luna/haibao/3.jpg",
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/luna/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/luna/touxiang/3.jpg",
-      "type": 12,
+      "type": 21,
       "price": "788",
       "name": "紫霞仙子",
       "profession": ["战士", "法师"],
@@ -3327,7 +3327,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/liubei/haibao/5_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/liubei/touxiang/5.jpg",
       "type": 1,
-      "price": "限时出售",
+      "price": "60",
       "name": "潮玩造梦师",
       "profession": ["战士"],
       "gender": "男"
@@ -3425,7 +3425,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/nakelulu/haibao/2_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/nakelulu/touxiang/2.jpg",
       "type": 5,
-      "price": "限时出售",
+      "price": "1788",
       "name": "前尘镜",
       "profession": ["刺客"],
       "gender": "女"
@@ -4153,7 +4153,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/juyoujing/haibao/2_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/juyoujing/touxiang/2.jpg",
       "type": 5,
-      "price": "限时出售",
+      "price": "1788",
       "name": "枫霜尽",
       "profession": ["刺客", "战士"],
       "gender": "男"
@@ -5105,7 +5105,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/gongsunli/haibao/4_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/gongsunli/touxiang/4.jpg",
       "type": 80,
-      "price": "限时出售",
+      "price": "1788",
       "name": "祈雪灵祝",
       "profession": ["射手"],
       "gender": "女"
@@ -5903,7 +5903,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yao1/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yao1/touxiang/3.jpg",
       "type": 93,
-      "price": "限时出售",
+      "price": "1788",
       "name": "时之祈愿",
       "profession": ["辅助"],
       "gender": "女"
@@ -6001,7 +6001,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yao2/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yao2/touxiang/3.png",
       "type": 83,
-      "price": "限时出售",
+      "price": "1788",
       "name": "李逍遥",
       "profession": ["战士"],
       "gender": "男"
@@ -6127,7 +6127,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/lubandashi/touxiang/3.jpg",
       "type": 19,
-      "price": "限时出售",
+      "price": "888",
       "name": "匿光启智者",
       "profession": ["辅助"],
       "gender": "男"
