@@ -357,3 +357,20 @@ export function $savefiles(data, name) {
   save_link.download = name;
   save_link.click();
 }
+
+/* 图片懒加载 */
+export const $lazyLoadImages = (elements: HTMLImageElement[]) => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const img = entry.target as HTMLImageElement;
+      if (entry.intersectionRatio > 0) {
+        img.style.visibility = "visible";
+      } else {
+        img.style.visibility = "hidden";
+      }
+    });
+  });
+  elements.forEach((element) => {
+    observer.observe(element);
+  });
+};
