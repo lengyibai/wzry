@@ -28,6 +28,7 @@ const {
 
 const left = ref(); //左侧元素
 const skill_effect = ref(""); //选择的技能效果
+const skill_unit = ref(""); //技能消耗单位
 const skill_consume = ref(0); //阶段值
 const hero_id = ref(0); //英雄id
 const effectIndex = ref(-1); //处于编辑状态的技能效果索引
@@ -213,6 +214,7 @@ const EmitCommit = async () => {
   if (is_Finish && form_data.value![0].length >= 3) {
     await addHeroSkill({
       id: hero_id.value,
+      unit: skill_unit.value,
       skills: form_data.value!,
     });
     setTimeout(() => {
@@ -272,6 +274,13 @@ setTimeout(async () => {
         required
         v-model="activeSkill().name"
         placeholder="技能名称"
+      />
+
+      <FormInput
+        label="消耗单位"
+        required
+        v-model="skill_unit"
+        placeholder="技能消耗单位"
       />
 
       <!-- 冷却时间 -->
