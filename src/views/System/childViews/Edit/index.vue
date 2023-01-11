@@ -34,9 +34,6 @@ const EditVoice = defineAsyncComponent(
 const EditEquip = defineAsyncComponent(
   () => import("./childViews/EditEquip/index.vue")
 ); //装备
-const EditEpigraph = defineAsyncComponent(
-  () => import("./childViews/EditEpigraph/index.vue")
-); //铭文
 
 type Options = Record<
   string,
@@ -47,14 +44,7 @@ type Options = Record<
 >;
 
 const { box, list } = useManageCard;
-const components = [
-  EditHero,
-  EditSkin,
-  EditVoice,
-  EditSkill,
-  EditEquip,
-  EditEpigraph,
-];
+const components = [EditHero, EditSkin, EditVoice, EditSkill, EditEquip];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({
@@ -76,10 +66,6 @@ const options: Options = reactive({
   },
   Equip: {
     i: 5,
-    show: false,
-  },
-  Epigraph: {
-    i: 6,
     show: false,
   },
 });
