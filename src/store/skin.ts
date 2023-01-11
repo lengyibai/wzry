@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import { getSkin } from "@/api/main/games/skin";
 import { getSkinType } from "@/api/main/games/skinType";
-import { $debounce, $search } from "@/utils/index";
+import { $debounce, $search } from "@/utils";
 
 export default defineStore("skin", () => {
   const profession = ref(""); //职业类型
@@ -21,15 +21,16 @@ export default defineStore("skin", () => {
   /** @description: 获取皮肤列表 */
   const getSkinList = (profession?: string) => {
     getSkin().then((skinList) => {
-      setSkinList(skinList, profession);
       getSkinType().then((skinType) => {
         skinType.forEach((type) => {
           skinList.forEach((skin) => {
             if (type.id === skin.type) {
               skin.type = type.link;
+              skin.category = type.name;
             }
           });
         });
+        setSkinList(skinList, profession);
       });
     });
   };
@@ -133,6 +134,7 @@ export default defineStore("skin", () => {
         filter_list.value = $search(skin_list.value, name, [
           "name",
           "heroName",
+          "category",
         ]);
       } else {
         sortAll();
