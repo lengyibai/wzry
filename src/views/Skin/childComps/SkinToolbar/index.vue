@@ -61,7 +61,7 @@ const handSearch = () => {
     <!-- 搜索 -->
     <input
       class="search"
-      placeholder="皮肤/英雄名"
+      placeholder="皮肤/类型/英雄"
       type="text"
       @input="handSearch"
       v-model="search_value"

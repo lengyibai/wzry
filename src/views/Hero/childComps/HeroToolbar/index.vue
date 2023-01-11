@@ -133,7 +133,7 @@ const handSearch = () => {
     <!-- 搜索 -->
     <input
       class="search"
-      placeholder="英雄名/字母"
+      placeholder="英雄/字母"
       type="text"
       @input="handSearch"
       v-model="search_value"
