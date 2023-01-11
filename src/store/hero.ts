@@ -111,8 +111,35 @@ export default defineStore("hero", () => {
     }
 
     // 属性筛选
-    if (attr_type.value && attr_type.value !== "全部属性") {
-      const a = attr_type.value;
+    const a = attr_type.value;
+    const multiple = [
+      {
+        label: "免控",
+        value: ["霸体", "净化", "解控"],
+      },
+      {
+        label: "回血",
+        value: ["回复", "治疗"],
+      },
+      {
+        label: "真伤",
+        value: ["真伤"],
+      },
+    ];
+    if (a && a !== "全部属性") {
+      multiple.forEach((effect) => {
+        if (a === effect.label) {
+          filter_list.value = filter_list.value.filter((item) => {
+            return item.skills!.some((item) => {
+              return item.some((item) => {
+                return item.type.some((item) => {
+                  return effect.value.includes(item);
+                });
+              });
+            });
+          });
+        }
+      });
 
       if (a === "无位移") {
         filter_list.value = filter_list.value.filter((item) => {
@@ -130,42 +157,14 @@ export default defineStore("hero", () => {
             });
           });
         });
-      } else if (a === "无控制") {
+      }
+
+      if (a === "无控制") {
         filter_list.value = filter_list.value.filter((item) => {
           return !item.skills!.some((item) => {
             return item.some((item) => {
               return item.type.some((item) => {
                 return ["控制", "束缚", "压制", "牵引", "限制"].includes(item);
-              });
-            });
-          });
-        });
-      } else if (a === "免控") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.some((item) => {
-            return item.some((item) => {
-              return item.type.some((item) => {
-                return ["霸体", "净化", "解控", "限制"].includes(item);
-              });
-            });
-          });
-        });
-      } else if (a === "回血") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.some((item) => {
-            return item.some((item) => {
-              return item.type.some((item) => {
-                return ["回复", "治疗"].includes(item);
-              });
-            });
-          });
-        });
-      } else if (a === "真伤") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.some((item) => {
-            return item.some((item) => {
-              return item.type.some((item) => {
-                return ["真伤"].includes(item);
               });
             });
           });
