@@ -1,10 +1,10 @@
 /** @description: 默认英雄信息 */
 export const heroDefault: Hero.Data = {
   id: 0, //标识符
-  attack: "0", //攻击
+  attack: 0, //攻击
   difficulty: 0, //难度
-  effect: "0", //增益
-  survival: "0", //生存
+  effect: 0, //增益
+  survival: 0, //生存
   camp: "", //阵营
   cover: "", //封面
   headImg: "", //头像
