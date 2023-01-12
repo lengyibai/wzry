@@ -7,14 +7,16 @@ import {
   ref,
   watch,
 } from "vue";
+import { $lazyLoadImages } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
-import SkinToolbar from "./childComps/SkinToolbar/index.vue";
+import otherStore from "@/store/other";
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
-import { $lazyLoadImages } from "@/utils";
+import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 
 const $skinStore = skinStore();
+const $otherStore = otherStore();
 
 let page = 1; //当前页数
 let page_count = 30; //一页显示的个数
@@ -78,6 +80,11 @@ onActivated(() => {
   nextTick(() => {
     skinListRef.value.updateHeight();
   }).catch(() => {});
+});
+
+/* 折叠展开侧边栏时触发 */
+$otherStore.setTriggerFn(() => {
+  skinListRef.value.updateHeight();
 });
 
 onMounted(() => {

@@ -8,14 +8,14 @@ import {
   watch,
   defineAsyncComponent,
 } from "vue";
-import { useRouter } from "vue-router";
-import { getHeroDetail } from "@/api/main/games/hero";
 import { $deepCopy, $lazyLoadImages } from "@/utils";
+import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue/defaults";
+import { useRoute, useRouter } from "vue-router";
+import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
-import { useRoute } from "vue-router";
-import $bus from "@/utils/eventBus";
+import otherStore from "@/store/other";
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
@@ -25,6 +25,7 @@ const HeroDetail = defineAsyncComponent(
 
 const $route = useRoute();
 const $router = useRouter();
+const $otherStore = otherStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetail();
 
@@ -105,6 +106,11 @@ watch(
   },
   { deep: true, immediate: true }
 );
+
+/* 折叠展开侧边栏时触发 */
+$otherStore.setTriggerFn(() => {
+  heroListRef.value.updateHeight();
+});
 
 /* 进入页面后更新高度 */
 onActivated(() => {
