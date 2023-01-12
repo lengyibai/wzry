@@ -2,7 +2,11 @@
   <!-- 导航栏 -->
   <div class="navbar border-1">
     <PackUp />
+
     <div class="right">
+      <!-- 用户操作 -->
+      <UserMenu />
+
       <!-- 设置 -->
       <i
         class="iconfont wzry-setting cursor-pointer"
@@ -12,9 +16,6 @@
       <a href="https://github.com/lengyibai/wzry" target="_blank"
         ><i class="iconfont wzry-mark-github" title="Github"
       /></a>
-
-      <!-- 用户操作 -->
-      <UserMenu />
     </div>
   </div>
 </template>
