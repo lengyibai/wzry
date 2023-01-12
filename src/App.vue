@@ -44,8 +44,12 @@ useGetData();
     bottom: 0;
     left: 0;
     z-index: 999;
-    color: rgb(255 255 255 / 50%);
+    color: var(--white-25);
     font-size: 12px;
+
+    p {
+      text-shadow: none;
+    }
   }
 }
 </style>
