@@ -681,7 +681,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/zhenji/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/zhenji/touxiang/3.jpg",
       "type": 23,
-      "price": "888",
+      "price": "2周年限定",
       "name": "游园惊梦",
       "profession": ["法师"],
       "gender": "女"
@@ -1423,7 +1423,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/zhuangzhou/haibao/6_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/zhuangzhou/touxiang/6.jpg",
       "type": 89,
-      "price": "888",
+      "price": "6周年限定",
       "name": "高山流水",
       "profession": ["辅助", "坦克"],
       "gender": "男"
@@ -1759,7 +1759,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yase/haibao/1_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yase/touxiang/1.jpg",
       "type": 1,
-      "price": "碎片商店",
+      "price": "连续登录两天",
       "name": "死亡骑士",
       "profession": ["战士", "坦克"],
       "gender": "男"
@@ -4055,7 +4055,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yadianna/haibao/5_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yadianna/touxiang/5.jpg",
       "type": 91,
-      "price": "赛年皮肤兑换",
+      "price": "2021赛年皮肤兑换",
       "name": "黎明之约",
       "profession": ["战士"],
       "gender": "女"
@@ -4685,7 +4685,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/haibao/4_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/guiguzi/touxiang/4.jpg",
       "type": 99,
-      "price": "限时活动获取",
+      "price": "7周年限定",
       "name": "五谷丰年",
       "profession": ["辅助"],
       "gender": "男"
@@ -4839,7 +4839,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/bailixuance/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/bailixuance/touxiang/3.jpg",
       "type": 75,
-      "price": "赛年皮肤兑换",
+      "price": "2020赛年皮肤兑换",
       "name": "原初追逐者",
       "profession": ["刺客"],
       "gender": "男"
@@ -4951,7 +4951,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/mengqi/haibao/3_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/mengqi/touxiang/3.jpg",
       "type": 100,
-      "price": "限时活动获取",
+      "price": "星会员15级",
       "name": "天降福星",
       "profession": ["战士", "法师"],
       "gender": "男"
@@ -5147,7 +5147,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/yangyuhuan/haibao/2_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/yangyuhuan/touxiang/2.jpg",
       "type": 36,
-      "price": "888",
+      "price": "3周年限定",
       "name": "遇见飞天",
       "profession": ["法师"],
       "gender": "女"
@@ -5217,7 +5217,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/peiqinhu/haibao/4_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/peiqinhu/touxiang/4.jpg",
       "type": 76,
-      "price": "888",
+      "price": "5周年限定",
       "name": "李小龙",
       "profession": ["刺客", "战士"],
       "gender": "男"
@@ -5735,7 +5735,7 @@
       "cover": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/haibao/2_small.jpg",
       "headImg": "https://lengyibai.gitee.io/wzry-material/hero/shangguanwaner/touxiang/2.jpg",
       "type": 53,
-      "price": "888",
+      "price": "4周年限定",
       "name": "梁祝",
       "profession": ["法师", "刺客"],
       "gender": "女"
@@ -6542,7 +6542,7 @@
       "id": 724,
       "hero": 72,
       "num": 4,
-      "price": "赛年皮肤兑换",
+      "price": "2022赛年皮肤兑换",
       "type": 105,
       "name": "顽趣",
       "poster": "https://lengyibai.gitee.io/wzry-material/hero/mengqi/haibao/4.jpg",
