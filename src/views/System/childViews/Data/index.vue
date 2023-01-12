@@ -1,6 +1,8 @@
 <script setup lang="ts" name="Data">
 import { ref } from "vue";
 import { $typeSort, $savefiles, $deepCopy } from "@/utils";
+import skinStore from "@/store/skin";
+import heroStore from "@/store/hero";
 
 import {
   HeroBasic,
@@ -27,6 +29,9 @@ import {
   Camptype,
   RaceType,
 } from "@/api/main/data";
+
+const $skinStore = skinStore();
+const $heroStore = heroStore();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],
@@ -104,6 +109,11 @@ const setStatus = (data: any, v: any) => {
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
   localStorage.setItem("data_" + key, JSON.stringify(data));
+  if (key.includes("skin")) {
+    $skinStore.getSkin();
+  } else if (key.includes("hero")) {
+    $heroStore.getHeroList();
+  }
 };
 
 /* 加载数据 */
