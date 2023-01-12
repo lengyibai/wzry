@@ -40,6 +40,8 @@
   --t-shadow-s: 0 2px 2px #000;
   --b-shadow: 0 3px 6px rgb(0 0 0 / 50%);
   --b-shadow-s: 0 2px 3px rgb(0 0 0 / 50%);
+  --d-shadow: drop-shadow(0 3px 6px rgb(0 0 0 / 50%));
+  --d-shadow-s: drop-shadow(0 2px 3px rgb(0 0 0 / 50%));
   --font-f: "微软雅黑";
 
   /* 远程链接 */

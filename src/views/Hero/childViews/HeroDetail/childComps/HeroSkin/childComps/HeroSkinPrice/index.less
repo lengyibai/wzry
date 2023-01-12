@@ -2,7 +2,7 @@
   position: absolute;
   right: 0;
   transform: translate(100px, 25px);
-  filter: drop-shadow(0 3.5px 2px rgb(0 0 0 / 50.2%));
+  filter: var(--d-shadow-s);
   transition: all 0.35s;
   opacity: 0;
 
@@ -18,7 +18,7 @@
   }
 }
 
-.show{
+.show {
   transform: translate(-25px, 25px);
   opacity: 1;
 }
