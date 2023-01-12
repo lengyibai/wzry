@@ -22,7 +22,7 @@
 }
 
 .clip-leave-active {
-  animation: clip-out 1.5s;
+  animation: clip-out 0.75s;
 }
 
 @keyframes clip-in {
@@ -41,14 +41,28 @@
 
 @keyframes clip-out {
   0% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 50%);
+    clip-path: polygon(
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0,
+      50% 0
+    );
   }
 
   100% {
-    clip-path: polygon(100% 100%, 100% 0, 100% 100%, 100% 50%);
+    clip-path: polygon(
+      0 0,
+      50% 50%,
+      0 100%,
+      50% 50%,
+      100% 100%,
+      50% 50%,
+      100% 0,
+      50% 50%
+    );
   }
 }
