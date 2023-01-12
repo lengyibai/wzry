@@ -3,6 +3,9 @@ import { $chromeV } from "@/utils";
 import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
 import useGetData from "@/hooks/useGetData";
 import useVersion from "@/hooks/useVersion";
+import otherStore from "@/store/other";
+
+const $otherStore = otherStore();
 
 const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
 useGetData();
@@ -18,11 +21,13 @@ useGetData();
 
     <!-- 全局开关 -->
     <GlobalSwitch />
-    <div class="watermark">
-      <p>浏览器内核版本：{{ $chromeV() }}</p>
-      <p>当前版本：{{ LOCAL_VERSION }}</p>
-      <p>最新版本：{{ REMOTE_VERSION }}</p>
-    </div>
+    <transition name="fade">
+      <div class="watermark" v-show="!$otherStore.collapse">
+        <p>浏览器内核版本：{{ $chromeV() }}</p>
+        <p>当前版本：{{ LOCAL_VERSION }}</p>
+        <p>最新版本：{{ REMOTE_VERSION }}</p>
+      </div>
+    </transition>
 
     <!-- 移动端提示横屏浏览 -->
     <LibPhoneTip />
