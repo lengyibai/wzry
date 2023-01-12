@@ -1,7 +1,7 @@
 <template>
   <i
     class="iconfont wzry-packup cursor-pointer"
-    :class="{ 'is-active': $otherStore.collapse }"
+    :class="{ 'is-active': !$otherStore.collapse }"
     @click="toggleClick"
   />
 </template>
