@@ -33,10 +33,13 @@
   --theme-color-thirteen: #e6bc5e;
   --theme-color-fourteen: #f5dda2;
   --theme-color-fifteen: #8f693aa5;
+  --theme-color-sixteen: #13233c;
 
   /* 样式 */
   --t-shadow: 0 2px 3px #000;
+  --t-shadow-s: 0 2px 2px #000;
   --b-shadow: 0 3px 6px rgb(0 0 0 / 50%);
+  --b-shadow-s: 0 2px 3px rgb(0 0 0 / 50%);
   --font-f: "微软雅黑";
 
   /* 远程链接 */
