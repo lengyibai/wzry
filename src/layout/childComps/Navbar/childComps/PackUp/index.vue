@@ -17,7 +17,7 @@ const isActive = ref(true);
 const toggleClick = () => {
   $switchStore.$clickAudio(`收起侧边栏${isActive.value}`);
   isActive.value = !isActive.value;
-  $bus.emit("collapse");
+  $bus.emit("collapse", !isActive.value);
 };
 </script>
 <style scoped lang="less">

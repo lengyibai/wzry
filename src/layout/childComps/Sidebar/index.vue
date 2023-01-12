@@ -1,10 +1,10 @@
 <template>
-  <div class="side-bar">
+  <div class="side-bar" :class="{ collapse: collapse }">
     <div class="game">
-      <i class="iconfont wzry-logo" />
-      <transition name="fade">
-        <span>王者荣耀</span>
-      </transition>
+      <transition-group name="fade-a">
+        <i class="iconfont wzry-logo" key="icon" />
+        <span v-show="!collapse" key="text">王者荣耀</span>
+      </transition-group>
     </div>
     <div class="side-item">
       <sideItem v-for="route in routes" :route="route" :key="route.path" />
@@ -14,10 +14,17 @@
 <script setup lang="ts">
 import { RouteRecordRaw } from "vue-router";
 import { Route } from "@/router/interface";
+import $bus from "@/utils/eventBus";
 import routerStore from "@/store/routes";
 import sideItem from "./childComp/SideItem.vue";
+import { ref } from "vue";
 
+const collapse = ref(false); //是否折叠
 const options = routerStore().routes; //路由数据
+
+$bus.on("collapse", (v) => {
+  collapse.value = v as boolean;
+});
 
 const formatRoute = (a: RouteRecordRaw[]) => {
   const routes: Route[] = [];

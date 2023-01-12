@@ -1,6 +1,7 @@
 <template>
   <!-- 导航栏 -->
   <div class="navbar border-1">
+    <PackUp />
     <div class="right">
       <!-- 设置 -->
       <i
@@ -19,6 +20,7 @@
 </template>
 <script setup lang="ts">
 import switchStore from "@/store/globalSwitch";
+import PackUp from "./childComps/PackUp/index.vue"; //折叠侧边栏按钮
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 
 const $switchStore = switchStore();

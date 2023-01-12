@@ -7,6 +7,11 @@
   user-select: none;
   cursor: pointer;
 
+  span,
+  .menu-item .arrow {
+    transition: all 0.25s 0.1s;
+  }
+
   .menu-item {
     position: relative;
     display: flex;
@@ -16,6 +21,7 @@
 
     &:hover {
       color: var(--blue);
+      transition: all 0s;
     }
 
     .iconfont {
@@ -38,13 +44,17 @@
   }
 
   @media screen and (max-width: 1300px) {
-    span {
-      display: none;
-    }
+    .collapse();
+  }
+}
 
-    .arrow {
-      display: none;
-    }
+.collapse {
+  span {
+    opacity: 0;
+  }
+
+  .menu-item .arrow {
+    display: none;
   }
 }
 

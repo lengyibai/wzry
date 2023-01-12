@@ -6,7 +6,7 @@
   flex-direction: column;
   border-left: 1px solid var(--white-10);
 
-  .skin-type {
+  .hero-type {
     display: flex;
     align-items: center;
     padding: 10px 20px;
@@ -20,10 +20,12 @@
     .iconfont {
       margin-right: 15px;
       font-size: 35px;
+      transition: all 0.25s;
     }
 
     .name {
       font-size: 20px;
+      transition: all 0.25s 0.1s;
     }
 
     :deep(.icon) {
@@ -32,9 +34,38 @@
       margin-right: 20px;
     }
   }
+
+  @media screen and (max-width: 1300px) {
+    .collapse();
+  }
+}
+
+.collapse {
+  width: 50px;
+
+  .hero-type {
+    padding: 10px;
+
+    .name {
+      opacity: 0;
+    }
+
+    .iconfont {
+      margin-right: 0;
+      font-size: 25px;
+    }
+
+    :deep(.icon) {
+      margin-right: 0;
+    }
+  }
 }
 
 .active {
   color: var(--white) !important;
-  background-image: linear-gradient(135deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgb(34 58 94 / 0%) 25%,
+    rgb(34 130 199 / 25%) 100%
+  ) !important;
 }

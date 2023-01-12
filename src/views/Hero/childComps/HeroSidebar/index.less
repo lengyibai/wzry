@@ -5,6 +5,7 @@
   height: 100%;
   flex-direction: column;
   border-left: 1px solid var(--white-10);
+  transition: all 0.25s;
 
   .hero-type {
     display: flex;
@@ -20,31 +21,37 @@
     .iconfont {
       margin-right: 15px;
       font-size: 35px;
+      transition: all 0.25s;
     }
 
     .name {
       font-size: 20px;
+      transition: all 0.25s 0.1s;
     }
   }
 
   @media screen and (max-width: 1300px) {
-    width: initial;
+    .collapse();
+  }
+}
 
-    .hero-type {
-      padding: 10px;
+.collapse {
+  width: 50px;
 
-      .name {
-        display: none;
-      }
+  .hero-type {
+    padding: 10px;
 
-      .iconfont {
-        margin-right: 0;
-        font-size: 25px;
-      }
+    .name {
+      opacity: 0;
+    }
 
-      :deep(.icon) {
-        margin-right: 0;
-      }
+    .iconfont {
+      margin-right: 0;
+      font-size: 25px;
+    }
+
+    :deep(.icon) {
+      margin-right: 0;
     }
   }
 }

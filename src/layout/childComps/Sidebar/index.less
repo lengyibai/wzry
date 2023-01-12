@@ -4,6 +4,7 @@
   height: 100%;
   flex-direction: column;
   border-right: 1px solid var(--white-10);
+  transition: all 0.25s;
 
   .game {
     display: flex;
@@ -23,24 +24,29 @@
       font-size: 30px;
     }
   }
+
   @media screen and (max-width: 1300px) {
-    width: initial;
+    .collapse();
+  }
+}
 
-    .game {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 0;
+.collapse {
+  width: 80px;
 
-      .iconfont {
-        margin-right: 10px;
-        color: var(--theme-color-five);
-        font-size: 50px;
-      }
+  .game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
 
-      span {
-        display: none;
-      }
+    .iconfont {
+      margin-right: 10px;
+      color: var(--theme-color-five);
+      font-size: 50px;
+    }
+
+    span {
+      display: none;
     }
   }
 }

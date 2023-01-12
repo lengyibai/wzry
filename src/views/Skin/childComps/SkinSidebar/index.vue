@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import switchStore from "@/store/globalSwitch";
 import skinStore from "@/store/skin";
+import $bus from "@/utils/eventBus";
 
 const $switchStore = switchStore();
 const $skinStore = skinStore();
@@ -15,6 +17,12 @@ const hero_type = [
   { name: "辅助", icon: "wzry-fuzhu" },
 ];
 
+const collapse = ref(false); //是否折叠
+
+$bus.on("collapse", (v) => {
+  collapse.value = v as boolean;
+});
+
 /* 选择职业并筛选显示英雄 */
 const handleSelect = (name: string, index: number) => {
   $switchStore.$clickAudio(`默认${index}`);
@@ -23,9 +31,9 @@ const handleSelect = (name: string, index: number) => {
 </script>
 
 <template>
-  <div class="skin-sidebar">
+  <div class="skin-sidebar" :class="{ collapse: collapse }">
     <div
-      class="skin-type cursor-pointer"
+      class="hero-type cursor-pointer"
       :class="{ active: item.name === $skinStore.profession }"
       v-for="(item, index) in hero_type"
       @click="handleSelect(item.name, index)"
