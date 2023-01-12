@@ -3,182 +3,141 @@ import type { DirectiveBinding, App } from "vue";
 //视频
 import { $random } from "../utils";
 
-const parallaxVideo = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
-    const size = binding.value === "small" ? [15, 1.1] : [5, 1.35];
-    const multiple = size[0];
-    const body = document.body;
-    function transformElement(x: number, y: number) {
-      const box = el.getBoundingClientRect();
-      const calcY = (box.height / 2 - (y - box.y)) / multiple;
-      const calcX = (box.width / 2 - (x - box.x)) / multiple;
-      el.style.transform = `translateY(${calcY}px) translateX(${calcX}px) scale(${size[1]})`;
-    }
-
-    body.addEventListener("mousemove", (e) => {
-      requestAnimationFrame(() => {
-        transformElement(e.clientX, e.clientY);
-      });
-    });
-  },
-};
-
-const parallaxImg = {
-  mounted(el: HTMLElement) {
-    const body = document.body;
-    el.style.cssText = `
-      position: absolute;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      object-fit: cover;
-    `;
-    /* 灵敏度三级 */
-    const size = [
-      [15, 1.1],
-      [10, 1.225],
-      [5, 1.35],
-    ];
-    // 当前灵敏度为中等
-    const multiple = size[1][0];
-    function transformElement(x: number, y: number) {
-      const box = el.getBoundingClientRect();
-      const calcY = (box.height / 2 - (y - box.y)) / multiple;
-      const calcX = (box.width / 2 - (x - box.x)) / multiple;
-      el.style.transform = `translateY(${calcY}px) translateX(${calcX}px) scale(${size[1][1]})`;
-    }
-    body.addEventListener("mousemove", (e) => {
-      requestAnimationFrame(() => {
-        transformElement(e.clientX, e.clientY);
-      });
-    });
-  },
-};
-
 //纵向
-let particle_timer: Timeout = 0;
+// let particle_timer: Timeout = 0;
+// const particle = {
+//   mounted(el: HTMLElement, binding: DirectiveBinding) {
+//     const box = el;
+//     const {
+//       color = "#cfb45c",
+//       size = 10,
+//       brightness = 1.3,
+//       contrast = 1.1,
+//       filter = true,
+//     } = binding.value || {};
+//     if (filter) el.style.transition = "all 0.25s";
+//     const style = `
+//       position: absolute;
+//       background-color: ${color};
+//       pointer-events: none;
+//       width: ${size}px;
+//       height: ${size}px;
+//       bottom:0;
+//       box-shadow: 0 0 10px 0 ${color};
+//       filter: contrast(125%) brightness(125%);
+//       `;
+//     const box_width = box.offsetWidth;
+//     const box_height = box.offsetHeight;
+
+//     particle_timer = setInterval(() => {
+//       const left = $random(0, box_width - size);
+//       const top = $random(box_height / 2, box_height);
+//       const scale = $random(0.25, 0.75, 1);
+//       const time = $random(0.5, 2, 1);
+//       const c = document.createElement("span");
+//       c.style.cssText = style;
+//       c.style.left = `${left}px`;
+//       c.style.transform = `scale(${scale})`;
+//       c.style.transition = `all ${time}s linear`;
+//       box.appendChild(c);
+//       setTimeout(() => {
+//         c.style.bottom = `${top / 1.5}px`;
+//         setTimeout(() => {
+//           c.style.transition = `all ${time / 4}s linear`;
+//           c.style.opacity = "0";
+//         }, time * 1000 - (time * 1000) / 4);
+//         setTimeout(() => {
+//           c.remove();
+//         }, time * 1000);
+//       }, 50);
+//     }, 50);
+//     el.addEventListener("mouseenter", () => {
+//       if (!filter) return;
+//       el.style.filter = `brightness(${brightness * 100}%) contrast(${
+//         contrast * 100
+//       }%)`;
+//     });
+//     el.addEventListener("mouseleave", () => {
+//       el.style.filter = "";
+//     });
+//   },
+//   beforeUnmount() {
+//     clearInterval(particle_timer);
+//   },
+// };
+
 const particle = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const box = el;
+    const box_width = box.offsetWidth;
+    const box_height = box.offsetHeight;
     const {
       color = "#cfb45c",
       size = 10,
       brightness = 1.3,
       contrast = 1.1,
       filter = true,
+      num = 35,
     } = binding.value || {};
-    if (filter) el.style.transition = "all 0.25s";
-    const style = `
+    document.styleSheets[0].insertRule(
+      `
+      @keyframes particle-rise {
+        0% {
+          transform: translateY(0px) translateZ(0);
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-${box_height / 2}px) translateZ(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-${box_height}px) translateZ(0);
+          opacity: 0;
+        }
+      }
+      `,
+      1
+    );
+    for (let i = 0; i < num; i++) {
+      const p = document.createElement("span");
+
+      const style = `
       position: absolute;
       background-color: ${color};
       pointer-events: none;
       width: ${size}px;
       height: ${size}px;
-      bottom:0;
+      bottom: 0;
+      opacity: 0;
       box-shadow: 0 0 10px 0 ${color};
       filter: contrast(125%) brightness(125%);
       `;
-    const box_width = box.offsetWidth;
-    const box_height = box.offsetHeight;
-
-    particle_timer = setInterval(() => {
       const left = $random(0, box_width - size);
-      const top = $random(box_height / 2, box_height);
       const scale = $random(0.25, 0.75, 1);
       const time = $random(0.5, 2, 1);
-      const c = document.createElement("span");
-      c.style.cssText = style;
-      c.style.left = `${left}px`;
-      c.style.transform = `scale(${scale})`;
-      c.style.transition = `all ${time}s linear`;
-      box.appendChild(c);
-      setTimeout(() => {
-        c.style.bottom = `${top / 1.5}px`;
-        setTimeout(() => {
-          c.style.transition = `all ${time / 4}s linear`;
-          c.style.opacity = "0";
-        }, time * 1000 - (time * 1000) / 4);
-        setTimeout(() => {
-          c.remove();
-        }, time * 1000);
-      }, 50);
-    }, 50);
-    el.addEventListener("mouseenter", () => {
+      const delay = $random(0, 5, 1);
+      p.style.cssText = style;
+      p.style.left = `${left}px`;
+      p.style.scale = scale.toString();
+      p.style.animation = `particle-rise ${time}s linear infinite`;
+      p.style.animationDelay = delay + "s";
+
+      box.appendChild(p);
+    }
+
+    if (filter) el.style.transition = "all 0.25s";
+    box.addEventListener("mouseenter", () => {
       if (!filter) return;
-      el.style.filter = `brightness(${brightness * 100}%) contrast(${
+      box.style.filter = `brightness(${brightness * 100}%) contrast(${
         contrast * 100
       }%)`;
     });
-    el.addEventListener("mouseleave", () => {
-      el.style.filter = "";
+
+    box.addEventListener("mouseleave", () => {
+      box.style.filter = "";
     });
-  },
-  beforeUnmount() {
-    clearInterval(particle_timer);
   },
 };
-
-//横向
-/* const particle1 = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
-    const box = el;
-    el.style.transition = "all 0.25s";
-    let {
-      color = "#cfb45c",
-      size = 10,
-      brightness = 1.5,
-      contrast = 1.1,
-      filter = true,
-    } = binding.value || {};
-    const style = `
-      position: absolute;
-      background-color: ${color};
-      pointer-events: none;
-      width: ${size}px;
-      height: ${size}px;
-      left:0;
-      transform:scale(0);
-      box-shadow: 0 0 10px 0 ${color};
-      filter: contrast(125%) brightness(125%);
-      `;
-    const box_width = box.offsetWidth;
-    const box_height = box.offsetHeight;
-
-    $frameInterval(() => {
-      const top = $random(0, box_height - size),
-        left = $random(box_width / 2, box_width),
-        scale = $random(0.5, 1, 1),
-        time = $random(0.5, 1, 1),
-        c = document.createElement("span");
-      c.style.cssText = style;
-      c.style.top = top + "px";
-      c.style.transition = `all ${time}s linear`;
-      box.appendChild(c);
-      setTimeout(() => {
-        c.style.transform = `scale(${scale})`;
-        c.style.left = left / 1.5 + "px";
-        setTimeout(() => {
-          c.style.transition = `all ${time / 4}s linear`;
-          c.style.opacity = 0;
-        }, time * 1000 - (time * 1000) / 4);
-        setTimeout(() => {
-          c.remove();
-        }, time * 1000);
-      });
-    }, 100);
-    el.addEventListener("mouseenter", () => {
-      if (!filter) return;
-      el.style.filter = `brightness(${brightness * 100}%) contrast(${
-        contrast * 100
-      }%)`;
-    });
-    el.addEventListener("mouseleave", () => {
-      el.style.filter = "";
-    });
-  },
-}; */
 
 /* 底部渐变 */
 const maskGradient = {
@@ -374,8 +333,6 @@ interface Directives {
   [propName: string]: any;
 }
 const directives: Directives = {
-  parallaxVideo,
-  parallaxImg,
   particle,
   maskGradient,
   sweepLight,
