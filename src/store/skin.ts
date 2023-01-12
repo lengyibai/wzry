@@ -6,7 +6,7 @@ import { $debounce, $search, $typeSort } from "@/utils";
 
 export default defineStore("skin", () => {
   const profession = ref(""); //职业类型
-  const sort_type = ref(0); // 当前价格排序类型
+  const sort_type = ref(""); // 当前价格排序类型
   const gender_type = ref(0); // 当前性别筛选类型
   const skin_type = ref(""); // 当前皮肤筛选类型
   const skin_list = ref<Hero.Skin[]>([]); //皮肤列表
@@ -50,7 +50,7 @@ export default defineStore("skin", () => {
   };
 
   /** @description: 价格排序 */
-  const sortPrice = (type: number) => {
+  const sortPrice = (type: string) => {
     if (sort_type.value === type) return;
     sort_type.value = type;
     sortAll();
@@ -99,39 +99,60 @@ export default defineStore("skin", () => {
     }
 
     // 价格排序
-    if (sort_type.value === 1) {
-      const isNum: Hero.Skin[] = [];
-      const noNum: Hero.Skin[] = [];
-      filter_list.value.forEach((item) => {
-        if (!isNaN(Number(item.price))) {
-          isNum.push(item);
-        } else {
-          noNum.push(item);
-        }
-      });
-      isNum.sort((a, b) => {
-        return Number(a.price) - Number(b.price);
-      });
-      filter_list.value = [...isNum, ...noNum];
-    } else if (sort_type.value === 2) {
-      const isNum: Hero.Skin[] = [];
-      const strange: Hero.Skin[] = [];
-      const noNum: Hero.Skin[] = [];
-      filter_list.value.forEach((item) => {
-        if (!isNaN(Number(item.price))) {
-          isNum.push(item);
-        } else {
-          if (item.type.toString().indexOf("26.png") !== -1) {
-            strange.push(item);
+    const p = sort_type.value;
+    const noFree = [
+      "贵族专属",
+      "荣耀战令获取",
+      "积分夺宝获取",
+      "会员限定",
+      "限时兑换",
+      "星会员15级",
+    ];
+    if (p && p !== "全部价格") {
+      if (sort_type.value === "免费") {
+        const noNum: Hero.Skin[] = [];
+        filter_list.value.forEach((item) => {
+          if (
+            !noFree.includes(item.price.toString()) &&
+            isNaN(Number(item.price))
+          )
+            noNum.push(item);
+        });
+        filter_list.value = $typeSort(noNum, "price");
+      } else if (sort_type.value === "价格由低到高") {
+        const isNum: Hero.Skin[] = [];
+        const noNum: Hero.Skin[] = [];
+        filter_list.value.forEach((item) => {
+          if (!isNaN(Number(item.price))) {
+            isNum.push(item);
           } else {
             noNum.push(item);
           }
-        }
-      });
-      isNum.sort((a, b) => {
-        return Number(b.price) - Number(a.price);
-      });
-      filter_list.value = [...strange, ...isNum, ...noNum];
+        });
+        isNum.sort((a, b) => {
+          return Number(a.price) - Number(b.price);
+        });
+        filter_list.value = [...isNum, ...noNum];
+      } else if (sort_type.value === "价格由高到低") {
+        const isNum: Hero.Skin[] = [];
+        const strange: Hero.Skin[] = [];
+        const noNum: Hero.Skin[] = [];
+        filter_list.value.forEach((item) => {
+          if (!isNaN(Number(item.price))) {
+            isNum.push(item);
+          } else {
+            if (item.type.toString().indexOf("26.png") !== -1) {
+              strange.push(item);
+            } else {
+              noNum.push(item);
+            }
+          }
+        });
+        isNum.sort((a, b) => {
+          return Number(b.price) - Number(a.price);
+        });
+        filter_list.value = [...strange, ...isNum, ...noNum];
+      }
     }
 
     //皮肤类型筛选

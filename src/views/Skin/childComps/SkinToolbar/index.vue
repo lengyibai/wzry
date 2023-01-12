@@ -5,9 +5,10 @@ import SkinStore from "@/store/skin";
 const $SkinStore = SkinStore();
 
 const select_price = [
-  { label: "默认价格", value: 0 },
-  { label: "价格由低到高", value: 1 },
-  { label: "价格由高到低", value: 2 },
+  { label: "默认价格", value: "默认价格" },
+  { label: "免费", value: "免费" },
+  { label: "价格由低到高", value: "价格由低到高" },
+  { label: "价格由高到低", value: "价格由高到低" },
 ];
 const select_type = [
   { label: "全部类型", value: "全部类型" },
@@ -39,7 +40,7 @@ const gender = ref(0); //性别排序
 const search_value = ref(""); //搜索值
 
 /* 价格排序 */
-const EmitPriceSort = (v: number) => {
+const EmitPriceSort = (v: string) => {
   $SkinStore.sortPrice(v);
 };
 
