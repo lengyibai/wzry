@@ -13,8 +13,6 @@ const routePath: Record<string, any> = {
     import("@/views/System/childViews/Add/index.vue"),
   "@/views/System/childViews/Edit": () =>
     import("@/views/System/childViews/Edit/index.vue"),
-  "@/views/System/childViews/Delete": () =>
-    import("@/views/System/childViews/Delete/index.vue"),
   "@/views/System/childViews/Data": () =>
     import("@/views/System/childViews/Data/index.vue"),
 };
