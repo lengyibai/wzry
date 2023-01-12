@@ -1,8 +1,11 @@
 .K-Button {
   position: relative;
   color: var(--white);
+  box-shadow: var(--b-shadow);
+  user-select: none;
 
   &:active {
+    box-shadow: initial;
     img {
       filter: contrast(1.1) brightness(0.9);
     }
