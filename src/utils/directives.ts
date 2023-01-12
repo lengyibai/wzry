@@ -171,6 +171,7 @@ const textHoverColor = {
     left: 0;
     color: transparent;
     background-color: #fff;
+    text-shadow: initial;
     transition: all 0.25s;
     font-size: inherit;
     animation: light 3s infinite;
