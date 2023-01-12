@@ -1,25 +1,88 @@
 .user-menu {
-  width: 240px;
-  height: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+  border: 2px solid var(--theme-color-two);
+  border-radius: 50%;
 
-  .user {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .head-img {
+    z-index: 1;
     width: 100%;
     height: 100%;
+    border-radius: 50%;
+    box-shadow: var(--b-shadow-s);
+    transition: all 0.5s;
+    transform-origin: left top;
+  }
 
-    img {
-      height: 75%;
-      margin-left: 15px;
-      border-radius: 50%;
+  .user-card {
+    position: absolute;
+    top: 63px;
+    left: -175px;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding: 55px 25px 25px;
+    border: 1px solid var(--white-25);
+    border-radius: 10px;
+    background-color: var(--theme-color-one);
+    transition: all 0.5s;
+    opacity: 0;
+    flex-direction: column;
+    transform: translateY(25px);
+    pointer-events: none;
+
+    .name {
+      width: 100%;
+      margin-bottom: 5px;
+      color: var(--theme-color-eight);
+      font-size: 22px;
+      text-align: center;
     }
 
-    span {
-      margin-right: 15px;
-      color: var(--theme-color-five);
-      font-size: 20px;
+    .role {
+      color: var(--theme-color-eleven);
+      font-size: 16px;
+    }
+
+    .btns {
+      position: relative;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      flex-direction: column;
+      margin-top: 50px;
+
+      .edit,
+      .logout {
+        width: 75%;
+        height: 50px;
+        color: #fff;
+        font-size: 25px;
+        text-align: center;
+      }
+
+      .edit {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  &:hover {
+    .head-img {
+      transform-origin: center center;
+      transform: translate(-50px, 35px) scale(2);
+    }
+
+    .user-card {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 }

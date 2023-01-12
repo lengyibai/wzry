@@ -1,18 +1,24 @@
 <template>
-  <div class="user-menu">
-    <LibFlipBox>
-      <template #front>
-        <div class="user">
-          <img v-if="userInfo.headImg" :src="userInfo.headImg" alt="" />
-          <span>{{ timeGreet }}，{{ userInfo.name }}</span>
+  <div class="user-menu cursor-pointer">
+    <img
+      class="head-img"
+      v-if="userInfo.headImg"
+      :src="userInfo.headImg"
+      alt="头像"
+    />
+    <div class="user-card cursor-default">
+      <div class="name lib-one-line">{{ timeGreet }}，{{ userInfo.name }}</div>
+      <div class="role">身份：{{ role }}</div>
+
+      <div class="btns">
+        <div class="edit">
+          <K-Button fontSize="20px" autoSize>编辑个人信息</K-Button>
         </div>
-      </template>
-      <template #back>
-        <K-Button @click="logout" type="error" :autoSize="true"
-          >退出登录</K-Button
-        >
-      </template>
-    </LibFlipBox>
+        <div class="logout" @click="logout">
+          <K-Button type="error" fontSize="20px" autoSize>退出登录</K-Button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -25,9 +31,11 @@ const $authStore = authStore();
 const $switchStore = switchStore();
 
 const timeGreet = computed(() => $timeGreet());
-
 const userInfo = computed(() => {
   return $authStore.userInfo;
+});
+const role = computed(() => {
+  return userInfo.value.role === 0 ? "管理员" : "普通用户";
 });
 
 /* 退出登录 */
