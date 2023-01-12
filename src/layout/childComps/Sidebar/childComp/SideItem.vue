@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" :class="{ collapse: collapse }" v-if="route">
+  <div class="menu" :class="{ collapse: $otherStore.collapse }" v-if="route">
     <button
       @click="fn(route.path)"
       class="menu-item menu-list"
@@ -35,9 +35,9 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
 import { Route } from "@/router/interface";
-import $bus from "@/utils/eventBus";
+import { useRouter, useRoute } from "vue-router";
+import otherStore from "@/store/other";
 import switchStore from "@/store/globalSwitch";
 import SideItem from "./SideItem.vue"; //调用自身
 
@@ -61,18 +61,14 @@ interface RouteFormat {
 const $router = useRouter();
 const $route = useRoute();
 const $switchStore = switchStore();
+const $otherStore = otherStore();
 
 const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`;
 
 const show = ref(false);
-const collapse = ref(false); //是否折叠
 const routes = reactive<RouteFormat[]>([]);
 
 show.value = $route.path.includes(props.route.path);
-
-$bus.on("collapse", (v) => {
-  collapse.value = v as boolean;
-});
 
 if (show.value && props.route.children) routes.push(...props.route.children);
 

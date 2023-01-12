@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import otherStore from "@/store/other";
 import switchStore from "@/store/globalSwitch";
 import heroStore from "@/store/hero";
-import $bus from "@/utils/eventBus";
 
 const $switchStore = switchStore();
 const $heroStore = heroStore();
+const $otherStore = otherStore();
 
 const hero_type = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -17,12 +17,6 @@ const hero_type = [
   { name: "辅助", icon: "wzry-fuzhu" },
 ];
 
-const collapse = ref(false); //是否折叠
-
-$bus.on("collapse", (v) => {
-  collapse.value = v as boolean;
-});
-
 /* 选择职业并筛选显示英雄 */
 const handleSelect = (name: string, index: number) => {
   $switchStore.$clickAudio(`默认${index}`);
@@ -31,7 +25,7 @@ const handleSelect = (name: string, index: number) => {
 </script>
 
 <template>
-  <div class="hero-sidebar" :class="{ collapse: collapse }">
+  <div class="hero-sidebar" :class="{ collapse: $otherStore.collapse }">
     <div
       class="hero-type cursor-pointer"
       :class="{ active: item.name === $heroStore.profession }"

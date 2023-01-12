@@ -7,17 +7,17 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import $bus from "@/utils/eventBus";
 import switchStore from "@/store/globalSwitch";
+import otherStore from "@/store/other";
 
+const $otherStore = otherStore();
 const $switchStore = switchStore();
 
 const isActive = ref(true);
 
 const toggleClick = () => {
   $switchStore.$clickAudio(`收起侧边栏${isActive.value}`);
-  isActive.value = !isActive.value;
-  $bus.emit("collapse", !isActive.value);
+  $otherStore.setCollapse();
 };
 </script>
 <style scoped lang="less">
