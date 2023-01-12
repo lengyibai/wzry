@@ -4,6 +4,7 @@ import { getSkinType, getHeroSkin, addSkin } from "@/api/main/games/skin";
 import { getHeroDetail } from "@/api/main/games/hero";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
+import skinStore from "@/store/skin";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -11,6 +12,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+const $skinStore = skinStore();
 
 const {
   hero_id,
@@ -109,6 +111,7 @@ const EmitCommit = async () => {
       setTimeout(() => {
         EmitConfirmRemove();
         $switchStore.$tip("发布成功", "info");
+        $skinStore.getSkin();
       }, 500);
     }
   } else {

@@ -16,6 +16,7 @@ import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue/defaults";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/globalSwitch";
+import heroStore from "@/store/hero";
 
 interface Attr extends Record<string, string> {
   survival: string;
@@ -30,6 +31,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+const $heroStore = heroStore();
 
 const attr: Attr = {
   survival: "生存能力",
@@ -92,6 +94,7 @@ const EmitCommit = async () => {
     setTimeout(() => {
       EmitConfirmRemove();
       $switchStore.$tip("发布成功", "info");
+      $heroStore.getHeroList();
     }, 500);
   } else {
     $switchStore.$tip("请完整填写", "error");

@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { $deepCopy } from "@/utils";
+import { addHeroSkill } from "@/api/main/games/skill";
 import { computed, ref } from "vue";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
-import { addHeroSkill } from "@/api/main/games/skill";
-import { $deepCopy } from "@/utils";
 import { skillDefault, skillEffectDefault } from "@/defaultValue/defaults";
+import heroStore from "@/store/hero";
 import switchStore from "@/store/globalSwitch";
 import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
@@ -14,6 +15,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+const $heroStore = heroStore();
 
 const {
   show,
@@ -221,6 +223,7 @@ const EmitCommit = async () => {
       finish.value = true;
       EmitConfirmRemove();
       $switchStore.$tip("发布成功", "info");
+      $heroStore.getHeroList();
     }, 500);
   } else {
     $switchStore.$tip("请完整填写必填项，且主技能个数不低于3个", "error");
