@@ -5,6 +5,7 @@
 
 * {
   font-family: "方正正准黑";
+  text-shadow: var(--t-shadow-s);
 }
 
 *::-webkit-scrollbar {
