@@ -17,7 +17,7 @@
 </template>
 <script setup lang="ts">
 interface Props {
-  type?: string; //类型
+  type?: "info" | "error" | "warning"; //类型
   width?: string; //宽度
   height?: string; //高度
   fontSize?: string; //文字大小
