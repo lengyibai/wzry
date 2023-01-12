@@ -3,69 +3,6 @@ import type { DirectiveBinding, App } from "vue";
 //视频
 import { $random } from "../utils";
 
-//纵向
-// let particle_timer: Timeout = 0;
-// const particle = {
-//   mounted(el: HTMLElement, binding: DirectiveBinding) {
-//     const box = el;
-//     const {
-//       color = "#cfb45c",
-//       size = 10,
-//       brightness = 1.3,
-//       contrast = 1.1,
-//       filter = true,
-//     } = binding.value || {};
-//     if (filter) el.style.transition = "all 0.25s";
-//     const style = `
-//       position: absolute;
-//       background-color: ${color};
-//       pointer-events: none;
-//       width: ${size}px;
-//       height: ${size}px;
-//       bottom:0;
-//       box-shadow: 0 0 10px 0 ${color};
-//       filter: contrast(125%) brightness(125%);
-//       `;
-//     const box_width = box.offsetWidth;
-//     const box_height = box.offsetHeight;
-
-//     particle_timer = setInterval(() => {
-//       const left = $random(0, box_width - size);
-//       const top = $random(box_height / 2, box_height);
-//       const scale = $random(0.25, 0.75, 1);
-//       const time = $random(0.5, 2, 1);
-//       const c = document.createElement("span");
-//       c.style.cssText = style;
-//       c.style.left = `${left}px`;
-//       c.style.transform = `scale(${scale})`;
-//       c.style.transition = `all ${time}s linear`;
-//       box.appendChild(c);
-//       setTimeout(() => {
-//         c.style.bottom = `${top / 1.5}px`;
-//         setTimeout(() => {
-//           c.style.transition = `all ${time / 4}s linear`;
-//           c.style.opacity = "0";
-//         }, time * 1000 - (time * 1000) / 4);
-//         setTimeout(() => {
-//           c.remove();
-//         }, time * 1000);
-//       }, 50);
-//     }, 50);
-//     el.addEventListener("mouseenter", () => {
-//       if (!filter) return;
-//       el.style.filter = `brightness(${brightness * 100}%) contrast(${
-//         contrast * 100
-//       }%)`;
-//     });
-//     el.addEventListener("mouseleave", () => {
-//       el.style.filter = "";
-//     });
-//   },
-//   beforeUnmount() {
-//     clearInterval(particle_timer);
-//   },
-// };
-
 const particle = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const box = el;
