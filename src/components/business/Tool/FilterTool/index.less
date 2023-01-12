@@ -6,8 +6,11 @@
   padding: 0.25em 1.4em;
   border: 1px solid #2e4e75;
   font-size: 16px;
-  background-color: #13233c;
-  background-image: linear-gradient(180deg, #13233c 0%, #263657 100%);
+  background-image: linear-gradient(
+    180deg,
+    var(--theme-color-sixteen) 0%,
+    #263657 100%
+  );
 
   .title {
     color: var(--theme-color-five);
@@ -30,7 +33,7 @@
     min-width: 100px;
     border: 1px solid var(--theme-color-four);
     border-radius: 5px;
-    background-color: #13233c;
+    background-color: var(--theme-color-sixteen);
     transition: all 0.25s;
     transform: translateY(100%);
     transform-origin: top center;
