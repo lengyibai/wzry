@@ -3,17 +3,29 @@
     margin-right: 20px;
     color: var(--theme-color-five);
     font-size: 35px;
-
-    &:hover {
-      color: var(--white);
-    }
   }
 
   .wzry-setting {
-    transition: all 0.5s;
+    display: inline-block;
+    transition: all 0.25s;
 
     &:hover {
+      color: var(--white);
       transform: rotate(180deg);
     }
+  }
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin-bottom: 25px;
+
+  .label {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
   }
 }
