@@ -20,7 +20,7 @@ export const _login = async (form: User) => {
     /* 判断密码是否正确 */
     if (form.password === data.password) {
       const token = await updateToken(
-        form.id || "",
+        form.id,
         new Date().getTime().toString().slice(0, 8)
       );
       return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
