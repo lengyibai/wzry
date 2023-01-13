@@ -1,7 +1,7 @@
 import { get, post, patch } from "@/api/helper/transfer";
 
 /** @description: 更新token */
-const updateUser = (id: string, token: string) => {
+const updateToken = (id: string, token: string) => {
   patch({ name: "data_user", key: "id", value: id, k: "wzryToken", v: token }); //将token写入本地
   return Promise.resolve(token); //返回新token
 };
@@ -19,8 +19,8 @@ export const _login = async (form: User) => {
   if (data) {
     /* 判断密码是否正确 */
     if (form.password === data.password) {
-      const token = await updateUser(
-        form.id,
+      const token = await updateToken(
+        form.id || "",
         new Date().getTime().toString().slice(0, 8)
       );
       return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
@@ -55,4 +55,10 @@ export const register = async (form: User) => {
   } else {
     return Promise.resolve(post<User>("data_user", form));
   }
+};
+
+/** @description: 更新用户信息 */
+export const updateUser = (id: string, info: User) => {
+  patch({ name: "data_user", key: "id", value: id, v: info }, true); //将token写入本地
+  return Promise.resolve(info); //返回新token
 };
