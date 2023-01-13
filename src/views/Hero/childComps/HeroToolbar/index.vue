@@ -131,11 +131,11 @@ const handSearch = () => {
     </div>
 
     <!-- 搜索 -->
-    <input
-      class="search"
+    <K-Input
+      class="input"
       placeholder="英雄/字母"
-      type="text"
       @input="handSearch"
+      border-color="var(--theme-color-three)"
       v-model="search_value"
     />
   </div>
