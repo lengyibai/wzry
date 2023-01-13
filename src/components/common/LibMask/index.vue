@@ -32,7 +32,7 @@ const hide = (e) => {
 <style scoped lang="less">
 .LibMask {
   position: fixed;
-  z-index: 9999;
+  z-index: 9;
   display: flex;
   justify-content: center;
   align-items: center;
