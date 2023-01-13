@@ -7,7 +7,7 @@ interface Get {
 }
 
 interface Patch extends Get {
-  k: string; //需要被修改的键名
+  k?: string; //需要被修改的键名
   v: any; //需要修改成什么
 }
 
@@ -39,26 +39,31 @@ export function get<R>(params: Get, alone = true): R | R[] | void {
 }
 
 /** @description: 添加 */
-export const post = <R extends { id: number | string }>(
-  name: string,
-  value: R
-) => {
+export const post = <R>(name: string, value: R) => {
   const d = localStorage.getItem(name);
   const v = (d && JSON.parse(d)) as R[];
   v.push(value);
   localStorage.setItem(name, JSON.stringify(v));
 };
 
-/** @description: 修改 */
-export const patch = <R>(params: Patch) => {
+/**
+ * @description: 修改
+ * @param {boolean} obj: 是否传递对象进行修改
+ */
+export const patch = <R>(params: Patch, obj?: boolean) => {
   const { name, key, k, value, v } = params;
   const d = localStorage.getItem(name);
   const data: R[] = d && JSON.parse(d);
-  const newData = data.find((item) => {
+  let newData = data.find((item) => {
     const i = item as Record<string, any>;
     return i[key!] === value;
   }) as Record<string, any>;
-  newData[k] = v;
-  localStorage.setItem(name, JSON.stringify($deepMearge(data, newData))); //合并数据并存储
+  if (obj) {
+    newData = v;
+  } else {
+    newData[k!] = v;
+  }
+
+  localStorage.setItem(name, JSON.stringify($deepMearge(data, [newData]))); //合并数据并存储
   return newData as R;
 };
