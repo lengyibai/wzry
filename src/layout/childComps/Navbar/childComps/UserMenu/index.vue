@@ -2,12 +2,16 @@
   <div class="user-menu">
     <img
       class="head-img"
-      v-if="userInfo.headImg"
-      :src="userInfo.headImg"
+      :src="
+        userInfo.headImg ||
+        'https://lengyibai.gitee.io/wzry-material/image/unknown.png'
+      "
       alt="头像"
     />
     <div class="user-card">
-      <div class="name lib-one-line">{{ timeGreet }}，{{ userInfo.name }}</div>
+      <div class="name lib-one-line">
+        {{ timeGreet }}，{{ userInfo.nickname }}
+      </div>
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">
