@@ -1,4 +1,4 @@
-.login-update-dialog {
+.notice {
   position: absolute;
   display: flex;
   justify-content: space-around;
@@ -9,6 +9,7 @@
   flex-direction: column;
 
   .box {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 90vw;
@@ -16,8 +17,18 @@
     padding: 40px;
     padding-right: 0;
     padding-bottom: 0;
-    background: url('https://lengyibai.gitee.io/wzry-material/image/dialog.png') no-repeat center center;
+    background: url("https://lengyibai.gitee.io/wzry-material/image/dialog.png")
+      no-repeat center center;
     background-size: 100% 100%;
+
+    .close {
+      position: absolute;
+      top: 32px;
+      right: 28px;
+      z-index: 2;
+      width: 40px;
+      filter: drop-shadow(0 0 3px #cce5ff);
+    }
 
     .title {
       z-index: 1;
@@ -44,42 +55,4 @@
       }
     }
   }
-
-  .btns {
-    z-index: 1;
-    display: flex;
-
-    .btn {
-      margin-right: 25px;
-    }
-  }
-
-  .desc {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: var(--white);
-    line-height: 1.75;
-    font-size: 16px;
-
-    .link {
-      color: var(--blue);
-
-      &:hover {
-        color: var(--red);
-        text-decoration: underline;
-      }
-    }
-
-    .key {
-      color: var(--yellow);
-    }
-  }
-}
-
-/* 缩放 */
-.default-leave-active {
-  transition: all 0.25s;
-  transform: scale(0.75);
-  opacity: 0;
 }
