@@ -1,0 +1,101 @@
+.k-range {
+  display: flex;
+  align-items: center;
+
+  .input {
+    position: relative;
+
+    .slider-value {
+      position: absolute;
+      top: -75px;
+      width: 100%;
+
+      .value {
+        position: absolute;
+        z-index: 2;
+        height: 50px;
+        padding: 0 15px;
+        border-radius: 30px;
+        color: var(--theme-color-eight);
+        font-size: 25px;
+        text-align: center;
+        background-color: var(--theme-color-one);
+        transition: transform 0.3s ease-in-out;
+        font-weight: 500;
+        transform: translateX(-50%) scale(0);
+        transform-origin: bottom;
+        line-height: 50px;
+      }
+    }
+
+    .field {
+      @height: 3px;
+
+      display: flex;
+      justify-content: center;
+
+      .bar {
+        position: absolute;
+        left: 0;
+        width: 0%;
+        height: @height;
+        border-radius: @height;
+        pointer-events: none;
+        background-image: linear-gradient(90deg, #2d59a0 0%, #6bb8ff 100%);
+
+        img,
+        span {
+          position: absolute;
+          transform: translateX(50%) translateY(-50%);
+          top: 1.5px;
+          right: 0;
+          border-radius: 50%;
+          transition: transform 0.5s;
+        }
+      }
+
+      input {
+        width: 100%;
+        height: @height;
+        margin: 0;
+        border-radius: @height;
+        outline: none;
+        background-color: var(--theme-color-one);
+        appearance: none;
+
+        &::-webkit-slider-thumb {
+          width: var(--size);
+          height: var(--size);
+          border-radius: 50px;
+          background-size: cover;
+          appearance: none;
+        }
+      }
+
+      .value {
+        position: relative;
+        color: #000;
+        font-size: 18px;
+        font-weight: 600;
+
+        &.left {
+          left: -22px;
+        }
+
+        &.right {
+          right: -43px;
+        }
+      }
+    }
+  }
+}
+
+/* 拖动显示数字 */
+.show-num {
+  transform: translateX(-50%) scale(1) !important;
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
