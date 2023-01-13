@@ -1,12 +1,12 @@
 <template>
-  <div class="user-menu cursor-pointer">
+  <div class="user-menu">
     <img
       class="head-img"
       v-if="userInfo.headImg"
       :src="userInfo.headImg"
       alt="头像"
     />
-    <div class="user-card cursor-default">
+    <div class="user-card">
       <div class="name lib-one-line">{{ timeGreet }}，{{ userInfo.name }}</div>
       <div class="role">身份：{{ role }}</div>
 
