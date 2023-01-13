@@ -1,6 +1,13 @@
 <template>
   <div class="LibBgVideo">
-    <video class="video" ref="videoPlayer" autoplay :src="video" loop></video>
+    <video
+      :muted="muted"
+      :src="video"
+      autoplay
+      class="video"
+      loop
+      ref="videoPlayer"
+    ></video>
   </div>
 </template>
 <script setup>
@@ -10,6 +17,10 @@ defineProps({
   video: {
     type: String,
     default: "",
+  },
+  muted: {
+    type: Boolean,
+    default: false,
   },
 });
 
