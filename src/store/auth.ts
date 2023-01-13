@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
 import { _login } from "@/api/main/user";
-import switchStore from "./globalSwitch";
+import { defineStore } from "pinia";
+import { HOME_URL } from "@/config/config";
+import { ref } from "vue";
 import router from "@/router";
 import routesStore from "@/store/routes";
-import { ref } from "vue";
-import { HOME_URL } from "@/config/config";
+import switchStore from "./globalSwitch";
 
 export default defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
@@ -54,6 +54,14 @@ export default defineStore("auth", () => {
       });
   };
 
+  /** @description: 自动登录 */
+  const autoLogin = () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    login(user).then(() => {
+      switchStore().$tip("自动登录成功");
+    });
+  };
+
   /** @description: 退出登录 */
   const logout = () => {
     clearToken();
@@ -99,6 +107,7 @@ export default defineStore("auth", () => {
     setUserStatus,
     setUserInfo,
     login,
+    autoLogin,
     logout,
     clearToken,
     offline,

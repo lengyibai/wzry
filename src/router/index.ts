@@ -37,8 +37,7 @@ useRouter.beforeEach(async (to, from, next) => {
   }
   // 如果未登录，但是本地存在用户信息，且能匹配权限
   else if (!$authStore.userStatus && token && to.matched.length !== 0) {
-    $authStore.setUserStatus(true);
-    $switchStore.$tip("自动登录成功");
+    $authStore.autoLogin();
   }
   //如果没有权限
   else if (to.matched.length === 0) {
