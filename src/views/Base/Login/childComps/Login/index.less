@@ -1,0 +1,59 @@
+.login-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  padding: 75px 100px;
+  border-radius: 10px;
+  border-radius: 25px;
+  box-shadow: 0 8px 32px 0 rgb(0 0 0 / 25%);
+  background: rgb(0 0 0 / 25%);
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  backdrop-filter: blur(15px);
+
+  .back {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    display: flex;
+    color: var(--white-25);
+    font-size: 18px;
+
+    .wzry-fanhui {
+      margin-right: 10px;
+      font-size: inherit;
+    }
+
+    span {
+      line-height: 26px;
+    }
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 25px;
+    animation: light 1.5s infinite alternate-reverse ease-out;
+
+    img {
+      width: 100%;
+      @keyframes light {
+        100% {
+          transform: translateY(-10px);
+          filter: drop-shadow(0 0 15px var(--theme-color-thirteen));
+        }
+      }
+    }
+  }
+
+  .title {
+    margin-bottom: 0.75em;
+    color: transparent;
+    font-size: 50px;
+    background: linear-gradient(155deg, #f6dda5 25%, #ffb700);
+    background-clip: text;
+    font-weight: bold;
+  }
+}
