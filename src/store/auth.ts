@@ -1,7 +1,5 @@
 import { defineStore } from "pinia";
-import { FormData } from "@/api/interface/form";
 import { _login } from "@/api/main/user";
-import { ResultData } from "@/api/interface/result";
 import switchStore from "./globalSwitch";
 import router from "@/router";
 import routesStore from "@/store/routes";
@@ -12,10 +10,10 @@ export default defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
   const timer = ref<Interval | number>(0); //实时检测帐号状态
   // 用户相关信息
-  const userInfo = ref<ResultData.User>({
-    id: 0,
+  const userInfo = ref<User>({
+    id: "",
     password: "",
-    name: "",
+    nickname: "",
     headImg: "",
     wzryToken: "",
     role: 1,
@@ -27,19 +25,21 @@ export default defineStore("auth", () => {
   };
 
   /** @description: 设置用户信息 */
-  const setUserInfo = (data: ResultData.User) => {
+  const setUserInfo = (data: User) => {
     userInfo.value = data;
   };
 
   /** @description: 登录 */
-  const login = async (form: FormData.User) => {
+  const login = async (form: User) => {
     switchStore().$loading.show("登录中");
     switchStore().$clickAudio("登录");
     _login(form)
       .then((res) => {
+        console.log(res);
+
         /* 登录成功 */
         switchStore().$tip("登录成功");
-        routesStore().addRoutes(res.role);
+        routesStore().addRoutes(res.role!);
         userStatus.value = true;
         // 获取用户信息
         userInfo.value = res;
@@ -48,7 +48,9 @@ export default defineStore("auth", () => {
         router.push(HOME_URL);
         watchStatus();
       })
-      .catch(() => {})
+      .catch((err) => {
+        switchStore().$tip(err, "error");
+      })
       .finally(() => {
         switchStore().$loading.close();
       });
@@ -65,9 +67,9 @@ export default defineStore("auth", () => {
     clearInterval(timer.value);
     userStatus.value = false;
     userInfo.value = {
-      id: 0,
+      id: "",
       password: "",
-      name: "",
+      nickname: "",
       headImg: "",
       wzryToken: "",
       role: 1,
