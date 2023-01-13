@@ -39,7 +39,10 @@ export function get<R>(params: Get, alone = true): R | R[] | void {
 }
 
 /** @description: 添加 */
-export const post = <R extends { id: number }>(name: string, value: R) => {
+export const post = <R extends { id: number | string }>(
+  name: string,
+  value: R
+) => {
   const d = localStorage.getItem(name);
   const v = (d && JSON.parse(d)) as R[];
   v.push(value);
