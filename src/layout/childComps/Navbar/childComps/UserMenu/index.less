@@ -73,17 +73,37 @@
       }
     }
   }
+}
 
-  &:hover {
-    .head-img {
-      transform-origin: center center;
-      transform: translate(-50px, 35px) scale(2);
-    }
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin-bottom: 25px;
 
-    .user-card {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
+  .label {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+  }
+
+  .input {
+    &::placeholder {
+      color: var(--theme-color-eleven);
     }
+  }
+}
+
+.hover {
+  .head-img {
+    transform-origin: center center;
+    transform: translate(-50px, 35px) scale(2);
+  }
+
+  .user-card {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 }
