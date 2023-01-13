@@ -25,7 +25,7 @@ const emit = defineEmits<Emits>();
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
-  label: "被动",
+  label: "标题",
   labelWidth: "150px",
   required: false,
 });
