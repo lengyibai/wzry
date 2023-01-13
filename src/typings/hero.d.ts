@@ -113,3 +113,12 @@ declare namespace Hero {
     name: string;
   }
 }
+
+declare interface User {
+  id: string;
+  password: string;
+  nickname?: string;
+  headImg?: string;
+  wzryToken?: string;
+  role?: 0 | 1;
+}
