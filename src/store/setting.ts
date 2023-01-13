@@ -12,15 +12,16 @@ const switchStore = defineStore("setting", () => {
     lazy: true,
     theme: 0,
     speed: 1,
+    loginSound: true,
   });
 
   const data = localStorage.getItem("config");
   if (data) config.value = { ...config.value, ...JSON.parse(data) };
 
   /** @description: 保存设置 */
-  const saveConfig = (v: any) => {
-    config.value = v;
-    localStorage.setItem("config", JSON.stringify(v));
+  const saveConfig = (v: Partial<typeof config.value>) => {
+    config.value = { ...config.value, ...v };
+    localStorage.setItem("config", JSON.stringify(config.value));
   };
   return { config, saveConfig };
 });

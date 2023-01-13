@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import settingStore from "@/store/setting";
 
 interface Emits {
   (e: "clicks", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
+const $settingStore = settingStore();
+
 const muted = ref(false);
+
+muted.value = !$settingStore.config.loginSound;
 
 const icon = computed(() => {
   return muted.value ? "wzry-jingyin" : "wzry-laba";
@@ -17,6 +22,7 @@ const handleShowNotice = (v: string) => {
   emit("clicks", v);
   if (v === "sound") {
     muted.value = !muted.value;
+    $settingStore.saveConfig({ loginSound: !muted.value });
   }
 };
 </script>
