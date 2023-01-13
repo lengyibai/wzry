@@ -14,17 +14,15 @@
           class="bg"
           src="https://lengyibai.gitee.io/wzry-material/image/dialog.png"
         />
-        <transition name="fade">
-          <div class="content" v-if="modelValue">
-            <div class="text">{{ text }}</div>
-            <div class="button">
-              <K-Button type="info" @click="handleCancel">取消</K-Button>
-              <K-Button class="last" type="warning" @click="handleConfirm"
-                >确定</K-Button
-              >
-            </div>
+        <div class="content">
+          <div class="text">{{ text }}</div>
+          <div class="button">
+            <K-Button type="info" @click="handleCancel">取消</K-Button>
+            <K-Button class="last" type="warning" @click="handleConfirm"
+              >确定</K-Button
+            >
           </div>
-        </transition>
+        </div>
       </div>
     </transition>
   </LibMask>
