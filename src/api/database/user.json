@@ -1,20 +1,3 @@
 {
-  "data": [
-    {
-      "id": 1329670984,
-      "password": "lengyibai.",
-      "name": "冷弋白",
-      "headImg": "https://lengyibai.gitee.io/img-bed/img/lyb.jpg",
-      "wzryToken": "1669375",
-      "role": 0
-    },
-    {
-      "id": 3080572703,
-      "password": "lengyibai.",
-      "name": "凡灵",
-      "headImg": "https://lengyibai.gitee.io/img-bed/img/lib.png",
-      "wzryToken": "1669376",
-      "role": 1
-    }
-  ]
+  "data": []
 }
