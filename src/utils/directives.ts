@@ -6,6 +6,7 @@ const particle = {
     const box = el;
     const box_width = box.offsetWidth;
     const box_height = box.offsetHeight;
+
     const {
       color = "#cfb45c",
       size = 10,
@@ -13,26 +14,50 @@ const particle = {
       contrast = 1.1,
       filter = true,
       num = 35,
+      down = false,
     } = binding.value || {};
-    document.styleSheets[0].insertRule(
-      `
-      @keyframes particle-rise {
+
+    if (down) {
+      document.styleSheets[0].insertRule(
+        `
+      @keyframes particle-rise-${box_height} {
         0% {
-          transform: translateY(0px) translateZ(0);
-          opacity: 1;
+          transform: translateY(-${box_height}px) translateZ(0);
+          opacity: 0;
         }
         50% {
-          transform: translateY(-${box_height / 2}px) translateZ(0);
+          transform: translateY(${box_height / 2}px) translateZ(0);
           opacity: 1;
         }
         100% {
-          transform: translateY(-${box_height}px) translateZ(0);
+          transform: translateY(${box_height}px) translateZ(0);
           opacity: 0;
         }
       }
       `,
-      1
-    );
+        document.styleSheets[0].cssRules.length
+      );
+    } else {
+      document.styleSheets[0].insertRule(
+        `
+        @keyframes particle-rise-${box_height} {
+          0% {
+            transform: translateY(0px) translateZ(0);
+            opacity: 1;
+          }
+          50% {
+            transform: translateY(-${box_height / 2}px) translateZ(0);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-${box_height}px) translateZ(0);
+            opacity: 0;
+          }
+        }
+        `,
+        document.styleSheets[0].cssRules.length
+      );
+    }
     for (let i = 0; i < num; i++) {
       const p = document.createElement("span");
 
@@ -49,12 +74,12 @@ const particle = {
       `;
       const left = $random(0, box_width - size);
       const scale = $random(0.25, 0.75, 1);
-      const time = $random(0.5, 2, 1);
+      const time = $random(1, 3, 1);
       const delay = $random(0, 5, 1);
       p.style.cssText = style;
       p.style.left = `${left}px`;
       p.style.scale = scale.toString();
-      p.style.animation = `particle-rise ${time}s linear infinite`;
+      p.style.animation = `particle-rise-${box_height} ${time}s linear infinite`;
       p.style.animationDelay = delay + "s";
 
       box.appendChild(p);
