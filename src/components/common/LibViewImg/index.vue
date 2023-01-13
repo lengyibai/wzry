@@ -211,7 +211,7 @@ onMounted(() => {
   height: 100vh;
   background-color: var(--black-50);
   overflow: hidden;
-  z-index: 1;
+  z-index: 9;
   .mask {
     position: fixed;
     width: 100%;
