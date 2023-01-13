@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
-import switchStore from "@/store/globalSwitch";
 import authStore from "@/store/auth";
 import NProgress from "@/config/nprogress";
 import { HOME_URL } from "@/config/config";
@@ -15,7 +14,6 @@ useRouter.beforeEach(async (to, from, next) => {
   NProgress.start(); // 开启进度条
 
   const $authStore = authStore();
-  const $switchStore = switchStore();
 
   const token = $authStore.userInfo?.wzryToken;
   const is_exist = isExist(to.path);

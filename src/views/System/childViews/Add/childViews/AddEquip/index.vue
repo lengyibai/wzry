@@ -89,12 +89,12 @@ const EmitCommit = async () => {
     ); // 查找装备分类id
     //生成装备id
     form_data.value!.id = Number(`${type_id!.id}${level}${num}`);
-    const data = {
-      ...form_data.value!,
-      level: Number(level),
-      num: Number(num),
-      price: Number(price),
-    };
+    // const data = {
+    //   ...form_data.value!,
+    //   level: Number(level),
+    //   num: Number(num),
+    //   price: Number(price),
+    // };
     try {
       // await addEquip(data);
     } catch (error) {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, reactive, ref } from "vue";
+import { nextTick, ref } from "vue";
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 
