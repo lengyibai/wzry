@@ -14,7 +14,6 @@ export const _login = async (form: User) => {
     key: "id",
     value: form.id,
   });
-  console.log(form);
 
   /* 判断是否存在 */
   if (data) {

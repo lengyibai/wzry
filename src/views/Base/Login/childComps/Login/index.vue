@@ -17,8 +17,6 @@ const component = computed(() => {
 
 /* 进入方式 */
 const EmitIntoType = (v: string) => {
-  console.log(v);
-
   is_reg.value = v;
 };
 

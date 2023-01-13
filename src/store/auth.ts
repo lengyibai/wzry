@@ -35,8 +35,6 @@ export default defineStore("auth", () => {
     switchStore().$clickAudio("登录");
     _login(form)
       .then((res) => {
-        console.log(res);
-
         /* 登录成功 */
         switchStore().$tip("登录成功");
         routesStore().addRoutes(res.role!);
