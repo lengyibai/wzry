@@ -43,8 +43,7 @@ async function musicPlay(isReset = true) {
     }
 
     bgm.src =
-      "https://lengyibai.gitee.io/wzry-material/music/" +
-      musics[bgmIndex.value];
+      "https://lengyibai.gitee.io/img-bed/wzry/music/" + musics[bgmIndex.value];
     bgm.volume = 0.25;
     bgmIndex.value += 1;
   }

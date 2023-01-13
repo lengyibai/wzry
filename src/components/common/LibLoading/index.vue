@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="LibLoading flex" v-show="show">
       <img
-        src="https://lengyibai.gitee.io/wzry-material/image/daji.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/daji.png"
         alt="妲己"
       />
       <span

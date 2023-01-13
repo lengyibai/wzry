@@ -15,7 +15,7 @@
         v-if="route.children"
         class="arrow"
         :class="{ 'arrow-active': show }"
-        src="https://lengyibai.gitee.io/wzry-material/image/arrow.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/arrow.png"
         alt=""
       />
     </button>

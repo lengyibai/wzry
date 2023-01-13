@@ -6,13 +6,13 @@
         <img
           class="close cursor-pointer"
           v-show="showClose"
-          src="https://lengyibai.gitee.io/wzry-material/image/close.png"
+          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
           @dragstart.prevent
           @click="close"
         />
         <img
           class="bg"
-          src="https://lengyibai.gitee.io/wzry-material/image/dialog.png"
+          src="https://lengyibai.gitee.io/img-bed/wzry/image/dialog.png"
         />
         <div class="content">
           <div class="desc">

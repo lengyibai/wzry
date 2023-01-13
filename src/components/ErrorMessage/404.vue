@@ -1,7 +1,7 @@
 <template>
   <div class="not-container">
     <img
-      src="https://lengyibai.gitee.io/wzry-material/image/status_404.png"
+      src="https://lengyibai.gitee.io/img-bed/wzry/image/status_404.png"
       class="not-img"
       alt="404"
     />

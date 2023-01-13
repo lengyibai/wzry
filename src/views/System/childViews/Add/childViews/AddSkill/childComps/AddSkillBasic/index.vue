@@ -46,7 +46,7 @@ const handleDel = () => {
         <img
           :src="
             item.img ||
-            'https://lengyibai.gitee.io/wzry-material/image/unknown.png'
+            'https://lengyibai.gitee.io/img-bed/wzry/image/unknown.png'
           "
           alt=""
         />

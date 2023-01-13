@@ -41,7 +41,7 @@ const color: Record<string, string> = {
   error: "#e28484",
 };
 const getImg = (src: string) =>
-  `https://lengyibai.gitee.io/wzry-material/image/msg_${src}.png`;
+  `https://lengyibai.gitee.io/img-bed/wzry/image/msg_${src}.png`;
 
 const imgs: Record<string, Record<string, string>> = {
   info: {

@@ -34,7 +34,7 @@ export default () => {
       "默认";
 
     new Audio(
-      `https://lengyibai.gitee.io/wzry-material/audio/${sound_name.value}.mp3`
+      `https://lengyibai.gitee.io/img-bed/wzry/audio/${sound_name.value}.mp3`
     )
       .play()
       .catch(() => {

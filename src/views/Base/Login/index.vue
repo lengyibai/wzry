@@ -21,7 +21,7 @@ const EmitToolType = (v: string) => {
   <div class="login">
     <div class="logo">
       <img
-        src="https://lengyibai.gitee.io/wzry-material/image/logo.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/logo.png"
         alt=""
       />
     </div>

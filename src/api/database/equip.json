@@ -6,7 +6,7 @@
       "level": 1,
       "name": "铁剑",
       "price": 250,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_1.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -20,7 +20,7 @@
       "level": 1,
       "name": "匕首",
       "price": 290,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_2.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -34,7 +34,7 @@
       "level": 1,
       "name": "搏击拳套",
       "price": 320,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_3.jpg",
       "effect": [
         {
           "name": "暴击率",
@@ -48,7 +48,7 @@
       "level": 1,
       "name": "吸血之镰",
       "price": 290,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_4.jpg",
       "effect": [
         {
           "name": "物理吸血",
@@ -62,7 +62,7 @@
       "level": 1,
       "name": "迅捷长矛",
       "price": 300,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_5.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -80,7 +80,7 @@
       "level": 1,
       "name": "雷鸣刃",
       "price": 450,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_6.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -94,7 +94,7 @@
       "level": 1,
       "name": "冲能拳套",
       "price": 550,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/1_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/1_7.jpg",
       "effect": [
         {
           "name": "暴击率",
@@ -108,7 +108,7 @@
       "level": 2,
       "name": "风暴巨剑",
       "price": 910,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_1.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -122,7 +122,7 @@
       "level": 2,
       "name": "日冕",
       "price": 740,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_2.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -152,7 +152,7 @@
       "level": 2,
       "name": "狂暴双刃",
       "price": 890,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_3.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -174,7 +174,7 @@
       "level": 2,
       "name": "陨星",
       "price": 1080,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_4.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -199,7 +199,7 @@
       "level": 2,
       "name": "速击之枪",
       "price": 880,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_5.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -220,7 +220,7 @@
       "level": 2,
       "name": "血魂刃",
       "price": 830,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_6.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -247,7 +247,7 @@
       "name": "穿云弓",
       "desc": "远程打坦克用",
       "price": 1100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_7.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -273,7 +273,7 @@
       "name": "名刀·司命",
       "desc": "保命",
       "price": 1900,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_8.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -300,7 +300,7 @@
       "name": "碎星锤",
       "desc": "打坦克用",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_9.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -319,7 +319,7 @@
       "name": "破魔刀",
       "desc": "增加法术防御",
       "price": 2090,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_10.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -348,7 +348,7 @@
       "level": 2,
       "name": "寒霜袭侵",
       "price": 2050,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_11.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -378,7 +378,7 @@
       "level": 2,
       "name": "制裁之刃",
       "price": 1860,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_12.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_12.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -414,7 +414,7 @@
       "name": "纯净苍穹",
       "desc": "暂时增加免伤",
       "price": 2120,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/2_13.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/2_13.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -451,7 +451,7 @@
       "name": "末世",
       "desc": "普攻额外伤害",
       "price": 2160,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_1.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -481,7 +481,7 @@
       "name": "泣血之刃",
       "desc": "物理吸血",
       "price": 1800,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_2.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -512,7 +512,7 @@
       "name": "无尽战刃",
       "desc": "高额暴击伤害",
       "price": 2140,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_3.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -538,7 +538,7 @@
       "name": "宗师之力",
       "desc": "强化普攻",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_4.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -573,7 +573,7 @@
       "name": "闪电匕首",
       "desc": "普攻附带闪电",
       "price": 1840,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_5.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -599,7 +599,7 @@
       "name": "影刃",
       "desc": "暴击增加移速",
       "price": 1950,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_6.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -629,7 +629,7 @@
       "name": "暗影战斧",
       "desc": "打脆皮用",
       "price": 2090,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_7.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -665,7 +665,7 @@
       "name": "破军",
       "desc": "高额攻击",
       "price": 2950,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_8.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -687,7 +687,7 @@
       "name": "逐日之弓",
       "desc": "攻击距离变远",
       "price": 2050,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_9.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -723,7 +723,7 @@
       "name": "破晓",
       "desc": "射手神装",
       "price": 3400,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_10.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -758,7 +758,7 @@
       "name": "日渊",
       "desc": "攻击距离变远",
       "price": 3300,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_11.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -795,7 +795,7 @@
       "desc": "暂时增加免伤",
       "price": 3370,
       "note": "<p>那一刻，徘徊而没落的王,在暗与光的彷徨中做出最终的抉择</p>",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_12.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_12.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -832,7 +832,7 @@
       "name": "铸梦·逐风",
       "desc": "爆发攻速",
       "price": 2140,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_13.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_13.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -864,7 +864,7 @@
       "name": "铸梦·破空",
       "desc": "普攻击退目标",
       "price": 2130,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/physical/3_14.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/physical/3_14.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -899,7 +899,7 @@
       "level": 1,
       "name": "咒术典籍",
       "price": 300,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/1_1.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -913,7 +913,7 @@
       "level": 1,
       "name": "蓝宝石",
       "price": 220,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/1_2.jpg",
       "effect": [
         {
           "name": "最大法力",
@@ -927,7 +927,7 @@
       "level": 1,
       "name": "炼金护符",
       "price": 120,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/1_3.jpg",
       "effect": [
         {
           "name": "每5秒回蓝",
@@ -941,7 +941,7 @@
       "level": 1,
       "name": "圣者法典",
       "price": 400,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/1_4.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -959,7 +959,7 @@
       "level": 1,
       "name": "元素杖",
       "price": 540,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/1_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/1_5.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -973,7 +973,7 @@
       "level": 2,
       "name": "大棒",
       "price": 820,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_1.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -987,7 +987,7 @@
       "level": 2,
       "name": "血族之书",
       "price": 1240,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_2.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1012,7 +1012,7 @@
       "level": 2,
       "name": "光辉之剑",
       "price": 730,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_3.jpg",
       "effect": [
         {
           "name": "最大法力",
@@ -1038,7 +1038,7 @@
       "level": 2,
       "name": "魔道之石",
       "price": 890,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_4.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1060,7 +1060,7 @@
       "level": 2,
       "name": "进化水晶",
       "price": 720,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_5.jpg",
       "effect": [
         {
           "name": "最大法力",
@@ -1085,7 +1085,7 @@
       "level": 2,
       "name": "破碎圣杯",
       "price": 900,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_6.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1107,7 +1107,7 @@
       "level": 2,
       "name": "云灵木",
       "price": 970,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_7.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1133,7 +1133,7 @@
       "name": "辉月",
       "desc": "暂时无敌",
       "price": 1990,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_8.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1160,7 +1160,7 @@
       "name": "炽热支配者",
       "desc": "残血增加护盾",
       "price": 1950,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_9.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1183,7 +1183,7 @@
       "name": "日暮之流",
       "desc": "提升法术穿透",
       "price": 2120,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_10.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1214,7 +1214,7 @@
       "name": "金色圣剑",
       "desc": "持续强化普攻",
       "price": 2070,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_11.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -1251,7 +1251,7 @@
       "name": "梦魇之牙",
       "desc": "减少敌人回血",
       "price": 2050,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/2_12.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/2_12.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1281,7 +1281,7 @@
       "name": "圣杯",
       "desc": "快速回蓝回血",
       "price": 1800,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_1.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1311,7 +1311,7 @@
       "name": "虚无法杖",
       "desc": "打坦克用",
       "price": 2110,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_2.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1337,7 +1337,7 @@
       "name": "博学者之怒",
       "desc": "大幅提升法强",
       "price": 2300,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_3.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1359,7 +1359,7 @@
       "name": "回响之杖",
       "desc": "技能命中爆炸",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_4.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1386,7 +1386,7 @@
       "name": "痛苦面具",
       "desc": "技能额外伤害",
       "price": 2040,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_5.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1417,7 +1417,7 @@
       "name": "巫术法杖",
       "desc": "强化普攻",
       "price": 2120,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_6.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1452,7 +1452,7 @@
       "name": "时之预言",
       "desc": "攻防兼备",
       "price": 2090,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_7.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1487,7 +1487,7 @@
       "name": "破茧之衣",
       "desc": "降低近距离伤害",
       "price": 2160,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_8.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1513,7 +1513,7 @@
       "name": "贤者之书",
       "desc": "法师神装",
       "price": 2990,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_9.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1539,7 +1539,7 @@
       "name": "噬神之书",
       "desc": "法术吸血",
       "price": 2090,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_10.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1569,7 +1569,7 @@
       "name": "凝冰之息",
       "desc": "技能命中减速",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_11.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1605,7 +1605,7 @@
       "name": "月神",
       "desc": "暂时无敌",
       "price": 3240,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/magic/3_12.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/magic/3_12.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -1632,7 +1632,7 @@
       "level": 1,
       "name": "红玛瑙",
       "price": 300,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/1_1.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -1646,7 +1646,7 @@
       "level": 1,
       "name": "布甲",
       "price": 220,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/1_2.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -1660,7 +1660,7 @@
       "level": 1,
       "name": "抗魔披风",
       "price": 220,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/1_3.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -1674,7 +1674,7 @@
       "level": 1,
       "name": "提神水晶",
       "price": 140,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/1_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/1_4.jpg",
       "effect": [
         {
           "name": "每5秒回血",
@@ -1688,7 +1688,7 @@
       "level": 2,
       "name": "力量腰带",
       "price": 900,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_1.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -1702,7 +1702,7 @@
       "level": 2,
       "name": "熔炼之心",
       "price": 800,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_2.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -1723,7 +1723,7 @@
       "level": 2,
       "name": "神隐斗篷",
       "price": 1020,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_3.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -1745,7 +1745,7 @@
       "level": 2,
       "name": "雪山圆盾",
       "price": 900,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_4.jpg",
       "effect": [
         {
           "name": "冷却缩减",
@@ -1768,7 +1768,7 @@
       "name": "守护者之铠",
       "desc": "受击减速敌人",
       "price": 730,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_5.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -1790,7 +1790,7 @@
       "name": "荆棘护手",
       "desc": "攻防兼备",
       "price": 710,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_6.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -1809,7 +1809,7 @@
       "name": "暗夜小甲",
       "desc": "对抗爆发伤害",
       "price": 710,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_7.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -1832,7 +1832,7 @@
       "name": "反伤刺甲",
       "desc": "反弹物理伤害",
       "price": 1950,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_8.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -1864,7 +1864,7 @@
       "name": "血魔之怒",
       "desc": "暂时获得攻击和护盾",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_9.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -1897,7 +1897,7 @@
       "name": "冰霜冲击",
       "desc": "群体控制",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_10.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -1931,7 +1931,7 @@
       "name": "原初遗珠",
       "desc": "装备进化",
       "price": 1250,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/2_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/2_11.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -1959,7 +1959,7 @@
       "name": "红莲斗篷",
       "desc": "灼烧周围敌人",
       "price": 1800,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_1.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -1986,7 +1986,7 @@
       "name": "霸者重装",
       "desc": "脱战快速回血",
       "price": 2070,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_2.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2012,7 +2012,7 @@
       "name": "不祥征兆",
       "desc": "受击减速敌人",
       "price": 2180,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_3.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -2038,7 +2038,7 @@
       "name": "不死鸟之眼",
       "desc": "增加回血效果",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_4.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -2068,7 +2068,7 @@
       "name": "魔女斗篷",
       "desc": "吸收法术伤害",
       "price": 2080,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_5.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -2103,7 +2103,7 @@
       "name": "极寒风暴",
       "desc": "群体伤害减速",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_6.jpg",
       "effect": [
         {
           "name": "冷却缩减",
@@ -2134,7 +2134,7 @@
       "name": "贤者的庇护",
       "desc": "原地复活",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_7.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_7.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -2162,7 +2162,7 @@
       "name": "暴烈之甲",
       "desc": "能扛能打",
       "price": 1950,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_8.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_8.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -2196,7 +2196,7 @@
       "name": "永夜守护",
       "desc": "对抗爆发伤害",
       "price": 2110,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_9.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_9.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -2224,7 +2224,7 @@
       "name": "冰痕之握",
       "desc": "强化普攻减速",
       "price": 2100,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_10.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_10.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -2263,7 +2263,7 @@
       "name": "怒魂",
       "desc": "暂时获得攻击和护盾",
       "price": 3350,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_11.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_11.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -2295,7 +2295,7 @@
       "name": "凛冬",
       "desc": "群体控制",
       "price": 3350,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/defense/3_12.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/defense/3_12.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -2328,7 +2328,7 @@
       "level": 1,
       "name": "神速之靴",
       "price": 250,
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/1_1.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2344,7 +2344,7 @@
       "name": "影忍之足",
       "price": 710,
       "desc": "减少普攻伤害",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_1.jpg",
       "effect": [
         {
           "name": "物理防御",
@@ -2371,7 +2371,7 @@
       "name": "抵抗之靴",
       "price": 710,
       "desc": "减少被控时长",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_2.jpg",
       "effect": [
         {
           "name": "法术防御",
@@ -2398,7 +2398,7 @@
       "name": "冷静之靴",
       "price": 710,
       "desc": "加快技能冷却",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_3.jpg",
       "effect": [
         {
           "name": "冷却缩减",
@@ -2425,7 +2425,7 @@
       "name": "秘法之靴",
       "price": 710,
       "desc": "法术穿透",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_4.jpg",
       "effect": [
         {
           "name": "每5秒回蓝",
@@ -2452,7 +2452,7 @@
       "name": "急速战靴",
       "price": 710,
       "desc": "增加攻速",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_5.jpg",
       "effect": [
         {
           "name": "攻击速度",
@@ -2474,7 +2474,7 @@
       "name": "疾步之靴",
       "price": 710,
       "desc": "脱战后加移速",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/move/2_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/move/2_6.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2495,7 +2495,7 @@
       "name": "狩猎宽刃",
       "price": 250,
       "desc": "加快打野速度",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/1_1.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2517,7 +2517,7 @@
       "name": "弃鳞短刃",
       "price": 250,
       "desc": "加快打野速度",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/1_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/1_2.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2539,7 +2539,7 @@
       "name": "游击弯刀",
       "price": 750,
       "desc": "打野怪加法强",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/2_1.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2572,7 +2572,7 @@
       "name": "追击刀锋",
       "price": 750,
       "desc": "打野怪加攻击",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/2_2.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2599,7 +2599,7 @@
       "name": "巡守利斧",
       "price": 750,
       "desc": "打野怪加生命",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/2_3.jpg",
       "motivation": [
         {
           "type": "被动",
@@ -2632,7 +2632,7 @@
       "name": "龙鳞利剑",
       "price": 750,
       "desc": "真实伤害灼烧",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/2_4.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2666,7 +2666,7 @@
       "name": "符文大剑",
       "price": 2160,
       "desc": "打野怪加法强",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/3_1.jpg",
       "effect": [
         {
           "name": "法术攻击",
@@ -2707,7 +2707,7 @@
       "name": "贪婪之噬",
       "price": 2160,
       "desc": "打野怪加攻击",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/3_2.jpg",
       "effect": [
         {
           "name": "物理攻击",
@@ -2743,7 +2743,7 @@
       "name": "巨人之握",
       "price": 2160,
       "desc": "打野怪加生命",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/3_3.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2776,7 +2776,7 @@
       "name": "浴火之怒",
       "price": 2160,
       "desc": "真实伤害灼烧",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/jungle/3_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/jungle/3_4.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2809,7 +2809,7 @@
       "name": "学识宝石",
       "price": 300,
       "desc": "额外金币经验",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/1_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/1_1.jpg",
       "effect": [
         {
           "name": "移速",
@@ -2838,7 +2838,7 @@
       "name": "凤鸣指环",
       "price": 900,
       "desc": "光环加输出",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_1.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2882,7 +2882,7 @@
       "name": "鼓舞之盾",
       "price": 900,
       "desc": "光环加生存",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_2.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2926,7 +2926,7 @@
       "name": "风之轻语",
       "price": 1100,
       "desc": "群体护盾",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_3.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -2971,7 +2971,7 @@
       "name": "风灵纹章",
       "price": 1100,
       "desc": "群体加速",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_4.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3016,7 +3016,7 @@
       "name": "出影晶石",
       "price": 1100,
       "desc": "范围伤害和视野",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_5.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3060,7 +3060,7 @@
       "name": "星之佩饰",
       "price": 1100,
       "desc": "与队友分摊伤害",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/2_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/2_6.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3105,7 +3105,7 @@
       "name": "极影",
       "price": 1900,
       "desc": "光环加出",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_1.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_1.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3149,7 +3149,7 @@
       "name": "近卫荣耀",
       "price": 1900,
       "desc": "光环加生存",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_2.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_2.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3193,7 +3193,7 @@
       "name": "救赎之翼",
       "price": 1900,
       "desc": "群体护盾",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_3.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_3.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3237,7 +3237,7 @@
       "name": "奔狼纹章",
       "price": 1900,
       "desc": "群体加速",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_4.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_4.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3282,7 +3282,7 @@
       "name": "形昭之鉴",
       "price": 1900,
       "desc": "范围伤害和视野",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_5.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_5.jpg",
       "effect": [
         {
           "name": "最大生命",
@@ -3328,7 +3328,7 @@
       "name": "星泉",
       "price": 1900,
       "desc": "与队友分摊伤害",
-      "icon": "https://lengyibai.gitee.io/wzry-material/equip/wander/3_6.jpg",
+      "icon": "https://lengyibai.gitee.io/img-bed/wzry/equip/wander/3_6.jpg",
       "effect": [
         {
           "name": "最大生命",

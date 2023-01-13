@@ -19,7 +19,7 @@ const show = computed(() => {
   <div class="hero-skin-price" :class="{ show: toggle }">
     <img
       v-show="show"
-      src="https://lengyibai.gitee.io/wzry-material/image/coupon.png"
+      src="https://lengyibai.gitee.io/img-bed/wzry/image/coupon.png"
       alt="点券"
     />
     <span v-show="!show && show !== ''">获取途径：</span>

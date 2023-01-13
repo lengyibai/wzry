@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const getIcon = (src: string) =>
-  `https://lengyibai.gitee.io/wzry-material/image/btn_${src}.png`;
+  `https://lengyibai.gitee.io/img-bed/wzry/image/btn_${src}.png`;
 
 const style1 = {
   width: props.autoSize ? "100%" : props.width,

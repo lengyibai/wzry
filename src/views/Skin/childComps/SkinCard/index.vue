@@ -23,7 +23,7 @@ const priceShow = (price: number | string) => {
     <div class="price">
       <img
         v-if="priceShow(data.price)"
-        src="https://lengyibai.gitee.io/wzry-material/image/coupon.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/coupon.png"
         alt=""
       />
       <span>{{ data.price }}</span>

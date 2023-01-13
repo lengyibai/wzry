@@ -28,7 +28,7 @@ const handleClose = () => {
         <!-- 右上角关闭 -->
         <img
           class="close cursor-pointer"
-          src="https://lengyibai.gitee.io/wzry-material/image/close.png"
+          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
           @click="handleClose"
         />
         <div class="title">王者荣耀后台管理系统公告</div>

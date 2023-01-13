@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const getImg = (src: string) =>
-  `https://lengyibai.gitee.io/wzry-material/image/card_${src}.jpg`;
+  `https://lengyibai.gitee.io/img-bed/wzry/image/card_${src}.jpg`;
 </script>
 <style scoped lang="less">
 @import url("./index.less");

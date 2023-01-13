@@ -34,7 +34,7 @@ const handleToggle = (index: number, type: string) => {
     <div class="epigraph-category">
       <img
         :style="{ left: current_index * 11.11 + '%' }"
-        src="https://lengyibai.gitee.io/wzry-material/image/epigraph_active.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/epigraph_active.png"
         alt=""
       />
       <button

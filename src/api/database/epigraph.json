@@ -4,7 +4,7 @@
       "id": 1,
       "name": "传承",
       "type": ["攻击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/1.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/1.png",
       "effect": [
         {
           "type": "物理攻击",
@@ -16,7 +16,7 @@
       "id": 2,
       "name": "圣人",
       "type": ["攻击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/2.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/2.png",
       "effect": [
         {
           "type": "法术攻击",
@@ -28,7 +28,7 @@
       "id": 3,
       "name": "红月",
       "type": ["攻速", "暴击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/3.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/3.png",
       "effect": [
         {
           "type": "攻击速度",
@@ -44,7 +44,7 @@
       "id": 4,
       "name": "异变",
       "type": ["攻击", "穿透"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/4.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/4.png",
       "effect": [
         {
           "type": "物理攻击",
@@ -60,7 +60,7 @@
       "id": 5,
       "name": "纷争",
       "type": ["攻击", "吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/5.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/5.png",
       "effect": [
         {
           "type": "物理攻击",
@@ -76,7 +76,7 @@
       "id": 6,
       "name": "无双",
       "type": ["暴击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/6.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/6.png",
       "effect": [
         {
           "type": "暴击率",
@@ -92,7 +92,7 @@
       "id": 7,
       "name": "宿命",
       "type": ["生命", "防御", "攻速"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/7.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/7.png",
       "effect": [
         {
           "type": "攻击速度",
@@ -112,7 +112,7 @@
       "id": 8,
       "name": "梦魇",
       "type": ["攻击", "穿透"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/8.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/8.png",
       "effect": [
         {
           "type": "法术攻击",
@@ -128,7 +128,7 @@
       "id": 9,
       "name": "凶兆",
       "type": ["攻击", "攻速"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/9.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/9.png",
       "effect": [
         {
           "type": "法术攻击",
@@ -144,7 +144,7 @@
       "id": 10,
       "name": "祸源",
       "type": ["暴击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/10.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/10.png",
       "effect": [
         {
           "type": "暴击率",
@@ -156,7 +156,7 @@
       "id": 11,
       "name": "长生",
       "type": ["生命"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/11.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/11.png",
       "effect": [
         {
           "type": "最大生命",
@@ -168,7 +168,7 @@
       "id": 12,
       "name": "冥想",
       "type": ["生命"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/12.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/12.png",
       "effect": [
         {
           "type": "最大生命",
@@ -184,7 +184,7 @@
       "id": 13,
       "name": "狩猎",
       "type": ["功能", "攻速"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/13.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/13.png",
       "effect": [
         {
           "type": "攻击速度",
@@ -200,7 +200,7 @@
       "id": 14,
       "name": "贪婪",
       "type": ["吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/14.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/14.png",
       "effect": [
         {
           "type": "法术吸血",
@@ -212,7 +212,7 @@
       "id": 15,
       "name": "夺萃",
       "type": ["吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/15.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/15.png",
       "effect": [
         {
           "type": "物理吸血",
@@ -224,7 +224,7 @@
       "id": 16,
       "name": "兽痕",
       "type": ["生命", "暴击"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/16.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/16.png",
       "effect": [
         {
           "type": "暴击率",
@@ -240,7 +240,7 @@
       "id": 17,
       "name": "繁荣",
       "type": ["防御", "吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/17.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/17.png",
       "effect": [
         {
           "type": "物理吸血",
@@ -256,7 +256,7 @@
       "id": 18,
       "name": "轮回",
       "type": ["攻击", "吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/18.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/18.png",
       "effect": [
         {
           "type": "法术攻击",
@@ -272,7 +272,7 @@
       "id": 19,
       "name": "调和",
       "type": ["生命", "功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/19.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/19.png",
       "effect": [
         {
           "type": "最大生命",
@@ -292,7 +292,7 @@
       "id": 20,
       "name": "隐匿",
       "type": ["攻击", "功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/20.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/20.png",
       "effect": [
         {
           "type": "物理攻击",
@@ -308,7 +308,7 @@
       "id": 21,
       "name": "鹰眼",
       "type": ["攻击", "穿透"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/21.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/21.png",
       "effect": [
         {
           "type": "物理攻击",
@@ -320,7 +320,7 @@
       "id": 22,
       "name": "心眼",
       "type": ["攻速", "穿透"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/22.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/22.png",
       "effect": [
         {
           "type": "攻击速度",
@@ -336,7 +336,7 @@
       "id": 23,
       "name": "怜悯",
       "type": ["功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/23.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/23.png",
       "effect": [
         {
           "type": "冷却缩减",
@@ -348,7 +348,7 @@
       "id": 24,
       "name": "霸者",
       "type": ["防御"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/24.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/24.png",
       "effect": [
         {
           "type": "物理防御",
@@ -360,7 +360,7 @@
       "id": 25,
       "name": "均衡",
       "type": ["防御"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/25.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/25.png",
       "effect": [
         {
           "type": "物理防御",
@@ -376,7 +376,7 @@
       "id": 26,
       "name": "虚空",
       "type": ["生命", "功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/26.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/26.png",
       "effect": [
         {
           "type": "最大生命",
@@ -392,7 +392,7 @@
       "id": 27,
       "name": "灵山",
       "type": ["防御"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/27.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/27.png",
       "effect": [
         {
           "type": "法术防御",
@@ -404,7 +404,7 @@
       "id": 28,
       "name": "献祭",
       "type": ["攻击", "功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/28.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/28.png",
       "effect": [
         {
           "type": "法术攻击",
@@ -420,7 +420,7 @@
       "id": 29,
       "name": "敬畏",
       "type": ["防御", "吸血"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/29.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/29.png",
       "effect": [
         {
           "type": "法术吸血",
@@ -436,7 +436,7 @@
       "id": 30,
       "name": "回声",
       "type": ["防御", "功能"],
-      "img": "https://lengyibai.gitee.io/wzry-material/epigraph/30.png",
+      "img": "https://lengyibai.gitee.io/img-bed/wzry/epigraph/30.png",
       "effect": [
         {
           "type": "物理防御",

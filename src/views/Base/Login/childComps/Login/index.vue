@@ -43,7 +43,7 @@ const EmitToggleLog = () => {
       v-particle="{ down: true, filter: false, color: '#f3dea4' }"
     >
       <img
-        src="https://lengyibai.gitee.io/wzry-material/image/login_logo.png"
+        src="https://lengyibai.gitee.io/img-bed/wzry/image/login_logo.png"
         alt="logo"
       />
     </div>

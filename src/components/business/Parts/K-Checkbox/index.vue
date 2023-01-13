@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const icon = computed(
   () =>
-    `https://lengyibai.gitee.io/wzry-material/image/select_${props.modelValue}.png`
+    `https://lengyibai.gitee.io/img-bed/wzry/image/select_${props.modelValue}.png`
 );
 
 const toggle = () => {
