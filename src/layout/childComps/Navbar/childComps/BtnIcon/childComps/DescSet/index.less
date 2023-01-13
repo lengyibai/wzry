@@ -1,0 +1,73 @@
+.desc-set {
+  position: relative;
+
+  .question-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 20px;
+    border: 1px solid var(--theme-color-three);
+    color: var(--theme-color-three);
+    background-color: var(--theme-color-one);
+    transform: rotate(45deg);
+    transition: all 0.1s;
+
+    span {
+      font-size: 20px;
+      transform: translate(1px, 1px) rotate(-45deg);
+    }
+
+    &:hover {
+      border: 1px solid var(--theme-color-five);
+      color: var(--theme-color-five);
+    }
+  }
+
+  .desc-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 300px;
+    margin-left: 20px;
+    padding: 0.75em;
+    border-radius: 10px;
+    transform-origin: center bottom;
+    color: var(--theme-color-five);
+    font-size: 18px;
+    text-align: center;
+    background-color: var(--theme-color-one);
+    transform: translate(-45%, -125%);
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      border-radius: 0% 100% 0% 100% / 100% 100% 0% 0%;
+      background-color: var(--theme-color-one);
+      transform: translate(-13px, 10px) rotate(-45deg);
+      content: "";
+    }
+  }
+}
+
+.desc-set-enter-from {
+  transform: translate(-45%, -125%) scale(0) !important;
+}
+
+.desc-set-leave-active {
+  opacity: 0;
+}
+
+.desc-set-enter-active {
+  transition: all 0.25s;
+}
+
+.desc-set-leave-active {
+  transition: all 0.25s 0.25s;
+}
