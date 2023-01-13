@@ -1,0 +1,33 @@
+.k-select {
+  position: relative;
+  @height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: @height;
+  border: 1px solid var(--theme-color-eighteen);
+  color: var(--theme-color-three);
+  background-color: var(--theme-color-one);
+  .option {
+    width: 100px;
+    line-height: @height;
+    text-align: center;
+    color: var(--theme-color-five);
+    font-size: 20px;
+    z-index: 1;
+    transition: all 0.25s;
+  }
+  .active-bg {
+    position: absolute;
+    left: 0;
+    width: 100px;
+    height: 100%;
+    transition: all 0.25s;
+    border: 1px solid #619cd8;
+    background-image: linear-gradient(180deg, #3661a5 0%, #4081bb 100%);
+  }
+}
+
+.active {
+  color: var(--white) !important;
+}
