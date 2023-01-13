@@ -1,6 +1,4 @@
 import type { DirectiveBinding, App } from "vue";
-/* 全屏背景视差 */
-//视频
 import { $random } from "../utils";
 
 const particle = {
