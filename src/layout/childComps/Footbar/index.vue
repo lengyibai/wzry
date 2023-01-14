@@ -8,7 +8,8 @@ import MusicPlay from "./childComps/MusicPlay.vue"; //音乐进度条
 
 const $musicStore = musicStore();
 
-const Footbar = ref();
+const line = ref<HTMLElement>();
+const footbar = ref<HTMLElement>();
 
 let timer: any = null; //隐藏工具栏定时器
 
@@ -17,10 +18,24 @@ const playProgress = ref(0); //播放进度
 /* 通过获取点击的坐标，计算出播放进度 */
 const getPoint = (e: MouseEvent) => {
   playProgress.value = parseFloat(
-    ((e.pageX - Footbar.value.offsetLeft) / Footbar.value.offsetWidth).toFixed(
-      2
-    )
+    (
+      (e.pageX - footbar.value!.offsetLeft) /
+      footbar.value!.offsetWidth
+    ).toFixed(2)
   );
+};
+
+/* 悬浮移动竖线 */
+const handleMoveLine = (e: MouseEvent) => {
+  line.value!.style.left =
+    parseFloat(
+      (
+        (e.pageX - footbar.value!.offsetLeft) /
+        footbar.value!.offsetWidth
+      ).toFixed(2)
+    ) *
+      100 +
+    "%";
 };
 
 /* 点击音乐工具栏 */
@@ -56,10 +71,12 @@ const handleShowTool = (v: boolean) => {
     class="footbar cursor-pointer"
     @click="getPoint"
     @mouseenter="handleShowTool(true)"
+    @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
-    ref="Footbar"
+    ref="footbar"
     v-particle="{ color: '#84ade2', filter: false, size: 10 }"
   >
+    <div class="line" ref="line"></div>
     <Time class="time" />
     <Tool @toggle="EmitMusicToole" />
     <Copyright class="copyright" />

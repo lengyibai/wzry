@@ -7,6 +7,12 @@
   height: 56px;
   border-top: 1px solid var(--white-10);
 
+  &:hover {
+    .line {
+      opacity: 1;
+    }
+  }
+
   .time {
     margin-left: 15px;
   }
@@ -18,5 +24,15 @@
   .music-play {
     position: absolute;
     bottom: 0;
+  }
+
+  .line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 25%;
+    background-color: var(--theme-color-five);
+    opacity: 0;
   }
 }
