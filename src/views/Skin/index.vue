@@ -150,14 +150,14 @@ onBeforeUnmount(() => {
             <SkinCard :data="item" />
             <!-- 悬浮工具 -->
             <div class="tool">
-              <i
-                class="iconfont wzry-fangda cursor-pointer"
-                @click="show_poster = true"
-              />
-              <i
-                class="iconfont wzry-bofangyuyin cursor-pointer"
-                @click="show_voice = true"
-              />
+              <span @click="show_poster = true">
+                <i class="iconfont wzry-fangda cursor-pointer" />查看大图</span
+              >
+              <span @click="show_voice = true">
+                <i
+                  class="iconfont wzry-bofangyuyin cursor-pointer"
+                />语音列表</span
+              >
             </div>
           </div>
         </LibGridLayout>

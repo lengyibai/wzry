@@ -35,9 +35,11 @@
           transition: all 0.25s 0.1s;
           opacity: 0;
 
-          .iconfont {
+          span {
+            display: flex;
+            align-items: center;
             margin: 0 25px;
-            font-size: 50px;
+            font-size: 25px;
 
             &:hover {
               color: var(--blue);
@@ -46,6 +48,11 @@
 
             &:active {
               transform: scale(0.9);
+            }
+
+            .iconfont {
+              margin-right: 10px;
+              font-size: 40px;
             }
           }
         }
