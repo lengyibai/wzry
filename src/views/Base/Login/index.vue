@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { LOGINBG } from "@/config/assets";
 import settingStore from "@/store/setting";
+import useGetData from "@/hooks/useGetData";
 import Login from "./childComps/Login/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
@@ -9,6 +10,8 @@ import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 const $settingStore = settingStore();
 
 const show_notice = ref(true); //是否显示公告
+
+useGetData();
 
 const EmitToolType = (v: string) => {
   if (v === "notice") {

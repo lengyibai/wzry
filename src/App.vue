@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { $chromeV } from "@/utils";
 import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
-import useGetData from "@/hooks/useGetData";
 import useVersion from "@/hooks/useVersion";
 import otherStore from "@/store/other";
 
 const $otherStore = otherStore();
 
 const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
-useGetData();
 </script>
 
 <template>
