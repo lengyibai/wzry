@@ -10,7 +10,7 @@ let voice_length = 1; //当前语音数量
 const play_link = ref(""); //播放链接
 const time = ref(0); //当前播放时长
 const current_index = ref(-1); //当前播放索引
-const voices = ref<Hero.Voice[]>([]); //英雄数据
+const voices = ref<Hero.Voice[]>([]); //语音列表
 
 onMounted(() => {
   $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
