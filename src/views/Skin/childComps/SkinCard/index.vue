@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { skinDefault } from "@/defaultValue/defaults";
 
 interface Props {
@@ -9,15 +8,13 @@ withDefaults(defineProps<Props>(), {
   data: () => skinDefault,
 });
 
-const show = ref(false); //显示查看详情选项
-
 const priceShow = (price: number | string) => {
   return price && !isNaN(Number(price));
 };
 </script>
 
 <template>
-  <div class="skin-card cursor-pointer" :class="{ hide: show }" v-maskGradient>
+  <div class="skin-card cursor-pointer" v-maskGradient>
     <img class="bg" :src="data.cover" />
     <img class="type" v-if="data.type" :src="(data.type as string)" />
     <div class="price">

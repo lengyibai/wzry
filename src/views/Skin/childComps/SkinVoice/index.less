@@ -1,0 +1,59 @@
+.skin-voice {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  flex-direction: column;
+  perspective: 1000px;
+  padding-right: 10px;
+
+  .voice {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 65px;
+    margin-bottom: 10px;
+    padding: 0 50px;
+    color: var(--white);
+    white-space: nowrap;
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      color: var(--blue);
+      transition: all 0s;
+
+      .content {
+        .iconfont {
+          color: var(--blue);
+        }
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 22px;
+
+      .text {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width: 1560px) {
+      .text {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.active-width {
+  transform: rotateX(25deg) scaleX(0.9) !important;
+}
+
+.active-color {
+  color: var(--blue) !important;
+}

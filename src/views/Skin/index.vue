@@ -7,13 +7,15 @@ import {
   ref,
   watch,
 } from "vue";
+import { getSkinVoice } from "@/api/main/games/voice";
 import { $lazyLoadImages } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
-import SkinToolbar from "./childComps/SkinToolbar/index.vue";
+import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
+import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 const $skinStore = skinStore();
 const $otherStore = otherStore();
@@ -27,6 +29,8 @@ const poster = ref(""); // 查看的海报链接
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 const show_poster = ref(false); //查看海报
+const show_voice = ref(false); //查看语音
+const voices = ref<Hero.Voice[]>([]); //语音列表
 const cache_list = ref<Hero.Skin[]>([]); //所有数据缓存
 const skin_list = ref<Hero.Skin[]>([]); //当前展示的皮肤列表
 
@@ -50,9 +54,11 @@ const EmitLoadMore = () => {
 };
 
 /* 查看海报 */
-const handleViewImg = (img: string) => {
-  show_poster.value = true;
-  poster.value = img;
+const handleTool = (skin: Hero.Skin) => {
+  poster.value = skin.poster;
+  getSkinVoice(skin.heroName, skin.name).then((res) => {
+    voices.value = res;
+  });
 };
 
 /* 监听筛选后的英雄列表 */
@@ -133,14 +139,26 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
         >
           <div
+            class="skin-card"
             v-for="(item, index) in skin_list"
-            @click="handleViewImg(item.poster)"
+            @click="handleTool(item)"
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"
             :key="item.id"
           >
             <SkinCard :data="item" />
+            <!-- 悬浮工具 -->
+            <div class="tool">
+              <i
+                class="iconfont wzry-fangda cursor-pointer"
+                @click="show_poster = true"
+              ></i>
+              <i
+                class="iconfont wzry-bofangyuyin cursor-pointer"
+                @click="show_voice = true"
+              ></i>
+            </div>
           </div>
         </LibGridLayout>
       </transition>
@@ -151,8 +169,21 @@ onBeforeUnmount(() => {
       <SkinSidebar />
     </transition>
 
+    <!-- 大图预览 -->
     <transition name="fade">
       <LibViewImg v-model="show_poster" v-if="show_poster" :link="poster" />
+    </transition>
+
+    <!-- 语音列表 -->
+    <transition name="fade">
+      <K-Dialog
+        width="920px"
+        title="皮肤语音列表"
+        v-if="show_voice"
+        v-model="show_voice"
+      >
+        <SkinVoice :voices="voices" />
+      </K-Dialog>
     </transition>
   </div>
 </template>
