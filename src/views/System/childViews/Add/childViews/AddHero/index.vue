@@ -58,14 +58,6 @@ const {
   EmitCancelRelease,
 } = viewHide<typeof heroDefault>(emit, "add_hero");
 
-// 根据英雄总数设置id
-getHeroBasic().then((res) => {
-  form_data.value!.id = res.length + 1;
-});
-
-//判断是否存在缓存
-form_data.value ??= $deepCopy(heroDefault);
-
 //类型列表
 const type_list: Record<string, any[]> = reactive({
   campType: [],
@@ -75,6 +67,14 @@ const type_list: Record<string, any[]> = reactive({
   specialtyType: [],
   raceType: [],
 });
+
+// 根据英雄总数设置id
+getHeroBasic().then((res) => {
+  form_data.value!.id = res.length + 1;
+});
+
+//判断是否存在缓存
+form_data.value ??= $deepCopy(heroDefault);
 
 /* 发布 */
 const EmitCommit = async () => {
@@ -133,6 +133,12 @@ setTimeout(async () => {
     <!-- 英雄名、代号、身高 -->
     <div class="flex-box">
       <FormInput label="英雄名" required v-model="form_data!.name" />
+      <FormInput
+        label="性别"
+        required
+        v-model="form_data!.gender"
+        placeholder="男/女"
+      />
       <FormInput label="代号" required v-model="form_data!.mark" />
       <FormInput label="身高" v-model="form_data!.height" />
       <FormInput

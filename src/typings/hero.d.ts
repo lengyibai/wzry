@@ -18,6 +18,7 @@ declare namespace Hero {
     poster: string; //海报
     race: string; //种族
     skillUnit: string; //技能消耗单位
+    gender: string; //性别
     profession: string[]; //职业
     specialty: string[]; //特长
     voices?: Voice[]; //语音
