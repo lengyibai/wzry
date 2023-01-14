@@ -8,7 +8,7 @@ interface Loading {
 }
 const switchStore = defineStore("globalSwitch", () => {
   const $clickAudio = ref<(name?: string) => void>(() => {}); //点击音效
-  const $tip = ref<(text: string, type?: msgType) => void>(() => {}); //消息提示
+  const $msg = ref<(text: string, type?: msgType) => void>(() => {}); //消息提示
   const $loading = ref<Loading>({
     show: () => {},
     close: () => new Promise(() => {}),
@@ -16,7 +16,7 @@ const switchStore = defineStore("globalSwitch", () => {
 
   return {
     $clickAudio,
-    $tip,
+    $msg,
     $loading,
   };
 });

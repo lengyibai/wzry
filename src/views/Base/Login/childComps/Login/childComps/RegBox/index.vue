@@ -24,11 +24,11 @@ const form = reactive<User>({
 const handleReg = () => {
   register(form)
     .then(() => {
-      $switchStore.$tip("注册成功！");
+      $switchStore.$msg("注册成功！");
       emit("success");
     })
     .catch(() => {
-      $switchStore.$tip("用户已存在，请直接登录", "error");
+      $switchStore.$msg("用户已存在，请直接登录", "error");
     });
 };
 </script>

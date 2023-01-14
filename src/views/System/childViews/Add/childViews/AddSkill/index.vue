@@ -80,7 +80,7 @@ const EmitSelectHeroChange = (id: number) => {
     return item.id === id;
   });
   if (isExist) {
-    $switchStore.$tip("该英雄已拥有技能，如需修改请前往修改页面", "warning");
+    $switchStore.$msg("该英雄已拥有技能，如需修改请前往修改页面", "warning");
   }
 };
 /* 增加技能 */
@@ -117,7 +117,7 @@ const handleDelDeputys = () => {
 /* 确认删除技能 */
 const EmitConfirmDelSkill = () => {
   if (skill_num.value === 1) {
-    $switchStore.$tip("至少保留一个技能", "error");
+    $switchStore.$msg("至少保留一个技能", "error");
     return;
   }
   activeSkills()?.splice(active_index.value, 1);
@@ -222,11 +222,11 @@ const EmitCommit = async () => {
     setTimeout(() => {
       finish.value = true;
       EmitConfirmRemove();
-      $switchStore.$tip("发布成功", "info");
+      $switchStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $switchStore.$tip("请完整填写必填项，且主技能个数不低于3个", "error");
+    $switchStore.$msg("请完整填写必填项，且主技能个数不低于3个", "error");
     status.value = 0;
   }
 };

@@ -40,11 +40,11 @@ export default defineStore("auth", () => {
         window.localStorage.setItem("user", JSON.stringify(res));
         routesStore().addRoutes(res.role!);
         router.push(HOME_URL);
-        switchStore().$tip("登录成功");
+        switchStore().$msg("登录成功");
         watchStatus();
       })
       .catch((err) => {
-        switchStore().$tip(err, "error");
+        switchStore().$msg(err, "error");
       })
       .finally(() => {
         switchStore().$loading.close();
@@ -60,11 +60,11 @@ export default defineStore("auth", () => {
         userInfo.value = res;
         userStatus.value = true;
         window.localStorage.setItem("user", JSON.stringify(res));
-        switchStore().$tip("自动登录成功");
+        switchStore().$msg("自动登录成功");
         watchStatus();
       })
       .catch(() => {
-        switchStore().$tip("身份验证失败，请重新登录", "error");
+        switchStore().$msg("身份验证失败，请重新登录", "error");
         clearToken();
       })
       .finally(() => {
@@ -75,7 +75,7 @@ export default defineStore("auth", () => {
   /** @description: 退出登录 */
   const logout = () => {
     clearToken();
-    switchStore().$tip("退出成功");
+    switchStore().$msg("退出成功");
   };
 
   /** @description: 清除token */
@@ -106,7 +106,7 @@ export default defineStore("auth", () => {
 
   /** @description: 强制下线 */
   const offline = () => {
-    switchStore().$tip("帐号在别处登录", "error");
+    switchStore().$msg("帐号在别处登录", "error");
     clearToken();
   };
 

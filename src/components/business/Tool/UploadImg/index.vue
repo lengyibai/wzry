@@ -39,11 +39,11 @@ const fn = (e: Event) => {
     success: async (...data: any[]) => {
       await $switchStore.$loading.close();
       emit("update:modelValue", data[2]);
-      $switchStore.$tip("设置成功！");
+      $switchStore.$msg("设置成功！");
     },
     fail: async () => {
       await $switchStore.$loading.close();
-      $switchStore.$tip("请上传图片文件", "error");
+      $switchStore.$msg("请上传图片文件", "error");
     },
   });
 };

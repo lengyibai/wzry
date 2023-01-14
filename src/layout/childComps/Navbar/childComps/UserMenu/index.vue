@@ -36,7 +36,7 @@ const EmitSaveInfo = () => {
   show_edit.value = false;
   updateUser(user_info.id!, user_info).then(() => {
     localStorage.setItem("user", JSON.stringify(user_info)); //更新本地当前用户信息
-    $switchStore.$tip("本地信息更新成功");
+    $switchStore.$msg("本地信息更新成功");
   });
 };
 </script>

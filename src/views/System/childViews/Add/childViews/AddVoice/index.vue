@@ -108,10 +108,10 @@ const EmitCommit = async () => {
     setTimeout(() => {
       finish.value = true;
       EmitConfirmRemove();
-      $switchStore.$tip("发布成功", "info");
+      $switchStore.$msg("发布成功", "info");
     }, 500);
   } else {
-    $switchStore.$tip("你还没有添加语音", "error");
+    $switchStore.$msg("你还没有添加语音", "error");
     status.value = 0;
   }
 };

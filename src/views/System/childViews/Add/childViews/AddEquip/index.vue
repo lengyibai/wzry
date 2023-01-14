@@ -98,18 +98,18 @@ const EmitCommit = async () => {
     try {
       // await addEquip(data);
     } catch (error) {
-      $switchStore.$tip("装备位置已被占用，请重新填写阶段排名", "error");
+      $switchStore.$msg("装备位置已被占用，请重新填写阶段排名", "error");
       status.value = 0;
       return;
     }
     setTimeout(async () => {
       finish.value = true;
       await $equipStore.getEquipList();
-      $switchStore.$tip("发布成功", "info");
+      $switchStore.$msg("发布成功", "info");
       EmitConfirmRemove();
     }, 500);
   } else {
-    $switchStore.$tip("请完整填写", "error");
+    $switchStore.$msg("请完整填写", "error");
     status.value = 0;
   }
 };

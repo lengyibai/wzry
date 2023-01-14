@@ -74,7 +74,7 @@ const handleAddOne = () => {
       });
     });
   } else {
-    $switchStore.$tip("请选择英雄后新增", "error");
+    $switchStore.$msg("请选择英雄后新增", "error");
   }
 };
 
@@ -83,7 +83,7 @@ const EmitExist = (v: number | string) => {
   let isExist = skins.some((item: Hero.Skin) => {
     return item.name === v;
   });
-  isExist && $switchStore.$tip("该皮肤已存在", "warning");
+  isExist && $switchStore.$msg("该皮肤已存在", "warning");
 };
 
 /* 删除一项 */
@@ -110,12 +110,12 @@ const EmitCommit = async () => {
       finish.value = true;
       setTimeout(() => {
         EmitConfirmRemove();
-        $switchStore.$tip("发布成功", "info");
+        $switchStore.$msg("发布成功", "info");
         $skinStore.getSkin();
       }, 500);
     }
   } else {
-    $switchStore.$tip("请完整填写", "error");
+    $switchStore.$msg("请完整填写", "error");
     status.value = 0;
   }
 };

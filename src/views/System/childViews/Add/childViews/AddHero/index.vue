@@ -93,11 +93,11 @@ const EmitCommit = async () => {
     finish.value = true;
     setTimeout(() => {
       EmitConfirmRemove();
-      $switchStore.$tip("发布成功", "info");
+      $switchStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $switchStore.$tip("请完整填写", "error");
+    $switchStore.$msg("请完整填写", "error");
     status.value = 0;
   }
 };
