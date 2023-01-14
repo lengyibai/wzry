@@ -22,23 +22,23 @@ const handleTool = (type: string) => {
         class="iconfont wzry-last"
         @click="handleTool('last')"
         title="上一首"
-      ></i>
+      />
       <i
         class="iconfont"
         :class="$musicStore.status ? 'wzry-play' : 'wzry-pause'"
         @click="handleTool(!$musicStore.status ? 'play' : 'pause')"
         title="播放/暂停"
-      ></i>
+      />
       <i
         class="iconfont wzry-next"
         @click="handleTool('next')"
         title="下一首"
-      ></i>
+      />
       <i
         class="iconfont wzry-musiclist"
         @click="handleTool('list')"
         title="播放列表"
-      ></i>
+      />
 
       <MuiscList class="muisc-list" />
     </div>

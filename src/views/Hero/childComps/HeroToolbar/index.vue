@@ -115,19 +115,19 @@ const handSearch = () => {
         :class="{ 'nan-active': $heroStore.gender_type === 1 }"
         @click="handerSetGender(1)"
         title="男"
-      ></i>
+      />
       <i
         class="iconfont wzry-nv cursor-pointer"
         :class="{ 'nv-active': $heroStore.gender_type === 2 }"
         @click="handerSetGender(2)"
         title="女"
-      ></i>
+      />
       <i
         class="iconfont wzry-xingbie cursor-pointer"
         :class="{ 'all-active': $heroStore.gender_type === 0 }"
         @click="handerSetGender(0)"
         title="全部"
-      ></i>
+      />
     </div>
 
     <!-- 搜索 -->

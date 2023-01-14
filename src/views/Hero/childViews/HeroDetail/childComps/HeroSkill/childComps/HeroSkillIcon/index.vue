@@ -90,7 +90,7 @@ const handleToggleSkill = () => {
       :class="{ 'hide-bottom': !show }"
       @click="handleToggleSkill"
       title="切换技能"
-    ></i>
+    />
   </div>
 </template>
 

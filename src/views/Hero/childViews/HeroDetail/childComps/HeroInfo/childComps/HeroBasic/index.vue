@@ -43,7 +43,7 @@ onMounted(() => {
       v-for="(item, index) in hero_info"
       :key="index"
     >
-      <i class="iconfont" :class="'wzry-' + item[1]"></i>
+      <i class="iconfont" :class="'wzry-' + item[1]" />
       <span class="label">{{ item[2] }}：</span>
       <span class="name">{{ item[0] || "未知" }}</span>
     </span>

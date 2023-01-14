@@ -33,7 +33,7 @@ const EmitToggleLog = () => {
       v-show="is_reg"
       @click="is_reg = ''"
     >
-      <i class="iconfont wzry-fanhui"></i>
+      <i class="iconfont wzry-fanhui" />
       <span>重新选择</span>
     </div>
     <div

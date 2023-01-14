@@ -153,11 +153,11 @@ onBeforeUnmount(() => {
               <i
                 class="iconfont wzry-fangda cursor-pointer"
                 @click="show_poster = true"
-              ></i>
+              />
               <i
                 class="iconfont wzry-bofangyuyin cursor-pointer"
                 @click="show_voice = true"
-              ></i>
+              />
             </div>
           </div>
         </LibGridLayout>

@@ -35,11 +35,11 @@ const handleShowNotice = (v: string) => {
       @click="handleShowNotice('sound')"
       :style="{ opacity: muted ? 0.75 : 1 }"
     >
-      <i class="iconfont" :class="icon"></i>
+      <i class="iconfont" :class="icon" />
     </div>
     <div class="line"></div>
     <div class="box cursor-pointer" @click="handleShowNotice('notice')">
-      <i class="iconfont wzry-gonggao"></i>
+      <i class="iconfont wzry-gonggao" />
     </div>
   </div>
 </template>

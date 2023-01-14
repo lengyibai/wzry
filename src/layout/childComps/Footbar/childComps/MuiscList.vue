@@ -18,7 +18,7 @@ const handleToggleMusic = (index: number) => {
   <transition name="muisc-list">
     <div class="muisc-list cursor-default" v-show="$musicStore.show_list">
       <div class="top">
-        <i class="iconfont wzry-guanbi" @click="close"></i>
+        <i class="iconfont wzry-guanbi" @click="close" />
         <div class="title">播放列表</div>
       </div>
       <div class="list" title="双击播放">
@@ -32,7 +32,7 @@ const handleToggleMusic = (index: number) => {
           <div class="left">
             <div class="num">
               <span v-if="index !== $musicStore.bgmIndex">{{ index + 1 }}</span>
-              <i v-else class="iconfont wzry-playactive"></i>
+              <i v-else class="iconfont wzry-playactive" />
             </div>
             <div class="name">
               {{ item.name }}
