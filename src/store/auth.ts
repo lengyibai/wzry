@@ -98,7 +98,6 @@ export default defineStore("auth", () => {
   /** @description: 实时检测帐号状态 */
   const watchStatus = () => {
     timer.value = setInterval(() => {
-      console.log(userInfo.value);
       if (!localStorage.getItem("user")) {
         offline();
       }
