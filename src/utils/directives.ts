@@ -160,23 +160,69 @@ const sweepLight = {
   },
 };
 
-/* 打字机 */
-const typewriter = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
-    setTimeout(() => {
-      const say = binding.value;
+/* 单行打字机 */
+const typewriterSingle = {
+  mounted(el: HTMLElement) {
+    const lyb = el;
+
+    const say = lyb.innerHTML;
+    function again() {
+      lyb.innerHTML = "";
       let timer: Interval = 0;
       let num = 0; //用于累加遍历字符串
       let text = ""; //用于输出在屏幕上
+      lyb.innerHTML = "";
       timer = setInterval(() => {
         text += say[num]; //遍历输出的文字
-        el.innerHTML = text; //输出在屏幕上
+        lyb.innerHTML = text; //输出在屏幕上
         num++;
+
         if (num === say.length) {
           //如果文字输出完毕
           clearInterval(timer); //清除用于输出文字的计时器
         }
-      }, 100);
+      }, 150);
+    }
+    again();
+  },
+};
+
+/* 多行打字机 */
+export const typewriterMultiple = {
+  mounted(el: HTMLElement) {
+    const say = el.innerHTML;
+    el.innerHTML = "";
+    setTimeout(() => {
+      let timer: any = null;
+      let num = 0, //用于累加遍历字符串
+        text = ""; //用于输出在屏幕上
+      fn();
+      function fn() {
+        timer = setInterval(() => {
+          text += say[num]; //遍历输出的文字
+          el.innerHTML = text; //输出在屏幕上
+          if ("，、。？！".includes(say[num])) {
+            clearInterval(timer); //清除用于输出文字的计时器
+            setTimeout(
+              () => {
+                fn();
+              },
+              "，" === say[num]
+                ? 500
+                : "、" === say[num]
+                ? 250
+                : "。？！" === say[num]
+                ? 1000
+                : 500
+            );
+          }
+          num++;
+          if (num == say.length) {
+            //如果文字输出完毕
+            clearInterval(timer); //清除用于输出文字的计时器
+          }
+        }, 100);
+      }
     }, 750);
   },
 };
@@ -256,33 +302,6 @@ const drag = {
   },
 };
 
-/* 单行打字机 */
-const typewriterSingle = {
-  mounted(el: HTMLElement) {
-    const lyb = el;
-
-    const say = lyb.innerHTML;
-    function again() {
-      lyb.innerHTML = "";
-      let timer: Interval = 0;
-      let num = 0; //用于累加遍历字符串
-      let text = ""; //用于输出在屏幕上
-      lyb.innerHTML = "";
-      timer = setInterval(() => {
-        text += say[num]; //遍历输出的文字
-        lyb.innerHTML = text; //输出在屏幕上
-        num++;
-
-        if (num === say.length) {
-          //如果文字输出完毕
-          clearInterval(timer); //清除用于输出文字的计时器
-        }
-      }, 150);
-    }
-    again();
-  },
-};
-
 /* 自动获取焦点 */
 const focus = {
   mounted(el: HTMLElement) {
@@ -297,10 +316,10 @@ const directives: Directives = {
   particle,
   maskGradient,
   sweepLight,
-  typewriter,
   textHoverColor,
   drag,
   typewriterSingle,
+  typewriterMultiple,
   focus,
 };
 
