@@ -102,9 +102,6 @@ const switchStore = defineStore("music", () => {
     clearTimeout(tool_timer);
     if (v) {
       show_tool.value = v;
-      tool_timer = setTimeout(() => {
-        show_list.value = v;
-      }, 250);
     } else {
       show_list.value = v;
       tool_timer = setTimeout(() => {
