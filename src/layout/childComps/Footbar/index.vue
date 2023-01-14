@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import musicStore from "@/store/music";
 import Time from "./childComps/Time.vue"; //左侧时间
 import Tool from "./childComps/Tool.vue"; //工具栏
@@ -64,6 +64,10 @@ const handleShowTool = (v: boolean) => {
     $musicStore.showTool(v);
   }
 };
+
+onBeforeUnmount(() => {
+  $musicStore.pause();
+});
 </script>
 
 <template>
