@@ -3,6 +3,7 @@
   <div class="navbar border-1">
     <PackUp />
 
+    <PassTime />
     <div class="right">
       <!-- 用户菜单 -->
       <UserMenu />
@@ -14,6 +15,7 @@
 </template>
 <script setup lang="ts">
 import PackUp from "./childComps/PackUp/index.vue"; //折叠侧边栏按钮
+import PassTime from "./childComps/PassTime/index.vue"; //中间过去时
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 </script>

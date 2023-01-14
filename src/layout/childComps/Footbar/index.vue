@@ -1,18 +1,18 @@
-<template>
-  <div class="footbar cursor-pointer" @click="getPoint" ref="Footbar">
-    <!-- v-particle="{ color: '#84ade2', filter: false, size: 10 }" -->
-    <Time class="time" />
-    <PassTime />
-    <Copyright class="copyright" />
-    <MusicPlay class="music-play" :playProgress="playProgress" />
-  </div>
-</template>
 <script setup lang="ts">
 import { ref } from "vue";
+import musicStore from "@/store/music";
 import Time from "./childComps/Time.vue"; //左侧时间
-import PassTime from "./childComps/PassTime.vue"; //中间过去时
+import Tool from "./childComps/Tool.vue"; //工具栏
 import Copyright from "./childComps/Copyright.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay.vue"; //音乐进度条
+
+const $musicStore = musicStore();
+
+const Footbar = ref();
+
+let timer: any = null; //隐藏工具栏定时器
+
+const playProgress = ref(0); //播放进度
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const getPoint = (e: MouseEvent) => {
@@ -23,9 +23,49 @@ const getPoint = (e: MouseEvent) => {
   );
 };
 
-const Footbar = ref();
-const playProgress = ref(0); //播放进度
+/* 点击音乐工具栏 */
+const EmitMusicToole = (type: string) => {
+  if (type === "last") {
+    $musicStore.last();
+  } else if (type === "play") {
+    $musicStore.play(false);
+  } else if (type === "pause") {
+    $musicStore.pause();
+  } else if (type === "next") {
+    $musicStore.next();
+  } else if (type === "list") {
+    $musicStore.list();
+  }
+};
+
+/* 显示工具栏 */
+const handleShowTool = (v: boolean) => {
+  if (!v) {
+    timer = setTimeout(() => {
+      $musicStore.showTool(v);
+    }, 250);
+  } else {
+    clearTimeout(timer);
+    $musicStore.showTool(v);
+  }
+};
 </script>
+
+<template>
+  <div
+    class="footbar cursor-pointer"
+    @click="getPoint"
+    @mouseenter="handleShowTool(true)"
+    @mouseleave="handleShowTool(false)"
+    ref="Footbar"
+    v-particle="{ color: '#84ade2', filter: false, size: 10 }"
+  >
+    <Time class="time" />
+    <Tool @toggle="EmitMusicToole" />
+    <Copyright class="copyright" />
+    <MusicPlay class="music-play" :playProgress="playProgress" />
+  </div>
+</template>
 
 <style lang="less" scoped>
 @import url("./index.less");
