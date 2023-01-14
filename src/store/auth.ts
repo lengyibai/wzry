@@ -35,15 +35,12 @@ export default defineStore("auth", () => {
     switchStore().$clickAudio("登录");
     _login(form)
       .then((res) => {
-        /* 登录成功 */
-        switchStore().$tip("登录成功");
-        routesStore().addRoutes(res.role!);
-        userStatus.value = true;
-        // 获取用户信息
         userInfo.value = res;
-        // 存储 token 到本地
+        userStatus.value = true;
         window.localStorage.setItem("user", JSON.stringify(res));
+        routesStore().addRoutes(res.role!);
         router.push(HOME_URL);
+        switchStore().$tip("登录成功");
         watchStatus();
       })
       .catch((err) => {
@@ -57,9 +54,22 @@ export default defineStore("auth", () => {
   /** @description: 自动登录 */
   const autoLogin = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    login(user).then(() => {
-      switchStore().$tip("自动登录成功");
-    });
+    switchStore().$loading.show("登录中");
+    _login(user)
+      .then((res) => {
+        userInfo.value = res;
+        userStatus.value = true;
+        window.localStorage.setItem("user", JSON.stringify(res));
+        switchStore().$tip("自动登录成功");
+        watchStatus();
+      })
+      .catch(() => {
+        switchStore().$tip("身份验证失败，请重新登录", "error");
+        clearToken();
+      })
+      .finally(() => {
+        switchStore().$loading.close();
+      });
   };
 
   /** @description: 退出登录 */
@@ -88,10 +98,11 @@ export default defineStore("auth", () => {
   /** @description: 实时检测帐号状态 */
   const watchStatus = () => {
     timer.value = setInterval(() => {
+      console.log(userInfo.value);
       if (!localStorage.getItem("user")) {
         offline();
       }
-    }, 1000);
+    }, 3000);
   };
 
   /** @description: 强制下线 */
