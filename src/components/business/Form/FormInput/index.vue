@@ -36,7 +36,7 @@
 
         <!-- 输入不合法提示 -->
         <transition name="tip">
-          <div class="tip" v-if="!legal" v-typewriter="tip"></div>
+          <div class="tip" v-if="!legal" v-typewriterSingle>{{ tip }}</div>
         </transition>
       </slot>
     </div>

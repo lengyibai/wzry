@@ -30,7 +30,7 @@
 
         <!-- 输入不合法提示 -->
         <transition name="tip">
-          <div class="tip" v-if="no_legal" v-typewriter="'必选项'"></div>
+          <div class="tip" v-if="no_legal" v-typewriterSingle>必选项</div>
         </transition>
         <img
           class="arrow"
