@@ -1,7 +1,11 @@
 <template>
   <LibMask>
     <transition name="confirm">
-      <div class="k-dialog" :style="{ width: width }" v-show="show">
+      <div
+        class="k-dialog"
+        :style="{ width: width, height: 'calc(' + width + ' * 0.5989)' }"
+        v-show="show"
+      >
         <div class="title">{{ title }}</div>
         <img
           class="close cursor-pointer"
