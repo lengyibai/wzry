@@ -23,12 +23,17 @@ useRouter.beforeEach(async (to, from, next) => {
     next("/404");
     return;
   }
+  //如果没有权限
+  else if (to.matched.length === 0) {
+    next("/403");
+    return;
+  }
   // 如果需要登录，但是没有用户信息
   else if (is_exist[1] && !token) {
     next("/login");
     return;
   }
-  // 如果当前处于登录页面，但是本地有用户信息
+  // 如果当前处于登录/404/403/500页面，但是本地有用户信息
   else if (token && to.meta.noVerify) {
     next(HOME_URL);
     return;
@@ -36,11 +41,6 @@ useRouter.beforeEach(async (to, from, next) => {
   // 如果未登录，但是本地存在用户信息，且能匹配权限
   else if (!$authStore.userStatus && token && to.matched.length !== 0) {
     $authStore.autoLogin();
-  }
-  //如果没有权限
-  else if (to.matched.length === 0) {
-    next("/403");
-    return;
   }
 
   next();
