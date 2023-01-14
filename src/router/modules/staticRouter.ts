@@ -25,6 +25,7 @@ export const errorRouter = [
     component: () => import("@/components/ErrorMessage/403.vue"),
     meta: {
       title: "403页面",
+      noVerify: true,
     },
   },
   {
@@ -33,6 +34,7 @@ export const errorRouter = [
     component: () => import("@/components/ErrorMessage/404.vue"),
     meta: {
       title: "404",
+      noVerify: true,
     },
   },
   {
@@ -41,6 +43,7 @@ export const errorRouter = [
     component: () => import("@/components/ErrorMessage/500.vue"),
     meta: {
       title: "500",
+      noVerify: true,
     },
   },
 ];
