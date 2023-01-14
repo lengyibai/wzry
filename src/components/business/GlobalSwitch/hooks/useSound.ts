@@ -10,7 +10,7 @@ export default () => {
     模式选择: ["/home"],
     查看详情: ["/system/hero"],
     皮肤相关: ["/system/skin"],
-    装备相关: ["/system/equip", "/equip", "/system/epigraph"],
+    装备相关: ["/system/add", "/system/edit"],
     英雄列表: ["/hero"],
     查看: ["查看"],
     确定: ["确定"],
@@ -21,6 +21,7 @@ export default () => {
     错误提示: ["错误提示"],
     确认弹窗: ["确认弹窗"],
     关闭抽屉: ["收起侧边栏"],
+    tip: ["tip"],
   };
 
   /* 设置方法 */
