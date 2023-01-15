@@ -1,14 +1,37 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import settingStore from "@/store/setting";
+import musicStore from "@/store/music";
+import clickAudio from "@/store/clickAudio";
+import switchStore from "@/store/globalSwitch";
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 const $settingStore = settingStore();
+const $musicStore = musicStore();
+const $switchStore = switchStore();
+const $clickAudio = clickAudio();
 
 const show_setting = ref(false); //是否显示设置弹窗
-const config = ref();
+const config = ref<SettingConfig>($settingStore.config);
 
 config.value = JSON.parse(JSON.stringify($settingStore.config));
+
+/* 本地配置生效 */
+const setTakeEffect = () => {
+  $musicStore.setVolume(config.value.musicVolume);
+  $clickAudio.setVolume(config.value.audioVolume);
+};
+setTakeEffect();
+
+/* 背景音乐音量调节 */
+const EmitMusicVolume = (v: number) => {
+  $musicStore.setVolume(v);
+};
+
+/* 点击音效音量调节 */
+const EmitAudioVolume = (v: number) => {
+  $clickAudio.setVolume(v);
+};
 
 /* 显示设置弹窗 */
 const handleShowSetting = () => {
@@ -17,7 +40,8 @@ const handleShowSetting = () => {
 
 /* 保存配置 */
 const EmitSaveConfig = () => {
-  $settingStore.saveConfig(config.value);
+  $settingStore.saveConfig(config.value!);
+  $switchStore.$msg("本地配置已更新");
 };
 </script>
 
@@ -55,10 +79,11 @@ const EmitSaveConfig = () => {
           />
         </div>
 
-        <!-- 点击音效 -->
+        <!-- 点击音效音量 -->
         <div class="option">
-          <div class="label">点击音效</div>
+          <div class="label">点击音效音量</div>
           <K-Range
+            @update:model-value="EmitAudioVolume"
             v-model="config.audioVolume"
             :text="config.audioVolume + '%'"
             :disabled="!config.audio"
@@ -66,11 +91,12 @@ const EmitSaveConfig = () => {
           <K-Check v-model="config.audio" />
         </div>
 
-        <!-- 背景音乐 -->
+        <!-- 背景音乐音量 -->
         <div class="option">
-          <div class="label">背景音乐</div>
+          <div class="label">背景音乐音量</div>
           <K-Range
             v-model="config.musicVolume"
+            @update:model-value="EmitMusicVolume"
             :text="config.musicVolume + '%'"
             :disabled="!config.music"
           />
