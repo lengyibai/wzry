@@ -1,21 +1,3 @@
-<template>
-  <div class="GlobalSwitch">
-    <!-- loading -->
-    <LibLoading :show="show_loading" :text="loading_text" />
-    <!-- 消息提醒 -->
-    <K-Message :messages="messages" />
-    <!-- NPC -->
-    <transition :name="align">
-      <K-Tip
-        v-model="show_tip"
-        v-if="show_tip"
-        :text="content"
-        :align="align"
-        :noTipName="noTipName"
-      />
-    </transition>
-  </div>
-</template>
 <script setup lang="ts">
 import { onMounted } from "vue";
 import useLoading from "./hooks/useLoading";
@@ -54,6 +36,25 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <div class="GlobalSwitch">
+    <!-- loading -->
+    <LibLoading :show="show_loading" :text="loading_text" />
+    <!-- 消息提醒 -->
+    <K-Message :messages="messages" />
+    <!-- NPC -->
+    <transition :name="align">
+      <K-Tip
+        v-model="show_tip"
+        v-if="show_tip"
+        :text="content"
+        :align="align"
+        :noTipName="noTipName"
+      />
+    </transition>
+  </div>
+</template>
 
 <style scoped lang="less">
 .left-top-enter-from,
