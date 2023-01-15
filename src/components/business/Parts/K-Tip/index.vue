@@ -44,7 +44,13 @@ const position = {
   },
 };
 
-/* 取消/开始倒计时 */
+/* 取消倒计时 */
+const cancelCountDown = () => {
+  time.value = -1;
+  clearInterval(timer);
+};
+
+/* 开始/取消倒计时 */
 const handleCountDown = (v: boolean) => {
   if (v) {
     time.value = 3;
@@ -56,8 +62,7 @@ const handleCountDown = (v: boolean) => {
       }
     }, 1000);
   } else {
-    time.value = -1;
-    clearInterval(timer);
+    cancelCountDown();
   }
 };
 
@@ -69,11 +74,11 @@ const finish = () => {
 /* 不再提示 */
 const handleNoTip = () => {
   $tipStore.tips[props.noTipName].noTip = true;
+  emit("update:modelValue", false);
 };
 
 onBeforeUnmount(() => {
-  clearInterval(timer);
-  time.value = -1;
+  cancelCountDown();
 });
 </script>
 
@@ -93,11 +98,15 @@ onBeforeUnmount(() => {
       />
     </div>
     <div class="content" v-typewriterMultiple="finish">{{ text }}</div>
-    <div class="bottom">
-      <div class="not-tip" @click="handleNoTip">不再提示</div>
-      <div class="count-down" v-show="time !== -1">
-        {{ time }}秒后关闭，鼠标进入可取消
-      </div>
+    <div
+      class="not-tip cursor-pointer lib-click"
+      v-show="time === -1"
+      @click="handleNoTip"
+    >
+      不再提示
+    </div>
+    <div class="count-down cursor-pointer lib-click" v-show="time !== -1">
+      {{ time }}秒后关闭，鼠标进入可取消
     </div>
   </div>
 </template>
