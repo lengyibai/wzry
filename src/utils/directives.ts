@@ -162,43 +162,51 @@ const sweepLight = {
 
 /* 单行打字机 */
 const typewriterSingle = {
-  mounted(el: HTMLElement) {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const lyb = el;
-
     const say = lyb.innerHTML;
+    lyb.innerHTML = "";
     function again() {
-      lyb.innerHTML = "";
       let timer: Interval = 0;
       let num = 0; //用于累加遍历字符串
       let text = ""; //用于输出在屏幕上
       lyb.innerHTML = "";
       timer = setInterval(() => {
+        if (num >= say.length) {
+          //如果文字输出完毕
+          clearInterval(timer); //清除用于输出文字的计时器
+          binding.value && binding.value();
+          return;
+        }
         text += say[num]; //遍历输出的文字
         lyb.innerHTML = text; //输出在屏幕上
         num++;
-
-        if (num === say.length) {
-          //如果文字输出完毕
-          clearInterval(timer); //清除用于输出文字的计时器
-        }
       }, 150);
     }
-    again();
+    setTimeout(() => {
+      again();
+    }, 750);
   },
 };
 
 /* 多行打字机 */
-export const typewriterMultiple = {
-  mounted(el: HTMLElement) {
+const typewriterMultiple = {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
     const say = el.innerHTML;
     el.innerHTML = "";
     setTimeout(() => {
-      let timer: any = null;
+      let timer: Interval;
       let num = 0, //用于累加遍历字符串
         text = ""; //用于输出在屏幕上
       fn();
       function fn() {
         timer = setInterval(() => {
+          if (num >= say.length) {
+            //如果文字输出完毕
+            clearInterval(timer); //清除用于输出文字的计时器
+            binding.value && binding.value();
+            return;
+          }
           text += say[num]; //遍历输出的文字
           el.innerHTML = text; //输出在屏幕上
           if ("，、。？！".includes(say[num])) {
@@ -217,10 +225,6 @@ export const typewriterMultiple = {
             );
           }
           num++;
-          if (num == say.length) {
-            //如果文字输出完毕
-            clearInterval(timer); //清除用于输出文字的计时器
-          }
         }, 100);
       }
     }, 750);
@@ -229,31 +233,52 @@ export const typewriterMultiple = {
 
 /* 文字悬浮变色 */
 const textHoverColor = {
-  mounted(el: HTMLElement) {
+  mounted(el: HTMLElement, { value = "black" }) {
+    // 需要给父盒子加相对定位或绝对定位
     const mask = document.createElement("div");
-    el.style.position = "relative";
+    const line = document.createElement("div");
     mask.innerHTML = el.innerHTML;
     mask.style.cssText = `
-    z-index: 9;
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: transparent;
-    background-color: #fff;
-    text-shadow: initial;
-    transition: all 0.25s;
-    font-size: inherit;
-    animation: light 3s infinite;
-    -webkit-background-clip: text;
-    clip-path: circle(75% at 50% 50%);
+      z-index: 9;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+      background-color: ${value};
+      transition: all 0.35s;
+      text-shadow: initial;
+      -webkit-background-clip: text;
+      clip-path: circle(75% at 50% 50%);
     `;
+    const line_height = el.offsetHeight / 8;
+    line.style.cssText = `
+      z-index: 9;
+      position: absolute;
+      width: 0%;
+      height: ${line_height}px;
+      bottom: 0;
+      color: transparent;
+      background-color: #2980b9;
+      transition: all 0.35s;
+      left: 50%;
+      transform: translate(-50%,5px);
+      border-radius: ${line_height}px;
+    `;
+    window.addEventListener("resize", () => {
+      const line_height = el.offsetHeight / 20;
+      line.style.height = line_height + "px";
+      line.style.borderRadius = line_height + "px";
+    });
 
     el.appendChild(mask);
+    el.appendChild(line);
     el.addEventListener("mouseenter", () => {
       mask.style.clipPath = "circle(0% at 50% 50%)";
+      line.style.width = "100%";
     });
     el.addEventListener("mouseleave", () => {
       mask.style.clipPath = "circle(75% at 50% 50%)";
+      line.style.width = "0%";
     });
   },
 };
