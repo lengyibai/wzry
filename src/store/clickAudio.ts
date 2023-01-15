@@ -4,7 +4,7 @@ import { ref } from "vue";
 const switchStore = defineStore("clickAudio", () => {
   const sound_name = ref("默认"); //音效名
   const volume = ref(0); //音量
-  const audio = new Audio(); //播放器
+  const status = ref(true); //是否启用音效
 
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {
@@ -30,6 +30,7 @@ const switchStore = defineStore("clickAudio", () => {
 
   /** @description: 播放指定音效 */
   const play = (name?: string) => {
+    if (!status.value) return;
     //获取点击触发的音效名
     sound_name.value =
       (typeof name === "string" &&
@@ -38,6 +39,7 @@ const switchStore = defineStore("clickAudio", () => {
         )) ||
       "默认";
 
+    const audio = new Audio(); //播放器
     audio.src = `${IMGBED}/audio/${sound_name.value}.mp3`;
     audio.volume = volume.value;
 
@@ -49,10 +51,14 @@ const switchStore = defineStore("clickAudio", () => {
   /** @description: 音量调节 */
   const setVolume = (v: number) => {
     volume.value = v / 100;
-    audio.volume = volume.value;
   };
 
-  return { play, setVolume };
+  /** @description: 关闭音效功能 */
+  const setAudio = (v: boolean) => {
+    status.value = v;
+  };
+
+  return { play, setVolume, setAudio };
 });
 
 export default switchStore;
