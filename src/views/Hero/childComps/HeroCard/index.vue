@@ -19,7 +19,6 @@ const emit = defineEmits<Emits>();
 const $heroStore = heroStore();
 
 const show = ref(false); //显示查看详情选项
-const lineActive = ref(false); //悬浮文字底部线条
 
 //用于身高和皮肤数量排序显示相应数字
 const num_type = computed(() => {
@@ -54,20 +53,9 @@ const handleViewClick = () => {
     <transition name="fade">
       <div class="select-mask" v-if="show">
         <img :src="data.headImg" class="head" />
-        <button
-          class="view"
-          @click="handleViewClick"
-          @mouseenter="lineActive = true"
-          @mouseleave="lineActive = false"
-          v-textHoverColor
-        >
+        <button class="view" @click="handleViewClick" v-textHoverColor>
           查看详情
         </button>
-        <div
-          class="line"
-          :class="{ 'line-active': lineActive }"
-          ref="line"
-        ></div>
       </div>
     </transition>
 
