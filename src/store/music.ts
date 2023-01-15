@@ -4,7 +4,7 @@ import { $potEoPct } from "@/utils";
 
 const switchStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
-  let tool_timer: Interval; //进度条宽度设置
+  let tool_timer: Interval; //工具显示设置
   const bgmIndex = ref(0); //音乐索引
   const progress = ref(0); //播放进度
   const volume = ref(0); //音量
