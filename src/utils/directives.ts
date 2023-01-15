@@ -3,10 +3,6 @@ import { $random } from "../utils";
 
 const particle = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
-    const box = el;
-    const box_width = box.offsetWidth;
-    const box_height = box.offsetHeight;
-
     const {
       color = "#cfb45c",
       size = 10,
@@ -16,10 +12,14 @@ const particle = {
       num = 35,
       down = false,
     } = binding.value || {};
+    setTimeout(() => {
+      const box = el;
+      const box_width = box.offsetWidth;
+      const box_height = box.offsetHeight;
 
-    if (down) {
-      document.styleSheets[0].insertRule(
-        `
+      if (down) {
+        document.styleSheets[0].insertRule(
+          `
       @keyframes particle-rise-${box_height} {
         0% {
           transform: translateY(-${box_height}px) translateZ(0);
@@ -35,11 +35,11 @@ const particle = {
         }
       }
       `,
-        document.styleSheets[0].cssRules.length
-      );
-    } else {
-      document.styleSheets[0].insertRule(
-        `
+          document.styleSheets[0].cssRules.length
+        );
+      } else {
+        document.styleSheets[0].insertRule(
+          `
         @keyframes particle-rise-${box_height} {
           0% {
             transform: translateY(0px) translateZ(0);
@@ -55,13 +55,13 @@ const particle = {
           }
         }
         `,
-        document.styleSheets[0].cssRules.length
-      );
-    }
-    for (let i = 0; i < num; i++) {
-      const p = document.createElement("span");
+          document.styleSheets[0].cssRules.length
+        );
+      }
+      for (let i = 0; i < num; i++) {
+        const p = document.createElement("span");
 
-      const style = `
+        const style = `
       position: absolute;
       background-color: ${color};
       pointer-events: none;
@@ -70,31 +70,31 @@ const particle = {
       bottom: 0;
       opacity: 0;
       box-shadow: 0 0 10px 0 ${color};
-      filter: contrast(125%) brightness(125%);
+      filter: brightness(200%);
       `;
-      const left = $random(0, box_width - size);
-      const scale = $random(0.25, 0.75, 1);
-      const time = $random(1, 3, 1);
-      const delay = $random(0, 5, 1);
-      p.style.cssText = style;
-      p.style.left = `${left}px`;
-      p.style.scale = scale.toString();
-      p.style.animation = `particle-rise-${box_height} ${time}s linear infinite`;
-      p.style.animationDelay = delay + "s";
+        const left = $random(0, box_width - size);
+        const scale = $random(0.25, 0.75, 1);
+        const time = $random(1, 3, 1);
+        const delay = $random(0, 5, 1);
+        p.style.cssText = style;
+        p.style.left = `${left}px`;
+        p.style.scale = scale.toString();
+        p.style.animation = `particle-rise-${box_height} ${time}s linear infinite`;
+        p.style.animationDelay = delay + "s";
 
-      box.appendChild(p);
-    }
+        box.appendChild(p);
+      }
+    }, 1000);
 
     if (filter) el.style.transition = "all 0.25s";
-    box.addEventListener("mouseenter", () => {
+    el.addEventListener("mouseenter", () => {
       if (!filter) return;
-      box.style.filter = `brightness(${brightness * 100}%) contrast(${
+      el.style.filter = `brightness(${brightness * 100}%) contrast(${
         contrast * 100
       }%)`;
     });
-
-    box.addEventListener("mouseleave", () => {
-      box.style.filter = "";
+    el.addEventListener("mouseleave", () => {
+      el.style.filter = "";
     });
   },
 };
