@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { LOGINBG } from "@/config/assets";
-import settingStore from "@/store/setting";
 import useGetData from "@/hooks/useGetData";
+import settingStore from "@/store/setting";
 import Login from "./childComps/Login/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
@@ -12,6 +12,8 @@ const $settingStore = settingStore();
 const IMGBED = window.IMGBED; //全局图床链接
 
 const show_notice = ref(true); //是否显示公告
+
+const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 useGetData();
 
@@ -28,10 +30,19 @@ const EmitToolType = (v: string) => {
       <img :src="IMGBED + '/image/logo.png'" alt="" />
     </div>
 
-    <ToolBar @clicks="EmitToolType" />
     <Login />
-    <LibBgVideo :video="LOGINBG" :muted="!$settingStore.config.loginSound" />
     <Notice v-model="show_notice" />
+    <ToolBar @clicks="EmitToolType" />
+    <LibBgVideo
+      v-if="enable_video_bg"
+      :video="LOGINBG"
+      :muted="!$settingStore.config.loginSound"
+    /><img
+      class="login-bg"
+      v-else
+      :src="IMGBED + '/image/login_bg.png'"
+      alt=""
+    />
   </div>
 </template>
 

@@ -13,14 +13,24 @@
   display: flex;
   width: 100%;
   height: 100%;
-}
 
-.layout-container {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
-  flex-direction: column;
-  flex: 1;
+  .layout-container {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 /* 侧边栏动画 */
@@ -61,4 +71,3 @@
 .app-main-leave-to {
   opacity: 0;
 }
-
