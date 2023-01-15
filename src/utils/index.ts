@@ -473,3 +473,16 @@ export function $imageOptimizer(obj) {
     return data;
   }
 }
+
+/* Promise定时器 */
+export function $promiseTimeout(fn, delay) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      fn();
+      resolve();
+    }, delay);
+  });
+}
+
+/* 判断是否为移动端 */
+export const $isPhone = (()=>/mobile/i.test(navigator.userAgent))()
