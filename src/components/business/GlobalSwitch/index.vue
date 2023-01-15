@@ -4,28 +4,44 @@
     <LibLoading :show="show_loading" :text="loading_text" />
     <!-- 消息提醒 -->
     <K-Message :messages="messages" />
+    <!-- NPC -->
+    <transition :name="align">
+      <K-Tip
+        v-model="show_tip"
+        v-if="show_tip"
+        :text="content"
+        :align="align"
+        :noTipName="noTipName"
+      />
+    </transition>
   </div>
 </template>
 <script setup lang="ts">
 import { onMounted } from "vue";
 import useLoading from "./hooks/useLoading";
 import useSound from "./hooks/useSound";
+import useMessage from "./hooks/useMessage";
 import useTip from "./hooks/useTip";
 import $bus from "@/utils/eventBus"; //事件总线
-
 import switchStore from "@/store/globalSwitch"; //全局开关
+import tipStore from "@/store/tip";
 
 const $switchStore = switchStore();
+const $tipStore = tipStore();
 
 const { loading, show_loading, loading_text } = useLoading();
 const { clickAudio } = useSound();
-const { tip, messages } = useTip($switchStore);
-
+const { msg, messages } = useMessage($switchStore);
+const { show_tip, content, align, noTipName, tip } = useTip(
+  $switchStore,
+  $tipStore
+);
 /* 挂载全局 */
 $switchStore.$patch({
-  $tip: tip,
+  $msg: msg,
   $loading: loading,
   $clickAudio: clickAudio,
+  $tip: tip,
 });
 
 /* 全局监听事件 */
@@ -38,3 +54,35 @@ onMounted(() => {
   }
 });
 </script>
+
+<style scoped lang="less">
+.left-top-enter-from,
+.left-bottom-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.right-top-enter-from,
+.right-bottom-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.left-bottom-leave-active,
+.left-top-leave-active,
+.right-bottom-leave-active,
+.right-top-leave-active {
+  opacity: 0;
+}
+
+.left-top-enter-active,
+.left-top-leave-active,
+.left-bottom-enter-active,
+.left-bottom-leave-active,
+.right-top-enter-active,
+.right-top-leave-active,
+.right-bottom-enter-active,
+.right-bottom-leave-active {
+  transition: all 0.5s;
+}
+</style>
