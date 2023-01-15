@@ -115,6 +115,7 @@ declare namespace Hero {
   }
 }
 
+/** @description: 用户信息 */
 declare interface User {
   id: string;
   password: string;
