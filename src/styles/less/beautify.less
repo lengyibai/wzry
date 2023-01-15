@@ -37,14 +37,13 @@ body {
   background-size: 110% 110%;
   background-color: #000;
   transition: all 0.5s;
-  cursor: url("https://lengyibai.gitee.io/img-bed/wzry/cursor/default.png"),
-    auto;
+  cursor: url("@{IMGBED}/cursor/default.png"), auto;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
 
 input {
-  cursor: url("https://lengyibai.gitee.io/img-bed/wzry/cursor/text.png"), auto;
+  cursor: url("@{IMGBED}/cursor/text.png"), auto;
 }
 
 input[type="range"],
@@ -52,6 +51,5 @@ input ::-webkit-slider-thumb,
 button,
 a {
   user-select: none;
-  cursor: url("https://lengyibai.gitee.io/img-bed/wzry/cursor/pointer.png"),
-    auto;
+  cursor: url("@{IMGBED}/cursor/pointer.png"), auto;
 }
