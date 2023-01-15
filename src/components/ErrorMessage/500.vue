@@ -1,18 +1,16 @@
+<script setup lang="ts">
+const IMGBED = window.IMGBED; //全局图床链接
+</script>
+
 <template>
   <div class="not-container">
-    <img
-      src="https://lengyibai.gitee.io/img-bed/wzry/image/status_500.png"
-      class="not-img"
-      alt="500"
-    />
+    <img :src="IMGBED + '/image/status_500.png'" class="not-img" alt="500" />
     <div class="not-detail">
       <h2>500</h2>
       <h4>抱歉，您的网络不见了~🤦‍♂️🤦‍♀️</h4>
     </div>
   </div>
 </template>
-
-<script setup lang="ts"></script>
 
 <style scoped lang="less">
 @import "./index.less";

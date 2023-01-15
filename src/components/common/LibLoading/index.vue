@@ -1,10 +1,7 @@
 <template>
   <transition name="fade">
     <div class="LibLoading flex" v-show="show">
-      <img
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/daji.png"
-        alt="妲己"
-      />
+      <img :src="IMGBED + '/image/daji.png'" alt="妲己" />
       <span
         v-for="(item, index) in color"
         :key="index"
@@ -39,6 +36,8 @@ const color = [
   "#f57c00",
   "#673ab7",
 ];
+
+const IMGBED = window.IMGBED; //全局图床链接
 </script>
 <style scoped lang="less">
 .LibLoading {

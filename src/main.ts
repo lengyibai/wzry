@@ -6,7 +6,7 @@ import useAutoLogin from "@/hooks/useAutoLogin";
 
 import directives from "@/utils/directives";
 
-import "@/styles/index.css";
+import "@/styles/index.less";
 
 const pinia = createPinia();
 

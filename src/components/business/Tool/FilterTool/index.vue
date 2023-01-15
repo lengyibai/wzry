@@ -16,6 +16,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 const sort_text = ref("默认排序");
 const is_unfold = ref(false);
 const currentValue = ref("");
@@ -40,7 +42,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
     <div class="title">{{ sort_text }}</div>
     <img
       :class="{ 'arrow-active': is_unfold }"
-      src="https://lengyibai.gitee.io/img-bed/wzry/image/arrow.png"
+      :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
     />

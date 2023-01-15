@@ -24,8 +24,7 @@ withDefaults(defineProps<Props>(), {
   title: "英雄",
 });
 
-const getImg = (src: string) =>
-  `https://lengyibai.gitee.io/img-bed/wzry/image/card_${src}.jpg`;
+const getImg = (src: string) => `${IMGBED}/image/card_${src}.jpg`;
 </script>
 <style scoped lang="less">
 @import url("./index.less");

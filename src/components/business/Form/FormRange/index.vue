@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 35,
   showDot: true,
   showIcon: true,
-  icon: "https://lengyibai.gitee.io/img-bed/wzry/image/range_icon.png",
+  icon: IMGBED + "/image/range_icon.png",
   show_num: true,
   step: 1,
 });

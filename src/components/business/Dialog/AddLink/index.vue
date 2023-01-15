@@ -6,14 +6,11 @@
         <img
           class="close cursor-pointer"
           v-show="showClose"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
+          :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="close"
         />
-        <img
-          class="bg"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/dialog.png"
-        />
+        <img class="bg" :src="IMGBED + '/image/dialog.png'" />
         <transition name="fade">
           <div class="content" v-if="modelValue">
             <input
@@ -61,6 +58,7 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 
 const input_link = ref(""); //输入的链接
+const IMGBED = window.IMGBED; //全局图床链接
 
 nextTick(() => {
   input_link.value = props.link;

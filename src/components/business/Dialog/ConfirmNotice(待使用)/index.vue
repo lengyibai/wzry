@@ -6,14 +6,11 @@
         <img
           class="close cursor-pointer"
           v-show="showClose"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
+          :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="close"
         />
-        <img
-          class="bg"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/dialog.png"
-        />
+        <img class="bg" :src="IMGBED + '/image/dialog.png'" />
         <div class="content">
           <div class="desc">
             <div class="title">
@@ -55,6 +52,8 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(["update:modelValue", "close"]);
 const store = switchStore();
+const IMGBED = window.IMGBED; //全局图床链接
+
 const close = () => {
   store.$clickAudio("关闭");
   emit("update:modelValue", false);

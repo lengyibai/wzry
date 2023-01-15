@@ -6,14 +6,11 @@
         <img
           class="close cursor-pointer"
           v-show="showClose"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
+          :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="handleClose"
         />
-        <img
-          class="bg"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/dialog.png"
-        />
+        <img class="bg" :src="IMGBED + '/image/dialog.png'" />
         <div class="content">
           <div class="text">{{ text }}</div>
           <div class="button">
@@ -55,6 +52,8 @@ const emit = defineEmits<Emits>();
 const { modelValue } = toRefs(props);
 
 const $switchStore = switchStore();
+
+const IMGBED = window.IMGBED; //全局图床链接
 
 /* 关闭 */
 const handleClose = () => {

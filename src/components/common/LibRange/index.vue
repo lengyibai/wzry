@@ -80,7 +80,7 @@ const props = defineProps({
   /* 自定义图标1:1 */
   icon: {
     type: String,
-    default: "https://lengyibai.gitee.io/img-bed/wzry/image/range_icon.png",
+    default: IMGBED + "/image/range_icon.png",
   },
   /* 是否在滑动的时候显示数字 */
   showNum: {

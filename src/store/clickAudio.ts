@@ -38,7 +38,7 @@ const switchStore = defineStore("clickAudio", () => {
         )) ||
       "默认";
 
-    audio.src = `https://lengyibai.gitee.io/img-bed/wzry/audio/${sound_name.value}.mp3`;
+    audio.src = `${IMGBED}/audio/${sound_name.value}.mp3`;
     audio.volume = volume.value;
 
     audio.play().catch(() => {

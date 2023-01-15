@@ -10,6 +10,8 @@ const props = withDefaults(defineProps<Props>(), {
   toggle: false,
 });
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 const show = computed(() => {
   return props.price && !isNaN(Number(props.price));
 });
@@ -17,11 +19,7 @@ const show = computed(() => {
 
 <template>
   <div class="hero-skin-price" :class="{ show: toggle }">
-    <img
-      v-show="show"
-      src="https://lengyibai.gitee.io/img-bed/wzry/image/coupon.png"
-      alt="点券"
-    />
+    <img v-show="show" :src="IMGBED + '/image/coupon.png'" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span>{{ price }}</span>
   </div>

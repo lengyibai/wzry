@@ -16,7 +16,7 @@ const emit = defineEmits<Emits>();
 
 const icon = computed(
   () =>
-    `https://lengyibai.gitee.io/img-bed/wzry/image/${
+    `${IMGBED}/image/${
       props.modelValue ? "check_true_yellow" : "check_false_yellow"
     }.png`
 );

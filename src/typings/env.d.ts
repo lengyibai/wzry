@@ -9,5 +9,6 @@ declare type Interval = NodeJS.Timer | number;
 declare type Timeout = NodeJS.Timeout | number;
 
 interface Window {
-  REMOTE_VERSION: string;
+  IMGBED: string;
 }
+declare const IMGBED: string;

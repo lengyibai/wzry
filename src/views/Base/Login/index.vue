@@ -9,6 +9,8 @@ import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 
 const $settingStore = settingStore();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 const show_notice = ref(true); //是否显示公告
 
 useGetData();
@@ -23,10 +25,7 @@ const EmitToolType = (v: string) => {
 <template>
   <div class="login">
     <div class="logo">
-      <img
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/logo.png"
-        alt=""
-      />
+      <img :src="IMGBED + '/image/logo.png'" alt="" />
     </div>
 
     <ToolBar @clicks="EmitToolType" />

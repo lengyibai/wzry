@@ -23,6 +23,7 @@ const emit = defineEmits<Emits>();
 const $tipStore = tipStore();
 
 let timer: Interval; //倒计时计时器
+const IMGBED = window.IMGBED; //全局图床链接
 
 const time = ref(-1); //倒计时
 const position = {
@@ -91,11 +92,7 @@ onBeforeUnmount(() => {
   >
     <div class="top">
       <div class="title">小贴士</div>
-      <img
-        class="soldier"
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/warn.png"
-        alt="小兵"
-      />
+      <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" />
     </div>
     <div class="content" v-typewriterMultiple="finish">{{ text }}</div>
     <div

@@ -36,6 +36,7 @@ const EmitAudioVolume = (v: number) => {
 /* 显示设置弹窗 */
 const handleShowSetting = () => {
   show_setting.value = true;
+  $switchStore.$tip("a");
 };
 
 /* 保存配置 */

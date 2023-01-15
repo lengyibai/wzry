@@ -30,10 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
   required: false,
 });
 
-const icon = computed(
-  () =>
-    `https://lengyibai.gitee.io/img-bed/wzry/image/select_${props.modelValue}.png`
-);
+const icon = computed(() => `${IMGBED}/image/select_${props.modelValue}.png`);
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);

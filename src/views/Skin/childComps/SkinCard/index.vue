@@ -8,6 +8,9 @@ withDefaults(defineProps<Props>(), {
   data: () => skinDefault,
 });
 
+const IMGBED = window.IMGBED; //全局图床链接
+
+/* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
   return price && !isNaN(Number(price));
 };
@@ -20,7 +23,7 @@ const priceShow = (price: number | string) => {
     <div class="price">
       <img
         v-if="priceShow(data.price)"
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/coupon.png"
+        :src="IMGBED + '/image/coupon.png'"
         alt=""
       />
       <span>{{ data.price }}</span>

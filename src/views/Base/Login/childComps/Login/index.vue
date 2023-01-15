@@ -4,8 +4,9 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-//注册及登录状态下要显示的输入框及按钮
-const is_reg = ref("");
+const IMGBED = window.IMGBED; //全局图床链接
+
+const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
 
 const component = computed(() => {
   return is_reg.value === "登录"
@@ -40,10 +41,7 @@ const EmitToggleLog = () => {
       class="logo"
       v-particle="{ down: true, filter: false, color: '#f3dea4' }"
     >
-      <img
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/login_logo.png"
-        alt="logo"
-      />
+      <img :src="IMGBED + '/image/login_logo.png'" alt="logo" />
     </div>
     <div class="title">
       {{ is_reg === "" ? "注册 | 登录" : "欢迎" + is_reg }}

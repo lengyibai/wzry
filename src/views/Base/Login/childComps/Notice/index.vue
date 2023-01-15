@@ -14,6 +14,8 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<Emits>();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 /* 关闭弹窗 */
 const handleClose = () => {
   emit("update:modelValue", false);
@@ -28,7 +30,7 @@ const handleClose = () => {
         <!-- 右上角关闭 -->
         <img
           class="close cursor-pointer"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
+          :src="IMGBED + '/image/close.png'"
           @click="handleClose"
         />
         <div class="title">王者荣耀后台管理系统公告</div>

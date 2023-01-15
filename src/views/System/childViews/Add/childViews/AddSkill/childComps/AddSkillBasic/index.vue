@@ -16,6 +16,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 /* 是否处于被编辑中 */
 const active = (index: number) => {
   return props.activeIndex === index;
@@ -43,13 +45,7 @@ const handleDel = () => {
     >
       <!-- 标题 -->
       <div class="title">
-        <img
-          :src="
-            item.img ||
-            'https://lengyibai.gitee.io/img-bed/wzry/image/unknown.png'
-          "
-          alt=""
-        />
+        <img :src="item.img || IMGBED + '/image/unknown.png'" alt="" />
         <div class="name">{{ item.name }}</div>
         <div class="types">
           <K-SkillTypeTag

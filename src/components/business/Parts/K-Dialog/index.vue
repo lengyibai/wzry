@@ -10,14 +10,11 @@
         <img
           class="close cursor-pointer"
           v-show="showClose"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/close.png"
+          :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="handleClose"
         />
-        <img
-          class="bg"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/dialog.png"
-        />
+        <img class="bg" :src="IMGBED + '/image/dialog.png'" />
         <div class="content">
           <slot></slot>
         </div>
@@ -27,7 +24,6 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-
 import switchStore from "@/store/globalSwitch";
 
 interface Props {
@@ -50,6 +46,8 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+
+const IMGBED = window.IMGBED; //全局图床链接
 
 const show = ref(false); //是否显示弹窗
 

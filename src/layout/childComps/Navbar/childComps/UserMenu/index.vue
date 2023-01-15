@@ -8,6 +8,8 @@ import switchStore from "@/store/globalSwitch";
 const $authStore = authStore();
 const $switchStore = switchStore();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 const show_menu = ref(false); //显示用户菜单
 const show_edit = ref(false); //显示编辑个人信息弹窗
 const user_info = $authStore.userInfo;
@@ -50,10 +52,7 @@ const EmitSaveInfo = () => {
   >
     <img
       class="head-img"
-      :src="
-        user_info.headImg ||
-        'https://lengyibai.gitee.io/img-bed/wzry/image/unknown.png'
-      "
+      :src="user_info.headImg || IMGBED + '/image/unknown.png'"
       alt="头像"
     />
     <div class="user-card">

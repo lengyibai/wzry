@@ -35,7 +35,7 @@
         <img
           class="arrow"
           :class="{ rotate: is_unfold }"
-          src="https://lengyibai.gitee.io/img-bed/wzry/image/arrow.png"
+          :src="IMGBED + '/image/arrow.png'"
           alt=""
         />
       </div>
@@ -106,6 +106,8 @@ interface Emits {
   (e: "change", v: string | number | any[]): void;
 }
 const emit = defineEmits<Emits>();
+
+const IMGBED = window.IMGBED; //全局图床链接
 
 const input_value = ref<any>(""); //输入框的值
 const active_value = ref<any>(""); //选中的值

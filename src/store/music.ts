@@ -41,9 +41,7 @@ const switchStore = defineStore("music", () => {
   /** @description: 播放 */
   const play = (isReset = true) => {
     if (isReset) {
-      bgm.src = `https://lengyibai.gitee.io/img-bed/wzry/music/${
-        musics[bgmIndex.value].url
-      }.mp3`;
+      bgm.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
     status.value = true;
     bgm.volume = volume.value;

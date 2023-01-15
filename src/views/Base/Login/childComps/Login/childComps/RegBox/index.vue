@@ -14,7 +14,7 @@ const $switchStore = switchStore();
 
 const form = reactive<User>({
   id: "",
-  headImg: "https://lengyibai.gitee.io/img-bed/wzry/image/head.jpg",
+  headImg: IMGBED + "/image/head.jpg",
   nickname: "",
   password: "",
   role: 1,

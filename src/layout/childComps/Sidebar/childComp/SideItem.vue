@@ -15,7 +15,7 @@
         v-if="route.children"
         class="arrow"
         :class="{ 'arrow-active': show }"
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/arrow.png"
+        :src="IMGBED + '/image/arrow.png'"
         alt=""
       />
     </button>
@@ -41,6 +41,14 @@ import otherStore from "@/store/other";
 import switchStore from "@/store/globalSwitch";
 import SideItem from "./SideItem.vue"; //调用自身
 
+interface RouteFormat {
+  path: string;
+  title: string;
+  meta: { title: string };
+  children: RouteFormat[] | null;
+  zIndex: number;
+}
+
 interface Props {
   route: any;
 }
@@ -50,19 +58,12 @@ const props = withDefaults(defineProps<Props>(), {
   },
 });
 
-interface RouteFormat {
-  path: string;
-  title: string;
-  meta: { title: string };
-  children: RouteFormat[] | null;
-  zIndex: number;
-}
-
 const $router = useRouter();
 const $route = useRoute();
 const $switchStore = switchStore();
 const $otherStore = otherStore();
 
+const IMGBED = window.IMGBED; //全局图床链接
 const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`;
 
 const show = ref(false);

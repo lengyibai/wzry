@@ -6,6 +6,8 @@ import switchStore from "@/store/globalSwitch";
 const $switchStore = switchStore();
 const $epigraphStore = epigraphStore();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 const current_index = ref(0); //当前点击的分类索引
 
 /* 顶部铭文分类标题 */
@@ -34,7 +36,7 @@ const handleToggle = (index: number, type: string) => {
     <div class="epigraph-category">
       <img
         :style="{ left: current_index * 11.11 + '%' }"
-        src="https://lengyibai.gitee.io/img-bed/wzry/image/epigraph_active.png"
+        :src="IMGBED + '/image/epigraph_active.png'"
         alt=""
       />
       <button

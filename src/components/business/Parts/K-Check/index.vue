@@ -22,9 +22,7 @@ const emit = defineEmits<Emits>();
 
 const icon = computed(
   () =>
-    `https://lengyibai.gitee.io/img-bed/wzry/image/${
-      props.modelValue ? "select_true" : "select_false"
-    }.png`
+    `${IMGBED}/image/${props.modelValue ? "select_true" : "select_false"}.png`
 );
 
 const toggle = () => {

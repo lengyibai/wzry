@@ -38,8 +38,7 @@ const color: Record<string, string> = {
   warning: "#e2c484",
   error: "#e28484",
 };
-const getImg = (src: string) =>
-  `https://lengyibai.gitee.io/img-bed/wzry/image/msg_${src}.png`;
+const getImg = (src: string) => `${IMGBED}/image/msg_${src}.png`;
 
 const imgs: Record<string, Record<string, string>> = {
   info: {
