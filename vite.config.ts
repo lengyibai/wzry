@@ -22,6 +22,15 @@ export default defineConfig({
       open: true, //如果存在本地服务端口，将在打包后自动展示
     }),
   ],
+  css: {
+    // css预处理器
+    preprocessorOptions: {
+      less: {
+        charset: false,
+        additionalData: '@import "./src/styles/index.less";', //全局less变量文件
+      },
+    },
+  },
   server: {
     host: "0.0.0.0",
     port: 9527,
