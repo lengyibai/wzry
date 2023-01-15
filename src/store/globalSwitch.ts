@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-type msgType = "info" | "warning" | "error";
 interface Loading {
   show: (text?: string) => void;
   close: () => Promise<void>;
 }
 const switchStore = defineStore("globalSwitch", () => {
   const $clickAudio = ref<(name?: string) => void>(() => {}); //点击音效
-  const $msg = ref<(text: string, type?: msgType) => void>(() => {}); //消息提示
+  const $msg = ref<(text: string, type?: MsgType) => void>(() => {}); //消息提示
+  const $tip = ref<(text: string, align?: TipType) => void>(() => {}); //小贴士提示
   const $loading = ref<Loading>({
     show: () => {},
     close: () => new Promise(() => {}),
@@ -17,6 +17,7 @@ const switchStore = defineStore("globalSwitch", () => {
   return {
     $clickAudio,
     $msg,
+    $tip,
     $loading,
   };
 });
