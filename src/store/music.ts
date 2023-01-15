@@ -7,7 +7,7 @@ const switchStore = defineStore("music", () => {
   let tool_timer: Interval; //进度条宽度设置
   const bgmIndex = ref(0); //音乐索引
   const progress = ref(0); //播放进度
-  const volume = ref(0.25); //音量
+  const volume = ref(0); //音量
   const status = ref(false); //当前音乐播放状态
   const show_list = ref(false); //显示播放列表
   const show_tool = ref(false); //显示工具栏
@@ -110,6 +110,12 @@ const switchStore = defineStore("music", () => {
     }
   };
 
+  /** @description: 音量调节 */
+  const setVolume = (v: number) => {
+    volume.value = (v / 100) * 0.5;
+    bgm.volume = volume.value;
+  };
+
   return {
     status,
     bgmIndex,
@@ -125,6 +131,7 @@ const switchStore = defineStore("music", () => {
     setCurrentTime,
     playIndex,
     showTool,
+    setVolume,
   };
 });
 
