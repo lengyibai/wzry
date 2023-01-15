@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from "vue";
+import { ref, computed, onBeforeUnmount } from "vue";
 import musicStore from "@/store/music";
+import settingStore from "@/store/setting";
 import Time from "./childComps/Time.vue"; //左侧时间
 import Tool from "./childComps/Tool.vue"; //工具栏
 import Copyright from "./childComps/Copyright.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay.vue"; //音乐进度条
 
 const $musicStore = musicStore();
+const $settingStore = settingStore();
 
 const line = ref<HTMLElement>();
 const footbar = ref<HTMLElement>();
 
 let timer: any = null; //隐藏工具栏定时器
+
+let enable_music = computed(() => {
+  return $settingStore.config.music;
+}); //是否启用音乐播放器
 
 const playProgress = ref(0); //播放进度
 
@@ -27,6 +33,7 @@ const getPoint = (e: MouseEvent) => {
 
 /* 悬浮移动竖线 */
 const handleMoveLine = (e: MouseEvent) => {
+  if (!enable_music.value) return;
   line.value!.style.left =
     parseFloat(
       (
@@ -55,6 +62,7 @@ const EmitMusicToole = (type: string) => {
 
 /* 显示工具栏 */
 const handleShowTool = (v: boolean) => {
+  if (!enable_music.value) return;
   if (!v) {
     timer = setTimeout(() => {
       $musicStore.showTool(v);
@@ -78,13 +86,17 @@ onBeforeUnmount(() => {
     @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
     ref="footbar"
-    v-particle="{ color: '#84ade2', filter: false, size: 10 }"
+    v-particle="{ color: '#5f86b6', filter: false, size: 10 }"
   >
-    <div class="line" ref="line"></div>
+    <div class="line" ref="line" v-if="enable_music"></div>
+    <MusicPlay
+      class="music-play"
+      v-if="enable_music"
+      :playProgress="playProgress"
+    />
     <Time class="time" />
     <Tool @toggle="EmitMusicToole" />
     <Copyright class="copyright" />
-    <MusicPlay class="music-play" :playProgress="playProgress" />
   </div>
 </template>
 
