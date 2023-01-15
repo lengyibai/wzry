@@ -12,6 +12,7 @@ interface Props {
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
+  (e: "change", v: boolean): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -27,6 +28,7 @@ const icon = computed(
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);
+  emit("change", !props.modelValue);
 };
 </script>
 <style scoped lang="less">
