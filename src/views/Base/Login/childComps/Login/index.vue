@@ -39,7 +39,7 @@ const EmitToggleLog = () => {
     </div>
     <div
       class="logo"
-      v-particle="{ down: true, filter: false, color: '#f3dea4' }"
+      v-particle="{ down: true, filter: false, color: '#e8cc7d' }"
     >
       <img :src="IMGBED + '/image/login_logo.png'" alt="logo" />
     </div>
