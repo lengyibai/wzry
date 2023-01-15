@@ -4,8 +4,6 @@
     v-particle="{
       color: particle_color[type],
       size: 5,
-      brightness: 1.25,
-      contrast: 1.1,
     }"
     :style="style1"
   >
