@@ -10,3 +10,16 @@ declare interface MsgText {
   text: string;
   type: string;
 }
+
+declare interface SettingConfig {
+  tip: boolean;
+  videoBg: boolean;
+  audio: boolean;
+  audioVolume: number;
+  music: boolean;
+  musicVolume: number;
+  lazy: boolean;
+  theme: number;
+  speed: number;
+  loginSound: boolean;
+}
