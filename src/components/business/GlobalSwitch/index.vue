@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import useLoading from "./hooks/useLoading";
-import useSound from "./hooks/useSound";
 import useMessage from "./hooks/useMessage";
 import useTip from "./hooks/useTip";
 import $bus from "@/utils/eventBus"; //事件总线
 import switchStore from "@/store/globalSwitch"; //全局开关
 import tipStore from "@/store/tip";
+import clickAudio from "@/store/clickAudio";
 
 const $switchStore = switchStore();
 const $tipStore = tipStore();
+const $clickAudioStore = clickAudio();
 
 const { loading, show_loading, loading_text } = useLoading();
-const { clickAudio } = useSound();
 const { msg, messages } = useMessage($switchStore);
 const { show_tip, content, align, noTipName, tip } = useTip(
   $switchStore,
@@ -22,7 +22,7 @@ const { show_tip, content, align, noTipName, tip } = useTip(
 $switchStore.$patch({
   $msg: msg,
   $loading: loading,
-  $clickAudio: clickAudio,
+  $clickAudio: $clickAudioStore.play,
   $tip: tip,
 });
 
