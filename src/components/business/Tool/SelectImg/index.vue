@@ -36,7 +36,6 @@ withDefaults(defineProps<Props>(), {
   type: "square",
 });
 
-/* 弹窗相关 */
 const show_AddLink = ref(false); //显示添加链接弹窗
 
 /* 获取链接 */
