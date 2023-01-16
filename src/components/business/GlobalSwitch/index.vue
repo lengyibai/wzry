@@ -3,20 +3,23 @@ import { onMounted } from "vue";
 import useLoading from "./hooks/useLoading";
 import useMessage from "./hooks/useMessage";
 import useTip from "./hooks/useTip";
-import $bus from "@/utils/eventBus"; //事件总线
-import switchStore from "@/store/globalSwitch"; //全局开关
+import $bus from "@/utils/eventBus";
+import switchStore from "@/store/globalSwitch";
+import settingStore from "@/store/setting";
 import tipStore from "@/store/tip";
 import clickAudio from "@/store/clickAudio";
 
 const $switchStore = switchStore();
 const $tipStore = tipStore();
 const $clickAudioStore = clickAudio();
+const $settingStore = settingStore();
 
 const { loading, show_loading, loading_text } = useLoading();
 const { msg, messages } = useMessage($switchStore);
 const { show_tip, content, align, noTipName, tip } = useTip(
   $switchStore,
-  $tipStore
+  $tipStore,
+  $settingStore
 );
 /* 挂载全局 */
 $switchStore.$patch({

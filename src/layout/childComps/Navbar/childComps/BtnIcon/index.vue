@@ -67,15 +67,14 @@ const EmitAudioVolume = (v: number) => {
   }, 100);
 };
 
-/* 视频背景 */
+/* 启用/禁用视频背景 */
 const EmitVideoBg = () => {
   EmitSaveConfig();
 };
 
-/* 显示设置弹窗 */
-const handleShowSetting = () => {
-  show_setting.value = true;
-  $switchStore.$tip("a");
+/* 启用/禁用Tip */
+const EmitTip = () => {
+  $switchStore.$tip("2rb7");
 };
 
 /* 保存配置 */
@@ -96,7 +95,7 @@ const EmitResetConfig = () => {
   <div class="btn-icon">
     <i
       class="iconfont wzry-setting cursor-pointer"
-      @click="handleShowSetting"
+      @click="show_setting = true"
       title="设置"
     />
     <a href="https://github.com/lengyibai/wzry" target="_blank">
@@ -166,10 +165,10 @@ const EmitResetConfig = () => {
           <div class="label">
             小贴士
             <DescSet
-              desc="在某些场景会触发小贴士，在右下角弹出，介绍一些功能信息"
+              desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
             />
           </div>
-          <K-Check v-model="config.tip" />
+          <K-Check v-model="config.tip" @change="EmitTip" />
         </div>
 
         <!-- 列表分页展示 -->
@@ -197,6 +196,7 @@ const EmitResetConfig = () => {
     <transition name="fade">
       <ConfirmClose
         v-model="show_confirm_reset"
+        v-model:v-if="show_confirm_reset"
         v-if="show_confirm_reset"
         @confirm="EmitResetConfig"
         text="确定重置所有配置项？"
