@@ -42,6 +42,14 @@ const show_HeroDetail = ref(false); //显示英雄详情
 const hero_list = ref<Hero.Data[]>([]); //英雄列表
 const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
+/* 设置图片懒加载 */
+const setLazyImg = () => {
+  const imgs = heroListRef.value.childrens.map((item: HTMLElement) => {
+    return item.children[0].children[1];
+  });
+  $lazyLoadImages(imgs);
+};
+
 /* 查看详情 */
 const EmitViewClick = (id: number) => {
   /* 获取指定英雄数据 */
@@ -60,8 +68,7 @@ const EmitViewClick = (id: number) => {
     });
   });
 };
-
-/* 如果地址栏存在id，则打开查看详情 */
+//如果地址栏存在id，则打开查看详情
 if (id) {
   EmitViewClick(Number(id));
 } else {
@@ -79,10 +86,7 @@ const EmitLoadMore = () => {
   }
   nextTick(() => {
     heroListRef.value.updateHeight();
-    const imgs = heroListRef.value.childrens.map((item: HTMLElement) => {
-      return item.children[0].children[1];
-    });
-    $lazyLoadImages(imgs);
+    setLazyImg();
   });
 };
 

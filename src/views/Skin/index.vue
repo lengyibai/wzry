@@ -36,6 +36,14 @@ const skin_list = ref<Hero.Skin[]>([]); //当前展示的皮肤列表
 
 $skinStore.getSkin(); //获取皮肤列表
 
+/* 设置图片懒加载 */
+const setLazyImg = () => {
+  const imgs = skinListRef.value.childrens.map((item: HTMLElement) => {
+    return item.children[0].firstChild;
+  });
+  $lazyLoadImages(imgs);
+};
+
 /* 加载更多 */
 const EmitLoadMore = () => {
   if (page_total > page) {
@@ -45,10 +53,7 @@ const EmitLoadMore = () => {
     );
     nextTick(() => {
       skinListRef.value.updateHeight();
-      const imgs = skinListRef.value.childrens.map((item: HTMLElement) => {
-        return item.children[0].firstChild;
-      });
-      $lazyLoadImages(imgs);
+      setLazyImg();
     });
   }
 };
@@ -73,9 +78,10 @@ watch(
       page * page_count,
       (page + 1) * page_count
     );
+    page_total = Math.round(cache_list.value.length / page_count);
+
     nextTick(() => {
       show.value = true;
-      page_total = Math.round(cache_list.value.length / page_count);
     });
   },
   { deep: true, immediate: true }
@@ -139,7 +145,7 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
         >
           <div
-            class="skin-card"
+            class="card"
             v-for="(item, index) in skin_list"
             @click="handleTool(item)"
             :style="{
