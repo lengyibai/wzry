@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const switchStore = defineStore("tip", () => {
+const tipStore = defineStore("tip", () => {
   const tips = ref<Record<string, { text: string; noTip: boolean }>>({
-    a: {
-      text: "欢迎来到王者荣耀！",
+    "2rb7": {
+      text: "Tip开启成功",
       noTip: false,
     },
   });
@@ -16,4 +16,5 @@ const switchStore = defineStore("tip", () => {
   return { tips, setNoTip };
 });
 
-export default switchStore;
+export default tipStore;
+export type TipStore = ReturnType<typeof tipStore>;

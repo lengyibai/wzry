@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { $isPhone } from "@/utils";
 
-const switchStore = defineStore("setting", () => {
+const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({
     tip: true,
     videoBg: true,
@@ -32,4 +32,5 @@ const switchStore = defineStore("setting", () => {
   return { config, saveConfig };
 });
 
-export default switchStore;
+export default settingStore;
+export type SettingStore = ReturnType<typeof settingStore>;

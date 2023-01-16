@@ -23,3 +23,4 @@ const switchStore = defineStore("globalSwitch", () => {
 });
 
 export default switchStore;
+export type SwitchStore = ReturnType<typeof switchStore>;
