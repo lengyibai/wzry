@@ -44,10 +44,12 @@ const EmitMusic = (v: boolean) => {
 };
 /* 音乐音量调节 */
 const EmitMusicVolume = (v: number) => {
-  $musicStore.setVolume(v);
   $debounce(() => {
-    EmitSaveConfig();
-  }, 1000);
+    $musicStore.setVolume(v);
+    $debounce(() => {
+      EmitSaveConfig();
+    }, 1000);
+  }, 50);
 };
 
 /* 开启音效 */
@@ -57,10 +59,12 @@ const EmitAudio = (v: boolean) => {
 };
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
-  $clickAudio.setVolume(v);
   $debounce(() => {
-    EmitSaveConfig();
-  }, 1000);
+    $clickAudio.setVolume(v);
+    $debounce(() => {
+      EmitSaveConfig();
+    }, 1000);
+  }, 100);
 };
 
 /* 视频背景 */
@@ -190,11 +194,14 @@ const EmitResetConfig = () => {
     </transition>
 
     <!-- 确认重置 -->
-    <ConfirmClose
-      v-model="show_confirm_reset"
-      @confirm="EmitResetConfig"
-      text="确定重置所有配置项？"
-    />
+    <transition name="fade">
+      <ConfirmClose
+        v-model="show_confirm_reset"
+        v-if="show_confirm_reset"
+        @confirm="EmitResetConfig"
+        text="确定重置所有配置项？"
+      />
+    </transition>
   </div>
 </template>
 
