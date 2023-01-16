@@ -67,11 +67,6 @@ const EmitAudioVolume = (v: number) => {
   }, 100);
 };
 
-/* 启用/禁用视频背景 */
-const EmitVideoBg = () => {
-  EmitSaveConfig();
-};
-
 /* 启用/禁用Tip */
 const EmitTip = () => {
   $switchStore.$tip("2rb7");
@@ -157,7 +152,7 @@ const EmitResetConfig = () => {
               desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
             />
           </div>
-          <K-Check v-model="config.videoBg" @change="EmitVideoBg" />
+          <K-Check v-model="config.videoBg" @change="EmitSaveConfig" />
         </div>
 
         <!-- 小贴士 -->
@@ -179,7 +174,7 @@ const EmitResetConfig = () => {
               desc="英雄列表与皮肤列表的数据将会一次性全部展示，不会进行分页加载，但这会延长加载时间"
             />
           </div>
-          <K-Check v-model="config.lazy" />
+          <K-Check v-model="config.lazy" @change="EmitSaveConfig" />
         </div>
 
         <!-- 重置配置 -->
