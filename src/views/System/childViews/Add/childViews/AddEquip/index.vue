@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { getEquipType, getEquipEffect } from "@/api/main/games/equip";
 import { equipDefault, equipMotivationDefault } from "@/defaultValue/defaults";
 import { $deepCopy } from "@/utils";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import equipStore from "@/store/equip";
 import viewHide from "../../../../hooks/useViewHide";
 import EquipDetail from "@/views/Equip/childComps/EquipDetail/index.vue"; //装备详情

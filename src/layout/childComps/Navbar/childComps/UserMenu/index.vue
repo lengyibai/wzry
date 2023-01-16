@@ -3,7 +3,7 @@ import { ref, computed } from "vue";
 import { $timeGreet } from "@/utils";
 import { updateUser } from "@/api/main/user";
 import authStore from "@/store/auth";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 
 const $authStore = authStore();
 const $switchStore = switchStore();

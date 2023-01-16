@@ -27,7 +27,7 @@
 </template>
 <script setup lang="ts">
 import viewHide from "../../../../hooks/useViewHide";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 
 const emit = defineEmits(["update:modelValue"]);
 const { show, finish, close } = viewHide(emit, "");

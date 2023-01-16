@@ -1,4 +1,4 @@
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import {
   Camptype,
   RaceType,

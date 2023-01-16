@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import otherStore from "@/store/other";
 import skinStore from "@/store/skin";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 
 const $switchStore = switchStore();
 const $skinStore = skinStore();

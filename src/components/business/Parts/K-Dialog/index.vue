@@ -33,7 +33,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 
 interface Props {
   modelValue: boolean; //是否显示

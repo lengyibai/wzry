@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import otherStore from "@/store/other";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 
 const $switchStore = switchStore();

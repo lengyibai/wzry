@@ -4,10 +4,10 @@ import useLoading from "./hooks/useLoading";
 import useMessage from "./hooks/useMessage";
 import useTip from "./hooks/useTip";
 import $bus from "@/utils/eventBus";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
 import tipStore from "@/store/tip";
-import clickAudio from "@/store/clickAudio";
+import clickAudio from "@/store/audio";
 
 const $switchStore = switchStore();
 const $tipStore = tipStore();

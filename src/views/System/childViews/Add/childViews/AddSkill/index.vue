@@ -5,7 +5,7 @@ import { computed, ref } from "vue";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
 import { skillDefault, skillEffectDefault } from "@/defaultValue/defaults";
 import heroStore from "@/store/hero";
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 

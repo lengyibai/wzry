@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 import equipStore from "@/store/equip";
 
 const $switchStore = switchStore();

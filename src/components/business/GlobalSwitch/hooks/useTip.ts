@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import type { TipStore } from "@/store/tip";
 import type { SettingStore } from "@/store/setting";
-import type { SwitchStore } from "@/store/globalSwitch";
+import type { SwitchStore } from "@/store/switch";
 
 export default (
   $switchStore: SwitchStore,

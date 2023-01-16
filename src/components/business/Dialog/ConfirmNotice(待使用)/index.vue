@@ -34,7 +34,7 @@
   </LibMask>
 </template>
 <script setup lang="ts">
-import switchStore from "@/store/globalSwitch";
+import switchStore from "@/store/switch";
 
 interface Props {
   modelValue: boolean;
