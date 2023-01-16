@@ -36,10 +36,8 @@ const fn = () => {
 };
 const updateHeight = () => {
   childrens.value = [...LibGridLayout.value.children];
-  nextTick(() => {
-    childrens.value.forEach((item) => {
-      item.style.height = `${item.scrollWidth * props.eqhMultiple}px`;
-    });
+  childrens.value.forEach((item) => {
+    item.style.height = `${item.scrollWidth * props.eqhMultiple}px`;
     window.addEventListener("resize", fn);
   });
 };
