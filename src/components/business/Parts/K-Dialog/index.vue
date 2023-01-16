@@ -3,7 +3,10 @@
     <transition :name="up ? 'confirm' : 'default'">
       <div
         class="k-dialog"
-        :style="{ width: width, height: 'calc(' + width + ' * 0.5989)' }"
+        :style="{
+          width: width,
+          height: 'calc(' + width + ' * 0.5989)',
+        }"
         v-show="show"
       >
         <div class="title" v-if="title">{{ title }}</div>
@@ -16,7 +19,12 @@
           @click="handleClose"
         />
         <img class="bg" :src="IMGBED + '/image/dialog.png'" />
-        <div class="content">
+        <div
+          class="content"
+          :style="{
+            justifyContent: align,
+          }"
+        >
           <slot></slot>
         </div>
       </div>
@@ -34,6 +42,7 @@ interface Props {
   header?: string; //中间标题文字
   width?: string; //弹窗宽度
   up?: boolean; //上升动画
+  align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -47,6 +56,7 @@ withDefaults(defineProps<Props>(), {
   header: "",
   width: "720px",
   up: false,
+  align: "flex-start",
 });
 const emit = defineEmits<Emits>();
 
