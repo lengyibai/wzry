@@ -46,12 +46,13 @@ const updateHeight = () => {
 
 interface Emits {
   (e: "load-more"): void;
+  (e: "scroll"): void;
 }
 const emit = defineEmits<Emits>();
 let lock = false;
 const scroll = (e: Event) => {
   const el = e.target as HTMLElement;
-
+  emit("scroll");
   if (el.scrollHeight < el.scrollTop + el.clientHeight * 1.5 && !lock) {
     emit("load-more");
   }
