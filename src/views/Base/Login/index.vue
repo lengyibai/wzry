@@ -31,18 +31,17 @@ const EmitToolType = (v: string) => {
     </div>
 
     <Login />
-    <Notice v-model="show_notice" />
     <ToolBar @clicks="EmitToolType" />
     <LibBgVideo
       v-if="enable_video_bg"
       :video="LOGINBG"
       :muted="!$settingStore.config.loginSound"
-    /><img
-      class="login-bg"
-      v-else
-      :src="IMGBED + '/image/login_bg.png'"
-      alt=""
     />
+    <img class="login-bg" v-else :src="IMGBED + '/image/login_bg.png'" alt="" />
+
+    <transition name="fade">
+      <Notice v-model="show_notice" v-if="show_notice" />
+    </transition>
   </div>
 </template>
 
