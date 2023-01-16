@@ -34,3 +34,14 @@
   opacity: 0;
   transform: translateY(-100%);
 }
+
+.scale-enter-from,
+.scale-leave-active {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.scale-leave-active,
+.scale-enter-active {
+  transition: all var(--time-500);
+}
