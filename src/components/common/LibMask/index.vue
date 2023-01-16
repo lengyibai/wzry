@@ -45,14 +45,4 @@ const hide = (e) => {
   top: 0;
   left: 0;
 }
-
-.fade-enter-from,
-.fade-leave-active {
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.25s;
-}
 </style>

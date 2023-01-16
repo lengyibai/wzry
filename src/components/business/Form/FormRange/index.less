@@ -32,19 +32,21 @@
       width: 100%;
 
       span {
-        position: absolute;
-        z-index: 2;
-        height: 50px;
-        padding: 0 15px;
+        background-color: var(--theme-color-two);
         border-radius: 30px;
         color: var(--theme-color-eight);
         font-size: 25px;
-        text-align: center;
-        background-color: var(--theme-color-two);
         font-weight: 500;
-        transform: translateX(-50%) scale(0);
-        transform-origin: bottom;
+        height: 50px;
         line-height: 50px;
+        padding: 0 15px;
+        position: absolute;
+        text-align: center;
+        transform-origin: bottom;
+        transform: translateX(-50%) scale(0);
+        transition: transform 0.3s ease-in-out;
+        white-space: nowrap;
+        z-index: 2;
       }
     }
 
@@ -117,4 +119,15 @@
 .disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* 淡入淡出 */
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
 }

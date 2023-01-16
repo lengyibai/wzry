@@ -7,9 +7,8 @@
   user-select: none;
   cursor: pointer;
 
-  span,
-  .menu-item .arrow {
-    transition: all 0.25s 0.1s;
+  span {
+    transition: all var(--time-250) 0.1s;
   }
 
   .menu-item {
@@ -34,7 +33,7 @@
       top: 50%;
       right: 0;
       width: 25px;
-      transition: all 0.25s;
+      transition: all var(--time-250);
       transform: translate(-100%, -50%);
     }
   }
@@ -81,5 +80,5 @@
 /* 进入和离开动画属性 */
 .menu-list-leave-active,
 .menu-list-enter-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }

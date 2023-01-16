@@ -89,7 +89,7 @@ const handleToggleMusic = (index: number) => {
       width: 100%;
       height: 50px;
       padding: 0 10px;
-      transition: all 0.75s;
+      transition: all var(--time-500);
 
       &:hover {
         .left {
@@ -101,7 +101,7 @@ const handleToggleMusic = (index: number) => {
       .left {
         display: flex;
         align-items: center;
-        transition: all 0.25s;
+        transition: all var(--time-250);
 
         .num {
           width: 25px;
@@ -132,6 +132,6 @@ const handleToggleMusic = (index: number) => {
 
 .muisc-list-leave-active,
 .muisc-list-enter-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }
 </style>

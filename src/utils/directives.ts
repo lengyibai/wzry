@@ -134,7 +134,7 @@ const sweepLight = {
       height: 100%;
       background-color: rgba(255, 255, 255, 0.5);
       transform: skewX(45deg) translateX(${el.offsetWidth * 2}px);
-      transition: all 2s;
+      transition: all var(--time-2000);
       filter: blur(5px)
     `;
       el.appendChild(light);

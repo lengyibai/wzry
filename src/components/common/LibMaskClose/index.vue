@@ -80,7 +80,7 @@ onMounted(() => {
 /* 进入和离开动画属性 */
 .mask-close-leave-active,
 .mask-close-enter-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }
 
 /* 进入前状态 */
@@ -92,6 +92,6 @@ onMounted(() => {
 /* 进入和离开动画属性 */
 .mask-move-leave-active,
 .mask-move-enter-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }
 </style>

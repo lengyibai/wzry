@@ -111,11 +111,10 @@
 .del-skill-type-leave-active,
 .del-skill-type-enter-active,
 .del-skill-type-move {
-  transition: all 0.5s;
+  transition: all var(--time-500);
 }
 
 /* 解决删除元素时，其他元素补位无动画 */
 .del-skill-type-leave-active {
   position: absolute; /* 必须为绝对定位 */
 }
-

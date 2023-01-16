@@ -45,7 +45,7 @@ onMounted(() => {
     progress.value = props.length;
     attribute.value.style.transform = "translateY(calc(var(--i) * 250%))";
     attribute.value.style.width = "100%";
-  });
+  }, 100);
 });
 </script>
 

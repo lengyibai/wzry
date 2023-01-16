@@ -9,7 +9,7 @@
 
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
-      <div class="slider-value" v-if="show_num">
+      <div class="slider-value" v-if="showNum">
         <span :class="{ 'show-num': show_num }" :style="{ left: barWidth }">
           {{ text || modelValue }}
         </span>
@@ -61,7 +61,7 @@ interface Props {
   showDot?: boolean; //是否显示圆点，也决定是否显示图标
   showIcon?: boolean; //是否显示图标
   icon?: string; //自定义图标1:1
-  show_num?: boolean; //是否在滑动的时候显示数字
+  showNum?: boolean; //是否在滑动的时候显示数字
   step?: number; //步长
 }
 interface Emits {
@@ -83,7 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
   showDot: true,
   showIcon: true,
   icon: IMGBED + "/image/range_icon.png",
-  show_num: true,
+  showNum: true,
   step: 1,
 });
 const emit = defineEmits<Emits>();

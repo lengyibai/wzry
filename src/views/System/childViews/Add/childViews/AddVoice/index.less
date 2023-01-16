@@ -50,15 +50,14 @@
 
 .voice-box-enter-active,
 .voice-box-leave-active {
-  transition: all 0.5s;
+  transition: all var(--time-500);
 }
 
 .fade-move {
-  transition: all 0.5s;
+  transition: all var(--time-500);
 }
 
 /* 解决删除元素时，其他元素补位无动画 */
 .fade-leave-active {
   position: absolute; /* 必须为绝对定位 */
 }
-

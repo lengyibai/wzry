@@ -41,6 +41,6 @@ watch(
   width: 0%;
   height: 5px;
   background-color: var(--theme-color-five);
-  transition: all 0.25s ease-out;
+  transition: all var(--time-250) ease-out;
 }
 </style>

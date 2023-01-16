@@ -87,6 +87,6 @@ onMounted(() => {
 .right-top-leave-active,
 .right-bottom-enter-active,
 .right-bottom-leave-active {
-  transition: all 0.5s;
+  transition: all var(--time-500);
 }
 </style>

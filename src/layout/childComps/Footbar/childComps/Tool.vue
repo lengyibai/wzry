@@ -76,6 +76,6 @@ const handleTool = (type: string) => {
 
 .tool-leave-active,
 .tool-enter-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }
 </style>

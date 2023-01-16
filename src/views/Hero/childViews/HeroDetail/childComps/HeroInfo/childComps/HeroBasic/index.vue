@@ -25,7 +25,7 @@ onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
     info.value.forEach((item: HTMLElement, index: number) => {
-      item.style.transitionDelay = `${index / 10}s`;
+      item.style.transitionDelay = `${index / 14}s`;
       setTimeout(() => {
         item.style.transform = "translateX(0)";
         item.style.opacity = "1";

@@ -13,7 +13,7 @@
     align-items: center;
     padding: 10px 20px;
     color: var(--theme-color-five);
-    transition: all 0.25s;
+    transition: all var(--time-250);
 
     &:hover {
       color: var(--blue);
@@ -38,5 +38,9 @@
 
 .active {
   color: var(--white) !important;
-  background-image: linear-gradient(135deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgb(34 58 94 / 0%) 25%,
+    rgb(34 130 199 / 25%) 100%
+  ) !important;
 }

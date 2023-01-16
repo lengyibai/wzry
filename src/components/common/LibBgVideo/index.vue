@@ -44,7 +44,6 @@ onBeforeUnmount(() => {
   z-index: -1;
   width: 100vw;
   height: 100vh;
-  transition: transform 0.25s ease-out;
   left: 0;
   top: 0;
 

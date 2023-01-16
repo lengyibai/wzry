@@ -8,54 +8,9 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    transition: all 0.25s;
 
     .skin-list {
       padding: 20px;
-
-      .card {
-        position: relative;
-
-        &:hover {
-          .tool {
-            opacity: 1;
-          }
-        }
-
-        .tool {
-          position: absolute;
-          top: 0;
-          z-index: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          background-color: var(--black-50);
-          transition: all 0.25s 0.1s;
-          opacity: 0;
-
-          span {
-            display: flex;
-            align-items: center;
-            margin: 0 25px;
-            font-size: 25px;
-
-            &:hover {
-              color: var(--blue);
-            }
-
-            &:active {
-              transform: scale(0.9);
-            }
-
-            .iconfont {
-              margin-right: 10px;
-              font-size: 40px;
-            }
-          }
-        }
-      }
     }
   }
 }

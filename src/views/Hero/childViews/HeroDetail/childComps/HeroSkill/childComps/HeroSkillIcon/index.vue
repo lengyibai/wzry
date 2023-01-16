@@ -29,7 +29,7 @@ const calcActiveSkill = computed(() => {
 
 /* 设置需要滚动触发的函数 */
 $heroDetailStore.setScollFn((index) => {
-  show.value = index === 3;
+  show.value = show.value || index === 3;
 });
 
 active_skills.value = hero_data.value.skills![deputy_index];

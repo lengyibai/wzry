@@ -63,7 +63,7 @@
         color: var(--theme-color-twelve);
         font-size: 30px;
         background-color: var(--theme-color-one);
-        flex:1;
+        flex: 1;
       }
     }
 
@@ -88,11 +88,11 @@
 }
 
 .default-enter-active {
-  transition: all 0.25s cubic-bezier(0.08, 0.82, 0.17, 1);
+  transition: all var(--time-250) cubic-bezier(0.08, 0.82, 0.17, 1);
 }
 
 .default-leave-active {
-  transition: all 0.25s;
+  transition: all var(--time-250);
 }
 
 /* 由下而上 */
@@ -102,9 +102,9 @@
 }
 
 .confirm-enter-active {
-  transition: all 0.25s cubic-bezier(0.26, 0.89, 0.29, 1.4);
+  transition: all var(--time-250) cubic-bezier(0.26, 0.89, 0.29, 1.4);
 }
 
 .confirm-leave-active {
-  transition: all 0.25s 0.25s;
+  transition: all var(--time-250) 0.25s;
 }

@@ -32,7 +32,7 @@ const emit = defineEmits<Emits>();
 const initPosition = () => {
   if (active_skin.el) {
     active_skin.el.style.pointerEvents = "auto";
-    active_skin.el.style.transition = "all 1s";
+    active_skin.el.style.transition = "all var(--time-1000)";
     active_skin.el.style.transform = active_skin.transform;
   }
 };
@@ -41,7 +41,7 @@ const initPosition = () => {
 const setPosition = (data: HTMLElement | null) => {
   if (data) {
     data.style.pointerEvents = "none";
-    data.style.transition = "all 1s";
+    data.style.transition = "all var(--time-1000)";
     data.style.left = `calc(50% - ${data.offsetWidth / 2}px)`;
     data.style.top = `calc(50% - ${data.offsetHeight / 2}px)`;
     data.style.transform = "";
