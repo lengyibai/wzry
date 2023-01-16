@@ -9,6 +9,15 @@
     color: var(--theme-color-nine);
     font-size: 30px;
   }
+  .header {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--white);
+    font-size: 35px;
+    text-shadow: var(--t-shadow);
+  }
 
   .close {
     position: absolute;
@@ -43,12 +52,22 @@
 .confirm-enter-from,
 .confirm-leave-active {
   transform: translateY(25%);
+  opacity: 0;
 }
 
-.confirm-enter-active {
-  transition: all 0.25s cubic-bezier(0.26, 0.89, 0.29, 1.4);
+.confirm-enter-active,
+.default-enter-active {
+  transition: all 0.25s 0.1s cubic-bezier(0.26, 0.89, 0.29, 1.4);
 }
 
-.confirm-leave-active {
+.confirm-leave-active,
+.default-leave-active {
   transition: all 0.25s 0.25s;
+}
+
+/* 由下而上 */
+.default-enter-from,
+.default-leave-active {
+  transform: scale(0.5);
+  opacity: 0;
 }

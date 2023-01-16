@@ -1,12 +1,13 @@
 <template>
   <LibMask>
-    <transition name="confirm">
+    <transition :name="up ? 'confirm' : 'default'">
       <div
         class="k-dialog"
         :style="{ width: width, height: 'calc(' + width + ' * 0.5989)' }"
         v-show="show"
       >
-        <div class="title">{{ title }}</div>
+        <div class="title" v-if="title">{{ title }}</div>
+        <div class="header" v-if="header">{{ header }}</div>
         <img
           class="close cursor-pointer"
           v-show="showClose"
@@ -30,7 +31,9 @@ interface Props {
   modelValue: boolean; //是否显示
   showClose?: boolean; //是否显示右上角关闭按钮
   title?: string; //左上角描述文字
+  header?: string; //中间标题文字
   width?: string; //弹窗宽度
+  up?: boolean; //上升动画
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -41,7 +44,9 @@ withDefaults(defineProps<Props>(), {
   modelValue: true,
   showClose: true,
   title: "",
+  header: "",
   width: "720px",
+  up: false,
 });
 const emit = defineEmits<Emits>();
 
