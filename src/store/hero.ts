@@ -5,7 +5,7 @@ import { getHeroSkin } from "@/api/main/games/skin";
 import { $debounce, $search } from "@/utils";
 import { ref } from "vue";
 
-export default defineStore("hero", () => {
+const heroStore = defineStore("hero", () => {
   const profession = ref(""); //职业类型
   const camp_type = ref("全部阵营"); // 当前阵营排序类型
   const attr_type = ref("全部属性"); // 当前属性排序类型
@@ -247,3 +247,6 @@ export default defineStore("hero", () => {
     searchHero,
   };
 });
+
+export default heroStore;
+export type HeroStore = ReturnType<typeof heroStore>;

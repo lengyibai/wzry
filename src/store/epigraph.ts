@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { getEpigraphList } from "@/api/main/games/epigraph";
 import { ref } from "vue";
 
-export default defineStore("epigraph", () => {
+const epigraphStore = defineStore("epigraph", () => {
   const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
   const filter_list = ref<Epigraph.Data[]>([]); //筛选后的列表
 
@@ -39,3 +39,6 @@ export default defineStore("epigraph", () => {
     setFilter,
   };
 });
+
+export default epigraphStore;
+export type EpigraphStore = ReturnType<typeof epigraphStore>;

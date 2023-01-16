@@ -92,3 +92,4 @@ const heroDetailStore = defineStore("heroDetail", () => {
 });
 
 export default heroDetailStore;
+export type HeroDetailStore = ReturnType<typeof heroDetailStore>;

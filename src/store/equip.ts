@@ -4,7 +4,7 @@ import { getEquip } from "@/api/main/games/equip";
 import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
 import { t, h } from "./helper";
 
-export default defineStore("equip", () => {
+const equipStore = defineStore("equip", () => {
   const active_id = ref(0); //当前被点击的装备id
   const category = ref("攻击"); //列表装备类型显示
   const active_array = ref<string[]>([]); //当前被点击装备排列位置
@@ -298,3 +298,6 @@ export default defineStore("equip", () => {
     clearSynthetic,
   };
 });
+
+export default equipStore;
+export type EquipStore = ReturnType<typeof equipStore>;

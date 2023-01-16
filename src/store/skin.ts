@@ -4,7 +4,7 @@ import { getSkin } from "@/api/main/games/skin";
 import { getSkinType } from "@/api/main/games/skinType";
 import { $debounce, $search, $typeSort } from "@/utils";
 
-export default defineStore("skin", () => {
+const skinStore = defineStore("skin", () => {
   const profession = ref(""); //职业类型
   const sort_type = ref(""); // 当前价格排序类型
   const gender_type = ref(0); // 当前性别筛选类型
@@ -340,3 +340,6 @@ export default defineStore("skin", () => {
     filterType,
   };
 });
+
+export default skinStore;
+export type SkinStore = ReturnType<typeof skinStore>;

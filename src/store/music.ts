@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { $potEoPct } from "@/utils";
 
-const switchStore = defineStore("music", () => {
+const musicStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
   let tool_timer: Interval; //工具显示设置
   const bgmIndex = ref(0); //音乐索引
@@ -133,4 +133,5 @@ const switchStore = defineStore("music", () => {
   };
 });
 
-export default switchStore;
+export default musicStore;
+export type MusicStore = ReturnType<typeof musicStore>;

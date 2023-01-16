@@ -4,9 +4,9 @@ import { HOME_URL } from "@/config/config";
 import { ref } from "vue";
 import router from "@/router";
 import routesStore from "@/store/routes";
-import switchStore from "./globalSwitch";
+import switchStore from "./switch";
 
-export default defineStore("auth", () => {
+const authStore = defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
   const timer = ref<Interval | number>(0); //实时检测帐号状态
   // 用户相关信息
@@ -124,3 +124,6 @@ export default defineStore("auth", () => {
     watchStatus,
   };
 });
+
+export default authStore;
+export type AuthStore = ReturnType<typeof authStore>;

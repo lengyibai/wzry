@@ -6,7 +6,7 @@ import { admin, user } from "@/router/modules/routeSheel";
 import { RouterSheel } from "@/router/interface";
 import sheelToRoute from "@/router/helper/sheelToRoute";
 
-export default defineStore("router", () => {
+const routeStore = defineStore("route", () => {
   const routes = ref<RouteRecordRaw[]>([]); //当前路由列表，针对侧边栏，解决通过vue-router提供的方法获取的路由列表与侧边栏要求的格式不匹配
   const asyncRoutesName = ref<RouteRecordName[]>([]); //添加的路由name组，用于匹配并删除路由
 
@@ -49,3 +49,6 @@ export default defineStore("router", () => {
     removeRoutes,
   };
 });
+
+export default routeStore;
+export type RouteStore = ReturnType<typeof routeStore>;
