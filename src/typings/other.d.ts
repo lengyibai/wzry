@@ -18,7 +18,6 @@ declare interface SettingConfig {
   audioVolume: number;
   music: boolean;
   musicVolume: number;
-  lazy: boolean;
   theme: number;
   speed: number;
   loginSound: boolean;

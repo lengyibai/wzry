@@ -10,7 +10,6 @@ const settingStore = defineStore("setting", () => {
     audioVolume: 50,
     music: true,
     musicVolume: 50,
-    lazy: true,
     theme: 0,
     speed: 1,
     loginSound: true,

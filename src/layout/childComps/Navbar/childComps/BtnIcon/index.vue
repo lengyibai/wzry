@@ -20,7 +20,6 @@ const default_config = {
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  lazy: true,
   theme: 0,
   speed: 1,
   loginSound: true,
@@ -164,17 +163,6 @@ const EmitResetConfig = () => {
             />
           </div>
           <K-Check v-model="config.tip" @change="EmitTip" />
-        </div>
-
-        <!-- 列表分页展示 -->
-        <div class="option">
-          <div class="label">
-            列表分页展示
-            <DescSet
-              desc="英雄列表与皮肤列表的数据将会一次性全部展示，不会进行分页加载，但这会延长加载时间"
-            />
-          </div>
-          <K-Check v-model="config.lazy" @change="EmitSaveConfig" />
         </div>
 
         <!-- 重置配置 -->
