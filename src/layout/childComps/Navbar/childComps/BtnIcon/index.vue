@@ -105,6 +105,7 @@ const EmitResetConfig = () => {
         title="仅展示，功能尚未开发"
         width="920px"
         v-model="show_setting"
+        up
       >
         <!-- 主题 -->
         <div class="option">

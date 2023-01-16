@@ -80,6 +80,7 @@ const EmitSaveInfo = () => {
       title="编辑个人资料"
       width="920px"
       v-model="show_edit"
+      up
     >
       <!-- 头像 -->
       <div class="option">
