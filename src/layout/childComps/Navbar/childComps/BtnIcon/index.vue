@@ -2,8 +2,9 @@
 import { ref } from "vue";
 import settingStore from "@/store/setting";
 import musicStore from "@/store/music";
-import clickAudio from "@/store/clickAudio";
-import switchStore from "@/store/globalSwitch";
+import clickAudio from "@/store/audio";
+import switchStore from "@/store/switch";
+import speedStore from "@/store/speed";
 import { $debounce } from "@/utils";
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
@@ -11,9 +12,10 @@ const $settingStore = settingStore();
 const $musicStore = musicStore();
 const $switchStore = switchStore();
 const $clickAudio = clickAudio();
+const $speedStore = speedStore();
 
 // 默认配置
-const default_config = {
+const default_config: SettingConfig = {
   tip: true,
   videoBg: true,
   audio: true,
@@ -33,8 +35,16 @@ const config = ref<SettingConfig>($settingStore.config);
 const setTakeEffect = () => {
   $musicStore.setVolume(config.value.musicVolume);
   $clickAudio.setVolume(config.value.audioVolume);
+  $speedStore.setSpeed(config.value.speed);
+  $clickAudio.setAudio(config.value.audio);
 };
 setTakeEffect();
+
+/* 动画速率 */
+const EmitSpeed = (v: number) => {
+  $speedStore.setSpeed(v as 0 | 1 | 2);
+  EmitSaveConfig();
+};
 
 /* 开启音乐 */
 const EmitMusic = (v: boolean) => {
@@ -113,7 +123,11 @@ const EmitResetConfig = () => {
         <!-- 动画速率 -->
         <div class="option">
           <div class="label">动画速率</div>
-          <K-Select v-model="config.speed" :option="['迅速', '均衡', '优雅']" />
+          <K-Select
+            v-model="config.speed"
+            :option="['迅速', '均衡', '优雅']"
+            @update:model-value="EmitSpeed"
+          />
         </div>
 
         <!-- 音效 -->
