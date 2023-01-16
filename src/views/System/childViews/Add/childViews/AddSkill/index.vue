@@ -384,18 +384,24 @@ setTimeout(async () => {
     />
 
     <!-- 确认删除技能 -->
-    <ConfirmClose
-      v-model="show_DelSkill"
-      text="确认删除当前技能？"
-      @confirm="EmitConfirmDelSkill"
-    />
+    <transition name="fade">
+      <ConfirmClose
+        v-model="show_DelSkill"
+        v-if="show_DelSkill"
+        text="确认删除当前技能？"
+        @confirm="EmitConfirmDelSkill"
+      />
+    </transition>
 
     <!-- 确认删除技能组 -->
-    <ConfirmClose
-      v-model="show_DelDeputys"
-      text="确认删除当前技能组？"
-      @confirm="EmitConfirmDelDeputys"
-    />
+    <transition name="fade">
+      <ConfirmClose
+        v-model="show_DelDeputys"
+        v-if="show_DelDeputys"
+        text="确认删除当前技能组？"
+        @confirm="EmitConfirmDelDeputys"
+      />
+    </transition>
   </ManageMask>
 </template>
 

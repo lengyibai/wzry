@@ -12,7 +12,13 @@
     />
 
     <!-- 确认关闭 -->
-    <ConfirmClose v-model="show_ConfirmClose" v-bind="$attrs" />
+    <transition name="fade">
+      <ConfirmClose
+        v-model="show_ConfirmClose"
+        v-if="show_ConfirmClose"
+        v-bind="$attrs"
+      />
+    </transition>
   </div>
 </template>
 <script setup lang="ts">
