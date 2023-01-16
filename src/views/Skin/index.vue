@@ -58,6 +58,12 @@ const EmitLoadMore = () => {
   }
 };
 
+/* 点击工具栏中的选项 */
+const EmitShowTool = (v: string) => {
+  show_poster.value = v === "poster";
+  show_voice.value = v === "voice";
+};
+
 /* 查看海报 */
 const handleTool = (skin: Hero.Skin) => {
   poster.value = skin.poster;
@@ -145,7 +151,6 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
         >
           <div
-            class="card"
             v-for="(item, index) in skin_list"
             @click="handleTool(item)"
             :style="{
@@ -153,16 +158,7 @@ onBeforeUnmount(() => {
             }"
             :key="item.id"
           >
-            <SkinCard :data="item" />
-            <!-- 悬浮工具 -->
-            <div class="tool">
-              <span @click="show_poster = true">
-                <i class="iconfont wzry-fangda cursor-pointer" />大图</span
-              >
-              <span @click="show_voice = true">
-                <i class="iconfont wzry-bofangyuyin cursor-pointer" />语音</span
-              >
-            </div>
+            <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
         </LibGridLayout>
       </transition>

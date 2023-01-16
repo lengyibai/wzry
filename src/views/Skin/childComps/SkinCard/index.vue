@@ -8,11 +8,21 @@ withDefaults(defineProps<Props>(), {
   data: () => skinDefault,
 });
 
+interface Emits {
+  (e: "showTool", v: string): void;
+}
+const emit = defineEmits<Emits>();
+
 const IMGBED = window.IMGBED; //全局图床链接
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
   return price && !isNaN(Number(price));
+};
+
+/* 点击工具选项 */
+const handle = (v: string) => {
+  emit("showTool", v);
 };
 </script>
 
@@ -31,6 +41,16 @@ const priceShow = (price: number | string) => {
     <div class="bottom">
       <div class="name">{{ data.name }}</div>
       <div class="mark">——{{ data.heroName }}</div>
+    </div>
+
+    <!-- 悬浮工具 -->
+    <div class="tool">
+      <span @click="handle('poster')">
+        <i class="iconfont wzry-fangda cursor-pointer" />大图</span
+      >
+      <span @click="handle('voice')">
+        <i class="iconfont wzry-bofangyuyin cursor-pointer" />语音</span
+      >
     </div>
   </div>
 </template>
