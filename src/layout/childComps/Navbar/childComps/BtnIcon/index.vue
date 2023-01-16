@@ -67,8 +67,8 @@ const EmitAudioVolume = (v: number) => {
 };
 
 /* 启用/禁用Tip */
-const EmitTip = () => {
-  $switchStore.$tip("2rb7");
+const EmitTip = (v: boolean) => {
+  v && $switchStore.$tip("2rb7");
 };
 
 /* 保存配置 */
@@ -113,10 +113,7 @@ const EmitResetConfig = () => {
         <!-- 动画速率 -->
         <div class="option">
           <div class="label">动画速率</div>
-          <K-Select
-            v-model="config.speed"
-            :option="['0.25x', '0.5x', '1x', '2x']"
-          />
+          <K-Select v-model="config.speed" :option="['迅速', '均衡', '优雅']" />
         </div>
 
         <!-- 音效 -->
