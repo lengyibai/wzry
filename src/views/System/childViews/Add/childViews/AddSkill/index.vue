@@ -387,6 +387,7 @@ setTimeout(async () => {
     <transition name="fade">
       <ConfirmClose
         v-model="show_DelSkill"
+        v-model:v-if="show_DelSkill"
         v-if="show_DelSkill"
         text="确认删除当前技能？"
         @confirm="EmitConfirmDelSkill"

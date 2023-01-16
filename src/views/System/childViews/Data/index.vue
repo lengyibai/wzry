@@ -232,6 +232,7 @@ const EmitsSortChange = (v: number[]) => {
     <transition name="fade">
       <ConfirmClose
         v-model="show_ConfirmClose"
+        v-model:v-if="show_ConfirmClose"
         v-if="show_ConfirmClose"
         @confirm="EmitConfirmReset"
         text="即将从远程下载当前数据进行覆盖"

@@ -12,10 +12,12 @@
 <script setup lang="ts">
 interface Props {
   text?: string; //提示描述
+  show?: boolean; //是否隐藏
 }
 interface Emits {
   (e: "cancel"): void;
   (e: "confirm"): void;
+  (e: "update:v-if", v: boolean): void;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -24,7 +26,9 @@ withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>();
 
 /* 关闭 */
-const handleClose = () => {};
+const handleClose = () => {
+  emit("update:v-if", false);
+};
 
 /* 取消 */
 const handleCancel = () => {
