@@ -47,17 +47,17 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
   await $promiseTimeout(() => {
-    show_sidebar.value = true;
-  }, 250);
-  await $promiseTimeout(() => {
     show_navbar.value = true;
-  }, 250);
+  }, 500);
+  await $promiseTimeout(() => {
+    show_sidebar.value = true;
+  }, 500);
   await $promiseTimeout(() => {
     show_appmain.value = true;
-  }, 250);
+  }, 500);
   await $promiseTimeout(() => {
     show_footbar.value = true;
-  }, 250);
+  }, 500);
 });
 </script>
 <style scoped lang="less">
