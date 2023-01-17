@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import { BG } from "@/config/assets";
-import { $promiseTimeout } from "@/utils/index";
+import { $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
