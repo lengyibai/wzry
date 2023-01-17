@@ -3,13 +3,13 @@
     <!-- 右侧描述 -->
     <div class="label" :style="{ width: labelWidth }">
       <span class="text-gradient-one"
-        ><i class="star" v-if="required">*</i>{{ label }}：
+        ><i v-if="required" class="star">*</i>{{ label }}：
       </span>
     </div>
 
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
-      <div class="slider-value" v-if="showNum">
+      <div v-if="showNum" class="slider-value">
         <span :class="{ 'show-num': show_num }" :style="{ left: barWidth }">
           {{ text || modelValue }}
         </span>
@@ -17,8 +17,8 @@
       <div class="field">
         <div class="bar" :style="{ width: barWidth, backgroundColor: color }">
           <img
-            :src="icon"
             v-show="showIcon && showDot"
+            :src="icon"
             :style="{ width: size + 'px', height: size + 'px' }"
           />
           <span
@@ -32,12 +32,12 @@
         </div>
         <input
           :value="modelValue"
-          @input="changeValue"
-          @mouseup="hide"
           type="range"
           :min="min"
           :max="max"
           :step="step"
+          @input="changeValue"
+          @mouseup="hide"
         />
       </div>
     </div>

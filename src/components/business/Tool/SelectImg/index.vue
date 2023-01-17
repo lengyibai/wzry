@@ -4,15 +4,15 @@
     :class="[type, { border: !modelValue }]"
     @click="show_AddLink = true"
   >
-    <img :src="modelValue" alt="" v-show="modelValue" />
-    <i class="iconfont wzry-add" v-show="!modelValue" />
+    <img v-show="modelValue" :src="modelValue" alt="" />
+    <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
   <!-- 添加图片链接弹窗组件 -->
   <transition name="fade">
     <AddLink
+      v-if="show_AddLink"
       v-model="show_AddLink"
       :title="title"
-      v-if="show_AddLink"
       :link="modelValue"
       @get-link="getLink"
     />

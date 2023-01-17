@@ -21,7 +21,7 @@ const EmitSelectSkill = (skill: Hero.Skill) => {
 
     <!--主体内容-->
     <transition name="fade">
-      <HeroSkillContent :skill="hero_skill" v-if="hero_skill" />
+      <HeroSkillContent v-if="hero_skill" :skill="hero_skill" />
     </transition>
   </div>
 </template>

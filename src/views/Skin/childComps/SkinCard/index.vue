@@ -27,9 +27,9 @@ const handle = (v: string) => {
 </script>
 
 <template>
-  <div class="skin-card cursor-pointer" v-maskGradient>
+  <div v-maskGradient class="skin-card cursor-pointer">
     <img class="bg" :src="data.cover" />
-    <img class="type" v-if="data.type" :src="(data.type as string)" />
+    <img v-if="data.type" class="type" :src="(data.type as string)" />
     <div class="price">
       <img
         v-if="priceShow(data.price)"

@@ -206,22 +206,22 @@ const EmitsSortChange = (v: number[]) => {
             检查更新
           </button>
           <button
+            v-if="data.status === '本地已更改'"
             class="export lib-click"
             @click="handleExport(data)"
-            v-if="data.status === '本地已更改'"
           >
             导出
           </button>
           <button
-            class="update lib-click"
             v-if="data.status === '待更新'"
+            class="update lib-click"
             @click="handleUpdate(data)"
           >
             更新
           </button>
           <button
-            class="replace lib-click"
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
+            class="replace lib-click"
             @click="handleReplace(data)"
           >
             重置
@@ -231,12 +231,12 @@ const EmitsSortChange = (v: number[]) => {
     </LibTable>
     <transition name="fade">
       <ConfirmClose
+        v-if="show_ConfirmClose"
         v-model="show_ConfirmClose"
         v-model:v-if="show_ConfirmClose"
-        v-if="show_ConfirmClose"
-        @confirm="EmitConfirmReset"
         text="即将从远程下载当前数据进行覆盖"
         title="确认重置"
+        @confirm="EmitConfirmReset"
       />
     </transition>
   </div>

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="manage-mask">
       <transition name="fade">
-        <div class="content" ref="content" v-if="show" :style="styles">
+        <div v-if="show" ref="content" class="content" :style="styles">
           <slot></slot>
         </div>
       </transition>

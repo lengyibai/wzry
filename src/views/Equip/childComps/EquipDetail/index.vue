@@ -33,27 +33,27 @@ const abbreviations: Record<string, string> = {
     <div class="name">{{ equip.name }}</div>
     <div class="info">
       <div
-        class="effect"
-        :class="abbreviations[item.name]"
         v-for="(item, index) in equip.effect"
         :key="index"
+        class="effect"
+        :class="abbreviations[item.name]"
       >
         +{{ item.num }} {{ item.name }}
       </div>
     </div>
-    <div class="details" v-if="equip?.name">
+    <div v-if="equip?.name" class="details">
       <div
-        class="motivation"
         v-for="(item, index) in equip.motivation"
         :key="index"
+        class="motivation"
       >
         <div class="title">{{ item.type }}-{{ item.name }}</div>
         <div class="desc" v-html="item.desc"></div>
-        <div class="time lq" v-if="item.time">{{ item.time }}秒</div>
-        <div class="note" v-if="item.note" v-html="item.note"></div>
+        <div v-if="item.time" class="time lq">{{ item.time }}秒</div>
+        <div v-if="item.note" class="note" v-html="item.note"></div>
       </div>
     </div>
-    <div class="note" v-if="equip.note" v-html="equip.note"></div>
+    <div v-if="equip.note" class="note" v-html="equip.note"></div>
   </div>
 </template>
 

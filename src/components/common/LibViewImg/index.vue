@@ -1,10 +1,10 @@
 <template>
   <div class="lib-view-img">
-    <div class="mask" ref="mask"></div>
-    <div class="pic" ref="pic">
-      <img class="clonedBox" ref="clonedBox" :src="link" alt="" />
+    <div ref="mask" class="mask"></div>
+    <div ref="pic" class="pic">
+      <img ref="clonedBox" class="clonedBox" :src="link" alt="" />
     </div>
-    <div class="tool" ref="tool">
+    <div ref="tool" class="tool">
       <div class="clockwise" @click="handleClockwise">
         <svg
           t="1662135824052"
@@ -36,7 +36,7 @@
         </svg>
       </div>
     </div>
-    <div class="closeBtn" ref="closeBtn" @click="close">
+    <div ref="closeBtn" class="closeBtn" @click="close">
       <svg
         t="1662135922951"
         class="icon"

@@ -2,7 +2,7 @@
   <div class="k-range" :class="{ disabled: disabled }">
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
-      <div class="slider-value" v-if="showNum">
+      <div v-if="showNum" class="slider-value">
         <span
           class="value"
           :class="{ 'show-num': show_num }"
@@ -14,8 +14,8 @@
       <div class="field">
         <div class="bar" :style="{ width: barWidth, backgroundColor: color }">
           <img
-            :src="icon"
             v-show="showIcon && showDot"
+            :src="icon"
             :style="{ width: size + 'px', height: size + 'px' }"
           />
           <span
@@ -30,12 +30,12 @@
         <input
           :value="modelValue"
           :disabled="disabled"
-          @input="changeValue"
-          @mouseup="hide"
           type="range"
           :min="min"
           :max="max"
           :step="step"
+          @input="changeValue"
+          @mouseup="hide"
         />
       </div>
     </div>

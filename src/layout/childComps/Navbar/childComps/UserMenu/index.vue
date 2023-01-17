@@ -47,9 +47,9 @@ const EmitSaveInfo = () => {
 <template>
   <div
     class="user-menu"
+    :class="{ hover: show_menu }"
     @mouseenter="show_menu = true"
     @mouseleave="show_menu = false"
-    :class="{ hover: show_menu }"
   >
     <img
       class="head-img"
@@ -64,7 +64,7 @@ const EmitSaveInfo = () => {
 
       <div class="btns">
         <div class="edit">
-          <K-Button font-size="20px" @click="handleEditInfo" auto-size
+          <K-Button font-size="20px" auto-size @click="handleEditInfo"
             >编辑个人信息</K-Button
           >
         </div>
@@ -77,11 +77,11 @@ const EmitSaveInfo = () => {
   <transition name="fade">
     <K-Dialog
       v-if="show_edit"
-      @close="EmitSaveInfo"
+      v-model="show_edit"
       title="编辑个人资料"
       width="920px"
-      v-model="show_edit"
       up
+      @close="EmitSaveInfo"
     >
       <!-- 头像 -->
       <div class="option">
@@ -93,10 +93,10 @@ const EmitSaveInfo = () => {
       <div class="option">
         <div class="label">用户名</div>
         <K-Input
+          v-model="user_info.nickname"
           class="input"
           border-color="var(--theme-color-three)"
           width="10em"
-          v-model="user_info.nickname"
         />
       </div>
 
@@ -104,10 +104,10 @@ const EmitSaveInfo = () => {
       <div class="option">
         <div class="label">密码</div>
         <K-Input
+          v-model="user_info.password"
           class="input"
           border-color="var(--theme-color-three)"
           width="12em"
-          v-model="user_info.password"
         />
       </div>
     </K-Dialog>

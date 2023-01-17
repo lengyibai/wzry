@@ -82,29 +82,29 @@ const handSearch = () => {
       <!-- 阵营筛选按钮 -->
       <FilterTool
         :data="select_camp"
-        @select="EmitSelectCamp"
         list-height="425px"
+        @select="EmitSelectCamp"
       />
 
       <!-- 自带属性筛选按钮 -->
       <FilterTool
         :data="select_attr"
-        @select="EmitSelectAttr"
         list-height="324px"
+        @select="EmitSelectAttr"
       />
 
       <!-- 杂项筛选按钮 -->
       <FilterTool
         :data="select_misc"
-        @select="EmitSelectMisc"
         list-height="278px"
+        @select="EmitSelectMisc"
       />
 
       <!-- 杂项排序按钮 -->
       <FilterTool
         :data="select_sort"
-        @select="EmitSelectSort"
         list-height="186px"
+        @select="EmitSelectSort"
       />
     </div>
 
@@ -114,30 +114,30 @@ const handSearch = () => {
       <i
         class="iconfont wzry-nan cursor-pointer"
         :class="{ 'nan-active': $heroStore.gender_type === 1 }"
-        @click="handerSetGender(1)"
         title="男"
+        @click="handerSetGender(1)"
       />
       <i
         class="iconfont wzry-nv cursor-pointer"
         :class="{ 'nv-active': $heroStore.gender_type === 2 }"
-        @click="handerSetGender(2)"
         title="女"
+        @click="handerSetGender(2)"
       />
       <i
         class="iconfont wzry-xingbie cursor-pointer"
         :class="{ 'all-active': $heroStore.gender_type === 0 }"
-        @click="handerSetGender(0)"
         title="全部"
+        @click="handerSetGender(0)"
       />
     </div>
 
     <!-- 搜索 -->
     <K-Input
+      v-model="search_value"
       class="input"
       placeholder="英雄/字母"
-      @input="handSearch"
       border-color="var(--theme-color-three)"
-      v-model="search_value"
+      @input="handSearch"
     />
   </div>
 </template>

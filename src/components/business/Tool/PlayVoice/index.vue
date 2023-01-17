@@ -1,5 +1,5 @@
 <template>
-  <audio @ended="ended" :src="link" ref="voice" hidden="true"></audio>
+  <audio ref="voice" :src="link" hidden="true" @ended="ended"></audio>
 </template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";

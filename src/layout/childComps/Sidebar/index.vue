@@ -2,12 +2,12 @@
   <div class="side-bar" :class="{ collapse: $otherStore.collapse }">
     <div class="game">
       <transition-group name="fade-a">
-        <i class="iconfont wzry-logo" key="icon" />
+        <i key="icon" class="iconfont wzry-logo" />
         <span v-show="!$otherStore.collapse" key="text">王者荣耀</span>
       </transition-group>
     </div>
     <div class="side-item">
-      <sideItem v-for="route in routes" :route="route" :key="route.path" />
+      <sideItem v-for="route in routes" :key="route.path" :route="route" />
     </div>
   </div>
 </template>

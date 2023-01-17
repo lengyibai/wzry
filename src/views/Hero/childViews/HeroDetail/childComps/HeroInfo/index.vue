@@ -22,7 +22,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="hero-material-skins" ref="HeroMaterialSkins">
+  <div ref="HeroMaterialSkins" class="hero-material-skins">
     <!-- 英雄标题 -->
     <HeroTitle
       :class="{ show: !into }"
@@ -37,15 +37,15 @@ onMounted(() => {
       <!-- 关系 -->
       <transition name="scale">
         <HeroRelationship
-          :relationship="hero_data.relationships"
           v-if="into && hero_data.relationships"
+          :relationship="hero_data.relationships"
         />
       </transition>
     </div>
 
     <!-- 属性 -->
     <transition name="fade">
-      <div class="hero-attribute" v-if="into">
+      <div v-if="into" class="hero-attribute">
         <HeroAttribute
           style="--i: 0"
           class="attribute"

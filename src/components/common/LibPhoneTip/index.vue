@@ -1,5 +1,5 @@
 <template>
-  <div class="PhoneTip" v-if="show">
+  <div v-if="show" class="PhoneTip">
     <svg
       class="phone"
       t="1662996968845"

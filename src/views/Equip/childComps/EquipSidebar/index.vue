@@ -27,11 +27,11 @@ const select = (name: string, index: number) => {
 <template>
   <div class="equip-sidebar">
     <button
+      v-for="(item, index) in hero_type"
+      :key="index"
       class="hero-type"
       :class="{ active: item.name === $equipStore.category }"
-      v-for="(item, index) in hero_type"
       @click="select(item.name, index)"
-      :key="index"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ item.name }}</span>

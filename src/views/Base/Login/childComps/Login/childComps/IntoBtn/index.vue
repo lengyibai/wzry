@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button class="into-btn" v-particle>
+  <button v-particle class="into-btn">
     <span>{{ text }}</span>
     <span>{{ desc }}</span>
   </button>

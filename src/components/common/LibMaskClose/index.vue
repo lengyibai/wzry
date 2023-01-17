@@ -1,8 +1,8 @@
 <template>
   <transition name="mask-close">
-    <div class="mask-close" v-show="show">
+    <div v-show="show" class="mask-close">
       <transition name="mask-move">
-        <div class="close" v-show="show" @click="close">
+        <div v-show="show" class="close" @click="close">
           <img src="./img/close.svg" alt="" />
         </div>
       </transition>

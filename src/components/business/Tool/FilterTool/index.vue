@@ -54,15 +54,15 @@ const handleSelect = (v: { label: string; value: number | string }) => {
     >
       <transition-group name="select-list">
         <button
+          v-for="item in data"
+          :key="item.value"
           class="box"
           :class="{
             active: currentValue === item.label || sort_text === item.label,
           }"
-          v-for="item in data"
           @mousedown="handleSelect(item)"
           @mouseenter="currentValue = item.label"
           @mouseleave="currentValue = ''"
-          :key="item.value"
         >
           <div class="item">{{ item.label }}</div>
         </button>

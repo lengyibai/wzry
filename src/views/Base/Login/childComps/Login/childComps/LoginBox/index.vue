@@ -31,12 +31,12 @@ const handleLogin = () => {
   <div class="log-box">
     <div class="box">
       <i class="iconfont wzry-user" />
-      <input type="text" v-model="form.id" placeholder="请输入帐号" />
+      <input v-model="form.id" type="text" placeholder="请输入帐号" />
     </div>
 
     <div class="box">
       <i class="iconfont wzry-password" />
-      <input type="text" v-model="form.password" placeholder="请输入密码" />
+      <input v-model="form.password" type="text" placeholder="请输入密码" />
     </div>
 
     <!-- 记住密码 -->

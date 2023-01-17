@@ -77,12 +77,12 @@ let ended: () => void = () => {
 <template>
   <div class="skin-voice scroll-white" @mousewheel.stop>
     <button
-      class="voice flex"
-      :class="{ 'active-width': current_index === index }"
-      @click="play(item.link, index)"
       v-for="(item, index) in voices"
       ref="voiceRef"
       :key="index"
+      class="voice flex"
+      :class="{ 'active-width': current_index === index }"
+      @click="play(item.link, index)"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
         <span v-if="current_index !== index" class="text lib-one-line">
@@ -95,10 +95,10 @@ let ended: () => void = () => {
     </button>
     <!--播放语音-->
     <PlayVoice
-      @ended="ended"
-      @info="voiceInfo"
       v-if="play_link"
       :link="play_link"
+      @ended="ended"
+      @info="voiceInfo"
     />
   </div>
 </template>

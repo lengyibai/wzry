@@ -143,22 +143,22 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
+          v-if="skin_list.length && show"
+          ref="skinListRef"
           scroll-id="skin_list"
           class="skin-list"
-          ref="skinListRef"
           gap="25px"
-          v-if="skin_list.length && show"
           :count="count"
           :eqh-multiple="0.46"
           @load-more="EmitLoadMore"
         >
           <div
             v-for="(item, index) in skin_list"
-            @click="handleTool(item)"
+            :key="item.id"
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"
-            :key="item.id"
+            @click="handleTool(item)"
           >
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
@@ -173,16 +173,16 @@ onBeforeUnmount(() => {
 
     <!-- 大图预览 -->
     <transition name="fade">
-      <LibViewImg v-model="show_poster" v-if="show_poster" :link="poster" />
+      <LibViewImg v-if="show_poster" v-model="show_poster" :link="poster" />
     </transition>
 
     <!-- 语音列表 -->
     <transition name="fade">
       <K-Dialog
-        width="920px"
-        title="皮肤语音列表"
         v-if="show_voice"
         v-model="show_voice"
+        width="920px"
+        title="皮肤语音列表"
       >
         <SkinVoice :voices="voices" />
       </K-Dialog>

@@ -3,7 +3,7 @@
     <!-- 右侧描述 -->
     <div class="label" :style="{ minWidth: labelWidth }">
       <span class="text-gradient-one"
-        ><i class="star" v-if="required">*</i>{{ label }}：
+        ><i v-if="required" class="star">*</i>{{ label }}：
       </span>
     </div>
 
@@ -17,26 +17,26 @@
       <slot>
         <input
           type="text"
-          @input="input"
           :value="modelValue === 0 ? '' : modelValue"
           :placeholder="placeholder"
+          @input="input"
           @focus="is_focus = true"
           @blur="blur"
         />
 
         <!-- 获取焦点拉长线条 -->
         <transition name="border">
-          <div class="focus" v-show="is_focus"></div>
+          <div v-show="is_focus" class="focus"></div>
         </transition>
 
         <!-- 输入不合法拉长线条 -->
         <transition name="border">
-          <div class="border" v-show="!legal"></div>
+          <div v-show="!legal" class="border"></div>
         </transition>
 
         <!-- 输入不合法提示 -->
         <transition name="tip">
-          <div class="tip" v-if="!legal" v-typewriterSingle>{{ tip }}</div>
+          <div v-if="!legal" v-typewriterSingle class="tip">{{ tip }}</div>
         </transition>
       </slot>
     </div>

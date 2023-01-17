@@ -1,36 +1,36 @@
 <template>
   <div class="FormSelect" :class="{ disabled: disabled }">
     <!-- 左侧描述 -->
-    <div class="label" v-if="label">
-      <span><i class="star" v-if="required">*</i>{{ label }}：</span>
+    <div v-if="label" class="label">
+      <span><i v-if="required" class="star">*</i>{{ label }}：</span>
     </div>
 
     <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
       <!-- 选择器框 -->
-      <div class="select-box" ref="selectBox">
+      <div ref="selectBox" class="select-box">
         <input
-          type="text"
           ref="input"
+          v-model="input_value"
+          type="text"
+          :placeholder="active_value || '搜索'"
           @input="search"
           @focus="focus"
           @blur="blur"
-          v-model="input_value"
-          :placeholder="active_value || '搜索'"
         />
 
         <!-- 获取焦点拉长线条 -->
         <transition name="border">
-          <div class="focus" v-show="is_unfold"></div>
+          <div v-show="is_unfold" class="focus"></div>
         </transition>
 
         <!-- 输入不合法拉长线条 -->
         <transition name="border">
-          <div class="border" v-show="no_legal"></div>
+          <div v-show="no_legal" class="border"></div>
         </transition>
 
         <!-- 输入不合法提示 -->
         <transition name="tip">
-          <div class="tip" v-if="no_legal" v-typewriterSingle>必选项</div>
+          <div v-if="no_legal" v-typewriterSingle class="tip">必选项</div>
         </transition>
         <img
           class="arrow"
@@ -44,6 +44,8 @@
       <div class="select-list" :class="{ unfold: !is_unfold }">
         <transition-group name="select-list">
           <button
+            v-for="(item, index) in select_list"
+            :key="item.id"
             class="box"
             :class="{
               active:
@@ -51,11 +53,9 @@
                 modelValue === item.name ||
                 modelValue === item.id,
             }"
-            v-for="(item, index) in select_list"
             @mousedown="select(item.id, item.name)"
             @mouseenter="current_index = index"
             @mouseleave="current_index = null"
-            :key="item.id"
           >
             <div class="item">{{ item.name }}</div>
           </button>
@@ -65,9 +65,9 @@
   </div>
 
   <!-- 选择的列表 -->
-  <div class="selected-list" v-if="multi">
+  <div v-if="multi" class="selected-list">
     <transition-group name="fade-a">
-      <div class="selected" v-for="(item, index) in selected_list" :key="item">
+      <div v-for="(item, index) in selected_list" :key="item" class="selected">
         <span class="name">{{ item }}</span>
         <button class="del" @click="delsSelected(index)">×</button>
       </div>

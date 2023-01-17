@@ -9,7 +9,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="hero-relationship">
-    <div class="relation" v-for="(item, index) in relationship" :key="index">
+    <div v-for="(item, index) in relationship" :key="index" class="relation">
       <span class="name">{{ item.relation }}：</span>
       <img :src="item.hero.headImg" alt="" />
     </div>

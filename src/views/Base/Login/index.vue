@@ -39,10 +39,10 @@ const EmitToolType = (v: string) => {
       :video="LOGINBG"
       :muted="!$settingStore.config.loginSound"
     />
-    <img class="login-bg" v-else :src="IMGBED + '/image/login_bg.png'" alt="" />
+    <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
 
     <transition name="fade">
-      <Notice v-model="show_notice" v-if="show_notice" />
+      <Notice v-if="show_notice" v-model="show_notice" />
     </transition>
   </div>
 </template>

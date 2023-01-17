@@ -1,12 +1,12 @@
 <template>
-  <div class="menu" :class="{ collapse: $otherStore.collapse }" v-if="route">
+  <div v-if="route" class="menu" :class="{ collapse: $otherStore.collapse }">
     <button
-      @click="fn(route.path)"
       class="menu-item menu-list"
       :style="textStyle"
       :class="{
         active: route.path === $route.path,
       }"
+      @click="fn(route.path)"
     >
       <i class="iconfont" :class="route.meta.icon" />
       <span>{{ route.title }}</span>
@@ -25,9 +25,9 @@
       <transition-group name="menu-list" appear>
         <SideItem
           v-for="(r, i) in routes"
+          :key="r.path"
           :route="r"
           :style="{ transitionDelay: (routes.length - i) * 0.05 + 's' }"
-          :key="r.path"
         />
       </transition-group>
     </div>

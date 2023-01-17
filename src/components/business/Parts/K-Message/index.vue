@@ -1,11 +1,11 @@
 <template>
   <transition name="fade">
-    <div class="K-Message" v-show="messages.length">
+    <div v-show="messages.length" class="K-Message">
       <transition-group name="message">
         <div
-          class="message"
           v-for="(item, index) in messages"
           :key="item.id"
+          class="message"
           :style="{
             transform:
               'translateX(-50%) translateY(' +

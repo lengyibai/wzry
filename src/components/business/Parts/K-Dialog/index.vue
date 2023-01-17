@@ -2,18 +2,18 @@
   <LibMask>
     <transition :name="up ? 'confirm' : 'default'">
       <div
+        v-show="show"
         class="k-dialog"
         :style="{
           width: width,
           height: 'calc(' + width + ' * 0.5989)',
         }"
-        v-show="show"
       >
-        <div class="title" v-if="title">{{ title }}</div>
-        <div class="header" v-if="header">{{ header }}</div>
+        <div v-if="title" class="title">{{ title }}</div>
+        <div v-if="header" class="header">{{ header }}</div>
         <img
-          class="close cursor-pointer"
           v-show="showClose"
+          class="close cursor-pointer"
           :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="handleClose"

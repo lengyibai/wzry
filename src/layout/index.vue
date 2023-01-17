@@ -14,10 +14,10 @@
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <LibBgVideo :video="BG" v-if="enable_video_bg" />
+    <LibBgVideo v-if="enable_video_bg" :video="BG" />
     <img
-      class="layout-bg"
       v-else
+      class="layout-bg"
       :src="IMGBED + '/image/background.png'"
       alt=""
     />

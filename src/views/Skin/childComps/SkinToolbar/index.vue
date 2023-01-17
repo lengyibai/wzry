@@ -80,30 +80,30 @@ const handSearch = () => {
       <i
         class="iconfont wzry-nan cursor-pointer"
         :class="{ 'nan-active': gender === 1 }"
-        @click="handerSetGender(1)"
         title="男"
+        @click="handerSetGender(1)"
       />
       <i
         class="iconfont wzry-nv cursor-pointer"
         :class="{ 'nv-active': gender === 2 }"
-        @click="handerSetGender(2)"
         title="女"
+        @click="handerSetGender(2)"
       />
       <i
         class="iconfont wzry-xingbie cursor-pointer"
         :class="{ 'all-active': gender === 0 }"
-        @click="handerSetGender(0)"
         title="全部"
+        @click="handerSetGender(0)"
       />
     </div>
 
     <!-- 搜索 -->
     <K-Input
+      v-model="search_value"
       class="input"
       placeholder="皮肤/英雄"
-      @input="handSearch"
       border-color="var(--theme-color-three)"
-      v-model="search_value"
+      @input="handSearch"
     />
   </div>
 </template>

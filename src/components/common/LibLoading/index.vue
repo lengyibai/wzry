@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="LibLoading flex" v-show="show">
+    <div v-show="show" class="LibLoading flex">
       <img :src="IMGBED + '/image/daji.png'" alt="妲己" />
       <span
         v-for="(item, index) in color"

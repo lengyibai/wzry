@@ -46,9 +46,9 @@ $heroDetail.setSkillSelectFn(() => {
       :style="{ width: exist_effect ? '45%' : '100%' }"
     />
     <HeroSkillContentRight
+      v-if="exist_effect"
       :class="{ 'hide-right': !show || toggle }"
       :active-skill="skill"
-      v-if="exist_effect"
     />
   </div>
 </template>

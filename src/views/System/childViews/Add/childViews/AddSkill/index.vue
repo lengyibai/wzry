@@ -246,19 +246,19 @@ setTimeout(async () => {
 
 <template>
   <ManageMask class="content" :show="show">
-    <div class="content-left" ref="left">
+    <div ref="left" class="content-left">
       <!-- 右上角新增 -->
       <div class="add-skill">
-        <span class="desc" v-show="exist_deputys"
+        <span v-show="exist_deputys" class="desc"
           >副技能无被动或低于3个，可以留空，但要与主技能数量一致</span
         >
         <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
         <button class="add" @click="handleAddOne">添加技能</button>
         <button class="add" @click="handleAddDeputys">添加副技能</button>
-        <button class="add" v-if="exist_deputys" @click="handleToggleSkill">
+        <button v-if="exist_deputys" class="add" @click="handleToggleSkill">
           切换主/副技能
         </button>
-        <button class="add" @click="handleDelDeputys" v-if="skills_num > 1">
+        <button v-if="skills_num > 1" class="add" @click="handleDelDeputys">
           删除当前技能组
         </button>
       </div>
@@ -270,31 +270,31 @@ setTimeout(async () => {
 
       <!-- 选择英雄 -->
       <SelectHero
-        v-model="hero_id"
         key="SelectHero"
+        v-model="hero_id"
         @update:model-value="EmitSelectHeroChange"
       />
 
       <!-- 技能名称 -->
       <FormInput
+        v-model="activeSkill().name"
         label="名称"
         required
-        v-model="activeSkill().name"
         placeholder="技能名称"
       />
 
       <FormInput
+        v-model="skill_unit"
         label="消耗单位"
         required
-        v-model="skill_unit"
         placeholder="技能消耗单位"
       />
 
       <!-- 冷却时间 -->
       <FormInput
         v-if="noFirst"
-        label="CD"
         v-model="activeSkill().cd"
+        label="CD"
         placeholder="冷却时间"
         number
       />
@@ -302,30 +302,30 @@ setTimeout(async () => {
       <!-- 消耗 -->
       <FormInput
         v-if="noFirst"
-        label="消耗"
         v-model="activeSkill().consume"
+        label="消耗"
         placeholder="法力消耗"
         number
       />
 
       <!-- 设置技能类型 -->
       <FormSelect
-        :data="skill_types"
         v-model="activeSkill().type"
+        :data="skill_types"
         :value="activeSkill().type"
         label="技能类型"
         multi
       />
 
       <!-- 设置技能效果 -->
-      <div class="select-effect" v-if="noFirst">
+      <div v-if="noFirst" class="select-effect">
         <FormSelect
-          :data="skill_effects"
           v-model="skill_effect"
+          :data="skill_effects"
           :value="skill_effect"
           label="技能效果"
-          @update:model-value="EmitSelectEffect"
           :disabled="!activeSkill().effect![effectIndex]"
+          @update:model-value="EmitSelectEffect"
         />
         <button class="add" @click="handleAddEffect">添加/下一行</button>
         <button class="add" @click="handleEditEffect">上一行</button>
@@ -333,10 +333,10 @@ setTimeout(async () => {
       </div>
 
       <!-- 设置阶段值 -->
-      <div class="select-effect" v-if="noFirst" v-show="skill_effect">
+      <div v-if="noFirst" v-show="skill_effect" class="select-effect">
         <FormInput
-          label="阶段值"
           v-model="skill_consume"
+          label="阶段值"
           placeholder="升级后的值"
           @keyup.enter="HandleAddConsume"
         />
@@ -348,10 +348,10 @@ setTimeout(async () => {
       <div class="effect-list">
         <transition-group name="del-skill-type">
           <div
-            class="skill-effect"
-            :class="{ 'active-effect': effectIndex === index }"
             v-for="(item, index) in activeSkill().effect"
             :key="item.type"
+            class="skill-effect"
+            :class="{ 'active-effect': effectIndex === index }"
           >
             <span class="type">{{ item.type || "待选择" }}：</span>
             <div class="phase">{{ item.phase?.join(" | ") }} |</div>
@@ -361,9 +361,9 @@ setTimeout(async () => {
 
       <!-- 技能描述 -->
       <LibRichText
+        :key="activeSkill().img"
         v-model="activeSkill().desc"
         placeholder="技能描述"
-        :key="activeSkill().img"
       />
     </div>
 
@@ -390,9 +390,9 @@ setTimeout(async () => {
     <!-- 确认删除技能 -->
     <transition name="fade">
       <ConfirmClose
+        v-if="show_DelSkill"
         v-model="show_DelSkill"
         v-model:v-if="show_DelSkill"
-        v-if="show_DelSkill"
         text="确认删除当前技能？"
         @confirm="EmitConfirmDelSkill"
       />
@@ -401,8 +401,8 @@ setTimeout(async () => {
     <!-- 确认删除技能组 -->
     <transition name="fade">
       <ConfirmClose
-        v-model="show_DelDeputys"
         v-if="show_DelDeputys"
+        v-model="show_DelDeputys"
         text="确认删除当前技能组？"
         @confirm="EmitConfirmDelDeputys"
       />

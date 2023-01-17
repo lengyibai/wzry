@@ -1,12 +1,12 @@
 <template>
   <div class="LibBgVideo">
     <video
+      ref="videoPlayer"
       :muted="muted"
       :src="video"
       autoplay
       class="video"
       loop
-      ref="videoPlayer"
     ></video>
   </div>
 </template>

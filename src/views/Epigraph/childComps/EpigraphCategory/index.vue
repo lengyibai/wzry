@@ -41,11 +41,11 @@ const handleToggle = (index: number, type: string) => {
         alt=""
       />
       <button
+        v-for="(item, index) in epigraph"
+        :key="index"
         class="title"
         :class="{ active: current_index === index }"
         @click="handleToggle(index, item.title)"
-        v-for="(item, index) in epigraph"
-        :key="index"
       >
         <span>{{ item.title }}</span>
       </button>

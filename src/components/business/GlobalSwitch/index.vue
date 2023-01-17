@@ -51,8 +51,8 @@ onMounted(() => {
     <!-- NPC -->
     <transition :name="align">
       <K-Tip
-        v-model="show_tip"
         v-if="show_tip"
+        v-model="show_tip"
         :text="content"
         :align="align"
         :no-tip-name="noTipName"

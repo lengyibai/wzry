@@ -42,19 +42,19 @@ const handleViewClick = () => {
 
 <template>
   <div
-    class="hero-card cursor-pointer"
-    :class="{ hide: show }"
     v-maskGradient
     v-sweepLight
+    class="hero-card cursor-pointer"
+    :class="{ hide: show }"
     @mousedown="show = true"
     @mouseleave="show = false"
   >
     <span class="id">No.{{ data.id }}</span>
-    <span class="num" v-if="show_num">{{ num(data) }}</span>
+    <span v-if="show_num" class="num">{{ num(data) }}</span>
     <transition name="fade">
-      <div class="select-mask" v-if="show">
+      <div v-if="show" class="select-mask">
         <img :src="data.headImg" class="head" />
-        <button class="view" @click="handleViewClick" v-textHoverColor>
+        <button v-textHoverColor class="view" @click="handleViewClick">
           查看详情
         </button>
       </div>

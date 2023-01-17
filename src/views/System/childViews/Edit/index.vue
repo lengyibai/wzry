@@ -2,16 +2,16 @@
   <div class="edit" :style="box">
     <transition-group name="fade" appear>
       <K-ManageCard
-        @click="open(k as string)"
         v-for="(v, k) in list"
-        :title="v"
         :key="k"
+        :title="v"
         type="edit"
+        @click="open(k as string)"
       />
     </transition-group>
 
-    <transition name="tv-clip" v-for="(v, k) in options" :key="k">
-      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
+    <transition v-for="(v, k) in options" :key="k" name="tv-clip">
+      <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
     </transition>
   </div>
 </template>

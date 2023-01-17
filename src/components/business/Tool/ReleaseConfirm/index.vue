@@ -5,8 +5,8 @@
 
     <!-- 发布按钮 -->
     <LibCommitBtn
-      class="lib-commit-btn"
       v-model="commit_status"
+      class="lib-commit-btn"
       v-bind="$attrs"
       title="发布"
     />
@@ -14,8 +14,8 @@
     <!-- 确认关闭 -->
     <transition name="fade">
       <ConfirmClose
-        v-model="show_ConfirmClose"
         v-if="show_ConfirmClose"
+        v-model="show_ConfirmClose"
         v-model:v-if="show_ConfirmClose"
         v-bind="$attrs"
       />

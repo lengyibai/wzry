@@ -130,47 +130,47 @@ setTimeout(async () => {
   <ManageMask class="content" :show="show">
     <div class="left">
       <!-- 装备名 -->
-      <FormInput label="名称" required v-model="form_data!.name" />
+      <FormInput v-model="form_data!.name" label="名称" required />
       <!-- 描述 -->
       <FormInput
+        v-model="form_data!.desc"
         label="描述"
         placeholder="装备名下方描述"
-        v-model="form_data!.desc"
       />
       <!-- 装备类型 -->
       <FormSelect
+        v-model="form_data!.type"
         label="类型"
         :data="equip_types"
-        v-model="form_data!.type"
         :value="form_data!.type"
         required
       />
       <!-- 阶段 -->
       <FormInput
+        v-model="form_data!.level"
         label="阶段"
         placeholder="1-3"
         required
-        v-model="form_data!.level"
         number
       />
       <!-- 排名 -->
       <FormInput
+        v-model="form_data!.num"
         label="阶段排名"
         placeholder="当前列第几个"
         required
-        v-model="form_data!.num"
         number
       />
       <!-- 价格 -->
-      <FormInput label="价格" required v-model="form_data!.price" number />
+      <FormInput v-model="form_data!.price" label="价格" required number />
       <!-- 设置图标 -->
       <FormLabel label="图标" required>
         <SelectImg v-model="form_data!.icon" title="图标" />
       </FormLabel>
       <!-- 最底部灰色备注 -->
       <LibRichText
-        width="500px"
         v-model="form_data!.note"
+        width="500px"
         placeholder="最底部灰色备注"
       />
 
@@ -178,8 +178,8 @@ setTimeout(async () => {
       <div class="equip-effect">
         <div class="select-effect">
           <FormSelect
-            label="效果类型"
             v-model="equip_effect_type"
+            label="效果类型"
             :value="equip_effect_type"
             :data="equip_effects"
           />
@@ -189,12 +189,12 @@ setTimeout(async () => {
         <div class="effect-list">
           <transition-group name="fade">
             <FormInput
-              label-width="175px"
-              :label="item.name"
-              v-model="item.num"
-              required
               v-for="item in form_data!.effect"
               :key="item.name"
+              v-model="item.num"
+              label-width="175px"
+              :label="item.name"
+              required
             />
           </transition-group>
         </div>
@@ -204,27 +204,27 @@ setTimeout(async () => {
       <div class="motivation">
         <!-- 名称 -->
         <FormInput
+          v-model="motivation.name"
           label="主/被动名称"
           label-width="195px"
-          v-model="motivation.name"
         />
         <FormInput
+          v-model="motivation.time"
           label="冷却时间"
           label-width="195px"
-          v-model="motivation.time"
           number
         />
         <K-Checkbox
+          v-model="motivation.type"
           label="主动"
           label-width="195px"
-          v-model="motivation.type"
         />
         <!-- 主/被动描述 -->
         <LibRichText
-          width="500px"
-          v-model="motivation.desc"
-          placeholder="主/被动描述"
           :key="form_data!.motivation.length"
+          v-model="motivation.desc"
+          width="500px"
+          placeholder="主/被动描述"
         />
 
         <div class="box">

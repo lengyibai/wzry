@@ -134,8 +134,8 @@ setTimeout(async () => {
 
 <template>
   <ManageMask
-    class="content"
     ref="scrollBox"
+    class="content"
     :show="show"
     :styles="{
       flexDirection: 'column',
@@ -144,43 +144,43 @@ setTimeout(async () => {
     <transition-group name="fade">
       <!--左上角新增-->
       <i
+        key="LibSvg"
         class="add-one iconfont wzry-addcircle cursor-pointer"
         @click="handleAddOne"
-        key="LibSvg"
       />
       <!--指派英雄-->
       <SelectHero
-        class="select-hero"
+        key="SelectHero"
         v-model="hero_id"
+        class="select-hero"
         :disabled="!!form_data!.length"
         @update:model-value="EmitSelectHero"
-        key="SelectHero"
       />
-      <span class="skin-num" key="SkinNum">拥有皮肤：{{ skin_num }}款</span>
+      <span key="SkinNum" class="skin-num">拥有皮肤：{{ skin_num }}款</span>
 
       <!--皮肤盒子列表-->
       <div
+        v-for="(item, index) in form_data"
+        :key="index"
         class="skin"
         @mouseenter="current_index = index"
         @mouseleave="current_index = null"
-        v-for="(item, index) in form_data"
-        :key="index"
       >
         <FormInput
+          v-model="item.name"
           label="皮肤名"
           required
-          v-model="item.name"
           @blur="EmitExist"
         />
-        <FormInput label="价格" v-model="item.price" placeholder="请输入" />
+        <FormInput v-model="item.price" label="价格" placeholder="请输入" />
 
         <!-- 皮肤类型 -->
         <FormSelect
-          label="皮肤类型"
+          id
           v-model="item.type"
+          label="皮肤类型"
           :data="skin_types"
           :value="item.type"
-          id
         />
 
         <!--··皮肤头像、海报··-->

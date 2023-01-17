@@ -1,14 +1,14 @@
 <template>
   <transition name="fade">
     <div
-      class="LibMask"
       v-if="modelValue"
-      @click="hide"
       v-maskGradient="{
         color: 'rgba(40, 100, 195, 0.5)',
         num1: '0%',
         num2: '50%',
       }"
+      class="LibMask"
+      @click="hide"
     >
       <slot></slot>
     </div>

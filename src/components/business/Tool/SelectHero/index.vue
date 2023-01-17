@@ -1,14 +1,14 @@
 <template>
   <div class="SelectHero">
     <FormSelect
+      id
+      v-model="id"
       label="指派英雄"
       :data="hero_list"
-      v-model="id"
       :value="hero_name"
       :disabled="disabled"
       required
       @update:model-value="selectHero"
-      id
     />
   </div>
 </template>

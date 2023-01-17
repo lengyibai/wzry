@@ -2,7 +2,7 @@
 <template>
   <div class="Voice view-add">
     <transition name="fade">
-      <div class="content" ref="content" v-if="show">
+      <div v-if="show" ref="content" class="content">
         <transition-group name="fade"></transition-group>
       </div>
     </transition>
@@ -11,17 +11,17 @@
     <LibCommitBtn
       class="lib-commit-btn"
       size="50px"
-      @commit="commit"
       :finish="finish"
       title="发布"
+      @commit="commit"
     />
 
     <!-- 取消发布 -->
     <LibCancelBtn
       class="lib-cancel-btn"
       size="50px"
-      @close="close"
       title="取消"
+      @close="close"
     />
   </div>
 </template>

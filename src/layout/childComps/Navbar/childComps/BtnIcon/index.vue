@@ -98,8 +98,8 @@ const EmitResetConfig = () => {
   <div class="btn-icon">
     <i
       class="iconfont wzry-setting cursor-pointer"
-      @click="show_setting = true"
       title="设置"
+      @click="show_setting = true"
     />
     <a href="https://github.com/lengyibai/wzry" target="_blank">
       <i class="iconfont wzry-mark-github" title="Github" />
@@ -108,10 +108,10 @@ const EmitResetConfig = () => {
     <transition name="fade">
       <K-Dialog
         v-if="show_setting"
+        v-model="show_setting"
         title="仅展示，功能尚未开发"
         width="920px"
         ctx-width="90%"
-        v-model="show_setting"
         up
       >
         <div class="options">
@@ -120,8 +120,8 @@ const EmitResetConfig = () => {
             <div class="label">主题</div>
             <K-Select
               v-model="config.theme"
-              @update:model-value="EmitSaveConfig"
               :option="['蓝', '暗']"
+              @update:model-value="EmitSaveConfig"
             />
           </div>
 
@@ -139,10 +139,10 @@ const EmitResetConfig = () => {
           <div class="option">
             <div class="label">音效</div>
             <K-Range
-              @update:model-value="EmitAudioVolume"
               v-model="config.audioVolume"
               :text="config.audioVolume + '%'"
               :disabled="!config.audio"
+              @update:model-value="EmitAudioVolume"
             />
             <K-Check v-model="config.audio" @update:model-value="EmitAudio" />
           </div>
@@ -152,9 +152,9 @@ const EmitResetConfig = () => {
             <div class="label">音乐</div>
             <K-Range
               v-model="config.musicVolume"
-              @update:model-value="EmitMusicVolume"
               :text="config.musicVolume + '%'"
               :disabled="!config.music"
+              @update:model-value="EmitMusicVolume"
             />
             <K-Check v-model="config.music" @update:model-value="EmitMusic" />
           </div>
@@ -212,11 +212,11 @@ const EmitResetConfig = () => {
     <!-- 确认重置 -->
     <transition name="fade">
       <ConfirmClose
+        v-if="show_confirm_reset"
         v-model="show_confirm_reset"
         v-model:v-if="show_confirm_reset"
-        v-if="show_confirm_reset"
-        @confirm="EmitResetConfig"
         text="确定重置所有配置项？"
+        @confirm="EmitResetConfig"
       />
     </transition>
   </div>

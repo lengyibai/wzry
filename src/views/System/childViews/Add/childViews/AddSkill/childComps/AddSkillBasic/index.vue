@@ -37,11 +37,11 @@ const handleDel = () => {
 <template>
   <div class="right">
     <div
-      class="add-skill-basic cursor-pointer"
       v-for="(item, index) in skills"
       :key="index"
-      @click="handleSelectSkill(index)"
+      class="add-skill-basic cursor-pointer"
       :class="{ active: active(index) }"
+      @click="handleSelectSkill(index)"
     >
       <!-- 标题 -->
       <div class="title">
@@ -50,23 +50,23 @@ const handleDel = () => {
         <div class="types">
           <K-SkillTypeTag
             v-for="(type, index) in item.type"
-            :type="type"
             :key="index"
+            :type="type"
           />
         </div>
         <button
-          class="del lib-click"
           v-show="active(index)"
           v-if="index !== 0"
+          class="del lib-click"
           @click.stop="handleDel"
         >
           删除
         </button>
-        <div class="editing" v-show="active(index)">编辑中...</div>
+        <div v-show="active(index)" class="editing">编辑中...</div>
       </div>
 
       <!-- 数字 -->
-      <div class="nums" v-if="item.cd || item.consume">
+      <div v-if="item.cd || item.consume" class="nums">
         <div class="cd">CD：{{ item.cd }}</div>
         <div class="consume">法力消耗：{{ item.consume }}</div>
       </div>
@@ -75,8 +75,8 @@ const handleDel = () => {
       <div class="desc" v-html="item.desc"></div>
 
       <!-- 效果 -->
-      <div class="effect" v-if="item.effect">
-        <div class="box" v-for="(effect, index) in item.effect" :key="index">
+      <div v-if="item.effect" class="effect">
+        <div v-for="(effect, index) in item.effect" :key="index" class="box">
           <div class="type">{{ effect.type }}：</div>
           <div class="phase">{{ effect.phase?.join(" | ") }}</div>
         </div>

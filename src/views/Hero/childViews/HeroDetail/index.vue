@@ -80,15 +80,15 @@ onMounted(() => {
       </HeroParallax>
 
       <!--皮肤-->
-      <HeroParallax class="scroll-item" :bg="hero_data.poster" v-if="skin_num">
+      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
         <HeroSkin />
       </HeroParallax>
 
       <!--技能-->
       <HeroParallax
+        v-if="skill_num"
         class="scroll-item"
         :bg="hero_data.skins![skin_num - 1].poster"
-        v-if="skill_num"
       >
         <HeroSkill />
       </HeroParallax>

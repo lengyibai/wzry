@@ -41,7 +41,7 @@ watch(
 <template>
   <div class="equip">
     <transition name="fade">
-      <div class="equip-main" v-if="show_EquipSidebar">
+      <div v-if="show_EquipSidebar" class="equip-main">
         <EquipList />
         <EquipDetail :show="show_Details" :equip="equip_data" />
       </div>

@@ -163,11 +163,11 @@ onBeforeUnmount(() => {
       <div class="hero-main">
         <HeroToolbar />
         <LibGridLayout
+          v-if="hero_list.length && show"
+          ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
-          ref="heroListRef"
           gap="25px"
-          v-if="hero_list.length && show"
           :count="count"
           :eqh-multiple="1.5"
           @load-more="EmitLoadMore"
@@ -175,10 +175,10 @@ onBeforeUnmount(() => {
           <transition-group name="card" appear>
             <div
               v-for="(item, index) in hero_list"
+              :key="item.id"
               :style="{
                 'transition-delay': 0.025 * index + 's',
               }"
-              :key="item.id"
             >
               <HeroCard :data="item" @view="EmitViewClick(item.id!)" />
             </div>

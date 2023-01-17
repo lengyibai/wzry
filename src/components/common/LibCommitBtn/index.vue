@@ -1,15 +1,15 @@
 <template>
   <div
     class="lib-commit-btn cursor-pointer"
-    @click="commit"
     :style="{
       width: size,
       height: size,
     }"
+    @click="commit"
   >
     <img
-      class="up"
       v-show="show_up"
+      class="up"
       :class="{ move: modelValue === 1 }"
       src="./img/fabu.svg"
     />

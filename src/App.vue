@@ -20,7 +20,7 @@ const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
     <!-- 全局开关 -->
     <GlobalSwitch />
     <transition name="fade">
-      <div class="watermark" v-show="!$otherStore.collapse">
+      <div v-show="!$otherStore.collapse" class="watermark">
         <p>浏览器内核版本：{{ $chromeV() }}</p>
         <p>当前版本：{{ LOCAL_VERSION }}</p>
         <p>最新版本：{{ REMOTE_VERSION }}</p>

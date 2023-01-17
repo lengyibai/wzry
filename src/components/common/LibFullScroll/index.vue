@@ -1,11 +1,11 @@
 <template>
   <div
+    ref="LibFullScroll"
     class="LibFullScroll"
     :style="{
       display: direction === 'x' ? 'flex' : 'block',
       transition: `all ${duration}ms`,
     }"
-    ref="LibFullScroll"
   >
     <slot></slot>
   </div>

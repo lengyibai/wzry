@@ -39,10 +39,10 @@ onMounted(() => {
 <template>
   <div class="hero-basic">
     <span
-      class="info"
-      ref="info"
       v-for="(item, index) in hero_info"
+      ref="info"
       :key="index"
+      class="info"
     >
       <i class="iconfont" :class="'wzry-' + item[1]" />
       <span class="label">{{ item[2] }}：</span>

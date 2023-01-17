@@ -1,9 +1,9 @@
 <template>
   <div
-    class="LibGridLayout"
     ref="LibGridLayout"
-    @scroll.passive="scroll"
+    class="LibGridLayout"
     :style="{ gridTemplateColumns: 'repeat(' + count + ', 1fr)', gridGap: gap }"
+    @scroll.passive="scroll"
   >
     <slot></slot>
   </div>

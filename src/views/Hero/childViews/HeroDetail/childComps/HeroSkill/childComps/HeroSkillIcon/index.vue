@@ -69,17 +69,17 @@ const handleToggleSkill = () => {
 <template>
   <div class="hero-skill-icon">
     <div
+      v-for="(item, index) in active_skills"
+      ref="skillImg"
+      :key="index"
       class="icon cursor-pointer"
       :class="{ active: show }"
-      ref="skillImg"
-      v-for="(item, index) in active_skills"
       :style="{
         'transition-delay': 0.05 * index + 's',
       }"
-      :key="index"
     >
       <transition name="border-fade">
-        <div class="border" v-show="current_index === index"></div>
+        <div v-show="current_index === index" class="border"></div>
       </transition>
       <img :src="item.img" @click="handleSelectSkill(index)" />
       <img :src="item.img" :class="{ active: current_index === index }" />
@@ -90,8 +90,8 @@ const handleToggleSkill = () => {
       v-if="hero_data.skills!.length > 1"
       class="toggle iconfont wzry-qiehuan cursor-pointer"
       :class="{ 'hide-bottom': !show }"
-      @click="handleToggleSkill"
       title="切换技能"
+      @click="handleToggleSkill"
     />
   </div>
 </template>

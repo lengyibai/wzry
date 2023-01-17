@@ -65,17 +65,17 @@ const open = (key: string) => {
   <div class="add" :style="box">
     <transition-group name="add" appear>
       <K-ManageCard
-        @click="open(k as string)"
         v-for="(v, k) in list"
-        :title="v"
         :key="k"
+        :title="v"
         type="add"
+        @click="open(k as string)"
       />
     </transition-group>
 
     <!--发布列表-->
-    <transition name="tv-clip" v-for="(v, k) in options" :key="k">
-      <component v-if="v.show" v-model="v.show" :is="components[v.i]" />
+    <transition v-for="(v, k) in options" :key="k" name="tv-clip">
+      <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
     </transition>
   </div>
 </template>

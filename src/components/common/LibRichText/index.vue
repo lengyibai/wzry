@@ -10,8 +10,8 @@
       :mode="mode"
     />
     <Editor
-      style="overflow-y: hidden; height: 300px"
       v-model="valueHtml"
+      style="overflow-y: hidden; height: 300px"
       :default-config="editorConfig"
       :mode="mode"
       @onCreated="handleCreated"

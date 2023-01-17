@@ -1,8 +1,8 @@
 <template>
   <div class="hero-skin-type">
     <transition-group name="updown">
-      <img v-if="skinTypeImg && toggle" :src="skinTypeImg" alt="" key="a" />
-      <img v-if="skinTypeImg && !toggle" :src="skinTypeImg" alt="" key="b" />
+      <img v-if="skinTypeImg && toggle" key="a" :src="skinTypeImg" alt="" />
+      <img v-if="skinTypeImg && !toggle" key="b" :src="skinTypeImg" alt="" />
     </transition-group>
   </div>
 </template>

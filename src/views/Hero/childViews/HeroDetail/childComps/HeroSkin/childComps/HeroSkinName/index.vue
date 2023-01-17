@@ -12,11 +12,11 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="hero-skin-name">
-    <div class="skin-name" v-if="toggle && name" v-typewriterSingle key="a">
+    <div v-if="toggle && name" key="a" v-typewriterSingle class="skin-name">
       {{ name }}
     </div>
     <!--····用于触发打字机····-->
-    <div class="skin-name" v-if="!toggle && name" v-typewriterSingle key="b">
+    <div v-if="!toggle && name" key="b" v-typewriterSingle class="skin-name">
       {{ name }}
     </div>
   </div>

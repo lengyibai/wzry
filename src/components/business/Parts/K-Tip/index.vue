@@ -87,23 +87,23 @@ onBeforeUnmount(() => {
 <template>
   <div
     class="k-tip"
+    :style="position[align]"
     @mouseenter="handleCountDown(false)"
     @mouseleave="handleCountDown(true)"
-    :style="position[align]"
   >
     <div class="top">
       <div class="title">小贴士</div>
       <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" />
     </div>
-    <div class="content" v-typewriterMultiple="finish">{{ text }}</div>
+    <div v-typewriterMultiple="finish" class="content">{{ text }}</div>
     <div
-      class="not-tip cursor-pointer lib-click"
       v-show="time === -1"
+      class="not-tip cursor-pointer lib-click"
       @click="handleNoTip"
     >
       不再提示
     </div>
-    <div class="count-down cursor-pointer lib-click" v-show="time !== -1">
+    <div v-show="time !== -1" class="count-down cursor-pointer lib-click">
       {{ time }}秒后关闭，鼠标进入可取消
     </div>
   </div>

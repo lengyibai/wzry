@@ -110,26 +110,26 @@ $heroDetailStore.setScollFn((index) => {
 <template>
   <div class="hero-skin-head-img flex" :class="{ into: show_skin_head }">
     <!--中心头衔框-->
-    <div class="show-skin flex" ref="showSkin">
+    <div ref="showSkin" class="show-skin flex">
       {{ is_into_drap ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
     <transition name="fade">
-      <div class="show-skin flex clone" v-show="is_into_drap"></div>
+      <div v-show="is_into_drap" class="show-skin flex clone"></div>
     </transition>
 
     <!--皮肤头像-->
     <button
-      ref="skin"
-      class="skin"
-      v-drag="{ fn: handleDrag, index }"
       v-for="(item, index) in skins"
+      ref="skin"
       :key="index"
+      v-drag="{ fn: handleDrag, index }"
+      class="skin"
       :style="{
       transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
     }"
     >
-      <img @dragstart.prevent :src="item.headImg" alt="" />
+      <img :src="item.headImg" alt="" @dragstart.prevent />
     </button>
   </div>
 </template>

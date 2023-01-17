@@ -27,11 +27,11 @@ const handleSelect = (name: string, index: number) => {
 <template>
   <div class="skin-sidebar" :class="{ collapse: $otherStore.collapse }">
     <div
+      v-for="(item, index) in hero_type"
+      :key="index"
       class="hero-type cursor-pointer"
       :class="{ active: item.name === $skinStore.profession }"
-      v-for="(item, index) in hero_type"
       @click="handleSelect(item.name, index)"
-      :key="index"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ item.name }}</span>

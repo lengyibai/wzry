@@ -35,7 +35,6 @@ const handleInput = (e: Event) => {
     class="k-input"
     :placeholder="placeholder"
     type="text"
-    @input="handleInput"
     :value="modelValue"
     :style="{
       width: width,
@@ -44,6 +43,7 @@ const handleInput = (e: Event) => {
       textAlign: align,
       borderBottomColor: borderColor,
     }"
+    @input="handleInput"
   />
 </template>
 

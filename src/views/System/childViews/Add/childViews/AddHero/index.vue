@@ -136,19 +136,19 @@ setTimeout(async () => {
   >
     <!-- 英雄名、代号、身高 -->
     <div class="flex-box">
-      <FormInput label="英雄名" required v-model="form_data!.name" />
+      <FormInput v-model="form_data!.name" label="英雄名" required />
       <FormInput
+        v-model="form_data!.gender"
         label="性别"
         required
-        v-model="form_data!.gender"
         placeholder="男/女"
       />
-      <FormInput label="代号" required v-model="form_data!.mark" />
-      <FormInput label="身高" v-model="form_data!.height" />
+      <FormInput v-model="form_data!.mark" label="代号" required />
+      <FormInput v-model="form_data!.height" label="身高" />
       <FormInput
+        v-model="form_data!.identity"
         label="身份"
         placeholder="多个身份/分隔"
-        v-model="form_data!.identity"
       />
     </div>
 
@@ -157,17 +157,17 @@ setTimeout(async () => {
       <FormSelect
         v-for="(v, k) in info"
         :key="k"
+        v-model="form_data![v[2]]"
         :label="v[0]"
         :data="type_list[v[1]]"
-        v-model="form_data![v[2]]"
         :value="form_data![v[2]]"
       />
     </div>
 
     <!-- 职业 -->
     <FormSelect
-      :data="type_list.professionType"
       v-model="form_data!.profession"
+      :data="type_list.professionType"
       :value="form_data!.profession"
       label="职业"
       multi
@@ -175,8 +175,8 @@ setTimeout(async () => {
 
     <!-- 特长 -->
     <FormSelect
-      :data="type_list.specialtyType"
       v-model="form_data!.specialty"
+      :data="type_list.specialtyType"
       :value="form_data!.specialty"
       label="特长"
       multi
@@ -185,12 +185,12 @@ setTimeout(async () => {
     <!-- 属性相关 -->
     <div class="flex-box">
       <FormRange
+        v-for="(v, k) in attr"
+        :key="k"
+        v-model="form_data![k]"
         :label="v"
         label-width="200px"
         :text="form_data![k] + '%'"
-        v-model="form_data![k]"
-        v-for="(v, k) in attr"
-        :key="k"
       />
     </div>
 

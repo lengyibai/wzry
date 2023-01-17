@@ -130,21 +130,21 @@ const EmitCommit = async () => {
     }"
   >
     <transition-group name="fade">
-      <SelectHero v-model="hero_id" key="SelectHero" />
+      <SelectHero key="SelectHero" v-model="hero_id" />
 
       <!--添加完毕的语音列表-->
-      <div class="voice-list" v-show="form_data!.length" key="b">
+      <div v-show="form_data!.length" key="b" class="voice-list">
         <div
-          class="voice"
           v-for="(item, index) in form_data"
+          :key="item.text"
+          class="voice"
           @mouseleave="handleVoiceEnter(null)"
           @mouseenter="handleVoiceEnter(index)"
-          :key="item.text"
         >
-          <span class="desc" v-show="current_index !== index">
+          <span v-show="current_index !== index" class="desc">
             {{ item.text }}</span
           >
-          <div class="voice-box" v-show="current_index === index">
+          <div v-show="current_index === index" class="voice-box">
             <i
               class="iconfont wzry-bofangyuyin cursor-pointer"
               @click="handlePlay(item.link)"
@@ -159,32 +159,32 @@ const EmitCommit = async () => {
       </div>
 
       <!--正在添加语音的输入框盒子-->
-      <div class="add-box" v-if="show_box" key="c">
-        <transition-group v-if="show_box" name="fade" key="c">
+      <div v-if="show_box" key="c" class="add-box">
+        <transition-group v-if="show_box" key="c" name="fade">
           <FormInput
+            key="a"
             v-model="voice_text"
             required
             auto-width
             placeholder="请输入语音文字"
             label="语音文字"
             label-width="190px"
-            key="a"
           />
 
           <!--设置/播放语音-->
           <i
-            class="iconfont cursor-pointer"
-            :class="voice_link ? 'wzry-bofangyuyin' : 'wzry-mic'"
             v-show="voice_text"
             key="b"
+            class="iconfont cursor-pointer"
+            :class="voice_link ? 'wzry-bofangyuyin' : 'wzry-mic'"
             @click="handleSetVoice"
           />
 
           <!--重置语音链接-->
           <i
-            class="iconfont wzry-zhongzhi cursor-pointer"
             v-show="voice_link"
             key="c"
+            class="iconfont wzry-zhongzhi cursor-pointer"
             @click="handleResetVoice"
           />
         </transition-group>
@@ -192,15 +192,15 @@ const EmitCommit = async () => {
 
       <!--添加/删除/保存按钮-->
       <i
+        key="d"
         class="iconfont cursor-pointer"
         :class="voice_link ? 'wzry-finish' : add_status"
-        key="d"
         @click="handleAddVoice(add_status)"
       />
     </transition-group>
 
     <!--播放语音-->
-    <PlayVoice @ended="play_link = ''" v-if="play_link" :link="play_link" />
+    <PlayVoice v-if="play_link" :link="play_link" @ended="play_link = ''" />
 
     <!--设置语音链接-->
     <transition name="fade">

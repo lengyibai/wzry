@@ -47,16 +47,16 @@ watch(
 <template>
   <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
     <EquipCard
+      v-for="item in equip_list"
       ref="card"
+      :key="item.id"
       :left-line="showLine(item.id, 'left')"
       :right-line="showLine(item.id, 'right')"
-      v-for="item in equip_list"
       :equip="item"
-      :key="item.id"
     />
     <div
-      class="vertical-line"
       v-if="index !== 0"
+      class="vertical-line"
       :style="{
         top: $equipStore.vertical_line[index].top,
         height: $equipStore.vertical_line[index].height,

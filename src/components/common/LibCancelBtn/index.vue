@@ -1,13 +1,13 @@
 <template>
   <button
     class="lib-cancel-btn"
-    @click="close"
     :style="{
       width: size,
       height: size,
     }"
+    @click="close"
   >
-    <img class="close" v-show="show_up" src="./icon.svg" alt="" />
+    <img v-show="show_up" class="close" src="./icon.svg" alt="" />
   </button>
 </template>
 <script setup>

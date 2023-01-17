@@ -37,19 +37,19 @@ nextTick(() => {
     @click="$equipStore.setEquipActive(equip.id)"
   >
     <transition name="border-fade">
-      <div class="border" v-show="active_id === equip.id"></div>
+      <div v-show="active_id === equip.id" class="border"></div>
     </transition>
-    <img :src="equip.icon" alt="" ref="icon" />
+    <img ref="icon" :src="equip.icon" alt="" />
     <transition name="left-line">
-      <div class="left-line" v-if="leftLine"></div>
+      <div v-if="leftLine" class="left-line"></div>
     </transition>
     <transition name="right-line" mode="in-out">
-      <div class="right-line" v-if="rightLine"></div>
+      <div v-if="rightLine" class="right-line"></div>
     </transition>
     <div class="box">
       <div class="name">{{ equip.name }}</div>
       <div class="info">
-        <div class="desc" v-if="equip.desc">{{ equip.desc }}</div>
+        <div v-if="equip.desc" class="desc">{{ equip.desc }}</div>
         <div class="price">{{ equip.price }}</div>
       </div>
     </div>

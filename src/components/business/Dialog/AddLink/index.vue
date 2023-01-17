@@ -1,10 +1,10 @@
 <template>
   <K-Dialog v-bind="$attrs" align="center">
     <input
-      type="text"
-      v-focus
-      :placeholder="placeholder"
       v-model="input_link"
+      v-focus
+      type="text"
+      :placeholder="placeholder"
       @keyup.enter="confirm"
     />
     <K-Button type="warning" @click="confirm">确定</K-Button>

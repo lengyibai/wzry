@@ -86,11 +86,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="footbar cursor-pointer"
-    @click="getPoint"
-    @mouseenter="handleShowTool(true)"
-    @mousemove="handleMoveLine"
-    @mouseleave="handleShowTool(false)"
     ref="footbar"
     v-particle="{
       color: '#2e5283',
@@ -98,11 +93,16 @@ onBeforeUnmount(() => {
       size: 10,
       enable: $settingStore.config.particle,
     }"
+    class="footbar cursor-pointer"
+    @click="getPoint"
+    @mouseenter="handleShowTool(true)"
+    @mousemove="handleMoveLine"
+    @mouseleave="handleShowTool(false)"
   >
-    <div class="line" ref="line" v-if="enable_music"></div>
+    <div v-if="enable_music" ref="line" class="line"></div>
     <MusicPlay
-      class="music-play"
       v-if="enable_music"
+      class="music-play"
       :play-progress="playProgress"
     />
     <Time class="time" />

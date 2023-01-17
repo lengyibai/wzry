@@ -4,8 +4,8 @@
       <div class="ConfirmNotice" :style="{ width: width }">
         <div class="title">{{ title }}</div>
         <img
-          class="close cursor-pointer"
           v-show="showClose"
+          class="close cursor-pointer"
           :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="close"

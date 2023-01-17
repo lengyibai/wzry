@@ -1,11 +1,11 @@
 <template>
   <button
-    class="K-Button flex"
     v-particle="{
       color: particle_color[type],
       size: 5,
       enable: $settingStore.config.particle,
     }"
+    class="K-Button flex"
     :style="style1"
   >
     <span :style="style2">

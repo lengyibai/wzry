@@ -16,7 +16,7 @@
       >
         <div class="head">
           <slot :data="head" :name="head_key[index]">{{ item }}</slot>
-          <TableSort :is-show="sort_id[index]" v-if="sort.includes(item)" />
+          <TableSort v-if="sort.includes(item)" :is-show="sort_id[index]" />
         </div>
       </th>
     </thead>
@@ -24,8 +24,8 @@
     <tbody>
       <tr
         v-for="(item, index) in data"
-        :style="{ backgroundColor: item.bgColor }"
         :key="index"
+        :style="{ backgroundColor: item.bgColor }"
       >
         <slot :data="item" name="body">
           <td v-for="(_item, _index) in Object.values(item)" :key="_index">
