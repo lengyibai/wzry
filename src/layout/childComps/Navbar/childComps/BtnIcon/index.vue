@@ -115,16 +115,6 @@ const EmitResetConfig = () => {
         up
       >
         <div class="options">
-          <!-- 主题 -->
-          <div class="option">
-            <div class="label">主题</div>
-            <K-Select
-              v-model="config.theme"
-              :option="['蓝', '暗']"
-              @update:model-value="EmitSaveConfig"
-            />
-          </div>
-
           <!-- 动画速率 -->
           <div class="option">
             <div class="label">动画速率</div>

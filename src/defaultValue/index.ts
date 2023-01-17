@@ -102,7 +102,6 @@ export const configDefault: SettingConfig = {
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  theme: 0,
   speed: 1,
   loginSound: true,
   particle: false,
