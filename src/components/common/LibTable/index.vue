@@ -16,7 +16,7 @@
       >
         <div class="head">
           <slot :data="head" :name="head_key[index]">{{ item }}</slot>
-          <TableSort :isShow="sort_id[index]" v-if="sort.includes(item)" />
+          <TableSort :is-show="sort_id[index]" v-if="sort.includes(item)" />
         </div>
       </th>
     </thead>

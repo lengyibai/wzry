@@ -82,28 +82,28 @@ const handSearch = () => {
       <FilterTool
         :data="select_camp"
         @select="EmitSelectCamp"
-        listHeight="425px"
+        list-height="425px"
       />
 
       <!-- 自带属性筛选按钮 -->
       <FilterTool
         :data="select_attr"
         @select="EmitSelectAttr"
-        listHeight="324px"
+        list-height="324px"
       />
 
       <!-- 杂项筛选按钮 -->
       <FilterTool
         :data="select_misc"
         @select="EmitSelectMisc"
-        listHeight="278px"
+        list-height="278px"
       />
 
       <!-- 杂项排序按钮 -->
       <FilterTool
         :data="select_sort"
         @select="EmitSelectSort"
-        listHeight="186px"
+        list-height="186px"
       />
     </div>
 

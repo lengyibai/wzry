@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
         class="epigraph-list"
         gap="15px"
         :count="count"
-        :eqhMultiple="0.5"
+        :eqh-multiple="0.5"
       >
         <transition-group name="card" appear>
           <div

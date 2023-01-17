@@ -69,7 +69,7 @@ const handSearch = () => {
     <!-- 皮肤类型筛选 -->
     <FilterTool
       :data="select_type"
-      listHeight="500px"
+      list-height="500px"
       @select="EmitTypeFilter"
     />
 

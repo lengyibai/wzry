@@ -46,8 +46,8 @@ watch(
   <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
     <EquipCard
       ref="card"
-      :leftLine="showLine(item.id, 'left')"
-      :rightLine="showLine(item.id, 'right')"
+      :left-line="showLine(item.id, 'left')"
+      :right-line="showLine(item.id, 'right')"
       v-for="item in equip_list"
       :equip="item"
       :key="item.id"

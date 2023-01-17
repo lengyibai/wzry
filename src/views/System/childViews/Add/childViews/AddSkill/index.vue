@@ -365,7 +365,7 @@ setTimeout(async () => {
 
     <!-- 右边 -->
     <AddSkillBasic
-      :activeIndex="active_index"
+      :active-index="active_index"
       :skills="form_data![deputy_index]"
       @select="EmitSelectSkill"
       @del="EmitDelSkill"

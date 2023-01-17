@@ -181,7 +181,7 @@ setTimeout(async () => {
         />
 
         <!--··皮肤头像、海报··-->
-        <FormLabel labelWidth="355px" label="头像&海报&小尺寸海报">
+        <FormLabel label-width="355px" label="头像&海报&小尺寸海报">
           <SelectImg v-model="item.headImg" title="头像" />
           <SelectImg v-model="item.poster" type="width" title="海报" />
           <SelectImg v-model="item.cover" type="width" title="小尺寸海报" />

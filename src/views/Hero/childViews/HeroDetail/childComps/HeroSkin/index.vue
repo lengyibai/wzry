@@ -64,7 +64,7 @@ const bgImgs = ([i, index]: number[]) => {
       <div class="left">
         <!-- 皮肤类型 -->
         <HerSkinType
-          :skinTypeImg="active_skin_type"
+          :skin-type-img="active_skin_type"
           :toggle="skin_type_toggle"
         />
 
@@ -77,7 +77,7 @@ const bgImgs = ([i, index]: number[]) => {
 
         <!-- 中心皮肤切换 -->
         <HeroSkinHeadImg
-          v-if="hero_data.skins.length"
+          v-if="hero_data.skins!.length"
           :skins="hero_data.skins"
           @bg-imgs="bgImgs"
         />
@@ -92,7 +92,7 @@ const bgImgs = ([i, index]: number[]) => {
     </div>
 
     <!-- 背景图 -->
-    <HeroBgImg :bgImg="skin_bg" :toggle="skin_bg_toggle" />
+    <HeroBgImg :bg-img="skin_bg" :toggle="skin_bg_toggle" />
   </div>
 </template>
 

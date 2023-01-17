@@ -53,7 +53,7 @@ onMounted(() => {
         v-if="show_tip"
         :text="content"
         :align="align"
-        :noTipName="noTipName"
+        :no-tip-name="noTipName"
       />
     </transition>
   </div>

@@ -186,7 +186,7 @@ setTimeout(async () => {
         <div class="effect-list">
           <transition-group name="fade">
             <FormInput
-              labelWidth="175px"
+              label-width="175px"
               :label="item.name"
               v-model="item.num"
               required
@@ -202,16 +202,20 @@ setTimeout(async () => {
         <!-- 名称 -->
         <FormInput
           label="主/被动名称"
-          labelWidth="195px"
+          label-width="195px"
           v-model="motivation.name"
         />
         <FormInput
           label="冷却时间"
-          labelWidth="195px"
+          label-width="195px"
           v-model="motivation.time"
           number
         />
-        <K-Checkbox label="主动" labelWidth="195px" v-model="motivation.type" />
+        <K-Checkbox
+          label="主动"
+          label-width="195px"
+          v-model="motivation.type"
+        />
         <!-- 主/被动描述 -->
         <LibRichText
           width="500px"

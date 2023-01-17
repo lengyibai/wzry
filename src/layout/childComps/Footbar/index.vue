@@ -97,7 +97,7 @@ onBeforeUnmount(() => {
     <MusicPlay
       class="music-play"
       v-if="enable_music"
-      :playProgress="playProgress"
+      :play-progress="playProgress"
     />
     <Time class="time" />
     <Tool @toggle="EmitMusicToole" />

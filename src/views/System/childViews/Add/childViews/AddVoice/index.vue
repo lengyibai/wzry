@@ -162,10 +162,10 @@ const EmitCommit = async () => {
           <FormInput
             v-model="voice_text"
             required
-            autoWidth
+            auto-width
             placeholder="请输入语音文字"
             label="语音文字"
-            labelWidth="190px"
+            label-width="190px"
             key="a"
           />
 

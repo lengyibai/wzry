@@ -6,13 +6,13 @@
     <Toolbar
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"
-      :defaultConfig="toolbarConfig"
+      :default-config="toolbarConfig"
       :mode="mode"
     />
     <Editor
       style="overflow-y: hidden; height: 300px"
       v-model="valueHtml"
-      :defaultConfig="editorConfig"
+      :default-config="editorConfig"
       :mode="mode"
       @onCreated="handleCreated"
     />

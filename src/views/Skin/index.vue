@@ -141,13 +141,13 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
-          scrollId="skin_list"
+          scroll-id="skin_list"
           class="skin-list"
           ref="skinListRef"
           gap="25px"
           v-if="skin_list.length && show"
           :count="count"
-          :eqhMultiple="0.46"
+          :eqh-multiple="0.46"
           @load-more="EmitLoadMore"
         >
           <div

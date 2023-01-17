@@ -8,18 +8,18 @@ const $equipStore = equipStore();
 <template>
   <div class="equip-list">
     <EquipListColumn
-      :lineData="$equipStore.synthetic_id[0]"
-      :equipList="$equipStore.equip_list_column[0]"
+      :line-data="$equipStore.synthetic_id[0]"
+      :equip-list="$equipStore.equip_list_column[0]"
       :index="0"
     />
     <EquipListColumn
-      :lineData="$equipStore.synthetic_id[1]"
-      :equipList="$equipStore.equip_list_column[1]"
+      :line-data="$equipStore.synthetic_id[1]"
+      :equip-list="$equipStore.equip_list_column[1]"
       :index="1"
     />
     <EquipListColumn
-      :lineData="$equipStore.synthetic_id[2]"
-      :equipList="$equipStore.equip_list_column[2]"
+      :line-data="$equipStore.synthetic_id[2]"
+      :equip-list="$equipStore.equip_list_column[2]"
       :index="2"
     />
   </div>

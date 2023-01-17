@@ -161,12 +161,12 @@ onBeforeUnmount(() => {
         <HeroToolbar />
         <LibGridLayout
           class="hero-list"
-          scrollId="hero_list"
+          scroll-id="hero_list"
           ref="heroListRef"
           gap="25px"
           v-if="hero_list.length && show"
           :count="count"
-          :eqhMultiple="1.5"
+          :eqh-multiple="1.5"
           @load-more="EmitLoadMore"
         >
           <transition-group name="card" appear>

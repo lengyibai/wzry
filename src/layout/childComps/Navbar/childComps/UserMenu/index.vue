@@ -63,12 +63,12 @@ const EmitSaveInfo = () => {
 
       <div class="btns">
         <div class="edit">
-          <K-Button fontSize="20px" @click="handleEditInfo" autoSize
+          <K-Button font-size="20px" @click="handleEditInfo" auto-size
             >编辑个人信息</K-Button
           >
         </div>
         <div class="logout" @click="logout">
-          <K-Button type="error" fontSize="20px" autoSize>退出登录</K-Button>
+          <K-Button type="error" font-size="20px" auto-size>退出登录</K-Button>
         </div>
       </div>
     </div>

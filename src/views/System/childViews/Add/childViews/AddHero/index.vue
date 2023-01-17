@@ -182,7 +182,7 @@ setTimeout(async () => {
     <div class="flex-box">
       <FormRange
         :label="v"
-        labelWidth="200px"
+        label-width="200px"
         :text="form_data![k] + '%'"
         v-model="form_data![k]"
         v-for="(v, k) in attr"
@@ -192,7 +192,7 @@ setTimeout(async () => {
 
     <!-- 设置头像&海报 -->
     <div class="flex-box">
-      <FormLabel labelWidth="290px" label="头像&封面&&海报">
+      <FormLabel label-width="290px" label="头像&封面&&海报">
         <SelectImg v-model="form_data!.headImg" title="头像" />
         <SelectImg v-model="form_data!.cover" type="height" title="封面" />
         <SelectImg v-model="form_data!.poster" type="width" title="海报" />

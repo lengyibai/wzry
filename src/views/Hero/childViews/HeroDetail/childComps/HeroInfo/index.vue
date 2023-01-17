@@ -30,7 +30,7 @@ onMounted(() => {
 
     <!-- 基础信息表 -->
     <div class="basic-info">
-      <HeroBasic :heroData="hero_data" />
+      <HeroBasic :hero-data="hero_data" />
 
       <!-- 关系 -->
       <transition name="scale">

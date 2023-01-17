@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount, onMounted, onActivated, ref, nextTick } from "vue";
+import { onBeforeMount, onMounted, onActivated, ref } from "vue";
 interface Props {
   count: number;
   gap: string;

@@ -198,10 +198,10 @@ const EmitsSortChange = (v: number[]) => {
       @sortChange="EmitsSortChange"
     >
       <template v-slot:body="{ data }">
-        <TableColumn minWidth="175px">{{ data.name }}</TableColumn>
-        <TableColumn minWidth="100px">{{ data.data.length }}</TableColumn>
-        <TableColumn minWidth="200px">{{ data.status }}</TableColumn>
-        <TableColumn width="500px" minWidth="425px">
+        <TableColumn min-width="175px">{{ data.name }}</TableColumn>
+        <TableColumn min-width="100px">{{ data.data.length }}</TableColumn>
+        <TableColumn min-width="200px">{{ data.status }}</TableColumn>
+        <TableColumn width="500px" min-width="425px">
           <button class="check lib-click" @click="handleCheck(data)">
             检查更新
           </button>

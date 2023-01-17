@@ -97,7 +97,7 @@ onMounted(() => {
       <Heroprogress
         v-show="show_progress"
         :index="scroll_index"
-        :pageName="page_name"
+        :page-name="page_name"
         @toggle="EmitToggle"
       />
     </transition>
