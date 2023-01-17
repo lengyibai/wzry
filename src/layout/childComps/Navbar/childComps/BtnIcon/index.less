@@ -18,16 +18,26 @@
   }
 }
 
-.option {
+.options {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 85%;
-  margin-bottom: 25px;
+  overflow-y: auto;
+  width: 100%;
+  margin-bottom: 10px;
+  flex-direction: column;
+  padding-left: 75px;
+  flex: 1;
 
-  .label {
+  .option {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    font-size: 26px;
+    width: 85%;
+    margin-bottom: 25px;
+
+    .label {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+    }
   }
 }

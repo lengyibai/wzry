@@ -110,75 +110,83 @@ const EmitResetConfig = () => {
         v-if="show_setting"
         title="仅展示，功能尚未开发"
         width="920px"
+        ctx-width="90%"
         v-model="show_setting"
         up
       >
-        <!-- 主题 -->
-        <div class="option">
-          <div class="label">主题</div>
-          <K-Select v-model="config.theme" :option="['蓝', '暗']" />
-        </div>
+        <div class="options">
+          <!-- 主题 -->
+          <div class="option">
+            <div class="label">主题</div>
+            <K-Select v-model="config.theme" :option="['蓝', '暗']" />
+          </div>
 
-        <!-- 动画速率 -->
-        <div class="option">
-          <div class="label">动画速率</div>
-          <K-Select
-            v-model="config.speed"
-            :option="['迅速', '均衡', '优雅']"
-            @update:model-value="EmitSpeed"
-          />
-        </div>
-
-        <!-- 音效 -->
-        <div class="option">
-          <div class="label">音效</div>
-          <K-Range
-            @update:model-value="EmitAudioVolume"
-            v-model="config.audioVolume"
-            :text="config.audioVolume + '%'"
-            :disabled="!config.audio"
-          />
-          <K-Check v-model="config.audio" @change="EmitAudio" />
-        </div>
-
-        <!-- 音乐 -->
-        <div class="option">
-          <div class="label">音乐</div>
-          <K-Range
-            v-model="config.musicVolume"
-            @update:model-value="EmitMusicVolume"
-            :text="config.musicVolume + '%'"
-            :disabled="!config.music"
-          />
-          <K-Check v-model="config.music" @change="EmitMusic" />
-        </div>
-
-        <!-- 粒子特效 -->
-        <div class="option">
-          <div class="label">粒子特效</div>
-          <K-Check v-model="config.particle" @change="EmitParticle" />
-        </div>
-
-        <!-- 视频背景 -->
-        <div class="option">
-          <div class="label">
-            视频背景
-            <DescSet
-              desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
+          <!-- 动画速率 -->
+          <div class="option">
+            <div class="label">动画速率</div>
+            <K-Select
+              v-model="config.speed"
+              :option="['迅速', '均衡', '优雅']"
+              @update:model-value="EmitSpeed"
             />
           </div>
-          <K-Check v-model="config.videoBg" @change="EmitSaveConfig" />
-        </div>
 
-        <!-- 小贴士 -->
-        <div class="option">
-          <div class="label">
-            小贴士
-            <DescSet
-              desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
+          <!-- 音效 -->
+          <div class="option">
+            <div class="label">音效</div>
+            <K-Range
+              @update:model-value="EmitAudioVolume"
+              v-model="config.audioVolume"
+              :text="config.audioVolume + '%'"
+              :disabled="!config.audio"
             />
+            <K-Check v-model="config.audio" @change="EmitAudio" />
           </div>
-          <K-Check v-model="config.tip" @change="EmitTip" />
+
+          <!-- 音乐 -->
+          <div class="option">
+            <div class="label">音乐</div>
+            <K-Range
+              v-model="config.musicVolume"
+              @update:model-value="EmitMusicVolume"
+              :text="config.musicVolume + '%'"
+              :disabled="!config.music"
+            />
+            <K-Check v-model="config.music" @change="EmitMusic" />
+          </div>
+
+          <!-- 粒子特效 -->
+          <div class="option">
+            <div class="label">
+              粒子特效
+              <DescSet
+                desc="开启后对性能有亿点影响，主要是对底部音乐播放器和按钮添加粒子上升效果，与登录页面的登录按钮粒子效果一致"
+              />
+            </div>
+            <K-Check v-model="config.particle" @change="EmitParticle" />
+          </div>
+
+          <!-- 视频背景 -->
+          <div class="option">
+            <div class="label">
+              视频背景
+              <DescSet
+                desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
+              />
+            </div>
+            <K-Check v-model="config.videoBg" @change="EmitSaveConfig" />
+          </div>
+
+          <!-- 小贴士 -->
+          <div class="option">
+            <div class="label">
+              小贴士
+              <DescSet
+                desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
+              />
+            </div>
+            <K-Check v-model="config.tip" @change="EmitTip" />
+          </div>
         </div>
 
         <!-- 重置配置 -->
