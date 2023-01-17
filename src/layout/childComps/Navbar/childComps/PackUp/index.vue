@@ -7,6 +7,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+
 import switchStore from "@/store/switch";
 import otherStore from "@/store/other";
 

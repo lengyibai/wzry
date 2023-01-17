@@ -1,4 +1,5 @@
 import type { DirectiveBinding, App } from "vue";
+
 import { $random } from "../utils";
 
 const fn = (el: HTMLElement, binding: DirectiveBinding) => {

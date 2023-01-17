@@ -4,6 +4,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from "axios";
+
 import { ResultData } from "@/api/interface";
 
 const config = {

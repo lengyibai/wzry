@@ -7,15 +7,17 @@ import {
   ref,
   watch,
 } from "vue";
+
+import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
+import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
+import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
+import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
+
 import { getSkinVoice } from "@/api/main/games/voice";
 import { $lazyLoadImages } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
-import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
-import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
-import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
-import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 const $skinStore = skinStore();
 const $otherStore = otherStore();

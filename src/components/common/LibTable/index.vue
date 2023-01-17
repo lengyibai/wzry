@@ -38,6 +38,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
+
 import TableSort from "./childComps/table-sort/index.vue";
 interface Props {
   head: string[]; //表头名

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+
+import viewHide from "../../../../hooks/useViewHide";
+
 import {
   addHeroBasic,
   addHeroImg,
@@ -14,7 +17,6 @@ import {
 } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue";
-import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 

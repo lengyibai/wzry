@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeUnmount } from "vue";
-import musicStore from "@/store/music";
-import settingStore from "@/store/setting";
+
 import Time from "./childComps/Time.vue"; //左侧时间
 import Tool from "./childComps/Tool.vue"; //工具栏
 import Copyright from "./childComps/Copyright.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay.vue"; //音乐进度条
+
+import settingStore from "@/store/setting";
+import musicStore from "@/store/music";
 
 const $musicStore = musicStore();
 const $settingStore = settingStore();

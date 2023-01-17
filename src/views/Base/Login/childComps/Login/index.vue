@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+
 import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+
+import IntoBtn from "../IntoBtn/index.vue"; //按钮
+
+import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
+
 import { register } from "@/api/main/user";
 import switchStore from "@/store/switch";
-import IntoBtn from "../IntoBtn/index.vue"; //按钮
-import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 interface Emits {
   (e: "success"): void;

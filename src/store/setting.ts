@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+
 import { $isPhone } from "@/utils";
 import { configDefault } from "@/defaultValue";
 

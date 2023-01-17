@@ -1,4 +1,5 @@
 import { onMounted, ref } from "vue";
+
 import { LOCAL_VERSION } from "@/config/config";
 import switchStore from "@/store/switch";
 export default () => {

@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import heroStore from "@/store/hero";
-import heroDetail from "@/store/heroDetail";
-import heroDetailStore from "@/store/heroDetail";
+
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
 import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
+
+import heroDetailStore from "@/store/heroDetail";
+import heroDetail from "@/store/heroDetail";
+import heroStore from "@/store/hero";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

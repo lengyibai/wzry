@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
+
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 

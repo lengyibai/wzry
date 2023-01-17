@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import authStore from "@/store/auth";
+
 import IntoBtn from "../IntoBtn/index.vue";
+
 import RememberPwd from "./childComps/RememberPwd/index.vue";
+
+import authStore from "@/store/auth";
 
 const form = ref({ id: "", password: "" });
 const remember = ref(true);

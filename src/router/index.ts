@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+
 import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
+
 import authStore from "@/store/auth";
 import NProgress from "@/config/nprogress";
 import { HOME_URL } from "@/config/config";

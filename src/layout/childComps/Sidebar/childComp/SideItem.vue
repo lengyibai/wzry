@@ -35,11 +35,13 @@
 </template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { Route } from "@/router/interface";
 import { useRouter, useRoute } from "vue-router";
+
+import SideItem from "./SideItem.vue"; //调用自身
+
+import { Route } from "@/router/interface";
 import otherStore from "@/store/other";
 import switchStore from "@/store/switch";
-import SideItem from "./SideItem.vue"; //调用自身
 
 interface RouteFormat {
   path: string;

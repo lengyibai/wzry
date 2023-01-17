@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import epigraphStore from "@/store/epigraph";
+
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
+
+import epigraphStore from "@/store/epigraph";
 
 const $epigraphStore = epigraphStore();
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
 import SkinStore from "@/store/skin";
 
 const $SkinStore = SkinStore();

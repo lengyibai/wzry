@@ -1,10 +1,12 @@
-import { _login } from "@/api/main/user";
 import { defineStore } from "pinia";
-import { HOME_URL } from "@/config/config";
 import { ref } from "vue";
+
+import switchStore from "./switch";
+
+import { _login } from "@/api/main/user";
+import { HOME_URL } from "@/config/config";
 import router from "@/router";
 import routesStore from "@/store/routes";
-import switchStore from "./switch";
 
 const authStore = defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态

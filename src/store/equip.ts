@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+
+import { t, h } from "./helper";
+
 import { getEquip } from "@/api/main/games/equip";
 import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
-import { t, h } from "./helper";
 
 const equipStore = defineStore("equip", () => {
   const active_id = ref(0); //当前被点击的装备id

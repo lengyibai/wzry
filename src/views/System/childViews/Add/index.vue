@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive } from "vue";
+
 import useManageCard from "../../hooks/useManageCard";
 
 const AddHero = defineAsyncComponent(

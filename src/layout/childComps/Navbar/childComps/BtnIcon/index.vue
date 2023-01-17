@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
+import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
+
 import settingStore from "@/store/setting";
 import musicStore from "@/store/music";
 import clickAudio from "@/store/audio";
@@ -7,7 +10,6 @@ import switchStore from "@/store/switch";
 import speedStore from "@/store/speed";
 import { $debounce } from "@/utils";
 import { configDefault } from "@/defaultValue";
-import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 const $settingStore = settingStore();
 const $musicStore = musicStore();

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+
 import settingStore from "@/store/setting";
 
 interface Emits {

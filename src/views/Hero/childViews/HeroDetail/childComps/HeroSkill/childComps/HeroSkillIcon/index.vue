@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
 

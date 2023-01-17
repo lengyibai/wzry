@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { LOGINBG } from "@/config/assets";
-import useGetData from "@/hooks/useGetData";
-import settingStore from "@/store/setting";
+
 import Login from "./childComps/Login/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
+
+import { LOGINBG } from "@/config/assets";
+import useGetData from "@/hooks/useGetData";
+import settingStore from "@/store/setting";
 
 const $settingStore = settingStore();
 

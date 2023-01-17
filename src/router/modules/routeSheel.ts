@@ -1,6 +1,7 @@
 import { RouterSheel } from "../interface";
-import { static_paths } from "./staticRouter";
 import getSheelPath from "../helper/getSheelPath";
+
+import { static_paths } from "./staticRouter";
 
 /** @description: 用户路由 */
 export const user: RouterSheel[] = [

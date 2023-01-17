@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { heroDefault } from "@/defaultValue";
 import { ref, onMounted } from "vue";
+
+import { heroDefault } from "@/defaultValue";
 
 interface Props {
   heroData: Hero.Data;

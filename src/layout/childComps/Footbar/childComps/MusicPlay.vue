@@ -8,6 +8,7 @@
 </template>
 <script setup lang="ts">
 import { watch } from "vue";
+
 import musicStore from "@/store/music";
 
 interface Props {

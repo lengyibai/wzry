@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
 import { getCampType } from "@/api/main/games/hero";
 import heroStore from "@/store/hero";
 

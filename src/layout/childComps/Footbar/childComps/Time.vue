@@ -3,6 +3,7 @@
 </template>
 <script setup lang="ts">
 import { computed } from "vue";
+
 import { $fmtTime } from "@/utils";
 
 const time = computed(() => $fmtTime(new Date(), "YYYY.MM.DD"));

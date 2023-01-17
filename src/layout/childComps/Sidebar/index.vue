@@ -12,11 +12,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Route } from "@/router/interface";
 import { RouteRecordRaw } from "vue-router";
+
+import sideItem from "./childComp/SideItem.vue"; //子菜单
+
+import { Route } from "@/router/interface";
 import routerStore from "@/store/routes";
 import otherStore from "@/store/other";
-import sideItem from "./childComp/SideItem.vue"; //子菜单
 
 const $otherStore = otherStore();
 const $routerStore = routerStore();

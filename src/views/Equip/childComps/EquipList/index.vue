@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import equipStore from "@/store/equip";
 import EquipListColumn from "./childComps/EquipListColumn/index.vue"; //装备栏
+
+import equipStore from "@/store/equip";
 
 const $equipStore = equipStore();
 </script>

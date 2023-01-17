@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
+import viewHide from "../../../../hooks/useViewHide";
+
 import { getEquipType, getEquipEffect } from "@/api/main/games/equip";
 import { equipDefault, equipMotivationDefault } from "@/defaultValue";
 import { $deepCopy } from "@/utils";
 import switchStore from "@/store/switch";
 import equipStore from "@/store/equip";
-import viewHide from "../../../../hooks/useViewHide";
 import EquipDetail from "@/views/Equip/childComps/EquipDetail/index.vue"; //装备详情
 
 interface Emits {

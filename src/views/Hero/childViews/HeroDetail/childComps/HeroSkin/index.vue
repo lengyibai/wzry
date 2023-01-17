@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue";
-import { getAssignSkinType } from "@/api/main/games/skin";
-import heroDetailStore from "@/store/heroDetail";
+
 import HeroBgImg from "./childComps/HeroBgImg/index.vue"; //背景图
 import HeroVoice from "./childComps/HeroVoice/index.vue"; //皮肤语音
 import HeroSkinName from "./childComps/HeroSkinName/index.vue"; //皮肤名
 import HerSkinType from "./childComps/HerSkinType/index.vue"; //皮肤类型图
 import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
+
+import heroDetailStore from "@/store/heroDetail";
+import { getAssignSkinType } from "@/api/main/games/skin";
+import { heroDefault } from "@/defaultValue";
+import { $deepCopy } from "@/utils";
 
 const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
 const $heroDetailStore = heroDetailStore();

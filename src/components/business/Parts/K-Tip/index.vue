@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from "vue";
+
 import tipStore from "@/store/tip";
 
 interface Props {

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
+
 import useLoading from "./hooks/useLoading";
 import useMessage from "./hooks/useMessage";
 import useTip from "./hooks/useTip";
+
 import $bus from "@/utils/eventBus";
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";

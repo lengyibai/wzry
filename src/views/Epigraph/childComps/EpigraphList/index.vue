@@ -7,8 +7,10 @@ import {
   nextTick,
   onMounted,
 } from "vue";
-import $bus from "@/utils/eventBus";
+
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
+
+import $bus from "@/utils/eventBus";
 
 interface Props {
   data: Epigraph.Data[];

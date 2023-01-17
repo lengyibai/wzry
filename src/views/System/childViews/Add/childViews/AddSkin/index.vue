@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
+
+import viewHide from "../../../../hooks/useViewHide";
+
 import { getSkinType, getHeroSkin, addSkin } from "@/api/main/games/skin";
 import { getHeroDetail } from "@/api/main/games/hero";
-import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/switch";
 import skinStore from "@/store/skin";
 

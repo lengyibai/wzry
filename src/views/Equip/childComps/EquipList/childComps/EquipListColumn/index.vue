@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import equipStore from "@/store/equip";
 import { ref, watch } from "vue";
+
 import EquipCard from "../common/EquipCard/index.vue"; //装备卡片
+
+import equipStore from "@/store/equip";
 
 interface Props {
   equipList: Equip.Data[];

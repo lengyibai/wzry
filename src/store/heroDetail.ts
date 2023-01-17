@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
+import { ref } from "vue";
+
 import { getSkinVoice } from "@/api/main/games/voice";
 import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/defaultValue";
-import { ref } from "vue";
 
 const heroDetailStore = defineStore("heroDetail", () => {
   const skill_index = ref(0); //处于展示的技能索引

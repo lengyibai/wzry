@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import musicStore from "@/store/music";
 import MuiscList from "./MuiscList.vue";
+
+import musicStore from "@/store/music";
 
 interface Emits {
   (e: "toggle", v: string): void;

@@ -8,17 +8,20 @@ import {
   watch,
   defineAsyncComponent,
 } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
+import HeroToolbar from "./childComps/HeroToolbar/index.vue";
+import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
+import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
+
 import { $deepCopy, $lazyLoadImages } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
-import { useRoute, useRouter } from "vue-router";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import otherStore from "@/store/other";
-import HeroToolbar from "./childComps/HeroToolbar/index.vue";
-import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
-import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
+
 const HeroDetail = defineAsyncComponent(
   () => import("./childViews/HeroDetail/index.vue")
 ); //详情页
