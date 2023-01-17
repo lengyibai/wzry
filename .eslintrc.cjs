@@ -55,6 +55,7 @@ module.exports = {
     "no-plusplus": "off", // 禁用一元操作符 ++ 和 --
     "no-param-reassign": "warn", //禁止对 function 的参数进行重新赋值
     "no-new": "off", //禁止使用 new
+    "no-param-reassign": "off", //禁止改变函数参数
     "no-console": "warn", //不允许出现打印
     "no-await-in-loop": "off", // 禁止在循环中出现 await
     "import/prefer-default-export": "off", //禁止只有一个按需导出
