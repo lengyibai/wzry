@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue/defaults";
+import { heroDefault } from "@/defaultValue";
 import { getAssignSkinType } from "@/api/main/games/skin";
 import heroDetailStore from "@/store/heroDetail";
 import HeroBgImg from "./childComps/HeroBgImg/index.vue"; //背景图

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import heroDetail from "@/store/heroDetail";
-import { skillDefault } from "@/defaultValue/defaults";
+import { skillDefault } from "@/defaultValue";
 
 interface Props {
   activeSkill: typeof skillDefault;

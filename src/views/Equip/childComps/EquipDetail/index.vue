@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { equipDefault } from "@/defaultValue/defaults";
+import { equipDefault } from "@/defaultValue";
 
 interface Props {
   equip: typeof equipDefault;

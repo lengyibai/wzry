@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { skillDefault } from "@/defaultValue/defaults";
+import { skillDefault } from "@/defaultValue";
 
 interface Props {
   activeSkill: typeof skillDefault;

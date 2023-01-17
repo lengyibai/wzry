@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { skillDefault } from "@/defaultValue/defaults";
+import { skillDefault } from "@/defaultValue";
 
 interface Props {
   skills: Hero.Skill[]; //技能列表

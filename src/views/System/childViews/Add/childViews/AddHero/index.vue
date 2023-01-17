@@ -13,7 +13,7 @@ import {
   getRaceType,
 } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue/defaults";
+import { heroDefault } from "@/defaultValue";
 import viewHide from "../../../../hooks/useViewHide";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";

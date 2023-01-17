@@ -10,7 +10,7 @@ import {
 } from "vue";
 import { $deepCopy, $lazyLoadImages } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
-import { heroDefault } from "@/defaultValue/defaults";
+import { heroDefault } from "@/defaultValue";
 import { useRoute, useRouter } from "vue-router";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";

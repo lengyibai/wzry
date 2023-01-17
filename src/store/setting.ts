@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { $isPhone } from "@/utils";
-import { configDefault } from "@/defaultValue/defaults";
+import { configDefault } from "@/defaultValue";
 
 const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });

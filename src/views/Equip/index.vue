@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { $deepCopy } from "@/utils";
-import { equipDefault } from "@/defaultValue/defaults";
+import { equipDefault } from "@/defaultValue";
 import equiqStore from "@/store/equip";
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情

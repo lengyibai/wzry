@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { getEquipType, getEquipEffect } from "@/api/main/games/equip";
-import { equipDefault, equipMotivationDefault } from "@/defaultValue/defaults";
+import { equipDefault, equipMotivationDefault } from "@/defaultValue";
 import { $deepCopy } from "@/utils";
 import switchStore from "@/store/switch";
 import equipStore from "@/store/equip";

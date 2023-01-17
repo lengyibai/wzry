@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
-import { equipDefault } from "@/defaultValue/defaults";
+import { equipDefault } from "@/defaultValue";
 import equipStore from "@/store/equip";
 
 interface Props {

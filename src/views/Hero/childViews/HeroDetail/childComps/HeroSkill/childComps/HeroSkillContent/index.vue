@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import heroDetail from "@/store/heroDetail";
-import { skillDefault } from "@/defaultValue/defaults";
+import { skillDefault } from "@/defaultValue";
 import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue";
 import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue";
 

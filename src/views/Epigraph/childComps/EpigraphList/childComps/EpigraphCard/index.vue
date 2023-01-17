@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { epigraphDefault } from "@/defaultValue/defaults";
+import { epigraphDefault } from "@/defaultValue";
 
 interface Props {
   data: typeof epigraphDefault;

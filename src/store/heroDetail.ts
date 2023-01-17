@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { getSkinVoice } from "@/api/main/games/voice";
 import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue/defaults";
+import { heroDefault } from "@/defaultValue";
 import { ref } from "vue";
 
 const heroDetailStore = defineStore("heroDetail", () => {

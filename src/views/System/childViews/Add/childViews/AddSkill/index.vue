@@ -3,7 +3,7 @@ import { $deepCopy } from "@/utils";
 import { addHeroSkill } from "@/api/main/games/skill";
 import { computed, ref } from "vue";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
-import { skillDefault, skillEffectDefault } from "@/defaultValue/defaults";
+import { skillDefault, skillEffectDefault } from "@/defaultValue";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
 import viewHide from "../../../../hooks/useViewHide";

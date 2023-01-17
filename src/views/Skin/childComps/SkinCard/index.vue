@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { skinDefault } from "@/defaultValue/defaults";
+import { skinDefault } from "@/defaultValue";
 
 interface Props {
   data: typeof skinDefault; //英雄数据
