@@ -22,6 +22,7 @@
         <div
           class="content"
           :style="{
+            width: ctxWidth,
             justifyContent: align,
           }"
         >
@@ -42,6 +43,7 @@ interface Props {
   title?: string; //左上角描述文字
   header?: string; //中间标题文字
   width?: string; //弹窗宽度
+  ctxWidth?: string;
   up?: boolean; //上升动画
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
 }
@@ -57,6 +59,7 @@ withDefaults(defineProps<Props>(), {
   header: "",
   width: "720px",
   up: false,
+  ctxWidth: "80%",
   align: "flex-start",
 });
 const emit = defineEmits<Emits>();
