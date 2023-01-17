@@ -1,11 +1,10 @@
 // eslint-disable-next-line
 // @ts-nocheck
 import { fileURLToPath, URL } from "node:url";
+
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-
 import { visualizer } from "rollup-plugin-visualizer"; //build 视图分析依赖文件
-
 import Components from "unplugin-vue-components/vite";
 
 export default defineConfig({
