@@ -37,6 +37,25 @@ module.exports = {
         "newlines-between": "always",
       },
     ],
+    // 属性排序
+    "vue/attributes-order": [
+      "error",
+      {
+        order: [
+          "DEFINITION",
+          "LIST_RENDERING",
+          "CONDITIONALS",
+          "RENDER_MODIFIERS",
+          "GLOBAL",
+          "UNIQUE",
+          "TWO_WAY_BINDING",
+          "OTHER_DIRECTIVES",
+          "OTHER_ATTR",
+          "EVENTS",
+          "CONTENT",
+        ],
+      },
+    ],
     camelcase: "off",
     semi: "off", //额外的分号
     "no-undef": "off",
