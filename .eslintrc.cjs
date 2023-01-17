@@ -13,6 +13,13 @@ module.exports = {
     ecmaVersion: "latest",
   },
   rules: {
+    "vue/attribute-hyphenation": [
+      2,
+      "always",
+      {
+        ignore: ["custom-prop"],
+      },
+    ],
     camelcase: "off",
     semi: "off", //额外的分号
     "no-undef": "off",
