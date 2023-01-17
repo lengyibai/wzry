@@ -1,8 +1,8 @@
 import type { DirectiveBinding, App } from "vue";
 import { $random } from "../utils";
 
-const particle = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const fn = (el: HTMLElement, binding: DirectiveBinding) => {
+  setTimeout(() => {
     const {
       color = "#cfb45c",
       size = 10,
@@ -11,8 +11,17 @@ const particle = {
       filter = true,
       num = 35,
       down = false,
+      enable = true,
     } = binding.value || {};
-    setTimeout(() => {
+
+    const clear = (el: HTMLElement) => {
+      const list = el.querySelectorAll(".particle-item");
+      Array.from(list).forEach((item) => {
+        item.remove();
+      });
+    };
+    if (enable) {
+      clear(el);
       const box = el;
       const box_width = box.offsetWidth;
       const box_height = box.offsetHeight;
@@ -60,6 +69,7 @@ const particle = {
       }
       for (let i = 0; i < num; i++) {
         const p = document.createElement("span");
+        p.classList.add("particle-item");
 
         const style = `
       position: absolute;
@@ -84,8 +94,9 @@ const particle = {
 
         box.appendChild(p);
       }
-    }, 1000);
-
+    } else {
+      clear(el);
+    }
     if (filter) el.style.transition = "all 0.25s";
     el.addEventListener("mouseenter", () => {
       if (!filter) return;
@@ -96,6 +107,14 @@ const particle = {
     el.addEventListener("mouseleave", () => {
       el.style.filter = "";
     });
+  }, 1000);
+};
+const particle = {
+  mounted(el: HTMLElement, binding: DirectiveBinding) {
+    fn(el, binding);
+  },
+  updated(el: HTMLElement, binding: DirectiveBinding) {
+    fn(el, binding);
   },
 };
 
