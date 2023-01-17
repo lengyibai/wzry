@@ -21,4 +21,5 @@ declare interface SettingConfig {
   theme: number;
   speed: 0 | 1 | 2;
   loginSound: boolean;
+  particle: boolean;
 }

@@ -86,7 +86,12 @@ onBeforeUnmount(() => {
     @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
     ref="footbar"
-    v-particle="{ color: '#2e5283', filter: false, size: 10 }"
+    v-particle="{
+      color: '#2e5283',
+      filter: false,
+      size: 10,
+      enable: $settingStore.config.particle,
+    }"
   >
     <div class="line" ref="line" v-if="enable_music"></div>
     <MusicPlay

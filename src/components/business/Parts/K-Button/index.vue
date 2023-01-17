@@ -4,6 +4,7 @@
     v-particle="{
       color: particle_color[type],
       size: 5,
+      enable: $settingStore.config.particle,
     }"
     :style="style1"
   >
@@ -14,6 +15,8 @@
   </button>
 </template>
 <script setup lang="ts">
+import settingStore from "@/store/setting";
+
 interface Props {
   type?: "info" | "error" | "warning"; //类型
   width?: string; //宽度
@@ -28,6 +31,8 @@ const props = withDefaults(defineProps<Props>(), {
   fontSize: "24px",
   autoSize: false,
 });
+
+const $settingStore = settingStore();
 
 const getIcon = (src: string) => `${IMGBED}/image/btn_${src}.png`;
 
