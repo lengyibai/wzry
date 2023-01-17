@@ -10,5 +10,6 @@ declare type Timeout = NodeJS.Timeout | number;
 
 interface Window {
   IMGBED: string;
+  REMOTE_VERSION: string;
 }
 declare const IMGBED: string;
