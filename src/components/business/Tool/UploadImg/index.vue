@@ -28,7 +28,7 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 
 const fn = (e: Event) => {
-  const file = (e.target as HTMLInputElement).files![0];
+  const file = (e.target as HTMLInputElement).files?.[0];
   $switchStore.$loading.show("图片压缩中...");
   $imageOptimizer({
     file,

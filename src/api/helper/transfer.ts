@@ -51,17 +51,17 @@ export const post = <R>(name: string, value: R) => {
  * @param {boolean} obj: 是否传递对象进行修改
  */
 export const patch = <R>(params: Patch, obj?: boolean) => {
-  const { name, key, k, value, v } = params;
+  const { name, key = "", k = "", value, v } = params;
   const d = localStorage.getItem(name);
   const data: R[] = d && JSON.parse(d);
   let newData = data.find((item) => {
     const i = item as Record<string, any>;
-    return i[key!] === value;
+    return i[key] === value;
   }) as Record<string, any>;
   if (obj) {
     newData = v;
   } else {
-    newData[k!] = v;
+    newData[k] = v;
   }
 
   localStorage.setItem(name, JSON.stringify($deepMearge(data, [newData]))); //合并数据并存储

@@ -1,7 +1,7 @@
+<!-- eslint-disable @typescript-eslint/no-non-null-assertion -->
 <script setup lang="ts">
 import { ref } from "vue";
 
-// import { updateHero } from "@/api/main/games/voice";
 import viewHide from "../../../../hooks/useViewHide";
 
 import switchStore from "@/store/switch";

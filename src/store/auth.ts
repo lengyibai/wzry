@@ -40,7 +40,7 @@ const authStore = defineStore("auth", () => {
         userInfo.value = res;
         userStatus.value = true;
         window.localStorage.setItem("user", JSON.stringify(res));
-        routesStore().addRoutes(res.role!);
+        routesStore().addRoutes(res.role);
         router.push(HOME_URL);
         switchStore().$msg("登录成功");
         watchStatus();

@@ -60,12 +60,12 @@ const voiceInfo = (info: HTMLMediaElement) => {
 /* 语音播放结束后触发 */
 let ended: () => void = () => {
   //如果播放完最后一个，则停止播放
-  if (current_index.value + 1 === voices.value!.length) {
+  if (current_index.value + 1 === voices.value.length) {
     current_index.value += 1;
     return;
   }
   //等待播放动画结束后再播放
-  play(voices.value![current_index.value + 1].link, current_index.value + 1);
+  play(voices.value[current_index.value + 1].link, current_index.value + 1);
 };
 </script>
 

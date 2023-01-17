@@ -300,7 +300,7 @@ const skinStore = defineStore("skin", () => {
         multiple.forEach((item) => {
           if (s === item.label) {
             filter_list.value = filter_list.value.filter((skin) => {
-              return item.value.includes(skin.category!);
+              return item.value.includes(skin.category || "");
             });
           }
         });

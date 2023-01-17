@@ -31,7 +31,7 @@ const num = (data: Hero.Data) =>
   num_type.value === "身高"
     ? data.height + "cm"
     : num_type.value === "皮肤数量"
-    ? data.skins!.length + "款"
+    ? data.skins?.length || 0 + "款"
     : "";
 
 /* 查看详情 */

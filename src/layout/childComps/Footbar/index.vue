@@ -25,26 +25,30 @@ const playProgress = ref(0); //播放进度
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const getPoint = (e: MouseEvent) => {
-  playProgress.value = parseFloat(
-    (
-      (e.pageX - footbar.value!.offsetLeft) /
-      footbar.value!.offsetWidth
-    ).toFixed(2)
-  );
+  if (footbar.value) {
+    playProgress.value = parseFloat(
+      (
+        (e.pageX - footbar.value.offsetLeft) /
+        footbar.value.offsetWidth
+      ).toFixed(2)
+    );
+  }
 };
 
 /* 悬浮移动竖线 */
 const handleMoveLine = (e: MouseEvent) => {
   if (!enable_music.value) return;
-  line.value!.style.left =
-    parseFloat(
-      (
-        (e.pageX - footbar.value!.offsetLeft) /
-        footbar.value!.offsetWidth
-      ).toFixed(2)
-    ) *
-      100 +
-    "%";
+  if (line.value && footbar.value) {
+    line.value.style.left =
+      parseFloat(
+        (
+          (e.pageX - footbar.value.offsetLeft) /
+          footbar.value.offsetWidth
+        ).toFixed(2)
+      ) *
+        100 +
+      "%";
+  }
 };
 
 /* 点击音乐工具栏 */

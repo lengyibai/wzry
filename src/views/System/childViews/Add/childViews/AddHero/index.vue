@@ -1,3 +1,4 @@
+<!-- eslint-disable @typescript-eslint/no-non-null-assertion -->
 <script setup lang="ts">
 import { reactive } from "vue";
 
@@ -80,7 +81,8 @@ form_data.value ??= $deepCopy(heroDefault);
 
 /* 发布 */
 const EmitCommit = async () => {
-  const { id, mark, name, cover, headImg, poster } = form_data.value!;
+  const { id, mark, name, cover, headImg, poster } =
+    form_data.value as Hero.Data;
   if (id && mark && name && cover && headImg && poster) {
     await addHeroBasic({
       id,

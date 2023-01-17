@@ -30,12 +30,12 @@ const show_progress = ref(false); //显示滚动索引组件
 
 //技能数量
 const skill_num = computed(() => {
-  return hero_data.skills!.length;
+  return (hero_data.skills && hero_data.skills.length) || 0;
 });
 
 //皮肤数量
 const skin_num = computed(() => {
-  return hero_data.skins!.length;
+  return (hero_data.skins && hero_data.skins.length) || 0;
 });
 
 /* 点击滚动索引 */

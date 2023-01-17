@@ -28,11 +28,12 @@ const skin_bg = reactive<string[]>([]); //背景图
 
 /* 切换皮肤触发 */
 const bgImgs = ([i, index]: number[]) => {
-  skin_bg[i] = hero_data.value.skins![index].poster; //设置背景图
+  const skins = hero_data.value.skins;
+  skin_bg[i] = (skins && skins[index].poster) || ""; //设置背景图
   skin_bg_toggle.value = !skin_bg_toggle.value; //用于皮肤背景的切换动画
 
   //设置皮肤名，皮肤名需要有切换时的打字机效果
-  active_skin_name.value = hero_data.value.skins![index].name;
+  active_skin_name.value = (skins && skins[index].name) || "";
   skin_name_toggle.value = !skin_name_toggle.value;
 
   //隐藏价格
@@ -40,7 +41,8 @@ const bgImgs = ([i, index]: number[]) => {
 
   //延迟设置
   setTimeout(async () => {
-    const skin_type = hero_data.value.skins![index].type;
+    const skins = hero_data.value.skins;
+    const skin_type = (skins && skins[index].type) || "";
     // 0 为伴生
     if (skin_type !== 0) {
       active_skin_type.value = (
@@ -53,7 +55,7 @@ const bgImgs = ([i, index]: number[]) => {
     $heroDetailStore.skinToggle(hero_data.value.name, active_skin_name.value);
 
     setTimeout(() => {
-      skin_price.value = hero_data.value.skins![index].price;
+      skin_price.value = (skins && skins[index].price) || "";
       skin_price_toggle.value = true;
     }, 100);
   }, 250);

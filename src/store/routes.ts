@@ -12,7 +12,7 @@ const routeStore = defineStore("route", () => {
   const asyncRoutesName = ref<RouteRecordName[]>([]); //添加的路由name组，用于匹配并删除路由
 
   /** @description: 添加路由及存储路由侧边栏 */
-  const addRoutes = (role: 0 | 1) => {
+  const addRoutes = (role: 0 | 1 = 1) => {
     if (routes.value.length) return;
     const dynamicRouter: RouteRecordRaw[] = [];
     //根据用户权限设置路由表

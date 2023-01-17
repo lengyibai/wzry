@@ -81,7 +81,7 @@ const EmitTip = (v: boolean) => {
 
 /* 保存配置 */
 const EmitSaveConfig = () => {
-  $settingStore.saveConfig(config.value!);
+  $settingStore.saveConfig(config.value);
 };
 
 /* 重置配置 */

@@ -9,7 +9,7 @@ const addRouter = () => {
   if (user) {
     const userInfo = JSON.parse(user) as User;
     $authStore.setUserInfo(userInfo);
-    $routesStore.addRoutes(userInfo.role!);
+    $routesStore.addRoutes(userInfo.role || 0);
   }
 };
 
