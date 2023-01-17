@@ -109,7 +109,7 @@ const EmitResetConfig = () => {
       <K-Dialog
         v-if="show_setting"
         v-model="show_setting"
-        title="仅展示，功能尚未开发"
+        title="设置"
         width="920px"
         ctx-width="90%"
         up
