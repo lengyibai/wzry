@@ -272,7 +272,7 @@ setTimeout(async () => {
       <SelectHero
         v-model="hero_id"
         key="SelectHero"
-        @change="EmitSelectHeroChange"
+        @update:model-value="EmitSelectHeroChange"
       />
 
       <!-- 技能名称 -->
@@ -324,7 +324,7 @@ setTimeout(async () => {
           v-model="skill_effect"
           :value="skill_effect"
           label="技能效果"
-          @change="EmitSelectEffect"
+          @update:model-value="EmitSelectEffect"
           :disabled="!activeSkill().effect![effectIndex]"
         />
         <button class="add" @click="handleAddEffect">添加/下一行</button>

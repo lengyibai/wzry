@@ -118,7 +118,11 @@ const EmitResetConfig = () => {
           <!-- 主题 -->
           <div class="option">
             <div class="label">主题</div>
-            <K-Select v-model="config.theme" :option="['蓝', '暗']" />
+            <K-Select
+              v-model="config.theme"
+              @update:model-value="EmitSaveConfig"
+              :option="['蓝', '暗']"
+            />
           </div>
 
           <!-- 动画速率 -->
@@ -140,7 +144,7 @@ const EmitResetConfig = () => {
               :text="config.audioVolume + '%'"
               :disabled="!config.audio"
             />
-            <K-Check v-model="config.audio" @change="EmitAudio" />
+            <K-Check v-model="config.audio" @update:model-value="EmitAudio" />
           </div>
 
           <!-- 音乐 -->
@@ -152,7 +156,7 @@ const EmitResetConfig = () => {
               :text="config.musicVolume + '%'"
               :disabled="!config.music"
             />
-            <K-Check v-model="config.music" @change="EmitMusic" />
+            <K-Check v-model="config.music" @update:model-value="EmitMusic" />
           </div>
 
           <!-- 粒子特效 -->
@@ -163,7 +167,10 @@ const EmitResetConfig = () => {
                 desc="开启后对性能有亿点影响，主要是对底部音乐播放器和按钮添加粒子上升效果，与登录页面的登录按钮粒子效果一致"
               />
             </div>
-            <K-Check v-model="config.particle" @change="EmitParticle" />
+            <K-Check
+              v-model="config.particle"
+              @update:model-value="EmitParticle"
+            />
           </div>
 
           <!-- 视频背景 -->
@@ -174,7 +181,10 @@ const EmitResetConfig = () => {
                 desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
               />
             </div>
-            <K-Check v-model="config.videoBg" @change="EmitSaveConfig" />
+            <K-Check
+              v-model="config.videoBg"
+              @update:model-value="EmitSaveConfig"
+            />
           </div>
 
           <!-- 小贴士 -->
@@ -185,7 +195,7 @@ const EmitResetConfig = () => {
                 desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
               />
             </div>
-            <K-Check v-model="config.tip" @change="EmitTip" />
+            <K-Check v-model="config.tip" @update:model-value="EmitTip" />
           </div>
         </div>
 

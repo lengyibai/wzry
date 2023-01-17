@@ -104,7 +104,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 interface Emits {
   (e: "update:modelValue", v: string | number | any[]): void;
-  (e: "change", v: string | number | any[]): void;
 }
 const emit = defineEmits<Emits>();
 
@@ -149,14 +148,11 @@ const select = (id: number, name: string) => {
     selected_list.value = [...new Set(selected_list.value)];
     emit("update:modelValue", selected_list.value);
 
-    emit("change", selected_list.value);
-
     setTimeout(() => {
       input_value.value = "请选择";
     });
   } else {
     emit("update:modelValue", props.id ? Number(id) : name);
-    emit("change", props.id ? Number(id) : name);
     select_list.value = props.data;
     active_value.value = name;
     input_value.value = name;
@@ -167,7 +163,6 @@ const select = (id: number, name: string) => {
 const delsSelected = (index: number) => {
   selected_list.value.splice(index, 1);
   emit("update:modelValue", selected_list.value);
-  emit("change", selected_list.value);
 };
 
 /* 在created会赋空值，只能通过侦听器 */

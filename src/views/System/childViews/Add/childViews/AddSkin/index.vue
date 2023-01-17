@@ -153,7 +153,7 @@ setTimeout(async () => {
         class="select-hero"
         v-model="hero_id"
         :disabled="!!form_data!.length"
-        @change="EmitSelectHero"
+        @update:model-value="EmitSelectHero"
         key="SelectHero"
       />
       <span class="skin-num" key="SkinNum">拥有皮肤：{{ skin_num }}款</span>
