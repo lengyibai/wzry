@@ -6,6 +6,7 @@ import clickAudio from "@/store/audio";
 import switchStore from "@/store/switch";
 import speedStore from "@/store/speed";
 import { $debounce } from "@/utils";
+import { configDefault } from "@/defaultValue/defaults";
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 const $settingStore = settingStore();
@@ -15,21 +16,11 @@ const $clickAudio = clickAudio();
 const $speedStore = speedStore();
 
 // 默认配置
-const default_config: SettingConfig = {
-  tip: true,
-  videoBg: true,
-  audio: true,
-  audioVolume: 50,
-  music: true,
-  musicVolume: 50,
-  theme: 0,
-  speed: 1,
-  loginSound: true,
-};
+const default_config: SettingConfig = { ...configDefault };
 
 const show_setting = ref(false); //是否显示设置弹窗
 const show_confirm_reset = ref(false); //是否显示确认重置弹窗
-const config = ref<SettingConfig>($settingStore.config);
+const config = ref<SettingConfig>({ ...$settingStore.config });
 
 /* 本地配置立即生效 */
 const setTakeEffect = () => {
@@ -58,7 +49,7 @@ const EmitMusicVolume = (v: number) => {
     $debounce(() => {
       EmitSaveConfig();
     }, 1000);
-  }, 50);
+  }, 100);
 };
 
 /* 开启音效 */
@@ -76,6 +67,11 @@ const EmitAudioVolume = (v: number) => {
   }, 100);
 };
 
+/* 粒子特效 */
+const EmitParticle = () => {
+  EmitSaveConfig();
+};
+
 /* 启用/禁用Tip */
 const EmitTip = (v: boolean) => {
   v && $switchStore.$tip("2rb7");
@@ -89,7 +85,8 @@ const EmitSaveConfig = () => {
 /* 重置配置 */
 const EmitResetConfig = () => {
   $settingStore.saveConfig(default_config);
-  config.value = default_config;
+  config.value = { ...default_config };
+
   setTakeEffect();
   $switchStore.$msg("已重置所有配置项");
 };
@@ -152,6 +149,12 @@ const EmitResetConfig = () => {
             :disabled="!config.music"
           />
           <K-Check v-model="config.music" @change="EmitMusic" />
+        </div>
+
+        <!-- 粒子特效 -->
+        <div class="option">
+          <div class="label">粒子特效</div>
+          <K-Check v-model="config.particle" @change="EmitParticle" />
         </div>
 
         <!-- 视频背景 -->

@@ -22,6 +22,7 @@ export const heroDefault: Hero.Data = {
   specialty: [], //特长
 };
 
+/** @description: 默认皮肤信息 */
 export const skinDefault: Hero.Skin = {
   id: 0, //标识
   hero: 0, //所属英雄id
@@ -37,6 +38,7 @@ export const skinDefault: Hero.Skin = {
   gender: "", //性别
 };
 
+/** @description: 默认音频信息 */
 export const voiceDefault: Hero.Voice = {
   text: "", //语音文字
   link: "", //语音链接
@@ -90,4 +92,18 @@ export const epigraphDefault: Epigraph.Data = {
   type: [], //类型
   img: "", //图标
   effect: [], //效果
+};
+
+/** @description: 默认配置信息 */
+export const configDefault: SettingConfig = {
+  tip: true,
+  videoBg: true,
+  audio: true,
+  audioVolume: 50,
+  music: true,
+  musicVolume: 50,
+  theme: 0,
+  speed: 1,
+  loginSound: true,
+  particle: false,
 };
