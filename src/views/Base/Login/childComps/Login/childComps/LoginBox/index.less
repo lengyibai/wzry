@@ -5,10 +5,12 @@
   flex-direction: column;
 
   .box {
+    position: relative;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--theme-color-thirteen);
+    width: 100%;
     margin-bottom: 15px;
+    border-bottom: 1px solid var(--theme-color-thirteen);
 
     .iconfont {
       margin-right: 10px;
@@ -17,9 +19,11 @@
     }
 
     input {
+      flex: 1;
       border: none;
-      color: var(--theme-color-thirteen);
+      color: var(--theme-color-thirteen) !important;
       font-size: 26px;
+      text-align: left !important;
       background-color: transparent;
 
       &::placeholder {
