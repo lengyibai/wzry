@@ -4,12 +4,12 @@ import { skinDefault } from "@/defaultValue";
 interface Props {
   data: typeof skinDefault; //英雄数据
 }
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   data: () => skinDefault,
 });
 
 interface Emits {
-  (e: "showTool", v: string): void;
+  (e: "showTool", v: { type: string; data: Hero.Skin }): void;
 }
 const emit = defineEmits<Emits>();
 
@@ -22,12 +22,12 @@ const priceShow = (price: number | string) => {
 
 /* 点击工具选项 */
 const handle = (v: string) => {
-  emit("showTool", v);
+  emit("showTool", { type: v, data: props.data });
 };
 </script>
 
 <template>
-  <div v-maskGradient class="skin-card cursor-pointer">
+  <div v-maskGradient class="skin-card">
     <img class="bg" :src="data.cover" />
     <img v-if="data.type" class="type" :src="(data.type as string)" />
     <div class="price">
