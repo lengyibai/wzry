@@ -1,6 +1,45 @@
-.k-input {
-  border: none;
-  background-color: transparent;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
+.FormInput {
+  position: relative;
+  display: flex;
+
+  input {
+    width: 100%;
+    padding: 0 0.25em;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .border,
+  .focus {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: var(--red);
+    transition: all var(--time-500);
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .focus {
+    background-color: var(--theme-color-four);
+  }
+
+  .tip {
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    height: 16px;
+    color: var(--red);
+    font-size: 16px;
+    transform: translateY(125%);
+    transform-origin: center top;
+  }
+}
+
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }

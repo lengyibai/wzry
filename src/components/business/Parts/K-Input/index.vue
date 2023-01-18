@@ -1,56 +1,118 @@
+<template>
+  <div class="FormInput" :class="{ disabled: disabled }">
+    <input
+      type="text"
+      :value="modelValue === 0 ? '' : modelValue"
+      :placeholder="placeholder"
+      :style="{
+        width: width,
+        borderColor: borderColor,
+        color: color,
+        textAlign: align,
+        fontSize: fontSize,
+      }"
+      @input="input"
+      @focus="focus"
+      @blur="blur"
+    />
+
+    <!-- 获取焦点拉长线条 -->
+    <transition name="border">
+      <div v-if="line" v-show="is_focus" class="focus"></div>
+    </transition>
+
+    <!-- 输入不合法拉长线条 -->
+    <transition name="border">
+      <div v-show="!legal" class="border"></div>
+    </transition>
+
+    <!-- 输入不合法提示 -->
+    <transition name="tip">
+      <div v-if="!legal" v-typewriterSingle class="tip">{{ tip }}</div>
+    </transition>
+  </div>
+</template>
 <script setup lang="ts">
-import switchStore from "@/store/switch";
+import { ref } from "vue";
+
 interface Props {
-  modelValue: string;
-  placeholder?: string;
-  width?: string;
-  color?: string;
-  fontSize?: string;
-  align?: "center" | "left";
-  borderColor?: string;
+  modelValue: number | string; //值
+  width?: string; //整体宽度
+  disabled?: boolean; //是否禁用
+  placeholder?: string; //输入框描述
+  validate?: (val: string) => string; //自定义表单验证
+  required?: boolean; //是否必填
+  number?: boolean; //是否为数字
+  borderColor?: string; //边框颜色
+  line?: boolean; //是否显示聚焦线
+  color?: string; //字体颜色
+  align?: "left" | "center" | "right"; //对齐方式
+  fontSize?: string; //字体大小
 }
 interface Emits {
-  (e: "update:modelValue", v: string): void;
+  (e: "update:modelValue", v: string | number): void;
+  (e: "blur", v: string | number): void;
+  (e: "focus"): void;
 }
 
-withDefaults(defineProps<Props>(), {
-  modelValue: "冷弋白",
+const props = withDefaults(defineProps<Props>(), {
+  width: "initial",
+  modelValue: "",
+  disabled: false,
   placeholder: "请输入",
-  width: "8em",
-  color: "#fff",
-  fontSize: "24px",
-  align: "center",
+  validate: () => "",
+  required: false,
+  number: false,
   borderColor: "#fff",
+  line: false,
+  color: "#fff",
+  align: "left",
+  fontSize: "26px",
 });
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const tip = ref(""); //不合法提示
+const legal = ref(true); //是否合法
+const is_focus = ref(false); //是否获取焦点
 
-/* 输入触发 */
-const handleInput = (e: Event) => {
-  const value = (e.target as HTMLInputElement).value;
-  emit("update:modelValue", value);
-  $switchStore.$clickAudio("键盘");
+/* 获取焦点 */
+const focus = () => {
+  is_focus.value = true;
+  emit("focus");
+};
+
+/* 失去焦点 */
+const blur = (e: Event) => {
+  const v = (e.target as HTMLInputElement).value;
+  is_focus.value = false;
+  legal.value = true;
+  setTimeout(() => {
+    if (props.validate(v)) {
+      tip.value = props.validate(v);
+      legal.value = false;
+    }
+
+    if (props.required && v === "") {
+      tip.value = "必填项";
+      legal.value = false;
+    }
+    if (props.number && v && isNaN(Number(v))) {
+      tip.value = "限制为数字";
+      legal.value = false;
+    }
+  });
+
+  emit("blur", v);
+};
+
+const input = (e: Event) => {
+  const v = (e.target as HTMLInputElement).value;
+  emit(
+    "update:modelValue",
+    props.number ? (isNaN(Number(v)) ? v : Number(v)) : v
+  );
 };
 </script>
-
-<template>
-  <input
-    class="k-input"
-    :placeholder="placeholder"
-    type="text"
-    :value="modelValue"
-    :style="{
-      width: width,
-      color: color,
-      fontSize: fontSize,
-      textAlign: align,
-      borderBottomColor: borderColor,
-    }"
-    @input="handleInput"
-  />
-</template>
-
 <style scoped lang="less">
 @import url("./index.less");
 </style>
