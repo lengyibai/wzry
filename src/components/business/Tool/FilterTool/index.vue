@@ -45,20 +45,20 @@ const handleSelect = (v: { label: string; value: number | string }) => {
 </script>
 
 <template>
-  <div class="select-filter cursor-pointer">
-    <div class="title" @click="handleShowList">{{ sort_text }}</div>
+  <div class="select-filter cursor-pointer" @click="handleShowList">
+    <div class="title">{{ sort_text }}</div>
     <img
       :class="{ 'arrow-active': is_unfold }"
       :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
-      @click="handleShowList"
     />
     <!-- 展开列表 -->
     <div
       class="select-list"
       :class="{ unfold: !is_unfold }"
       :style="{ height: listHeight }"
+      @click.stop
     >
       <transition-group name="select-list">
         <button
