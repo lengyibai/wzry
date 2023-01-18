@@ -507,7 +507,7 @@
     },
     {
       "id": 102,
-      "name": "永宁纪",
+      "name": "永宁纪（限定）",
       "link": "https://lengyibai.gitee.io/img-bed/wzry/skinType/102.png"
     },
     {
@@ -524,6 +524,11 @@
       "id": 105,
       "name": "2022王者之证",
       "link": "https://lengyibai.gitee.io/img-bed/wzry/skinType/105.png"
+    },
+    {
+      "id": 106,
+      "name": "永宁纪（至尊）",
+      "link": "https://lengyibai.gitee.io/img-bed/wzry/skinType/106.png"
     }
   ]
 }
