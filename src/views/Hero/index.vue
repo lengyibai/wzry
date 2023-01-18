@@ -13,7 +13,6 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
-import { $debounceInstant } from "@/utils";
 import { $deepCopy, $lazyLoadImages } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
@@ -60,9 +59,7 @@ const setLazyImg = () => {
 
 /* 悬浮卡片 */
 const handleEnterCard = () => {
-  $debounceInstant(() => {
-    $switchStore.$clickAudio("n4r4");
-  }, 50);
+  $switchStore.$clickAudio("n4r4");
 };
 
 /* 查看详情 */

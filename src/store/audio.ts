@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { $debounceInstant } from "@/utils";
+
 const audioStore = defineStore("audio", () => {
   const sound_name = ref("默认"); //音效名
   const volume = ref(0.5); //音量
@@ -35,10 +37,8 @@ const audioStore = defineStore("audio", () => {
     warning: ["16vy"],
   };
 
-  /** @description: 播放指定音效 */
-  const play = (name?: string) => {
-    if (!status.value) return;
-
+  /** @description: play封装 */
+  const playAudio = (name?: string) => {
     //获取点击触发的音效名
     sound_name.value =
       (typeof name === "string" &&
@@ -54,6 +54,19 @@ const audioStore = defineStore("audio", () => {
     audio.play().catch(() => {
       /*  */
     });
+  };
+
+  /** @description: 播放指定音效 */
+  const play = (name?: string) => {
+    if (!status.value) return;
+
+    if (name === "n4r4") {
+      $debounceInstant(() => {
+        playAudio(name);
+      }, 25);
+    } else {
+      playAudio(name);
+    }
   };
 
   /** @description: 音量调节 */

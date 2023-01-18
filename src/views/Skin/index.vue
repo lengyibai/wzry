@@ -12,7 +12,6 @@ import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
 import switchStore from "@/store/switch";
-import { $debounceInstant } from "@/utils";
 
 const $skinStore = skinStore();
 const $otherStore = otherStore();
@@ -73,9 +72,7 @@ const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
 
 /* 悬浮卡片 */
 const handleEnterCard = () => {
-  $debounceInstant(() => {
-    $switchStore.$clickAudio("n4r4");
-  }, 50);
+  $switchStore.$clickAudio("n4r4");
 };
 
 /* 监听筛选后的英雄列表 */
