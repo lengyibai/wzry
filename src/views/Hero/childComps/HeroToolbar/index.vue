@@ -109,27 +109,7 @@ const handSearch = () => {
     </div>
 
     <!-- 只看性别 -->
-    <div class="gender">
-      <span>只看：</span>
-      <i
-        class="iconfont wzry-nan cursor-pointer"
-        :class="{ 'nan-active': $heroStore.gender_type === 1 }"
-        title="男"
-        @click="handerSetGender(1)"
-      />
-      <i
-        class="iconfont wzry-nv cursor-pointer"
-        :class="{ 'nv-active': $heroStore.gender_type === 2 }"
-        title="女"
-        @click="handerSetGender(2)"
-      />
-      <i
-        class="iconfont wzry-xingbie cursor-pointer"
-        :class="{ 'all-active': $heroStore.gender_type === 0 }"
-        title="全部"
-        @click="handerSetGender(0)"
-      />
-    </div>
+    <FilterGender v-model="gender" @update:model-value="handerSetGender" />
 
     <!-- 搜索 -->
     <K-Input
