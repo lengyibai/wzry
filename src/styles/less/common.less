@@ -75,12 +75,14 @@
 }
 
 /* 可点击按钮 */
-.lib-click:hover {
-  opacity: 0.75;
-}
+.lib-click {
+  &:hover {
+    opacity: 0.75;
+  }
 
-.lib-click:active {
-  opacity: 0.5;
-  transform: scale(0.99);
-  transform-origin: bottom center;
+  &:active {
+    opacity: 0.5;
+    transform: scale(0.99);
+    transform-origin: bottom center;
+  }
 }
