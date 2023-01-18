@@ -42,6 +42,7 @@ const show_AddLink = ref(false); //显示添加链接弹窗
 const emit = defineEmits<Emits>();
 const getLink = (link: string) => {
   emit("update:modelValue", link);
+  show_AddLink.value = false;
 };
 </script>
 <style scoped lang="less">
