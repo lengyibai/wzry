@@ -39,6 +39,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./SideItem.vue"; //调用自身
 
+import switchStore from "@/store/switch";
 import { Route } from "@/router/interface";
 import otherStore from "@/store/other";
 
@@ -62,6 +63,7 @@ const props = withDefaults(defineProps<Props>(), {
 const $router = useRouter();
 const $route = useRoute();
 const $otherStore = otherStore();
+const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`;
@@ -77,11 +79,13 @@ const fn = () => {
   show.value = !show.value;
   if (!props.route.children) {
     $router.push(props.route.path);
+    return;
   } else if (show.value) {
     routes.push(...props.route.children);
   } else {
     routes.length = 0;
   }
+  $switchStore.$clickAudio();
 };
 
 const sidebarActive = (routes: Route) => {
