@@ -19,7 +19,7 @@ import { getHeroBasic } from "@/api/main/games/hero";
 
 interface Props {
   modelValue: number; //英雄id
-  disabled: boolean; //是否禁用
+  disabled?: boolean; //是否禁用
 }
 interface Emits {
   (e: "update:modelValue", v: number): void;
