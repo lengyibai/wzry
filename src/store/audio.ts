@@ -3,34 +3,43 @@ import { ref } from "vue";
 
 const audioStore = defineStore("audio", () => {
   const sound_name = ref("默认"); //音效名
-  const volume = ref(0); //音量
+  const volume = ref(0.5); //音量
   const status = ref(true); //是否启用音效
 
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {
-    默认: ["默认"],
+    activity: ["数据库"],
+    back: ["返回"],
+    cancel: ["取消"],
+    close: ["关闭"],
+    confirm_dialog: ["确认弹窗"],
+    confirm: ["确定"],
+    default: ["默认"],
+    delete: ["确认删除"],
+    detail: ["查看详情", "/system/hero"],
+    epigraph: ["铭文"],
+    equip: ["装备"],
+    error: ["错误提示"],
+    fold: ["收起侧边栏"],
+    hero: ["英雄列表", "/hero"],
+    into: ["主页"],
+    key: ["键盘"],
+    login: ["登录"],
+    message: ["消息提示"],
+    mode: ["/home"],
+    num: ["range"],
+    show: ["查看"],
+    skin: ["皮肤"],
+    tv: ["tv"],
     tab: ["tab"],
-    登录: ["登录"],
-    模式选择: ["/home"],
-    查看详情: ["/system/hero"],
-    皮肤相关: ["/system/skin"],
-    装备相关: ["/system/add", "/system/edit"],
-    英雄列表: ["/hero"],
-    查看: ["查看"],
-    确定: ["确定"],
-    关闭: ["关闭"],
-    取消: ["取消"],
-    消息提示: ["消息提示"],
-    警告提示: ["警告提示"],
-    错误提示: ["错误提示"],
-    确认弹窗: ["确认弹窗"],
-    关闭抽屉: ["收起侧边栏"],
     tip: ["tip"],
+    warning: ["警告提示"],
   };
 
   /** @description: 播放指定音效 */
   const play = (name?: string) => {
     if (!status.value) return;
+
     //获取点击触发的音效名
     sound_name.value =
       (typeof name === "string" &&
