@@ -1,12 +1,29 @@
 <script setup lang="ts">
 import { $chromeV } from "@/utils";
-import GlobalSwitch from "@/components/business/GlobalSwitch/index.vue";
 import useVersion from "@/hooks/useVersion";
+import settingStore from "@/store/setting";
+import musicStore from "@/store/music";
+import clickAudio from "@/store/audio";
+import speedStore from "@/store/speed";
 import otherStore from "@/store/other";
 
+const $settingStore = settingStore();
+const $musicStore = musicStore();
+const $clickAudio = clickAudio();
+const $speedStore = speedStore();
 const $otherStore = otherStore();
 
 const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
+
+/* 本地配置立即生效 */
+const setTakeEffect = () => {
+  $musicStore.setVolume($settingStore.config.musicVolume);
+  $clickAudio.setVolume($settingStore.config.audioVolume);
+  $speedStore.setSpeed($settingStore.config.speed);
+  $clickAudio.setAudio($settingStore.config.audio);
+};
+setTakeEffect();
+$settingStore.setTakeEffectFn(setTakeEffect);
 </script>
 
 <template>
@@ -21,7 +38,7 @@ const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
     <GlobalSwitch />
     <transition name="fade">
       <div v-show="!$otherStore.collapse" class="watermark">
-        <p>浏览器内核版本：{{ $chromeV() }}</p>
+        <p>浏览器内核版本：{{ $chromeV }}</p>
         <p>当前版本：{{ LOCAL_VERSION }}</p>
         <p>最新版本：{{ REMOTE_VERSION }}</p>
       </div>

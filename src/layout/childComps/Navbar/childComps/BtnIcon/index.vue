@@ -24,14 +24,10 @@ const show_setting = ref(false); //是否显示设置弹窗
 const show_confirm_reset = ref(false); //是否显示确认重置弹窗
 const config = ref<SettingConfig>({ ...$settingStore.config });
 
-/* 本地配置立即生效 */
-const setTakeEffect = () => {
-  $musicStore.setVolume(config.value.musicVolume);
-  $clickAudio.setVolume(config.value.audioVolume);
-  $speedStore.setSpeed(config.value.speed);
-  $clickAudio.setAudio(config.value.audio);
+/* 显示设置弹窗 */
+const handleSetting = () => {
+  show_setting.value = true;
 };
-setTakeEffect();
 
 /* 动画速率 */
 const EmitSpeed = (v: number) => {
@@ -46,12 +42,10 @@ const EmitMusic = (v: boolean) => {
 };
 /* 音乐音量调节 */
 const EmitMusicVolume = (v: number) => {
+  $musicStore.setVolume(v);
   $debounce(() => {
-    $musicStore.setVolume(v);
-    $debounce(() => {
-      EmitSaveConfig();
-    }, 1000);
-  }, 100);
+    EmitSaveConfig();
+  }, 1000);
 };
 
 /* 开启音效 */
@@ -61,12 +55,10 @@ const EmitAudio = (v: boolean) => {
 };
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
+  $clickAudio.setVolume(v);
   $debounce(() => {
-    $clickAudio.setVolume(v);
-    $debounce(() => {
-      EmitSaveConfig();
-    }, 1000);
-  }, 100);
+    EmitSaveConfig();
+  }, 1000);
 };
 
 /* 粒子特效 */
@@ -88,8 +80,7 @@ const EmitSaveConfig = () => {
 const EmitResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-
-  setTakeEffect();
+  $settingStore.takeEffect();
   $switchStore.$msg("已重置所有配置项");
 };
 </script>
@@ -99,7 +90,7 @@ const EmitResetConfig = () => {
     <i
       class="iconfont wzry-setting cursor-pointer"
       title="设置"
-      @click="show_setting = true"
+      @click="handleSetting"
     />
     <a href="https://github.com/lengyibai/wzry" target="_blank">
       <i class="iconfont wzry-mark-github" title="Github" />
