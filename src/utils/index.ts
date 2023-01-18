@@ -317,13 +317,13 @@ export function $deepMearge(obj, target = {}) {
 }
 
 /* 获取浏览器版本 */
-export function $chromeV() {
+export const $chromeV = (()=>{
   let v = "";
   navigator.userAgent.split(" ").forEach((item) => {
     /chrome/i.test(item) && (v = item);
   });
   return Number(v.split("/")[1].split(".")[0]);
-}
+})()
 
 /* 排序 */
 export function $typeSort(data, key, rev = true) {
@@ -486,3 +486,32 @@ export function $promiseTimeout(fn, delay) {
 
 /* 判断是否为移动端 */
 export const $isPhone = (()=>/mobile/i.test(navigator.userAgent))()
+
+/* 判断一个对象中的属性是否存在空值 */
+export const existEmpty = obj => Object.values(obj).some(val => val === "");
+
+/* 节流(立即执行) */
+export const $throttleInstant = (() => {
+  let last = 0;
+  return (callback, wait = 800) => {
+    let now = +new Date();
+    if (now - last > wait) {
+      callback();
+      last = now;
+    }
+  };
+})();
+
+/* 防抖立即执行 */
+export const $debounceInstant = (() => {
+  let timer;
+  return (fn, delay, ...args) => {
+    let context = this;
+    if (timer) clearTimeout(timer);
+    let callNow = !timer;
+    timer = setTimeout(() => {
+      timer = null;
+    }, delay);
+    if (callNow) fn.apply(context, args);
+  };
+})();
