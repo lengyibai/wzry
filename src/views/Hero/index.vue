@@ -48,6 +48,8 @@ const show_HeroDetail = ref(false); //显示英雄详情
 const hero_list = ref<Hero.Data[]>([]); //英雄列表
 const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
+$switchStore.$clickAudio("4d8m");
+
 /* 设置图片懒加载 */
 const setLazyImg = () => {
   const imgs = heroListRef.value.childrens.map((item: HTMLElement) => {
@@ -153,8 +155,6 @@ onMounted(() => {
   $bus.on("resize", () => {
     changeCount();
   });
-
-  $switchStore.$clickAudio("4d8m");
 });
 
 onBeforeUnmount(() => {

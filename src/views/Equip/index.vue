@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from "vue";
+import { ref, watch } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
@@ -15,10 +15,11 @@ const $switchStore = switchStore();
 
 const show_Details = ref(false); //显示装备详情
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
-
 const equip_data = ref<typeof equipDefault | undefined>(
   $deepCopy(equipDefault)
 ); //被点击的装备信息
+
+$switchStore.$clickAudio("3k4s");
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
 $equiqStore.getEquipList().then(() => {
@@ -38,10 +39,6 @@ watch(
     }, 250);
   }
 );
-
-onMounted(() => {
-  $switchStore.$clickAudio("3k4s");
-});
 </script>
 
 <template>

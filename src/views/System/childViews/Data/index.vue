@@ -88,6 +88,8 @@ let data_cache: any[] = []; //数据缓存
 
 const table_data = ref<any[]>([]); //表格数据
 
+$switchStore.$clickAudio("bq69");
+
 /* 获取本地数据 */
 const getLocalData = (name: string, prefix = "data_") => {
   return JSON.parse(localStorage.getItem(prefix + name) as string);
@@ -192,10 +194,6 @@ const EmitsSortChange = (v: number[]) => {
   }
   play();
 };
-
-onMounted(() => {
-  $switchStore.$clickAudio("bq69");
-});
 </script>
 
 <template>

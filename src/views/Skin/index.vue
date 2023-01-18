@@ -33,6 +33,7 @@ const cache_list = ref<Hero.Skin[]>([]); //所有数据缓存
 const skin_list = ref<Hero.Skin[]>([]); //当前展示的皮肤列表
 
 $skinStore.getSkin(); //获取皮肤列表
+$switchStore.$clickAudio("9u8z");
 
 /* 设置图片懒加载 */
 const setLazyImg = () => {
@@ -126,8 +127,6 @@ onMounted(() => {
   $bus.on("resize", () => {
     changeCount();
   });
-
-  $switchStore.$clickAudio("9u8z");
 });
 
 onBeforeUnmount(() => {
