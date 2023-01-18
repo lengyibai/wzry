@@ -36,6 +36,10 @@ const select_type = [
   { label: "正版授权", value: "正版授权" },
   { label: "特殊标志", value: "特殊标志" },
 ];
+const sort_type = [
+  { label: "正序", value: "正序" },
+  { label: "倒序", value: "倒序" },
+];
 
 const gender = ref(0); //性别排序
 const search_value = ref(""); //搜索值
@@ -48,6 +52,11 @@ const EmitPriceSort = (v: string) => {
 /* 皮肤类型筛选 */
 const EmitTypeFilter = (v: string) => {
   $SkinStore.filterType(v);
+};
+
+/* 正序/倒序 */
+const EmitSortType = (v: string) => {
+  $SkinStore.sortType(v);
 };
 
 /* 设置性别 */
@@ -73,6 +82,9 @@ const handSearch = () => {
       list-height="500px"
       @select="EmitTypeFilter"
     />
+
+    <!-- 正序/倒序 -->
+    <FilterTool :data="sort_type" list-height="100px" @select="EmitSortType" />
 
     <!-- 只看性别 -->
     <FilterGender v-model="gender" @update:model-value="handerSetGender" />

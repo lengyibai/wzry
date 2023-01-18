@@ -29,6 +29,10 @@ const select_sort = [
   { label: "上手难度", value: "上手难度" },
   { label: "皮肤数量", value: "皮肤数量" },
 ];
+const sort_type = [
+  { label: "正序", value: "正序" },
+  { label: "倒序", value: "倒序" },
+];
 
 const gender = ref(0); //性别排序
 const select_camp = ref([{ label: "全部阵营", value: "全部阵营" }]);
@@ -62,6 +66,11 @@ const EmitSelectMisc = (v: string) => {
 /* 杂项排序 */
 const EmitSelectSort = (v: string) => {
   $heroStore.sortMisc(v);
+};
+
+/* 正序/倒序 */
+const EmitSortType = (v: string) => {
+  $heroStore.sortType(v);
 };
 
 /* 设置性别 */
@@ -105,6 +114,13 @@ const handSearch = () => {
         :data="select_sort"
         list-height="186px"
         @select="EmitSelectSort"
+      />
+
+      <!-- 正序/倒序 -->
+      <FilterTool
+        :data="sort_type"
+        list-height="100px"
+        @select="EmitSortType"
       />
     </div>
 

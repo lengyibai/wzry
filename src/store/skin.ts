@@ -7,9 +7,10 @@ import { $debounce, $search, $typeSort } from "@/utils";
 
 const skinStore = defineStore("skin", () => {
   const profession = ref(""); //职业类型
-  const sort_type = ref(""); // 当前价格排序类型
-  const gender_type = ref(0); // 当前性别筛选类型
+  const price_type = ref(""); // 当前价格排序类型
   const skin_type = ref(""); // 当前皮肤筛选类型
+  const sort_type = ref("正序"); // 当前排序类型
+  const gender_type = ref(0); // 当前性别筛选类型
   const skin_list = ref<Hero.Skin[]>([]); //皮肤列表
   const filter_list = ref<Hero.Skin[]>([]); //筛选后的列表
   const type_logo = ref<
@@ -52,8 +53,8 @@ const skinStore = defineStore("skin", () => {
 
   /** @description: 价格排序 */
   const sortPrice = (type: string) => {
-    if (sort_type.value === type) return;
-    sort_type.value = type;
+    if (price_type.value === type) return;
+    price_type.value = type;
     sortAll();
   };
 
@@ -61,6 +62,13 @@ const skinStore = defineStore("skin", () => {
   const filterType = (type: string) => {
     if (skin_type.value === type) return;
     skin_type.value = type;
+    sortAll();
+  };
+
+  /** @description: 排序类型 */
+  const sortType = (type: string) => {
+    if (sort_type.value === type) return;
+    sort_type.value = type;
     sortAll();
   };
 
@@ -73,16 +81,16 @@ const skinStore = defineStore("skin", () => {
 
   /** @description: 一键排序 */
   const sortAll = () => {
-    // 职业排序
+    // 职业筛选
     if (profession.value === "全部") {
-      filter_list.value = skin_list.value;
+      filter_list.value = [...skin_list.value]; //为了解决排序拷贝问题
     } else {
       filter_list.value = skin_list.value.filter((item: Hero.Skin) => {
         return item.profession.includes(profession.value);
       });
     }
 
-    // 性别排序
+    // 性别筛选
     const boy: Hero.Skin[] = [];
     const girl: Hero.Skin[] = [];
     filter_list.value.forEach((item) => {
@@ -100,7 +108,7 @@ const skinStore = defineStore("skin", () => {
     }
 
     // 价格排序
-    const p = sort_type.value;
+    const p = price_type.value;
     const noFree = [
       "贵族专属",
       "荣耀战令获取",
@@ -110,7 +118,7 @@ const skinStore = defineStore("skin", () => {
       "星会员15级",
     ];
     if (p && p !== "全部价格") {
-      if (sort_type.value === "免费") {
+      if (price_type.value === "免费") {
         const noNum: Hero.Skin[] = [];
         filter_list.value.forEach((item) => {
           if (
@@ -120,7 +128,7 @@ const skinStore = defineStore("skin", () => {
             noNum.push(item);
         });
         filter_list.value = $typeSort(noNum, "price");
-      } else if (sort_type.value === "价格由低到高") {
+      } else if (price_type.value === "价格由低到高") {
         const isNum: Hero.Skin[] = [];
         const noNum: Hero.Skin[] = [];
         filter_list.value.forEach((item) => {
@@ -134,7 +142,7 @@ const skinStore = defineStore("skin", () => {
           return Number(a.price) - Number(b.price);
         });
         filter_list.value = [...isNum, ...noNum];
-      } else if (sort_type.value === "价格由高到低") {
+      } else if (price_type.value === "价格由高到低") {
         const isNum: Hero.Skin[] = [];
         const strange: Hero.Skin[] = [];
         const noNum: Hero.Skin[] = [];
@@ -307,6 +315,9 @@ const skinStore = defineStore("skin", () => {
       }
       filter_list.value = $typeSort(filter_list.value, "category");
     }
+
+    // 正序/倒序
+    if (sort_type.value === "倒序") filter_list.value.reverse();
   };
 
   /** @description: 搜索皮肤 */
@@ -329,7 +340,7 @@ const skinStore = defineStore("skin", () => {
     skin_list,
     filter_list,
     type_logo,
-    sort_type,
+    price_type,
     gender_type,
     getSkin: getSkinList,
     setSkinList,
@@ -339,6 +350,7 @@ const skinStore = defineStore("skin", () => {
     sortAll,
     searchSkin,
     filterType,
+    sortType,
   };
 });
 

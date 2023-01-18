@@ -13,6 +13,7 @@ const heroStore = defineStore("hero", () => {
   const attr_type = ref("全部属性"); // 当前属性排序类型
   const misc_type = ref("全部筛选"); // 当前杂项筛选类型
   const misc_sort = ref("全部排序"); // 当前杂项排序类型
+  const sort_type = ref("正序"); // 当前排序类型
   const gender_type = ref(0); // 当前性别排序类型
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
@@ -67,6 +68,13 @@ const heroStore = defineStore("hero", () => {
   const sortMisc = (type: string) => {
     if (misc_sort.value === type) return;
     misc_sort.value = type;
+    sortAll();
+  };
+
+  /** @description: 排序类型 */
+  const sortType = (type: string) => {
+    if (sort_type.value === type) return;
+    sort_type.value = type;
     sortAll();
   };
 
@@ -219,6 +227,9 @@ const heroStore = defineStore("hero", () => {
         });
       }
     }
+
+    // 正序/倒序
+    if (sort_type.value === "倒序") filter_list.value.reverse();
   };
 
   /** @description: 搜索英雄 */
@@ -247,6 +258,7 @@ const heroStore = defineStore("hero", () => {
     sortMisc,
     filterGender,
     searchHero,
+    sortType,
   };
 });
 
