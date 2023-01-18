@@ -34,9 +34,6 @@ export const Skintype = () => http.Get<any[]>("/skinType.json");
 /** @description: 获取关系列表 */
 export const Relationship = () => http.Get<any[]>("/relationship.json");
 
-/** @description: 获取关系类型列表 */
-export const Relationtype = () => http.Get<any[]>("/relationType.json");
-
 /** @description: 获取装备列表 */
 export const Equip = () => http.Get<any[]>("/equip.json");
 
