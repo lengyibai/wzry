@@ -8,30 +8,16 @@
     <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
       <!-- 选择器框 -->
       <div ref="selectBox" class="select-box">
-        <input
-          ref="input"
+        <K-input
           v-model="input_value"
-          type="text"
           :placeholder="active_value || '搜索'"
+          line
+          width="250px"
+          color="var(--theme-color-five)"
           @input="search"
           @focus="focus"
           @blur="blur"
         />
-
-        <!-- 获取焦点拉长线条 -->
-        <transition name="border">
-          <div v-show="is_unfold" class="focus"></div>
-        </transition>
-
-        <!-- 输入不合法拉长线条 -->
-        <transition name="border">
-          <div v-show="no_legal" class="border"></div>
-        </transition>
-
-        <!-- 输入不合法提示 -->
-        <transition name="tip">
-          <div v-if="no_legal" v-typewriterSingle class="tip">必选项</div>
-        </transition>
         <img
           class="arrow"
           :class="{ rotate: is_unfold }"
@@ -216,8 +202,6 @@ watch(
   },
   { immediate: true }
 );
-
-setInterval(() => {}, 1000);
 </script>
 <style scoped lang="less">
 @import url("./index.less");
