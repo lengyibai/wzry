@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  onActivated,
-  ref,
-  watch,
-} from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
@@ -18,9 +11,12 @@ import { $lazyLoadImages } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
+import switchStore from "@/store/switch";
+import { $debounceInstant } from "@/utils";
 
 const $skinStore = skinStore();
 const $otherStore = otherStore();
+const $switchStore = switchStore();
 
 let page = 1; //当前页数
 let page_count = 30; //一页显示的个数
@@ -61,17 +57,24 @@ const EmitLoadMore = () => {
 };
 
 /* 点击工具栏中的选项 */
-const EmitShowTool = (v: string) => {
-  show_poster.value = v === "poster";
-  show_voice.value = v === "voice";
+const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
+  if (v.type === "poster") {
+    poster.value = v.data.poster;
+    show_poster.value = true;
+  } else if (v.type === "voice") {
+    getSkinVoice(v.data.heroName, v.data.name).then((res) => {
+      voices.value = res;
+      show_voice.value = true;
+    });
+  }
+  $switchStore.$clickAudio();
 };
 
-/* 查看海报 */
-const handleTool = (skin: Hero.Skin) => {
-  poster.value = skin.poster;
-  getSkinVoice(skin.heroName, skin.name).then((res) => {
-    voices.value = res;
-  });
+/* 悬浮卡片 */
+const handleEnterCard = () => {
+  $debounceInstant(() => {
+    $switchStore.$clickAudio("tab");
+  }, 50);
 };
 
 /* 监听筛选后的英雄列表 */
@@ -94,13 +97,6 @@ watch(
   },
   { deep: true, immediate: true }
 );
-
-/* 进入页面后更新高度 */
-onActivated(() => {
-  nextTick(() => {
-    skinListRef.value.updateHeight();
-  }).catch(() => {});
-});
 
 /* 折叠展开侧边栏时触发 */
 $otherStore.setTriggerFn(() => {
@@ -130,6 +126,8 @@ onMounted(() => {
   $bus.on("resize", () => {
     changeCount();
   });
+
+  $switchStore.$clickAudio("皮肤");
 });
 
 onBeforeUnmount(() => {
@@ -158,7 +156,7 @@ onBeforeUnmount(() => {
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"
-            @click="handleTool(item)"
+            @mouseenter="handleEnterCard"
           >
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>

@@ -3,7 +3,6 @@ import {
   nextTick,
   onBeforeUnmount,
   onMounted,
-  onActivated,
   ref,
   watch,
   defineAsyncComponent,
@@ -14,6 +13,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
+import { $debounceInstant } from "@/utils";
 import { $deepCopy, $lazyLoadImages } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
@@ -21,6 +21,7 @@ import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import otherStore from "@/store/other";
+import switchStore from "@/store/switch";
 
 const HeroDetail = defineAsyncComponent(
   () => import("./childViews/HeroDetail/index.vue")
@@ -31,6 +32,8 @@ const $router = useRouter();
 const $otherStore = otherStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetail();
+
+const $switchStore = switchStore();
 
 let page = 1; //当前页数
 let page_total = 0; //总页数
@@ -51,6 +54,13 @@ const setLazyImg = () => {
     return item.children[0].children[1];
   });
   $lazyLoadImages(imgs);
+};
+
+/* 悬浮卡片 */
+const handleEnterCard = () => {
+  $debounceInstant(() => {
+    $switchStore.$clickAudio("tab");
+  }, 50);
 };
 
 /* 查看详情 */
@@ -93,6 +103,11 @@ const EmitLoadMore = () => {
   });
 };
 
+/* 折叠展开侧边栏时触发 */
+$otherStore.setTriggerFn(() => {
+  heroListRef.value.updateHeight();
+});
+
 /* 监听筛选后的英雄列表 */
 watch(
   () => $heroStore.filter_list,
@@ -113,18 +128,6 @@ watch(
   },
   { deep: true, immediate: true }
 );
-
-/* 折叠展开侧边栏时触发 */
-$otherStore.setTriggerFn(() => {
-  heroListRef.value.updateHeight();
-});
-
-/* 进入页面后更新高度 */
-onActivated(() => {
-  nextTick(() => {
-    heroListRef.value.updateHeight();
-  }).catch(() => {});
-});
 
 onMounted(() => {
   /* 实时修改一行个数 */
@@ -150,6 +153,8 @@ onMounted(() => {
   $bus.on("resize", () => {
     changeCount();
   });
+
+  $switchStore.$clickAudio("英雄列表");
 });
 
 onBeforeUnmount(() => {
@@ -179,6 +184,7 @@ onBeforeUnmount(() => {
               :style="{
                 'transition-delay': 0.025 * index + 's',
               }"
+              @mouseenter="handleEnterCard"
             >
               <HeroCard :data="item" @view="EmitViewClick(item.id!)" />
             </div>
