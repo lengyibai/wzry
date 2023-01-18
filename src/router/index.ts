@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
+import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
 import NProgress from "@/config/nprogress";
 import { HOME_URL } from "@/config/config";
@@ -51,6 +52,7 @@ useRouter.beforeEach(async (to, from, next) => {
 useRouter.afterEach((to) => {
   document.title = `${to.meta.title || "正在进入"}-王者荣耀后台管理系统`;
   NProgress.done(); //完成进度条
+  switchStore().$loading.close();
 });
 
 export default useRouter;
