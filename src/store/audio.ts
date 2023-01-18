@@ -46,7 +46,7 @@ const audioStore = defineStore("audio", () => {
         Object.keys(sound_type).find((item) =>
           sound_type[item].find((item: string) => name.includes(item))
         )) ||
-      "默认";
+      "default";
 
     const audio = new Audio(); //播放器
     audio.src = `${IMGBED}/audio/${sound_name.value}.mp3`;
