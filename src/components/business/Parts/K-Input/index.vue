@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import switchStore from "@/store/switch";
 interface Props {
   modelValue: string;
   placeholder?: string;
@@ -23,10 +24,13 @@ withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 /* 输入触发 */
 const handleInput = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
   emit("update:modelValue", value);
+  $switchStore.$clickAudio("键盘");
 };
 </script>
 

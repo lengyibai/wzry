@@ -10,6 +10,10 @@
   </K-Dialog>
 </template>
 <script setup lang="ts">
+import { onMounted } from "vue";
+
+import switchStore from "@/store/switch";
+
 interface Props {
   text?: string; //提示描述
   show?: boolean; //是否隐藏
@@ -25,6 +29,8 @@ withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 /* 关闭 */
 const handleClose = () => {
   emit("update:v-if", false);
@@ -34,13 +40,19 @@ const handleClose = () => {
 const handleCancel = () => {
   emit("cancel");
   handleClose();
+  $switchStore.$clickAudio("关闭");
 };
 
 /* 确定 */
 const handleConfirm = () => {
   emit("confirm");
   handleClose();
+  $switchStore.$clickAudio("确定");
 };
+
+onMounted(() => {
+  $switchStore.$clickAudio("取消");
+});
 </script>
 <style scoped lang="less">
 @import url("./index.less");

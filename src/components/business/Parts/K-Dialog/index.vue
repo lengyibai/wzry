@@ -52,7 +52,7 @@ interface Emits {
   (e: "close"): void;
 }
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
   showClose: true,
   title: "",
@@ -72,6 +72,9 @@ const show = ref(false); //是否显示弹窗
 
 onMounted(() => {
   show.value = true;
+  if (props.up) {
+    $switchStore.$clickAudio("确认弹窗");
+  }
 });
 
 /* 关闭 */

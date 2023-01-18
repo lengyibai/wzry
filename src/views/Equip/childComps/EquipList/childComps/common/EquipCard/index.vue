@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
+import switchStore from "@/store/switch";
 import { equipDefault } from "@/defaultValue";
 import equipStore from "@/store/equip";
 
@@ -17,10 +18,17 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const $equipStore = equipStore();
+const $switchStore = switchStore();
 
 const active_id = computed(() => $equipStore.active_id); //获取点击的装备id
 
 const icon = ref();
+
+/* 装备详情 */
+const handleDetail = () => {
+  $equipStore.setEquipActive(props.equip.id);
+  $switchStore.$clickAudio("tab");
+};
 
 nextTick(() => {
   $equipStore.setEquipElement({
@@ -32,10 +40,7 @@ nextTick(() => {
 </script>
 
 <template>
-  <div
-    class="equip-card cursor-pointer"
-    @click="$equipStore.setEquipActive(equip.id)"
-  >
+  <div class="equip-card cursor-pointer" @click="handleDetail">
     <transition name="border-fade">
       <div v-show="active_id === equip.id" class="border"></div>
     </transition>

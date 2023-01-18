@@ -44,6 +44,9 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
+import { $throttleInstant } from "@/utils";
+import switchStore from "@/store/switch";
+
 interface Props {
   modelValue: string | number; //值
   disabled?: boolean; //是否禁用
@@ -83,6 +86,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 const show_num = ref(false); //是否在滑动的时候显示数字
 
 /* 设置可拖动宽度 */
@@ -105,6 +110,9 @@ const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   show_num.value = true;
   emit("update:modelValue", parseFloat(v));
+  $throttleInstant(() => {
+    $switchStore.$clickAudio("range");
+  }, 50);
 };
 
 /* 隐藏数字 */

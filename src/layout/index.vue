@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
+import switchStore from "@/store/switch";
 import { BG } from "@/config/assets";
 import { $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
@@ -36,6 +37,7 @@ import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
 import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
 
 const $settingStore = settingStore();
+const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -47,11 +49,13 @@ const show_appmain = ref(false); //显示主体页面
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
-  await $promiseTimeout(() => {
-    show_navbar.value = true;
-  }, 500);
+  $switchStore.$clickAudio("主页");
+
   await $promiseTimeout(() => {
     show_sidebar.value = true;
+  }, 500);
+  await $promiseTimeout(() => {
+    show_navbar.value = true;
   }, 500);
   await $promiseTimeout(() => {
     show_appmain.value = true;

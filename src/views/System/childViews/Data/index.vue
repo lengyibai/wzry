@@ -1,9 +1,10 @@
 <script setup lang="ts" name="Data">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 import skinStore from "@/store/skin";
 import heroStore from "@/store/hero";
+import switchStore from "@/store/switch";
 import {
   HeroBasic,
   HeroImg,
@@ -13,7 +14,6 @@ import {
   Skilleffect,
   Skin,
   Skintype,
-  Relationtype,
   Relationship,
   Equip,
   EquipSynthetic,
@@ -32,6 +32,7 @@ import {
 
 const $skinStore = skinStore();
 const $heroStore = heroStore();
+const $switchStore = switchStore();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],
@@ -43,7 +44,6 @@ const keywords: [string, string][] = [
   ["skin", "皮肤"],
   ["skintype", "皮肤类型"],
   ["relationship", "关系"],
-  ["relationtype", "关系类型"],
   ["equip", "装备"],
   ["equipSynthetic", "装备合成"],
   ["equiptype", "装备类型"],
@@ -69,7 +69,6 @@ const requests: Record<string, () => Promise<any>> = {
   skin: Skin,
   skintype: Skintype,
   relationship: Relationship,
-  relationtype: Relationtype,
   equip: Equip,
   equipSynthetic: EquipSynthetic,
   equiptype: Equiptype,
@@ -94,28 +93,6 @@ const getLocalData = (name: string, prefix = "data_") => {
   return JSON.parse(localStorage.getItem(prefix + name) as string);
 };
 
-/* 设置状态 */
-const setStatus = (data: any, v: any) => {
-  data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string);
-  if (JSON.stringify(v) === JSON.stringify(data.data)) {
-    data.status = "最新";
-  } else if (data.data.length > v.length) {
-    data.status = "本地已更改";
-  } else {
-    data.status = "待更新";
-  }
-};
-
-/* 更新数据 */
-const updateData = (key: string, data: any) => {
-  localStorage.setItem("data_" + key, JSON.stringify(data));
-  if (key.includes("skin")) {
-    $skinStore.getSkin();
-  } else if (key.includes("hero")) {
-    $heroStore.getHeroList();
-  }
-};
-
 /* 加载数据 */
 const load = async () => {
   table_data.value = keywords.map((item) => {
@@ -138,9 +115,31 @@ const load = async () => {
 };
 load();
 
-/* 导出 */
-const handleExport = (data: any) => {
-  $savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+/* 设置状态 */
+const setStatus = (data: any, v: any) => {
+  data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string);
+  if (JSON.stringify(v) === JSON.stringify(data.data)) {
+    data.status = "最新";
+  } else if (data.data.length > v.length) {
+    data.status = "本地已更改";
+  } else {
+    data.status = "待更新";
+  }
+};
+
+/* 音效触发 */
+const play = () => {
+  $switchStore.$clickAudio();
+};
+
+/* 更新数据 */
+const updateData = (key: string, data: any) => {
+  localStorage.setItem("data_" + key, JSON.stringify(data));
+  if (key.includes("skin")) {
+    $skinStore.getSkin();
+  } else if (key.includes("hero")) {
+    $heroStore.getHeroList();
+  }
 };
 
 /* 检查更新 */
@@ -152,6 +151,14 @@ const handleCheck = async (data: any) => {
   }, 1000);
 };
 
+/* 更新指定 */
+const handleUpdate = async (data: any) => {
+  const v = (await requests[data.key]()).data;
+  updateData(data.key, v);
+  data.data = v;
+  handleCheck(data);
+};
+
 /* 强制覆盖 */
 const show_ConfirmClose = ref(false);
 let replace_data: any = {};
@@ -160,19 +167,16 @@ const handleReplace = (data: any) => {
   show_ConfirmClose.value = true;
 };
 
+/* 导出 */
+const handleExport = (data: any) => {
+  $savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+};
+
 /* 确认覆盖 */
 const EmitConfirmReset = async () => {
   const v = (await requests[replace_data.key]()).data;
   updateData(replace_data.key, v);
   handleCheck(replace_data);
-};
-
-/* 更新指定 */
-const handleUpdate = async (data: any) => {
-  const v = (await requests[data.key]()).data;
-  updateData(data.key, v);
-  data.data = v;
-  handleCheck(data);
 };
 
 /* 排序触发 */
@@ -186,7 +190,12 @@ const EmitsSortChange = (v: number[]) => {
   } else {
     table_data.value = $deepCopy(data_cache);
   }
+  play();
 };
+
+onMounted(() => {
+  $switchStore.$clickAudio("数据库");
+});
 </script>
 
 <template>
@@ -202,27 +211,27 @@ const EmitsSortChange = (v: number[]) => {
         <TableColumn min-width="100px">{{ data.data.length }}</TableColumn>
         <TableColumn min-width="200px">{{ data.status }}</TableColumn>
         <TableColumn width="500px" min-width="425px">
-          <button class="check lib-click" @click="handleCheck(data)">
+          <button class="check lib-click" @click="handleCheck(data), play()">
             检查更新
           </button>
           <button
             v-if="data.status === '本地已更改'"
             class="export lib-click"
-            @click="handleExport(data)"
+            @click="handleExport(data), play()"
           >
             导出
           </button>
           <button
             v-if="data.status === '待更新'"
             class="update lib-click"
-            @click="handleUpdate(data)"
+            @click="handleUpdate(data), play()"
           >
             更新
           </button>
           <button
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
             class="replace lib-click"
-            @click="handleReplace(data)"
+            @click="handleReplace(data), play()"
           >
             重置
           </button>

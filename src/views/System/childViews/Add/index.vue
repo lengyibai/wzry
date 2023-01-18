@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { defineAsyncComponent, reactive } from "vue";
+import { defineAsyncComponent, onMounted, reactive } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
+
+import switchStore from "@/store/switch";
 
 const AddHero = defineAsyncComponent(
   () => import("./childViews/AddHero/index.vue")
@@ -26,6 +28,8 @@ type Options = Record<
     show: boolean; //是否显示
   }
 >;
+
+const $switchStore = switchStore();
 
 const { box, list } = useManageCard;
 
@@ -58,7 +62,12 @@ const options: Options = reactive({
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
   options[key].show = true;
+  $switchStore.$clickAudio();
 };
+
+onMounted(() => {
+  $switchStore.$clickAudio("查看详情");
+});
 </script>
 
 <template>

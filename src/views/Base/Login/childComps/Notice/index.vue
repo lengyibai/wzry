@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import switchStore from "@/store/switch";
+
+const $switchStore = switchStore();
+
+$switchStore.$clickAudio("查看详情");
+</script>
 
 <template>
   <K-Dialog v-bind="$attrs" width="960px" header="王者荣耀后台管理系统公告">

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
+import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
 
 interface Emits {
@@ -9,6 +10,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $settingStore = settingStore();
+const $switchStore = switchStore();
 
 const muted = ref(false);
 
@@ -24,6 +26,7 @@ const handleShowNotice = (v: string) => {
   if (v === "sound") {
     muted.value = !muted.value;
     $settingStore.saveConfig({ loginSound: !muted.value });
+    $switchStore.$clickAudio("tab");
   }
 };
 </script>

@@ -57,6 +57,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
+import switchStore from "@/store/switch";
+
 interface Props {
   modelValue: boolean;
   link: string;
@@ -65,6 +67,8 @@ withDefaults(defineProps<Props>(), {
   modelValue: false,
   link: "",
 });
+
+const $switchStore = switchStore();
 
 const pic = ref();
 const closeBtn = ref();
@@ -101,6 +105,7 @@ const setPosition = (name: string) => {
   };
   obj[name].call(this);
   setStyle();
+  $switchStore.$clickAudio("tab");
 };
 
 /* 顺时针旋转 */
@@ -134,7 +139,7 @@ const addEventListener = () => {
   clonedBox.value.addEventListener("click", (e: Event) => {
     e.stopPropagation();
   });
-  closeBtn.value.addEventListener("click", close.bind(this));
+  // closeBtn.value.addEventListener("click", close.bind(this));
   // pic.value.addEventListener("click", close.bind(this));
   let startX = 0;
   let startY = 0;
@@ -196,6 +201,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 const close = () => {
   emit("update:modelValue", false);
+  $switchStore.$clickAudio("关闭");
 };
 
 onMounted(() => {

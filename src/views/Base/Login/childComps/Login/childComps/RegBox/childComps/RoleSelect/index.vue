@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import switchStore from "@/store/switch";
 interface Props {
   modelValue: number;
   option: string[];
@@ -13,9 +14,12 @@ withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 /* 选择 */
 const handleSelect = (index: number) => {
   emit("update:modelValue", index);
+  $switchStore.$clickAudio("tab");
 };
 </script>
 

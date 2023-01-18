@@ -1,12 +1,20 @@
 <script setup lang="ts">
+import switchStore from "@/store/switch";
 interface Emits {
   (e: "into", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 /* 进入方式 */
 const handleInto = (v: string) => {
   emit("into", v);
+  if (v === "注册") {
+    $switchStore.$clickAudio("查看");
+  } else {
+    $switchStore.$clickAudio("确定");
+  }
 };
 </script>
 

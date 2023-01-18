@@ -3,21 +3,22 @@ import { ref, computed } from "vue";
 
 import { heroDefault } from "@/defaultValue";
 import heroStore from "@/store/hero";
+import switchStore from "@/store/switch";
 
 interface Props {
   data: typeof heroDefault; //英雄数据
 }
-interface Emits {
-  (e: "view"): void;
-}
-
 withDefaults(defineProps<Props>(), {
   data: () => heroDefault,
 });
 
+interface Emits {
+  (e: "view"): void;
+}
 const emit = defineEmits<Emits>();
 
 const $heroStore = heroStore();
+const $switchStore = switchStore();
 
 const show = ref(false); //显示查看详情选项
 
@@ -34,6 +35,12 @@ const num = (data: Hero.Data) =>
     ? data.skins?.length || 0 + "款"
     : "";
 
+/* 点击卡片 */
+const handleClickCard = () => {
+  show.value = true;
+  $switchStore.$clickAudio();
+};
+
 /* 查看详情 */
 const handleViewClick = () => {
   emit("view");
@@ -46,7 +53,7 @@ const handleViewClick = () => {
     v-sweepLight
     class="hero-card cursor-pointer"
     :class="{ hide: show }"
-    @mousedown="show = true"
+    @click="handleClickCard"
     @mouseleave="show = false"
   >
     <span class="id">No.{{ data.id }}</span>

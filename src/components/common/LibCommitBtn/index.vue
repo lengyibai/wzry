@@ -28,6 +28,8 @@
 <script setup>
 import { ref, watch } from "vue";
 
+import switchStore from "@/store/switch";
+
 const props = defineProps({
   size: {
     type: String,
@@ -45,12 +47,16 @@ const props = defineProps({
 
 const show_up = ref(true);
 const emit = defineEmits(["commit", "update:modelValue"]);
+
+const $switchStore = switchStore();
+
 const commit = () => {
   emit("update:modelValue", 1);
   setTimeout(() => {
     show_up.value = false;
     emit("commit");
   }, 750);
+  $switchStore.$clickAudio("确定");
 };
 
 watch(

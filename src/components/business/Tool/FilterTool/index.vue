@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import switchStore from "@/store/switch";
+
 interface Props {
   data: { label: string; value: string | number }[];
   listHeight?: string;
@@ -16,6 +18,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 const IMGBED = window.IMGBED; //全局图床链接
 
 const sort_text = ref("默认排序");
@@ -27,24 +31,28 @@ sort_text.value = props.data[0].label;
 /* 显示列表 */
 const handleShowList = () => {
   is_unfold.value = !is_unfold.value;
+  $switchStore.$clickAudio("tab");
 };
 
 /* 选择的值 */
 const handleSelect = (v: { label: string; value: number | string }) => {
+  is_unfold.value = false;
   currentValue.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
+  $switchStore.$clickAudio();
 };
 </script>
 
 <template>
-  <div class="select-filter cursor-pointer" @click="handleShowList">
-    <div class="title">{{ sort_text }}</div>
+  <div class="select-filter cursor-pointer">
+    <div class="title" @click="handleShowList">{{ sort_text }}</div>
     <img
       :class="{ 'arrow-active': is_unfold }"
       :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
+      @click="handleShowList"
     />
     <!-- 展开列表 -->
     <div

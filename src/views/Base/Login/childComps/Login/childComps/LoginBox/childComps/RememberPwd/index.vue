@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import switchStore from "@/store/switch";
+
 interface Props {
   modelValue: boolean | string; //选中状态
 }
@@ -11,8 +13,9 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
 });
-
 const emit = defineEmits<Emits>();
+
+const $switchStore = switchStore();
 
 const icon = computed(
   () =>
@@ -23,6 +26,7 @@ const icon = computed(
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);
+  $switchStore.$clickAudio();
 };
 </script>
 

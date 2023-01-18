@@ -1,22 +1,25 @@
 <script setup lang="ts">
+import switchStore from "@/store/switch";
 interface Props {
   index: number;
   pageName: string[];
 }
-interface Emits {
-  (e: "toggle", v: number): void;
-}
-
 withDefaults(defineProps<Props>(), {
   index: 0,
   pageName: () => [],
 });
 
+interface Emits {
+  (e: "toggle", v: number): void;
+}
 const emit = defineEmits<Emits>();
+
+const $switchStore = switchStore();
 
 /* 设置进度 */
 const handleToggle = (index: number) => {
   emit("toggle", index);
+  $switchStore.$clickAudio("tab");
 };
 </script>
 

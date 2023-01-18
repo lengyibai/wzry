@@ -9,8 +9,10 @@ import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
 import heroDetailStore from "@/store/heroDetail";
+import { $debounceInstant } from "@/utils";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
+import switchStore from "@/store/switch";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -21,6 +23,7 @@ const $router = useRouter();
 const $heroDetail = heroDetail();
 const $heroStore = heroStore();
 const $heroDetailStore = heroDetailStore();
+const $switchStore = switchStore();
 
 const hero_data = $heroDetail.hero_info; //英雄信息
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
@@ -43,6 +46,11 @@ const EmitToggle = (index: number) => {
   scroll_index.value = index;
 };
 
+/* 滚动立即触发 */
+const EmitScollStart = () => {
+  $switchStore.$clickAudio("tab");
+};
+
 /* 滚动结束触发 */
 const EmitScrollEnd = (index: number) => {
   $heroDetailStore.setIndex(index);
@@ -59,6 +67,8 @@ const EmitHide = () => {
       $heroStore.getHeroList(hero_data.profession[0]);
     }, 1500);
   }
+
+  $switchStore.$clickAudio("关闭");
 };
 
 onMounted(() => {
@@ -66,6 +76,9 @@ onMounted(() => {
   setTimeout(() => {
     show_progress.value = true;
   }, 1500);
+  setTimeout(() => {
+    $switchStore.$clickAudio("查看详情");
+  }, 250);
 });
 </script>
 
@@ -73,7 +86,11 @@ onMounted(() => {
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <LibMaskClose @close="EmitHide" />
-    <LibFullScroll v-model="scroll_index" @end="EmitScrollEnd">
+    <LibFullScroll
+      v-model="scroll_index"
+      @start="EmitScollStart"
+      @end="EmitScrollEnd"
+    >
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />

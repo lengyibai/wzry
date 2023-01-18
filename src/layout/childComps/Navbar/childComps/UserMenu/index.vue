@@ -23,10 +23,10 @@ const role = computed(() => {
 
 /* 退出登录 */
 const logout = async () => {
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudio("确定");
   $switchStore.$loading.show("正在退出");
-  await $authStore.logout();
   await $switchStore.$loading.close();
+  $authStore.logout();
 };
 
 /* 编辑个人信息 */
