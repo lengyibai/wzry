@@ -6,7 +6,7 @@
       :class="{
         active: route.path === $route.path,
       }"
-      @click="fn(route.path)"
+      @click="fn"
     >
       <i class="iconfont" :class="route.meta.icon" />
       <span>{{ route.title }}</span>
@@ -41,7 +41,6 @@ import SideItem from "./SideItem.vue"; //调用自身
 
 import { Route } from "@/router/interface";
 import otherStore from "@/store/other";
-import switchStore from "@/store/switch";
 
 interface RouteFormat {
   path: string;
@@ -62,7 +61,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 const $router = useRouter();
 const $route = useRoute();
-const $switchStore = switchStore();
 const $otherStore = otherStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
@@ -75,8 +73,7 @@ show.value = $route.path.includes(props.route.path);
 
 if (show.value && props.route.children) routes.push(...props.route.children);
 
-const fn = (path: string) => {
-  $switchStore.$clickAudio(path);
+const fn = () => {
   show.value = !show.value;
   if (!props.route.children) {
     $router.push(props.route.path);
@@ -91,7 +88,7 @@ const sidebarActive = (routes: Route) => {
   if (routes.children && routes.children.length) {
     routes.children.forEach((item) => {
       if (item.path === $route.path) {
-        fn("item.path");
+        fn();
         sidebarActive(item);
       }
     });
