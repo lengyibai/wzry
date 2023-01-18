@@ -77,9 +77,9 @@ onMounted(() => {
   /* 防抖 */
   LibFullScroll.value.addEventListener("mousewheel", (e: WheelEvent) => {
     $debounceDelay(() => {
-      emit("start", index.value + 1);
       LibFullScroll.value.style.transition = `all ${props.duration}ms`;
       if (!scroll) return;
+      emit("start", index.value + 1);
       scroll = false;
       -e.deltaY < 0 && index.value < sonCount - 1
         ? index.value++
