@@ -3,8 +3,10 @@ import { ref } from "vue";
 
 import switchStore from "@/store/switch";
 
+type Data = { label: string; value: string | number };
+
 interface Props {
-  data: { label: string; value: string | number }[];
+  data: Data[];
   listHeight?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -31,6 +33,12 @@ sort_text.value = props.data[0].label;
 /* 显示列表 */
 const handleShowList = () => {
   is_unfold.value = !is_unfold.value;
+  $switchStore.$clickAudio("n4r4");
+};
+
+/* 悬浮触发 */
+const handleEnterItem = (v: Data) => {
+  currentValue.value = v.label;
   $switchStore.$clickAudio("n4r4");
 };
 
@@ -69,7 +77,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
             active: currentValue === item.label || sort_text === item.label,
           }"
           @mousedown="handleSelect(item)"
-          @mouseenter="currentValue = item.label"
+          @mouseenter="handleEnterItem(item)"
           @mouseleave="currentValue = ''"
         >
           <div class="item">{{ item.label }}</div>

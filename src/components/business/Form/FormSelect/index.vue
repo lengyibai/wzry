@@ -40,7 +40,7 @@
                 modelValue === item.id,
             }"
             @mousedown="select(item.id, item.name)"
-            @mouseenter="current_index = index"
+            @mouseenter="handleEnterItem(index)"
             @mouseleave="current_index = null"
           >
             <div class="item">{{ item.name }}</div>
@@ -63,6 +63,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
+import switchStore from "@/store/switch";
 import { $search, $debounce } from "@/utils";
 
 interface Props {
@@ -76,7 +77,6 @@ interface Props {
   value?: string | number | any[]; //输入框默认值
   multi?: boolean; //是否支持多选
 }
-
 const props = withDefaults(defineProps<Props>(), {
   id: false,
   data: () => [],
@@ -92,6 +92,8 @@ interface Emits {
   (e: "update:modelValue", v: string | number | any[]): void;
 }
 const emit = defineEmits<Emits>();
+
+const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -127,6 +129,12 @@ const blur = () => {
   }
 };
 
+/* 悬浮触发 */
+const handleEnterItem = (v: number) => {
+  current_index.value = v;
+  $switchStore.$clickAudio("n4r4");
+};
+
 /* 选择的数据 */
 const select = (id: number, name: string) => {
   if (props.multi) {
@@ -143,6 +151,7 @@ const select = (id: number, name: string) => {
     active_value.value = name;
     input_value.value = name;
   }
+  $switchStore.$clickAudio();
 };
 
 /* 删除选择的数据 */

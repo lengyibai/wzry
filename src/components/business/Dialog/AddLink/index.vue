@@ -5,6 +5,7 @@
       v-focus
       type="text"
       :placeholder="placeholder"
+      @input="$switchStore.$clickAudio('5zv8')"
       @keyup.enter="confirm"
     />
     <K-Button type="warning" @click="confirm">确定</K-Button>
@@ -12,6 +13,8 @@
 </template>
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
+
+import switchStore from "@/store/switch";
 
 interface Props {
   placeholder?: string; //输入框描述
@@ -27,7 +30,11 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
+
 const input_link = ref(""); //输入的链接
+
+$switchStore.$clickAudio("0o5c");
 
 nextTick(() => {
   input_link.value = props.link;
@@ -37,6 +44,7 @@ nextTick(() => {
 const confirm = () => {
   emit("get-link", input_link.value);
   input_link.value = "";
+  $switchStore.$clickAudio("36jn");
 };
 </script>
 <style scoped lang="less">
