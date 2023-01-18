@@ -12,12 +12,12 @@
     margin-left: 10px;
   }
 
-  .input {
+  :deep(.input) {
     margin: 10px;
     margin-left: auto;
 
-    &::placeholder {
-      color: var(--theme-color-eleven);
+    & > input::placeholder {
+      color: var(--theme-color-three);
     }
   }
 }

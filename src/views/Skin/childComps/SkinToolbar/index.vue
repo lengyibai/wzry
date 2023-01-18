@@ -83,6 +83,10 @@ const handSearch = () => {
       class="input"
       placeholder="皮肤/英雄"
       border-color="var(--theme-color-three)"
+      color="var(--theme-color-five)"
+      align="center"
+      width="8em"
+      font-size="24px"
       @input="handSearch"
     />
   </div>

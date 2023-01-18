@@ -96,7 +96,7 @@ const EmitSaveInfo = () => {
           v-model="user_info.nickname"
           class="input"
           border-color="var(--theme-color-three)"
-          width="10em"
+          width="100%"
         />
       </div>
 
@@ -107,7 +107,7 @@ const EmitSaveInfo = () => {
           v-model="user_info.password"
           class="input"
           border-color="var(--theme-color-three)"
-          width="12em"
+          width="100%"
         />
       </div>
     </K-Dialog>
