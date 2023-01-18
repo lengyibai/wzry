@@ -40,7 +40,7 @@ watch(
 );
 
 onMounted(() => {
-  $switchStore.$clickAudio("装备");
+  $switchStore.$clickAudio("3k4s");
 });
 </script>
 

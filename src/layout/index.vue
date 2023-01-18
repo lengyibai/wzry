@@ -49,7 +49,7 @@ const show_appmain = ref(false); //显示主体页面
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
-  $switchStore.$clickAudio("主页");
+  $switchStore.$clickAudio("p53r");
 
   await $promiseTimeout(() => {
     show_sidebar.value = true;

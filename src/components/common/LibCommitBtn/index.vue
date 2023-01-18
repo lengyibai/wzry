@@ -56,7 +56,7 @@ const commit = () => {
     show_up.value = false;
     emit("commit");
   }, 750);
-  $switchStore.$clickAudio("确定");
+  $switchStore.$clickAudio("36jn");
 };
 
 watch(

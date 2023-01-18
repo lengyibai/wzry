@@ -3,7 +3,7 @@ import switchStore from "@/store/switch";
 
 const $switchStore = switchStore();
 
-$switchStore.$clickAudio("查看详情");
+$switchStore.$clickAudio("u4c5");
 </script>
 
 <template>

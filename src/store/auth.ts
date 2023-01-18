@@ -34,7 +34,7 @@ const authStore = defineStore("auth", () => {
   /** @description: 登录 */
   const login = async (form: User) => {
     switchStore().$loading.show("登录中");
-    switchStore().$clickAudio("登录");
+    switchStore().$clickAudio("e84n");
     _login(form)
       .then((res) => {
         userInfo.value = res;

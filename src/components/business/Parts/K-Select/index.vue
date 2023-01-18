@@ -19,7 +19,7 @@ const $switchStore = switchStore();
 /* 选择 */
 const handleSelect = (index: number) => {
   emit("update:modelValue", index);
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 </script>
 

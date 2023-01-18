@@ -11,9 +11,9 @@ const $switchStore = switchStore();
 const handleInto = (v: string) => {
   emit("into", v);
   if (v === "注册") {
-    $switchStore.$clickAudio("查看");
+    $switchStore.$clickAudio("0o5c");
   } else {
-    $switchStore.$clickAudio("确定");
+    $switchStore.$clickAudio("36jn");
   }
 };
 </script>

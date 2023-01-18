@@ -194,7 +194,7 @@ const EmitsSortChange = (v: number[]) => {
 };
 
 onMounted(() => {
-  $switchStore.$clickAudio("数据库");
+  $switchStore.$clickAudio("bq69");
 });
 </script>
 

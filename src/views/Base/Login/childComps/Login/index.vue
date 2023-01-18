@@ -24,7 +24,7 @@ const component = computed(() => {
 /* 重新选择 */
 const handleBack = () => {
   is_reg.value = "";
-  $switchStore.$clickAudio("返回");
+  $switchStore.$clickAudio("p60v");
 };
 
 /* 进入方式 */

@@ -73,7 +73,7 @@ const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
 /* 悬浮卡片 */
 const handleEnterCard = () => {
   $debounceInstant(() => {
-    $switchStore.$clickAudio("tab");
+    $switchStore.$clickAudio("n4r4");
   }, 50);
 };
 
@@ -127,7 +127,7 @@ onMounted(() => {
     changeCount();
   });
 
-  $switchStore.$clickAudio("皮肤");
+  $switchStore.$clickAudio("9u8z");
 });
 
 onBeforeUnmount(() => {

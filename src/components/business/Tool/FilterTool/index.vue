@@ -31,7 +31,7 @@ sort_text.value = props.data[0].label;
 /* 显示列表 */
 const handleShowList = () => {
   is_unfold.value = !is_unfold.value;
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 
 /* 选择的值 */

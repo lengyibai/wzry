@@ -59,7 +59,7 @@ const setLazyImg = () => {
 /* 悬浮卡片 */
 const handleEnterCard = () => {
   $debounceInstant(() => {
-    $switchStore.$clickAudio("tab");
+    $switchStore.$clickAudio("n4r4");
   }, 50);
 };
 
@@ -154,7 +154,7 @@ onMounted(() => {
     changeCount();
   });
 
-  $switchStore.$clickAudio("英雄列表");
+  $switchStore.$clickAudio("4d8m");
 });
 
 onBeforeUnmount(() => {

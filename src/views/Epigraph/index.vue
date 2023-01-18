@@ -18,7 +18,7 @@ $epigraphStore.getEpigraph().then(() => {
 });
 
 onMounted(() => {
-  $switchStore.$clickAudio("铭文");
+  $switchStore.$clickAudio("h7t9");
 });
 </script>
 

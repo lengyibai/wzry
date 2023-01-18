@@ -23,7 +23,7 @@ const role = computed(() => {
 
 /* 退出登录 */
 const logout = async () => {
-  $switchStore.$clickAudio("确定");
+  $switchStore.$clickAudio("36jn");
   $switchStore.$loading.show("正在退出");
   await $switchStore.$loading.close();
   $authStore.logout();

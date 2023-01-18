@@ -13,7 +13,7 @@ const $otherStore = otherStore();
 const $switchStore = switchStore();
 
 const toggleClick = () => {
-  $switchStore.$clickAudio("收起侧边栏");
+  $switchStore.$clickAudio("d5e2");
   $otherStore.setCollapse();
 };
 </script>

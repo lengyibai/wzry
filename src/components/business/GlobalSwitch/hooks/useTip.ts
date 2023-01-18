@@ -18,7 +18,7 @@ export default (
     if ($settingStore.config.tip) {
       if (!$tipStore.tips[name].noTip) {
         show_tip.value = !show_tip.value;
-        $switchStore.$clickAudio("tip");
+        $switchStore.$clickAudio("rt25");
         noTipName.value = name;
         content.value = $tipStore.tips[name].text;
         align.value = a;

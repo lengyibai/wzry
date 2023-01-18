@@ -66,7 +66,7 @@ const open = (key: string) => {
 };
 
 onMounted(() => {
-  $switchStore.$clickAudio("查看详情");
+  $switchStore.$clickAudio("u4c5");
 });
 </script>
 

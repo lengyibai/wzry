@@ -19,7 +19,7 @@ const $switchStore = switchStore();
 /* 设置进度 */
 const handleToggle = (index: number) => {
   emit("toggle", index);
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 </script>
 

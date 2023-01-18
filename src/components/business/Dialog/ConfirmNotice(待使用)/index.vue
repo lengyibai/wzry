@@ -55,7 +55,7 @@ const store = switchStore();
 const IMGBED = window.IMGBED; //全局图床链接
 
 const close = () => {
-  store.$clickAudio("关闭");
+  store.$clickAudio("6xc6");
   emit("update:modelValue", false);
 };
 const confirm = (status: boolean) => {

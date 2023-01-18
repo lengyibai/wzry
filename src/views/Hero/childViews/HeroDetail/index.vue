@@ -47,7 +47,7 @@ const EmitToggle = (index: number) => {
 
 /* 滚动立即触发 */
 const EmitScollStart = () => {
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 
 /* 滚动结束触发 */
@@ -67,7 +67,7 @@ const EmitHide = () => {
     }, 1500);
   }
 
-  $switchStore.$clickAudio("关闭");
+  $switchStore.$clickAudio("6xc6");
 };
 
 onMounted(() => {
@@ -76,7 +76,7 @@ onMounted(() => {
     show_progress.value = true;
   }, 1500);
   setTimeout(() => {
-    $switchStore.$clickAudio("查看详情");
+    $switchStore.$clickAudio("u4c5");
   }, 250);
 });
 </script>

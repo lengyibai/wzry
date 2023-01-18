@@ -35,6 +35,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import switchStore from "@/store/switch";
+
 interface Props {
   modelValue: number | string; //值
   width?: string; //整体宽度
@@ -70,6 +72,8 @@ const props = withDefaults(defineProps<Props>(), {
   fontSize: "26px",
 });
 const emit = defineEmits<Emits>();
+
+const $switchStore = switchStore();
 
 const tip = ref(""); //不合法提示
 const legal = ref(true); //是否合法
@@ -111,6 +115,8 @@ const input = (e: Event) => {
     "update:modelValue",
     props.number ? (isNaN(Number(v)) ? v : Number(v)) : v
   );
+
+  $switchStore.$clickAudio("5zv8");
 };
 </script>
 <style scoped lang="less">

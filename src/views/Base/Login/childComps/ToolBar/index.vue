@@ -26,7 +26,7 @@ const handleShowNotice = (v: string) => {
   if (v === "sound") {
     muted.value = !muted.value;
     $settingStore.saveConfig({ loginSound: !muted.value });
-    $switchStore.$clickAudio("tab");
+    $switchStore.$clickAudio("n4r4");
   }
 };
 </script>

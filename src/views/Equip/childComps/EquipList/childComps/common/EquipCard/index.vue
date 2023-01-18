@@ -27,7 +27,7 @@ const icon = ref();
 /* 装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive(props.equip.id);
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 
 nextTick(() => {

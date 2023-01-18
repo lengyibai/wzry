@@ -105,7 +105,7 @@ const setPosition = (name: string) => {
   };
   obj[name].call(this);
   setStyle();
-  $switchStore.$clickAudio("tab");
+  $switchStore.$clickAudio("n4r4");
 };
 
 /* 顺时针旋转 */
@@ -201,7 +201,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 const close = () => {
   emit("update:modelValue", false);
-  $switchStore.$clickAudio("关闭");
+  $switchStore.$clickAudio("6xc6");
 };
 
 onMounted(() => {

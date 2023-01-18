@@ -73,13 +73,13 @@ const show = ref(false); //是否显示弹窗
 onMounted(() => {
   show.value = true;
   if (props.up) {
-    $switchStore.$clickAudio("确认弹窗");
+    $switchStore.$clickAudio("e6b4");
   }
 });
 
 /* 关闭 */
 const handleClose = () => {
-  $switchStore.$clickAudio("关闭");
+  $switchStore.$clickAudio("6xc6");
   emit("update:modelValue", false);
   emit("close");
 };

@@ -8,9 +8,9 @@ export default ($store: any) => {
     // 延迟提醒，避免与点击操作同时播放
     setTimeout(() => {
       const msgName: Record<string, string> = {
-        info: "消息提示",
-        warning: "警告提示",
-        error: "错误提示",
+        info: "n74s",
+        warning: "16vy",
+        error: "vw31",
       };
       $store.$clickAudio(msgName[type]); //播放指定名称的音效
 

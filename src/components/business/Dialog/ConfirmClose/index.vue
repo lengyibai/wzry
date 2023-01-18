@@ -40,18 +40,18 @@ const handleClose = () => {
 const handleCancel = () => {
   emit("cancel");
   handleClose();
-  $switchStore.$clickAudio("关闭");
+  $switchStore.$clickAudio("6xc6");
 };
 
 /* 确定 */
 const handleConfirm = () => {
   emit("confirm");
   handleClose();
-  $switchStore.$clickAudio("确定");
+  $switchStore.$clickAudio("36jn");
 };
 
 onMounted(() => {
-  $switchStore.$clickAudio("取消");
+  $switchStore.$clickAudio("45iy");
 });
 </script>
 <style scoped lang="less">
