@@ -5,7 +5,12 @@ import IntoBtn from "../IntoBtn/index.vue";
 
 import RememberPwd from "./childComps/RememberPwd/index.vue";
 
+import { existEmpty } from "@/utils";
 import authStore from "@/store/auth";
+import switchStore from "@/store/switch";
+
+const $switchStore = switchStore();
+const $authStore = authStore();
 
 const form = ref({ id: "", password: "" });
 const remember = ref(true);
@@ -18,7 +23,11 @@ if (local_user) {
 
 /* 登录 */
 const handleLogin = () => {
-  authStore().login(form.value);
+  if (existEmpty(form.value)) {
+    $switchStore.$msg("请完整填写", "error");
+    return;
+  }
+  $authStore.login(form.value);
   if (remember.value) {
     localStorage.setItem("remember_user", JSON.stringify(form.value));
   } else {
