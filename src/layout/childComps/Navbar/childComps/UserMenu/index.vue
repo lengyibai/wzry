@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
+import Options from "./childComps/Options/index.vue";
+
 import { $timeGreet } from "@/utils";
-import { updateUser } from "@/api/main/user";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
 
@@ -13,20 +14,17 @@ const IMGBED = window.IMGBED; //全局图床链接
 
 const show_menu = ref(false); //显示用户菜单
 const show_edit = ref(false); //显示编辑个人信息弹窗
+const show_close = ref(false); //显示确认保存弹窗
 const show_logoff = ref(false); //显示确认注销弹窗
-const user_info = ref<Partial<User>>({
-  nickname: "",
-  headImg: "",
-  password: "",
-});
+const edit_status = ref(false); //信息是否修改
+const time_greet = ref(""); //问候
 
-const timeGreet = computed(() => $timeGreet()); //问候
 const userInfo = computed(() => $authStore.userInfo); //用户本地信息
 const role = computed(() => {
   return user_info.value.role === 0 ? "管理员" : "普通用户";
 }); //用户权限
 
-user_info.value = { ...userInfo.value };
+const user_info = ref<Partial<User>>({ ...userInfo.value }); //编辑的用户信息
 
 /* 编辑个人信息 */
 const handleEditInfo = () => {
@@ -48,26 +46,20 @@ const handleLogoff = async () => {
   $authStore.logoff();
 };
 
-/* 保存个人信息 */
-const handleSave = () => {
-  show_edit.value = false;
-  $authStore.setUserInfo(user_info.value);
-  $switchStore.$clickAudio("36jn");
-
-  //更新本地当前用户信息
-  updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem("user", JSON.stringify(user_info.value)); //更新本地当前用户信息
-    //更新记住密码
-    localStorage.setItem(
-      "remember_user",
-      JSON.stringify({
-        id: userInfo.value.id,
-        password: userInfo.value.password,
-      })
-    );
-    $switchStore.$msg("保存成功");
-  });
+/* 显示确认关闭弹窗 */
+const EmitClose = () => {
+  if (edit_status.value) {
+    show_close.value = true;
+  } else {
+    show_edit.value = false;
+  }
 };
+
+/* 问候语 */
+time_greet.value = $timeGreet();
+setInterval(() => {
+  time_greet.value = $timeGreet();
+}, 1000);
 </script>
 
 <template>
@@ -84,7 +76,7 @@ const handleSave = () => {
     />
     <div class="user-card">
       <div class="name lib-one-line">
-        {{ timeGreet }}，{{ userInfo.nickname }}
+        {{ time_greet }}，{{ userInfo.nickname }}
       </div>
       <div class="role">身份：{{ role }}</div>
 
@@ -108,58 +100,36 @@ const handleSave = () => {
   <transition name="fade">
     <K-Dialog
       v-if="show_edit"
-      v-model="show_edit"
       title="编辑个人资料"
       width="920px"
       up
+      @close="EmitClose"
     >
-      <div class="options">
-        <!-- 帐号 -->
-        <div class="option">
-          <div class="label">帐号</div>
-          <span class="id">{{ userInfo.id }}</span>
-        </div>
-
-        <!-- 头像 -->
-        <div class="option">
-          <div class="label">头像</div>
-          <UploadImg v-model="user_info.headImg" />
-        </div>
-
-        <!-- 用户名 -->
-        <div class="option">
-          <div class="label">用户名</div>
-          <K-Input
-            v-model="user_info.nickname"
-            class="input"
-            border-color="var(--theme-color-three)"
-            width="100%"
-          />
-        </div>
-
-        <!-- 密码 -->
-        <div class="option">
-          <div class="label">密码</div>
-          <K-Input
-            v-model="user_info.password"
-            class="input"
-            border-color="var(--theme-color-three)"
-            width="100%"
-          />
-        </div>
-      </div>
-
-      <!-- 保存 -->
-      <K-Button type="warning" @click="handleSave">保存</K-Button>
+      <Options
+        :id="$authStore.userInfo.id"
+        v-model:status="edit_status"
+        @close="show_edit = false"
+      />
     </K-Dialog>
   </transition>
+
+  <!-- 注销确认 -->
   <transition name="fade">
     <ConfirmClose
       v-if="show_logoff"
       v-model="show_logoff"
       text="注销后，当前帐号需重新注册才能登录，确定注销吗？"
       @confirm="handleLogoff"
-      @cancel="show_logoff = false"
+    />
+  </transition>
+
+  <!-- 关闭设置弹窗确认 -->
+  <transition name="fade">
+    <ConfirmClose
+      v-if="show_close"
+      v-model="show_close"
+      text="资料未保存，确定关闭吗？"
+      @confirm="show_edit = false"
     />
   </transition>
 </template>
