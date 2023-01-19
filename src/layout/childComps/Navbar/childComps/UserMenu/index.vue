@@ -13,6 +13,7 @@ const IMGBED = window.IMGBED; //全局图床链接
 
 const show_menu = ref(false); //显示用户菜单
 const show_edit = ref(false); //显示编辑个人信息弹窗
+const show_logoff = ref(false); //显示确认注销弹窗
 const user_info = $authStore.userInfo;
 
 const timeGreet = computed(() => $timeGreet());
@@ -21,17 +22,24 @@ const role = computed(() => {
   return user_info.role === 0 ? "管理员" : "普通用户";
 });
 
+/* 编辑个人信息 */
+const handleEditInfo = () => {
+  show_edit.value = true;
+};
+
 /* 退出登录 */
-const logout = async () => {
+const handleLogout = async () => {
   $switchStore.$clickAudio("36jn");
   $switchStore.$loading.show("正在退出");
   await $switchStore.$loading.close();
   $authStore.logout();
 };
 
-/* 编辑个人信息 */
-const handleEditInfo = () => {
-  show_edit.value = true;
+/* 注销账号 */
+const handleLogoff = async () => {
+  $switchStore.$loading.show("正在注销");
+  await $switchStore.$loading.close();
+  $authStore.logoff();
 };
 
 /* 保存个人信息 */
@@ -68,8 +76,13 @@ const EmitSaveInfo = () => {
             >编辑个人信息</K-Button
           >
         </div>
-        <div class="logout" @click="logout">
-          <K-Button type="error" font-size="20px" auto-size>退出登录</K-Button>
+        <div class="logout" @click="handleLogout">
+          <K-Button type="warning" font-size="20px" auto-size
+            >退出登录</K-Button
+          >
+        </div>
+        <div class="logoff" @click="show_logoff = true">
+          <K-Button type="error" font-size="20px" auto-size>注销帐号</K-Button>
         </div>
       </div>
     </div>
@@ -111,6 +124,15 @@ const EmitSaveInfo = () => {
         />
       </div>
     </K-Dialog>
+  </transition>
+  <transition name="fade">
+    <ConfirmClose
+      v-if="show_logoff"
+      v-model="show_logoff"
+      text="注销后，当前帐号需重新注册才能登录，确定注销吗？"
+      @confirm="handleLogoff"
+      @cancel="show_logoff = false"
+    />
   </transition>
 </template>
 

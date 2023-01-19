@@ -1,4 +1,4 @@
-import { get, post, patch } from "@/api/helper/transfer";
+import { get, post, patch, del } from "@/api/helper/transfer";
 
 /** @description: 更新token */
 const updateToken = (id: string, token: string) => {
@@ -61,4 +61,10 @@ export const register = async (form: User) => {
 export const updateUser = (id: string, info: User) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true); //将token写入本地
   return Promise.resolve(info); //返回新token
+};
+
+/** @description: 注销用户 */
+export const deleteUser = (id: string) => {
+  del({ name: "data_user", id }); //将token写入本地
+  return Promise.resolve();
 };

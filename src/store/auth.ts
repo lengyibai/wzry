@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import switchStore from "./switch";
 
-import { _login } from "@/api/main/user";
+import { _login, deleteUser } from "@/api/main/user";
 import { HOME_URL } from "@/config/config";
 import router from "@/router";
 import routesStore from "@/store/routes";
@@ -77,6 +77,15 @@ const authStore = defineStore("auth", () => {
     switchStore().$msg("退出成功");
   };
 
+  /** @description: 注销账号 */
+  const logoff = async () => {
+    const user = JSON.parse(localStorage.getItem("user") || "{}") as User;
+    await deleteUser(user.id);
+    switchStore().$msg("注销成功");
+    clearToken();
+    localStorage.removeItem("remember_user");
+  };
+
   /** @description: 清除token */
   const clearToken = () => {
     clearInterval(timer.value);
@@ -121,6 +130,7 @@ const authStore = defineStore("auth", () => {
     clearToken,
     offline,
     watchStatus,
+    logoff,
   };
 });
 
