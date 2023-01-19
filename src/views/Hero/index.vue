@@ -13,7 +13,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
-import { $deepCopy, $lazyLoadImages } from "@/utils";
+import { $debounce, $deepCopy, $lazyLoadImages } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
 import $bus from "@/utils/eventBus";
@@ -75,12 +75,22 @@ const EmitViewClick = (id: number) => {
     });
   });
 };
+
 //如果地址栏存在id，则打开查看详情
-if (id) {
-  EmitViewClick(Number(id));
-} else {
-  $heroStore.getHeroList($heroDetail.hero_info.profession[0]);
+if ($heroStore.hero_list.length === 0) {
+  if (id) {
+    EmitViewClick(Number(id));
+  } else {
+    $heroStore.getHeroList($heroDetail.hero_info.profession[0]);
+  }
 }
+
+/* 滚动触发 */
+const EmitScroll = (v: number) => {
+  $debounce(() => {
+    $heroStore.setScroll(v);
+  }, 250);
+};
 
 /* 加载更多 */
 const EmitLoadMore = () => {
@@ -154,6 +164,8 @@ onBeforeUnmount(() => {
           gap="25px"
           :count="count"
           :eqh-multiple="1.5"
+          :scroll-top="$heroStore.scroll"
+          @scroll="EmitScroll"
           @load-more="EmitLoadMore"
         >
           <transition-group name="card" appear>
@@ -161,7 +173,7 @@ onBeforeUnmount(() => {
               v-for="(item, index) in $heroStore.show_list"
               :key="item.id"
               :style="{
-                'transition-delay': 0.025 * index + 's',
+                'transition-delay': 0.01 * index + 's',
               }"
               @mouseenter="handleEnterCard"
             >

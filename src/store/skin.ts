@@ -21,10 +21,16 @@ const skinStore = defineStore("skin", () => {
     }[]
   >([]); //类型logo列表
 
+  const scroll = ref(0); //滚动坐标
   const page = ref(1); //当前页数
   const page_total = ref(0); //总页数
   const page_count = ref(20); //一页显示的个数
   const show_list = ref<Hero.Skin[]>([]); //展示的列表
+
+  /** @description: 设置滚动坐标 */
+  const setScroll = (v: number) => {
+    scroll.value = v;
+  };
 
   /** @description: 筛选列表改变后触发 */
   const filterListChange = () => {
@@ -36,6 +42,7 @@ const skinStore = defineStore("skin", () => {
     );
     page_total.value = Math.round(filter_list.value.length / page_count.value);
   };
+
   /** @description: 加载更多 */
   const loadMore = () => {
     if (page_total.value > page.value) {
@@ -373,6 +380,7 @@ const skinStore = defineStore("skin", () => {
   return {
     profession,
     skin_list,
+    scroll,
     filter_list,
     type_logo,
     show_list,
@@ -389,6 +397,7 @@ const skinStore = defineStore("skin", () => {
     sortType,
     loadMore,
     filterListChange,
+    setScroll,
   };
 });
 

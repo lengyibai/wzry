@@ -18,6 +18,7 @@ const heroStore = defineStore("hero", () => {
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
 
+  const scroll = ref(0); //滚动坐标
   const page = ref(1); //当前页数
   const page_total = ref(0); //总页数
   const page_count = ref(20); //一页显示的个数
@@ -33,6 +34,7 @@ const heroStore = defineStore("hero", () => {
     );
     page_total.value = Math.round(filter_list.value.length / page_count.value);
   };
+
   /** @description: 加载更多 */
   const loadMore = () => {
     if (page_total.value > page.value) {
@@ -45,6 +47,11 @@ const heroStore = defineStore("hero", () => {
         )
       );
     }
+  };
+
+  /** @description: 设置滚动坐标 */
+  const setScroll = (v: number) => {
+    scroll.value = v;
   };
 
   /** @description: 获取英雄列表 */
@@ -278,25 +285,27 @@ const heroStore = defineStore("hero", () => {
   };
 
   return {
-    profession,
-    hero_list,
     filter_list,
-    show_list,
     gender_type,
-    page_total,
+    hero_list,
     misc_sort,
+    page_total,
+    profession,
+    show_list,
+    scroll,
+    filterAttr,
+    filterCamp,
+    filterGender,
+    filterListChange,
+    filterMisc,
     getHeroList,
+    loadMore,
+    searchHero,
     setHeroList,
     setProfessional,
-    filterCamp,
-    filterAttr,
-    filterMisc,
+    setScroll,
     sortMisc,
-    filterGender,
-    searchHero,
     sortType,
-    filterListChange,
-    loadMore,
   };
 });
 

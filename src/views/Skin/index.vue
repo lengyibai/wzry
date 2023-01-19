@@ -7,7 +7,7 @@ import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { getSkinVoice } from "@/api/main/games/voice";
-import { $lazyLoadImages } from "@/utils";
+import { $debounce, $lazyLoadImages } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
@@ -25,8 +25,18 @@ const show_poster = ref(false); //查看海报
 const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
 
-$skinStore.getSkin(); //获取皮肤列表
 $switchStore.$clickAudio("9u8z");
+
+if ($skinStore.skin_list.length === 0) {
+  $skinStore.getSkin(); //获取皮肤列表
+}
+
+/* 滚动触发 */
+const EmitScroll = (v: number) => {
+  $debounce(() => {
+    $skinStore.setScroll(v);
+  }, 250);
+};
 
 /* 设置图片懒加载 */
 const setLazyImg = () => {
@@ -126,7 +136,9 @@ onBeforeUnmount(() => {
           gap="25px"
           :count="count"
           :eqh-multiple="0.46"
+          :scroll-top="$skinStore.scroll"
           @load-more="EmitLoadMore"
+          @scroll="EmitScroll"
         >
           <div
             v-for="(item, index) in $skinStore.show_list"
