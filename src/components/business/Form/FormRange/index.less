@@ -1,4 +1,4 @@
-.FormInput {
+.form-input {
   display: flex;
   align-items: center;
   margin-bottom: 35px;
@@ -32,21 +32,21 @@
       width: 100%;
 
       span {
-        background-color: var(--theme-color-two);
+        position: absolute;
+        z-index: 2;
+        height: 50px;
+        padding: 0 15px;
         border-radius: 30px;
         color: var(--theme-color-eight);
         font-size: 25px;
-        font-weight: 500;
-        height: 50px;
-        line-height: 50px;
-        padding: 0 15px;
-        position: absolute;
         text-align: center;
+        white-space: nowrap;
+        background-color: var(--theme-color-two);
+        transition: transform 0.3s ease-in-out;
+        font-weight: 500;
+        line-height: 50px;
         transform-origin: bottom;
         transform: translateX(-50%) scale(0);
-        transition: transform 0.3s ease-in-out;
-        white-space: nowrap;
-        z-index: 2;
       }
     }
 

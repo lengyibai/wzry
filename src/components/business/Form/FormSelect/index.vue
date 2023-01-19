@@ -1,5 +1,5 @@
 <template>
-  <div class="FormSelect" :class="{ disabled: disabled }">
+  <div class="form-select" :class="{ disabled: disabled }">
     <!-- 左侧描述 -->
     <div v-if="label" class="label">
       <span><i v-if="required" class="star">*</i>{{ label }}：</span>

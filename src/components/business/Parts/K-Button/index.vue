@@ -5,7 +5,7 @@
       size: 5,
       enable: $settingStore.config.particle,
     }"
-    class="K-Button flex"
+    class="k-button flex"
     :style="style1"
   >
     <span :style="style2">

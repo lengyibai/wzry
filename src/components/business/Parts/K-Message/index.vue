@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-show="messages.length" class="K-Message">
+    <div v-show="messages.length" class="k-message">
       <transition-group name="message">
         <div
           v-for="(item, index) in messages"

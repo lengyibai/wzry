@@ -50,52 +50,61 @@ const fn = (e: Event) => {
 <style scoped lang="less">
 .upload-img {
   position: relative;
-  width: 100px;
-  height: 100px;
-  border: 3px solid var(--theme-color-three);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   overflow: hidden;
+  width: 100px;
+  height: 100px;
+  border: 3px solid var(--theme-color-three);
+  border-radius: 50%;
+
   &:hover {
     border-style: dashed;
   }
+
   label {
     margin-bottom: 0;
   }
+
   .img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+
   .op {
     position: absolute;
     width: 100%;
     height: 100%;
+
     &:hover {
       .edit {
         display: block;
       }
     }
+
     .edit {
       position: absolute;
+      z-index: 2;
       display: none;
       width: 100%;
       height: 100%;
       padding: 25px;
-      z-index: 2;
+
       &:hover {
-        background-color: rgba(0, 0, 0, 0.25);
+        background-color: rgb(0 0 0 / 25%);
       }
     }
   }
+
   .add {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+
     img {
       width: 50%;
       height: 50%;

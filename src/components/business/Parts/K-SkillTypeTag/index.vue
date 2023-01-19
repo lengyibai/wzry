@@ -1,5 +1,5 @@
 <template>
-  <div class="K-SkillTypeTag">
+  <div class="k-skilltypetag">
     <div class="skill-type" :class="name">{{ type }}</div>
   </div>
 </template>

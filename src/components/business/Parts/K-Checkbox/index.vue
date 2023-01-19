@@ -1,5 +1,5 @@
 <template>
-  <div class="K-Checkbox" @click="toggle">
+  <div class="k-checkbox" @click="toggle">
     <div class="label" :style="{ width: labelWidth }">
       <span class="text-gradient-one"
         ><i v-if="required" class="star">*</i>{{ label }}：

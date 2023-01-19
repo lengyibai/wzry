@@ -1,5 +1,5 @@
 <template>
-  <div class="FormInput" :class="{ disabled: disabled }">
+  <div class="form-input" :class="{ disabled: disabled }">
     <input
       :type="type"
       :value="modelValue === 0 ? '' : modelValue"

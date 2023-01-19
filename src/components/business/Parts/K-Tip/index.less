@@ -1,39 +1,44 @@
 .k-tip {
-  display: flex;
-  flex-direction: column;
   position: fixed;
+  z-index: 9;
+  display: flex;
   width: 500px;
   height: calc(500px * 0.5989);
-  background-color: var(--black-50);
-  z-index: 9;
+  padding-bottom: 25px;
   background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
   background-size: cover;
-  padding-bottom: 25px;
+  background-color: var(--black-50);
   filter: drop-shadow(0 0 6px rgb(0 0 0 / 50%));
+  flex-direction: column;
+
   .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--theme-color-nine);
+
     .title {
       font-size: 35px;
       transform: translateX(40px);
     }
+
     .soldier {
       height: 100px;
       transform: translateY(-50%) rotateY(180deg);
       filter: var(--d-shadow-s);
     }
   }
+
   .content {
+    overflow: auto;
     width: 100%;
-    flex: 1;
     padding: 0 30px 0 50px;
     font-size: 24px;
-    line-height: 1.25;
-    overflow: auto;
     text-indent: 2em;
+    flex: 1;
+    line-height: 1.25;
   }
+
   .count-down,
   .not-tip {
     position: absolute;

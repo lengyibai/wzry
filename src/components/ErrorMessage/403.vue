@@ -13,5 +13,5 @@ const IMGBED = window.IMGBED; //全局图床链接
 </template>
 
 <style scoped lang="less">
-@import "./index.less";
+@import url("./index.less");
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="FormInput" :class="{ disabled: disabled }">
+  <div class="form-input" :class="{ disabled: disabled }">
     <!-- 右侧描述 -->
     <div class="label" :style="{ width: labelWidth }">
       <span class="text-gradient-one"

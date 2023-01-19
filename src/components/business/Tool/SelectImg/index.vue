@@ -1,6 +1,6 @@
 <template>
   <div
-    class="SelectImg flex cursor-pointer"
+    class="select-img flex cursor-pointer"
     :class="[type, { border: !modelValue }]"
     @click="show_AddLink = true"
   >

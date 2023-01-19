@@ -1,7 +1,7 @@
 <template>
   <LibMask>
     <transition name="confirm">
-      <div class="ConfirmNotice" :style="{ width: width }">
+      <div class="confirm-notice" :style="{ width: width }">
         <div class="title">{{ title }}</div>
         <img
           v-show="showClose"

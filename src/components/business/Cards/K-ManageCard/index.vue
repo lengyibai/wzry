@@ -1,5 +1,5 @@
 <template>
-  <div class="K-ManageCard cursor-pointer">
+  <div class="k-managecard cursor-pointer">
     <div class="box flex">
       <i class="iconfont" :class="icon_type[type]" />
       <div class="title">{{ title }}</div>
