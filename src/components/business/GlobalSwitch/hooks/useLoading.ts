@@ -3,19 +3,19 @@ export default () => {
   const show_loading = ref(false); //是否显示
   const loading_text = ref(""); //加载描述
   /* 设置方法 */
-  const loading = {
-    /* 显示 */
-    show(text: string) {
+  const loading: Switch.Loading = {
+    //显示
+    show(text = "") {
       loading_text.value = text;
       show_loading.value = true;
     },
-    /* 关闭 */
+    //关闭
     close() {
       return new Promise((resolve) => {
         setTimeout(() => {
           show_loading.value = false;
           setTimeout(() => {
-            resolve(null);
+            resolve();
           }, 250);
         }, 500);
       });

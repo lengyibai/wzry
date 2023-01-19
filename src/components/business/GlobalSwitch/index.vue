@@ -23,12 +23,13 @@ const { show_tip, content, align, noTipName, tip } = useTip(
   $tipStore,
   $settingStore
 );
+
 /* 挂载全局 */
-$switchStore.$patch({
-  $msg: msg,
-  $loading: loading,
-  $clickAudio: $clickAudioStore.play,
-  $tip: tip,
+$switchStore.setTriggerFn({
+  msg: msg,
+  loading: loading,
+  clickAudio: $clickAudioStore.play,
+  tip: tip,
 });
 
 /* 全局监听事件 */

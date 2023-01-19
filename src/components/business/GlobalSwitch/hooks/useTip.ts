@@ -14,14 +14,14 @@ export default (
   const align = ref<TipType>(); //对齐方式
   const noTipName = ref(""); //不再提示的标识符
 
-  const tip = (name: string, a: TipType = "right-bottom") => {
+  const tip = (name: string, p: TipType = "right-bottom") => {
     if ($settingStore.config.tip) {
       if (!$tipStore.tips[name].noTip) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudio("rt25");
         noTipName.value = name;
         content.value = $tipStore.tips[name].text;
-        align.value = a;
+        align.value = p;
         setTimeout(() => {
           show_tip.value = true;
         });
