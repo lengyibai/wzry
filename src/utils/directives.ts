@@ -7,9 +7,6 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
     const {
       color = "#cfb45c",
       size = 10,
-      brightness = 1.3,
-      contrast = 1.1,
-      filter = true,
       num = 35,
       down = false,
       enable = true,
@@ -98,16 +95,6 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
     } else {
       clear(el);
     }
-    if (filter) el.style.transition = "all 0.25s";
-    el.addEventListener("mouseenter", () => {
-      if (!filter) return;
-      el.style.filter = `brightness(${brightness * 100}%) contrast(${
-        contrast * 100
-      }%)`;
-    });
-    el.addEventListener("mouseleave", () => {
-      el.style.filter = "";
-    });
   }, 1000);
 };
 const particle = {
