@@ -14,13 +14,19 @@ const IMGBED = window.IMGBED; //全局图床链接
 const show_menu = ref(false); //显示用户菜单
 const show_edit = ref(false); //显示编辑个人信息弹窗
 const show_logoff = ref(false); //显示确认注销弹窗
-const user_info = $authStore.userInfo;
-
-const timeGreet = computed(() => $timeGreet());
-
-const role = computed(() => {
-  return user_info.role === 0 ? "管理员" : "普通用户";
+const user_info = ref<Partial<User>>({
+  nickname: "",
+  headImg: "",
+  password: "",
 });
+
+const timeGreet = computed(() => $timeGreet()); //问候
+const userInfo = computed(() => $authStore.userInfo); //用户本地信息
+const role = computed(() => {
+  return user_info.value.role === 0 ? "管理员" : "普通用户";
+}); //用户权限
+
+user_info.value = { ...userInfo.value };
 
 /* 编辑个人信息 */
 const handleEditInfo = () => {
@@ -43,11 +49,23 @@ const handleLogoff = async () => {
 };
 
 /* 保存个人信息 */
-const EmitSaveInfo = () => {
+const handleSave = () => {
   show_edit.value = false;
-  updateUser(user_info.id, user_info).then(() => {
-    localStorage.setItem("user", JSON.stringify(user_info)); //更新本地当前用户信息
-    $switchStore.$msg("本地信息更新成功");
+  $authStore.setUserInfo(user_info.value);
+  $switchStore.$clickAudio("36jn");
+
+  //更新本地当前用户信息
+  updateUser($authStore.userInfo.id, user_info.value).then(() => {
+    localStorage.setItem("user", JSON.stringify(user_info.value)); //更新本地当前用户信息
+    //更新记住密码
+    localStorage.setItem(
+      "remember_user",
+      JSON.stringify({
+        id: userInfo.value.id,
+        password: userInfo.value.password,
+      })
+    );
+    $switchStore.$msg("保存成功");
   });
 };
 </script>
@@ -61,12 +79,12 @@ const EmitSaveInfo = () => {
   >
     <img
       class="head-img"
-      :src="user_info.headImg || IMGBED + '/image/unknown.png'"
+      :src="userInfo.headImg || IMGBED + '/image/unknown.png'"
       alt="头像"
     />
     <div class="user-card">
       <div class="name lib-one-line">
-        {{ timeGreet }}，{{ user_info.nickname }}
+        {{ timeGreet }}，{{ userInfo.nickname }}
       </div>
       <div class="role">身份：{{ role }}</div>
 
@@ -94,35 +112,45 @@ const EmitSaveInfo = () => {
       title="编辑个人资料"
       width="920px"
       up
-      @close="EmitSaveInfo"
     >
-      <!-- 头像 -->
-      <div class="option">
-        <div class="label">头像</div>
-        <UploadImg v-model="user_info.headImg" />
+      <div class="options">
+        <!-- 帐号 -->
+        <div class="option">
+          <div class="label">帐号</div>
+          <span class="id">{{ userInfo.id }}</span>
+        </div>
+
+        <!-- 头像 -->
+        <div class="option">
+          <div class="label">头像</div>
+          <UploadImg v-model="user_info.headImg" />
+        </div>
+
+        <!-- 用户名 -->
+        <div class="option">
+          <div class="label">用户名</div>
+          <K-Input
+            v-model="user_info.nickname"
+            class="input"
+            border-color="var(--theme-color-three)"
+            width="100%"
+          />
+        </div>
+
+        <!-- 密码 -->
+        <div class="option">
+          <div class="label">密码</div>
+          <K-Input
+            v-model="user_info.password"
+            class="input"
+            border-color="var(--theme-color-three)"
+            width="100%"
+          />
+        </div>
       </div>
 
-      <!-- 用户名 -->
-      <div class="option">
-        <div class="label">用户名</div>
-        <K-Input
-          v-model="user_info.nickname"
-          class="input"
-          border-color="var(--theme-color-three)"
-          width="100%"
-        />
-      </div>
-
-      <!-- 密码 -->
-      <div class="option">
-        <div class="label">密码</div>
-        <K-Input
-          v-model="user_info.password"
-          class="input"
-          border-color="var(--theme-color-three)"
-          width="100%"
-        />
-      </div>
+      <!-- 保存 -->
+      <K-Button type="warning" @click="handleSave">保存</K-Button>
     </K-Dialog>
   </transition>
   <transition name="fade">
