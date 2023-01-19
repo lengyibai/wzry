@@ -11,6 +11,8 @@ withDefaults(defineProps<Props>(), {
 });
 
 const $settingStore = settingStore();
+
+const IMGBED = window.IMGBED; //全局图床链接
 </script>
 
 <template>
@@ -22,6 +24,7 @@ const $settingStore = settingStore();
   >
     <span>{{ text }}</span>
     <span>{{ desc }}</span>
+    <img :src="IMGBED + '/image/login_btn.png'" alt="" />
   </button>
 </template>
 
