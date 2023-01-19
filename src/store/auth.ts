@@ -27,8 +27,8 @@ const authStore = defineStore("auth", () => {
   };
 
   /** @description: 设置用户信息 */
-  const setUserInfo = (data: User) => {
-    userInfo.value = data;
+  const setUserInfo = (data: Partial<User>) => {
+    userInfo.value = { ...userInfo.value, ...data };
   };
 
   /** @description: 登录 */
