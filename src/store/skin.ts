@@ -21,6 +21,35 @@ const skinStore = defineStore("skin", () => {
     }[]
   >([]); //类型logo列表
 
+  const page = ref(1); //当前页数
+  const page_total = ref(0); //总页数
+  const page_count = ref(20); //一页显示的个数
+  const show_list = ref<Hero.Skin[]>([]); //展示的列表
+
+  /** @description: 筛选列表改变后触发 */
+  const filterListChange = () => {
+    page.value = 0;
+    show_list.value = [];
+    show_list.value = filter_list.value.slice(
+      page.value * page_count.value,
+      (page.value + 1) * page_count.value
+    );
+    page_total.value = Math.round(filter_list.value.length / page_count.value);
+  };
+  /** @description: 加载更多 */
+  const loadMore = () => {
+    if (page_total.value > page.value) {
+      page.value += 1;
+
+      show_list.value.push(
+        ...filter_list.value.slice(
+          page.value * page_count.value,
+          (page.value + 1) * page_count.value
+        )
+      );
+    }
+  };
+
   /** @description: 获取皮肤列表 */
   const getSkinList = (profession?: string) => {
     getSkin().then((skinList) => {
@@ -317,7 +346,11 @@ const skinStore = defineStore("skin", () => {
     }
 
     // 正序/倒序
-    if (sort_type.value === "倒序") filter_list.value.reverse();
+    if (sort_type.value === "倒序") {
+      filter_list.value.reverse();
+    }
+
+    filterListChange();
   };
 
   /** @description: 搜索皮肤 */
@@ -332,6 +365,8 @@ const skinStore = defineStore("skin", () => {
       } else {
         sortAll();
       }
+
+      filterListChange();
     }, 500);
   };
 
@@ -340,6 +375,7 @@ const skinStore = defineStore("skin", () => {
     skin_list,
     filter_list,
     type_logo,
+    show_list,
     price_type,
     gender_type,
     getSkin: getSkinList,
@@ -351,6 +387,8 @@ const skinStore = defineStore("skin", () => {
     searchSkin,
     filterType,
     sortType,
+    loadMore,
+    filterListChange,
   };
 });
 

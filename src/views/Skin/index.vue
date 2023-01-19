@@ -17,10 +17,6 @@ const $skinStore = skinStore();
 const $otherStore = otherStore();
 const $switchStore = switchStore();
 
-let page = 1; //当前页数
-let page_count = 30; //一页显示的个数
-let page_total = 0; //总页数
-
 const skinListRef = ref(); //布局容器
 const poster = ref(""); // 查看的海报链接
 const count = ref(0); //一行显示的数目
@@ -28,8 +24,6 @@ const show = ref(false); //是否显示列表
 const show_poster = ref(false); //查看海报
 const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
-const cache_list = ref<Hero.Skin[]>([]); //所有数据缓存
-const skin_list = ref<Hero.Skin[]>([]); //当前展示的皮肤列表
 
 $skinStore.getSkin(); //获取皮肤列表
 $switchStore.$clickAudio("9u8z");
@@ -44,16 +38,11 @@ const setLazyImg = () => {
 
 /* 加载更多 */
 const EmitLoadMore = () => {
-  if (page_total > page) {
-    page += 1;
-    skin_list.value.push(
-      ...cache_list.value.slice(page * page_count, (page + 1) * page_count)
-    );
-    nextTick(() => {
-      skinListRef.value.updateHeight();
-      setLazyImg();
-    });
-  }
+  $skinStore.loadMore();
+  nextTick(() => {
+    skinListRef.value.updateHeight();
+    setLazyImg();
+  });
 };
 
 /* 点击工具栏中的选项 */
@@ -78,16 +67,8 @@ const handleEnterCard = () => {
 /* 监听筛选后的英雄列表 */
 watch(
   () => $skinStore.filter_list,
-  (v) => {
+  () => {
     show.value = false;
-    page = 0;
-    skin_list.value = [];
-    cache_list.value = v;
-    skin_list.value = cache_list.value.slice(
-      page * page_count,
-      (page + 1) * page_count
-    );
-    page_total = Math.round(cache_list.value.length / page_count);
 
     nextTick(() => {
       show.value = true;
@@ -138,7 +119,7 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
-          v-if="skin_list.length && show"
+          v-if="$skinStore.show_list.length && show"
           ref="skinListRef"
           scroll-id="skin_list"
           class="skin-list"
@@ -148,7 +129,7 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
         >
           <div
-            v-for="(item, index) in skin_list"
+            v-for="(item, index) in $skinStore.show_list"
             :key="item.id"
             :style="{
               'transition-delay': 0.025 * index + 's',
