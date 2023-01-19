@@ -5,7 +5,9 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
+import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
+const $settingStore = settingStore();
 
 const $switchStore = switchStore();
 
@@ -44,7 +46,12 @@ const EmitIntoType = (v: string) => {
       <span>重新选择</span>
     </div>
     <div
-      v-particle="{ down: true, filter: false, color: '#e8cc7d' }"
+      v-particle="{
+        down: true,
+        filter: false,
+        color: '#e8cc7d',
+        enable: $settingStore.config.particle,
+      }"
       class="logo"
     >
       <img :src="IMGBED + '/image/login_logo.png'" alt="logo" />
