@@ -1,7 +1,7 @@
 <template>
   <div class="FormInput" :class="{ disabled: disabled }">
     <input
-      type="text"
+      :type="type"
       :value="modelValue === 0 ? '' : modelValue"
       :placeholder="placeholder"
       :style="{
@@ -50,6 +50,7 @@ interface Props {
   color?: string; //字体颜色
   align?: "left" | "center" | "right"; //对齐方式
   fontSize?: string; //字体大小
+  type?: string; //输入框类型
 }
 interface Emits {
   (e: "update:modelValue", v: string | number): void;
@@ -70,6 +71,7 @@ const props = withDefaults(defineProps<Props>(), {
   color: "#fff",
   align: "left",
   fontSize: "26px",
+  type: "text",
 });
 const emit = defineEmits<Emits>();
 
