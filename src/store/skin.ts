@@ -117,6 +117,8 @@ const skinStore = defineStore("skin", () => {
 
   /** @description: 一键排序 */
   const sortAll = () => {
+    scroll.value = 0;
+
     // 职业筛选
     if (profession.value === "全部") {
       filter_list.value = [...skin_list.value]; //为了解决排序拷贝问题
