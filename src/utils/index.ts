@@ -317,7 +317,7 @@ export function $deepMearge(obj, target = {}) {
 }
 
 /* 获取浏览器版本 */
-export const $chromeV = (()=>{
+export const $chromeV = (() => {
   let v = "";
   navigator.userAgent.split(" ").forEach((item) => {
     /chrome/i.test(item) && (v = item);
@@ -357,23 +357,6 @@ export function $savefiles(data, name) {
   save_link.download = name;
   save_link.click();
 }
-
-/* 图片懒加载 */
-export const $lazyLoadImages = (elements: HTMLImageElement[]) => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const img = entry.target as HTMLImageElement;
-      if (entry.intersectionRatio > 0) {
-        img.style.visibility = "visible";
-      } else {
-        img.style.visibility = "hidden";
-      }
-    });
-  });
-  elements.forEach((element) => {
-    observer.observe(element);
-  });
-};
 
 /* 图片压缩 */
 export function $imageOptimizer(obj) {
@@ -438,7 +421,7 @@ export function $imageOptimizer(obj) {
               c2.remove();
             },
             (e) => {
-              obj.fail&&obj.fail(e);
+              obj.fail && obj.fail(e);
             }
           );
         } else {
@@ -448,7 +431,7 @@ export function $imageOptimizer(obj) {
         }
       },
       (e) => {
-        obj.fail&&obj.fail(e);
+        obj.fail && obj.fail(e);
       }
     );
   }
@@ -485,7 +468,7 @@ export function $promiseTimeout(fn, delay) {
 }
 
 /* 判断是否为移动端 */
-export const $isPhone = (()=>/mobile/i.test(navigator.userAgent))()
+export const $isPhone = (() => /mobile/i.test(navigator.userAgent))()
 
 /* 判断一个对象中的属性是否存在空值 */
 export const existEmpty = obj => Object.values(obj).some(val => val === "");
@@ -515,3 +498,14 @@ export const $debounceInstant = (() => {
     if (callNow) fn.apply(context, args);
   };
 })();
+
+/* 图片预加载 */
+export const $preload = (v: string[]) => {
+  const images = []
+
+  for (let i = 0; i < v.length; i++) {
+    images[i] = new Image()
+    images[i].src = v[i]
+   }
+
+}

@@ -5,7 +5,7 @@ import { ref } from "vue";
 import { getHeroData } from "@/api/main/games/hero";
 import { getHeroSkill } from "@/api/main/games/skill";
 import { getHeroSkin } from "@/api/main/games/skin";
-import { $debounce, $search } from "@/utils";
+import { $debounce, $search, $preload } from "@/utils";
 
 const heroStore = defineStore("hero", () => {
   const profession = ref(""); //职业类型
@@ -24,15 +24,28 @@ const heroStore = defineStore("hero", () => {
   const page_count = ref(20); //一页显示的个数
   const show_list = ref<Hero.Data[]>([]); //展示的列表
 
+  /** @description: 头像预加载封装 */
+  const perload = (data: Hero.Data[]) => {
+    const headImgs = data.map((item) => {
+      return item.headImg;
+    });
+    $preload(headImgs);
+  };
+
   /** @description: 筛选列表改变后触发 */
   const filterListChange = () => {
     page.value = 0;
     show_list.value = [];
-    show_list.value = filter_list.value.slice(
+
+    const data = filter_list.value.slice(
       page.value * page_count.value,
       (page.value + 1) * page_count.value
     );
+
+    show_list.value = data;
     page_total.value = Math.round(filter_list.value.length / page_count.value);
+
+    perload(data);
   };
 
   /** @description: 加载更多 */
@@ -40,12 +53,14 @@ const heroStore = defineStore("hero", () => {
     if (page_total.value > page.value) {
       page.value += 1;
 
-      show_list.value.push(
-        ...filter_list.value.slice(
-          page.value * page_count.value,
-          (page.value + 1) * page_count.value
-        )
+      const data = filter_list.value.slice(
+        page.value * page_count.value,
+        (page.value + 1) * page_count.value
       );
+
+      show_list.value.push(...data);
+
+      perload(data);
     }
   };
 
@@ -55,10 +70,9 @@ const heroStore = defineStore("hero", () => {
   };
 
   /** @description: 获取英雄列表 */
-  const getHeroList = (profession?: string) => {
-    getHeroData().then((res) => {
-      setHeroList(res, profession);
-    });
+  const getHeroList = async () => {
+    const res = await getHeroData();
+    setHeroList(res);
   };
 
   /** @description: 设置英雄列表 */

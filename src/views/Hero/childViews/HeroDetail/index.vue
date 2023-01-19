@@ -8,6 +8,7 @@ import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
+import { $preload } from "@/utils";
 import heroDetailStore from "@/store/heroDetail";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
@@ -24,11 +25,17 @@ const $heroStore = heroStore();
 const $heroDetailStore = heroDetailStore();
 const $switchStore = switchStore();
 
-const hero_data = $heroDetail.hero_info; //英雄信息
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
 
 const scroll_index = ref(1); //滚动索引
 const show_progress = ref(false); //显示滚动索引组件
+
+const hero_data = $heroDetail.hero_info; //英雄信息
+
+const posters =
+  hero_data.skins?.map((item) => {
+    return item.poster;
+  }) || [];
 
 //技能数量
 const skill_num = computed(() => {
@@ -63,7 +70,7 @@ const EmitHide = () => {
 
   if ($heroStore.profession === "") {
     setTimeout(() => {
-      $heroStore.getHeroList(hero_data.profession[0]);
+      $heroStore.getHeroList();
     }, 1500);
   }
 
@@ -74,6 +81,7 @@ onMounted(() => {
   //延迟显示滚动索引
   setTimeout(() => {
     show_progress.value = true;
+    $preload(posters);
   }, 1500);
   setTimeout(() => {
     $switchStore.$clickAudio("u4c5");
