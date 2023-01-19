@@ -11,6 +11,11 @@ interface Patch extends Get {
   v: any; //需要修改成什么
 }
 
+interface Del {
+  name: string; //用于获取本地存储的键名
+  id: string; //数据id
+}
+
 /** @description: 通过字段查询指定值 */
 export function get<R>(params: Get, alone?: true): R;
 export function get<R>(params: Get, alone?: false): R[];
@@ -66,4 +71,14 @@ export const patch = <R>(params: Patch, obj?: boolean) => {
 
   localStorage.setItem(name, JSON.stringify($deepMearge(data, [newData]))); //合并数据并存储
   return newData as R;
+};
+
+/** @description: 删除 */
+export const del = <R extends Record<string, string>>(params: Del) => {
+  const { name, id } = params;
+  const d = localStorage.getItem(name);
+  const v = (d && JSON.parse(d)) as R[];
+  const index = v.findIndex((item) => item.id === id);
+  v.splice(index, 1);
+  localStorage.setItem(name, JSON.stringify(v));
 };
