@@ -38,7 +38,7 @@ import { ref, onMounted } from "vue";
 import switchStore from "@/store/switch";
 
 interface Props {
-  modelValue: boolean; //是否显示
+  modelValue?: boolean; //是否显示
   showClose?: boolean; //是否显示右上角关闭按钮
   title?: string; //左上角描述文字
   header?: string; //中间标题文字
