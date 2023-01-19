@@ -9,18 +9,18 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount, onMounted, onActivated, ref } from "vue";
+import { onBeforeMount, onMounted, ref } from "vue";
 interface Props {
   count: number;
   gap: string;
   eqhMultiple: number;
-  scrollId?: string;
+  scrollTop?: number;
 }
 const props = withDefaults(defineProps<Props>(), {
   count: 3,
   gap: "0px",
   eqhMultiple: 0,
-  scrollId: "",
+  scrollTop: 0,
 });
 
 const LibGridLayout = ref();
@@ -44,18 +44,16 @@ const updateHeight = () => {
 
 interface Emits {
   (e: "load-more"): void;
-  (e: "scroll"): void;
+  (e: "scroll", v: number): void;
 }
 const emit = defineEmits<Emits>();
 let lock = false;
 const scroll = (e: Event) => {
   const el = e.target as HTMLElement;
-  emit("scroll");
+  emit("scroll", el.scrollTop);
+
   if (el.scrollHeight < el.scrollTop + el.clientHeight * 1.5 && !lock) {
     emit("load-more");
-  }
-  if (props.scrollId) {
-    sessionStorage.setItem(props.scrollId, el.scrollTop.toString());
   }
 };
 
@@ -73,12 +71,8 @@ onMounted(() => {
   setTimeout(() => {
     cancelAnimationFrame(a);
   }, 5000);
-});
 
-onActivated(() => {
-  if (props.scrollId) {
-    LibGridLayout.value.scroll({ top: sessionStorage.getItem(props.scrollId) });
-  }
+  LibGridLayout.value?.scroll({ top: props.scrollTop });
 });
 
 onBeforeMount(() => {
