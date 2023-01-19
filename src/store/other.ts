@@ -20,7 +20,12 @@ const otherStore = defineStore("other", () => {
     triggerFn.value.push(fn);
   };
 
-  return { collapse, setCollapse, setTriggerFn };
+  /** @description: 清空触发函数 */
+  const clearTrigger = () => {
+    triggerFn.value = [];
+  };
+
+  return { collapse, setCollapse, setTriggerFn, clearTrigger };
 });
 
 export default otherStore;

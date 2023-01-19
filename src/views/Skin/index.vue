@@ -128,6 +128,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   $bus.off("resize");
+  $otherStore.clearTrigger();
 });
 </script>
 
