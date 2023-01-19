@@ -34,17 +34,12 @@ const $heroDetail = heroDetail();
 
 const $switchStore = switchStore();
 
-let page = 1; //当前页数
-let page_total = 0; //总页数
-let page_count = 20; //一页显示的个数
 let id: unknown = $route.query.id; //地址栏参数
-let cache_list: Hero.Data[] = []; //总数据
 
 const heroListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目
 const show = ref(false); //是否显示列表
 const show_HeroDetail = ref(false); //显示英雄详情
-const hero_list = ref<Hero.Data[]>([]); //英雄列表
 const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
 $switchStore.$clickAudio("4d8m");
@@ -89,13 +84,7 @@ if (id) {
 
 /* 加载更多 */
 const EmitLoadMore = () => {
-  if (page_total > page) {
-    page += 1;
-
-    hero_list.value.push(
-      ...cache_list.slice(page * page_count, (page + 1) * page_count)
-    );
-  }
+  $heroStore.loadMore();
   nextTick(() => {
     heroListRef.value.updateHeight();
     setLazyImg();
@@ -110,16 +99,8 @@ $otherStore.setTriggerFn(() => {
 /* 监听筛选后的英雄列表 */
 watch(
   () => $heroStore.filter_list,
-  (v) => {
+  () => {
     show.value = false;
-    page = 0;
-    hero_list.value = [];
-    cache_list = v;
-    hero_list.value = cache_list.slice(
-      page * page_count,
-      (page + 1) * page_count
-    );
-    page_total = Math.round(cache_list.length / page_count);
 
     nextTick(() => {
       show.value = true;
@@ -166,7 +147,7 @@ onBeforeUnmount(() => {
       <div class="hero-main">
         <HeroToolbar />
         <LibGridLayout
-          v-if="hero_list.length && show"
+          v-if="$heroStore.show_list.length && show"
           ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
@@ -177,7 +158,7 @@ onBeforeUnmount(() => {
         >
           <transition-group name="card" appear>
             <div
-              v-for="(item, index) in hero_list"
+              v-for="(item, index) in $heroStore.show_list"
               :key="item.id"
               :style="{
                 'transition-delay': 0.025 * index + 's',

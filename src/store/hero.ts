@@ -18,6 +18,35 @@ const heroStore = defineStore("hero", () => {
   const hero_list = ref<Hero.Data[]>([]); //英雄列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
 
+  const page = ref(1); //当前页数
+  const page_total = ref(0); //总页数
+  const page_count = ref(20); //一页显示的个数
+  const show_list = ref<Hero.Data[]>([]); //展示的列表
+
+  /** @description: 筛选列表改变后触发 */
+  const filterListChange = () => {
+    page.value = 0;
+    show_list.value = [];
+    show_list.value = filter_list.value.slice(
+      page.value * page_count.value,
+      (page.value + 1) * page_count.value
+    );
+    page_total.value = Math.round(filter_list.value.length / page_count.value);
+  };
+  /** @description: 加载更多 */
+  const loadMore = () => {
+    if (page_total.value > page.value) {
+      page.value += 1;
+
+      show_list.value.push(
+        ...filter_list.value.slice(
+          page.value * page_count.value,
+          (page.value + 1) * page_count.value
+        )
+      );
+    }
+  };
+
   /** @description: 获取英雄列表 */
   const getHeroList = (profession?: string) => {
     getHeroData().then((res) => {
@@ -229,7 +258,11 @@ const heroStore = defineStore("hero", () => {
     }
 
     // 正序/倒序
-    if (sort_type.value === "倒序") filter_list.value.reverse();
+    if (sort_type.value === "倒序") {
+      filter_list.value.reverse();
+    }
+
+    filterListChange();
   };
 
   /** @description: 搜索英雄 */
@@ -240,6 +273,7 @@ const heroStore = defineStore("hero", () => {
       } else {
         sortAll();
       }
+      filterListChange();
     }, 500);
   };
 
@@ -247,7 +281,9 @@ const heroStore = defineStore("hero", () => {
     profession,
     hero_list,
     filter_list,
+    show_list,
     gender_type,
+    page_total,
     misc_sort,
     getHeroList,
     setHeroList,
@@ -259,6 +295,8 @@ const heroStore = defineStore("hero", () => {
     filterGender,
     searchHero,
     sortType,
+    filterListChange,
+    loadMore,
   };
 });
 
