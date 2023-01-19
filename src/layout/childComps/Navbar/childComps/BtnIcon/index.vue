@@ -145,7 +145,7 @@ const EmitResetConfig = () => {
             <div class="label">
               粒子特效
               <DescSet
-                desc="开启后对性能有亿点影响，主要是对登录页黄色Logo、登录注册按钮、底部音乐播放器和按钮添加粒子效果"
+                desc="开启后对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
               />
             </div>
             <K-Check
