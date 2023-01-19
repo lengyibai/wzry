@@ -58,7 +58,7 @@ export const register = async (form: User) => {
 };
 
 /** @description: 更新用户信息 */
-export const updateUser = (id: string, info: User) => {
+export const updateUser = (id: string, info: Partial<User>) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true); //将token写入本地
   return Promise.resolve(info); //返回新token
 };
