@@ -13,7 +13,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
-import { $debounce, $deepCopy, $lazyLoadImages } from "@/utils";
+import { $debounce, $deepCopy } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
 import $bus from "@/utils/eventBus";
@@ -44,14 +44,6 @@ const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
 $switchStore.$clickAudio("4d8m");
 
-/* 设置图片懒加载 */
-const setLazyImg = () => {
-  const imgs = heroListRef.value.childrens.map((item: HTMLElement) => {
-    return item.children[0].children[1];
-  });
-  $lazyLoadImages(imgs);
-};
-
 /* 悬浮卡片 */
 const handleEnterCard = () => {
   $switchStore.$clickAudio("n4r4");
@@ -81,7 +73,7 @@ if ($heroStore.hero_list.length === 0) {
   if (id) {
     EmitViewClick(Number(id));
   } else {
-    $heroStore.getHeroList($heroDetail.hero_info.profession[0]);
+    $heroStore.getHeroList();
   }
 }
 
@@ -97,7 +89,6 @@ const EmitLoadMore = () => {
   $heroStore.loadMore();
   nextTick(() => {
     heroListRef.value.updateHeight();
-    setLazyImg();
   });
 };
 

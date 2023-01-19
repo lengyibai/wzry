@@ -7,7 +7,7 @@ import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { getSkinVoice } from "@/api/main/games/voice";
-import { $debounce, $lazyLoadImages } from "@/utils";
+import { $debounce } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import otherStore from "@/store/other";
@@ -38,20 +38,11 @@ const EmitScroll = (v: number) => {
   }, 250);
 };
 
-/* 设置图片懒加载 */
-const setLazyImg = () => {
-  const imgs = skinListRef.value.childrens.map((item: HTMLElement) => {
-    return item.children[0].firstChild;
-  });
-  $lazyLoadImages(imgs);
-};
-
 /* 加载更多 */
 const EmitLoadMore = () => {
   $skinStore.loadMore();
   nextTick(() => {
     skinListRef.value.updateHeight();
-    setLazyImg();
   });
 };
 
