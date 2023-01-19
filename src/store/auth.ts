@@ -47,6 +47,7 @@ const authStore = defineStore("auth", () => {
       })
       .catch((err) => {
         switchStore().$msg(err, "error");
+        switchStore().$loading.close();
       });
   };
 
