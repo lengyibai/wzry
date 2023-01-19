@@ -39,7 +39,6 @@ const fn = (e: Event) => {
     success: async (...data: any[]) => {
       await $switchStore.$loading.close();
       emit("update:modelValue", data[2]);
-      $switchStore.$msg("设置成功！");
     },
     fail: async () => {
       await $switchStore.$loading.close();
