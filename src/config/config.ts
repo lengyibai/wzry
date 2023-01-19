@@ -4,7 +4,7 @@
 export const LOGIN_URL = "/login";
 
 /** @description: 本地版本 */
-export const LOCAL_VERSION = "23.01.15.15";
+export const LOCAL_VERSION = "23.01.19.17";
 
 /** @description: 首页地址 */
 export const HOME_URL = "/hero";
