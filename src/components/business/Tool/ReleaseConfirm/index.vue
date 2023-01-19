@@ -16,7 +16,6 @@
       <ConfirmClose
         v-if="show_ConfirmClose"
         v-model="show_ConfirmClose"
-        v-model:v-if="show_ConfirmClose"
         v-bind="$attrs"
       />
     </transition>

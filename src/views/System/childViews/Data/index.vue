@@ -240,7 +240,6 @@ const EmitsSortChange = (v: number[]) => {
       <ConfirmClose
         v-if="show_ConfirmClose"
         v-model="show_ConfirmClose"
-        v-model:v-if="show_ConfirmClose"
         text="即将从远程下载当前数据进行覆盖"
         title="确认重置"
         @confirm="EmitConfirmReset"
