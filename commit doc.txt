@@ -9,9 +9,10 @@ update: 文件更新
 test: 测试代码变动
 visual: 页面样式调整
 rename: 文件或文件夹重命名
+desc: 描述
 move: 文件位置调整
 style: 不影响代码含义的改动，例如去掉空格、改变缩进、增删分号
 doc: 文档变动
-ci: 配置文件和脚本有关的改动，如 .gitignore .prettierrc
+misc: 非src文件更新
 merge: 代码分支合并
 revert: 代码版本回滚
