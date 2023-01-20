@@ -30,16 +30,23 @@ const EmitToolType = (v: string) => {
     <div class="logo">
       <img :src="IMGBED + '/image/logo.png'" alt="" />
     </div>
+
+    <!-- 登录盒子 -->
     <transition name="fade">
       <Login v-if="finish && !show_notice" />
     </transition>
 
-    <ToolBar @clicks="EmitToolType" />
+    <!-- 工具栏 -->
+    <ToolBar :notice="finish" @clicks="EmitToolType" />
+
+    <!-- 视频背景 -->
     <LibBgVideo
       v-if="enable_video_bg"
       :video="LOGINBG"
       :muted="!$settingStore.config.loginSound"
     />
+
+    <!-- 图片 -->
     <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
 
     <transition v-if="finish" name="fade">

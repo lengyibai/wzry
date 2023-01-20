@@ -4,6 +4,13 @@ import { ref, computed } from "vue";
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
 
+interface Props {
+  notice?: boolean; //是否显示公告按钮
+}
+withDefaults(defineProps<Props>(), {
+  notice: true,
+});
+
 interface Emits {
   (e: "clicks", v: string): void;
 }
@@ -41,8 +48,12 @@ const handleShowNotice = (v: string) => {
     >
       <i class="iconfont" :class="icon" />
     </div>
-    <div class="line"></div>
-    <div class="box cursor-pointer" @click="handleShowNotice('notice')">
+    <div v-if="notice" class="line"></div>
+    <div
+      v-if="notice"
+      class="box cursor-pointer"
+      @click="handleShowNotice('notice')"
+    >
       <i class="iconfont wzry-gonggao" />
     </div>
   </div>
