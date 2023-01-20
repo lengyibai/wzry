@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeMount } from "vue";
+import { ref, computed, onMounted, onBeforeUnmount } from "vue";
 
 import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
@@ -17,7 +17,6 @@ const loginBox = ref<HTMLElement>();
 const IMGBED = window.IMGBED; //全局图床链接
 
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
-const fn = ref(); //移动事件
 
 const component = computed(() => {
   return is_reg.value === "登录"
@@ -38,29 +37,24 @@ const EmitIntoType = (v: string) => {
   is_reg.value = v;
 };
 
-onMounted(() => {
-  const parallax = new $Parallax(
-    ({ degX, degY }: Record<string, number>) => {
-      loginBox.value &&
-        (loginBox.value.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`);
-    },
-    {
-      rx: 10,
-      ry: 10,
-    }
-  );
+/* 视差动画 */
+const parallax = new $Parallax(
+  ({ degX, degY }: Record<string, number>) => {
+    loginBox.value &&
+      (loginBox.value.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`);
+  },
+  {
+    rx: 10,
+    ry: 10,
+  }
+);
+const fn = (e: MouseEvent) => {
+  $throttleInstant(() => parallax.move(e), 50);
+};
+window.addEventListener("mousemove", fn);
 
-  fn.value = (e: MouseEvent) => {
-    $throttleInstant(() => {
-      parallax.move(e);
-    }, 10);
-  };
-
-  window.addEventListener("mousemove", fn.value);
-});
-
-onBeforeMount(() => {
-  window.removeEventListener("mousemove", fn.value);
+onBeforeUnmount(() => {
+  window.removeEventListener("mousemove", fn);
 });
 </script>
 
