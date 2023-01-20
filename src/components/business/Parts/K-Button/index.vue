@@ -11,7 +11,7 @@
     <span :style="style2">
       <slot>按钮</slot>
     </span>
-    <img :src="getIcon(type)" />
+    <img :src="getIcon(type)" @dragstart.prevent />
   </button>
 </template>
 <script setup lang="ts">
