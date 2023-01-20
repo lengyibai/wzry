@@ -58,7 +58,11 @@ const handleReg = () => {
       <K-Input v-model="form.password" placeholder="请输入密码" />
     </div>
 
-    <RoleSelect v-model="form.role" :option="['管理员', '用户']" />
+    <RoleSelect
+      v-model="form.role"
+      class="role-select"
+      :option="['管理员', '用户']"
+    />
     <div class="btns">
       <IntoBtn text="注册" desc="REGISTER" @click="handleReg" />
     </div>

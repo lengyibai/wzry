@@ -498,3 +498,33 @@ export const $debounceInstant = (() => {
     if (callNow) fn.apply(context, args);
   };
 })();
+
+/* 视差动画 */
+export class $Parallax {
+  x = 0;
+  y = 0;
+  rx = 0;
+  ry = 0;
+  fn=null
+  constructor(fn, { x=0, y=0, rx=0, ry=0 }) {
+    this.x = x;
+    this.y = y;
+    this.rx = rx;
+    this.ry = ry;
+    this.fn = fn
+  }
+
+  move(e) {
+    const { innerWidth: w, innerHeight: h } = window;
+    const x = Number(((e.pageX - w / 2) / (w / 2)).toFixed(2));
+    const y = Number(((e.pageY - h / 2) / (h / 2)).toFixed(2));
+
+    const moveX = this.x * x;
+    const moveY = this.y * y;
+
+    const degX = this.rx * y;
+    const degY = this.ry * -x;
+
+    this.fn({moveX,moveY,degX,degY})
+  }
+}
