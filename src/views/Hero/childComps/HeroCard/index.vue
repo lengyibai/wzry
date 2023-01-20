@@ -67,7 +67,7 @@ const handleViewClick = () => {
       </div>
     </transition>
 
-    <img class="bg" :src="data.cover" @dragstart.prevent />
+    <img class="bg" :src="data.cover" loading="lazy" @dragstart.prevent />
     <div class="bottom">
       <div class="name">{{ data.name }}</div>
       <div class="mark">{{ data.mark }}</div>
