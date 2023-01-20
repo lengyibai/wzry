@@ -498,14 +498,3 @@ export const $debounceInstant = (() => {
     if (callNow) fn.apply(context, args);
   };
 })();
-
-/* 图片预加载 */
-export const $preload = (v: string[]) => {
-  const images = []
-
-  for (let i = 0; i < v.length; i++) {
-    images[i] = new Image()
-    images[i].src = v[i]
-   }
-
-}
