@@ -45,8 +45,9 @@ const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 $switchStore.$clickAudio("4d8m");
 
 /* 悬浮卡片 */
-const handleEnterCard = () => {
+const handleEnterCard = (data: Hero.Data) => {
   $switchStore.$clickAudio("n4r4");
+  new Image().src = data.headImg; //图片预加载
 };
 
 /* 查看详情 */
@@ -86,7 +87,6 @@ const EmitScroll = (v: number) => {
 
 /* 加载更多 */
 const EmitLoadMore = () => {
-  $heroStore.loadMore();
   nextTick(() => {
     heroListRef.value.updateHeight();
   });
@@ -148,7 +148,7 @@ onBeforeUnmount(() => {
       <div class="hero-main">
         <HeroToolbar />
         <LibGridLayout
-          v-if="$heroStore.show_list.length && show"
+          v-if="$heroStore.filter_list.length && show"
           ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
@@ -161,12 +161,12 @@ onBeforeUnmount(() => {
         >
           <transition-group name="card" appear>
             <div
-              v-for="(item, index) in $heroStore.show_list"
+              v-for="(item, index) in $heroStore.filter_list"
               :key="item.id"
               :style="{
                 'transition-delay': 0.01 * index + 's',
               }"
-              @mouseenter="handleEnterCard"
+              @mouseenter="handleEnterCard(item)"
             >
               <HeroCard :data="item" @view="EmitViewClick(item.id!)" />
             </div>

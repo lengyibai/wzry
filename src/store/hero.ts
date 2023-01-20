@@ -5,7 +5,7 @@ import { ref } from "vue";
 import { getHeroData } from "@/api/main/games/hero";
 import { getHeroSkill } from "@/api/main/games/skill";
 import { getHeroSkin } from "@/api/main/games/skin";
-import { $debounce, $search, $preload } from "@/utils";
+import { $debounce, $search } from "@/utils";
 
 const heroStore = defineStore("hero", () => {
   const profession = ref(""); //职业类型
@@ -19,50 +19,6 @@ const heroStore = defineStore("hero", () => {
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
 
   const scroll = ref(0); //滚动坐标
-  const page = ref(1); //当前页数
-  const page_total = ref(0); //总页数
-  const page_count = ref(20); //一页显示的个数
-  const show_list = ref<Hero.Data[]>([]); //展示的列表
-
-  /** @description: 头像预加载封装 */
-  const perload = (data: Hero.Data[]) => {
-    const headImgs = data.map((item) => {
-      return item.headImg;
-    });
-    $preload(headImgs);
-  };
-
-  /** @description: 筛选列表改变后触发 */
-  const filterListChange = () => {
-    page.value = 0;
-    show_list.value = [];
-
-    const data = filter_list.value.slice(
-      page.value * page_count.value,
-      (page.value + 1) * page_count.value
-    );
-
-    show_list.value = data;
-    page_total.value = Math.round(filter_list.value.length / page_count.value);
-
-    perload(data);
-  };
-
-  /** @description: 加载更多 */
-  const loadMore = () => {
-    if (page_total.value > page.value) {
-      page.value += 1;
-
-      const data = filter_list.value.slice(
-        page.value * page_count.value,
-        (page.value + 1) * page_count.value
-      );
-
-      show_list.value.push(...data);
-
-      perload(data);
-    }
-  };
 
   /** @description: 设置滚动坐标 */
   const setScroll = (v: number) => {
@@ -284,8 +240,6 @@ const heroStore = defineStore("hero", () => {
     if (sort_type.value === "倒序") {
       filter_list.value.reverse();
     }
-
-    filterListChange();
   };
 
   /** @description: 搜索英雄 */
@@ -296,7 +250,6 @@ const heroStore = defineStore("hero", () => {
       } else {
         sortAll();
       }
-      filterListChange();
     }, 500);
   };
 
@@ -305,17 +258,13 @@ const heroStore = defineStore("hero", () => {
     gender_type,
     hero_list,
     misc_sort,
-    page_total,
     profession,
-    show_list,
     scroll,
     filterAttr,
     filterCamp,
     filterGender,
-    filterListChange,
     filterMisc,
     getHeroList,
-    loadMore,
     searchHero,
     setHeroList,
     setProfessional,
