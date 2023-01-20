@@ -60,14 +60,14 @@ const handleViewClick = () => {
     <span v-if="show_num" class="num">{{ num(data) }}</span>
     <transition name="fade">
       <div v-if="show" class="select-mask">
-        <img :src="data.headImg" class="head" />
+        <img :src="data.headImg" class="head" @dragstart.prevent />
         <button v-textHoverColor class="view" @click="handleViewClick">
           查看详情
         </button>
       </div>
     </transition>
 
-    <img class="bg" :src="data.cover" />
+    <img class="bg" :src="data.cover" @dragstart.prevent />
     <div class="bottom">
       <div class="name">{{ data.name }}</div>
       <div class="mark">{{ data.mark }}</div>
