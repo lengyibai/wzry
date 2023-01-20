@@ -1,4 +1,5 @@
-import switchStore from "@/store/switch";
+import { ref } from "vue";
+
 import {
   Camptype,
   RaceType,
@@ -27,8 +28,13 @@ import {
 } from "@/api/main/data";
 import { getHeroBasic } from "@/api/main/games/hero";
 
-export default async () => {
-  const $switchStore = switchStore();
+export default () => {
+  const total = ref(0); //请求总数
+  const index = ref(1); //
+  const type = ref("基础数据"); //正在下载的数据类型
+  const title = ref(""); //正在下载的数据名
+  const finish = ref(false); //是否请求结束
+
   const requests: [string, () => Promise<any>, string][] = [
     ["user", User, "用户"],
     ["herobasic", HeroBasic, "英雄基础"],
@@ -63,35 +69,45 @@ export default async () => {
   };
 
   const getData = async () => {
+    total.value = requests.length;
+
     /* 下载数据 */
-    let index = 1;
     for (const [key, request, name] of requests) {
       if (!isExist(key)) {
-        $switchStore.$loading.show(
-          `正在下载${name}列表${index++}/${requests.length}`
-        );
+        title.value = name;
         setData("data_" + key, await request());
+        await new Promise((resolve) => setTimeout(resolve, 50));
+        index.value++;
       }
     }
 
-    /* 下载语音数据 */
-    let voice_index = 1;
     const hero_list = await getHeroBasic();
+    total.value = hero_list.length - 2;
+
+    /* 下载语音数据 */
+    type.value = "语音数据";
+    index.value = 0;
     for (let i = 0; i < hero_list.length; i++) {
       if (!["梦奇", "盾山"].includes(hero_list[i].name)) {
         if (!isExist(hero_list[i].name, "voice_")) {
+          title.value = hero_list[i].name;
           setData(`voice_${hero_list[i].name}`, {
             data: await Voice(hero_list[i].name),
           });
-          $switchStore.$loading.show(
-            `正在下载${hero_list[i].name}语音${voice_index++}/${
-              hero_list.length - 2
-            }`
-          );
+          await new Promise((resolve) => setTimeout(resolve, 50));
+          index.value++;
         }
       }
     }
-    await $switchStore.$loading.close();
+    finish.value = true;
   };
   getData();
+
+  return {
+    total,
+    index,
+    title,
+    type,
+    finish,
+  };
 };
