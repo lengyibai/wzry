@@ -24,7 +24,7 @@ const IMGBED = window.IMGBED; //全局图床链接
   >
     <span>{{ text }}</span>
     <span>{{ desc }}</span>
-    <img :src="IMGBED + '/image/login_btn.png'" alt="" />
+    <img :src="IMGBED + '/image/login_btn.png'" alt="" @dragstart.prevent />
   </button>
 </template>
 

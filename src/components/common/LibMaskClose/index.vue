@@ -3,7 +3,7 @@
     <div v-show="show" class="mask-close">
       <transition name="mask-move">
         <div v-show="show" class="close" @click="close">
-          <img src="./img/close.svg" alt="" />
+          <img src="./img/close.svg" alt="" @dragstart.prevent />
         </div>
       </transition>
     </div>

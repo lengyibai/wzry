@@ -19,7 +19,12 @@ const show = computed(() => {
 
 <template>
   <div class="hero-skin-price" :class="{ show: toggle }">
-    <img v-show="show" :src="IMGBED + '/image/coupon.png'" alt="点券" />
+    <img
+      v-show="show"
+      :src="IMGBED + '/image/coupon.png'"
+      alt="点券"
+      @dragstart.prevent
+    />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span>{{ price }}</span>
   </div>

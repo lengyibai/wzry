@@ -1,6 +1,6 @@
 <template>
   <div class="k-check cursor-pointer" @click="toggle">
-    <img :src="icon" />
+    <img :src="icon" @dragstart.prevent />
     <span :class="{ active: modelValue }">开启</span>
   </div>
 </template>

@@ -77,7 +77,11 @@ onBeforeUnmount(() => {
       }"
       class="logo"
     >
-      <img :src="IMGBED + '/image/login_logo.png'" alt="logo" />
+      <img
+        :src="IMGBED + '/image/login_logo.png'"
+        alt="logo"
+        @dragstart.prevent
+      />
     </div>
     <div class="title">
       {{ is_reg === "" ? "注册 | 登录" : "欢迎" + is_reg }}

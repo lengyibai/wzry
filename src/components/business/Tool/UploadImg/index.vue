@@ -1,12 +1,12 @@
 <template>
   <div class="upload-img">
     <input v-show="false" id="file" type="file" @change="fn" />
-    <img v-if="modelValue" class="img" :src="modelValue" />
+    <img v-if="modelValue" class="img" :src="modelValue" @dragstart.prevent />
     <label v-if="modelValue" for="file" class="op">
-      <img src="./img/edit.svg" class="edit" alt="" />
+      <img src="./img/edit.svg" class="edit" alt="" @dragstart.prevent />
     </label>
     <label v-if="!modelValue" for="file" class="add">
-      <img src="./img/add.svg" alt="" />
+      <img src="./img/add.svg" alt="" @dragstart.prevent />
     </label>
   </div>
 </template>

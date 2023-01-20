@@ -73,6 +73,7 @@ setInterval(() => {
       class="head-img"
       :src="userInfo.headImg || IMGBED + '/image/unknown.png'"
       alt="头像"
+      @dragstart.prevent
     />
     <div class="user-card">
       <div class="name lib-one-line">

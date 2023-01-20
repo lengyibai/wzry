@@ -5,7 +5,7 @@
         ><i v-if="required" class="star">*</i>{{ label }}：
       </span>
     </div>
-    <img class="cursor-pointer" :src="icon" />
+    <img class="cursor-pointer" :src="icon" @dragstart.prevent />
   </div>
 </template>
 <script setup lang="ts">

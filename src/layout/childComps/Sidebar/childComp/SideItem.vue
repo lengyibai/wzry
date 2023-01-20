@@ -17,6 +17,7 @@
         :class="{ 'arrow-active': show }"
         :src="IMGBED + '/image/arrow.png'"
         alt=""
+        @dragstart.prevent
       />
     </button>
 

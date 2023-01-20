@@ -39,6 +39,7 @@ const handleToggle = (index: number, type: string) => {
         :style="{ left: current_index * 11.11 + '%' }"
         :src="IMGBED + '/image/epigraph_active.png'"
         alt=""
+        @dragstart.prevent
       />
       <button
         v-for="(item, index) in epigraph"

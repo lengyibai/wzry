@@ -85,8 +85,16 @@ const handleToggleSkill = () => {
       <transition name="border-fade">
         <div v-show="current_index === index" class="border"></div>
       </transition>
-      <img :src="item.img" @click="handleSelectSkill(index)" />
-      <img :src="item.img" :class="{ active: current_index === index }" />
+      <img
+        :src="item.img"
+        @dragstart.prevent
+        @click="handleSelectSkill(index)"
+      />
+      <img
+        :src="item.img"
+        :class="{ active: current_index === index }"
+        @dragstart.prevent
+      />
     </div>
 
     <!-- 底部内容 -->

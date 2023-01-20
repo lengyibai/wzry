@@ -2,7 +2,13 @@
   <div class="lib-view-img">
     <div ref="mask" class="mask"></div>
     <div ref="pic" class="pic">
-      <img ref="clonedBox" class="clonedBox" :src="link" alt="" />
+      <img
+        ref="clonedBox"
+        class="clonedBox"
+        :src="link"
+        alt=""
+        @dragstart.prevent
+      />
     </div>
     <div ref="tool" class="tool">
       <div class="clockwise" @click="handleClockwise">

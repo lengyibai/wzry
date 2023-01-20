@@ -4,7 +4,7 @@
     :class="[type, { border: !modelValue }]"
     @click="show_AddLink = true"
   >
-    <img v-show="modelValue" :src="modelValue" alt="" />
+    <img v-show="modelValue" :src="modelValue" alt="" @dragstart.prevent />
     <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
   <!-- 添加图片链接弹窗组件 -->

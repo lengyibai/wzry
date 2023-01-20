@@ -45,7 +45,11 @@ const handleDel = () => {
     >
       <!-- 标题 -->
       <div class="title">
-        <img :src="item.img || IMGBED + '/image/unknown.png'" alt="" />
+        <img
+          :src="item.img || IMGBED + '/image/unknown.png'"
+          alt=""
+          @dragstart.prevent
+        />
         <div class="name">{{ item.name }}</div>
         <div class="types">
           <K-SkillTypeTag

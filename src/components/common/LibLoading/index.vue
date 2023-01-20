@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div v-show="show" class="LibLoading flex">
-      <img :src="IMGBED + '/image/daji.png'" alt="妲己" />
+      <img :src="IMGBED + '/image/daji.png'" alt="妲己" @dragstart.prevent />
       <span
         v-for="(item, index) in color"
         :key="index"

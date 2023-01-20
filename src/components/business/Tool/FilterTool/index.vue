@@ -60,6 +60,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
       :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
+      @dragstart.prevent
     />
     <!-- 展开列表 -->
     <div

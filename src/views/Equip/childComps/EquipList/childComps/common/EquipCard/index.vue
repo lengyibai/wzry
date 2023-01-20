@@ -44,7 +44,7 @@ nextTick(() => {
     <transition name="border-fade">
       <div v-show="active_id === equip.id" class="border"></div>
     </transition>
-    <img ref="icon" :src="equip.icon" alt="" />
+    <img ref="icon" :src="equip.icon" alt="" @dragstart.prevent />
     <transition name="left-line">
       <div v-if="leftLine" class="left-line"></div>
     </transition>

@@ -93,7 +93,12 @@ onBeforeUnmount(() => {
   >
     <div class="top">
       <div class="title">小贴士</div>
-      <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" />
+      <img
+        class="soldier"
+        :src="IMGBED + '/image/warn.png'"
+        alt="小兵"
+        @dragstart.prevent
+      />
     </div>
     <div v-typewriterMultiple="finish" class="content">{{ text }}</div>
     <div

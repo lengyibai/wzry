@@ -18,7 +18,11 @@
           @dragstart.prevent
           @click="handleClose"
         />
-        <img class="bg" :src="IMGBED + '/image/dialog.png'" />
+        <img
+          class="bg"
+          :src="IMGBED + '/image/dialog.png'"
+          @dragstart.prevent
+        />
         <div
           class="content"
           :style="{

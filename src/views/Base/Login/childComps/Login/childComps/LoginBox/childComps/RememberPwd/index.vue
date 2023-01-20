@@ -32,7 +32,7 @@ const toggle = () => {
 
 <template>
   <div class="remember-pwd cursor-pointer" @click="toggle">
-    <img :src="icon" />
+    <img :src="icon" @dragstart.prevent />
     <span class="lib-click">记住密码</span>
   </div>
 </template>

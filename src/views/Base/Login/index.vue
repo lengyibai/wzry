@@ -28,7 +28,7 @@ const EmitToolType = (v: string) => {
 <template>
   <div class="login">
     <div class="logo">
-      <img :src="IMGBED + '/image/logo.png'" alt="" />
+      <img :src="IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
     </div>
 
     <!-- 登录盒子 -->
