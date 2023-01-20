@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, onBeforeUnmount } from "vue";
 
 import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
@@ -12,9 +12,9 @@ import { $Parallax, $throttleInstant } from "@/utils";
 const $settingStore = settingStore();
 const $switchStore = switchStore();
 
-const loginBox = ref<HTMLElement>();
-
 const IMGBED = window.IMGBED; //全局图床链接
+
+const loginBox = ref<HTMLElement>();
 
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
 
