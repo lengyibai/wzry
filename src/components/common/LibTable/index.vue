@@ -45,11 +45,7 @@ interface Props {
   data: any[]; //表格数据
   sort: string[]; //规定哪些列进行排序，从0开始
 }
-const props = withDefaults(defineProps<Props>(), {
-  head: () => [],
-  data: () => [],
-  sort: () => [],
-});
+const props = defineProps<Props>();
 
 const head_key = ref<any[]>([]);
 const sort_id = ref<any[]>([]);

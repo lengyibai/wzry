@@ -10,9 +10,7 @@ interface Props {
   lineData: any[];
   index: number;
 }
-const props = withDefaults(defineProps<Props>(), {
-  equipList: () => [],
-});
+const props = defineProps<Props>();
 
 const $equipStore = equipStore();
 

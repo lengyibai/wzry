@@ -3,10 +3,7 @@ interface Props {
   type: string; //图标类型
   title: string; //文字
 }
-withDefaults(defineProps<Props>(), {
-  type: "add",
-  title: "英雄",
-});
+defineProps<Props>();
 
 const icon_type: Record<string, string> = {
   add: "wzry-addbig",

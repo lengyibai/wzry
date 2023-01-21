@@ -4,14 +4,11 @@ interface Props {
   modelValue: number; //索引号
   option: string[]; //选项文字
 }
+defineProps<Props>();
+
 interface Emits {
   (e: "update:modelValue", v: number): void;
 }
-
-withDefaults(defineProps<Props>(), {
-  modelValue: 0,
-  option: () => [],
-});
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();

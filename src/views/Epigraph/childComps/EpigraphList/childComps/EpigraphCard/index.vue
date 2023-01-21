@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { epigraphDefault } from "@/defaultValue";
-
 interface Props {
   data: Epigraph.Data;
 }
-
-withDefaults(defineProps<Props>(), {
-  data: () => epigraphDefault,
-});
+defineProps<Props>();
 </script>
 
 <template>

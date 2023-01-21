@@ -23,21 +23,17 @@ interface Props {
   text?: string; //进度条自定义悬浮文本
 }
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: 0,
   color: "#3498db",
-  disabled: false,
   icon: IMGBED + "/image/range_icon.png",
   label: "标题",
   labelWidth: "150px",
   max: 100,
   min: 0,
-  required: false,
   showDot: true,
   showIcon: true,
   showNum: true,
   size: 35,
   step: 1,
-  text: "",
   width: "200px",
 });
 

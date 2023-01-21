@@ -6,14 +6,11 @@ import tipStore from "@/store/tip";
 interface Props {
   modelValue: boolean;
   text: string;
-  align: TipType;
   noTipName: string;
+  align?: TipType;
 }
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
-  text: "Hello World!",
   align: "right-bottom",
-  noTipName: "",
 });
 
 interface Emits {

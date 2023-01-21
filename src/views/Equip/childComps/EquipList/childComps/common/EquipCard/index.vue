@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
-import { equipDefault } from "@/defaultValue";
 import switchStore from "@/store/switch";
 import equipStore from "@/store/equip";
 
@@ -10,11 +9,7 @@ interface Props {
   leftLine?: boolean; //显示左线
   rightLine?: boolean; //显示右线
 }
-const props = withDefaults(defineProps<Props>(), {
-  equip: () => {
-    return equipDefault;
-  },
-});
+const props = defineProps<Props>();
 
 const $equipStore = equipStore();
 const $switchStore = switchStore();

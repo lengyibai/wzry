@@ -2,9 +2,7 @@
 interface Props {
   messages: MsgText[]; //消息队列
 }
-withDefaults(defineProps<Props>(), {
-  messages: () => [],
-});
+defineProps<Props>();
 
 // 字体颜色
 const color: Record<string, string> = {

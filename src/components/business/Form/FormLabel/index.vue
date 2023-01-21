@@ -6,10 +6,7 @@ interface Props {
   required?: boolean; //必填
 }
 withDefaults(defineProps<Props>(), {
-  label: "标题",
   labelWidth: "150px",
-  center: false,
-  required: false,
 });
 </script>
 

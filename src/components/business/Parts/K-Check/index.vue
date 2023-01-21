@@ -12,9 +12,7 @@ import switchStore from "@/store/switch";
 interface Props {
   modelValue: boolean | string; //选中状态
 }
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
-});
+const props = defineProps<Props>();
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

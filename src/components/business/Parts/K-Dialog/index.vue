@@ -16,11 +16,8 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   align: "flex-start",
   ctxWidth: "80%",
-  header: "",
   modelValue: true,
   showClose: true,
-  title: "",
-  up: false,
   width: "720px",
 });
 

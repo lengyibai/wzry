@@ -29,11 +29,7 @@ interface Props {
   finish: boolean; //是否完成提交
   showConfirmclose: boolean; // 是否显示确认关闭弹窗
 }
-const props = withDefaults(defineProps<Props>(), {
-  status: 0,
-  finish: false,
-  showConfirmclose: false,
-});
+const props = defineProps<Props>();
 
 interface Emits {
   (e: "update:showConfirmclose", v: boolean): void;

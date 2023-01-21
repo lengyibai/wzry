@@ -19,11 +19,7 @@ interface RouteFormat {
 interface Props {
   route: any;
 }
-const props = withDefaults(defineProps<Props>(), {
-  route: () => {
-    return {};
-  },
-});
+const props = defineProps<Props>();
 
 const $router = useRouter();
 const $route = useRoute();

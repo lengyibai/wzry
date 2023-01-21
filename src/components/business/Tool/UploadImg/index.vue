@@ -14,15 +14,13 @@
 import { $imageOptimizer } from "@/utils";
 import switchStore from "@/store/switch";
 interface Props {
-  modelValue: string;
+  modelValue?: string;
 }
+defineProps<Props>();
+
 interface Emits {
   (e: "update:modelValue", v: string): void;
 }
-
-withDefaults(defineProps<Props>(), {
-  modelValue: "",
-});
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();

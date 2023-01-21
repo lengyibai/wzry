@@ -10,8 +10,7 @@ interface Props {
   listHeight?: string; //列表高度
 }
 const props = withDefaults(defineProps<Props>(), {
-  data: () => [],
-  listHeight: "",
+  listHeight: "initial",
 });
 
 interface Emits {

@@ -5,9 +5,7 @@ interface Props {
   show: boolean; //显示/隐藏
   styles?: StyleValue; //样式
 }
-withDefaults(defineProps<Props>(), {
-  show: false,
-});
+defineProps<Props>();
 
 const content = ref();
 

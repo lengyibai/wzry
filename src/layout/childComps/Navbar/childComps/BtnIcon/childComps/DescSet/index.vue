@@ -4,9 +4,7 @@ import { ref } from "vue";
 interface Props {
   desc: string; //描述
 }
-withDefaults(defineProps<Props>(), {
-  desc: "",
-});
+defineProps<Props>();
 
 const show_desc = ref(false); // 显示tip
 </script>

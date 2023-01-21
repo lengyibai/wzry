@@ -12,12 +12,11 @@
 import { onBeforeMount, onMounted, ref } from "vue";
 interface Props {
   count: number;
-  gap: string;
   eqhMultiple: number;
+  gap?: string;
   scrollTop?: number;
 }
 const props = withDefaults(defineProps<Props>(), {
-  count: 3,
   gap: "0px",
   eqhMultiple: 0,
   scrollTop: 0,

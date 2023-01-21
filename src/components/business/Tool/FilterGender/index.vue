@@ -4,9 +4,7 @@ import switchStore from "@/store/switch";
 interface Props {
   modelValue: number; //标识符
 }
-withDefaults(defineProps<Props>(), {
-  modelValue: 0,
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "update:modelValue", v: number): void;

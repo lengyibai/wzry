@@ -72,7 +72,6 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: true,
   label: "标题",
   labelWidth: "150px",
-  required: false,
   min: 0,
   max: 100,
   text: "",

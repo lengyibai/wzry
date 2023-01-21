@@ -5,10 +5,7 @@ interface Props {
   modelValue: number;
   option: string[];
 }
-withDefaults(defineProps<Props>(), {
-  modelValue: 0,
-  option: () => [],
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "update:modelValue", v: number): void;

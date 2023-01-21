@@ -5,24 +5,19 @@ import switchStore from "@/store/switch";
 import { $search, $debounce } from "@/utils";
 
 interface Props {
+  label: string; //左侧文字
+  data: any[]; //数据
   id?: boolean; //传递id还是name
   autoSize?: boolean; //自适应大小
-  data: any[]; //数据
   disabled?: boolean; //禁用
-  label?: string; //左侧文字
   modelValue?: string | number | any[]; //选择的值
   multi?: boolean; //多选
   required?: boolean; //必填
   value?: string | number | any[]; //输入框默认值
 }
 const props = withDefaults(defineProps<Props>(), {
-  id: false,
-  autoSize: false,
   data: () => [],
-  disabled: false,
-  label: "",
   modelValue: "",
-  required: false,
   value: "",
 });
 

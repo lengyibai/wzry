@@ -7,8 +7,6 @@ interface Props {
   type?: "width" | "height" | "square"; //图片比例
 }
 withDefaults(defineProps<Props>(), {
-  modelValue: "",
-  title: "",
   type: "square",
 });
 

@@ -9,7 +9,6 @@ interface Props {
   width?: string; //宽度
 }
 const props = withDefaults(defineProps<Props>(), {
-  autoSize: false,
   fontSize: "24px",
   height: "56px",
   type: "info",

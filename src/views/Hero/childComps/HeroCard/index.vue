@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { heroDefault } from "@/defaultValue";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
 
 interface Props {
   data: Hero.Data; //英雄数据
 }
-withDefaults(defineProps<Props>(), {
-  data: () => heroDefault,
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "view"): void;

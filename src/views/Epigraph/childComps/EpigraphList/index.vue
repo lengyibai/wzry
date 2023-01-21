@@ -8,9 +8,7 @@ import $bus from "@/utils/eventBus";
 interface Props {
   data: Epigraph.Data[]; //铭文列表
 }
-const props = withDefaults(defineProps<Props>(), {
-  data: () => [],
-});
+const props = defineProps<Props>();
 
 const epigraphListRef = ref();
 

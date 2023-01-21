@@ -2,12 +2,11 @@
 import switchStore from "@/store/switch";
 
 interface Props {
-  text?: string; //提示描述
   modelValue: boolean; //显示/隐藏
+  text?: string; //提示描述
 }
 withDefaults(defineProps<Props>(), {
   text: "即将关闭，是否保存为草稿？",
-  modelValue: false,
 });
 
 interface Emits {

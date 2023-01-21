@@ -69,10 +69,7 @@ interface Props {
   modelValue: boolean;
   link: string;
 }
-withDefaults(defineProps<Props>(), {
-  modelValue: false,
-  link: "",
-});
+defineProps<Props>();
 
 const $switchStore = switchStore();
 

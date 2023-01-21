@@ -8,9 +8,7 @@ import switchStore from "@/store/switch";
 interface Props {
   id: string; //帐号
 }
-withDefaults(defineProps<Props>(), {
-  id: "",
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "close"): void;

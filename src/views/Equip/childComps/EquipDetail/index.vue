@@ -5,10 +5,7 @@ interface Props {
   equip: typeof equipDefault; //装备
   show: boolean; //显示/隐藏
 }
-withDefaults(defineProps<Props>(), {
-  equip: () => equipDefault,
-  show: false,
-});
+defineProps<Props>();
 
 // css类名值
 const abbreviations: Record<string, string> = {

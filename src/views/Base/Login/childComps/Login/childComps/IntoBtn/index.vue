@@ -5,10 +5,7 @@ interface Props {
   text: string; //文字
   desc: string; //小字
 }
-withDefaults(defineProps<Props>(), {
-  text: "",
-  desc: "",
-});
+defineProps<Props>();
 
 const $settingStore = settingStore();
 

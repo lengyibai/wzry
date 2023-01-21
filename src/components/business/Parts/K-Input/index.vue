@@ -61,13 +61,9 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   width: "initial",
   modelValue: "",
-  disabled: false,
   placeholder: "请输入",
   validate: () => "",
-  required: false,
-  number: false,
   borderColor: "#fff",
-  line: false,
   color: "#fff",
   align: "left",
   fontSize: "26px",
