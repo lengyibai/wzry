@@ -1,5 +1,5 @@
 <script setup lang="ts" name="Data">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 import skinStore from "@/store/skin";
