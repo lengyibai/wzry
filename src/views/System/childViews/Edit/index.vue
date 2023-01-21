@@ -20,15 +20,9 @@ const EditSkin = defineAsyncComponent(
 const EditSkill = defineAsyncComponent(
   () => import("./childViews/EditSkill/index.vue")
 ); //技能
-const EditVoice = defineAsyncComponent(
-  () => import("./childViews/EditVoice/index.vue")
-); //语音
-const EditEquip = defineAsyncComponent(
-  () => import("./childViews/EditEquip/index.vue")
-); //装备
 
 const { box, list } = useManageCard;
-const components = [EditHero, EditSkin, EditVoice, EditSkill, EditEquip];
+const components = [EditHero, EditSkin, EditSkill];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({
