@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { equipDefault } from "@/defaultValue";
-
 interface Props {
-  equip: typeof equipDefault; //装备
+  equip: Equip.Data; //装备
   show: boolean; //显示/隐藏
 }
 defineProps<Props>();
