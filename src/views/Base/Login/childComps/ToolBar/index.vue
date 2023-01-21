@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
@@ -19,9 +19,7 @@ const emit = defineEmits<Emits>();
 const $settingStore = settingStore();
 const $switchStore = switchStore();
 
-const muted = ref(false);
-
-muted.value = !$settingStore.config.loginSound;
+const muted = computed(() => $settingStore.config.muted);
 
 const icon = computed(() => {
   return muted.value ? "wzry-jingyin" : "wzry-laba";
@@ -31,8 +29,7 @@ const icon = computed(() => {
 const handleShowNotice = (v: string) => {
   emit("clicks", v);
   if (v === "sound") {
-    muted.value = !muted.value;
-    $settingStore.saveConfig({ loginSound: !muted.value });
+    $settingStore.saveConfig({ muted: !muted.value });
     $switchStore.$clickAudio("n4r4");
   }
 };
@@ -43,7 +40,7 @@ const handleShowNotice = (v: string) => {
     <div class="line"></div>
     <div
       class="box cursor-pointer"
-      :style="{ opacity: muted ? 0.75 : 1 }"
+      :style="{ opacity: !muted ? 0.75 : 1 }"
       @click="handleShowNotice('sound')"
     >
       <i class="iconfont" :class="icon" />

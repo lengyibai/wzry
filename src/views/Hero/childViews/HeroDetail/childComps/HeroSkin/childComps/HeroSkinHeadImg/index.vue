@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
+import { nextTick, ref, computed } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
@@ -7,6 +7,7 @@ import heroDetailStore from "@/store/heroDetail";
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
 }
+const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
@@ -16,18 +17,16 @@ const showSkin = ref();
 
 let toggle = true; //用于切换背景
 
-const skins = $heroDetail.hero_info.skins;
 const is_into_drap = ref(false); //拖动头像是否进入头像框范围
 const show_skin_head = ref(false); //用于头像初次加载显示
+
+const skins = computed(() => $heroDetail.hero_info.skins); //皮肤列表
 
 //当前处于展示的皮肤的DOM元素及坐标
 const active_skin: { el: HTMLElement | null; transform: string } = {
   el: null,
   transform: "",
 };
-
-/* 皮肤头像拖动事件 */
-const emit = defineEmits<Emits>();
 
 /* 判断是否存在正在展示的皮肤，存在就将此皮肤头像过渡到初始位置 */
 const initPosition = () => {

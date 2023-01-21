@@ -1,10 +1,8 @@
 <script setup lang="ts">
 interface Props {
-  relationship: Hero.RelationType[];
+  relationship: Hero.RelationType[]; //英雄信息组
 }
-withDefaults(defineProps<Props>(), {
-  relationship: () => [],
-});
+defineProps<Props>();
 </script>
 
 <template>

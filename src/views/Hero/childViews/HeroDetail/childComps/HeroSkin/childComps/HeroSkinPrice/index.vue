@@ -2,19 +2,15 @@
 import { computed } from "vue";
 
 interface Props {
-  price: number | string;
-  toggle: boolean;
+  price: number | string; //价格
+  toggle: boolean; //隐藏和显示价格信息
 }
-const props = withDefaults(defineProps<Props>(), {
-  price: "",
-  toggle: false,
-});
+const props = defineProps<Props>();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
-const show = computed(() => {
-  return props.price && !isNaN(Number(props.price));
-});
+// 通过判断价格是否为数字来显示点券图标及获取途径
+const show = computed(() => props.price && !isNaN(Number(props.price)));
 </script>
 
 <template>

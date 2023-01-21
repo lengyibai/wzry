@@ -9,7 +9,7 @@ import {
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import HeroToolbar from "./childComps/HeroToolbar/index.vue";
+import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
@@ -52,14 +52,14 @@ const handleEnterCard = (data: Hero.Data) => {
 
 /* 查看详情 */
 const EmitViewClick = (id: number) => {
-  /* 获取指定英雄数据 */
+  //获取指定英雄数据
   getHeroDetail(id).then((hero) => {
-    /* 获取指定英雄皮肤 */
+    //获取指定英雄皮肤
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
     show_HeroDetail.value = true;
 
-    /* 设置路由参数只用于记录，方便刷新时直接打开详情 */
+    //设置路由参数只用于记录，方便刷新时直接打开详情
     $router.push({
       path: "/hero",
       query: {
@@ -97,7 +97,7 @@ $otherStore.setTriggerFn(() => {
   heroListRef.value.updateHeight();
 });
 
-/* 监听筛选后的英雄列表 */
+/* 监听筛选后的英雄列表用于切换显示 */
 watch(
   () => $heroStore.filter_list,
   () => {
@@ -111,7 +111,6 @@ watch(
 );
 
 onMounted(() => {
-  /* 实时修改一行个数 */
   const change = [
     [1450, 5],
     [1300, 4],
@@ -119,6 +118,8 @@ onMounted(() => {
     [960, 2],
     [800, 1],
   ];
+
+  //实时修改一行个数
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
     if (v > 1400) {
@@ -131,6 +132,7 @@ onMounted(() => {
     }
   };
   changeCount();
+
   $bus.on("resize", () => {
     changeCount();
   });
@@ -146,7 +148,10 @@ onBeforeUnmount(() => {
   <div class="hero">
     <transition name="card-list">
       <div class="hero-main">
+        <!-- 工具栏 -->
         <HeroToolbar />
+
+        <!-- 列表 -->
         <LibGridLayout
           v-if="$heroStore.filter_list.length && show"
           ref="heroListRef"

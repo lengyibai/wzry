@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
+
 interface Props {
   modelValue: number;
   option: string[];
 }
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-}
-
 withDefaults(defineProps<Props>(), {
   modelValue: 0,
   option: () => [],
 });
+
+interface Emits {
+  (e: "update:modelValue", v: number): void;
+}
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();

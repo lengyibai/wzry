@@ -1,10 +1,3 @@
-<template>
-  <i
-    class="iconfont wzry-packup cursor-pointer"
-    :class="{ 'is-active': !$otherStore.collapse }"
-    @click="toggleClick"
-  />
-</template>
 <script setup lang="ts">
 import switchStore from "@/store/switch";
 import otherStore from "@/store/other";
@@ -12,11 +5,21 @@ import otherStore from "@/store/other";
 const $otherStore = otherStore();
 const $switchStore = switchStore();
 
-const toggleClick = () => {
+/* 点击折叠按钮 */
+const handleToggle = () => {
   $switchStore.$clickAudio("d5e2");
   $otherStore.setCollapse();
 };
 </script>
+
+<template>
+  <i
+    class="iconfont wzry-packup cursor-pointer"
+    :class="{ 'is-active': !$otherStore.collapse }"
+    @click="handleToggle"
+  />
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

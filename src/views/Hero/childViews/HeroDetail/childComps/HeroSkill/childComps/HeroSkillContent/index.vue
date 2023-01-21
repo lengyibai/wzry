@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue";
-import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue";
+import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue"; //左侧描述
+import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"; //右侧效果
 
 import heroDetail from "@/store/heroDetail";
-import { skillDefault } from "@/defaultValue";
 
 interface Props {
-  skill: Hero.Skill;
+  skill: Hero.Skill; //技能信息
 }
-const props = withDefaults(defineProps<Props>(), {
-  skill: () => skillDefault,
-});
+const props = defineProps<Props>();
 
 const $heroDetail = heroDetail();
 
@@ -23,9 +20,7 @@ const exist_effect = computed(() => props.skill.effect?.length); //是否存在�
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn((index) => {
-  if (index === 3) {
-    show.value = true;
-  }
+  if (index === 3) show.value = true;
 });
 
 /* 选择技能触发 */

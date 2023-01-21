@@ -61,14 +61,14 @@ const EmitHide = () => {
   emit("update:modelValue", false);
   $router.replace("/hero");
   $heroDetailStore.setSkinVoice("盾山"); //置空语音
+  $switchStore.$clickAudio("6xc6");
 
+  /* 1.5秒后如果英雄列表职业为空，则获取英雄列表 */
   if ($heroStore.profession === "") {
     setTimeout(() => {
       $heroStore.getHeroList();
     }, 1500);
   }
-
-  $switchStore.$clickAudio("6xc6");
 };
 
 onMounted(() => {
@@ -76,9 +76,10 @@ onMounted(() => {
   setTimeout(() => {
     show_progress.value = true;
     hero_data.skins?.forEach((item) => {
-      new Image().src = item.poster; //图片预加载
+      new Image().src = item.poster; //海报预加载
     });
   }, 1500);
+
   setTimeout(() => {
     $switchStore.$clickAudio("u4c5");
   }, 250);

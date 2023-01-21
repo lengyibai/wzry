@@ -15,14 +15,16 @@ export const _login = async (form: User) => {
     value: form.id,
   });
 
-  /* 判断是否存在 */
+  //判断用户是否存在
   if (data) {
     /* 判断密码是否正确 */
     if (form.password === data.password) {
+      //登录成功后更新token
       const token = await updateToken(
         form.id,
         new Date().getTime().toString().slice(0, 8)
       );
+
       return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
     } else {
       return Promise.reject("密码错误");
@@ -49,9 +51,9 @@ export const register = async (form: User) => {
     value: form.id,
   });
 
-  /* 判断是否存在 */
+  //判断用户是否存在
   if (data) {
-    return Promise.reject();
+    return Promise.reject("用户已存在，请直接登录");
   } else {
     return Promise.resolve(post<User>("data_user", form));
   }
@@ -60,11 +62,13 @@ export const register = async (form: User) => {
 /** @description: 更新用户信息 */
 export const updateUser = (id: string, info: Partial<User>) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true); //将token写入本地
+
   return Promise.resolve(info); //返回新token
 };
 
 /** @description: 注销用户 */
 export const deleteUser = (id: string) => {
   del({ name: "data_user", id }); //将token写入本地
+
   return Promise.resolve();
 };

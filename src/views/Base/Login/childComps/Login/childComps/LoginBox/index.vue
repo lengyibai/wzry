@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import IntoBtn from "../IntoBtn/index.vue";
+import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 
-import RememberPwd from "./childComps/RememberPwd/index.vue";
+import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { existEmpty } from "@/utils";
 import authStore from "@/store/auth";
@@ -27,7 +27,10 @@ const handleLogin = () => {
     $switchStore.$msg("请完整填写", "error");
     return;
   }
+
   $authStore.login(form.value);
+
+  // 记住密码
   if (remember.value) {
     localStorage.setItem("remember_user", JSON.stringify(form.value));
   } else {
@@ -38,11 +41,13 @@ const handleLogin = () => {
 
 <template>
   <div class="log-box">
+    <!-- 帐号 -->
     <div class="box">
       <i class="iconfont wzry-user" />
       <K-Input v-model="form.id" placeholder="请输入帐号" />
     </div>
 
+    <!-- 密码 -->
     <div class="box">
       <i class="iconfont wzry-password" />
       <K-Input
@@ -57,6 +62,7 @@ const handleLogin = () => {
       <RememberPwd v-model="remember" />
     </div>
 
+    <!-- 登录 -->
     <div class="btns">
       <IntoBtn text="登录" desc="LOGIN" @click="handleLogin" />
     </div>

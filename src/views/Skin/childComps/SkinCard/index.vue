@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { skinDefault } from "@/defaultValue";
-
 interface Props {
-  data: typeof skinDefault; //英雄数据
+  data: Hero.Skin; //皮肤数据
 }
-const props = withDefaults(defineProps<Props>(), {
-  data: () => skinDefault,
-});
+const props = defineProps<Props>();
 
 interface Emits {
   (e: "showTool", v: { type: string; data: Hero.Skin }): void;
@@ -30,6 +26,8 @@ const handle = (v: string) => {
   <div v-maskGradient class="skin-card">
     <img class="bg" :src="data.cover" loading="lazy" />
     <img v-if="data.type" class="type" :src="(data.type as string)" />
+
+    <!-- 价格 -->
     <div class="price">
       <img
         v-if="priceShow(data.price)"
@@ -38,6 +36,8 @@ const handle = (v: string) => {
       />
       <span>{{ data.price }}</span>
     </div>
+
+    <!-- 名字、代号 -->
     <div class="bottom">
       <div class="name">{{ data.name }}</div>
       <div class="mark">——{{ data.heroName }}</div>

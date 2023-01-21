@@ -5,9 +5,9 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
+import { $Parallax, $throttleInstant } from "@/utils";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
-import { $Parallax, $throttleInstant } from "@/utils";
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
@@ -18,6 +18,7 @@ const loginBox = ref<HTMLElement>();
 
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
 
+//进入方式/登录/注册的组件切换
 const component = computed(() => {
   return is_reg.value === "登录"
     ? LoginBox
@@ -60,6 +61,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="loginBox" class="login-box">
+    <!-- 左上角重新选择 -->
     <div
       v-show="is_reg"
       class="back cursor-pointer lib-click"
@@ -68,6 +70,8 @@ onBeforeUnmount(() => {
       <i class="iconfont wzry-fanhui" />
       <span>重新选择</span>
     </div>
+
+    <!-- logo -->
     <div
       v-particle="{
         down: true,
@@ -83,10 +87,13 @@ onBeforeUnmount(() => {
         @dragstart.prevent
       />
     </div>
+
+    <!-- 标题 -->
     <div class="title">
       {{ is_reg === "" ? "注册 | 登录" : "欢迎" + is_reg }}
     </div>
-    <div v-if="!is_reg" class="select-into"></div>
+
+    <!-- 组件切换 -->
     <component
       :is="component"
       @into="EmitIntoType"

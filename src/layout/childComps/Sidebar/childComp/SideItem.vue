@@ -1,55 +1,19 @@
-<template>
-  <div v-if="route" class="menu" :class="{ collapse: $otherStore.collapse }">
-    <button
-      class="menu-item menu-list"
-      :style="textStyle"
-      :class="{
-        active: route.path === $route.path,
-      }"
-      @click="fn"
-    >
-      <i class="iconfont" :class="route.meta.icon" />
-      <span>{{ route.title }}</span>
-
-      <img
-        v-if="route.children"
-        class="arrow"
-        :class="{ 'arrow-active': show }"
-        :src="IMGBED + '/image/arrow.png'"
-        alt=""
-        @dragstart.prevent
-      />
-    </button>
-
-    <!-- 二级菜单 -->
-    <div v-if="route.children">
-      <transition-group name="menu-list" appear>
-        <SideItem
-          v-for="(r, i) in routes"
-          :key="r.path"
-          :route="r"
-          :style="{ transitionDelay: (routes.length - i) * 0.05 + 's' }"
-        />
-      </transition-group>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./SideItem.vue"; //调用自身
 
-import switchStore from "@/store/switch";
 import { Route } from "@/router/interface";
+import switchStore from "@/store/switch";
 import otherStore from "@/store/other";
 
 interface RouteFormat {
-  path: string;
-  title: string;
-  meta: { title: string };
-  children: RouteFormat[] | null;
-  zIndex: number;
+  path: string; //路由路径
+  title: string; //路由标题
+  meta: { title: string }; //路由元素
+  children: RouteFormat[] | null; //子路由
+  zIndex: number; //层级
 }
 
 interface Props {
@@ -99,8 +63,51 @@ const sidebarActive = (routes: Route) => {
     });
   }
 };
+
 sidebarActive(props.route);
 </script>
+
+<template>
+  <div v-if="route" class="menu" :class="{ collapse: $otherStore.collapse }">
+    <button
+      class="menu-item menu-list"
+      :style="textStyle"
+      :class="{
+        active: route.path === $route.path,
+      }"
+      @click="fn"
+    >
+      <!-- 图标 -->
+      <i class="iconfont" :class="route.meta.icon" />
+
+      <!-- 文字 -->
+      <span>{{ route.title }}</span>
+
+      <!-- 下拉箭头 -->
+      <img
+        v-if="route.children"
+        class="arrow"
+        :class="{ 'arrow-active': show }"
+        :src="IMGBED + '/image/arrow.png'"
+        alt=""
+        @dragstart.prevent
+      />
+    </button>
+
+    <!-- 二级菜单 -->
+    <div v-if="route.children">
+      <transition-group name="menu-list" appear>
+        <SideItem
+          v-for="(r, i) in routes"
+          :key="r.path"
+          :route="r"
+          :style="{ transitionDelay: (routes.length - i) * 0.05 + 's' }"
+        />
+      </transition-group>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

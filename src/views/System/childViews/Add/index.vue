@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import { defineAsyncComponent, onMounted, reactive } from "vue";
+import { defineAsyncComponent, reactive } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
 
 import switchStore from "@/store/switch";
+
+type Options = Record<
+  string,
+  {
+    i: number; //标识符
+    show: boolean; //是否显示
+  }
+>;
 
 const AddHero = defineAsyncComponent(
   () => import("./childViews/AddHero/index.vue")
@@ -14,26 +22,12 @@ const AddSkin = defineAsyncComponent(
 const AddSkill = defineAsyncComponent(
   () => import("./childViews/AddSkill/index.vue")
 ); //技能
-const AddVoice = defineAsyncComponent(
-  () => import("./childViews/AddVoice/index.vue")
-); //语音
-const AddEquip = defineAsyncComponent(
-  () => import("./childViews/AddEquip/index.vue")
-); //装备
-
-type Options = Record<
-  string,
-  {
-    i: number; //标识符
-    show: boolean; //是否显示
-  }
->;
 
 const $switchStore = switchStore();
 
 const { box, list } = useManageCard;
 
-const components = [AddHero, AddSkin, AddVoice, AddSkill, AddEquip];
+const components = [AddHero, AddSkin, AddSkill];
 
 /* 循环判断打开页面 */
 const options: Options = reactive({
@@ -45,34 +39,25 @@ const options: Options = reactive({
     i: 1,
     show: false,
   },
-  Voice: {
+  Skill: {
     i: 2,
     show: false,
   },
-  Skill: {
-    i: 3,
-    show: false,
-  },
-  Equip: {
-    i: 4,
-    show: false,
-  },
 });
+
+$switchStore.$clickAudio("u4c5");
 
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
   options[key].show = true;
   $switchStore.$clickAudio();
 };
-
-onMounted(() => {
-  $switchStore.$clickAudio("u4c5");
-});
 </script>
 
 <template>
   <div class="add" :style="box">
     <transition-group name="add" appear>
+      <!-- 卡片 -->
       <K-ManageCard
         v-for="(v, k) in list"
         :key="k"

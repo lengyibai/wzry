@@ -9,23 +9,23 @@ import switchStore from "@/store/switch";
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
 }
-
 const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
-const $heroDetailStore = heroDetailStore();
 const $switchStore = switchStore();
+const $heroDetailStore = heroDetailStore();
 
 let deputy_index = 0; //主副技能索引
 
-const show = ref(false); //是否显示技能
 const current_index = ref(0); //处于展示的技能索引
+const show = ref(false); //是否显示技能
 const active_skills = ref<Hero.Skill[]>([]); //展示的技能组
 
 //设置英雄详情
 const hero_data = computed(() => {
   return $heroDetail.hero_info;
 });
+
 //处于展示的技能
 const calcActiveSkill = computed(() => {
   return active_skills.value[current_index.value];
@@ -64,6 +64,7 @@ const handleToggleSkill = () => {
       active_skills.value[index] = hero_data.value.skills![0][index];
     }
   });
+
   // 更新技能信息
   handleSelectSkill(current_index.value);
   $switchStore.$clickAudio("n4r4");
@@ -82,9 +83,12 @@ const handleToggleSkill = () => {
         'transition-delay': 0.05 * index + 's',
       }"
     >
+      <!-- 技能选中圆圈 -->
       <transition name="border-fade">
         <div v-show="current_index === index" class="border"></div>
       </transition>
+
+      <!-- 技能图标 -->
       <img
         :src="item.img"
         @dragstart.prevent
@@ -97,7 +101,7 @@ const handleToggleSkill = () => {
       />
     </div>
 
-    <!-- 底部内容 -->
+    <!-- 切换副技能 -->
     <i
       v-if="hero_data.skills!.length > 1"
       class="toggle iconfont wzry-qiehuan cursor-pointer"

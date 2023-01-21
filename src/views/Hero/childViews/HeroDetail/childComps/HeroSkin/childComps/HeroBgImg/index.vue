@@ -1,13 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  bgImg: string[];
-  toggle: boolean;
+  bgImg: string[]; //背景图组
+  toggle: boolean; //用于切换
 }
-
-withDefaults(defineProps<Props>(), {
-  bgImg: () => [],
-  toggle: false,
-});
+defineProps<Props>();
 </script>
 
 <template>

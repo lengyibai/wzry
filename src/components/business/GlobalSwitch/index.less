@@ -1,0 +1,29 @@
+.left-top-enter-from,
+.left-bottom-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.right-top-enter-from,
+.right-bottom-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.left-bottom-leave-active,
+.left-top-leave-active,
+.right-bottom-leave-active,
+.right-top-leave-active {
+  opacity: 0;
+}
+
+.left-top-enter-active,
+.left-top-leave-active,
+.left-bottom-enter-active,
+.left-bottom-leave-active,
+.right-top-enter-active,
+.right-top-leave-active,
+.right-bottom-enter-active,
+.right-bottom-leave-active {
+  transition: all var(--time-500);
+}

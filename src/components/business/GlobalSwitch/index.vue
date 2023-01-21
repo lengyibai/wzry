@@ -1,28 +1,20 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
-import useLoading from "./hooks/useLoading";
-import useMessage from "./hooks/useMessage";
-import useTip from "./hooks/useTip";
+import useLoading from "./hooks/useLoading"; //loading
+import useMessage from "./hooks/useMessage"; //消息提醒
+import useTip from "./hooks/useTip"; //小贴士
 
 import $bus from "@/utils/eventBus";
-import switchStore from "@/store/switch";
-import settingStore from "@/store/setting";
-import tipStore from "@/store/tip";
 import clickAudio from "@/store/audio";
+import switchStore from "@/store/switch";
 
 const $switchStore = switchStore();
-const $tipStore = tipStore();
 const $clickAudioStore = clickAudio();
-const $settingStore = settingStore();
 
 const { loading, show_loading, loading_text } = useLoading();
-const { msg, messages } = useMessage($switchStore);
-const { show_tip, content, align, noTipName, tip } = useTip(
-  $switchStore,
-  $tipStore,
-  $settingStore
-);
+const { msg, messages } = useMessage();
+const { show_tip, content, align, noTipName, tip } = useTip();
 
 /* 挂载全局 */
 $switchStore.setTriggerFn({
@@ -47,8 +39,10 @@ onMounted(() => {
   <div class="GlobalSwitch">
     <!-- loading -->
     <LibLoading :show="show_loading" :text="loading_text" />
+
     <!-- 消息提醒 -->
     <K-Message :messages="messages" />
+
     <!-- NPC -->
     <transition :name="align">
       <K-Tip
@@ -63,33 +57,5 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
-.left-top-enter-from,
-.left-bottom-enter-from {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.right-top-enter-from,
-.right-bottom-enter-from {
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.left-bottom-leave-active,
-.left-top-leave-active,
-.right-bottom-leave-active,
-.right-top-leave-active {
-  opacity: 0;
-}
-
-.left-top-enter-active,
-.left-top-leave-active,
-.left-bottom-enter-active,
-.left-bottom-leave-active,
-.right-top-enter-active,
-.right-top-leave-active,
-.right-bottom-enter-active,
-.right-bottom-leave-active {
-  transition: all var(--time-500);
-}
+@import url("./index.less");
 </style>

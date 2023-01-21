@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
 interface Props {
-  index: number;
-  pageName: string[];
+  index: number; //滚动索引
+  pageName: string[]; //滚动名称组
 }
-withDefaults(defineProps<Props>(), {
-  index: 0,
-  pageName: () => [],
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "toggle", v: number): void;

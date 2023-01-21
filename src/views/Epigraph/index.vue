@@ -22,9 +22,12 @@ $epigraphStore.getEpigraph().then(() => {
 
 <template>
   <div class="epigraph">
+    <!-- 铭文类型分类 -->
     <transition name="epigraph">
       <EpigraphCategory v-show="show_epigraph" />
     </transition>
+
+    <!-- 铭文列表 -->
     <div class="epigraph-main">
       <EpigraphList :data="$epigraphStore.filter_list" />
     </div>

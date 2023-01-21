@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { heroDefault } from "@/defaultValue";
-
 interface Props {
-  heroData: Hero.Data;
+  heroData: Hero.Data; //英雄信息
 }
-const props = withDefaults(defineProps<Props>(), {
-  heroData: () => heroDefault,
-});
+const props = defineProps<Props>();
 
+// 英雄信息整合
 const hero_info: (string | number)[][] = [
   [props.heroData.profession.join("/"), "profession", "游戏职业"],
   [props.heroData.location, "location", "细分定位"],

@@ -3,30 +3,6 @@
   align-items: center;
   margin-bottom: 35px;
 
-  .label {
-    position: relative;
-    width: 150px;
-    margin-right: 0.25em;
-    color: var(--theme-color-eight);
-    text-align: right;
-
-    span {
-      position: relative;
-      color: transparent;
-      font-size: 30px;
-      background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
-      background-clip: text;
-
-      .star {
-        position: absolute;
-        left: 0;
-        color: var(--theme-color-seven);
-        font-size: 20px;
-        transform: translateX(-150%);
-      }
-    }
-  }
-
   .select {
     position: relative;
 
@@ -38,9 +14,8 @@
 
       .arrow {
         width: 25px;
-        transition: all var(--time-250);
+        transition: transform var(--time-250);
         transform: translateX(-100%) rotate(0deg);
-        pointer-events: none;
       }
     }
 
@@ -54,7 +29,7 @@
       border: 1px solid var(--theme-color-four);
       border-radius: 5px;
       background-color: var(--black);
-      transition: all var(--time-250);
+      transition: opacity var(--time-250), transform var(--time-250);
       transform: translateY(100%);
       transform-origin: top center;
       overscroll-behavior: contain;
@@ -68,7 +43,7 @@
 
         .item {
           font-size: 26px;
-          transition: all var(--time-250);
+          transition: transform var(--time-250);
         }
       }
     }

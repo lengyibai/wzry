@@ -1,10 +1,8 @@
 <script setup lang="ts">
 interface Props {
-  bg: string;
+  bg: string; //背景图
 }
-withDefaults(defineProps<Props>(), {
-  bg: "",
-});
+defineProps<Props>();
 </script>
 
 <template>

@@ -5,10 +5,12 @@ import { updateUser } from "@/api/main/user";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
 
-defineProps<{
-  id: string;
-  status: boolean;
-}>();
+interface Props {
+  id: string; //帐号
+}
+withDefaults(defineProps<Props>(), {
+  id: "",
+});
 
 interface Emits {
   (e: "close"): void;
@@ -19,7 +21,7 @@ const emit = defineEmits<Emits>();
 const $authStore = authStore();
 const $switchStore = switchStore();
 
-const user_info = ref<User>({ ...$authStore.userInfo });
+const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
 
 /* 判断信息是否被修改 */
 const handleContrast = () => {
@@ -37,7 +39,7 @@ const handleSave = () => {
 
   //更新本地当前用户信息
   updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem("user", JSON.stringify(user_info.value)); //更新本地当前用户信息
+    localStorage.setItem("user", JSON.stringify(user_info.value));
 
     //更新记住密码
     localStorage.setItem(
@@ -47,8 +49,10 @@ const handleSave = () => {
         password: user_info.value.password,
       })
     );
+
     $switchStore.$msg("保存成功");
   });
+
   emit("close");
 };
 </script>

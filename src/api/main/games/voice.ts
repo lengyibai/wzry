@@ -2,7 +2,7 @@ import { get } from "@/api/helper/transfer";
 
 /** @description: 获取语音列表 */
 export const getVoice = (hero_name: string) => {
-  return Promise.resolve(get<Hero.General[]>({ name: "voice_" + hero_name }));
+  return Promise.resolve(get<General[]>({ name: "voice_" + hero_name }));
 };
 
 /** @description: 获取指定皮肤语音 */
@@ -13,6 +13,8 @@ export const getSkinVoice = (hero_name: string, skin_name: string) => {
       key: "name",
       value: skin_name,
     });
+
+    //如果没有获取到对应皮肤的语音，则使用原皮肤语音
     if (!voices) {
       voices = get<Hero.Voices>({
         name: "voice_" + hero_name,

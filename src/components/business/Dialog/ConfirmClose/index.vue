@@ -1,22 +1,9 @@
-<template>
-  <K-Dialog align="center" @close="close">
-    <div class="text">{{ text }}</div>
-    <div class="button">
-      <K-Button type="info" @click="handleCancel">取消</K-Button>
-      <K-Button class="last" type="warning" @click="handleConfirm"
-        >确定</K-Button
-      >
-    </div>
-  </K-Dialog>
-</template>
 <script setup lang="ts">
-import { onMounted } from "vue";
-
 import switchStore from "@/store/switch";
 
 interface Props {
   text?: string; //提示描述
-  modelValue: boolean; //是否隐藏
+  modelValue: boolean; //显示/隐藏
 }
 withDefaults(defineProps<Props>(), {
   text: "即将关闭，是否保存为草稿？",
@@ -31,6 +18,8 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+
+$switchStore.$clickAudio("45iy");
 
 /* 关闭 */
 const close = () => {
@@ -50,11 +39,20 @@ const handleConfirm = () => {
   close();
   $switchStore.$clickAudio("36jn");
 };
-
-onMounted(() => {
-  $switchStore.$clickAudio("45iy");
-});
 </script>
+
+<template>
+  <K-Dialog align="center" @close="close">
+    <div class="text">{{ text }}</div>
+    <div class="button">
+      <K-Button type="info" @click="handleCancel">取消</K-Button>
+      <K-Button class="last" type="warning" @click="handleConfirm"
+        >确定</K-Button
+      >
+    </div>
+  </K-Dialog>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

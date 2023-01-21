@@ -21,13 +21,6 @@ import { heroDefault } from "@/defaultValue";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 
-interface Attr extends Record<string, string> {
-  survival: string;
-  attack: string;
-  effect: string;
-  difficulty: string;
-}
-
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
@@ -36,7 +29,7 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
 
-const attr: Attr = {
+const attr: Record<string, string> = {
   survival: "生存能力",
   attack: "攻击伤害",
   effect: "技能效果",
@@ -59,7 +52,7 @@ const {
   EmitConfirmSave,
   EmitConfirmRemove,
   EmitCancelRelease,
-} = viewHide<typeof heroDefault>(emit, "add_hero");
+} = viewHide<Hero.Data>(emit, "add_hero");
 
 //类型列表
 const type_list: Record<string, any[]> = reactive({
@@ -83,6 +76,7 @@ form_data.value ??= $deepCopy(heroDefault);
 const EmitCommit = async () => {
   const { id, mark, name, cover, headImg, poster } =
     form_data.value as Hero.Data;
+
   if (id && mark && name && cover && headImg && poster) {
     await addHeroBasic({
       id,
@@ -203,6 +197,7 @@ setTimeout(async () => {
       </FormLabel>
     </div>
 
+    <!-- 发布确认 -->
     <ReleaseConfirm
       v-model:showConfirmclose="show_ConfirmClose"
       v-model:status="status"

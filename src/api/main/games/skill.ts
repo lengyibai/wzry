@@ -7,6 +7,7 @@ export const getHeroSkill = (id: number) => {
     key: "id",
     value: id,
   });
+
   return Promise.resolve(data?.skills || []);
 };
 

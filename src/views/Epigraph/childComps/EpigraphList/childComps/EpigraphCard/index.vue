@@ -2,7 +2,7 @@
 import { epigraphDefault } from "@/defaultValue";
 
 interface Props {
-  data: typeof epigraphDefault;
+  data: Epigraph.Data;
 }
 
 withDefaults(defineProps<Props>(), {

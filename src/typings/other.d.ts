@@ -22,8 +22,8 @@ declare interface SettingConfig {
   music: boolean;
   musicVolume: number;
   speed: 0 | 1 | 2;
-  loginSound: boolean;
   particle: boolean;
+  muted: boolean;
 }
 
 /** @description: 开关 */

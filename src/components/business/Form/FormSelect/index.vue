@@ -1,65 +1,3 @@
-<template>
-  <div class="form-select" :class="{ disabled: disabled }">
-    <!-- 左侧描述 -->
-    <div v-if="label" class="label">
-      <span><i v-if="required" class="star">*</i>{{ label }}：</span>
-    </div>
-
-    <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
-      <!-- 选择器框 -->
-      <div ref="selectBox" class="select-box">
-        <K-input
-          v-model="input_value"
-          :placeholder="active_value || '搜索'"
-          line
-          width="250px"
-          color="var(--theme-color-five)"
-          @input="search"
-          @focus="focus"
-          @blur="blur"
-        />
-        <img
-          class="arrow"
-          :class="{ rotate: is_unfold }"
-          :src="IMGBED + '/image/arrow.png'"
-          alt=""
-        />
-      </div>
-
-      <!-- 展开列表 -->
-      <div class="select-list" :class="{ unfold: !is_unfold }">
-        <transition-group name="select-list">
-          <button
-            v-for="(item, index) in select_list"
-            :key="item.id"
-            class="box"
-            :class="{
-              active:
-                current_index === index ||
-                modelValue === item.name ||
-                modelValue === item.id,
-            }"
-            @mousedown="select(item.id, item.name)"
-            @mouseenter="handleEnterItem(index)"
-            @mouseleave="current_index = null"
-          >
-            <div class="item">{{ item.name }}</div>
-          </button>
-        </transition-group>
-      </div>
-    </div>
-  </div>
-
-  <!-- 选择的列表 -->
-  <div v-if="multi" class="selected-list">
-    <transition-group name="fade-a">
-      <div v-for="(item, index) in selected_list" :key="item" class="selected">
-        <span class="name">{{ item }}</span>
-        <button class="del" @click="delsSelected(index)">×</button>
-      </div>
-    </transition-group>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
@@ -68,23 +6,23 @@ import { $search, $debounce } from "@/utils";
 
 interface Props {
   id?: boolean; //传递id还是name
-  data: any[]; //数据
   autoSize?: boolean; //自适应大小
-  modelValue?: string | number | any[]; //选择的值
-  disabled?: boolean; //是否禁用
-  required?: boolean; //是否必填
+  data: any[]; //数据
+  disabled?: boolean; //禁用
   label?: string; //左侧文字
+  modelValue?: string | number | any[]; //选择的值
+  multi?: boolean; //多选
+  required?: boolean; //必填
   value?: string | number | any[]; //输入框默认值
-  multi?: boolean; //是否支持多选
 }
 const props = withDefaults(defineProps<Props>(), {
   id: false,
-  data: () => [],
   autoSize: false,
-  modelValue: "",
+  data: () => [],
   disabled: false,
-  required: false,
   label: "",
+  modelValue: "",
+  required: false,
   value: "",
 });
 
@@ -99,30 +37,29 @@ const IMGBED = window.IMGBED; //全局图床链接
 
 const input_value = ref<any>(""); //输入框的值
 const active_value = ref<any>(""); //选中的值
-const no_legal = ref(false); //是否合法
-const is_unfold = ref(false); //是否展开
+const is_unfold = ref(false); //展开
 const current_index = ref<number | null>(null); //当前点击
 const select_list = ref<any[]>([]); //下拉列表
 const selected_list = ref<any[]>([]); //选择的列表
 
 /* 实时搜索 */
-const search = () => {
+const handleSearch = () => {
   $debounce(() => {
     select_list.value = $search(props.data, input_value.value, ["name"]);
   }, 100);
 };
 
 /* 获取焦点 */
-const focus = () => {
-  is_unfold.value = true;
-  input_value.value = "";
+const handleFocus = () => {
+  is_unfold.value = true; //展开下拉列表
+  input_value.value = ""; //清空输入框
 };
 
 /* 失去焦点 */
-const blur = () => {
-  is_unfold.value = false;
-  no_legal.value = props.required && active_value.value === "";
+const handleBlur = () => {
+  is_unfold.value = false; //收起下拉列表
   select_list.value = props.data;
+
   // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
   if (input_value.value !== active_value.value) {
     input_value.value = active_value.value;
@@ -136,26 +73,26 @@ const handleEnterItem = (v: number) => {
 };
 
 /* 选择的数据 */
-const select = (id: number, name: string) => {
+const handleSelect = (id: number, name: string) => {
+  //是否为多选
   if (props.multi) {
     selected_list.value.push(name);
-    selected_list.value = [...new Set(selected_list.value)];
+    selected_list.value = [...new Set(selected_list.value)]; //去重
     emit("update:modelValue", selected_list.value);
-
-    setTimeout(() => {
-      input_value.value = "请选择";
-    });
+    input_value.value = "请选择";
   } else {
+    //是否要求传递id
     emit("update:modelValue", props.id ? Number(id) : name);
     select_list.value = props.data;
     active_value.value = name;
     input_value.value = name;
   }
+
   $switchStore.$clickAudio();
 };
 
 /* 删除选择的数据 */
-const delsSelected = (index: number) => {
+const handleDel = (index: number) => {
   selected_list.value.splice(index, 1);
   emit("update:modelValue", selected_list.value);
 };
@@ -163,9 +100,7 @@ const delsSelected = (index: number) => {
 /* 在created会赋空值，只能通过侦听器 */
 watch(
   () => props.data,
-  (v) => {
-    select_list.value = v;
-  },
+  (v) => (select_list.value = v),
   { immediate: true }
 );
 
@@ -173,45 +108,98 @@ watch(
 watch(
   () => props.value,
   (v) => {
-    if (props.multi) {
-      selected_list.value = v as any[];
-    } else {
+    //如果为多选则不做处理
+    if (!props.multi) {
       if (v) {
+        //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
           input_value.value = props.data.find((item) => {
             return item.id === v;
           }).name;
-        } else {
-          input_value.value = v;
         }
-      } else {
-        input_value.value = v;
       }
+    } else {
+      selected_list.value = v as any[];
     }
   },
   { immediate: true }
 );
+
+/* 实时监听输入框 */
 watch(
   () => input_value.value,
   (v) => {
+    //如果为多选则不做处理
     if (!props.multi) {
-      if (v) {
-        if (typeof v === "number") {
-          input_value.value = props.data.find((item) => {
-            return item.id === v;
-          }).name;
-        } else {
-          input_value.value = v;
-          active_value.value = v;
-        }
-      } else {
-        input_value.value = v;
-      }
+      if (v) active_value.value = v;
     }
   },
   { immediate: true }
 );
 </script>
+
+<template>
+  <div class="form-select" :class="{ disabled: disabled }">
+    <FormLabel :label="label" :required="required">
+      <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
+        <!-- 选择器框 -->
+        <div ref="selectBox" class="select-box">
+          <K-input
+            v-model="input_value"
+            :required:="required"
+            :placeholder="active_value || '搜索'"
+            line
+            width="250px"
+            color="var(--theme-color-five)"
+            @input="handleSearch"
+            @focus="handleFocus"
+            @blur="handleBlur"
+          />
+          <img
+            class="arrow"
+            :class="{ rotate: is_unfold }"
+            :src="IMGBED + '/image/arrow.png'"
+            alt=""
+            @dragstart.prevent
+          />
+        </div>
+
+        <!-- 展开列表 -->
+        <div class="select-list" :class="{ unfold: !is_unfold }">
+          <transition-group name="select-list">
+            <button
+              v-for="(item, index) in select_list"
+              :key="item.id"
+              class="box"
+              :class="{
+                active:
+                  current_index === index ||
+                  modelValue === item.name ||
+                  modelValue === item.id,
+              }"
+              @mousedown="handleSelect(item.id, item.name)"
+              @mouseenter="handleEnterItem(index)"
+              @mouseleave="current_index = null"
+            >
+              <div class="item">{{ item.name }}</div>
+            </button>
+          </transition-group>
+        </div>
+      </div>
+    </FormLabel>
+  </div>
+
+  <!-- 选择的列表 -->
+  <div v-if="multi" class="selected-list">
+    <transition-group name="fade-a">
+      <div v-for="(item, index) in selected_list" :key="item" class="selected">
+        <span class="name">{{ item }}</span>
+        <button class="del" @click="handleDel(index)">×</button>
+      </div>
+    </transition-group>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

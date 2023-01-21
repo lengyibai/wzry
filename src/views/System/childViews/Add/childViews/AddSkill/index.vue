@@ -33,6 +33,7 @@ const {
 } = viewHide<Hero.Skill[][]>(emit, "add_skill_list");
 
 const left = ref(); //左侧元素
+
 const skill_effect = ref(""); //选择的技能效果
 const skill_unit = ref(""); //技能消耗单位
 const skill_consume = ref(0); //阶段值
@@ -42,7 +43,11 @@ const active_index = ref(0); //处于编辑状态的技能
 const deputy_index = ref(0); //用于切换副技能的索引
 const show_DelDeputys = ref(false); //显示技能组删除弹窗
 const show_DelSkill = ref(false); //显示技能删除弹窗
+const skill_effects = ref<General[]>([]); //技能效果
 const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
+
+//判断是否存在缓存
+form_data.value ??= [[$deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
 
 //处于编辑的技能组
 const activeSkills = () => form_data.value![deputy_index.value];
@@ -60,18 +65,12 @@ const skills_num = computed(() =>
 //当前技能数量
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
-/* 判断是否存在缓存 */
-form_data.value ??= [[$deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
-
-//是否存在副技能
-
 /* 获取技能类型 */
 getSkillType().then((res) => {
   skill_types.value = res;
 });
 
-/* 技能效果 */
-const skill_effects = ref<Hero.General[]>([]);
+/* 获取技能效果 */
 getSkillEffect().then((res) => {
   skill_effects.value = res;
 });
@@ -80,13 +79,12 @@ getSkillEffect().then((res) => {
 const EmitSelectHeroChange = (id: number) => {
   const d = localStorage.getItem("data_skill") as string;
   const v = JSON.parse(d) as Hero.SkillParams[];
-  const isExist = v.some((item) => {
-    return item.id === id;
-  });
-  if (isExist) {
+
+  if (v.some((item) => item.id === id)) {
     $switchStore.$msg("该英雄已拥有技能，如需修改请前往修改页面", "warning");
   }
 };
+
 /* 增加技能 */
 const handleAddOne = () => {
   skill_effect.value = "";
@@ -94,12 +92,14 @@ const handleAddOne = () => {
   activeSkills().push($deepCopy(skillDefault));
   active_index.value = activeSkills().length - 1;
 };
+
 /* 增加副技能 */
 const handleAddDeputys = () => {
   active_index.value = 0;
   form_data.value!.push([$deepCopy(skillDefault)]);
   deputy_index.value = skills_num.value - 1;
 };
+
 /* 切换为副技能 */
 const handleToggleSkill = () => {
   if (deputy_index.value === skills_num.value - 1) {
@@ -109,10 +109,12 @@ const handleToggleSkill = () => {
   }
   active_index.value = 0;
 };
+
 /* 删除技能 */
 const EmitDelSkill = () => {
   show_DelSkill.value = true;
 };
+
 /* 删除技能组 */
 const handleDelDeputys = () => {
   show_DelDeputys.value = true;
@@ -131,6 +133,7 @@ const EmitConfirmDelSkill = () => {
     EmitSelectSkill(active_index.value - 1);
   }
 };
+
 /* 确认删除技能组 */
 const EmitConfirmDelDeputys = () => {
   form_data.value?.splice(deputy_index.value, 1);
@@ -140,6 +143,7 @@ const EmitConfirmDelDeputys = () => {
     deputy_index.value -= 1;
   }
 };
+
 /* 选择技能后触发 */
 const EmitSelectSkill = (index: number) => {
   skill_effect.value = "";
@@ -181,18 +185,22 @@ const handleEditEffect = () => {
 /* 删除一行 */
 const handleDelEffect = () => {
   skill_effect.value = ""; //选择器值置空
+
   //技能效果索引大于等于0才执行
   if (effectIndex.value >= 0) {
     activeSkill().effect!.splice(effectIndex.value, 1); //删除自身
     const flag1 = effectIndex.value > 0;
     const flag2 = activeSkill().effect!.length > 0;
+
     if (flag1) {
       effectIndex.value--;
     }
+
     //当技能效果数量大于0，将技能效果类型赋给选择器
     if (flag2) {
       skill_effect.value = activeSkill().effect![effectIndex.value].type;
     }
+
     //当技能效果数量为空，且技能效果索引大于小于等于0，则赋初始值
     if (!flag1 && !flag2) {
       effectIndex.value = -1;

@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { skillDefault } from "@/defaultValue";
-
 interface Props {
-  activeSkill: typeof skillDefault;
+  activeSkill: Hero.Skill;
 }
-withDefaults(defineProps<Props>(), {
-  activeSkill: () => skillDefault,
-});
+defineProps<Props>();
 </script>
 
 <template>

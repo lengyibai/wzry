@@ -1,37 +1,26 @@
 <script setup lang="ts">
-import { skillDefault } from "@/defaultValue";
-
 interface Props {
   skills: Hero.Skill[]; //技能列表
   activeIndex: number;
 }
+const props = defineProps<Props>();
+
 interface Emits {
   (e: "select", v: number): void;
   (e: "del"): void;
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  skills: () => [skillDefault],
-  activeIndex: 0,
-});
 const emit = defineEmits<Emits>();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
 /* 是否处于被编辑中 */
-const active = (index: number) => {
-  return props.activeIndex === index;
-};
+const active = (index: number) => props.activeIndex === index;
 
 /* 选择技能 */
-const handleSelectSkill = (index: number) => {
-  emit("select", index);
-};
+const handleSelectSkill = (index: number) => emit("select", index);
 
 /* 删除技能 */
-const handleDel = () => {
-  emit("del");
-};
+const handleDel = () => emit("del");
 </script>
 
 <template>

@@ -13,15 +13,15 @@ const $settingStore = settingStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
-const show_notice = ref(true); //是否显示公告
-const finish = ref(false); //是否下完数据完成
+const show_notice = ref(true); //显示公告
+const finish = ref(false); //数据下载完成
 
+//启用视频背景
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
+/* 点击右上角工具栏 */
 const EmitToolType = (v: string) => {
-  if (v === "notice") {
-    show_notice.value = true;
-  }
+  v === "notice" && (show_notice.value = true);
 };
 </script>
 
@@ -43,7 +43,7 @@ const EmitToolType = (v: string) => {
     <LibBgVideo
       v-if="enable_video_bg"
       :video="LOGINBG"
-      :muted="!$settingStore.config.loginSound"
+      :muted="$settingStore.config.muted"
     />
 
     <!-- 图片 -->

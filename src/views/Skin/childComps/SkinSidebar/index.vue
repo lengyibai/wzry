@@ -19,8 +19,8 @@ const hero_type = [
 
 /* 选择职业并筛选显示英雄 */
 const handleSelect = (name: string, index: number) => {
-  $switchStore.$clickAudio(`默认${index}`);
   $skinStore.setProfessional(name);
+  $switchStore.$clickAudio(`默认${index}`);
 };
 </script>
 

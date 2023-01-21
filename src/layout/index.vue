@@ -1,29 +1,3 @@
-<template>
-  <div class="layout">
-    <transition name="sidebar">
-      <Sidebar v-if="show_sidebar" />
-    </transition>
-    <div class="layout-container">
-      <transition name="navbar">
-        <Navbar v-if="show_navbar" />
-      </transition>
-      <transition name="app-main">
-        <AppMain v-if="show_appmain" />
-      </transition>
-      <transition name="footbar">
-        <Footbar v-if="show_footbar" />
-      </transition>
-    </div>
-    <LibBgVideo v-if="enable_video_bg" :video="BG" />
-    <img
-      v-else
-      class="layout-bg"
-      :src="IMGBED + '/image/background.png'"
-      alt=""
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
@@ -65,6 +39,43 @@ onMounted(async () => {
   }, 500);
 });
 </script>
+
+<template>
+  <div class="layout">
+    <!-- 侧边栏 -->
+    <transition name="sidebar">
+      <Sidebar v-if="show_sidebar" />
+    </transition>
+
+    <!-- 右侧主体 -->
+    <div class="layout-container">
+      <!-- 导航栏 -->
+      <transition name="navbar">
+        <Navbar v-if="show_navbar" />
+      </transition>
+
+      <!-- 主页面 -->
+      <transition name="app-main">
+        <AppMain v-if="show_appmain" />
+      </transition>
+
+      <!-- 底部导航栏 -->
+      <transition name="footbar">
+        <Footbar v-if="show_footbar" />
+      </transition>
+    </div>
+    <LibBgVideo v-if="enable_video_bg" :video="BG" />
+
+    <!-- 图片壁纸 -->
+    <img
+      v-else
+      class="layout-bg"
+      :src="IMGBED + '/image/background.png'"
+      alt=""
+    />
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

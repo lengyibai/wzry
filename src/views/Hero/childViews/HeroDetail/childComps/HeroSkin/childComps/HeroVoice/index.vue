@@ -4,6 +4,7 @@ import { ref, nextTick, onMounted } from "vue";
 import heroDetailStore from "@/store/heroDetail";
 
 const $heroDetailStore = heroDetailStore();
+
 const voiceRef = ref();
 
 let voice_length = 1; //当前语音数量

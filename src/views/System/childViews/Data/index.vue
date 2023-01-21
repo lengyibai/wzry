@@ -85,8 +85,10 @@ const requests: Record<string, () => Promise<any>> = {
 };
 
 let data_cache: any[] = []; //数据缓存
+let replace_data: any = {}; //替换的数据
 
 const table_data = ref<any[]>([]); //表格数据
+const show_ConfirmClose = ref(false); //显示确认关闭弹窗
 
 $switchStore.$clickAudio("bq69");
 
@@ -107,6 +109,7 @@ const load = async () => {
       length: v.length,
     };
   });
+
   for (let i = 0; i < table_data.value.length; i++) {
     const data = table_data.value[i];
     const v = (await requests[data.key]()).data;
@@ -117,9 +120,10 @@ const load = async () => {
 };
 load();
 
-/* 设置状态 */
+/* 比对远程数据设置状态 */
 const setStatus = (data: any, v: any) => {
   data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string);
+
   if (JSON.stringify(v) === JSON.stringify(data.data)) {
     data.status = "最新";
   } else if (data.data.length > v.length) {
@@ -130,13 +134,12 @@ const setStatus = (data: any, v: any) => {
 };
 
 /* 音效触发 */
-const play = () => {
-  $switchStore.$clickAudio();
-};
+const play = () => $switchStore.$clickAudio();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
   localStorage.setItem("data_" + key, JSON.stringify(data));
+
   if (key.includes("skin")) {
     $skinStore.getSkin();
   } else if (key.includes("hero")) {
@@ -148,6 +151,7 @@ const updateData = (key: string, data: any) => {
 const handleCheck = async (data: any) => {
   data.status = "正在检查...";
   const v = (await requests[data.key]()).data;
+
   setTimeout(() => {
     setStatus(data, v);
   }, 1000);
@@ -162,8 +166,6 @@ const handleUpdate = async (data: any) => {
 };
 
 /* 强制覆盖 */
-const show_ConfirmClose = ref(false);
-let replace_data: any = {};
 const handleReplace = (data: any) => {
   replace_data = data;
   show_ConfirmClose.value = true;
@@ -192,6 +194,7 @@ const EmitsSortChange = (v: number[]) => {
   } else {
     table_data.value = $deepCopy(data_cache);
   }
+
   play();
 };
 </script>
@@ -236,6 +239,8 @@ const EmitsSortChange = (v: number[]) => {
         </TableColumn>
       </template>
     </LibTable>
+
+    <!-- 确认弹窗 -->
     <transition name="fade">
       <ConfirmClose
         v-if="show_ConfirmClose"

@@ -17,9 +17,11 @@ const props = withDefaults(defineProps<Props>(), {
 const $equipStore = equipStore();
 
 const card = ref();
+
 const show = ref(true); //淡入显示列表
 const equip_list = ref<Equip.Data[]>([]); //装备列表
 
+/* 控制左右线条显示 */
 const showLine = (id: number, line: string) => {
   return props.lineData.some((item) => {
     if (line === "left") {
@@ -34,7 +36,7 @@ const showLine = (id: number, line: string) => {
 watch(
   () => props.equipList,
   (v) => {
-    show.value = false; //隐藏，延迟显示
+    show.value = false;
     setTimeout(() => {
       equip_list.value = v;
       show.value = true;
@@ -46,6 +48,7 @@ watch(
 
 <template>
   <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
+    <!-- 装备卡片列表 -->
     <EquipCard
       v-for="item in equip_list"
       ref="card"
@@ -54,6 +57,8 @@ watch(
       :right-line="showLine(item.id, 'right')"
       :equip="item"
     />
+
+    <!-- 右侧长竖线 -->
     <div
       v-if="index !== 0"
       class="vertical-line"

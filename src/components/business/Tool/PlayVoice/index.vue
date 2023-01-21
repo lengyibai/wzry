@@ -1,35 +1,35 @@
-<template>
-  <audio ref="voice" :src="link" hidden="true" @ended="ended"></audio>
-</template>
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
 interface Props {
   link: string; //语音链接
 }
-interface Emits {
-  (e: "ended"): void;
-  (e: "info", voice: HTMLMediaElement): void;
-}
-
 withDefaults(defineProps<Props>(), {
   link: "",
 });
 
+interface Emits {
+  (e: "ended"): void;
+  (e: "info", voice: HTMLMediaElement): void;
+}
 const emit = defineEmits<Emits>();
 
-const voice = ref<HTMLMediaElement>();
+const voice = ref();
 
 /* 播放结束后触发 */
 const ended = () => {
   emit("ended");
 };
 
-/* 组件一挂载就触发播放 */
+/* 播放语音 */
 onMounted(() => {
-  voice.value?.addEventListener("canplay", () => {
+  voice.value.addEventListener("canplay", () => {
     emit("info", voice.value as HTMLMediaElement);
-    voice.value?.play().catch(() => {});
+    voice.value.play().catch(() => {});
   });
 });
 </script>
+
+<template>
+  <audio ref="voice" :src="link" hidden="true" @ended="ended"></audio>
+</template>

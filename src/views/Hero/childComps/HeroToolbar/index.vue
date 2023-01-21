@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 import { getCampType } from "@/api/main/games/hero";
 import heroStore from "@/store/hero";
@@ -35,13 +35,13 @@ const sort_type = [
 ];
 
 const gender = ref(0); //性别排序
-const select_camp = ref([{ label: "全部阵营", value: "全部阵营" }]);
 const search_value = ref(""); //搜索值
+const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
 
 // 获取阵营列表
 getCampType().then((res) => {
   res.forEach((item) => {
-    select_camp.value.push({
+    select_camp.push({
       label: item.name,
       value: item.name,
     });

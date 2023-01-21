@@ -8,13 +8,14 @@ import HerSkinType from "./childComps/HerSkinType/index.vue"; //皮肤类型图
 import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
 
-import heroDetailStore from "@/store/heroDetail";
 import { getAssignSkinType } from "@/api/main/games/skin";
 import { heroDefault } from "@/defaultValue";
 import { $deepCopy } from "@/utils";
+import heroDetailStore from "@/store/heroDetail";
 
-const hero_data = ref<typeof heroDefault>($deepCopy(heroDefault)); //英雄数据
+const hero_data = ref<Hero.Data>($deepCopy(heroDefault)); //英雄数据
 const $heroDetailStore = heroDetailStore();
+
 hero_data.value = $heroDetailStore.hero_info;
 
 const active_skin_name = ref(""); //皮肤名
@@ -26,8 +27,8 @@ const skin_type_toggle = ref(true); //皮肤类型切换
 const skin_price_toggle = ref(false); //皮肤价格切换
 const skin_bg = reactive<string[]>([]); //背景图
 
-/* 切换皮肤触发 */
-const bgImgs = ([i, index]: number[]) => {
+/* 切换皮肤海报 */
+const EmitTogglePoster = ([i, index]: number[]) => {
   const skins = hero_data.value.skins;
   skin_bg[i] = (skins && skins[index].poster) || ""; //设置背景图
   skin_bg_toggle.value = !skin_bg_toggle.value; //用于皮肤背景的切换动画
@@ -43,6 +44,7 @@ const bgImgs = ([i, index]: number[]) => {
   setTimeout(async () => {
     const skins = hero_data.value.skins;
     const skin_type = (skins && skins[index].type) || "";
+
     // 0 为伴生
     if (skin_type !== 0) {
       active_skin_type.value = (
@@ -51,9 +53,11 @@ const bgImgs = ([i, index]: number[]) => {
     } else {
       active_skin_type.value = ""; //伴生皮肤没有标志
     }
-    skin_type_toggle.value = !skin_type_toggle.value; //使切换标志时有淡入淡出效果
-    $heroDetailStore.skinToggle(hero_data.value.name, active_skin_name.value);
 
+    skin_type_toggle.value = !skin_type_toggle.value; //使切换标志时有淡入淡出效果
+    $heroDetailStore.skinToggle(hero_data.value.name, active_skin_name.value); //切换皮肤
+
+    // 延迟显示价格
     setTimeout(() => {
       skin_price.value = (skins && skins[index].price) || "";
       skin_price_toggle.value = true;
@@ -75,6 +79,7 @@ const bgImgs = ([i, index]: number[]) => {
         <!-- 皮肤语音 -->
         <HeroVoice />
       </div>
+
       <div class="right">
         <!-- 皮肤价格 -->
         <HeroSkinPrice :toggle="skin_price_toggle" :price="skin_price" />
@@ -83,7 +88,7 @@ const bgImgs = ([i, index]: number[]) => {
         <HeroSkinHeadImg
           v-if="hero_data.skins!.length"
           :skins="hero_data.skins"
-          @bg-imgs="bgImgs"
+          @bg-imgs="EmitTogglePoster"
         />
       </div>
 

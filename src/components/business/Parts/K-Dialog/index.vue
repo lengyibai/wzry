@@ -1,71 +1,33 @@
-<template>
-  <LibMask>
-    <transition :name="up ? 'confirm' : 'default'">
-      <div
-        v-show="show"
-        class="k-dialog"
-        :style="{
-          width: width,
-          height: 'calc(' + width + ' * 0.5989)',
-        }"
-      >
-        <div v-if="title" class="title">{{ title }}</div>
-        <div v-if="header" class="header">{{ header }}</div>
-        <img
-          v-show="showClose"
-          class="close cursor-pointer"
-          :src="IMGBED + '/image/close.png'"
-          @dragstart.prevent
-          @click="handleClose"
-        />
-        <img
-          class="bg"
-          :src="IMGBED + '/image/dialog.png'"
-          @dragstart.prevent
-        />
-        <div
-          class="content"
-          :style="{
-            width: ctxWidth,
-            justifyContent: align,
-          }"
-        >
-          <slot></slot>
-        </div>
-      </div>
-    </transition>
-  </LibMask>
-</template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
 import switchStore from "@/store/switch";
 
 interface Props {
-  modelValue?: boolean; //是否显示
-  showClose?: boolean; //是否显示右上角关闭按钮
-  title?: string; //左上角描述文字
-  header?: string; //中间标题文字
-  width?: string; //弹窗宽度
-  ctxWidth?: string;
-  up?: boolean; //上升动画
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
+  ctxWidth?: string; //内容宽度
+  header?: string; //中间标题文字
+  modelValue?: boolean; //显示/隐藏
+  showClose?: boolean; //显示/隐藏右上角关闭按钮
+  title?: string; //左上角描述文字
+  up?: boolean; //上升动画
+  width?: string; //弹窗宽度
 }
+const props = withDefaults(defineProps<Props>(), {
+  align: "flex-start",
+  ctxWidth: "80%",
+  header: "",
+  modelValue: true,
+  showClose: true,
+  title: "",
+  up: false,
+  width: "720px",
+});
+
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
   (e: "close"): void;
 }
-
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: true,
-  showClose: true,
-  title: "",
-  header: "",
-  width: "720px",
-  up: false,
-  ctxWidth: "80%",
-  align: "flex-start",
-});
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
@@ -83,11 +45,60 @@ onMounted(() => {
 
 /* 关闭 */
 const handleClose = () => {
-  $switchStore.$clickAudio("6xc6");
   emit("update:modelValue", false);
   emit("close");
+  $switchStore.$clickAudio("6xc6");
 };
 </script>
+
+<template>
+  <LibMask>
+    <transition :name="up ? 'confirm' : 'default'">
+      <div
+        v-show="show"
+        class="k-dialog"
+        :style="{
+          width: width,
+          height: 'calc(' + width + ' * 0.5989)',
+        }"
+      >
+        <!-- 左上标题 -->
+        <div v-if="title" class="title">{{ title }}</div>
+
+        <!-- 顶部标题 -->
+        <div v-if="header" class="header">{{ header }}</div>
+
+        <!-- 关闭 -->
+        <img
+          v-show="showClose"
+          class="close cursor-pointer"
+          :src="IMGBED + '/image/close.png'"
+          @dragstart.prevent
+          @click="handleClose"
+        />
+
+        <!-- 背景图 -->
+        <img
+          class="bg"
+          :src="IMGBED + '/image/dialog.png'"
+          @dragstart.prevent
+        />
+
+        <!-- 内容区 -->
+        <div
+          class="content"
+          :style="{
+            width: ctxWidth,
+            justifyContent: align,
+          }"
+        >
+          <slot></slot>
+        </div>
+      </div>
+    </transition>
+  </LibMask>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

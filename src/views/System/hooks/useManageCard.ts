@@ -18,8 +18,6 @@ const data: Info = {
     Hero: "英雄",
     Skin: "皮肤",
     Skill: "技能",
-    // Equip: "装备",
-    // Voice: "语音",
   },
 };
 

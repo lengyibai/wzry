@@ -11,6 +11,7 @@ const select_price = [
   { label: "价格由低到高", value: "价格由低到高" },
   { label: "价格由高到低", value: "价格由高到低" },
 ];
+
 const select_type = [
   { label: "全部类型", value: "全部类型" },
   { label: "勇者", value: "勇者" },
@@ -36,6 +37,7 @@ const select_type = [
   { label: "正版授权", value: "正版授权" },
   { label: "特殊标志", value: "特殊标志" },
 ];
+
 const sort_type = [
   { label: "正序", value: "正序" },
   { label: "倒序", value: "倒序" },

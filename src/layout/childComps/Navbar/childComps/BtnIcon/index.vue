@@ -3,31 +3,26 @@ import { ref } from "vue";
 
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
-import settingStore from "@/store/setting";
-import musicStore from "@/store/music";
-import clickAudio from "@/store/audio";
-import switchStore from "@/store/switch";
-import speedStore from "@/store/speed";
 import { $debounce } from "@/utils";
 import { configDefault } from "@/defaultValue";
+import clickAudio from "@/store/audio";
+import musicStore from "@/store/music";
+import settingStore from "@/store/setting";
+import speedStore from "@/store/speed";
+import switchStore from "@/store/switch";
 
-const $settingStore = settingStore();
-const $musicStore = musicStore();
-const $switchStore = switchStore();
 const $clickAudio = clickAudio();
+const $musicStore = musicStore();
+const $settingStore = settingStore();
 const $speedStore = speedStore();
+const $switchStore = switchStore();
 
 // 默认配置
 const default_config: SettingConfig = { ...configDefault };
 
-const show_setting = ref(false); //是否显示设置弹窗
-const show_confirm_reset = ref(false); //是否显示确认重置弹窗
+const show_setting = ref(false); //显示/隐藏设置弹窗
+const show_confirm_reset = ref(false); //显示/隐藏确认重置弹窗
 const config = ref<SettingConfig>({ ...$settingStore.config });
-
-/* 显示设置弹窗 */
-const handleSetting = () => {
-  show_setting.value = true;
-};
 
 /* 动画速率 */
 const EmitSpeed = (v: number) => {
@@ -40,6 +35,7 @@ const EmitMusic = (v: boolean) => {
   EmitSaveConfig();
   if (!v) $musicStore.pause();
 };
+
 /* 音乐音量调节 */
 const EmitMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
@@ -53,6 +49,7 @@ const EmitAudio = (v: boolean) => {
   $clickAudio.setAudio(v);
   EmitSaveConfig();
 };
+
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
   $clickAudio.setVolume(v);
@@ -87,15 +84,17 @@ const EmitResetConfig = () => {
 
 <template>
   <div class="btn-icon">
+    <!-- 设置按钮 -->
     <i
       class="iconfont wzry-setting cursor-pointer"
       title="设置"
-      @click="handleSetting"
+      @click="show_setting = true"
     />
     <a href="https://github.com/lengyibai/wzry" target="_blank">
       <i class="iconfont wzry-mark-github" title="Github" />
     </a>
 
+    <!-- 设置弹窗 -->
     <transition name="fade">
       <K-Dialog
         v-if="show_setting"

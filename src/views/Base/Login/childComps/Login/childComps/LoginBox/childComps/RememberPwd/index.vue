@@ -6,33 +6,35 @@ import switchStore from "@/store/switch";
 interface Props {
   modelValue: boolean | string; //选中状态
 }
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-
 const props = withDefaults(defineProps<Props>(), {
   modelValue: false,
 });
+
+interface Emits {
+  (e: "update:modelValue", v: boolean): void;
+}
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const icon = computed(
+// 选中/未选中图标
+const checkIcon = computed(
   () =>
     `${IMGBED}/image/${
       props.modelValue ? "check_true_yellow" : "check_false_yellow"
     }.png`
 );
 
-const toggle = () => {
+/* 选中按钮 */
+const handleToggle = () => {
   emit("update:modelValue", !props.modelValue);
   $switchStore.$clickAudio();
 };
 </script>
 
 <template>
-  <div class="remember-pwd cursor-pointer" @click="toggle">
-    <img :src="icon" @dragstart.prevent />
+  <div class="remember-pwd cursor-pointer" @click="handleToggle">
+    <img :src="checkIcon" @dragstart.prevent />
     <span class="lib-click">记住密码</span>
   </div>
 </template>

@@ -6,7 +6,7 @@ import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
 
 interface Props {
-  data: typeof heroDefault; //英雄数据
+  data: Hero.Data; //英雄数据
 }
 withDefaults(defineProps<Props>(), {
   data: () => heroDefault,
@@ -23,9 +23,8 @@ const $switchStore = switchStore();
 const show = ref(false); //显示查看详情选项
 
 //用于身高和皮肤数量排序显示相应数字
-const num_type = computed(() => {
-  return $heroStore.misc_sort;
-});
+const num_type = computed(() => $heroStore.misc_sort);
+
 //是否显示右上角数字
 const show_num = computed(() => ["身高", "皮肤数量"].includes(num_type.value));
 const num = (data: Hero.Data) =>
@@ -56,8 +55,13 @@ const handleViewClick = () => {
     @click="handleClickCard"
     @mouseleave="show = false"
   >
+    <!-- 编号 -->
     <span class="id">No.{{ data.id }}</span>
+
+    <!-- 身高、皮肤数量/ -->
     <span v-if="show_num" class="num">{{ num(data) }}</span>
+
+    <!-- 悬浮蒙版 -->
     <transition name="fade">
       <div v-if="show" class="select-mask">
         <img :src="data.headImg" class="head" @dragstart.prevent />
@@ -67,7 +71,10 @@ const handleViewClick = () => {
       </div>
     </transition>
 
+    <!-- 背景图 -->
     <img class="bg" :src="data.cover" loading="lazy" @dragstart.prevent />
+
+    <!-- 底部名字、代号 -->
     <div class="bottom">
       <div class="name">{{ data.name }}</div>
       <div class="mark">{{ data.mark }}</div>

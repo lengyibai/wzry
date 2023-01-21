@@ -1,12 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  name: string;
-  mark: string;
+  name: string; //名字
+  mark: string; //代号
 }
-withDefaults(defineProps<Props>(), {
-  name: "未知",
-  mark: "未知",
-});
+defineProps<Props>();
 
 const IMGBED = window.IMGBED; //全局图床链接
 </script>

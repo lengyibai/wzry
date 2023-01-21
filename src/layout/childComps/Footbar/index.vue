@@ -12,43 +12,42 @@ import musicStore from "@/store/music";
 const $musicStore = musicStore();
 const $settingStore = settingStore();
 
-const line = ref<HTMLElement>();
-const footbar = ref<HTMLElement>();
+const line = ref();
+const footbar = ref();
 
 let timer: any = null; //隐藏工具栏定时器
 
-let enable_music = computed(() => {
-  return $settingStore.config.music;
-}); //是否启用音乐播放器
+const progress = ref(0); //播放进度
 
-const playProgress = ref(0); //播放进度
+//是否启用音乐播放器
+const enable_music = computed(() => {
+  return $settingStore.config.music;
+});
 
 /* 通过获取点击的坐标，计算出播放进度 */
-const getPoint = (e: MouseEvent) => {
-  if (footbar.value) {
-    playProgress.value = parseFloat(
-      (
-        (e.pageX - footbar.value.offsetLeft) /
-        footbar.value.offsetWidth
-      ).toFixed(2)
-    );
-  }
+const handleSetProgress = (e: MouseEvent) => {
+  //计算出小数
+  progress.value = parseFloat(
+    ((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(
+      2
+    )
+  );
+
+  $musicStore.setCurrentTime(progress.value); //设置播放进度
 };
 
 /* 悬浮移动竖线 */
 const handleMoveLine = (e: MouseEvent) => {
   if (!enable_music.value) return;
-  if (line.value && footbar.value) {
-    line.value.style.left =
-      parseFloat(
-        (
-          (e.pageX - footbar.value.offsetLeft) /
-          footbar.value.offsetWidth
-        ).toFixed(2)
-      ) *
-        100 +
-      "%";
-  }
+  line.value.style.left =
+    parseFloat(
+      (
+        (e.pageX - footbar.value.offsetLeft) /
+        footbar.value.offsetWidth
+      ).toFixed(2)
+    ) *
+      100 +
+    "%";
 };
 
 /* 点击音乐工具栏 */
@@ -94,19 +93,24 @@ onBeforeUnmount(() => {
       enable: $settingStore.config.particle,
     }"
     class="footbar cursor-pointer"
-    @click="getPoint"
+    @click="handleSetProgress"
     @mouseenter="handleShowTool(true)"
     @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
   >
+    <!-- 底部竖线 -->
     <div v-if="enable_music" ref="line" class="line"></div>
-    <MusicPlay
-      v-if="enable_music"
-      class="music-play"
-      :play-progress="playProgress"
-    />
+
+    <!-- 音乐播放器 -->
+    <MusicPlay v-if="enable_music" class="music-play" />
+
+    <!-- 左侧时间 -->
     <Time class="time" />
+
+    <!-- 音乐工具栏 -->
     <Tool @toggle="EmitMusicToole" />
+
+    <!-- 右侧作者 -->
     <Copyright class="copyright" />
   </div>
 </template>

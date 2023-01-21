@@ -2,14 +2,15 @@
 import { equipDefault } from "@/defaultValue";
 
 interface Props {
-  equip: typeof equipDefault;
-  show: boolean;
+  equip: typeof equipDefault; //装备
+  show: boolean; //显示/隐藏
 }
 withDefaults(defineProps<Props>(), {
   equip: () => equipDefault,
   show: false,
 });
 
+// css类名值
 const abbreviations: Record<string, string> = {
   最大生命: "zdsm",
   每5秒回血: "hx",
@@ -30,7 +31,10 @@ const abbreviations: Record<string, string> = {
 
 <template>
   <div class="equip-detail" :class="{ show: show }">
+    <!-- 名称 -->
     <div class="name">{{ equip.name }}</div>
+
+    <!-- 数值信息 -->
     <div class="info">
       <div
         v-for="(item, index) in equip.effect"
@@ -41,6 +45,8 @@ const abbreviations: Record<string, string> = {
         +{{ item.num }} {{ item.name }}
       </div>
     </div>
+
+    <!-- 被动/主动 -->
     <div v-if="equip?.name" class="details">
       <div
         v-for="(item, index) in equip.motivation"

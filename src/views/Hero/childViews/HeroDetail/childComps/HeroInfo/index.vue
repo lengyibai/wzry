@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
-import HeroRelationship from "./childComps/HeroRelationship/index.vue";
+import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import heroDetail from "@/store/heroDetail";

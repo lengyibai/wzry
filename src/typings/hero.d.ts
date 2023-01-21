@@ -39,6 +39,8 @@ declare namespace Hero {
     text: string; //语音文字
     link: string; //语音链接
   }
+
+  /** @description: 语音字列表 */
   interface Voices {
     name: string;
     voice: Voice[];
@@ -107,11 +109,10 @@ declare namespace Hero {
     name: string;
     link: string;
   }
-  /** @description: 英雄额外信息 */
-  /** @description: general */
-  interface General {
-    id: number;
-    name: string;
+
+  /** @description: 英雄头像列表 */
+  interface HeadImg extends General {
+    headImg: string;
   }
 }
 
@@ -123,4 +124,10 @@ declare interface User {
   headImg?: string;
   wzryToken?: string;
   role?: 0 | 1;
+}
+
+/** @description: 基本数据信息 */
+interface General {
+  id: number;
+  name: string;
 }

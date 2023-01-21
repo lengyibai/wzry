@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import heroDetail from "@/store/heroDetail";
-import { skillDefault } from "@/defaultValue";
 
 interface Props {
-  activeSkill: typeof skillDefault;
+  activeSkill: Hero.Skill;
   isPassive: boolean;
 }
-withDefaults(defineProps<Props>(), {
-  activeSkill: () => skillDefault,
-  isPassive: false,
-});
+defineProps<Props>();
 
 const $heroDetail = heroDetail();
 </script>

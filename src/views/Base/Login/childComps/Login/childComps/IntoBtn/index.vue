@@ -2,8 +2,8 @@
 import settingStore from "@/store/setting";
 
 interface Props {
-  text: string;
-  desc: string;
+  text: string; //文字
+  desc: string; //小字
 }
 withDefaults(defineProps<Props>(), {
   text: "",

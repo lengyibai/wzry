@@ -15,9 +15,7 @@ const $switchStore = switchStore();
 
 const show_Details = ref(false); //显示装备详情
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
-const equip_data = ref<typeof equipDefault | undefined>(
-  $deepCopy(equipDefault)
-); //被点击的装备信息
+const equip_data = ref<Equip.Data | undefined>($deepCopy(equipDefault)); //被点击的装备信息
 
 $switchStore.$clickAudio("3k4s");
 
@@ -45,10 +43,15 @@ watch(
   <div class="equip">
     <transition name="fade">
       <div v-if="show_EquipSidebar" class="equip-main">
+        <!-- 装备列表 -->
         <EquipList />
+
+        <!-- 装备详情 -->
         <EquipDetail :show="show_Details" :equip="equip_data" />
       </div>
     </transition>
+
+    <!-- 装备侧边栏 -->
     <transition name="sidebar">
       <EquipSidebar v-show="show_EquipSidebar" />
     </transition>

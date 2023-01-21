@@ -1,14 +1,14 @@
 import { ref } from "vue";
 
-import type { TipStore } from "@/store/tip";
-import type { SettingStore } from "@/store/setting";
-import type { SwitchStore } from "@/store/switch";
+import tipStore from "@/store/tip";
+import settingStore from "@/store/setting";
+import switchStore from "@/store/switch";
 
-export default (
-  $switchStore: SwitchStore,
-  $tipStore: TipStore,
-  $settingStore: SettingStore
-) => {
+export default () => {
+  const $tipStore = tipStore();
+  const $settingStore = settingStore();
+  const $switchStore = switchStore();
+
   const show_tip = ref(false); //是否显示NPC
   const content = ref(""); //文字
   const align = ref<TipType>(); //对齐方式

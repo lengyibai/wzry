@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import {
-  onActivated,
-  onBeforeUnmount,
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-} from "vue";
+import { onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
 import $bus from "@/utils/eventBus";
 
 interface Props {
-  data: Epigraph.Data[];
+  data: Epigraph.Data[]; //铭文列表
 }
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
 });
 
 const epigraphListRef = ref();
+
 const show = ref(false); //淡入显示列表
 const count = ref(4); //一行的个数
 const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
@@ -37,13 +31,6 @@ watch(
   { deep: true, immediate: true }
 );
 
-/* 进入页面后更新高度 */
-onActivated(() => {
-  nextTick(() => {
-    epigraphListRef.value.updateHeight();
-  }).catch(() => {});
-});
-
 onMounted(() => {
   /* 实时修改一行个数 */
   const change = [
@@ -51,6 +38,8 @@ onMounted(() => {
     [1340, 2],
     [1020, 1],
   ];
+
+  /* 修改个数 */
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
     if (v > 1680) {
@@ -63,6 +52,7 @@ onMounted(() => {
     }
   };
   changeCount();
+
   $bus.on("resize", () => {
     changeCount();
   });

@@ -35,12 +35,15 @@ const handleToggle = (index: number, type: string) => {
 <template>
   <div class="epigraph-tool">
     <div class="epigraph-category">
+      <!-- 滑动的图标 -->
       <img
         :style="{ left: current_index * 11.11 + '%' }"
         :src="IMGBED + '/image/epigraph_active.png'"
         alt=""
         @dragstart.prevent
       />
+
+      <!-- 文字 -->
       <button
         v-for="(item, index) in epigraph"
         :key="index"

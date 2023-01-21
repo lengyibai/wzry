@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
 interface Props {
-  modelValue: number;
-  option: string[];
+  modelValue: number; //索引号
+  option: string[]; //选项文字
 }
 interface Emits {
   (e: "update:modelValue", v: number): void;

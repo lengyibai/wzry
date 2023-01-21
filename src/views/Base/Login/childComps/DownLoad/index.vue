@@ -10,10 +10,12 @@ const emit = defineEmits<Emits>();
 
 const { total, index, title, type, finish } = useGetData();
 
+//下载进度
 const progress = computed(
   () => ((index.value / total.value) * 100).toFixed(0) + "%"
 );
 
+/* 监听是否完成 */
 watch(finish, (v) => {
   emit("update:finish", v);
 });

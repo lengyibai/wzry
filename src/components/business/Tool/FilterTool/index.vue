@@ -6,8 +6,8 @@ import switchStore from "@/store/switch";
 type Data = { label: string; value: string | number };
 
 interface Props {
-  data: Data[];
-  listHeight?: string;
+  data: Data[]; //下拉列表
+  listHeight?: string; //列表高度
 }
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
@@ -24,28 +24,28 @@ const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
-const sort_text = ref("默认排序");
-const is_unfold = ref(false);
-const currentValue = ref("");
+const sort_text = ref("默认排序"); //标题
+const unfold = ref(false); //展开列表
+const current_value = ref(""); //选择的值
 
 sort_text.value = props.data[0].label;
 
 /* 显示列表 */
 const handleShowList = () => {
-  is_unfold.value = !is_unfold.value;
+  unfold.value = !unfold.value;
   $switchStore.$clickAudio("n4r4");
 };
 
 /* 悬浮触发 */
 const handleEnterItem = (v: Data) => {
-  currentValue.value = v.label;
+  current_value.value = v.label;
   $switchStore.$clickAudio("n4r4");
 };
 
 /* 选择的值 */
 const handleSelect = (v: { label: string; value: number | string }) => {
-  is_unfold.value = false;
-  currentValue.value = v.label;
+  unfold.value = false;
+  current_value.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
   $switchStore.$clickAudio();
@@ -55,17 +55,20 @@ const handleSelect = (v: { label: string; value: number | string }) => {
 <template>
   <div class="select-filter cursor-pointer" @click="handleShowList">
     <div class="title">{{ sort_text }}</div>
+
+    <!-- 下拉图标 -->
     <img
-      :class="{ 'arrow-active': is_unfold }"
+      :class="{ 'arrow-active': unfold }"
       :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
       @dragstart.prevent
     />
+
     <!-- 展开列表 -->
     <div
       class="select-list"
-      :class="{ unfold: !is_unfold }"
+      :class="{ unfold: !unfold }"
       :style="{ height: listHeight }"
       @click.stop
     >
@@ -75,11 +78,11 @@ const handleSelect = (v: { label: string; value: number | string }) => {
           :key="item.value"
           class="box"
           :class="{
-            active: currentValue === item.label || sort_text === item.label,
+            active: current_value === item.label || sort_text === item.label,
           }"
           @mousedown="handleSelect(item)"
           @mouseenter="handleEnterItem(item)"
-          @mouseleave="currentValue = ''"
+          @mouseleave="current_value = ''"
         >
           <div class="item">{{ item.label }}</div>
         </button>

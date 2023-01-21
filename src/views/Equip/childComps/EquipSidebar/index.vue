@@ -18,7 +18,7 @@ const hero_type: {
 ];
 
 /* 点击侧边栏菜单，播放音效及存储菜单名 */
-const select = (name: string, index: number) => {
+const handleSelect = (name: string, index: number) => {
   $switchStore.$clickAudio(`默认${index}`);
   $equipStore.setType(name);
 };
@@ -31,7 +31,7 @@ const select = (name: string, index: number) => {
       :key="index"
       class="hero-type"
       :class="{ active: item.name === $equipStore.category }"
-      @click="select(item.name, index)"
+      @click="handleSelect(item.name, index)"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ item.name }}</span>

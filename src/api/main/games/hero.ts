@@ -6,11 +6,11 @@ import { getHeroSkill } from "@/api/main/games/skill";
 
 /** @description: 获取英雄基础列表 */
 export const getHeroBasic = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_herobasic" }));
+  return Promise.resolve(get<General[]>({ name: "data_herobasic" }));
 };
 /** @description: 添加英雄基础列表 */
-export const addHeroBasic = (data: Hero.General) => {
-  return Promise.resolve(post<Hero.General>("data_herobasic", data));
+export const addHeroBasic = (data: General) => {
+  return Promise.resolve(post<General>("data_herobasic", data));
 };
 
 /** @description: 获取英雄头像列表 */
@@ -40,6 +40,8 @@ export const getHeroDetail = async (id: number) => {
   const skills = await getHeroSkill(id); //获取技能列表
   const voices = await getSkinVoice(hero.name, "原皮"); //获取语音列表
   const relationships = await getHeroRelationship(id); //获取关系列表
+
+  //如果存在关系，则请求相关人物的头像
   if (relationships) {
     for (let i = 0; i < relationships.length; i++) {
       relationships[i].hero = await getHeroImg(
@@ -54,6 +56,7 @@ export const getHeroDetail = async (id: number) => {
   hero.voices = voices || [];
   hero.relationships = relationships || [];
 
+  //皮肤列表第一个为原皮肤
   hero.skins.unshift({
     id: 0,
     hero: hero.id,
@@ -68,38 +71,39 @@ export const getHeroDetail = async (id: number) => {
     profession: [],
     gender: "",
   });
+
   return Promise.resolve(hero);
 };
 
 /** @description: 获取技能类型列表 */
 export const getSkillType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_skilltype" }));
+  return Promise.resolve(get<General[]>({ name: "data_skilltype" }));
 };
 /** @description: 获取技能效果列表 */
 export const getSkillEffect = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_skilleffect" }));
+  return Promise.resolve(get<General[]>({ name: "data_skilleffect" }));
 };
 /** @description: 获取种族列表 */
 export const getRaceType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_racetype" }));
+  return Promise.resolve(get<General[]>({ name: "data_racetype" }));
 };
 /** @description: 获取阵营列表 */
 export const getCampType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_camptype" }));
+  return Promise.resolve(get<General[]>({ name: "data_camptype" }));
 };
 /** @description: 获取定位列表 */
 export const getLocationType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_locationtype" }));
+  return Promise.resolve(get<General[]>({ name: "data_locationtype" }));
 };
 /** @description: 获取时期列表 */
 export const getPeriodType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_periodtype" }));
+  return Promise.resolve(get<General[]>({ name: "data_periodtype" }));
 };
 /** @description: 获取职业列表 */
 export const getProfessionType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_professiontype" }));
+  return Promise.resolve(get<General[]>({ name: "data_professiontype" }));
 };
 /** @description: 获取特长列表 */
 export const getSpecialtyType = () => {
-  return Promise.resolve(get<Hero.General[]>({ name: "data_specialtytype" }));
+  return Promise.resolve(get<General[]>({ name: "data_specialtytype" }));
 };

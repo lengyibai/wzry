@@ -29,10 +29,12 @@ const {
   EmitCancelRelease,
 } = viewHide<Hero.Skin[]>(emit, "add_skin_list");
 
-/* 判断是否存在缓存 */
+//判断是否存在缓存
 form_data.value ??= [];
 
 let skins: Hero.Skin[] = []; //英雄皮肤列表
+
+const scrollBox = ref();
 
 let skin_num = ref(0); //当前英雄的皮肤数量
 let hero_info: Hero.Data; //当前英雄的信息
@@ -45,14 +47,16 @@ const EmitSelectHero = (id: number) => {
     skin_num.value = res.length;
     skins = res;
   });
+
   getHeroDetail(id).then((res) => {
     hero_info = res;
   });
 };
+
+// 如果本地存在英雄id，则自动选中
 hero_id.value && EmitSelectHero(hero_id.value);
 
 /* 增加一项 */
-const scrollBox = ref();
 const handleAddOne = () => {
   if (hero_id.value) {
     form_data.value!.push({
@@ -102,15 +106,13 @@ const EmitCommit = async () => {
     item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
     item.num = skin_num.value + 1;
   });
-  const pass = form_data.value!.every((item) => {
-    return item.hero !== 0;
-  });
 
-  if (pass) {
+  if (form_data.value!.every((item) => item.hero !== 0)) {
     for (let i = 0; i < form_data.value!.length; i++) {
       const item = form_data.value![i];
       await addSkin(item);
       finish.value = true;
+
       setTimeout(() => {
         EmitConfirmRemove();
         $switchStore.$msg("发布成功", "info");
@@ -148,6 +150,7 @@ setTimeout(async () => {
         class="add-one iconfont wzry-addcircle cursor-pointer"
         @click="handleAddOne"
       />
+
       <!--指派英雄-->
       <SelectHero
         key="SelectHero"
@@ -156,6 +159,8 @@ setTimeout(async () => {
         :disabled="!!form_data!.length"
         @update:model-value="EmitSelectHero"
       />
+
+      <!-- 拥有皮肤数量 -->
       <span key="SkinNum" class="skin-num">拥有皮肤：{{ skin_num }}款</span>
 
       <!--皮肤盒子列表-->

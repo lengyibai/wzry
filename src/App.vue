@@ -1,33 +1,35 @@
 <script setup lang="ts">
 import { $chromeV } from "@/utils";
-import useVersion from "@/hooks/useVersion";
-import settingStore from "@/store/setting";
-import musicStore from "@/store/music";
 import clickAudio from "@/store/audio";
-import speedStore from "@/store/speed";
+import musicStore from "@/store/music";
 import otherStore from "@/store/other";
+import settingStore from "@/store/setting";
+import speedStore from "@/store/speed";
+import useVersion from "@/hooks/useVersion";
 
-const $settingStore = settingStore();
-const $musicStore = musicStore();
 const $clickAudio = clickAudio();
-const $speedStore = speedStore();
+const $musicStore = musicStore();
 const $otherStore = otherStore();
+const $settingStore = settingStore();
+const $speedStore = speedStore();
 
 const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
 
 /* 本地配置立即生效 */
 const setTakeEffect = () => {
-  $musicStore.setVolume($settingStore.config.musicVolume);
-  $clickAudio.setVolume($settingStore.config.audioVolume);
-  $speedStore.setSpeed($settingStore.config.speed);
-  $clickAudio.setAudio($settingStore.config.audio);
+  $clickAudio.setAudio($settingStore.config.audio); //音效
+  $clickAudio.setVolume($settingStore.config.audioVolume); //音效音量
+  $musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
+  $speedStore.setSpeed($settingStore.config.speed); //动画速度
 };
 setTakeEffect();
+
 $settingStore.setTakeEffectFn(setTakeEffect);
 </script>
 
 <template>
   <div class="app">
+    <!-- 路由页面 -->
     <router-view v-slot="{ Component }">
       <transition name="round-clip" mode="out-in">
         <component :is="Component" />
@@ -36,6 +38,8 @@ $settingStore.setTakeEffectFn(setTakeEffect);
 
     <!-- 全局开关 -->
     <GlobalSwitch />
+
+    <!-- 左下角水印 -->
     <transition name="fade">
       <div v-show="!$otherStore.collapse" class="watermark">
         <p>浏览器内核版本：{{ $chromeV }}</p>

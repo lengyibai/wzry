@@ -103,6 +103,6 @@ export const configDefault: SettingConfig = {
   music: true,
   musicVolume: 50,
   speed: 1,
-  loginSound: true,
+  muted: false,
   particle: false,
 };

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 interface Props {
-  desc: string;
+  desc: string; //描述
 }
 withDefaults(defineProps<Props>(), {
   desc: "",
