@@ -12,8 +12,5 @@ const time = computed(() => $fmtTime(new Date(), "YYYY.MM.DD"));
 </template>
 
 <style scoped lang="less">
-.time {
-  color: var(--theme-color-five);
-  font-size: 20px;
-}
+@import url("./index.less");
 </style>

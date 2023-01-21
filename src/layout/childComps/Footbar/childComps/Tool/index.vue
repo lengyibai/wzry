@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MuiscList from "./MuiscList.vue";
+import MuiscList from "../MuiscList/index.vue";
 
 import musicStore from "@/store/music";
 
@@ -47,36 +47,5 @@ const handleTool = (type: string) => {
 </template>
 
 <style scoped lang="less">
-.tool {
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  .iconfont {
-    display: inline-block;
-    margin: 0 10px;
-    color: var(--theme-color-five);
-    font-size: 28px;
-    font-weight: bold;
-
-    &:hover {
-      color: var(--blue);
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(1);
-    }
-  }
-}
-
-.tool-enter-from,
-.tool-leave-active {
-  transform: translateY(100%);
-}
-
-.tool-leave-active,
-.tool-enter-active {
-  transition: all var(--time-250);
-}
+@import url("./index.less");
 </style>
