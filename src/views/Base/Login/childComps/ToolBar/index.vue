@@ -5,7 +5,7 @@ import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
 
 interface Props {
-  notice?: boolean; //是否显示公告按钮
+  notice?: boolean; //显示公告按钮
 }
 withDefaults(defineProps<Props>(), {
   notice: true,

@@ -5,12 +5,12 @@ interface Emits {
 }
 
 export default <T>(emit: Emits, key: string) => {
-  const show = ref(false); //是否显示页面
+  const show = ref(false); //显示页面
   const timer = ref<Interval>(); //自动保存计时器
-  const finish = ref(false); //是否发布成功
+  const finish = ref(false); //发布成功
   const status = ref(0); //发布状态
   const hero_id = ref<number | undefined>(); //英雄id
-  const show_ConfirmClose = ref(false); //是否显示确认关闭弹窗
+  const show_ConfirmClose = ref(false); //显示确认关闭弹窗
   const form_data = ref<T>();
 
   /* 判断是否存在草稿 */

@@ -33,7 +33,7 @@ export default () => {
   const index = ref(1); //
   const type = ref("基础数据"); //正在下载的数据类型
   const title = ref(""); //正在下载的数据名
-  const finish = ref(false); //是否请求结束
+  const finish = ref(false); //请求结束
 
   const requests: [string, () => Promise<any>, string][] = [
     ["user", User, "用户"],

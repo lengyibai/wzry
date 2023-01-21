@@ -40,13 +40,13 @@ import switchStore from "@/store/switch";
 interface Props {
   modelValue: number | string; //值
   width?: string; //整体宽度
-  disabled?: boolean; //是否禁用
+  disabled?: boolean; //禁用
   placeholder?: string; //输入框描述
   validate?: (val: string) => string; //自定义表单验证
-  required?: boolean; //是否必填
-  number?: boolean; //是否为数字
+  required?: boolean; //必填
+  number?: boolean; //为数字
   borderColor?: string; //边框颜色
-  line?: boolean; //是否显示聚焦线
+  line?: boolean; //显示聚焦线
   color?: string; //字体颜色
   align?: "left" | "center" | "right"; //对齐方式
   fontSize?: string; //字体大小

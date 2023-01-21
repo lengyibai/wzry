@@ -9,7 +9,7 @@ export default () => {
   const $settingStore = settingStore();
   const $switchStore = switchStore();
 
-  const show_tip = ref(false); //是否显示NPC
+  const show_tip = ref(false); //显示NPC
   const content = ref(""); //文字
   const align = ref<TipType>(); //对齐方式
   const noTipName = ref(""); //不再提示的标识符

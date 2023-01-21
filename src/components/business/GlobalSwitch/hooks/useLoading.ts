@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 export default () => {
-  const show_loading = ref(false); //是否显示
+  const show_loading = ref(false); //显示loading
   const loading_text = ref(""); //加载描述
 
   //设置方法

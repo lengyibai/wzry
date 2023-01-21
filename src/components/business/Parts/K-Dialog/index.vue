@@ -31,7 +31,7 @@ const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
-const show = ref(false); //是否显示弹窗
+const show = ref(false); //显示弹窗
 
 onMounted(() => {
   show.value = true;

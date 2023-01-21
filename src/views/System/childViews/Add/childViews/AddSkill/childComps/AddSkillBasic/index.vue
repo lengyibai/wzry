@@ -13,7 +13,7 @@ const emit = defineEmits<Emits>();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
-/* 是否处于被编辑中 */
+/* 处于被编辑中 */
 const active = (index: number) => props.activeIndex === index;
 
 /* 选择技能 */

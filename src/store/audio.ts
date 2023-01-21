@@ -6,7 +6,7 @@ import { $debounceInstant } from "@/utils";
 const audioStore = defineStore("audio", () => {
   const sound_name = ref("默认"); //音效名
   const volume = ref(0.5); //音量
-  const status = ref(true); //是否启用音效
+  const status = ref(true); //启用音效
 
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {

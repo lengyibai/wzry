@@ -2,7 +2,7 @@ interface Get {
   name: string; //用于获取本地存储的键名
   key?: string; //从本地存储获取的数据的键名
   value?: any; //匹配的值
-  full?: boolean; //是否全字匹配
+  full?: boolean; //全字匹配
 }
 
 interface Patch extends Get {

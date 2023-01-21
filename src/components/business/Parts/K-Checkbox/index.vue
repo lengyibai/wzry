@@ -5,7 +5,7 @@ interface Props {
   label?: string; //标题
   labelWidth?: string; //标题宽度
   modelValue: boolean | string; //选中状态
-  required?: boolean; //是否必选
+  required?: boolean; //必选
 }
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

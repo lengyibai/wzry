@@ -26,8 +26,8 @@ import { ref, watch } from "vue";
 
 interface Props {
   status: number; //提交状态
-  finish: boolean; //是否完成提交
-  showConfirmclose: boolean; // 是否显示确认关闭弹窗
+  finish: boolean; //完成提交
+  showConfirmclose: boolean; // 显示确认关闭弹窗
 }
 const props = defineProps<Props>();
 

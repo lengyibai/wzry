@@ -38,7 +38,7 @@ let id: unknown = $route.query.id; //地址栏参数
 
 const heroListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目
-const show = ref(false); //是否显示列表
+const show = ref(false); //显示列表
 const show_HeroDetail = ref(false); //显示英雄详情
 const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 

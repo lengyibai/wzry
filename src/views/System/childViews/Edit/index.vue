@@ -7,7 +7,7 @@ type Options = Record<
   string,
   {
     i: number; //标识符
-    show: boolean; //是否显示
+    show: boolean; //显示
   }
 >;
 

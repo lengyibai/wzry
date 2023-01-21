@@ -18,7 +18,7 @@ const $heroDetailStore = heroDetailStore();
 let deputy_index = 0; //主副技能索引
 
 const current_index = ref(0); //处于展示的技能索引
-const show = ref(false); //是否显示技能
+const show = ref(false); //显示技能
 const active_skills = ref<Hero.Skill[]>([]); //展示的技能组
 
 //设置英雄详情

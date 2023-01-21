@@ -19,10 +19,8 @@ let timer: any = null; //隐藏工具栏定时器
 
 const progress = ref(0); //播放进度
 
-//是否启用音乐播放器
-const enable_music = computed(() => {
-  return $settingStore.config.music;
-});
+//启用音乐播放器
+const enable_music = computed(() => $settingStore.config.music);
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {

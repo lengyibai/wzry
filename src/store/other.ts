@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 const otherStore = defineStore("other", () => {
-  const collapse = ref(false); //是否折叠
+  const collapse = ref(false); //折叠
   const triggerFn = ref<(() => void)[]>([]);
 
   /** @description: 控制折叠 */

@@ -17,7 +17,7 @@ const showSkin = ref();
 
 let toggle = true; //用于切换背景
 
-const is_into_drap = ref(false); //拖动头像是否进入头像框范围
+const is_into_drap = ref(false); //拖动头像进入头像框范围
 const show_skin_head = ref(false); //用于头像初次加载显示
 
 const skins = computed(() => $heroDetail.hero_info.skins); //皮肤列表
