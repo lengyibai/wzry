@@ -470,8 +470,14 @@ export function $promiseTimeout(fn, delay) {
 /* 判断是否为移动端 */
 export const $isPhone = (() => /mobile/i.test(navigator.userAgent))()
 
-/* 判断一个对象中的属性是否存在空值 */
-export const existEmpty = obj => Object.values(obj).some(val => val === "");
+/* 判断表单指定属性名是否为空 */
+export const $existEmpty = (obj:Record<string,any>, arr?:string[]) =>{
+  if(arr){
+   return arr.some((item) => obj[item] === "")
+  }else{
+    return Object.values(obj).some(item=>item==="")
+  }
+};
 
 /* 节流(立即执行) */
 export const $throttleInstant = (() => {
