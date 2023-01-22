@@ -120,10 +120,10 @@ declare namespace Hero {
 declare interface User {
   id: string;
   password: string;
+  role: 0 | 1;
   nickname?: string;
   headImg?: string;
   wzryToken?: string;
-  role?: 0 | 1;
 }
 
 /** @description: 基本数据信息 */
