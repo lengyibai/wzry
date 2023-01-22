@@ -94,6 +94,15 @@ export const epigraphDefault: Epigraph.Data = {
   effect: [], //效果
 };
 
+/** @description: 默认用户信息 */
+export const userDefaultInfo: User = {
+  id: "",
+  headImg: window.IMGBED + "/image/head.jpg",
+  nickname: "",
+  password: "",
+  role: 1,
+};
+
 /** @description: 默认配置信息 */
 export const configDefault: SettingConfig = {
   tip: true,
