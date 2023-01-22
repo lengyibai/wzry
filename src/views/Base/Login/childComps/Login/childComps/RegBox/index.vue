@@ -6,29 +6,24 @@ import IntoBtn from "../IntoBtn/index.vue"; //按钮
 import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 import { register } from "@/api/main/user";
-import { existEmpty } from "@/utils";
+import { userDefaultInfo } from "@/defaultValue";
+import { $existEmpty } from "@/utils";
 import switchStore from "@/store/switch";
 
 interface Emits {
-  (e: "success"): void;
+  (e: "success", form: User): void;
 }
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
 // 表单数据
-const form = reactive<User>({
-  id: "",
-  headImg: IMGBED + "/image/head.jpg",
-  nickname: "",
-  password: "",
-  role: 1,
-});
+const form = reactive<User>({ ...userDefaultInfo });
 
 /* 注册 */
 const handleReg = () => {
   // 非空判断
-  if (existEmpty(form)) {
+  if ($existEmpty(form)) {
     $switchStore.$msg("请完整填写", "error");
     return;
   }
@@ -37,7 +32,7 @@ const handleReg = () => {
   register(form)
     .then(() => {
       $switchStore.$msg("注册成功！");
-      emit("success");
+      emit("success", form);
     })
     .catch((err) => {
       $switchStore.$msg(err, "warning");
