@@ -17,8 +17,9 @@ const IMGBED = window.IMGBED; //全局图床链接
 const loginBox = ref<HTMLElement>();
 
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
+const reg_form = ref<User>(); //
 
-//进入方式/登录/注册的组件切换
+//登录、注册的组件切换
 const component = computed(() => {
   return is_reg.value === "登录"
     ? LoginBox
@@ -27,15 +28,27 @@ const component = computed(() => {
     : SelectInto;
 });
 
-/* 重新选择 */
+/* 重新选择登录还是注册 */
 const handleBack = () => {
   is_reg.value = "";
   $switchStore.$clickAudio("p60v");
 };
 
-/* 进入方式 */
+/**
+ * @description: 进入方式，用于切换注册和登录组件
+ * @param {string} v 注册或登录
+ */
 const EmitIntoType = (v: string) => {
   is_reg.value = v;
+};
+
+/**
+ * @description: 注册成功
+ * @param {User} form 注册成功的表单
+ */
+const EmitRegSuccess = (form: User) => {
+  is_reg.value = "登录";
+  reg_form.value = form;
 };
 
 /* 视差动画 */
@@ -96,8 +109,9 @@ onBeforeUnmount(() => {
     <!-- 组件切换 -->
     <component
       :is="component"
+      :user-info="reg_form"
       @into="EmitIntoType"
-      @success="is_reg = '登录'"
+      @success="EmitRegSuccess"
     />
   </div>
 </template>
