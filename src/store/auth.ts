@@ -35,21 +35,23 @@ const authStore = defineStore("auth", () => {
   const login = async (form: User) => {
     switchStore().$loading.show("登录中");
     switchStore().$clickAudio("e84n");
-
-    _login(form)
-      .then((res) => {
-        userInfo.value = res;
-        userStatus.value = true;
-        window.localStorage.setItem("user", JSON.stringify(res));
-        routesStore().addRoutes(res.role);
-        router.push(HOME_URL);
-        switchStore().$msg("登录成功");
-        watchStatus();
-      })
-      .catch((err) => {
-        switchStore().$msg(err, "error");
-        switchStore().$loading.close();
-      });
+    return new Promise<void>((resolve) => {
+      _login(form)
+        .then((res) => {
+          userInfo.value = res;
+          userStatus.value = true;
+          window.localStorage.setItem("user", JSON.stringify(res));
+          routesStore().addRoutes(res.role);
+          router.push(HOME_URL);
+          switchStore().$msg("登录成功");
+          watchStatus();
+          resolve();
+        })
+        .catch((err) => {
+          switchStore().$msg(err, "error");
+          switchStore().$loading.close();
+        });
+    });
   };
 
   /** @description: 自动登录 */
