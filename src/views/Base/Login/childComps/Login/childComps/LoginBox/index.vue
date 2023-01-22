@@ -5,37 +5,45 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
-import { existEmpty } from "@/utils";
+import { userDefaultInfo } from "@/defaultValue";
+import { $existEmpty } from "@/utils";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
+
+interface Props {
+  userInfo: User; //注册成功后用于填充
+}
+const props = defineProps<Props>();
 
 const $switchStore = switchStore();
 const $authStore = authStore();
 
-const form = ref({ id: "", password: "" });
+const form = ref({ ...userDefaultInfo });
 const remember = ref(true);
 
 const local_user = localStorage.getItem("remember_user");
 
-if (local_user) {
+if (props.userInfo) {
+  form.value = props.userInfo;
+} else if (local_user) {
   form.value = JSON.parse(local_user);
 }
 
 /* 登录 */
 const handleLogin = () => {
-  if (existEmpty(form.value)) {
+  if ($existEmpty(form.value, ["id", "password"])) {
     $switchStore.$msg("请完整填写", "error");
     return;
   }
 
-  $authStore.login(form.value);
-
-  // 记住密码
-  if (remember.value) {
-    localStorage.setItem("remember_user", JSON.stringify(form.value));
-  } else {
-    localStorage.removeItem("remember_user");
-  }
+  $authStore.login(form.value).then(() => {
+    // 记住密码
+    if (remember.value) {
+      localStorage.setItem("remember_user", JSON.stringify(form.value));
+    } else {
+      localStorage.removeItem("remember_user");
+    }
+  });
 };
 </script>
 
