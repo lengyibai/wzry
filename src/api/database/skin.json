@@ -6621,6 +6621,76 @@
       "profession": ["法师"],
       "heroName": "武则天",
       "gender": "女"
+    },
+    {
+      "id": 873,
+      "hero": 87,
+      "num": 3,
+      "price": "1788",
+      "type": 107,
+      "name": "山海·炽霜斩",
+      "poster": "https://lengyibai.gitee.io/img-bed/wzry/hero/lixin/haibao/3.jpg",
+      "cover": "https://lengyibai.gitee.io/img-bed/wzry/hero/lixin/haibao/3_small.jpg",
+      "headImg": "https://lengyibai.gitee.io/img-bed/wzry/hero/lixin/touxiang/3.jpg",
+      "profession": ["战士"],
+      "heroName": "李信",
+      "gender": "男"
+    },
+    {
+      "id": 138,
+      "hero": 13,
+      "num": 8,
+      "price": "1788",
+      "type": 107,
+      "name": "山海·琳琅生",
+      "poster": "https://lengyibai.gitee.io/img-bed/wzry/hero/xiaoqiao/haibao/8.jpg",
+      "cover": "https://lengyibai.gitee.io/img-bed/wzry/hero/xiaoqiao/haibao/8_small.jpg",
+      "headImg": "https://lengyibai.gitee.io/img-bed/wzry/hero/xiaoqiao/touxiang/8.jpg",
+      "profession": ["法师"],
+      "heroName": "小乔",
+      "gender": "女"
+    },
+    {
+      "id": 944,
+      "hero": 94,
+      "num": 4,
+      "price": "1788",
+      "type": 107,
+      "name": "山海·苍雷引",
+      "poster": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao2/haibao/4.jpg",
+      "cover": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao2/haibao/4_small.jpg",
+      "headImg": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao2/touxiang/4.jpg",
+      "profession": ["战士"],
+      "heroName": "曜",
+      "gender": "男"
+    },
+    {
+      "id": 566,
+      "hero": 56,
+      "num": 6,
+      "price": "888",
+      "type": 107,
+      "name": "山海·玄木吟",
+      "poster": "https://lengyibai.gitee.io/img-bed/wzry/hero/makeboluo/haibao/6.jpg",
+      "cover": "https://lengyibai.gitee.io/img-bed/wzry/hero/makeboluo/haibao/6_small.jpg",
+      "headImg": "https://lengyibai.gitee.io/img-bed/wzry/hero/makeboluo/touxiang/6.jpg",
+      "profession": ["射手"],
+      "heroName": "马可波罗",
+      "gender": "男"
+    },
+    {
+      "id": 925,
+      "hero": 92,
+      "num": 5,
+      "price": "888",
+      "type": 107,
+      "name": "山海·碧波行",
+      "poster": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao1/haibao/5.jpg",
+      "cover": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao1/haibao/5_small.jpg",
+      "headImg": "https://lengyibai.gitee.io/img-bed/wzry/hero/yao1/touxiang/5.jpg",
+      "profession": ["辅助"],
+      "heroName": "瑶",
+      "gender": "女"
     }
   ]
 }
