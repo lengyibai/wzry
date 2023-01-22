@@ -35,6 +35,7 @@ const authStore = defineStore("auth", () => {
   const login = async (form: User) => {
     switchStore().$loading.show("登录中");
     switchStore().$clickAudio("e84n");
+
     _login(form)
       .then((res) => {
         userInfo.value = res;
@@ -55,6 +56,7 @@ const authStore = defineStore("auth", () => {
   const autoLogin = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     switchStore().$loading.show("登录中");
+
     _login(user)
       .then((res) => {
         userInfo.value = res;

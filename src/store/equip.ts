@@ -7,15 +7,14 @@ import { t, h } from "./helper";
 import { getEquip } from "@/api/main/games/equip";
 import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
 
+type EquipElement = { name: string; el: HTMLElement | undefined; id: number }[];
 const equipStore = defineStore("equip", () => {
   const active_id = ref(0); //当前被点击的装备id
   const category = ref("攻击"); //列表装备类型显示
   const active_array = ref<string[]>([]); //当前被点击装备排列位置
   const equip_list = ref<Equip.Data[]>([]); //装备列表
   const equip_list_column = ref<Equip.Data[][]>([]); //三列装备
-  const equip_element = ref<
-    { name: string; el: HTMLElement | undefined; id: number }[]
-  >([]); //装备列表的所有元素
+  const equip_element = ref<EquipElement>([]); //装备列表的所有元素
   const equipSelectFn = ref<(() => void)[]>([]); //点击装备触发的函数
   const synthetic = ref<Equip.Synthetic>({ id: 0, name: "" }); //当前点击的装备合成
   const synthetic_id = ref<Equip.Synthetic[][]>([[], [], []]); //当前点击的装备合成相关id
@@ -83,14 +82,18 @@ const equipStore = defineStore("equip", () => {
       { top: "0", height: "0" },
       { top: "0", height: "0" },
     ];
+
     if (active_id.value === id) {
       active_id.value = 0;
       clearSynthetic();
       return;
     }
+
     active_id.value = id;
+
     getEquipSynthetic(id).then((res) => {
       clearSynthetic();
+
       if (res) {
         active_array.value = res.id.toString().split("") || [];
         synthetic.value = res;
@@ -106,7 +109,6 @@ const equipStore = defineStore("equip", () => {
       synthetic_id.value[0][0] = synthetic; //获取第一列id组
 
       // 通过第一列获取第二列
-
       synthetic_id.value[1] = [];
       try {
         for (let i = 0; i < synthetic.to!.length; i++) {
@@ -117,6 +119,7 @@ const equipStore = defineStore("equip", () => {
       } catch (error) {
         /*  */
       }
+
       synthetic_id.value[1].sort(function (a, b) {
         return a.id - b.id;
       });

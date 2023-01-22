@@ -144,6 +144,7 @@ const heroStore = defineStore("hero", () => {
         value: ["真伤"],
       },
     ];
+
     if (a && a !== "全部属性") {
       multiple.forEach((effect) => {
         if (a === effect.label) {

@@ -8,6 +8,7 @@ import { getHeroSkill } from "@/api/main/games/skill";
 export const getHeroBasic = () => {
   return Promise.resolve(get<General[]>({ name: "data_herobasic" }));
 };
+
 /** @description: 添加英雄基础列表 */
 export const addHeroBasic = (data: General) => {
   return Promise.resolve(post<General>("data_herobasic", data));
@@ -19,6 +20,7 @@ export const getHeroImg = (id: number) => {
     get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id })
   );
 };
+
 /** @description: 添加英雄头像列表 */
 export const addHeroImg = (data: Hero.HeadImg) => {
   return Promise.resolve(post<Hero.HeadImg>("data_heroimg", data));
@@ -28,6 +30,7 @@ export const addHeroImg = (data: Hero.HeadImg) => {
 export const getHeroData = () => {
   return Promise.resolve(get<Hero.Data[]>({ name: "data_herodata" }));
 };
+
 /** @description: 添加英雄信息列表 */
 export const addHeroData = (data: Hero.Data) => {
   return Promise.resolve(post<Hero.Data>("data_herodata", data));
@@ -79,30 +82,37 @@ export const getHeroDetail = async (id: number) => {
 export const getSkillType = () => {
   return Promise.resolve(get<General[]>({ name: "data_skilltype" }));
 };
+
 /** @description: 获取技能效果列表 */
 export const getSkillEffect = () => {
   return Promise.resolve(get<General[]>({ name: "data_skilleffect" }));
 };
+
 /** @description: 获取种族列表 */
 export const getRaceType = () => {
   return Promise.resolve(get<General[]>({ name: "data_racetype" }));
 };
+
 /** @description: 获取阵营列表 */
 export const getCampType = () => {
   return Promise.resolve(get<General[]>({ name: "data_camptype" }));
 };
+
 /** @description: 获取定位列表 */
 export const getLocationType = () => {
   return Promise.resolve(get<General[]>({ name: "data_locationtype" }));
 };
+
 /** @description: 获取时期列表 */
 export const getPeriodType = () => {
   return Promise.resolve(get<General[]>({ name: "data_periodtype" }));
 };
+
 /** @description: 获取职业列表 */
 export const getProfessionType = () => {
   return Promise.resolve(get<General[]>({ name: "data_professiontype" }));
 };
+
 /** @description: 获取特长列表 */
 export const getSpecialtyType = () => {
   return Promise.resolve(get<General[]>({ name: "data_specialtytype" }));

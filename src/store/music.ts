@@ -44,6 +44,7 @@ const musicStore = defineStore("music", () => {
     if (isReset) {
       bgm.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
+
     status.value = true;
     bgm.volume = volume.value;
 
@@ -52,6 +53,7 @@ const musicStore = defineStore("music", () => {
         play(false);
       }, 1000);
     });
+
     //实时设置播放进度
     progress_timer = setInterval(() => {
       progress.value = $potEoPct(bgm.currentTime / bgm.duration);
