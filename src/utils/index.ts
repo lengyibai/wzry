@@ -471,13 +471,11 @@ export function $promiseTimeout(fn, delay) {
 export const $isPhone = (() => /mobile/i.test(navigator.userAgent))()
 
 /* 判断表单指定属性名是否为空 */
-export const $existEmpty = (obj:Record<string,any>, arr?:string[]) =>{
-  if(arr){
-   return arr.some((item) => obj[item] === "")
-  }else{
-    return Object.values(obj).some(item=>item==="")
-  }
-};
+export const $existEmpty = (obj, arr:string[] = []) =>
+(arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
+  .length > 0
+  ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
+  : false;
 
 /* 节流(立即执行) */
 export const $throttleInstant = (() => {
