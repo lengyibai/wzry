@@ -10,7 +10,7 @@ import routesStore from "@/store/routes";
 
 const authStore = defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
-  const timer = ref<Interval | number>(0); //实时检测帐号状态
+  const timer = ref<Interval>(); //实时检测帐号状态
   // 用户相关信息
   const userInfo = ref<User>({
     id: "",
@@ -110,10 +110,9 @@ const authStore = defineStore("auth", () => {
 
   /** @description: 实时检测帐号状态 */
   const watchStatus = () => {
+    if (timer.value) return;
     timer.value = setInterval(() => {
-      if (!localStorage.getItem("user")) {
-        offline();
-      }
+      if (!localStorage.getItem("user")) offline();
     }, 3000);
   };
 
