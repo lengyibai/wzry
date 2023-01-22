@@ -14,7 +14,7 @@ export const Herodata = () => http.Get<Hero.Data[]>("/heroData.json");
 
 /** @description: 获取英雄语音列表 */
 export const Voice = (hero_name: string) => {
-  http.Get<Hero.Voices[]>(`/voices/${hero_name}.json`);
+  return http.Get<Hero.Voices[]>(`/voices/${hero_name}.json`);
 };
 
 /** @description: 获取技能列表 */
