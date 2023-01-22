@@ -1,5 +1,3 @@
-// ? 全局不动配置项 只做导出不做修改
-
 /** @description: 登录页地址（默认） */
 export const LOGIN_URL = "/login";
 
