@@ -52,10 +52,12 @@ const EmitToolType = (v: string) => {
     <!-- 图片 -->
     <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
 
+    <!-- 公告 -->
     <transition v-if="finish" name="fade">
       <Notice v-if="show_notice" v-model="show_notice" />
     </transition>
 
+    <!-- 下载进度 -->
     <transition name="fade">
       <DownLoad v-if="!finish" v-model:finish="finish" />
     </transition>
