@@ -235,6 +235,7 @@ const skinStore = defineStore("skin", () => {
           "鼠年限定",
           "牛年限定",
           "虎年限定",
+          "兔年限定",
         ],
       },
       {
