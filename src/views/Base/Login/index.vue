@@ -19,7 +19,10 @@ const finish = ref(false); //数据下载完成
 //启用视频背景
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
-/* 点击右上角工具栏 */
+/**
+ * @description: 点击右上角工具栏
+ * @param {string} v 点击工具栏的静音或公告按钮类型
+ */
 const EmitToolType = (v: string) => {
   v === "notice" && (show_notice.value = true);
 };
