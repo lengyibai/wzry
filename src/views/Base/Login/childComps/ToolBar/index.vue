@@ -25,8 +25,11 @@ const icon = computed(() => {
   return muted.value ? "wzry-jingyin" : "wzry-laba";
 });
 
-/* 点击某个按钮 */
-const handleShowNotice = (v: string) => {
+/**
+ * @description: 点击某个按钮
+ * @param {string} v 点击静音或公告的标识符
+ */
+const handleTool = (v: string) => {
   emit("clicks", v);
   if (v === "sound") {
     $settingStore.saveConfig({ muted: !muted.value });
@@ -40,17 +43,13 @@ const handleShowNotice = (v: string) => {
     <div class="line"></div>
     <div
       class="box cursor-pointer"
-      :style="{ opacity: !muted ? 0.75 : 1 }"
-      @click="handleShowNotice('sound')"
+      :style="{ opacity: muted ? 0.75 : 1 }"
+      @click="handleTool('sound')"
     >
       <i class="iconfont" :class="icon" />
     </div>
     <div v-if="notice" class="line"></div>
-    <div
-      v-if="notice"
-      class="box cursor-pointer"
-      @click="handleShowNotice('notice')"
-    >
+    <div v-if="notice" class="box cursor-pointer" @click="handleTool('notice')">
       <i class="iconfont wzry-gonggao" />
     </div>
   </div>
