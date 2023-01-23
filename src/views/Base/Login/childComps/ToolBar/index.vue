@@ -19,8 +19,6 @@ const emit = defineEmits<Emits>();
 const $settingStore = settingStore();
 const $switchStore = switchStore();
 
-const show_notice = ref(false);
-
 //静音
 const muted = computed(() => $settingStore.config.muted);
 
@@ -45,6 +43,7 @@ const handleTool = (v: string) => {
 <template>
   <div class="tool-bar">
     <div class="line"></div>
+    <!-- 静音图标 -->
     <div
       class="box cursor-pointer"
       :class="{ active: muted }"
@@ -53,8 +52,14 @@ const handleTool = (v: string) => {
     >
       <i class="iconfont" :class="icon" />
     </div>
+
+    <!-- 底座 -->
     <div class="base one"></div>
+
+    <!-- 公告上线条 -->
     <div v-if="notice" class="line"></div>
+
+    <!-- 公告图标 -->
     <div
       v-if="notice"
       class="box cursor-pointer notice"
@@ -62,7 +67,9 @@ const handleTool = (v: string) => {
     >
       <i class="iconfont wzry-gonggao" />
     </div>
-    <div class="base two"></div>
+
+    <!-- 底座 -->
+    <div v-if="notice" class="base two"></div>
   </div>
 </template>
 
