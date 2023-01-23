@@ -65,7 +65,7 @@ const EmitParticle = () => {
 
 /* 启用/禁用Tip */
 const EmitTip = (v: boolean) => {
-  v && $switchStore.$tip("2rb7");
+  v && $switchStore.$tip({ text: "2rb7" });
 };
 
 /* 保存配置 */

@@ -5,16 +5,24 @@ import tipStore from "@/store/tip";
 
 interface Props {
   modelValue: boolean;
-  text: string;
-  noTipName: string;
-  align?: TipType;
+  text: string; //内容
+  title?: string; //左上角标题
+  noTipName: string; //不再提示的属性名
+  align?: TipType; //对齐方式
+  btn?: boolean; //是否需要按钮
+  btnText?: string[]; //按钮文字
+  btnFn?: () => void; //点击按钮触发的函数
 }
 const props = withDefaults(defineProps<Props>(), {
   align: "right-bottom",
+  title: "小贴士",
+  btnText: () => [],
+  btnFn: () => {},
 });
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
+  (e: "update:btn", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
@@ -51,6 +59,7 @@ const cancelCountDown = () => {
 
 /* 开始/取消倒计时 */
 const handleCountDown = (v: boolean) => {
+  if (props.btn) return;
   if (v) {
     time.value = 3;
     timer = setInterval(() => {
@@ -72,8 +81,14 @@ const finish = () => {
 
 /* 不再提示 */
 const handleNoTip = () => {
-  $tipStore.tips[props.noTipName].noTip = true;
+  $tipStore.noTips[props.noTipName] = true;
+  handleClose();
+};
+
+/* 关闭弹窗 */
+const handleClose = () => {
   emit("update:modelValue", false);
+  emit("update:btn", false);
 };
 
 onBeforeUnmount(() => {
@@ -89,7 +104,10 @@ onBeforeUnmount(() => {
     @mouseleave="handleCountDown(true)"
   >
     <div class="top">
-      <div class="title">小贴士</div>
+      <!-- 左上角标题 -->
+      <div class="title">{{ title }}</div>
+
+      <!-- 小兵 -->
       <img
         class="soldier"
         :src="IMGBED + '/image/warn.png'"
@@ -97,16 +115,46 @@ onBeforeUnmount(() => {
         @dragstart.prevent
       />
     </div>
+
+    <!-- 内容 -->
     <div v-typewriterMultiple="finish" class="content">{{ text }}</div>
+
+    <!-- 不再提示 -->
     <div
       v-show="time === -1"
+      v-if="!btn"
       class="not-tip cursor-pointer lib-click"
       @click="handleNoTip"
     >
       不再提示
     </div>
-    <div v-show="time !== -1" class="count-down cursor-pointer lib-click">
+
+    <!-- 倒计时 -->
+    <div
+      v-if="!btn"
+      v-show="time !== -1"
+      class="count-down cursor-pointer lib-click"
+    >
       {{ time }}秒后关闭，鼠标进入可取消
+    </div>
+
+    <!-- 按钮 -->
+    <div v-if="btn" class="btns">
+      <K-Button
+        width="150px"
+        height="40px"
+        font-size="20px"
+        @click="handleClose"
+        >{{ btnText[0] }}</K-Button
+      >
+      <K-Button
+        width="150px"
+        height="40px"
+        font-size="20px"
+        type="warning"
+        @click="btnFn, handleClose"
+        >{{ btnText[1] }}</K-Button
+      >
     </div>
   </div>
 </template>

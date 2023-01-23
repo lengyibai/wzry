@@ -3,10 +3,10 @@
   z-index: 9;
   display: flex;
   width: 500px;
-  height: calc(500px * 0.5989);
+  min-height: calc(500px * 0.5989);
   padding-bottom: 25px;
   background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
-  background-size: cover;
+  background-size: 100% 100%;
   filter: drop-shadow(0 0 6px rgb(0 0 0 / 50%));
   flex-direction: column;
 
@@ -14,10 +14,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 90px;
     color: var(--theme-color-nine);
 
     .title {
-      font-size: 35px;
+      font-size: 30px;
       transform: translateX(40px);
     }
 
@@ -31,6 +32,7 @@
   .content {
     overflow: auto;
     width: 100%;
+    margin-bottom: 35px;
     padding: 0 30px 0 50px;
     font-size: 24px;
     text-indent: 2em;
@@ -44,5 +46,13 @@
     right: 0;
     bottom: 0;
     color: var(--white-25);
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    padding: 0 30px 0 50px;
   }
 }
