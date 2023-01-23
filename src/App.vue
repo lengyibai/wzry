@@ -6,6 +6,7 @@ import otherStore from "@/store/other";
 import settingStore from "@/store/setting";
 import speedStore from "@/store/speed";
 import useVersion from "@/hooks/useVersion";
+import useUpdateData from "@/hooks/useUpdateData";
 
 const $clickAudio = clickAudio();
 const $musicStore = musicStore();
@@ -14,6 +15,7 @@ const $settingStore = settingStore();
 const $speedStore = speedStore();
 
 const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
+useUpdateData();
 
 /* 本地配置立即生效 */
 const setTakeEffect = () => {
