@@ -86,7 +86,6 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": "warn", //禁止使用var
     "@typescript-eslint/no-explicit-any": "off", //不允许使用any
     "@typescript-eslint/no-empty-function": "off", //不允许空函数
-    "@typescript-eslint/no-non-null-assertion": "warn", //禁止非空断言
     "@typescript-eslint/no-namespace": "off", //禁止使用命名空间
     "@typescript-eslint/ban-types": "off",
   },
