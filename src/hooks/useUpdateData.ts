@@ -22,7 +22,9 @@ import {
   Periodtype,
   Camptype,
   RaceType,
+  Voice,
 } from "@/api/main/data";
+import { getHeroBasic } from "@/api/main/games/hero";
 
 export default () => {
   const $switchStore = switchStore();
@@ -77,56 +79,83 @@ export default () => {
     racetype: RaceType,
   };
 
-  let loacl_data: any[] = []; // 本地数据
-  const remote_data: any[] = []; // 远程数据
-  const need_update: Record<string, any[]> = {
+  let hero_list: Hero.Basic[] = []; //英雄基础列表
+  const need_update_data: Record<string, any[]> = {
     names: [],
     keys: [],
     data: [],
   }; //需要更新的数据
+  const need_update_voice: Record<string, any[]> = {
+    names: [],
+    keys: [],
+    data: [],
+  }; //需要更新的语音
 
-  /** @description: 获取本地数据 */
+  /* 获取本地数据 */
   const getLocalData = (name: string, prefix = "data_") => {
     return JSON.parse(localStorage.getItem(prefix + name) as string);
   };
 
   /* 加载数据 */
   const load = async () => {
-    loacl_data = keywords.map((item) => {
-      const v = getLocalData(item[0]);
-      return {
-        name: item[1],
-        key: item[0],
-        data: v,
-      };
-    });
+    hero_list = await getHeroBasic(); // 获取英雄基础列表
 
-    //获取远程数据
-    for (let i = 0; i < loacl_data.length; i++) {
-      const v = (await requests[keywords[i][0]]()).data;
-      remote_data.push(v);
-    }
-
-    compare();
-  };
-  load();
-
-  /* 比对远程数据设置状态 */
-  const compare = () => {
-    for (let i = 0; i < keywords.length; i++) {
-      if (
-        JSON.stringify(loacl_data[i].data) !== JSON.stringify(remote_data[i])
-      ) {
-        need_update.names.push(loacl_data[i].name);
-        need_update.keys.push(loacl_data[i].key);
-        need_update.data.push(remote_data[i]);
+    //获取远程数据并比对
+    for (const [key, name] of keywords) {
+      const v = (await requests[key]()).data;
+      const l = getLocalData(key);
+      if (JSON.stringify(l) !== JSON.stringify(v)) {
+        need_update_data.names.push(name);
+        need_update_data.keys.push(key);
+        need_update_data.data.push(v);
       }
     }
 
-    if (need_update.names.length) {
+    // 获取远程语音并比对
+    for (const hero of hero_list.filter(
+      (hero) => !["梦奇", "盾山"].includes(hero.name)
+    )) {
+      const v = (await Voice(hero.pinyin)).data;
+      const l = getLocalData(hero.pinyin, "voice_");
+
+      if (JSON.stringify(l) !== JSON.stringify(v)) {
+        need_update_voice.names.push(hero.name);
+        need_update_voice.keys.push(hero.pinyin);
+        need_update_voice.data.push(v);
+      }
+    }
+
+    updateTip();
+  };
+  load();
+
+  /* 更新提示信息处理 */
+  const updateTip = () => {
+    const { names: data_names } = need_update_data;
+    const { names: voice_names } = need_update_voice;
+    const data_length = data_names.length;
+    const voice_length = voice_names.length;
+
+    if (data_length || voice_length) {
+      const dataToShow = data_length > 5 ? data_names.slice(0, 5) : data_names;
+      const voiceToShow =
+        voice_length > 5 ? voice_names.slice(0, 5) : voice_names;
+
+      let text = `《${dataToShow.join("、")}》${
+        data_length > 5 ? `...共${data_length}条数据需要更新，` : "需要更新，"
+      }`;
+
+      if (voice_length) {
+        text += `并包含《${voiceToShow.join("、")}》${
+          voice_length > 5
+            ? `...共${voice_length}条语音数据需要更新，`
+            : "的语音数据需要更新，"
+        }`;
+      }
+
       $switchStore.$tip({
         title: "更新提醒",
-        text: `${need_update.names.join("、")}需要更新，是否立即更新？`,
+        text: `${text}是否立即更新？`,
         btn: true,
         btnText: ["暂不", "更新"],
         btnFn: updateData,
@@ -136,11 +165,20 @@ export default () => {
 
   /* 更新数据 */
   const updateData = () => {
-    $switchStore.$msg("正在更新");
+    for (let i = 0; i < need_update_data.keys.length; i++) {
+      const key = need_update_data.keys[i];
+      localStorage.setItem(
+        "data_" + key,
+        JSON.stringify(need_update_data.data[i])
+      );
+    }
 
-    for (let i = 0; i < need_update.keys.length; i++) {
-      const key = need_update.keys[i];
-      localStorage.setItem("data_" + key, JSON.stringify(need_update.data[i]));
+    for (let i = 0; i < need_update_voice.keys.length; i++) {
+      const key = need_update_voice.keys[i];
+      localStorage.setItem(
+        "voice_" + key,
+        JSON.stringify(need_update_voice.data[i])
+      );
     }
 
     $switchStore.$msg("更新成功，3秒后自动刷新浏览器");
@@ -149,5 +187,4 @@ export default () => {
       location.reload();
     }, 4000);
   };
-  return {};
 };
