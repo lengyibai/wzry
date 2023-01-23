@@ -31,6 +31,8 @@ const show_progress = ref(false); //显示滚动索引组件
 
 const hero_data = $heroDetail.hero_info; //英雄信息
 
+$switchStore.$loading.close();
+
 //技能数量
 const skill_num = computed(() => {
   return (hero_data.skills && hero_data.skills.length) || 0;

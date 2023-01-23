@@ -60,12 +60,16 @@ const EmitViewClick = (id: number) => {
     show_HeroDetail.value = true;
 
     //设置路由参数只用于记录，方便刷新时直接打开详情
-    $router.push({
-      path: "/hero",
-      query: {
-        id: hero_info.value.id,
-      },
-    });
+    $router
+      .push({
+        path: "/hero",
+        query: {
+          id: hero_info.value.id,
+        },
+      })
+      .then(() => {
+        $switchStore.$loading.show(`正在加载${hero.name}的详细资料`);
+      });
   });
 };
 
