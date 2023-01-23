@@ -51,6 +51,7 @@ $switchStore.$clickAudio("u4c5");
 const open = (key: string) => {
   options[key].show = true;
   $switchStore.$clickAudio();
+  $switchStore.$loading.show("正在加载添加" + list[key] + "页面");
 };
 </script>
 
