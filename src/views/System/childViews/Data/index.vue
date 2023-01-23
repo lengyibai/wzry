@@ -27,11 +27,12 @@ const requests: Record<string, () => Promise<any>> = {
   skin: Skin,
 };
 
+let update_status = true; // 更新限制
 let data_cache: any[] = []; //数据缓存
 let replace_data: any = {}; //替换的数据
 
-const table_data = ref<any[]>([]); //表格数据
 const show_ConfirmClose = ref(false); //显示确认关闭弹窗
+const table_data = ref<any[]>([]); //表格数据
 
 $switchStore.$clickAudio("bq69");
 
@@ -83,6 +84,7 @@ const play = () => $switchStore.$clickAudio();
 const updateData = (key: string, data: any) => {
   localStorage.setItem("data_" + key, JSON.stringify(data));
 
+  // 如果为皮肤/英雄，则重新获取皮肤/英雄列表
   if (key.includes("skin")) {
     $skinStore.getSkin();
   } else if (key.includes("hero")) {
@@ -92,12 +94,21 @@ const updateData = (key: string, data: any) => {
 
 /* 检查更新 */
 const handleCheck = async (data: any) => {
-  data.status = "正在检查...";
-  const v = (await requests[data.key]()).data;
+  if (update_status) {
+    data.status = "正在检查...";
+    const v = (await requests[data.key]()).data;
 
-  setTimeout(() => {
-    setStatus(data, v);
-  }, 1000);
+    setTimeout(() => {
+      setStatus(data, v);
+    }, 1000);
+
+    update_status = false;
+    setTimeout(() => {
+      update_status = true;
+    }, 10000);
+  } else {
+    $switchStore.$msg("更新太频繁，更新间隔为10秒", "warning");
+  }
 };
 
 /* 更新指定 */
