@@ -6,7 +6,7 @@ import { getHeroSkill } from "@/api/main/games/skill";
 
 /** @description: 获取英雄基础列表 */
 export const getHeroBasic = () => {
-  return Promise.resolve(get<General[]>({ name: "data_herobasic" }));
+  return Promise.resolve(get<Hero.Basic[]>({ name: "data_herobasic" }));
 };
 
 /** @description: 添加英雄基础列表 */
