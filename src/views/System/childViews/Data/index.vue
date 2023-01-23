@@ -209,17 +209,17 @@ const EmitsSortChange = (v: number[]) => {
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="175px">{{ data.name }}</TableColumn>
-        <TableColumn min-width="100px">{{ data.data.length }}</TableColumn>
+        <TableColumn min-width="150px">{{ data.data.length }}</TableColumn>
         <TableColumn min-width="200px">{{ data.status }}</TableColumn>
-        <TableColumn width="500px" min-width="425px">
-          <button class="check lib-click" @click="handleCheck(data), play()">
+        <TableColumn width="500px">
+          <button
+            v-if="data.status !== '本地已更改'"
+            class="check lib-click"
+            @click="handleCheck(data), play()"
+          >
             检查更新
           </button>
-          <button
-            v-if="data.status === '本地已更改'"
-            class="export lib-click"
-            @click="handleExport(data), play()"
-          >
+          <button class="export lib-click" @click="handleExport(data), play()">
             导出
           </button>
           <button
