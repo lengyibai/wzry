@@ -1,15 +1,16 @@
-declare module "*.vue" {
+module "*.vue" {
   import type { DefineComponent } from "vue";
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
-declare module "nprogress";
+module "nprogress";
 
-declare type Interval = NodeJS.Timer | number;
-declare type Timeout = NodeJS.Timeout | number;
+type Interval = NodeJS.Timer | number;
+type Timeout = NodeJS.Timeout | number;
 
 interface Window {
   IMGBED: string;
   REMOTE_VERSION: string;
 }
+
 declare const IMGBED: string;
