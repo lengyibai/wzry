@@ -2,6 +2,7 @@
 import { ref, onBeforeUnmount } from "vue";
 
 import tipStore from "@/store/tip";
+import switchStore from "@/store/switch";
 
 interface Props {
   modelValue: boolean;
@@ -27,6 +28,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $tipStore = tipStore();
+const $switchStore = switchStore();
 
 let timer: Interval; //倒计时计时器
 const IMGBED = window.IMGBED; //全局图床链接
@@ -89,6 +91,7 @@ const handleNoTip = () => {
 const handleClose = () => {
   emit("update:modelValue", false);
   emit("update:btn", false);
+  $switchStore.$clickAudio("6xc6");
 };
 
 onBeforeUnmount(() => {
@@ -152,7 +155,7 @@ onBeforeUnmount(() => {
         height="40px"
         font-size="20px"
         type="warning"
-        @click="btnFn, handleClose"
+        @click="btnFn(), handleClose()"
         >{{ btnText[1] }}</K-Button
       >
     </div>
