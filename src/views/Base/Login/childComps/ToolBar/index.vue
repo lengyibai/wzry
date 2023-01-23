@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
@@ -22,6 +22,9 @@ const $switchStore = switchStore();
 //静音
 const muted = computed(() => $settingStore.config.muted);
 
+//视频背景
+const video_bg = computed(() => $settingStore.config.videoBg);
+
 //静音图标
 const icon = computed(() => {
   return muted.value ? "wzry-jingyin" : "wzry-laba";
@@ -42,34 +45,37 @@ const handleTool = (v: string) => {
 
 <template>
   <div class="tool-bar">
-    <div class="line"></div>
     <!-- 静音图标 -->
-    <div
-      class="box cursor-pointer"
-      :class="{ active: muted }"
-      :style="{ opacity: muted ? 0.75 : 1 }"
-      @click="handleTool('sound')"
-    >
-      <i class="iconfont" :class="icon" />
+    <div v-if="video_bg" class="tool">
+      <!-- 静音上线条 -->
+      <div class="line"></div>
+
+      <!-- 静音图标 -->
+      <div
+        class="box cursor-pointer"
+        :class="{ active: muted }"
+        :style="{ opacity: muted ? 0.75 : 1 }"
+        @click="handleTool('sound')"
+      >
+        <i class="iconfont" :class="icon" />
+      </div>
+
+      <!-- 底座 -->
+      <div class="base one"></div>
     </div>
 
-    <!-- 底座 -->
-    <div class="base one"></div>
+    <div v-if="notice" class="tool">
+      <!-- 公告上线条 -->
+      <div class="line"></div>
 
-    <!-- 公告上线条 -->
-    <div v-if="notice" class="line"></div>
+      <!-- 公告图标 -->
+      <div class="box cursor-pointer notice" @click="handleTool('notice')">
+        <i class="iconfont wzry-gonggao" />
+      </div>
 
-    <!-- 公告图标 -->
-    <div
-      v-if="notice"
-      class="box cursor-pointer notice"
-      @click="handleTool('notice')"
-    >
-      <i class="iconfont wzry-gonggao" />
+      <!-- 底座 -->
+      <div class="base two"></div>
     </div>
-
-    <!-- 底座 -->
-    <div v-if="notice" class="base two"></div>
   </div>
 </template>
 
