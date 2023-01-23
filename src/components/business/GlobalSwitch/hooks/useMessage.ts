@@ -5,7 +5,7 @@ import switchStore from "@/store/switch";
 export default () => {
   const messages = reactive<MsgText[]>([]); //消息队列
 
-  const msg = (text = "未设置提示", type = "info") => {
+  const msg = (text = "未设置提示", type: MsgType = "info") => {
     const text_length = text.split("").length / 3; //获取文字长度
     const time = text_length > 3 ? text_length : text_length + 1; //通过文字长度，设置显示时长
 
