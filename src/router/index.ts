@@ -16,6 +16,10 @@ const useRouter = createRouter({
 useRouter.beforeEach(async (to, from, next) => {
   NProgress.start(); // 开启进度条
 
+  if (!from.meta.noVerify) {
+    switchStore().$loading.show("正在加载" + to.meta.title + "页面");
+  }
+
   const $authStore = authStore();
 
   const token = $authStore.userInfo?.wzryToken;
