@@ -114,10 +114,15 @@ declare namespace Hero {
   interface HeadImg extends General {
     headImg: string;
   }
+
+  /** @description: 英雄基础列表 */
+  interface Basic extends General {
+    pinyin: string;
+  }
 }
 
 /** @description: 用户信息 */
-declare interface User {
+interface User {
   id: string;
   password: string;
   role: 0 | 1;
