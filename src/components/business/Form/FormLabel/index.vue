@@ -6,6 +6,7 @@ interface Props {
   required?: boolean; //必填
 }
 withDefaults(defineProps<Props>(), {
+  label: "",
   labelWidth: "150px",
 });
 </script>
