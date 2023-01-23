@@ -79,6 +79,7 @@ const authStore = defineStore("auth", () => {
   /** @description: 退出登录 */
   const logout = () => {
     clearToken();
+    switchStore().$loading.close();
     switchStore().$msg("退出成功");
   };
 
@@ -86,9 +87,10 @@ const authStore = defineStore("auth", () => {
   const logoff = async () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}") as User;
     await deleteUser(user.id);
-    switchStore().$msg("注销成功");
-    clearToken();
     localStorage.removeItem("remember_user");
+    clearToken();
+    switchStore().$loading.close();
+    switchStore().$msg("注销成功");
   };
 
   /** @description: 清除token */
