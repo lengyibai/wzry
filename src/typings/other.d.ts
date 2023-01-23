@@ -30,7 +30,14 @@ declare interface SettingConfig {
 declare namespace Switch {
   type ClickAudio = (name?: string) => void;
   type Msg = (text: string, type?: MsgType) => void;
-  type Tip = (name: string, align?: TipType) => void;
+  type Tip = (obj: {
+    title?: string;
+    text: string;
+    align?: TipType;
+    btn?: boolean;
+    btnText?: string[];
+    btnFn?: () => void;
+  }) => void;
   interface Loading {
     show: (text?: string) => void;
     close: () => void;
