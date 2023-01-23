@@ -9,7 +9,7 @@
   .line {
     width: 2px;
     height: 50px;
-    background-color: rgb(158 117 71 / 25%);
+    background-color: #457ec5;
   }
 
   .box {
@@ -20,33 +20,14 @@
     width: 50px;
     height: 50px;
     margin-bottom: 17px;
-    background-color: #5e4b31;
+    background-color: #1d4068;
     transform: rotate(45deg);
     transition: all 0.05s;
-
-    &:active {
-      transform: rotate(45deg) translateX(7px) translateY(7px);
-
-      &::after {
-        transform: translateX(-7px) translateY(-7px);
-      }
-    }
-
-    &::after {
-      position: absolute;
-      top: 7px;
-      left: 7px;
-      width: 100%;
-      height: 100%;
-      border: 2px solid #5e4b31;
-      content: "";
-      transition: all 0.05s;
-    }
 
     .iconfont {
       z-index: 1;
       display: inline-block;
-      color: rgb(230 206 177);
+      color: #9fc0eb;
       font-size: 35px;
       transform: rotate(-45deg);
     }
@@ -55,4 +36,31 @@
       transform: rotate(-45deg) translateY(-5px);
     }
   }
+
+  .notice {
+    &:active {
+      transform: rotate(45deg) translateX(5px) translateY(5px);
+    }
+  }
+
+  .base {
+    position: absolute;
+    z-index: -1;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #457ec5;
+    transform: rotate(45deg);
+  }
+
+  .one {
+    top: 58px;
+  }
+
+  .two {
+    top: 175px;
+  }
+}
+
+.active {
+  transform: rotate(45deg) translateX(5px) translateY(5px) !important;
 }

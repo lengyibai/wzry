@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { ref, computed } from "vue";
 
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
@@ -19,8 +19,12 @@ const emit = defineEmits<Emits>();
 const $settingStore = settingStore();
 const $switchStore = switchStore();
 
+const show_notice = ref(false);
+
+//静音
 const muted = computed(() => $settingStore.config.muted);
 
+//静音图标
 const icon = computed(() => {
   return muted.value ? "wzry-jingyin" : "wzry-laba";
 });
@@ -43,15 +47,22 @@ const handleTool = (v: string) => {
     <div class="line"></div>
     <div
       class="box cursor-pointer"
+      :class="{ active: muted }"
       :style="{ opacity: muted ? 0.75 : 1 }"
       @click="handleTool('sound')"
     >
       <i class="iconfont" :class="icon" />
     </div>
+    <div class="base one"></div>
     <div v-if="notice" class="line"></div>
-    <div v-if="notice" class="box cursor-pointer" @click="handleTool('notice')">
+    <div
+      v-if="notice"
+      class="box cursor-pointer notice"
+      @click="handleTool('notice')"
+    >
       <i class="iconfont wzry-gonggao" />
     </div>
+    <div class="base two"></div>
   </div>
 </template>
 
