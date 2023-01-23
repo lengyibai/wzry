@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { defineStore } from "pinia";
 import { ref } from "vue";
 

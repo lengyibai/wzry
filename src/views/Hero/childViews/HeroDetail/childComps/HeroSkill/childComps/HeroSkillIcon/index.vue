@@ -1,4 +1,3 @@
-<!-- eslint-disable @typescript-eslint/no-non-null-assertion -->
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
