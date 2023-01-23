@@ -7,6 +7,7 @@ import switchStore from "@/store/switch";
 
 interface Props {
   id: string; //帐号
+  status: boolean; //信息是否修改
 }
 defineProps<Props>();
 
