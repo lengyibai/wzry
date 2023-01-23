@@ -5,30 +5,7 @@ import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 import skinStore from "@/store/skin";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
-import {
-  HeroBasic,
-  HeroImg,
-  Herodata,
-  Skill,
-  Skilltype,
-  Skilleffect,
-  Skin,
-  Skintype,
-  Relationship,
-  Equip,
-  EquipSynthetic,
-  Equiptype,
-  Equipeffect,
-  Epigraph,
-  Epigraphtype,
-  Epigrapheffect,
-  Professiontype,
-  Locationtype,
-  Specialtytype,
-  Periodtype,
-  Camptype,
-  RaceType,
-} from "@/api/main/data";
+import { HeroBasic, HeroImg, Herodata, Skill, Skin } from "@/api/main/data";
 
 const $skinStore = skinStore();
 const $heroStore = heroStore();
@@ -39,24 +16,7 @@ const keywords: [string, string][] = [
   ["heroimg", "英雄图片"],
   ["herodata", "英雄信息"],
   ["skill", "技能列表"],
-  ["skilltype", "技能类型"],
-  ["skilleffect", "技能效果"],
-  ["skin", "皮肤"],
-  ["skintype", "皮肤类型"],
-  ["relationship", "关系"],
-  ["equip", "装备"],
-  ["equipSynthetic", "装备合成"],
-  ["equiptype", "装备类型"],
-  ["equipeffect", "装备效果"],
-  ["epigraph", "铭文"],
-  ["epigraphtype", "铭文类型"],
-  ["epigrapheffect", "铭文效果"],
-  ["professiontype", "职业"],
-  ["locationtype", "定位"],
-  ["specialtytype", "特长"],
-  ["periodtype", "时期"],
-  ["camptype", "阵营"],
-  ["racetype", "种族"],
+  ["skin", "皮肤列表"],
 ];
 
 const requests: Record<string, () => Promise<any>> = {
@@ -64,24 +24,7 @@ const requests: Record<string, () => Promise<any>> = {
   heroimg: HeroImg,
   herodata: Herodata,
   skill: Skill,
-  skilltype: Skilltype,
-  skilleffect: Skilleffect,
   skin: Skin,
-  skintype: Skintype,
-  relationship: Relationship,
-  equip: Equip,
-  equipSynthetic: EquipSynthetic,
-  equiptype: Equiptype,
-  equipeffect: Equipeffect,
-  epigraph: Epigraph,
-  epigraphtype: Epigraphtype,
-  epigrapheffect: Epigrapheffect,
-  professiontype: Professiontype,
-  locationtype: Locationtype,
-  specialtytype: Specialtytype,
-  periodtype: Periodtype,
-  camptype: Camptype,
-  racetype: RaceType,
 };
 
 let data_cache: any[] = []; //数据缓存
@@ -201,6 +144,7 @@ const EmitsSortChange = (v: number[]) => {
 
 <template>
   <div class="data">
+    <!-- 表格 -->
     <LibTable
       :data="table_data"
       :head="['数据类型', '数据量', '状态', '操作']"
