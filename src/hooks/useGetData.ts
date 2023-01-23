@@ -89,10 +89,10 @@ export default () => {
     index.value = 0;
     for (let i = 0; i < hero_list.length; i++) {
       if (!["梦奇", "盾山"].includes(hero_list[i].name)) {
-        if (!isExist(hero_list[i].name, "voice_")) {
+        if (!isExist(hero_list[i].pinyin, "voice_")) {
           title.value = hero_list[i].name;
-          setData(`voice_${hero_list[i].name}`, {
-            data: await Voice(hero_list[i].name),
+          setData(`voice_${hero_list[i].pinyin}`, {
+            data: (await Voice(hero_list[i].pinyin)).data,
           });
           await new Promise((resolve) => setTimeout(resolve, 50));
           index.value++;
