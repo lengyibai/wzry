@@ -31,7 +31,7 @@ export default () => {
     //判断是否开启了tip
     if ($settingStore.config.tip) {
       //判断是否已经设置了不再提示
-      if (!$tipStore.noTips[text]) {
+      if ($tipStore.noTips[text]) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudio("rt25");
         noTipName.value = text;
