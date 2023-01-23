@@ -15,7 +15,7 @@ const $switchStore = switchStore();
 
 const show_Details = ref(false); //显示装备详情
 const show_EquipSidebar = ref(false); //显示装备分类侧边栏
-const equip_data = ref<Equip.Data | undefined>($deepCopy(equipDefault)); //被点击的装备信息
+const equip_data = ref<Equip.Data>($deepCopy(equipDefault)); //被点击的装备信息
 
 $switchStore.$clickAudio("3k4s");
 
@@ -30,9 +30,7 @@ watch(
   (v) => {
     show_Details.value = false; //隐藏装备详情，再延迟显示
     setTimeout(() => {
-      equip_data.value = $equiqStore.equip_list.find((item) => {
-        return item.id === v;
-      });
+      equip_data.value = $equiqStore.equip_list.find((item) => item.id === v)!;
       show_Details.value = true;
     }, 250);
   }
