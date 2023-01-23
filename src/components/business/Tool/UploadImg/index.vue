@@ -34,12 +34,12 @@ const fn = (e: Event) => {
     ratio: 0.75, //压缩率
     maxsize: 300, //超过多大进行压缩
     /* 成功回调 */
-    success: async (...data: any[]) => {
-      await $switchStore.$loading.close();
+    success: (...data: any[]) => {
+      $switchStore.$loading.close();
       emit("update:modelValue", data[2]);
     },
-    fail: async () => {
-      await $switchStore.$loading.close();
+    fail: () => {
+      $switchStore.$loading.close();
       $switchStore.$msg("请上传图片文件", "error");
     },
   });

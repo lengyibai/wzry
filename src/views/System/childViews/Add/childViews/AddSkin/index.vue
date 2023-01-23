@@ -126,10 +126,9 @@ const EmitCommit = async () => {
 };
 
 /* 延迟显示 */
+$switchStore.$loading.close();
 setTimeout(async () => {
-  $switchStore.$loading.show("正在加载皮肤类型表");
   skin_types.value = await getSkinType();
-  await $switchStore.$loading.close();
   show.value = true;
 }, 1000);
 </script>

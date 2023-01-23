@@ -33,6 +33,6 @@ declare namespace Switch {
   type Tip = (name: string, align?: TipType) => void;
   interface Loading {
     show: (text?: string) => void;
-    close: () => Promise<void>;
+    close: () => void;
   }
 }

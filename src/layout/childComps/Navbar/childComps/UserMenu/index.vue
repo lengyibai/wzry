@@ -32,17 +32,13 @@ const handleEditInfo = () => {
 };
 
 /* 退出登录 */
-const handleLogout = async () => {
+const handleLogout = () => {
   $switchStore.$clickAudio("36jn");
-  $switchStore.$loading.show("正在退出");
-  await $switchStore.$loading.close();
   $authStore.logout();
 };
 
 /* 注销账号 */
 const handleLogoff = async () => {
-  $switchStore.$loading.show("正在注销");
-  await $switchStore.$loading.close();
   $authStore.logoff();
 };
 

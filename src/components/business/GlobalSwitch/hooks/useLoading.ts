@@ -7,19 +7,14 @@ export default () => {
   //设置方法
   const loading: Switch.Loading = {
     //显示
-    show(text = "") {
+    show(text = "正在加载") {
       loading_text.value = text;
       show_loading.value = true;
     },
 
     //关闭
     close() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          show_loading.value = false;
-          setTimeout(resolve, 250);
-        }, 500);
-      });
+      show_loading.value = false;
     },
   };
 

@@ -244,11 +244,9 @@ const EmitCommit = async () => {
 };
 
 /* 延迟显示 */
+$switchStore.$loading.close();
 setTimeout(async () => {
-  $switchStore.$loading.show("正在加载");
-  $switchStore.$loading.close().then(() => {
-    show.value = true;
-  });
+  show.value = true;
 }, 1000);
 </script>
 
