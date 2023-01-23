@@ -35,7 +35,7 @@ const EmitToolType = (v: string) => {
     </div>
 
     <!-- 登录盒子 -->
-    <transition name="fade">
+    <transition name="login">
       <Login v-if="finish && !show_notice" />
     </transition>
 
