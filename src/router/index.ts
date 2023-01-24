@@ -5,7 +5,6 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
-import NProgress from "@/config/nprogress";
 import { HOME_URL } from "@/config/config";
 
 const useRouter = createRouter({
@@ -14,8 +13,6 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  NProgress.start(); // 开启进度条
-
   if (!from.meta.noVerify) {
     switchStore().$loading.show("正在加载" + to.meta.title + "页面");
   }
@@ -55,7 +52,6 @@ useRouter.beforeEach(async (to, from, next) => {
 
 useRouter.afterEach((to) => {
   document.title = `${to.meta.title || "正在进入"}-王者荣耀后台管理系统`;
-  NProgress.done(); //完成进度条
   switchStore().$loading.close();
 });
 
