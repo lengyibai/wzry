@@ -18,6 +18,7 @@ const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 const equip_data = ref<Equip.Data>($deepCopy(equipDefault)); //被点击的装备信息
 
 $switchStore.$clickAudio("3k4s");
+$switchStore.$loading.close();
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
 $equiqStore.getEquipList().then(() => {

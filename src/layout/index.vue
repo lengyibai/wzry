@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import switchStore from "@/store/switch";
 import { BG } from "@/config/assets";
 import { $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
+import switchStore from "@/store/switch";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
@@ -24,6 +24,7 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
   $switchStore.$clickAudio("p53r");
+  $switchStore.$loading.close();
 
   await $promiseTimeout(() => {
     show_sidebar.value = true;

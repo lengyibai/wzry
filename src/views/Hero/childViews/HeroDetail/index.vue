@@ -31,8 +31,6 @@ const show_progress = ref(false); //显示滚动索引组件
 
 const hero_data = $heroDetail.hero_info; //英雄信息
 
-$switchStore.$loading.close();
-
 //技能数量
 const skill_num = computed(() => {
   return (hero_data.skills && hero_data.skills.length) || 0;
@@ -65,11 +63,11 @@ const EmitHide = () => {
   $heroDetailStore.setSkinVoice("盾山"); //置空语音
   $switchStore.$clickAudio("6xc6");
 
-  /* 1.5秒后如果英雄列表职业为空，则获取英雄列表 */
+  /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
   if ($heroStore.profession === "") {
     setTimeout(() => {
       $heroStore.getHeroList();
-    }, 1500);
+    }, 750);
   }
 };
 
@@ -85,6 +83,8 @@ onMounted(() => {
   setTimeout(() => {
     $switchStore.$clickAudio("u4c5");
   }, 250);
+
+  $switchStore.$loading.close();
 });
 </script>
 

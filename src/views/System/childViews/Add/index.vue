@@ -46,6 +46,7 @@ const options: Options = reactive({
 });
 
 $switchStore.$clickAudio("u4c5");
+$switchStore.$loading.close();
 
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {

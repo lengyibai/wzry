@@ -26,6 +26,7 @@ const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
 
 $switchStore.$clickAudio("9u8z");
+$switchStore.$loading.close();
 
 if ($skinStore.skin_list.length === 0) {
   $skinStore.getSkin(); //获取皮肤列表
