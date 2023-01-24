@@ -115,7 +115,7 @@ export default () => {
     for (const hero of hero_list.filter(
       (hero) => !["梦奇", "盾山"].includes(hero.name)
     )) {
-      const v = (await Voice(hero.pinyin)).data;
+      const v = (await Voice(hero.name)).data;
       const l = getLocalData(hero.pinyin, "voice_");
 
       if (JSON.stringify(l) !== JSON.stringify(v)) {
