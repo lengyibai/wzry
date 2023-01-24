@@ -44,6 +44,16 @@ declare namespace Switch {
 /** @description: Tips提示信息 */
 interface Tips<T> {
   "2rb7": T;
+  "9f5m": T;
+  // "05su": T;
+  // "9oy5": T;
+  // "58mz": T;
+  // "1w7o": T;
+  // "0vk2": T;
+  // "1zs6": T;
+  // "3vi5": T;
+  // "2l5m": T;
+  // "9ms5": T;
 }
 
 /** @description: Tips属性名 */

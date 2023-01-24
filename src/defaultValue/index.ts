@@ -116,5 +116,6 @@ export const configDefault: SettingConfig = {
   particle: false,
   noTips: {
     "2rb7": false,
+    "9f5m": false,
   },
 };
