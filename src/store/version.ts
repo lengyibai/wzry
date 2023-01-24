@@ -31,8 +31,6 @@ const versionStore = defineStore("version", () => {
         useUpdateData().then(() => {
           updateVersion(res.data);
         });
-      } else {
-        $switchStore.$msg("当前版本已是最新版，请放心使用！");
       }
     }
   });
