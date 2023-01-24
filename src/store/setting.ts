@@ -6,7 +6,6 @@ import { configDefault } from "@/defaultValue";
 
 const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
-  const takeEffect = ref<() => void>(() => {}); //本地配置立即生效函数
 
   const data = localStorage.getItem("config");
   if (data) config.value = JSON.parse(data);
@@ -21,12 +20,13 @@ const settingStore = defineStore("setting", () => {
     localStorage.setItem("config", JSON.stringify(config.value));
   };
 
-  /** @description: 设置本地配置立即生效函数 */
-  const setTakeEffectFn = (fn: () => void) => {
-    takeEffect.value = fn;
+  /** @description: 设置指定tip禁止再次提示 */
+  const setNoTip = (name: TipKeys) => {
+    config.value.noTips[name] = true;
+    localStorage.setItem("config", JSON.stringify(config.value));
   };
 
-  return { config, saveConfig, takeEffect, setTakeEffectFn };
+  return { config, saveConfig, setNoTip };
 });
 
 export default settingStore;
