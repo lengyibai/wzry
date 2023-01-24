@@ -125,9 +125,9 @@ export default () => {
       }
     }
 
+    updateData();
     updateTip();
   };
-  load();
 
   /* 更新提示信息处理 */
   const updateTip = () => {
@@ -135,18 +135,21 @@ export default () => {
     const { names: voice_names } = need_update_voice;
     const data_length = data_names.length;
     const voice_length = voice_names.length;
+    let text = "";
 
     if (data_length || voice_length) {
       const dataToShow = data_length > 5 ? data_names.slice(0, 5) : data_names;
       const voiceToShow =
         voice_length > 5 ? voice_names.slice(0, 5) : voice_names;
 
-      let text = `《${dataToShow.join("、")}》${
-        data_length > 5 ? `...共${data_length}条数据需要更新，` : "需要更新，"
-      }`;
+      if (data_length) {
+        text = `《${dataToShow.join("、")}》${
+          data_length > 5 ? `...共${data_length}条数据需要更新，` : "需要更新，"
+        }`;
+      }
 
       if (voice_length) {
-        text += `并包含《${voiceToShow.join("、")}》${
+        text += `${data_length && "以及"}《${voiceToShow.join("、")}》${
           voice_length > 5
             ? `...共${voice_length}条语音数据需要更新，`
             : "的语音数据需要更新，"
@@ -155,10 +158,7 @@ export default () => {
 
       $switchStore.$tip({
         title: "更新提醒",
-        text: `${text}是否立即更新？`,
-        btn: true,
-        btnText: ["暂不", "更新"],
-        btnFn: updateData,
+        text: `${text}已为你自动更新。如果在运行中出现数据获取失败，请尝试刷新浏览器。`,
       });
     }
   };
@@ -180,11 +180,7 @@ export default () => {
         JSON.stringify(need_update_voice.data[i])
       );
     }
-
-    $switchStore.$msg("更新成功，3秒后自动刷新浏览器");
-
-    setTimeout(() => {
-      location.reload();
-    }, 4000);
   };
+
+  return load();
 };
