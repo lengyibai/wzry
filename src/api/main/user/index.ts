@@ -1,9 +1,9 @@
 import { get, post, patch, del } from "@/api/helper/transfer";
 
-/** @description: 更新token */
-const updateToken = (id: string, token: string) => {
-  patch({ name: "data_user", key: "id", value: id, k: "wzryToken", v: token }); //将token写入本地
-  return Promise.resolve(token); //返回新token
+/** @description: 获取用户列表 */
+export const userList = () => {
+  //通过token来查询用户
+  return Promise.resolve(get<User[]>({ name: "data_user" }));
 };
 
 /** @description: 登录 */
@@ -61,9 +61,15 @@ export const register = async (form: User) => {
 
 /** @description: 更新用户信息 */
 export const updateUser = (id: string, info: Partial<User>) => {
-  patch({ name: "data_user", key: "id", value: id, v: info }, true); //将token写入本地
+  patch({ name: "data_user", key: "id", value: id, v: info }, true);
 
   return Promise.resolve(info); //返回新token
+};
+
+/** @description: 更新token */
+const updateToken = (id: string, token: string) => {
+  patch({ name: "data_user", key: "id", value: id, k: "wzryToken", v: token }); //将token写入本地
+  return Promise.resolve(token); //返回新token
 };
 
 /** @description: 注销用户 */
