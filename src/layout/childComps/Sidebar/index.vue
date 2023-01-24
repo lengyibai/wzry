@@ -5,7 +5,7 @@ import sideItem from "./childComp/SideItem.vue"; //子菜单
 
 import { Route } from "@/router/interface";
 import routerStore from "@/store/routes";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 
 const $otherStore = otherStore();
 const $routerStore = routerStore();

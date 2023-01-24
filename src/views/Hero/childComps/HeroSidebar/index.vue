@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 

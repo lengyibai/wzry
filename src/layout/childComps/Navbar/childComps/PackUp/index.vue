@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 
 const $otherStore = otherStore();
 const $switchStore = switchStore();

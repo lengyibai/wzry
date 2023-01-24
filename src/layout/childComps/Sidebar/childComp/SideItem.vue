@@ -6,7 +6,7 @@ import SideItem from "./SideItem.vue"; //调用自身
 
 import { Route } from "@/router/interface";
 import switchStore from "@/store/switch";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 
 interface RouteFormat {
   path: string; //路由路径

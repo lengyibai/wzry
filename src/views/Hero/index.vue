@@ -19,7 +19,7 @@ import { heroDefault } from "@/defaultValue";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const HeroDetail = defineAsyncComponent(

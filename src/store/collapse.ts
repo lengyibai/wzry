@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const otherStore = defineStore("other", () => {
+const otherStore = defineStore("collapse", () => {
   const collapse = ref(false); //折叠
   const triggerFn = ref<(() => void)[]>([]);
 
@@ -15,7 +15,7 @@ const otherStore = defineStore("other", () => {
     }, 500);
   };
 
-  /** @description: 折叠触发后触发 */
+  /** @description: 设置折叠触发后触发的函数 */
   const setTriggerFn = (fn: () => void) => {
     triggerFn.value.push(fn);
   };

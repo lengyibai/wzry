@@ -2,7 +2,7 @@
 import { $chromeV } from "@/utils";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 import settingStore from "@/store/setting";
 import speedStore from "@/store/speed";
 import useVersion from "@/hooks/useVersion";

@@ -10,7 +10,7 @@ import { getSkinVoice } from "@/api/main/games/voice";
 import { $debounce } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
-import otherStore from "@/store/other";
+import otherStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const $skinStore = skinStore();
