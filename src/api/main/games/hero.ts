@@ -9,6 +9,16 @@ export const getHeroBasic = () => {
   return Promise.resolve(get<Hero.Basic[]>({ name: "data_herobasic" }));
 };
 
+/** @description: 获取某英雄拼音 */
+export const getHeroPinyin = (v: string) => {
+  return Promise.resolve(
+    get<Hero.Basic>(
+      { name: "data_herobasic", key: "name", value: v, full: true },
+      true
+    ).pinyin
+  );
+};
+
 /** @description: 添加英雄基础列表 */
 export const addHeroBasic = (data: General) => {
   return Promise.resolve(post<General>("data_herobasic", data));

@@ -1,3 +1,5 @@
+import { getHeroPinyin } from "../games/hero";
+
 import http from "@/api";
 
 /** @description: 获取用户列表 */
@@ -12,9 +14,10 @@ export const HeroImg = () => http.Get<Hero.HeadImg[]>("/heroImg.json");
 /** @description: 获取英雄信息列表 */
 export const Herodata = () => http.Get<Hero.Data[]>("/heroData.json");
 
-/** @description: 获取英雄语音列表 */
-export const Voice = (hero_name: string) => {
-  return http.Get<Hero.Voices[]>(`/voices/${hero_name}.json`);
+/* 获取英雄语音列表 */
+export const Voice = async (hero_name: string) => {
+  const pinyin = await getHeroPinyin(hero_name);
+  return http.Get<Hero.Voices[]>(`/voices/${pinyin}.json`);
 };
 
 /** @description: 获取技能列表 */
