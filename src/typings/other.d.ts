@@ -27,14 +27,15 @@ interface SettingConfig {
 declare namespace Switch {
   type ClickAudio = (name?: string) => void;
   type Msg = (text: string, type?: MsgType) => void;
+
   type Tip = (obj: {
     title?: string; //左上角标题
     text: TipKeys | string; //提示内容
     align?: TipType; //在页面上的位置
-    btn?: boolean; //显示按钮
-    btnText?: string[]; //按钮上的文字
+    btnText?: string; //按钮上的文字
     btnFn?: () => void; //点击确认后执行的函数
   }) => void;
+
   interface Loading {
     show: (text?: string) => void;
     close: () => void;
