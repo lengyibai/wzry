@@ -8,19 +8,14 @@ import { HOME_URL } from "@/config/config";
 import router from "@/router";
 import routesStore from "@/store/routes";
 import useUpdateData from "@/hooks/useUpdateData";
+import { userDefaultInfo } from "@/defaultValue";
+import { $deepCopy } from "@/utils";
 
 const authStore = defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
   const timer = ref<Interval>(); //实时检测帐号状态
   // 用户相关信息
-  const userInfo = ref<User>({
-    id: "",
-    password: "",
-    nickname: "",
-    headImg: "",
-    wzryToken: "",
-    role: 1,
-  });
+  const userInfo = ref<User>($deepCopy(userDefaultInfo));
 
   /** @description: 设置用户状态 */
   const setUserStatus = (status: boolean) => {
