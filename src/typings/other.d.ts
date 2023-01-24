@@ -46,8 +46,8 @@ declare namespace Switch {
 interface Tips<T> {
   "2rb7": T;
   "9f5m": T;
-  // "05su": T;
-  // "9oy5": T;
+  "05su": T;
+  "9oy5": T;
   // "58mz": T;
   // "1w7o": T;
   // "0vk2": T;
