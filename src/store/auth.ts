@@ -7,7 +7,6 @@ import { _login, deleteUser } from "@/api/main/user";
 import { HOME_URL } from "@/config/config";
 import router from "@/router";
 import routesStore from "@/store/routes";
-import useUpdateData from "@/hooks/useUpdateData";
 import { userDefaultInfo } from "@/defaultValue";
 import { $deepCopy } from "@/utils";
 
@@ -40,7 +39,6 @@ const authStore = defineStore("auth", () => {
           routesStore().addRoutes(res.role);
           router.push(HOME_URL);
           switchStore().$msg("登录成功");
-          useUpdateData();
           watchStatus();
           resolve();
         })
@@ -62,7 +60,6 @@ const authStore = defineStore("auth", () => {
         userStatus.value = true;
         window.localStorage.setItem("user", JSON.stringify(res));
         switchStore().$msg("自动登录成功");
-        useUpdateData();
         watchStatus();
       })
       .catch(() => {
