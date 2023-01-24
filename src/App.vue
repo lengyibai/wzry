@@ -23,8 +23,6 @@ const setTakeEffect = () => {
   $speedStore.setSpeed($settingStore.config.speed); //动画速度
 };
 setTakeEffect();
-
-$settingStore.setTakeEffectFn(setTakeEffect);
 </script>
 
 <template>
