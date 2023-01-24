@@ -45,7 +45,7 @@ const getLocalData = (name: string, prefix = "data_") => {
 /* 加载数据 */
 const load = async () => {
   table_data.value = keywords.map((item) => {
-    const v = getLocalData(item[0]);
+    const v = getLocalData(item[0]) || [];
     return {
       name: item[1],
       key: item[0],
@@ -67,7 +67,8 @@ load();
 
 /* 比对远程数据设置状态 */
 const setStatus = (data: any, v: any) => {
-  data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string);
+  data.data =
+    JSON.parse(localStorage.getItem("data_" + data.key) as string) || [];
 
   if (JSON.stringify(v) === JSON.stringify(data.data)) {
     data.status = "最新";
