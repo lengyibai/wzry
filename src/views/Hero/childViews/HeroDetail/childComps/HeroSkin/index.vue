@@ -4,7 +4,7 @@ import { reactive, ref } from "vue";
 import HeroBgImg from "./childComps/HeroBgImg/index.vue"; //背景图
 import HeroVoice from "./childComps/HeroVoice/index.vue"; //皮肤语音
 import HeroSkinName from "./childComps/HeroSkinName/index.vue"; //皮肤名
-import HerSkinType from "./childComps/HerSkinType/index.vue"; //皮肤类型图
+import HeroSkinType from "./childComps/HeroSkinType/index.vue"; //皮肤类型图
 import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
 
@@ -71,7 +71,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
     <div class="box">
       <div class="left">
         <!-- 皮肤类型 -->
-        <HerSkinType
+        <HeroSkinType
           :skin-type-img="active_skin_type"
           :toggle="skin_type_toggle"
         />
