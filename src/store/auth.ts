@@ -4,7 +4,7 @@ import { ref } from "vue";
 import switchStore from "./switch";
 
 import { _login, deleteUser } from "@/api/main/user";
-import { HOME_URL } from "@/config/config";
+import { HOME_URL } from "@/config";
 import router from "@/router";
 import routesStore from "@/store/routes";
 import { userDefaultInfo } from "@/defaultValue";

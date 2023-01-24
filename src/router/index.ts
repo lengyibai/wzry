@@ -5,7 +5,7 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
-import { HOME_URL } from "@/config/config";
+import { HOME_URL } from "@/config";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),

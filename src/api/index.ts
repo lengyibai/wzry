@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 
 import { ResultData } from "@/api/interface";
-import { CACHE_DATA } from "@/config/config";
+import { CACHE_DATA } from "@/config";
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
