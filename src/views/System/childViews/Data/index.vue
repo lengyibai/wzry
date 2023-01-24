@@ -105,9 +105,9 @@ const handleCheck = async (data: any) => {
     update_status = false;
     setTimeout(() => {
       update_status = true;
-    }, 10000);
+    }, 3000);
   } else {
-    $switchStore.$msg("更新太频繁，更新间隔为10秒", "warning");
+    $switchStore.$msg("更新太频繁，更新间隔为3秒", "warning");
   }
 };
 
