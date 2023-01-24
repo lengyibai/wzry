@@ -114,4 +114,7 @@ export const configDefault: SettingConfig = {
   speed: 1,
   muted: false,
   particle: false,
+  noTips: {
+    "2rb7": false,
+  },
 };
