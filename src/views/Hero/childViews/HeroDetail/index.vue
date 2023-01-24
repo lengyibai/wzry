@@ -78,6 +78,10 @@ onMounted(() => {
     hero_data.skins?.forEach((item) => {
       new Image().src = item.poster; //海报预加载
     });
+
+    $switchStore.$tip({
+      text: "05su",
+    });
   }, 1500);
 
   setTimeout(() => {

@@ -30,9 +30,21 @@ const calcActiveSkill = computed(() => {
   return active_skills.value[current_index.value];
 });
 
-/* 设置需要滚动触发的函数 */
+/* 当滚动到既能页，播放出场动画 */
 $heroDetailStore.setScollFn((index) => {
-  show.value = show.value || index === 3;
+  if (show.value || index !== 3) return;
+  show.value = true;
+
+  const length = hero_data.value.skills!.length;
+  if (length > 1) {
+    setTimeout(() => {
+      $switchStore.$tip({
+        text: `${hero_data.value.name}存在${
+          length == 3 ? "三" : "两"
+        }套技能，页面底部中间有个切换副技能的按钮，点击它吧！由于图片资源条件有限，副技能的被动图标都会带有文字，没有文字的就是主技能。`,
+      });
+    }, 500);
+  }
 });
 
 active_skills.value = hero_data.value.skills![deputy_index];

@@ -3,6 +3,7 @@ import { nextTick, ref, computed } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import heroDetailStore from "@/store/heroDetail";
+import switchStore from "@/store/switch";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
@@ -11,6 +12,7 @@ const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
 const $heroDetailStore = heroDetailStore();
+const $switchStore = switchStore();
 
 const skin = ref();
 const showSkin = ref();
@@ -91,6 +93,7 @@ const handleDrag = (
   }
 };
 
+/* 当滚动到皮肤页，播放出场动画 */
 $heroDetailStore.setScollFn((index) => {
   if (index === 2 && !show_skin_head.value) {
     show_skin_head.value = true;
@@ -100,6 +103,13 @@ $heroDetailStore.setScollFn((index) => {
       nextTick(() => {
         handleDrag(skin.value[0], false, 0);
         setPosition(skin.value[0]);
+
+        setTimeout(() => {
+          $switchStore.$tip({
+            text: "9oy5",
+            align: "right-top",
+          });
+        }, 3000);
       });
     }, 1000);
   }
