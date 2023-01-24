@@ -1,28 +1,30 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 import { $chromeV } from "@/utils";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 import settingStore from "@/store/setting";
 import speedStore from "@/store/speed";
-import useVersion from "@/hooks/useVersion";
+import versionStore from "@/store/version";
 
 const $clickAudio = clickAudio();
 const $musicStore = musicStore();
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $settingStore = settingStore();
 const $speedStore = speedStore();
-
-const { LOCAL_VERSION, REMOTE_VERSION } = useVersion();
+const $versionStore = versionStore();
 
 /* 本地配置立即生效 */
-const setTakeEffect = () => {
-  $clickAudio.setAudio($settingStore.config.audio); //音效
-  $clickAudio.setVolume($settingStore.config.audioVolume); //音效音量
-  $musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
-  $speedStore.setSpeed($settingStore.config.speed); //动画速度
-};
-setTakeEffect();
+$clickAudio.setAudio($settingStore.config.audio); //音效
+$clickAudio.setVolume($settingStore.config.audioVolume); //音效音量
+$musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
+$speedStore.setSpeed($settingStore.config.speed); //动画速度
+
+const old = computed(() => {
+  return $versionStore.local_version !== $versionStore.remote_version;
+});
 </script>
 
 <template>
@@ -39,10 +41,12 @@ setTakeEffect();
 
     <!-- 左下角水印 -->
     <transition name="fade">
-      <div v-show="!$otherStore.collapse" class="watermark">
+      <div v-show="!$collapseStore.collapse" class="watermark">
         <p>浏览器内核版本：{{ $chromeV }}</p>
-        <p>当前版本：{{ LOCAL_VERSION }}</p>
-        <p>最新版本：{{ REMOTE_VERSION }}</p>
+        <p :class="{ old: old }">当前版本：{{ $versionStore.local_version }}</p>
+        <p :class="{ new: old }">
+          最新版本：{{ $versionStore.remote_version }}
+        </p>
       </div>
     </transition>
 
@@ -68,6 +72,14 @@ setTakeEffect();
       text-shadow: none;
     }
   }
+}
+
+.old {
+  color: var(--red) !important;
+}
+
+.new {
+  color: var(--green) !important;
 }
 
 /* 圆形路由跳转 */
