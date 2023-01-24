@@ -6,3 +6,6 @@ export const LOCAL_VERSION = "23.01.19.21";
 
 /** @description: 首页地址 */
 export const HOME_URL = "/hero";
+
+/** @description: 开启更新数据缓存(打包开启) */
+export const CACHE_DATA = false;
