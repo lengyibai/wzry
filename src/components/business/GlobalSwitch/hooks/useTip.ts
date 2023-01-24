@@ -1,11 +1,10 @@
 import { ref } from "vue";
 
-import tipStore from "@/store/tip";
+import tips from "@/config/tips";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 
 export default () => {
-  const $tipStore = tipStore();
   const $settingStore = settingStore();
   const $switchStore = switchStore();
 
@@ -13,7 +12,7 @@ export default () => {
   const title = ref(); //左上角标题
   const content = ref(""); //文字
   const align = ref<TipType>(); //对齐方式
-  const noTipName = ref(""); //不再提示的标识符
+  const noTipName = ref<TipKeys | string>("2rb7"); //不再提示的标识符
   const btn = ref(false); // 是否需要按钮
   const btn_text = ref<string[]>([]); //按钮文字
   const btnFn = ref(() => {}); //点击按钮需要触发的函数
@@ -31,11 +30,11 @@ export default () => {
     //判断是否开启了tip
     if ($settingStore.config.tip) {
       //判断是否已经设置了不再提示
-      if (!$tipStore.noTips[text]) {
+      if (!$settingStore.config.noTips[text as TipKeys]) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudio("rt25");
-        noTipName.value = text;
-        content.value = $tipStore.tips[text];
+        noTipName.value = text as TipKeys;
+        content.value = tips[text as TipKeys];
         align.value = p;
         setTimeout(() => {
           show_tip.value = true;
