@@ -18,6 +18,8 @@ class RequestHttp {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
+        config.url += `?temp=${Math.random()}`;
+
         return config;
       },
       async (error: AxiosError) => {
