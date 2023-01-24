@@ -232,7 +232,7 @@ const typewriterMultiple = {
             );
           }
           num++;
-        }, 150);
+        }, 100);
       }
     }, 750);
   },
