@@ -65,6 +65,7 @@ const EmitParticle = () => {
 
 /* 启用/禁用Tip */
 const EmitTip = (v: boolean) => {
+  EmitSaveConfig();
   v && $switchStore.$tip({ text: "2rb7" });
 };
 
@@ -77,7 +78,6 @@ const EmitSaveConfig = () => {
 const EmitResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-  $settingStore.takeEffect();
   $switchStore.$msg("已重置所有配置项");
 };
 </script>
