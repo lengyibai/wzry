@@ -69,6 +69,12 @@ const EmitTip = (v: boolean) => {
   v && $switchStore.$tip({ text: "2rb7" });
 };
 
+/* 恢复所有小贴士 */
+const handleResetTip = () => {
+  $settingStore.restoreTip();
+  $switchStore.$msg("已恢复所有小贴士");
+};
+
 /* 保存配置 */
 const EmitSaveConfig = () => {
   $settingStore.saveConfig(config.value);
@@ -176,6 +182,18 @@ const EmitResetConfig = () => {
               />
             </div>
             <K-Check v-model="config.tip" @update:model-value="EmitTip" />
+          </div>
+
+          <!-- 恢复所有不再提示 -->
+          <div class="option">
+            <div class="label">恢复所有小贴士</div>
+            <K-Button
+              width="90px"
+              height="35px"
+              font-size="20px"
+              @click="handleResetTip"
+              >恢复</K-Button
+            >
           </div>
         </div>
 

@@ -14,19 +14,32 @@ const settingStore = defineStore("setting", () => {
     config.value.videoBg = false;
   }
 
+  /** @description: 保存到本地 */
+  const saveLocal = () => {
+    localStorage.setItem("config", JSON.stringify(config.value));
+  };
+
   /** @description: 保存设置 */
   const saveConfig = (v: Partial<SettingConfig>) => {
     config.value = { ...config.value, ...v };
-    localStorage.setItem("config", JSON.stringify(config.value));
+    saveLocal();
   };
 
   /** @description: 设置指定tip禁止再次提示 */
   const setNoTip = (name: TipKeys) => {
     config.value.noTips[name] = true;
-    localStorage.setItem("config", JSON.stringify(config.value));
+    saveLocal();
   };
 
-  return { config, saveConfig, setNoTip };
+  /** @description: 恢复所有不再提示 */
+  const restoreTip = () => {
+    for (const key in config.value.noTips) {
+      config.value.noTips[key as TipKeys] = false;
+    }
+    saveLocal();
+  };
+
+  return { config, saveConfig, setNoTip, restoreTip };
 });
 
 export default settingStore;
