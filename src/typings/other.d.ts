@@ -20,6 +20,7 @@ interface SettingConfig {
   speed: 0 | 1 | 2; //动画速率
   particle: boolean; //粒子特效
   muted: boolean; //登录页视频静音
+  noTips: Tips<boolean>; //不再提示列表
 }
 
 /** @description: 开关 */
@@ -28,7 +29,7 @@ declare namespace Switch {
   type Msg = (text: string, type?: MsgType) => void;
   type Tip = (obj: {
     title?: string; //左上角标题
-    text: string; //提示内容
+    text: TipKeys | string; //提示内容
     align?: TipType; //在页面上的位置
     btn?: boolean; //显示按钮
     btnText?: string[]; //按钮上的文字
@@ -39,3 +40,11 @@ declare namespace Switch {
     close: () => void;
   }
 }
+
+/** @description: Tips提示信息 */
+interface Tips<T> {
+  "2rb7": T;
+}
+
+/** @description: Tips属性名 */
+type TipKeys = keyof Tips<string>;
