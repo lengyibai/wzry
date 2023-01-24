@@ -13,7 +13,7 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  if (!from.meta.noVerify) {
+  if (!from.meta.noVerify && to.path !== from.path) {
     switchStore().$loading.show("正在加载" + to.meta.title + "页面");
   }
 
@@ -52,7 +52,6 @@ useRouter.beforeEach(async (to, from, next) => {
 
 useRouter.afterEach((to) => {
   document.title = `${to.meta.title || "正在进入"}-王者荣耀后台管理系统`;
-  switchStore().$loading.close();
 });
 
 export default useRouter;
