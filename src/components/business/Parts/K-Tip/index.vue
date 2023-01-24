@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from "vue";
 
-import tipStore from "@/store/tip";
+import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 
 interface Props {
   modelValue: boolean;
   text: string; //内容
   title?: string; //左上角标题
-  noTipName: string; //不再提示的属性名
+  noTipName: TipKeys | string; //不再提示的属性名
   align?: TipType; //对齐方式
   btn?: boolean; //是否需要按钮
   btnText?: string[]; //按钮文字
@@ -27,10 +27,11 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $tipStore = tipStore();
+const $settingStore = settingStore();
 const $switchStore = switchStore();
 
 let timer: Interval; //倒计时计时器
+let status = false; // 悬浮状态，控制打字结束是否开始倒计时
 const IMGBED = window.IMGBED; //全局图床链接
 
 const time = ref(-1); //倒计时
@@ -55,8 +56,8 @@ const position = {
 
 /* 取消倒计时 */
 const cancelCountDown = () => {
-  time.value = -1;
   clearInterval(timer);
+  time.value = -1;
 };
 
 /* 开始/取消倒计时 */
@@ -64,26 +65,29 @@ const handleCountDown = (v: boolean) => {
   if (props.btn) return;
   if (v) {
     time.value = 3;
+
     timer = setInterval(() => {
       time.value--;
-      if (time.value === -1) {
+      if (time.value <= -1) {
         clearInterval(timer);
         emit("update:modelValue", false);
       }
     }, 1000);
   } else {
+    status = true;
     cancelCountDown();
   }
 };
 
-/* 打字机结束 */
+/* 打字结束开始倒计时 */
 const finish = () => {
+  if (status) return;
   handleCountDown(true);
 };
 
 /* 不再提示 */
 const handleNoTip = () => {
-  $tipStore.noTips[props.noTipName] = true;
+  $settingStore.setNoTip(props.noTipName as TipKeys);
   handleClose();
 };
 
