@@ -9,7 +9,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from "vue";
+import { nextTick } from "process";
+
+import { onBeforeMount, onMounted, ref, onActivated } from "vue";
 interface Props {
   count: number;
   eqhMultiple: number;
@@ -72,6 +74,12 @@ onMounted(() => {
   }, 5000);
 
   LibGridLayout.value?.scroll({ top: props.scrollTop });
+});
+
+onActivated(() => {
+  setTimeout(() => {
+    LibGridLayout.value?.scroll({ top: props.scrollTop });
+  });
 });
 
 onBeforeMount(() => {

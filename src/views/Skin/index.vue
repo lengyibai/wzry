@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+<script setup lang="ts" name="skin">
+import { nextTick, onActivated, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
@@ -25,6 +25,7 @@ const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
 
 $switchStore.$clickAudio("9u8z");
+
 $switchStore.$loading.close();
 
 if ($skinStore.skin_list.length === 0) {
@@ -108,6 +109,11 @@ onMounted(() => {
   });
 });
 
+onActivated(() => {
+  $switchStore.$loading.close();
+  skinListRef.value?.updateHeight();
+});
+
 onBeforeUnmount(() => {
   $bus.off("resize");
   $collapseStore.clearTrigger();
@@ -131,14 +137,7 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
           @scroll="EmitScroll"
         >
-          <div
-            v-for="(item, index) in $skinStore.show_list"
-            :key="item.id"
-            :style="{
-              'transition-delay': 0.025 * index + 's',
-            }"
-            @mouseenter="handleEnterCard"
-          >
+          <div v-for="item in $skinStore.show_list" :key="item.id" @mouseenter="handleEnterCard">
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
         </LibGridLayout>
