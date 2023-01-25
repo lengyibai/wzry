@@ -13,7 +13,11 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  if (!from.meta.noVerify && to.path !== from.path) {
+  if (
+    !from.meta.noVerify &&
+    to.path !== from.path &&
+    !["403页面", "404页面"].includes(to.meta.title as string)
+  ) {
     switchStore().$loading.show("正在加载" + to.meta.title + "页面");
   }
 
