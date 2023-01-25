@@ -119,5 +119,9 @@ export const configDefault: SettingConfig = {
     "9f5m": false,
     "05su": false,
     "9oy5": false,
+    "58mz": false,
+    "1w7o": false,
+    "0vk2": false,
+    "1zs6": false,
   },
 };
