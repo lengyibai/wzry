@@ -12,8 +12,8 @@ import switchStore from "@/store/switch";
 const $equiqStore = equiqStore();
 const $switchStore = switchStore();
 
+const show = ref(false); //显示装备列表
 const show_Details = ref(false); //显示装备详情
-const show_EquipSidebar = ref(false); //显示装备分类侧边栏
 const equip_data = ref<Equip.Data>($deepCopy(equipDefault)); //被点击的装备信息
 
 $switchStore.$clickAudio("3k4s");
@@ -21,7 +21,7 @@ $switchStore.$loading.close();
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
 $equiqStore.getEquipList().then(() => {
-  show_EquipSidebar.value = true;
+  show.value = true;
 });
 
 /* 监听被点击装备的id，点击后更新装备详情 */
@@ -40,7 +40,7 @@ watch(
 <template>
   <div class="equip">
     <transition name="fade">
-      <div v-if="show_EquipSidebar" class="equip-main">
+      <div v-if="show" class="equip-main">
         <!-- 装备列表 -->
         <EquipList />
 
