@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import { ResultData } from "@/api/interface";
-import { CACHE_DATA } from "@/config";
+import { DISABLE_CACHE } from "@/config";
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
@@ -14,7 +14,7 @@ class RequestHttp {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        if (CACHE_DATA) {
+        if (DISABLE_CACHE) {
           config.url += `?temp=${Math.random()}`;
         }
 
