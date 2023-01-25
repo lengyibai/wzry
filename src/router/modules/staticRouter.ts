@@ -33,7 +33,7 @@ export const errorRouter = [
     name: "404",
     component: () => import("@/components/ErrorMessage/404.vue"),
     meta: {
-      title: "404",
+      title: "404页面",
       noVerify: true,
     },
   },
