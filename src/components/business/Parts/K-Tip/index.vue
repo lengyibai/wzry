@@ -54,6 +54,10 @@ const handleClose = () => {
 
   emit("update:modelValue", false);
   $switchStore.$clickAudio("6xc6");
+
+  setTimeout(() => {
+    props.btnFn();
+  }, 1000);
 };
 </script>
 
