@@ -117,5 +117,7 @@ export const configDefault: SettingConfig = {
   noTips: {
     "2rb7": false,
     "9f5m": false,
+    "05su": false,
+    "9oy5": false,
   },
 };
