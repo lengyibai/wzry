@@ -1,0 +1,69 @@
+.filter-sidebar {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 100%;
+  transition: all var(--time-250);
+  border-left: 1px solid var(--white-10);
+  flex-direction: column;
+
+  .filter-type {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--theme-color-five);
+    transition: all var(--time-250);
+
+    &:hover {
+      color: var(--blue);
+      transition: all 0s;
+    }
+
+    .iconfont {
+      margin-right: 15px;
+      font-size: 35px;
+      transition: all var(--time-250);
+    }
+
+    .name {
+      font-size: 20px;
+      transition: all var(--time-250) 0.1s;
+    }
+
+    :deep(.icon) {
+      width: 35px;
+      height: 35px;
+      margin-right: 20px;
+    }
+  }
+}
+
+.collapse {
+  width: 50px;
+
+  .filter-type {
+    padding: 10px;
+
+    .name {
+      opacity: 0;
+    }
+
+    .iconfont {
+      margin-right: 0;
+      font-size: 25px;
+    }
+
+    :deep(.icon) {
+      margin-right: 0;
+    }
+  }
+}
+
+.active {
+  color: var(--white) !important;
+  background-image: linear-gradient(
+    135deg,
+    rgb(34 58 94 / 0%) 25%,
+    rgb(34 130 199 / 25%) 100%
+  ) !important;
+}
