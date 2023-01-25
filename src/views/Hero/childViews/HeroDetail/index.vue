@@ -12,6 +12,7 @@ import heroDetailStore from "@/store/heroDetail";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
+import { $isPhone } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -79,9 +80,25 @@ onMounted(() => {
       new Image().src = item.poster; //海报预加载
     });
 
-    $switchStore.$tip({
-      text: "05su",
-    });
+    $isPhone
+      ? $switchStore.$tip({
+          text: "1zs6",
+          align: "left-top",
+          btnFn: () => {
+            $switchStore.$tip({
+              text: "58mz",
+            });
+          },
+        })
+      : $switchStore.$tip({
+          text: "0vk2",
+          align: "left-top",
+          btnFn: () => {
+            $switchStore.$tip({
+              text: "05su",
+            });
+          },
+        });
   }, 1500);
 
   setTimeout(() => {
