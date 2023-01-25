@@ -11,7 +11,6 @@ import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
-import HeroSidebar from "./childComps/HeroSidebar/index.vue"; //侧边栏
 
 import { $debounce, $deepCopy } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
@@ -186,7 +185,7 @@ onBeforeUnmount(() => {
 
     <!--右侧英雄职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <HeroSidebar />
+      <FilterSidebar type="hero" />
     </transition>
 
     <!--英雄详情页-->

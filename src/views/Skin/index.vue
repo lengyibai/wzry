@@ -2,7 +2,6 @@
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
-import SkinSidebar from "./childComps/SkinSidebar/index.vue"; //侧边栏
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
@@ -148,7 +147,7 @@ onBeforeUnmount(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <SkinSidebar />
+      <FilterSidebar type="skin" />
     </transition>
 
     <!-- 大图预览 -->

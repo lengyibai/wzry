@@ -3,7 +3,6 @@ import { ref, watch } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
-import EquipSidebar from "./childComps/EquipSidebar/index.vue"; //右侧边栏
 
 import { $deepCopy } from "@/utils";
 import { equipDefault } from "@/defaultValue";
@@ -51,8 +50,8 @@ watch(
     </transition>
 
     <!-- 装备侧边栏 -->
-    <transition name="sidebar">
-      <EquipSidebar v-show="show_EquipSidebar" />
+    <transition name="sidebar" apper>
+      <FilterSidebar type="equip" />
     </transition>
   </div>
 </template>
