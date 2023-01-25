@@ -16,16 +16,10 @@ module.exports = {
       customSyntax: "postcss-html",
     },
   ],
-  ignoreFiles: [
-    "**/*.js",
-    "**/*.jsx",
-    "**/*.tsx",
-    "**/*.ts",
-    "**/*.json",
-    "**/*.md",
-    "**/*.yaml",
-  ],
+  ignoreFiles: ["**/*.js", "**/*.jsx", "**/*.tsx", "**/*.ts", "**/*.json", "**/*.md", "**/*.yaml"],
   rules: {
+    "no-eol-whitespace": null,
+    "property-no-vendor-prefix": null, //禁止前缀
     "custom-property-empty-line-before": null, //禁止内联css变量
     "no-descending-specificity": null, // 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
     "declaration-block-trailing-semicolon": null, //内联样式尾随分号
