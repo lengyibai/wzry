@@ -367,14 +367,16 @@ const skinStore = defineStore("skin", () => {
   };
 
   return {
-    profession,
-    skin_list,
-    scroll,
     filter_list,
-    type_logo,
-    show_list,
-    price_type,
     gender_type,
+    price_type,
+    profession,
+    scroll,
+    sort_type,
+    show_list,
+    skin_list,
+    skin_type,
+    type_logo,
     getSkin: getSkinList,
     setSkinList,
     setProfessional,

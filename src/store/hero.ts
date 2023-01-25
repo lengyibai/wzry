@@ -287,13 +287,17 @@ const heroStore = defineStore("hero", () => {
   };
 
   return {
+    attr_type,
+    camp_type,
     filter_list,
     gender_type,
     hero_list,
     misc_sort,
+    misc_type,
     profession,
     scroll,
     show_list,
+    sort_type,
     filterAttr,
     filterCamp,
     filterGender,
