@@ -19,7 +19,7 @@ const $switchStore = switchStore();
 const skinListRef = ref(); //布局容器
 const poster = ref(""); // 查看的海报链接
 const count = ref(0); //一行显示的数目
-const show = ref(false); //显示列表
+const show_list = ref(false); //显示列表
 const show_poster = ref(false); //查看海报
 const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
@@ -69,10 +69,10 @@ const handleEnterCard = () => {
 watch(
   () => $skinStore.filter_list,
   () => {
-    show.value = false;
+    show_list.value = false;
 
     nextTick(() => {
-      show.value = true;
+      show_list.value = true;
     });
   },
   { deep: true, immediate: true }
@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
       <SkinToolbar />
       <transition name="card-list">
         <LibGridLayout
-          v-if="$skinStore.show_list.length && show"
+          v-if="$skinStore.show_list.length && show_list"
           ref="skinListRef"
           scroll-id="skin_list"
           class="skin-list"
