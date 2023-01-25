@@ -38,6 +38,8 @@ const gender = ref(0); //性别排序
 const search_value = ref(""); //搜索值
 const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
 
+gender.value = $heroStore.gender_type;
+
 // 获取阵营列表
 getCampType().then((res) => {
   res.forEach((item) => {
@@ -89,19 +91,44 @@ const handSearch = () => {
   <div class="hero-toolbar">
     <div class="filter-select">
       <!-- 阵营筛选按钮 -->
-      <FilterTool :data="select_camp" list-height="425px" @select="EmitSelectCamp" />
+      <FilterTool
+        v-model="$heroStore.camp_type"
+        :data="select_camp"
+        list-height="425px"
+        @select="EmitSelectCamp"
+      />
 
       <!-- 自带属性筛选按钮 -->
-      <FilterTool :data="select_attr" list-height="345px" @select="EmitSelectAttr" />
+      <FilterTool
+        v-model="$heroStore.attr_type"
+        :data="select_attr"
+        list-height="345px"
+        @select="EmitSelectAttr"
+      />
 
       <!-- 杂项筛选按钮 -->
-      <FilterTool :data="select_misc" list-height="296px" @select="EmitSelectMisc" />
+      <FilterTool
+        v-model="$heroStore.misc_type"
+        :data="select_misc"
+        list-height="296px"
+        @select="EmitSelectMisc"
+      />
 
       <!-- 杂项排序按钮 -->
-      <FilterTool :data="select_sort" list-height="198px" @select="EmitSelectSort" />
+      <FilterTool
+        v-model="$heroStore.misc_sort"
+        :data="select_sort"
+        list-height="198px"
+        @select="EmitSelectSort"
+      />
 
       <!-- 正序/倒序 -->
-      <FilterTool :data="sort_type" list-height="100px" @select="EmitSortType" />
+      <FilterTool
+        v-model="$heroStore.sort_type"
+        :data="sort_type"
+        list-height="100px"
+        @select="EmitSortType"
+      />
     </div>
 
     <!-- 只看性别 -->

@@ -6,6 +6,7 @@ import switchStore from "@/store/switch";
 type Data = { label: string; value: string | number };
 
 interface Props {
+  modelValue: string; //选择的值
   data: Data[]; //下拉列表
   listHeight?: string; //列表高度
 }
@@ -28,6 +29,10 @@ const unfold = ref(false); //展开列表
 const current_value = ref(""); //选择的值
 
 sort_text.value = props.data[0].label;
+if (props.modelValue) {
+  current_value.value = props.modelValue;
+  sort_text.value = props.modelValue;
+}
 
 /* 显示列表 */
 const handleShowList = () => {
