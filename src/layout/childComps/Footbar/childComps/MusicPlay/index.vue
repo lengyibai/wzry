@@ -8,10 +8,7 @@ $musicStore.play();
 
 <template>
   <transition name="music-play">
-    <div
-      class="music-play"
-      :style="{ width: $musicStore.progress + '%' }"
-    ></div>
+    <div class="music-play" :style="{ width: $musicStore.progress + '%' }"></div>
   </transition>
 </template>
 

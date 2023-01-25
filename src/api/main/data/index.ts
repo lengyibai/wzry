@@ -30,9 +30,7 @@ export const Skill = () => http.Get<Hero.Skill[]>("/skill.json");
 export const Skilltype = () => http.Get<Hero.SkillType[]>("/skillType.json");
 
 /** @description: 获取技能效果列表 */
-export const Skilleffect = () => {
-  return http.Get<Hero.SkillEffect[]>("/skillEffect.json");
-};
+export const Skilleffect = () => http.Get<Hero.SkillEffect[]>("/skillEffect.json");
 
 /** @description: 获取皮肤列表 */
 export const Skin = () => http.Get<Hero.Skin[]>("/skin.json");
@@ -48,9 +46,7 @@ export const Skintype = () => http.Get<Hero.SkinType[]>("/skinType.json");
 export const Equip = () => http.Get<Equip.Data[]>("/equip.json");
 
 /** @description: 获取装备合成列表 */
-export const EquipSynthetic = () => {
-  return http.Get<Equip.Synthetic[]>("/equipSynthetic.json");
-};
+export const EquipSynthetic = () => http.Get<Equip.Synthetic[]>("/equipSynthetic.json");
 
 /** @description: 获取装备类型列表 */
 export const Equiptype = () => http.Get<General[]>("/equipType.json");
@@ -65,9 +61,7 @@ export const Epigraph = () => http.Get<Epigraph.Data[]>("/epigraph.json");
 export const Epigraphtype = () => http.Get<General[]>("/epigraphType.json");
 
 /** @description: 获取铭文效果列表 */
-export const Epigrapheffect = () => {
-  return http.Get<Epigraph.EpigraphEffect[]>("/epigraphEffect.json");
-};
+export const Epigrapheffect = () => http.Get<Epigraph.EpigraphEffect[]>("/epigraphEffect.json");
 
 /**
  * @description: 杂项
@@ -92,6 +86,4 @@ export const Camptype = () => http.Get<General[]>("/campType.json");
 export const RaceType = () => http.Get<General[]>("/raceType.json");
 
 /** @description: 获取关系列表 */
-export const Relationship = () => {
-  return http.Get<Hero.Relationship[]>("/relationship.json");
-};
+export const Relationship = () => http.Get<Hero.Relationship[]>("/relationship.json");

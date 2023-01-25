@@ -27,15 +27,7 @@ defineProps({
   },
 });
 
-const color = [
-  "#ffff00",
-  "#76ff03",
-  "#f06292",
-  "#4fc3f7",
-  "#ba68c8",
-  "#f57c00",
-  "#673ab7",
-];
+const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
 
 const IMGBED = window.IMGBED; //全局图床链接
 </script>

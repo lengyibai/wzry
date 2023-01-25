@@ -62,9 +62,7 @@ const handleViewClick = () => {
     <transition name="fade">
       <div v-if="show" class="select-mask">
         <img :src="data.headImg" class="head" @dragstart.prevent />
-        <button v-textHoverColor class="view" @click="handleViewClick">
-          查看详情
-        </button>
+        <button v-textHoverColor class="view" @click="handleViewClick">查看详情</button>
       </div>
     </transition>
 

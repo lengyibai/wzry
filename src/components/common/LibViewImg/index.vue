@@ -2,13 +2,7 @@
   <div class="lib-view-img">
     <div ref="mask" class="mask"></div>
     <div ref="pic" class="pic">
-      <img
-        ref="clonedBox"
-        class="clonedBox"
-        :src="link"
-        alt=""
-        @dragstart.prevent
-      />
+      <img ref="clonedBox" class="clonedBox" :src="link" alt="" @dragstart.prevent />
     </div>
     <div ref="tool" class="tool">
       <div class="clockwise" @click="handleClockwise">
@@ -89,9 +83,9 @@ let origin = [0, 0];
 /* 设置样式 */
 const setStyle = () => {
   clonedBox.value.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rotate}deg) scale(${size})`;
-  clonedBox.value.style.transformOrigin = `${
-    origin[0] + pic.value.offsetWidth / 2 - 240
-  }px ${origin[1] + pic.value.offsetHeight / 2 - 200}px`;
+  clonedBox.value.style.transformOrigin = `${origin[0] + pic.value.offsetWidth / 2 - 240}px ${
+    origin[1] + pic.value.offsetHeight / 2 - 200
+  }px`;
 };
 
 /* 设置坐标 */

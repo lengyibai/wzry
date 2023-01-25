@@ -1,9 +1,4 @@
-import axios, {
-  AxiosInstance,
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from "axios";
+import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import { ResultData } from "@/api/interface";
 import { CACHE_DATA } from "@/config";
@@ -42,35 +37,19 @@ class RequestHttp {
   }
 
   //常用请求方法封装
-  async Get<T>(
-    url: string,
-    params?: object,
-    _object = {}
-  ): Promise<ResultData<T>> {
+  async Get<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return await this.service.get(url, { params, ..._object });
   }
 
-  async Post<T>(
-    url: string,
-    params?: object,
-    _object = {}
-  ): Promise<ResultData<T>> {
+  async Post<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return await this.service.post(url, params, _object);
   }
 
-  async Patch<T>(
-    url: string,
-    params?: object,
-    _object = {}
-  ): Promise<ResultData<T>> {
+  async Patch<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
     return await this.service.patch(url, params, _object);
   }
 
-  async Del<T>(
-    url: string,
-    params?: any,
-    _object = {}
-  ): Promise<ResultData<T>> {
+  async Del<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
     return await this.service.delete(url, { params, ..._object });
   }
 }

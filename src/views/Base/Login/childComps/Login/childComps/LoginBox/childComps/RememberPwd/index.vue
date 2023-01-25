@@ -17,10 +17,7 @@ const $switchStore = switchStore();
 
 // 选中/未选中图标
 const checkIcon = computed(
-  () =>
-    `${IMGBED}/image/${
-      props.modelValue ? "check_true_yellow" : "check_false_yellow"
-    }.png`
+  () => `${IMGBED}/image/${props.modelValue ? "check_true_yellow" : "check_false_yellow"}.png`
 );
 
 /* 选中按钮 */

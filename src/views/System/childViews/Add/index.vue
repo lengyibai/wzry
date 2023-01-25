@@ -13,15 +13,9 @@ type Options = Record<
   }
 >;
 
-const AddHero = defineAsyncComponent(
-  () => import("./childViews/AddHero/index.vue")
-); //英雄
-const AddSkin = defineAsyncComponent(
-  () => import("./childViews/AddSkin/index.vue")
-); //皮肤
-const AddSkill = defineAsyncComponent(
-  () => import("./childViews/AddSkill/index.vue")
-); //技能
+const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue")); //英雄
+const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue")); //皮肤
+const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue")); //技能
 
 const $switchStore = switchStore();
 

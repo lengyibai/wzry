@@ -3,11 +3,7 @@
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
       <div v-if="showNum" class="slider-value">
-        <span
-          class="value"
-          :class="{ 'show-num': show_num }"
-          :style="{ left: barWidth }"
-        >
+        <span class="value" :class="{ 'show-num': show_num }" :style="{ left: barWidth }">
           {{ text || modelValue }}
         </span>
       </div>

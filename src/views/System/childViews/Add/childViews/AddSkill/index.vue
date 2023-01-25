@@ -58,9 +58,7 @@ const noFirst = computed(() => active_index.value !== 0);
 //判断是否为被动技能
 const exist_deputys = computed(() => form_data.value!.length > 1);
 //技能组数量
-const skills_num = computed(() =>
-  form_data.value ? form_data.value.length : 0
-);
+const skills_num = computed(() => (form_data.value ? form_data.value.length : 0));
 //当前技能数量
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
@@ -221,9 +219,7 @@ const handleDelConsume = () => {
 
 /* 发布 */
 const EmitCommit = async () => {
-  const is_Finish = form_data.value![0].every(
-    (item) => item.img && item.name && hero_id.value
-  );
+  const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
   if (is_Finish && form_data.value![0].length >= 3) {
     await addHeroSkill({
       id: hero_id.value,
@@ -260,12 +256,8 @@ setTimeout(async () => {
         <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
         <button class="add" @click="handleAddOne">添加技能</button>
         <button class="add" @click="handleAddDeputys">添加副技能</button>
-        <button v-if="exist_deputys" class="add" @click="handleToggleSkill">
-          切换主/副技能
-        </button>
-        <button v-if="skills_num > 1" class="add" @click="handleDelDeputys">
-          删除当前技能组
-        </button>
+        <button v-if="exist_deputys" class="add" @click="handleToggleSkill">切换主/副技能</button>
+        <button v-if="skills_num > 1" class="add" @click="handleDelDeputys">删除当前技能组</button>
       </div>
 
       <!-- 设置图标 -->
@@ -274,26 +266,12 @@ setTimeout(async () => {
       </FormLabel>
 
       <!-- 选择英雄 -->
-      <SelectHero
-        key="SelectHero"
-        v-model="hero_id"
-        @update:model-value="EmitSelectHeroChange"
-      />
+      <SelectHero key="SelectHero" v-model="hero_id" @update:model-value="EmitSelectHeroChange" />
 
       <!-- 技能名称 -->
-      <FormInput
-        v-model="activeSkill().name"
-        label="名称"
-        required
-        placeholder="技能名称"
-      />
+      <FormInput v-model="activeSkill().name" label="名称" required placeholder="技能名称" />
 
-      <FormInput
-        v-model="skill_unit"
-        label="消耗单位"
-        required
-        placeholder="技能消耗单位"
-      />
+      <FormInput v-model="skill_unit" label="消耗单位" required placeholder="技能消耗单位" />
 
       <!-- 冷却时间 -->
       <FormInput
@@ -365,11 +343,7 @@ setTimeout(async () => {
       </div>
 
       <!-- 技能描述 -->
-      <LibRichText
-        :key="activeSkill().img"
-        v-model="activeSkill().desc"
-        placeholder="技能描述"
-      />
+      <LibRichText :key="activeSkill().img" v-model="activeSkill().desc" placeholder="技能描述" />
     </div>
 
     <!-- 右边 -->

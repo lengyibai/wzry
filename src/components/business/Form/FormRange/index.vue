@@ -78,9 +78,7 @@ onMounted(() => {
   <div class="form-input" :class="{ disabled: disabled }">
     <!-- 右侧描述 -->
     <div class="label" :style="{ width: labelWidth }">
-      <span class="text-gradient-one"
-        ><i v-if="required" class="star">*</i>{{ label }}：
-      </span>
+      <span class="text-gradient-one"><i v-if="required" class="star">*</i>{{ label }}： </span>
     </div>
 
     <!-- 输入框 -->

@@ -44,9 +44,7 @@ const old = computed(() => {
       <div v-show="!$collapseStore.collapse" class="watermark">
         <p>浏览器内核版本：{{ $chromeV }}</p>
         <p :class="{ old: old }">当前版本：{{ $versionStore.local_version }}</p>
-        <p :class="{ new: old }">
-          最新版本：{{ $versionStore.remote_version }}
-        </p>
+        <p :class="{ new: old }">最新版本：{{ $versionStore.remote_version }}</p>
       </div>
     </transition>
 

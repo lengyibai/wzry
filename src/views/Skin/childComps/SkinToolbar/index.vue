@@ -79,11 +79,7 @@ const handSearch = () => {
     <FilterTool :data="select_price" @select="EmitPriceSort" />
 
     <!-- 皮肤类型筛选 -->
-    <FilterTool
-      :data="select_type"
-      list-height="500px"
-      @select="EmitTypeFilter"
-    />
+    <FilterTool :data="select_type" list-height="500px" @select="EmitTypeFilter" />
 
     <!-- 正序/倒序 -->
     <FilterTool :data="sort_type" list-height="100px" @select="EmitSortType" />

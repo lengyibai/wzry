@@ -75,11 +75,7 @@ const handleClose = () => {
         />
 
         <!-- 背景图 -->
-        <img
-          class="bg"
-          :src="IMGBED + '/image/dialog.png'"
-          @dragstart.prevent
-        />
+        <img class="bg" :src="IMGBED + '/image/dialog.png'" @dragstart.prevent />
 
         <!-- 内容区 -->
         <div

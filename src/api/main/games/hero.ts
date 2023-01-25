@@ -5,17 +5,12 @@ import { getHeroRelationship } from "@/api/main/games/relationship";
 import { getHeroSkill } from "@/api/main/games/skill";
 
 /** @description: 获取英雄基础列表 */
-export const getHeroBasic = () => {
-  return Promise.resolve(get<Hero.Basic[]>({ name: "data_herobasic" }));
-};
+export const getHeroBasic = () => Promise.resolve(get<Hero.Basic[]>({ name: "data_herobasic" }));
 
 /** @description: 获取某英雄拼音 */
 export const getHeroPinyin = (v: string) => {
   return Promise.resolve(
-    get<Hero.Basic>(
-      { name: "data_herobasic", key: "name", value: v, full: true },
-      true
-    ).pinyin
+    get<Hero.Basic>({ name: "data_herobasic", key: "name", value: v, full: true }, true).pinyin
   );
 };
 
@@ -26,9 +21,7 @@ export const addHeroBasic = (data: General) => {
 
 /** @description: 获取英雄头像列表 */
 export const getHeroImg = (id: number) => {
-  return Promise.resolve(
-    get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id })
-  );
+  return Promise.resolve(get<Hero.HeadImg>({ name: "data_heroimg", key: "id", value: id }));
 };
 
 /** @description: 添加英雄头像列表 */
@@ -57,9 +50,7 @@ export const getHeroDetail = async (id: number) => {
   //如果存在关系，则请求相关人物的头像
   if (relationships) {
     for (let i = 0; i < relationships.length; i++) {
-      relationships[i].hero = await getHeroImg(
-        relationships[i].id as unknown as number
-      );
+      relationships[i].hero = await getHeroImg(relationships[i].id as unknown as number);
     }
   }
 

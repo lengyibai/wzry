@@ -147,20 +147,14 @@ const sweepLight = {
       el.appendChild(light);
       if (auto) {
         light.style.transitionDelay = ` ${binding.value}s`;
-        light.style.transform = `skewX(45deg) translateX(${
-          -el.offsetWidth * 1.5
-        }px)`;
+        light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
       } else {
         el.addEventListener("mouseenter", () => {
-          light.style.transform = `skewX(45deg) translateX(${
-            -el.offsetWidth * 1.5
-          }px)`;
+          light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
         });
 
         el.addEventListener("mouseleave", () => {
-          light.style.transform = `skewX(45deg) translateX(${
-            el.offsetWidth * 2
-          }px)`;
+          light.style.transform = `skewX(45deg) translateX(${el.offsetWidth * 2}px)`;
         });
       }
     });
@@ -222,13 +216,7 @@ const typewriterMultiple = {
               () => {
                 fn();
               },
-              "，" === say[num]
-                ? 500
-                : "、" === say[num]
-                ? 250
-                : "。？！" === say[num]
-                ? 1000
-                : 500
+              "，" === say[num] ? 500 : "、" === say[num] ? 250 : "。？！" === say[num] ? 1000 : 500
             );
           }
           num++;

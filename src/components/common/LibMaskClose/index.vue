@@ -46,11 +46,7 @@ onMounted(() => {
   align-items: center;
   width: 100%;
   height: 10%;
-  background-image: linear-gradient(
-    0deg,
-    transparent 0%,
-    rgb(0 0 0 / 50%) 100%
-  );
+  background-image: linear-gradient(0deg, transparent 0%, rgb(0 0 0 / 50%) 100%);
 
   .close {
     display: flex;

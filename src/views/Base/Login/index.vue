@@ -55,22 +55,14 @@ const EmitCloseNotice = () => {
     <ToolBar :notice="finish" @clicks="EmitToolType" />
 
     <!-- 视频背景 -->
-    <LibBgVideo
-      v-if="enable_video_bg"
-      :video="LOGINBG"
-      :muted="$settingStore.config.muted"
-    />
+    <LibBgVideo v-if="enable_video_bg" :video="LOGINBG" :muted="$settingStore.config.muted" />
 
     <!-- 图片 -->
     <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">
-      <Notice
-        v-if="show_notice"
-        v-model="show_notice"
-        @update:model-value="EmitCloseNotice"
-      />
+      <Notice v-if="show_notice" v-model="show_notice" @update:model-value="EmitCloseNotice" />
     </transition>
 
     <!-- 下载进度 -->

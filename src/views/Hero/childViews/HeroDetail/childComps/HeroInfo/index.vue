@@ -24,11 +24,7 @@ onMounted(() => {
 <template>
   <div ref="HeroMaterialSkins" class="hero-material-skins">
     <!-- 英雄标题 -->
-    <HeroTitle
-      :class="{ show: !into }"
-      :name="hero_data.name"
-      :mark="hero_data.mark"
-    />
+    <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
 
     <!-- 基础信息表 -->
     <div class="basic-info">
@@ -52,18 +48,8 @@ onMounted(() => {
           attr="survival"
           :length="hero_data.survival"
         />
-        <HeroAttribute
-          style="--i: 1"
-          class="attribute"
-          attr="attack"
-          :length="hero_data.attack"
-        />
-        <HeroAttribute
-          style="--i: 2"
-          class="attribute"
-          attr="effect"
-          :length="hero_data.effect"
-        />
+        <HeroAttribute style="--i: 1" class="attribute" attr="attack" :length="hero_data.attack" />
+        <HeroAttribute style="--i: 2" class="attribute" attr="effect" :length="hero_data.effect" />
         <HeroAttribute
           style="--i: 3"
           class="attribute"

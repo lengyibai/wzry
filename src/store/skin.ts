@@ -159,10 +159,7 @@ const skinStore = defineStore("skin", () => {
       if (price_type.value === "免费") {
         const noNum: Hero.Skin[] = [];
         filter_list.value.forEach((item) => {
-          if (
-            !noFree.includes(item.price.toString()) &&
-            isNaN(Number(item.price))
-          )
+          if (!noFree.includes(item.price.toString()) && isNaN(Number(item.price)))
             noNum.push(item);
         });
         filter_list.value = $typeSort(noNum, "price");
@@ -301,14 +298,7 @@ const skinStore = defineStore("skin", () => {
       },
       {
         label: "其他专属",
-        value: [
-          "必胜客专属",
-          "新春专属",
-          "信誉专属",
-          "源梦",
-          "活动专属",
-          "星会员专属",
-        ],
+        value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
       },
       {
         label: "特殊标志",
@@ -367,11 +357,7 @@ const skinStore = defineStore("skin", () => {
   const searchSkin = (name: string) => {
     $debounce(() => {
       if (name) {
-        filter_list.value = $search(skin_list.value, name, [
-          "name",
-          "heroName",
-          "category",
-        ]);
+        filter_list.value = $search(skin_list.value, name, ["name", "heroName", "category"]);
       } else {
         sortAll();
       }

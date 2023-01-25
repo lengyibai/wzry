@@ -89,39 +89,19 @@ const handSearch = () => {
   <div class="hero-toolbar">
     <div class="filter-select">
       <!-- 阵营筛选按钮 -->
-      <FilterTool
-        :data="select_camp"
-        list-height="425px"
-        @select="EmitSelectCamp"
-      />
+      <FilterTool :data="select_camp" list-height="425px" @select="EmitSelectCamp" />
 
       <!-- 自带属性筛选按钮 -->
-      <FilterTool
-        :data="select_attr"
-        list-height="345px"
-        @select="EmitSelectAttr"
-      />
+      <FilterTool :data="select_attr" list-height="345px" @select="EmitSelectAttr" />
 
       <!-- 杂项筛选按钮 -->
-      <FilterTool
-        :data="select_misc"
-        list-height="296px"
-        @select="EmitSelectMisc"
-      />
+      <FilterTool :data="select_misc" list-height="296px" @select="EmitSelectMisc" />
 
       <!-- 杂项排序按钮 -->
-      <FilterTool
-        :data="select_sort"
-        list-height="198px"
-        @select="EmitSelectSort"
-      />
+      <FilterTool :data="select_sort" list-height="198px" @select="EmitSelectSort" />
 
       <!-- 正序/倒序 -->
-      <FilterTool
-        :data="sort_type"
-        list-height="100px"
-        @select="EmitSortType"
-      />
+      <FilterTool :data="sort_type" list-height="100px" @select="EmitSortType" />
     </div>
 
     <!-- 只看性别 -->

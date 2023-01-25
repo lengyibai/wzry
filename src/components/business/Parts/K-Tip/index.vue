@@ -64,12 +64,7 @@ const handleClose = () => {
       <div class="title">{{ title }}</div>
 
       <!-- 小兵 -->
-      <img
-        class="soldier"
-        :src="IMGBED + '/image/warn.png'"
-        alt="小兵"
-        @dragstart.prevent
-      />
+      <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
     </div>
 
     <!-- 内容 -->
@@ -77,13 +72,9 @@ const handleClose = () => {
 
     <!-- 按钮 -->
     <div class="btns">
-      <K-Button
-        width="150px"
-        height="40px"
-        font-size="20px"
-        @click="handleClose"
-        >{{ btnText }}</K-Button
-      >
+      <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{
+        btnText
+      }}</K-Button>
     </div>
   </div>
 </template>

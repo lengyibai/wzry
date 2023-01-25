@@ -9,14 +9,7 @@ defineProps<Props>();
 <template>
   <div class="hero-bg-img">
     <transition-group name="clip">
-      <img
-        v-if="bgImg[0]"
-        v-show="toggle"
-        key="a"
-        class="bg"
-        :src="bgImg[0]"
-        alt=""
-      />
+      <img v-if="bgImg[0]" v-show="toggle" key="a" class="bg" :src="bgImg[0]" alt="" />
       <img v-show="!toggle" key="b" class="bg" :src="bgImg[1]" alt="" />
     </transition-group>
   </div>

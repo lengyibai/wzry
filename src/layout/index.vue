@@ -68,12 +68,7 @@ onMounted(async () => {
     <LibBgVideo v-if="enable_video_bg" :video="BG" />
 
     <!-- 图片壁纸 -->
-    <img
-      v-else
-      class="layout-bg"
-      :src="IMGBED + '/image/background.png'"
-      alt=""
-    />
+    <img v-else class="layout-bg" :src="IMGBED + '/image/background.png'" alt="" />
   </div>
 </template>
 

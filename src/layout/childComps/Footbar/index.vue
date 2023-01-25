@@ -28,9 +28,7 @@ const handleSetProgress = (e: MouseEvent) => {
 
   //计算出小数
   progress.value = parseFloat(
-    ((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(
-      2
-    )
+    ((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)
   );
 
   $musicStore.setCurrentTime(progress.value); //设置播放进度
@@ -42,12 +40,7 @@ const handleMoveLine = (e: MouseEvent) => {
 
   //设置底部刻度线x坐标
   line.value.style.left =
-    parseFloat(
-      (
-        (e.pageX - footbar.value.offsetLeft) /
-        footbar.value.offsetWidth
-      ).toFixed(2)
-    ) *
+    parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)) *
       100 +
     "%";
 };

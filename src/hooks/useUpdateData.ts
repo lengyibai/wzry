@@ -112,9 +112,7 @@ export default () => {
     }
 
     // 获取远程语音并比对
-    for (const hero of hero_list.filter(
-      (hero) => !["梦奇", "盾山"].includes(hero.name)
-    )) {
+    for (const hero of hero_list.filter((hero) => !["梦奇", "盾山"].includes(hero.name))) {
       const v = (await Voice(hero.name)).data;
       const l = getLocalData(hero.pinyin, "voice_");
 
@@ -139,8 +137,7 @@ export default () => {
 
     if (data_length || voice_length) {
       const dataToShow = data_length > 5 ? data_names.slice(0, 5) : data_names;
-      const voiceToShow =
-        voice_length > 5 ? voice_names.slice(0, 5) : voice_names;
+      const voiceToShow = voice_length > 5 ? voice_names.slice(0, 5) : voice_names;
 
       if (data_length) {
         text = `《${dataToShow.join("、")}》${
@@ -150,9 +147,7 @@ export default () => {
 
       if (voice_length) {
         text += `${data_length && "以及"}《${voiceToShow.join("、")}》${
-          voice_length > 5
-            ? `...共${voice_length}条语音数据需要更新，`
-            : "的语音数据需要更新，"
+          voice_length > 5 ? `...共${voice_length}条语音数据需要更新，` : "的语音数据需要更新，"
         }`;
       }
 
@@ -167,18 +162,12 @@ export default () => {
   const updateData = () => {
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
-      localStorage.setItem(
-        "data_" + key,
-        JSON.stringify(need_update_data.data[i])
-      );
+      localStorage.setItem("data_" + key, JSON.stringify(need_update_data.data[i]));
     }
 
     for (let i = 0; i < need_update_voice.keys.length; i++) {
       const key = need_update_voice.keys[i];
-      localStorage.setItem(
-        "voice_" + key,
-        JSON.stringify(need_update_voice.data[i])
-      );
+      localStorage.setItem("voice_" + key, JSON.stringify(need_update_voice.data[i]));
     }
   };
 

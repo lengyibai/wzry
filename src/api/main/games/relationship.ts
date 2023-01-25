@@ -2,9 +2,7 @@ import { get } from "@/api/helper/transfer";
 
 /** @description: 获取关系列表 */
 export const getRelationship = () => {
-  return Promise.resolve(
-    get<Hero.Relationship[]>({ name: "data_relationship" })
-  );
+  return Promise.resolve(get<Hero.Relationship[]>({ name: "data_relationship" }));
 };
 
 /** @description: 获取指定英雄关系 */

@@ -168,9 +168,7 @@ watch(
               class="box"
               :class="{
                 active:
-                  current_index === index ||
-                  modelValue === item.name ||
-                  modelValue === item.id,
+                  current_index === index || modelValue === item.name || modelValue === item.id,
               }"
               @mousedown="handleSelect(item.id, item.name)"
               @mouseenter="handleEnterItem(index)"

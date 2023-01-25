@@ -110,10 +110,7 @@ const blur = (e: Event) => {
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  emit(
-    "update:modelValue",
-    props.number ? (isNaN(Number(v)) ? v : Number(v)) : v
-  );
+  emit("update:modelValue", props.number ? (isNaN(Number(v)) ? v : Number(v)) : v);
 
   $switchStore.$clickAudio("5zv8");
 };

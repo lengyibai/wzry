@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  watch,
-  defineAsyncComponent,
-} from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch, defineAsyncComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
@@ -21,9 +14,7 @@ import heroStore from "@/store/hero";
 import otherStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
-const HeroDetail = defineAsyncComponent(
-  () => import("./childViews/HeroDetail/index.vue")
-); //详情页
+const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue")); //详情页
 
 const $route = useRoute();
 const $router = useRouter();

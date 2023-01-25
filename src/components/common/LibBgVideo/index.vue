@@ -31,14 +31,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="LibBgVideo">
-    <video
-      ref="videoPlayer"
-      :muted="muted"
-      :src="video"
-      autoplay
-      class="video"
-      loop
-    ></video>
+    <video ref="videoPlayer" :muted="muted" :src="video" autoplay class="video" loop></video>
   </div>
 </template>
 

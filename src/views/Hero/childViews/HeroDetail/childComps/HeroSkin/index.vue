@@ -47,9 +47,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
 
     // 0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = (
-        await getAssignSkinType(skin_type as number)
-      ).link;
+      active_skin_type.value = (await getAssignSkinType(skin_type as number)).link;
     } else {
       active_skin_type.value = ""; //伴生皮肤没有标志
     }
@@ -71,10 +69,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
     <div class="box">
       <div class="left">
         <!-- 皮肤类型 -->
-        <HeroSkinType
-          :skin-type-img="active_skin_type"
-          :toggle="skin_type_toggle"
-        />
+        <HeroSkinType :skin-type-img="active_skin_type" :toggle="skin_type_toggle" />
 
         <!-- 皮肤语音 -->
         <HeroVoice />

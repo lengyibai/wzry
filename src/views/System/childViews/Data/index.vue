@@ -124,8 +124,7 @@ load();
 
 /* 比对远程数据设置状态 */
 const setStatus = (data: any, v: any) => {
-  data.data =
-    JSON.parse(localStorage.getItem("data_" + data.key) as string) || [];
+  data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string) || [];
 
   if (JSON.stringify(v) === JSON.stringify(data.data)) {
     data.status = "最新";
@@ -199,11 +198,7 @@ const EmitConfirmReset = async () => {
 /* 排序触发 */
 const EmitsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
-    table_data.value = $typeSort(
-      table_data.value,
-      "length",
-      v[1] === 1 ? true : false
-    );
+    table_data.value = $typeSort(table_data.value, "length", v[1] === 1 ? true : false);
   } else {
     table_data.value = $deepCopy(data_cache);
   }
@@ -233,9 +228,7 @@ const EmitsSortChange = (v: number[]) => {
           >
             检查更新
           </button>
-          <button class="export lib-click" @click="handleExport(data), play()">
-            导出
-          </button>
+          <button class="export lib-click" @click="handleExport(data), play()">导出</button>
           <button
             v-if="data.status === '待更新'"
             class="update lib-click"

@@ -29,11 +29,7 @@ const handleToggle = (index: number) => {
       class="page-index"
       :class="{ active: index === i + 1 }"
     >
-      <div
-        v-show="index !== i + 1"
-        class="tab flex"
-        @click="handleToggle(i + 1)"
-      >
+      <div v-show="index !== i + 1" class="tab flex" @click="handleToggle(i + 1)">
         {{ item }}
       </div>
     </div>

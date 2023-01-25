@@ -100,16 +100,8 @@ const handleToggleSkill = () => {
       </transition>
 
       <!-- 技能图标 -->
-      <img
-        :src="item.img"
-        @dragstart.prevent
-        @click="handleSelectSkill(index)"
-      />
-      <img
-        :src="item.img"
-        :class="{ active: current_index === index }"
-        @dragstart.prevent
-      />
+      <img :src="item.img" @dragstart.prevent @click="handleSelectSkill(index)" />
+      <img :src="item.img" :class="{ active: current_index === index }" @dragstart.prevent />
     </div>
 
     <!-- 切换副技能 -->

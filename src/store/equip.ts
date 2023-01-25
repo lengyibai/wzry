@@ -53,11 +53,7 @@ const equipStore = defineStore("equip", () => {
   };
 
   /** @description: 存储列表所有装备元素 */
-  const setEquipElement = (data: {
-    name: string;
-    el: HTMLElement | undefined;
-    id: number;
-  }) => {
+  const setEquipElement = (data: { name: string; el: HTMLElement | undefined; id: number }) => {
     equip_element.value.push(data);
   };
 
@@ -76,11 +72,7 @@ const equipStore = defineStore("equip", () => {
 
   /** @description: 装备卡片被点击的id */
   const setEquipActive = (id = 0) => {
-    vertical_line.value = [
-      {},
-      { top: "0", height: "0" },
-      { top: "0", height: "0" },
-    ];
+    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
 
     if (active_id.value === id) {
       active_id.value = 0;
@@ -138,11 +130,7 @@ const equipStore = defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: t(active_id.value, synthetic_id.value[1][0].id),
-          height: h(
-            active_id.value,
-            synthetic_id.value[1][0].id,
-            synthetic_id.value[1].at(-1)!.id
-          ),
+          height: h(active_id.value, synthetic_id.value[1][0].id, synthetic_id.value[1].at(-1)!.id),
         };
         vertical_line.value[2] = {
           top: t(synthetic_id.value[1][0]?.id, synthetic_id.value[2][0]?.id),
@@ -273,11 +261,7 @@ const equipStore = defineStore("equip", () => {
 
   /** @description: 清空合成组 */
   const clearSynthetic = () => {
-    vertical_line.value = [
-      {},
-      { top: "0", height: "0" },
-      { top: "0", height: "0" },
-    ];
+    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
     synthetic_id.value = [[], [], []];
   };
 

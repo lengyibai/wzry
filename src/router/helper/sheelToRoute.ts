@@ -9,12 +9,9 @@ const routePath: Record<string, any> = {
   "@/views/Skin": () => import("@/views/Skin/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
-  "@/views/System/childViews/Add": () =>
-    import("@/views/System/childViews/Add/index.vue"),
-  "@/views/System/childViews/Edit": () =>
-    import("@/views/System/childViews/Edit/index.vue"),
-  "@/views/System/childViews/Data": () =>
-    import("@/views/System/childViews/Data/index.vue"),
+  "@/views/System/childViews/Add": () => import("@/views/System/childViews/Add/index.vue"),
+  "@/views/System/childViews/Edit": () => import("@/views/System/childViews/Edit/index.vue"),
+  "@/views/System/childViews/Data": () => import("@/views/System/childViews/Data/index.vue"),
 };
 
 /** @description: 将路由表转换成真实路由 */

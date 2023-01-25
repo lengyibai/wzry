@@ -58,11 +58,7 @@ const handleLogin = () => {
     <!-- 密码 -->
     <div class="box">
       <i class="iconfont wzry-password" />
-      <K-Input
-        v-model="form.password"
-        placeholder="请输入密码"
-        type="password"
-      />
+      <K-Input v-model="form.password" placeholder="请输入密码" type="password" />
     </div>
 
     <!-- 记住密码 -->

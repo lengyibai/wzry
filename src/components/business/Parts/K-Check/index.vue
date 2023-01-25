@@ -22,8 +22,7 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 
 const icon = computed(
-  () =>
-    `${IMGBED}/image/${props.modelValue ? "select_true" : "select_false"}.png`
+  () => `${IMGBED}/image/${props.modelValue ? "select_true" : "select_false"}.png`
 );
 
 const toggle = () => {

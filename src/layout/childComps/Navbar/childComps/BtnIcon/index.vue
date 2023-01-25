@@ -91,11 +91,7 @@ const EmitResetConfig = () => {
 <template>
   <div class="btn-icon">
     <!-- 设置按钮 -->
-    <i
-      class="iconfont wzry-setting cursor-pointer"
-      title="设置"
-      @click="show_setting = true"
-    />
+    <i class="iconfont wzry-setting cursor-pointer" title="设置" @click="show_setting = true" />
     <a href="https://github.com/lengyibai/wzry" target="_blank">
       <i class="iconfont wzry-mark-github" title="Github" />
     </a>
@@ -153,10 +149,7 @@ const EmitResetConfig = () => {
                 desc="开启后对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
               />
             </div>
-            <K-Check
-              v-model="config.particle"
-              @update:model-value="EmitParticle"
-            />
+            <K-Check v-model="config.particle" @update:model-value="EmitParticle" />
           </div>
 
           <!-- 视频背景 -->
@@ -167,10 +160,7 @@ const EmitResetConfig = () => {
                 desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
               />
             </div>
-            <K-Check
-              v-model="config.videoBg"
-              @update:model-value="EmitSaveConfig"
-            />
+            <K-Check v-model="config.videoBg" @update:model-value="EmitSaveConfig" />
           </div>
 
           <!-- 小贴士 -->
@@ -187,21 +177,14 @@ const EmitResetConfig = () => {
           <!-- 恢复所有不再提示 -->
           <div class="option">
             <div class="label">恢复所有小贴士</div>
-            <K-Button
-              width="90px"
-              height="35px"
-              font-size="20px"
-              @click="handleResetTip"
+            <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip"
               >恢复</K-Button
             >
           </div>
         </div>
 
         <!-- 重置配置 -->
-        <K-Button
-          v-if="show_setting"
-          type="error"
-          @click="show_confirm_reset = true"
+        <K-Button v-if="show_setting" type="error" @click="show_confirm_reset = true"
           >重置配置</K-Button
         >
       </K-Dialog>

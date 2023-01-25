@@ -67,10 +67,7 @@ const handleSave = () => {
     <!-- 头像 -->
     <div class="option">
       <div class="label">头像</div>
-      <UploadImg
-        v-model="user_info.headImg"
-        @update:model-value="handleContrast"
-      />
+      <UploadImg v-model="user_info.headImg" @update:model-value="handleContrast" />
     </div>
 
     <!-- 用户名 -->

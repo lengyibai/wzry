@@ -25,8 +25,7 @@ onMounted(() => {
         voiceRef.value.forEach((item: HTMLElement, index: number) => {
           /* 决定是从左还是从右入场 */
           if (index % 2) {
-            item.style.transform =
-              "translateX(-100%) translateY(500%) scale(0)";
+            item.style.transform = "translateX(-100%) translateY(500%) scale(0)";
           } else {
             item.style.transform = "translateX(100%) translateY(500%) scale(0)";
           }
@@ -86,12 +85,8 @@ let ended: () => void = () => {
       @click="play(item.link, index)"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text lib-one-line">
-          {{ item.text }}</span
-        >
-        <marquee v-else class="text" scrollamount="8.5">
-          {{ item.text }}</marquee
-        >
+        <span v-if="current_index !== index" class="text lib-one-line"> {{ item.text }}</span>
+        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
@@ -104,12 +99,7 @@ let ended: () => void = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice
-      v-if="play_link"
-      :link="play_link"
-      @ended="ended"
-      @info="voiceInfo"
-    />
+    <PlayVoice v-if="play_link" :link="play_link" @ended="ended" @info="voiceInfo" />
   </div>
 </template>
 

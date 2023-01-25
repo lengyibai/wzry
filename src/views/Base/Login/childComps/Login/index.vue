@@ -21,11 +21,7 @@ const reg_form = ref<User>(); //
 
 //登录、注册的组件切换
 const component = computed(() => {
-  return is_reg.value === "登录"
-    ? LoginBox
-    : is_reg.value === "注册"
-    ? RegBox
-    : SelectInto;
+  return is_reg.value === "登录" ? LoginBox : is_reg.value === "注册" ? RegBox : SelectInto;
 });
 
 /* 重新选择登录还是注册 */
@@ -54,8 +50,7 @@ const EmitRegSuccess = (form: User) => {
 /* 视差动画 */
 const parallax = new $Parallax(
   ({ degX, degY }: Record<string, number>) => {
-    loginBox.value &&
-      (loginBox.value.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`);
+    loginBox.value && (loginBox.value.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`);
   },
   {
     rx: 10,
@@ -75,11 +70,7 @@ onBeforeUnmount(() => {
 <template>
   <div ref="loginBox" class="login-box">
     <!-- 左上角重新选择 -->
-    <div
-      v-show="is_reg"
-      class="back cursor-pointer lib-click"
-      @click="handleBack"
-    >
+    <div v-show="is_reg" class="back cursor-pointer lib-click" @click="handleBack">
       <i class="iconfont wzry-fanhui" />
       <span>重新选择</span>
     </div>
@@ -94,11 +85,7 @@ onBeforeUnmount(() => {
       }"
       class="logo"
     >
-      <img
-        :src="IMGBED + '/image/login_logo.png'"
-        alt="logo"
-        @dragstart.prevent
-      />
+      <img :src="IMGBED + '/image/login_logo.png'" alt="logo" @dragstart.prevent />
     </div>
 
     <!-- 标题 -->

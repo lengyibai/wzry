@@ -11,15 +11,9 @@ type Options = Record<
   }
 >;
 
-const EditHero = defineAsyncComponent(
-  () => import("./childViews/EditHero/index.vue")
-); //英雄
-const EditSkin = defineAsyncComponent(
-  () => import("./childViews/EditSkin/index.vue")
-); //皮肤
-const EditSkill = defineAsyncComponent(
-  () => import("./childViews/EditSkill/index.vue")
-); //技能
+const EditHero = defineAsyncComponent(() => import("./childViews/EditHero/index.vue")); //英雄
+const EditSkin = defineAsyncComponent(() => import("./childViews/EditSkin/index.vue")); //皮肤
+const EditSkill = defineAsyncComponent(() => import("./childViews/EditSkill/index.vue")); //技能
 
 const { box, list } = useManageCard;
 const components = [EditHero, EditSkin, EditSkill];

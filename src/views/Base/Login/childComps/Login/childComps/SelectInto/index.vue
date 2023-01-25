@@ -21,9 +21,7 @@ const handleInto = (v: string) => {
 <template>
   <div class="select-into">
     <K-Button class="reg" @click="handleInto('注册')">{{ "注册" }}</K-Button>
-    <K-Button class="login" type="warning" @click="handleInto('登录')">{{
-      "登录"
-    }}</K-Button>
+    <K-Button class="login" type="warning" @click="handleInto('登录')">{{ "登录" }}</K-Button>
   </div>
 </template>
 

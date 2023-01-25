@@ -44,11 +44,7 @@ const abbreviations: Record<string, string> = {
 
       <!-- 被动/主动 -->
       <div class="details">
-        <div
-          v-for="(item, index) in equip.motivation"
-          :key="index"
-          class="motivation"
-        >
+        <div v-for="(item, index) in equip.motivation" :key="index" class="motivation">
           <div class="title">{{ item.type }}-{{ item.name }}</div>
           <div class="desc" v-html="item.desc"></div>
           <div v-if="item.time" class="time lq">{{ item.time }}秒</div>

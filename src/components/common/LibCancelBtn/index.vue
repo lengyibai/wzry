@@ -7,13 +7,7 @@
     }"
     @click="close"
   >
-    <img
-      v-show="show_up"
-      class="close"
-      src="./icon.svg"
-      alt=""
-      @dragstart.prevent
-    />
+    <img v-show="show_up" class="close" src="./icon.svg" alt="" @dragstart.prevent />
   </button>
 </template>
 <script setup>

@@ -40,9 +40,7 @@ const equip_type = [
 ];
 
 //动态list
-const list = computed(() =>
-  ["hero", "skin"].includes(props.type) ? hero_type : equip_type
-);
+const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));
 
 //用于比较的筛选类型
 const filter_type = computed(() => {

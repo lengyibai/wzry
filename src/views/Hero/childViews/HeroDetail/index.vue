@@ -96,11 +96,7 @@ onMounted(() => {
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <LibMaskClose @close="EmitHide" />
-    <LibFullScroll
-      v-model="scroll_index"
-      @start="EmitScollStart"
-      @end="EmitScrollEnd"
-    >
+    <LibFullScroll v-model="scroll_index" @start="EmitScollStart" @end="EmitScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />

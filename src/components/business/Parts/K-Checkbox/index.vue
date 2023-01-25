@@ -31,9 +31,7 @@ const handleToggle = () => {
 <template>
   <div class="k-checkbox" @click="handleToggle">
     <div class="label" :style="{ width: labelWidth }">
-      <span class="text-gradient-one"
-        ><i v-if="required" class="star">*</i>{{ label }}：
-      </span>
+      <span class="text-gradient-one"><i v-if="required" class="star">*</i>{{ label }}： </span>
     </div>
     <img class="cursor-pointer" :src="icon" @dragstart.prevent />
   </div>

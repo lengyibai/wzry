@@ -29,11 +29,7 @@ const handle = (v: string) => {
 
     <!-- 价格 -->
     <div class="price">
-      <img
-        v-if="priceShow(data.price)"
-        :src="IMGBED + '/image/coupon.png'"
-        alt=""
-      />
+      <img v-if="priceShow(data.price)" :src="IMGBED + '/image/coupon.png'" alt="" />
       <span>{{ data.price }}</span>
     </div>
 
@@ -45,9 +41,7 @@ const handle = (v: string) => {
 
     <!-- 悬浮工具 -->
     <div class="tool">
-      <span @click="handle('poster')">
-        <i class="iconfont wzry-fangda cursor-pointer" />大图</span
-      >
+      <span @click="handle('poster')"> <i class="iconfont wzry-fangda cursor-pointer" />大图</span>
       <span @click="handle('voice')">
         <i class="iconfont wzry-bofangyuyin cursor-pointer" />语音</span
       >

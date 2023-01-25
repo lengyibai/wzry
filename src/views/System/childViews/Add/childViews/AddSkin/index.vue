@@ -169,22 +169,11 @@ setTimeout(async () => {
         @mouseenter="current_index = index"
         @mouseleave="current_index = null"
       >
-        <FormInput
-          v-model="item.name"
-          label="皮肤名"
-          required
-          @blur="EmitExist"
-        />
+        <FormInput v-model="item.name" label="皮肤名" required @blur="EmitExist" />
         <FormInput v-model="item.price" label="价格" placeholder="请输入" />
 
         <!-- 皮肤类型 -->
-        <FormSelect
-          id
-          v-model="item.type"
-          label="皮肤类型"
-          :data="skin_types"
-          :value="item.type"
-        />
+        <FormSelect id v-model="item.type" label="皮肤类型" :data="skin_types" :value="item.type" />
 
         <!--··皮肤头像、海报··-->
         <FormLabel label-width="355px" label="头像&海报&小尺寸海报">

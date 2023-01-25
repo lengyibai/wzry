@@ -73,8 +73,7 @@ form_data.value ??= $deepCopy(heroDefault);
 
 /* 发布 */
 const EmitCommit = async () => {
-  const { id, mark, name, cover, headImg, poster } =
-    form_data.value as Hero.Data;
+  const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
 
   if (id && mark && name && cover && headImg && poster) {
     await addHeroBasic({
@@ -131,19 +130,10 @@ setTimeout(async () => {
     <!-- 英雄名、代号、身高 -->
     <div class="flex-box">
       <FormInput v-model="form_data!.name" label="英雄名" required />
-      <FormInput
-        v-model="form_data!.gender"
-        label="性别"
-        required
-        placeholder="男/女"
-      />
+      <FormInput v-model="form_data!.gender" label="性别" required placeholder="男/女" />
       <FormInput v-model="form_data!.mark" label="代号" required />
       <FormInput v-model="form_data!.height" label="身高" />
-      <FormInput
-        v-model="form_data!.identity"
-        label="身份"
-        placeholder="多个身份/分隔"
-      />
+      <FormInput v-model="form_data!.identity" label="身份" placeholder="多个身份/分隔" />
     </div>
 
     <!-- 选择器相关 -->

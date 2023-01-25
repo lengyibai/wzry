@@ -14,17 +14,7 @@ const $clickAudioStore = clickAudio();
 
 const { loading, show_loading, loading_text } = useLoading();
 const { msg, messages } = useMessage();
-const {
-  show_tip,
-  title,
-  btn_text,
-  content,
-  align,
-  noTipName,
-  btn,
-  btnFn,
-  tip,
-} = useTip();
+const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
 /* 挂载全局 */
 $switchStore.setTriggerFn({
