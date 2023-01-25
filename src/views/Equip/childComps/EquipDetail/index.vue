@@ -26,35 +26,37 @@ const abbreviations: Record<string, string> = {
 
 <template>
   <div class="equip-detail" :class="{ show: show }">
-    <!-- 名称 -->
-    <div class="name">{{ equip.name }}</div>
+    <template v-if="equip">
+      <!-- 名称 -->
+      <div class="name">{{ equip.name }}</div>
 
-    <!-- 数值信息 -->
-    <div class="info">
-      <div
-        v-for="(item, index) in equip.effect"
-        :key="index"
-        class="effect"
-        :class="abbreviations[item.name]"
-      >
-        +{{ item.num }} {{ item.name }}
+      <!-- 数值信息 -->
+      <div class="info">
+        <div
+          v-for="(item, index) in equip.effect"
+          :key="index"
+          class="effect"
+          :class="abbreviations[item.name]"
+        >
+          +{{ item.num }} {{ item.name }}
+        </div>
       </div>
-    </div>
 
-    <!-- 被动/主动 -->
-    <div v-if="equip?.name" class="details">
-      <div
-        v-for="(item, index) in equip.motivation"
-        :key="index"
-        class="motivation"
-      >
-        <div class="title">{{ item.type }}-{{ item.name }}</div>
-        <div class="desc" v-html="item.desc"></div>
-        <div v-if="item.time" class="time lq">{{ item.time }}秒</div>
-        <div v-if="item.note" class="note" v-html="item.note"></div>
+      <!-- 被动/主动 -->
+      <div class="details">
+        <div
+          v-for="(item, index) in equip.motivation"
+          :key="index"
+          class="motivation"
+        >
+          <div class="title">{{ item.type }}-{{ item.name }}</div>
+          <div class="desc" v-html="item.desc"></div>
+          <div v-if="item.time" class="time lq">{{ item.time }}秒</div>
+          <div v-if="item.note" class="note" v-html="item.note"></div>
+        </div>
       </div>
-    </div>
-    <div v-if="equip.note" class="note" v-html="equip.note"></div>
+      <div v-if="equip.note" class="note" v-html="equip.note"></div>
+    </template>
   </div>
 </template>
 
