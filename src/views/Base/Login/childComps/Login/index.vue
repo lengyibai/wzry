@@ -50,7 +50,8 @@ const EmitRegSuccess = (form: User) => {
 /* 视差动画 */
 const parallax = new $Parallax(
   ({ degX, degY }: Record<string, number>) => {
-    loginBox.value && (loginBox.value.style.transform = `rotateX(${degX}deg) rotateY(${degY}deg)`);
+    loginBox.value &&
+      (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${degX}deg) rotateY(${degY}deg)`);
   },
   {
     rx: 10,
