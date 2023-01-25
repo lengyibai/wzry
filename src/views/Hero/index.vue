@@ -11,14 +11,14 @@ import { heroDefault } from "@/defaultValue";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue")); //详情页
 
 const $route = useRoute();
 const $router = useRouter();
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetail();
@@ -85,7 +85,7 @@ const EmitLoadMore = () => {
 };
 
 /* 折叠展开侧边栏时触发 */
-$otherStore.setTriggerFn(() => {
+$collapseStore.setTriggerFn(() => {
   heroListRef.value.updateHeight();
 });
 
@@ -144,7 +144,7 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   $bus.off("resize");
-  $otherStore.clearTrigger();
+  $collapseStore.clearTrigger();
 });
 </script>
 

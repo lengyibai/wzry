@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 import skinStore from "@/store/skin";
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 const $switchStore = switchStore();
 const $skinStore = skinStore();
 const $heroStore = heroStore();
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $equipStore = equipStore();
 
 const hero_type = [
@@ -67,7 +67,7 @@ const handleSelect = (name: string, index: number) => {
 </script>
 
 <template>
-  <div class="filter-sidebar" :class="{ collapse: $otherStore.collapse }">
+  <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
     <div
       v-for="(item, index) in list"
       :key="index"

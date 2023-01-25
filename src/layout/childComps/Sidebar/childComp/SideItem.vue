@@ -6,7 +6,7 @@ import SideItem from "./SideItem.vue"; //调用自身
 
 import { Route } from "@/router/interface";
 import switchStore from "@/store/switch";
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 
 interface RouteFormat {
   path: string; //路由路径
@@ -23,7 +23,7 @@ const props = defineProps<Props>();
 
 const $router = useRouter();
 const $route = useRoute();
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
@@ -64,7 +64,7 @@ sidebarActive(props.route);
 </script>
 
 <template>
-  <div v-if="route" class="menu" :class="{ collapse: $otherStore.collapse }">
+  <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
     <button
       class="menu-item menu-list"
       :style="textStyle"

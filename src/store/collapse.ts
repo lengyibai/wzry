@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-const otherStore = defineStore("collapse", () => {
+const collapseStore = defineStore("collapse", () => {
   const collapse = ref(false); //折叠
   const triggerFn = ref<(() => void)[]>([]);
 
@@ -33,5 +33,5 @@ const otherStore = defineStore("collapse", () => {
   return { collapse, setCollapse, setTriggerFn, clearTrigger };
 });
 
-export default otherStore;
-export type OtherStore = ReturnType<typeof otherStore>;
+export default collapseStore;
+export type OtherStore = ReturnType<typeof collapseStore>;

@@ -9,11 +9,11 @@ import { getSkinVoice } from "@/api/main/games/voice";
 import { $debounce } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const $skinStore = skinStore();
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const skinListRef = ref(); //布局容器
@@ -79,7 +79,7 @@ watch(
 );
 
 /* 折叠展开侧边栏时触发 */
-$otherStore.setTriggerFn(() => {
+$collapseStore.setTriggerFn(() => {
   skinListRef.value.updateHeight();
 });
 
@@ -110,7 +110,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   $bus.off("resize");
-  $otherStore.clearTrigger();
+  $collapseStore.clearTrigger();
 });
 </script>
 

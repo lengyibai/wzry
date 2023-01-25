@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
-import otherStore from "@/store/collapse";
+import collapseStore from "@/store/collapse";
 
-const $otherStore = otherStore();
+const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {
   $switchStore.$clickAudio("d5e2");
-  $otherStore.setCollapse();
+  $collapseStore.setCollapse();
 };
 </script>
 
 <template>
   <i
     class="iconfont wzry-packup cursor-pointer"
-    :class="{ 'is-active': !$otherStore.collapse }"
+    :class="{ 'is-active': !$collapseStore.collapse }"
     @click="handleToggle"
   />
 </template>
