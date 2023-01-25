@@ -5,7 +5,8 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { visualizer } from "rollup-plugin-visualizer"; //build 视图分析依赖文件
-import Components from "unplugin-vue-components/vite";
+import Components from "unplugin-vue-components/vite"; //组件自动注册
+import VueSetupExtend from "vite-plugin-vue-setup-extend"; //设置name
 
 export default defineConfig({
   base: "./",
@@ -15,6 +16,7 @@ export default defineConfig({
       dts: "src/typings/components.d.ts", // 生成在src路径下名为auto-import.d.ts的声明文件
       dirs: ["src/components"], // 配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import
     }),
+    VueSetupExtend(),
     visualizer({
       emitFile: true,
       filename: "visualizer.html", //分析图生成的文件名
