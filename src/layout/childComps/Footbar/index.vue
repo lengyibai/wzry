@@ -103,7 +103,7 @@ onBeforeUnmount(() => {
     <Time class="time" />
 
     <!-- 音乐工具栏 -->
-    <Tool @toggle="EmitMusicToole" />
+    <Tool v-if="enable_music" @toggle="EmitMusicToole" />
 
     <!-- 右侧作者 -->
     <Copyright class="copyright" />
