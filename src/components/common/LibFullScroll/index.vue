@@ -92,6 +92,35 @@ onMounted(() => {
       }, props.duration);
     }, 10);
   });
+
+  /* 兼容移动端 */
+  let start = 0;
+  LibFullScroll.value.addEventListener("touchstart", (e: TouchEvent) => {
+    start = e.changedTouches[0].pageY;
+  });
+  LibFullScroll.value.addEventListener("touchmove", (e: TouchEvent) => {
+    const status = start - e.changedTouches[0].pageY;
+    if (Math.abs(status) < 300) return;
+    $debounceDelay(() => {
+      LibFullScroll.value.style.transition = `all ${props.duration}ms`;
+      if (!scroll) return;
+      emit("start", index.value + 1);
+      scroll = false;
+      -status < 0 && index.value < sonCount - 1
+        ? index.value++
+        : -status > 0 && index.value > 0
+        ? index.value--
+        : "";
+      LibFullScroll.value.style[direction ? "top" : "left"] =
+        -index.value *
+          (direction ? LibFullScroll.value.offsetHeight : LibFullScroll.value.offsetWidth) +
+        "px";
+      emit("update:modelValue", index.value + 1);
+      setTimeout(() => {
+        scroll = true;
+      }, props.duration);
+    }, 10);
+  });
   window.addEventListener("resize", () => {
     change(props.modelValue - 1);
   });
