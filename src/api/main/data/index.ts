@@ -5,6 +5,9 @@ import http from "@/api";
 /** @description: 获取版本信息 */
 export const Version = () => http.Get<string>("/version.json");
 
+/** @description: 获取公告 */
+export const Notice = () => http.Get<string>("/notice.json");
+
 /** @description: 获取用户列表 */
 export const User = () => http.Get<User[]>("/user.json");
 
