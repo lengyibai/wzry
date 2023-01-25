@@ -50,7 +50,7 @@ watch(
     </transition>
 
     <!-- 装备侧边栏 -->
-    <transition name="sidebar" apper>
+    <transition name="sidebar" appear>
       <FilterSidebar type="equip" />
     </transition>
   </div>
