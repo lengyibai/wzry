@@ -11,7 +11,7 @@ const musicStore = defineStore("music", () => {
   const volume = ref(0); //音量
   const status = ref(false); //当前音乐播放状态
   const show_list = ref(false); //显示播放列表
-  const show_tool = ref(false); //显示工具栏
+  const show_tool = ref(true); //显示工具栏
   const bgm = new Audio(); //播放器
 
   const musics = [
