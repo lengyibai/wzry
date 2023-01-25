@@ -22,9 +22,14 @@ $clickAudio.setVolume($settingStore.config.audioVolume); //音效音量
 $musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
 $speedStore.setSpeed($settingStore.config.speed); //动画速度
 
+/* 是否为旧版 */
 const old = computed(() => {
   return $versionStore.local_version !== $versionStore.remote_version;
 });
+
+/* 浏览器版本提示 */
+const low = $chromeV < 90;
+const browser = `${$chromeV} ${low ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""}`;
 </script>
 
 <template>
@@ -42,7 +47,7 @@ const old = computed(() => {
     <!-- 左下角水印 -->
     <transition name="fade">
       <div v-show="!$collapseStore.collapse" class="watermark">
-        <p>浏览器内核版本：{{ $chromeV }}</p>
+        <p :class="{ low: low }">浏览器内核版本：{{ browser }}</p>
         <p :class="{ old: old }">当前版本：{{ $versionStore.local_version }}</p>
         <p :class="{ new: old }">最新版本：{{ $versionStore.remote_version }}</p>
       </div>
@@ -78,6 +83,10 @@ const old = computed(() => {
 
 .new {
   color: var(--green) !important;
+}
+
+.low {
+  color: var(--red);
 }
 
 /* 圆形路由跳转 */
