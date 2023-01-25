@@ -28,6 +28,7 @@ const versionStore = defineStore("version", () => {
 
       if (test > 0) {
         // 如果为旧版，则自动更新并更新本地版本
+        $switchStore.$msg("正在更新版本，更新后可查看数据改动，请稍等...");
         useUpdateData().then(() => {
           updateVersion(res.data);
         });
