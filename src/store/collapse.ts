@@ -25,6 +25,11 @@ const otherStore = defineStore("collapse", () => {
     triggerFn.value = [];
   };
 
+  window.addEventListener("resize", (e) => {
+    const el = e.target as Window;
+    collapse.value = el.innerWidth < 1300;
+  });
+
   return { collapse, setCollapse, setTriggerFn, clearTrigger };
 });
 
