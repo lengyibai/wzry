@@ -12,7 +12,7 @@ import { useRoute, useRouter } from "vue-router";
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 
-import { $debounce, $deepCopy } from "@/utils";
+import { $debounce, $deepCopy, $promiseTimeout } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/defaultValue";
 import $bus from "@/utils/eventBus";
@@ -28,20 +28,20 @@ const HeroDetail = defineAsyncComponent(
 const $route = useRoute();
 const $router = useRouter();
 const $otherStore = otherStore();
+const $switchStore = switchStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetail();
-
-const $switchStore = switchStore();
 
 let id: unknown = $route.query.id; //地址栏参数
 
 const heroListRef = ref(); //布局容器
-const count = ref(0); //一行显示的数目
-const show = ref(false); //显示列表
-const show_HeroDetail = ref(false); //显示英雄详情
-const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
-$switchStore.$clickAudio("4d8m");
+const count = ref(0); //一行显示的数目
+const show_HeroDetail = ref(false); //显示英雄详情
+const show_list = ref(false); //显示列表
+const show_tool = ref(false); //显示工具栏
+const toggle_show = ref(false); //切换显示列表
+const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -102,16 +102,16 @@ $otherStore.setTriggerFn(() => {
 watch(
   () => $heroStore.filter_list,
   () => {
-    show.value = false;
+    toggle_show.value = false;
 
     nextTick(() => {
-      show.value = true;
+      toggle_show.value = true;
     });
   },
   { deep: true, immediate: true }
 );
 
-onMounted(() => {
+onMounted(async () => {
   const change = [
     [1450, 5],
     [1300, 4],
@@ -139,6 +139,16 @@ onMounted(() => {
   });
 
   $switchStore.$loading.close();
+
+  //显示工具栏
+  await $promiseTimeout(() => {
+    show_tool.value = true;
+  }, 500);
+  // 显示英雄列表
+  await $promiseTimeout(() => {
+    $switchStore.$clickAudio("4d8m");
+    show_list.value = true;
+  }, 250);
 });
 
 onBeforeUnmount(() => {
@@ -152,11 +162,14 @@ onBeforeUnmount(() => {
     <transition name="card-list">
       <div class="hero-main">
         <!-- 工具栏 -->
-        <HeroToolbar />
+        <transition name="fade" appear>
+          <HeroToolbar v-show="show_tool" />
+        </transition>
 
         <!-- 列表 -->
         <LibGridLayout
-          v-if="$heroStore.filter_list.length && show"
+          v-show="show_list"
+          v-if="$heroStore.filter_list.length && toggle_show && show_list"
           ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
@@ -170,9 +183,9 @@ onBeforeUnmount(() => {
           <transition-group name="card" appear>
             <div
               v-for="(item, index) in $heroStore.filter_list"
-              :key="item.id"
+              :key="index"
               :style="{
-                'transition-delay': 0.01 * index + 's',
+                'transition-delay': 0.02 * index + 's',
               }"
               @mouseenter="handleEnterCard(item)"
             >
