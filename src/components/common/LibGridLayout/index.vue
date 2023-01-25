@@ -9,8 +9,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { nextTick } from "process";
-
 import { onBeforeMount, onMounted, ref, onActivated } from "vue";
 interface Props {
   count: number;
