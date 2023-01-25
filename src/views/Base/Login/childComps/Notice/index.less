@@ -1,19 +1,26 @@
 .main {
+  overflow: auto;
   width: 100%;
   height: 100%;
+  padding-right: 25px;
   color: var(--theme-color-five);
 
-  :deep(p) {
-    font-size: 22px;
-    font-family: var(--font-f);
-    line-height: 1.5;
-
-    &.dear {
-      margin-bottom: 25px;
-    }
+  h1 {
+    margin-bottom: 10px;
   }
 
   :deep(.content) {
+    margin-bottom: 25px;
     padding-left: 2em;
+
+    p {
+      font-size: 22px;
+      font-family: var(--font-f);
+      line-height: 1.5;
+
+      &.dear {
+        margin-bottom: 25px;
+      }
+    }
   }
 }
