@@ -35,6 +35,9 @@ export default () => {
         noTipName.value = text === "2rb7" ? undefined : text;
         content.value = tips[text as TipKeys];
         align.value = p;
+        title.value = biaoti;
+        btn_text.value = btnText;
+        btnFn.value = fn;
         setTimeout(() => {
           show_tip.value = true;
         });
