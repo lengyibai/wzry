@@ -79,6 +79,7 @@ const EmitScroll = (v: number) => {
 
 /* 加载更多 */
 const EmitLoadMore = () => {
+  $heroStore.loadMore();
   nextTick(() => {
     heroListRef.value.updateHeight();
   });
@@ -160,7 +161,7 @@ onBeforeUnmount(() => {
         <!-- 列表 -->
         <LibGridLayout
           v-show="show_list"
-          v-if="$heroStore.filter_list.length && toggle_show && show_list"
+          v-if="$heroStore.show_list.length && toggle_show && show_list"
           ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
@@ -173,10 +174,10 @@ onBeforeUnmount(() => {
         >
           <transition-group name="card" appear>
             <div
-              v-for="(item, index) in $heroStore.filter_list"
+              v-for="(item, index) in $heroStore.show_list"
               :key="index"
               :style="{
-                'transition-delay': 0.02 * index + 's',
+                'transition-delay': (index % 20) * 0.025 + 's',
               }"
               @mouseenter="handleEnterCard(item)"
             >
