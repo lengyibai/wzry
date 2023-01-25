@@ -146,7 +146,7 @@ export default () => {
       }
 
       if (voice_length) {
-        text += `${data_length && "以及"}《${voiceToShow.join("、")}》${
+        text += `${text && "以及"}《${voiceToShow.join("、")}》${
           voice_length > 5 ? `...共${voice_length}条语音数据需要更新，` : "的语音数据需要更新，"
         }`;
       }
