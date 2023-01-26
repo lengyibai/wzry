@@ -1,14 +1,22 @@
-<script setup lang="ts">
-const IMGBED = window.IMGBED; //全局图床链接
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+
+import switchStore from "@/store/switch";
+
+const $router = useRouter();
+const $switchStore = switchStore();
+
+$switchStore.$loading.close();
 </script>
 
 <template>
-  <div class="not-container">
-    <img :src="IMGBED + '/image/status_404.png'" class="not-img" alt="404" />
-    <div class="not-detail">
-      <h2>404</h2>
-      <h4>抱歉，您访问的页面不存在~🤷‍♂️🤷‍♀️</h4>
+  <div class="main four">
+    <div class="text">
+      <div class="a">404</div>
+      <div class="b">页面未找到</div>
+      <div class="c">你访问了一个不存在的地址</div>
     </div>
+    <K-Button class="home" @click="$router.replace('/login')">回到主页</K-Button>
   </div>
 </template>
 
