@@ -28,28 +28,31 @@ export default () => {
 
     //判断是否开启了tip
     if ($settingStore.config.tip) {
-      //判断是否已经设置了不再提示
-      if (!$settingStore.config.noTips[text as TipKeys] && text.length === 4) {
-        show_tip.value = !show_tip.value;
-        $switchStore.$clickAudio("rt25");
-        noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = tips[text as TipKeys];
-        align.value = p;
-        title.value = biaoti;
-        btn_text.value = btnText;
-        btnFn.value = fn;
-        setTimeout(() => {
-          show_tip.value = true;
-        });
-      }
-
       //如果字符数超过4，则表示自定义tip
+
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudio("rt25");
         title.value = biaoti;
         content.value = text;
         align.value = p;
+        btn_text.value = btnText;
+        btnFn.value = fn;
+        setTimeout(() => {
+          show_tip.value = true;
+        });
+
+        return;
+      }
+
+      //判断是否已经设置了不再提示
+      if (!$settingStore.config.noTips[text as TipKeys]) {
+        show_tip.value = !show_tip.value;
+        $switchStore.$clickAudio("rt25");
+        noTipName.value = text === "2rb7" ? undefined : text;
+        content.value = tips[text as TipKeys];
+        align.value = p;
+        title.value = biaoti;
         btn_text.value = btnText;
         btnFn.value = fn;
         setTimeout(() => {
