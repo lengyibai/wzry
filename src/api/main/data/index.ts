@@ -3,7 +3,7 @@ import { getHeroPinyin } from "../games/hero";
 import http from "@/api";
 
 /** @description: 获取版本信息 */
-export const Version = () => http.Get<string>("/version.json");
+export const Version = () => http.Get<{ main: string; file: string }>("/version.json");
 
 /** @description: 获取公告 */
 export const Notice = () => http.Get<string>("/notice.json");
