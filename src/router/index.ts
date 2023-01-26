@@ -13,10 +13,14 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
+  const is_exist = isExist(to.path);
+
+  //如果满足以下条件，则开启loading
   if (
     !from.meta.noVerify &&
     to.path !== from.path &&
-    !["403页面", "404页面"].includes(to.meta.title as string)
+    !["403", "404"].includes(to.meta.title as string) &&
+    is_exist[0]
   ) {
     switchStore().$loading.show("正在加载" + to.meta.title + "页面");
   }
@@ -24,7 +28,6 @@ useRouter.beforeEach(async (to, from, next) => {
   const $authStore = authStore();
 
   const token = $authStore.userInfo?.wzryToken;
-  const is_exist = isExist(to.path);
 
   // 如果路径不存在
   if (!is_exist[0]) {
