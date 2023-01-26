@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { $chromeV } from "@/utils";
+import { $browserV } from "@/utils";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
 import collapseStore from "@/store/collapse";
@@ -23,13 +23,14 @@ $musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
 $speedStore.setSpeed($settingStore.config.speed); //动画速度
 
 /* 是否为旧版 */
-const old = computed(() => {
-  return $versionStore.local_version !== $versionStore.remote_version;
-});
+const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);
+const old_file = computed(() => $versionStore.local_file !== $versionStore.file_version);
 
 /* 浏览器版本提示 */
-const low = $chromeV < 90;
-const browser = `${$chromeV} ${low ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""}`;
+const low = $browserV.browser === "chrome" ? $browserV.version < 90 : $browserV.version < 15;
+const version = `${$browserV.version} ${
+  low ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""
+}`;
 </script>
 
 <template>
@@ -47,9 +48,11 @@ const browser = `${$chromeV} ${low ? "(版本较低，部分效果可能无法�
     <!-- 左下角水印 -->
     <transition name="fade">
       <div v-show="!$collapseStore.collapse" class="watermark">
-        <p :class="{ low: low }">浏览器内核版本：{{ browser }}</p>
-        <p :class="{ old: old }">当前版本：{{ $versionStore.local_version }}</p>
-        <p :class="{ new: old }">最新版本：{{ $versionStore.remote_version }}</p>
+        <p :class="{ low: low }">浏览器{{ $browserV.browser }}内核版本：{{ version }}</p>
+        <p :class="{ old: old }">当前数据版本：{{ $versionStore.local_version }}</p>
+        <p :class="{ new: old }">最新数据版本：{{ $versionStore.remote_version }}</p>
+        <p :class="{ old: old_file }">当前网页版本：{{ $versionStore.local_file }}</p>
+        <p :class="{ new: old_file }">最新网页版本：{{ $versionStore.file_version }}</p>
       </div>
     </transition>
 
