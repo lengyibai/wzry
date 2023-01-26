@@ -317,12 +317,24 @@ export function $deepMearge(obj, target = {}) {
 }
 
 /* 获取浏览器版本 */
-export const $chromeV = (() => {
-  let v = "";
-  navigator.userAgent.split(" ").forEach((item) => {
-    /chrome/i.test(item) && (v = item);
-  });
-  return Number(v.split("/")[1].split(".")[0]);
+export const $browserV = (() => {
+  const ua = navigator.userAgent;
+  let browser = '';
+  let version = 0;
+  if (ua.indexOf("Chrome") > -1) {
+    browser = "chrome";
+    version = Number(ua
+      .match(/Chrome\/[\d.]+/)[0]
+      .split("/")[1]
+      .split(".")[0]);
+  } else if (ua.indexOf("Safari") > -1) {
+    browser = "safari";
+    version = Number(ua
+      .match(/Version\/[\d.]+/)[0]
+      .split("/")[1]
+      .split(".")[0]);
+  }
+  return { browser, version };
 })()
 
 /* 排序 */
