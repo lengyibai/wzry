@@ -52,9 +52,9 @@ interface Tips<T> {
   "1w7o": T;
   "0vk2": T;
   "1zs6": T;
-  // "3vi5": T;
-  // "2l5m": T;
-  // "9ms5": T;
+  "3vi5": T;
+  "2l5m": T;
+  "9ms5": T;
 }
 
 /** @description: Tips属性名 */

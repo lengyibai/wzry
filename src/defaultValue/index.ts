@@ -123,5 +123,8 @@ export const configDefault: SettingConfig = {
     "1w7o": false,
     "0vk2": false,
     "1zs6": false,
+    "3vi5": false,
+    "2l5m": false,
+    "9ms5": false,
   },
 };
