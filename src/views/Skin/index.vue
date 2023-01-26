@@ -42,9 +42,6 @@ const EmitScroll = (v: number) => {
 /* 加载更多 */
 const EmitLoadMore = () => {
   $skinStore.loadMore();
-  nextTick(() => {
-    skinListRef.value.updateHeight();
-  });
 };
 
 /* 点击工具栏中的选项 */
@@ -79,11 +76,6 @@ watch(
   { deep: true, immediate: true }
 );
 
-/* 折叠展开侧边栏时触发 */
-$collapseStore.setTriggerFn(() => {
-  skinListRef.value.updateHeight();
-});
-
 onMounted(() => {
   //实时修改一行个数
   const change = [
@@ -111,7 +103,6 @@ onMounted(() => {
 
 onActivated(() => {
   $switchStore.$loading.close();
-  skinListRef.value?.updateHeight();
 });
 
 onBeforeUnmount(() => {
@@ -132,12 +123,16 @@ onBeforeUnmount(() => {
           class="skin-list"
           gap="25px"
           :count="count"
-          :eqh-multiple="0.46"
           :scroll-top="$skinStore.scroll"
           @load-more="EmitLoadMore"
           @scroll="EmitScroll"
         >
-          <div v-for="item in $skinStore.show_list" :key="item.id" @mouseenter="handleEnterCard">
+          <div
+            v-for="item in $skinStore.show_list"
+            :key="item.id"
+            class="skin-card"
+            @mouseenter="handleEnterCard"
+          >
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
         </LibGridLayout>

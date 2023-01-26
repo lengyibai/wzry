@@ -70,12 +70,12 @@ onBeforeUnmount(() => {
         class="epigraph-list"
         gap="15px"
         :count="count"
-        :eqh-multiple="0.5"
       >
         <transition-group name="card" appear>
           <div
             v-for="(item, index) in epigraph_list"
             :key="item.id"
+            class="epigraph-card"
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"

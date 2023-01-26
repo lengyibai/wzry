@@ -80,15 +80,7 @@ const EmitScroll = (v: number) => {
 /* 加载更多 */
 const EmitLoadMore = () => {
   $heroStore.loadMore();
-  nextTick(() => {
-    heroListRef.value.updateHeight();
-  });
 };
-
-/* 折叠展开侧边栏时触发 */
-$collapseStore.setTriggerFn(() => {
-  heroListRef.value.updateHeight();
-});
 
 /* 监听筛选后的英雄列表用于切换显示 */
 watch(
@@ -167,7 +159,6 @@ onBeforeUnmount(() => {
           scroll-id="hero_list"
           gap="25px"
           :count="count"
-          :eqh-multiple="1.5"
           :scroll-top="$heroStore.scroll"
           @scroll="EmitScroll"
           @load-more="EmitLoadMore"
@@ -176,6 +167,7 @@ onBeforeUnmount(() => {
             <div
               v-for="(item, index) in $heroStore.show_list"
               :key="index"
+              class="hero-card"
               :style="{
                 'transition-delay': (index % 20) * 0.025 + 's',
               }"
