@@ -1,5 +1,5 @@
-<script setup lang="ts" name="Data">
-import { ref } from "vue";
+<script setup lang="ts" name="database">
+import { ref, onActivated } from "vue";
 
 import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 import skinStore from "@/store/skin";
@@ -205,6 +205,10 @@ const EmitsSortChange = (v: number[]) => {
 
   play();
 };
+
+onActivated(() => {
+  $switchStore.$loading.close();
+});
 </script>
 
 <template>

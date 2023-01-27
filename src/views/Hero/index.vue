@@ -1,5 +1,13 @@
-<script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch, defineAsyncComponent } from "vue";
+<script setup lang="ts" name="hero">
+import {
+  nextTick,
+  onBeforeUnmount,
+  onActivated,
+  onMounted,
+  ref,
+  watch,
+  defineAsyncComponent,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
@@ -133,6 +141,10 @@ onMounted(async () => {
     $switchStore.$clickAudio("4d8m");
     show_list.value = true;
   }, 250);
+});
+
+onActivated(() => {
+  $switchStore.$loading.close();
 });
 
 onBeforeUnmount(() => {

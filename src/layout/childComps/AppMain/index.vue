@@ -1,7 +1,7 @@
 <template>
   <div class="app-main">
     <router-view v-slot="{ Component }">
-      <KeepAlive include="skin">
+      <KeepAlive include="hero,skin,equip,epigraph,add,database">
         <component :is="Component" />
       </KeepAlive>
     </router-view>

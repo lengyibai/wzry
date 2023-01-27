@@ -1,15 +1,15 @@
-<script setup lang="ts">
-import { ref, watch } from "vue";
+<script setup lang="ts" name="equip">
+import { ref, watch, nextTick, onActivated } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
 import { $deepCopy } from "@/utils";
 import { equipDefault } from "@/defaultValue";
-import equiqStore from "@/store/equip";
+import equipStore from "@/store/equip";
 import switchStore from "@/store/switch";
 
-const $equiqStore = equiqStore();
+const $equipStore = equipStore();
 const $switchStore = switchStore();
 
 const show = ref(false); //显示装备列表
@@ -20,21 +20,29 @@ $switchStore.$clickAudio("3k4s");
 $switchStore.$loading.close();
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
-$equiqStore.getEquipList().then(() => {
+$equipStore.getEquipList().then(() => {
   show.value = true;
 });
 
 /* 监听被点击装备的id，点击后更新装备详情 */
 watch(
-  () => $equiqStore.active_id,
+  () => $equipStore.active_id,
   (v) => {
     show_Details.value = false; //隐藏装备详情，再延迟显示
     setTimeout(() => {
-      equip_data.value = $equiqStore.equip_list.find((item) => item.id === v)!;
+      equip_data.value = $equipStore.equip_list.find((item) => item.id === v)!;
       show_Details.value = true;
     }, 250);
   }
 );
+
+nextTick(() => {
+  $equipStore.setEquipActive(111);
+});
+
+onActivated(() => {
+  $switchStore.$loading.close();
+});
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-<script setup lang="ts">
-import { ref } from "vue";
+<script setup lang="ts" name="epigraph">
+import { ref, onActivated } from "vue";
 
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
@@ -18,6 +18,10 @@ $switchStore.$loading.close();
 /* 获取铭文列表 */
 $epigraphStore.getEpigraph().then(() => {
   show_epigraph.value = true;
+});
+
+onActivated(() => {
+  $switchStore.$loading.close();
 });
 </script>
 
