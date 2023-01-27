@@ -48,7 +48,7 @@
       box-shadow: rgb(0 0 0 / 75%) 0 3px 5px;
       transition: all var(--time-250);
       animation: scale var(--time-250) 0.1s forwards;
-      transform: translateX(-100px) translateY(-100px) scale(0.5);
+      transform: translateY(-50px) scale(1.5);
       opacity: 0;
     }
 
@@ -57,12 +57,12 @@
       font-size: 30px;
       transition: all var(--time-250);
       animation: scale var(--time-250) 0.1s forwards;
-      transform: translateX(100px) translateY(100px) scale(0.5);
+      transform: translateY(50px) scale(0.75);
       opacity: 0;
 
       @keyframes scale {
         100% {
-          transform: translateX(0%) translateY(0%) scale(1);
+          transform: translateY(0%) scale(1);
           opacity: 1;
         }
       }
