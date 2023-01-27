@@ -59,3 +59,10 @@ interface Tips<T> {
 
 /** @description: Tips属性名 */
 type TipKeys = keyof Tips<string>;
+
+/** @description: 版本更新 */
+type VersionUpdate = {
+  main: string; //数据版本
+  file: string; //文件版本
+  log: string; //文件更新日志
+};
