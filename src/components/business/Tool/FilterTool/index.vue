@@ -9,6 +9,7 @@ interface Props {
   modelValue: string; //选择的值
   data: Data[]; //下拉列表
   listHeight?: string; //列表高度
+  status: boolean; // 下拉状态
 }
 const props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
@@ -25,7 +26,6 @@ const $switchStore = switchStore();
 const IMGBED = window.IMGBED; //全局图床链接
 
 const sort_text = ref("默认排序"); //标题
-const unfold = ref(false); //展开列表
 const current_value = ref(""); //选择的值
 
 sort_text.value = props.data[0].label;
@@ -36,7 +36,6 @@ if (props.modelValue) {
 
 /* 显示列表 */
 const handleShowList = () => {
-  unfold.value = !unfold.value;
   $switchStore.$clickAudio("n4r4");
 };
 
@@ -48,7 +47,6 @@ const handleEnterItem = (v: Data) => {
 
 /* 选择的值 */
 const handleSelect = (v: { label: string; value: number | string }) => {
-  unfold.value = false;
   current_value.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
@@ -62,7 +60,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
 
     <!-- 下拉图标 -->
     <img
-      :class="{ 'arrow-active': unfold }"
+      :class="{ 'arrow-active': status }"
       :src="IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
@@ -72,7 +70,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
     <!-- 展开列表 -->
     <div
       class="select-list"
-      :class="{ unfold: !unfold }"
+      :class="{ unfold: !status }"
       :style="{ height: listHeight }"
       @click.stop
     >

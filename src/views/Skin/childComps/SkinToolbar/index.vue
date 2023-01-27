@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive, onBeforeUnmount } from "vue";
 
 import skinStore from "@/store/skin";
+import $bus from "@/utils/eventBus";
 
 const $skinStore = skinStore();
 
@@ -43,8 +44,10 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
-const gender = ref(0); //性别排序
 const search_value = ref(""); //搜索值
+const gender = ref(0); //性别排序
+const current_index = ref(-1); // 当前展开的菜单
+const select_status = reactive([false, false, false, false, false]); //记录展开状态
 
 /* 价格排序 */
 const EmitPriceSort = (v: string) => {
@@ -71,27 +74,63 @@ const handerSetGender = (type: number) => {
 const handSearch = () => {
   $skinStore.searchSkin(search_value.value);
 };
+
+/** @description: 设置下拉状态 */
+const handleSelectStatus = (i: number) => {
+  //点击下拉菜单，先隐藏所有，再展开被点击的
+  select_status.fill(false);
+
+  // 如果重复点击一个，则不做处理
+  if (current_index.value === i) {
+    current_index.value = -1;
+    return;
+  }
+  select_status[i] = true;
+  current_index.value = i;
+};
+
+$bus.on("mouseup", (el) => {
+  //如果点击的不是下拉菜单，则隐藏
+  if (!(el as HTMLElement).className.includes("select-filter")) {
+    select_status.fill(false);
+    current_index.value = -1;
+  }
+});
+
+onBeforeUnmount(() => {
+  $bus.off("mouseup");
+});
 </script>
 
 <template>
   <div class="skin-toolbar">
     <div class="filter-select">
       <!-- 价格排序 -->
-      <FilterTool v-model="$skinStore.price_type" :data="select_price" @select="EmitPriceSort" />
+      <FilterTool
+        v-model="$skinStore.price_type"
+        :status="select_status[0]"
+        :data="select_price"
+        @click="handleSelectStatus(0)"
+        @select="EmitPriceSort"
+      />
 
       <!-- 皮肤类型筛选 -->
       <FilterTool
         v-model="$skinStore.skin_type"
+        :status="select_status[1]"
         :data="select_type"
         list-height="500px"
+        @click="handleSelectStatus(1)"
         @select="EmitTypeFilter"
       />
 
       <!-- 正序/倒序 -->
       <FilterTool
         v-model="$skinStore.sort_type"
+        :status="select_status[2]"
         :data="sort_type"
         list-height="100px"
+        @click="handleSelectStatus(2)"
         @select="EmitSortType"
       />
     </div>

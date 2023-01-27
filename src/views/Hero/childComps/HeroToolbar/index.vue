@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { getCampType } from "@/api/main/games/hero";
 import heroStore from "@/store/hero";
+import $bus from "@/utils/eventBus";
 
 const $heroStore = heroStore();
 
@@ -36,6 +37,8 @@ const sort_type = [
 
 const gender = ref(0); //性别排序
 const search_value = ref(""); //搜索值
+const current_index = ref(-1); // 当前展开的菜单
+const select_status = reactive([false, false, false, false, false]); //记录展开状态
 const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
 
 gender.value = $heroStore.gender_type;
@@ -85,6 +88,32 @@ const handerSetGender = (type: number) => {
 const handSearch = () => {
   $heroStore.searchHero(search_value.value);
 };
+
+/** @description: 设置下拉状态 */
+const handleSelectStatus = (i: number) => {
+  //点击下拉菜单，先隐藏所有，再展开被点击的
+  select_status.fill(false);
+
+  // 如果重复点击一个，则不做处理
+  if (current_index.value === i) {
+    current_index.value = -1;
+    return;
+  }
+  select_status[i] = true;
+  current_index.value = i;
+};
+
+$bus.on("mouseup", (el) => {
+  //如果点击的不是下拉菜单，则隐藏
+  if (!(el as HTMLElement).className.includes("select-filter")) {
+    select_status.fill(false);
+    current_index.value = -1;
+  }
+});
+
+onBeforeUnmount(() => {
+  $bus.off("mouseup");
+});
 </script>
 
 <template>
@@ -93,40 +122,50 @@ const handSearch = () => {
       <!-- 阵营筛选按钮 -->
       <FilterTool
         v-model="$heroStore.camp_type"
+        :status="select_status[0]"
         :data="select_camp"
         list-height="425px"
+        @click="handleSelectStatus(0)"
         @select="EmitSelectCamp"
       />
 
       <!-- 自带属性筛选按钮 -->
       <FilterTool
         v-model="$heroStore.attr_type"
+        :status="select_status[1]"
         :data="select_attr"
         list-height="345px"
+        @click="handleSelectStatus(1)"
         @select="EmitSelectAttr"
       />
 
       <!-- 杂项筛选按钮 -->
       <FilterTool
         v-model="$heroStore.misc_type"
+        :status="select_status[2]"
         :data="select_misc"
         list-height="296px"
+        @click="handleSelectStatus(2)"
         @select="EmitSelectMisc"
       />
 
       <!-- 杂项排序按钮 -->
       <FilterTool
         v-model="$heroStore.misc_sort"
+        :status="select_status[3]"
         :data="select_sort"
         list-height="198px"
+        @click="handleSelectStatus(3)"
         @select="EmitSelectSort"
       />
 
       <!-- 正序/倒序 -->
       <FilterTool
         v-model="$heroStore.sort_type"
+        :status="select_status[4]"
         :data="sort_type"
         list-height="100px"
+        @click="handleSelectStatus(4)"
         @select="EmitSortType"
       />
     </div>
