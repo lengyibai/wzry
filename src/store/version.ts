@@ -17,7 +17,7 @@ const versionStore = defineStore("version", () => {
   local_file.value = localStorage.getItem("version_file") || ""; //文件文件版本
 
   Version().then((res) => {
-    const { main, file } = res.data;
+    const { main, file, log } = res.data;
     remote_version.value = main;
     file_version.value = file;
 
@@ -51,7 +51,8 @@ const versionStore = defineStore("version", () => {
       if (test > 0) {
         // 如果为旧版，则自动更新并更新本地版本
         $switchStore.$tip({
-          text: "当前网页已重新部署更新，点击确定将自动刷新以清除浏览器缓存。",
+          title: "文件更新",
+          text: `更新日志：${log}。点击确定自动刷新浏览器清除缓存。`,
           btnFn: () => {
             updateFileVersion(file);
             location.reload();
