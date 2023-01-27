@@ -75,7 +75,7 @@ export const admin: RouterSheel[] = [
     title: "系统管理",
     path: "/system",
     name: "system",
-    redirect: "/System/add",
+    redirect: "/system/add",
     leftHidden: true,
     component: "@/layout",
     icon: "wzry-xitongguanli",
@@ -83,21 +83,21 @@ export const admin: RouterSheel[] = [
       {
         title: "添加",
         icon: "wzry-addcircle",
-        path: "/System/add",
+        path: "/system/add",
         name: "add",
         component: "@/views/System/childViews/Add",
       },
       // {
       //   title: "编辑",
       //   icon: "wzry-bianji",
-      //   path: "/System/edit",
+      //   path: "/system/edit",
       //   name: "edit",
       //   component: "@/views/System/childViews/Edit",
       // },
       {
         title: "本地数据管理",
         icon: "wzry-database",
-        path: "/System/data",
+        path: "/system/data",
         name: "data",
         component: "@/views/System/childViews/Data",
       },
@@ -109,7 +109,15 @@ export const admin: RouterSheel[] = [
 const dynamic_paths: string[] = getSheelPath(admin)[0];
 
 /** @description: 路由表里是否存在该路径 */
-export const isExist = (path: string) => [
-  [...static_paths, ...dynamic_paths].indexOf(path) !== -1,
-  dynamic_paths.indexOf(path) !== -1,
-];
+export const isExist = (path: string) => {
+  return [...static_paths, ...dynamic_paths].some((item) => {
+    return item.includes(path);
+  });
+};
+
+/** @description: 判断是否需要登录 */
+export const isLogin = (path: string) => {
+  return dynamic_paths.some((item) => {
+    return item.includes(path);
+  });
+};
