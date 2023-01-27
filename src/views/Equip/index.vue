@@ -5,7 +5,7 @@ import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
 import { $deepCopy } from "@/utils";
-import { equipDefault } from "@/defaultValue";
+import { equipDefault } from "@/default";
 import equipStore from "@/store/equip";
 import switchStore from "@/store/switch";
 

@@ -5,7 +5,7 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
-import { userDefaultInfo } from "@/defaultValue";
+import { userDefaultInfo } from "@/default";
 import { $existEmpty } from "@/utils";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";

@@ -15,7 +15,7 @@ import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 
 import { $debounce, $deepCopy, $promiseTimeout } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
-import { heroDefault } from "@/defaultValue";
+import { heroDefault } from "@/default";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";

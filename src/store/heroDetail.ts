@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { getSkinVoice } from "@/api/main/games/voice";
 import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue";
+import { heroDefault } from "@/default";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 

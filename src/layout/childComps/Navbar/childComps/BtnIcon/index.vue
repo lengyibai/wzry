@@ -4,7 +4,7 @@ import { ref } from "vue";
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 import { $debounce } from "@/utils";
-import { configDefault } from "@/defaultValue";
+import { configDefault } from "@/default";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
 import settingStore from "@/store/setting";

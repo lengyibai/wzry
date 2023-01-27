@@ -6,7 +6,7 @@ import switchStore from "./switch";
 import { _login, deleteUser } from "@/api/main/user";
 import { $deepCopy } from "@/utils";
 import { HOME_URL } from "@/config";
-import { userDefaultInfo } from "@/defaultValue";
+import { userDefaultInfo } from "@/default";
 import router from "@/router";
 import routesStore from "@/store/routes";
 

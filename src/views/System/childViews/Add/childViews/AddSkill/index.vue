@@ -8,7 +8,7 @@ import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 import { $deepCopy } from "@/utils";
 import { addHeroSkill } from "@/api/main/games/skill";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
-import { skillDefault, skillEffectDefault } from "@/defaultValue";
+import { skillDefault, skillEffectDefault } from "@/default";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
 

@@ -16,7 +16,7 @@ import {
   getRaceType,
 } from "@/api/main/games/hero";
 import { $deepCopy } from "@/utils";
-import { heroDefault } from "@/defaultValue";
+import { heroDefault } from "@/default";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 
