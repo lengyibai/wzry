@@ -5,6 +5,8 @@
   padding: 0;
   box-sizing: border-box;
   flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+  vertical-align: middle;
 }
 
 html {
@@ -49,32 +51,15 @@ li {
   list-style: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: normal;
-}
-
 img,
 a {
   /* 禁用手机端长按页面弹出菜单 */
   -webkit-touch-callout: none;
 }
 
-img {
-  /* 禁止用户鼠标在页面上选中文字/图片等 */
-  user-select: none;
-
-  /* 清除图片与图片、文字之间的缝隙缝隙 */
-  vertical-align: middle;
-}
-
 img:not([src]) {
   /* 使用图片标签，但没有图片，则隐藏 */
-  display: none;
+  visibility: hidden;
 }
 
 button,
