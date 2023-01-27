@@ -50,19 +50,35 @@ export function $timeGreet(greet = {}) {
 }
 
 //记录已过去时间或倒计时
-export function $getCountTime(time = "2022-04-01 10:45:00") {
-  const now = new Date(time).getTime();
-  const future = new Date().getTime();
-  const times = future - now > 0 ? Math.floor((future - now) / 1000) : Math.floor((now - future) / 1000);
+export function $timeCount(time = "2021-04-01") {
+  let now = new Date(time).getTime(),
+    future = new Date().getTime(),
+    times =
+      future - now > 0
+        ? Math.floor((future - now) / 1000)
+        : Math.floor((now - future) / 1000);
+
   const time_arr = [
-    { y: times / 60 / 60 / 24 / 30 / 12 },
-    { mon: (times / 60 / 60 / 24 / 30) % 12 },
-    { d: (times / 60 / 60 / 24) % 30 },
-    { h: (times / 60 / 60) % 24 },
-    { min: (times / 60) % 60 },
-    { s: times % 60 },
+    {
+      y: times / 60 / 60 / 24 / 30 / 12,
+    },
+    {
+      mon: (times / 60 / 60 / 24 / 30) % 12,
+    },
+    {
+      d: (times / 60 / 60 / 24) % 30,
+    },
+    {
+      h: (times / 60 / 60) % 24,
+    },
+    {
+      min: (times / 60) % 60,
+    },
+    {
+      s: times % 60,
+    },
   ];
-  const timeObj = {};
+  let timeObj = {};
   time_arr.forEach((item) => {
     const arr = Object.entries(item)[0];
     const key = arr[0];
@@ -72,6 +88,8 @@ export function $getCountTime(time = "2022-04-01 10:45:00") {
   });
   return timeObj;
 }
+
+
 
 // requestAnimationFrame计时器
 export function $frameInterval(fn, fre = 0) {
