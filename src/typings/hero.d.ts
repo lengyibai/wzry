@@ -128,7 +128,7 @@ interface User {
   role: 0 | 1;
   nickname?: string;
   headImg?: string;
-  wzryToken?: string;
+  wzryToken?: number;
 }
 
 /** @description: 基本数据信息 */
