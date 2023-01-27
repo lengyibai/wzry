@@ -22,7 +22,7 @@ export const errorRouter = [
   {
     path: "/403",
     name: "403",
-    component: () => import("@/components/ErrorMessage/403.vue"),
+    component: () => import("@/views/Base/Error/403.vue"),
     meta: {
       title: "403",
       noVerify: true,
@@ -31,7 +31,7 @@ export const errorRouter = [
   {
     path: "/404",
     name: "404",
-    component: () => import("@/components/ErrorMessage/404.vue"),
+    component: () => import("@/views/Base/Error/404.vue"),
     meta: {
       title: "404",
       noVerify: true,
