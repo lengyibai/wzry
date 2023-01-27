@@ -31,6 +31,14 @@ class RequestHttp {
         return response.data;
       },
       async (error: AxiosError) => {
+        if (error.code === "ERR_NETWORK") {
+          const reset = confirm("检测到你数据请求失败，是否尝试清除数据重新下载？");
+          if (reset) {
+            localStorage.clear();
+            location.reload();
+          }
+        }
+
         return await Promise.reject(error);
       }
     );
