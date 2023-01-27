@@ -41,14 +41,16 @@ const scroll = (e: Event) => {
   }
 };
 
-onMounted(() => {
+const backTop = () => {
   LibGridLayout.value?.scroll({ top: props.scrollTop });
+};
+
+onMounted(() => {
+  backTop();
 });
 
 onActivated(() => {
-  setTimeout(() => {
-    LibGridLayout.value?.scroll({ top: props.scrollTop });
-  });
+  backTop();
 });
 
 defineExpose({
