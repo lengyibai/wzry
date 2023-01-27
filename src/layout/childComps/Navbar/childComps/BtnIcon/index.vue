@@ -92,9 +92,6 @@ const EmitResetConfig = () => {
   <div class="btn-icon">
     <!-- 设置按钮 -->
     <i class="iconfont wzry-setting cursor-pointer" title="设置" @click="show_setting = true" />
-    <a href="https://github.com/lengyibai/wzry" target="_blank">
-      <i class="iconfont wzry-mark-github" title="Github" />
-    </a>
 
     <!-- 设置弹窗 -->
     <transition name="fade">
