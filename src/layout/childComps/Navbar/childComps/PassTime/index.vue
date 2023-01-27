@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { $getCountTime } from "@/utils";
+import { $timeCount } from "@/utils";
 
 const time = ref(""); //已过去时间
 
 setInterval(() => {
-  const { y, mon, d, h, min, s } = $getCountTime("2022-3-17") as any;
+  const { y, mon, d, h, min, s } = $timeCount("2022-03-17 00:00:00") as any;
   const year = y !== "00" ? `${y}y` : "";
   const month = mon !== "00" ? mon : "";
   time.value = `已过去${year} ${month}月 ${d}天 ${h}时 ${min}分 ${s}秒`;
