@@ -9,3 +9,6 @@ export const HOME_URL = "/hero";
 
 /** @description: 禁用缓存(打包开启) */
 export const DISABLE_CACHE = true;
+
+/** @description: token过期时间(秒) */
+export const OVERDUE_TIME = 3600;

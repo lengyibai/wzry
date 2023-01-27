@@ -4,11 +4,11 @@ import { ref } from "vue";
 import switchStore from "./switch";
 
 import { _login, deleteUser } from "@/api/main/user";
+import { $deepCopy } from "@/utils";
 import { HOME_URL } from "@/config";
+import { userDefaultInfo } from "@/defaultValue";
 import router from "@/router";
 import routesStore from "@/store/routes";
-import { userDefaultInfo } from "@/defaultValue";
-import { $deepCopy } from "@/utils";
 
 const authStore = defineStore("auth", () => {
   const userStatus = ref(false); // 用户状态
@@ -62,8 +62,8 @@ const authStore = defineStore("auth", () => {
         switchStore().$msg("自动登录成功");
         watchStatus();
       })
-      .catch(() => {
-        switchStore().$msg("身份验证失败，请重新登录", "error");
+      .catch((err) => {
+        switchStore().$msg(err, "error");
         clearToken();
       })
       .finally(() => {
@@ -79,25 +79,19 @@ const authStore = defineStore("auth", () => {
 
   /** @description: 注销账号 */
   const logoff = async () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}") as User;
-    await deleteUser(user.id);
-    localStorage.removeItem("remember_user");
-    clearToken();
-    switchStore().$msg("注销成功");
+    const user = JSON.parse(localStorage.getItem("user")!) as User;
+    deleteUser(user.id).then((res) => {
+      localStorage.removeItem("remember_user");
+      clearToken();
+      switchStore().$msg(res);
+    });
   };
 
   /** @description: 清除token */
   const clearToken = () => {
     clearInterval(timer.value);
     userStatus.value = false;
-    userInfo.value = {
-      id: "",
-      password: "",
-      nickname: "",
-      headImg: "",
-      wzryToken: "",
-      role: 1,
-    };
+    userInfo.value = $deepCopy(userDefaultInfo);
     routesStore().removeRoutes();
     window.localStorage.removeItem("user");
     router.replace("/login");
@@ -113,7 +107,7 @@ const authStore = defineStore("auth", () => {
 
   /** @description: 强制下线 */
   const offline = () => {
-    switchStore().$msg("帐号在别处登录", "error");
+    switchStore().$msg("身份已过期，请重登录", "error");
     clearToken();
   };
 

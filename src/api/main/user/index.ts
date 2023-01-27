@@ -1,4 +1,5 @@
 import { get, post, patch, del } from "@/api/helper/transfer";
+import { OVERDUE_TIME } from "@/config";
 
 /** @description: 获取用户列表 */
 export const userList = () => {
@@ -17,10 +18,19 @@ export const _login = async (form: User) => {
 
   //判断用户是否存在
   if (data) {
-    /* 判断密码是否正确 */
+    //判断密码是否正确
     if (form.password === data.password) {
-      //登录成功后更新token
-      const token = await updateToken(form.id, new Date().getTime().toString().slice(0, 8));
+      let token = Number(new Date().getTime().toString().slice(0, 10)); //生成token
+
+      //如果本地存在token则进行过期判断，否则直接更新
+      if (form.wzryToken) {
+        //超过指定时间过期
+        if (token - form.wzryToken > OVERDUE_TIME) {
+          return Promise.reject("身份验证已过期，请重新登录");
+        }
+        //否则使用原token
+        token = form.wzryToken;
+      }
 
       return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
     } else {
@@ -57,19 +67,11 @@ export const register = async (form: User) => {
 /** @description: 更新用户信息 */
 export const updateUser = (id: string, info: Partial<User>) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true);
-
-  return Promise.resolve(info); //返回新token
-};
-
-/** @description: 更新token */
-const updateToken = (id: string, token: string) => {
-  patch({ name: "data_user", key: "id", value: id, k: "wzryToken", v: token }); //将token写入本地
-  return Promise.resolve(token); //返回新token
+  return Promise.resolve(info); //返回新信息
 };
 
 /** @description: 注销用户 */
 export const deleteUser = (id: string) => {
-  del({ name: "data_user", id }); //将token写入本地
-
-  return Promise.resolve();
+  del({ name: "data_user", id }); //查询用户并删除
+  return Promise.resolve("注销成功");
 };
