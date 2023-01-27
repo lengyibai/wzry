@@ -75,24 +75,26 @@ const handSearch = () => {
 
 <template>
   <div class="skin-toolbar">
-    <!-- 价格排序 -->
-    <FilterTool v-model="$skinStore.price_type" :data="select_price" @select="EmitPriceSort" />
+    <div class="filter-select">
+      <!-- 价格排序 -->
+      <FilterTool v-model="$skinStore.price_type" :data="select_price" @select="EmitPriceSort" />
 
-    <!-- 皮肤类型筛选 -->
-    <FilterTool
-      v-model="$skinStore.skin_type"
-      :data="select_type"
-      list-height="500px"
-      @select="EmitTypeFilter"
-    />
+      <!-- 皮肤类型筛选 -->
+      <FilterTool
+        v-model="$skinStore.skin_type"
+        :data="select_type"
+        list-height="500px"
+        @select="EmitTypeFilter"
+      />
 
-    <!-- 正序/倒序 -->
-    <FilterTool
-      v-model="$skinStore.sort_type"
-      :data="sort_type"
-      list-height="100px"
-      @select="EmitSortType"
-    />
+      <!-- 正序/倒序 -->
+      <FilterTool
+        v-model="$skinStore.sort_type"
+        :data="sort_type"
+        list-height="100px"
+        @select="EmitSortType"
+      />
+    </div>
 
     <!-- 只看性别 -->
     <FilterGender v-model="gender" @update:model-value="handerSetGender" />
