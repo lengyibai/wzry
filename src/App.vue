@@ -43,7 +43,7 @@ const version = `${$browserV.version} ${
     </router-view>
 
     <!-- 全局开关 -->
-    <GlobalSwitch />
+    <Switch />
 
     <!-- 左下角水印 -->
     <transition name="fade">
