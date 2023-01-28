@@ -17,7 +17,7 @@ onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
     into.value = true;
-  }, 1500);
+  }, 2000);
 });
 </script>
 

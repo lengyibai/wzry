@@ -29,7 +29,7 @@ onMounted(() => {
         item.style.opacity = "1";
       });
     });
-  }, 1000);
+  }, 1500);
 });
 </script>
 
