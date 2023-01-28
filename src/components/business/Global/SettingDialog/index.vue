@@ -16,11 +16,6 @@ interface Props {
 }
 defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const emit = defineEmits<Emits>();
-
 const $clickAudio = clickAudio();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
@@ -30,7 +25,6 @@ const $switchStore = switchStore();
 // 默认配置
 const default_config: SettingConfig = { ...configDefault };
 
-const show_setting = ref(false); //显示/隐藏设置弹窗
 const show_confirm_reset = ref(false); //显示/隐藏确认重置弹窗
 const config = ref<SettingConfig>({ ...$settingStore.config });
 
@@ -96,112 +90,91 @@ const EmitResetConfig = () => {
   config.value = { ...default_config };
   $switchStore.$msg("已重置所有配置项");
 };
-
-/* 关闭设置弹窗 */
-const EmitCloseSetting = () => {
-  emit("update:modelValue", false);
-};
-
-onMounted(() => {
-  show_setting.value = true;
-});
 </script>
 
 <template>
   <div class="setting-dialog">
-    <transition name="dialog">
-      <K-Dialog
-        v-if="show_setting"
-        v-model="show_setting"
-        title="设置"
-        width="920px"
-        ctx-width="90%"
-        up
-        @close="EmitCloseSetting"
-      >
-        <div class="options">
-          <!-- 动画速率 -->
-          <div class="option">
-            <div class="label">动画速率</div>
-            <K-Select
-              v-model="config.speed"
-              :option="['迅速', '均衡', '优雅']"
-              @update:model-value="EmitSpeed"
-            />
-          </div>
-
-          <!-- 音效 -->
-          <div class="option">
-            <div class="label">音效</div>
-            <K-Range
-              v-model="config.audioVolume"
-              :text="config.audioVolume + '%'"
-              :disabled="!config.audio"
-              @update:model-value="EmitAudioVolume"
-            />
-            <K-Check v-model="config.audio" @update:model-value="EmitAudio" />
-          </div>
-
-          <!-- 音乐 -->
-          <div class="option">
-            <div class="label">音乐</div>
-            <K-Range
-              v-model="config.musicVolume"
-              :text="config.musicVolume + '%'"
-              :disabled="!config.music"
-              @update:model-value="EmitMusicVolume"
-            />
-            <K-Check v-model="config.music" @update:model-value="EmitMusic" />
-          </div>
-
-          <!-- 粒子特效 -->
-          <div class="option">
-            <div class="label">
-              粒子特效
-              <DescSet
-                desc="开启后对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
-              />
-            </div>
-            <K-Check v-model="config.particle" @update:model-value="EmitParticle" />
-          </div>
-
-          <!-- 视频背景 -->
-          <div class="option">
-            <div class="label">
-              视频背景
-              <DescSet
-                desc="默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题（PC端默认为视频背景）"
-              />
-            </div>
-            <K-Check v-model="config.videoBg" @update:model-value="EmitSaveConfig" />
-          </div>
-
-          <!-- 小贴士 -->
-          <div class="option">
-            <div class="label">
-              小贴士
-              <DescSet
-                desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
-              />
-            </div>
-            <K-Check v-model="config.tip" @update:model-value="EmitTip" />
-          </div>
-
-          <!-- 恢复所有不再提示 -->
-          <div class="option">
-            <div class="label">恢复所有小贴士</div>
-            <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip"
-              >恢复</K-Button
-            >
-          </div>
+    <K-Dialog v-bind="$attrs" title="设置" width="920px" ctx-width="90%" up>
+      <div class="options">
+        <!-- 动画速率 -->
+        <div class="option">
+          <div class="label">动画速率</div>
+          <K-Select
+            v-model="config.speed"
+            :option="['迅速', '均衡', '优雅']"
+            @update:model-value="EmitSpeed"
+          />
         </div>
 
-        <!-- 重置配置 -->
-        <K-Button v-if="show_setting" type="error" @click="show_confirm_reset = true"
-          >重置配置</K-Button
-        >
-      </K-Dialog>
-    </transition>
+        <!-- 音效 -->
+        <div class="option">
+          <div class="label">音效</div>
+          <K-Range
+            v-model="config.audioVolume"
+            :text="config.audioVolume + '%'"
+            :disabled="!config.audio"
+            @update:model-value="EmitAudioVolume"
+          />
+          <K-Check v-model="config.audio" @update:model-value="EmitAudio" />
+        </div>
+
+        <!-- 音乐 -->
+        <div class="option">
+          <div class="label">音乐</div>
+          <K-Range
+            v-model="config.musicVolume"
+            :text="config.musicVolume + '%'"
+            :disabled="!config.music"
+            @update:model-value="EmitMusicVolume"
+          />
+          <K-Check v-model="config.music" @update:model-value="EmitMusic" />
+        </div>
+
+        <!-- 粒子特效 -->
+        <div class="option">
+          <div class="label">
+            粒子特效
+            <DescSet
+              desc="开启后对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
+            />
+          </div>
+          <K-Check v-model="config.particle" @update:model-value="EmitParticle" />
+        </div>
+
+        <!-- 视频背景 -->
+        <div class="option">
+          <div class="label">
+            视频背景
+            <DescSet
+              desc="PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决（PC端默认为视频背景）"
+            />
+          </div>
+          <K-Check v-model="config.videoBg" @update:model-value="EmitSaveConfig" />
+        </div>
+
+        <!-- 小贴士 -->
+        <div class="option">
+          <div class="label">
+            小贴士
+            <DescSet
+              desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
+            />
+          </div>
+          <K-Check v-model="config.tip" @update:model-value="EmitTip" />
+        </div>
+
+        <!-- 恢复所有不再提示 -->
+        <div class="option">
+          <div class="label">恢复所有小贴士</div>
+          <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip"
+            >恢复</K-Button
+          >
+        </div>
+      </div>
+
+      <!-- 重置配置 -->
+      <K-Button type="error" @click="show_confirm_reset = true">重置配置</K-Button>
+    </K-Dialog>
 
     <!-- 确认重置 -->
     <transition name="fade">
