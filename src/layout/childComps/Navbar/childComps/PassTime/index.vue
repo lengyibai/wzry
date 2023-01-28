@@ -24,5 +24,6 @@ setInterval(() => {
   transform: translateX(-50%);
   color: var(--theme-color-five);
   font-size: 20px;
+  text-shadow: var(--t-shadow);
 }
 </style>
