@@ -86,7 +86,7 @@ onUnmounted(() => {
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">
-      <Notice v-if="show_notice" v-model="show_notice" @update:model-value="EmitCloseNotice" />
+      <Notice v-if="show_notice" v-model="show_notice" @close="EmitCloseNotice" />
     </transition>
 
     <!-- 下载进度 -->
