@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   .logo {
     position: absolute;
@@ -35,15 +35,7 @@
   }
 }
 
-.login-enter-from,
-.login-leave-active {
+.hide {
+  transition: opacity 0s;
   opacity: 0;
-}
-
-.login-enter-active {
-  transition: all 0.25s;
-}
-
-.login-leave-active {
-  transition: all 0s;
 }

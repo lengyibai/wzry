@@ -71,9 +71,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 登录盒子 -->
-    <transition name="login">
-      <Login v-show="finish && !show_notice" />
-    </transition>
+    <Login :class="{ hide: !finish || show_notice }" />
 
     <!-- 工具栏 -->
     <ToolBar :notice="finish" @clicks="EmitToolType" />
