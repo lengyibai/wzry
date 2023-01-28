@@ -1,17 +1,10 @@
 <script setup lang="ts" name="hero">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onActivated,
-  onMounted,
-  ref,
-  watch,
-  defineAsyncComponent,
-} from "vue";
+import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
+import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
 import { $debounce, $deepCopy, $promiseTimeout } from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
@@ -21,8 +14,6 @@ import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
-
-const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue")); //详情页
 
 const $route = useRoute();
 const $router = useRouter();
@@ -55,7 +46,11 @@ const EmitViewClick = (id: number) => {
     //获取指定英雄皮肤
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
-    show_HeroDetail.value = true;
+
+    //延迟0.1秒显示解决移动端动画掉帧
+    setTimeout(() => {
+      show_HeroDetail.value = true;
+    }, 100);
 
     //设置路由参数只用于记录，方便刷新时直接打开详情
     $router.push({
@@ -64,8 +59,6 @@ const EmitViewClick = (id: number) => {
         id: hero_info.value.id,
       },
     });
-
-    $switchStore.$loading.show(`正在加载${hero.name}的详细资料`);
   });
 };
 
@@ -74,7 +67,11 @@ if ($heroStore.hero_list.length === 0) {
   if (id) {
     EmitViewClick(Number(id));
   } else {
-    $heroStore.getHeroList();
+    $heroStore.getHeroList().then(() => {
+      setTimeout(() => {
+        $switchStore.$clickAudio("4d8m");
+      }, 750);
+    });
   }
 }
 
@@ -138,7 +135,6 @@ onMounted(async () => {
   }, 500);
   // 显示英雄列表
   await $promiseTimeout(() => {
-    $switchStore.$clickAudio("4d8m");
     show_list.value = true;
   }, 250);
 });

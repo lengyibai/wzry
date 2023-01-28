@@ -59,16 +59,23 @@ const EmitScrollEnd = (index: number) => {
 
 /* 隐藏自身 */
 const EmitHide = () => {
-  emit("update:modelValue", false);
   $router.replace("/hero");
   $heroDetailStore.setSkinVoice("盾山"); //置空语音
   $switchStore.$clickAudio("6xc6");
+
+  //延迟0.1秒显示解决移动端动画掉帧
+  setTimeout(() => {
+    emit("update:modelValue", false);
+  }, 100);
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
   if ($heroStore.profession === "") {
     setTimeout(() => {
       $heroStore.getHeroList();
-    }, 750);
+      setTimeout(() => {
+        $switchStore.$clickAudio("4d8m");
+      }, 250);
+    }, 1500);
   }
 };
 
@@ -104,8 +111,6 @@ onMounted(() => {
   setTimeout(() => {
     $switchStore.$clickAudio("u4c5");
   }, 250);
-
-  $switchStore.$loading.close();
 });
 </script>
 
