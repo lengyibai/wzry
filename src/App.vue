@@ -38,6 +38,7 @@ $speedStore.setSpeed($settingStore.config.speed); //动画速度
 
 <style scoped lang="less">
 .app {
+  position: relative;
   width: 100vw;
   height: 100vh;
 }
