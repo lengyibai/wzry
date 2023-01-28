@@ -94,6 +94,7 @@ const musicStore = defineStore("music", () => {
 
   /** @description: 播放指定音乐 */
   const playIndex = (index: number) => {
+    progress.value = 0;
     bgmIndex.value = index;
     play();
   };
