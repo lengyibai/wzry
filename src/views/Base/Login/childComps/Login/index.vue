@@ -82,6 +82,7 @@ onBeforeUnmount(() => {
         down: true,
         filter: false,
         color: '#e8cc7d',
+        lock: true,
         enable: $settingStore.config.particle,
       }"
       class="logo"
