@@ -95,13 +95,14 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
     } else {
       clear(el);
     }
-  }, 1000);
+  }, 500);
 };
 const particle = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     fn(el, binding);
   },
   updated(el: HTMLElement, binding: DirectiveBinding) {
+    if (binding.value.lock) return;
     fn(el, binding);
   },
 };

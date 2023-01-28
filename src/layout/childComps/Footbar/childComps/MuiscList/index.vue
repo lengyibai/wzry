@@ -10,6 +10,7 @@ const handleClose = () => {
 
 /* 切换音乐 */
 const handleToggleMusic = (index: number) => {
+  if ($musicStore.bgmIndex === index) return;
   $musicStore.playIndex(index);
 };
 </script>
@@ -30,7 +31,7 @@ const handleToggleMusic = (index: number) => {
           :key="index"
           class="card cursor-pointer"
           :class="{ active: index === $musicStore.bgmIndex }"
-          @dblclick="handleToggleMusic(index)"
+          @click="handleToggleMusic(index)"
         >
           <!-- 左侧音乐标题 -->
           <div class="left">
