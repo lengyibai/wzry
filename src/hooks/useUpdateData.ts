@@ -1,4 +1,3 @@
-import switchStore from "@/store/switch";
 import {
   HeroBasic,
   HeroImg,
@@ -27,8 +26,6 @@ import {
 import { getHeroBasic } from "@/api/main/games/hero";
 
 export default () => {
-  const $switchStore = switchStore();
-
   const keywords: [string, string][] = [
     ["herobasic", "英雄基础"],
     ["heroimg", "英雄图片"],
@@ -123,52 +120,21 @@ export default () => {
       }
     }
 
-    updateData();
-    updateTip();
-  };
-
-  /* 更新提示信息处理 */
-  const updateTip = () => {
-    const { names: data_names } = need_update_data;
-    const { names: voice_names } = need_update_voice;
-    const data_length = data_names.length;
-    const voice_length = voice_names.length;
-    let text = "";
-
-    if (data_length || voice_length) {
-      const dataToShow = data_length > 5 ? data_names.slice(0, 5) : data_names;
-      const voiceToShow = voice_length > 5 ? voice_names.slice(0, 5) : voice_names;
-
-      if (data_length) {
-        text = `《${dataToShow.join("、")}》${
-          data_length > 5 ? `...共${data_length}条数据需要更新，` : "需要更新，"
-        }`;
-      }
-
-      if (voice_length) {
-        text += `${text && "以及"}《${voiceToShow.join("、")}》${
-          voice_length > 5 ? `...共${voice_length}条语音数据需要更新，` : "的语音数据需要更新，"
-        }`;
-      }
-
-      $switchStore.$tip({
-        title: "更新提醒",
-        text: `${text}已为你自动更新。如果在运行中出现数据获取失败，请尝试刷新浏览器。`,
-      });
-    }
-  };
-
-  /* 更新数据 */
-  const updateData = () => {
+    /* 更新覆盖数据 */
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
       localStorage.setItem("data_" + key, JSON.stringify(need_update_data.data[i]));
     }
-
     for (let i = 0; i < need_update_voice.keys.length; i++) {
       const key = need_update_voice.keys[i];
       localStorage.setItem("voice_" + key, JSON.stringify(need_update_voice.data[i]));
     }
+
+    //返回需要更新的中文字段
+    return Promise.resolve({
+      data: need_update_data.names.join("、"),
+      voice: need_update_voice.names.join("、"),
+    });
   };
 
   return load();

@@ -61,8 +61,15 @@ interface Tips<T> {
 type TipKeys = keyof Tips<string>;
 
 /** @description: 版本更新 */
-type VersionUpdate = {
+interface VersionUpdate {
   main: string; //数据版本
   file: string; //文件版本
   log: string; //文件更新日志
-};
+}
+
+/** @description: 更新日志 */
+interface UpdateLog {
+  data: string;
+  voice: string;
+  file: string;
+}
