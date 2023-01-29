@@ -76,7 +76,6 @@ export default () => {
       if (!isExist(key)) {
         title.value = name;
         setData("data_" + key, await request());
-        await new Promise((resolve) => setTimeout(resolve, 50));
         index.value++;
       }
     }
@@ -94,7 +93,6 @@ export default () => {
           setData(`voice_${hero_list[i].pinyin}`, {
             data: (await Voice(hero_list[i].name)).data,
           });
-          await new Promise((resolve) => setTimeout(resolve, 50));
           index.value++;
         }
       }
