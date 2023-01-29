@@ -8,7 +8,7 @@
         </span>
       </div>
       <div class="field">
-        <div class="bar" :style="{ width: barWidth, backgroundColor: color }">
+        <div class="bar" :style="{ width: barWidth }">
           <img
             v-show="showIcon && showDot"
             :src="icon"
@@ -19,7 +19,6 @@
             :style="{
               width: size + 'px',
               height: size + 'px',
-              backgroundColor: color,
             }"
           ></span>
         </div>
@@ -29,6 +28,9 @@
           type="range"
           :min="min"
           :max="max"
+          :style="{
+            backgroundColor: trackColor,
+          }"
           :step="step"
           @input="changeValue"
           @mouseup="hide"
@@ -50,8 +52,8 @@ interface Props {
   min?: number; //最小值
   max?: number; //最大值
   text?: string; //进度条自定义悬浮文本
-  color?: string; //进度条颜色
   size?: number; //圆点和图标大小，实际上可点击的范围依然是20px * 20px
+  trackColor?: string; //轨道背景色
   showDot?: boolean; //显示圆点，也决定显示图标
   showIcon?: boolean; //显示图标
   icon?: string; //自定义图标1:1
@@ -65,15 +67,15 @@ interface Emits {
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   width: "200px",
-  disabled: true,
+  disabled: false,
   label: "标题",
   labelWidth: "150px",
   min: 0,
   max: 100,
   text: "",
-  color: "#3498db",
   size: 35,
   showDot: true,
+  trackColor: "var(--theme-color-one)",
   showIcon: true,
   icon: IMGBED + "/image/range_icon.png",
   showNum: true,
