@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 

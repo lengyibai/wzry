@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref, onMounted, nextTick } from "vue";
+import { reactive, ref, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
