@@ -6,7 +6,7 @@
   width: 100%;
   height: 100px;
   padding: 10px 150px;
-  background-color: rgb(20 35 60 / 75%);
+  background-color: rgb(20 35 60 / 90%);
 
   .bar {
     position: relative;
@@ -17,15 +17,9 @@
 
     .progress {
       height: 100%;
-      box-shadow: 0 3px 3px 0 rgb(255 255 255 / 50%) inset,
-        0 -3px 3px 0 rgb(0 0 0 / 50%) inset;
+      box-shadow: 0 3px 3px 0 rgb(255 255 255 / 50%) inset, 0 -3px 3px 0 rgb(0 0 0 / 50%) inset;
       background-color: #1c78b3;
-      background-image: linear-gradient(
-        90deg,
-        #1c78b3 0%,
-        #0768af 35%,
-        #269bde 100%
-      );
+      background-image: linear-gradient(90deg, #1c78b3 0%, #0768af 35%, #269bde 100%);
       transition: all 0.1s ease-out;
     }
   }
@@ -35,10 +29,12 @@
     justify-content: space-between;
     margin-top: 0.5em;
     font-size: 22px;
+    text-shadow: var(--t-shadow);
 
     .num {
+      color: #848996;
       font-size: 26px;
-      font-family: "黑体";
+      text-shadow: var(--t-shadow);
     }
   }
 }
