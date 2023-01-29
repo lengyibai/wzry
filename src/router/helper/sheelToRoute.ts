@@ -15,14 +15,12 @@ const routePath: Record<string, any> = {
 };
 
 /** @description: 将路由表转换成真实路由 */
-const sheelToRoute = (route: RouterSheel[], asyncRoutes: RouteRecordRaw[]) => {
+const sheelToRoute = (route: RouterSheel[], asyncRoutes: Partial<RouteRecordRaw>[]) => {
   route.forEach((item: RouterSheel, index: number) => {
-    asyncRoutes[index] = {} as RouteRecordRaw;
+    asyncRoutes[index] = {};
     for (const [key, value] of Object.entries(item)) {
       if (["title", "icon"].includes(key)) {
-        asyncRoutes[index]["meta"] ??= {};
-        const meta = asyncRoutes[index]["meta"] as Record<string, any>;
-        meta[key] = value;
+        Object.assign((asyncRoutes[index]["meta"] ??= {}), { [key]: value });
       } else if (key === "component") {
         asyncRoutes[index][key] = routePath[value];
       } else if (key === "children") {
