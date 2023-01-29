@@ -3,7 +3,7 @@
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
       <div v-if="showNum" class="slider-value">
-        <span class="value" :class="{ 'show-num': show_num }" :style="{ left: barWidth }">
+        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
           {{ text || modelValue }}
         </span>
       </div>
@@ -83,7 +83,7 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const show_num = ref(false); //是否在滑动的时候显示数字
+const down = ref(false); //是否处于按下状态
 
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {
@@ -103,7 +103,7 @@ onMounted(() => {
 /* 拖动时触发 */
 const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  show_num.value = true;
+  down.value = true;
   emit("update:modelValue", parseFloat(v));
   $throttleInstant(() => {
     $switchStore.$clickAudio("range");
@@ -112,7 +112,7 @@ const changeValue = (e: Event) => {
 
 /* 隐藏数字 */
 const hide = () => {
-  show_num.value = false;
+  down.value = false;
 };
 </script>
 <style scoped lang="less">
