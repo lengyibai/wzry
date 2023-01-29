@@ -2,7 +2,7 @@
 import { reactive, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
-import SideItem from "./SideItem.vue"; //调用自身
+import SideItem from "./index.vue"; //调用自身
 
 // import { Route } from "@/router/interface";
 import switchStore from "@/store/switch";
@@ -27,7 +27,7 @@ const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
-const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
+const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
 
 const show = ref(false); //用于父级菜单专属
 const routes = reactive<RouteFormat[]>([]); //父级菜单专属用于生成子菜单

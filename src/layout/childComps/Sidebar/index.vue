@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import sideItem from "./childComp/SideItem.vue"; //子菜单
+import sideItem from "./childComp/SideItem/index.vue"; //子菜单
+import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
 import routerStore from "@/store/routes";
@@ -16,12 +17,7 @@ const routes = formatSidebarRoutes(options); //格式化后的路由数据
 <template>
   <div class="side-bar" :class="{ collapse: $collapseStore.collapse }">
     <!-- 游戏logo -->
-    <div class="game">
-      <transition-group name="fade-a">
-        <i key="icon" class="iconfont wzry-logo" />
-        <span v-show="!$collapseStore.collapse" key="text">王者荣耀</span>
-      </transition-group>
-    </div>
+    <GameLogo />
 
     <!-- 侧边栏列表 -->
     <div class="side-item">
