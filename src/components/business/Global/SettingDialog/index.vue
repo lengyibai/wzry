@@ -10,6 +10,7 @@ import musicStore from "@/store/music";
 import settingStore from "@/store/setting";
 import speedStore from "@/store/speed";
 import switchStore from "@/store/switch";
+import shineStore from "@/store/shine";
 
 interface Props {
   modelValue: boolean;
@@ -21,6 +22,7 @@ const $musicStore = musicStore();
 const $settingStore = settingStore();
 const $speedStore = speedStore();
 const $switchStore = switchStore();
+const $shineStore = shineStore();
 
 // 默认配置
 const default_config: SettingConfig = { ...configDefault };
@@ -60,6 +62,12 @@ const EmitAudioVolume = (v: number) => {
   $debounce(() => {
     EmitSaveConfig();
   }, 1000);
+};
+
+/* 柔光 */
+const EmitShine = (v: boolean) => {
+  $shineStore.setShine(v);
+  EmitSaveConfig();
 };
 
 /* 粒子特效 */
@@ -128,6 +136,15 @@ const EmitResetConfig = () => {
             @update:model-value="EmitMusicVolume"
           />
           <K-Check v-model="config.music" @update:model-value="EmitMusic" />
+        </div>
+
+        <!-- 柔光 -->
+        <div class="option">
+          <div class="label">
+            元素发光
+            <DescSet desc="开启后在一些地方，悬浮、选中元素会有发光效果" />
+          </div>
+          <K-Check v-model="config.shine" @update:model-value="EmitShine" />
         </div>
 
         <!-- 粒子特效 -->

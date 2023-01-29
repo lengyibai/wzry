@@ -18,6 +18,7 @@ interface SettingConfig {
   music: boolean; //音乐
   musicVolume: number; //音乐音量
   speed: 0 | 1 | 2; //动画速率
+  shine: boolean; //柔光
   particle: boolean; //粒子特效
   muted: boolean; //登录页视频静音
   noTips: Tips<boolean>; //不再提示列表

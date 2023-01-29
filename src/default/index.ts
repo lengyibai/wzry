@@ -113,6 +113,7 @@ export const configDefault: SettingConfig = {
   musicVolume: 50,
   speed: 1,
   muted: false,
+  shine: true,
   particle: false,
   noTips: {
     "2rb7": false,

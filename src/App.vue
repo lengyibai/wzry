@@ -3,17 +3,20 @@ import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
 import settingStore from "@/store/setting";
 import speedStore from "@/store/speed";
+import shineStore from "@/store/shine";
 
 const $clickAudio = clickAudio();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
 const $speedStore = speedStore();
+const $shineStore = shineStore();
 
 /* 本地配置立即生效 */
 $clickAudio.setAudio($settingStore.config.audio); //音效
 $clickAudio.setVolume($settingStore.config.audioVolume); //音效音量
 $musicStore.setVolume($settingStore.config.musicVolume); //音乐音量
 $speedStore.setSpeed($settingStore.config.speed); //动画速度
+$shineStore.setShine($settingStore.config.shine); //柔光
 </script>
 
 <template>
