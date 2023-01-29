@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./SideItem.vue"; //调用自身
 
-import { Route } from "@/router/interface";
+// import { Route } from "@/router/interface";
 import switchStore from "@/store/switch";
 import collapseStore from "@/store/collapse";
 
@@ -27,40 +27,45 @@ const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
-const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`;
+const textStyle = `padding-left: ${1 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
 
-const show = ref(false);
-const routes = reactive<RouteFormat[]>([]);
+const show = ref(false); //用于父级菜单专属
+const routes = reactive<RouteFormat[]>([]); //父级菜单专属用于生成子菜单
 
-show.value = $route.path.includes(props.route.path);
+show.value = $route.path.includes(props.route.path); //当前路由如果等于props路由，则父级菜单自动展开，前提当前组件为父级菜单
 
+//如果当前路由存在子路由，则添加进子菜单用于循环生成
 if (show.value && props.route.children) routes.push(...props.route.children);
 
+/* 点击后触发 */
 const fn = () => {
   show.value = !show.value;
+
+  //如果当前组件没有子路由，则直接跳转
   if (!props.route.children) {
     $router.push(props.route.path);
     return;
-  } else if (show.value) {
+  } /* 如果父级菜单已经展开，则添加子路由去生成子菜单 */ else if (show.value) {
     routes.push(...props.route.children);
-  } else {
+  } /* 否则移除子菜单 */ else {
     routes.length = 0;
   }
   $switchStore.$clickAudio();
 };
 
-const sidebarActive = (routes: Route) => {
-  if (routes.children && routes.children.length) {
-    routes.children.forEach((item) => {
-      if (item.path === $route.path) {
-        fn();
-        sidebarActive(item);
-      }
-    });
-  }
-};
+/* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */
+// const sidebarActive = (routes: Route) => {
+//   if (routes.children && routes.children.length) {
+//     routes.children.forEach((item) => {
+//       if (item.path === $route.path) {
+//         fn();
+//         sidebarActive(item);
+//       }
+//     });
+//   }
+// };
 
-sidebarActive(props.route);
+// sidebarActive(props.route);
 </script>
 
 <template>
