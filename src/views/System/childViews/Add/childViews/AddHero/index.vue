@@ -168,14 +168,13 @@ setTimeout(async () => {
 
     <!-- 属性相关 -->
     <div class="flex-box">
-      <FormRange
-        v-for="(v, k) in attr"
-        :key="k"
-        v-model="form_data![k]"
-        :label="v"
-        label-width="200px"
-        :text="form_data![k] + '%'"
-      />
+      <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="200px">
+        <K-Range
+          v-model="form_data![k]"
+          :text="form_data![k] + '%'"
+          track-color="var(--theme-color-nine)"
+        />
+      </FormLabel>
     </div>
 
     <!-- 设置头像&海报 -->
