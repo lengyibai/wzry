@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
@@ -39,6 +39,8 @@ const equip_type = [
   { name: "游走", icon: "wzry-youzou" },
 ];
 
+const top = ref(0); // 滑块坐标
+
 //动态list
 const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));
 
@@ -64,6 +66,12 @@ const handleSelect = (name: string, index: number) => {
 
   obj[props.type]();
 };
+
+/* 设置滑块位置 */
+const handleCoord = (e: Event) => {
+  const el = e.target as HTMLElement;
+  top.value = el.getBoundingClientRect().top - 75;
+};
 </script>
 
 <template>
@@ -73,11 +81,20 @@ const handleSelect = (name: string, index: number) => {
       :key="index"
       class="filter-type cursor-pointer"
       :class="{ active: item.name === filter_type }"
-      @click="handleSelect(item.name, index)"
+      @click="handleSelect(item.name, index), handleCoord($event)"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ item.name }}</span>
     </div>
+
+    <!-- 滑块 -->
+    <div
+      v-show="!$collapseStore.collapse"
+      class="slider"
+      :style="{
+        top: top + 'px',
+      }"
+    ></div>
   </div>
 </template>
 

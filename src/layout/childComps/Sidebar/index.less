@@ -1,12 +1,30 @@
 .side-bar {
+  position: relative;
   display: flex;
   width: 250px;
   height: 100%;
   flex-direction: column;
   border-right: 1px solid var(--white-10);
   transition: all var(--time-500);
+
+  .slider {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    transform: translateY(-10px);
+    transition: all var(--time-500);
+    pointer-events: none;
+    background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 10%, rgb(34 130 199 / 35%) 100%);
+    -webkit-mask: linear-gradient(
+      transparent 0,
+      #000 15px,
+      #000 calc(100% - 15px),
+      transparent 100%
+    );
+  }
 }
 
+/* 折叠侧边栏 */
 .collapse {
   width: 80px;
 

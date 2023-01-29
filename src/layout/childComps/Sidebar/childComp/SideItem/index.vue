@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
@@ -18,8 +18,14 @@ interface RouteFormat {
 
 interface Props {
   route: any;
+  coord: number;
 }
 const props = defineProps<Props>();
+
+interface Emits {
+  (e: "coord", v: number): void;
+}
+const emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $route = useRoute();
@@ -29,10 +35,17 @@ const $switchStore = switchStore();
 const IMGBED = window.IMGBED; //全局图床链接
 const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
 
+const menuItem = ref();
 const show = ref(false); //用于父级菜单专属
 const routes = reactive<RouteFormat[]>([]); //父级菜单专属用于生成子菜单
 
-show.value = $route.path.includes(props.route.path); //当前路由如果等于props路由，则父级菜单自动展开，前提当前组件为父级菜单
+//当前路由如果等于props路由，则父级菜单自动展开，前提当前组件为父级菜单
+show.value = $route.path.includes(props.route.path);
+nextTick(() => {
+  setTimeout(() => {
+    show.value && emit("coord", menuItem.value.getBoundingClientRect().top);
+  }, 100);
+});
 
 //如果当前路由存在子路由，则添加进子菜单用于循环生成
 if (show.value && props.route.children) routes.push(...props.route.children);
@@ -66,17 +79,38 @@ const fn = () => {
 // };
 
 // sidebarActive(props.route);
+
+/* 发送坐标 */
+const handleCoord = (e: Event) => {
+  const el = e.target as HTMLElement;
+  const coord = el.getBoundingClientRect().top;
+
+  if (props.route.title === "系统管理") {
+    if (show.value && props.coord > coord) {
+      emit("coord", 0);
+    } else {
+      emit("coord", props.coord);
+    }
+  } else {
+    emit("coord", coord);
+  }
+};
+
+const handleChildCoord = (v: number) => {
+  emit("coord", v);
+};
 </script>
 
 <template>
   <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
     <button
-      class="menu-item menu-list"
+      ref="menuItem"
+      class="menu-item"
       :style="textStyle"
       :class="{
         active: route.path === $route.path,
       }"
-      @click="fn"
+      @click="handleCoord($event), fn()"
     >
       <!-- 图标 -->
       <i class="iconfont" :class="route.meta.icon" />
@@ -103,6 +137,8 @@ const fn = () => {
           :key="r.path"
           :route="r"
           :style="{ transitionDelay: (routes.length - i) * 0.05 + 's' }"
+          :coord="coord"
+          @coord="handleChildCoord"
         />
       </transition-group>
     </div>

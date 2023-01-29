@@ -1,5 +1,6 @@
 .menu {
   position: relative;
+  z-index: 1;
   display: flex;
   width: 100%;
   font-size: 20px;
@@ -13,7 +14,9 @@
     align-items: center;
     padding: 0.5em 1em;
     color: var(--theme-color-five);
+    font-size: 20px;
     text-shadow: var(--t-shadow);
+    transition: all var(--time-500);
 
     &:hover {
       color: var(--blue);
@@ -21,19 +24,20 @@
 
       .name,
       .iconfont {
-        transition: all 0s;
+        transition: all 0s !important;
+        pointer-events: none;
       }
     }
 
     .iconfont {
       margin-right: 15px;
       font-size: 35px;
-      transition: all var(--time-250) 0.1s;
+      transition: all var(--time-250) ease-out;
     }
 
     .name {
       font-size: 20px;
-      transition: all var(--time-250) 0.1s;
+      transition: all var(--time-250) ease-out;
     }
 
     .arrow {
@@ -42,12 +46,9 @@
       right: 0;
       width: 25px;
       transition: all var(--time-250);
+      pointer-events: none;
       transform: translate(-100%, -50%);
     }
-  }
-
-  .menu-list {
-    font-size: 20px;
   }
 }
 
@@ -62,7 +63,8 @@
 }
 
 .active {
-  background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 25%, rgb(34 130 199 / 25%) 100%);
+  position: relative;
+  left: 0;
   color: var(--white) !important;
   text-shadow: var(--shine-10) !important;
 }
