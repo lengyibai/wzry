@@ -12,6 +12,7 @@
     border: 5px solid #fef5b2;
     border-radius: 50%;
     pointer-events: none;
+    box-shadow: var(--shine-20) #fef5b2, var(--shine-10) #fef5b2 inset;
 
     &::before,
     &::after {
@@ -47,22 +48,24 @@
     position: absolute;
     top: 50%;
     left: 0;
-    transform-origin: right;
-    transform: translate(-100%, -50%);
     width: 20px;
     height: 3px;
+    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     background-color: var(--blue);
+    transform-origin: right;
+    transform: translate(-100%, -50%);
   }
 
   .right-line {
     position: absolute;
     top: 50%;
-    transform-origin: left;
     left: 0;
-    transform: translate(75px, -50%);
     width: calc(100% - 75px - 20px);
     height: 3px;
+    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     background-color: var(--blue);
+    transform-origin: left;
+    transform: translate(75px, -50%);
   }
 
   .box {
@@ -70,10 +73,12 @@
     font-size: 20px;
     text-shadow: var(--t-shadow);
     line-height: 1.25;
+    transition: all 0.5s;
 
     .name {
-      transform: translateY(15px);
       font-size: inherit;
+      transition: inherit;
+      transform: translateY(15px);
     }
 
     .info {
@@ -82,11 +87,13 @@
       .desc {
         color: var(--theme-color-seven);
         font-size: 16px;
+        transition: inherit;
       }
 
       .price {
         color: var(--theme-color-five);
         font-size: 16px;
+        transition: inherit;
       }
     }
   }
@@ -103,6 +110,10 @@
 
 .border-fade-leave-active {
   transition: all var(--time-250);
+}
+
+.shine {
+  text-shadow: var(--shine-10);
 }
 
 /* 左边 */

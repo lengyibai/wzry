@@ -2,6 +2,7 @@
   position: relative;
   overflow: auto;
   height: 100%;
+  text-shadow: var(--t-shadow);
 
   .update,
   .export,
@@ -10,24 +11,65 @@
     margin-right: 20px;
     padding: 0.5em 1em;
     border-radius: 7px;
+    box-shadow: var(--b-shadow-s);
     color: #fff;
     font-size: 22px;
+    text-shadow: var(--t-shadow-s);
+    transition: all 0.5s;
     user-select: none;
+
+    &:hover {
+      text-shadow: var(--shine-15), var(--shine-25);
+      transition: all 0s;
+    }
+
+    &:active {
+      box-shadow: none !important;
+      text-shadow: none;
+      transition: all 0.1s;
+      opacity: 0.75;
+      transform-origin: bottom center;
+      transform: scale(0.95);
+    }
   }
 
   .update {
-    background-color: rgb(242 156 18 / 75%);
+    @color: rgb(242 156 18 / 75%);
+
+    background-color: @color;
+
+    &:hover {
+      box-shadow: var(--shine-25) @color, var(--shine-50) @color;
+    }
   }
 
   .export {
-    background-color: rgb(41 127 185 / 75%);
+    @color: rgb(41 127 185 / 75%);
+
+    background-color: @color;
+
+    &:hover {
+      box-shadow: var(--shine-25) @color, var(--shine-50) @color;
+    }
   }
 
   .check {
-    background-color: rgb(39 174 95 / 75%);
+    @color: rgb(39 174 95 / 75%);
+
+    background-color: @color;
+
+    &:hover {
+      box-shadow: var(--shine-25) @color, var(--shine-50) @color;
+    }
   }
 
   .replace {
-    background-color: rgb(231 77 60 / 75%);
+    @color: rgb(231 77 60 / 75%);
+
+    background-color: @color;
+
+    &:hover {
+      box-shadow: var(--shine-25) @color, var(--shine-50) @color;
+    }
   }
 }

@@ -2,8 +2,10 @@
 import { ref, nextTick, onMounted } from "vue";
 
 import heroDetailStore from "@/store/heroDetail";
+import switchStore from "@/store/switch";
 
 const $heroDetailStore = heroDetailStore();
+const $switchStore = switchStore();
 
 const voiceRef = ref();
 
@@ -45,6 +47,11 @@ onMounted(() => {
   });
 });
 
+/* 悬浮语音 */
+const handleEnter = () => {
+  $switchStore.$clickAudio("n4r4");
+};
+
 /* 点击播放 */
 const play = (voice: string, index: number) => {
   // 如果再次点击，则停止播放
@@ -83,6 +90,7 @@ let ended: () => void = () => {
       class="voice flex"
       :class="{ 'active-width': current_index === index }"
       @click="play(item.link, index)"
+      @mouseenter="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
         <span v-if="current_index !== index" class="text lib-one-line"> {{ item.text }}</span>

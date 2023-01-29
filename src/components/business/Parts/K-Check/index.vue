@@ -1,9 +1,3 @@
-<template>
-  <div class="k-check cursor-pointer" @click="toggle">
-    <img :src="icon" @dragstart.prevent />
-    <span :class="{ active: modelValue }">开启</span>
-  </div>
-</template>
 <script setup lang="ts">
 import { computed } from "vue";
 
@@ -30,6 +24,14 @@ const toggle = () => {
   $switchStore.$clickAudio();
 };
 </script>
+
+<template>
+  <div class="k-check cursor-pointer" @click="toggle">
+    <img :class="{ checked: modelValue }" :src="icon" @dragstart.prevent />
+    <span :class="{ active: modelValue }">开启</span>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>

@@ -227,22 +227,22 @@ onActivated(() => {
         <TableColumn width="500px">
           <button
             v-if="data.status !== '本地已更改'"
-            class="check lib-click"
+            class="check"
             @click="handleCheck(data), play()"
           >
             检查更新
           </button>
-          <button class="export lib-click" @click="handleExport(data), play()">导出</button>
+          <button class="export" @click="handleExport(data), play()">导出</button>
           <button
             v-if="data.status === '待更新'"
-            class="update lib-click"
+            class="update"
             @click="handleUpdate(data), play()"
           >
             更新
           </button>
           <button
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
-            class="replace lib-click"
+            class="replace"
             @click="handleReplace(data), play()"
           >
             重置

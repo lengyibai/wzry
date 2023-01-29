@@ -13,28 +13,26 @@
     padding: 10px 20px;
     color: var(--theme-color-five);
     text-shadow: var(--t-shadow);
-    transition: all var(--time-250);
 
     &:hover {
       color: var(--blue);
-      transition: all 0s;
+      text-shadow: var(--shine-10);
+
+      .name,
+      .iconfont {
+        transition: all 0s !important;
+      }
     }
 
     .iconfont {
       margin-right: 15px;
       font-size: 35px;
-      transition: all var(--time-250);
+      transition: all var(--time-250) 0.1s;
     }
 
     .name {
       font-size: 20px;
       transition: all var(--time-250) 0.1s;
-    }
-
-    :deep(.icon) {
-      width: 35px;
-      height: 35px;
-      margin-right: 20px;
     }
   }
 }
@@ -67,4 +65,5 @@
     rgb(34 58 94 / 0%) 25%,
     rgb(34 130 199 / 25%) 100%
   ) !important;
+  text-shadow: var(--shine-10) !important;
 }

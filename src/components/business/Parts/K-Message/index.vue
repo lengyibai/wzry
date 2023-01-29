@@ -40,6 +40,7 @@ const imgs: Record<string, Record<string, string>> = {
           v-for="(item, index) in messages"
           :key="item.id"
           class="message"
+          :class="item.type"
           :style="{
             transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
           }"

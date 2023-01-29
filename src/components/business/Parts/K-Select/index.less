@@ -16,8 +16,15 @@
     color: var(--theme-color-five);
     font-size: 20px;
     text-align: center;
+    text-shadow: var(--t-shadow-s);
     transition: all var(--time-250);
     line-height: @height;
+
+    &:hover {
+      color: var(--white);
+      text-shadow: var(--shine-15);
+      transition: color 0s;
+    }
   }
 
   .active-bg {
@@ -25,7 +32,7 @@
     left: 0;
     width: 100px;
     height: 100%;
-    border: 1px solid #619cd8;
+    box-shadow: var(--shine-10) #3661a5, var(--shine-25) #3661a5, var(--shine-50) #3661a5;
     transition: all var(--time-250);
     background-image: linear-gradient(180deg, #3661a5 0%, #4081bb 100%);
   }
@@ -33,4 +40,5 @@
 
 .active {
   color: var(--white) !important;
+  text-shadow: var(--shine-15) !important;
 }

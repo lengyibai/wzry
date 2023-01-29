@@ -18,6 +18,8 @@ const icon = ref();
 
 const active_id = computed(() => $equipStore.active_id); //获取点击的装备id
 
+const shine = computed(() => props.leftLine || props.rightLine); //装备文字是否开启柔光
+
 /* 查看装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive(props.equip.id);
@@ -56,10 +58,10 @@ nextTick(() => {
 
     <!-- 右侧装备信息 -->
     <div class="box">
-      <div class="name">{{ equip.name }}</div>
+      <div class="name" :class="{ shine: shine }">{{ equip.name }}</div>
       <div class="info">
-        <div v-if="equip.desc" class="desc">{{ equip.desc }}</div>
-        <div class="price">{{ equip.price }}</div>
+        <div v-if="equip.desc" class="desc" :class="{ shine: shine }">{{ equip.desc }}</div>
+        <div class="price" :class="{ shine: shine }">{{ equip.price }}</div>
       </div>
     </div>
   </div>

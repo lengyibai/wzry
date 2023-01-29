@@ -77,7 +77,7 @@ sidebarActive(props.route);
       <i class="iconfont" :class="route.meta.icon" />
 
       <!-- 文字 -->
-      <span>{{ route.title }}</span>
+      <span class="name">{{ route.title }}</span>
 
       <!-- 下拉箭头 -->
       <img
