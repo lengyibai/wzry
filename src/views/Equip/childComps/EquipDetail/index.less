@@ -1,7 +1,6 @@
 .equip-detail {
   overflow: auto;
   width: 30%;
-  min-width: 250px;
   height: 100%;
   padding: 0 35px;
   transition: all 0.25s;
@@ -39,6 +38,12 @@
   .note {
     color: rgb(255 255 255 / 25%);
     font-family: var(--font-f);
+  }
+
+  @media screen and (max-width: 1260px) {
+    max-width: 180px;
+    padding: 0;
+    padding-left: 20px;
   }
 }
 
