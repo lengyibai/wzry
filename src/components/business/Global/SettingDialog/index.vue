@@ -96,6 +96,11 @@ const EmitSaveConfig = () => {
 const EmitResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
+  $clickAudio.setAudio(config.value.audio);
+  $clickAudio.setVolume(config.value.audioVolume);
+  $musicStore.setVolume(config.value.musicVolume);
+  $speedStore.setSpeed(config.value.speed);
+  $shineStore.setShine(config.value.shine);
   $switchStore.$msg("已重置所有配置项");
 };
 </script>
