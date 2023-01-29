@@ -42,20 +42,10 @@ onMounted(() => {
     <!-- 属性 -->
     <transition name="fade">
       <div v-if="into" class="hero-attribute">
-        <HeroAttribute
-          style="--i: 0"
-          class="attribute"
-          attr="survival"
-          :length="hero_data.survival"
-        />
-        <HeroAttribute style="--i: 1" class="attribute" attr="attack" :length="hero_data.attack" />
-        <HeroAttribute style="--i: 2" class="attribute" attr="effect" :length="hero_data.effect" />
-        <HeroAttribute
-          style="--i: 3"
-          class="attribute"
-          attr="difficulty"
-          :length="hero_data.difficulty"
-        />
+        <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
+        <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
+        <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
+        <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
       </div>
     </transition>
   </div>

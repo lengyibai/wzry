@@ -39,14 +39,12 @@ const text: Text = {
 };
 
 const attribute = ref(); //属性元素
-
 const progress = ref(0); //进度条
 
 // 延迟显示英雄属性
 onMounted(() => {
   setTimeout(() => {
     progress.value = props.length;
-    attribute.value.style.transform = "translateY(calc(var(--i) * 250%))";
     attribute.value.style.width = "100%";
   }, 100);
 });
