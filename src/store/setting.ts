@@ -8,7 +8,8 @@ const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
 
   const data = localStorage.getItem("config");
-  if (data) config.value = JSON.parse(data);
+  if (data) config.value = { ...config.value, ...JSON.parse(data) };
+  localStorage.setItem("config", JSON.stringify(config.value));
 
   if ($isPhone) {
     config.value.videoBg = false;
