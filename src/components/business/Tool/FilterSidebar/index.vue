@@ -14,6 +14,11 @@ const props = withDefaults(defineProps<Props>(), {
   type: "hero",
 });
 
+interface Emits {
+  (e: "change"): void;
+}
+const emit = defineEmits<Emits>();
+
 const $switchStore = switchStore();
 const $skinStore = skinStore();
 const $heroStore = heroStore();
@@ -65,6 +70,8 @@ const handleSelect = (name: string, index: number) => {
   };
 
   obj[props.type]();
+
+  emit("change");
 };
 
 /* 设置滑块位置 */
