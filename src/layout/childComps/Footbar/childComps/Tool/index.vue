@@ -19,15 +19,19 @@ const handleTool = (type: string) => {
 <template>
   <transition name="tool">
     <div v-show="$musicStore.show_tool" class="tool" @click.stop>
-      <i class="iconfont wzry-last" title="上一首" @click="handleTool('last')" />
+      <i class="cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i
-        class="iconfont"
+        class="cursor-pointer iconfont"
         :class="$musicStore.status ? 'wzry-play' : 'wzry-pause'"
         title="播放/暂停"
         @click="handleTool(!$musicStore.status ? 'play' : 'pause')"
       />
-      <i class="iconfont wzry-next" title="下一首" @click="handleTool('next')" />
-      <i class="iconfont wzry-musiclist" title="播放列表" @click="handleTool('list')" />
+      <i class="cursor-pointer iconfont wzry-next" title="下一首" @click="handleTool('next')" />
+      <i
+        class="cursor-pointer iconfont wzry-musiclist"
+        title="播放列表"
+        @click="handleTool('list')"
+      />
 
       <MuiscList class="muisc-list" />
     </div>

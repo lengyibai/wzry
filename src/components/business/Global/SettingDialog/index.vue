@@ -50,6 +50,11 @@ const EmitMusicVolume = (v: number) => {
   }, 1000);
 };
 
+/* 支持控制音乐进度 */
+const EmitMusicProgress = (v: boolean) => {
+  EmitSaveConfig();
+};
+
 /* 开启音效 */
 const EmitAudio = (v: boolean) => {
   $clickAudio.setAudio(v);
@@ -143,11 +148,22 @@ const EmitResetConfig = () => {
           <K-Check v-model="config.music" @update:model-value="EmitMusic" />
         </div>
 
+        <!-- 音乐进度控制 -->
+        <div class="option">
+          <div class="label">
+            音乐进度控制
+            <DescSet
+              desc="开启后，点击底部导航栏就可以调整播放进度，手机端因为会误触，不建议开启"
+            />
+          </div>
+          <K-Check v-model="config.musicProgress" @update:model-value="EmitMusicProgress" />
+        </div>
+
         <!-- 柔光 -->
         <div class="option">
           <div class="label">
             元素发光
-            <DescSet desc="开启后在一些地方，悬浮、选中元素会有发光效果" />
+            <DescSet desc="开启后，在一些地方悬浮、选中元素会有发光效果" />
           </div>
           <K-Check v-model="config.shine" @update:model-value="EmitShine" />
         </div>
@@ -157,7 +173,7 @@ const EmitResetConfig = () => {
           <div class="label">
             粒子特效
             <DescSet
-              desc="开启后对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
+              desc="开启后，对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
             />
           </div>
           <K-Check v-model="config.particle" @update:model-value="EmitParticle" />

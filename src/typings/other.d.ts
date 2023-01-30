@@ -17,6 +17,7 @@ interface SettingConfig {
   audioVolume: number; //音效音量
   music: boolean; //音乐
   musicVolume: number; //音乐音量
+  musicProgress: boolean; //音乐进度控制
   speed: 0 | 1 | 2; //动画速率
   shine: boolean; //柔光
   particle: boolean; //粒子特效

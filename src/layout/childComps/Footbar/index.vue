@@ -21,6 +21,8 @@ const progress = ref(0); //播放进度
 
 //启用音乐播放器
 const enable_music = computed(() => $settingStore.config.music);
+//音乐进度控制
+const music_progress = computed(() => $settingStore.config.musicProgress);
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {
@@ -31,12 +33,12 @@ const handleSetProgress = (e: MouseEvent) => {
     ((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)
   );
 
-  $musicStore.setCurrentTime(progress.value); //设置播放进度
+  music_progress.value && $musicStore.setCurrentTime(progress.value); //设置播放进度
 };
 
 /* 悬浮移动竖线 */
 const handleMoveLine = (e: MouseEvent) => {
-  if (!enable_music.value) return;
+  if (!enable_music.value || !music_progress.value) return;
 
   //设置底部刻度线x坐标
   line.value.style.left =
@@ -47,17 +49,17 @@ const handleMoveLine = (e: MouseEvent) => {
 
 /* 点击音乐工具栏 */
 const EmitMusicToole = (type: string) => {
-  if (type === "last") {
-    $musicStore.last();
-  } else if (type === "play") {
+  if (type === "play") {
     $musicStore.play(false);
-  } else if (type === "pause") {
-    $musicStore.pause();
-  } else if (type === "next") {
-    $musicStore.next();
-  } else if (type === "list") {
-    $musicStore.list();
+    return;
   }
+  const strategy: Record<string, () => void> = {
+    last: $musicStore.last,
+    pause: $musicStore.pause,
+    next: $musicStore.next,
+    list: $musicStore.list,
+  };
+  strategy[type]();
 };
 
 /* 显示工具栏 */
@@ -87,14 +89,15 @@ onBeforeUnmount(() => {
       size: 10,
       enable: $settingStore.config.particle,
     }"
-    class="footbar cursor-pointer"
+    class="footbar"
+    :class="{ 'cursor-pointer': music_progress }"
     @click="handleSetProgress"
     @mouseenter="handleShowTool(true)"
     @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
   >
     <!-- 底部竖线 -->
-    <div v-if="enable_music" ref="line" class="line"></div>
+    <div v-if="enable_music && music_progress" ref="line" class="line"></div>
 
     <!-- 音乐播放器 -->
     <MusicPlay v-if="enable_music" class="music-play" />
