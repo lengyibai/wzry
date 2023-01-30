@@ -1,13 +1,28 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import EquipListColumn from "./childComps/EquipListColumn/index.vue"; //装备栏
 
 import equipStore from "@/store/equip";
 
 const $equipStore = equipStore();
+
+const equipList = ref();
+
+/** @description: 返回顶部 */
+const backTop = () => {
+  setTimeout(() => {
+    equipList.value.scroll({ behavior: "smooth", top: 0 });
+  }, 250);
+};
+
+defineExpose({
+  backTop,
+});
 </script>
 
 <template>
-  <div class="equip-list">
+  <div ref="equipList" class="equip-list">
     <EquipListColumn
       :line-data="$equipStore.synthetic_id[0]"
       :equip-list="$equipStore.equip_list_column[0]"
