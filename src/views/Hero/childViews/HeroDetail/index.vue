@@ -108,9 +108,7 @@ onMounted(() => {
         });
   }, 1500);
 
-  setTimeout(() => {
-    $switchStore.$clickAudio("u4c5");
-  }, 250);
+  $switchStore.$clickAudio("u4c5");
 });
 </script>
 
