@@ -22,6 +22,7 @@ const form = reactive<User>({ ...userDefaultInfo });
 
 /* 注册 */
 const handleReg = () => {
+  $switchStore.$clickAudio("36jn");
   // 非空判断
   if ($existEmpty(form)) {
     $switchStore.$msg("请完整填写", "error");
