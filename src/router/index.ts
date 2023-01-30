@@ -6,6 +6,9 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
 import { HOME_URL } from "@/config";
+import { $browserV } from "@/utils";
+
+const low = $browserV.browser === "chrome" ? $browserV.version < 90 : $browserV.version < 15;
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -20,8 +23,17 @@ useRouter.beforeEach(async (to, from, next) => {
   const token = $authStore.userInfo?.wzryToken;
 
   //如果当前路径不等于跳转路径&&跳转路径非403、404&&存在title，则使用loading
-  if (to.path !== from.path && !["/403", "/404"].includes(to.path) && to.meta.title) {
+  if (to.path !== from.path && !["/403", "/404", "/400"].includes(to.path) && to.meta.title) {
     switchStore().$loading.show("正在加载" + to.meta.title + "页面");
+  }
+
+  //浏览器版本过低
+  if (low && to.path !== "/400") {
+    next("/400");
+    return;
+  } else if (!low && to.path === "/400") {
+    next("/");
+    return;
   }
 
   // 如果路径不在路由表

@@ -35,6 +35,14 @@ export const errorRouter = [
       title: "404",
     },
   },
+  {
+    path: "/400",
+    name: "400",
+    component: () => import("@/views/Base/Error/400.vue"),
+    meta: {
+      title: "存在兼容问题",
+    },
+  },
 ];
 
 /** @description: 静态路由path组 */
