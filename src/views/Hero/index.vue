@@ -1,5 +1,5 @@
 <script setup lang="ts" name="hero">
-import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
@@ -127,8 +127,6 @@ onMounted(async () => {
     changeCount();
   });
 
-  $switchStore.$loading.close();
-
   //显示工具栏
   await $promiseTimeout(() => {
     show_tool.value = true;
@@ -137,10 +135,6 @@ onMounted(async () => {
   await $promiseTimeout(() => {
     show_list.value = true;
   }, 250);
-});
-
-onActivated(() => {
-  $switchStore.$loading.close();
 });
 
 onBeforeUnmount(() => {

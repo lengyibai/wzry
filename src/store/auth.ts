@@ -28,7 +28,6 @@ const authStore = defineStore("auth", () => {
 
   /** @description: 登录 */
   const login = async (form: User) => {
-    switchStore().$loading.show("登录中");
     switchStore().$clickAudio("e84n");
     return new Promise<void>((resolve) => {
       _login(form)
@@ -44,7 +43,6 @@ const authStore = defineStore("auth", () => {
         })
         .catch((err) => {
           switchStore().$msg(err, "error");
-          switchStore().$loading.close();
         });
     });
   };
@@ -52,7 +50,6 @@ const authStore = defineStore("auth", () => {
   /** @description: 自动登录 */
   const autoLogin = () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    switchStore().$loading.show("登录中");
 
     _login(user)
       .then((res) => {
@@ -65,9 +62,6 @@ const authStore = defineStore("auth", () => {
       .catch((err) => {
         switchStore().$msg(err, "error");
         clearToken();
-      })
-      .finally(() => {
-        switchStore().$loading.close();
       });
   };
 

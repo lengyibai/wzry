@@ -101,19 +101,6 @@ const EmitCommit = async () => {
 /* 延迟显示 */
 $switchStore.$loading.close();
 setTimeout(async () => {
-  $switchStore.$loading.show("正在加载阵营类型表2/7");
-  type_list.campType = await getCampType();
-  $switchStore.$loading.show("正在加载种族类型表3/7");
-  type_list.raceType = await getRaceType();
-  $switchStore.$loading.show("正在加载定位类型表4/7");
-  type_list.locationType = await getLocationType();
-  $switchStore.$loading.show("正在加载时期类型表5/7");
-  type_list.periodType = await getPeriodType();
-  $switchStore.$loading.show("正在加载职业类型表6/7");
-  type_list.professionType = await getProfessionType();
-  $switchStore.$loading.show("正在加载特长类型表7/7");
-  type_list.specialtyType = await getSpecialtyType();
-  $switchStore.$loading.close();
   show.value = true;
 }, 1000);
 </script>

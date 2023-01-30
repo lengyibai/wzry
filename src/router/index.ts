@@ -56,6 +56,7 @@ useRouter.beforeEach(async (to, from, next) => {
 });
 
 useRouter.afterEach((to) => {
+  switchStore().$loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者荣耀后台管理系统`;
 });
 

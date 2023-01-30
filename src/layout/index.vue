@@ -24,7 +24,6 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
   $switchStore.$clickAudio("p53r");
-  $switchStore.$loading.close();
 
   await $promiseTimeout(() => {
     show_sidebar.value = true;

@@ -1,12 +1,7 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 
-import switchStore from "@/store/switch";
-
 const $router = useRouter();
-const $switchStore = switchStore();
-
-$switchStore.$loading.close();
 </script>
 
 <template>

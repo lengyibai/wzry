@@ -1,5 +1,5 @@
 <script setup lang="ts" name="add">
-import { defineAsyncComponent, onActivated, reactive } from "vue";
+import { defineAsyncComponent, reactive } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
 
@@ -40,7 +40,6 @@ const options: Options = reactive({
 });
 
 $switchStore.$clickAudio("u4c5");
-$switchStore.$loading.close();
 
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
@@ -48,10 +47,6 @@ const open = (key: string) => {
   $switchStore.$clickAudio();
   $switchStore.$loading.show("正在加载添加" + list[key] + "页面");
 };
-
-onActivated(() => {
-  $switchStore.$loading.close();
-});
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts" name="epigraph">
-import { ref, onActivated } from "vue";
+import { ref } from "vue";
 
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
@@ -13,15 +13,10 @@ const $switchStore = switchStore();
 const show_epigraph = ref(false); //显示铭文顶部分类
 
 $switchStore.$clickAudio("h7t9");
-$switchStore.$loading.close();
 
 /* 获取铭文列表 */
 $epigraphStore.getEpigraph().then(() => {
   show_epigraph.value = true;
-});
-
-onActivated(() => {
-  $switchStore.$loading.close();
 });
 </script>
 

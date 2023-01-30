@@ -1,5 +1,5 @@
 <script setup lang="ts" name="database">
-import { ref, onActivated } from "vue";
+import { ref } from "vue";
 
 import { $typeSort, $savefiles, $deepCopy } from "@/utils";
 import skinStore from "@/store/skin";
@@ -92,7 +92,6 @@ const show_ConfirmClose = ref(false); //显示确认关闭弹窗
 const table_data = ref<any[]>([]); //表格数据
 
 $switchStore.$clickAudio("bq69");
-$switchStore.$loading.close();
 
 /* 获取本地数据 */
 const getLocalData = (name: string, prefix = "data_") => {
@@ -205,10 +204,6 @@ const EmitsSortChange = (v: number[]) => {
 
   play();
 };
-
-onActivated(() => {
-  $switchStore.$loading.close();
-});
 </script>
 
 <template>

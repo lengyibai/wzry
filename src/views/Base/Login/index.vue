@@ -23,8 +23,6 @@ const finish = ref(false); //数据下载完成
 //启用视频背景
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
-$switchStore.$loading.close();
-
 /**
  * @description: 点击右上角工具栏
  * @param {string} v 点击工具栏的静音或公告按钮类型
