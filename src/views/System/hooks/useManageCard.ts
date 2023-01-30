@@ -13,6 +13,7 @@ const data: Info = {
     justifyContent: "center",
     flexWrap: "wrap",
     overflow: "auto",
+    alignContent: "flex-start",
   },
   list: {
     Hero: "英雄",
