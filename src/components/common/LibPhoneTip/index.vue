@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+
+const show = ref(true);
+
+const tip = () => {
+  if (show.value) {
+    show.value = window.innerWidth < window.innerHeight;
+  }
+};
+
+onMounted(() => {
+  tip();
+  window.addEventListener("resize", () => {
+    tip();
+  });
+});
+</script>
 <template>
   <div v-if="show" class="PhoneTip">
     <svg
@@ -25,22 +43,6 @@
     <K-Button type="error" @click="show = false">我想看看竖屏效果</K-Button>
   </div>
 </template>
-<script setup lang="ts">
-import { onMounted, ref } from "vue";
-
-const show = ref(false);
-
-const tip = () => {
-  show.value = window.innerWidth < window.innerHeight;
-};
-
-onMounted(() => {
-  tip();
-  window.addEventListener("resize", () => {
-    tip();
-  });
-});
-</script>
 <style scoped lang="less">
 .PhoneTip {
   position: fixed;
