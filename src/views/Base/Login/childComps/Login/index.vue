@@ -58,13 +58,18 @@ const parallax = new $Parallax(
     ry: 10,
   }
 );
-const fn = (e: MouseEvent) => {
+const fn1 = (e: MouseEvent) => {
   $throttleInstant(() => parallax.move(e), 50);
 };
-window.addEventListener("mousemove", fn);
+const fn2 = (e: TouchEvent) => {
+  $throttleInstant(() => parallax.move(e.changedTouches[0]), 50);
+};
+window.addEventListener("mousemove", fn1);
+window.addEventListener("touchmove", fn2);
 
 onBeforeUnmount(() => {
-  window.removeEventListener("mousemove", fn);
+  window.removeEventListener("mousemove", fn1);
+  window.removeEventListener("touchmove", fn2);
 });
 </script>
 
