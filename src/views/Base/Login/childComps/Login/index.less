@@ -35,14 +35,14 @@
     width: 100px;
     height: 100px;
     margin-bottom: 25px;
-    transform: translateZ(50px);
+    transform: translate3d(0, 0, 100px);
     animation: light 1.5s infinite alternate-reverse ease-out;
 
     img {
       width: 100%;
       @keyframes light {
         100% {
-          translate: 0 -20px 100px;
+          transform: translate3d(0, -20px, 100px);
           filter: drop-shadow(0 0 15px var(--theme-color-thirteen));
         }
       }
