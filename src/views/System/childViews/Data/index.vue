@@ -224,7 +224,7 @@ onActivated(() => {
         <TableColumn min-width="175px">{{ data.name }}</TableColumn>
         <TableColumn min-width="150px">{{ data.data.length }}</TableColumn>
         <TableColumn min-width="200px">{{ data.status }}</TableColumn>
-        <TableColumn width="500px">
+        <TableColumn min-width="325px">
           <button
             v-if="data.status !== '本地已更改'"
             class="check"

@@ -22,6 +22,20 @@
       color: var(--theme-color-three);
     }
   }
+
+  @media screen and (max-width: @medium) {
+    flex-direction: column;
+
+    .filter-select {
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    :deep(.input) {
+      margin-top: 25px;
+      margin-left: 0;
+    }
+  }
 }
 
 .active {

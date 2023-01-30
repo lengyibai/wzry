@@ -5,8 +5,15 @@
   height: 100%;
 
   &-main {
+    position: relative;
     display: flex;
-    flex: 1;
+    overflow: auto;
+    width: 100%;
     padding: 20px;
+    flex: 1;
+
+    @media screen and (max-width: @medium) {
+      flex-direction: column-reverse;
+    }
   }
 }

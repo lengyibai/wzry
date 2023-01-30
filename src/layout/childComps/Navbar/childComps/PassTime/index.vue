@@ -19,9 +19,6 @@ setInterval(() => {
 
 <style scoped lang="less">
 .pass-time {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   color: var(--theme-color-five);
   font-size: 20px;
   text-shadow: var(--t-shadow);

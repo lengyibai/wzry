@@ -1,15 +1,13 @@
 .hero-skin-price {
-  position: absolute;
-  right: 0;
-  transform: translate(100px, 25px);
   filter: var(--d-shadow-s);
-  transition: all 0.5s;
+  transition: all var(--time-500);
   opacity: 0;
+  transform: translateX(100%);
 
   img {
     width: 40px;
     margin-right: 10px;
-    vertical-align: top;
+    vertical-align: bottom;
   }
 
   span {
@@ -19,6 +17,6 @@
 }
 
 .show {
-  transform: translate(-25px, 25px);
+  transform: translateX(0);
   opacity: 1;
 }

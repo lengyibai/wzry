@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 
 import Login from "./childComps/Login/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
@@ -19,7 +19,6 @@ let tip_status = false; //用于tip新手引导
 
 const show_notice = ref(true); //显示公告
 const finish = ref(false); //数据下载完成
-const status = ref(false); //是否开始下载
 
 //启用视频背景
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
@@ -40,24 +39,6 @@ const EmitCloseNotice = () => {
   $switchStore.$tip({ text: "9f5m" });
   tip_status = true;
 };
-
-/* 判断手机是否横屏 */
-const tip = () => {
-  if (status.value) return;
-  status.value = window.innerWidth > window.innerHeight;
-};
-
-tip();
-$bus.on("resize", () => {
-  tip();
-});
-
-onMounted(() => {
-  tip();
-  window.addEventListener("resize", () => {
-    tip();
-  });
-});
 
 onUnmounted(() => {
   $bus.off("resize");
@@ -89,7 +70,7 @@ onUnmounted(() => {
 
     <!-- 下载进度 -->
     <transition name="fade">
-      <DownLoad v-if="!finish && status" v-model:finish="finish" />
+      <DownLoad v-if="!finish" v-model:finish="finish" />
     </transition>
   </div>
 </template>

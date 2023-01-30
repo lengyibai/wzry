@@ -13,10 +13,6 @@
     opacity: 0;
     transform: translateX(-100%);
     border-bottom: 1px solid rgb(255 255 255 / 50%);
-    @media screen and (max-width: 1560px) {
-      width: 300px;
-      font-size: 20px;
-    }
 
     .iconfont {
       margin-right: 5px;
@@ -30,6 +26,13 @@
 
     .name {
       color: var(--white);
+    }
+  }
+
+  @media screen and (max-width: @big) {
+    .info {
+      width: 300px;
+      font-size: 25px;
     }
   }
 }

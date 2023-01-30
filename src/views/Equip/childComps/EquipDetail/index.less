@@ -2,7 +2,7 @@
   overflow: auto;
   width: 30%;
   height: 100%;
-  padding: 0 35px;
+  padding-left: 20px;
   transition: all 0.25s;
   opacity: 0;
   line-height: 1.25;
@@ -40,10 +40,16 @@
     font-family: var(--font-f);
   }
 
-  @media screen and (max-width: 1260px) {
-    max-width: 180px;
-    padding: 0;
-    padding-left: 20px;
+  @media screen and (max-width: 1535px) {
+    width: 180px;
+  }
+
+  @media screen and (max-width: @medium) {
+    width: 100%;
+    max-width: initial;
+    height: initial;
+    flex: 1;
+    padding-left: 0;
   }
 }
 

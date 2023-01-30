@@ -67,32 +67,42 @@ const EmitTogglePoster = ([i, index]: number[]) => {
 <template>
   <div class="hero-skin">
     <div class="box">
-      <div class="left">
+      <!-- 顶部 -->
+      <div class="top">
         <!-- 皮肤类型 -->
         <HeroSkinType :skin-type-img="active_skin_type" :toggle="skin_type_toggle" />
 
-        <!-- 皮肤语音 -->
-        <HeroVoice />
-      </div>
-
-      <div class="right">
         <!-- 皮肤价格 -->
         <HeroSkinPrice :toggle="skin_price_toggle" :price="skin_price" />
-
-        <!-- 中心皮肤切换 -->
-        <HeroSkinHeadImg
-          v-if="hero_data.skins!.length"
-          :skins="hero_data.skins"
-          @bg-imgs="EmitTogglePoster"
-        />
       </div>
 
-      <!-- 皮肤名 -->
-      <HeroSkinName
-        v-if="active_skin_name"
-        :toggle="skin_name_toggle"
-        :name="active_skin_name + '-' + hero_data.name"
-      />
+      <!-- 主体 -->
+      <div class="main">
+        <div class="main-left">
+          <!-- 皮肤语音 -->
+          <HeroVoice />
+        </div>
+
+        <div class="main-right">
+          <!-- 中心皮肤切换 -->
+          <HeroSkinHeadImg
+            v-if="hero_data.skins!.length"
+            class="hero-skin-head-img"
+            :skins="hero_data.skins"
+            @bg-imgs="EmitTogglePoster"
+          />
+        </div>
+      </div>
+
+      <!-- 底部 -->
+      <div class="bottom">
+        <!-- 皮肤名 -->
+        <HeroSkinName
+          v-if="active_skin_name"
+          :toggle="skin_name_toggle"
+          :name="active_skin_name + '-' + hero_data.name"
+        />
+      </div>
     </div>
 
     <!-- 背景图 -->

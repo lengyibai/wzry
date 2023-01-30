@@ -1,13 +1,14 @@
 .hero-voice {
-  flex: 1;
+  position: relative;
   display: flex;
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 75%;
+  height: 100%;
+  padding-right: 10px;
+  flex: 1;
   flex-direction: column;
   perspective: 1000px;
-  padding-right: 10px;
 
   .voice {
     display: flex;
@@ -50,12 +51,6 @@
       .iconfont {
         color: var(--white);
         font-size: 26px;
-      }
-    }
-
-    @media screen and (max-width: 1560px) {
-      .text {
-        font-size: 20px;
       }
     }
   }

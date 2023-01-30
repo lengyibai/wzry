@@ -1,7 +1,5 @@
 .hero-skin-head-img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  position: relative;
   width: 175px;
   height: 175px;
   opacity: 0;
@@ -47,7 +45,22 @@
   @keyframes into {
     100% {
       opacity: 1;
-      transform: translateX(-80%) translateY(-75%) scale(1);
+      transform: translateX(-50%) translateY(-60%) scale(1);
+    }
+  }
+}
+
+@media screen and (max-width: @medium) {
+  .hero-skin-head-img {
+    transform: translateX(0) translateY(-200%) scale(3);
+  }
+
+  .into {
+    @keyframes into {
+      100% {
+        opacity: 1;
+        transform: translateX(0) translateY(-60%) scale(1);
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 .epigraph-tool {
+  overflow: auto;
   padding: 20px 0;
   border-bottom: 1px solid var(--white-10);
 
@@ -27,6 +28,18 @@
 
       span {
         font-size: 26px;
+      }
+    }
+  }
+
+  @media screen and (max-width: @medium) {
+    img {
+      display: none;
+    }
+
+    .epigraph-category {
+      .title {
+        min-width: 100px;
       }
     }
   }

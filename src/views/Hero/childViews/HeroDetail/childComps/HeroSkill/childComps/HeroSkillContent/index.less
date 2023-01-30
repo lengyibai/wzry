@@ -4,6 +4,25 @@
   justify-content: space-between;
   width: 100%;
   flex: 1;
+
+  .left,
+  .right {
+    width: 45%;
+  }
+
+  @media screen and (max-width: @large) {
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .left,
+    .right {
+      width: 100% !important;
+    }
+
+    .left {
+      margin-bottom: 100px;
+    }
+  }
 }
 
 .hide-left {

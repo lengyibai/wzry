@@ -34,17 +34,20 @@ $heroDetail.setSkillSelectFn(() => {
 
 <template>
   <div class="hero-skill-content">
-    <HeroSkillContentLeft
-      :class="{ 'hide-left': !show || toggle }"
-      :active-skill="skill"
-      :is-passive="$heroDetail.skill_index === 0"
-      :style="{ width: exist_effect ? '45%' : '100%' }"
-    />
-    <HeroSkillContentRight
-      v-if="exist_effect"
-      :class="{ 'hide-right': !show || toggle }"
-      :active-skill="skill"
-    />
+    <div class="left" :style="{ width: exist_effect ? '45%' : '100%' }">
+      <HeroSkillContentLeft
+        :class="{ 'hide-left': !show || toggle }"
+        :active-skill="skill"
+        :is-passive="$heroDetail.skill_index === 0"
+      />
+    </div>
+    <div class="right">
+      <HeroSkillContentRight
+        v-if="exist_effect"
+        :class="{ 'hide-right': !show || toggle }"
+        :active-skill="skill"
+      />
+    </div>
   </div>
 </template>
 

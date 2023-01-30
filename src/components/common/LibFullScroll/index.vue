@@ -100,7 +100,7 @@ onMounted(() => {
   });
   LibFullScroll.value.addEventListener("touchmove", (e: TouchEvent) => {
     const status = start - e.changedTouches[0].pageY;
-    if (Math.abs(status) < 300) return;
+    if (Math.abs(status) < window.innerHeight / 3) return;
     $debounceDelay(() => {
       LibFullScroll.value.style.transition = `all ${props.duration}ms`;
       if (!scroll) return;

@@ -2,9 +2,14 @@
   position: relative;
   display: flex;
   overflow: auto;
-  width: 0;
+  width: 100%;
   margin-right: 0;
   padding-top: 18px;
   padding-left: 18px;
   flex: 1;
+
+  @media screen and (max-width: @medium) {
+    width: 100%;
+    padding: 18px;
+  }
 }

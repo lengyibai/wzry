@@ -1,11 +1,12 @@
 .hero-skin-name {
   .skin-name {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
     font-size: 60px;
-    text-align: center;
     text-shadow: 0 5px 3px #000;
-    transform: translateX(-50%) translateY(-50%);
+  }
+
+  @media screen and (max-width: @large) {
+    .skin-name {
+      font-size: 50px;
+    }
   }
 }

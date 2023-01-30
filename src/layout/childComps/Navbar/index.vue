@@ -1,8 +1,19 @@
 <script setup lang="ts">
+import { computed } from "vue";
+
 import PackUp from "./childComps/PackUp/index.vue"; //折叠侧边栏按钮
 import PassTime from "./childComps/PassTime/index.vue"; //中间过去时
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
+
+import collapseStore from "@/store/collapse";
+import phoneStore from "@/store/phone";
+
+const $collapseStore = collapseStore();
+const $phoneStore = phoneStore();
+
+//侧边栏展开且设备竖屏
+const show_time = computed(() => $collapseStore.collapse || !$phoneStore.vertical);
 </script>
 
 <template>
@@ -11,8 +22,10 @@ import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
     <!-- 折叠按钮 -->
     <PackUp />
 
-    <!-- 已过去时间 -->
-    <PassTime />
+    <div v-show="show_time" class="center">
+      <!-- 已过去时间 -->
+      <PassTime />
+    </div>
 
     <div class="right">
       <!-- 用户菜单 -->
