@@ -15,11 +15,14 @@
       ></path>
     </svg>
     <div class="message">
-      <span>横屏(电脑)查看更佳</span>
-      <span>部分软件内置浏览器无法横屏</span>
-      <span>点击软件右上角使用手机浏览器打开</span>
-      <span>下拉状态栏并设置自动旋屏</span>
+      <span>虽然作者简单地对竖屏进行了适配</span>
+      <span>但横屏(电脑)查看更佳</span>
+      <span>下拉手机状态栏并设置自动旋屏</span>
+      <span>部分软件内置的浏览器无法横屏</span>
+      <span>点击软件右上角使用手机自带浏览器打开</span>
     </div>
+
+    <K-Button type="error" @click="show = false">我想看看竖屏效果</K-Button>
   </div>
 </template>
 <script setup lang="ts">
@@ -49,7 +52,7 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: var(--white);
   background-color: rgba(0, 0, 0, 0.9);
@@ -72,6 +75,10 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-bottom: 25px;
+    span {
+      margin-bottom: 0.5em;
+    }
   }
 }
 </style>

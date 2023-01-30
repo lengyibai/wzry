@@ -33,6 +33,9 @@ $shineStore.setShine($settingStore.config.shine); //柔光
 
     <!-- 左下角水印 -->
     <WaterMark />
+
+    <!-- 移动端提示横屏浏览 -->
+    <LibPhoneTip />
   </div>
 </template>
 
