@@ -30,10 +30,12 @@ const active_skin: { el: HTMLElement | null; transform: string } = {
   transform: "",
 };
 
-/* 判断是否存在正在展示的皮肤，存在就将此皮肤头像过渡到初始位置 */
+/* 将正在展示的皮肤头像过渡到初始位置 */
 const initPosition = () => {
   if (active_skin.el) {
     active_skin.el.style.pointerEvents = "auto";
+    active_skin.el.style.left = "0";
+    active_skin.el.style.top = "0";
     active_skin.el.style.transition = "all var(--time-1000)";
     active_skin.el.style.transform = active_skin.transform;
   }
@@ -43,7 +45,7 @@ const initPosition = () => {
 const setPosition = (data: HTMLElement | null) => {
   if (data) {
     data.style.pointerEvents = "none";
-    data.style.transition = "all var(--time-1000)";
+    data.style.transition = "all 1s";
     data.style.left = `calc(50% - ${data.offsetWidth / 2}px)`;
     data.style.top = `calc(50% - ${data.offsetHeight / 2}px)`;
     data.style.transform = "";
@@ -57,8 +59,10 @@ const handleDrag = (
   index: number
 ) => {
   if (!data) return;
-  data.style.transition = "all 0s"; //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
+  //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
+  data.style.transition = "all 0s";
   data.style.zIndex = "2";
+
   //offset用来判断是移动触发的还是松开触发的
   if (offset) {
     const o = offset as { x: number; y: number };
@@ -71,9 +75,9 @@ const handleDrag = (
       d.left + showSkin.value.offsetWidth > o.x &&
       d.top + showSkin.value.offsetHeight > o.y;
   } else if (is_into_drap.value) {
-    /* 松手触发，并且头像已进入头像框吸附范围 */
+    //松手触发，并且头像已进入头像框吸附范围
     initPosition();
-    /* 记录正在展示的皮肤头像DOM元素及坐标 */
+    //记录正在展示的皮肤头像DOM元素及坐标
     active_skin.el = data;
     active_skin.transform = data.style.transform;
     setPosition(data);
@@ -90,6 +94,11 @@ const handleDrag = (
     }, 1000);
   } else {
     setPosition(active_skin.el);
+    data.style.transition = "all 1s ease-out";
+    setTimeout(() => {
+      data.style.left = "0";
+      data.style.top = "0";
+    });
   }
 };
 
@@ -135,7 +144,7 @@ $heroDetailStore.setScollFn((index) => {
       v-drag="{ fn: handleDrag, index }"
       class="skin"
       :style="{
-      transform: show_skin_head ? 'rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
+      transform: show_skin_head ? ' translateX(65%) translateY(75%) rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
     }"
     >
       <img :src="item.headImg" alt="" @dragstart.prevent />
