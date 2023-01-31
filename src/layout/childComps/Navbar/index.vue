@@ -7,13 +7,13 @@ import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 
 import collapseStore from "@/store/collapse";
-import phoneStore from "@/store/phone";
+import deviceStore from "@/store/device";
 
 const $collapseStore = collapseStore();
-const $phoneStore = phoneStore();
+const $deviceStore = deviceStore();
 
 //侧边栏展开且设备竖屏
-const show_time = computed(() => $collapseStore.collapse || !$phoneStore.vertical);
+const show_time = computed(() => $collapseStore.collapse || !$deviceStore.vertical);
 </script>
 
 <template>

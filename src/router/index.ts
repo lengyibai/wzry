@@ -6,7 +6,7 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 import { HOME_URL } from "@/config";
 import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
-import phoneStore from "@/store/phone";
+import deviceStore from "@/store/device";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -15,7 +15,7 @@ const useRouter = createRouter({
 
 useRouter.beforeEach(async (to, from, next) => {
   const $authStore = authStore();
-  const $phoneStore = phoneStore();
+  const $deviceStore = deviceStore();
 
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);
@@ -27,10 +27,10 @@ useRouter.beforeEach(async (to, from, next) => {
   }
 
   //浏览器版本过低
-  if (!$phoneStore.browser_status && to.path !== "/400") {
+  if (!$deviceStore.browser_status && to.path !== "/400") {
     next("/400");
     return;
-  } else if ($phoneStore.browser_status && to.path === "/400") {
+  } else if ($deviceStore.browser_status && to.path === "/400") {
     next("/");
     return;
   }

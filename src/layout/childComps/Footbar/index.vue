@@ -9,12 +9,12 @@ import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 import settingStore from "@/store/setting";
 import musicStore from "@/store/music";
 import collapseStore from "@/store/collapse";
-import phoneStore from "@/store/phone";
+import deviceStore from "@/store/device";
 
 const $collapseStore = collapseStore();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
-const $phoneStore = phoneStore();
+const $deviceStore = deviceStore();
 
 const line = ref();
 const footbar = ref();
@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
     <!-- 音乐工具栏 -->
     <Tool
       v-if="enable_music"
-      v-show="$collapseStore.collapse || !$phoneStore.vertical"
+      v-show="$collapseStore.collapse || !$deviceStore.vertical"
       @toggle="EmitMusicToole"
     />
 

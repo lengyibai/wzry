@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { $browserV } from "@/utils";
 
-const phoneStore = defineStore("phone", () => {
+const deviceStore = defineStore("phone", () => {
   const browser_name = $browserV.browser; //浏览器名称
   const browser_version = $browserV.version; //浏览器版本
   const browser_status = ["chrome", "firefox"].includes(browser_name)
@@ -46,5 +46,5 @@ const phoneStore = defineStore("phone", () => {
   return { vertical, width, height, fps, browser_name, browser_version, browser_status };
 });
 
-export default phoneStore;
-export type PhoneStore = ReturnType<typeof phoneStore>;
+export default deviceStore;
+export type deviceStore = ReturnType<typeof deviceStore>;
