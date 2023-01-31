@@ -2,10 +2,23 @@
 import collapseStore from "@/store/collapse";
 
 const $collapseStore = collapseStore();
+
+/* 开始确认刷新计时 */
+const handleStartTime = () => {
+  setTimeout(() => {
+    const flag = confirm("确认清除本地数据重新下载并刷新页面？");
+    if (flag) localStorage.clear();
+  }, 3000);
+};
+
+/* 刷新页面 */
+const handleEndTime = () => {
+  location.reload();
+};
 </script>
 
 <template>
-  <div class="game-logo">
+  <div class="game-logo" @touchstart="handleStartTime" @touchend="handleEndTime">
     <transition-group name="fade-a">
       <i key="icon" class="iconfont wzry-logo" />
       <span v-show="!$collapseStore.collapse" key="text">王者荣耀</span>

@@ -31,11 +31,24 @@ const EmitToolType = (v: string) => {
   v === "notice" && (show_notice.value = true);
 };
 
-/** @description: 关闭公告触发 */
+/* 关闭公告触发 */
 const EmitCloseNotice = () => {
   if (tip_status) return;
   $switchStore.$tip({ text: "9f5m" });
   tip_status = true;
+};
+
+/* 开始确认刷新计时 */
+const handleStartTime = () => {
+  setTimeout(() => {
+    const flag = confirm("确认清除本地数据重新下载并刷新页面？");
+    if (flag) localStorage.clear();
+  }, 3000);
+};
+
+/* 刷新页面 */
+const handleEndTime = () => {
+  location.reload();
 };
 
 onUnmounted(() => {
@@ -45,7 +58,7 @@ onUnmounted(() => {
 
 <template>
   <div class="login">
-    <div class="logo">
+    <div class="logo" @touchstart="handleStartTime" @touchend="handleEndTime">
       <img :src="IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
     </div>
 
