@@ -50,11 +50,11 @@ nextTick(() => {
   <div class="equip">
     <transition name="fade">
       <div v-if="show" class="equip-main">
-        <!-- 装备列表 -->
-        <EquipList ref="equipList" />
-
         <!-- 装备详情 -->
         <EquipDetail :show="show_Details" :equip="equip_data" />
+
+        <!-- 装备列表 -->
+        <EquipList ref="equipList" />
       </div>
     </transition>
 

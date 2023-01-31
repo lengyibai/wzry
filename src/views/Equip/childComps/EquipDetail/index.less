@@ -1,4 +1,7 @@
 .equip-detail {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   overflow: auto;
   width: 30%;
   height: 100%;
@@ -45,11 +48,12 @@
   }
 
   @media screen and (max-width: @medium) {
+    left: 0;
     width: 100%;
-    max-width: initial;
     height: initial;
-    flex: 1;
-    padding-left: 0;
+    padding: 10px;
+    background-color: var(--black-25);
+    backdrop-filter: blur(5px);
   }
 }
 
