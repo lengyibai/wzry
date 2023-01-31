@@ -25,7 +25,6 @@ onMounted(() => {
 
     nextTick(() => {
       if (!voiceRef.value) return;
-      voiceList.value.scroll({ top: 0 });
       voiceRef.value.forEach((item: HTMLElement, index: number) => {
         /* 决定是从左还是从右入场 */
         if (index % 2) {
@@ -45,6 +44,10 @@ onMounted(() => {
           }, 500);
         }, 500);
       });
+
+      setTimeout(() => {
+        voiceList.value?.scroll({ top: 0 });
+      }, 500);
     });
   });
 });
