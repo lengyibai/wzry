@@ -51,7 +51,7 @@ const EmitMusicVolume = (v: number) => {
 };
 
 /* 支持控制音乐进度 */
-const EmitMusicProgress = (v: boolean) => {
+const EmitMusicProgress = () => {
   EmitSaveConfig();
 };
 
