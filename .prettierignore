@@ -6,3 +6,4 @@
 
 /public/*
 src/utils/index.ts
+src/typings/components.d.ts
