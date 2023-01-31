@@ -5,6 +5,7 @@ import { BG } from "@/config/assets";
 import { $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
+import phoneStore from "@/store/phone";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
@@ -12,6 +13,7 @@ import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
+const $phoneStore = phoneStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -37,6 +39,8 @@ onMounted(async () => {
   await $promiseTimeout(() => {
     show_footbar.value = true;
   }, 500);
+
+  if ($phoneStore.vertical) $switchStore.$tip({ text: "2l5m" });
 });
 </script>
 
