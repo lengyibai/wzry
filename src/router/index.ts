@@ -3,12 +3,10 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
+import { HOME_URL } from "@/config";
 import switchStore from "@/store/switch";
 import authStore from "@/store/auth";
-import { HOME_URL } from "@/config";
-import { $browserV } from "@/utils";
-
-const low = $browserV.browser === "chrome" ? $browserV.version < 90 : $browserV.version < 15;
+import phoneStore from "@/store/phone";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -17,6 +15,7 @@ const useRouter = createRouter({
 
 useRouter.beforeEach(async (to, from, next) => {
   const $authStore = authStore();
+  const $phoneStore = phoneStore();
 
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);
@@ -28,10 +27,10 @@ useRouter.beforeEach(async (to, from, next) => {
   }
 
   //浏览器版本过低
-  if (low && to.path !== "/400") {
+  if (!$phoneStore.browser_status && to.path !== "/400") {
     next("/400");
     return;
-  } else if (!low && to.path === "/400") {
+  } else if ($phoneStore.browser_status && to.path === "/400") {
     next("/");
     return;
   }

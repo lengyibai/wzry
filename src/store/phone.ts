@@ -1,11 +1,19 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { $browserV } from "@/utils";
+
 const phoneStore = defineStore("phone", () => {
+  const browser_name = $browserV.browser; //浏览器名称
+  const browser_version = $browserV.version; //浏览器版本
+  const browser_status = ["chrome", "firefox"].includes(browser_name)
+    ? browser_version > 90
+    : browser_version > 15; //满足条件
+
   const vertical = ref(false); //是否为移动端
   const width = ref(0); // 宽度
   const height = ref(0); // 宽度
-  const fps = ref(0);
+  const fps = ref(0); //帧率
 
   /* 获取设备帧率 */
   let start = 0;
@@ -35,7 +43,7 @@ const phoneStore = defineStore("phone", () => {
     tip();
   });
 
-  return { vertical, width, height, fps };
+  return { vertical, width, height, fps, browser_name, browser_version, browser_status };
 });
 
 export default phoneStore;
