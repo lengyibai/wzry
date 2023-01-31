@@ -27,9 +27,8 @@ const authStore = defineStore("auth", () => {
   };
 
   /** @description: 登录 */
-  const login = async (form: User) => {
-    switchStore().$clickAudio("e84n");
-    return new Promise<void>((resolve) => {
+  const login = (form: User) => {
+    return new Promise<void>((resolve, reject) => {
       _login(form)
         .then((res) => {
           userInfo.value = res;
@@ -37,12 +36,11 @@ const authStore = defineStore("auth", () => {
           window.localStorage.setItem("user", JSON.stringify(res));
           routesStore().addRoutes(res.role);
           router.push(HOME_URL);
-          switchStore().$msg("登录成功");
           watchStatus();
           resolve();
         })
         .catch((err) => {
-          switchStore().$msg(err, "error");
+          reject(err);
         });
     });
   };
