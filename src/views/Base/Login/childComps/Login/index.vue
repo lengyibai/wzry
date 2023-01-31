@@ -6,6 +6,7 @@ import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
 import { $Parallax, $throttleInstant } from "@/utils";
+import { userList } from "@/api/main/user";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 
@@ -15,9 +16,12 @@ const $switchStore = switchStore();
 const IMGBED = window.IMGBED; //全局图床链接
 
 const loginBox = ref<HTMLElement>();
-
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
-const reg_form = ref<User>(); //
+const reg_form = ref<User>(); //用户表单
+
+userList().then((res) => {
+  if (res.length) is_reg.value = "登录";
+});
 
 //登录、注册的组件切换
 const component = computed(() => {
@@ -97,7 +101,7 @@ onBeforeUnmount(() => {
 
     <!-- 标题 -->
     <div class="title">
-      {{ is_reg === "" ? "注册 | 登录" : "欢迎" + is_reg }}
+      {{ is_reg === "" ? "WELCOME" : "欢迎" + is_reg }}
     </div>
 
     <!-- 组件切换 -->
