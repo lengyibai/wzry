@@ -351,6 +351,12 @@ export const $browserV = (() => {
       .match(/Version\/[\d.]+/)[0]
       .split("/")[1]
       .split(".")[0]);
+  } else if (ua.indexOf("Firefox") > -1) {
+    browser = "firefox";
+    version = Number(ua
+      .match(/Firefox\/[\d.]+/)[0]
+      .split("/")[1]
+      .split(".")[0]);
   }
   return { browser, version };
 })()
