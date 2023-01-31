@@ -40,7 +40,7 @@ export const errorRouter = [
     name: "400",
     component: () => import("@/views/Base/Error/400.vue"),
     meta: {
-      title: "存在兼容问题",
+      title: "400",
     },
   },
 ];
