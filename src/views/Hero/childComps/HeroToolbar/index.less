@@ -2,21 +2,21 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-bottom: 1px solid var(--white-10);
+  border-bottom: var(--subline);
 
   .filter-select {
     display: flex;
     flex-wrap: wrap;
     flex: 1;
-    max-width: 666px;
-    margin-left: 10px;
+    max-width: 742px;
     gap: 10px;
-    padding: 10px;
+    border-right: var(--subline);
+    padding: 14.5px;
   }
 
-  :deep(.input) {
-    margin: 10px;
+  &:deep(.input) {
     margin-left: auto;
+    padding: 10px;
 
     & > input::placeholder {
       color: var(--theme-color-three);
@@ -31,7 +31,7 @@
       margin-bottom: 25px;
     }
 
-    :deep(.input) {
+    &:deep(.input) {
       margin-top: 25px;
       margin-left: 0;
     }

@@ -21,14 +21,17 @@
       justify-content: space-between;
       margin: 25px 10px;
       margin-bottom: 50px;
+      border-bottom: var(--subline);
     }
 
     .main {
       position: relative;
       display: flex;
-      flex: 1;
       overflow: hidden;
-      padding: 0 50px;
+      padding: 0 25px;
+      flex: 1;
+      border-top: var(--subline);
+      border-bottom: var(--subline);
 
       &-left {
         width: 50%;
@@ -40,6 +43,7 @@
         justify-content: flex-end;
         align-items: flex-end;
         flex: 1;
+        border-left: var(--subline);
       }
 
       @media screen and (max-width: @medium) {
@@ -67,6 +71,7 @@
       height: 50px;
       padding: 25px 0;
       box-sizing: content-box;
+      border-top: var(--subline);
     }
   }
 

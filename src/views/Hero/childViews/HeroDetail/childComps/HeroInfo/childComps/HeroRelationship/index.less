@@ -1,24 +1,27 @@
 .hero-relationship {
   display: flex;
-  margin: 0 25px;
+  justify-content: flex-end;
+  margin-left: 25px;
+  border: var(--subline);
   font-size: 34px;
   text-shadow: var(--t-shadow-e);
   flex-wrap: wrap;
   flex: 1;
+  gap: 50px;
   align-content: flex-start;
 
   .relation {
     display: flex;
     align-items: center;
-    margin: 0 25px 25px;
+    border: var(--subline);
 
     img {
       width: 60px;
+      margin-right: 0.5em;
       border-radius: 50%;
     }
   }
   @media screen and (max-width: @large) {
-    margin: 0 15px;
     font-size: 26px;
 
     .relation {

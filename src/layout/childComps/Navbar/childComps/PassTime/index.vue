@@ -19,8 +19,14 @@ setInterval(() => {
 
 <style scoped lang="less">
 .pass-time {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
   color: var(--theme-color-five);
   font-size: 20px;
   text-shadow: var(--t-shadow-e);
+  border-left: var(--subline);
+  border-right: var(--subline);
 }
 </style>
