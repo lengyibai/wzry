@@ -1,7 +1,23 @@
 import { defineStore } from "pinia";
 
-const shineStore = defineStore("shine", () => {
+const cssVariableStore = defineStore("cssVariable", () => {
   const html = document.documentElement.classList;
+
+  /** @description: 设置动画速率 */
+  const setSpeed = (v: 0 | 1 | 2) => {
+    resetSpeed();
+    if (v === 0) {
+      html.add("animate-time-xx");
+    } else if (v === 2) {
+      html.add("animate-time-yy");
+    }
+  };
+
+  /** @description: 重置动画速率 */
+  const resetSpeed = () => {
+    html.remove("animate-time-xx");
+    html.remove("animate-time-yy");
+  };
 
   /** @description: 设置柔光 */
   const setShine = (v: boolean) => {
@@ -33,8 +49,8 @@ const shineStore = defineStore("shine", () => {
     html.remove("tbd-shadow");
   };
 
-  return { setShine, setShadow, resetShine, resetShadow };
+  return { setSpeed, resetSpeed, setShine, setShadow, resetShine, resetShadow };
 });
 
-export default shineStore;
-export type ShineStore = ReturnType<typeof shineStore>;
+export default cssVariableStore;
+export type CssVariableStore = ReturnType<typeof cssVariableStore>;

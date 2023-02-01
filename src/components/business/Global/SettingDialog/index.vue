@@ -8,9 +8,8 @@ import { configDefault } from "@/default";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
 import settingStore from "@/store/setting";
-import speedStore from "@/store/speed";
+import cssVarStore from "@/store/cssVar";
 import switchStore from "@/store/switch";
-import shineStore from "@/store/shine";
 
 interface Props {
   modelValue: boolean;
@@ -20,9 +19,8 @@ defineProps<Props>();
 const $clickAudio = clickAudio();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
-const $speedStore = speedStore();
+const $cssVarStore = cssVarStore();
 const $switchStore = switchStore();
-const $shineStore = shineStore();
 
 // 默认配置
 const default_config: SettingConfig = { ...configDefault };
@@ -32,7 +30,7 @@ const config = ref<SettingConfig>({ ...$settingStore.config });
 
 /* 动画速率 */
 const EmitSpeed = (v: number) => {
-  $speedStore.setSpeed(v as 0 | 1 | 2);
+  $cssVarStore.setSpeed(v as 0 | 1 | 2);
   EmitSaveConfig();
 };
 
@@ -71,13 +69,13 @@ const EmitAudioVolume = (v: number) => {
 
 /* 柔光 */
 const EmitShine = (v: boolean) => {
-  $shineStore.setShine(v);
+  $cssVarStore.setShine(v);
   EmitSaveConfig();
 };
 
 /* 阴影 */
 const EmitShadow = (v: boolean) => {
-  $shineStore.setShadow(v);
+  $cssVarStore.setShadow(v);
   EmitSaveConfig();
 };
 
@@ -110,8 +108,9 @@ const EmitResetConfig = () => {
   $clickAudio.setAudio(config.value.audio);
   $clickAudio.setVolume(config.value.audioVolume);
   $musicStore.setVolume(config.value.musicVolume);
-  $speedStore.setSpeed(config.value.speed);
-  $shineStore.setShine(config.value.shine);
+  $cssVarStore.setSpeed(config.value.speed);
+  $cssVarStore.setShine(config.value.shine);
+  $cssVarStore.setShadow(config.value.shadow);
   $switchStore.$msg("已重置所有配置项");
 };
 </script>

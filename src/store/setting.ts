@@ -5,8 +5,7 @@ import { $isPhone } from "@/utils";
 import { configDefault } from "@/default";
 import clickAudio from "@/store/audio";
 import musicStore from "@/store/music";
-import speedStore from "@/store/speed";
-import shineStore from "@/store/shine";
+import cssVarStore from "@/store/cssVar";
 
 const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
@@ -24,14 +23,13 @@ const settingStore = defineStore("setting", () => {
   const takeEffect = () => {
     const $clickAudio = clickAudio();
     const $musicStore = musicStore();
-    const $speedStore = speedStore();
-    const $shineStore = shineStore();
+    const $cssVarStore = cssVarStore();
     $clickAudio.setAudio(config.value.audio); //音效
     $clickAudio.setVolume(config.value.audioVolume); //音效音量
     $musicStore.setVolume(config.value.musicVolume); //音乐音量
-    $speedStore.setSpeed(config.value.speed); //动画速度
-    $shineStore.setShine(config.value.shine); //柔光
-    $shineStore.setShadow(config.value.shadow); //阴影
+    $cssVarStore.setSpeed(config.value.speed); //动画速度
+    $cssVarStore.setShine(config.value.shine); //柔光
+    $cssVarStore.setShadow(config.value.shadow); //阴影
   };
 
   /** @description: 保存到本地 */
