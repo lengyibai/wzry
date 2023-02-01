@@ -3,6 +3,10 @@ import { ref } from "vue";
 
 import { $isPhone } from "@/utils";
 import { configDefault } from "@/default";
+import clickAudio from "@/store/audio";
+import musicStore from "@/store/music";
+import speedStore from "@/store/speed";
+import shineStore from "@/store/shine";
 
 const settingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
@@ -11,9 +15,24 @@ const settingStore = defineStore("setting", () => {
   if (data) config.value = { ...config.value, ...JSON.parse(data) };
   localStorage.setItem("config", JSON.stringify(config.value));
 
+  //如果为移动端，则隐藏视频背景
   if ($isPhone) {
     config.value.videoBg = false;
   }
+
+  /** @description: 部分配置需手动生效 */
+  const takeEffect = () => {
+    const $clickAudio = clickAudio();
+    const $musicStore = musicStore();
+    const $speedStore = speedStore();
+    const $shineStore = shineStore();
+    $clickAudio.setAudio(config.value.audio); //音效
+    $clickAudio.setVolume(config.value.audioVolume); //音效音量
+    $musicStore.setVolume(config.value.musicVolume); //音乐音量
+    $speedStore.setSpeed(config.value.speed); //动画速度
+    $shineStore.setShine(config.value.shine); //柔光
+    $shineStore.setShadow(config.value.shadow); //阴影
+  };
 
   /** @description: 保存到本地 */
   const saveLocal = () => {
@@ -40,7 +59,7 @@ const settingStore = defineStore("setting", () => {
     saveLocal();
   };
 
-  return { config, saveConfig, setNoTip, restoreTip };
+  return { config, saveConfig, setNoTip, restoreTip, takeEffect };
 });
 
 export default settingStore;
