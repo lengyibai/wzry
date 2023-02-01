@@ -37,7 +37,7 @@ const IMGBED = window.IMGBED; //全局图床链接
   z-index: 998;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0 0 0 / 75%);
+  background-color: var(--black-75);
   width: 100%;
   height: 100%;
   top: 0;

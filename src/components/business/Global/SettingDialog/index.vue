@@ -117,6 +117,7 @@ const EmitResetConfig = () => {
   $cssVarStore.setSpeed(config.value.speed);
   $cssVarStore.setShine(config.value.shine);
   $cssVarStore.setShadow(config.value.shadow);
+  $cssVarStore.setBorder(config.value.border);
   $switchStore.$msg("已重置所有配置项");
 };
 </script>

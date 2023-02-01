@@ -91,7 +91,7 @@ const fn = (e: Event) => {
       padding: 25px;
 
       &:hover {
-        background-color: rgb(0 0 0 / 25%);
+        background-color: var(--black-25);
       }
     }
   }
