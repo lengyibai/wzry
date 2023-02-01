@@ -4,7 +4,7 @@
       <th
         v-for="(item, index) in head"
         :key="index"
-        :class="{ cursor: sort.includes(item) }"
+        :class="{ 'cursor-pointer': sort.includes(item) }"
         @click="
           sortChange({
             key: head_key[index],
@@ -88,6 +88,7 @@ const sortChange = ({ key, index, id, item }: any) => {
         height: 50px;
         display: flex;
         align-items: center;
+        border: var(--subline);
         color: #fff;
       }
     }
@@ -100,6 +101,9 @@ const sortChange = ({ key, index, id, item }: any) => {
     word-break: break-all;
     font-size: 24px;
     padding: 0.5em 1em;
+    :deep(td) {
+      border-right: var(--subline) !important;
+    }
   }
 
   tr {
@@ -107,9 +111,5 @@ const sortChange = ({ key, index, id, item }: any) => {
       background-color: rgba(255, 255, 255, 0.05);
     }
   }
-}
-
-.cursor {
-  cursor: pointer;
 }
 </style>
