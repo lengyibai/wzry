@@ -101,7 +101,7 @@ onBeforeUnmount(() => {
 
     <!-- 标题 -->
     <div class="title">
-      {{ is_reg === "" ? "WELCOME" : "欢迎" + is_reg }}
+      {{ is_reg === "" ? "Welcome" : "欢迎" + is_reg }}
     </div>
 
     <!-- 组件切换 -->

@@ -21,16 +21,20 @@
       text-shadow: var(--t-shadow-d);
     }
 
-    :deep(input) {
-      flex: 1;
-      border: none;
-      color: var(--theme-color-thirteen) !important;
-      font-size: 26px;
-      text-align: left !important;
-      background-color: transparent;
+    :deep(.form-input) {
+      transform: translateY(1px);
 
-      &::placeholder {
-        color: var(--theme-color-fifteen);
+      input {
+        flex: 1;
+        border: none;
+        color: var(--theme-color-thirteen) !important;
+        font-size: 26px;
+        text-align: left !important;
+        background-color: transparent;
+
+        &::placeholder {
+          color: var(--theme-color-fifteen);
+        }
       }
     }
   }
