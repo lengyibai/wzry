@@ -8,8 +8,8 @@ defineProps<Props>();
 <template>
   <div class="hero-relationship">
     <div v-for="(item, index) in relationship" :key="index" class="relation">
-      <span class="name">{{ item.relation }}：</span>
       <img :src="item.hero.headImg" alt="" @dragstart.prevent />
+      <span class="name">{{ item.relation }}</span>
     </div>
   </div>
 </template>

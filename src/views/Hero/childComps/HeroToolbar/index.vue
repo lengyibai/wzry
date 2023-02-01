@@ -183,6 +183,7 @@ onBeforeUnmount(() => {
       align="center"
       width="8em"
       font-size="24px"
+      :no-special="false"
       @input="handSearch"
     />
   </div>
