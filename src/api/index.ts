@@ -33,7 +33,7 @@ class RequestHttp {
       async (error: AxiosError) => {
         if (error.code === "ERR_NETWORK") {
           const reset = confirm(
-            "检测到数据请求失败，请尝试刷新浏览器解决，刷新后显示此弹窗，请点击确定清除数据重新下载。"
+            "检测到数据请求失败，请尝试刷新浏览器解决，刷新后如果依旧显示此弹窗，请点击确定清除数据重新下载，如果依旧未解决，请反馈给作者。"
           );
           if (reset) {
             localStorage.clear();
