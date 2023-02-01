@@ -18,7 +18,7 @@
     z-index: 1;
     margin: 15px;
     font-size: 16px;
-    text-shadow: 0 1px 2px var(--black-50);
+    text-shadow: var(--t-shadow-s);
     transition: all var(--time-250);
   }
 
@@ -45,7 +45,7 @@
       width: 50%;
       margin-bottom: 15px;
       border-radius: 50%;
-      box-shadow: rgb(0 0 0 / 75%) 0 3px 5px;
+      box-shadow: var(--b-shadow);
       transition: all var(--time-250);
       animation: scale var(--time-250) 0.1s forwards;
       transform: translateY(-50px) scale(1.5);
@@ -110,7 +110,7 @@
 }
 
 .hide {
-  box-shadow: 0 5px 15px 2.5px rgb(0 0 0 / 75%);
+  box-shadow: var(--b-shadow-b);
   transform: translateY(-10px) scale(1.05);
 
   .bottom {
