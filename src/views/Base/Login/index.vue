@@ -66,7 +66,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 登录注册盒子 -->
-    <RegLogin :class="{ hide: !finish || show_notice }" />
+    <RegLogin v-if="finish" :class="{ hide: !finish || show_notice }" />
 
     <!-- 工具栏 -->
     <ToolBar :notice="finish" @clicks="EmitToolType" />
