@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import Login from "./childComps/Login/index.vue"; //登录盒子
+import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
@@ -65,8 +65,8 @@ onUnmounted(() => {
       <img :src="IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
     </div>
 
-    <!-- 登录盒子 -->
-    <Login :class="{ hide: !finish || show_notice }" />
+    <!-- 登录注册盒子 -->
+    <RegLogin :class="{ hide: !finish || show_notice }" />
 
     <!-- 工具栏 -->
     <ToolBar :notice="finish" @clicks="EmitToolType" />
