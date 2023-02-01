@@ -2,7 +2,7 @@
 import { ref, computed, onBeforeUnmount } from "vue";
 
 import Time from "./childComps/Time/index.vue"; //左侧时间
-import Tool from "./childComps/Tool/index.vue"; //工具栏
+import MusicTool from "./childComps/MusicTool/index.vue"; //工具栏
 import Copyright from "./childComps/Copyright/index.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 
@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
     <Time class="time" />
 
     <!-- 音乐工具栏 -->
-    <Tool
+    <MusicTool
       v-if="enable_music"
       v-show="$collapseStore.collapse || !$deviceStore.vertical"
       @toggle="EmitMusicToole"

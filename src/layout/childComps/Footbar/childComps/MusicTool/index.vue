@@ -18,7 +18,7 @@ const handleTool = (type: string) => {
 
 <template>
   <transition name="tool">
-    <div v-show="$musicStore.show_tool" class="tool" @click.stop>
+    <div v-show="$musicStore.show_tool" class="music-tool" @click.stop>
       <i class="cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i
         class="cursor-pointer iconfont"
