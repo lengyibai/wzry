@@ -21,6 +21,6 @@ setInterval(() => {
 .pass-time {
   color: var(--theme-color-five);
   font-size: 20px;
-  text-shadow: var(--t-shadow);
+  text-shadow: var(--t-shadow-e);
 }
 </style>
