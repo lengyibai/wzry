@@ -7,8 +7,11 @@ const $collapseStore = collapseStore();
 const handleStartTime = () => {
   setTimeout(() => {
     const flag = confirm("确认清除本地数据重新下载并刷新页面？");
-    if (flag) localStorage.clear();
-  }, 3000);
+    if (flag) {
+      localStorage.clear();
+      location.reload();
+    }
+  }, 2000);
 };
 
 /* 刷新页面 */
