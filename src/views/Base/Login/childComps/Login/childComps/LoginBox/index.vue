@@ -36,14 +36,21 @@ const handleLogin = () => {
     return;
   }
 
-  $authStore.login(form.value).then(() => {
-    // 记住密码
-    if (remember.value) {
-      localStorage.setItem("remember_user", JSON.stringify(form.value));
-    } else {
-      localStorage.removeItem("remember_user");
-    }
-  });
+  $authStore
+    .login(form.value)
+    .then(() => {
+      $switchStore.$clickAudio("e84n");
+      $switchStore.$msg("登录成功");
+      // 记住密码
+      if (remember.value) {
+        localStorage.setItem("remember_user", JSON.stringify(form.value));
+      } else {
+        localStorage.removeItem("remember_user");
+      }
+    })
+    .catch((err) => {
+      $switchStore.$msg(err, "error");
+    });
 };
 </script>
 
@@ -52,13 +59,13 @@ const handleLogin = () => {
     <!-- 帐号 -->
     <div class="box">
       <i class="iconfont wzry-user" />
-      <K-Input v-model="form.id" placeholder="请输入帐号" />
+      <K-Input v-model.number="form.id" placeholder="请输入帐号" required />
     </div>
 
     <!-- 密码 -->
     <div class="box">
       <i class="iconfont wzry-password" />
-      <K-Input v-model="form.password" placeholder="请输入密码" type="password" />
+      <K-Input v-model="form.password" placeholder="请输入密码" type="password" required />
     </div>
 
     <!-- 记住密码 -->
