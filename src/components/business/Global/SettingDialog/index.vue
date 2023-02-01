@@ -75,6 +75,12 @@ const EmitShine = (v: boolean) => {
   EmitSaveConfig();
 };
 
+/* 阴影 */
+const EmitShadow = (v: boolean) => {
+  $shineStore.setShadow(v);
+  EmitSaveConfig();
+};
+
 /* 粒子特效 */
 const EmitParticle = () => {
   EmitSaveConfig();
@@ -114,16 +120,6 @@ const EmitResetConfig = () => {
   <div class="setting-dialog">
     <K-Dialog v-bind="$attrs" title="设置" width="920px" ctx-width="90%" up>
       <div class="options">
-        <!-- 动画速率 -->
-        <div class="option">
-          <div class="label">动画速率</div>
-          <K-Select
-            v-model="config.speed"
-            :option="['迅速', '均衡', '优雅']"
-            @update:model-value="EmitSpeed"
-          />
-        </div>
-
         <!-- 音效 -->
         <div class="option">
           <div class="label">音效</div>
@@ -157,6 +153,22 @@ const EmitResetConfig = () => {
             />
           </div>
           <K-Check v-model="config.musicProgress" @update:model-value="EmitMusicProgress" />
+        </div>
+
+        <!-- 动画速率 -->
+        <div class="option">
+          <div class="label">动画</div>
+          <K-Select
+            v-model="config.speed"
+            :option="['迅速', '均衡', '优雅']"
+            @update:model-value="EmitSpeed"
+          />
+        </div>
+
+        <!-- 阴影 -->
+        <div class="option">
+          <div class="label">元素阴影</div>
+          <K-Check v-model="config.shadow" @update:model-value="EmitShadow" />
         </div>
 
         <!-- 柔光 -->

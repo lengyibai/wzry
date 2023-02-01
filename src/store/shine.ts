@@ -13,12 +13,27 @@ const shineStore = defineStore("shine", () => {
     }
   };
 
-  /** @description: 重置动画速率 */
+  /** @description: 重置柔光 */
   const resetShine = () => {
     html.remove("soft-light");
   };
 
-  return { setShine, resetShine };
+  /** @description: 设置阴影 */
+  const setShadow = (v: boolean) => {
+    resetShadow();
+    if (v) {
+      html.add("tbd-shadow");
+    } else {
+      resetShadow();
+    }
+  };
+
+  /** @description: 重置阴影 */
+  const resetShadow = () => {
+    html.remove("tbd-shadow");
+  };
+
+  return { setShine, setShadow, resetShine, resetShadow };
 });
 
 export default shineStore;
