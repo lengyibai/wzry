@@ -114,8 +114,9 @@ export const configDefault: SettingConfig = {
   musicProgress: false,
   speed: 1,
   muted: false,
-  shine: true,
+  border: false,
   shadow: true,
+  shine: true,
   particle: false,
   noTips: {
     "2rb7": false,

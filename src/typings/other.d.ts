@@ -19,8 +19,9 @@ interface SettingConfig {
   musicVolume: number; //音乐音量
   musicProgress: boolean; //音乐进度控制
   speed: 0 | 1 | 2; //动画速率
-  shine: boolean; //柔光
+  border: boolean; //线条
   shadow: boolean; //阴影
+  shine: boolean; //柔光
   particle: boolean; //粒子特效
   muted: boolean; //登录页视频静音
   noTips: Tips<boolean>; //不再提示列表

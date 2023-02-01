@@ -28,8 +28,9 @@ const settingStore = defineStore("setting", () => {
     $clickAudio.setVolume(config.value.audioVolume); //音效音量
     $musicStore.setVolume(config.value.musicVolume); //音乐音量
     $cssVarStore.setSpeed(config.value.speed); //动画速度
-    $cssVarStore.setShine(config.value.shine); //柔光
+    $cssVarStore.setBorder(config.value.border); //线条
     $cssVarStore.setShadow(config.value.shadow); //阴影
+    $cssVarStore.setShine(config.value.shine); //柔光
   };
 
   /** @description: 保存到本地 */

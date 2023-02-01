@@ -19,19 +19,19 @@ const cssVariableStore = defineStore("cssVariable", () => {
     html.remove("animate-time-yy");
   };
 
-  /** @description: 设置柔光 */
-  const setShine = (v: boolean) => {
-    resetShine();
+  /** @description: 设置线条 */
+  const setBorder = (v: boolean) => {
+    resetBorder();
     if (v) {
-      html.add("soft-light");
+      html.add("border-line");
     } else {
-      resetShine();
+      resetBorder();
     }
   };
 
-  /** @description: 重置柔光 */
-  const resetShine = () => {
-    html.remove("soft-light");
+  /** @description: 重置线条 */
+  const resetBorder = () => {
+    html.remove("border-line");
   };
 
   /** @description: 设置阴影 */
@@ -49,7 +49,31 @@ const cssVariableStore = defineStore("cssVariable", () => {
     html.remove("tbd-shadow");
   };
 
-  return { setSpeed, resetSpeed, setShine, setShadow, resetShine, resetShadow };
+  /** @description: 设置柔光 */
+  const setShine = (v: boolean) => {
+    resetShine();
+    if (v) {
+      html.add("soft-light");
+    } else {
+      resetShine();
+    }
+  };
+
+  /** @description: 重置柔光 */
+  const resetShine = () => {
+    html.remove("soft-light");
+  };
+
+  return {
+    setSpeed,
+    resetSpeed,
+    setBorder,
+    resetBorder,
+    setShine,
+    setShadow,
+    resetShine,
+    resetShadow,
+  };
 });
 
 export default cssVariableStore;

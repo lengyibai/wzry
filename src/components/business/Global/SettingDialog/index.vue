@@ -67,15 +67,21 @@ const EmitAudioVolume = (v: number) => {
   }, 1000);
 };
 
-/* 柔光 */
-const EmitShine = (v: boolean) => {
-  $cssVarStore.setShine(v);
+/* 线条 */
+const EmitBorder = (v: boolean) => {
+  $cssVarStore.setBorder(v);
   EmitSaveConfig();
 };
 
 /* 阴影 */
 const EmitShadow = (v: boolean) => {
   $cssVarStore.setShadow(v);
+  EmitSaveConfig();
+};
+
+/* 柔光 */
+const EmitShine = (v: boolean) => {
+  $cssVarStore.setShine(v);
   EmitSaveConfig();
 };
 
@@ -162,6 +168,12 @@ const EmitResetConfig = () => {
             :option="['迅速', '均衡', '优雅']"
             @update:model-value="EmitSpeed"
           />
+        </div>
+
+        <!-- 线条 -->
+        <div class="option">
+          <div class="label">元素线条</div>
+          <K-Check v-model="config.border" @update:model-value="EmitBorder" />
         </div>
 
         <!-- 阴影 -->
