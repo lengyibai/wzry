@@ -1,5 +1,4 @@
-// @ts-nocheck
-import pinyin from './pinyin'
+import pinyin from "./pinyin";
 //随机数
 export function $random(min, max, num = 0) {
   return parseFloat((Math.random() * (max - min) + min).toFixed(num));
@@ -34,7 +33,7 @@ export function $fmtTime(date, fmt = "YYYY-MM-DD hh:mm:ss") {
     n: new Date(date).valueOf(),
   };
   for (const k in opt) {
-    ret = new RegExp(`(${ k })`).exec(fmt);
+    ret = new RegExp(`(${k})`).exec(fmt);
     if (ret) {
       fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0"));
     }
@@ -44,7 +43,14 @@ export function $fmtTime(date, fmt = "YYYY-MM-DD hh:mm:ss") {
 
 //根据时间段问候
 export function $timeGreet(greet = {}) {
-  const { a = "午夜好", b = "早上好", c = "上午好", d = "中午好", e = "下午好", f = "晚上好" } = greet;
+  const {
+    a = "午夜好",
+    b = "早上好",
+    c = "上午好",
+    d = "中午好",
+    e = "下午好",
+    f = "晚上好",
+  } = greet;
   const now = new Date().getHours();
   return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 }
@@ -54,9 +60,7 @@ export function $timeCount(time = "2021-04-01") {
   let now = new Date(time).getTime(),
     future = new Date().getTime(),
     times =
-      future - now > 0
-        ? Math.floor((future - now) / 1000)
-        : Math.floor((now - future) / 1000);
+      future - now > 0 ? Math.floor((future - now) / 1000) : Math.floor((now - future) / 1000);
 
   const time_arr = [
     {
@@ -88,8 +92,6 @@ export function $timeCount(time = "2021-04-01") {
   });
   return timeObj;
 }
-
-
 
 // requestAnimationFrame计时器
 export function $frameInterval(fn, fre = 0) {
@@ -252,7 +254,17 @@ export function $deepCopy<T>(e): T {
     c = (e) => null !== e && ("object" == typeof e || "function" == typeof e),
     o = (e) => {
       const t = r(e);
-      return ["Boolean", "Number", "String", "Symbol", "BigInt", "Date", "Map", "Set", "RegExp"].includes(t);
+      return [
+        "Boolean",
+        "Number",
+        "String",
+        "Symbol",
+        "BigInt",
+        "Date",
+        "Map",
+        "Set",
+        "RegExp",
+      ].includes(t);
     },
     s = (e) => {
       const t = r(e),
@@ -337,29 +349,35 @@ export function $deepMearge(obj, target = {}) {
 /* 获取浏览器版本 */
 export const $browserV = (() => {
   const ua = navigator.userAgent;
-  let browser = '';
+  let browser = "";
   let version = 0;
   if (ua.indexOf("Chrome") > -1) {
     browser = "chrome";
-    version = Number(ua
-      .match(/Chrome\/[\d.]+/)[0]
-      .split("/")[1]
-      .split(".")[0]);
+    version = Number(
+      ua
+        .match(/Chrome\/[\d.]+/)[0]
+        .split("/")[1]
+        .split(".")[0]
+    );
   } else if (ua.indexOf("Safari") > -1) {
     browser = "safari";
-    version = Number(ua
-      .match(/Version\/[\d.]+/)[0]
-      .split("/")[1]
-      .split(".")[0]);
+    version = Number(
+      ua
+        .match(/Version\/[\d.]+/)[0]
+        .split("/")[1]
+        .split(".")[0]
+    );
   } else if (ua.indexOf("Firefox") > -1) {
     browser = "firefox";
-    version = Number(ua
-      .match(/Firefox\/[\d.]+/)[0]
-      .split("/")[1]
-      .split(".")[0]);
+    version = Number(
+      ua
+        .match(/Firefox\/[\d.]+/)[0]
+        .split("/")[1]
+        .split(".")[0]
+    );
   }
   return { browser, version };
-})()
+})();
 
 /* 排序 */
 export function $typeSort(data, key, rev = true) {
@@ -504,14 +522,13 @@ export function $promiseTimeout(fn, delay) {
 }
 
 /* 判断是否为移动端 */
-export const $isPhone = (() => /mobile/i.test(navigator.userAgent))()
+export const $isPhone = (() => /mobile/i.test(navigator.userAgent))();
 
 /* 判断表单指定属性名是否为空 */
-export const $existEmpty = (obj, arr:string[] = []) =>
-(arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
-  .length > 0
-  ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
-  : false;
+export const $existEmpty = (obj, arr: string[] = []) =>
+  (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
+    ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
+    : false;
 
 /* 节流(立即执行) */
 export const $throttleInstant = (() => {
@@ -545,13 +562,13 @@ export class $Parallax {
   y = 0;
   rx = 0;
   ry = 0;
-  fn=null
-  constructor(fn, { x=0, y=0, rx=0, ry=0 }) {
+  fn = null;
+  constructor(fn, { x = 0, y = 0, rx = 0, ry = 0 }) {
     this.x = x;
     this.y = y;
     this.rx = rx;
     this.ry = ry;
-    this.fn = fn
+    this.fn = fn;
   }
 
   move(e) {
@@ -565,6 +582,196 @@ export class $Parallax {
     const degX = this.rx * y;
     const degY = this.ry * -x;
 
-    this.fn({moveX,moveY,degX,degY})
+    this.fn({ moveX, moveY, degX, degY });
+  }
+}
+
+/* 查看图片 */
+export class $ScaleImage {
+  src: string;
+  scale: number;
+  x: number;
+  y: number;
+  overlay!: HTMLElement;
+  zoomInButton!: HTMLElement;
+  zoomOutButton!: HTMLElement;
+  closeButton!: HTMLElement;
+  img!: HTMLImageElement;
+  isDragging!: boolean;
+  startX!: number;
+  startY!: number;
+
+  constructor(src: string) {
+    this.src = src;
+    this.scale = 1;
+    this.x = 0;
+    this.y = 0;
+
+    this.createOverlay();
+    this.creatButton();
+    this.createImage();
+    this.bindEvents();
+  }
+
+  /* 创建容器 */
+  createOverlay() {
+    this.overlay = document.createElement("div");
+    this.overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      user-select: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+      z-index: 3;
+      opacity: 0;
+    `;
+    document.body.appendChild(this.overlay);
+
+    setTimeout(() => {
+      this.overlay.style.opacity = "1";
+    });
+  }
+
+  /* 创建图片 */
+  createImage() {
+    this.img = document.createElement("img");
+    this.img.style.cssText = `
+      max-width: 75%;
+      max-height: 75%;
+      transform: scale(${this.scale});
+      user-select: none;
+      transition: all 0.25s;
+    `;
+    this.img.src = this.src;
+    this.overlay.appendChild(this.img);
+  }
+
+  /* 创建按钮 */
+  creatButton() {
+    const button_style = `
+    position: absolute;
+    font-size: 50px;
+    color: #fff;
+    z-index: 1;
+    `;
+
+    //关闭按钮
+    this.closeButton = document.createElement("button");
+    this.closeButton.style.cssText = button_style;
+    this.closeButton.className += "cursor-pointer iconfont wzry-guanbi";
+    this.closeButton.style.top = "0";
+    this.closeButton.style.right = "0";
+    this.closeButton.style.transform = "translate(-100%, 100%) scale(0.75)";
+
+    //放大按钮
+    this.zoomInButton = document.createElement("button");
+    this.zoomInButton.style.cssText = button_style;
+    this.zoomInButton.className += "cursor-pointer iconfont wzry-fangda";
+    this.zoomInButton.style.bottom = "0";
+    this.zoomInButton.style.left = "50%";
+    this.zoomInButton.style.transform = "translate(-150%, -100%)";
+
+    //缩小按钮
+    this.zoomOutButton = document.createElement("button");
+    this.zoomOutButton.style.cssText = button_style;
+    this.zoomOutButton.className += "cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.style.bottom = "0";
+    this.zoomOutButton.style.left = "50%";
+    this.zoomOutButton.style.transform = "translate(50%, -100%)";
+
+    this.overlay.appendChild(this.closeButton);
+    this.overlay.appendChild(this.zoomInButton);
+    this.overlay.appendChild(this.zoomOutButton);
+  }
+
+  /* 绑定事件 */
+  bindEvents() {
+    this.overlay.addEventListener("wheel", (event) => {
+      if (event.deltaY > 0) {
+        this.scale /= 1.25;
+        if (this.scale < 0.25) this.scale = 0.25;
+      } else {
+        this.scale *= 1.25;
+        if (this.scale > 20) this.scale = 20;
+      }
+      this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
+    });
+
+    this.img.addEventListener("mousedown", (event) => {
+      event.preventDefault();
+    });
+
+    /* 拖动 */
+    document.addEventListener("mousedown", (event) => {
+      this.startX = event.clientX;
+      this.startY = event.clientY;
+      this.isDragging = true;
+      this.img.style.transition = "all 0s";
+    });
+    document.addEventListener("mouseup", () => {
+      this.isDragging = false;
+      this.img.style.transition = "all 0.25s";
+    });
+    document.addEventListener("mousemove", (event) => {
+      if (!this.isDragging) return;
+      const deltaX = event.clientX - this.startX;
+      const deltaY = event.clientY - this.startY;
+      this.startX = event.clientX;
+      this.startY = event.clientY;
+      this.x += deltaX / this.scale;
+      this.y += deltaY / this.scale;
+      this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
+    });
+
+    /* 兼容移动端 */
+    document.addEventListener("touchstart", (event) => {
+      this.startX = event.changedTouches[0].clientX;
+      this.startY = event.changedTouches[0].clientY;
+      this.isDragging = true;
+      this.img.style.transition = "all 0s";
+    });
+    document.addEventListener("touchend", () => {
+      this.isDragging = false;
+      this.img.style.transition = "all 0.25s";
+    });
+    document.addEventListener("touchmove", (event) => {
+      if (!this.isDragging) return;
+      const deltaX = event.changedTouches[0].clientX - this.startX;
+      const deltaY = event.changedTouches[0].clientY - this.startY;
+      this.startX = event.changedTouches[0].clientX;
+      this.startY = event.changedTouches[0].clientY;
+      this.x += deltaX / this.scale;
+      this.y += deltaY / this.scale;
+      this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
+    });
+
+    this.closeButton.addEventListener("click", () => {
+      this.overlay.style.opacity = "0";
+      setTimeout(() => {
+        this.overlay.remove();
+      }, 250);
+    });
+
+    /* 缩放 */
+    const fn1 = () => {
+      this.scale *= 2;
+      this.scale = Math.min(this.scale, 20);
+      this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
+    };
+    const fn2 = () => {
+      this.scale /= 2;
+      this.scale = Math.max(this.scale, 0.25);
+      this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
+    };
+    this.zoomInButton.addEventListener("mouseup", fn1);
+    this.zoomInButton.addEventListener("touchend", fn1);
+    this.zoomOutButton.addEventListener("mouseup", fn2);
+    this.zoomOutButton.addEventListener("touchend", fn2);
   }
 }

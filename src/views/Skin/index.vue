@@ -6,7 +6,7 @@ import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { getSkinVoice } from "@/api/main/games/voice";
-import { $debounce } from "@/utils";
+import { $debounce, $ScaleImage } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
 import collapseStore from "@/store/collapse";
@@ -45,8 +45,8 @@ const EmitLoadMore = () => {
 /* 点击工具栏中的选项 */
 const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
-    poster.value = v.data.poster;
     show_poster.value = true;
+    new $ScaleImage(v.data.poster);
   } else if (v.type === "voice") {
     getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;
@@ -136,11 +136,6 @@ onBeforeUnmount(() => {
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
       <FilterSidebar type="skin" />
-    </transition>
-
-    <!-- 大图预览 -->
-    <transition name="fade">
-      <LibViewImg v-if="show_poster" v-model="show_poster" :link="poster" />
     </transition>
 
     <!-- 语音列表 -->
