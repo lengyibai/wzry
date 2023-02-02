@@ -3,6 +3,7 @@ import { ref, computed, onUnmounted } from "vue";
 
 import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
+import ReadMe from "./childComps/ReadMe/index.vue"; //README
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
@@ -18,6 +19,7 @@ const IMGBED = window.IMGBED; //全局图床链接
 let tip_status = false; //用于tip新手引导
 
 const show_notice = ref(true); //显示公告
+const show_readme = ref(false); //显示README
 const finish = ref(false); //数据下载完成
 
 //启用视频背景
@@ -25,10 +27,11 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 /**
  * @description: 点击右上角工具栏
- * @param {string} v 点击工具栏的静音或公告按钮类型
+ * @param {string} v 点击工具栏的静音、README、公告按钮类型
  */
 const EmitToolType = (v: string) => {
-  v === "notice" && (show_notice.value = true);
+  show_readme.value = v === "readme";
+  show_notice.value = v === "notice";
 };
 
 /* 关闭公告触发 */
@@ -81,6 +84,9 @@ onUnmounted(() => {
     <transition v-if="finish" name="fade">
       <Notice v-if="show_notice" v-model="show_notice" @close="EmitCloseNotice" />
     </transition>
+
+    <!-- README -->
+    <ReadMe v-model="show_readme" />
 
     <!-- 下载进度 -->
     <transition name="fade">

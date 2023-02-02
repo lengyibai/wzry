@@ -38,19 +38,16 @@ const handleTool = (v: string) => {
   emit("clicks", v);
   if (v === "sound") {
     $settingStore.saveConfig({ muted: !muted.value });
-    $switchStore.$clickAudio("n4r4");
   }
+  $switchStore.$clickAudio("n4r4");
 };
 </script>
 
 <template>
   <div class="tool-bar">
-    <!-- 静音图标 -->
-    <div v-if="video_bg" class="tool">
-      <!-- 静音上线条 -->
+    <!-- 静音 -->
+    <div v-if="video_bg" class="tool" title="静音">
       <div class="line"></div>
-
-      <!-- 静音图标 -->
       <div
         class="box cursor-pointer"
         :class="{ active: muted }"
@@ -59,22 +56,25 @@ const handleTool = (v: string) => {
       >
         <i class="iconfont" :class="icon" />
       </div>
-
-      <!-- 底座 -->
-      <div class="base one"></div>
+      <div class="base"></div>
     </div>
 
-    <div v-if="notice" class="tool">
-      <!-- 公告上线条 -->
+    <!-- README -->
+    <div class="tool" title="README">
       <div class="line"></div>
+      <div class="box cursor-pointer elastic" @click="handleTool('readme')">
+        <i class="iconfont wzry-readme" />
+      </div>
+      <div class="base"></div>
+    </div>
 
-      <!-- 公告图标 -->
-      <div class="box cursor-pointer notice" @click="handleTool('notice')">
+    <!-- 公告 -->
+    <div v-if="notice" class="tool" title="公告">
+      <div class="line"></div>
+      <div class="box cursor-pointer elastic" @click="handleTool('notice')">
         <i class="iconfont wzry-gonggao" />
       </div>
-
-      <!-- 底座 -->
-      <div class="base two"></div>
+      <div class="base"></div>
     </div>
   </div>
 </template>
