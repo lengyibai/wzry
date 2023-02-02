@@ -61,6 +61,7 @@ const versionStore = defineStore("version", () => {
           useUpdateData().then((res) => {
             update_log.value = { ...update_log.value, ...res };
             show_update.value = true;
+            updateVersion(remote_version.value);
           });
         }
       }
