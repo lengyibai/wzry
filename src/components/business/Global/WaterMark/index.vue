@@ -36,9 +36,9 @@ const version = `${$browserV.version} ${
     <p>设备尺寸：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
     <p :class="{ low: !browser_status }">浏览器{{ browser_name }}内核版本：{{ version }}</p>
     <p :class="{ old: old }">当前数据版本：{{ $versionStore.local_version }}</p>
-    <p :class="{ new: old }">最新数据版本：{{ $versionStore.remote_version }}</p>
+    <p v-if="old" :class="{ new: old }">最新数据版本：{{ $versionStore.remote_version }}</p>
     <p :class="{ old: old_file }">当前网页版本：{{ $versionStore.local_file }}</p>
-    <p :class="{ new: old_file }">最新网页版本：{{ $versionStore.file_version }}</p>
+    <p v-if="old_file" :class="{ new: old_file }">最新网页版本：{{ $versionStore.file_version }}</p>
   </div>
 </template>
 
