@@ -28,18 +28,18 @@ const handleReset = () => {
   >
     <div class="main">
       <!-- 页面更新 -->
-      <h1>页面更新</h1>
+      <h1 v-if="update_log.file">页面更新</h1>
       <div class="content" v-html="update_log.file"></div>
 
       <!-- 基础数据更新 -->
-      <h1 v-if="data_status">基础数据更新</h1>
-      <div v-if="data_status" class="content">
+      <h1 v-if="update_log.data">基础数据更新</h1>
+      <div v-if="update_log.data" class="content">
         <p v-html="update_log.data"></p>
       </div>
 
       <!-- 语音更新 -->
-      <h1 v-if="data_status">语音更新</h1>
-      <div v-if="data_status" class="content">
+      <h1 v-if="update_log.voice">语音更新</h1>
+      <div v-if="update_log.voice" class="content">
         <p v-html="update_log.voice"></p>
       </div>
     </div>
