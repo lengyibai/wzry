@@ -197,7 +197,7 @@ const EmitResetConfig = () => {
           <div class="label">
             粒子特效
             <DescSet
-              desc="开启后，对性能有亿点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
+              desc="开启后，对性能有一点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
             />
           </div>
           <K-Check v-model="config.particle" @update:model-value="EmitParticle" />
@@ -208,7 +208,7 @@ const EmitResetConfig = () => {
           <div class="label">
             视频背景
             <DescSet
-              desc="PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决（PC端默认为视频背景）"
+              desc="主要是登录页和登录后的背景，PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决"
             />
           </div>
           <K-Check v-model="config.videoBg" @update:model-value="EmitSaveConfig" />
