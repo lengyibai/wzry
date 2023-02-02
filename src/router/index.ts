@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
@@ -9,7 +9,7 @@ import authStore from "@/store/auth";
 import deviceStore from "@/store/device";
 
 const useRouter = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes: [...staticRouter, ...errorRouter],
 });
 
