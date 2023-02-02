@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { getHeroData } from "@/api/main/games/hero";
 import { getHeroSkill } from "@/api/main/games/skill";
 import { getHeroSkin } from "@/api/main/games/skin";
+import { getHeroRelationship } from "@/api/main/games/relationship";
 import { $debounce, $search } from "@/utils";
 
 const heroStore = defineStore("hero", () => {
@@ -65,6 +66,7 @@ const heroStore = defineStore("hero", () => {
     for (let i = 0; i < hero_list.value.length; i++) {
       hero_list.value[i].skills = await getHeroSkill(hero_list.value[i].id);
       hero_list.value[i].skins = await getHeroSkin(hero_list.value[i].id);
+      hero_list.value[i].relationships = await getHeroRelationship(hero_list.value[i].id);
     }
 
     setProfessional(profession);
@@ -261,6 +263,10 @@ const heroStore = defineStore("hero", () => {
       } else if (a === "皮肤数量") {
         filter_list.value.sort((a, b) => {
           return b.skins!.length - a.skins!.length;
+        });
+      } else if (a === "关系数量") {
+        filter_list.value.sort((a, b) => {
+          return b.relationships!.length - a.relationships!.length;
         });
       }
     }

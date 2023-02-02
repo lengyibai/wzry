@@ -23,12 +23,14 @@ const show = ref(false); //显示查看详情选项
 const num_type = computed(() => $heroStore.misc_sort);
 
 //显示右上角数字
-const show_num = computed(() => ["身高", "皮肤数量"].includes(num_type.value));
+const show_num = computed(() => ["身高", "皮肤数量", "关系数量"].includes(num_type.value));
 const num = (data: Hero.Data) =>
   num_type.value === "身高"
     ? data.height + "cm"
     : num_type.value === "皮肤数量"
-    ? data.skins?.length || 0 + "款"
+    ? (data.skins?.length || 0) + "款"
+    : num_type.value === "关系数量"
+    ? (data.relationships?.length || 0) + "位"
     : "";
 
 /* 点击卡片 */

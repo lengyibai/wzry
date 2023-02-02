@@ -29,6 +29,7 @@ const select_sort = [
   { label: "身高", value: "身高" },
   { label: "上手难度", value: "上手难度" },
   { label: "皮肤数量", value: "皮肤数量" },
+  { label: "关系数量", value: "关系数量" },
 ];
 const sort_type = [
   { label: "正序", value: "正序" },
@@ -154,7 +155,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_sort"
         :status="select_status[3]"
         :data="select_sort"
-        list-height="198px"
+        list-height="252px"
         @click="handleSelectStatus(3)"
         @select="EmitSelectSort"
       />
