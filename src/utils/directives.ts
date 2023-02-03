@@ -361,7 +361,9 @@ const drag = {
 /* 自动获取焦点 */
 const focus = {
   mounted(el: HTMLElement) {
-    el.focus();
+    setTimeout(() => {
+      el.focus();
+    });
   },
 };
 
