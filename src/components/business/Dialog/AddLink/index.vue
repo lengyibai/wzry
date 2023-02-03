@@ -21,6 +21,8 @@ const $switchStore = switchStore();
 
 const input_link = ref(""); //输入的链接
 
+input_link.value = props.link;
+
 $switchStore.$clickAudio("0o5c");
 
 /* 确定 */
@@ -29,10 +31,6 @@ const handleConfirm = () => {
   input_link.value = "";
   $switchStore.$clickAudio("36jn");
 };
-
-nextTick(() => {
-  input_link.value = props.link;
-});
 </script>
 
 <template>
@@ -42,7 +40,6 @@ nextTick(() => {
       v-focus
       type="text"
       :placeholder="placeholder"
-      @input="$switchStore.$clickAudio('5zv8')"
       @keyup.enter="handleConfirm"
     />
     <K-Button type="warning" @click="handleConfirm">确定</K-Button>
