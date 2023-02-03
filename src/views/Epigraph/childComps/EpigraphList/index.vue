@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
 <template>
   <div>
     <transition name="card-list">
-      <LibGridLayout
+      <LibGrid
         v-if="show && epigraph_list.length"
         ref="epigraphListRef"
         class="epigraph-list"
@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
             <EpigraphCard :data="item" />
           </div>
         </transition-group>
-      </LibGridLayout>
+      </LibGrid>
     </transition>
   </div>
 </template>

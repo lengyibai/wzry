@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
         </transition>
 
         <!-- 列表 -->
-        <LibGridLayout
+        <LibGrid
           v-show="show_list"
           v-if="$heroStore.show_list.length && toggle_show && show_list"
           ref="heroListRef"
@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
               <HeroCard :data="item" @view="EmitViewClick(item.id!)" />
             </div>
           </transition-group>
-        </LibGridLayout>
+        </LibGrid>
       </div>
     </transition>
 

@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
     <div class="skin-main">
       <SkinToolbar />
       <transition name="card-list">
-        <LibGridLayout
+        <LibGrid
           v-if="$skinStore.show_list.length && show_list"
           ref="skinListRef"
           scroll-id="skin_list"
@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
           >
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
-        </LibGridLayout>
+        </LibGrid>
       </transition>
     </div>
 

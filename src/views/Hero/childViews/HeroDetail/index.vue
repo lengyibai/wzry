@@ -2,17 +2,19 @@
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
+import HeroMaskClose from "./childComps/HeroMaskClose/index.vue"; //顶部关闭
+import HeroScroll from "./childComps/HeroScroll/index.vue"; //全屏滚动组件
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
 import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
+import { $isPhone } from "@/utils";
 import heroDetailStore from "@/store/heroDetail";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
-import { $isPhone } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -115,8 +117,8 @@ onMounted(() => {
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <LibMaskClose @close="EmitHide" />
-    <LibFullScroll v-model="scroll_index" @start="EmitScollStart" @end="EmitScrollEnd">
+    <HeroMaskClose @close="EmitHide" />
+    <HeroScroll v-model="scroll_index" @start="EmitScollStart" @end="EmitScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />
@@ -135,7 +137,7 @@ onMounted(() => {
       >
         <HeroSkill />
       </HeroParallax>
-    </LibFullScroll>
+    </HeroScroll>
 
     <!-- 滚动进度 -->
     <transition name="progress">

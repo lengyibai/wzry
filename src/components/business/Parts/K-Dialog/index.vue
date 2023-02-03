@@ -49,7 +49,14 @@ const handleClose = () => {
 </script>
 
 <template>
-  <LibMask>
+  <div
+    v-maskGradient="{
+      color: 'rgba(40, 100, 195, 0.5)',
+      num1: '0%',
+      num2: '50%',
+    }"
+    class="mask"
+  >
     <transition :name="up ? 'confirm' : 'default'">
       <div
         v-show="show"
@@ -89,7 +96,7 @@ const handleClose = () => {
         </div>
       </div>
     </transition>
-  </LibMask>
+  </div>
 </template>
 
 <style scoped lang="less">

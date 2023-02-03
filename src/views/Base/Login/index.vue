@@ -75,7 +75,7 @@ onUnmounted(() => {
     <ToolBar :notice="finish" @clicks="EmitToolType" />
 
     <!-- 视频背景 -->
-    <LibBgVideo v-if="enable_video_bg" :video="LOGINBG" :muted="$settingStore.config.muted" />
+    <K-Video v-if="enable_video_bg" :video="LOGINBG" :muted="$settingStore.config.muted" />
 
     <!-- 图片 -->
     <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />

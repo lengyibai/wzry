@@ -39,7 +39,7 @@ watch(commit_status, (v) => {
     <i class="iconfont wzry-guanbi" title="取消" @click="handleClose"></i>
 
     <!-- 发布按钮 -->
-    <LibCommitBtn v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
+    <K-Commit v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
 
     <!-- 确认关闭 -->
     <transition name="fade">
