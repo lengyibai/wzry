@@ -44,13 +44,7 @@ const open = (key: string) => {
   <div class="edit" :style="box">
     <!-- 卡片 -->
     <transition-group name="fade" appear>
-      <K-ManageCard
-        v-for="(v, k) in list"
-        :key="k"
-        :title="v"
-        type="edit"
-        @click="open(k as string)"
-      />
+      <K-Manage v-for="(v, k) in list" :key="k" :title="v" type="edit" @click="open(k as string)" />
     </transition-group>
 
     <!-- 页面 -->
