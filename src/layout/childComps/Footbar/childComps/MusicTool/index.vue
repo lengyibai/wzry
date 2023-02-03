@@ -2,6 +2,7 @@
 import MuiscList from "../MuiscList/index.vue";
 
 import musicStore from "@/store/music";
+import deviceStore from "@/store/device";
 
 interface Emits {
   (e: "toggle", v: string): void;
@@ -9,6 +10,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $musicStore = musicStore();
+const $deviceStore = deviceStore();
 
 /* 点击按钮 */
 const handleTool = (type: string) => {
@@ -18,7 +20,7 @@ const handleTool = (type: string) => {
 
 <template>
   <transition name="tool">
-    <div v-show="$musicStore.show_tool" class="music-tool" @click.stop>
+    <div v-show="$musicStore.show_tool || $deviceStore.vertical" class="music-tool" @click.stop>
       <i class="cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i
         class="cursor-pointer iconfont"

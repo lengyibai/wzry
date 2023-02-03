@@ -154,9 +154,7 @@ const EmitResetConfig = () => {
         <div class="option">
           <div class="label">
             音乐进度控制
-            <DescSet
-              desc="开启后，点击底部导航栏就可以调整播放进度，手机端因为会误触，不建议开启"
-            />
+            <DescSet desc="开启后，点击底部导航栏就可以调整播放进度" />
           </div>
           <K-Check v-model="config.musicProgress" @update:model-value="EmitMusicProgress" />
         </div>
