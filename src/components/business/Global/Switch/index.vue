@@ -25,20 +25,18 @@ $switchStore.setTriggerFn({
 });
 
 /* 全局监听事件 */
-onMounted(() => {
-  const events = ["resize", "click", "mousedown", "mouseup"];
-  for (const v of events) {
-    window.addEventListener(v, (e) => {
-      $bus.emit(v, e.target);
-    });
-  }
-});
+const events = ["resize", "mousemove", "mouseup"];
+for (const v of events) {
+  window.addEventListener(v, (e) => {
+    $bus.emit(v, e);
+  });
+}
 </script>
 
 <template>
   <div class="GlobalSwitch">
     <!-- loading -->
-    <LibLoading :show="show_loading" :text="loading_text" />
+    <K-Loading :show="show_loading" :text="loading_text" />
 
     <!-- 消息提醒 -->
     <K-Message :messages="messages" />
