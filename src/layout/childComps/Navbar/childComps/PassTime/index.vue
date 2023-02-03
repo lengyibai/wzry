@@ -9,7 +9,7 @@ setInterval(() => {
   const { y, mon, d, h, min, s } = $timeCount("2022-03-17 00:00:00") as any;
   const year = y !== "00" ? `${y}y` : "";
   const month = mon !== "00" ? mon : "";
-  time.value = `已过去${year} ${month}月 ${d}天 ${h}时 ${min}分 ${s}秒`;
+  time.value = `${year} ${month}m ${d}d ${h}h ${min}min ${s}s`;
 }, 1000);
 </script>
 
