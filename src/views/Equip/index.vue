@@ -1,5 +1,5 @@
 <script setup lang="ts" name="equip">
-import { ref, watch, nextTick, onActivated } from "vue";
+import { ref, watch, nextTick } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情

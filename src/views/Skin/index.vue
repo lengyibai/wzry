@@ -17,7 +17,6 @@ const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const skinListRef = ref(); //布局容器
-const poster = ref(""); // 查看的海报链接
 const count = ref(0); //一行显示的数目
 const show_list = ref(false); //显示列表
 const show_poster = ref(false); //查看海报
