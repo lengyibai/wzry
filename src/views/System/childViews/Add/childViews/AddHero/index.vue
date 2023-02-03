@@ -42,16 +42,10 @@ const info: string[][] = [
   ["种族", "raceType", "race"],
 ];
 
-const {
-  status,
-  show,
-  show_ConfirmClose,
-  form_data,
-  finish,
-  EmitConfirmSave,
-  EmitConfirmRemove,
-  EmitCancelRelease,
-} = viewHide<Hero.Data>(emit, "add_hero");
+const { status, show, form_data, finish, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Data>(
+  emit,
+  "add_hero"
+);
 
 //类型列表
 const type_list: Record<string, any[]> = reactive({
@@ -101,6 +95,12 @@ const EmitCommit = async () => {
 /* 延迟显示 */
 $switchStore.$loading.close();
 setTimeout(async () => {
+  type_list.campType = await getCampType();
+  type_list.raceType = await getRaceType();
+  type_list.locationType = await getLocationType();
+  type_list.periodType = await getPeriodType();
+  type_list.professionType = await getProfessionType();
+  type_list.specialtyType = await getSpecialtyType();
   show.value = true;
 }, 1000);
 </script>
@@ -175,14 +175,12 @@ setTimeout(async () => {
 
     <!-- 发布确认 -->
     <ReleaseConfirm
-      v-model:showConfirmclose="show_ConfirmClose"
       v-model:status="status"
       size="50px"
       :finish="finish"
       @commit="EmitCommit"
       @confirm="EmitConfirmSave"
       @cancel="EmitConfirmRemove"
-      @close="EmitCancelRelease"
     />
   </ManageMask>
 </template>

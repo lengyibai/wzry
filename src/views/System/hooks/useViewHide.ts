@@ -10,7 +10,6 @@ export default <T>(emit: Emits, key: string) => {
   const finish = ref(false); //发布成功
   const status = ref(0); //发布状态
   const hero_id = ref<number | undefined>(); //英雄id
-  const show_ConfirmClose = ref(false); //显示确认关闭弹窗
   const form_data = ref<T>();
 
   /* 判断是否存在草稿 */
@@ -30,11 +29,6 @@ export default <T>(emit: Emits, key: string) => {
       })
     );
   }, 1000);
-
-  /* 取消发布 */
-  const EmitCancelRelease = () => {
-    show_ConfirmClose.value = true;
-  };
 
   /* 关闭后操作 */
   const close = () => {
@@ -59,11 +53,9 @@ export default <T>(emit: Emits, key: string) => {
     hero_id,
     status,
     show,
-    show_ConfirmClose,
     form_data,
     finish,
     EmitConfirmSave,
     EmitConfirmRemove,
-    EmitCancelRelease,
   };
 };
