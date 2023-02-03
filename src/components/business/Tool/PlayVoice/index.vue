@@ -25,7 +25,7 @@ const ended = () => {
 onMounted(() => {
   voice.value.addEventListener("canplay", () => {
     emit("info", voice.value as HTMLMediaElement);
-    voice.value.play().catch(() => {});
+    voice.value?.play();
   });
 });
 </script>
