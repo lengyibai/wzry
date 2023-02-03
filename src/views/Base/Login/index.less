@@ -40,3 +40,13 @@
   transition: opacity 0s;
   opacity: 0;
 }
+
+.iframe-enter-from,
+.iframe-leave-active {
+  opacity: 0;
+}
+
+.iframe-leave-active,
+.iframe-enter-active {
+  transition: all var(--time-250);
+}

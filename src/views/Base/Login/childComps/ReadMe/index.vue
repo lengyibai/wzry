@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import switchStore from "@/store/switch";
 interface Props {
   modelValue?: boolean;
 }
@@ -9,20 +10,17 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
+const $switchStore = switchStore();
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
+  $switchStore.$clickAudio("6xc6");
 };
 </script>
 
 <template>
-  <div
-    class="readme"
-    :class="{
-      'readme-hide': !modelValue,
-    }"
-  >
-    <i class="iconfont wzry-guanbi" @click="handleClose"></i>
+  <div class="readme">
+    <i class="iconfont wzry-guanbi cursor-pointer" @click="handleClose"></i>
     <iframe
       class="iframe"
       src="https://lengyibai.gitee.io/wzry/README"
@@ -33,6 +31,7 @@ const handleClose = () => {
     ></iframe>
   </div>
 </template>
+
 <style lang="less" scoped>
 @import url("./index.less");
 </style>

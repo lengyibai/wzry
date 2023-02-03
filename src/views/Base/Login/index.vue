@@ -86,7 +86,9 @@ onUnmounted(() => {
     </transition>
 
     <!-- README -->
-    <ReadMe v-model="show_readme" />
+    <transition name="iframe">
+      <ReadMe v-if="show_readme" v-model="show_readme" />
+    </transition>
 
     <!-- 下载进度 -->
     <transition name="fade">
