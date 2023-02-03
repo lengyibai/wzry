@@ -1,6 +1,6 @@
 .hero-skill-content-right {
   display: flex;
-  justify-content: flex-end;
+  overflow: auto;
   width: 100%;
   transition: all 0.5s;
 
@@ -17,12 +17,14 @@
     }
 
     .effect {
+      min-width: 130px;
       font-size: 30px;
       text-shadow: var(--t-shadow-e);
       font-weight: bold;
     }
 
     .num {
+      min-width: 72px;
       font-size: 26px;
       text-shadow: var(--t-shadow-e);
     }
