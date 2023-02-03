@@ -60,13 +60,13 @@
     transition: all var(--time-250);
 
     img {
-      width: 30px;
-      margin-right: 5px;
+      width: 22px;
       filter: var(--d-shadow-b);
     }
 
     span {
-      font-size: 22px;
+      margin: 5px;
+      font-size: 20px;
       text-shadow: var(--t-shadow-e);
     }
   }
@@ -85,20 +85,84 @@
 
     .name {
       width: fit-content;
-      margin-bottom: 5px;
       color: var(--white);
-      font-size: 36px;
+      font-size: 26px;
       text-shadow: var(--t-shadow-e);
       opacity: 1;
       line-height: 1;
-      transform: translate(0);
     }
 
     .mark {
       color: var(--white-75);
-      font-size: 22px;
+      font-size: 18px;
       opacity: 1;
-      transform: translate(0);
+    }
+  }
+
+  .same {
+    .bottom {
+      .name {
+        font-size: 28px;
+      }
+
+      .mark {
+        font-size: 20px;
+      }
+    }
+
+    .price {
+      img {
+        width: 20px;
+      }
+
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+  @media screen and (max-width: @big) {
+    .same();
+  }
+  @media screen and (max-width: @large) {
+    .bottom {
+      .name {
+        font-size: 30px;
+      }
+
+      .mark {
+        font-size: 22px;
+      }
+    }
+
+    .price {
+      img {
+        width: 24px;
+      }
+
+      span {
+        font-size: 22px;
+      }
+    }
+  }
+  @media screen and (max-width: @medium) {
+    .bottom {
+      .name {
+        font-size: 40px;
+      }
+
+      .mark {
+        font-size: 30px;
+      }
+    }
+
+    .price {
+      img {
+        width: 32px;
+      }
+
+      span {
+        font-size: 28px;
+      }
     }
   }
 
