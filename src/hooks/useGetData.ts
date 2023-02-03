@@ -30,7 +30,7 @@ import { getHeroBasic } from "@/api/main/games/hero";
 
 export default () => {
   const total = ref(0); //请求总数
-  const index = ref(1); //
+  const index = ref(1); //用于计算下载进度
   const type = ref("基础数据"); //正在下载的数据类型
   const title = ref(""); //正在下载的数据名
   const finish = ref(false); //请求结束
