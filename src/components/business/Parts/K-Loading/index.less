@@ -17,9 +17,11 @@
   }
 
   span {
+    @size: 1.5vw;
+
     display: inline-block;
-    width: 1.5vw;
-    height: 1.5vw;
+    width: @size;
+    height: @size;
     transform: scale(0.2);
     animation: animate 1s infinite;
   }
@@ -30,6 +32,21 @@
     right: 2vh;
     color: var(--white);
     font-size: 2vw;
+  }
+
+  @media screen and (max-width: @medium) {
+    img {
+      display: none;
+    }
+
+    span {
+      width: 5vw;
+      height: 5vw;
+    }
+
+    h1 {
+      font-size: 5vw;
+    }
   }
 }
 
