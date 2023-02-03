@@ -111,6 +111,8 @@ watch(
           input_value.value = props.data.find((item) => {
             return item.id === v;
           }).name;
+        } else {
+          input_value.value = v;
         }
       }
     } else {
