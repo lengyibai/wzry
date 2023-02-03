@@ -102,7 +102,7 @@ export default () => {
       const v = (await requests[key]()).data;
       const l = getLocalData(key);
       if (JSON.stringify(l) !== JSON.stringify(v)) {
-        need_update_data.names.push(name);
+        need_update_data.names.push(`《${name}》`);
         need_update_data.keys.push(key);
         need_update_data.data.push(v);
       }
@@ -114,13 +114,13 @@ export default () => {
       const l = getLocalData(hero.pinyin, "voice_");
 
       if (JSON.stringify(l) !== JSON.stringify(v)) {
-        need_update_voice.names.push(hero.name);
+        need_update_voice.names.push(`《${hero.name}》`);
         need_update_voice.keys.push(hero.pinyin);
         need_update_voice.data.push(v);
       }
     }
 
-    /* 更新覆盖数据 */
+    // /* 更新覆盖数据 */
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
       localStorage.setItem("data_" + key, JSON.stringify(need_update_data.data[i]));
