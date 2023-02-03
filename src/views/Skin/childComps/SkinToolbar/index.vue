@@ -89,9 +89,10 @@ const handleSelectStatus = (i: number) => {
   current_index.value = i;
 };
 
-$bus.on("mouseup", (el) => {
+$bus.on("mouseup", (e) => {
+  const el = (e as MouseEvent).target as HTMLElement;
   //如果点击的不是下拉菜单，则隐藏
-  if (!(el as HTMLElement).className.includes("select-filter")) {
+  if (!el.className.includes("select-filter")) {
     select_status.fill(false);
     current_index.value = -1;
   }
