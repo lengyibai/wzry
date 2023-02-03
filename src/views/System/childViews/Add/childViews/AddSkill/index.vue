@@ -20,16 +20,9 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
 
-const {
-  show,
-  finish,
-  status,
-  show_ConfirmClose,
-  form_data,
-  EmitCancelRelease,
-  EmitConfirmRemove,
-  EmitConfirmSave,
-} = viewHide<Hero.Skill[][]>(emit, "add_skill_list");
+const { show, finish, status, form_data, EmitConfirmRemove, EmitConfirmSave } = viewHide<
+  Hero.Skill[][]
+>(emit, "add_skill_list");
 
 const left = ref(); //左侧元素
 
@@ -356,14 +349,11 @@ setTimeout(async () => {
 
     <!-- 发布相关 -->
     <ReleaseConfirm
-      v-model:showConfirmclose="show_ConfirmClose"
       v-model:status="status"
-      size="50px"
       :finish="finish"
       @commit="EmitCommit"
       @confirm="EmitConfirmSave"
       @cancel="EmitConfirmRemove"
-      @close="EmitCancelRelease"
     />
 
     <!-- 确认删除技能 -->

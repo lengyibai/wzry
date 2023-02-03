@@ -176,7 +176,6 @@ setTimeout(async () => {
     <!-- 发布确认 -->
     <ReleaseConfirm
       v-model:status="status"
-      size="50px"
       :finish="finish"
       @commit="EmitCommit"
       @confirm="EmitConfirmSave"

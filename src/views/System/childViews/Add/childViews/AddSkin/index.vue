@@ -16,17 +16,9 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 const $skinStore = skinStore();
 
-const {
-  hero_id,
-  show,
-  finish,
-  status,
-  form_data,
-  show_ConfirmClose,
-  EmitConfirmSave,
-  EmitConfirmRemove,
-  EmitCancelRelease,
-} = viewHide<Hero.Skin[]>(emit, "add_skin_list");
+const { hero_id, show, finish, status, form_data, EmitConfirmSave, EmitConfirmRemove } = viewHide<
+  Hero.Skin[]
+>(emit, "add_skin_list");
 
 //判断是否存在缓存
 form_data.value ??= [];
@@ -191,14 +183,11 @@ setTimeout(async () => {
 
     <!-- 发布相关 -->
     <ReleaseConfirm
-      v-model:showConfirmclose="show_ConfirmClose"
       v-model:status="status"
-      size="50px"
       :finish="finish"
       @commit="EmitCommit"
       @confirm="EmitConfirmSave"
       @cancel="EmitConfirmRemove"
-      @close="EmitCancelRelease"
     />
   </ManageMask>
 </template>
