@@ -1,5 +1,6 @@
 /** 英雄信息  */
 declare namespace Hero {
+  /** @description 主要数据 */
   interface Data {
     /** 英雄id */
     id: number;
@@ -52,10 +53,10 @@ declare namespace Hero {
     [propsName: string]: any;
   }
 
-  /** 职业类型 */
+  /** @description 职业类型 */
   type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
 
-  /** 语音 */
+  /** @description 语音 */
   interface Voice {
     /** 语音文字 */
     text: string;
@@ -63,7 +64,7 @@ declare namespace Hero {
     link: string;
   }
 
-  /** 语音字列表 */
+  /** @description 语音字列表 */
   interface Voices {
     /** 皮肤名 */
     name: string;
@@ -71,7 +72,7 @@ declare namespace Hero {
     voice: Voice[];
   }
 
-  /** 技能信息 */
+  /** @description 技能信息 */
   interface Skill {
     /** 技能冷却 */
     cd?: number;
@@ -89,7 +90,7 @@ declare namespace Hero {
     effect?: SkillEffect[];
   }
 
-  /** 返回的技能 */
+  /** @description 返回的技能 */
   interface SkillParams {
     /** 技能id */
     id: number;
@@ -99,7 +100,7 @@ declare namespace Hero {
     skills: Skill[][];
   }
 
-  /** 技能效果 */
+  /** @description 技能效果 */
   interface SkillEffect {
     /** 技能类型 */
     type: string;
@@ -107,7 +108,7 @@ declare namespace Hero {
     phase: number[];
   }
 
-  /** 技能类型 */
+  /** @description 技能类型 */
   interface SkillType {
     /** 类型id */
     id: number;
@@ -115,7 +116,7 @@ declare namespace Hero {
     name: string;
   }
 
-  /** 关系信息 */
+  /** @description 关系信息 */
   interface Relationship {
     /** 英雄id */
     id: number;
@@ -125,7 +126,7 @@ declare namespace Hero {
     relationship: RelationType[];
   }
 
-  /** 关系类型 */
+  /** @description 关系类型 */
   interface RelationType {
     /** 英雄id */
     id: number;
@@ -135,7 +136,7 @@ declare namespace Hero {
     hero: HeadImg;
   }
 
-  /** 皮肤信息 */
+  /** @description 皮肤信息 */
   interface Skin {
     /** 标识 */
     id: number;
@@ -164,7 +165,7 @@ declare namespace Hero {
     /** 职业 */
     profession: string[];
   }
-  /** 皮肤类型 */
+  /** @description 皮肤类型 */
   interface SkinType {
     /** 类型id */
     id: number;
@@ -174,20 +175,20 @@ declare namespace Hero {
     link: string;
   }
 
-  /** 英雄头像列表 */
+  /** @description 英雄头像列表 */
   interface HeadImg extends General {
     /** 头像 */
     headImg: string;
   }
 
-  /** 英雄基础列表 */
+  /** @description 英雄基础列表 */
   interface Basic extends General {
     /** 英雄拼音 */
     pinyin: string;
   }
 }
 
-/** 用户信息 */
+/** @description 用户信息 */
 interface User {
   /** 用户id */
   id: string;
@@ -203,7 +204,7 @@ interface User {
   wzryToken?: number;
 }
 
-/** 基础类型 */
+/** @description 基础类型 */
 interface General {
   /** 通用id */
   id: number;

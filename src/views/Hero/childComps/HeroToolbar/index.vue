@@ -36,7 +36,7 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
-const gender = ref(0); //性别排序
+const gender = ref<Gender>(0); //性别排序
 const search_value = ref(""); //搜索值
 const current_index = ref(-1); //当前展开的菜单
 const select_status = reactive([false, false, false, false, false]); //记录展开状态
@@ -80,7 +80,7 @@ const EmitSortType = (v: string) => {
 };
 
 /* 设置性别 */
-const handerSetGender = (type: number) => {
+const handerSetGender = (type: Gender) => {
   gender.value = type;
   $heroStore.filterGender(type);
 };

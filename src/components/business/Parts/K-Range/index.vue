@@ -9,11 +9,7 @@
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth }">
-          <img
-            v-show="showIcon && showDot"
-            :src="icon"
-            :style="{ width: size + 'px', height: size + 'px' }"
-          />
+          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size + 'px', height: size + 'px' }" />
           <span
             v-show="showDot && !showIcon"
             :style="{
@@ -91,9 +87,7 @@ const down = ref(false); //是否处于按下状态
 const barWidth = computed(() => {
   const value = Number(props.modelValue) - props.min;
   const maxs = props.max - props.min;
-  return `calc(${value / (maxs / 100)}% + ${
-    ((props.size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs
-  }px)`;
+  return `calc(${value / (maxs / 100)}% + ${((props.size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
 });
 
 /* 设置按钮大小 */

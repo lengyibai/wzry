@@ -22,28 +22,6 @@ export const heroDefault: Hero.Data = {
   specialty: [],
 };
 
-/** @description 默认皮肤信息 */
-export const skinDefault: Hero.Skin = {
-  id: 0,
-  hero: 0,
-  num: 0,
-  price: 0,
-  type: 0,
-  name: "",
-  poster: "",
-  cover: "",
-  headImg: "",
-  profession: [],
-  heroName: "",
-  gender: "",
-};
-
-/** @description 默认音频信息 */
-export const voiceDefault: Hero.Voice = {
-  text: "",
-  link: "",
-};
-
 /** @description 默认技能信息 */
 export const skillDefault: Hero.Skill = {
   cd: 0,
@@ -59,39 +37,6 @@ export const skillDefault: Hero.Skill = {
 export const skillEffectDefault: Hero.SkillEffect = {
   type: "",
   phase: [],
-};
-
-/** @description 默认装备信息 */
-export const equipDefault: Equip.Data = {
-  id: 0,
-  level: 0,
-  num: 0,
-  price: 0,
-  type: "",
-  name: "",
-  icon: "",
-  note: "",
-  desc: "",
-  effect: [],
-  motivation: [],
-};
-
-/** @description 默认装备动机信息 */
-export const equipMotivationDefault: Equip.Motivation = {
-  type: false,
-  name: "",
-  desc: "",
-  time: 0,
-  note: "",
-};
-
-/** @description 默认铭文信息 */
-export const epigraphDefault: Epigraph.Data = {
-  id: 0,
-  name: "",
-  type: [],
-  img: "",
-  effect: [],
 };
 
 /** @description 默认用户信息 */

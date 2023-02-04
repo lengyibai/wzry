@@ -25,24 +25,14 @@ const EmitGetLink = (link: string) => {
 </script>
 
 <template>
-  <div
-    class="select-img flex cursor-pointer"
-    :class="[type, { border: !modelValue }]"
-    @click="show_AddLink = true"
-  >
+  <div class="select-img flex cursor-pointer" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
     <img v-show="modelValue" :src="modelValue" alt="" @dragstart.prevent />
     <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
 
   <!-- 添加图片链接弹窗组件 -->
   <transition name="fade">
-    <AddLink
-      v-if="show_AddLink"
-      v-model="show_AddLink"
-      :title="title"
-      :link="modelValue"
-      @get-link="EmitGetLink"
-    />
+    <AddLink v-if="show_AddLink" v-model="show_AddLink" :title="title" :link="modelValue" @get-link="EmitGetLink" />
   </transition>
 </template>
 

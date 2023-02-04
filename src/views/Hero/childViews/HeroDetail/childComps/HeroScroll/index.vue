@@ -72,8 +72,7 @@ onMounted(() => {
         ? index.value--
         : "";
       HeroScroll.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) +
-        "px";
+        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
       emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;
@@ -94,14 +93,9 @@ onMounted(() => {
       if (!scroll) return;
       emit("start", index.value + 1);
       scroll = false;
-      -status < 0 && index.value < sonCount - 1
-        ? index.value++
-        : -status > 0 && index.value > 0
-        ? index.value--
-        : "";
+      -status < 0 && index.value < sonCount - 1 ? index.value++ : -status > 0 && index.value > 0 ? index.value-- : "";
       HeroScroll.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) +
-        "px";
+        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
       emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;

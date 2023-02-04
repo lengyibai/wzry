@@ -2,9 +2,7 @@ const g = (a) => {
   let arr = [];
   while (arr.length < 10) {
     const c = "abcdefghijklmnopqrstuvwxyz0123456789";
-    const i =
-      Math.floor(Math.random() * 10) +
-      [...Array(3)].map(() => c[(Math.random() * c.length) | 0]).join``;
+    const i = Math.floor(Math.random() * 10) + [...Array(3)].map(() => c[(Math.random() * c.length) | 0]).join``;
     if (
       !arr.includes(i) &&
       !a.includes(i) &&

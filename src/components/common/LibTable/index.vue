@@ -85,9 +85,9 @@ const sortChange = ({ key, index, id, item }: any) => {
 
     th {
       .head {
-        height: 50px;
         display: flex;
         align-items: center;
+        height: 50px;
         border: var(--subline);
         color: #fff;
       }
@@ -96,11 +96,12 @@ const sortChange = ({ key, index, id, item }: any) => {
 
   th,
   tr {
-    text-align: left;
-    color: #fff;
-    word-break: break-all;
-    font-size: 24px;
     padding: 0.5em 1em;
+    color: #fff;
+    font-size: 24px;
+    text-align: left;
+    word-break: break-all;
+
     :deep(td) {
       border-right: var(--subline) !important;
     }
@@ -108,7 +109,7 @@ const sortChange = ({ key, index, id, item }: any) => {
 
   tr {
     &:nth-child(even) {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgb(255 255 255 / 5%);
     }
   }
 }

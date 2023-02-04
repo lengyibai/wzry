@@ -51,8 +51,8 @@ onMounted(() => {
   //设置需要切换皮肤触发的函数
   $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
     await $heroDetailStore.setSkinVoice(hero_name, skin_name);
-    if (voice_length === $heroDetailStore.voice.length) return;
-    voice_length = $heroDetailStore.voice.length;
+    if (voice_length === $heroDetailStore.skin_voice.length) return;
+    voice_length = $heroDetailStore.skin_voice.length;
 
     nextTick(() => {
       voiceRef.value &&

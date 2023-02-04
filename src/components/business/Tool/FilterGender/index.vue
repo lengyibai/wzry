@@ -2,19 +2,19 @@
 import switchStore from "@/store/switch";
 
 interface Props {
-  modelValue: 0 | 1 | 2; //标识符
+  modelValue: Gender; //标识符
 }
 defineProps<Props>();
 
 interface Emits {
-  (e: "update:modelValue", v: number): void;
+  (e: "update:modelValue", v: Gender): void;
 }
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
 /* 选择触发 */
-const handerSetGender = (v: number) => {
+const handerSetGender = (v: Gender) => {
   emit("update:modelValue", v);
   $switchStore.$clickAudio();
 };

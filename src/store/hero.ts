@@ -7,8 +7,6 @@ import { getHeroSkin } from "@/api/main/games/skin";
 import { getHeroRelationship } from "@/api/main/games/relationship";
 import { $debounce, $search } from "@/utils";
 
-type Gender = 0 | 1 | 2;
-
 /** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {
   const profession = ref<Hero.Profession>(); //职业类型

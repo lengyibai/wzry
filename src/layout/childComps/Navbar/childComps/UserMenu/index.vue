@@ -59,18 +59,8 @@ setInterval(() => {
 </script>
 
 <template>
-  <div
-    class="user-menu"
-    :class="{ hover: show_menu }"
-    @mouseenter="show_menu = true"
-    @mouseleave="show_menu = false"
-  >
-    <img
-      class="head-img"
-      :src="userInfo.headImg || IMGBED + '/image/unknown.png'"
-      alt="头像"
-      @dragstart.prevent
-    />
+  <div class="user-menu" :class="{ hover: show_menu }" @mouseenter="show_menu = true" @mouseleave="show_menu = false">
+    <img class="head-img" :src="userInfo.headImg || IMGBED + '/image/unknown.png'" alt="头像" @dragstart.prevent />
     <div class="user-card">
       <div class="name lib-one-line">{{ time_greet }}，{{ userInfo.nickname }}</div>
       <div class="role">身份：{{ role }}</div>
@@ -90,11 +80,7 @@ setInterval(() => {
   </div>
   <transition name="fade">
     <K-Dialog v-if="show_edit" title="编辑个人资料" width="920px" up @close="EmitClose">
-      <Options
-        :id="$authStore.userInfo.id"
-        v-model:status="edit_status"
-        @close="show_edit = false"
-      />
+      <Options :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
     </K-Dialog>
   </transition>
 
@@ -110,12 +96,7 @@ setInterval(() => {
 
   <!-- 关闭设置弹窗确认 -->
   <transition name="fade">
-    <ConfirmClose
-      v-if="show_close"
-      v-model="show_close"
-      text="资料未保存，确定关闭吗？"
-      @confirm="show_edit = false"
-    />
+    <ConfirmClose v-if="show_close" v-model="show_close" text="资料未保存，确定关闭吗？" @confirm="show_edit = false" />
   </transition>
 </template>
 

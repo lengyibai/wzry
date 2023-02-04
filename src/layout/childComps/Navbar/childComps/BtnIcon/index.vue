@@ -24,11 +24,7 @@ const EmitUpdateLog = (v: boolean) => {
   <div class="btn-icon">
     <!-- 按钮 -->
     <i class="iconfont wzry-setting cursor-pointer" title="设置" @click="show_setting = true" />
-    <i
-      class="iconfont wzry-gengxinrizhi cursor-pointer"
-      title="更新日志"
-      @click="EmitUpdateLog(true)"
-    />
+    <i class="iconfont wzry-gengxinrizhi cursor-pointer" title="更新日志" @click="EmitUpdateLog(true)" />
 
     <!-- 设置弹窗 -->
     <transition name="fade">

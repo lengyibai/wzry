@@ -29,11 +29,7 @@ const handleTool = (type: string) => {
         @click="handleTool(!$musicStore.status ? 'play' : 'pause')"
       />
       <i class="cursor-pointer iconfont wzry-next" title="下一首" @click="handleTool('next')" />
-      <i
-        class="cursor-pointer iconfont wzry-musiclist"
-        title="播放列表"
-        @click="handleTool('list')"
-      />
+      <i class="cursor-pointer iconfont wzry-musiclist" title="播放列表" @click="handleTool('list')" />
 
       <MuiscList class="muisc-list" />
     </div>

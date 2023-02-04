@@ -53,11 +53,7 @@ const setPosition = (data: HTMLElement | null) => {
 };
 
 /* 自定义指令函数回调 */
-const handleDrag = (
-  data: HTMLElement,
-  offset: { x: number; y: number } | boolean,
-  index: number
-) => {
+const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolean, index: number) => {
   if (!data) return;
   //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
   data.style.transition = "all 0s";

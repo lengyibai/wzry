@@ -52,20 +52,9 @@ watch(
     }"
     @click="commit"
   >
-    <img
-      v-show="show_up"
-      class="up"
-      :class="{ move: modelValue === 1 }"
-      src="./img/fabu.svg"
-      @dragstart.prevent
-    />
+    <img v-show="show_up" class="up" :class="{ move: modelValue === 1 }" src="./img/fabu.svg" @dragstart.prevent />
     <transition name="fade">
-      <img
-        v-show="!show_up && modelValue === 1 && !finish"
-        class="rotate"
-        src="./img/loading.svg"
-        @dragstart.prevent
-      />
+      <img v-show="!show_up && modelValue === 1 && !finish" class="rotate" src="./img/loading.svg" @dragstart.prevent />
     </transition>
     <transition name="bounce">
       <img v-show="finish" src="./img/success.svg" @dragstart.prevent />

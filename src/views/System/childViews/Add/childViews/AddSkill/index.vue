@@ -20,9 +20,10 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
 
-const { show, finish, status, form_data, EmitConfirmRemove, EmitConfirmSave } = viewHide<
-  Hero.Skill[][]
->(emit, "add_skill_list");
+const { show, finish, status, form_data, EmitConfirmRemove, EmitConfirmSave } = viewHide<Hero.Skill[][]>(
+  emit,
+  "add_skill_list"
+);
 
 const left = ref(); //左侧元素
 
@@ -243,9 +244,7 @@ setTimeout(async () => {
     <div ref="left" class="content-left">
       <!-- 右上角新增 -->
       <div class="add-skill">
-        <span v-show="exist_deputys" class="desc"
-          >副技能无被动或低于3个，可以留空，但要与主技能数量一致</span
-        >
+        <span v-show="exist_deputys" class="desc">副技能无被动或低于3个，可以留空，但要与主技能数量一致</span>
         <div class="deputy-index">{{ deputy_index + 1 }}/{{ skills_num }}</div>
         <button class="add" @click="handleAddOne">添加技能</button>
         <button class="add" @click="handleAddDeputys">添加副技能</button>
@@ -267,31 +266,13 @@ setTimeout(async () => {
       <FormInput v-model="skill_unit" label="消耗单位" required placeholder="技能消耗单位" />
 
       <!-- 冷却时间 -->
-      <FormInput
-        v-if="noFirst"
-        v-model="activeSkill().cd"
-        label="CD"
-        placeholder="冷却时间"
-        number
-      />
+      <FormInput v-if="noFirst" v-model="activeSkill().cd" label="CD" placeholder="冷却时间" number />
 
       <!-- 消耗 -->
-      <FormInput
-        v-if="noFirst"
-        v-model="activeSkill().consume"
-        label="消耗"
-        placeholder="法力消耗"
-        number
-      />
+      <FormInput v-if="noFirst" v-model="activeSkill().consume" label="消耗" placeholder="法力消耗" number />
 
       <!-- 设置技能类型 -->
-      <FormSelect
-        v-model="activeSkill().type"
-        :data="skill_types"
-        :value="activeSkill().type"
-        label="技能类型"
-        multi
-      />
+      <FormSelect v-model="activeSkill().type" :data="skill_types" :value="activeSkill().type" label="技能类型" multi />
 
       <!-- 设置技能效果 -->
       <div v-if="noFirst" class="select-effect">
@@ -310,12 +291,7 @@ setTimeout(async () => {
 
       <!-- 设置阶段值 -->
       <div v-if="noFirst" v-show="skill_effect" class="select-effect">
-        <FormInput
-          v-model="skill_consume"
-          label="阶段值"
-          placeholder="升级后的值"
-          @keyup.enter="HandleAddConsume"
-        />
+        <FormInput v-model="skill_consume" label="阶段值" placeholder="升级后的值" @keyup.enter="HandleAddConsume" />
         <button class="confirm" @click="HandleAddConsume">确定</button>
         <button class="del" @click="handleDelConsume">删除一值</button>
       </div>

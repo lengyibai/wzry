@@ -1,8 +1,10 @@
-/** 弹窗位置 */
+/** @description 弹窗位置 */
 type TipType = "left-top" | "right-top" | "left-bottom" | "right-bottom";
 
-/** 消息类型 */
+/** @description 消息类型 */
 type MsgType = "info" | "warning" | "error";
+
+/** @description 消息提醒 */
 interface MsgText {
   /** 唯一值 */
   id: number;
@@ -12,7 +14,7 @@ interface MsgText {
   type: MsgType;
 }
 
-/** 设置配置项 */
+/** @description 设置配置项 */
 interface SettingConfig {
   /** 小贴士 */
   tip: boolean;
@@ -44,13 +46,15 @@ interface SettingConfig {
   noTips: Tips<boolean>;
 }
 
-/** 开关 */
+/** @description 开关 */
 declare namespace Switch {
-  /** 点击音效 */
+  /** @description 点击音效 */
   type ClickAudio = (name?: string) => void;
-  /** 消息提醒 */
+
+  /** @description 消息提醒 */
   type Msg = (text: string, type?: MsgType) => void;
 
+  /** @description 小贴士 */
   type Tip = (obj: {
     /** 左上角标题 */
     title?: string;
@@ -64,18 +68,19 @@ declare namespace Switch {
     btnFn?: Func;
   }) => void;
 
+  /** @description loading */
   interface Loading {
     /**
-     * 开启
+     * 显示loading
      * @param text 右上角加载描述
      */
     show: (text?: string) => void;
-    /** 关闭 */
+    /** 关闭loading */
     close: Func;
   }
 }
 
-/** Tips提示信息 */
+/** @description Tips提示信息 */
 interface Tips<T> {
   "2rb7": T;
   "9f5m": T;
@@ -90,10 +95,10 @@ interface Tips<T> {
   "9ms5": T;
 }
 
-/** Tips属性名 */
+/** @description Tips属性名 */
 type TipKeys = keyof Tips<string>;
 
-/** 版本更新 */
+/** @description 版本更新 */
 interface VersionUpdate {
   /** 数据版本 */
   main: string;
@@ -103,7 +108,7 @@ interface VersionUpdate {
   log: string;
 }
 
-/** 更新日志 */
+/** @description 更新日志 */
 interface UpdateLog {
   /** 基础数据更新 */
   data: string;
@@ -112,3 +117,6 @@ interface UpdateLog {
   /** 文件更新 */
   file: string;
 }
+
+/** @description 性别 */
+type Gender = 0 | 1 | 2;

@@ -6,6 +6,7 @@ import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 import skinStore from "@/store/skin";
 import equipStore from "@/store/equip";
+import { Epigraph } from "@/api/main/data";
 
 interface Props {
   type: "hero" | "skin" | "equip";
@@ -25,7 +26,7 @@ const $heroStore = heroStore();
 const $collapseStore = collapseStore();
 const $equipStore = equipStore();
 
-const hero_type = [
+const hero_type: { name: Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
   { name: "坦克", icon: "wzry-tanke" },
   { name: "战士", icon: "wzry-zhanshi" },
@@ -35,7 +36,7 @@ const hero_type = [
   { name: "辅助", icon: "wzry-fuzhu" },
 ];
 
-const equip_type = [
+const equip_type: { name: Equip.Category; icon: string }[] = [
   { name: "攻击", icon: "wzry-gongji" },
   { name: "法术", icon: "wzry-fashu" },
   { name: "防御", icon: "wzry-fangyu" },
@@ -44,7 +45,7 @@ const equip_type = [
   { name: "游走", icon: "wzry-youzou" },
 ];
 
-const top = ref(0); //滑块坐标
+const top = ref(0); // 滑块坐标
 
 //动态list
 const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));
@@ -60,13 +61,13 @@ const filter_type = computed(() => {
 });
 
 /* 选择类型并筛选显示 */
-const handleSelect = (name: string, index: number) => {
+const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
   $switchStore.$clickAudio(`默认${index}`);
 
   const obj = {
-    hero: () => $heroStore.setProfessional(name),
-    skin: () => $skinStore.setProfessional(name),
-    equip: () => $equipStore.setType(name),
+    hero: () => $heroStore.setProfessional(name as Hero.Profession),
+    skin: () => $skinStore.setProfessional(name as Hero.Profession),
+    equip: () => $equipStore.setType(name as Equip.Category),
   };
 
   obj[props.type]();

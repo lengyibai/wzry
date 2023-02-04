@@ -71,7 +71,7 @@ const EmitHide = () => {
   }, 100);
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
-  if ($heroStore.profession === "") {
+  if (!$heroStore.profession) {
     setTimeout(() => {
       $heroStore.getHeroList();
       setTimeout(() => {
@@ -130,23 +130,14 @@ onMounted(() => {
       </HeroParallax>
 
       <!--技能-->
-      <HeroParallax
-        v-if="skill_num"
-        class="scroll-item"
-        :bg="hero_data.skins![skin_num - 1].poster"
-      >
+      <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins![skin_num - 1].poster">
         <HeroSkill />
       </HeroParallax>
     </HeroScroll>
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress
-        v-show="show_progress"
-        :index="scroll_index"
-        :page-name="page_name"
-        @toggle="EmitToggle"
-      />
+      <Heroprogress v-show="show_progress" :index="scroll_index" :page-name="page_name" @toggle="EmitToggle" />
     </transition>
   </div>
 </template>

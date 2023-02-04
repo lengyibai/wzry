@@ -32,10 +32,7 @@ onMounted(() => {
 
       <!-- 关系 -->
       <transition name="scale">
-        <HeroRelationship
-          v-if="into && hero_data.relationships"
-          :relationship="hero_data.relationships"
-        />
+        <HeroRelationship v-if="into && hero_data.relationships" :relationship="hero_data.relationships" />
       </transition>
     </div>
 

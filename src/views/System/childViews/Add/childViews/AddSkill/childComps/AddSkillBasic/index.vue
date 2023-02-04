@@ -39,14 +39,7 @@ const handleDel = () => emit("del");
         <div class="types">
           <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
         </div>
-        <button
-          v-show="active(index)"
-          v-if="index !== 0"
-          class="del lib-click"
-          @click.stop="handleDel"
-        >
-          删除
-        </button>
+        <button v-show="active(index)" v-if="index !== 0" class="del lib-click" @click.stop="handleDel">删除</button>
         <div v-show="active(index)" class="editing">编辑中...</div>
       </div>
 

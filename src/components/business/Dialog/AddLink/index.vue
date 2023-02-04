@@ -35,13 +35,7 @@ const handleConfirm = () => {
 
 <template>
   <K-Dialog v-bind="$attrs" align="center">
-    <input
-      v-model="input_link"
-      v-focus
-      type="text"
-      :placeholder="placeholder"
-      @keyup.enter="handleConfirm"
-    />
+    <input v-model="input_link" v-focus type="text" :placeholder="placeholder" @keyup.enter="handleConfirm" />
     <K-Button type="warning" @click="handleConfirm">确定</K-Button>
   </K-Dialog>
 </template>
