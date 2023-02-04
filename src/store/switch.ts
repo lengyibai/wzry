@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+/** @description 全局触发 */
 const switchStore = defineStore("switch", () => {
   const $clickAudio = ref<Switch.ClickAudio>(() => {}); //点击音效
   const $msg = ref<Switch.Msg>(() => {}); //消息提示
@@ -10,25 +11,15 @@ const switchStore = defineStore("switch", () => {
     close: () => new Promise(() => {}),
   }); //loading
 
-  /** @description: 设置触发函数 */
-  const setTriggerFn = (v: {
-    clickAudio: Switch.ClickAudio;
-    msg: Switch.Msg;
-    tip: Switch.Tip;
-    loading: Switch.Loading;
-  }) => {
-    $clickAudio.value = v.clickAudio;
-    $msg.value = v.msg;
-    $tip.value = v.tip;
-    $loading.value = v.loading;
-  };
-
   return {
+    /** 触发音效 */
     $clickAudio,
+    /** 触发消息提醒 */
     $msg,
+    /** 触发小贴士 */
     $tip,
+    /** 触发loading */
     $loading,
-    setTriggerFn,
   };
 });
 

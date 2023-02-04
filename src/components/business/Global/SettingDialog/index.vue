@@ -22,7 +22,7 @@ const $settingStore = settingStore();
 const $cssVarStore = cssVarStore();
 const $switchStore = switchStore();
 
-// 默认配置
+//默认配置
 const default_config: SettingConfig = { ...configDefault };
 
 const show_confirm_reset = ref(false); //显示/隐藏确认重置弹窗
@@ -129,11 +129,7 @@ const EmitResetConfig = () => {
         <!-- 动画速率 -->
         <div class="option">
           <div class="label">动画</div>
-          <K-Select
-            v-model="config.speed"
-            :option="['迅速', '均衡', '优雅']"
-            @update:model-value="EmitSpeed"
-          />
+          <K-Select v-model="config.speed" :option="['迅速', '均衡', '优雅']" @update:model-value="EmitSpeed" />
         </div>
 
         <!-- 音效 -->
@@ -216,9 +212,7 @@ const EmitResetConfig = () => {
         <div class="option">
           <div class="label">
             小贴士
-            <DescSet
-              desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
-            />
+            <DescSet desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息" />
           </div>
           <K-Check v-model="config.tip" @update:model-value="EmitTip" />
         </div>
@@ -226,9 +220,7 @@ const EmitResetConfig = () => {
         <!-- 恢复所有不再提示 -->
         <div class="option">
           <div class="label">恢复所有小贴士</div>
-          <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip"
-            >恢复</K-Button
-          >
+          <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip">恢复</K-Button>
         </div>
       </div>
 

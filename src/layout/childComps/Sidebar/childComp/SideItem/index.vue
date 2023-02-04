@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
 
-// import { Route } from "@/router/interface";
+//import { Route } from "@/router/interface";
 import switchStore from "@/store/switch";
 import collapseStore from "@/store/collapse";
 
@@ -67,18 +67,18 @@ const fn = () => {
 };
 
 /* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */
-// const sidebarActive = (routes: Route) => {
-//   if (routes.children && routes.children.length) {
-//     routes.children.forEach((item) => {
-//       if (item.path === $route.path) {
-//         fn();
-//         sidebarActive(item);
-//       }
-//     });
-//   }
-// };
+//const sidebarActive = (routes: Route) => {
+//  if (routes.children && routes.children.length) {
+//    routes.children.forEach((item) => {
+//      if (item.path === $route.path) {
+//        fn();
+//        sidebarActive(item);
+//      }
+//    });
+//  }
+//};
 
-// sidebarActive(props.route);
+//sidebarActive(props.route);
 
 /* 发送坐标 */
 const handleCoord = (e: Event) => {

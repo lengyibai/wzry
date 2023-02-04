@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 import { RouterSheel } from "@/router/interface";
 
-/** @description: 路由组件 */
+/** 路由组件 */
 const routePath: Record<string, any> = {
   "@/layout": () => import("@/layout/index.vue"),
   "@/views/Hero": () => import("@/views/Hero/index.vue"),
@@ -14,7 +14,7 @@ const routePath: Record<string, any> = {
   "@/views/System/childViews/Data": () => import("@/views/System/childViews/Data/index.vue"),
 };
 
-/** @description: 将路由表转换成真实路由 */
+/** 将路由表转换成真实路由 */
 const sheelToRoute = (route: RouterSheel[], asyncRoutes: Partial<RouteRecordRaw>[]) => {
   route.forEach((item: RouterSheel, index: number) => {
     asyncRoutes[index] = {};

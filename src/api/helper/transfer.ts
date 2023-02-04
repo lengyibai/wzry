@@ -1,23 +1,35 @@
 interface Get {
-  name: string; //用于获取本地存储的键名
-  key?: string; //从本地存储获取的数据的键名
-  value?: any; //匹配的值
-  full?: boolean; //全字匹配
+  /** 用于获取本地存储的键名 */
+  name: string;
+  /** 从本地存储获取的数据的键名 */
+  key?: string;
+  /** 匹配的值 */
+  value?: any;
+  /** 全字匹配 */
+  full?: boolean;
 }
 
 interface Patch extends Get {
-  k?: string; //需要被修改的键名
-  v: any; //需要修改成什么
+  /** 需要被修改的键名 */
+  k?: string;
+  /** 需要修改成什么 */
+  v: any;
 }
 
 interface Del {
-  name: string; //用于获取本地存储的键名
-  id: string; //数据id
+  /** 用于获取本地存储的键名 */
+  name: string;
+  /** 数据id */
+  id: string;
 }
 
-/** @description: 通过字段查询指定值 */
-export function get<R>(params: Get, alone?: true): R; //如果查询一个，则返回一个数据
-export function get<R>(params: Get, alone?: false): R[]; //如果查询多个，则返回一个数组
+/**
+ * @description 查询
+ * @param params 查询参数
+ * @param alone 返回单个
+ */
+export function get<R>(params: Get, alone?: true): R;
+export function get<R>(params: Get, alone?: false): R[];
 export function get<R>(params: Get, alone = true): R | R[] | void {
   const { name, key, value, full = true } = params;
   const d = localStorage.getItem(name);
@@ -44,7 +56,11 @@ export function get<R>(params: Get, alone = true): R | R[] | void {
   }
 }
 
-/** @description: 添加 */
+/**
+ * @description 添加
+ * @param name localStorage 键名
+ * @param value 追加值
+ */
 export const post = <R>(name: string, value: R) => {
   const d = localStorage.getItem(name);
   const v = (d && JSON.parse(d)) as R[];
@@ -54,8 +70,9 @@ export const post = <R>(name: string, value: R) => {
 };
 
 /**
- * @description: 修改
- * @param {boolean} obj: 是否传递对象进行修改
+ * @description 修改
+ * @param params 查询参数
+ * @param obj 是否传递对象进行修改
  */
 export const patch = <R>(params: Patch, obj?: boolean) => {
   const { name, key = "", k = "", value, v } = params;
@@ -67,11 +84,10 @@ export const patch = <R>(params: Patch, obj?: boolean) => {
     const i = item as Record<string, any>;
     return i[key] === value;
   });
-
   let newData = data[index] as Record<string, any>;
 
   if (obj) {
-    // 合并数据
+    //合并数据
     newData = { ...newData, ...v };
   } else {
     newData[k] = v;
@@ -83,7 +99,10 @@ export const patch = <R>(params: Patch, obj?: boolean) => {
   return newData as R;
 };
 
-/** @description: 删除 */
+/**
+ * @description: 删除
+ * @param params 删除参数
+ */
 export const del = <R extends Record<string, string>>(params: Del) => {
   const { name, id } = params;
   const d = localStorage.getItem(name);

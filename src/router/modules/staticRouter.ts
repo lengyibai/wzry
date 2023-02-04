@@ -1,6 +1,6 @@
 import getSheelPath from "../helper/getSheelPath";
 
-/** @description: 静态路由 */
+/** 静态路由 */
 export const staticRouter = [
   {
     path: "/",
@@ -17,7 +17,7 @@ export const staticRouter = [
   },
 ];
 
-/** @description: 错误页面路由 */
+/** 错误页面路由 */
 export const errorRouter = [
   {
     path: "/403",
@@ -45,5 +45,5 @@ export const errorRouter = [
   },
 ];
 
-/** @description: 静态路由path组 */
+/** 静态路由path组 */
 export const static_paths = getSheelPath([...staticRouter, ...errorRouter])[0];

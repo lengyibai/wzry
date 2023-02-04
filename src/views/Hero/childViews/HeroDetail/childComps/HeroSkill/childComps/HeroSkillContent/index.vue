@@ -13,7 +13,7 @@ const props = defineProps<Props>();
 
 const $heroDetail = heroDetail();
 
-const show = ref(false); // 左右两边的入场动画
+const show = ref(false); //左右两边的入场动画
 const toggle = ref(false); //用于技能选择
 
 const exist_effect = computed(() => props.skill.effect?.length); //存在技能效果
@@ -42,11 +42,7 @@ $heroDetail.setSkillSelectFn(() => {
       />
     </div>
     <div class="right">
-      <HeroSkillContentRight
-        v-if="exist_effect"
-        :class="{ 'hide-right': !show || toggle }"
-        :active-skill="skill"
-      />
+      <HeroSkillContentRight v-if="exist_effect" :class="{ 'hide-right': !show || toggle }" :active-skill="skill" />
     </div>
   </div>
 </template>

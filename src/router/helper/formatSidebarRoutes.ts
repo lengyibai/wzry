@@ -2,24 +2,24 @@ import { RouteRecordRaw } from "vue-router";
 
 import { Route } from "../interface";
 
-/** @description: 将Vue路由格式化，用于生成侧边栏 */
+/** 将Vue路由格式化，用于生成侧边栏 */
 const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
   const formattedRoutes: Route[] = []; //格式化后的路由
 
   /**
-   * @description:
-   * @param {Route[]} childRoutes 当前递归的子路由数组
-   * @param {number} zIndex 当前路由的层级，用于设置子菜单左边距
+   * @description
+   * @param childRoutes 当前递归的子路由数组
+   * @param zIndex 当前路由的层级，用于设置子菜单左边距
    */
   const formatChildren = (childRoutes: Route[] | null | undefined, zIndex: number) => {
     const formattedChildRoutes: Route[] = []; //子路由
 
-    // 判断是否存在子路由，否则返回 null
+    //判断是否存在子路由，否则返回 null
     if (childRoutes && childRoutes[0].path) {
       childRoutes.forEach((item) => {
         let index = zIndex;
 
-        // 将格式化后的子路由进行存储
+        //将格式化后的子路由进行存储
         formattedChildRoutes.push({
           path: item.path,
           title: item.meta && item.meta.title,

@@ -1,58 +1,93 @@
-/** @description: 装备信息 */
+/** 装备信息 */
 declare namespace Equip {
-  /** @description: 装备数据 */
+  /** 装备数据 */
   interface Data {
-    id: number; //标识符
-    level: number; //等级
-    num: number; //当前列第几个
-    price: number; //价格
-    type: string; //类型
-    name: string; //名称
-    icon: string; //图标
-    note: string; //备注
-    desc: string; //简述
-    effect: Effect[]; //效果
-    motivation: Motivation[]; //动机
-  }
-
-  /** @description: 装备效果 */
-  interface Effect {
-    name: string; //名称
-    num: number; // +增益量
-  }
-
-  /** @description: 被动/主动信息 */
-  interface Motivation {
-    type: boolean | string; //主/被动
-    name: string; //名称
-    desc: string; //描述
-    time: number; //冷却时间
-    note: string; //备注
-  }
-
-  /** @description: 合成 */
-  interface Synthetic {
+    /** 标识符 */
     id: number;
+    /** 等级 */
+    level: number;
+    /** 当前列第几个 */
+    num: number;
+    /** 价格 */
+    price: number;
+    /** 类型 */
+    type: Category;
+    /** 名称 */
     name: string;
+    /** 图标 */
+    icon: string;
+    /** 备注 */
+    note: string;
+    /** 简述 */
+    desc: string;
+    /** 效果 */
+    effect: Effect[];
+    /** 动机 */
+    motivation: Motivation[];
+  }
+
+  /** 装备类型 */
+  type Category = "攻击" | "法术" | "防御" | "移动" | "打野" | "游走";
+
+  /** 装备效果 */
+  interface Effect {
+    /** 名称 */
+    name: string;
+    /** 增益量 */
+    num: number;
+  }
+
+  /** 被动/主动信息 */
+  interface Motivation {
+    /** 主/被动 */
+    type: boolean | string;
+    /** 名称 */
+    name: string;
+    /** 描述 */
+    desc: string;
+    /** 冷却时间 */
+    time: number;
+    /** 备注 */
+    note: string;
+  }
+
+  /** 单个装备合成表 */
+  interface Synthetic {
+    /** 装备id */
+    id: number;
+    /** 装备名称 */
+    name: string;
+    /** 可合成的装备 */
     to?: { id: number; name: string }[];
+    /** 需要合成的装备 */
     need?: { id: number; name: string }[];
   }
 }
 
-/** @description: 铭文信息 */
+/** 铭文信息 */
 declare namespace Epigraph {
-  /** @description: 铭文数据 */
+  /** 铭文数据 */
   interface Data {
+    /** 铭文id */
     id: number;
-    name: string; //名称
-    type: string[]; //类型
-    img: string; //图标
-    effect: EpigraphEffect[]; //效果
+    /** 名称 */
+    name: string;
+    /** 类型 */
+    type: string[];
+    /** 图标 */
+    img: string;
+    /** 效果 */
+    effect: EpigraphEffect[];
   }
 
-  /** @description: 铭文效果 */
+  /** 铭文类型 */
+  type Category = "全部" | "攻击" | "生命" | "防御" | "功能" | "吸血" | "攻速" | "暴击" | "穿透";
+
+  /** 铭文效果 */
   interface EpigraphEffect {
-    type: string; //效果类型
-    num: string; // +增益值
+    /** 效果类型 */
+    type: string;
+    /** 增益值 */
+    num: string;
   }
 }

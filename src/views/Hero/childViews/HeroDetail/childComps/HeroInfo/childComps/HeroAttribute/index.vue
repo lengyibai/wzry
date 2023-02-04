@@ -14,7 +14,7 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-// 精灵图坐标
+//精灵图坐标
 const y: Record<string, string> = {
   survival: "0 0px",
   attack: "-60px 0px",
@@ -22,7 +22,7 @@ const y: Record<string, string> = {
   difficulty: "-180px 0px",
 };
 
-// 背景色
+//背景色
 const bgc: Record<string, string> = {
   survival: "#1081d2",
   attack: "#d3b95b",
@@ -30,7 +30,7 @@ const bgc: Record<string, string> = {
   difficulty: "#d3422b",
 };
 
-// 描述
+//描述
 const text: Text = {
   survival: "生存能力",
   attack: "攻击伤害",
@@ -41,7 +41,7 @@ const text: Text = {
 const attribute = ref(); //属性元素
 const progress = ref(0); //进度条
 
-// 延迟显示英雄属性
+//延迟显示英雄属性
 onMounted(() => {
   setTimeout(() => {
     progress.value = props.length;

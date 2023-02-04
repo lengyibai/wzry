@@ -9,7 +9,7 @@ export default () => {
     const text_length = text.split("").length / 3; //获取文字长度
     const time = text_length > 3 ? text_length : text_length + 1; //通过文字长度，设置显示时长
 
-    // 延迟提醒，避免与点击操作同时播放
+    //延迟提醒，避免与点击操作同时播放
     setTimeout(() => {
       const msgName: Record<string, string> = {
         info: "n74s",
@@ -19,14 +19,14 @@ export default () => {
 
       switchStore().$clickAudio(msgName[type]); //播放指定名称的音效
 
-      // 创建消息内容
+      //创建消息内容
       const msgText: MsgText = {
         id: new Date().getTime(),
         text,
         type,
       };
 
-      // 将消息内容添加进消息队列
+      //将消息内容添加进消息队列
       messages.unshift(msgText);
       setTimeout(() => {
         messages.pop();

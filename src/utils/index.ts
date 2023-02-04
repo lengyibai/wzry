@@ -17,7 +17,7 @@ export function $repStr(str, match, rep = "") {
   return str.replace(new RegExp(match, "g"), rep);
 }
 
-// 时间格式化
+//时间格式化
 export function $fmtTime(date, fmt = "YYYY-MM-DD hh:mm:ss") {
   date = new Date(date);
   let ret;
@@ -43,14 +43,7 @@ export function $fmtTime(date, fmt = "YYYY-MM-DD hh:mm:ss") {
 
 //根据时间段问候
 export function $timeGreet(greet = {}) {
-  const {
-    a = "午夜好",
-    b = "早上好",
-    c = "上午好",
-    d = "中午好",
-    e = "下午好",
-    f = "晚上好",
-  } = greet;
+  const { a = "午夜好", b = "早上好", c = "上午好", d = "中午好", e = "下午好", f = "晚上好" } = greet;
   const now = new Date().getHours();
   return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 }
@@ -59,8 +52,7 @@ export function $timeGreet(greet = {}) {
 export function $timeCount(time = "2021-04-01") {
   let now = new Date(time).getTime(),
     future = new Date().getTime(),
-    times =
-      future - now > 0 ? Math.floor((future - now) / 1000) : Math.floor((now - future) / 1000);
+    times = future - now > 0 ? Math.floor((future - now) / 1000) : Math.floor((now - future) / 1000);
 
   const time_arr = [
     {
@@ -93,7 +85,7 @@ export function $timeCount(time = "2021-04-01") {
   return timeObj;
 }
 
-// requestAnimationFrame计时器
+//requestAnimationFrame计时器
 export function $frameInterval(fn, fre = 0) {
   let time = 0;
   f();
@@ -106,7 +98,7 @@ export function $frameInterval(fn, fre = 0) {
     requestAnimationFrame(f);
   }
 }
-// 判断是否为数组
+//判断是否为数组
 export function $isArray(type) {
   return Object.prototype.toString.call(type) === "[object Array]";
 }
@@ -132,22 +124,22 @@ export const $pinyin = (str) => {
 
 //正则搜索
 export const $search = (data, value, keys) => {
-  // 创建用于存储搜索结果的数组
+  //创建用于存储搜索结果的数组
   let arr = [];
-  // 定义搜索函数，这个函数接收两个参数：搜索值和搜索键
+  //定义搜索函数，这个函数接收两个参数：搜索值和搜索键
   const fn = (item, key) => {
-    // 使用正则表达式构造忽略大小写的搜索模式
+    //使用正则表达式构造忽略大小写的搜索模式
     const reg = new RegExp(item.toString().toLowerCase(), "i");
-    // 将过滤后的搜索结果添加到结果数组中
+    //将过滤后的搜索结果添加到结果数组中
     arr.push(
       ...data.filter((item) => {
         let test = "";
-        // 如果搜索的数据项的类型是数字，则直接搜索数据项
+        //如果搜索的数据项的类型是数字，则直接搜索数据项
         if (typeof item[key] === "number") {
           test = item[key];
           return reg.test(test);
         }
-        // 如果搜索的数据项的类型是字符串，则搜索数据项和拼音
+        //如果搜索的数据项的类型是字符串，则搜索数据项和拼音
         if (typeof item[key] === "string") {
           test = $pinyin(item[key]);
           return reg.test(test) || reg.test(item[key]);
@@ -156,38 +148,38 @@ export const $search = (data, value, keys) => {
     );
   };
 
-  // 检查搜索值是否是数组
+  //检查搜索值是否是数组
   if (Array.isArray(value)) {
-    // 如果value为数组，则遍历数组的每个值并进行搜索
+    //如果value为数组，则遍历数组的每个值并进行搜索
     value.forEach((val) => {
-      // 遍历value中的每个值
+      //遍历value中的每个值
       if (Array.isArray(keys)) {
-        // 如果keys是数组，则遍历每个搜索键并进行搜索
+        //如果keys是数组，则遍历每个搜索键并进行搜索
         keys.map((key) => fn(val || "", key));
       } else {
-        // 如果keys不是数组，则直接使用这个搜索键进行搜索
+        //如果keys不是数组，则直接使用这个搜索键进行搜索
         fn(val || "", keys);
       }
     });
   } else {
-    // 如果value不是数组，则直接对这个值进行搜索
+    //如果value不是数组，则直接对这个值进行搜索
     if (Array.isArray(keys)) {
-      // 如果keys是数组，则遍历每个搜索键并进行搜索
+      //如果keys是数组，则遍历每个搜索键并进行搜索
       keys.map((key) => fn(value || "", key));
     } else {
-      // 如果keys不是数组，则直接使用这个搜索键进行搜索
+      //如果keys不是数组，则直接使用这个搜索键进行搜索
       fn(value || "", keys);
     }
   }
 
-  // 返回搜索结果数组
+  //返回搜索结果数组
   return arr;
 };
 
-// 防抖（默认延迟执行）
+//防抖（默认延迟执行）
 export const $debounce = (() => {
   let timer: Timeout = 0;
-  return (callback: () => void, wait = 800) => {
+  return (callback: Func, wait = 800) => {
     timer && clearTimeout(timer);
     timer = setTimeout(callback, wait);
   };
@@ -254,17 +246,7 @@ export function $deepCopy<T>(e): T {
     c = (e) => null !== e && ("object" == typeof e || "function" == typeof e),
     o = (e) => {
       const t = r(e);
-      return [
-        "Boolean",
-        "Number",
-        "String",
-        "Symbol",
-        "BigInt",
-        "Date",
-        "Map",
-        "Set",
-        "RegExp",
-      ].includes(t);
+      return ["Boolean", "Number", "String", "Symbol", "BigInt", "Date", "Map", "Set", "RegExp"].includes(t);
     },
     s = (e) => {
       const t = r(e),
@@ -414,7 +396,7 @@ export function $savefiles(data, name) {
 
 /* 图片压缩 */
 export function $imageOptimizer(obj) {
-  // 先判断Dom树是否存在上次创建的canvas
+  //先判断Dom树是否存在上次创建的canvas
   const c1 = document.createElement("canvas");
   c1.classList.add("imageOptimizer");
   document.body.appendChild(c1);
@@ -441,7 +423,7 @@ export function $imageOptimizer(obj) {
     p1.then(
       (e) => {
         let result = e.target.result;
-        // 判断图片占用大小
+        //判断图片占用大小
         if (e.total / 1024 > maxsize) {
           let p2 = new Promise(function (resolve, reject) {
             let image = new Image();
@@ -457,7 +439,7 @@ export function $imageOptimizer(obj) {
             (e) => {
               let canvas = document.querySelector("canvas");
               let context = canvas.getContext("2d");
-              // 如果图片尺寸大于规定尺寸，则压缩尺寸
+              //如果图片尺寸大于规定尺寸，则压缩尺寸
               let scale = width / e.width;
               if (scale < 1) {
                 canvas.width = e.width * scale;

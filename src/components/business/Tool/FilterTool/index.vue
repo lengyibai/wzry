@@ -9,7 +9,7 @@ interface Props {
   modelValue: string; //选择的值
   data: Data[]; //下拉列表
   listHeight?: string; //列表高度
-  status: boolean; // 下拉状态
+  status: boolean; //下拉状态
 }
 const props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
@@ -68,12 +68,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
     />
 
     <!-- 展开列表 -->
-    <div
-      class="select-list"
-      :class="{ unfold: !status }"
-      :style="{ height: listHeight }"
-      @click.stop
-    >
+    <div class="select-list" :class="{ unfold: !status }" :style="{ height: listHeight }" @click.stop>
       <transition-group name="select-list">
         <button
           v-for="item in data"

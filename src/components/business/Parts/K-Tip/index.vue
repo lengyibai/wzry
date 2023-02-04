@@ -9,7 +9,7 @@ interface Props {
   noTipName?: TipKeys | string; //不再提示的属性名
   align?: TipType; //对齐方式
   btnText?: string; //按钮文字
-  btnFn?: () => void; //点击按钮触发的函数
+  btnFn?: Func; //点击按钮触发的函数
 }
 const props = withDefaults(defineProps<Props>(), {
   align: "right-bottom",
@@ -76,9 +76,7 @@ const handleClose = () => {
 
     <!-- 按钮 -->
     <div class="btns">
-      <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{
-        btnText
-      }}</K-Button>
+      <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{ btnText }}</K-Button>
     </div>
   </div>
 </template>

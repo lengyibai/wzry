@@ -35,16 +35,16 @@ const handleBack = () => {
 };
 
 /**
- * @description: 进入方式，用于切换注册和登录组件
- * @param {string} v 注册或登录
+ * 进入方式，用于切换注册和登录组件
+ * @param v 注册或登录
  */
 const EmitIntoType = (v: string) => {
   is_reg.value = v;
 };
 
 /**
- * @description: 注册成功
- * @param {User} form 注册成功的表单
+ * 注册成功
+ * @param form 注册成功的表单
  */
 const EmitRegSuccess = (form: User) => {
   is_reg.value = "登录";
@@ -105,12 +105,7 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- 组件切换 -->
-    <component
-      :is="component"
-      :user-info="reg_form"
-      @into="EmitIntoType"
-      @success="EmitRegSuccess"
-    />
+    <component :is="component" :user-info="reg_form" @into="EmitIntoType" @success="EmitRegSuccess" />
   </div>
 </template>
 

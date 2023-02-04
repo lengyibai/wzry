@@ -4,7 +4,7 @@ interface Props {
 }
 defineProps<Props>();
 
-// 字体颜色
+//字体颜色
 const color: Record<string, string> = {
   info: "#84ade2",
   warning: "#e2c484",

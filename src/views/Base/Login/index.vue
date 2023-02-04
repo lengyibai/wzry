@@ -26,8 +26,8 @@ const finish = ref(false); //数据下载完成
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 /**
- * @description: 点击右上角工具栏
- * @param {string} v 点击工具栏的静音、README、公告按钮类型
+ * 点击右上角工具栏
+ * @param v 点击工具栏的静音、README、公告按钮类型
  */
 const EmitToolType = (v: string) => {
   show_readme.value = v === "readme";

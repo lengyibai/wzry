@@ -16,9 +16,10 @@ const emit = defineEmits<Emits>();
 const $switchStore = switchStore();
 const $skinStore = skinStore();
 
-const { hero_id, show, finish, status, form_data, EmitConfirmSave, EmitConfirmRemove } = viewHide<
-  Hero.Skin[]
->(emit, "add_skin_list");
+const { hero_id, show, finish, status, form_data, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Skin[]>(
+  emit,
+  "add_skin_list"
+);
 
 //判断是否存在缓存
 form_data.value ??= [];
@@ -44,7 +45,7 @@ const EmitSelectHero = (id: number) => {
   });
 };
 
-// 如果本地存在英雄id，则自动选中
+//如果本地存在英雄id，则自动选中
 hero_id.value && EmitSelectHero(hero_id.value);
 
 /* 增加一项 */
@@ -64,7 +65,7 @@ const handleAddOne = () => {
       heroName: hero_info.name, //英雄名称
       gender: hero_info.gender, //英雄名称
     });
-    // 滚动到底部
+    //滚动到底部
     setTimeout(() => {
       scrollBox.value.el.scroll({
         top: scrollBox.value.el.scrollHeight,
@@ -92,7 +93,7 @@ const handleDelOne = (i: number) => {
 
 /* 发布 */
 const EmitCommit = async () => {
-  // 设置皮肤id
+  //设置皮肤id
   form_data.value!.forEach((item, index) => {
     item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
     item.num = skin_num.value + 1;
@@ -135,11 +136,7 @@ setTimeout(async () => {
   >
     <transition-group name="fade">
       <!--左上角新增-->
-      <i
-        key="LibSvg"
-        class="add-one iconfont wzry-addcircle cursor-pointer"
-        @click="handleAddOne"
-      />
+      <i key="LibSvg" class="add-one iconfont wzry-addcircle cursor-pointer" @click="handleAddOne" />
 
       <!--指派英雄-->
       <SelectHero

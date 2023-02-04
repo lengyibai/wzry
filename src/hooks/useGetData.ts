@@ -102,10 +102,15 @@ export default () => {
   getData();
 
   return {
+    /** 请求总数 */
     total,
+    /** 用于计算下载进度 */
     index,
-    title,
+    /** 正在下载的数据类型 */
     type,
+    /** 正在下载的数据名 */
+    title,
+    /** 请求结束 */
     finish,
   };
 };

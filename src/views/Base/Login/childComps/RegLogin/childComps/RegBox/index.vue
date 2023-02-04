@@ -16,7 +16,7 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-const form = reactive<User>({ ...userDefaultInfo }); // 表单数据
+const form = reactive<User>({ ...userDefaultInfo }); //表单数据
 
 const form_verify = ref<boolean[]>([false, false, false]); //表单验证
 
@@ -29,7 +29,7 @@ const handleReg = () => {
     return;
   }
 
-  // 注册
+  //注册
   register(form)
     .then(() => {
       $switchStore.$msg("注册成功！");

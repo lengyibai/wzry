@@ -8,12 +8,12 @@ import useUpdateData from "@/hooks/useUpdateData";
 const versionStore = defineStore("version", () => {
   const $switchStore = switchStore();
 
-  const timer = ref<Interval>(); //实时更新计时器
+  let timer: Interval = 0; //实时更新计时器
   const local_version = ref(""); //本地版本
   const remote_version = ref(""); //远程版本
   const local_file = ref(""); //本地文件版本
   const file_version = ref(""); //文件版本
-  const show_update = ref(false); // 是否显示更新公告
+  const show_update = ref(false); //显示更新公告
   const data_status = ref(false); //数据是否需要更新
   const file_status = ref(false); //文件是否需要更新
   const update_log = ref<UpdateLog>({
@@ -25,19 +25,19 @@ const versionStore = defineStore("version", () => {
   local_version.value = localStorage.getItem("version") || ""; //本地版本
   local_file.value = localStorage.getItem("version_file") || ""; //文件文件版本
 
-  /** @description: 更新本地版本 */
+  /** @description 更新本地版本 */
   const updateVersion = (v: string) => {
     localStorage.setItem("version", v);
     local_version.value = v;
   };
 
-  /** @description: 更新文件本地版本 */
+  /** @description 更新文件本地版本 */
   const updateFileVersion = (v: string) => {
     localStorage.setItem("version_file", v);
     local_file.value = v;
   };
 
-  /** @description: 获取数据版本、文件版本、文件更新日志 */
+  /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
     Version().then((res) => {
       const { main, file, log } = res.data;
@@ -53,9 +53,9 @@ const versionStore = defineStore("version", () => {
         const remote = Number(main.replaceAll(".", ""));
         const test = remote - local;
 
-        // 如果为旧版，则自动更新并更新本地版本并返回更新改动
+        //如果为旧版，则自动更新并更新本地版本并返回更新改动
         if (test > 0) {
-          clearInterval(timer.value);
+          clearInterval(timer);
           data_status.value = true;
           $switchStore.$msg("正在更新版本，更新后可查看数据改动，请稍等...");
           useUpdateData().then((res) => {
@@ -74,9 +74,9 @@ const versionStore = defineStore("version", () => {
         const remote = Number(file.replaceAll(".", ""));
         const test = remote - local;
 
-        // 如果为旧版，则自动更新并更新本地版本
+        //如果为旧版，则自动更新并更新本地版本
         if (test > 0 && !data_status.value) {
-          clearInterval(timer.value);
+          clearInterval(timer);
           show_update.value = true;
           file_status.value = true;
         }
@@ -86,16 +86,16 @@ const versionStore = defineStore("version", () => {
 
   /* 实时接收更新通知 */
   watchVersion();
-  timer.value = setInterval(() => {
+  timer = setInterval(() => {
     watchVersion();
   }, 10000);
 
-  /** @description: 控制弹窗显示 */
+  /** @description 控制弹窗显示 */
   const setShowLog = (v: boolean) => {
     show_update.value = v;
   };
 
-  /** @description: 一键更新所有 */
+  /** @description 一键更新所有 */
   const updateAll = () => {
     updateVersion(remote_version.value);
     updateFileVersion(file_version.value);
@@ -103,13 +103,21 @@ const versionStore = defineStore("version", () => {
   };
 
   return {
+    /** 显示更新公告 */
     show_update,
+    /** 本地版本 */
     local_version,
+    /** 数据是否需要更新 */
     data_status,
+    /** 文件是否需要更新 */
     file_status,
+    /** 远程版本 */
     remote_version,
+    /** 本地文件版本 */
     local_file,
+    /** 文件版本 */
     file_version,
+    /** 更新日志汇总 */
     update_log,
     updateAll,
     setShowLog,

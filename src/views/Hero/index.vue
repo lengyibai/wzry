@@ -12,12 +12,10 @@ import { heroDefault } from "@/default";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
-import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const $route = useRoute();
 const $router = useRouter();
-const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetail();
@@ -131,7 +129,7 @@ onMounted(async () => {
   await $promiseTimeout(() => {
     show_tool.value = true;
   }, 500);
-  // 显示英雄列表
+  //显示英雄列表
   await $promiseTimeout(() => {
     show_list.value = true;
   }, 250);
@@ -139,7 +137,6 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   $bus.off("resize");
-  $collapseStore.clearTrigger();
 });
 </script>
 

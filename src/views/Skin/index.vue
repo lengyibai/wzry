@@ -25,9 +25,7 @@ const voices = ref<Hero.Voice[]>([]); //语音列表
 
 $switchStore.$clickAudio("9u8z");
 
-if ($skinStore.skin_list.length === 0) {
-  $skinStore.getSkin(); //获取皮肤列表
-}
+$skinStore.getSkin(); //获取皮肤列表
 
 /* 滚动触发 */
 const EmitScroll = (v: number) => {
@@ -100,7 +98,6 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   $bus.off("resize");
-  $collapseStore.clearTrigger();
 });
 </script>
 
@@ -120,12 +117,7 @@ onBeforeUnmount(() => {
           @load-more="EmitLoadMore"
           @scroll="EmitScroll"
         >
-          <div
-            v-for="item in $skinStore.show_list"
-            :key="item.id"
-            class="skin-card"
-            @mouseenter="handleEnterCard"
-          >
+          <div v-for="item in $skinStore.show_list" :key="item.id" class="skin-card" @mouseenter="handleEnterCard">
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
         </LibGrid>

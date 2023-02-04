@@ -62,22 +62,22 @@ handleSelectSkill(0);
 
 /* 切换副技能 */
 const handleToggleSkill = () => {
-  // 判断当前切换是否为最后一个副技能
+  //判断当前切换是否为最后一个副技能
   if (deputy_index === hero_data.value.skills!.length - 1) {
     deputy_index = 0;
   } else {
     deputy_index += 1;
   }
-  // 设置处于展示的技能组
+  //设置处于展示的技能组
   active_skills.value = hero_data.value.skills![deputy_index];
-  // 如果当前技能留空，则使用主技能
+  //如果当前技能留空，则使用主技能
   active_skills.value.forEach((item, index) => {
     if (!item.name) {
       active_skills.value[index] = hero_data.value.skills![0][index];
     }
   });
 
-  // 更新技能信息
+  //更新技能信息
   handleSelectSkill(current_index.value);
   $switchStore.$clickAudio("n4r4");
 };

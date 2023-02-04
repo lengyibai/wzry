@@ -1,8 +1,5 @@
 <template>
-  <div
-    style="margin-bottom: 50px; border: 1px solid var(--theme-color-eight)"
-    :style="{ width: width }"
-  >
+  <div style="margin-bottom: 50px; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
     <Toolbar
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"
@@ -19,8 +16,8 @@
   </div>
 </template>
 <script setup>
-// https://www.wangeditor.com/
-import "@wangeditor/editor/dist/css/style.css"; // 引入 css
+//https://www.wangeditor.com/
+import "@wangeditor/editor/dist/css/style.css"; //引入 css
 import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 
@@ -52,7 +49,7 @@ const toolbarConfig = {
   toolbarKeys: ["color", "clearStyle"],
 };
 const editorConfig = { placeholder: props.placeholder };
-const mode = "simple"; // 或 'simple'
+const mode = "simple"; //或 'simple'
 
 onBeforeUnmount(() => {
   const editor = editorRef.value;
@@ -61,7 +58,7 @@ onBeforeUnmount(() => {
 });
 
 const handleCreated = (editor) => {
-  editorRef.value = editor; // 记录 editor 实例，重要！
+  editorRef.value = editor; //记录 editor 实例，重要！
 };
 </script>
 
@@ -88,9 +85,9 @@ const handleCreated = (editor) => {
 function genDefaultToolbarKeys() {
     return [
         'headerSelect',
-        // 'header1',
-        // 'header2',
-        // 'header3',
+        //'header1',
+        //'header2',
+        //'header3',
         'blockquote',
         '|',
         'bold',
@@ -127,30 +124,30 @@ function genDefaultToolbarKeys() {
         '|',
         'emotion',
         'insertLink',
-        // 'editLink',
-        // 'unLink',
-        // 'viewLink',
+        //'editLink',
+        //'unLink',
+        //'viewLink',
         {
             key: 'group-image',
             title: cp$1('editor.image'),
             iconSvg: IMAGE_SVG,
             menuKeys: ['insertImage', 'uploadImage'],
         },
-        // 'deleteImage',
-        // 'editImage',
-        // 'viewImageLink',
+        //'deleteImage',
+        //'editImage',
+        //'viewImageLink',
         {
             key: 'group-video',
             title: cp$1('editor.video'),
             iconSvg: VIDEO_SVG,
             menuKeys: ['insertVideo', 'uploadVideo'],
         },
-        // 'deleteVideo',
+        //'deleteVideo',
         'insertTable',
         'codeBlock',
-        // 'codeSelectLang',
+        //'codeSelectLang',
         'divider',
-        // 'deleteTable',
+        //'deleteTable',
         '|',
         'undo',
         'redo',

@@ -55,7 +55,7 @@ const handleBlur = () => {
   is_unfold.value = false; //收起下拉列表
   select_list.value = props.data;
 
-  // 如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
+  //如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
   if (input_value.value !== active_value.value) {
     input_value.value = active_value.value;
   }
@@ -169,8 +169,7 @@ watch(
               :key="item.id"
               class="box"
               :class="{
-                active:
-                  current_index === index || modelValue === item.name || modelValue === item.id,
+                active: current_index === index || modelValue === item.name || modelValue === item.id,
               }"
               @mousedown="handleSelect(item.id, item.name)"
               @mouseenter="handleEnterItem(index)"

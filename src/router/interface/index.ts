@@ -22,7 +22,7 @@ export interface Routes {
   [propName: string]: any;
 }
 
-/** @description: 路由初始表 */
+/** 路由初始表 */
 export interface RouterSheel {
   title?: string;
   icon?: string;

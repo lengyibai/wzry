@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 import { $debounceInstant } from "@/utils";
 
+/** @description 点击音效 */
 const audioStore = defineStore("audio", () => {
-  const sound_name = ref("默认"); //音效名
-  const volume = ref(0.5); //音量
-  const status = ref(true); //启用音效
+  let sound_name = "默认"; //音效名
+  let volume = 0.5; //音量
+  let status = true; //启用音效
 
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {
@@ -37,46 +37,56 @@ const audioStore = defineStore("audio", () => {
     warning: ["16vy"],
   };
 
-  /** @description: play封装 */
+  /**
+   * @description: play封装
+   * @param name 音效名
+   */
   const playAudio = (name?: string) => {
     //获取点击触发的音效名
-    sound_name.value =
+    sound_name =
       (typeof name === "string" &&
-        Object.keys(sound_type).find((item) =>
-          sound_type[item].find((item: string) => name.includes(item))
-        )) ||
+        Object.keys(sound_type).find((item) => sound_type[item].find((item: string) => name.includes(item)))) ||
       "default";
 
     const audio = new Audio(); //播放器
-    audio.src = `${IMGBED}/audio/${sound_name.value}.mp3`;
-    audio.volume = volume.value;
+    audio.src = `${IMGBED}/audio/${sound_name}.mp3`;
+    audio.volume = volume;
 
     audio.play().catch(() => {
       /*  */
     });
   };
 
-  /** @description: 播放指定音效 */
+  /**
+   * @description: 调用播放
+   * @param name 音效名
+   */
   const play = (name?: string) => {
-    if (!status.value) return;
+    if (!status) return;
 
     if (name === "n4r4") {
       $debounceInstant(() => {
         playAudio(name);
-      }, 25);
+      }, 50);
     } else {
       playAudio(name);
     }
   };
 
-  /** @description: 音量调节 */
+  /**
+   * @description: 音量调节
+   * @param v 音量：1-100
+   */
   const setVolume = (v: number) => {
-    volume.value = v / 100;
+    volume = v / 100;
   };
 
-  /** @description: 关闭音效功能 */
+  /**
+   * @description: 关闭音效功能
+   * @param v false关闭
+   */
   const setAudio = (v: boolean) => {
-    status.value = v;
+    status = v;
   };
 
   return { play, setVolume, setAudio };

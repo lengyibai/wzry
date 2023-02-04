@@ -45,7 +45,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
     const skins = hero_data.value.skins;
     const skin_type = (skins && skins[index].type) || "";
 
-    // 0 为伴生
+    //0 为伴生
     if (skin_type !== 0) {
       active_skin_type.value = (await getAssignSkinType(skin_type as number)).link;
     } else {
@@ -55,7 +55,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
     skin_type_toggle.value = !skin_type_toggle.value; //使切换标志时有淡入淡出效果
     $heroDetailStore.skinToggle(hero_data.value.name, active_skin_name.value); //切换皮肤
 
-    // 延迟显示价格
+    //延迟显示价格
     setTimeout(() => {
       skin_price.value = (skins && skins[index].price) || "";
       skin_price_toggle.value = true;

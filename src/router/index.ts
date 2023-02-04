@@ -35,7 +35,7 @@ useRouter.beforeEach(async (to, from, next) => {
     return;
   }
 
-  // 如果路径不在路由表
+  //如果路径不在路由表
   if (!is_exist) {
     next("/404");
     return;
@@ -46,19 +46,19 @@ useRouter.beforeEach(async (to, from, next) => {
     return;
   }
 
-  // 如果需要登录，但是没有用户信息
+  //如果需要登录，但是没有用户信息
   else if (is_login && !token) {
     next("/login");
     return;
   }
 
-  // 如果本地有用户信息
+  //如果本地有用户信息
   else if (token && to.meta.noVerify) {
     next(HOME_URL);
     return;
   }
 
-  // 如果未登录，但是本地存在用户信息，且能匹配权限
+  //如果未登录，但是本地存在用户信息，且能匹配权限
   else if (!$authStore.userStatus && token) {
     $authStore.autoLogin();
   }

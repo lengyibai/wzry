@@ -33,9 +33,7 @@ const handleSetProgress = (e: MouseEvent) => {
   if (!enable_music.value) return;
 
   //计算出小数
-  progress.value = parseFloat(
-    ((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)
-  );
+  progress.value = parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2));
 
   music_progress.value && $musicStore.setCurrentTime(progress.value); //设置播放进度
 };
@@ -46,9 +44,7 @@ const handleMoveLine = (e: MouseEvent) => {
 
   //设置底部刻度线x坐标
   line.value.style.left =
-    parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)) *
-      100 +
-    "%";
+    parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)) * 100 + "%";
 };
 
 /* 点击音乐工具栏 */
@@ -57,7 +53,7 @@ const EmitMusicToole = (type: string) => {
     $musicStore.play(false);
     return;
   }
-  const strategy: Record<string, () => void> = {
+  const strategy: Record<string, Func> = {
     last: $musicStore.last,
     pause: $musicStore.pause,
     next: $musicStore.next,

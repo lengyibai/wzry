@@ -23,12 +23,12 @@ const style1 = {
   height: props.autoSize ? "100%" : props.height,
 };
 
-// 字体大小
+//字体大小
 const style2 = {
   fontSize: props.fontSize,
 };
 
-// 粒子颜色
+//粒子颜色
 const particle_color: Record<string, string> = {
   info: "#3f9ed3",
   error: "#d83e41",

@@ -84,7 +84,7 @@ const requests: Record<string, () => Promise<any>> = {
   racetype: RaceType,
 };
 
-let update_status = true; // 更新限制
+let update_status = true; //更新限制
 let data_cache: any[] = []; //数据缓存
 let replace_data: any = {}; //替换的数据
 
@@ -141,7 +141,7 @@ const play = () => $switchStore.$clickAudio();
 const updateData = (key: string, data: any) => {
   localStorage.setItem("data_" + key, JSON.stringify(data));
 
-  // 如果为皮肤/英雄，则重新获取皮肤/英雄列表
+  //如果为皮肤/英雄，则重新获取皮肤/英雄列表
   if (key.includes("skin")) {
     $skinStore.getSkin();
   } else if (key.includes("hero")) {
@@ -220,21 +220,9 @@ const EmitsSortChange = (v: number[]) => {
         <TableColumn min-width="150px">{{ data.data.length }}</TableColumn>
         <TableColumn min-width="200px">{{ data.status }}</TableColumn>
         <TableColumn min-width="325px">
-          <button
-            v-if="data.status !== '本地已更改'"
-            class="check"
-            @click="handleCheck(data), play()"
-          >
-            检查更新
-          </button>
+          <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">检查更新</button>
           <button class="export" @click="handleExport(data), play()">导出</button>
-          <button
-            v-if="data.status === '待更新'"
-            class="update"
-            @click="handleUpdate(data), play()"
-          >
-            更新
-          </button>
+          <button v-if="data.status === '待更新'" class="update" @click="handleUpdate(data), play()">更新</button>
           <button
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
             class="replace"

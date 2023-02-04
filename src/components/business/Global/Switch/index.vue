@@ -15,11 +15,11 @@ const { msg, messages } = useMessage();
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
 /* 挂载全局 */
-$switchStore.setTriggerFn({
-  msg: msg,
-  loading: loading,
-  clickAudio: $clickAudioStore.play,
-  tip: tip,
+$switchStore.$patch({
+  $msg: msg,
+  $loading: loading,
+  $clickAudio: $clickAudioStore.play,
+  $tip: tip,
 });
 
 /* 全局监听事件 */

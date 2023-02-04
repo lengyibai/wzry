@@ -41,7 +41,7 @@ const handleLogin = () => {
     .then(() => {
       $switchStore.$clickAudio("e84n");
       $switchStore.$msg("登录成功");
-      // 记住密码
+      //记住密码
       if (remember.value) {
         localStorage.setItem("remember_user", JSON.stringify(form.value));
       } else {

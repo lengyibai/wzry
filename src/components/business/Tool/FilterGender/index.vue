@@ -2,7 +2,7 @@
 import switchStore from "@/store/switch";
 
 interface Props {
-  modelValue: number; //标识符
+  modelValue: 0 | 1 | 2; //标识符
 }
 defineProps<Props>();
 

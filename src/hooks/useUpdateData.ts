@@ -95,7 +95,7 @@ export default () => {
 
   /* 加载数据 */
   const load = async () => {
-    hero_list = await getHeroBasic(); // 获取英雄基础列表
+    hero_list = await getHeroBasic(); //获取英雄基础列表
 
     //获取远程数据并比对
     for (const [key, name] of keywords) {
@@ -108,7 +108,7 @@ export default () => {
       }
     }
 
-    // 获取远程语音并比对
+    //获取远程语音并比对
     for (const hero of hero_list.filter((hero) => !["梦奇", "盾山"].includes(hero.name))) {
       const v = (await Voice(hero.name)).data;
       const l = getLocalData(hero.pinyin, "voice_");
@@ -120,7 +120,7 @@ export default () => {
       }
     }
 
-    // /* 更新覆盖数据 */
+    //更新覆盖数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
       localStorage.setItem("data_" + key, JSON.stringify(need_update_data.data[i]));

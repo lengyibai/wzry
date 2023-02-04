@@ -1,138 +1,212 @@
-/** @description: 英雄信息 */
+/** 英雄信息  */
 declare namespace Hero {
   interface Data {
-    id: number; //标识符
-    attack: number; //攻击
-    difficulty: number; //难度
-    effect: number; //增益
-    survival: number; //生存
-    camp: string; //阵营
-    cover: string; //封面
-    headImg: string; //头像
-    height: number; //身高
-    identity: string; //身份
-    location: string; //区域
-    mark: string; //代号
-    name: string; //名字
-    period: string; //时期
-    poster: string; //海报
-    race: string; //种族
-    skillUnit: string; //技能消耗单位
-    gender: string; //性别
-    profession: string[]; //职业
-    specialty: string[]; //特长
-    voices?: Voice[]; //语音
-    skills?: Skill[][]; //技能
-    skins?: Skin[]; //皮肤
-    relationships?: RelationType[]; //关系表
+    /** 英雄id */
+    id: number;
+    /** 攻击 */
+    attack: number;
+    /** 难度 */
+    difficulty: number;
+    /** 增益 */
+    effect: number;
+    /** 生存 */
+    survival: number;
+    /** 阵营 */
+    camp: string;
+    /** 封面 */
+    cover: string;
+    /** 头像 */
+    headImg: string;
+    /** 身高 */
+    height: number;
+    /** 身份 */
+    identity: string;
+    /** 区域 */
+    location: string;
+    /** 代号 */
+    mark: string;
+    /** 名字 */
+    name: string;
+    /** 时期 */
+    period: string;
+    /** 海报 */
+    poster: string;
+    /** 种族 */
+    race: string;
+    /** 技能消耗单位 */
+    skillUnit: string;
+    /** 性别 */
+    gender: string;
+    /** 职业 */
+    profession: Profession[];
+    /** 特长 */
+    specialty: string[];
+    /** 语音 */
+    voices?: Voice[];
+    /** 技能 */
+    skills?: Skill[][];
+    /** 皮肤 */
+    skins?: Skin[];
+    /** 关系表 */
+    relationships?: RelationType[];
     [propsName: string]: any;
   }
-  /** @description: 头像列表 */
-  interface HeadImg {
-    id: number;
-    name: string;
-    headImg: string;
-  }
 
-  /** @description: 语音 */
+  /** 职业类型 */
+  type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
+
+  /** 语音 */
   interface Voice {
-    text: string; //语音文字
-    link: string; //语音链接
-  }
-
-  /** @description: 语音字列表 */
-  interface Voices {
-    name: string;
-    voice: Voice[];
-  }
-
-  /** @description: 技能信息 */
-  interface Skill {
-    cd?: number; //技能冷却
-    consume?: number; //消耗
-    name: string; //名称
-    desc: string; //简述
-    img: string; //图标
-    type: string[]; //类型
-    effect?: SkillEffect[]; //效果
-  }
-
-  /** @description: 返回的技能 */
-  interface SkillParams {
-    id: number;
-    unit: string;
-    skills: Skill[][];
-  }
-
-  /** @description: 技能效果 */
-  interface SkillEffect {
-    type: string; //技能类型
-    phase: number[]; //效果等级数值
-  }
-  /** @description: 技能类型 */
-  interface SkillType {
-    id: number;
-    name: string;
-  }
-  /** @description: 关系信息 */
-  interface Relationship {
-    id: number;
-    name: string;
-    relationship: RelationType[];
-  }
-  /** @description: 关系类型 */
-  interface RelationType {
-    id: number;
-    relation: string;
-    hero: HeadImg;
-  }
-
-  /** @description: 皮肤信息 */
-  interface Skin {
-    id: number; //标识
-    hero: number; //所属英雄id
-    num: number; //序号
-    price: string | number; //价格
-    type: number | string; //类型
-    category?: string; //皮肤类型名
-    gender: string; //性别
-    name: string; //名称
-    poster: string; //海报
-    cover: string; //封面
-    headImg: string; //头像
-    heroName: string; //英雄名称
-    profession: string[]; //职业
-  }
-  /** @description: 皮肤类型 */
-  interface SkinType {
-    id: number;
-    name: string;
+    /** 语音文字 */
+    text: string;
+    /** 语音链接 */
     link: string;
   }
 
-  /** @description: 英雄头像列表 */
+  /** 语音字列表 */
+  interface Voices {
+    /** 皮肤名 */
+    name: string;
+    /** 语音列表 */
+    voice: Voice[];
+  }
+
+  /** 技能信息 */
+  interface Skill {
+    /** 技能冷却 */
+    cd?: number;
+    /** 消耗 */
+    consume?: number;
+    /** 名称 */
+    name: string;
+    /** 简述 */
+    desc: string;
+    /** 图标 */
+    img: string;
+    /** 类型 */
+    type: string[];
+    /** 效果 */
+    effect?: SkillEffect[];
+  }
+
+  /** 返回的技能 */
+  interface SkillParams {
+    /** 技能id */
+    id: number;
+    /** 消耗单位 */
+    unit: string;
+    /** 技能列表 */
+    skills: Skill[][];
+  }
+
+  /** 技能效果 */
+  interface SkillEffect {
+    /** 技能类型 */
+    type: string;
+    /** 效果等级数值 */
+    phase: number[];
+  }
+
+  /** 技能类型 */
+  interface SkillType {
+    /** 类型id */
+    id: number;
+    /** 类型名 */
+    name: string;
+  }
+
+  /** 关系信息 */
+  interface Relationship {
+    /** 英雄id */
+    id: number;
+    /** 英雄名称 */
+    name: string;
+    /** 存在关系的英雄 */
+    relationship: RelationType[];
+  }
+
+  /** 关系类型 */
+  interface RelationType {
+    /** 英雄id */
+    id: number;
+    /** 对应关系 */
+    relation: string;
+    /** 英雄头像 */
+    hero: HeadImg;
+  }
+
+  /** 皮肤信息 */
+  interface Skin {
+    /** 标识 */
+    id: number;
+    /** 所属英雄id */
+    hero: number;
+    /** 序号 */
+    num: number;
+    /** 价格 */
+    price: string | number;
+    /** 类型 */
+    type: number | string;
+    /** 皮肤类型名 */
+    category?: string;
+    /** 性别 */
+    gender: string;
+    /** 名称 */
+    name: string;
+    /** 海报 */
+    poster: string;
+    /** 封面 */
+    cover: string;
+    /** 头像 */
+    headImg: string;
+    /** 英雄名称 */
+    heroName: string;
+    /** 职业 */
+    profession: string[];
+  }
+  /** 皮肤类型 */
+  interface SkinType {
+    /** 类型id */
+    id: number;
+    /** 类型名 */
+    name: string;
+    /** 类型图片 */
+    link: string;
+  }
+
+  /** 英雄头像列表 */
   interface HeadImg extends General {
+    /** 头像 */
     headImg: string;
   }
 
-  /** @description: 英雄基础列表 */
+  /** 英雄基础列表 */
   interface Basic extends General {
+    /** 英雄拼音 */
     pinyin: string;
   }
 }
 
-/** @description: 用户信息 */
+/** 用户信息 */
 interface User {
+  /** 用户id */
   id: string;
+  /** 密码 */
   password: string;
+  /** 权限 */
   role: 0 | 1;
+  /** 昵称 */
   nickname?: string;
+  /** 头像 */
   headImg?: string;
+  /** token */
   wzryToken?: number;
 }
 
-/** @description: 基本数据信息 */
+/** 基础类型 */
 interface General {
+  /** 通用id */
   id: number;
+  /** 通用name */
   name: string;
 }

@@ -11,7 +11,7 @@ import collapseStore from "@/store/collapse";
 const $collapseStore = collapseStore();
 const $routerStore = routerStore();
 
-const top = ref(0); // 滑块坐标
+const top = ref(0); //滑块坐标
 const show_slider = ref(false); //显示滑块
 
 const options = $routerStore.routes; //路由数据
@@ -36,13 +36,7 @@ const EmitCoord = (v: number) => {
 
     <!-- 侧边栏列表 -->
     <div class="side-item">
-      <sideItem
-        v-for="route in routes"
-        :key="route.path"
-        :route="route"
-        :coord="top"
-        @coord="EmitCoord"
-      />
+      <sideItem v-for="route in routes" :key="route.path" :route="route" :coord="top" @coord="EmitCoord" />
     </div>
 
     <!-- 滑块 -->

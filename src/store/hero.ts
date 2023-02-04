@@ -7,15 +7,18 @@ import { getHeroSkin } from "@/api/main/games/skin";
 import { getHeroRelationship } from "@/api/main/games/relationship";
 import { $debounce, $search } from "@/utils";
 
+type Gender = 0 | 1 | 2;
+
+/** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {
-  const profession = ref(""); //职业类型
-  const camp_type = ref("全部阵营"); // 当前阵营排序类型
-  const attr_type = ref("全部属性"); // 当前属性排序类型
-  const misc_type = ref("全部筛选"); // 当前杂项筛选类型
-  const misc_sort = ref("全部排序"); // 当前杂项排序类型
-  const sort_type = ref("正序"); // 当前排序类型
-  const gender_type = ref(0); // 当前性别排序类型
-  const hero_list = ref<Hero.Data[]>([]); //英雄列表
+  const profession = ref<Hero.Profession>(); //职业类型
+  const camp_type = ref("全部阵营"); //阵营排序类型
+  const attr_type = ref("全部属性"); //属性排序类型
+  const misc_type = ref("全部筛选"); //杂项筛选类型
+  const misc_sort = ref("全部排序"); //杂项排序类型
+  const sort_type = ref("正序"); //当前排序类型
+  const gender_type = ref<Gender>(0); //当前性别排序类型
+  const hero_list = ref<Hero.Data[]>([]); //英雄完整列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
 
   const scroll = ref(0); //滚动坐标
@@ -24,117 +27,125 @@ const heroStore = defineStore("hero", () => {
   const page_count = ref(20); //一页显示的个数
   const show_list = ref<Hero.Data[]>([]); //展示的列表
 
-  /** @description: 设置滚动坐标 */
+  /**
+   * @description: 设置滚动坐标
+   * @param v y轴坐标
+   */
   const setScroll = (v: number) => {
     scroll.value = v;
   };
 
-  /** @description: 筛选列表改变后触发 */
+  /** @description 重新计算分页 */
   const filterListChange = () => {
     page.value = 0;
     show_list.value = [];
-    show_list.value = filter_list.value.slice(
-      page.value * page_count.value,
-      (page.value + 1) * page_count.value
-    );
+    show_list.value = filter_list.value.slice(page.value * page_count.value, (page.value + 1) * page_count.value);
     page_total.value = Math.round(filter_list.value.length / page_count.value);
   };
 
-  /** @description: 加载更多 */
+  /** @description 加载更多 */
   const loadMore = () => {
     if (page_total.value > page.value) {
       page.value += 1;
 
       show_list.value.push(
-        ...filter_list.value.slice(
-          page.value * page_count.value,
-          (page.value + 1) * page_count.value
-        )
+        ...filter_list.value.slice(page.value * page_count.value, (page.value + 1) * page_count.value)
       );
     }
   };
 
-  /** @description: 获取英雄列表 */
+  /** @description 获取英雄列表 */
   const getHeroList = async () => {
-    const res = await getHeroData();
-    setHeroList(res);
-  };
-
-  /** @description: 设置英雄列表 */
-  const setHeroList = async (data: Hero.Data[], profession = "全部") => {
-    hero_list.value = data;
+    hero_list.value = await getHeroData();
     for (let i = 0; i < hero_list.value.length; i++) {
       hero_list.value[i].skills = await getHeroSkill(hero_list.value[i].id);
       hero_list.value[i].skins = await getHeroSkin(hero_list.value[i].id);
       hero_list.value[i].relationships = await getHeroRelationship(hero_list.value[i].id);
     }
-
-    setProfessional(profession);
+    setProfessional("全部");
   };
 
-  /** @description: 设置职业 */
-  const setProfessional = (p: string) => {
+  /** @description 设置职业 */
+  const setProfessional = (p: Hero.Profession) => {
     if (profession.value === p) return;
     profession.value = p;
     sortAll();
   };
 
-  /** @description: 阵营筛选 */
+  /**
+   * @description: 阵营筛选
+   * @param type 阵营名称
+   */
   const filterCamp = (type: string) => {
     if (camp_type.value === type) return;
     camp_type.value = type;
     sortAll();
   };
 
-  /** @description: 属性筛选 */
+  /**
+   * @description: 属性筛选
+   * @param type 属性名称
+   */
   const filterAttr = (type: string) => {
     if (attr_type.value === type) return;
     attr_type.value = type;
     sortAll();
   };
 
-  /** @description: 杂项筛选 */
+  /**
+   * @description: 杂项筛选
+   * @param type 杂项名称
+   */
   const filterMisc = (type: string) => {
     if (misc_type.value === type) return;
     misc_type.value = type;
     sortAll();
   };
 
-  /** @description: 杂项排序 */
+  /**
+   * @description: 杂项排序
+   * @param type 杂项名称
+   */
   const sortMisc = (type: string) => {
     if (misc_sort.value === type) return;
     misc_sort.value = type;
     sortAll();
   };
 
-  /** @description: 排序类型 */
+  /**
+   * @description: 正序|倒序
+   * @param type 排序名称
+   */
   const sortType = (type: string) => {
     if (sort_type.value === type) return;
     sort_type.value = type;
     sortAll();
   };
 
-  /** @description: 性别筛选 */
-  const filterGender = (type: number) => {
+  /**
+   * @description: 性别筛选
+   * @param type 性别标识符
+   */
+  const filterGender = (type: Gender) => {
     if (gender_type.value === type) return;
     gender_type.value = type;
     sortAll();
   };
 
-  /** @description: 一键排序 */
+  /** @description 一键排序 */
   const sortAll = () => {
     scroll.value = 0;
 
-    // 职业筛选
+    //职业筛选
     if (profession.value === "全部") {
       filter_list.value = [...hero_list.value]; //为了解决排序拷贝问题
     } else {
       filter_list.value = hero_list.value.filter((item: Hero.Data) => {
-        return item.profession.includes(profession.value);
+        return item.profession.includes(profession.value!);
       });
     }
 
-    // 性别筛选
+    //性别筛选
     const boy: Hero.Data[] = [];
     const girl: Hero.Data[] = [];
     filter_list.value.forEach((item) => {
@@ -151,14 +162,14 @@ const heroStore = defineStore("hero", () => {
       filter_list.value = girl;
     }
 
-    // 阵营筛选
+    //阵营筛选
     if (camp_type.value && camp_type.value !== "全部阵营") {
       filter_list.value = filter_list.value.filter((item) => {
         return item.camp === camp_type.value;
       });
     }
 
-    // 属性筛选
+    //属性筛选
     const a = attr_type.value;
     const multiple = [
       {
@@ -271,7 +282,7 @@ const heroStore = defineStore("hero", () => {
       }
     }
 
-    // 正序/倒序
+    //正序/倒序
     if (sort_type.value === "倒序") {
       filter_list.value.reverse();
     }
@@ -279,7 +290,7 @@ const heroStore = defineStore("hero", () => {
     filterListChange();
   };
 
-  /** @description: 搜索英雄 */
+  /** @description 搜索英雄 */
   const searchHero = (name: string) => {
     $debounce(() => {
       if (name) {
@@ -293,16 +304,27 @@ const heroStore = defineStore("hero", () => {
   };
 
   return {
-    attr_type,
-    camp_type,
-    filter_list,
-    gender_type,
-    hero_list,
-    misc_sort,
-    misc_type,
+    /** 职业类型 */
     profession,
+    /** 当前属性排序类型 */
+    attr_type,
+    /** 阵营排序类型 */
+    camp_type,
+    /** 筛选后的列表 */
+    filter_list,
+    /** 当前性别排序类型 */
+    gender_type,
+    /** 英雄列表 */
+    hero_list,
+    /** 杂项排序类型 */
+    misc_sort,
+    /** 杂项排序类型 */
+    misc_type,
+    /** 滚动坐标 */
     scroll,
+    /** 展示的英雄列表 */
     show_list,
+    /** 当前排序类型：正序|倒序 */
     sort_type,
     filterAttr,
     filterCamp,
@@ -310,7 +332,6 @@ const heroStore = defineStore("hero", () => {
     filterMisc,
     getHeroList,
     searchHero,
-    setHeroList,
     setProfessional,
     setScroll,
     sortMisc,

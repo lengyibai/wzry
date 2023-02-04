@@ -31,8 +31,8 @@ const icon = computed(() => {
 });
 
 /**
- * @description: 点击某个按钮
- * @param {string} v 点击静音或公告的标识符
+ * 点击某个按钮
+ * @param v 点击静音或公告的标识符
  */
 const handleTool = (v: string) => {
   emit("clicks", v);

@@ -6,7 +6,7 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-// 英雄信息整合
+//英雄信息整合
 const hero_info: (string | number)[][] = [
   [props.heroData.profession.join("/"), "profession", "游戏职业"],
   [props.heroData.location, "location", "细分定位"],

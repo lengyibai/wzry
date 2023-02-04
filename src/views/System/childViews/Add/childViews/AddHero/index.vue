@@ -42,10 +42,7 @@ const info: string[][] = [
   ["种族", "raceType", "race"],
 ];
 
-const { status, show, form_data, finish, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Data>(
-  emit,
-  "add_hero"
-);
+const { status, show, form_data, finish, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Data>(emit, "add_hero");
 
 //类型列表
 const type_list: Record<string, any[]> = reactive({
@@ -57,7 +54,7 @@ const type_list: Record<string, any[]> = reactive({
   raceType: [],
 });
 
-// 根据英雄总数设置id
+//根据英雄总数设置id
 getHeroBasic().then((res) => {
   form_data.value!.id = res.length + 1;
 });
@@ -156,11 +153,7 @@ setTimeout(async () => {
     <!-- 属性相关 -->
     <div class="flex-box">
       <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="200px">
-        <K-Range
-          v-model="form_data![k]"
-          :text="form_data![k] + '%'"
-          track-color="var(--theme-color-nine)"
-        />
+        <K-Range v-model="form_data![k]" :text="form_data![k] + '%'" track-color="var(--theme-color-nine)" />
       </FormLabel>
     </div>
 

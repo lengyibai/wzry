@@ -20,8 +20,8 @@ const voices = ref<Hero.Voice[]>([]); //语音列表
 onMounted(() => {
   $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
     await $heroDetailStore.setSkinVoice(hero_name, skin_name);
-    if (voice_length === $heroDetailStore.voice.length) return;
-    voice_length = $heroDetailStore.voice.length;
+    if (voice_length === $heroDetailStore.skin_voice.length) return;
+    voice_length = $heroDetailStore.skin_voice.length;
 
     nextTick(() => {
       if (!voiceRef.value) return;
@@ -34,7 +34,7 @@ onMounted(() => {
         }
 
         setTimeout(() => {
-          voices.value = $heroDetailStore.voice;
+          voices.value = $heroDetailStore.skin_voice;
           item.style.transitionDelay = `${index / 15}s`; //入场间隔
           item.style.transform = "translateX(0%) translateY(0%) scale(1)";
 
@@ -59,7 +59,7 @@ const handleEnter = () => {
 
 /* 点击播放 */
 const play = (voice: string, index: number) => {
-  // 如果再次点击，则停止播放
+  //如果再次点击，则停止播放
   if (current_index.value === index) {
     current_index.value = -1;
     play_link.value = "";
@@ -75,7 +75,7 @@ const voiceInfo = (info: HTMLMediaElement) => {
 };
 
 /* 语音播放结束后触发 */
-let ended: () => void = () => {
+let ended: Func = () => {
   //如果播放完最后一个，则停止播放
   if (current_index.value + 1 === voices.value.length) {
     current_index.value += 1;
@@ -89,7 +89,7 @@ let ended: () => void = () => {
 <template>
   <div ref="voiceList" class="hero-voice scroll-white" @mousewheel.stop>
     <button
-      v-for="(item, index) in voices.length ? voices : $heroDetailStore.voice"
+      v-for="(item, index) in voices.length ? voices : $heroDetailStore.skin_voice"
       ref="voiceRef"
       :key="index"
       class="voice flex"

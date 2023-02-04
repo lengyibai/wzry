@@ -1,52 +1,81 @@
-/** @description: 弹窗位置 */
+/** 弹窗位置 */
 type TipType = "left-top" | "right-top" | "left-bottom" | "right-bottom";
 
-/** @description: 消息类型 */
+/** 消息类型 */
 type MsgType = "info" | "warning" | "error";
 interface MsgText {
-  id: number; //唯一值
-  text: string; //提示内容
-  type: MsgType; //提示类型
+  /** 唯一值 */
+  id: number;
+  /** 提示内容 */
+  text: string;
+  /** 提示类型 */
+  type: MsgType;
 }
 
-/** @description: 设置配置项 */
+/** 设置配置项 */
 interface SettingConfig {
-  tip: boolean; //小贴士
-  videoBg: boolean; //使用视频背景
-  audio: boolean; //音效
-  audioVolume: number; //音效音量
-  music: boolean; //音乐
-  musicVolume: number; //音乐音量
-  musicProgress: boolean; //音乐进度控制
-  speed: 0 | 1 | 2; //动画速率
-  border: boolean; //线条
-  shadow: boolean; //阴影
-  shine: boolean; //柔光
-  particle: boolean; //粒子特效
-  muted: boolean; //登录页视频静音
-  noTips: Tips<boolean>; //不再提示列表
+  /** 小贴士 */
+  tip: boolean;
+  /** 使用视频背景 */
+  videoBg: boolean;
+  /** 音效 */
+  audio: boolean;
+  /** 音效音量 */
+  audioVolume: number;
+  /** 音乐 */
+  music: boolean;
+  /** 音乐音量 */
+  musicVolume: number;
+  /** 音乐进度控制 */
+  musicProgress: boolean;
+  /** 动画速率 */
+  speed: 0 | 1 | 2;
+  /** 线条 */
+  border: boolean;
+  /** 阴影 */
+  shadow: boolean;
+  /** 柔光 */
+  shine: boolean;
+  /** 粒子特效 */
+  particle: boolean;
+  /** 登录页视频静音 */
+  muted: boolean;
+  /** 不再提示列表 */
+  noTips: Tips<boolean>;
 }
 
-/** @description: 开关 */
+/** 开关 */
 declare namespace Switch {
+  /** 点击音效 */
   type ClickAudio = (name?: string) => void;
+  /** 消息提醒 */
   type Msg = (text: string, type?: MsgType) => void;
 
   type Tip = (obj: {
-    title?: string; //左上角标题
-    text: TipKeys | string; //提示内容
-    align?: TipType; //在页面上的位置
-    btnText?: string; //按钮上的文字
-    btnFn?: () => void; //点击确认后执行的函数
+    /** 左上角标题 */
+    title?: string;
+    /** 提示内容 */
+    text: TipKeys | string;
+    /** 在页面上的位置 */
+    align?: TipType;
+    /** 按钮上的文字 */
+    btnText?: string;
+    /** 点击确认后执行的函数 */
+    btnFn?: Func;
   }) => void;
 
   interface Loading {
+    /**
+     * 开启
+     * @param text 右上角加载描述
+     */
     show: (text?: string) => void;
-    close: () => void;
+    /** 关闭 */
+    close: Func;
   }
 }
 
-/** @description: Tips提示信息 */
+/** Tips提示信息 */
 interface Tips<T> {
   "2rb7": T;
   "9f5m": T;
@@ -61,19 +90,25 @@ interface Tips<T> {
   "9ms5": T;
 }
 
-/** @description: Tips属性名 */
+/** Tips属性名 */
 type TipKeys = keyof Tips<string>;
 
-/** @description: 版本更新 */
+/** 版本更新 */
 interface VersionUpdate {
-  main: string; //数据版本
-  file: string; //文件版本
-  log: string; //文件更新日志
+  /** 数据版本 */
+  main: string;
+  /** 文件版本 */
+  file: string;
+  /** 文件更新日志 */
+  log: string;
 }
 
-/** @description: 更新日志 */
+/** 更新日志 */
 interface UpdateLog {
+  /** 基础数据更新 */
   data: string;
+  /** 语音数据更新 */
   voice: string;
+  /** 文件更新 */
   file: string;
 }

@@ -3,7 +3,7 @@ import getSheelPath from "../helper/getSheelPath";
 
 import { static_paths } from "./staticRouter";
 
-/** @description: 用户路由 */
+/** 用户路由 */
 export const user: RouterSheel[] = [
   {
     title: "英雄",
@@ -68,7 +68,7 @@ export const user: RouterSheel[] = [
   },
 ];
 
-/** @description: 管理员路由 */
+/** 管理员路由 */
 export const admin: RouterSheel[] = [
   ...user,
   {
@@ -87,13 +87,13 @@ export const admin: RouterSheel[] = [
         name: "add",
         component: "@/views/System/childViews/Add",
       },
-      // {
-      //   title: "编辑",
-      //   icon: "wzry-bianji",
-      //   path: "/system/edit",
-      //   name: "edit",
-      //   component: "@/views/System/childViews/Edit",
-      // },
+      //{
+      //  title: "编辑",
+      //  icon: "wzry-bianji",
+      //  path: "/system/edit",
+      //  name: "edit",
+      //  component: "@/views/System/childViews/Edit",
+      //},
       {
         title: "本地数据管理",
         icon: "wzry-database",
@@ -105,17 +105,17 @@ export const admin: RouterSheel[] = [
   },
 ];
 
-/** @description: 动态路由path组 */
+/** 动态路由path组 */
 const dynamic_paths: string[] = getSheelPath(admin)[0];
 
-/** @description: 路由表里是否存在该路径 */
+/** 路由表里是否存在该路径 */
 export const isExist = (path: string) => {
   return [...static_paths, ...dynamic_paths].some((item) => {
     return item.includes(path);
   });
 };
 
-/** @description: 判断是否需要登录 */
+/** 判断是否需要登录 */
 export const isLogin = (path: string) => {
   return dynamic_paths.some((item) => {
     return item.includes(path);

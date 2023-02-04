@@ -20,7 +20,7 @@ const current_index = ref(-1); //当前播放索引
 
 /* 点击播放 */
 const handlePlay = (voice: string, index: number) => {
-  // 如果再次点击，则停止播放
+  //如果再次点击，则停止播放
   if (current_index.value === index) {
     current_index.value = -1;
     play_link.value = "";
@@ -37,7 +37,7 @@ const EmitVoiceInfo = (info: HTMLMediaElement) => {
 };
 
 /* 语音播放结束后触发 */
-let ended: () => void = () => {
+let ended: Func = () => {
   //如果播放完最后一个，则停止播放
   if (current_index.value + 1 === props.voices.length) {
     current_index.value += 1;

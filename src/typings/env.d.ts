@@ -3,14 +3,17 @@ module "*.vue" {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+
 module "nprogress";
 
 type Interval = NodeJS.Timer | number;
 type Timeout = NodeJS.Timeout | number;
+type Func = () => void;
 
 interface Window {
+  /** 图床链接 */
   IMGBED: string;
-  REMOTE_VERSION: string;
 }
 
+/** 图床链接 */
 declare const IMGBED: string;

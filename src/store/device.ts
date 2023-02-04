@@ -3,16 +3,15 @@ import { ref } from "vue";
 
 import { $browserV } from "@/utils";
 
+/** @description 设备信息 */
 const deviceStore = defineStore("phone", () => {
   const browser_name = $browserV.browser; //浏览器名称
   const browser_version = $browserV.version; //浏览器版本
-  const browser_status = ["chrome", "firefox"].includes(browser_name)
-    ? browser_version > 90
-    : browser_version > 15; //满足条件
+  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version > 90 : browser_version > 15; //满足浏览器访问条件
 
   const vertical = ref(false); //是否为移动端
-  const width = ref(0); // 宽度
-  const height = ref(0); // 宽度
+  const width = ref(0); //设备宽度
+  const height = ref(0); //设备高度
   const fps = ref(0); //帧率
 
   /* 获取设备帧率 */
@@ -37,13 +36,27 @@ const deviceStore = defineStore("phone", () => {
     width.value = window.innerWidth;
     height.value = window.innerHeight;
   };
-
   tip();
   window.addEventListener("resize", () => {
     tip();
   });
 
-  return { vertical, width, height, fps, browser_name, browser_version, browser_status };
+  return {
+    /** 是否为移动端 */
+    vertical,
+    /** 设备宽度 */
+    width,
+    /** 设备高度 */
+    height,
+    /** 帧率 */
+    fps,
+    /** 浏览器名称 */
+    browser_name,
+    /** 浏览器版本 */
+    browser_version,
+    /** 满足浏览器访问条件 */
+    browser_status,
+  };
 });
 
 export default deviceStore;

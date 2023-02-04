@@ -46,7 +46,7 @@ const sort_type = [
 
 const search_value = ref(""); //搜索值
 const gender = ref(0); //性别排序
-const current_index = ref(-1); // 当前展开的菜单
+const current_index = ref(-1); //当前展开的菜单
 const select_status = reactive([false, false, false, false, false]); //记录展开状态
 
 /* 价格排序 */
@@ -70,17 +70,17 @@ const handerSetGender = (type: number) => {
   $skinStore.sortGender(type);
 };
 
-/** @description: 搜索皮肤 */
+/** 搜索皮肤 */
 const handSearch = () => {
   $skinStore.searchSkin(search_value.value);
 };
 
-/** @description: 设置下拉状态 */
+/** 设置下拉状态 */
 const handleSelectStatus = (i: number) => {
   //点击下拉菜单，先隐藏所有，再展开被点击的
   select_status.fill(false);
 
-  // 如果重复点击一个，则不做处理
+  //如果重复点击一个，则不做处理
   if (current_index.value === i) {
     current_index.value = -1;
     return;
