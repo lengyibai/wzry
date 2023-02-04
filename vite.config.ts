@@ -1,5 +1,5 @@
-// eslint-disable-next-line
-// @ts-nocheck
+//eslint-disable-next-line
+//@ts-nocheck
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
@@ -15,21 +15,21 @@ export default defineConfig({
     vue(),
     VueSetupExtend(),
     Components({
-      dts: "src/typings/components.d.ts", // 生成在src路径下名为auto-import.d.ts的声明文件
-      dirs: ["src/components"], // 配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import
+      dts: "src/typings/components.d.ts", //生成在src路径下名为auto-import.d.ts的声明文件
+      dirs: ["src/components"], //配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import
     }),
     legacyPlugin({
-      targets: ["last 2 versions", "safari >=7", "chrome >= 30"], // 需要兼容的目标列表，可以设置多个
-      additionalLegacyPolyfills: ["regenerator-runtime/runtime"], // 面向IE11时需要此插件
+      targets: ["last 2 versions", "safari >=7", "chrome >= 30"], //需要兼容的目标列表，可以设置多个
+      additionalLegacyPolyfills: ["regenerator-runtime/runtime"], //面向IE11时需要此插件
     }),
-    // visualizer({
-    //   emitFile: true,
-    //   filename: "visualizer.html", //分析图生成的文件名
-    //   open: true, //如果存在本地服务端口，将在打包后自动展示
-    // }),
+    //visualizer({
+    //  emitFile: true,
+    //  filename: "visualizer.html", //分析图生成的文件名
+    //  open: true, //如果存在本地服务端口，将在打包后自动展示
+    //}),
   ],
   css: {
-    // css预处理器
+    //css预处理器
     preprocessorOptions: {
       less: {
         charset: false,
