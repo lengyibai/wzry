@@ -11,6 +11,7 @@ import directives from "@/utils/directives";
 import "@/styles/index.less";
 
 new VConsole();
+
 const pinia = createPinia();
 
 const app = createApp(App);
