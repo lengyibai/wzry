@@ -1,11 +1,9 @@
 <script setup lang="ts" name="equip">
-import { ref, watch, nextTick } from "vue";
+import { ref } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
-import { $deepCopy } from "@/utils";
-import { equipDefault } from "@/default";
 import equipStore from "@/store/equip";
 import switchStore from "@/store/switch";
 
@@ -14,8 +12,6 @@ const $switchStore = switchStore();
 
 const equipList = ref();
 const show = ref(false); //显示装备列表
-const show_Details = ref(false); //显示装备详情
-const equip_data = ref<Equip.Data>($deepCopy(equipDefault)); //被点击的装备信息
 
 $switchStore.$clickAudio("3k4s");
 
@@ -28,22 +24,6 @@ const EmitChangeFilter = () => {
 $equipStore.getEquipList().then(() => {
   show.value = true;
 });
-
-/* 监听被点击装备的id，点击后更新装备详情 */
-watch(
-  () => $equipStore.active_id,
-  (v) => {
-    show_Details.value = false; //隐藏装备详情，再延迟显示
-    setTimeout(() => {
-      equip_data.value = $equipStore.equip_list.find((item) => item.id === v)!;
-      show_Details.value = true;
-    }, 250);
-  }
-);
-
-nextTick(() => {
-  $equipStore.setEquipActive(111);
-});
 </script>
 
 <template>
@@ -51,7 +31,7 @@ nextTick(() => {
     <transition name="fade">
       <div v-if="show" class="equip-main">
         <!-- 装备详情 -->
-        <EquipDetail :show="show_Details" :equip="equip_data" />
+        <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 
         <!-- 装备列表 -->
         <EquipList ref="equipList" />

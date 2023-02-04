@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  equip: Equip.Data; //装备
+  equip: Equip.Data | undefined; //装备
   show: boolean; //显示/隐藏
 }
 defineProps<Props>();
@@ -32,12 +32,7 @@ const abbreviations: Record<string, string> = {
 
       <!-- 数值信息 -->
       <div class="info">
-        <div
-          v-for="(item, index) in equip.effect"
-          :key="index"
-          class="effect"
-          :class="abbreviations[item.name]"
-        >
+        <div v-for="(item, index) in equip.effect" :key="index" class="effect" :class="abbreviations[item.name]">
           +{{ item.num }} {{ item.name }}
         </div>
       </div>

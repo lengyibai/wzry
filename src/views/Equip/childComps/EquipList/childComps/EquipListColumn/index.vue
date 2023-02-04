@@ -32,15 +32,14 @@ const showLine = (id: number, line: string) => {
 
 /* 监听列表，实时更新列表 */
 watch(
-  () => props.equipList,
-  (v) => {
+  () => $equipStore.category,
+  () => {
     show.value = false;
     setTimeout(() => {
-      equip_list.value = v;
+      equip_list.value = props.equipList;
       show.value = true;
     }, 300);
-  },
-  { deep: true, immediate: true }
+  }
 );
 </script>
 

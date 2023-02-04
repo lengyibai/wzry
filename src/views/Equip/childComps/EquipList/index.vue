@@ -9,7 +9,7 @@ const $equipStore = equipStore();
 
 const equipList = ref();
 
-/** @description: 返回顶部 */
+/** 返回顶部 */
 const backTop = () => {
   setTimeout(() => {
     equipList.value.scroll({ behavior: "smooth", top: 0 });
