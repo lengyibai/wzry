@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 
 import { ResultData } from "@/api/interface";
-import { DISABLE_CACHE } from "@/config";
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
@@ -14,10 +13,7 @@ class RequestHttp {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
-        if (DISABLE_CACHE) {
-          config.url += `?temp=${Math.random()}`;
-        }
-
+        config.url += `?temp=${Math.random()}`;
         return config;
       },
       async (error: AxiosError) => {
@@ -25,7 +21,7 @@ class RequestHttp {
       }
     );
 
-    /** @description: 响应拦截器 */
+    /** @description 响应拦截器 */
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         return response.data;
@@ -48,21 +44,20 @@ class RequestHttp {
     );
   }
 
-  //常用请求方法封装
-  async Get<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
-    return await this.service.get(url, { params, ..._object });
+  async Get<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return await this.service.get(url, { params, ...obj });
   }
 
-  async Post<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
-    return await this.service.post(url, params, _object);
+  async Post<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return await this.service.post(url, params, obj);
   }
 
-  async Patch<T>(url: string, params?: object, _object = {}): Promise<ResultData<T>> {
-    return await this.service.patch(url, params, _object);
+  async Patch<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return await this.service.patch(url, params, obj);
   }
 
-  async Del<T>(url: string, params?: any, _object = {}): Promise<ResultData<T>> {
-    return await this.service.delete(url, { params, ..._object });
+  async Del<T>(url: string, params?: any, obj = {}): Promise<ResultData<T>> {
+    return await this.service.delete(url, { params, ...obj });
   }
 }
 
