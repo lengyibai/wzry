@@ -400,4 +400,4 @@ export default {
   nou: "耨",
   fou: "缶",
   bia: "髟",
-};
+} as Record<string, string>;
