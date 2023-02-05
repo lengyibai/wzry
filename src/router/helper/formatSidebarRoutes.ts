@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 import { Route } from "../interface";
 
-/** 将Vue路由格式化，用于生成侧边栏 */
+/** @description 将Vue路由格式化，用于生成侧边栏 */
 const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
   const formattedRoutes: Route[] = []; //格式化后的路由
 

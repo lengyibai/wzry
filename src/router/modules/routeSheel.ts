@@ -3,7 +3,7 @@ import getSheelPath from "../helper/getSheelPath";
 
 import { static_paths } from "./staticRouter";
 
-/** 用户路由 */
+/** @description 用户路由 */
 export const user: RouterSheel[] = [
   {
     title: "英雄",
@@ -68,7 +68,7 @@ export const user: RouterSheel[] = [
   },
 ];
 
-/** 管理员路由 */
+/** @description 管理员路由 */
 export const admin: RouterSheel[] = [
   ...user,
   {
@@ -105,17 +105,17 @@ export const admin: RouterSheel[] = [
   },
 ];
 
-/** 动态路由path组 */
+/** @description 动态路由path组 */
 const dynamic_paths: string[] = getSheelPath(admin)[0];
 
-/** 路由表里是否存在该路径 */
+/** @description 路由表里是否存在该路径 */
 export const isExist = (path: string) => {
   return [...static_paths, ...dynamic_paths].some((item) => {
     return item.includes(path);
   });
 };
 
-/** 判断是否需要登录 */
+/** @description 判断是否需要登录 */
 export const isLogin = (path: string) => {
   return dynamic_paths.some((item) => {
     return item.includes(path);

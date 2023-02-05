@@ -1,4 +1,4 @@
-/** 递归获取路由path组 */
+/** @description 递归获取路由path组 */
 const getPathsNames = (routes: any[]) => {
   const paths: string[] = [];
   const names: string[] = [];

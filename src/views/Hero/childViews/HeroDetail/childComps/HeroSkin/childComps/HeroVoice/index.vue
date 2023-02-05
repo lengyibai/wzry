@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted } from "vue";
+import { ref, nextTick } from "vue";
 
 import heroDetailStore from "@/store/heroDetail";
 import switchStore from "@/store/switch";

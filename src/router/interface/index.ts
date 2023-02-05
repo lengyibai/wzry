@@ -1,3 +1,4 @@
+/** @description 用于生成侧边栏的路由 */
 export interface Route {
   path?: string;
   title?: string;
@@ -6,6 +7,7 @@ export interface Route {
   zIndex?: number;
 }
 
+/** @description 自定义路由 */
 export interface Routes {
   path?: string;
   name?: string;
@@ -22,7 +24,7 @@ export interface Routes {
   [propName: string]: any;
 }
 
-/** 路由初始表 */
+/** @description 路由初始表 */
 export interface RouterSheel {
   title?: string;
   icon?: string;

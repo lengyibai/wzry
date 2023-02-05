@@ -11,6 +11,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
+
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
