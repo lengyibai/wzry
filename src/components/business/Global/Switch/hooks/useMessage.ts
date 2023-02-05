@@ -34,5 +34,9 @@ export default () => {
     });
   };
 
-  return { messages, msg };
+  return {
+    /** 消息队列 */
+    messages,
+    msg,
+  };
 };

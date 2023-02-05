@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { $potEoPct } from "@/utils";
 
+/** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
   let tool_timer: Interval; //工具显示设置

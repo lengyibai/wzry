@@ -4,6 +4,7 @@ type Info = {
   box: StyleValue;
   list: Record<string, string>;
 };
+
 const data: Info = {
   box: {
     position: "relative",

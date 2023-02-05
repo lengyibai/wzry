@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 export default () => {
   const show_loading = ref(false); //显示loading
-  const loading_text = ref(""); //加载描述
+  const loading_text = ref(""); //loading描述
 
   //设置方法
   const loading: Switch.Loading = {
@@ -19,8 +19,11 @@ export default () => {
   };
 
   return {
+    /** 调用方法 */
     loading,
+    /** 显示loading */
     show_loading,
+    /** loading描述 */
     loading_text,
   };
 };

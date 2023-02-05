@@ -8,10 +8,10 @@ export default () => {
   const $settingStore = settingStore();
   const $switchStore = switchStore();
 
-  const show_tip = ref(false); //显示NPC
+  const show_tip = ref(false); //显示小贴士
   const title = ref(); //左上角标题
-  const content = ref(""); //文字
-  const align = ref<TipType>(); //对齐方式
+  const content = ref(""); //显示内容
+  const align = ref<TipType>(); //弹窗位置
   const noTipName = ref<TipKeys | string>(); //不再提示的标识符
   const btn = ref(false); //是否需要按钮
   const btn_text = ref<string>(); //按钮文字
@@ -57,13 +57,21 @@ export default () => {
   };
 
   return {
+    /** 显示小贴士 */
     show_tip,
+    /** 显示内容 */
     content,
+    /** 弹窗位置 */
     align,
+    /** 不再提示的标识符 */
     noTipName,
+    /** 左上角标题 */
     title,
+    /** 是否需要按钮 */
     btn,
+    /** 按钮文字 */
     btn_text,
+    /** 点击按钮需要触发的函数 */
     btnFn,
     tip,
   };

@@ -50,10 +50,15 @@ export default <T>(emit: Emits, key: string) => {
   };
 
   return {
+    /** 英雄id */
     hero_id,
+    /** 发布状态 */
     status,
+    /** 显示页面 */
     show,
+    /** 表单对象 */
     form_data,
+    /** 发布成功 */
     finish,
     EmitConfirmSave,
     EmitConfirmRemove,
