@@ -5,7 +5,7 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-import { $Parallax, $throttleInstant } from "@/utils";
+import { $isPhone, $Parallax, $throttleInstant } from "@/utils";
 import { userList } from "@/api/main/user";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
@@ -51,30 +51,26 @@ const EmitRegSuccess = (form: User) => {
   reg_form.value = form;
 };
 
-/* 视差动画 */
-const parallax = new $Parallax(
-  ({ degX, degY }: Record<string, number>) => {
-    loginBox.value &&
-      (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${degX}deg) rotateY(${degY}deg)`);
-  },
-  {
-    rx: 10,
-    ry: 10,
-  }
-);
-const fn1 = (e: MouseEvent) => {
-  $throttleInstant(() => parallax.move(e), 50);
-};
-const fn2 = (e: TouchEvent) => {
-  $throttleInstant(() => parallax.move(e.changedTouches[0]), 50);
-};
-window.addEventListener("mousemove", fn1);
-window.addEventListener("touchmove", fn2);
-
-onBeforeUnmount(() => {
-  window.removeEventListener("mousemove", fn1);
-  window.removeEventListener("touchmove", fn2);
-});
+/* 视差动画(如果为移动端，则取消) */
+if (!$isPhone) {
+  const parallax = new $Parallax(
+    ({ degX, degY }: Record<string, number>) => {
+      loginBox.value &&
+        (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${degX}deg) rotateY(${degY}deg)`);
+    },
+    {
+      rx: 10,
+      ry: 10,
+    }
+  );
+  const fn = (e: MouseEvent) => {
+    $throttleInstant(() => parallax.move(e), 50);
+  };
+  window.addEventListener("mousemove", fn);
+  onBeforeUnmount(() => {
+    window.removeEventListener("mousemove", fn);
+  });
+}
 </script>
 
 <template>
