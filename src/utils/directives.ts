@@ -130,21 +130,24 @@ const sweepLight = {
       width: ${el.offsetWidth / 3}px;
       height: 100%;
       background-color: rgba(255, 255, 255, 0.5);
-      transform: skewX(45deg) translateX(${el.offsetWidth * 2}px);
+      transform: skewX(45deg) translateX(${el.offsetWidth * 1.75}px);
       transition: all var(--time-2000);
       filter: blur(5px)
     `;
       el.appendChild(light);
       if (auto) {
         light.style.transitionDelay = ` ${binding.value}s`;
-        light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
+        light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.25}px)`;
+        setTimeout(() => {
+          el.removeChild(light);
+        }, 2000);
       } else {
         el.addEventListener("mouseenter", () => {
           light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
         });
 
         el.addEventListener("mouseleave", () => {
-          light.style.transform = `skewX(45deg) translateX(${el.offsetWidth * 2}px)`;
+          light.style.transform = `skewX(45deg) translateX(${el.offsetWidth * 1.75}px)`;
         });
       }
     });
