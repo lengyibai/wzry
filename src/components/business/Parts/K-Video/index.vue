@@ -7,16 +7,20 @@ interface Props {
 }
 defineProps<Props>();
 
-const videoPlayer = ref();
+const videoPlayer = ref<HTMLVideoElement>();
 
-const play = () => {
-  videoPlayer.value.play();
-  document.body.removeEventListener("mousedown", play);
+const play = async () => {
+  try {
+    await videoPlayer.value?.play();
+  } catch (error) {
+    setTimeout(() => {
+      play();
+    }, 1000);
+  }
 };
 
 onMounted(() => {
-  videoPlayer.value.volume = 0.5;
-  document.body.addEventListener("mousedown", play);
+  play();
 });
 </script>
 
