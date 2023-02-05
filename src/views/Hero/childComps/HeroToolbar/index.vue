@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_sort"
         :status="select_status[3]"
         :data="select_sort"
-        list-height="252px"
+        list-height="247px"
         @click="handleSelectStatus(3)"
         @select="EmitSelectSort"
       />
