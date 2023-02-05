@@ -6,9 +6,9 @@ const collapseStore = defineStore("collapse", () => {
   const collapse = ref(false); //折叠
 
   /* 如果浏览器宽度低于高度，则自动折叠 */
-  collapse.value = window.innerWidth < window.innerHeight;
+  collapse.value = window.innerWidth < 1380;
   window.addEventListener("resize", () => {
-    collapse.value = window.innerWidth < window.innerHeight;
+    collapse.value = window.innerWidth < 1380;
   });
 
   /** @description 控制折叠 */
