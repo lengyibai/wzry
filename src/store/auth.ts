@@ -50,8 +50,6 @@ const authStore = defineStore("auth", () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     try {
       const res = await _login(user).catch((err) => {
-        switchStore().$msg(err, "error");
-        clearToken();
         throw err;
       });
       userInfo.value = res;
@@ -60,7 +58,8 @@ const authStore = defineStore("auth", () => {
       switchStore().$msg("自动登录成功");
       watchStatus();
     } catch (err) {
-      /*  */
+      clearToken();
+      switchStore().$msg(err as string, "error");
     }
   };
 
@@ -81,12 +80,12 @@ const authStore = defineStore("auth", () => {
 
   /** @description 清除token */
   const clearToken = () => {
+    router.replace("/login");
     clearInterval(timer.value);
     userStatus.value = false;
     userInfo.value = $deepCopy(userDefaultInfo);
     routesStore().removeRoutes();
     window.localStorage.removeItem("user");
-    router.replace("/login");
   };
 
   /** @description 实时检测帐号状态 */
