@@ -63,9 +63,9 @@ export default defineConfig({
     cssTarget: "chrome61",
     rollupOptions: {
       output: {
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+        chunkFileNames: "assets/js/[name]-[hash]-" + Date.now() + ".js",
+        entryFileNames: "assets/js/[name]-[hash]-" + Date.now() + ".js",
+        assetFileNames: "assets/[ext]/[name]-[hash]-" + Date.now() + ".[ext]",
       },
     },
   },
