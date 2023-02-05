@@ -20,6 +20,7 @@ const showSkin = ref();
 let toggle = true; //用于切换背景
 
 const is_into_drap = ref(false); //拖动头像进入头像框范围
+const show_skin_box = ref(false); //用于头像容器初次加载显示
 const show_skin_head = ref(false); //用于头像初次加载显示
 
 const skins = computed(() => $heroDetail.hero_info.skins); //皮肤列表
@@ -46,8 +47,8 @@ const setPosition = (data: HTMLElement | null) => {
   if (data) {
     data.style.pointerEvents = "none";
     data.style.transition = "all 1s";
-    data.style.left = `calc(50% - ${data.offsetWidth / 2}px)`;
-    data.style.top = `calc(50% - ${data.offsetHeight / 2}px)`;
+    data.style.left = "0px";
+    data.style.top = "0px";
     data.style.transform = "";
   }
 };
@@ -101,28 +102,31 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
 /* 当滚动到皮肤页，播放出场动画 */
 $heroDetailStore.setScollFn((index) => {
   if (index === 2 && !show_skin_head.value) {
-    show_skin_head.value = true;
+    show_skin_box.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
     setTimeout(() => {
-      is_into_drap.value = true;
-      nextTick(() => {
-        handleDrag(skin.value[0], false, 0);
-        setPosition(skin.value[0]);
+      show_skin_head.value = true;
+      setTimeout(() => {
+        is_into_drap.value = true;
+        nextTick(() => {
+          handleDrag(skin.value[0], false, 0);
+          setPosition(skin.value[0]);
 
-        setTimeout(() => {
-          $switchStore.$tip({
-            text: "9oy5",
-            align: "right-top",
-          });
-        }, 3000);
-      });
+          setTimeout(() => {
+            $switchStore.$tip({
+              text: "9oy5",
+              align: "right-top",
+            });
+          }, 3000);
+        });
+      }, 1000);
     }, 1000);
   }
 });
 </script>
 
 <template>
-  <div class="hero-skin-head-img flex" :class="{ into: show_skin_head }">
+  <div class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
     <div ref="showSkin" class="show-skin flex">
       {{ is_into_drap ? "松开" : "拖过来" }}
