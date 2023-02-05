@@ -52,12 +52,13 @@ const handleTool = (v: string) => {
     <div v-if="video_bg" class="tool" title="静音">
       <div class="line"></div>
       <div
-        class="box cursor-pointer"
+        class="box cursor-pointer jingyin"
         :class="{ active: muted }"
         :style="{ opacity: muted ? 0.75 : 1 }"
         @click="handleTool('sound')"
       >
         <i class="iconfont" :class="icon" />
+        <span class="text">静音</span>
       </div>
       <div class="base"></div>
     </div>
@@ -67,6 +68,7 @@ const handleTool = (v: string) => {
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('readme')">
         <i class="iconfont wzry-readme" />
+        <span class="text">介绍</span>
       </div>
       <div class="base"></div>
     </div>
@@ -76,6 +78,7 @@ const handleTool = (v: string) => {
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('notice')">
         <i class="iconfont wzry-gonggao" />
+        <span class="text">公告</span>
       </div>
       <div class="base"></div>
     </div>

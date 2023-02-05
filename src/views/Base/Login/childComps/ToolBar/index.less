@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    filter: var(--d-shadow-b);
 
     .line {
       width: 2px;
@@ -43,9 +44,27 @@
       }
     }
 
+    .text {
+      position: absolute;
+      bottom: 0;
+      font-size: 18px;
+      text-shadow: var(--t-shadow-d);
+      transform: rotate(-45deg) translateX(12.5px) translateY(15px);
+    }
+
     .elastic {
+      .text {
+        .text();
+      }
+
       &:active {
         transform: rotate(45deg) translateX(5px) translateY(5px);
+      }
+    }
+
+    .jingyin {
+      .text {
+        .text();
       }
     }
 
