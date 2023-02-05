@@ -9,7 +9,7 @@ const deviceStore = defineStore("phone", () => {
   const browser_version = $browserV.version; //浏览器版本
   const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15; //满足浏览器访问条件
 
-  const vertical = ref(false); //是否为移动端
+  const vertical = ref(false); //是否为竖屏
   const width = ref(0); //设备宽度
   const height = ref(0); //设备高度
   const fps = ref(0); //帧率
