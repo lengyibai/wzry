@@ -7,7 +7,7 @@ import { $browserV } from "@/utils";
 const deviceStore = defineStore("phone", () => {
   const browser_name = $browserV.browser; //浏览器名称
   const browser_version = $browserV.version; //浏览器版本
-  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version > 90 : browser_version > 15; //满足浏览器访问条件
+  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15; //满足浏览器访问条件
 
   const vertical = ref(false); //是否为移动端
   const width = ref(0); //设备宽度
@@ -33,8 +33,8 @@ const deviceStore = defineStore("phone", () => {
   /* 判断手机是否竖屏 */
   const tip = () => {
     vertical.value = window.innerWidth < window.innerHeight;
-    width.value = window.innerWidth;
-    height.value = window.innerHeight;
+    width.value = ~~(window.innerWidth * 0.6);
+    height.value = ~~(window.innerHeight * 0.6);
   };
   tip();
   window.addEventListener("resize", () => {
