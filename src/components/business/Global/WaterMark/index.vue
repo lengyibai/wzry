@@ -6,11 +6,13 @@ import collapseStore from "@/store/collapse";
 import versionStore from "@/store/version";
 import deviceStore from "@/store/device";
 import vConsoleStore from "@/store/vConsole";
+import authStore from "@/store/auth";
 
 const $collapseStore = collapseStore();
 const $versionStore = versionStore();
 const $deviceStore = deviceStore();
 const $vConsoleStore = vConsoleStore();
+const $authStore = authStore();
 
 /* 是否为旧版 */
 const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);
@@ -27,18 +29,18 @@ const version = `${$browserV.version} ${
 <template>
   <div
     :style="{
-      opacity: !$collapseStore.collapse ? 1 : 0,
+      opacity: !$collapseStore.collapse || !$authStore.userStatus ? 1 : 0,
     }"
     class="water-mark"
     @touchend="$vConsoleStore.setStatus"
   >
     <p>帧率：{{ $deviceStore.fps }}</p>
-    <p>设备尺寸：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
-    <p :class="{ low: !browser_status }">浏览器{{ browser_name }}内核版本：{{ version }}</p>
-    <p :class="{ old: old }">当前数据版本：{{ $versionStore.local_version }}</p>
-    <p v-if="old" :class="{ new: old }">最新数据版本：{{ $versionStore.remote_version }}</p>
-    <p :class="{ old: old_file }">当前网页版本：{{ $versionStore.local_file }}</p>
-    <p v-if="old_file" :class="{ new: old_file }">最新网页版本：{{ $versionStore.file_version }}</p>
+    <p>测试尺寸：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
+    <p :class="{ low: !browser_status }">{{ browser_name }}内核：V{{ version }}</p>
+    <p :class="{ old: old }">当前数据：V{{ $versionStore.local_version }}</p>
+    <p v-if="old" :class="{ new: old }">最新数据：V{{ $versionStore.remote_version }}</p>
+    <p :class="{ old: old_file }">当前网页：V{{ $versionStore.local_file }}</p>
+    <p v-if="old_file" :class="{ new: old_file }">最新网页：V{{ $versionStore.file_version }}</p>
   </div>
 </template>
 
