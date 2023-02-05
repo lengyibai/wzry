@@ -6,7 +6,6 @@ import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
 import skinStore from "@/store/skin";
 import equipStore from "@/store/equip";
-import { Epigraph } from "@/api/main/data";
 
 interface Props {
   type: "hero" | "skin" | "equip";

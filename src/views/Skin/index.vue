@@ -9,11 +9,9 @@ import { getSkinVoice } from "@/api/main/games/voice";
 import { $debounce, $ScaleImage } from "@/utils";
 import $bus from "@/utils/eventBus";
 import skinStore from "@/store/skin";
-import collapseStore from "@/store/collapse";
 import switchStore from "@/store/switch";
 
 const $skinStore = skinStore();
-const $collapseStore = collapseStore();
 const $switchStore = switchStore();
 
 const skinListRef = ref(); //布局容器
