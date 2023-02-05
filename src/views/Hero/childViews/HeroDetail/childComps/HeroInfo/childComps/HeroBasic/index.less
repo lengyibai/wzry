@@ -4,17 +4,17 @@
 
   .info {
     display: flex;
-    width: 400px;
+    width: 555px;
     padding-bottom: 5px;
-    font-size: 30px;
+    font-size: 35px;
     text-shadow: var(--t-shadow-e);
-    transition: all var(--time-500);
+    transition: all var(--time-1000);
     opacity: 0;
     transform: translateX(-100%);
     border-bottom: 1px solid var(--white-50);
 
     &:not(:last-child) {
-      margin-bottom: 25px;
+      margin-bottom: 1em;
     }
 
     .iconfont {
@@ -32,10 +32,10 @@
     }
   }
 
-  @media screen and (max-width: @big) {
+  @media screen and (max-width: @large) {
     .info {
-      width: 300px;
-      font-size: 25px;
+      width: 375px;
+      font-size: 28px;
     }
   }
 }

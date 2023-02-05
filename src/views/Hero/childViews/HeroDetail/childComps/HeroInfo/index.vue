@@ -17,34 +17,46 @@ onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
     into.value = true;
-  }, 2000);
+  }, 1000);
 });
 </script>
 
 <template>
-  <div ref="HeroMaterialSkins" class="hero-material-skins">
+  <div class="basic-info">
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
 
-    <!-- 基础信息表 -->
-    <div class="basic-info">
-      <HeroBasic :hero-data="hero_data" />
+    <div class="content">
+      <div class="left">
+        <HeroBasic class="hero-basic" :hero-data="hero_data" />
 
-      <!-- 关系 -->
-      <transition name="scale">
-        <HeroRelationship v-if="into && hero_data.relationships" :relationship="hero_data.relationships" />
-      </transition>
-    </div>
-
-    <!-- 属性 -->
-    <transition name="fade">
-      <div v-if="into" class="hero-attribute">
-        <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
-        <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
-        <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
-        <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+        <!-- 属性 -->
+        <transition name="attribute">
+          <div v-if="into" class="hero-attribute1">
+            <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+          </div>
+        </transition>
       </div>
-    </transition>
+      <div class="right">
+        <!-- 关系 -->
+        <transition name="relationship">
+          <HeroRelationship v-if="into && hero_data.relationships" :relationship="hero_data.relationships" />
+        </transition>
+
+        <!-- 属性 -->
+        <transition name="attribute">
+          <div v-if="into" class="hero-attribute2">
+            <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+          </div>
+        </transition>
+      </div>
+    </div>
   </div>
 </template>
 

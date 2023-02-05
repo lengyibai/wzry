@@ -1,4 +1,4 @@
-.hero-material-skins {
+.basic-info {
   position: relative;
   display: flex;
   overflow: hidden;
@@ -10,26 +10,73 @@
   background-color: var(--black-50);
   flex-direction: column;
 
-  .basic-info {
+  .content {
     display: flex;
+    flex: 1;
     justify-content: space-between;
     margin-bottom: 25px;
     border: var(--subline);
+
+    .left {
+      margin-right: 100px;
+
+      .hero-basic {
+        margin-bottom: 50px;
+      }
+
+      .hero-attribute1 {
+        position: relative;
+        display: none;
+        width: 100%;
+        border: var(--subline);
+        flex-direction: column;
+
+        .attribute {
+          width: 0%;
+          transition: all var(--time-1000);
+          transform: translateY(0%);
+        }
+      }
+    }
+
+    .right {
+      position: relative;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .hero-attribute2 {
+        position: relative;
+        display: flex;
+        width: 100%;
+        border: var(--subline);
+        flex-direction: column;
+
+        .attribute {
+          width: 0%;
+          transition: all var(--time-1000);
+          transform: translateY(0%);
+        }
+      }
+    }
   }
 
-  .hero-attribute {
-    position: relative;
-    display: flex;
-    width: 100%;
-    margin-top: auto;
-    margin-bottom: 50px;
-    border: var(--subline);
-    flex-direction: column;
+  @media screen and (max-width: @medium) {
+    .content {
+      .left {
+        width: 75%;
+        margin-right: 50px;
 
-    .attribute {
-      width: 0%;
-      transition: all var(--time-1000);
-      transform: translateY(0%);
+        .hero-attribute1 {
+          display: flex;
+        }
+      }
+
+      .right {
+        .hero-attribute2 {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -39,13 +86,24 @@
   transform: translateY(-100%);
 }
 
-.scale-enter-from,
-.scale-leave-active {
+.relationship-enter-from,
+.relationship-leave-active {
   opacity: 0;
-  transform: scale(0.5);
+  transform: translateX(50%);
 }
 
-.scale-leave-active,
-.scale-enter-active {
-  transition: all var(--time-500);
+.relationship-leave-active,
+.relationship-enter-active {
+  transition: all var(--time-1000);
+}
+
+.attribute-enter-from,
+.attribute-leave-active {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.attribute-leave-active,
+.attribute-enter-active {
+  transition: all var(--time-1000);
 }

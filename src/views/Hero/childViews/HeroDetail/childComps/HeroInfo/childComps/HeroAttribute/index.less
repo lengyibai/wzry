@@ -10,7 +10,7 @@
   span {
     margin-right: 1em;
     color: var(--white);
-    font-size: 40px;
+    font-size: 35px;
     text-shadow: var(--t-shadow-e);
   }
 
@@ -18,15 +18,17 @@
     z-index: 2;
     width: 52px;
     height: 52px;
+    margin-right: -5px;
     background-position: 0 0;
     background-repeat: no-repeat;
     filter: var(--d-shadow-s);
+    transform: scale(0.85);
     background-image: url("@{IMGBED}/image/attribute.png");
   }
 
   .bar {
     position: relative;
-    height: 20px;
+    height: 18px;
     border-radius: 0 4px 4px 0;
     box-shadow: var(--b-shadow-a);
     background-color: #1a1a1a;
@@ -40,13 +42,13 @@
       transition: all var(--time-2000);
     }
   }
-  @media screen and (max-width: @big) {
+  @media screen and (max-width: @large) {
     &:not(:last-child) {
       margin-bottom: 30px;
     }
 
     span {
-      font-size: 30px;
+      font-size: 28px;
     }
 
     .ico {
