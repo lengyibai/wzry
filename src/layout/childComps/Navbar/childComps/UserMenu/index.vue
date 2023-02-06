@@ -59,7 +59,14 @@ setInterval(() => {
 </script>
 
 <template>
-  <div class="user-menu" :class="{ hover: show_menu }" @mouseenter="show_menu = true" @mouseleave="show_menu = false">
+  <div
+    class="user-menu"
+    :class="{ hover: show_menu }"
+    @mouseenter="show_menu = true"
+    @touchstart="show_menu = true"
+    @mouseleave="show_menu = false"
+    @touchend="show_menu = false"
+  >
     <img class="head-img" :src="userInfo.headImg || IMGBED + '/image/unknown.png'" alt="头像" @dragstart.prevent />
     <div class="user-card">
       <div class="name lib-one-line">{{ time_greet }}，{{ userInfo.nickname }}</div>
