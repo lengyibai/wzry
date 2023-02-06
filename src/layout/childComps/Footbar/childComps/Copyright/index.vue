@@ -1,5 +1,5 @@
 <template>
-  <div class="copyright">@lengyibai</div>
+  <a class="copyright" href="https://github.com/lengyibai" target="_blank">@lengyibai</a>
 </template>
 
 <style scoped lang="less">
