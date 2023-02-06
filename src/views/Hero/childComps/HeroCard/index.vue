@@ -69,7 +69,7 @@ const handleViewClick = () => {
     </transition>
 
     <!-- 背景图 -->
-    <img class="bg" :src="data.cover" loading="lazy" @dragstart.prevent />
+    <img class="bg" :src="data.cover" @dragstart.prevent />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">

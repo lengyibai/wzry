@@ -24,7 +24,7 @@ const handle = (v: string) => {
 
 <template>
   <div v-maskGradient class="skin-card">
-    <img class="bg" :src="data.cover" loading="lazy" />
+    <img class="bg" :src="data.cover" />
     <img v-if="data.type" class="type" :src="(data.type as string)" />
 
     <!-- 价格 -->
