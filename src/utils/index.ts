@@ -115,7 +115,7 @@ export const $pinyin = (str: string) => {
 
 /** @description 正则搜索 */
 export const $search = <T>(data: T[], value: string | string[], keys: string | string[]): T[] => {
-  let arr: T[] = [];
+  const arr: T[] = [];
 
   const fn = (item: any, key: string): void | undefined => {
     const reg = new RegExp(item.toString().toLowerCase(), "i");
@@ -407,7 +407,7 @@ export const $existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
 export const $throttleInstant = (() => {
   let last = 0;
   return (callback: Func, wait = 800) => {
-    let now = +new Date();
+    const now = +new Date();
     if (now - last > wait) {
       callback();
       last = now;
@@ -420,7 +420,7 @@ export const $debounceInstant = (() => {
   let timer: Timeout = 0;
   return <T extends (...args: any[]) => any>(fn: T, delay: number, ...args: Parameters<T>): void => {
     if (timer) clearTimeout(timer);
-    let callNow = !timer;
+    const callNow = !timer;
     timer = setTimeout(() => {
       timer = 0;
     }, delay);
@@ -500,7 +500,6 @@ export class $ScaleImage {
       bottom: 0;
       background-color: rgba(0, 0, 0, 0.75);
       display: flex;
-      user-select: none;
       align-items: center;
       justify-content: center;
       transition: all 0.25s;
@@ -521,7 +520,6 @@ export class $ScaleImage {
       max-width: 75%;
       max-height: 75%;
       transform: scale(${this.scale});
-      user-select: none;
       transition: all 0.25s;
     `;
     this.img.src = this.src;
