@@ -8,7 +8,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const { total, index, title, type, finish } = useGetData();
+const { total, index, type, finish } = useGetData();
 
 //下载进度
 const progress = computed(() => ((index.value / total.value) * 100).toFixed(0) + "%");
@@ -25,7 +25,7 @@ watch(finish, (v) => {
       <div class="progress" :style="{ width: progress }"></div>
     </div>
     <div class="desc">
-      <div class="text">正在为您下载{{ type }}：{{ title }}</div>
+      <div class="text">正在为您下载{{ type }}</div>
       <div class="num">{{ progress }}</div>
     </div>
   </div>

@@ -32,7 +32,6 @@ export default () => {
   const total = ref(0); //请求总数
   const index = ref(1); //用于计算下载进度
   const type = ref("基础数据"); //正在下载的数据类型
-  const title = ref(""); //正在下载的数据名
   const finish = ref(false); //请求结束
 
   const requests: [string, () => Promise<any>, string][] = [
@@ -72,13 +71,14 @@ export default () => {
     total.value = requests.length;
 
     /* 下载数据 */
-    for (const [key, request, name] of requests) {
+    //收集处理请求
+    const data_requests = requests.map(async ([key, request]) => {
       if (!isExist(key)) {
-        title.value = name;
         setData("data_" + key, await request());
         index.value++;
       }
-    }
+    });
+    await Promise.all(data_requests);
 
     const hero_list = await getHeroBasic();
     total.value = hero_list.length - 2;
@@ -86,17 +86,19 @@ export default () => {
     /* 下载语音数据 */
     type.value = "语音数据";
     index.value = 0;
-    for (let i = 0; i < hero_list.length; i++) {
-      if (!["梦奇", "盾山"].includes(hero_list[i].name)) {
-        if (!isExist(hero_list[i].pinyin, "voice_")) {
-          title.value = hero_list[i].name;
-          setData(`voice_${hero_list[i].pinyin}`, {
-            data: (await Voice(hero_list[i].name)).data,
+    //收集处理请求
+    const voice_requests = hero_list.map(async (item) => {
+      if (!["梦奇", "盾山"].includes(item.name)) {
+        if (!isExist(item.pinyin, "voice_")) {
+          setData(`voice_${item.pinyin}`, {
+            data: (await Voice(item.name)).data,
           });
           index.value++;
         }
       }
-    }
+    });
+    await Promise.all(voice_requests);
+
     finish.value = true;
   };
   getData();
@@ -108,8 +110,6 @@ export default () => {
     index,
     /** 正在下载的数据类型 */
     type,
-    /** 正在下载的数据名 */
-    title,
     /** 请求结束 */
     finish,
   };
