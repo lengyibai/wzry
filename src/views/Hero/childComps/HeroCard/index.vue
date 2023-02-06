@@ -15,9 +15,9 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $heroStore = heroStore();
-const $switchStore = switchStore();
 
 const show = ref(false); //显示查看详情选项
+const finish = ref(false); //头像是否加载完成
 
 //用于身高和皮肤数量排序显示相应数字
 const num_type = computed(() => $heroStore.misc_sort);
@@ -33,12 +33,6 @@ const num = (data: Hero.Data) =>
     ? (data.relationships?.length || 0) + "位"
     : "";
 
-/* 点击卡片 */
-const handleClickCard = () => {
-  show.value = true;
-  $switchStore.$clickAudio();
-};
-
 /* 查看详情 */
 const handleViewClick = () => {
   emit("view");
@@ -51,7 +45,7 @@ const handleViewClick = () => {
     v-sweepLight
     class="hero-card cursor-pointer"
     :class="{ hide: show }"
-    @click="handleClickCard"
+    @mouseenter="show = true"
     @mouseleave="show = false"
   >
     <!-- 编号 -->
@@ -63,7 +57,12 @@ const handleViewClick = () => {
     <!-- 悬浮蒙版 -->
     <transition name="fade">
       <div v-if="show" class="select-mask">
-        <img :src="data.headImg" class="head" @dragstart.prevent />
+        <img
+          :src="finish ? data.headImg : 'https://lengyibai.gitee.io/wzry-material/image/unknown.png'"
+          class="head"
+          @load="finish = true"
+          @dragstart.prevent
+        />
         <button v-textHoverColor class="view" @click="handleViewClick">查看详情</button>
       </div>
     </transition>
