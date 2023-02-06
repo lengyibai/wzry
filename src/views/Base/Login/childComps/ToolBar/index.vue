@@ -35,14 +35,15 @@ const icon = computed(() => {
  * @param v 点击静音或公告的标识符
  */
 const handleTool = (v: string) => {
-  emit("clicks", v);
   if (v === "sound") {
     $switchStore.$clickAudio("n4r4");
     $settingStore.saveConfig({ muted: !muted.value });
+    return;
   }
   if (v === "readme") {
     $switchStore.$clickAudio("n4r4");
   }
+  emit("clicks", v);
 };
 </script>
 
