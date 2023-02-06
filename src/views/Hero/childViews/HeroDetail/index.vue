@@ -2,7 +2,6 @@
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
-import HeroMaskClose from "./childComps/HeroMaskClose/index.vue"; //顶部关闭
 import HeroScroll from "./childComps/HeroScroll/index.vue"; //全屏滚动组件
 import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
 import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
@@ -60,7 +59,7 @@ const EmitScrollEnd = (index: number) => {
 };
 
 /* 隐藏自身 */
-const EmitHide = () => {
+const handleHide = () => {
   $router.replace("/hero");
   $heroDetailStore.setSkinVoice("盾山"); //置空语音
   $switchStore.$clickAudio("6xc6");
@@ -88,26 +87,6 @@ onMounted(() => {
     hero_data.skins?.forEach((item) => {
       new Image().src = item.poster; //海报预加载
     });
-
-    $isPhone
-      ? $switchStore.$tip({
-          text: "1zs6",
-          align: "left-top",
-          btnFn: () => {
-            $switchStore.$tip({
-              text: "58mz",
-            });
-          },
-        })
-      : $switchStore.$tip({
-          text: "0vk2",
-          align: "left-top",
-          btnFn: () => {
-            $switchStore.$tip({
-              text: "05su",
-            });
-          },
-        });
   }, 1500);
 
   $switchStore.$clickAudio("u4c5");
@@ -117,7 +96,13 @@ onMounted(() => {
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <HeroMaskClose @close="EmitHide" />
+    <img
+      class="back cursor-pointer"
+      src="https://lengyibai.gitee.io/wzry-material/image/back.png"
+      alt="返回"
+      @dragstart.prevent
+      @click="handleHide"
+    />
     <HeroScroll v-model="scroll_index" @start="EmitScollStart" @end="EmitScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
