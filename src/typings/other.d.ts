@@ -106,6 +106,8 @@ interface VersionUpdate {
   file: string;
   /** 文件更新日志 */
   log: string;
+  /** 更新时间 */
+  time: string;
 }
 
 /** @description 更新日志 */
@@ -116,6 +118,8 @@ interface UpdateLog {
   voice: string;
   /** 文件更新 */
   file: string;
+  /** 更新时间 */
+  time: string;
 }
 
 /** @description 性别 */

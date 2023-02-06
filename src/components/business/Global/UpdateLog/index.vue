@@ -20,7 +20,13 @@ const handleReset = () => {
 </script>
 
 <template>
-  <K-Dialog :show-close="!data_status && !file_status" v-bind="$attrs" width="900px" header="更新日志">
+  <K-Dialog
+    :show-close="!data_status && !file_status"
+    v-bind="$attrs"
+    width="900px"
+    header="更新日志"
+    :desc="update_log.time"
+  >
     <div class="main">
       <!-- 页面更新 -->
       <h1>页面更新</h1>

@@ -20,6 +20,7 @@ const versionStore = defineStore("version", () => {
     data: "",
     voice: "",
     file: "",
+    time: "",
   }); //更新日志汇总
 
   local_version.value = localStorage.getItem("version") || ""; //本地版本
@@ -40,10 +41,11 @@ const versionStore = defineStore("version", () => {
   /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
     Version().then((res) => {
-      const { main, file, log } = res.data;
+      const { main, file, log, time } = res.data;
       remote_version.value = main;
       file_version.value = file;
       update_log.value.file = log;
+      update_log.value.time = time;
 
       //如果无本地版本，则直接更新，否则比对
       if (!local_version.value) {
