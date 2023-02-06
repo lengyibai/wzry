@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 
 import sideItem from "./childComp/SideItem/index.vue"; //子菜单
 import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
@@ -7,6 +7,7 @@ import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
 import routerStore from "@/store/routes";
 import collapseStore from "@/store/collapse";
+import $bus from "@/utils/eventBus";
 
 const $collapseStore = collapseStore();
 const $routerStore = routerStore();
@@ -27,6 +28,14 @@ const EmitCoord = (v: number) => {
     show_slider.value = true;
   }
 };
+
+$bus.on("resize", () => {
+  $collapseStore.setCollapse(window.innerWidth < 1380);
+});
+
+onBeforeUnmount(() => {
+  $bus.off("resize");
+});
 </script>
 
 <template>

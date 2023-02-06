@@ -8,7 +8,7 @@ const $switchStore = switchStore();
 /* 点击折叠按钮 */
 const handleToggle = () => {
   $switchStore.$clickAudio("d5e2");
-  $collapseStore.setCollapse();
+  $collapseStore.toggleCollapse();
 };
 </script>
 
