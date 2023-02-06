@@ -9,9 +9,11 @@ import { $isPhone, $Parallax, $throttleInstant } from "@/utils";
 import { userList } from "@/api/main/user";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
+import deviceStore from "@/store/device";
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
+const $deviceStore = deviceStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -52,7 +54,7 @@ const EmitRegSuccess = (form: User) => {
 };
 
 /* 视差动画(如果为移动端，则取消) */
-if (!$isPhone) {
+if (!$isPhone || $deviceStore.browser_name === "safari") {
   const parallax = new $Parallax(
     ({ degX, degY }: Record<string, number>) => {
       loginBox.value &&
