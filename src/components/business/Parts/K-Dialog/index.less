@@ -31,10 +31,24 @@
       position: absolute;
       top: 50px;
       left: 50%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
       transform: translateX(-50%);
-      color: var(--white);
-      font-size: 35px;
-      text-shadow: var(--t-shadow-e);
+
+      span {
+        &:first-child {
+          margin-bottom: 5px;
+          color: var(--white);
+          font-size: 35px;
+          text-shadow: var(--t-shadow-e);
+        }
+
+        &:last-child {
+          color: var(--white-50);
+          font-size: 14px;
+        }
+      }
     }
 
     .close {
