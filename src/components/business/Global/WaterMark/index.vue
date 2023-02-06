@@ -36,11 +36,11 @@ const version = `${$browserV.version} ${
   >
     <p>帧率：{{ $deviceStore.fps }}</p>
     <p>测试尺寸：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
-    <p :class="{ low: !browser_status }">{{ browser_name }}内核：V{{ version }}</p>
-    <p :class="{ old: old }">当前数据：V{{ $versionStore.local_version }}</p>
+    <p :class="{ low: !browser_status }">{{ browser_name }}内核：{{ version }}</p>
+    <p :class="{ old: old }">数据：{{ $versionStore.local_version }}</p>
     <p v-if="old" :class="{ new: old }">最新数据：V{{ $versionStore.remote_version }}</p>
-    <p :class="{ old: old_file }">当前网页：V{{ $versionStore.local_file }}</p>
-    <p v-if="old_file" :class="{ new: old_file }">最新网页：V{{ $versionStore.file_version }}</p>
+    <p :class="{ old: old_file }">网页：{{ $versionStore.local_file }}</p>
+    <p v-if="old_file" :class="{ new: old_file }">最新网页：{{ $versionStore.file_version }}</p>
   </div>
 </template>
 
