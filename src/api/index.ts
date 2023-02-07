@@ -4,7 +4,7 @@ import { ResultData } from "@/api/interface";
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
-  timeout: 10000,
+  timeout: 30000,
 };
 
 class RequestHttp {
