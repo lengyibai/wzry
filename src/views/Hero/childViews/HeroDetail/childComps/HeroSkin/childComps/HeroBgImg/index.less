@@ -42,3 +42,249 @@
     clip-path: polygon(50% 50%, 100% 0, 50% 50%, 0 100%);
   }
 }
+
+.spin-enter-active {
+  animation: spin-in var(--time-1000) linear;
+}
+
+.spin-leave-active {
+  animation: spin-out var(--time-1000) linear;
+}
+@keyframes spin-in {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0, 50% 50%);
+  }
+
+  25% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 0, 50% 50%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%, 50% 50%);
+  }
+
+  75% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 50% 50%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 50%);
+  }
+}
+@keyframes spin-out {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 50%);
+  }
+
+  25% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 100%, 50% 50%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%, 50% 50%);
+  }
+
+  75% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 100% 0, 50% 50%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0, 50% 50%);
+  }
+}
+
+.tv-enter-active {
+  animation: tv-in 1s;
+}
+
+.tv-leave-active {
+  animation: tv-out 0.35s;
+}
+
+@keyframes tv-in {
+  0% {
+    clip-path: inset(50% 49.75% 50% 49.75%);
+  }
+
+  50% {
+    clip-path: inset(0 49.75% 0 49.75%);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes tv-out {
+  0% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  80% {
+    clip-path: inset(49.75% 0 49.75% 0%);
+  }
+
+  95% {
+    clip-path: inset(49.75% 49.75% 49.75% 49.75%);
+  }
+
+  100% {
+    clip-path: inset(50% 50% 50% 50%);
+  }
+}
+
+.fold-enter-active {
+  animation: fold-in 0.75s;
+}
+
+.fold-leave-active {
+  animation: fold-out 0.75s;
+}
+
+@keyframes fold-in {
+  0% {
+    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+  }
+}
+
+@keyframes fold-out {
+  0% {
+    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+  }
+}
+
+.deploy-enter-active {
+  animation: deploy-in 1s;
+}
+
+.deploy-leave-active {
+  animation: deploy-out 1s;
+}
+
+@keyframes deploy-in {
+  0% {
+    clip-path: polygon(50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%, 0 0, 50% 50%, 0 100%);
+  }
+
+  33% {
+    clip-path: polygon(50% 0, 100% 100%, 0 50%, 100% 0, 50% 100%, 0 0, 100% 50%, 0 100%);
+  }
+
+  66% {
+    clip-path: polygon(50% 0, 100% 100%, 0 50%, 0 100%, 50% 100%, 0 0, 100% 50%, 100% 0);
+  }
+
+  100% {
+    clip-path: polygon(50% 0, 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0);
+  }
+}
+
+@keyframes deploy-out {
+  0% {
+    clip-path: polygon(50% 0, 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0);
+  }
+
+  33% {
+    clip-path: polygon(50% 0, 100% 100%, 0 50%, 0 100%, 50% 100%, 0 0, 100% 50%, 100% 0);
+  }
+
+  66% {
+    clip-path: polygon(50% 0, 100% 100%, 0 50%, 100% 0, 50% 100%, 0 0, 100% 50%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%, 0 0, 50% 50%, 0 100%);
+  }
+}
+
+.xmove-enter-active {
+  animation: xmove-in var(--time-1000);
+}
+
+.xmove-leave-active {
+  animation: xmove-out var(--time-1000);
+}
+
+@keyframes xmove-in {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes xmove-out {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+}
+
+.ymove-enter-active {
+  animation: ymove-in var(--time-1000);
+}
+
+.ymove-leave-active {
+  animation: ymove-out var(--time-1000);
+}
+
+@keyframes ymove-in {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes ymove-out {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+}
+
+.square-enter-active {
+  animation: square-in var(--time-1000);
+}
+
+.square-leave-active {
+  animation: square-out var(--time-1000);
+}
+
+@keyframes square-in {
+  0% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes square-out {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+}
