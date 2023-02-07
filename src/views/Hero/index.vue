@@ -41,7 +41,6 @@ const handleEnterCard = (data: Hero.Data) => {
 const EmitViewClick = (id: number) => {
   //获取指定英雄数据
   getHeroDetail(id).then((hero) => {
-    //获取指定英雄皮肤
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
 
