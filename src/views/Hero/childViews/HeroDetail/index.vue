@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, computed } from "vue";
+import { watchEffect, nextTick, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 import HeroScroll from "./childComps/HeroScroll/index.vue"; //全屏滚动组件
@@ -9,11 +9,12 @@ import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
-import { $isPhone } from "@/utils";
+import { $deepCopy } from "@/utils";
 import heroDetailStore from "@/store/heroDetail";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
+import { heroDefault } from "@/default";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -30,17 +31,27 @@ const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索�
 
 const scroll_index = ref(1); //滚动索引
 const show_progress = ref(false); //显示滚动索引组件
+const hero_toggle = ref(true); //英雄关系切换时重新加载皮肤页
 
-const hero_data = $heroDetail.hero_info; //英雄信息
+const hero_data = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
+
+watchEffect(() => {
+  hero_data.value = $heroDetail.hero_info;
+  hero_toggle.value = false;
+  nextTick(() => {
+    hero_toggle.value = true;
+    $heroDetailStore.skinToggle(hero_data.value.name, ""); //切换皮肤
+  });
+});
 
 //技能数量
 const skill_num = computed(() => {
-  return (hero_data.skills && hero_data.skills.length) || 0;
+  return (hero_data.value.skills && hero_data.value.skills.length) || 0;
 });
 
 //皮肤数量
 const skin_num = computed(() => {
-  return (hero_data.skins && hero_data.skins.length) || 0;
+  return (hero_data.value.skins && hero_data.value.skins.length) || 0;
 });
 
 /* 点击滚动索引 */
@@ -80,17 +91,15 @@ const handleHide = () => {
   }
 };
 
-onMounted(() => {
-  //延迟显示滚动索引
-  setTimeout(() => {
-    show_progress.value = true;
-    hero_data.skins?.forEach((item) => {
-      new Image().src = item.poster; //海报预加载
-    });
-  }, 1500);
+//延迟显示滚动索引
+setTimeout(() => {
+  show_progress.value = true;
+  hero_data.value.skins?.forEach((item) => {
+    new Image().src = item.poster; //海报预加载
+  });
+}, 1500);
 
-  $switchStore.$clickAudio("u4c5");
-});
+$switchStore.$clickAudio("u4c5");
 </script>
 
 <template>
@@ -111,12 +120,12 @@ onMounted(() => {
 
       <!--皮肤-->
       <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
-        <HeroSkin />
+        <HeroSkin v-if="hero_toggle" />
       </HeroParallax>
 
       <!--技能-->
       <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins![skin_num - 1].poster">
-        <HeroSkill />
+        <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
     </HeroScroll>
 

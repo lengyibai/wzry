@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 
-import heroDetailStore from "@/store/heroDetail";
+import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
 
-const $heroDetailStore = heroDetailStore();
+const $heroDetail = heroDetail();
 const $switchStore = switchStore();
 
 const voiceRef = ref();
@@ -16,10 +16,14 @@ const current_index = ref(-1); //当前播放索引
 const voices = ref<Hero.Voice[]>([]); //语音列表
 
 /* 切换语音时触发 */
-$heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
-  await $heroDetailStore.setSkinVoice(hero_name, skin_name);
+$heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
+  await $heroDetail.setSkinVoice(hero_name, skin_name);
+  if (!skin_name) {
+    voices.value = [];
+    return; //为了切换关系
+  }
   //如果皮肤语音相同，则不需要播放出场动画
-  if (voices.value[0]?.link === $heroDetailStore.skin_voice[0].link) return;
+  if (voices.value[0]?.link === $heroDetail.skin_voice[0].link) return;
 
   nextTick(() => {
     if (!voiceRef.value) return;
@@ -32,7 +36,7 @@ $heroDetailStore.setSkinToggleFn(async (hero_name, skin_name) => {
       }
 
       setTimeout(() => {
-        voices.value = $heroDetailStore.skin_voice;
+        voices.value = $heroDetail.skin_voice;
         item.style.transitionDelay = `${index / 15}s`; //入场间隔
         item.style.transform = "translateX(0%) translateY(0%) scale(1)";
 
@@ -86,7 +90,7 @@ let ended: Func = () => {
 <template>
   <div ref="voiceList" class="hero-voice scroll-white" @mousewheel.stop>
     <button
-      v-for="(item, index) in voices.length ? voices : $heroDetailStore.skin_voice"
+      v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"
       :key="index"
       class="voice flex"

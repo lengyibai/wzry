@@ -1,19 +1,21 @@
 <script setup lang="ts">
-interface Props {
-  name: string; //名字
-  mark: string; //代号
-}
-defineProps<Props>();
+import { computed } from "vue";
+
+import heroDetail from "@/store/heroDetail";
+
+const $heroDetail = heroDetail();
 
 const IMGBED = window.IMGBED; //全局图床链接
+
+const hero = computed(() => $heroDetail.hero_info);
 </script>
 
 <template>
   <div class="hero-title">
-    <div class="title-name">{{ name }}</div>
+    <div class="title-name">{{ hero.name }}</div>
     <div class="title-mark">
       <img class="left" :src="IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
-      <span class="text">{{ mark }}</span>
+      <span class="text">{{ hero.mark }}</span>
       <img class="right" :src="IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
     </div>
   </div>

@@ -4,7 +4,6 @@
   margin-bottom: 75px;
   margin-left: 25px;
   border: var(--subline);
-  font-size: 35px;
   text-shadow: var(--t-shadow-e);
   flex-wrap: wrap;
   gap: 35px;
@@ -15,10 +14,22 @@
     align-items: center;
     border: var(--subline);
 
+    &:hover {
+      .name {
+        color: var(--blue);
+      }
+    }
+
     img {
       width: 60px;
       margin-right: 0.5em;
       border-radius: 50%;
+    }
+
+    .name {
+      color: var(--white);
+      font-size: 35px;
+      text-shadow: var(--t-shadow-e);
     }
   }
   @media screen and (max-width: @large) {

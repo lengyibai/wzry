@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
@@ -11,7 +11,7 @@ import heroDetail from "@/store/heroDetail";
 const $heroDetail = heroDetail();
 
 const into = ref(false); //控制页面元素显示
-const hero_data = $heroDetail.hero_info; //英雄数据
+const hero_data = computed(() => $heroDetail.hero_info); //英雄数据
 
 onMounted(() => {
   //设置按顺序出场的动画
@@ -24,11 +24,11 @@ onMounted(() => {
 <template>
   <div class="basic-info">
     <!-- 英雄标题 -->
-    <HeroTitle :class="{ show: !into }" :name="hero_data.name" :mark="hero_data.mark" />
+    <HeroTitle :class="{ show: !into }" />
 
     <div class="content">
       <div class="left">
-        <HeroBasic class="hero-basic" :hero-data="hero_data" />
+        <HeroBasic class="hero-basic" />
 
         <!-- 属性 -->
         <transition name="attribute">
@@ -43,7 +43,7 @@ onMounted(() => {
       <div class="right">
         <!-- 关系 -->
         <transition name="relationship">
-          <HeroRelationship v-if="into && hero_data.relationships" :relationship="hero_data.relationships" />
+          <HeroRelationship v-if="into" />
         </transition>
 
         <!-- 属性 -->

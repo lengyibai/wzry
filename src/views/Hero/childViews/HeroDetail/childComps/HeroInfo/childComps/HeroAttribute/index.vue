@@ -12,7 +12,7 @@ interface Props {
   attr: string; //属性名
   length: number; //长度
 }
-const props = defineProps<Props>();
+defineProps<Props>();
 
 //精灵图坐标
 const y: Record<string, string> = {
@@ -39,14 +39,10 @@ const text: Text = {
 };
 
 const attribute = ref(); //属性元素
-const progress = ref(0); //进度条
 
 //延迟显示英雄属性
 onMounted(() => {
-  setTimeout(() => {
-    progress.value = props.length;
-    attribute.value.style.width = "100%";
-  }, 100);
+  attribute.value.style.width = "100%";
 });
 </script>
 
@@ -58,7 +54,7 @@ onMounted(() => {
       <i
         :style="{
           backgroundColor: bgc[attr],
-          width: progress + '%',
+          width: length + '%',
         }"
       />
     </div>
