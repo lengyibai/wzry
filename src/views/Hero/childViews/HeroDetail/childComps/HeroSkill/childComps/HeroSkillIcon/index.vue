@@ -2,7 +2,6 @@
 import { ref, computed } from "vue";
 
 import heroDetail from "@/store/heroDetail";
-import heroDetailStore from "@/store/heroDetail";
 import switchStore from "@/store/switch";
 
 interface Emits {
@@ -12,7 +11,6 @@ const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
 const $switchStore = switchStore();
-const $heroDetailStore = heroDetailStore();
 
 let deputy_index = 0; //主副技能索引
 
@@ -30,8 +28,8 @@ const calcActiveSkill = computed(() => {
   return active_skills.value[current_index.value];
 });
 
-/* 当滚动到既能页，播放出场动画 */
-$heroDetailStore.setScollFn((index) => {
+/* 当滚动到技能页，播放出场动画 */
+$heroDetail.setScollFn("skinIcon", (index) => {
   if (show.value || index !== 3) return;
   show.value = true;
 
@@ -53,8 +51,8 @@ active_skills.value = hero_data.value.skills![deputy_index];
 /* 点击技能后传递索引号 */
 const handleSelectSkill = (index: number) => {
   current_index.value = index;
-  $heroDetailStore.skillToggler(index);
-  $heroDetailStore.setSkillIndex(index);
+  $heroDetail.skillToggler(index);
+  $heroDetail.setSkillIndex(index);
   emit("select-skill", calcActiveSkill.value);
   $switchStore.$clickAudio("n4r4");
 };

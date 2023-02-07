@@ -10,7 +10,6 @@ import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
 import { $deepCopy } from "@/utils";
-import heroDetailStore from "@/store/heroDetail";
 import heroDetail from "@/store/heroDetail";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
@@ -24,7 +23,6 @@ const emit = defineEmits<Emits>();
 const $router = useRouter();
 const $heroDetail = heroDetail();
 const $heroStore = heroStore();
-const $heroDetailStore = heroDetailStore();
 const $switchStore = switchStore();
 
 const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
@@ -40,7 +38,7 @@ watchEffect(() => {
   hero_toggle.value = false;
   nextTick(() => {
     hero_toggle.value = true;
-    $heroDetailStore.skinToggle(hero_data.value.name, ""); //切换皮肤
+    $heroDetail.skinToggle(hero_data.value.name, ""); //切换皮肤
   });
 });
 
@@ -66,13 +64,13 @@ const EmitScollStart = () => {
 
 /* 滚动结束触发 */
 const EmitScrollEnd = (index: number) => {
-  $heroDetailStore.setIndex(index);
+  $heroDetail.setIndex(index);
 };
 
 /* 隐藏自身 */
 const handleHide = () => {
   $router.replace("/hero");
-  $heroDetailStore.setSkinVoice("盾山"); //置空语音
+  $heroDetail.setSkinVoice("盾山"); //置空语音
   $switchStore.$clickAudio("6xc6");
 
   //延迟0.1秒显示解决移动端动画掉帧

@@ -11,12 +11,12 @@ import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换�
 import { getAssignSkinType } from "@/api/main/games/skin";
 import { heroDefault } from "@/default";
 import { $deepCopy } from "@/utils";
-import heroDetailStore from "@/store/heroDetail";
+import heroDetail from "@/store/heroDetail";
 
 const hero_data = ref<Hero.Data>($deepCopy(heroDefault)); //英雄数据
-const $heroDetailStore = heroDetailStore();
+const $heroDetail = heroDetail();
 
-hero_data.value = $heroDetailStore.hero_info;
+hero_data.value = $heroDetail.hero_info;
 
 const active_skin_name = ref(""); //皮肤名
 const active_skin_type = ref(""); //皮肤类型
@@ -53,7 +53,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
     }
 
     skin_type_toggle.value = !skin_type_toggle.value; //使切换标志时有淡入淡出效果
-    $heroDetailStore.skinToggle(hero_data.value.name, active_skin_name.value); //切换皮肤
+    $heroDetail.skinToggle(hero_data.value.name, active_skin_name.value); //切换皮肤
 
     //延迟显示价格
     setTimeout(() => {
