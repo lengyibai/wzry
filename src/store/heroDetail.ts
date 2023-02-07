@@ -6,40 +6,51 @@ import { $deepCopy } from "@/utils";
 import { heroDefault } from "@/default";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
+type ScollFn = { name: string; fn: (index: number) => void }[];
 
 /** @description 英雄详情 */
 const heroDetailStore = defineStore("heroDetail", () => {
   const skill_index = ref(0); //处于展示的技能索引
   const scroll_index = ref(1); //滚动索引
-  const scollFns = ref<((index: number) => void)[]>([]); //滚动结束后触发函数组
+  const scollFns = ref<ScollFn>([]); //滚动结束后触发函数组
   const skinToggleFns = ref<SkinToggleFn[]>([]); //皮肤切换后触发函数组
   const skin_voice = ref<Hero.Voice[]>([]); //皮肤语音列表
   const skillSelectFn = ref<(index: number) => void>(() => {}); //技能选择触发的函数
   const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
-  /** 设置英雄数据 */
+  /** @description 设置英雄数据 */
   const setHeroInfo = (data: Hero.Data) => {
     hero_info.value = data;
   };
 
-  /** 设置滚动索引 */
+  /** @description 设置滚动索引 */
   const setIndex = (index: number) => {
     scroll_index.value = index;
     scollFns.value.forEach((item) => {
-      item(index);
+      item.fn(index);
     });
   };
 
-  /** 设置技能索引 */
+  /** @description 设置技能索引 */
   const setSkillIndex = (index: number) => {
     setTimeout(() => {
       skill_index.value = index;
     }, 500);
   };
 
-  /** 设置需要滚动触发的函数 */
-  const setScollFn = (fn: (index: number) => void) => {
-    scollFns.value.push(fn);
+  /**
+   * @description: 移除需要滚动触发的函数
+   * @param name 标识符
+   * @param fn 触发函数
+   */
+  const setScollFn = (name: string, fn: (index: number) => void) => {
+    scollFns.value.push({ name: name, fn: fn });
+  };
+
+  /** @description 移除需要滚动触发的函数 */
+  const removeScollFn = (name: string) => {
+    const index = scollFns.value.findIndex((item) => item.name === name);
+    scollFns.value.splice(index, 1);
   };
 
   /**
@@ -53,12 +64,12 @@ const heroDetailStore = defineStore("heroDetail", () => {
     });
   };
 
-  /** 设置需要切换皮肤触发的函数 */
+  /** @description 设置需要切换皮肤触发的函数 */
   const setSkinToggleFn = (fn: SkinToggleFn) => {
     skinToggleFns.value.push(fn);
   };
 
-  /** 设置技能选择函数 */
+  /** @description 设置技能选择函数 */
   const setSkillSelectFn = (fn: Func) => {
     skillSelectFn.value = fn;
   };
@@ -98,6 +109,7 @@ const heroDetailStore = defineStore("heroDetail", () => {
     setHeroInfo,
     setIndex,
     setScollFn,
+    removeScollFn,
     setSkillIndex,
     setSkillSelectFn,
     setSkinToggleFn,

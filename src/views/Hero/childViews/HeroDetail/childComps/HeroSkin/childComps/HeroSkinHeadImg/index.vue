@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { nextTick, ref, computed } from "vue";
+import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
-import heroDetailStore from "@/store/heroDetail";
 import switchStore from "@/store/switch";
 
 interface Emits {
@@ -11,7 +10,6 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetail();
-const $heroDetailStore = heroDetailStore();
 const $switchStore = switchStore();
 
 const skin = ref();
@@ -100,7 +98,7 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
 };
 
 /* 当滚动到皮肤页，播放出场动画 */
-$heroDetailStore.setScollFn((index) => {
+$heroDetail.setScollFn("skin", (index) => {
   if (index === 2 && !show_skin_head.value) {
     show_skin_box.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
@@ -122,6 +120,10 @@ $heroDetailStore.setScollFn((index) => {
       }, 1000);
     }, 1000);
   }
+});
+
+onUnmounted(() => {
+  $heroDetail.removeScollFn("skin");
 });
 </script>
 

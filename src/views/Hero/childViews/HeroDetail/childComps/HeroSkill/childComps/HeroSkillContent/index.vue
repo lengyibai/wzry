@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 
 import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue"; //左侧描述
 import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"; //右侧效果
@@ -19,7 +19,7 @@ const toggle = ref(false); //用于技能选择
 const exist_effect = computed(() => props.skill.effect?.length); //存在技能效果
 
 /* 当滚动到技能页则显示技能 */
-$heroDetail.setScollFn((index) => {
+$heroDetail.setScollFn("skillContent", (index) => {
   if (index === 3) show.value = true;
 });
 
@@ -29,6 +29,10 @@ $heroDetail.setSkillSelectFn(() => {
   setTimeout(() => {
     toggle.value = false;
   }, 375);
+});
+
+onUnmounted(() => {
+  $heroDetail.removeScollFn("skillContent");
 });
 </script>
 
