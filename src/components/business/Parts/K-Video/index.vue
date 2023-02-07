@@ -12,6 +12,7 @@ const videoPlayer = ref<HTMLVideoElement>();
 const play = async () => {
   try {
     await videoPlayer.value?.play();
+    videoPlayer.value!.volume = 0.5;
   } catch (error) {
     setTimeout(() => {
       play();
