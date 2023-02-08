@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
@@ -79,6 +79,10 @@ const handleToggleSkill = () => {
   handleSelectSkill(current_index.value);
   $switchStore.$clickAudio("n4r4");
 };
+
+onUnmounted(() => {
+  $heroDetail.removeScollFn("skinIcon");
+});
 </script>
 
 <template>
