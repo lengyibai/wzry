@@ -64,7 +64,6 @@ const handleBlur = () => {
 /* 悬浮触发 */
 const handleEnterItem = (v: number) => {
   current_index.value = v;
-  $switchStore.$clickAudio("n4r4");
 };
 
 /* 选择的数据 */

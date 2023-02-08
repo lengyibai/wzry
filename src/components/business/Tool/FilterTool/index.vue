@@ -42,7 +42,6 @@ const handleShowList = () => {
 /* 悬浮触发 */
 const handleEnterItem = (v: Data) => {
   current_value.value = v.label;
-  $switchStore.$clickAudio("n4r4");
 };
 
 /* 选择的值 */
