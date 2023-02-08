@@ -1,24 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import EquipListColumn from "./childComps/EquipListColumn/index.vue"; //装备栏
 
 import equipStore from "@/store/equip";
 
 const $equipStore = equipStore();
-
-const equipList = ref();
-
-/** 返回顶部 */
-const backTop = () => {
-  setTimeout(() => {
-    equipList.value.scroll({ behavior: "smooth", top: 0 });
-  }, 250);
-};
-
-defineExpose({
-  backTop,
-});
 </script>
 
 <template>

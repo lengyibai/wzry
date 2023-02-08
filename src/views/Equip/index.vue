@@ -11,13 +11,16 @@ const $equipStore = equipStore();
 const $switchStore = switchStore();
 
 const equipList = ref();
+const equipMain = ref();
 const show = ref(false); //显示装备列表
 
 $switchStore.$clickAudio("3k4s");
 
-/* 点击筛选后触发 */
+/* 点击筛选后触发返回顶部 */
 const EmitChangeFilter = () => {
-  equipList.value.backTop();
+  setTimeout(() => {
+    equipMain.value.scroll({ top: 0 });
+  }, 450);
 };
 
 /* 列表请求完毕之后显示装备分类侧边栏 */
@@ -29,7 +32,7 @@ $equipStore.getEquipList().then(() => {
 <template>
   <div class="equip">
     <transition name="fade">
-      <div v-if="show" class="equip-main">
+      <div v-if="show" ref="equipMain" class="equip-main">
         <!-- 装备详情 -->
         <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 
