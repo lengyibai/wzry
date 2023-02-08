@@ -77,7 +77,7 @@ const props = withDefaults(defineProps<Props>(), {
   align: "left",
   fontSize: "26px",
   type: "text",
-  noSpecial: true,
+  noSpecial: false,
 });
 const emit = defineEmits<Emits>();
 
