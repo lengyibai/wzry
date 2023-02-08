@@ -25,7 +25,7 @@ export const heroDefault: Hero.Data = {
 /** @description 默认技能信息 */
 export const skillDefault: Hero.Skill = {
   cd: 0,
-  consume: 0,
+  consume: "",
   name: "",
   desc: "",
   img: "",

@@ -29,7 +29,7 @@ const left = ref(); //左侧元素
 
 const skill_effect = ref(""); //选择的技能效果
 const skill_unit = ref(""); //技能消耗单位
-const skill_consume = ref(0); //阶段值
+const skill_consume = ref<number | "">(""); //阶段值
 const hero_id = ref(0); //英雄id
 const effectIndex = ref(-1); //处于编辑状态的技能效果索引
 const active_index = ref(0); //处于编辑状态的技能
@@ -200,10 +200,12 @@ const handleDelEffect = () => {
 };
 
 /* 添加阶段值触发 */
-const HandleAddConsume = () => {
-  activeSkill().effect![effectIndex.value].phase ??= [];
-  activeSkill().effect![effectIndex.value].phase.push(skill_consume.value);
-  skill_consume.value = 0;
+const handleAddConsume = () => {
+  if (skill_consume.value) {
+    activeSkill().effect![effectIndex.value].phase ??= [];
+    activeSkill().effect![effectIndex.value].phase.push(skill_consume.value as number);
+    skill_consume.value = "";
+  }
 };
 
 /* 删除阶段值 */
@@ -291,8 +293,8 @@ setTimeout(async () => {
 
       <!-- 设置阶段值 -->
       <div v-if="noFirst" v-show="skill_effect" class="select-effect">
-        <FormInput v-model="skill_consume" label="阶段值" placeholder="升级后的值" @keyup.enter="HandleAddConsume" />
-        <button class="confirm" @click="HandleAddConsume">确定</button>
+        <FormInput v-model="skill_consume" label="阶段值" placeholder="升级后的值" @keyup.enter="handleAddConsume" />
+        <button class="confirm" @click="handleAddConsume">确定</button>
         <button class="del" @click="handleDelConsume">删除一值</button>
       </div>
 
