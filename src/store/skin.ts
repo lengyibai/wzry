@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 import { getSkin } from "@/api/main/games/skin";
-import { getSkinType } from "@/api/main/games/skinType";
+import { getSkinType } from "@/api/main/games/skin";
 import { $debounce, $search, $typeSort } from "@/utils";
 
 /** @description 皮肤列表页 */
@@ -57,11 +57,9 @@ const skinStore = defineStore("skin", () => {
     const skinList = await getSkin();
     const skinType = await getSkinType();
     skinList.forEach((skin) => {
-      const type = skinType.find((type) => type.id === skin.type);
-      if (type) {
-        skin.type = type.link;
-        skin.category = type.name;
-      }
+      const type = skinType.find((type) => type.id === skin.type)!;
+      skin.type = type.link;
+      skin.category = type.name;
     });
     skin_list.value = skinList;
     setProfessional("全部");
