@@ -318,7 +318,7 @@ const skinStore = defineStore("skin", () => {
   const searchSkin = (name: string) => {
     $debounce(() => {
       if (name) {
-        filter_list.value = $search(skin_list.value, name, ["name", "heroName", "category"]);
+        filter_list.value = $search(skin_list.value, name, ["name", "heroName", "category"], true);
       } else {
         sortAll();
       }

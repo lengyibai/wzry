@@ -114,27 +114,33 @@ export const $pinyin = (str: string) => {
 };
 
 /** @description 正则搜索 */
-export const $search = <T>(data: T[], value: string | string[], keys: string | string[]): T[] => {
+export const $search = <T>(
+  data: T[],
+  value: string | string[],
+  keys: string | string[],
+  highlight: boolean = false
+): T[] => {
   const arr: T[] = [];
 
   const fn = (item: any, key: string): void | undefined => {
     const reg = new RegExp(item.toString().toLowerCase(), "i");
     arr.push(
-      ...data.filter((item: any) => {
-        let test = "";
-        if (typeof item[key] === "number") {
-          test = item[key];
-          return reg.test(test);
-        }
-        if (typeof item[key] === "string") {
-          test = $pinyin(item[key])[0];
-          return reg.test(test) || reg.test(item[key]);
+      ...$deepCopy<T[]>(data).filter((item: any) => {
+        item[key] = item[key].toString();
+        const pinyin: string[] = $pinyin(item[key]);
+        if (pinyin.some((py) => reg.test(py) || reg.test(item[key]))) {
+          if (highlight) {
+            item[key] = item[key].replace(reg, (match: string) => `<i style="color:var(--blue)">${match}</i>`);
+          }
+          return true;
         }
       })
     );
   };
 
-  if (Array.isArray(value)) {
+  if (Array.isArray(keys)) {
+    keys.forEach((key: string) => fn(value || "", key));
+  } else if (Array.isArray(value)) {
     value.forEach((val: any) => {
       if (Array.isArray(keys)) {
         keys.forEach((key: string) => fn(val || "", key));
@@ -143,11 +149,7 @@ export const $search = <T>(data: T[], value: string | string[], keys: string | s
       }
     });
   } else {
-    if (Array.isArray(keys)) {
-      keys.forEach((key: string) => fn(value || "", key));
-    } else {
-      fn(value || "", keys);
-    }
+    fn(value || "", keys);
   }
 
   return arr;
@@ -231,6 +233,7 @@ export function $deepCopy<T>(e: any): T {
       return (
         t.set(e, r),
         Reflect.ownKeys(e).forEach((t) => {
+          // eslint-disable-next-line no-prototype-builtins
           e.propertyIsEnumerable(t) && (r[t] = u(e[t]));
         }),
         r
@@ -424,6 +427,7 @@ export const $debounceInstant = (() => {
     timer = setTimeout(() => {
       timer = 0;
     }, delay);
+    // eslint-disable-next-line prefer-spread
     if (callNow) fn.apply(undefined, args);
   };
 })();

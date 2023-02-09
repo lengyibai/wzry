@@ -35,8 +35,8 @@ const handle = (v: string) => {
 
     <!-- 名字、代号 -->
     <div class="bottom">
-      <div class="name">{{ data.name }}</div>
-      <div class="mark">——{{ data.heroName }}</div>
+      <div class="name" v-html="data.name"></div>
+      <div class="mark" v-html="'——' + data.heroName"></div>
     </div>
 
     <!-- 悬浮工具 -->

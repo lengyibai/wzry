@@ -72,7 +72,7 @@ const handleViewClick = () => {
 
     <!-- 底部名字、代号 -->
     <div class="bottom">
-      <div class="name">{{ data.name }}</div>
+      <div class="name" v-html="data.name"></div>
       <div class="mark">{{ data.mark }}</div>
     </div>
   </div>

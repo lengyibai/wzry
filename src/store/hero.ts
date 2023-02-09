@@ -292,7 +292,7 @@ const heroStore = defineStore("hero", () => {
   const searchHero = (name: string) => {
     $debounce(() => {
       if (name) {
-        filter_list.value = $search<Hero.Data>(hero_list.value, name, "name");
+        filter_list.value = $search<Hero.Data>(hero_list.value, name, "name", true);
       } else {
         sortAll();
       }
