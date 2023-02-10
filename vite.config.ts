@@ -40,16 +40,6 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 9527,
     open: true,
-    proxy: {
-      "/api": {
-        target: "https://lengyibai.gitee.io/wzry",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
-  define: {
-    "process.env": {},
   },
   resolve: {
     alias: {
