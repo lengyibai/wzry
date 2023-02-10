@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "tsc": "vue-tsc --noEmit ",
+    "type-check": "vue-tsc --noEmit ",
     "eslint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "stylelint": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\""
