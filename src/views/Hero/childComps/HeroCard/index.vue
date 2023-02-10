@@ -2,7 +2,6 @@
 import { ref, computed } from "vue";
 
 import heroStore from "@/store/hero";
-import switchStore from "@/store/switch";
 
 interface Props {
   data: Hero.Data; //英雄数据
