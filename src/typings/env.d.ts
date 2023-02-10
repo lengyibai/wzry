@@ -4,8 +4,6 @@ module "*.vue" {
   export default component;
 }
 
-module "nprogress";
-
 type Interval = NodeJS.Timer | number;
 type Timeout = NodeJS.Timeout | number;
 type Func = () => void;
