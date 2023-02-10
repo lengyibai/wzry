@@ -98,7 +98,7 @@ export default () => {
     hero_list = await getHeroBasic(); //获取英雄基础列表
 
     //获取远程数据并比对
-    for (const [key, name] of keywords) {
+    const data_requests = keywords.map(async ([key, name]) => {
       const v = (await requests[key]()).data;
       const l = getLocalData(key);
       if (JSON.stringify(l) !== JSON.stringify(v)) {
@@ -106,19 +106,23 @@ export default () => {
         need_update_data.keys.push(key);
         need_update_data.data.push(v);
       }
-    }
+    });
+    await Promise.all(data_requests);
 
     //获取远程语音并比对
-    for (const hero of hero_list.filter((hero) => !["梦奇", "盾山"].includes(hero.name))) {
-      const v = (await Voice(hero.name)).data;
-      const l = getLocalData(hero.pinyin, "voice_");
+    const voice_requests = hero_list.map(async (hero) => {
+      if (!["梦奇", "盾山"].includes(hero.name)) {
+        const v = (await Voice(hero.name)).data;
+        const l = getLocalData(hero.pinyin, "voice_");
 
-      if (JSON.stringify(l) !== JSON.stringify(v)) {
-        need_update_voice.names.push(`《${hero.name}》`);
-        need_update_voice.keys.push(hero.pinyin);
-        need_update_voice.data.push(v);
+        if (JSON.stringify(l) !== JSON.stringify(v)) {
+          need_update_voice.names.push(`《${hero.name}》`);
+          need_update_voice.keys.push(hero.pinyin);
+          need_update_voice.data.push(v);
+        }
       }
-    }
+    });
+    await Promise.all(voice_requests);
 
     //更新覆盖数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
