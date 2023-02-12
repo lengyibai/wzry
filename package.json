@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "type-check": "vue-tsc --noEmit ",
-    "eslint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "eslint": "eslint . --ext .vue,.js,.ts --fix",
     "stylelint": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\""
   },
@@ -18,11 +18,10 @@
     "mitt": "^3.0.0",
     "pinia": "^2.0.22",
     "vconsole": "^3.15.0",
-    "vue": "^3.2.45",
+    "vue": "^3.2.47",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.4",
     "@types/node": "^18.11.12",
     "@vitejs/plugin-legacy": "^3.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
@@ -42,7 +41,7 @@
     "prettier": "^2.7.1",
     "rollup-plugin-visualizer": "^5.8.3",
     "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recommended-less": "^1.0.4",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
@@ -54,13 +53,5 @@
     "vite": "^4.0.3",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vue-tsc": "^1.0.12"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write"
-    ],
-    "*.ts": [
-      "prettier --parser=typescript --write"
-    ]
   }
 }
