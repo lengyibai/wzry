@@ -47,13 +47,14 @@ const handleReg = () => {
     <div class="box">
       <i class="iconfont wzry-nickname" />
       <K-Input
-        v-model="form.nickname"
         v-model:empty="form_verify[0]"
+        v-model="form.nickname"
+        :max="6"
+        :min="2"
         padding-left="45px"
         placeholder="请输入昵称"
         required
-        :min="2"
-        :max="6"
+        width="100%"
       />
     </div>
 
@@ -61,14 +62,15 @@ const handleReg = () => {
     <div class="box">
       <i class="iconfont wzry-user" />
       <K-Input
-        v-model.number="form.id"
         v-model:empty="form_verify[1]"
+        v-model.number="form.id"
+        :max="12"
+        :min="6"
+        number
         padding-left="45px"
         placeholder="请输入帐号"
         required
-        number
-        :min="6"
-        :max="12"
+        width="100%"
       />
     </div>
 
@@ -76,13 +78,14 @@ const handleReg = () => {
     <div class="box">
       <i class="iconfont wzry-password" />
       <K-Input
-        v-model="form.password"
         v-model:empty="form_verify[2]"
+        v-model="form.password"
+        :max="18"
+        :min="6"
         padding-left="45px"
         placeholder="请输入密码"
         required
-        :min="6"
-        :max="18"
+        width="100%"
       />
     </div>
 
