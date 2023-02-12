@@ -80,7 +80,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="skin-voice scroll-white" @mousewheel.stop>
+  <div class="skin-voice" @mousewheel.stop>
     <button
       v-for="(item, index) in voices"
       ref="voiceRef"
