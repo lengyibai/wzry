@@ -6,3 +6,6 @@ export const LOGINBG = HTTPS1 + "LoginBg%20(1).mp4";
 
 /** @description 登录后背景视频 */
 export const BG = HTTPS1 + "9d35649f76384b78a798c227486d3be0.mp4";
+
+/** @description 项目介绍网页 */
+export const README = import.meta.env.VITE_API_URL + "/readme.html";

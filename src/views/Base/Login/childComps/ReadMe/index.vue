@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
+import { README } from "@/config/assets";
 interface Props {
   modelValue?: boolean;
 }
@@ -22,14 +23,7 @@ const handleClose = () => {
 <template>
   <div class="readme">
     <i class="iconfont wzry-guanbi cursor-pointer" @click="handleClose"></i>
-    <iframe
-      class="iframe"
-      src="https://lengyibai.gitee.io/wzry/README"
-      marginheight="0"
-      marginwidth="0"
-      frameborder="0"
-      scrolling="auto"
-    ></iframe>
+    <iframe class="iframe" :src="README" marginheight="0" marginwidth="0" frameborder="0" scrolling="auto"></iframe>
   </div>
 </template>
 
