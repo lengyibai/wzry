@@ -38,9 +38,9 @@ const version = `${$browserV.version} ${
     <p>测试尺寸：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
     <p :class="{ low: !browser_status }">{{ browser_name }}内核：{{ version }}</p>
     <p :class="{ old: old }">数据：{{ $versionStore.local_version }}</p>
-    <p v-if="old" :class="{ new: old }">数据：{{ $versionStore.remote_version }}</p>
+    <p v-if="old" :class="{ new: old }">正在更新数据：{{ $versionStore.remote_version }}</p>
     <p :class="{ old: old_file }">网页：{{ $versionStore.local_file }}</p>
-    <p v-if="old_file" :class="{ new: old_file }">网页：{{ $versionStore.file_version }}</p>
+    <p v-if="old_file" :class="{ new: old_file }">登录后更新网页：{{ $versionStore.file_version }}</p>
   </div>
 </template>
 
