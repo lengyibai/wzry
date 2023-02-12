@@ -21,6 +21,7 @@ class RequestHttp {
       }
     );
 
+    let err_status = false;
     /** @description 响应拦截器 */
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
@@ -29,14 +30,15 @@ class RequestHttp {
       async (error: AxiosError) => {
         //如果是获取版本信息造成的报错，则不提醒
         if (error.config.url?.includes("version")) return;
-        if (error.code === "ERR_NETWORK") {
+        if (error.code === "ERR_NETWORK" && !err_status) {
+          err_status = true;
           const reset = confirm(
-            "检测到数据请求失败，请尝试点击【取消】后刷新浏览器解决，刷新后如果依旧显示此弹窗，请点击【确定】清除数据重新下载，如果依旧未解决，请反馈给作者。"
+            "检测到数据请求失败，可能是服务器异常导致，请尝试点击【取消】自动刷新浏览器解决，刷新后依旧显示此弹窗，请点击【确定】清除数据重新下载，如果扔未解决，请反馈给作者。"
           );
           if (reset) {
             localStorage.clear();
-            location.reload();
           }
+          location.reload();
         }
 
         return await Promise.reject(error);
