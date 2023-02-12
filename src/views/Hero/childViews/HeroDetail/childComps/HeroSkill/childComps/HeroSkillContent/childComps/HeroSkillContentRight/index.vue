@@ -10,13 +10,13 @@ defineProps<Props>();
     <table class="table">
       <tr>
         <td></td>
-        <td v-for="(item, index) in activeSkill.effect![0].phase.length" :key="index" class="lv">LV{{ item }}</td>
+        <td v-for="(item, index) in activeSkill.effect![0].phase.length" class="lv" :key="index">LV{{ item }}</td>
       </tr>
       <tr v-for="(item, index) in activeSkill.effect" :key="index">
         <td class="effect">
           {{ item.type }}
         </td>
-        <td v-for="(_item, index) in item.phase" :key="index" class="num">
+        <td v-for="(_item, index) in item.phase" class="num" :key="index">
           {{ _item }}
         </td>
       </tr>

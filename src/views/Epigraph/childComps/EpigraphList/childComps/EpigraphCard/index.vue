@@ -11,7 +11,7 @@ defineProps<Props>();
     <div class="box">
       <div class="name">5级铭文:{{ data.name }}</div>
       <div class="attr">
-        <div v-for="(item, index) in data.effect" :key="index" class="type">{{ item.type }}+{{ item.num }}</div>
+        <div v-for="(item, index) in data.effect" class="type" :key="index">{{ item.type }}+{{ item.num }}</div>
       </div>
     </div>
   </div>

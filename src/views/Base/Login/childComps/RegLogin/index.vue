@@ -76,7 +76,7 @@ if (!$isPhone || $deviceStore.browser_name === "safari") {
 </script>
 
 <template>
-  <div ref="loginBox" class="login-box">
+  <div class="login-box" ref="loginBox">
     <!-- 左上角重新选择 -->
     <div v-show="is_reg" class="back cursor-pointer lib-click" @click="handleBack">
       <i class="iconfont wzry-fanhui" />

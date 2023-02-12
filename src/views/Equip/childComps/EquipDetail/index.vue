@@ -32,14 +32,14 @@ const abbreviations: Record<string, string> = {
 
       <!-- 数值信息 -->
       <div class="info">
-        <div v-for="(item, index) in equip.effect" :key="index" class="effect" :class="abbreviations[item.name]">
+        <div v-for="(item, index) in equip.effect" class="effect" :class="abbreviations[item.name]" :key="index">
           +{{ item.num }} {{ item.name }}
         </div>
       </div>
 
       <!-- 被动/主动 -->
       <div class="details">
-        <div v-for="(item, index) in equip.motivation" :key="index" class="motivation">
+        <div v-for="(item, index) in equip.motivation" class="motivation" :key="index">
           <div class="title">{{ item.type }}-{{ item.name }}</div>
           <div class="desc" v-html="item.desc"></div>
           <div v-if="item.time" class="time lq">{{ item.time }}秒</div>

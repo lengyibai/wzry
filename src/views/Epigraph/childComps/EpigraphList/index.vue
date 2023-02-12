@@ -66,19 +66,19 @@ onBeforeUnmount(() => {
     <transition name="card-list">
       <LibGrid
         v-if="show && epigraph_list.length"
-        ref="epigraphListRef"
         class="epigraph-list"
         gap="15px"
         :count="count"
+        ref="epigraphListRef"
       >
         <transition-group name="card" appear>
           <div
             v-for="(item, index) in epigraph_list"
-            :key="item.id"
             class="epigraph-card"
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"
+            :key="item.id"
           >
             <EpigraphCard :data="item" />
           </div>

@@ -106,7 +106,6 @@ onBeforeUnmount(() => {
       <transition name="card-list">
         <LibGrid
           v-if="$skinStore.show_list.length && show_list"
-          ref="skinListRef"
           scroll-id="skin_list"
           class="skin-list"
           gap="25px"
@@ -114,8 +113,9 @@ onBeforeUnmount(() => {
           :scroll-top="$skinStore.scroll"
           @load-more="EmitLoadMore"
           @scroll="EmitScroll"
+          ref="skinListRef"
         >
-          <div v-for="item in $skinStore.show_list" :key="item.id" class="skin-card" @mouseenter="handleEnterCard">
+          <div v-for="item in $skinStore.show_list" class="skin-card" @mouseenter="handleEnterCard" :key="item.id">
             <SkinCard :data="item" @showTool="EmitShowTool" />
           </div>
         </LibGrid>

@@ -130,7 +130,7 @@ onUnmounted(() => {
 <template>
   <div class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
-    <div ref="showSkin" class="show-skin flex">
+    <div class="show-skin flex" ref="showSkin">
       {{ is_into_drap ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
@@ -141,13 +141,13 @@ onUnmounted(() => {
     <!--皮肤头像-->
     <button
       v-for="(item, index) in skins"
-      ref="skin"
-      :key="index"
       v-drag="{ fn: handleDrag, index }"
       class="skin"
       :style="{
       transform: show_skin_head ? ' translateX(65%) translateY(75%) rotate(' + (360 / skins!.length || 0) * (index + 1) + 'deg) translateY(-200%)' : '',
     }"
+      ref="skin"
+      :key="index"
     >
       <img :src="item.headImg" alt="" @dragstart.prevent />
     </button>

@@ -37,7 +37,7 @@ onMounted(() => {
 
 <template>
   <div class="hero-basic">
-    <span v-for="(item, index) in hero_data" ref="info" :key="index" class="info">
+    <span v-for="(item, index) in hero_data" class="info" ref="info" :key="index">
       <i class="iconfont" :class="'wzry-' + item[1]" />
       <span class="label">{{ item[2] }}：</span>
       <span class="name">{{ item[0] || "未知" }}</span>

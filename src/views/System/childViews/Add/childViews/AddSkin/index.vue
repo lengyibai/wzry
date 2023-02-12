@@ -127,36 +127,36 @@ setTimeout(async () => {
 
 <template>
   <ManageMask
-    ref="scrollBox"
     class="content"
     :show="show"
     :styles="{
       flexDirection: 'column',
     }"
+    ref="scrollBox"
   >
     <transition-group name="fade">
       <!--左上角新增-->
-      <i key="LibSvg" class="add-one iconfont wzry-addcircle cursor-pointer" @click="handleAddOne" />
+      <i class="add-one iconfont wzry-addcircle cursor-pointer" @click="handleAddOne" key="LibSvg" />
 
       <!--指派英雄-->
       <SelectHero
-        key="SelectHero"
         v-model="hero_id"
         class="select-hero"
         :disabled="!!form_data!.length"
         @update:model-value="EmitSelectHero"
+        key="SelectHero"
       />
 
       <!-- 拥有皮肤数量 -->
-      <span key="SkinNum" class="skin-num">拥有皮肤：{{ skin_num }}款</span>
+      <span class="skin-num" key="SkinNum">拥有皮肤：{{ skin_num }}款</span>
 
       <!--皮肤盒子列表-->
       <div
         v-for="(item, index) in form_data"
-        :key="index"
         class="skin"
         @mouseenter="current_index = index"
         @mouseleave="current_index = null"
+        :key="index"
       >
         <FormInput v-model="item.name" label="皮肤名" required @blur="EmitExist" />
         <FormInput v-model="item.price" label="价格" placeholder="请输入" />

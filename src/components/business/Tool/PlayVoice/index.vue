@@ -31,5 +31,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <audio ref="voice" :src="link" hidden="true" @ended="ended"></audio>
+  <audio :src="link" hidden="true" @ended="ended" ref="voice"></audio>
 </template>

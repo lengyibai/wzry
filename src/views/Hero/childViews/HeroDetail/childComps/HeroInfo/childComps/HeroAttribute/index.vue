@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="attribute" class="attribute">
+  <div class="attribute" ref="attribute">
     <span>{{ text[attr] }}</span>
     <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
     <div class="bar">

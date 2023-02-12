@@ -44,7 +44,7 @@ nextTick(() => {
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="icon" :src="equip.icon" alt="" @dragstart.prevent />
+    <img :src="equip.icon" alt="" @dragstart.prevent ref="icon" />
 
     <!-- 左线 -->
     <transition name="left-line">

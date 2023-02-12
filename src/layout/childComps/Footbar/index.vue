@@ -82,7 +82,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    ref="footbar"
     v-particle="{
       color: '#2e5283',
       filter: false,
@@ -95,9 +94,10 @@ onBeforeUnmount(() => {
     @mouseenter="handleShowTool(true)"
     @mousemove="handleMoveLine"
     @mouseleave="handleShowTool(false)"
+    ref="footbar"
   >
     <!-- 底部竖线 -->
-    <div v-if="enable_music && music_progress" ref="line" class="line"></div>
+    <div v-if="enable_music && music_progress" class="line" ref="line"></div>
 
     <!-- 音乐播放器 -->
     <MusicPlay v-if="enable_music" class="music-play" />

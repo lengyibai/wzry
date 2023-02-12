@@ -139,7 +139,7 @@ watch(
     <FormLabel :label="label" :required="required">
       <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
         <!-- 选择器框 -->
-        <div ref="selectBox" class="select-box">
+        <div class="select-box" ref="selectBox">
           <K-input
             v-model="input_value"
             :required:="required"
@@ -165,7 +165,6 @@ watch(
           <transition-group name="select-list">
             <button
               v-for="(item, index) in select_list"
-              :key="item.id"
               class="box"
               :class="{
                 active: current_index === index || modelValue === item.name || modelValue === item.id,
@@ -173,6 +172,7 @@ watch(
               @mousedown="handleSelect(item.id, item.name)"
               @mouseenter="handleEnterItem(index)"
               @mouseleave="current_index = null"
+              :key="item.id"
             >
               <div class="item">{{ item.name }}</div>
             </button>
@@ -185,7 +185,7 @@ watch(
   <!-- 选择的列表 -->
   <div v-if="multi" class="selected-list">
     <transition-group name="fade-a">
-      <div v-for="(item, index) in selected_list" :key="item" class="selected">
+      <div v-for="(item, index) in selected_list" class="selected" :key="item">
         <span class="name">{{ item }}</span>
         <button class="del" @click="handleDel(index)">×</button>
       </div>

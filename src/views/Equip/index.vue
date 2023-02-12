@@ -32,7 +32,7 @@ $equipStore.getEquipList().then(() => {
 <template>
   <div class="equip">
     <transition name="fade">
-      <div v-if="show" ref="equipMain" class="equip-main">
+      <div v-if="show" class="equip-main" ref="equipMain">
         <!-- 装备详情 -->
         <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 

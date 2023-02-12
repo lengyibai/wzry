@@ -53,11 +53,11 @@ const open = (key: string) => {
   <div class="add" :style="box">
     <transition-group name="add" appear>
       <!-- 卡片 -->
-      <K-Manage v-for="(v, k) in list" :key="k" :title="v" type="add" @click="open(k as string)" />
+      <K-Manage v-for="(v, k) in list" :title="v" type="add" @click="open(k as string)" :key="k" />
     </transition-group>
 
     <!--发布列表-->
-    <transition v-for="(v, k) in options" :key="k" name="tv-clip">
+    <transition v-for="(v, k) in options" name="tv-clip" :key="k">
       <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
     </transition>
   </div>

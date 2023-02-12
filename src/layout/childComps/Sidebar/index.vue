@@ -45,7 +45,7 @@ onBeforeUnmount(() => {
 
     <!-- 侧边栏列表 -->
     <div class="side-item">
-      <sideItem v-for="route in routes" :key="route.path" :route="route" :coord="top" @coord="EmitCoord" />
+      <sideItem v-for="route in routes" :route="route" :coord="top" @coord="EmitCoord" :key="route.path" />
     </div>
 
     <!-- 滑块 -->

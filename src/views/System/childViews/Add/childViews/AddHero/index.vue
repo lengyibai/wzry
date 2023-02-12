@@ -124,11 +124,11 @@ setTimeout(async () => {
     <div class="flex-box">
       <FormSelect
         v-for="(v, k) in info"
-        :key="k"
         v-model="form_data![v[2]]"
         :label="v[0]"
         :data="type_list[v[1]]"
         :value="form_data![v[2]]"
+        :key="k"
       />
     </div>
 
@@ -152,7 +152,7 @@ setTimeout(async () => {
 
     <!-- 属性相关 -->
     <div class="flex-box">
-      <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="200px">
+      <FormLabel v-for="(v, k) in attr" :label="v" label-width="200px" :key="k">
         <K-Range v-model="form_data![k]" :text="form_data![k] + '%'" track-color="var(--theme-color-nine)" />
       </FormLabel>
     </div>

@@ -3,7 +3,6 @@
     <thead>
       <th
         v-for="(item, index) in head"
-        :key="index"
         :class="{ 'cursor-pointer': sort.includes(item) }"
         @click="
           sortChange({
@@ -13,6 +12,7 @@
             id: sort_id[index],
           })
         "
+        :key="index"
       >
         <div class="head">
           <slot :data="head" :name="head_key[index]">{{ item }}</slot>
@@ -22,7 +22,7 @@
     </thead>
 
     <tbody>
-      <tr v-for="(item, index) in data" :key="index" :style="{ backgroundColor: item.bgColor }">
+      <tr v-for="(item, index) in data" :style="{ backgroundColor: item.bgColor }" :key="index">
         <slot :data="item" name="body">
           <td v-for="(_item, _index) in Object.values(item)" :key="_index">
             {{ _item }}

@@ -50,10 +50,10 @@ defineExpose({
 
 <template>
   <div
-    ref="LibGrid"
     class="LibGrid"
     :style="{ gridTemplateColumns: 'repeat(' + count + ', 1fr)', gridGap: gap }"
     @scroll.passive="scroll"
+    ref="LibGrid"
   >
     <slot></slot>
   </div>

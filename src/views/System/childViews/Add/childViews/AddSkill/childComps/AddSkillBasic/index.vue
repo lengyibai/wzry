@@ -27,17 +27,17 @@ const handleDel = () => emit("del");
   <div class="right">
     <div
       v-for="(item, index) in skills"
-      :key="index"
       class="add-skill-basic cursor-pointer"
       :class="{ active: active(index) }"
       @click="handleSelectSkill(index)"
+      :key="index"
     >
       <!-- 标题 -->
       <div class="title">
         <img :src="item.img || IMGBED + '/image/unknown.png'" alt="" @dragstart.prevent />
         <div class="name">{{ item.name }}</div>
         <div class="types">
-          <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
+          <K-SkillTypeTag v-for="(type, index) in item.type" :type="type" :key="index" />
         </div>
         <button v-show="active(index)" v-if="index !== 0" class="del lib-click" @click.stop="handleDel">删除</button>
         <div v-show="active(index)" class="editing">编辑中...</div>
@@ -54,7 +54,7 @@ const handleDel = () => emit("del");
 
       <!-- 效果 -->
       <div v-if="item.effect" class="effect">
-        <div v-for="(effect, index) in item.effect" :key="index" class="box">
+        <div v-for="(effect, index) in item.effect" class="box" :key="index">
           <div class="type">{{ effect.type }}：</div>
           <div class="phase">{{ effect.phase?.join(" | ") }}</div>
         </div>

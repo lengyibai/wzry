@@ -89,13 +89,13 @@ onUnmounted(() => {
   <div class="hero-skill-icon">
     <div
       v-for="(item, index) in active_skills"
-      ref="skillImg"
-      :key="index"
       class="icon cursor-pointer"
       :class="{ active: show }"
       :style="{
         'transition-delay': 0.05 * index + 's',
       }"
+      ref="skillImg"
+      :key="index"
     >
       <!-- 技能选中圆圈 -->
       <transition name="border-fade">
