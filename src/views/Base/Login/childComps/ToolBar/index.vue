@@ -83,6 +83,16 @@ const handleTool = (v: string) => {
       </div>
       <div class="base"></div>
     </div>
+
+    <!-- 公告 -->
+    <div v-if="notice" class="tool" title="演示">
+      <div class="line"></div>
+      <a class="box cursor-pointer elastic" href="https://b23.tv/QRN4R7E" target="_blank">
+        <i class="iconfont wzry-shipin" />
+        <span class="text">演示</span>
+      </a>
+      <div class="base"></div>
+    </div>
   </div>
 </template>
 
