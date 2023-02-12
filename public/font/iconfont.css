@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3767305 */
-  src: url('iconfont.woff2?t=1675356007803') format('woff2'),
-       url('iconfont.woff?t=1675356007803') format('woff'),
-       url('iconfont.ttf?t=1675356007803') format('truetype');
+  src: url('iconfont.woff2?t=1676183298044') format('woff2'),
+       url('iconfont.woff?t=1676183298044') format('woff'),
+       url('iconfont.ttf?t=1676183298044') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wzry-musiclist:before {
+  content: "\e62f";
+}
+
+.wzry-shipin:before {
+  content: "\e635";
+}
+
+.wzry-pause:before {
+  content: "\e769";
+}
+
+.wzry-last:before {
+  content: "\e78a";
+}
+
+.wzry-next:before {
+  content: "\e7a5";
+}
+
+.wzry-play:before {
+  content: "\e7af";
+}
+
+.wzry-yinleliebiao:before {
+  content: "\e7fe";
 }
 
 .wzry-readme:before {
@@ -31,26 +59,6 @@
 
 .wzry-playactive:before {
   content: "\ea0c";
-}
-
-.wzry-play:before {
-  content: "\ea6f";
-}
-
-.wzry-next:before {
-  content: "\ea6b";
-}
-
-.wzry-last:before {
-  content: "\ea73";
-}
-
-.wzry-musiclist:before {
-  content: "\ea72";
-}
-
-.wzry-pause:before {
-  content: "\ea6e";
 }
 
 .wzry-jingyin:before {
