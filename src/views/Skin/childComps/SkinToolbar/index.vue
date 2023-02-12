@@ -142,12 +142,11 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      class="input"
       placeholder="皮肤/英雄"
       border-color="var(--theme-color-three)"
       color="var(--theme-color-five)"
       align="center"
-      width="8em"
+      width="15em"
       font-size="24px"
       @input="handSearch"
     />

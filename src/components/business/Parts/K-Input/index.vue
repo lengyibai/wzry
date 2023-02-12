@@ -1,12 +1,11 @@
 <template>
-  <div class="form-input" :class="{ disabled: disabled }">
+  <div class="form-input" :class="{ disabled: disabled }" :style="{ width: width }">
     <input
       :type="type"
       :value="modelValue"
       :placeholder="placeholder"
       :maxlength="max"
       :style="{
-        width: width,
         borderColor: borderColor,
         color: color,
         textAlign: align,
