@@ -55,16 +55,10 @@ const EmitRegSuccess = (form: User) => {
 
 /* 视差动画(如果为移动端，则取消) */
 if (!$isPhone || $deviceStore.browser_name === "safari") {
-  const parallax = new $Parallax(
-    ({ degX, degY }: Record<string, number>) => {
-      loginBox.value &&
-        (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${degX}deg) rotateY(${degY}deg)`);
-    },
-    {
-      rx: 10,
-      ry: 10,
-    }
-  );
+  const parallax = new $Parallax((x, y) => {
+    loginBox.value &&
+      (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`);
+  });
   const fn = (e: MouseEvent) => {
     $throttleInstant(() => parallax.move(e), 50);
   };
