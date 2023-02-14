@@ -490,7 +490,7 @@ export class $ScaleImage {
       align-items: center;
       justify-content: center;
       transition: all 0.25s;
-      z-index: 3;
+      z-index: 9;
       opacity: 0;
     `;
     document.body.appendChild(this.overlay);
