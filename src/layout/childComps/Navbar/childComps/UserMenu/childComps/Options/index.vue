@@ -77,7 +77,8 @@ const handleSave = () => {
         v-model="user_info.nickname"
         class="input"
         border-color="var(--theme-color-three)"
-        width="100%"
+        width="250px"
+        align="center"
         @update:model-value="handleContrast"
       />
     </div>
@@ -89,7 +90,8 @@ const handleSave = () => {
         v-model="user_info.password"
         class="input"
         border-color="var(--theme-color-three)"
-        width="100%"
+        width="250px"
+        align="center"
         @update:model-value="handleContrast"
       />
     </div>
