@@ -8,6 +8,9 @@ export const Version = () => http.Get<VersionUpdate>("/version.json");
 /** @description 获取公告 */
 export const Notice = () => http.Get<string>("/notice.json");
 
+/** @description 获取战绩 */
+export const Team = () => http.Get<string>("/team.json");
+
 /** @description 获取用户列表 */
 export const User = () => http.Get<User[]>("/user.json");
 

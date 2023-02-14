@@ -4,6 +4,7 @@ import { ref, computed, onUnmounted } from "vue";
 import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ReadMe from "./childComps/ReadMe/index.vue"; //README
+import Team from "./childComps/Team/index.vue"; //开黑
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
@@ -20,6 +21,7 @@ let tip_status = false; //用于tip新手引导
 
 const show_notice = ref(true); //显示公告
 const show_readme = ref(false); //显示README
+const show_team = ref(false); //显示开黑
 const finish = ref(false); //数据下载完成
 
 //启用视频背景
@@ -32,6 +34,7 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 const EmitToolType = (v: string) => {
   show_readme.value = v === "readme";
   show_notice.value = v === "notice";
+  show_team.value = v === "team";
 };
 
 /* 关闭公告触发 */
@@ -86,8 +89,13 @@ onUnmounted(() => {
     </transition>
 
     <!-- README -->
-    <transition name="iframe">
+    <transition name="fade">
       <ReadMe v-if="show_readme" v-model="show_readme" />
+    </transition>
+
+    <!-- 开黑 -->
+    <transition name="fade">
+      <Team v-if="show_team" v-model="show_team" />
     </transition>
 
     <!-- 下载进度 -->

@@ -65,7 +65,7 @@ const handleTool = (v: string) => {
     </div>
 
     <!-- README -->
-    <div class="tool" title="README">
+    <div v-if="notice" class="tool" title="README">
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('readme')">
         <i class="iconfont wzry-readme" />
@@ -84,13 +84,23 @@ const handleTool = (v: string) => {
       <div class="base"></div>
     </div>
 
-    <!-- 公告 -->
+    <!-- 演示 -->
     <div v-if="notice" class="tool" title="演示">
       <div class="line"></div>
       <a class="box cursor-pointer elastic" href="https://b23.tv/QRN4R7E" target="_blank">
         <i class="iconfont wzry-shipin" />
         <span class="text">演示</span>
       </a>
+      <div class="base"></div>
+    </div>
+
+    <!-- 开黑 -->
+    <div v-if="notice" class="tool" title="开黑">
+      <div class="line"></div>
+      <div class="box cursor-pointer elastic" @click="handleTool('team')">
+        <i class="iconfont wzry-youxi" />
+        <span class="text">开黑</span>
+      </div>
       <div class="base"></div>
     </div>
   </div>
