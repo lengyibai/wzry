@@ -49,6 +49,10 @@ $heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
 
     setTimeout(() => {
       voiceList.value?.scroll({ top: 0 });
+      if (current_index.value !== -1 && voices.value[current_index.value].link !== play_link.value) {
+        current_index.value = -1;
+      }
+      play(voices.value[0].link, 0);
     }, 500);
   });
 });
@@ -76,7 +80,7 @@ const voiceInfo = (info: HTMLMediaElement) => {
 };
 
 /* 语音播放结束后触发 */
-let ended: Func = () => {
+const ended = () => {
   //如果播放完最后一个，则停止播放
   if (current_index.value + 1 === voices.value.length) {
     current_index.value += 1;
