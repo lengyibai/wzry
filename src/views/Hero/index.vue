@@ -1,5 +1,5 @@
 <script setup lang="ts" name="hero">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
@@ -64,11 +64,7 @@ if ($heroStore.hero_list.length === 0) {
   if (id) {
     EmitViewClick(Number(id));
   } else {
-    $heroStore.getHeroList().then(() => {
-      setTimeout(() => {
-        $switchStore.$clickAudio("4d8m");
-      }, 750);
-    });
+    $heroStore.getHeroList();
   }
 }
 
@@ -96,6 +92,10 @@ watch(
   },
   { deep: true, immediate: true }
 );
+
+onActivated(() => {
+  $switchStore.$clickAudio("4d8m");
+});
 
 onMounted(async () => {
   const change = [

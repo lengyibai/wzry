@@ -1,5 +1,5 @@
 <script setup lang="ts" name="skin">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
@@ -20,8 +20,6 @@ const show_list = ref(false); //显示列表
 const show_poster = ref(false); //查看海报
 const show_voice = ref(false); //查看语音
 const voices = ref<Hero.Voice[]>([]); //语音列表
-
-$switchStore.$clickAudio("9u8z");
 
 $skinStore.getSkin(); //获取皮肤列表
 
@@ -68,6 +66,10 @@ watch(
   },
   { deep: true, immediate: true }
 );
+
+onActivated(() => {
+  $switchStore.$clickAudio("9u8z");
+});
 
 onMounted(() => {
   //实时修改一行个数

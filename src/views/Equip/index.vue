@@ -1,5 +1,5 @@
 <script setup lang="ts" name="equip">
-import { ref } from "vue";
+import { ref, onActivated } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
@@ -14,8 +14,6 @@ const equipList = ref();
 const equipMain = ref();
 const show = ref(false); //显示装备列表
 
-$switchStore.$clickAudio("3k4s");
-
 /* 点击筛选后触发返回顶部 */
 const EmitChangeFilter = () => {
   setTimeout(() => {
@@ -26,6 +24,10 @@ const EmitChangeFilter = () => {
 /* 列表请求完毕之后显示装备分类侧边栏 */
 $equipStore.getEquipList().then(() => {
   show.value = true;
+});
+
+onActivated(() => {
+  $switchStore.$clickAudio("3k4s");
 });
 </script>
 
