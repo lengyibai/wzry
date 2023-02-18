@@ -11,11 +11,14 @@
 
   img {
     max-width: calc(50% - 5px);
-    max-height: 160px;
+    aspect-ratio: 2.22/1;
 
     &:nth-child(1) {
       min-width: 100%;
-      max-height: initial;
+    }
+
+    &:nth-last-child(-n + 4) {
+      object-fit: contain;
     }
 
     &:hover {
