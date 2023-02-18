@@ -27,7 +27,7 @@ const video_bg = computed(() => $settingStore.config.videoBg);
 
 //静音图标
 const icon = computed(() => {
-  return muted.value ? "wzry-jingyin" : "wzry-laba";
+  return muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing";
 });
 
 /**
@@ -91,6 +91,16 @@ const handleTool = (v: string) => {
         <i class="iconfont wzry-shipin" />
         <span class="text">演示</span>
       </a>
+      <div class="base"></div>
+    </div>
+
+    <!--计划 -->
+    <div v-if="notice" class="tool" title="计划">
+      <div class="line"></div>
+      <div class="box cursor-pointer elastic" @click="handleTool('todo')">
+        <i class="iconfont wzry-todo" />
+        <span class="text">计划</span>
+      </div>
       <div class="base"></div>
     </div>
 

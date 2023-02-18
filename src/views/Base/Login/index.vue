@@ -4,6 +4,7 @@ import { ref, computed, onUnmounted } from "vue";
 import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
 import ReadMe from "./childComps/ReadMe/index.vue"; //README
+import Todo from "./childComps/Todo/index.vue"; //计划
 import Team from "./childComps/Team/index.vue"; //开黑
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
@@ -21,6 +22,7 @@ let tip_status = false; //用于tip新手引导
 
 const show_notice = ref(true); //显示公告
 const show_readme = ref(false); //显示README
+const show_todo = ref(false); //显示计划
 const show_team = ref(false); //显示开黑
 const finish = ref(false); //数据下载完成
 
@@ -35,6 +37,7 @@ const EmitToolType = (v: string) => {
   show_readme.value = v === "readme";
   show_notice.value = v === "notice";
   show_team.value = v === "team";
+  show_todo.value = v === "todo";
 };
 
 /* 关闭公告触发 */
@@ -72,7 +75,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 登录注册盒子 -->
-    <RegLogin v-if="finish" :class="{ hide: !finish || show_notice }" />
+    <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo }" />
 
     <!-- 工具栏 -->
     <ToolBar :notice="finish" @clicks="EmitToolType" />
@@ -91,6 +94,11 @@ onUnmounted(() => {
     <!-- README -->
     <transition name="fade">
       <ReadMe v-if="show_readme" v-model="show_readme" />
+    </transition>
+
+    <!-- 计划 -->
+    <transition name="fade">
+      <Todo v-if="show_todo" v-model="show_todo" />
     </transition>
 
     <!-- 开黑 -->
