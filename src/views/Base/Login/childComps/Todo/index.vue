@@ -16,7 +16,7 @@ $switchStore.$clickAudio("u4c5");
 </script>
 
 <template>
-  <K-Dialog v-bind="$attrs" width="900px" header="敬请期待">
+  <K-Dialog v-bind="$attrs" width="900px" header="微信小程序">
     <div class="todo">
       <h1>商城系统</h1>
       <div class="content" v-html="todo"></div>
