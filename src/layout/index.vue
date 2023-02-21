@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import { BG } from "@/config/assets";
 import { $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
@@ -68,7 +67,7 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <K-Video v-if="enable_video_bg" :video="BG" />
+    <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/bg.mp4'" />
 
     <!-- 图片壁纸 -->
     <img v-else class="layout-bg" :src="IMGBED + '/image/background.png'" alt="" />

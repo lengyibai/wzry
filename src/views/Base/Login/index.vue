@@ -9,7 +9,6 @@ import Team from "./childComps/Team/index.vue"; //开黑
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
-import { LOGINBG } from "@/config/assets";
 import $bus from "@/utils/eventBus";
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
@@ -81,7 +80,7 @@ onUnmounted(() => {
     <ToolBar :notice="finish" @clicks="EmitToolType" />
 
     <!-- 视频背景 -->
-    <K-Video v-if="enable_video_bg" :video="LOGINBG" :muted="$settingStore.config.muted" />
+    <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />
 
     <!-- 图片 -->
     <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
