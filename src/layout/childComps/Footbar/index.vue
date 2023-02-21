@@ -103,17 +103,13 @@ onBeforeUnmount(() => {
     <MusicPlay v-if="enable_music" class="music-play" />
 
     <!-- 左侧时间 -->
-    <Time class="time" />
+    <Time v-show="!$deviceStore.vertical" class="time" />
 
     <!-- 音乐工具栏 -->
-    <MusicTool
-      v-if="enable_music"
-      v-show="$collapseStore.collapse || !$deviceStore.vertical"
-      @toggle="EmitMusicToole"
-    />
+    <MusicTool v-if="enable_music" @toggle="EmitMusicToole" />
 
     <!-- 右侧作者 -->
-    <Copyright class="copyright" />
+    <Copyright v-show="!$deviceStore.vertical" class="copyright" />
   </div>
 </template>
 
