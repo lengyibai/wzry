@@ -121,11 +121,12 @@ export const $search = <T>(
   highlight: boolean = false
 ): T[] => {
   const arr: T[] = [];
+  const data_copy = $deepCopy<T[]>(data);
 
   const fn = (item: any, key: string): void | undefined => {
     const reg = new RegExp(item.toString().toLowerCase(), "i");
     arr.push(
-      ...$deepCopy<T[]>(data).filter((item: any) => {
+      ...data_copy.filter((item: any) => {
         item[key] = item[key].toString();
         const pinyin: string[] = $pinyin(item[key]);
         if (pinyin.some((py) => reg.test(py) || reg.test(item[key]))) {
