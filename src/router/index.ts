@@ -33,6 +33,9 @@ useRouter.beforeEach(async (to, from, next) => {
   } else if ($deviceStore.browser_status && to.path === "/400") {
     next("/");
     return;
+  } else if (to.path === "/400") {
+    next();
+    return;
   }
 
   //如果路径不在路由表
