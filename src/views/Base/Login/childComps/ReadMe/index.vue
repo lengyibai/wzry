@@ -13,6 +13,8 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
+const IMGBED = window.IMGBED; //全局图床链接
+
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
@@ -23,7 +25,14 @@ const handleClose = () => {
 <template>
   <div class="readme">
     <i class="iconfont wzry-guanbi cursor-pointer" @click="handleClose"></i>
-    <iframe class="iframe" :src="README" marginheight="0" marginwidth="0" frameborder="0" scrolling="auto"></iframe>
+    <iframe
+      class="iframe"
+      :src="IMGBED + '/html/readme.html'"
+      marginheight="0"
+      marginwidth="0"
+      frameborder="0"
+      scrolling="auto"
+    ></iframe>
   </div>
 </template>
 
