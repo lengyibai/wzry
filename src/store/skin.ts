@@ -60,6 +60,9 @@ const skinStore = defineStore("skin", () => {
       const type = skinType.find((type) => type.id === skin.type)!;
       skin.type = type.link;
       skin.category = type.name;
+      //设置备用名称，解决高亮问题
+      skin.hero_name = skin.heroName;
+      skin.skin_name = skin.name;
     });
     skin_list.value = skinList;
     setProfessional("全部");
@@ -316,7 +319,7 @@ const skinStore = defineStore("skin", () => {
   const searchSkin = (name: string) => {
     $debounce(() => {
       if (name) {
-        filter_list.value = $search(skin_list.value, name, ["name", "heroName", "category"], true);
+        filter_list.value = $search(skin_list.value, name, ["skin_name", "hero_name", "category"], true);
       } else {
         sortAll();
       }

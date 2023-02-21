@@ -152,8 +152,10 @@ declare namespace Hero {
     category?: string;
     /** 性别 */
     gender: string;
-    /** 名称 */
+    /** 皮肤名称 */
     name: string;
+    /** 备用皮肤名称 */
+    skin_name?: string;
     /** 海报 */
     poster: string;
     /** 封面 */
@@ -162,6 +164,8 @@ declare namespace Hero {
     headImg: string;
     /** 英雄名称 */
     heroName: string;
+    /** 备用英雄名称 */
+    hero_name?: string;
     /** 职业 */
     profession: string[];
   }
