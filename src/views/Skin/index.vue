@@ -131,7 +131,7 @@ onBeforeUnmount(() => {
 
     <!-- 语音列表 -->
     <transition name="fade">
-      <K-Dialog v-if="show_voice" v-model="show_voice" width="920px" title="皮肤语音列表">
+      <K-Dialog v-if="show_voice" v-model="show_voice" width="720px" title="皮肤语音列表">
         <SkinVoice :voices="voices" />
       </K-Dialog>
     </transition>
