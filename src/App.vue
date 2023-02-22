@@ -6,29 +6,21 @@ $settingStore.takeEffect();
 </script>
 
 <template>
-  <div class="app">
-    <!-- 路由页面 -->
-    <router-view v-slot="{ Component }">
-      <transition name="round-clip" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+  <!-- 路由页面 -->
+  <router-view v-slot="{ Component }">
+    <transition name="round-clip" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 
-    <!-- 全局开关 -->
-    <Switch />
+  <!-- 全局开关 -->
+  <Switch />
 
-    <!-- 左下角水印 -->
-    <WaterMark />
-  </div>
+  <!-- 左下角水印 -->
+  <WaterMark />
 </template>
 
 <style scoped lang="less">
-.app {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
 /* 圆形路由跳转 */
 .round-clip-enter-active {
   animation: round-clip-in 0.75s;
