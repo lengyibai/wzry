@@ -12,6 +12,7 @@
         fontSize: fontSize,
         paddingLeft: paddingLeft,
       }"
+      :name="name"
       @input="input"
       @focus="focus"
       @blur="blur"
@@ -54,6 +55,7 @@ interface Props {
   type?: string; //输入框类型
   min?: number; //最小位数
   max?: number; //最大位数
+  name?: any;
   required?: boolean; //必填
   number?: boolean; //为数字
   noSpecial?: boolean; //禁止含有特殊字符

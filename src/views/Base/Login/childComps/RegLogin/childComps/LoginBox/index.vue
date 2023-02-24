@@ -18,7 +18,7 @@ const props = defineProps<Props>();
 const $switchStore = switchStore();
 const $authStore = authStore();
 
-const form = ref({ ...userDefaultInfo });
+const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
 const remember = ref(true);
 
 const local_user = localStorage.getItem("remember_user");
@@ -59,7 +59,7 @@ const handleLogin = () => {
     <!-- 帐号 -->
     <div class="box">
       <i class="iconfont wzry-user" />
-      <K-Input v-model.number="form.id" width="100%" padding-left="45px" placeholder="请输入帐号" required />
+      <K-Input v-model.number="form.id" width="100%" padding-left="45px" placeholder="请输入帐号" name="id" required />
     </div>
 
     <!-- 密码 -->
