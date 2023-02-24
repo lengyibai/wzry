@@ -18,7 +18,7 @@ const props = defineProps<Props>();
 const $switchStore = switchStore();
 const $authStore = authStore();
 
-const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
+const form = ref({ ...userDefaultInfo, id: "1329670984", password: "lengyibai" });
 const remember = ref(true);
 
 const local_user = localStorage.getItem("remember_user");
