@@ -203,17 +203,8 @@ const typewriterMultiple = {
           }
           text += say[num]; //遍历输出的文字
           el.innerHTML = text; //输出在屏幕上
-          if ("，、。？！".includes(say[num])) {
-            clearInterval(timer); //清除用于输出文字的计时器
-            setTimeout(
-              () => {
-                fn();
-              },
-              "，" === say[num] ? 500 : "、" === say[num] ? 250 : "。？！" === say[num] ? 1000 : 500
-            );
-          }
           num++;
-        }, 100);
+        }, 50);
       }
     }, 750);
   },
