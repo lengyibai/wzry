@@ -6,9 +6,11 @@ import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
+import switchStore from "@/store/switch";
 import heroDetail from "@/store/heroDetail";
 
 const $heroDetail = heroDetail();
+const $switchStore = switchStore();
 
 const into = ref(false); //控制页面元素显示
 const hero_data = computed(() => $heroDetail.hero_info); //英雄数据
@@ -17,6 +19,7 @@ onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
     into.value = true;
+    $switchStore.$tip({ text: "05su", align: "right-bottom" });
   }, 1000);
 });
 </script>
