@@ -62,7 +62,7 @@ const handleViewClick = () => {
           @load="finish = true"
           @dragstart.prevent
         />
-        <button v-textHoverColor class="view" @click="handleViewClick">查看详情</button>
+        <button v-textHoverColor class="view" @click="handleViewClick">点击此处</button>
       </div>
     </transition>
 
