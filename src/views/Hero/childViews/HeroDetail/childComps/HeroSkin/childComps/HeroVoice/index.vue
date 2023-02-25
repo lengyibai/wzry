@@ -35,6 +35,7 @@ $heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
         item.style.transform = "translateX(100%) translateY(500%) scale(0)";
       }
 
+      //设置语音列表，并播放入场动画
       setTimeout(() => {
         voices.value = $heroDetail.skin_voice;
         item.style.transitionDelay = `${index / 15}s`; //入场间隔
@@ -47,6 +48,7 @@ $heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
       }, 500);
     });
 
+    //播放第一个语音
     setTimeout(() => {
       voiceList.value?.scroll({ top: 0 });
       if (current_index.value !== -1 && voices.value[current_index.value].link !== play_link.value) {
@@ -66,28 +68,17 @@ const handleEnter = () => {
 const play = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    current_index.value = -1;
-    play_link.value = "";
+    EmitEnded();
     return;
   }
   current_index.value = index;
   play_link.value = voice;
 };
 
-/* 语音播放结束后触发播放下一个 */
-const voiceInfo = (info: HTMLMediaElement) => {
-  time.value = info.duration;
-};
-
 /* 语音播放结束后触发 */
-const ended = () => {
-  //如果播放完最后一个，则停止播放
-  if (current_index.value + 1 === voices.value.length) {
-    current_index.value += 1;
-    return;
-  }
-  //等待播放动画结束后再播放
-  play(voices.value[current_index.value + 1].link, current_index.value + 1);
+const EmitEnded = () => {
+  current_index.value = -1;
+  play_link.value = "";
 };
 </script>
 
@@ -117,7 +108,7 @@ const ended = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @ended="ended" @info="voiceInfo" />
+    <PlayVoice v-if="play_link" :link="play_link" @ended="EmitEnded" />
   </div>
 </template>
 

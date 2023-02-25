@@ -6,7 +6,7 @@ import heroDetailStore from "@/store/heroDetail";
 interface Props {
   voices: Hero.Voice[]; //语音列表
 }
-const props = defineProps<Props>();
+defineProps<Props>();
 
 const $heroDetailStore = heroDetailStore();
 
@@ -15,15 +15,13 @@ const voiceRef = ref();
 let voice_length = 1; //当前语音数量
 
 const play_link = ref(""); //播放链接
-const time = ref(0); //当前播放时长
 const current_index = ref(-1); //当前播放索引
 
 /* 点击播放 */
 const handlePlay = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    current_index.value = -1;
-    play_link.value = "";
+    EmitEnded();
     return;
   }
 
@@ -31,20 +29,10 @@ const handlePlay = (voice: string, index: number) => {
   play_link.value = voice;
 };
 
-/* 正在播放的语音信息 */
-const EmitVoiceInfo = (info: HTMLMediaElement) => {
-  time.value = info.duration;
-};
-
 /* 语音播放结束后触发 */
-let ended: Func = () => {
-  //如果播放完最后一个，则停止播放
-  if (current_index.value + 1 === props.voices.length) {
-    current_index.value += 1;
-    return;
-  }
-  //等待播放动画结束后再播放
-  handlePlay(props.voices[current_index.value + 1].link, current_index.value + 1);
+let EmitEnded = () => {
+  current_index.value = -1;
+  play_link.value = "";
 };
 
 onMounted(() => {
@@ -64,6 +52,7 @@ onMounted(() => {
             item.style.transform = "translateX(100%) translateY(500%) scale(0)";
           }
 
+          //播放第一个语音
           setTimeout(() => {
             item.style.transitionDelay = `${index / 15}s`; //入场间隔
             item.style.transform = "translateX(0%) translateY(0%) scale(1)";
@@ -95,7 +84,7 @@ onMounted(() => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @ended="ended" @info="EmitVoiceInfo" />
+    <PlayVoice v-if="play_link" :link="play_link" @ended="EmitEnded" />
   </div>
 </template>
 
