@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import switchStore from "@/store/switch";
-import { README } from "@/config/assets";
 interface Props {
   modelValue?: boolean;
 }

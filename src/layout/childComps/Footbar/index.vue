@@ -8,10 +8,8 @@ import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 
 import settingStore from "@/store/setting";
 import musicStore from "@/store/music";
-import collapseStore from "@/store/collapse";
 import deviceStore from "@/store/device";
 
-const $collapseStore = collapseStore();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
 const $deviceStore = deviceStore();
