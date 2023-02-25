@@ -124,7 +124,7 @@ const musicStore = defineStore("music", () => {
    * @param v 0-100
    */
   const setVolume = (v: number) => {
-    volume.value = (v / 100) * 0.5;
+    volume.value = (v / 100) * 0.25;
     bgm.volume = volume.value;
   };
 

@@ -14,7 +14,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const voice = ref();
+const voice = ref<HTMLMediaElement>();
 
 /* 播放结束后触发 */
 const ended = () => {
@@ -23,7 +23,8 @@ const ended = () => {
 
 /* 播放语音 */
 onMounted(() => {
-  voice.value.addEventListener("canplay", () => {
+  voice.value && (voice.value.volume = 0.5);
+  voice.value?.addEventListener("canplay", () => {
     emit("info", voice.value as HTMLMediaElement);
     voice.value?.play();
   });

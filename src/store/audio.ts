@@ -78,7 +78,7 @@ const audioStore = defineStore("audio", () => {
    * @param v 音量：1-100
    */
   const setVolume = (v: number) => {
-    volume = v / 100;
+    volume = (v / 100) * 0.75;
   };
 
   /**
