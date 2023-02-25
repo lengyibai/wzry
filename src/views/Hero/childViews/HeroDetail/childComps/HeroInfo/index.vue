@@ -19,7 +19,15 @@ onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
     into.value = true;
-    $switchStore.$tip({ text: "05su", align: "right-bottom" });
+    $switchStore.$tip({
+      text: "05su",
+      align: "right-bottom",
+      btnFn: () => {
+        setTimeout(() => {
+          $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
+        }, 5000);
+      },
+    });
   }, 1000);
 });
 </script>
