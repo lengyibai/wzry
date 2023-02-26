@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import { $promiseTimeout } from "@/utils";
+import { $isPhone, $promiseTimeout } from "@/utils";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 import deviceStore from "@/store/device";
@@ -39,7 +39,7 @@ onMounted(async () => {
     show_footbar.value = true;
   }, 500);
 
-  if ($deviceStore.vertical) $switchStore.$tip({ text: "2l5m" });
+  if ($deviceStore.vertical && $isPhone) $switchStore.$tip({ text: "2l5m" });
 });
 </script>
 
