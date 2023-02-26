@@ -105,7 +105,7 @@ const handleTool = (v: string) => {
     </div>
 
     <!-- 开黑 -->
-    <div v-if="notice" class="tool" title="开黑" style="opacity: 0.025">
+    <div v-if="notice" class="tool" title="开黑">
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('team')">
         <i class="iconfont wzry-youxi" />
