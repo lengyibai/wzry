@@ -6,7 +6,7 @@ import { $timeCount } from "@/utils";
 const time = ref(""); //已过去时间
 
 setInterval(() => {
-  const { y, mon, d, h, min, s } = $timeCount("2022-03-17 00:00:00") as any;
+  const { y, mon, d, h, min, s } = $timeCount("2022-03-16 00:00:00") as any;
   const year = y !== "00" ? `${y}y` : "";
   const month = mon !== "00" ? mon : "";
   time.value = `${year} ${month}m ${d}d ${h}h ${min}min ${s}s`;
