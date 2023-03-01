@@ -60,7 +60,7 @@ export default () => {
     ["racetype", RaceType, "种族"],
   ];
 
-  const setData = <T extends { data: any }>(name: string, data: T) => {
+  const setData = <T extends { data: unknown }>(name: string, data: T) => {
     localStorage.setItem(name, JSON.stringify(data.data));
   };
   const isExist = (name: string, prefix = "data_") => {
