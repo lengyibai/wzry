@@ -3,6 +3,7 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
+import { $isPhone } from "@/utils";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
@@ -111,10 +112,17 @@ $heroDetail.setScollFn("skin", (index) => {
           setPosition(skin.value[0]);
 
           setTimeout(() => {
-            $switchStore.$tip({
-              text: "9oy5",
-              align: "right-top",
-            });
+            if ($isPhone) {
+              $switchStore.$tip({
+                text: "1w7o",
+                align: "right-top",
+              });
+            } else {
+              $switchStore.$tip({
+                text: "9oy5",
+                align: "right-top",
+              });
+            }
           }, 3000);
         });
       }, 1000);

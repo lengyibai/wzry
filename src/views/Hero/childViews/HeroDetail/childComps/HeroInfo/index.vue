@@ -8,6 +8,7 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import switchStore from "@/store/switch";
 import heroDetail from "@/store/heroDetail";
+import { $isPhone } from "@/utils";
 
 const $heroDetail = heroDetail();
 const $switchStore = switchStore();
@@ -25,7 +26,11 @@ onMounted(() => {
     });
 
     setTimeout(() => {
-      $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
+      if ($isPhone) {
+        $switchStore.$tip({ text: "1zs6", align: "right-bottom" });
+      } else {
+        $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
+      }
     }, 10000);
   }, 1000);
 });
