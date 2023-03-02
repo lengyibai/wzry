@@ -1,14 +1,13 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $AudioVisual, $potEoPct } from "@/utils";
+import { $potEoPct } from "@/utils";
 
 /** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
   let tool_timer: Interval; //工具显示设置
-  let audio_visual: $AudioVisual;
-  const bgm = new Audio(); //播放器
+  const bgm = ref(new Audio()); //播放器
   const bgmIndex = ref(0); //音乐索引
   const progress = ref(0); //播放进度
   const volume = ref(0); //音量
@@ -30,7 +29,6 @@ const musicStore = defineStore("music", () => {
   ]; //音乐列表
 
   musics.sort(() => 0.5 - Math.random()); //打乱顺序
-  bgm.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
 
   /** @description 上一首 */
   const last = () => {
@@ -47,36 +45,33 @@ const musicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
+      bgm.value = new Audio();
+      bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
+      bgm.value.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
 
     status.value = true;
-    bgm.volume = volume.value;
+    bgm.value.volume = volume.value;
 
-    bgm
-      .play()
-      .then(() => {
-        audio_visual.play();
-      })
-      .catch(() => {
-        setTimeout(() => {
-          play(false);
-        }, 1000);
-      });
+    bgm.value.play().catch(() => {
+      setTimeout(() => {
+        play(false);
+      }, 1000);
+    });
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
-      progress.value = $potEoPct(bgm.currentTime / bgm.duration);
+      progress.value = $potEoPct(bgm.value.currentTime / bgm.value.duration);
     }, 500);
 
     //播放结束后执行下一次播放
-    bgm.onended = next;
+    bgm.value.onended = next;
   };
 
   /** @description 暂停 */
   const pause = () => {
     status.value = false;
-    bgm.pause();
+    bgm.value.pause();
     clearInterval(progress_timer);
   };
 
@@ -95,7 +90,7 @@ const musicStore = defineStore("music", () => {
    * @param v 0-1保留两位小数
    */
   const setCurrentTime = (v: number) => {
-    bgm.currentTime = bgm.duration * v;
+    bgm.value.currentTime = bgm.value.duration * v;
   };
 
   /** @description 显示播放列表 */
@@ -132,15 +127,17 @@ const musicStore = defineStore("music", () => {
    */
   const setVolume = (v: number) => {
     volume.value = (v / 100) * 0.25;
-    bgm.volume = volume.value;
+    bgm.value.volume = volume.value;
   };
 
-  /** @description 音频可视化 */
-  const initAudioVisual = (canvas: HTMLCanvasElement) => {
-    audio_visual = new $AudioVisual(bgm, canvas);
+  /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */
+  const resetAudio = () => {
+    bgm.value = new Audio();
   };
 
   return {
+    /** 音频元素 */
+    bgm,
     /** 当前音乐播放状态，false:暂停 */
     status,
     /** 音乐索引 */
@@ -162,7 +159,7 @@ const musicStore = defineStore("music", () => {
     playIndex,
     showTool,
     setVolume,
-    initAudioVisual,
+    resetAudio,
   };
 });
 

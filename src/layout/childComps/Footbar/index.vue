@@ -9,6 +9,7 @@ import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 import settingStore from "@/store/setting";
 import musicStore from "@/store/music";
 import deviceStore from "@/store/device";
+import { $AudioVisual } from "@/utils";
 
 const $musicStore = musicStore();
 const $settingStore = settingStore();
@@ -18,13 +19,15 @@ const line = ref();
 const canvas = ref<HTMLCanvasElement>();
 const footbar = ref();
 
-let timer: any = null; //隐藏工具栏定时器
+let timer: Timeout; //隐藏工具栏定时器
+let audio_visual: $AudioVisual;
 
 const progress = ref(0); //播放进度
 
 nextTick(() => {
-  $musicStore.initAudioVisual(canvas.value!);
   $musicStore.play();
+  audio_visual = new $AudioVisual($musicStore.bgm, canvas.value!);
+  audio_visual.play();
 });
 
 //启用音乐播放器
@@ -80,6 +83,8 @@ const handleShowTool = (v: boolean) => {
 
 onBeforeUnmount(() => {
   $musicStore.pause();
+  $musicStore.resetAudio();
+  audio_visual.destroy();
 });
 </script>
 
