@@ -37,7 +37,11 @@ const EmitSpeed = (v: number) => {
 /* 开启音乐 */
 const EmitMusic = (v: boolean) => {
   EmitSaveConfig();
-  if (!v) $musicStore.pause();
+  if (v) {
+    $musicStore.play(false);
+  } else {
+    $musicStore.pause();
+  }
 };
 
 /* 音乐音量调节 */
