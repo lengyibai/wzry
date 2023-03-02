@@ -3,7 +3,7 @@ import musicStore from "@/store/music";
 
 const $musicStore = musicStore();
 
-/* 关闭弹窗 */
+/* 关闭播放列表 */
 const handleClose = () => {
   $musicStore.list();
 };
