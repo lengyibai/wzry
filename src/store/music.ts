@@ -1,12 +1,13 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $potEoPct } from "@/utils";
+import { $AudioVisual, $potEoPct } from "@/utils";
 
 /** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
   let tool_timer: Interval; //工具显示设置
+  let audio_visual: $AudioVisual;
   const bgm = new Audio(); //播放器
   const bgmIndex = ref(0); //音乐索引
   const progress = ref(0); //播放进度
@@ -29,6 +30,7 @@ const musicStore = defineStore("music", () => {
   ]; //音乐列表
 
   musics.sort(() => 0.5 - Math.random()); //打乱顺序
+  bgm.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
 
   /** @description 上一首 */
   const last = () => {
@@ -51,11 +53,16 @@ const musicStore = defineStore("music", () => {
     status.value = true;
     bgm.volume = volume.value;
 
-    bgm.play().catch(() => {
-      setTimeout(() => {
-        play(false);
-      }, 1000);
-    });
+    bgm
+      .play()
+      .then(() => {
+        audio_visual.play();
+      })
+      .catch(() => {
+        setTimeout(() => {
+          play(false);
+        }, 1000);
+      });
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
@@ -128,6 +135,11 @@ const musicStore = defineStore("music", () => {
     bgm.volume = volume.value;
   };
 
+  /** @description 音频可视化 */
+  const initAudioVisual = (canvas: HTMLCanvasElement) => {
+    audio_visual = new $AudioVisual(bgm, canvas);
+  };
+
   return {
     /** 当前音乐播放状态，false:暂停 */
     status,
@@ -150,6 +162,7 @@ const musicStore = defineStore("music", () => {
     playIndex,
     showTool,
     setVolume,
+    initAudioVisual,
   };
 });
 

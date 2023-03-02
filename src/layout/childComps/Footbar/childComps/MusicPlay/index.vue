@@ -2,8 +2,6 @@
 import musicStore from "@/store/music";
 
 const $musicStore = musicStore();
-
-$musicStore.play();
 </script>
 
 <template>

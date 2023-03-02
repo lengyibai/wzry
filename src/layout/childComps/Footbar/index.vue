@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeUnmount } from "vue";
+import { ref, computed, onBeforeUnmount, nextTick } from "vue";
 
 import Time from "./childComps/Time/index.vue"; //左侧时间
 import MusicTool from "./childComps/MusicTool/index.vue"; //工具栏
@@ -15,11 +15,17 @@ const $settingStore = settingStore();
 const $deviceStore = deviceStore();
 
 const line = ref();
+const canvas = ref<HTMLCanvasElement>();
 const footbar = ref();
 
 let timer: any = null; //隐藏工具栏定时器
 
 const progress = ref(0); //播放进度
+
+nextTick(() => {
+  $musicStore.initAudioVisual(canvas.value!);
+  $musicStore.play();
+});
 
 //启用音乐播放器
 const enable_music = computed(() => $settingStore.config.music);
@@ -32,7 +38,6 @@ const handleSetProgress = (e: MouseEvent) => {
 
   //计算出小数
   progress.value = parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2));
-
   music_progress.value && $musicStore.setCurrentTime(progress.value); //设置播放进度
 };
 
@@ -108,6 +113,9 @@ onBeforeUnmount(() => {
 
     <!-- 右侧作者 -->
     <Copyright v-show="!$deviceStore.vertical" class="copyright" />
+
+    <!-- 音频可视化 -->
+    <canvas ref="canvas"></canvas>
   </div>
 </template>
 

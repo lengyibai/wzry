@@ -644,3 +644,80 @@ export class $ScaleImage {
     this.zoomOutButton.addEventListener("touchend", fn2);
   }
 }
+
+/** @description 音频可视化 */
+export class $AudioVisual {
+  audio: HTMLMediaElement;
+  cvs: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  isInit: boolean = false; // 是否已初始化
+  dataArray: string | any[] | Uint8Array = []; // 数组，用于接收分析器节点的分析数据
+  analyser!: AnalyserNode; // 分析器节点
+  constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
+    this.audio = audio;
+    this.cvs = canvas;
+    this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+    this.init();
+  }
+
+  /** 初始化画布 */
+  init() {
+    this.cvs.width = this.cvs.offsetWidth * devicePixelRatio;
+    this.cvs.height = this.cvs.offsetHeight * devicePixelRatio;
+    this.draw();
+  }
+  /** 播放音频 */
+  play() {
+    // 判断是否初始化
+    if (this.isInit) {
+      return;
+    }
+
+    // 开始初始化
+    // 创建音频上下文
+    const audioCtx = new AudioContext();
+    // 创建音频源节点
+    const source = audioCtx.createMediaElementSource(this.audio);
+    // 创建分析器节点
+    this.analyser = audioCtx.createAnalyser();
+    this.analyser.fftSize = 512;
+    // 接收分析器节点的分析数据
+    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+    source.connect(this.analyser);
+    this.analyser.connect(audioCtx.destination);
+    // 已初始化
+    this.isInit = true;
+  }
+
+  /** 把分析出来的波形绘制到canvas上 */
+  draw() {
+    const draw = () => {
+      // 逐帧绘制
+      requestAnimationFrame(draw);
+
+      // 接下来清空画布
+      const { width, height } = this.cvs;
+      this.ctx.clearRect(0, 0, width, height);
+      if (!this.isInit) {
+        return;
+      }
+      // 让分析器节点分析出数据到数组中
+      this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
+      const len = this.dataArray.length; //条的数量
+      const barWidth = width / len; //条的宽度
+      this.ctx.fillStyle = "#72b0d540";
+      // 循环绘制
+      for (let i = 0; i < len; i++) {
+        const data = this.dataArray[i];
+        const barHeight = (data / 255) * height; //条的高度
+        const x1 = i * barWidth + width / 2; //右边区域中条的x坐标
+        const x2 = width / 2 - (i + 1) * barWidth; //左边区域中条的x坐标 镜像
+        const y = height - barHeight; //条的y坐标
+        this.ctx.fillRect(x1, y, barWidth - 2, barHeight); //填充右边区域
+        this.ctx.fillRect(x2, y, barWidth - 2, barHeight); //填充左边区域
+      }
+    };
+    draw();
+  }
+}
