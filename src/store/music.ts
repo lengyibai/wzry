@@ -130,6 +130,12 @@ const musicStore = defineStore("music", () => {
     bgm.value.volume = volume.value;
   };
 
+  /** @description 停止播放 */
+  const stop = () => {
+    bgm.value.pause();
+    bgm.value.currentTime = 0;
+  };
+
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */
   const resetAudio = () => {
     bgm.value = new Audio();
@@ -159,6 +165,7 @@ const musicStore = defineStore("music", () => {
     playIndex,
     showTool,
     setVolume,
+    stop,
     resetAudio,
   };
 });
