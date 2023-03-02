@@ -28,6 +28,11 @@ nextTick(() => {
   $musicStore.play();
   audio_visual = new $AudioVisual($musicStore.bgm, canvas.value!);
   audio_visual.play();
+  if (!$settingStore.config.music) {
+    setTimeout(() => {
+      $musicStore.pause();
+    }, 500);
+  }
 });
 
 //启用音乐播放器
@@ -114,7 +119,7 @@ onBeforeUnmount(() => {
     <Time v-show="!$deviceStore.vertical" class="time" />
 
     <!-- 音乐工具栏 -->
-    <MusicTool v-if="enable_music" @toggle="EmitMusicToole" />
+    <MusicTool v-show="enable_music" @toggle="EmitMusicToole" />
 
     <!-- 右侧作者 -->
     <Copyright v-show="!$deviceStore.vertical" class="copyright" />
