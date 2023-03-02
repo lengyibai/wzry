@@ -40,6 +40,14 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 9527,
     open: true,
+    proxy: {
+      "/api": {
+        target: "https://lyb.cbb.plus", //目标url
+        changeOrigin: true, //支持跨域
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        //重写路径,替换/api
+      },
+    },
   },
   resolve: {
     alias: {
