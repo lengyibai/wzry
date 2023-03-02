@@ -30,7 +30,7 @@ const calcActiveSkill = computed(() => {
 
 /* 当滚动到技能页，播放出场动画 */
 $heroDetail.setScollFn("skinIcon", (index) => {
-  if (show.value || index !== 3) return;
+  if (show.value || index !== 2) return;
   show.value = true;
 
   const length = hero_data.value.skills!.length;

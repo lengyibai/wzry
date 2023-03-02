@@ -25,8 +25,6 @@ const $heroDetail = heroDetail();
 const $heroStore = heroStore();
 const $switchStore = switchStore();
 
-const page_name = ["英雄资料", "皮肤鉴赏", "技能信息"]; //滚动索引标题
-
 const scroll_index = ref(1); //滚动索引
 const show_progress = ref(false); //显示滚动索引组件
 const hero_toggle = ref(true); //英雄关系切换时重新加载皮肤页
@@ -116,20 +114,20 @@ $switchStore.$clickAudio("u4c5");
         <HeroInfo />
       </HeroParallax>
 
-      <!--皮肤-->
-      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
-        <HeroSkin v-if="hero_toggle" />
-      </HeroParallax>
-
       <!--技能-->
       <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins![skin_num - 1].poster">
         <HeroSkill v-if="hero_toggle" />
+      </HeroParallax>
+
+      <!--皮肤-->
+      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
+        <HeroSkin v-if="hero_toggle" />
       </HeroParallax>
     </HeroScroll>
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" :page-name="page_name" @toggle="EmitToggle" />
+      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="EmitToggle" />
     </transition>
   </div>
 </template>

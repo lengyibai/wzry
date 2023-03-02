@@ -20,7 +20,7 @@ const exist_effect = computed(() => props.skill.effect?.length); //存在技能�
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn("skillContent", (index) => {
-  if (index === 3) show.value = true;
+  if (index === 2) show.value = true;
 });
 
 /* 选择技能触发 */
