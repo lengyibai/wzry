@@ -650,6 +650,7 @@ export class $AudioVisual {
   audio: HTMLMediaElement;
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
+  animationFrameId!: number;
   isInit: boolean = false; // 是否已初始化
   dataArray: string | any[] | Uint8Array = []; // 数组，用于接收分析器节点的分析数据
   analyser!: AnalyserNode; // 分析器节点
@@ -694,7 +695,7 @@ export class $AudioVisual {
   draw() {
     const draw = () => {
       // 逐帧绘制
-      requestAnimationFrame(draw);
+      this.animationFrameId = requestAnimationFrame(draw);
 
       // 接下来清空画布
       const { width, height } = this.cvs;
@@ -719,5 +720,10 @@ export class $AudioVisual {
       }
     };
     draw();
+  }
+
+  /** 销毁 */
+  destroy() {
+    cancelAnimationFrame(this.animationFrameId);
   }
 }
