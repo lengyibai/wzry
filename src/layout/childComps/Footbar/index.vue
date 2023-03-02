@@ -82,7 +82,7 @@ const handleShowTool = (v: boolean) => {
 };
 
 onBeforeUnmount(() => {
-  $musicStore.pause();
+  $musicStore.stop();
   $musicStore.resetAudio();
   audio_visual.destroy();
 });
