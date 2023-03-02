@@ -59,6 +59,7 @@ const handleViewClick = () => {
         <img
           :src="finish ? data.headImg : 'https://lengyibai.gitee.io/wzry-material/image/unknown.png'"
           class="head"
+          @click="handleViewClick"
           @load="finish = true"
           @dragstart.prevent
         />
