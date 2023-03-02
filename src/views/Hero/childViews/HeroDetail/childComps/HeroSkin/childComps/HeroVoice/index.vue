@@ -75,6 +75,11 @@ const play = (voice: string, index: number) => {
   play_link.value = voice;
 };
 
+/* 语音信息 */
+const EmitInfo = (voice_info: HTMLMediaElement) => {
+  time.value = voice_info.duration + 0.35;
+};
+
 /* 语音播放结束后触发 */
 const EmitEnded = () => {
   current_index.value = -1;
@@ -100,7 +105,7 @@ const EmitEnded = () => {
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
           :class="[
-            current_index === index ? 'wzry-playing' : 'wzry-laba',
+            current_index === index ? 'wzry-playing' : 'wzry-playactive',
             { 'active-rotate': current_index === index },
             { 'active-color': current_index === index },
           ]"
@@ -108,7 +113,7 @@ const EmitEnded = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @ended="EmitEnded" />
+    <PlayVoice v-if="play_link" :link="play_link" @info="EmitInfo" @ended="EmitEnded" />
   </div>
 </template>
 
