@@ -12,6 +12,8 @@ import routesStore from "@/store/routes";
 
 /** @description 用户相关 */
 const authStore = defineStore("auth", () => {
+  const $routesStore = routesStore();
+
   const userStatus = ref(false); //用户状态
   const timer = ref<Interval>(); //实时检测帐号状态
   const userInfo = ref<User>($deepCopy(userDefaultInfo)); //用户相关信息
@@ -40,7 +42,7 @@ const authStore = defineStore("auth", () => {
     userInfo.value = res;
     userStatus.value = true;
     window.localStorage.setItem("user", JSON.stringify(res));
-    routesStore().addRoutes(res.role);
+    $routesStore.addRoutes(res.role);
     router.push(HOME_URL);
     watchStatus();
   };
@@ -89,7 +91,7 @@ const authStore = defineStore("auth", () => {
     userStatus.value = false;
     timer.value = 0;
     userInfo.value = $deepCopy(userDefaultInfo);
-    routesStore().removeRoutes();
+    $routesStore.removeRoutes();
     localStorage.removeItem("user");
   };
 
@@ -104,7 +106,7 @@ const authStore = defineStore("auth", () => {
         switchStore().$msg("数据每三天完整下载一次，即将开始下载", "error");
         setTimeout(async () => {
           localStorage.clear();
-          clearToken();
+          location.reload();
         }, 5000);
         return;
       }
