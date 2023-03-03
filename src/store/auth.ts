@@ -5,7 +5,7 @@ import switchStore from "./switch";
 
 import { _login, deleteUser } from "@/api/main/user";
 import { $deepCopy } from "@/utils";
-import { HOME_URL } from "@/config";
+import { HOME_URL, OVERDUE_DATA_TIME } from "@/config";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
 import routesStore from "@/store/routes";
@@ -58,8 +58,12 @@ const authStore = defineStore("auth", () => {
       switchStore().$msg("自动登录成功");
       watchStatus();
     } catch (err) {
-      clearToken();
-      switchStore().$msg(err as string, "error");
+      const error = err as Record<string, string>;
+
+      switchStore().$msg(error.msg, "error");
+      if (error.type === "WZRY_TOKEN") {
+        clearToken();
+      }
     }
   };
 
@@ -80,26 +84,36 @@ const authStore = defineStore("auth", () => {
 
   /** @description 清除token */
   const clearToken = () => {
-    router.replace("/login");
     clearInterval(timer.value);
+    router.replace("/login");
     userStatus.value = false;
+    timer.value = 0;
     userInfo.value = $deepCopy(userDefaultInfo);
     routesStore().removeRoutes();
-    window.localStorage.removeItem("user");
+    localStorage.removeItem("user");
   };
 
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
     if (timer.value) return;
     timer.value = setInterval(() => {
-      if (!localStorage.getItem("user")) offline();
-    }, 3000);
-  };
+      const token = Number(new Date().getTime().toString().slice(0, 10));
+      const data_token = localStorage.getItem("data_token");
+      if (token - Number(data_token) > OVERDUE_DATA_TIME) {
+        clearInterval(timer.value);
+        switchStore().$msg("数据每三天完整下载一次，即将开始下载", "error");
+        setTimeout(async () => {
+          localStorage.clear();
+          clearToken();
+        }, 5000);
+        return;
+      }
 
-  /** @description 强制下线 */
-  const offline = () => {
-    switchStore().$msg("身份已过期，请重登录", "error");
-    clearToken();
+      if (!localStorage.getItem("user")) {
+        switchStore().$msg("身份已过期，请重登录", "error");
+        clearToken();
+      }
+    }, 3000);
   };
 
   return {
@@ -115,7 +129,6 @@ const authStore = defineStore("auth", () => {
     autoLogin,
     logout,
     clearToken,
-    offline,
     watchStatus,
     logoff,
   };

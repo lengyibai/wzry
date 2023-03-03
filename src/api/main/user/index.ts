@@ -1,5 +1,5 @@
 import { get, post, patch, del } from "@/api/helper/transfer";
-import { OVERDUE_TIME } from "@/config";
+import { OVERDUE_ROLE_TIME } from "@/config";
 
 /** @description 获取本地用户列表 */
 export const userList = () => {
@@ -23,13 +23,23 @@ export const _login = async (form: User) => {
     //判断密码是否正确
     if (form.password === data.password) {
       let token = Number(new Date().getTime().toString().slice(0, 10)); //生成token
+      const data_token = localStorage.getItem("data_token");
+
+      //设置时间token，用户完整下载数据
+      if (!data_token) {
+        localStorage.setItem("data_token", token.toString());
+      }
 
       //如果本地存在token则进行过期判断，否则直接更新
       if (form.wzryToken) {
         //超过指定时间过期
-        if (token - form.wzryToken > OVERDUE_TIME) {
-          return Promise.reject("身份验证已过期，请重新登录");
+        if (token - form.wzryToken > OVERDUE_ROLE_TIME) {
+          return Promise.reject({
+            type: "WZRY_TOKEN",
+            msg: "身份已过期，请重新登录",
+          });
         }
+
         //否则使用原token
         token = form.wzryToken;
       }
