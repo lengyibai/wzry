@@ -747,13 +747,20 @@ export class $FocusElement {
   }
 
   focus() {
-    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.9)";
+    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0)";
     this.el.style.zIndex = "9";
+    setTimeout(() => {
+      this.el.style.transition = "outline 0.5s";
+      this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.75)";
+    });
   }
 
   blur() {
-    this.el.style.outline = this.outline;
+    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0)";
     this.el.style.zIndex = this.zIndex;
-    this.el.style.transition = this.transition;
+    setTimeout(() => {
+      this.el.style.outline = this.outline;
+      this.el.style.transition = this.transition;
+    }, 500);
   }
 }
