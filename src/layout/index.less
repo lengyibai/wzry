@@ -1,12 +1,3 @@
-.navbar-leave-active,
-.navbar-enter-active,
-.footbar-leave-active,
-.footbar-enter-active,
-.app-main-leave-active,
-.app-main-enter-active {
-  transition: all var(--time-500);
-}
-
 .layout {
   display: flex;
   width: 100%;
@@ -14,7 +5,6 @@
 
   .layout-container {
     display: flex;
-    overflow: hidden;
     height: 100%;
     flex-direction: column;
     flex: 1;
@@ -29,6 +19,15 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+.navbar-leave-active,
+.navbar-enter-active,
+.footbar-leave-active,
+.footbar-enter-active,
+.app-main-leave-active,
+.app-main-enter-active {
+  transition: all var(--time-500);
 }
 
 /* 侧边栏动画 */
