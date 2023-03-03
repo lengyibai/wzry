@@ -752,7 +752,7 @@ export class $FocusElement {
     setTimeout(() => {
       this.el.style.transition = "outline 0.5s";
       this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.75)";
-    });
+    }, 10);
   }
 
   blur() {
