@@ -66,6 +66,8 @@ declare namespace Switch {
     btnText?: string;
     /** 点击确认后执行的函数 */
     btnFn?: Func;
+    /** tip创建后执行的函数 */
+    createFn?: Func;
   }) => void;
 
   /** @description loading */

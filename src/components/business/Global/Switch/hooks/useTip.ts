@@ -18,12 +18,18 @@ export default () => {
   const btnFn = ref(() => {}); //点击按钮需要触发的函数
 
   const tip: Switch.Tip = (config) => {
-    const { title: biaoti, text, align: p = "right-bottom", btnText, btnFn: fn = () => {} } = config;
+    const {
+      title: biaoti,
+      text,
+      align: p = "right-bottom",
+      btnText,
+      btnFn: fn1 = () => {},
+      createFn = () => {},
+    } = config;
 
-    //判断是否开启了tip
+    //如果开启了tip
     if ($settingStore.config.tip) {
       //如果字符数超过4，则表示自定义tip
-
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudioStore("rt25");
@@ -31,15 +37,16 @@ export default () => {
         content.value = text;
         align.value = p;
         btn_text.value = btnText;
-        btnFn.value = fn;
+        btnFn.value = fn1;
         setTimeout(() => {
           show_tip.value = true;
+          createFn();
         });
 
         return;
       }
 
-      //判断是否已经设置了不再提示
+      //如果已经设置了不再提示
       if (!$settingStore.config.noTips[text as TipKeys]) {
         show_tip.value = !show_tip.value;
         $switchStore.$clickAudioStore("rt25");
@@ -48,9 +55,10 @@ export default () => {
         align.value = p;
         title.value = biaoti;
         btn_text.value = btnText;
-        btnFn.value = fn;
+        btnFn.value = fn1;
         setTimeout(() => {
           show_tip.value = true;
+          createFn();
         });
       }
     }
