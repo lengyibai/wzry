@@ -4,6 +4,7 @@ import { nextTick, ref } from "vue";
 import MuiscList from "../MuiscList/index.vue";
 
 import musicStore from "@/store/music";
+import settingStore from "@/store/setting";
 import deviceStore from "@/store/device";
 import switchStore from "@/store/switch";
 import { $FocusElement, $isPhone } from "@/utils";
@@ -14,15 +15,15 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $musicStore = musicStore();
+const $settingStore = settingStore();
 const $deviceStore = deviceStore();
 const $switchStore = switchStore();
 
 const musicTool = ref();
 
 nextTick(() => {
+  if ($isPhone || !$settingStore.config.music) return;
   const musicToolFocus = new $FocusElement(musicTool.value);
-
-  if ($isPhone) return;
   $switchStore.$tip({
     text: "58mz",
     align: "right-top",
