@@ -751,7 +751,7 @@ export class $FocusElement {
     this.el.style.zIndex = "9";
     setTimeout(() => {
       this.el.style.transition = "outline 0.5s";
-      this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.75)";
+      this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.8)";
     }, 10);
   }
 
