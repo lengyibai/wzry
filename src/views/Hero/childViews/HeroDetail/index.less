@@ -8,12 +8,20 @@
   height: 100vh;
   background-color: #000;
 
-  .back {
+  .close {
     position: absolute;
     top: 10px;
     left: 10px;
     z-index: 2;
     width: 100px;
+    transition: all var(--time-500);
+    transform: translateX(-110%);
+    opacity: 0;
+
+    &-show {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 }
 

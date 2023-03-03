@@ -26,6 +26,7 @@ const $heroStore = heroStore();
 const $switchStore = switchStore();
 
 const scroll_index = ref(1); //滚动索引
+const show_close = ref(false); //显示左上角关闭
 const show_progress = ref(false); //显示滚动索引组件
 const hero_toggle = ref(true); //英雄关系切换时重新加载皮肤页
 
@@ -90,6 +91,7 @@ const handleHide = () => {
 //延迟显示滚动索引
 setTimeout(() => {
   show_progress.value = true;
+  show_close.value = true;
   hero_data.value.skins?.forEach((item) => {
     new Image().src = item.poster; //海报预加载
   });
@@ -102,7 +104,8 @@ $switchStore.$clickAudioStore("u4c5");
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <img
-      class="back cursor-pointer"
+      class="close cursor-pointer"
+      :class="{ 'close-show': show_close }"
       src="https://lengyibai.gitee.io/wzry-material/image/back.png"
       alt="返回"
       @dragstart.prevent
