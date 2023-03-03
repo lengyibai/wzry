@@ -747,7 +747,7 @@ export class $FocusElement {
   }
 
   focus() {
-    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.75)";
+    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.9)";
     this.el.style.zIndex = "9";
   }
 
