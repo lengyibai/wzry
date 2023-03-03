@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
@@ -18,6 +18,8 @@ const emit = defineEmits<Emits>();
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
+
+const toolbar = ref();
 
 //静音
 const muted = computed(() => $settingStore.config.muted);
@@ -45,10 +47,14 @@ const handleTool = (v: string) => {
   }
   emit("clicks", v);
 };
+
+defineExpose({
+  el: toolbar,
+});
 </script>
 
 <template>
-  <div class="tool-bar">
+  <div class="tool-bar" ref="toolbar">
     <!-- 静音 -->
     <div v-if="video_bg" class="tool" title="静音">
       <div class="line"></div>
