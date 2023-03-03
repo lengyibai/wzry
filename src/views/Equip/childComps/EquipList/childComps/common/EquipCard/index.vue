@@ -23,7 +23,7 @@ const shine = computed(() => props.leftLine || props.rightLine); //装备文字�
 /* 查看装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive(props.equip.id);
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 /* 设置装备信息，用于计算竖线高度和偏移量 */

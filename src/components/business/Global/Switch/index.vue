@@ -4,11 +4,11 @@ import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
 import $bus from "@/utils/eventBus";
-import clickAudio from "@/store/audio";
+import clickAudioStore from "@/store/audio";
 import switchStore from "@/store/switch";
 
 const $switchStore = switchStore();
-const $clickAudioStore = clickAudio();
+const $clickAudioStoreStore = clickAudioStore();
 
 const { loading, show_loading, loading_text } = useLoading();
 const { msg, messages } = useMessage();
@@ -18,7 +18,7 @@ const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } 
 $switchStore.$patch({
   $msg: msg,
   $loading: loading,
-  $clickAudio: $clickAudioStore.play,
+  $clickAudioStore: $clickAudioStoreStore.play,
   $tip: tip,
 });
 

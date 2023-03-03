@@ -46,12 +46,12 @@ const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
       show_voice.value = true;
     });
   }
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 
 /* 悬浮卡片 */
 const handleEnterCard = () => {
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 /* 监听筛选后的英雄列表 */
@@ -68,7 +68,7 @@ watch(
 );
 
 onActivated(() => {
-  $switchStore.$clickAudio("9u8z");
+  $switchStore.$clickAudioStore("9u8z");
 });
 
 onMounted(() => {

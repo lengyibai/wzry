@@ -33,7 +33,7 @@ const handleEditInfo = () => {
 
 /* 退出登录 */
 const handleLogout = () => {
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
   $authStore.logout();
 };
 

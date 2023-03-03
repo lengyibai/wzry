@@ -37,7 +37,7 @@ const show = ref(false); //显示弹窗
 onMounted(() => {
   show.value = true;
   if (props.up) {
-    $switchStore.$clickAudio("e6b4");
+    $switchStore.$clickAudioStore("e6b4");
   }
 });
 
@@ -45,7 +45,7 @@ onMounted(() => {
 const handleClose = () => {
   emit("update:modelValue", false);
   emit("close");
-  $switchStore.$clickAudio("6xc6");
+  $switchStore.$clickAudioStore("6xc6");
 };
 </script>
 

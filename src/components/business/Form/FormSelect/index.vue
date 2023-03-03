@@ -82,7 +82,7 @@ const handleSelect = (id: number, name: string) => {
     input_value.value = name;
   }
 
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 
 /* 删除选择的数据 */

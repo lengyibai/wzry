@@ -18,7 +18,7 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-$switchStore.$clickAudio("45iy");
+$switchStore.$clickAudioStore("45iy");
 
 /* 关闭 */
 const close = () => {
@@ -29,14 +29,14 @@ const close = () => {
 const handleCancel = () => {
   emit("cancel");
   close();
-  $switchStore.$clickAudio("6xc6");
+  $switchStore.$clickAudioStore("6xc6");
 };
 
 /* 确定 */
 const handleConfirm = () => {
   emit("confirm");
   close();
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
 };
 </script>
 

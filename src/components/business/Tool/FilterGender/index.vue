@@ -16,7 +16,7 @@ const $switchStore = switchStore();
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {
   emit("update:modelValue", v);
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 </script>
 

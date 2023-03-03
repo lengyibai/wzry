@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { $isPhone } from "@/utils";
 import { configDefault } from "@/default";
-import clickAudio from "@/store/audio";
+import clickAudioStore from "@/store/audio";
 import musicStore from "@/store/music";
 import cssVarStore from "@/store/cssVar";
 
@@ -21,11 +21,11 @@ const settingStore = defineStore("setting", () => {
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
-    const $clickAudio = clickAudio();
+    const $clickAudioStore = clickAudioStore();
     const $musicStore = musicStore();
     const $cssVarStore = cssVarStore();
-    $clickAudio.setAudio(config.value.audio);
-    $clickAudio.setVolume(config.value.audioVolume);
+    $clickAudioStore.setAudio(config.value.audio);
+    $clickAudioStore.setVolume(config.value.audioVolume);
     $musicStore.setVolume(config.value.musicVolume);
     $cssVarStore.setSpeed(config.value.speed);
     $cssVarStore.setBorder(config.value.border);

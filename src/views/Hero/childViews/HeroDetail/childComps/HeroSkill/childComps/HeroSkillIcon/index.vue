@@ -54,7 +54,7 @@ const handleSelectSkill = (index: number) => {
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
   emit("select-skill", calcActiveSkill.value);
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 handleSelectSkill(0);
 
@@ -77,7 +77,7 @@ const handleToggleSkill = () => {
 
   //更新技能信息
   handleSelectSkill(current_index.value);
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 onUnmounted(() => {

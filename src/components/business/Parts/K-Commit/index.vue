@@ -30,7 +30,7 @@ const commit = () => {
     show_up.value = false;
     emit("commit");
   }, 750);
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
 };
 
 watch(

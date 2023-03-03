@@ -36,12 +36,12 @@ const icon = computed(() => {
  */
 const handleTool = (v: string) => {
   if (v === "sound") {
-    $switchStore.$clickAudio("n4r4");
+    $switchStore.$clickAudioStore("n4r4");
     $settingStore.saveConfig({ muted: !muted.value });
     return;
   }
   if (v === "readme") {
-    $switchStore.$clickAudio("n4r4");
+    $switchStore.$clickAudioStore("n4r4");
   }
   emit("clicks", v);
 };

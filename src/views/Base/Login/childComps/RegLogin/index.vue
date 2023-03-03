@@ -33,7 +33,7 @@ const component = computed(() => {
 /* 重新选择登录还是注册 */
 const handleBack = () => {
   is_reg.value = "";
-  $switchStore.$clickAudio("p60v");
+  $switchStore.$clickAudioStore("p60v");
 };
 
 /**

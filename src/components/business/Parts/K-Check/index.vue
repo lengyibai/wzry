@@ -19,7 +19,7 @@ const icon = computed(() => `${IMGBED}/image/${props.modelValue ? "select_true" 
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 </script>
 

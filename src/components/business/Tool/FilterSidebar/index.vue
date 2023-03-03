@@ -61,7 +61,7 @@ const filter_type = computed(() => {
 
 /* 选择类型并筛选显示 */
 const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
-  $switchStore.$clickAudio(`默认${index}`);
+  $switchStore.$clickAudioStore(`默认${index}`);
 
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),

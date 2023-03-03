@@ -34,7 +34,7 @@ const handleContrast = () => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.setUserInfo(user_info.value);
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
 
   //更新本地当前用户信息
   updateUser($authStore.userInfo.id, user_info.value).then(() => {

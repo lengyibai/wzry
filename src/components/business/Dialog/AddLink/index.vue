@@ -23,13 +23,13 @@ const input_link = ref(""); //输入的链接
 
 input_link.value = props.link;
 
-$switchStore.$clickAudio("0o5c");
+$switchStore.$clickAudioStore("0o5c");
 
 /* 确定 */
 const handleConfirm = () => {
   emit("get-link", input_link.value);
   input_link.value = "";
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
 };
 </script>
 

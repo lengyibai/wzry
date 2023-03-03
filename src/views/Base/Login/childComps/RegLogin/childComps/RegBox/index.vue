@@ -22,7 +22,7 @@ const form_verify = ref<boolean[]>([false, false, false]); //表单验证
 
 /* 注册 */
 const handleReg = () => {
-  $switchStore.$clickAudio("36jn");
+  $switchStore.$clickAudioStore("36jn");
 
   if (form_verify.value.some((item) => !item)) {
     $switchStore.$msg("请正确填写", "error");

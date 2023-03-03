@@ -17,7 +17,7 @@ export default () => {
         error: "vw31",
       };
 
-      switchStore().$clickAudio(msgName[type]); //播放指定名称的音效
+      switchStore().$clickAudioStore(msgName[type]); //播放指定名称的音效
 
       //创建消息内容
       const msgText: MsgText = {

@@ -61,7 +61,7 @@ $heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
 
 /* 悬浮语音 */
 const handleEnter = () => {
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 /* 点击播放 */

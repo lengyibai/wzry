@@ -21,9 +21,9 @@ userList().then((res) => {
 const handleInto = (v: string) => {
   emit("into", v);
   if (v === "注册") {
-    $switchStore.$clickAudio("0o5c");
+    $switchStore.$clickAudioStore("0o5c");
   } else {
-    $switchStore.$clickAudio("36jn");
+    $switchStore.$clickAudioStore("36jn");
   }
 };
 </script>

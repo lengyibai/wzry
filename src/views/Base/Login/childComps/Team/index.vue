@@ -10,7 +10,7 @@ const $switchStore = switchStore();
 const active = ref(-1); //当前显示的图片的索引号
 const imgs = ref<string[]>([]);
 
-$switchStore.$clickAudio("u4c5");
+$switchStore.$clickAudioStore("u4c5");
 
 Team().then((res) => {
   imgs.value = res.data as unknown as string[];

@@ -5,7 +5,7 @@ import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 import { $debounce } from "@/utils";
 import { configDefault } from "@/default";
-import clickAudio from "@/store/audio";
+import clickAudioStore from "@/store/audio";
 import musicStore from "@/store/music";
 import settingStore from "@/store/setting";
 import cssVarStore from "@/store/cssVar";
@@ -16,7 +16,7 @@ interface Props {
 }
 defineProps<Props>();
 
-const $clickAudio = clickAudio();
+const $clickAudioStore = clickAudioStore();
 const $musicStore = musicStore();
 const $settingStore = settingStore();
 const $cssVarStore = cssVarStore();
@@ -59,13 +59,13 @@ const EmitMusicProgress = () => {
 
 /* 开启音效 */
 const EmitAudio = (v: boolean) => {
-  $clickAudio.setAudio(v);
+  $clickAudioStore.setAudio(v);
   EmitSaveConfig();
 };
 
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
-  $clickAudio.setVolume(v);
+  $clickAudioStore.setVolume(v);
   $debounce(() => {
     EmitSaveConfig();
   }, 1000);
@@ -115,8 +115,8 @@ const EmitSaveConfig = () => {
 const EmitResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-  $clickAudio.setAudio(config.value.audio);
-  $clickAudio.setVolume(config.value.audioVolume);
+  $clickAudioStore.setAudio(config.value.audio);
+  $clickAudioStore.setVolume(config.value.audioVolume);
   $musicStore.setVolume(config.value.musicVolume);
   $cssVarStore.setSpeed(config.value.speed);
   $cssVarStore.setShine(config.value.shine);

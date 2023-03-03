@@ -102,7 +102,7 @@ const changeValue = (e: Event) => {
   down.value = true;
   emit("update:modelValue", parseFloat(v));
   $throttleInstant(() => {
-    $switchStore.$clickAudio("range");
+    $switchStore.$clickAudioStore("range");
   }, 50);
 };
 

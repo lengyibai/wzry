@@ -27,7 +27,7 @@ $equipStore.getEquipList().then(() => {
 });
 
 onActivated(() => {
-  $switchStore.$clickAudio("3k4s");
+  $switchStore.$clickAudioStore("3k4s");
 });
 </script>
 

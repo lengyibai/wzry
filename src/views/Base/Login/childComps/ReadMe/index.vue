@@ -17,7 +17,7 @@ const IMGBED = window.IMGBED; //全局图床链接
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
-  $switchStore.$clickAudio("6xc6");
+  $switchStore.$clickAudioStore("6xc6");
 };
 </script>
 

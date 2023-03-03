@@ -63,7 +63,7 @@ const fn = () => {
   } /* 否则移除子菜单 */ else {
     routes.length = 0;
   }
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 
 /* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */

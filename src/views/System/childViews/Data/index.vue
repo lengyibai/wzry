@@ -133,7 +133,7 @@ const setStatus = (data: any, v: any) => {
 };
 
 /* 音效触发 */
-const play = () => $switchStore.$clickAudio();
+const play = () => $switchStore.$clickAudioStore();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
@@ -204,7 +204,7 @@ const EmitsSortChange = (v: number[]) => {
 };
 
 onActivated(() => {
-  $switchStore.$clickAudio("bq69");
+  $switchStore.$clickAudioStore("bq69");
 });
 </script>
 

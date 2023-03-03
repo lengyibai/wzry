@@ -26,7 +26,7 @@ export default () => {
 
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
-        $switchStore.$clickAudio("rt25");
+        $switchStore.$clickAudioStore("rt25");
         title.value = biaoti;
         content.value = text;
         align.value = p;
@@ -42,7 +42,7 @@ export default () => {
       //判断是否已经设置了不再提示
       if (!$settingStore.config.noTips[text as TipKeys]) {
         show_tip.value = !show_tip.value;
-        $switchStore.$clickAudio("rt25");
+        $switchStore.$clickAudioStore("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
         content.value = tips[text as TipKeys];
         align.value = p;

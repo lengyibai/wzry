@@ -39,7 +39,7 @@ const handleLogin = () => {
   $authStore
     .login(form.value)
     .then(() => {
-      $switchStore.$clickAudio("e84n");
+      $switchStore.$clickAudioStore("e84n");
       $switchStore.$msg("登录成功");
       //记住密码
       if (remember.value) {

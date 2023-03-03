@@ -33,7 +33,7 @@ const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
   new Image().src = data.headImg; //图片预加载
 };
 
@@ -94,7 +94,7 @@ watch(
 );
 
 onActivated(() => {
-  $switchStore.$clickAudio("4d8m");
+  $switchStore.$clickAudioStore("4d8m");
 });
 
 onMounted(async () => {

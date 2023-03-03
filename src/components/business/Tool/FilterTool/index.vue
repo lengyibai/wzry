@@ -36,7 +36,7 @@ if (props.modelValue) {
 
 /* 显示列表 */
 const handleShowList = () => {
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 /* 悬浮触发 */
@@ -49,7 +49,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
   current_value.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 </script>
 

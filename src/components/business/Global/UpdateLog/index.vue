@@ -7,7 +7,7 @@ import versionStore from "@/store/version";
 const $switchStore = switchStore();
 const $versionStore = versionStore();
 
-$switchStore.$clickAudio("u4c5");
+$switchStore.$clickAudioStore("u4c5");
 
 const data_status = computed(() => $versionStore.data_status); //数据需要更新
 const file_status = computed(() => $versionStore.file_status); //文件需要更新

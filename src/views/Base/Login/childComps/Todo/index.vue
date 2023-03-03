@@ -12,7 +12,7 @@ Todo().then((res) => {
   todo.value = res.data;
 });
 
-$switchStore.$clickAudio("u4c5");
+$switchStore.$clickAudioStore("u4c5");
 </script>
 
 <template>

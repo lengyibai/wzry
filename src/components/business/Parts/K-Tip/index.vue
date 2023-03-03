@@ -53,7 +53,7 @@ const handleClose = () => {
   props.noTipName && $settingStore.setNoTip(props.noTipName as TipKeys);
 
   emit("update:modelValue", false);
-  $switchStore.$clickAudio("6xc6");
+  $switchStore.$clickAudioStore("6xc6");
 
   setTimeout(() => {
     props.btnFn();

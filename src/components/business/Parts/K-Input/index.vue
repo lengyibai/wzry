@@ -92,7 +92,7 @@ const is_focus = ref(false); //是否获取焦点
 const focus = () => {
   is_focus.value = true;
   emit("focus");
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 
 /* 失去焦点 */

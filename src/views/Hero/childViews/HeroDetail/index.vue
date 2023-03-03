@@ -57,7 +57,7 @@ const EmitToggle = (index: number) => {
 
 /* 滚动立即触发 */
 const EmitScollStart = () => {
-  $switchStore.$clickAudio("n4r4");
+  $switchStore.$clickAudioStore("n4r4");
 };
 
 /* 滚动结束触发 */
@@ -69,7 +69,7 @@ const EmitScrollEnd = (index: number) => {
 const handleHide = () => {
   $router.replace("/hero");
   $heroDetail.setSkinVoice("盾山"); //置空语音
-  $switchStore.$clickAudio("6xc6");
+  $switchStore.$clickAudioStore("6xc6");
 
   //延迟0.1秒显示解决移动端动画掉帧
   setTimeout(() => {
@@ -81,7 +81,7 @@ const handleHide = () => {
     setTimeout(() => {
       $heroStore.getHeroList();
       setTimeout(() => {
-        $switchStore.$clickAudio("4d8m");
+        $switchStore.$clickAudioStore("4d8m");
       }, 250);
     }, 1500);
   }
@@ -95,7 +95,7 @@ setTimeout(() => {
   });
 }, 1500);
 
-$switchStore.$clickAudio("u4c5");
+$switchStore.$clickAudioStore("u4c5");
 </script>
 
 <template>

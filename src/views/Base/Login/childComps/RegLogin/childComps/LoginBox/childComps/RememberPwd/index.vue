@@ -23,7 +23,7 @@ const checkIcon = computed(
 /* 选中按钮 */
 const handleToggle = () => {
   emit("update:modelValue", !props.modelValue);
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
 };
 </script>
 

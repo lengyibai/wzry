@@ -42,12 +42,12 @@ const options: Options = reactive({
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
   options[key].show = true;
-  $switchStore.$clickAudio();
+  $switchStore.$clickAudioStore();
   $switchStore.$loading.show("正在加载添加" + list[key] + "页面");
 };
 
 onActivated(() => {
-  $switchStore.$clickAudio("u4c5");
+  $switchStore.$clickAudioStore("u4c5");
 });
 </script>
 

@@ -18,7 +18,7 @@ $epigraphStore.getEpigraph().then(() => {
 });
 
 onActivated(() => {
-  $switchStore.$clickAudio("h7t9");
+  $switchStore.$clickAudioStore("h7t9");
 });
 </script>
 
