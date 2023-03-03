@@ -51,14 +51,14 @@ onMounted(() => {
           if ($isPhone) {
             $switchStore.$tip({
               text: "1zs6",
-              align: "right-top",
+              align: "left-top",
               createFn: a,
               btnFn: b,
             });
           } else {
             $switchStore.$tip({
               text: "0vk2",
-              align: "right-top",
+              align: "left-top",
               createFn: a,
               btnFn: b,
             });
