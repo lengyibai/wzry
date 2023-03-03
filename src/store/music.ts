@@ -1,19 +1,22 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $potEoPct } from "@/utils";
+import settingStore from "./setting";
+
+import { $potEoPct, $AudioVisual } from "@/utils";
 
 /** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {
   let progress_timer: Interval; //进度条宽度设置
   let tool_timer: Interval; //工具显示设置
-  const bgm = ref(new Audio()); //播放器
   const bgmIndex = ref(0); //音乐索引
   const progress = ref(0); //播放进度
   const volume = ref(0); //音量
   const status = ref(false); //当前音乐播放状态，false:暂停
   const show_list = ref(false); //显示播放列表
   const show_tool = ref(true); //显示工具栏
+  const bgm = ref(new Audio()); //播放器
+  const audio_visual = ref<$AudioVisual>();
   const musics = [
     { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
     { name: "永远的长安城", url: "cac", time: "00:02:42" },
@@ -29,6 +32,7 @@ const musicStore = defineStore("music", () => {
   ]; //音乐列表
 
   musics.sort(() => 0.5 - Math.random()); //打乱顺序
+  bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
 
   /** @description 上一首 */
   const last = () => {
@@ -45,19 +49,27 @@ const musicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.value = new Audio();
-      bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
       bgm.value.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
 
     status.value = true;
     bgm.value.volume = volume.value;
 
-    bgm.value.play().catch(() => {
-      setTimeout(() => {
-        play(false);
-      }, 1000);
-    });
+    bgm.value
+      .play()
+      .then(() => {
+        //播放成功后开始分析音频
+        audio_visual.value?.play();
+        //如果未启用音乐播放器，则暂停播放
+        if (!settingStore().config.music) {
+          bgm.value.pause();
+        }
+      })
+      .catch(() => {
+        setTimeout(() => {
+          play(false);
+        }, 1000);
+      });
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
@@ -136,9 +148,15 @@ const musicStore = defineStore("music", () => {
     bgm.value.currentTime = 0;
   };
 
+  /** @description 音频可视化初始化 */
+  const initAudioVisual = (canvas: HTMLCanvasElement) => {
+    audio_visual.value = new $AudioVisual(bgm.value, canvas);
+  };
+
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */
   const resetAudio = () => {
     bgm.value = new Audio();
+    bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
   };
 
   return {
@@ -167,6 +185,7 @@ const musicStore = defineStore("music", () => {
     setVolume,
     stop,
     resetAudio,
+    initAudioVisual,
   };
 });
 
