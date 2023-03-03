@@ -71,7 +71,7 @@ useRouter.beforeEach(async (to, from, next) => {
 
 useRouter.afterEach((to) => {
   switchStore().$loading.close();
-  document.title = `${to.meta.title || "正在进入"}-王者荣耀图鉴`;
+  document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 
 export default useRouter;
