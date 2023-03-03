@@ -23,15 +23,14 @@ onMounted(() => {
     $switchStore.$tip({
       text: "05su",
       align: "right-bottom",
+      btnFn: () => {
+        if ($isPhone) {
+          $switchStore.$tip({ text: "1zs6", align: "right-bottom" });
+        } else {
+          $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
+        }
+      },
     });
-
-    setTimeout(() => {
-      if ($isPhone) {
-        $switchStore.$tip({ text: "1zs6", align: "right-bottom" });
-      } else {
-        $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
-      }
-    }, 10000);
   }, 1000);
 });
 </script>
