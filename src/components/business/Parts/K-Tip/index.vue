@@ -57,7 +57,7 @@ const handleClose = () => {
 
   setTimeout(() => {
     props.btnFn();
-  }, 1000);
+  }, 500);
 };
 </script>
 
