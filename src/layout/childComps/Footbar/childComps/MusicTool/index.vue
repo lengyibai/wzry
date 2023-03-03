@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { nextTick, ref } from "vue";
+
 import MuiscList from "../MuiscList/index.vue";
 
 import musicStore from "@/store/music";
 import deviceStore from "@/store/device";
+import switchStore from "@/store/switch";
+import { $FocusElement, $isPhone } from "@/utils";
 
 interface Emits {
   (e: "toggle", v: string): void;
@@ -11,7 +15,25 @@ const emit = defineEmits<Emits>();
 
 const $musicStore = musicStore();
 const $deviceStore = deviceStore();
+const $switchStore = switchStore();
 
+const musicTool = ref();
+
+nextTick(() => {
+  const musicToolFocus = new $FocusElement(musicTool.value);
+
+  if ($isPhone) return;
+  $switchStore.$tip({
+    text: "58mz",
+    align: "right-top",
+    createFn: () => {
+      musicToolFocus.focus();
+    },
+    btnFn: () => {
+      musicToolFocus.blur();
+    },
+  });
+});
 /* 点击按钮 */
 const handleTool = (type: string) => {
   emit("toggle", type);
@@ -25,6 +47,7 @@ const handleTool = (type: string) => {
       class="music-tool"
       :class="{ center: $deviceStore.vertical }"
       @click.stop
+      ref="musicTool"
     >
       <i class="cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i

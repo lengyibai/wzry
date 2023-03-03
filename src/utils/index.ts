@@ -727,3 +727,33 @@ export class $AudioVisual {
     cancelAnimationFrame(this.animationFrameId);
   }
 }
+
+/**
+ * @description: 元素聚焦
+ * @param el 需要进行聚焦的元素
+ * @param status 聚焦状态
+ */
+export class $FocusElement {
+  el: HTMLElement;
+  zIndex: string;
+  outline: string;
+  transition: string;
+
+  constructor(el: HTMLElement) {
+    this.el = el;
+    this.zIndex = el.style.zIndex;
+    this.outline = el.style.outline;
+    this.transition = el.style.transition;
+  }
+
+  focus() {
+    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0.75)";
+    this.el.style.zIndex = "9";
+  }
+
+  blur() {
+    this.el.style.outline = this.outline;
+    this.el.style.zIndex = this.zIndex;
+    this.el.style.transition = this.transition;
+  }
+}

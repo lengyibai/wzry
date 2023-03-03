@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
 import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
@@ -8,29 +8,64 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import switchStore from "@/store/switch";
 import heroDetail from "@/store/heroDetail";
-import { $isPhone } from "@/utils";
+import { $FocusElement, $isPhone } from "@/utils";
 
 const $heroDetail = heroDetail();
 const $switchStore = switchStore();
 
+const relationship = ref();
+const down = ref();
+
 const into = ref(false); //控制页面元素显示
+const show_down = ref(false); //显示向上滚动提示
+
 const hero_data = computed(() => $heroDetail.hero_info); //英雄数据
 
 onMounted(() => {
   //设置按顺序出场的动画
-  setTimeout(() => {
+  setTimeout(async () => {
     into.value = true;
-    $switchStore.$tip({
-      text: "05su",
-      align: "right-bottom",
-      btnFn: () => {
-        if ($isPhone) {
-          $switchStore.$tip({ text: "1zs6", align: "right-bottom" });
-        } else {
-          $switchStore.$tip({ text: "0vk2", align: "right-bottom" });
-        }
-      },
-    });
+
+    await nextTick();
+
+    setTimeout(() => {
+      const focusRelationship = new $FocusElement(relationship.value.el);
+      const focusdown = new $FocusElement(down.value);
+      $switchStore.$tip({
+        text: "05su",
+        align: "right-bottom",
+        createFn: () => {
+          focusRelationship.focus();
+        },
+        btnFn: () => {
+          focusRelationship.blur();
+
+          const a = () => {
+            focusdown.focus();
+            show_down.value = true;
+          };
+
+          const b = () => {
+            focusdown.blur();
+          };
+          if ($isPhone) {
+            $switchStore.$tip({
+              text: "1zs6",
+              align: "right-top",
+              createFn: a,
+              btnFn: b,
+            });
+          } else {
+            $switchStore.$tip({
+              text: "0vk2",
+              align: "right-top",
+              createFn: a,
+              btnFn: b,
+            });
+          }
+        },
+      });
+    }, 1000);
   }, 1000);
 });
 </script>
@@ -57,7 +92,7 @@ onMounted(() => {
       <div class="right">
         <!-- 关系 -->
         <transition name="relationship">
-          <HeroRelationship v-if="into" />
+          <HeroRelationship v-if="into" ref="relationship" />
         </transition>
 
         <!-- 属性 -->
@@ -73,7 +108,7 @@ onMounted(() => {
     </div>
 
     <!-- 向上滚动提示 -->
-    <i class="iconfont wzry-down"></i>
+    <i v-show="show_down" class="iconfont wzry-down" ref="down"></i>
   </div>
 </template>
 

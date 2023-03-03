@@ -3,6 +3,7 @@ import { ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
+import { $FocusElement } from "@/utils";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
@@ -13,6 +14,8 @@ const $heroDetail = heroDetail();
 const $switchStore = switchStore();
 
 let deputy_index = 0; //主副技能索引
+
+const toggle = ref();
 
 const current_index = ref(0); //处于展示的技能索引
 const show = ref(false); //显示技能
@@ -36,11 +39,19 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   const length = hero_data.value.skills!.length;
   if (length > 1) {
     setTimeout(() => {
+      const toggleFocus = new $FocusElement(toggle.value);
+
       $switchStore.$tip({
         align: "right-top",
         text: `${hero_data.value.name}存在${
           length == 3 ? "三" : "两"
         }套技能，页面底部中间有个切换副技能的按钮，点击它吧！由于图片资源条件有限，副技能的被动图标都会带有文字，没有文字的就是主技能。`,
+        createFn: () => {
+          toggleFocus.focus();
+        },
+        btnFn: () => {
+          toggleFocus.blur();
+        },
       });
     }, 500);
   }
@@ -114,6 +125,7 @@ onUnmounted(() => {
       :class="{ 'hide-bottom': !show }"
       title="切换技能"
       @click="handleToggleSkill"
+      ref="toggle"
     />
   </div>
 </template>

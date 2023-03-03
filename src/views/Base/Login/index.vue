@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from "vue";
+import { ref, computed, onUnmounted, nextTick } from "vue";
 
 import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
@@ -12,12 +12,14 @@ import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 import $bus from "@/utils/eventBus";
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
+import { $FocusElement } from "@/utils";
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
-let tip_status = false; //用于tip新手引导
+
+const toolbar = ref();
 
 const show_notice = ref(true); //显示公告
 const show_readme = ref(false); //显示README
@@ -41,9 +43,18 @@ const EmitToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const EmitCloseNotice = () => {
-  if (tip_status) return;
-  $switchStore.$tip({ text: "9f5m" });
-  tip_status = true;
+  const toolbarFocus = new $FocusElement(toolbar.value.el);
+
+  $switchStore.$tip({
+    text: "9f5m",
+    align: "left-bottom",
+    createFn: () => {
+      toolbarFocus.focus();
+    },
+    btnFn: () => {
+      toolbarFocus.blur();
+    },
+  });
 };
 
 /* 开始确认刷新计时 */
@@ -77,7 +88,7 @@ onUnmounted(() => {
     <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo || show_team }" />
 
     <!-- 工具栏 -->
-    <ToolBar :notice="finish" @clicks="EmitToolType" />
+    <ToolBar :notice="finish" @clicks="EmitToolType" ref="toolbar" />
 
     <!-- 视频背景 -->
     <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />

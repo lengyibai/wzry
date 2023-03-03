@@ -3,7 +3,7 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
-import { $isPhone } from "@/utils";
+import { $FocusElement, $isPhone } from "@/utils";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
@@ -15,6 +15,7 @@ const $switchStore = switchStore();
 
 const skin = ref();
 const showSkin = ref();
+const skinHead = ref();
 
 let toggle = true; //用于切换背景
 
@@ -112,15 +113,27 @@ $heroDetail.setScollFn("skin", (index) => {
           setPosition(skin.value[0]);
 
           setTimeout(() => {
+            const skinHeadFocus = new $FocusElement(skinHead.value);
+
+            const a = () => {
+              skinHeadFocus.focus();
+            };
+            const b = () => {
+              skinHeadFocus.blur();
+            };
             if ($isPhone) {
               $switchStore.$tip({
                 text: "1w7o",
                 align: "right-top",
+                createFn: a,
+                btnFn: b,
               });
             } else {
               $switchStore.$tip({
                 text: "9oy5",
                 align: "right-top",
+                createFn: a,
+                btnFn: b,
               });
             }
           }, 3000);
@@ -136,7 +149,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
+  <div class="hero-skin-head-img flex" :class="{ into: show_skin_box }" ref="skinHead">
     <!--中心头衔框-->
     <div class="show-skin flex" ref="showSkin">
       {{ is_into_drap ? "松开" : "拖过来" }}
