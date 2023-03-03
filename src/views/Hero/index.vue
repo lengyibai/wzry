@@ -99,6 +99,9 @@ onActivated(() => {
 
 onMounted(async () => {
   const change = [
+    [2200, 8],
+    [2000, 7],
+    [1800, 6],
     [1600, 5],
     [1400, 4],
     [1024, 3],
@@ -109,8 +112,8 @@ onMounted(async () => {
   //实时修改一行个数
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
-    if (v > 1600) {
-      count.value = 6;
+    if (v > 2200) {
+      count.value = 9;
     }
     for (const [a, b] of change) {
       if (v < a) {
@@ -166,7 +169,7 @@ onBeforeUnmount(() => {
               v-for="(item, index) in $heroStore.show_list"
               class="hero-card"
               :style="{
-                'transition-delay': (index % 20) * 0.025 + 's',
+                'transition-delay': (index % 30) * 0.025 + 's',
               }"
               @mouseenter="handleEnterCard(item)"
               :key="index"

@@ -32,7 +32,9 @@ watch(
 onMounted(() => {
   /* 实时修改一行个数 */
   const change = [
-    [1560, 3],
+    [2300, 5],
+    [2000, 4],
+    [1600, 3],
     [1110, 2],
     [760, 1],
   ];
@@ -40,8 +42,8 @@ onMounted(() => {
   /* 修改个数 */
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
-    if (v > 1400) {
-      count.value = 4;
+    if (v > 2300) {
+      count.value = 6;
     }
     for (const [a, b] of change) {
       if (v < a) {

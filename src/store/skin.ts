@@ -25,7 +25,7 @@ const skinStore = defineStore("skin", () => {
   const scroll = ref(0); //滚动坐标
   const page = ref(1); //当前页数
   const page_total = ref(0); //总页数
-  const page_count = ref(20); //一页显示的个数
+  const page_count = ref(50); //一页显示的个数
   const show_list = ref<Hero.Skin[]>([]); //展示的列表
 
   /** @description 设置滚动坐标 */

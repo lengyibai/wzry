@@ -22,7 +22,7 @@ const heroStore = defineStore("hero", () => {
   const scroll = ref(0); //滚动坐标
   const page = ref(1); //当前页数
   const page_total = ref(0); //总页数
-  const page_count = ref(20); //一页显示的个数
+  const page_count = ref(30); //一页显示的个数
   const show_list = ref<Hero.Data[]>([]); //展示的列表
 
   /**

@@ -74,6 +74,8 @@ onActivated(() => {
 onMounted(() => {
   //实时修改一行个数
   const change = [
+    [2400, 5],
+    [2000, 4],
     [1600, 3],
     [1400, 2],
     [960, 1],
@@ -81,8 +83,8 @@ onMounted(() => {
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
 
-    if (v > 1600) {
-      count.value = 4;
+    if (v > 2400) {
+      count.value = 6;
     }
     for (const [a, b] of change) {
       if (v < a) {
