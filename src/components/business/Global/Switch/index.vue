@@ -40,7 +40,7 @@ for (const v of events) {
     <K-Message :messages="messages" />
 
     <!-- NPC -->
-    <transition :name="align">
+    <transition name="fade">
       <K-Tip
         v-if="show_tip"
         v-model="show_tip"
@@ -55,7 +55,3 @@ for (const v of events) {
     </transition>
   </div>
 </template>
-
-<style scoped lang="less">
-@import url("./index.less");
-</style>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 
@@ -28,6 +30,12 @@ const $settingStore = settingStore();
 const $switchStore = switchStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
+
+const show_tip = ref(false);
+
+onMounted(() => {
+  show_tip.value = true;
+});
 
 const position = {
   "left-top": {
@@ -62,22 +70,26 @@ const handleClose = () => {
 </script>
 
 <template>
-  <div class="k-tip" :style="position[align]">
-    <div class="top">
-      <!-- 左上角标题 -->
-      <div class="title">{{ title }}</div>
+  <div class="mask">
+    <transition :name="align">
+      <div v-show="show_tip" class="k-tip" :style="position[align]">
+        <div class="top">
+          <!-- 左上角标题 -->
+          <div class="title">{{ title }}</div>
 
-      <!-- 小兵 -->
-      <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
-    </div>
+          <!-- 小兵 -->
+          <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+        </div>
 
-    <!-- 内容 -->
-    <div v-typewriterMultiple class="content">{{ text }}</div>
+        <!-- 内容 -->
+        <div v-typewriterMultiple class="content">{{ text }}</div>
 
-    <!-- 按钮 -->
-    <div class="btns">
-      <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{ btnText }}</K-Button>
-    </div>
+        <!-- 按钮 -->
+        <div class="btns">
+          <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{ btnText }}</K-Button>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
