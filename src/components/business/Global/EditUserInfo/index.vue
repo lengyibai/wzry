@@ -57,7 +57,7 @@ const handleSave = () => {
 </script>
 
 <template>
-  <div class="options">
+  <div class="edit-user-info">
     <!-- 帐号 -->
     <div class="option">
       <div class="label">帐号</div>

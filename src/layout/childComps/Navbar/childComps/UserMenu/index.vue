@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import Options from "./childComps/Options/index.vue";
-
 import { $timeGreet } from "@/utils";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
@@ -86,7 +84,7 @@ setInterval(() => {
   </div>
   <transition name="fade">
     <K-Dialog v-if="show_edit" title="编辑个人资料" width="920px" up @close="EmitClose">
-      <Options :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
+      <EditUserInfo :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
     </K-Dialog>
   </transition>
 
