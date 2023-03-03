@@ -71,6 +71,9 @@ onMounted(() => {
         </transition>
       </div>
     </div>
+
+    <!-- 向上滚动提示 -->
+    <i class="iconfont wzry-down"></i>
   </div>
 </template>
 
