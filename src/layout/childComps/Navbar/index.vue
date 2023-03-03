@@ -15,7 +15,7 @@ const $deviceStore = deviceStore();
     <!-- 折叠按钮 -->
     <PackUp />
 
-    <div v-show="!$deviceStore.vertical" class="center">
+    <div v-show="!$deviceStore.vertical" v-if="false" class="center">
       <!-- 已过去时间 -->
       <PassTime />
     </div>
