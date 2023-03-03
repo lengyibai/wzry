@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted, nextTick } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 
 import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
 import Notice from "./childComps/Notice/index.vue"; //公告
