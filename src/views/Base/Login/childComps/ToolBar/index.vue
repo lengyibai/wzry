@@ -90,16 +90,6 @@ defineExpose({
       <div class="base"></div>
     </div>
 
-    <!-- 演示 -->
-    <div v-if="notice" class="tool" title="演示">
-      <div class="line"></div>
-      <a class="box cursor-pointer elastic" href="https://b23.tv/QRN4R7E" target="_blank">
-        <i class="iconfont wzry-shipin" />
-        <span class="text">演示</span>
-      </a>
-      <div class="base"></div>
-    </div>
-
     <!--计划 -->
     <div v-if="notice" class="tool" title="计划">
       <div class="line"></div>
