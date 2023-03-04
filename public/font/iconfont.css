@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3767305 */
-  src: url('iconfont.woff2?t=1677811207492') format('woff2'),
-       url('iconfont.woff?t=1677811207492') format('woff'),
-       url('iconfont.ttf?t=1677811207492') format('truetype');
+  src: url('iconfont.woff2?t=1677949121447') format('woff2'),
+       url('iconfont.woff?t=1677949121447') format('woff'),
+       url('iconfont.ttf?t=1677949121447') format('truetype');
 }
 
 .iconfont {
@@ -35,10 +35,6 @@
 
 .wzry-musiclist:before {
   content: "\e62f";
-}
-
-.wzry-shipin:before {
-  content: "\e635";
 }
 
 .wzry-pause:before {
