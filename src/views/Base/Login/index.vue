@@ -47,7 +47,7 @@ const EmitCloseNotice = () => {
 
   $switchStore.$tip({
     text: "9f5m",
-    align: "left-bottom",
+    align: "right-bottom",
     createFn: () => {
       toolbarFocus.focus();
     },
