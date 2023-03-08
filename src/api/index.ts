@@ -16,8 +16,8 @@ class RequestHttp {
         config.url += `?temp=${Math.random()}`;
         return config;
       },
-      async (error: AxiosError) => {
-        return await Promise.reject(error);
+      (error: AxiosError) => {
+        return Promise.reject(error);
       }
     );
 
@@ -27,7 +27,7 @@ class RequestHttp {
       (response: AxiosResponse) => {
         return response.data;
       },
-      async (error: AxiosError) => {
+      (error: AxiosError) => {
         //如果是获取版本信息造成的报错，则不提醒
         if (error.config.url?.includes("version")) return;
         if (error.code === "ERR_NETWORK" && !err_status) {
@@ -41,25 +41,25 @@ class RequestHttp {
           location.reload();
         }
 
-        return await Promise.reject(error);
+        return Promise.reject(error);
       }
     );
   }
 
-  async Get<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return await this.service.get(url, { params, ...obj });
+  Get<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return this.service.get(url, { params, ...obj });
   }
 
-  async Post<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return await this.service.post(url, params, obj);
+  Post<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return this.service.post(url, params, obj);
   }
 
-  async Patch<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return await this.service.patch(url, params, obj);
+  Patch<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
+    return this.service.patch(url, params, obj);
   }
 
-  async Del<T>(url: string, params?: any, obj = {}): Promise<ResultData<T>> {
-    return await this.service.delete(url, { params, ...obj });
+  Del<T>(url: string, params?: any, obj = {}): Promise<ResultData<T>> {
+    return this.service.delete(url, { params, ...obj });
   }
 }
 
