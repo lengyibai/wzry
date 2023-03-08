@@ -13,6 +13,8 @@ import { $FocusElement, $isPhone } from "@/utils";
 const $heroDetail = heroDetail();
 const $switchStore = switchStore();
 
+let tip_text = "0vk2"; //通过设备来显示不同的提示
+
 const relationship = ref();
 const down = ref();
 
@@ -31,38 +33,32 @@ onMounted(() => {
     setTimeout(() => {
       const focusRelationship = new $FocusElement(relationship.value.el);
       const focusdown = new $FocusElement(down.value);
+
+      if ($isPhone) {
+        tip_text = "1zs6";
+      }
+
       $switchStore.$tip({
-        text: "05su",
-        align: "right-bottom",
+        text: tip_text,
+        align: "left-top",
         createFn: () => {
-          focusRelationship.focus();
+          focusdown.focus();
+          show_down.value = true;
         },
         btnFn: () => {
-          focusRelationship.blur();
+          focusdown.blur();
 
-          const a = () => {
-            focusdown.focus();
-            show_down.value = true;
-          };
-
-          const b = () => {
-            focusdown.blur();
-          };
-          if ($isPhone) {
-            $switchStore.$tip({
-              text: "1zs6",
-              align: "left-top",
-              createFn: a,
-              btnFn: b,
-            });
-          } else {
-            $switchStore.$tip({
-              text: "0vk2",
-              align: "left-top",
-              createFn: a,
-              btnFn: b,
-            });
-          }
+          /* 显示完滚动提示后显示关系提示 */
+          $switchStore.$tip({
+            text: "05su",
+            align: "right-bottom",
+            createFn: () => {
+              focusRelationship.focus();
+            },
+            btnFn: () => {
+              focusRelationship.blur();
+            },
+          });
         },
       });
     }, 1000);
