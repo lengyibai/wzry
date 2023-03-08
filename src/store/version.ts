@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { Version } from "@/api/main/data";
+import { Version } from "@/api/modules/data";
 import switchStore from "@/store/switch";
 import useUpdateData from "@/hooks/useUpdateData";
 

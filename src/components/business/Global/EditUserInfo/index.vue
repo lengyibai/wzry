@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { updateUser } from "@/api/main/user";
+import { updateUser } from "@/api/modules/user";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
 

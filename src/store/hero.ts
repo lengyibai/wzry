@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { getHeroData } from "@/api/main/games/hero";
-import { getHeroSkill } from "@/api/main/games/skill";
-import { getHeroSkin } from "@/api/main/games/skin";
-import { getHeroRelationship } from "@/api/main/games/relationship";
+import { getHeroData } from "@/api/modules/games/hero";
+import { getHeroSkill } from "@/api/modules/games/skill";
+import { getHeroSkin } from "@/api/modules/games/skin";
+import { getHeroRelationship } from "@/api/modules/games/relationship";
 import TOOL from "@/utils";
 
 /** @description 英雄列表页 */

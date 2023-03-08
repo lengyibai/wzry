@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import { getSkinType, getHeroSkin, addSkin } from "@/api/main/games/skin";
-import { getHeroDetail } from "@/api/main/games/hero";
+import { getSkinType, getHeroSkin, addSkin } from "@/api/modules/games/skin";
+import { getHeroDetail } from "@/api/modules/games/hero";
 import switchStore from "@/store/switch";
 import skinStore from "@/store/skin";
 

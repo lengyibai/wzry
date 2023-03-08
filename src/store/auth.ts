@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import switchStore from "./switch";
 
-import { _login, deleteUser } from "@/api/main/user";
+import { _login, deleteUser } from "@/api/modules/user";
 import TOOL from "@/utils";
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/config";
 import { userDefaultInfo } from "@/default";

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { getCampType } from "@/api/main/games/hero";
+import { getCampType } from "@/api/modules/games/hero";
 import heroStore from "@/store/hero";
 import $bus from "@/utils/eventBus";
 

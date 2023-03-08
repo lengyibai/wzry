@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import switchStore from "@/store/switch";
-import { Todo } from "@/api/main/data";
+import { Todo } from "@/api/modules/data";
 
 const $switchStore = switchStore();
 

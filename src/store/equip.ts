@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import { top, height } from "./helper";
 
-import { getEquip } from "@/api/main/games/equip";
-import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
+import { getEquip } from "@/api/modules/games/equip";
+import { getEquipSynthetic } from "@/api/modules/games/equipSynthetic";
 import TOOL from "@/utils";
 
 /** 装备Dom元素信息 */

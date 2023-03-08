@@ -25,8 +25,8 @@ import {
   Specialtytype,
   User,
   Voice,
-} from "@/api/main/data";
-import { getHeroBasic } from "@/api/main/games/hero";
+} from "@/api/modules/data";
+import { getHeroBasic } from "@/api/modules/games/hero";
 
 export default () => {
   const total = ref(0); //请求总数

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import switchStore from "@/store/switch";
-import { userList } from "@/api/main/user";
+import { userList } from "@/api/modules/user";
 
 interface Emits {
   (e: "into", v: string): void;

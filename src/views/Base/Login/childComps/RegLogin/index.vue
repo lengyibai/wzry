@@ -6,7 +6,7 @@ import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
 import TOOL from "@/utils";
-import { userList } from "@/api/main/user";
+import { userList } from "@/api/modules/user";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 import deviceStore from "@/store/device";

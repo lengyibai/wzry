@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 
 import heroDetail from "@/store/heroDetail";
-import { getHeroDetail } from "@/api/main/games/hero";
+import { getHeroDetail } from "@/api/modules/games/hero";
 
 const $heroDetail = heroDetail();
 const $router = useRouter();

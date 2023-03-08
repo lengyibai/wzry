@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import switchStore from "@/store/switch";
-import { Notice } from "@/api/main/data";
+import { Notice } from "@/api/modules/data";
 
 const $switchStore = switchStore();
 

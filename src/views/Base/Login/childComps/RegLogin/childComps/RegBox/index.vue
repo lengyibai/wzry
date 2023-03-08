@@ -5,7 +5,7 @@ import IntoBtn from "../IntoBtn/index.vue"; //按钮
 
 import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
-import { register } from "@/api/main/user";
+import { register } from "@/api/modules/user";
 import { userDefaultInfo } from "@/default";
 import switchStore from "@/store/switch";
 

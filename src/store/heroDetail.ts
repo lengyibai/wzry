@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { getSkinVoice } from "@/api/main/games/voice";
+import { getSkinVoice } from "@/api/modules/games/voice";
 import TOOL from "@/utils";
 import { heroDefault } from "@/default";
 

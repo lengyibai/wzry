@@ -7,7 +7,7 @@ import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
 import TOOL from "@/utils";
-import { getHeroDetail } from "@/api/main/games/hero";
+import { getHeroDetail } from "@/api/modules/games/hero";
 import { heroDefault } from "@/default";
 import $bus from "@/utils/eventBus";
 import heroDetail from "@/store/heroDetail";

@@ -14,7 +14,7 @@ import {
   getProfessionType,
   getSpecialtyType,
   getRaceType,
-} from "@/api/main/games/hero";
+} from "@/api/modules/games/hero";
 import TOOL from "@/utils";
 import { heroDefault } from "@/default";
 import switchStore from "@/store/switch";

@@ -28,7 +28,7 @@ import {
   Periodtype,
   Camptype,
   RaceType,
-} from "@/api/main/data";
+} from "@/api/modules/data";
 
 const $skinStore = skinStore();
 const $heroStore = heroStore();

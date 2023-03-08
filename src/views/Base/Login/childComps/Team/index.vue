@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Team } from "@/api/main/data";
+import { Team } from "@/api/modules/data";
 import switchStore from "@/store/switch";
 import TOOL from "@/utils";
 
