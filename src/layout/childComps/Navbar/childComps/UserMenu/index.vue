@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { $timeGreet } from "@/utils";
+import TOOL from "@/utils";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
 
@@ -50,9 +50,9 @@ const EmitClose = () => {
 };
 
 /* 问候语 */
-time_greet.value = $timeGreet();
+time_greet.value = TOOL.timeGreet();
 setInterval(() => {
-  time_greet.value = $timeGreet();
+  time_greet.value = TOOL.timeGreet();
 }, 1000);
 </script>
 

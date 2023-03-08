@@ -5,7 +5,7 @@ import viewHide from "../../../../hooks/useViewHide";
 
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
-import { $deepCopy } from "@/utils";
+import TOOL from "@/utils";
 import { addHeroSkill } from "@/api/main/games/skill";
 import { getSkillType, getSkillEffect } from "@/api/main/games/hero";
 import { skillDefault, skillEffectDefault } from "@/default";
@@ -40,7 +40,7 @@ const skill_effects = ref<General[]>([]); //技能效果
 const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
 
 //判断是否存在缓存
-form_data.value ??= [[$deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
+form_data.value ??= [[TOOL.deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
 
 //处于编辑的技能组
 const activeSkills = () => form_data.value![deputy_index.value];
@@ -80,14 +80,14 @@ const EmitSelectHeroChange = (id: number) => {
 const handleAddOne = () => {
   skill_effect.value = "";
   effectIndex.value = -1;
-  activeSkills().push($deepCopy(skillDefault));
+  activeSkills().push(TOOL.deepCopy(skillDefault));
   active_index.value = activeSkills().length - 1;
 };
 
 /* 增加副技能 */
 const handleAddDeputys = () => {
   active_index.value = 0;
-  form_data.value!.push([$deepCopy(skillDefault)]);
+  form_data.value!.push([TOOL.deepCopy(skillDefault)]);
   deputy_index.value = skills_num.value - 1;
 };
 
@@ -162,7 +162,7 @@ const handleAddEffect = () => {
   }
   if (effectIndex.value !== -1 && !skill_effect.value) return;
   effectIndex.value++;
-  activeSkill().effect![effectIndex.value] ??= $deepCopy(skillEffectDefault);
+  activeSkill().effect![effectIndex.value] ??= TOOL.deepCopy(skillEffectDefault);
   skill_effect.value = activeSkill().effect![effectIndex.value].type;
 };
 

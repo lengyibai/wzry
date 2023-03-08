@@ -5,7 +5,7 @@ import { getHeroData } from "@/api/main/games/hero";
 import { getHeroSkill } from "@/api/main/games/skill";
 import { getHeroSkin } from "@/api/main/games/skin";
 import { getHeroRelationship } from "@/api/main/games/relationship";
-import { $debounce, $search } from "@/utils";
+import TOOL from "@/utils";
 
 /** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {
@@ -290,9 +290,9 @@ const heroStore = defineStore("hero", () => {
 
   /** @description 搜索英雄 */
   const searchHero = (name: string) => {
-    $debounce(() => {
+    TOOL.debounce(() => {
       if (name) {
-        filter_list.value = $search<Hero.Data>(hero_list.value, name, "name", true);
+        filter_list.value = TOOL.search<Hero.Data>(hero_list.value, name, "name", true);
       } else {
         sortAll();
       }

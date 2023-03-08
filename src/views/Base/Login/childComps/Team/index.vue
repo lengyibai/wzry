@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Team } from "@/api/main/data/index";
+import { Team } from "@/api/main/data";
 import switchStore from "@/store/switch";
-import { $ScaleImage } from "@/utils/index";
+import TOOL from "@/utils";
 
 const $switchStore = switchStore();
 
@@ -18,7 +18,7 @@ Team().then((res) => {
 
 /* 查看图片 */
 const handleView = (v: string, i: number) => {
-  new $ScaleImage(v);
+  new TOOL.ScaleImage(v);
   active.value = i;
 };
 </script>

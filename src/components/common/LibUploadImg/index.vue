@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { $imageOptimizer } from "@/utils";
+import TOOL from "@/utils";
 import switchStore from "@/store/switch";
 interface Props {
   modelValue?: string;
@@ -28,7 +28,7 @@ const $switchStore = switchStore();
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
   $switchStore.$loading.show("图片压缩中...");
-  $imageOptimizer({
+  TOOL.imageOptimizer({
     file,
     width: 150, //压缩尺寸
     ratio: 0.75, //压缩率

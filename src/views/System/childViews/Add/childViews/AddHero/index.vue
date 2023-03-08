@@ -15,7 +15,7 @@ import {
   getSpecialtyType,
   getRaceType,
 } from "@/api/main/games/hero";
-import { $deepCopy } from "@/utils";
+import TOOL from "@/utils";
 import { heroDefault } from "@/default";
 import switchStore from "@/store/switch";
 import heroStore from "@/store/hero";
@@ -60,7 +60,7 @@ getHeroBasic().then((res) => {
 });
 
 //判断是否存在缓存
-form_data.value ??= $deepCopy(heroDefault);
+form_data.value ??= TOOL.deepCopy(heroDefault);
 
 /* 发布 */
 const EmitCommit = async () => {

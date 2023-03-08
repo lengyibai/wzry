@@ -6,7 +6,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
-import { $debounce, $deepCopy, $promiseTimeout } from "@/utils";
+import TOOL from "@/utils";
 import { getHeroDetail } from "@/api/main/games/hero";
 import { heroDefault } from "@/default";
 import $bus from "@/utils/eventBus";
@@ -29,7 +29,7 @@ const show_HeroDetail = ref(false); //显示英雄详情
 const show_list = ref(false); //显示列表
 const show_tool = ref(false); //显示工具栏
 const toggle_show = ref(false); //切换显示列表
-const hero_info = ref<Hero.Data>($deepCopy(heroDefault)); //英雄信息
+const hero_info = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -70,7 +70,7 @@ if ($heroStore.hero_list.length === 0) {
 
 /* 滚动触发 */
 const EmitScroll = (v: number) => {
-  $debounce(() => {
+  TOOL.debounce(() => {
     $heroStore.setScroll(v);
   }, 250);
 };
@@ -128,11 +128,11 @@ onMounted(async () => {
   });
 
   //显示工具栏
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_tool.value = true;
   }, 500);
   //显示英雄列表
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_list.value = true;
   }, 250);
 });

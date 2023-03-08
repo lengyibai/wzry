@@ -6,7 +6,7 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
-import { $existEmpty } from "@/utils";
+import TOOL from "@/utils";
 import authStore from "@/store/auth";
 import switchStore from "@/store/switch";
 
@@ -31,7 +31,7 @@ if (props.userInfo) {
 
 /* 登录 */
 const handleLogin = () => {
-  if ($existEmpty(form.value, ["id", "password"])) {
+  if (TOOL.existEmpty(form.value, ["id", "password"])) {
     $switchStore.$msg("请完整填写", "error");
     return;
   }

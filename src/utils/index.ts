@@ -1,12 +1,12 @@
-import pinyin from "./pinyin";
+import PIN_YIN from "./pinyin";
 
 /** @description 随机数 */
-export const $random = (min: number, max: number, num = 0) => {
+const random = (min: number, max: number, num = 0) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(num));
 };
 
 /** @description 小数百分比互转 */
-export const $potEoPct = (str: string | number, ret = 4) => {
+const potEoPct = (str: string | number, ret = 4) => {
   if (typeof str === "string") {
     return Number(str.replace("%", "")) / 100;
   }
@@ -14,7 +14,7 @@ export const $potEoPct = (str: string | number, ret = 4) => {
 };
 
 /** @description 时间格式化 */
-export const $fmtTime = (date: Date, fmt = "YYYY-MM-DD hh:mm:ss") => {
+const fmtTime = (date: Date, fmt = "YYYY-MM-DD hh:mm:ss") => {
   date = new Date(date);
   let ret: RegExpExecArray | null;
   const week = ["日", "一", "二", "三", "四", "五", "六"];
@@ -38,14 +38,14 @@ export const $fmtTime = (date: Date, fmt = "YYYY-MM-DD hh:mm:ss") => {
 };
 
 /** @description 根据时间段问候 */
-export function $timeGreet(greet: Record<string, string> = {}) {
+const timeGreet = (greet: Record<string, string> = {}) => {
   const { a = "午夜好", b = "早上好", c = "上午好", d = "中午好", e = "下午好", f = "晚上好" } = greet;
   const now = new Date().getHours();
   return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
-}
+};
 
 /** @description 记录已过去时间或倒计时 */
-export function $timeCount(time = "2021-04-01") {
+const timeCount = (time = "2021-04-01") => {
   const now = new Date(time).getTime(),
     future = new Date().getTime(),
     times = future - now > 0 ? Math.floor((future - now) / 1000) : Math.floor((now - future) / 1000);
@@ -81,10 +81,10 @@ export function $timeCount(time = "2021-04-01") {
     Object.assign(timeObj, item);
   });
   return timeObj;
-}
+};
 
 /** @description requestAnimationFrame计时器 */
-export function $frameInterval(fn: Func, fre = 0) {
+const frameInterval = (fn: Func, fre = 0) => {
   let time = 0;
   f();
   function f() {
@@ -95,21 +95,21 @@ export function $frameInterval(fn: Func, fre = 0) {
     }
     requestAnimationFrame(f);
   }
-}
+};
 
 /** @description 判断是否为数组 */
-export const $isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
+const isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
 
 /** @description 中文转拼音 */
-export const $pinyin = (str: string) => {
+const pinyin = (str: string) => {
   if (typeof str !== "string") return str;
   let result = "";
   let abbreviation = "";
   const reg = /[a-zA-Z0-9]/;
   for (const val of str) {
     let name = "";
-    for (const key in pinyin) {
-      if (pinyin[key].includes(val)) {
+    for (const key in PIN_YIN) {
+      if (PIN_YIN[key].includes(val)) {
         name = key;
         abbreviation += name[0].toLowerCase();
         break;
@@ -121,22 +121,17 @@ export const $pinyin = (str: string) => {
 };
 
 /** @description 正则搜索 */
-export const $search = <T>(
-  data: T[],
-  value: string | string[],
-  keys: string | string[],
-  highlight: boolean = false
-): T[] => {
+const search = <T>(data: T[], value: string | string[], keys: string | string[], highlight: boolean = false): T[] => {
   const arr: T[] = [];
-  const data_copy = $deepCopy<T[]>(data);
+  const data_copy = deepCopy<T[]>(data);
 
   const fn = (item: any, key: string): void | undefined => {
     const reg = new RegExp(item.toString().toLowerCase(), "i");
     arr.push(
       ...data_copy.filter((item: any) => {
         item[key] = item[key].toString();
-        const pinyin: string[] = $pinyin(item[key]);
-        if (pinyin.some((py) => reg.test(py) || reg.test(item[key]))) {
+        const pin_yin: string[] = pinyin(item[key]);
+        if (pin_yin.some((py) => reg.test(py) || reg.test(item[key]))) {
           if (highlight) {
             item[key] = item[key].replace(reg, (match: string) => `<i style="color:var(--blue)">${match}</i>`);
           }
@@ -164,7 +159,7 @@ export const $search = <T>(
 };
 
 /** @description 防抖 */
-export const $debounce = (() => {
+const debounce = (() => {
   let timer: Timeout = 0;
   return (callback: Func, wait = 800) => {
     timer && clearTimeout(timer);
@@ -173,7 +168,7 @@ export const $debounce = (() => {
 })();
 
 /** @description 深拷贝 */
-export function $deepCopy<T>(e: any): T {
+const deepCopy = <T>(e: any): T => {
   const t = new WeakMap(),
     r = (e: any) => {
       const t = Object.prototype.toString.call(e);
@@ -248,10 +243,10 @@ export function $deepCopy<T>(e: any): T {
       );
     };
   return u(e);
-}
+};
 
 /** @description 获取浏览器版本 */
-export const $browserV = (() => {
+const browserV = (() => {
   const ua = navigator.userAgent;
   let browser = "";
   let version = 0;
@@ -284,7 +279,7 @@ export const $browserV = (() => {
 })();
 
 /** @description 排序 */
-export function $typeSort<T>(data: any[], key: string, rev = true): T[] {
+const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
   const num = typeof key == "boolean" ? (key ? 1 : -1) : rev ? 1 : -1;
   return data.sort(((a: any, b: any) => {
     if (typeof data[0] == "object") {
@@ -304,17 +299,17 @@ export function $typeSort<T>(data: any[], key: string, rev = true): T[] {
       return a.toString().localeCompare(b.toString()) * num;
     }
   }) as () => any);
-}
+};
 
 /** @description 保存为文件 */
-export function $savefiles(data: any, name: string): void {
+const savefiles = (data: any, name: string): void => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
   const save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a") as HTMLAnchorElement;
   save_link.href = urlObject.createObjectURL(export_blob);
   save_link.download = name;
   save_link.click();
-}
+};
 
 type ImageOptimizerOptions = {
   el?: HTMLInputElement;
@@ -326,7 +321,7 @@ type ImageOptimizerOptions = {
   fail?: (error: ErrorEvent) => void;
 };
 /** @description 图片压缩 */
-export function $imageOptimizer(obj: ImageOptimizerOptions) {
+const imageOptimizer = (obj: ImageOptimizerOptions) => {
   const canvas = document.createElement("canvas");
   canvas.classList.add("imageOptimizer");
   document.body.appendChild(canvas);
@@ -393,29 +388,29 @@ export function $imageOptimizer(obj: ImageOptimizerOptions) {
     }
   };
   reader.onerror = obj.fail as any;
-}
+};
 
 /** @description Promise定时器 */
-export function $promiseTimeout(fn: Func, delay: number) {
+const promiseTimeout = (fn: Func, delay: number) => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       fn();
       resolve();
     }, delay);
   });
-}
+};
 
 /** @description 判断是否为移动端 */
-export const $isPhone = (() => /mobile/i.test(navigator.userAgent))();
+const isPhone = (() => /mobile/i.test(navigator.userAgent))();
 
 /** @description 判断表单指定属性名是否为空 */
-export const $existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
+const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
   (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
 
 /** @description 节流(立即执行) */
-export const $throttleInstant = (() => {
+const throttleInstant = (() => {
   let last = 0;
   return (callback: Func, wait = 800) => {
     const now = +new Date();
@@ -427,7 +422,7 @@ export const $throttleInstant = (() => {
 })();
 
 /** @description 防抖立即执行 */
-export const $debounceInstant = (() => {
+const debounceInstant = (() => {
   let timer: Timeout = 0;
   return <T extends (...args: any[]) => any>(fn: T, delay: number, ...args: Parameters<T>): void => {
     if (timer) clearTimeout(timer);
@@ -441,7 +436,7 @@ export const $debounceInstant = (() => {
 })();
 
 /** @description 视差动画 */
-export class $Parallax {
+class Parallax {
   fn: (x: number, y: number) => void = () => {};
 
   constructor(fn: (x: number, y: number) => void) {
@@ -458,7 +453,7 @@ export class $Parallax {
 }
 
 /** @description 查看图片 */
-export class $ScaleImage {
+class ScaleImage {
   src: string;
   scale: number;
   x: number;
@@ -646,7 +641,7 @@ export class $ScaleImage {
 }
 
 /** @description 音频可视化 */
-export class $AudioVisual {
+class AudioVisual {
   audio: HTMLMediaElement;
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -733,7 +728,7 @@ export class $AudioVisual {
  * @param el 需要进行聚焦的元素
  * @param status 聚焦状态
  */
-export class $FocusElement {
+class FocusElement {
   el: HTMLElement;
   zIndex: string;
   outline: string;
@@ -764,3 +759,56 @@ export class $FocusElement {
     }, 500);
   }
 }
+
+export default {
+  /** 随机数 */
+  random,
+  /** 小数百分比互转 */
+  potEoPct,
+  /** 时间格式化 */
+  fmtTime,
+  /** 根据时间段问候 */
+  timeGreet,
+  /** 记录已过去时间或倒计时 */
+  timeCount,
+  /** requestAnimationFrame计时器 */
+  frameInterval,
+  /** 判断是否为数组 */
+  isArray,
+  /** 中文转拼音 */
+  pinyin,
+  /** 正则搜索 */
+  search,
+  /** 防抖 */
+  debounce,
+  /** 深拷贝 */
+  deepCopy,
+  /** 获取浏览器版本 */
+  browserV,
+  /** 排序 */
+  typeSort,
+  /** 保存为文件 */
+  savefiles,
+  /** 图片压缩 */
+  imageOptimizer,
+  /** Promise定时器 */
+  promiseTimeout,
+  /** 判断是否为移动端 */
+  isPhone,
+  /** 判断表单指定属性名是否为空 */
+  existEmpty,
+  /** 节流(立即执行) */
+  throttleInstant,
+  /** 防抖立即执行 */
+  debounceInstant,
+  /** 视差动画 */
+  Parallax,
+  /** 查看图片 */
+  ScaleImage,
+  /** 音频可视化 */
+  AudioVisual,
+  /** 元素聚焦 */
+  FocusElement,
+};
+
+export { AudioVisual };

@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import settingStore from "./setting";
 
-import { $potEoPct, $AudioVisual } from "@/utils";
+import TOOL, { AudioVisual } from "@/utils";
 
 /** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {
@@ -16,7 +16,8 @@ const musicStore = defineStore("music", () => {
   const show_list = ref(false); //显示播放列表
   const show_tool = ref(true); //显示工具栏
   const bgm = ref(new Audio()); //播放器
-  const audio_visual = ref<$AudioVisual>();
+
+  const audio_visual = ref<AudioVisual>();
   const musics = [
     { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
     { name: "永远的长安城", url: "cac", time: "00:02:42" },
@@ -73,7 +74,7 @@ const musicStore = defineStore("music", () => {
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
-      progress.value = $potEoPct(bgm.value.currentTime / bgm.value.duration);
+      progress.value = TOOL.potEoPct(bgm.value.currentTime / bgm.value.duration);
     }, 500);
 
     //播放结束后执行下一次播放
@@ -150,7 +151,7 @@ const musicStore = defineStore("music", () => {
 
   /** @description 音频可视化初始化 */
   const initAudioVisual = (canvas: HTMLCanvasElement) => {
-    audio_visual.value = new $AudioVisual(bgm.value, canvas);
+    audio_visual.value = new TOOL.AudioVisual(bgm.value, canvas);
   };
 
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */

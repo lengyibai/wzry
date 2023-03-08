@@ -12,7 +12,7 @@ import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 import $bus from "@/utils/eventBus";
 import switchStore from "@/store/switch";
 import settingStore from "@/store/setting";
-import { $FocusElement } from "@/utils";
+import TOOL from "@/utils";
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
@@ -43,7 +43,7 @@ const EmitToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const EmitCloseNotice = () => {
-  const toolbarFocus = new $FocusElement(toolbar.value.el);
+  const toolbarFocus = new TOOL.FocusElement(toolbar.value.el);
 
   $switchStore.$tip({
     text: "9f5m",

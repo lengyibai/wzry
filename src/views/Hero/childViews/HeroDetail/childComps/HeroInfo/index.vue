@@ -8,7 +8,7 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import switchStore from "@/store/switch";
 import heroDetail from "@/store/heroDetail";
-import { $FocusElement, $isPhone } from "@/utils";
+import TOOL from "@/utils";
 
 const $heroDetail = heroDetail();
 const $switchStore = switchStore();
@@ -29,8 +29,8 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      const focusRelationship = new $FocusElement(relationship.value.el);
-      const focusdown = new $FocusElement(down.value);
+      const focusRelationship = new TOOL.FocusElement(relationship.value.el);
+      const focusdown = new TOOL.FocusElement(down.value);
       $switchStore.$tip({
         text: "05su",
         align: "right-bottom",
@@ -48,7 +48,7 @@ onMounted(() => {
           const b = () => {
             focusdown.blur();
           };
-          if ($isPhone) {
+          if (TOOL.isPhone) {
             $switchStore.$tip({
               text: "1zs6",
               align: "left-top",

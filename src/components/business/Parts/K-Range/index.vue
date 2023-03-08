@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-import { $throttleInstant } from "@/utils";
+import TOOL from "@/utils";
 import switchStore from "@/store/switch";
 
 interface Props {
@@ -101,7 +101,7 @@ const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   down.value = true;
   emit("update:modelValue", parseFloat(v));
-  $throttleInstant(() => {
+  TOOL.throttleInstant(() => {
     $switchStore.$clickAudioStore("range");
   }, 50);
 };

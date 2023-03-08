@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
-import { $debounce } from "@/utils";
+import TOOL from "@/utils";
 import { configDefault } from "@/default";
 import clickAudioStore from "@/store/audio";
 import musicStore from "@/store/music";
@@ -47,7 +47,7 @@ const EmitMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const EmitMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
-  $debounce(() => {
+  TOOL.debounce(() => {
     EmitSaveConfig();
   }, 1000);
 };
@@ -66,7 +66,7 @@ const EmitAudio = (v: boolean) => {
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
   $clickAudioStore.setVolume(v);
-  $debounce(() => {
+  TOOL.debounce(() => {
     EmitSaveConfig();
   }, 1000);
 };

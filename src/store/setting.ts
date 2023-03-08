@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $isPhone } from "@/utils";
+import TOOL from "@/utils";
 import { configDefault } from "@/default";
 import clickAudioStore from "@/store/audio";
 import musicStore from "@/store/music";
@@ -17,7 +17,7 @@ const settingStore = defineStore("setting", () => {
   localStorage.setItem("config", JSON.stringify(config.value));
 
   //如果为移动端，则隐藏视频背景
-  config.value.videoBg = !$isPhone;
+  config.value.videoBg = !TOOL.isPhone;
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {

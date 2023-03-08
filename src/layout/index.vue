@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import { $isPhone, $promiseTimeout } from "@/utils";
+import TOOL from "@/utils";
 import settingStore from "@/store/setting";
 import switchStore from "@/store/switch";
 import deviceStore from "@/store/device";
@@ -26,20 +26,20 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 onMounted(async () => {
   $switchStore.$clickAudioStore("p53r");
 
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_sidebar.value = true;
   }, 500);
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_navbar.value = true;
   }, 500);
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_appmain.value = true;
   }, 500);
-  await $promiseTimeout(() => {
+  await TOOL.promiseTimeout(() => {
     show_footbar.value = true;
   }, 500);
 
-  if ($deviceStore.vertical && $isPhone) $switchStore.$tip({ text: "2l5m" });
+  if ($deviceStore.vertical && TOOL.isPhone) $switchStore.$tip({ text: "2l5m" });
 });
 </script>
 

@@ -7,7 +7,7 @@ import musicStore from "@/store/music";
 import settingStore from "@/store/setting";
 import deviceStore from "@/store/device";
 import switchStore from "@/store/switch";
-import { $FocusElement, $isPhone } from "@/utils";
+import TOOL from "@/utils";
 
 interface Emits {
   (e: "toggle", v: string): void;
@@ -22,8 +22,8 @@ const $switchStore = switchStore();
 const musicTool = ref();
 
 nextTick(() => {
-  if ($isPhone || !$settingStore.config.music) return;
-  const musicToolFocus = new $FocusElement(musicTool.value);
+  if (TOOL.isPhone || !$settingStore.config.music) return;
+  const musicToolFocus = new TOOL.FocusElement(musicTool.value);
   $switchStore.$tip({
     text: "58mz",
     align: "right-top",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { $browserV } from "@/utils";
+import TOOL from "@/utils";
 import collapseStore from "@/store/collapse";
 import versionStore from "@/store/version";
 import deviceStore from "@/store/device";
@@ -21,7 +21,7 @@ const old_file = computed(() => $versionStore.local_file !== $versionStore.file_
 /* 浏览器版本提示 */
 const browser_status = computed(() => $deviceStore.browser_status);
 const browser_name = computed(() => $deviceStore.browser_name);
-const version = `${$browserV.version} ${
+const version = `${TOOL.browserV.version} ${
   !browser_status.value ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""
 }`;
 </script>

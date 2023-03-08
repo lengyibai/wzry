@@ -3,7 +3,7 @@ import { ref, computed, onUnmounted } from "vue";
 
 import heroDetail from "@/store/heroDetail";
 import switchStore from "@/store/switch";
-import { $FocusElement } from "@/utils";
+import TOOL from "@/utils";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
@@ -39,7 +39,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   const length = hero_data.value.skills!.length;
   if (length > 1) {
     setTimeout(() => {
-      const toggleFocus = new $FocusElement(toggle.value);
+      const toggleFocus = new TOOL.FocusElement(toggle.value);
 
       $switchStore.$tip({
         align: "right-top",

@@ -5,7 +5,7 @@ import { top, height } from "./helper";
 
 import { getEquip } from "@/api/main/games/equip";
 import { getEquipSynthetic } from "@/api/main/games/equipSynthetic";
-import { $promiseTimeout } from "@/utils";
+import TOOL from "@/utils";
 
 /** 装备Dom元素信息 */
 type EquipElement = {
@@ -88,12 +88,12 @@ const equipStore = defineStore("equip", () => {
     equip_list_column.value = type_list[type];
 
     //每次切换装备类型，延迟显示列表及详情
-    await $promiseTimeout(() => {
+    await TOOL.promiseTimeout(() => {
       category.value = type;
       show_details.value = false;
     }, 200);
 
-    await $promiseTimeout(() => {
+    await TOOL.promiseTimeout(() => {
       setEquipActive(Number(type_index[type] + "11"));
     }, 500);
   };

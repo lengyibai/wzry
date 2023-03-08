@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 
 import switchStore from "@/store/switch";
-import { $search, $debounce } from "@/utils";
+import TOOL from "@/utils";
 
 interface Props {
   label: string; //左侧文字
@@ -39,8 +39,8 @@ const selected_list = ref<any[]>([]); //选择的列表
 
 /* 实时搜索 */
 const handleSearch = () => {
-  $debounce(() => {
-    select_list.value = $search(props.data, input_value.value, ["name"]);
+  TOOL.debounce(() => {
+    select_list.value = TOOL.search(props.data, input_value.value, ["name"]);
   }, 100);
 };
 

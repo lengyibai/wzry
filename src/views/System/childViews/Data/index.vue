@@ -1,7 +1,7 @@
 <script setup lang="ts" name="database">
 import { ref, onActivated } from "vue";
 
-import { $typeSort, $savefiles, $deepCopy } from "@/utils";
+import TOOL from "@/utils";
 import skinStore from "@/store/skin";
 import heroStore from "@/store/hero";
 import switchStore from "@/store/switch";
@@ -115,7 +115,7 @@ const load = async () => {
     setStatus(data, v);
   }
 
-  data_cache = $deepCopy<any[]>(table_data.value);
+  data_cache = TOOL.deepCopy<any[]>(table_data.value);
 };
 load();
 
@@ -182,7 +182,7 @@ const handleReplace = (data: any) => {
 
 /* 导出 */
 const handleExport = (data: any) => {
-  $savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+  TOOL.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
 /* 确认覆盖 */
@@ -195,9 +195,9 @@ const EmitConfirmReset = async () => {
 /* 排序触发 */
 const EmitsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
-    table_data.value = $typeSort(table_data.value, "length", v[1] === 1 ? true : false);
+    table_data.value = TOOL.typeSort(table_data.value, "length", v[1] === 1 ? true : false);
   } else {
-    table_data.value = $deepCopy(data_cache);
+    table_data.value = TOOL.deepCopy(data_cache);
   }
 
   play();
