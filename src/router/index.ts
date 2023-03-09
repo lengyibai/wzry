@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import type { App } from "vue";
 
 import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
@@ -72,4 +73,9 @@ useRouter.afterEach((to) => {
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 
+const setupRouter = (app: App) => {
+  app.use(useRouter);
+};
+
 export default useRouter;
+export { setupRouter };
