@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
-import heroDetail from "@/store/heroDetail";
-import switchStore from "@/store/switch";
+import { switchStore, heroDetailStore } from "@/store";
 import TOOL from "@/utils";
 
 interface Emits {
@@ -10,7 +9,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 const $switchStore = switchStore();
 
 const skin = ref();

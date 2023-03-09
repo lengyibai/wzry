@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   placeholder?: string; //输入框描述
@@ -23,13 +23,13 @@ const input_link = ref(""); //输入的链接
 
 input_link.value = props.link;
 
-$switchStore.$clickAudioStore("0o5c");
+$switchStore.$audioStore("0o5c");
 
 /* 确定 */
 const handleConfirm = () => {
   emit("get-link", input_link.value);
   input_link.value = "";
-  $switchStore.$clickAudioStore("36jn");
+  $switchStore.$audioStore("36jn");
 };
 </script>
 

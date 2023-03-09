@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 interface Props {
   modelValue: number; //索引号
   option: string[]; //选项文字
@@ -16,7 +16,7 @@ const $switchStore = switchStore();
 /* 选择 */
 const handleSelect = (index: number) => {
   emit("update:modelValue", index);
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
 };
 </script>
 

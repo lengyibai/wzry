@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
@@ -37,7 +37,7 @@ const show = ref(false); //显示弹窗
 onMounted(() => {
   show.value = true;
   if (props.up) {
-    $switchStore.$clickAudioStore("e6b4");
+    $switchStore.$audioStore("e6b4");
   }
 });
 
@@ -45,7 +45,7 @@ onMounted(() => {
 const handleClose = () => {
   emit("update:modelValue", false);
   emit("close");
-  $switchStore.$clickAudioStore("6xc6");
+  $switchStore.$audioStore("6xc6");
 };
 </script>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import musicStore from "@/store/music";
+import { musicStore } from "@/store";
 
 const $musicStore = musicStore();
 

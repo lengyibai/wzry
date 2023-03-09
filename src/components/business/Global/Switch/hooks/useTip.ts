@@ -1,8 +1,7 @@
 import { ref } from "vue";
 
 import tips from "@/config/tips";
-import settingStore from "@/store/setting";
-import switchStore from "@/store/switch";
+import { settingStore, switchStore } from "@/store";
 
 export default () => {
   const $settingStore = settingStore();
@@ -32,7 +31,7 @@ export default () => {
       //如果字符数超过4，则表示自定义tip
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
-        $switchStore.$clickAudioStore("rt25");
+        $switchStore.$audioStore("rt25");
         title.value = biaoti;
         content.value = text;
         align.value = p;
@@ -49,7 +48,7 @@ export default () => {
       //如果已经设置了不再提示
       if (!$settingStore.config.noTips[text as TipKeys]) {
         show_tip.value = !show_tip.value;
-        $switchStore.$clickAudioStore("rt25");
+        $switchStore.$audioStore("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
         content.value = tips[text as TipKeys];
         align.value = p;

@@ -6,11 +6,10 @@ import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
-import switchStore from "@/store/switch";
-import heroDetail from "@/store/heroDetail";
+import { switchStore, heroDetailStore } from "@/store";
 import TOOL from "@/utils";
 
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 const $switchStore = switchStore();
 
 let tip_text = "0vk2"; //通过设备来显示不同的提示

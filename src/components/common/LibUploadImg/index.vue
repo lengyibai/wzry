@@ -12,7 +12,7 @@
 </template>
 <script setup lang="ts">
 import TOOL from "@/utils";
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 interface Props {
   modelValue?: string;
 }

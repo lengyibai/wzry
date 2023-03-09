@@ -4,9 +4,7 @@ import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { HOME_URL } from "@/config";
-import switchStore from "@/store/switch";
-import authStore from "@/store/auth";
-import deviceStore from "@/store/device";
+import { switchStore, authStore, deviceStore } from "@/store";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),

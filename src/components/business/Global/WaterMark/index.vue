@@ -2,11 +2,7 @@
 import { computed } from "vue";
 
 import TOOL from "@/utils";
-import collapseStore from "@/store/collapse";
-import versionStore from "@/store/version";
-import deviceStore from "@/store/device";
-import vConsoleStore from "@/store/vConsole";
-import authStore from "@/store/auth";
+import { collapseStore, versionStore, deviceStore, vConsoleStore, authStore } from "@/store";
 
 const $collapseStore = collapseStore();
 const $versionStore = versionStore();

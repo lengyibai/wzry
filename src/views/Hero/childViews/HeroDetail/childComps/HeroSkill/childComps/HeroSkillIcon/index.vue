@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import heroDetail from "@/store/heroDetail";
-import switchStore from "@/store/switch";
+import { switchStore, heroDetailStore } from "@/store";
 import TOOL from "@/utils";
 
 interface Emits {
@@ -10,7 +9,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 const $switchStore = switchStore();
 
 let deputy_index = 0; //主副技能索引
@@ -65,7 +64,7 @@ const handleSelectSkill = (index: number) => {
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
   emit("select-skill", calcActiveSkill.value);
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
 };
 handleSelectSkill(0);
 
@@ -88,7 +87,7 @@ const handleToggleSkill = () => {
 
   //更新技能信息
   handleSelectSkill(current_index.value);
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
 };
 
 onUnmounted(() => {

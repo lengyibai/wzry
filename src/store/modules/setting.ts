@@ -3,9 +3,7 @@ import { ref } from "vue";
 
 import TOOL from "@/utils";
 import { configDefault } from "@/default";
-import clickAudioStore from "@/store/audio";
-import musicStore from "@/store/music";
-import cssVarStore from "@/store/cssVar";
+import { audioStore, musicStore, cssVarStore } from "@/store";
 
 /** @description 设置相关 */
 const settingStore = defineStore("setting", () => {
@@ -21,11 +19,11 @@ const settingStore = defineStore("setting", () => {
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
-    const $clickAudioStore = clickAudioStore();
+    const $audioStore = audioStore();
     const $musicStore = musicStore();
     const $cssVarStore = cssVarStore();
-    $clickAudioStore.setAudio(config.value.audio);
-    $clickAudioStore.setVolume(config.value.audioVolume);
+    $audioStore.setAudio(config.value.audio);
+    $audioStore.setVolume(config.value.audioVolume);
     $musicStore.setVolume(config.value.musicVolume);
     $cssVarStore.setSpeed(config.value.speed);
     $cssVarStore.setBorder(config.value.border);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick, onMounted } from "vue";
 
-import heroDetailStore from "@/store/heroDetail";
+import { heroDetailStore } from "@/store";
 
 interface Props {
   voices: Hero.Voice[]; //语音列表

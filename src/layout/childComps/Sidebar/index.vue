@@ -5,8 +5,7 @@ import sideItem from "./childComp/SideItem/index.vue"; //子菜单
 import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
-import routerStore from "@/store/routes";
-import collapseStore from "@/store/collapse";
+import { routerStore, collapseStore } from "@/store";
 import $bus from "@/utils/eventBus";
 
 const $collapseStore = collapseStore();

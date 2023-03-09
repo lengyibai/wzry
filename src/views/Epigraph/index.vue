@@ -4,8 +4,7 @@ import { ref, onActivated } from "vue";
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
 
-import switchStore from "@/store/switch";
-import epigraphStore from "@/store/epigraph";
+import { switchStore, epigraphStore } from "@/store";
 
 const $epigraphStore = epigraphStore();
 const $switchStore = switchStore();
@@ -18,7 +17,7 @@ $epigraphStore.getEpigraph().then(() => {
 });
 
 onActivated(() => {
-  $switchStore.$clickAudioStore("h7t9");
+  $switchStore.$audioStore("h7t9");
 });
 </script>
 

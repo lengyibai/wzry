@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 import { Todo } from "@/api/modules/data";
 
 const $switchStore = switchStore();
@@ -12,7 +12,7 @@ Todo().then((res) => {
   todo.value = res.data;
 });
 
-$switchStore.$clickAudioStore("u4c5");
+$switchStore.$audioStore("u4c5");
 </script>
 
 <template>

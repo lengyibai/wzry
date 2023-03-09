@@ -11,10 +11,10 @@ import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换�
 import { getAssignSkinType } from "@/api/modules/games/skin";
 import { heroDefault } from "@/default";
 import TOOL from "@/utils";
-import heroDetail from "@/store/heroDetail";
+import { heroDetailStore } from "@/store";
 
 const hero_data = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄数据
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 
 hero_data.value = $heroDetail.hero_info;
 

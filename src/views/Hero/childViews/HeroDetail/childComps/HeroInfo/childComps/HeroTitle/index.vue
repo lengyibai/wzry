@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import heroDetail from "@/store/heroDetail";
+import { heroDetailStore } from "@/store";
 
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

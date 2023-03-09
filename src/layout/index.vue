@@ -2,9 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 
 import TOOL from "@/utils";
-import settingStore from "@/store/setting";
-import switchStore from "@/store/switch";
-import deviceStore from "@/store/device";
+import { switchStore, settingStore, deviceStore } from "@/store";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
@@ -24,7 +22,7 @@ const show_appmain = ref(false); //显示主体页面
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
-  $switchStore.$clickAudioStore("p53r");
+  $switchStore.$audioStore("p53r");
 
   await TOOL.promiseTimeout(() => {
     show_sidebar.value = true;

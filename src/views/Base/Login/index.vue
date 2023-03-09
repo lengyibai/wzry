@@ -10,8 +10,7 @@ import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
 import $bus from "@/utils/eventBus";
-import switchStore from "@/store/switch";
-import settingStore from "@/store/setting";
+import { switchStore, settingStore } from "@/store";
 import TOOL from "@/utils";
 
 const $settingStore = settingStore();

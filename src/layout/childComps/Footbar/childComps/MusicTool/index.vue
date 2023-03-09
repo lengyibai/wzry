@@ -3,10 +3,7 @@ import { nextTick, ref } from "vue";
 
 import MuiscList from "../MuiscList/index.vue";
 
-import musicStore from "@/store/music";
-import settingStore from "@/store/setting";
-import deviceStore from "@/store/device";
-import switchStore from "@/store/switch";
+import { switchStore, musicStore, settingStore, deviceStore } from "@/store";
 import TOOL from "@/utils";
 
 interface Emits {

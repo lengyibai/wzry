@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 type Data = { label: string; value: string | number };
 
@@ -36,7 +36,7 @@ if (props.modelValue) {
 
 /* 显示列表 */
 const handleShowList = () => {
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
 };
 
 /* 悬浮触发 */
@@ -49,7 +49,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
   current_value.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 </script>
 

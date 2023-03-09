@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 import { userList } from "@/api/modules/user";
 
 interface Emits {
@@ -21,9 +21,9 @@ userList().then((res) => {
 const handleInto = (v: string) => {
   emit("into", v);
   if (v === "注册") {
-    $switchStore.$clickAudioStore("0o5c");
+    $switchStore.$audioStore("0o5c");
   } else {
-    $switchStore.$clickAudioStore("36jn");
+    $switchStore.$audioStore("36jn");
   }
 };
 </script>

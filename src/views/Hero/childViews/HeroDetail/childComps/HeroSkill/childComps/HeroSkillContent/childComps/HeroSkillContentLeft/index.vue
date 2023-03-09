@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import heroDetail from "@/store/heroDetail";
+import { heroDetailStore } from "@/store";
 
 interface Props {
   activeSkill: Hero.Skill;
@@ -7,7 +7,7 @@ interface Props {
 }
 defineProps<Props>();
 
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 </script>
 
 <template>

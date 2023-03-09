@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import settingStore from "@/store/setting";
+import { settingStore } from "@/store";
 
 interface Props {
   autoSize?: boolean; //自适应

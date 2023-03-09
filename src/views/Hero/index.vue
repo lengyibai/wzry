@@ -10,15 +10,13 @@ import TOOL from "@/utils";
 import { getHeroDetail } from "@/api/modules/games/hero";
 import { heroDefault } from "@/default";
 import $bus from "@/utils/eventBus";
-import heroDetail from "@/store/heroDetail";
-import heroStore from "@/store/hero";
-import switchStore from "@/store/switch";
+import { switchStore, heroDetailStore, heroStore } from "@/store";
 
 const $route = useRoute();
 const $router = useRouter();
 const $switchStore = switchStore();
 const $heroStore = heroStore();
-const $heroDetail = heroDetail();
+const $heroDetail = heroDetailStore();
 
 let id: unknown = $route.query.id; //地址栏参数
 
@@ -33,7 +31,7 @@ const hero_info = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
   new Image().src = data.headImg; //图片预加载
 };
 
@@ -94,7 +92,7 @@ watch(
 );
 
 onActivated(() => {
-  $switchStore.$clickAudioStore("4d8m");
+  $switchStore.$audioStore("4d8m");
 });
 
 onMounted(async () => {

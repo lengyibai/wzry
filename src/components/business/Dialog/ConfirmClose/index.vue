@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   modelValue: boolean; //显示/隐藏
@@ -18,7 +18,7 @@ const emit = defineEmits<Emits>();
 
 const $switchStore = switchStore();
 
-$switchStore.$clickAudioStore("45iy");
+$switchStore.$audioStore("45iy");
 
 /* 关闭 */
 const close = () => {
@@ -29,14 +29,14 @@ const close = () => {
 const handleCancel = () => {
   emit("cancel");
   close();
-  $switchStore.$clickAudioStore("6xc6");
+  $switchStore.$audioStore("6xc6");
 };
 
 /* 确定 */
 const handleConfirm = () => {
   emit("confirm");
   close();
-  $switchStore.$clickAudioStore("36jn");
+  $switchStore.$audioStore("36jn");
 };
 </script>
 

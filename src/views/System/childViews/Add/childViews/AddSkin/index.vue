@@ -5,8 +5,7 @@ import viewHide from "../../../../hooks/useViewHide";
 
 import { getSkinType, getHeroSkin, addSkin } from "@/api/modules/games/skin";
 import { getHeroDetail } from "@/api/modules/games/hero";
-import switchStore from "@/store/switch";
-import skinStore from "@/store/skin";
+import { switchStore, skinStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

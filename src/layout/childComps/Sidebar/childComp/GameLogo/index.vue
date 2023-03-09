@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import collapseStore from "@/store/collapse";
+import { collapseStore } from "@/store";
 
 const $collapseStore = collapseStore();
 

@@ -17,8 +17,7 @@ import {
 } from "@/api/modules/games/hero";
 import TOOL from "@/utils";
 import { heroDefault } from "@/default";
-import switchStore from "@/store/switch";
-import heroStore from "@/store/hero";
+import { switchStore, heroStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

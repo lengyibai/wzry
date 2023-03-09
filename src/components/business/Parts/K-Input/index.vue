@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   modelValue: number | string; //值
@@ -92,7 +92,7 @@ const is_focus = ref(false); //是否获取焦点
 const focus = () => {
   is_focus.value = true;
   emit("focus");
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 
 /* 失去焦点 */

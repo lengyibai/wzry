@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import skinStore from "@/store/skin";
+import { skinStore } from "@/store";
 import $bus from "@/utils/eventBus";
 
 const $skinStore = skinStore();

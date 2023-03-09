@@ -3,7 +3,7 @@ import { ref, watch } from "vue";
 
 import EquipCard from "../common/EquipCard/index.vue"; //装备卡片
 
-import equipStore from "@/store/equip";
+import { equipStore } from "@/store";
 
 interface Props {
   equipList: Equip.Data[];

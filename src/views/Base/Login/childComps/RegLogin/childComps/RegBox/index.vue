@@ -7,7 +7,7 @@ import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 import { register } from "@/api/modules/user";
 import { userDefaultInfo } from "@/default";
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Emits {
   (e: "success", form: User): void;
@@ -22,7 +22,7 @@ const form_verify = ref<boolean[]>([false, false, false]); //表单验证
 
 /* 注册 */
 const handleReg = () => {
-  $switchStore.$clickAudioStore("36jn");
+  $switchStore.$audioStore("36jn");
 
   if (form_verify.value.some((item) => !item)) {
     $switchStore.$msg("请正确填写", "error");

@@ -5,8 +5,7 @@ import { useRouter, useRoute } from "vue-router";
 import SideItem from "./index.vue"; //调用自身
 
 //import { Route } from "@/router/interface";
-import switchStore from "@/store/switch";
-import collapseStore from "@/store/collapse";
+import { switchStore, collapseStore } from "@/store";
 
 interface RouteFormat {
   path: string; //路由路径
@@ -63,7 +62,7 @@ const fn = () => {
   } /* 否则移除子菜单 */ else {
     routes.length = 0;
   }
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 
 /* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */

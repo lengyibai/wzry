@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { Team } from "@/api/modules/data";
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 import TOOL from "@/utils";
 
 const $switchStore = switchStore();
@@ -10,7 +10,7 @@ const $switchStore = switchStore();
 const active = ref(-1); //当前显示的图片的索引号
 const imgs = ref<string[]>([]);
 
-$switchStore.$clickAudioStore("u4c5");
+$switchStore.$audioStore("u4c5");
 
 Team().then((res) => {
   imgs.value = res.data as unknown as string[];

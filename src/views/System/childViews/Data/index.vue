@@ -2,9 +2,7 @@
 import { ref, onActivated } from "vue";
 
 import TOOL from "@/utils";
-import skinStore from "@/store/skin";
-import heroStore from "@/store/hero";
-import switchStore from "@/store/switch";
+import { switchStore, skinStore, heroStore } from "@/store";
 import {
   HeroBasic,
   HeroImg,
@@ -133,7 +131,7 @@ const setStatus = (data: any, v: any) => {
 };
 
 /* 音效触发 */
-const play = () => $switchStore.$clickAudioStore();
+const play = () => $switchStore.$audioStore();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
@@ -204,7 +202,7 @@ const EmitsSortChange = (v: number[]) => {
 };
 
 onActivated(() => {
-  $switchStore.$clickAudioStore("bq69");
+  $switchStore.$audioStore("bq69");
 });
 </script>
 

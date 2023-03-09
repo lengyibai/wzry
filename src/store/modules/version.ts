@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { Version } from "@/api/modules/data";
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 import useUpdateData from "@/hooks/useUpdateData";
 
 const versionStore = defineStore("version", () => {

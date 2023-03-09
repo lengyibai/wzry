@@ -39,7 +39,7 @@
 import { ref, onMounted, computed } from "vue";
 
 import TOOL from "@/utils";
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   modelValue: string | number; //值
@@ -102,7 +102,7 @@ const changeValue = (e: Event) => {
   down.value = true;
   emit("update:modelValue", parseFloat(v));
   TOOL.throttleInstant(() => {
-    $switchStore.$clickAudioStore("range");
+    $switchStore.$audioStore("range");
   }, 50);
 };
 

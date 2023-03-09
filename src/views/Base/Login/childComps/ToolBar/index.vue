@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import switchStore from "@/store/switch";
-import settingStore from "@/store/setting";
+import { switchStore, settingStore } from "@/store";
 
 interface Props {
   notice?: boolean; //显示公告按钮
@@ -38,12 +37,12 @@ const icon = computed(() => {
  */
 const handleTool = (v: string) => {
   if (v === "sound") {
-    $switchStore.$clickAudioStore("n4r4");
+    $switchStore.$audioStore("n4r4");
     $settingStore.saveConfig({ muted: !muted.value });
     return;
   }
   if (v === "readme") {
-    $switchStore.$clickAudioStore("n4r4");
+    $switchStore.$audioStore("n4r4");
   }
   emit("clicks", v);
 };

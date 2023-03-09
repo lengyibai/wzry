@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import versionStore from "@/store/version";
+import { versionStore } from "@/store";
 
 const $versionStore = versionStore();
 

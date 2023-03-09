@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 interface Props {
   index: number; //滚动索引
 }
@@ -17,7 +17,7 @@ const page_name = ["英雄资料", "技能信息", "皮肤语音"]; //滚动索�
 /* 设置进度 */
 const handleToggle = (index: number) => {
   emit("toggle", index);
-  $switchStore.$clickAudioStore("n4r4");
+  $switchStore.$audioStore("n4r4");
 };
 </script>
 

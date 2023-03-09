@@ -2,7 +2,7 @@
 import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { getCampType } from "@/api/modules/games/hero";
-import heroStore from "@/store/hero";
+import { heroStore } from "@/store";
 import $bus from "@/utils/eventBus";
 
 const $heroStore = heroStore();

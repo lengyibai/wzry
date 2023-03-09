@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   size?: string;
@@ -30,7 +30,7 @@ const commit = () => {
     show_up.value = false;
     emit("commit");
   }, 750);
-  $switchStore.$clickAudioStore("36jn");
+  $switchStore.$audioStore("36jn");
 };
 
 watch(

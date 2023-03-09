@@ -9,8 +9,7 @@ import TOOL from "@/utils";
 import { addHeroSkill } from "@/api/modules/games/skill";
 import { getSkillType, getSkillEffect } from "@/api/modules/games/hero";
 import { skillDefault, skillEffectDefault } from "@/default";
-import heroStore from "@/store/hero";
-import switchStore from "@/store/switch";
+import { switchStore, heroStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

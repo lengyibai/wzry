@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import heroStore from "@/store/hero";
+import { heroStore } from "@/store";
 
 interface Props {
   data: Hero.Data; //英雄数据

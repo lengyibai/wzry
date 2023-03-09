@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import deviceStore from "@/store/device";
+import { deviceStore } from "@/store";
 
 const $deviceStore = deviceStore();
 </script>

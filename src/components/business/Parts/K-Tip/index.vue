@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import settingStore from "@/store/setting";
-import switchStore from "@/store/switch";
+import { switchStore, settingStore } from "@/store";
 
 interface Props {
   modelValue: boolean;
@@ -61,7 +60,7 @@ const handleClose = () => {
   props.noTipName && $settingStore.setNoTip(props.noTipName as TipKeys);
 
   emit("update:modelValue", false);
-  $switchStore.$clickAudioStore("6xc6");
+  $switchStore.$audioStore("6xc6");
 
   setTimeout(() => {
     props.btnFn();

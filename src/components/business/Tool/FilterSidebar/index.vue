@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import collapseStore from "@/store/collapse";
-import switchStore from "@/store/switch";
-import heroStore from "@/store/hero";
-import skinStore from "@/store/skin";
-import equipStore from "@/store/equip";
+import { switchStore, collapseStore, heroStore, skinStore, equipStore } from "@/store";
 
 interface Props {
   type: "hero" | "skin" | "equip";
@@ -61,7 +57,7 @@ const filter_type = computed(() => {
 
 /* 选择类型并筛选显示 */
 const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
-  $switchStore.$clickAudioStore(`默认${index}`);
+  $switchStore.$audioStore(`默认${index}`);
 
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 import TOOL from "@/utils";
 
 interface Props {
@@ -82,7 +82,7 @@ const handleSelect = (id: number, name: string) => {
     input_value.value = name;
   }
 
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 
 /* 删除选择的数据 */

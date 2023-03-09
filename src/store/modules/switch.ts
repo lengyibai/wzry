@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 /** @description 全局触发 */
 const switchStore = defineStore("switch", () => {
-  const $clickAudioStore = ref<Switch.ClickAudio>(() => {}); //点击音效
+  const $audioStore = ref<Switch.ClickAudio>(() => {}); //点击音效
   const $msg = ref<Switch.Msg>(() => {}); //消息提示
   const $tip = ref<Switch.Tip>(() => {}); //小贴士提示
   const $loading = ref<Switch.Loading>({
@@ -13,7 +13,7 @@ const switchStore = defineStore("switch", () => {
 
   return {
     /** 触发音效 */
-    $clickAudioStore,
+    $audioStore,
     /** 触发消息提醒 */
     $msg,
     /** 触发小贴士 */

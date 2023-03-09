@@ -2,8 +2,7 @@
 import { ref, computed } from "vue";
 
 import TOOL from "@/utils";
-import authStore from "@/store/auth";
-import switchStore from "@/store/switch";
+import { switchStore, authStore } from "@/store";
 
 const $authStore = authStore();
 const $switchStore = switchStore();
@@ -31,7 +30,7 @@ const handleEditInfo = () => {
 
 /* 退出登录 */
 const handleLogout = () => {
-  $switchStore.$clickAudioStore("36jn");
+  $switchStore.$audioStore("36jn");
   $authStore.logout();
 };
 

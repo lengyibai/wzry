@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   modelValue: boolean | string; //选中状态
@@ -19,7 +19,7 @@ const icon = computed(() => `${IMGBED}/image/${props.modelValue ? "select_true" 
 
 const toggle = () => {
   emit("update:modelValue", !props.modelValue);
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 </script>
 

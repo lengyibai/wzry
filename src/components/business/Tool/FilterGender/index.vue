@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import switchStore from "@/store/switch";
+import { switchStore } from "@/store";
 
 interface Props {
   modelValue: Gender; //标识符
@@ -16,7 +16,7 @@ const $switchStore = switchStore();
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {
   emit("update:modelValue", v);
-  $switchStore.$clickAudioStore();
+  $switchStore.$audioStore();
 };
 </script>
 

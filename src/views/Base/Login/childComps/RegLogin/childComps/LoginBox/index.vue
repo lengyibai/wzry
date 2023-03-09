@@ -7,8 +7,7 @@ import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
 import TOOL from "@/utils";
-import authStore from "@/store/auth";
-import switchStore from "@/store/switch";
+import { switchStore, authStore } from "@/store";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
@@ -39,7 +38,7 @@ const handleLogin = () => {
   $authStore
     .login(form.value)
     .then(() => {
-      $switchStore.$clickAudioStore("e84n");
+      $switchStore.$audioStore("e84n");
       $switchStore.$msg("登录成功");
       //记住密码
       if (remember.value) {
