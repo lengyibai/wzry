@@ -9,7 +9,7 @@ interface Props {
   modelValue: number;
 }
 const props = withDefaults(defineProps<Props>(), {
-  size: "50px",
+  size: "3.125rem",
   modelValue: 0,
 });
 

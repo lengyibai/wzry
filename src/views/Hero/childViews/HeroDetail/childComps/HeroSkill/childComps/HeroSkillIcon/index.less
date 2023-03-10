@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
   border: var(--subline);
 
   .icon {
-    @size: 100px;
+    @size: 6.25rem;
 
     position: relative;
     display: flex;
@@ -27,30 +27,30 @@
       z-index: 1;
       width: @size;
       height: @size;
-      border: 5px solid #f9ca24;
+      border: 0.3125rem solid #f9ca24;
       border-radius: 50%;
-      box-shadow: 0 0 10px 5px #000 inset;
+      box-shadow: 0 0 0.625rem 0.3125rem #000 inset;
       pointer-events: none;
 
       &::before,
       &::after {
         position: absolute;
         left: 50%;
-        width: 20px;
+        width: 1.25rem;
         border-style: solid;
-        border-width: 10px;
+        border-width: 0.625rem;
         box-sizing: border-box;
         content: "";
         transform: translateX(-50%);
       }
 
       &::before {
-        top: -1px;
+        top: -0.0625rem;
         border-color: #f9ca24 transparent transparent;
       }
 
       &::after {
-        bottom: -1px;
+        bottom: -0.0625rem;
         border-color: transparent transparent #f9ca24;
       }
     }
@@ -80,7 +80,7 @@
     justify-content: center;
     align-items: center;
     color: var(--white-50);
-    font-size: 50px;
+    font-size: 3.125rem;
     transition: color var(--time-250);
 
     &:hover {

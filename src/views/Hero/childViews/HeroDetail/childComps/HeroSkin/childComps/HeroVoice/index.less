@@ -5,26 +5,27 @@
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
-  padding-right: 10px;
-  flex: 1;
+  padding-right: 0.625rem;
+  flex-grow: 1;
   flex-direction: column;
-  perspective: 1000px;
+  perspective: 62.5rem;
 
   .voice {
     display: flex;
     overflow: hidden;
     width: 100%;
-    height: 65px;
-    margin-bottom: 10px;
-    padding: 0 50px;
-    border-radius: 10px;
+    height: 4.0625rem;
+    flex-shrink: 0;
+    margin-bottom: 0.625rem;
+    padding: 0 3.125rem;
+    border-radius: 0.625rem;
     color: var(--white);
     white-space: nowrap;
     background-color: var(--black-50);
     transition: all 0.5s ease-in-out;
 
     &:hover {
-      height: 70px;
+      height: 4.375rem;
       color: var(--blue);
       text-shadow: var(--shine-10), var(--shine-20);
       transition: all 0s;
@@ -41,16 +42,16 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      font-size: 22px;
+      font-size: 1.375rem;
 
       .text {
         width: 100%;
-        padding: 10px;
+        padding: 0.625rem;
       }
 
       .iconfont {
         color: var(--white);
-        font-size: 26px;
+        font-size: 1.625rem;
       }
     }
   }

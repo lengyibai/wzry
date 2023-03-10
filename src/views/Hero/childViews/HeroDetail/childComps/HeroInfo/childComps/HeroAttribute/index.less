@@ -1,16 +1,16 @@
 .attribute {
   display: flex;
   align-items: center;
-  height: 26px;
+  height: 1.625rem;
 
   &:not(:last-child) {
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
   }
 
   span {
     margin-right: 1em;
     color: var(--white);
-    font-size: 35px;
+    font-size: 2.1875rem;
     text-shadow: var(--t-shadow-e);
   }
 
@@ -28,11 +28,11 @@
 
   .bar {
     position: relative;
-    height: 18px;
+    height: 1.125rem;
     border-radius: 0 4px 4px 0;
     box-shadow: var(--b-shadow-a);
     background-color: #1a1a1a;
-    flex: 1;
+    flex-grow: 1;
 
     i {
       position: absolute;
@@ -42,22 +42,46 @@
       transition: all var(--time-1000);
     }
   }
+
   @media screen and (max-width: @large) {
     &:not(:last-child) {
-      margin-bottom: 30px;
+      margin-bottom: 1.875rem;
     }
 
     span {
-      font-size: 28px;
+      font-size: 1.75rem;
     }
 
     .ico {
       transform: scale(0.75);
-      margin-right: -7px;
+      margin-right: -0.4375rem;
     }
 
     .bar {
-      height: 15px;
+      height: 0.9375rem;
+    }
+  }
+
+
+  @media screen and (max-width: @medium) {
+    span {
+      margin-right: 0.75rem;
+      font-size: 1.625rem;
+    }
+
+    .ico {
+      transform: scale(0.5);
+      margin-right: -1.25rem;
+    }
+
+    .bar {
+      height: 0.625rem;
+    }
+  }
+
+  @media screen and (max-width: @small) {
+    span {
+      margin-right: 0.5rem;
     }
   }
 }

@@ -7,7 +7,8 @@ delete: 文件删除
 type: ts类型调整
 update: 文件更新
 test: 测试代码变动
-visual: 页面样式调整
+visual: 页面样式css代码优化
+: 页面样式调整
 rename: 文件或文件夹重命名
 desc: 描述
 cancel: 取消某些功能或样式

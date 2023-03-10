@@ -137,7 +137,7 @@ watch(
 <template>
   <div class="form-select" :class="{ disabled: disabled }">
     <FormLabel :label="label" :required="required">
-      <div class="select" :style="{ width: autoSize ? '100%' : '250px' }">
+      <div class="select" :style="{ width: autoSize ? '100%' : '15.625rem' }">
         <!-- 选择器框 -->
         <div class="select-box" ref="selectBox">
           <K-input
@@ -145,7 +145,7 @@ watch(
             :required:="required"
             :placeholder="active_value || '搜索'"
             line
-            width="250px"
+            width="15.625rem"
             color="var(--theme-color-five)"
             @input="handleSearch"
             @focus="handleFocus"

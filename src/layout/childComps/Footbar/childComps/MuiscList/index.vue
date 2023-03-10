@@ -25,7 +25,7 @@ const handleToggleMusic = (index: number) => {
       </div>
 
       <!-- 播放列表 -->
-      <div class="list" title="双击播放">
+      <div class="list" title="点击播放">
         <div
           v-for="(item, index) in $musicStore.musics"
           class="card cursor-pointer"

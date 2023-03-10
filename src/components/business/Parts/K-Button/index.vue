@@ -9,10 +9,10 @@ interface Props {
   width?: string; //宽度
 }
 const props = withDefaults(defineProps<Props>(), {
-  fontSize: "24px",
-  height: "56px",
+  fontSize: "1.5rem",
+  height: "3.5rem",
   type: "info",
-  width: "224px",
+  width: "14rem",
 });
 
 const $settingStore = settingStore();

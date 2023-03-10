@@ -25,22 +25,26 @@ body {
   position: relative;
   overflow: hidden;
   width: 100vw;
+  min-width: 320px;
   height: 100vh;
   color: var(--white);
   background-color: #000;
   transition: all var(--time-500);
-  cursor: url("@{IMGBED}/cursor/default.png"), auto;
+  cursor: url("@{IMGBED}/cursor/default.png"),
+  auto;
 }
 
 input {
-  cursor: url("@{IMGBED}/cursor/text.png"), auto;
+  cursor: url("@{IMGBED}/cursor/text.png"),
+  auto;
 }
 
 input[type="range"],
 input ::-webkit-slider-thumb,
 button,
 a {
-  cursor: url("@{IMGBED}/cursor/pointer.png"), auto;
+  cursor: url("@{IMGBED}/cursor/pointer.png"),
+  auto;
 }
 
 a {

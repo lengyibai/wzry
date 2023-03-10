@@ -76,7 +76,7 @@ const props = withDefaults(defineProps<Props>(), {
   borderColor: "#fff",
   color: "#fff",
   align: "left",
-  fontSize: "26px",
+  fontSize: "1.625rem",
   type: "text",
   noSpecial: false,
 });

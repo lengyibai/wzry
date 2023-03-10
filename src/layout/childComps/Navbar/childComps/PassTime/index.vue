@@ -22,9 +22,9 @@ setInterval(() => {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 10px;
+  padding: 0 0.625rem;
   color: var(--theme-color-five);
-  font-size: 20px;
+  font-size: 1.25rem;
   text-shadow: var(--t-shadow-e);
   border-left: var(--subline);
   border-right: var(--subline);

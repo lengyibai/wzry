@@ -7,7 +7,7 @@ interface Props {
 }
 withDefaults(defineProps<Props>(), {
   label: "",
-  labelWidth: "150px",
+  labelWidth: "9.375rem",
 });
 </script>
 

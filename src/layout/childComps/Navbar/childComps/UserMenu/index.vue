@@ -70,19 +70,19 @@ setInterval(() => {
 
       <div class="btns">
         <div class="edit">
-          <K-Button font-size="20px" auto-size @click="handleEditInfo">编辑个人信息</K-Button>
+          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</K-Button>
         </div>
         <div class="logout" @click="handleLogout">
-          <K-Button type="warning" font-size="20px" auto-size>退出登录</K-Button>
+          <K-Button type="warning" font-size="1.25rem" auto-size>退出登录</K-Button>
         </div>
         <div class="logoff" @click="show_logoff = true">
-          <K-Button type="error" font-size="20px" auto-size>注销帐号</K-Button>
+          <K-Button type="error" font-size="1.25rem" auto-size>注销帐号</K-Button>
         </div>
       </div>
     </div>
   </div>
   <transition name="fade">
-    <K-Dialog v-if="show_edit" title="编辑个人资料" width="920px" up @close="EmitClose">
+    <K-Dialog v-if="show_edit" title="编辑个人资料" width="57.5rem" up @close="EmitClose">
       <EditUserInfo :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
     </K-Dialog>
   </transition>

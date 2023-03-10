@@ -22,7 +22,7 @@ const handleReset = () => {
   <K-Dialog
     :show-close="!data_status && !file_status"
     v-bind="$attrs"
-    width="900px"
+    width="56.25rem"
     header="更新日志"
     :desc="update_log.time"
   >

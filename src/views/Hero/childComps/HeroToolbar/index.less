@@ -7,16 +7,16 @@
   .filter-select {
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
-    max-width: 742px;
-    gap: 10px;
+    flex-grow: 1;
+    max-width: 46.375rem;
+    gap: 0.625rem;
     border-right: var(--subline);
-    padding: 14.5px;
+    padding: 0.9063rem;
   }
 
   &:deep(.form-input) {
     margin-left: auto;
-    padding: 10px;
+    padding: 0.625rem;
 
     input::placeholder {
       color: var(--theme-color-three);
@@ -28,11 +28,11 @@
 
     .filter-select {
       justify-content: center;
-      margin-bottom: 25px;
+      margin-bottom: 1.5625rem;
     }
 
     &:deep(.form-input) {
-      margin-top: 25px;
+      margin-top: 1.5625rem;
       margin-left: 0;
     }
   }

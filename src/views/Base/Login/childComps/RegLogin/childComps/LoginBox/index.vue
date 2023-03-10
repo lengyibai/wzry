@@ -58,7 +58,14 @@ const handleLogin = () => {
     <!-- 帐号 -->
     <div class="box">
       <i class="iconfont wzry-user" />
-      <K-Input v-model.number="form.id" width="100%" padding-left="45px" placeholder="请输入帐号" name="id" required />
+      <K-Input
+        v-model.number="form.id"
+        width="100%"
+        padding-left="2.8125rem"
+        placeholder="请输入帐号"
+        name="id"
+        required
+      />
     </div>
 
     <!-- 密码 -->
@@ -67,7 +74,7 @@ const handleLogin = () => {
       <K-Input
         v-model="form.password"
         width="100%"
-        padding-left="45px"
+        padding-left="2.8125rem"
         placeholder="请输入密码"
         type="password"
         required

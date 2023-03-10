@@ -164,7 +164,7 @@ setTimeout(async () => {
         <FormSelect id v-model="item.type" label="皮肤类型" :data="skin_types" :value="item.type" />
 
         <!--··皮肤头像、海报··-->
-        <FormLabel label-width="355px" label="头像&海报&小尺寸海报">
+        <FormLabel label-width="22.1875rem" label="头像&海报&小尺寸海报">
           <SelectImg v-model="item.headImg" title="头像" />
           <SelectImg v-model="item.poster" type="width" title="海报" />
           <SelectImg v-model="item.cover" type="width" title="小尺寸海报" />

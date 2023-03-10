@@ -2,24 +2,32 @@
   overflow: auto;
   width: 100%;
   height: 100%;
-  padding-right: 25px;
+  padding-right: 1.5625rem;
   color: var(--theme-color-five);
 
   :deep(h1) {
-    margin: 10px 0;
-    font-size: 30px;
+    margin: 0.625rem 0;
+    font-size: 1.875rem;
     text-shadow: var(--t-shadow-e);
   }
 
   :deep(.content) {
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
     padding-left: 2em;
     text-shadow: var(--t-shadow-d);
 
     p {
-      font-size: 22px;
+      font-size: 1.375rem;
       font-family: var(--font-f);
       line-height: 1.5;
+
+      .iconfont {
+        font-size: 2rem !important;
+      }
+
+      span {
+        font-size: 1.5rem !important;
+      }
     }
   }
 }

@@ -4,24 +4,24 @@
   overflow: hidden;
   width: 100%;
   height: 100%;
-  padding: 0 50px;
-  box-shadow: 0 0 100px 25px #000 inset;
+  padding: 0 3.125rem;
+  box-shadow: 0 0 6.25rem 1.5625rem #000 inset;
   color: var(--white);
   background-color: var(--black-50);
   flex-direction: column;
 
   .content {
     display: flex;
-    flex: 1;
+    flex-grow: 1;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 1.5625rem;
     border: var(--subline);
 
     .left {
-      margin-right: 100px;
+      margin-right: 6.25rem;
 
       .hero-basic {
-        margin-bottom: 50px;
+        margin-bottom: 3.125rem;
       }
 
       .hero-attribute1 {
@@ -42,7 +42,7 @@
     .right {
       position: relative;
       display: flex;
-      flex: 1;
+      flex-grow: 1;
       flex-direction: column;
 
       .hero-attribute2 {
@@ -66,7 +66,7 @@
     bottom: 0;
     left: 50%;
     color: var(--white-75);
-    font-size: 75px;
+    font-size: 4.6875rem;
     transform: translateX(-50%);
     animation: down-up var(--time-1000) infinite alternate-reverse;
 
@@ -84,7 +84,7 @@
   @media screen and (max-width: @medium) {
     .content {
       .left {
-        margin-right: 50px;
+        margin-right: 0;
 
         .hero-attribute1 {
           display: flex;

@@ -1,12 +1,12 @@
 .right {
   overflow: auto;
   height: 100%;
-  flex: 1;
+  flex-grow: 1;
 
   .add-skill-basic {
     position: relative;
-    margin: 15px;
-    padding: 15px;
+    margin: 0.9375rem;
+    padding: 0.9375rem;
 
     &:hover {
       background-color: var(--white-10);
@@ -15,17 +15,17 @@
     .title {
       display: flex;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 0.9375rem;
 
       img {
-        width: 75px;
-        height: 75px;
-        margin-right: 25px;
+        width: 4.6875rem;
+        height: 4.6875rem;
+        margin-right: 1.5625rem;
       }
 
       .name {
         margin-right: 2em;
-        font-size: 25px;
+        font-size: 1.5625rem;
       }
 
       .types {
@@ -38,8 +38,8 @@
         right: 0;
         bottom: 0;
         color: var(--red);
-        transform: translate(-10px, -10px);
-        font-size: 25px;
+        transform: translate(-0.625rem, -0.625rem);
+        font-size: 1.5625rem;
       }
 
       .editing {
@@ -47,14 +47,14 @@
         top: 0;
         right: 0;
         color: var(--theme-color-two);
-        font-size: 25px;
-        transform: translate(-10px, 20px);
+        font-size: 1.5625rem;
+        transform: translate(-0.625rem, 1.25rem);
       }
     }
 
     .nums {
       display: flex;
-      margin-bottom: 10px;
+      margin-bottom: 0.625rem;
 
       .cd {
         margin-right: 2em;
@@ -62,19 +62,19 @@
     }
 
     .desc {
-      margin-bottom: 10px;
+      margin-bottom: 0.625rem;
       line-height: 1.25;
     }
 
     .effect {
       .box {
         display: flex;
-        margin-bottom: 5px;
+        margin-bottom: 0.3125rem;
       }
     }
   }
 }
 
 .active {
-  outline: 1px dashed var(--white);
+  outline: 0.0625rem dashed var(--white);
 }

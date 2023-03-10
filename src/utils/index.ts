@@ -520,7 +520,7 @@ class ScaleImage {
   creatButton() {
     const button_style = `
     position: absolute;
-    font-size: 50px;
+    font-size: 3.125rem;
     color: #fff;
     z-index: 1;
     `;
@@ -810,5 +810,3 @@ export default {
   /** 元素聚焦 */
   FocusElement,
 };
-
-export { AudioVisual };

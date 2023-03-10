@@ -6,9 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   width: 100%;
-  height: 100vh;
   height: 100%;
   color: var(--white);
   background-color: var(--black-50);
@@ -16,20 +14,33 @@
   .k-dialog {
     position: absolute;
     z-index: 3;
+    min-width: 18rem;
     max-width: 90vw;
+
+    @media screen and (max-width: @medium) {
+      max-height: 55vh;
+    }
+
+    @media screen and (max-width: @small) {
+      max-height: 45vh;
+    }
+
+    @media screen and (max-width: @xs) {
+      max-height: 35vh;
+    }
 
     .title {
       position: absolute;
-      top: 35px;
-      left: 70px;
+      top: 2.1875rem;
+      left: 4.375rem;
       color: var(--theme-color-nine);
-      font-size: 30px;
+      font-size: 1.875rem;
       text-shadow: var(--t-shadow-e);
     }
 
     .header {
       position: absolute;
-      top: 50px;
+      top: 3.125rem;
       left: 50%;
       display: flex;
       align-items: center;
@@ -38,26 +49,26 @@
 
       span {
         &:first-child {
-          margin-bottom: 5px;
+          margin-bottom: 0.3125rem;
           color: var(--white);
-          font-size: 35px;
+          font-size: 2.1875rem;
           text-shadow: var(--t-shadow-e);
         }
 
         &:last-child {
           color: var(--white-50);
-          font-size: 14px;
+          font-size: 0.875rem;
         }
       }
     }
 
     .close {
       position: absolute;
-      top: 32px;
-      right: 28px;
+      top: 2rem;
+      right: 1.75rem;
       z-index: 2;
-      width: 40px;
-      filter: drop-shadow(0 0 3px #cce5ff);
+      width: 2.5rem;
+      filter: drop-shadow(0 0 0.1875rem #cce5ff);
     }
 
     .bg {

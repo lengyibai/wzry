@@ -9,12 +9,12 @@
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth }">
-          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size + 'px', height: size + 'px' }" />
+          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
           <span
             v-show="showDot && !showIcon"
             :style="{
-              width: size + 'px',
-              height: size + 'px',
+              width: size,
+              height: size,
             }"
           ></span>
         </div>
@@ -30,6 +30,7 @@
           :step="step"
           @input="changeValue"
           @mouseup="hide"
+          @touchend="hide"
         />
       </div>
     </div>
@@ -48,7 +49,7 @@ interface Props {
   min?: number; //最小值
   max?: number; //最大值
   text?: string; //进度条自定义悬浮文本
-  size?: number; //圆点和图标大小，实际上可点击的范围依然是20px * 20px
+  size?: string; //圆点和图标大小，实际上可点击的范围依然是20px * 20px
   trackColor?: string; //轨道背景色
   showDot?: boolean; //显示圆点，也决定显示图标
   showIcon?: boolean; //显示图标
@@ -62,14 +63,14 @@ interface Emits {
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
-  width: "200px",
+  width: "12.5rem",
   disabled: false,
   label: "标题",
-  labelWidth: "150px",
+  labelWidth: "9.375rem",
   min: 0,
   max: 100,
   text: "",
-  size: 35,
+  size: "2.1875rem",
   showDot: true,
   trackColor: "var(--theme-color-one)",
   showIcon: true,
@@ -87,13 +88,15 @@ const down = ref(false); //是否处于按下状态
 const barWidth = computed(() => {
   const value = Number(props.modelValue) - props.min;
   const maxs = props.max - props.min;
-  return `calc(${value / (maxs / 100)}% + ${((props.size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
+  const size = Number(props.size.replace(/\b\d+(rem|px)\b/g, ""));
+
+  return `calc(${value / (maxs / 100)}% + ${((size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
 });
 
 /* 设置按钮大小 */
 onMounted(() => {
   const root = document.querySelector(":root") as HTMLElement;
-  root.style.setProperty("--size", `${props.size}px`);
+  root.style.setProperty("--size", `${props.size}`);
 });
 
 /* 拖动时触发 */

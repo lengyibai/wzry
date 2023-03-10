@@ -40,8 +40,8 @@ export default {
 <style scoped lang="less">
 .TableSort {
   display: flex;
-  width: 10px;
-  margin-left: 10px;
+  width: 0.625rem;
+  margin-left: 0.625rem;
   color: #c0c4cc;
   flex-direction: column;
   cursor: pointer;

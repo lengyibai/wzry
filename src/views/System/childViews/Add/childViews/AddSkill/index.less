@@ -2,20 +2,20 @@
   position: relative;
   overflow: auto;
   height: 100%;
-  padding: 30px;
-  flex: 1;
+  padding: 1.875rem;
+  flex-grow: 1;
 
   .add-skill {
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 1.875rem;
+    right: 1.875rem;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
 
     .desc {
       position: absolute;
-      right: -25px;
+      right: -1.5625rem;
       color: var(--white-50);
       white-space: nowrap;
       writing-mode: vertical-lr;
@@ -23,7 +23,7 @@
 
     .add {
       color: var(--theme-color-seven);
-      font-size: 26px;
+      font-size: 1.625rem;
 
       &:hover {
         color: var(--theme-color-four);
@@ -31,21 +31,21 @@
     }
 
     .deputy-index {
-      margin-bottom: 25px;
+      margin-bottom: 1.5625rem;
       color: var(--theme-color-seven);
-      font-size: 26px;
+      font-size: 1.625rem;
     }
   }
 
   .type-list {
     display: flex;
-    height: 60px;
-    margin-bottom: 25px;
+    height: 3.75rem;
+    margin-bottom: 1.5625rem;
 
     .skill-type {
       width: fit-content;
       padding: 0.5em;
-      font-size: 25px;
+      font-size: 1.5625rem;
 
       .name {
         margin-right: 0.5em;
@@ -69,9 +69,9 @@
     .add,
     .confirm,
     .del {
-      margin-left: 25px;
+      margin-left: 1.5625rem;
       color: var(--theme-color-three);
-      font-size: 25px;
+      font-size: 1.5625rem;
     }
 
     .del:hover {
@@ -86,13 +86,13 @@
   .effect-list {
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
 
     .skill-effect {
       display: flex;
       width: fit-content;
       color: var(--white-75);
-      font-size: 25px;
+      font-size: 1.5625rem;
     }
 
     .active-effect {
@@ -116,5 +116,7 @@
 
 /* 解决删除元素时，其他元素补位无动画 */
 .del-skill-type-leave-active {
-  position: absolute; /* 必须为绝对定位 */
+  position: absolute;
+
+  /* 必须为绝对定位 */
 }

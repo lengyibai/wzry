@@ -36,8 +36,6 @@ onMounted(async () => {
   await TOOL.promiseTimeout(() => {
     show_footbar.value = true;
   }, 500);
-
-  if ($deviceStore.vertical && TOOL.isPhone) $switchStore.$tip({ text: "2l5m" });
 });
 </script>
 

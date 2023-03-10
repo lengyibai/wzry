@@ -97,14 +97,13 @@ onActivated(() => {
 
 onMounted(async () => {
   const change = [
-    [2200, 8],
-    [2000, 7],
-    [1800, 6],
-    [1600, 5],
-    [1400, 4],
-    [1024, 3],
-    [720, 2],
-    [480, 1],
+    [2000, 8],
+    [1800, 7],
+    [1600, 6],
+    [1400, 5],
+    [1024, 4],
+    [720, 3],
+    [480, 2],
   ];
 
   //实时修改一行个数
@@ -155,7 +154,7 @@ onBeforeUnmount(() => {
           v-if="$heroStore.show_list.length && toggle_show && show_list"
           class="hero-list"
           scroll-id="hero_list"
-          gap="25px"
+          gap="1.5625rem"
           :count="count"
           :scroll-top="$heroStore.scroll"
           @scroll="EmitScroll"

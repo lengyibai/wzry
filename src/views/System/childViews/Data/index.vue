@@ -216,10 +216,10 @@ onActivated(() => {
       @sortChange="EmitsSortChange"
     >
       <template v-slot:body="{ data }">
-        <TableColumn min-width="175px">{{ data.name }}</TableColumn>
-        <TableColumn min-width="150px">{{ data.data.length }}</TableColumn>
-        <TableColumn min-width="200px">{{ data.status }}</TableColumn>
-        <TableColumn min-width="325px">
+        <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
+        <TableColumn min-width="9.375rem">{{ data.data.length }}</TableColumn>
+        <TableColumn min-width="12.5rem">{{ data.status }}</TableColumn>
+        <TableColumn min-width="20.3125rem">
           <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">检查更新</button>
           <button class="export" @click="handleExport(data), play()">导出</button>
           <button v-if="data.status === '待更新'" class="update" @click="handleUpdate(data), play()">更新</button>

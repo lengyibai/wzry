@@ -124,7 +124,7 @@ const EmitResetConfig = () => {
 
 <template>
   <div class="setting-dialog">
-    <K-Dialog v-bind="$attrs" title="设置" width="920px" ctx-width="90%" up>
+    <K-Dialog v-bind="$attrs" title="设置" width="57.5rem" ctx-width="90%" up>
       <div class="options">
         <!-- 动画速率 -->
         <div class="option">
@@ -220,7 +220,7 @@ const EmitResetConfig = () => {
         <!-- 恢复所有不再提示 -->
         <div class="option">
           <div class="label">恢复所有小贴士</div>
-          <K-Button width="90px" height="35px" font-size="20px" @click="handleResetTip">恢复</K-Button>
+          <K-Button width="5.625rem" height="2.1875rem" font-size="1.25rem" @click="handleResetTip">恢复</K-Button>
         </div>
       </div>
 

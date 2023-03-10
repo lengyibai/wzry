@@ -51,7 +51,7 @@ const handleReg = () => {
         v-model="form.nickname"
         :max="6"
         :min="2"
-        padding-left="45px"
+        padding-left="2.8125rem"
         placeholder="请输入昵称"
         required
         width="100%"
@@ -67,7 +67,7 @@ const handleReg = () => {
         :max="12"
         :min="6"
         number
-        padding-left="45px"
+        padding-left="2.8125rem"
         placeholder="请输入帐号"
         required
         width="100%"
@@ -82,7 +82,7 @@ const handleReg = () => {
         v-model="form.password"
         :max="18"
         :min="6"
-        padding-left="45px"
+        padding-left="2.8125rem"
         placeholder="请输入密码"
         required
         width="100%"

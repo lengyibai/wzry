@@ -17,15 +17,15 @@
     align-items: center;
     overflow: hidden;
     width: fit-content;
-    padding: 15px 50px;
-    border-radius: 0 0 10px 10px;
+    padding: 0.9375rem 2rem;
+    border-radius: 0 0 0.625rem 0.625rem;
     transition: all var(--time-500);
-    transform: translateX(-50%) translateY(-3px);
+    transform: translateX(-50%) translateY(-0.1875rem);
 
     span {
       z-index: 2;
       color: var(--theme-color-five);
-      font-size: 20px;
+      font-size: 1.25rem;
       text-shadow: var(--shine-15);
     }
 
@@ -41,7 +41,7 @@
         height: 100%;
 
         &:nth-of-type(2) {
-          flex: 1;
+          flex-grow: 1;
           transform: scaleX(1.02);
         }
       }

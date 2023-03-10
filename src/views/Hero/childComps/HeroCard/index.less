@@ -4,20 +4,20 @@
   align-items: flex-start;
   overflow: hidden;
   width: 100%;
-  border: 1px solid var(--white-25);
+  border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
   transition: box-shadow var(--time-250), transform var(--time-250);
   flex-direction: column;
 
   &:hover {
-    border: 1px solid var(--white-50);
+    border: 0.0625rem solid var(--white-50);
   }
 
   .id,
   .num {
     z-index: 1;
-    margin: 15px;
-    font-size: 16px;
+    margin: 0.9375rem;
+    font-size: 1rem;
     text-shadow: var(--t-shadow-d);
     transition: all var(--time-250);
   }
@@ -43,21 +43,21 @@
 
     .head {
       width: 50%;
-      margin-bottom: 15px;
+      margin-bottom: 0.9375rem;
       border-radius: 50%;
       box-shadow: var(--b-shadow-a);
       transition: all var(--time-250);
       animation: scale var(--time-250) 0.1s forwards;
-      transform: translateY(-50px) scale(1.5);
+      transform: translateY(-3.125rem) scale(1.5);
       opacity: 0;
     }
 
     .view {
       color: var(--blue);
-      font-size: 30px;
+      font-size: 1.875rem;
       transition: all var(--time-250);
       animation: scale var(--time-250) 0.1s forwards;
-      transform: translateY(50px) scale(0.75);
+      transform: translateY(3.125rem) scale(0.75);
       opacity: 0;
 
       @keyframes scale {
@@ -84,14 +84,14 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 15px;
+    padding: 0.9375rem;
     flex-direction: column;
 
     .name {
       width: fit-content;
-      margin-bottom: 5px;
+      margin-bottom: 0.3125rem;
       color: var(--white);
-      font-size: 30px;
+      font-size: 1.875rem;
       text-shadow: var(--t-shadow-e);
       transition: all var(--time-250);
       opacity: 1;
@@ -101,7 +101,7 @@
 
     .mark {
       color: var(--white-75);
-      font-size: 20px;
+      font-size: 1.25rem;
       transition: all var(--time-250);
       opacity: 1;
       transform: translate(0);
@@ -111,16 +111,16 @@
 
 .hide {
   box-shadow: var(--b-shadow-b);
-  transform: translateY(-10px) scale(1.05);
+  transform: translateY(-0.625rem) scale(1.05);
 
   .bottom {
     .name {
-      transform: translateX(-100px);
+      transform: translateX(-6.25rem);
       opacity: 0;
     }
 
     .mark {
-      transform: translateX(100px);
+      transform: translateX(6.25rem);
       opacity: 0;
     }
   }

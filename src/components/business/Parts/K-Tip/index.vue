@@ -39,11 +39,11 @@ onMounted(() => {
 const position = {
   "left-top": {
     left: 0,
-    top: "50px",
+    top: "3.125rem",
   },
   "right-top": {
     right: 0,
-    top: "50px",
+    top: "3.125rem",
   },
   "left-bottom": {
     left: 0,
@@ -85,7 +85,7 @@ const handleClose = () => {
 
         <!-- 按钮 -->
         <div class="btns">
-          <K-Button width="150px" height="40px" font-size="20px" @click="handleClose">{{ btnText }}</K-Button>
+          <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{ btnText }}</K-Button>
         </div>
       </div>
     </transition>

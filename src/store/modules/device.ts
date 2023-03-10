@@ -33,8 +33,8 @@ const deviceStore = defineStore("phone", () => {
   /* 判断手机是否竖屏 */
   const tip = () => {
     vertical.value = window.innerWidth < window.innerHeight;
-    width.value = ~~(window.innerWidth * 0.6);
-    height.value = ~~(window.innerHeight * 0.6);
+    width.value = window.innerWidth;
+    height.value = window.innerHeight;
   };
   tip();
   window.addEventListener("resize", () => {

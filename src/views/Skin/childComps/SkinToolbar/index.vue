@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
         v-model="$skinStore.skin_type"
         :status="select_status[1]"
         :data="select_type"
-        list-height="500px"
+        list-height="31.25rem"
         @click="handleSelectStatus(1)"
         @select="EmitTypeFilter"
       />
@@ -130,7 +130,7 @@ onBeforeUnmount(() => {
         v-model="$skinStore.sort_type"
         :status="select_status[2]"
         :data="sort_type"
-        list-height="100px"
+        list-height="6.25rem"
         @click="handleSelectStatus(2)"
         @select="EmitSortType"
       />

@@ -24,7 +24,7 @@ const handleView = (v: string, i: number) => {
 </script>
 
 <template>
-  <K-Dialog v-bind="$attrs" width="900px" header="混子辅助求带飞">
+  <K-Dialog v-bind="$attrs" width="56.25rem" header="辅助求带飞">
     <div class="team">
       <img
         v-for="(item, index) in imgs"

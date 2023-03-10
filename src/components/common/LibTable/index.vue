@@ -87,7 +87,7 @@ const sortChange = ({ key, index, id, item }: any) => {
       .head {
         display: flex;
         align-items: center;
-        height: 50px;
+        height: 3.125rem;
         border: var(--subline);
         color: #fff;
       }
@@ -98,7 +98,7 @@ const sortChange = ({ key, index, id, item }: any) => {
   tr {
     padding: 0.5em 1em;
     color: #fff;
-    font-size: 24px;
+    font-size: 1.5rem;
     text-align: left;
     word-break: break-all;
 

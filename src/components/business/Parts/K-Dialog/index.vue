@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   ctxWidth: "80%",
   modelValue: true,
   showClose: true,
-  width: "720px",
+  width: "45rem",
 });
 
 interface Emits {

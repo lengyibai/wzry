@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.camp_type"
         :status="select_status[0]"
         :data="select_camp"
-        list-height="425px"
+        list-height="26.5625rem"
         @click="handleSelectStatus(0)"
         @select="EmitSelectCamp"
       />
@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.attr_type"
         :status="select_status[1]"
         :data="select_attr"
-        list-height="345px"
+        list-height="21.5625rem"
         @click="handleSelectStatus(1)"
         @select="EmitSelectAttr"
       />
@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_type"
         :status="select_status[2]"
         :data="select_misc"
-        list-height="296px"
+        list-height="18.5rem"
         @click="handleSelectStatus(2)"
         @select="EmitSelectMisc"
       />
@@ -156,7 +156,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_sort"
         :status="select_status[3]"
         :data="select_sort"
-        list-height="247px"
+        list-height="15.4375rem"
         @click="handleSelectStatus(3)"
         @select="EmitSelectSort"
       />
@@ -166,7 +166,7 @@ onBeforeUnmount(() => {
         v-model="$heroStore.sort_type"
         :status="select_status[4]"
         :data="sort_type"
-        list-height="100px"
+        list-height="6.25rem"
         @click="handleSelectStatus(4)"
         @select="EmitSortType"
       />

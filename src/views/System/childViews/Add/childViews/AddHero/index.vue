@@ -151,14 +151,14 @@ setTimeout(async () => {
 
     <!-- 属性相关 -->
     <div class="flex-box">
-      <FormLabel v-for="(v, k) in attr" :label="v" label-width="200px" :key="k">
+      <FormLabel v-for="(v, k) in attr" :label="v" label-width="12.5rem" :key="k">
         <K-Range v-model="form_data![k]" :text="form_data![k] + '%'" track-color="var(--theme-color-nine)" />
       </FormLabel>
     </div>
 
     <!-- 设置头像&海报 -->
     <div class="flex-box">
-      <FormLabel label-width="290px" label="头像&封面&&海报">
+      <FormLabel label-width="18.125rem" label="头像&封面&&海报">
         <SelectImg v-model="form_data!.headImg" title="头像" />
         <SelectImg v-model="form_data!.cover" type="height" title="封面" />
         <SelectImg v-model="form_data!.poster" type="width" title="海报" />

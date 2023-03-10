@@ -10,9 +10,9 @@
   .k-tip {
     position: absolute;
     display: flex;
-    width: 500px;
-    min-height: calc(500px * 0.5989);
-    padding-bottom: 25px;
+    width: 31.25rem;
+    min-height: calc(31.25rem * 0.5989);
+    padding-bottom: 1.5625rem;
     background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
     background-size: 100% 100%;
     filter: var(--d-shadow-c);
@@ -22,17 +22,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 90px;
+      height: 5.625rem;
       color: var(--theme-color-nine);
       text-shadow: var(--t-shadow-e);
 
       .title {
-        font-size: 30px;
-        transform: translateX(40px);
+        font-size: 1.875rem;
+        transform: translateX(2.5rem);
       }
 
       .soldier {
-        height: 100px;
+        height: 6.25rem;
         transform: translateY(-50%) rotateY(180deg);
         filter: var(--d-shadow-b);
       }
@@ -41,11 +41,11 @@
     .content {
       overflow: auto;
       width: 100%;
-      margin-bottom: 35px;
-      padding: 0 30px 0 50px;
-      font-size: 24px;
+      margin-bottom: 2.1875rem;
+      padding: 0 1.875rem 0 3.125rem;
+      font-size: 1.5rem;
       text-indent: 2em;
-      flex: 1;
+      flex-grow: 1;
       line-height: 1.25;
       text-shadow: var(--t-shadow-e);
     }
@@ -55,7 +55,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      padding: 0 30px 0 50px;
+      padding: 0 1.875rem 0 3.125rem;
     }
   }
 }

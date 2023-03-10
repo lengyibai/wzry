@@ -1,7 +1,7 @@
 .tool-bar {
   position: fixed;
   top: 0;
-  right: 50px;
+  right: 3.125rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -14,8 +14,8 @@
     filter: var(--d-shadow-b);
 
     .line {
-      width: 2px;
-      height: 50px;
+      width: 0.125rem;
+      height: 3.125rem;
       background-color: #457ec5;
     }
 
@@ -24,9 +24,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
-      height: 50px;
-      margin-bottom: 17px;
+      width: 3.125rem;
+      height: 3.125rem;
+      margin-bottom: 1.0625rem;
       background-color: #1d4068;
       transform: rotate(45deg);
       transition: all 0.05s;
@@ -35,16 +35,16 @@
         z-index: 1;
         display: inline-block;
         color: #9fc0eb;
-        font-size: 35px;
+        font-size: 2.1875rem;
         transform: rotate(-45deg);
       }
 
       .wzry-gonggao {
-        transform: rotate(-45deg) translateY(-5px);
+        transform: rotate(-45deg) translateY(-0.3125rem);
       }
 
       .wzry-todo {
-        transform: rotate(-45deg) translateY(-5px);
+        transform: rotate(-45deg) translateY(-0.3125rem);
       }
     }
 
@@ -52,9 +52,9 @@
       position: absolute;
       bottom: 0;
       z-index: 1;
-      font-size: 18px;
+      font-size: 1.125rem;
       text-shadow: var(--t-shadow-d);
-      transform: rotate(-45deg) translateX(12.5px) translateY(15px);
+      transform: rotate(-45deg) translateX(0.7813rem) translateY(0.9375rem);
     }
 
     .elastic {
@@ -63,7 +63,7 @@
       }
 
       &:active {
-        transform: rotate(45deg) translateX(5px) translateY(5px);
+        transform: rotate(45deg) translateX(0.3125rem) translateY(0.3125rem);
       }
     }
 
@@ -75,16 +75,16 @@
 
     .base {
       position: absolute;
-      top: 58px;
+      top: 3.625rem;
       z-index: -1;
-      width: 50px;
-      height: 50px;
-      border: 2px solid #457ec5;
+      width: 3.125rem;
+      height: 3.125rem;
+      border: 0.125rem solid #457ec5;
       transform: rotate(45deg);
     }
   }
 }
 
 .active {
-  transform: rotate(45deg) translateX(5px) translateY(5px) !important;
+  transform: rotate(45deg) translateX(0.3125rem) translateY(0.3125rem) !important;
 }

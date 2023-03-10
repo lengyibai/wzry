@@ -1,12 +1,12 @@
 .hero-relationship {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 75px;
-  margin-left: 25px;
+  margin-bottom: 4.6875rem;
+  margin-left: 1.5625rem;
   border: var(--subline);
   text-shadow: var(--t-shadow-e);
   flex-wrap: wrap;
-  gap: 35px;
+  gap: 2.1875rem;
   align-content: flex-start;
 
   .relation {
@@ -14,31 +14,56 @@
     align-items: center;
     border: var(--subline);
 
-    &:hover {
-      .name {
-        color: var(--blue);
-      }
-    }
-
     img {
-      width: 60px;
+      width: 3.75rem;
       margin-right: 0.5em;
       border-radius: 50%;
     }
 
     .name {
       color: var(--white);
-      font-size: 35px;
+      font-size: 2.1875rem;
       text-shadow: var(--t-shadow-e);
+      white-space: nowrap;
+    }
+
+    &:hover {
+      .name {
+        color: var(--blue);
+      }
     }
   }
+
   @media screen and (max-width: @large) {
     .relation {
-      font-size: 28px;
+      .name {
+        font-size: 1.75rem;
+      }
 
       img {
-        width: 50px;
+        width: 3.125rem;
         border-radius: 50%;
+      }
+    }
+  }
+
+  @media screen and (max-width: @large) {
+    .relation {
+      .name {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+
+  @media screen and (max-width: @medium) {
+    .relation {
+      .name {
+        font-size: 1.625rem;
+      }
+
+      img {
+        width: 2.5rem;
       }
     }
   }

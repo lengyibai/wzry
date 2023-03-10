@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 50px; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
+  <div style="margin-bottom: 3.125rem; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
     <Toolbar
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"
@@ -8,7 +8,7 @@
     />
     <Editor
       v-model="valueHtml"
-      style="overflow-y: hidden; height: 300px"
+      style="overflow-y: hidden; height: 18.75rem"
       :default-config="editorConfig"
       :mode="mode"
       @onCreated="handleCreated"
@@ -77,7 +77,7 @@ const handleCreated = (editor) => {
 }
 
 .w-e-text-container {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 </style>
 <!--

@@ -7,30 +7,30 @@
 
     .slider-value {
       position: absolute;
-      top: -75px;
+      top: -4.6875rem;
       width: 100%;
 
       .value {
         position: absolute;
         z-index: 2;
-        height: 50px;
-        padding: 0 15px;
-        border-radius: 30px;
+        height: 3.125rem;
+        padding: 0 0.9375rem;
+        border-radius: 1.875rem;
         color: var(--theme-color-eight);
-        font-size: 25px;
+        font-size: 1.5625rem;
         text-align: center;
         white-space: nowrap;
         background-color: var(--theme-color-one);
         transition: transform 0.3s ease-in-out;
         font-weight: 500;
         transform-origin: bottom;
-        line-height: 50px;
+        line-height: 3.125rem;
         transform: translateX(-50%) scale(0);
       }
     }
 
     .field {
-      @height: 3px;
+      @height: 0.1875rem;
 
       display: flex;
       justify-content: center;
@@ -48,7 +48,7 @@
         span {
           position: absolute;
           transform: translateX(50%) translateY(-50%);
-          top: 1.5px;
+          top: 0.0938rem;
           right: 0;
           border-radius: 50%;
         }
@@ -65,7 +65,7 @@
         &::-webkit-slider-thumb {
           width: var(--size);
           height: var(--size);
-          border-radius: 50px;
+          border-radius: 3.125rem;
           background-size: cover;
           appearance: none;
         }
@@ -74,15 +74,15 @@
       .value {
         position: relative;
         color: #000;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 600;
 
         &.left {
-          left: -22px;
+          left: -1.375rem;
         }
 
         &.right {
-          right: -43px;
+          right: -2.6875rem;
         }
       }
     }

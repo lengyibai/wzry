@@ -5,29 +5,29 @@
   z-index: 1;
   display: flex;
   align-items: flex-end;
-  width: 10px;
+  width: 0.625rem;
   flex-direction: column;
   transform: translateY(-50%);
 
   .page-index {
-    @height: 100px;
+    @height: 6.25rem;
 
     position: relative;
     width: 25%;
     height: @height;
-    margin-bottom: 5px;
+    margin-bottom: 0.3125rem;
     background-color: var(--white-75);
     transition: all var(--time-250);
     transform-origin: right center;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(0.3125rem);
 
     .tab {
       position: absolute;
-      width: 300px;
+      width: 18.75rem;
       height: 100%;
-      border-radius: 15px 0 0 15px;
+      border-radius: 0.9375rem 0 0 0.9375rem;
       color: var(--white);
-      font-size: 36px;
+      font-size: 2.25rem;
       background-color: var(--black-75);
       transition: all var(--time-250);
       opacity: 0;

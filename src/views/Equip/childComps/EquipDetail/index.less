@@ -4,8 +4,9 @@
   z-index: 1;
   overflow: auto;
   width: 30%;
+  flex-shrink: 0;
   height: 100%;
-  padding-left: 20px;
+  padding-left: 1.25rem;
   transition: all 0.25s;
   opacity: 0;
   line-height: 1.25;
@@ -13,19 +14,19 @@
   .name {
     margin-bottom: 1em;
     color: var(--theme-color-nine);
-    font-size: 26px;
+    font-size: 1.625rem;
   }
 
   .info {
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   .details {
     .motivation {
-      margin-bottom: 25px;
+      margin-bottom: 1.5625rem;
 
       .title {
-        margin-bottom: 5px;
+        margin-bottom: 0.3125rem;
         color: var(--white);
         font-family: var(--font-f);
       }
@@ -43,17 +44,17 @@
     font-family: var(--font-f);
   }
 
-  @media screen and (max-width: 1535px) {
-    width: 180px;
+  @media screen and (max-width: 95.9375rem) {
+    width: 11.25rem;
   }
 
-  @media screen and (max-width: 1120px) {
+  @media screen and (max-width: 70rem) {
     left: 0;
     width: 100%;
     height: initial;
-    padding: 10px;
+    padding: 0.625rem;
     background-color: var(--black-25);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(0.3125rem);
   }
 }
 
@@ -78,13 +79,13 @@
 .fsfy,
 .fsgj,
 .lq {
-  @size: 16px;
+  @size: 1rem;
 
   height: @size;
-  margin-bottom: 5px;
-  padding-left: 22px;
+  margin-bottom: 0.3125rem;
+  padding-left: 1.375rem;
   color: var(--theme-color-nine);
-  font-size: 16px;
+  font-size: 1rem;
   font-family: var(--font-f);
   background-repeat: no-repeat;
   background-size: contain;

@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
           v-if="$skinStore.show_list.length && show_list"
           scroll-id="skin_list"
           class="skin-list"
-          gap="25px"
+          gap="1.5625rem"
           :count="count"
           :scroll-top="$skinStore.scroll"
           @load-more="EmitLoadMore"
@@ -132,7 +132,7 @@ onBeforeUnmount(() => {
 
     <!-- 语音列表 -->
     <transition name="fade">
-      <K-Dialog v-if="show_voice" v-model="show_voice" width="720px" title="皮肤语音列表">
+      <K-Dialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
         <SkinVoice :voices="voices" />
       </K-Dialog>
     </transition>

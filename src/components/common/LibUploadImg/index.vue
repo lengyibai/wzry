@@ -52,9 +52,9 @@ const fn = (e: Event) => {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 100px;
-  height: 100px;
-  border: 3px solid var(--theme-color-three);
+  width: 6.25rem;
+  height: 6.25rem;
+  border: 0.1875rem solid var(--theme-color-three);
   border-radius: 50%;
 
   &:hover {
@@ -88,7 +88,7 @@ const fn = (e: Event) => {
       display: none;
       width: 100%;
       height: 100%;
-      padding: 25px;
+      padding: 1.5625rem;
 
       &:hover {
         background-color: var(--black-25);

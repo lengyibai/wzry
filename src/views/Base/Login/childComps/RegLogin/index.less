@@ -4,10 +4,11 @@
   left: 50%;
   display: flex;
   align-items: center;
+  min-width: 16rem;
   max-width: 80vw;
-  padding: 50px 75px;
-  border-radius: 25px;
-  box-shadow: 0 0 10px 0 var(--black-75);
+  padding: 3.125rem 4.6875rem;
+  border-radius: 1.5625rem;
+  box-shadow: 0 0 0.625rem 0 var(--black-75);
   background: var(--black-50);
   transition: all 0.25s ease-out;
   flex-direction: column;
@@ -16,49 +17,50 @@
 
   .back {
     position: absolute;
-    top: 25px;
-    left: 25px;
+    top: 1.5625rem;
+    left: 1.5625rem;
     display: flex;
     color: var(--white-50);
-    font-size: 18px;
+    font-size: 1.125rem;
 
     .wzry-fanhui {
-      margin-right: 10px;
+      margin-right: 0.625rem;
       font-size: inherit;
     }
 
     span {
-      line-height: 26px;
+      line-height: 1.625rem;
     }
   }
 
   .logo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 15px;
-    transform: translate3d(0, 0, 100px);
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-bottom: 0.9375rem;
+    transform: translate3d(0, 0, 6.25rem);
     animation: light 1.5s infinite alternate-reverse ease-out;
 
     img {
       width: 100%;
+
       @keyframes light {
         100% {
-          transform: translate3d(0, -20px, 100px);
-          filter: drop-shadow(0 0 15px var(--theme-color-thirteen));
+          transform: translate3d(0, -1.25rem, 6.25rem);
+          filter: drop-shadow(0 0 0.9375rem var(--theme-color-thirteen));
         }
       }
     }
   }
 
   .title {
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
     color: transparent;
-    font-size: 50px;
+    font-size: 3.125rem;
     text-shadow: var(--shine-35) #ffd363;
     background: linear-gradient(155deg, #f6dda5 25%, #ffb700);
     line-height: 1.1;
     background-clip: text;
-    transform: translateZ(100px);
+    transform: translateZ(6.25rem);
     font-weight: bold;
   }
 }
