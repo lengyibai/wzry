@@ -127,9 +127,9 @@ const EmitConfirmDelSkill = () => {
 /* 确认删除技能组 */
 const EmitConfirmDelDeputys = () => {
   form_data.value?.splice(deputy_index.value, 1);
-  if (deputy_index.value === 0) {
+  if (deputy_index.value === 0 && skills_num.value > 2) {
     deputy_index.value += 1;
-  } else {
+  } else if (deputy_index.value > 0) {
     deputy_index.value -= 1;
   }
 };
