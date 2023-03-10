@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
       color="var(--theme-color-five)"
       align="center"
       width="15em"
-      font-size="24px"
+      font-size="1.5rem"
       @input="handSearch"
     />
   </div>
