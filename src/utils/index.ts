@@ -810,3 +810,5 @@ export default {
   /** 元素聚焦 */
   FocusElement,
 };
+
+export { AudioVisual };
