@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 
 import TOOL from "@/utils";
-import { switchStore, settingStore, deviceStore } from "@/store";
+import { switchStore, settingStore } from "@/store";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
@@ -10,7 +10,6 @@ import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();
-const $deviceStore = deviceStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
