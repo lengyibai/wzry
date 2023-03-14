@@ -90,11 +90,11 @@ const handleReg = () => {
     </div>
 
     <!-- 权限选择 -->
-    <RoleSelect v-model="form.role" class="role-select" :option="['管理员', '用户']" />
+    <RoleSelect v-model="form.role" class="role-select" :option="[$t('管理员'), $t('用户')]" />
 
     <!-- 注册 -->
     <div class="btns">
-      <IntoBtn text="注册" desc="REGISTER" @click="handleReg" />
+      <IntoBtn :text="$t('注册')" desc="REGISTER" @click="handleReg" />
     </div>
   </div>
 </template>

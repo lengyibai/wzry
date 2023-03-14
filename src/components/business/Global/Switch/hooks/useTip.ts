@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { tips_zh, tips_en } from "@/config/tips";
+import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
 import { settingStore, switchStore } from "@/store";
 
@@ -49,10 +49,15 @@ export default () => {
       //如果已经设置了不再提示
       if (!$settingStore.config.noTips[text as TipKeys]) {
         const lang = i18n.global.locale.value;
+        const langs: Record<string, Tips<string>> = {
+          zh: tips_zh,
+          tc: tips_tc,
+          en: tips_en,
+        };
         show_tip.value = !show_tip.value;
         $switchStore.$audioStore("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = lang === "zh" ? tips_zh[text as TipKeys] : tips_en[text as TipKeys];
+        content.value = langs[lang][text as TipKeys];
         align.value = p;
         title.value = biaoti;
         btn_text.value = btnText;

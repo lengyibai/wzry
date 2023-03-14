@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      :placeholder="$t('搜索英雄')"
+      placeholder="搜索英雄"
       border-color="var(--theme-color-three)"
       color="var(--theme-color-five)"
       align="center"

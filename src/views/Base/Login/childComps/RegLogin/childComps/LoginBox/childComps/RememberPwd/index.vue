@@ -30,7 +30,7 @@ const handleToggle = () => {
 <template>
   <div class="remember-pwd cursor-pointer" @click="handleToggle">
     <img :src="checkIcon" @dragstart.prevent />
-    <span class="lib-click">记住密码</span>
+    <span class="lib-click">{{ $t("记住密码") }}</span>
   </div>
 </template>
 

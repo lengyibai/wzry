@@ -3,7 +3,7 @@
     <input
       :type="type"
       :value="modelValue"
-      :placeholder="placeholder"
+      :placeholder="$t(placeholder)"
       :maxlength="max"
       :style="{
         borderColor: borderColor,
