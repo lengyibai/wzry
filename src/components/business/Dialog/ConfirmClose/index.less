@@ -3,6 +3,7 @@
   font-size: 1.875rem;
   transform: translateY(-2.5rem);
   text-shadow: var(--t-shadow-e);
+  line-height: 1.25;
 }
 
 .button {
@@ -13,5 +14,14 @@
 
   .last {
     margin-left: 1.5625rem;
+  }
+
+  @media screen and (max-width: @xs) {
+    flex-direction: column;
+
+    .last {
+      margin-top: 0.625rem;
+      margin-left: 0;
+    }
   }
 }
