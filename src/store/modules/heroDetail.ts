@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { getSkinVoice } from "@/api/modules/games/voice";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;

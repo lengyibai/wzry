@@ -40,6 +40,5 @@ export {
   switchStore,
   vConsoleStore,
   versionStore,
+  setupStore,
 };
-
-export default setupStore;

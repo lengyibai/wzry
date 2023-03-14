@@ -3,7 +3,7 @@ import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { getCampType } from "@/api/modules/games/hero";
 import { heroStore } from "@/store";
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 
 const $heroStore = heroStore();
 
@@ -178,7 +178,7 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      placeholder="英雄/字母"
+      :placeholder="$t('搜索英雄')"
       border-color="var(--theme-color-three)"
       color="var(--theme-color-five)"
       align="center"

@@ -5,7 +5,7 @@ import { top, height } from "../helper";
 
 import { getEquip } from "@/api/modules/games/equip";
 import { getEquipSynthetic } from "@/api/modules/games/equipSynthetic";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 /** 装备Dom元素信息 */
 type EquipElement = {

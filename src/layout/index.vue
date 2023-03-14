@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { switchStore, settingStore } from "@/store";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏

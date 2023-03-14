@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 const time = ref(""); //已过去时间
 

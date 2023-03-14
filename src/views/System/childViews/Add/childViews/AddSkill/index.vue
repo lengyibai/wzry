@@ -5,7 +5,7 @@ import viewHide from "../../../../hooks/useViewHide";
 
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { addHeroSkill } from "@/api/modules/games/skill";
 import { getSkillType, getSkillEffect } from "@/api/modules/games/hero";
 import { skillDefault, skillEffectDefault } from "@/default";

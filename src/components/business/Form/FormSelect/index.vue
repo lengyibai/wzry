@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 
 import { switchStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 interface Props {
   label: string; //左侧文字

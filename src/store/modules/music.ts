@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import settingStore from "./setting";
 
-import TOOL, { AudioVisual } from "@/utils";
+import { TOOL, AudioVisual } from "@/utils";
 
 /** @description 音乐播放器 */
 const musicStore = defineStore("music", () => {

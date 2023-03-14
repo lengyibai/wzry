@@ -115,7 +115,7 @@ const handleChildCoord = (v: number) => {
       <i class="iconfont" :class="route.meta.icon" />
 
       <!-- 文字 -->
-      <span class="name">{{ route.title }}</span>
+      <span class="name">{{ $t(route.title) }}</span>
 
       <!-- 下拉箭头 -->
       <img

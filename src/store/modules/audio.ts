@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 /** @description 点击音效 */
 const audioStore = defineStore("audio", () => {

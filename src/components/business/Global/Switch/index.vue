@@ -3,7 +3,7 @@ import useLoading from "./hooks/useLoading"; //loading
 import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 import { audioStore, switchStore } from "@/store";
 
 const $switchStore = switchStore();

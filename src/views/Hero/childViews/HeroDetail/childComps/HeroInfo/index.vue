@@ -7,7 +7,7 @@ import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import { switchStore, heroDetailStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 const $heroDetail = heroDetailStore();
 const $switchStore = switchStore();

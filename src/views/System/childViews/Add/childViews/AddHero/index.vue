@@ -15,7 +15,7 @@ import {
   getSpecialtyType,
   getRaceType,
 } from "@/api/modules/games/hero";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
 import { switchStore, heroStore } from "@/store";
 

@@ -9,7 +9,7 @@ import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { switchStore, heroStore, heroDetailStore } from "@/store";
 import { heroDefault } from "@/default";
 

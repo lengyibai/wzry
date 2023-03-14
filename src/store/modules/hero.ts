@@ -5,7 +5,7 @@ import { getHeroData } from "@/api/modules/games/hero";
 import { getHeroSkill } from "@/api/modules/games/skill";
 import { getHeroSkin } from "@/api/modules/games/skin";
 import { getHeroRelationship } from "@/api/modules/games/relationship";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 /** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {

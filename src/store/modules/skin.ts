@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 
 import { getSkin } from "@/api/modules/games/skin";
 import { getSkinType } from "@/api/modules/games/skin";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 /** @description 皮肤列表页 */
 const skinStore = defineStore("skin", () => {

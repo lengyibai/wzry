@@ -6,10 +6,10 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { getHeroDetail } from "@/api/modules/games/hero";
 import { heroDefault } from "@/default";
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 import { switchStore, heroDetailStore, heroStore } from "@/store";
 
 const $route = useRoute();

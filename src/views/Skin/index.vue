@@ -6,8 +6,8 @@ import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { getSkinVoice } from "@/api/modules/games/voice";
-import TOOL from "@/utils";
-import $bus from "@/utils/eventBus";
+import { TOOL } from "@/utils";
+import { $bus } from "@/utils";
 import { switchStore, skinStore } from "@/store";
 
 const $skinStore = skinStore();

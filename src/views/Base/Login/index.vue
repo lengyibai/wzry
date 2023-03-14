@@ -9,9 +9,9 @@ import Team from "./childComps/Team/index.vue"; //开黑
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 import { switchStore, settingStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 const $settingStore = settingStore();
 const $switchStore = switchStore();

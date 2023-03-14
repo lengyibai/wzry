@@ -6,7 +6,7 @@ import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
 import { routerStore, collapseStore } from "@/store";
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 
 const $collapseStore = collapseStore();
 const $routerStore = routerStore();

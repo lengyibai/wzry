@@ -4,7 +4,7 @@ import { nextTick, ref } from "vue";
 import MuiscList from "../MuiscList/index.vue";
 
 import { switchStore, musicStore, settingStore, deviceStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 interface Emits {
   (e: "toggle", v: string): void;

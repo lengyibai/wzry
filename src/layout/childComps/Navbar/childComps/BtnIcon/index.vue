@@ -15,7 +15,7 @@ onMounted(() => {
 });
 
 /* 控制日志弹窗显示 */
-const EmitUpdateLog = (v: boolean) => {
+const handleUpdateLog = (v: boolean) => {
   $versionStore.setShowLog(v);
 };
 </script>
@@ -24,7 +24,7 @@ const EmitUpdateLog = (v: boolean) => {
   <div class="btn-icon">
     <!-- 按钮 -->
     <i class="iconfont wzry-setting cursor-pointer" title="设置" @click="show_setting = true" />
-    <i class="iconfont wzry-gengxinrizhi cursor-pointer" title="更新日志" @click="EmitUpdateLog(true)" />
+    <i class="iconfont wzry-gengxinrizhi cursor-pointer" title="更新日志" @click="handleUpdateLog(true)" />
 
     <!-- 设置弹窗 -->
     <transition name="fade">
@@ -33,7 +33,7 @@ const EmitUpdateLog = (v: boolean) => {
 
     <!-- 更新日志 -->
     <transition name="fade">
-      <UpdateLog v-if="$versionStore.show_update && show_update" @close="EmitUpdateLog" />
+      <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
     </transition>
   </div>
 </template>

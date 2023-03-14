@@ -8,7 +8,7 @@ import { HOME_URL, OVERDUE_DATA_TIME } from "@/config";
 import { routerStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 /** @description 用户相关 */
 const authStore = defineStore("auth", () => {

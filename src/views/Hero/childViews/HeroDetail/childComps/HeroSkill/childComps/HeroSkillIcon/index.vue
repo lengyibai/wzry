@@ -2,7 +2,7 @@
 import { ref, computed, onUnmounted } from "vue";
 
 import { switchStore, heroDetailStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 interface Props {
   type: string; //技能类型

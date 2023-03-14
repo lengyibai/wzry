@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { Team } from "@/api/modules/data";
 import { switchStore } from "@/store";
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 
 const $switchStore = switchStore();
 

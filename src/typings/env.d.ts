@@ -1,7 +1,6 @@
 module "*.vue" {
   import type { DefineComponent } from "vue";
-  const component: DefineComponent<{}, {}, any>;
-  export default component;
+  export default DefineComponent<{}, {}, any>;
 }
 
 type Interval = NodeJS.Timer | number;

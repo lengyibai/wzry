@@ -1,45 +1,7 @@
-<template>
-  <div class="k-range" :class="{ disabled: disabled }">
-    <!-- 输入框 -->
-    <div class="input" :style="{ width: width }">
-      <div v-if="showNum" class="slider-value">
-        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
-          {{ text || modelValue }}
-        </span>
-      </div>
-      <div class="field">
-        <div class="bar" :style="{ width: barWidth }">
-          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
-          <span
-            v-show="showDot && !showIcon"
-            :style="{
-              width: size,
-              height: size,
-            }"
-          ></span>
-        </div>
-        <input
-          :value="modelValue"
-          :disabled="disabled"
-          type="range"
-          :min="min"
-          :max="max"
-          :style="{
-            backgroundColor: trackColor,
-          }"
-          :step="step"
-          @input="changeValue"
-          @mouseup="hide"
-          @touchend="hide"
-        />
-      </div>
-    </div>
-  </div>
-</template>
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { switchStore } from "@/store";
 
 interface Props {
@@ -114,6 +76,46 @@ const hide = () => {
   down.value = false;
 };
 </script>
+
+<template>
+  <div class="k-range" :class="{ disabled: disabled }">
+    <!-- 输入框 -->
+    <div class="input" :style="{ width: width }">
+      <div v-if="showNum" class="slider-value">
+        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
+          {{ text || modelValue }}
+        </span>
+      </div>
+      <div class="field">
+        <div class="bar" :style="{ width: barWidth }">
+          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
+          <span
+            v-show="showDot && !showIcon"
+            :style="{
+              width: size,
+              height: size,
+            }"
+          ></span>
+        </div>
+        <input
+          :value="modelValue"
+          :disabled="disabled"
+          type="range"
+          :min="min"
+          :max="max"
+          :style="{
+            backgroundColor: trackColor,
+          }"
+          :step="step"
+          @input="changeValue"
+          @mouseup="hide"
+          @touchend="hide"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
 <style scoped lang="less">
 @import url("./index.less");
 </style>
