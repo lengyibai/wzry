@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { switchStore } from "@/store";
-
 interface Props {
   modelValue: boolean; //显示/隐藏
   text?: string; //提示描述
 }
 withDefaults(defineProps<Props>(), {
-  text: "即将关闭，是否保存为草稿？",
+  text: "保存草稿",
 });
 
 interface Emits {
@@ -42,10 +41,10 @@ const handleConfirm = () => {
 
 <template>
   <K-Dialog align="center" @close="close">
-    <div class="text">{{ text }}</div>
+    <div class="text">{{ $t(text) }}</div>
     <div class="button">
-      <K-Button type="info" @click="handleCancel">取消</K-Button>
-      <K-Button class="last" type="warning" @click="handleConfirm">确定</K-Button>
+      <K-Button type="info" @click="handleCancel">{{ $t("取消") }}</K-Button>
+      <K-Button class="last" type="warning" @click="handleConfirm">{{ $t("确定") }}</K-Button>
     </div>
   </K-Dialog>
 </template>

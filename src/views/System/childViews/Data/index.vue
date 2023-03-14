@@ -1,7 +1,7 @@
 <script setup lang="ts" name="database">
 import { ref, onActivated } from "vue";
 
-import TOOL from "@/utils";
+import { TOOL } from "@/utils";
 import { switchStore, skinStore, heroStore } from "@/store";
 import {
   HeroBasic,
@@ -102,7 +102,7 @@ const load = async () => {
       name: item[1],
       key: item[0],
       data: v,
-      status: "正在检查...",
+      status: "正在检查",
       length: v.length,
     };
   });
@@ -148,7 +148,7 @@ const updateData = (key: string, data: any) => {
 /* 检查更新 */
 const handleCheck = async (data: any) => {
   if (update_status) {
-    data.status = "正在检查...";
+    data.status = "正在检查";
     const v = (await requests[data.key]()).data;
 
     setTimeout(() => {
@@ -211,24 +211,28 @@ onActivated(() => {
     <!-- 表格 -->
     <LibTable
       :data="table_data"
-      :head="['数据类型', '数据量', '状态', '操作']"
+      :head="[$t('数据类型'), $t('数据量'), $t('状态'), $t('操作')]"
       :sort="['数据量']"
       @sortChange="EmitsSortChange"
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
-        <TableColumn min-width="9.375rem">{{ data.data.length }}</TableColumn>
-        <TableColumn min-width="12.5rem">{{ data.status }}</TableColumn>
-        <TableColumn min-width="20.3125rem">
-          <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">检查更新</button>
-          <button class="export" @click="handleExport(data), play()">导出</button>
-          <button v-if="data.status === '待更新'" class="update" @click="handleUpdate(data), play()">更新</button>
+        <TableColumn min-width="10rem">{{ data.data.length }}</TableColumn>
+        <TableColumn min-width="12.5rem">{{ $t(data.status) }}</TableColumn>
+        <TableColumn min-width="20.5rem">
+          <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">
+            {{ $t("检查更新") }}
+          </button>
+          <button class="export" @click="handleExport(data), play()">{{ $t("导出") }}</button>
+          <button v-if="data.status === '待更新'" class="update" @click="handleUpdate(data), play()">
+            {{ $t("更新") }}
+          </button>
           <button
-            v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
+            v-if="!['最新', '待更新', '正在检查'].includes(data.status)"
             class="replace"
             @click="handleReplace(data), play()"
           >
-            重置
+            {{ $t("重置") }}
           </button>
         </TableColumn>
       </template>
@@ -239,7 +243,7 @@ onActivated(() => {
       <ConfirmClose
         v-if="show_ConfirmClose"
         v-model="show_ConfirmClose"
-        text="即将从远程下载当前数据进行覆盖"
+        text="下载覆盖"
         title="确认重置"
         @confirm="EmitConfirmReset"
       />

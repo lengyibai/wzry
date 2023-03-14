@@ -87,7 +87,7 @@ const handleCoord = (e: Event) => {
       :key="index"
     >
       <i class="iconfont" :class="item.icon" />
-      <span class="name">{{ item.name }}</span>
+      <span class="name">{{ $t(item.name) }}</span>
     </div>
 
     <!-- 滑块 -->

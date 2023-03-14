@@ -32,6 +32,8 @@ interface SettingConfig {
   musicProgress: boolean;
   /** 动画速率 */
   speed: 0 | 1 | 2;
+  /** 语言 */
+  language: 0 | 1 | 2;
   /** 线条 */
   border: boolean;
   /** 阴影 */

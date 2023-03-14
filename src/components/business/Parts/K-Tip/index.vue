@@ -74,7 +74,7 @@ const handleClose = () => {
       <div v-show="show_tip" class="k-tip" :style="position[align]">
         <div class="top">
           <!-- 左上角标题 -->
-          <div class="title">{{ title }}</div>
+          <div class="title">{{ $t(title) }}</div>
 
           <!-- 小兵 -->
           <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
@@ -85,7 +85,9 @@ const handleClose = () => {
 
         <!-- 按钮 -->
         <div class="btns">
-          <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{ btnText }}</K-Button>
+          <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{
+            $t(btnText)
+          }}</K-Button>
         </div>
       </div>
     </transition>

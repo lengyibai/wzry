@@ -63,6 +63,7 @@ export const configDefault: SettingConfig = {
   shadow: true,
   shine: true,
   particle: false,
+  language: 0,
   noTips: {
     "2rb7": false,
     "9f5m": false,

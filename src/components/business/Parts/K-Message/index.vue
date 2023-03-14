@@ -45,7 +45,7 @@ const imgs: Record<string, Record<string, string>> = {
           }"
           :key="item.id"
         >
-          <span :style="{ color: color[item.type] }" v-html="item.text"></span>
+          <span :style="{ color: color[item.type] }" v-html="$t(item.text)"></span>
           <div class="bg">
             <img :src="imgs[item.type].left" />
             <img :src="imgs[item.type].center" />

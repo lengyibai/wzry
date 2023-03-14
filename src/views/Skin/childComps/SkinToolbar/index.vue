@@ -2,7 +2,7 @@
 import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { skinStore } from "@/store";
-import $bus from "@/utils/eventBus";
+import { $bus } from "@/utils";
 
 const $skinStore = skinStore();
 
@@ -142,7 +142,7 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      placeholder="皮肤/英雄"
+      :placeholder="$t('搜索皮肤')"
       border-color="var(--theme-color-three)"
       color="var(--theme-color-five)"
       align="center"

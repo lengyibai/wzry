@@ -43,7 +43,7 @@ const options: Options = reactive({
 const open = (key: string) => {
   options[key].show = true;
   $switchStore.$audioStore();
-  $switchStore.$loading.show("正在加载添加" + list[key] + "页面");
+  $switchStore.$loading.show(list[key]);
 };
 
 onActivated(() => {

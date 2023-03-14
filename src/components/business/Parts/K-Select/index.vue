@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { switchStore } from "@/store";
 interface Props {
+  width: string;
   modelValue: number; //索引号
   option: string[]; //选项文字
 }
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  width: "6.25rem",
+});
 
 interface Emits {
   (e: "update:modelValue", v: number): void;
@@ -25,13 +28,14 @@ const handleSelect = (index: number) => {
     <div
       v-for="(item, index) in option"
       class="option cursor-pointer"
+      :style="{ width: width }"
       :class="{ active: modelValue === index }"
       @click="handleSelect(index)"
       :key="index"
     >
       {{ item }}
     </div>
-    <div class="active-bg" :style="{ transform: 'translateX(calc(' + modelValue + ' * 100%))' }"></div>
+    <div class="active-bg" :style="{ width: width, transform: 'translateX(calc(' + modelValue + ' * 100%))' }"></div>
   </div>
 </template>
 

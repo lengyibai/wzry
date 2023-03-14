@@ -1,5 +1,5 @@
 /** @description Tips提示信息 */
-const tips: Tips<string> = {
+const tips_zh: Tips<string> = {
   "3vi5": "",
   "9ms5": "",
   "2rb7": "我又回来了！",
@@ -15,4 +15,22 @@ const tips: Tips<string> = {
   "2l5m": "",
 };
 
-export default tips;
+const tips_en: Tips<string> = {
+  "3vi5": "",
+  "9ms5": "",
+  "2rb7": "I'm back again!",
+  "9f5m": "Don't ignore in the top right corner of the toolbar!",
+  "58mz": "At the bottom of the toolbar can switch music!",
+  "05su": "Click on a hero relationship, can switch hero information!",
+  //PC端专属
+  "0vk2":
+    "The mouse wheel to scroll to the next page, can also be suspended index of the right in the middle of the line, click the pop-up text.",
+  "9oy5": "Hold the edge image, drag the center position and loosen (also can click on the picture)",
+  //移动端专属
+  "1zs6":
+    "Fingers slide to 300 pixels to scroll a page, also can click on the right in the middle of the index, the pop-up text scrolling.",
+  "1w7o": "Finger on the edge image, drag the center position and loosen (also can click on the picture).",
+  "2l5m": "",
+};
+
+export { tips_zh, tips_en };

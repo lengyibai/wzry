@@ -23,7 +23,7 @@ const handerSetGender = (v: Gender) => {
 <template>
   <!-- 只看性别 -->
   <div class="filter-gender">
-    <span class="label">只看：</span>
+    <span class="label">{{ $t("只看") }}：</span>
     <i
       class="iconfont wzry-nan cursor-pointer"
       :class="{ 'nan-active': modelValue === 1 }"

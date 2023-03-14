@@ -68,11 +68,11 @@ const handleClose = () => {
         }"
       >
         <!-- 左上标题 -->
-        <div v-if="title" class="title">{{ title }}</div>
+        <div v-if="title" class="title">{{ $t(title) }}</div>
 
         <!-- 顶部标题 -->
         <div v-if="header" class="header">
-          <span>{{ header }}</span>
+          <span>{{ $t(header) }}</span>
           <span>{{ desc }}</span>
         </div>
 
