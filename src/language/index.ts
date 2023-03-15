@@ -28,8 +28,6 @@ const setLanguage = (index: 0 | 1 | 2) => {
   localStorage.setItem("language", lang);
 };
 
-const a = i18n.global.locale.value;
-
 export default i18n;
 
-export { setLanguage, a };
+export { setLanguage };
