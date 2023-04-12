@@ -11,6 +11,26 @@ const switchStore = defineStore("switch", () => {
     close: () => new Promise(() => {}),
   }); //loading
 
+  /** @description 挂载点击音效 */
+  const setAudioStore = (fn: Switch.ClickAudio) => {
+    $audioStore.value = fn;
+  };
+
+  /** @description 挂载消息提醒 */
+  const setMsg = (fn: Switch.Msg) => {
+    $msg.value = fn;
+  };
+
+  /** @description 挂载小贴士 */
+  const setTip = (fn: Switch.Tip) => {
+    $tip.value = fn;
+  };
+
+  /** @description 挂载loading */
+  const setLoading = (fn: Switch.Loading) => {
+    $loading.value = fn;
+  };
+
   return {
     /** 触发音效 */
     $audioStore,
@@ -20,6 +40,10 @@ const switchStore = defineStore("switch", () => {
     $tip,
     /** 触发loading */
     $loading,
+    setAudioStore,
+    setMsg,
+    setTip,
+    setLoading,
   };
 });
 

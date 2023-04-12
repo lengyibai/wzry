@@ -14,12 +14,10 @@ const { msg, messages } = useMessage();
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
 /* 挂载全局 */
-$switchStore.$patch({
-  $msg: msg,
-  $loading: loading,
-  $audioStore: $audioStoreStore.play,
-  $tip: tip,
-});
+$switchStore.setAudioStore($audioStoreStore.play);
+$switchStore.setMsg(msg);
+$switchStore.setTip(tip);
+$switchStore.setLoading(loading);
 
 /* 全局监听事件 */
 const events = ["resize", "mousemove", "mouseup"];
