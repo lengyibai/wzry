@@ -143,6 +143,7 @@ const en = {
   开黑: "Team",
   男: "male",
   女: "female",
+  重置配置项: "Are you sure to reset all configuration items?",
 };
 
 export default en;

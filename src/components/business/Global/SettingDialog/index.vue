@@ -254,7 +254,7 @@ const EmitResetConfig = () => {
       <ConfirmClose
         v-if="show_confirm_reset"
         v-model="show_confirm_reset"
-        text="确定重置所有配置项？"
+        text="重置配置项"
         @confirm="EmitResetConfig"
       />
     </transition>
