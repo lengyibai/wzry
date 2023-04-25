@@ -4,7 +4,7 @@ import type { App } from "vue";
 import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
-import { HOME_URL } from "@/config";
+import { HOME_URL } from "@/enum";
 import { switchStore, authStore, deviceStore } from "@/store";
 
 const useRouter = createRouter({

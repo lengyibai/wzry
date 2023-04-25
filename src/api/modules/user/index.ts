@@ -1,5 +1,5 @@
 import { get, post, patch, del } from "@/api/helper/transfer";
-import { OVERDUE_ROLE_TIME } from "@/config";
+import { OVERDUE_ROLE_TIME } from "@/enum";
 
 /** @description 获取本地用户列表 */
 export const userList = () => {

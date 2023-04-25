@@ -4,7 +4,7 @@ import { ref } from "vue";
 import switchStore from "./switch";
 
 import { _login, deleteUser } from "@/api/modules/user";
-import { HOME_URL, OVERDUE_DATA_TIME } from "@/config";
+import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { routerStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
