@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import { top, height } from "../helper";
 
-import { TOOL } from "@/utils";
 import { API_EQUIP, API_EQUIPSYNTHETIC } from "@/api";
+import { Util } from "@/config";
 
 /** 装备Dom元素信息 */
 type EquipElement = {
@@ -87,12 +87,12 @@ const equipStore = defineStore("equip", () => {
     equip_list_column.value = type_list[type];
 
     //每次切换装备类型，延迟显示列表及详情
-    await TOOL.promiseTimeout(() => {
+    await Util.TOOL.promiseTimeout(() => {
       category.value = type;
       show_details.value = false;
     }, 200);
 
-    await TOOL.promiseTimeout(() => {
+    await Util.TOOL.promiseTimeout(() => {
       setEquipActive(Number(type_index[type] + "11"));
     }, 500);
   };

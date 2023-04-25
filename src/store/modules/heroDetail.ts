@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
 import { API_VOICE } from "@/api";
+import { Util } from "@/config";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
@@ -16,7 +16,7 @@ const heroDetailStore = defineStore("heroDetail", () => {
   const skinToggleFns = ref<SkinToggleFn[]>([]); //皮肤切换后触发函数组
   const skin_voice = ref<Hero.Voice[]>([]); //皮肤语音列表
   const skillSelectFn = ref<(index: number) => void>(() => {}); //技能选择触发的函数
-  const hero_info = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
+  const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
 
   /** @description 设置英雄数据 */
   const setHeroInfo = (data: Hero.Data) => {

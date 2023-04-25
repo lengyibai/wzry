@@ -5,9 +5,7 @@ import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
-import { TOOL } from "@/utils";
-import { $bus } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import { API_VOICE } from "@/api";
 
 const $skinStore = Store.skin();
@@ -24,7 +22,7 @@ $skinStore.getSkin(); //获取皮肤列表
 
 /* 滚动触发 */
 const EmitScroll = (v: number) => {
-  TOOL.debounce(() => {
+  Util.TOOL.debounce(() => {
     $skinStore.setScroll(v);
   }, 250);
 };
@@ -38,7 +36,7 @@ const EmitLoadMore = () => {
 const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
-    new TOOL.ScaleImage(v.data.poster);
+    new Util.TOOL.ScaleImage(v.data.poster);
   } else if (v.type === "voice") {
     API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;
@@ -92,13 +90,13 @@ onMounted(() => {
     }
   };
   changeCount();
-  $bus.on("resize", () => {
+  Util.$Bus.on("resize", () => {
     changeCount();
   });
 });
 
 onBeforeUnmount(() => {
-  $bus.off("resize");
+  Util.$Bus.off("resize");
 });
 </script>
 

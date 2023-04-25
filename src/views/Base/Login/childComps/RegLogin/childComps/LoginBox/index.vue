@@ -6,8 +6,7 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
-import { TOOL } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
@@ -30,7 +29,7 @@ if (props.userInfo) {
 
 /* 登录 */
 const handleLogin = () => {
-  if (TOOL.existEmpty(form.value, ["id", "password"])) {
+  if (Util.TOOL.existEmpty(form.value, ["id", "password"])) {
     $controlStore.$msg("请完整填写", "error");
     return;
   }

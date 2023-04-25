@@ -1,12 +1,12 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { TOOL } from "@/utils";
+import { Util } from "@/config";
 
 /** @description 设备信息 */
 const deviceStore = defineStore("phone", () => {
-  const browser_name = TOOL.browserV.browser; //浏览器名称
-  const browser_version = TOOL.browserV.version; //浏览器版本
+  const browser_name = Util.TOOL.browserV.browser; //浏览器名称
+  const browser_version = Util.TOOL.browserV.version; //浏览器版本
   const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15; //满足浏览器访问条件
 
   const vertical = ref(false); //是否为竖屏

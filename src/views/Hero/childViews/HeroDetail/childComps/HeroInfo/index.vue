@@ -6,8 +6,7 @@ import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
-import { Store } from "@/config";
-import { TOOL } from "@/utils";
+import { Store, Util } from "@/config";
 
 const $heroDetail = Store.heroDetail();
 const $controlStore = Store.control();
@@ -30,10 +29,10 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      const focusRelationship = new TOOL.FocusElement(relationship.value.el);
-      const focusdown = new TOOL.FocusElement(down.value);
+      const focusRelationship = new Util.TOOL.FocusElement(relationship.value.el);
+      const focusdown = new Util.TOOL.FocusElement(down.value);
 
-      if (TOOL.isPhone) {
+      if (Util.TOOL.isPhone) {
         tip_text = "1zs6";
       }
 

@@ -3,9 +3,8 @@ import { reactive } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import { API_HERO } from "@/api";
 
 interface Emits {
@@ -48,7 +47,7 @@ API_HERO.getHeroBasic().then((res) => {
 });
 
 //判断是否存在缓存
-form_data.value ??= TOOL.deepCopy(heroDefault);
+form_data.value ??= Util.TOOL.deepCopy(heroDefault);
 
 /* 发布 */
 const EmitCommit = async () => {

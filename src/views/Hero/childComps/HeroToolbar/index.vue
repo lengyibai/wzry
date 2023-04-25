@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { Store } from "@/config";
-import { $bus } from "@/utils";
+import { Store, Util } from "@/config";
 import { API_HERO } from "@/api";
 
 const $heroStore = Store.hero();
@@ -104,7 +103,7 @@ const handleSelectStatus = (i: number) => {
   current_index.value = i;
 };
 
-$bus.on("mouseup", (e) => {
+Util.$Bus.on("mouseup", (e) => {
   const el = (e as MouseEvent).target as HTMLElement;
   //如果点击的不是下拉菜单，则隐藏
   if (!el.className.includes("select-filter")) {
@@ -114,7 +113,7 @@ $bus.on("mouseup", (e) => {
 });
 
 onBeforeUnmount(() => {
-  $bus.off("mouseup");
+  Util.$Bus.off("mouseup");
 });
 </script>
 

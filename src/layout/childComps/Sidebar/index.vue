@@ -5,8 +5,7 @@ import sideItem from "./childComp/SideItem/index.vue"; //子菜单
 import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
-import { Store } from "@/config";
-import { $bus } from "@/utils";
+import { Store, Util } from "@/config";
 
 const $collapseStore = Store.collapse();
 const $routerStore = Store.router();
@@ -28,12 +27,12 @@ const EmitCoord = (v: number) => {
   }
 };
 
-$bus.on("resize", () => {
+Util.$Bus.on("resize", () => {
   $collapseStore.setCollapse(window.innerWidth < 1380);
 });
 
 onBeforeUnmount(() => {
-  $bus.off("resize");
+  Util.$Bus.off("resize");
 });
 </script>
 

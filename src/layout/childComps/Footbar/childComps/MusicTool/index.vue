@@ -3,8 +3,7 @@ import { nextTick, ref } from "vue";
 
 import MuiscList from "../MuiscList/index.vue";
 
-import { Store } from "@/config";
-import { TOOL } from "@/utils";
+import { Store, Util } from "@/config";
 
 interface Emits {
   (e: "toggle", v: string): void;
@@ -19,8 +18,8 @@ const $controlStore = Store.control();
 const musicTool = ref();
 
 nextTick(() => {
-  if (TOOL.isPhone || !$settingStore.config.music) return;
-  const musicToolFocus = new TOOL.FocusElement(musicTool.value);
+  if (Util.TOOL.isPhone || !$settingStore.config.music) return;
+  const musicToolFocus = new Util.TOOL.FocusElement(musicTool.value);
   $controlStore.$tip({
     text: "58mz",
     align: "right-top",

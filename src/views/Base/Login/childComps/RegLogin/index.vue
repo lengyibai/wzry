@@ -5,9 +5,8 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-import { TOOL } from "@/utils";
 import { userList } from "@/api/modules/user";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 const $settingStore = Store.setting();
 const $controlStore = Store.control();
@@ -52,13 +51,13 @@ const EmitRegSuccess = (form: User) => {
 };
 
 /* 视差动画(如果为移动端，则取消) */
-if (!TOOL.isPhone || $deviceStore.browser_name === "safari") {
-  const parallax = new TOOL.Parallax((x, y) => {
+if (!Util.TOOL.isPhone || $deviceStore.browser_name === "safari") {
+  const parallax = new Util.TOOL.Parallax((x, y) => {
     loginBox.value &&
       (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`);
   });
   const fn = (e: MouseEvent) => {
-    TOOL.throttleInstant(() => parallax.move(e), 50);
+    Util.TOOL.throttleInstant(() => parallax.move(e), 50);
   };
   window.addEventListener("mousemove", fn);
   onBeforeUnmount(() => {

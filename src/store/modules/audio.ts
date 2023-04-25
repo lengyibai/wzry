@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-import { TOOL } from "@/utils";
+import { Util } from "@/config";
 
 /** @description 点击音效 */
 const audioStore = defineStore("audio", () => {
@@ -65,7 +65,7 @@ const audioStore = defineStore("audio", () => {
     if (!status) return;
 
     if (name === "n4r4") {
-      TOOL.debounceInstant(() => {
+      Util.TOOL.debounceInstant(() => {
         playAudio(name);
       }, 50);
     } else {

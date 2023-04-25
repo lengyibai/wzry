@@ -4,8 +4,7 @@ import PassTime from "./childComps/PassTime/index.vue"; //中间过去时
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 
-import { TOOL } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 const $deviceStore = Store.device();
 </script>
@@ -22,7 +21,7 @@ const $deviceStore = Store.device();
     </div>
 
     <div class="right">
-      <span class="timeGreet">{{ $t(TOOL.timeGreet()) }}</span>
+      <span class="timeGreet">{{ $t(Util.TOOL.timeGreet()) }}</span>
       <!-- 用户菜单 -->
       <UserMenu />
 

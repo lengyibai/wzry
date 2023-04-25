@@ -4,7 +4,7 @@
  */
 import type { Directive, DirectiveBinding } from "vue";
 
-import { TOOL } from "@/utils";
+import { Util } from "@/config";
 
 const fn = (el: HTMLElement, binding: DirectiveBinding) => {
   setTimeout(() => {
@@ -78,10 +78,10 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
       box-shadow: 0 0 10px 0 ${color};
       filter: brightness(200%);
       `;
-        const left = TOOL.random(0, box_width - size);
-        const scale = TOOL.random(0.25, 0.75, 1);
-        const time = TOOL.random(1, 3, 1);
-        const delay = TOOL.random(0, 5, 1);
+        const left = Util.TOOL.random(0, box_width - size);
+        const scale = Util.TOOL.random(0.25, 0.75, 1);
+        const time = Util.TOOL.random(1, 3, 1);
+        const delay = Util.TOOL.random(0, 5, 1);
         p.style.cssText = style;
         p.style.left = `${left}px`;
         p.style.scale = scale.toString();

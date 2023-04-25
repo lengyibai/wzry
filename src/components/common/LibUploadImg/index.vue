@@ -11,8 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { TOOL } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 interface Props {
   modelValue?: string;
@@ -29,7 +28,7 @@ const $controlStore = Store.control();
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
   $controlStore.$loading.show("图片压缩中...");
-  TOOL.imageOptimizer({
+  Util.TOOL.imageOptimizer({
     file,
     width: 150, //压缩尺寸
     ratio: 0.75, //压缩率

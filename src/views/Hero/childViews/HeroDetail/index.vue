@@ -9,8 +9,7 @@ import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
-import { TOOL } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import { heroDefault } from "@/default";
 
 interface Emits {
@@ -28,7 +27,7 @@ const show_close = ref(false); //显示左上角关闭
 const show_progress = ref(false); //显示滚动索引组件
 const hero_toggle = ref(true); //英雄关系切换时重新加载皮肤页
 
-const hero_data = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
+const hero_data = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
 
 watchEffect(() => {
   hero_data.value = $heroDetail.hero_info;

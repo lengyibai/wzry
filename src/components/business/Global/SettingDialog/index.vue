@@ -3,10 +3,9 @@ import { ref } from "vue";
 
 import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
-import { TOOL } from "@/utils";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 interface Props {
   modelValue: boolean;
@@ -50,7 +49,7 @@ const EmitMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const EmitMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
-  TOOL.debounce(() => {
+  Util.TOOL.debounce(() => {
     EmitSaveConfig();
   }, 1000);
 };
@@ -69,7 +68,7 @@ const EmitAudio = (v: boolean) => {
 /* 音效音量调节 */
 const EmitAudioVolume = (v: number) => {
   $audioStore.setVolume(v);
-  TOOL.debounce(() => {
+  Util.TOOL.debounce(() => {
     EmitSaveConfig();
   }, 1000);
 };

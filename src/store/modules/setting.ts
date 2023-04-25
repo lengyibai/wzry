@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { TOOL } from "@/utils";
 import { configDefault } from "@/default";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import { setLanguage } from "@/language";
 
 /** @description 设置相关 */
@@ -16,7 +15,7 @@ const settingStore = defineStore("setting", () => {
   localStorage.setItem("config", JSON.stringify(config.value));
 
   //如果为移动端，则隐藏视频背景
-  config.value.videoBg = !TOOL.isPhone;
+  config.value.videoBg = !Util.TOOL.isPhone;
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {

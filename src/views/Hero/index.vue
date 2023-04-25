@@ -6,10 +6,8 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
 import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
-import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
-import { $bus } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import { API_HERO } from "@/api";
 
 const $route = useRoute();
@@ -27,7 +25,7 @@ const show_HeroDetail = ref(false); //显示英雄详情
 const show_list = ref(false); //显示列表
 const show_tool = ref(false); //显示工具栏
 const toggle_show = ref(false); //切换显示列表
-const hero_info = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
+const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -68,7 +66,7 @@ if ($heroStore.hero_list.length === 0) {
 
 /* 滚动触发 */
 const EmitScroll = (v: number) => {
-  TOOL.debounce(() => {
+  Util.TOOL.debounce(() => {
     $heroStore.setScroll(v);
   }, 250);
 };
@@ -120,22 +118,22 @@ onMounted(async () => {
   };
   changeCount();
 
-  $bus.on("resize", () => {
+  Util.$Bus.on("resize", () => {
     changeCount();
   });
 
   //显示工具栏
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_tool.value = true;
   }, 500);
   //显示英雄列表
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_list.value = true;
   }, 250);
 });
 
 onBeforeUnmount(() => {
-  $bus.off("resize");
+  Util.$Bus.off("resize");
 });
 </script>
 

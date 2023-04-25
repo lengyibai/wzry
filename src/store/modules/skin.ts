@@ -1,8 +1,8 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-import { TOOL } from "@/utils";
 import { API_SKIN } from "@/api";
+import { Util } from "@/config";
 
 /** @description 皮肤列表页 */
 const skinStore = defineStore("skin", () => {
@@ -156,7 +156,7 @@ const skinStore = defineStore("skin", () => {
         filter_list.value.forEach((item) => {
           if (!noFree.includes(item.price.toString()) && isNaN(Number(item.price))) noNum.push(item);
         });
-        filter_list.value = TOOL.typeSort(noNum, "price");
+        filter_list.value = Util.TOOL.typeSort(noNum, "price");
       } else if (price_type.value === "价格由低到高") {
         const isNum: Hero.Skin[] = [];
         const noNum: Hero.Skin[] = [];
@@ -303,7 +303,7 @@ const skinStore = defineStore("skin", () => {
           }
         });
       }
-      filter_list.value = TOOL.typeSort(filter_list.value, "category");
+      filter_list.value = Util.TOOL.typeSort(filter_list.value, "category");
     }
 
     //正序/倒序
@@ -316,9 +316,9 @@ const skinStore = defineStore("skin", () => {
 
   /** @description 搜索皮肤 */
   const searchSkin = (name: string) => {
-    TOOL.debounce(() => {
+    Util.TOOL.debounce(() => {
       if (name) {
-        filter_list.value = TOOL.search(skin_list.value, name, ["skin_name", "hero_name", "category"], true);
+        filter_list.value = Util.TOOL.search(skin_list.value, name, ["skin_name", "hero_name", "category"], true);
       } else {
         sortAll();
       }

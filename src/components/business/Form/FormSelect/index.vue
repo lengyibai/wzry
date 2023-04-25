@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Store } from "@/config";
-import { TOOL } from "@/utils";
+import { Store, Util } from "@/config";
 
 interface Props {
   label: string; //左侧文字
@@ -39,8 +38,8 @@ const selected_list = ref<any[]>([]); //选择的列表
 
 /* 实时搜索 */
 const handleSearch = () => {
-  TOOL.debounce(() => {
-    select_list.value = TOOL.search(props.data, input_value.value, ["name"]);
+  Util.TOOL.debounce(() => {
+    select_list.value = Util.TOOL.search(props.data, input_value.value, ["name"]);
   }, 100);
 };
 

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/config";
-import { TOOL } from "@/utils";
+import { Store, Util } from "@/config";
 import { API_DATA } from "@/api";
 
 const $controlStore = Store.control();
@@ -18,7 +17,7 @@ API_DATA.Team().then((res) => {
 
 /* 查看图片 */
 const handleView = (v: string, i: number) => {
-  new TOOL.ScaleImage(v);
+  new Util.TOOL.ScaleImage(v);
   active.value = i;
 };
 </script>

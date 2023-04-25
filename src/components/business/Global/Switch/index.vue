@@ -3,8 +3,7 @@ import useLoading from "./hooks/useLoading"; //loading
 import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
-import { $bus } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 
 const $controlStore = Store.control();
 const $audioStoreStore = Store.audio();
@@ -23,7 +22,7 @@ $controlStore.setLoading(loading);
 const events = ["resize", "mousemove", "mouseup"];
 for (const v of events) {
   window.addEventListener(v, (e) => {
-    $bus.emit(v, e);
+    Util.$Bus.emit(v, e);
   });
 }
 </script>

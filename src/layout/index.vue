@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import { TOOL } from "@/utils";
-import { Store } from "@/config";
+import { Store, Util } from "@/config";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
@@ -23,16 +22,16 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 onMounted(async () => {
   $controlStore.$audioStore("p53r");
 
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_sidebar.value = true;
   }, 500);
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_navbar.value = true;
   }, 500);
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_appmain.value = true;
   }, 500);
-  await TOOL.promiseTimeout(() => {
+  await Util.TOOL.promiseTimeout(() => {
     show_footbar.value = true;
   }, 500);
 });

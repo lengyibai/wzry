@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { TOOL } from "@/utils";
+import { Util } from "@/config";
 
 //当前时间
-const time = computed(() => TOOL.fmtTime(new Date(), "YYYY.MM.DD"));
+const time = computed(() => Util.TOOL.fmtTime(new Date(), "YYYY.MM.DD"));
 </script>
 
 <template>

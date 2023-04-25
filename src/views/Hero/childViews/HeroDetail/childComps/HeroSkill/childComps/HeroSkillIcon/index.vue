@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { Store } from "@/config";
-import { TOOL } from "@/utils";
+import { Store, Util } from "@/config";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
@@ -38,7 +37,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   const length = hero_data.value.skills!.length;
   if (length > 1) {
     setTimeout(() => {
-      const toggleFocus = new TOOL.FocusElement(toggle.value);
+      const toggleFocus = new Util.TOOL.FocusElement(toggle.value);
 
       $controlStore.$tip({
         align: "right-top",
