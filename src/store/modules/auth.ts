@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { _login, deleteUser } from "@/api/modules/user";
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { Store, Util } from "@/config";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
+import { API_USER } from "@/api";
 
 /** @description 用户相关 */
 const authStore = defineStore("auth", () => {
@@ -34,7 +34,7 @@ const authStore = defineStore("auth", () => {
 
   /** @description 登录 */
   const login = async (form: User) => {
-    const res = await _login(form).catch((err) => {
+    const res = await API_USER.login(form).catch((err) => {
       throw err;
     });
     userInfo.value = res;
@@ -49,7 +49,7 @@ const authStore = defineStore("auth", () => {
   const autoLogin = async () => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
     try {
-      const res = await _login(user).catch((err) => {
+      const res = await API_USER.login(user).catch((err) => {
         throw err;
       });
       userInfo.value = res;
@@ -76,7 +76,7 @@ const authStore = defineStore("auth", () => {
   /** @description 注销账号 */
   const logoff = async () => {
     const user = JSON.parse(localStorage.getItem("user")!) as User;
-    const msg = await deleteUser(user.id);
+    const msg = await API_USER.deleteUser(user.id);
     localStorage.removeItem("remember_user");
     clearToken();
     $controlStore.$msg(msg);

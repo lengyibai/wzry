@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { Store } from "@/config";
-import { userList } from "@/api/modules/user";
+import { API_USER } from "@/api";
 
 interface Emits {
   (e: "into", v: string): void;
@@ -13,7 +13,7 @@ const $controlStore = Store.control();
 
 const user_list = ref<User[]>([]); //本地用户列表
 
-userList().then((res) => {
+API_USER.userList().then((res) => {
   user_list.value = res;
 });
 

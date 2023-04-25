@@ -5,8 +5,8 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-import { userList } from "@/api/modules/user";
 import { Store, Util } from "@/config";
+import { API_USER } from "@/api";
 
 const $settingStore = Store.setting();
 const $controlStore = Store.control();
@@ -18,7 +18,7 @@ const loginBox = ref<HTMLElement>();
 const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
 const reg_form = ref<User>(); //用户表单
 
-userList().then((res) => {
+API_USER.userList().then((res) => {
   if (res.length) is_reg.value = "登录";
 });
 

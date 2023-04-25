@@ -5,9 +5,9 @@ import IntoBtn from "../IntoBtn/index.vue"; //按钮
 
 import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
-import { register } from "@/api/modules/user";
 import { userDefaultInfo } from "@/default";
 import { Store } from "@/config";
+import { API_USER } from "@/api";
 
 interface Emits {
   (e: "success", form: User): void;
@@ -30,7 +30,7 @@ const handleReg = () => {
   }
 
   //注册
-  register(form)
+  API_USER.register(form)
     .then(() => {
       $controlStore.$msg("注册成功！");
       emit("success", form);

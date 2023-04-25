@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { updateUser } from "@/api/modules/user";
 import { Store } from "@/config";
+import { API_USER } from "@/api";
 
 interface Props {
   id: string; //帐号
@@ -36,7 +36,7 @@ const handleSave = () => {
   $controlStore.$audioStore("36jn");
 
   //更新本地当前用户信息
-  updateUser($authStore.userInfo.id, user_info.value).then(() => {
+  API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
     localStorage.setItem("user", JSON.stringify(user_info.value));
 
     //更新记住密码

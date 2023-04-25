@@ -7,6 +7,7 @@ import API_RELATIONSHIP from "./modules/games/relationship";
 import API_SKILL from "./modules/games/skill";
 import API_SKIN from "./modules/games/skin";
 import API_VOICE from "./modules/games/voice";
+import API_USER from "./modules/user";
 
 export {
   API_DATA,
@@ -18,4 +19,5 @@ export {
   API_SKILL,
   API_SKIN,
   API_VOICE,
+  API_USER,
 };
