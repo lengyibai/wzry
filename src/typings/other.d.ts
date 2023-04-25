@@ -49,7 +49,7 @@ interface SettingConfig {
 }
 
 /** @description 开关 */
-declare namespace Switch {
+declare namespace Control {
   /** @description 点击音效 */
   type ClickAudio = (name?: string) => void;
 

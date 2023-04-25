@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { musicStore } from "@/store";
+import { Store } from "@/config";
 
-const $musicStore = musicStore();
+const $musicStore = Store.music();
 
 /* 关闭播放列表 */
 const handleClose = () => {

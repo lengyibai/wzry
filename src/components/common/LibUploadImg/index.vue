@@ -12,7 +12,8 @@
 </template>
 <script setup lang="ts">
 import { TOOL } from "@/utils";
-import { switchStore } from "@/store";
+import { Store } from "@/config";
+
 interface Props {
   modelValue?: string;
 }
@@ -23,11 +24,11 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
-  $switchStore.$loading.show("图片压缩中...");
+  $controlStore.$loading.show("图片压缩中...");
   TOOL.imageOptimizer({
     file,
     width: 150, //压缩尺寸
@@ -35,12 +36,12 @@ const fn = (e: Event) => {
     maxsize: 300, //超过多大进行压缩
     /* 成功回调 */
     success: (...data: any[]) => {
-      $switchStore.$loading.close();
+      $controlStore.$loading.close();
       emit("update:modelValue", data[2]);
     },
     fail: () => {
-      $switchStore.$loading.close();
-      $switchStore.$msg("请上传图片文件", "error");
+      $controlStore.$loading.close();
+      $controlStore.$msg("请上传图片文件", "error");
     },
   });
 };

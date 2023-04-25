@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 import { API_DATA } from "@/api";
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const todo = ref("");
 
@@ -12,7 +12,7 @@ API_DATA.Todo().then((res) => {
   todo.value = res.data;
 });
 
-$switchStore.$audioStore("u4c5");
+$controlStore.$audioStore("u4c5");
 </script>
 
 <template>

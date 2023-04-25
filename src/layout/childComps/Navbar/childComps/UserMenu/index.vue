@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { switchStore, authStore } from "@/store";
+import { Store } from "@/config";
 
-const $authStore = authStore();
-const $switchStore = switchStore();
+const $authStore = Store.auth();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -28,7 +28,7 @@ const handleEditInfo = () => {
 
 /* 退出登录 */
 const handleLogout = () => {
-  $switchStore.$audioStore("36jn");
+  $controlStore.$audioStore("36jn");
   $authStore.logout();
 };
 

@@ -6,11 +6,11 @@ import MusicTool from "./childComps/MusicTool/index.vue"; //工具栏
 import Copyright from "./childComps/Copyright/index.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 
-import { settingStore, musicStore, deviceStore } from "@/store";
+import { Store } from "@/config";
 
-const $musicStore = musicStore();
-const $settingStore = settingStore();
-const $deviceStore = deviceStore();
+const $musicStore = Store.music();
+const $settingStore = Store.setting();
+const $deviceStore = Store.device();
 
 const line = ref();
 const canvas = ref<HTMLCanvasElement>();

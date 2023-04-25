@@ -7,14 +7,14 @@ import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 import { register } from "@/api/modules/user";
 import { userDefaultInfo } from "@/default";
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Emits {
   (e: "success", form: User): void;
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const form = reactive<User>({ ...userDefaultInfo }); //表单数据
 
@@ -22,21 +22,21 @@ const form_verify = ref<boolean[]>([false, false, false]); //表单验证
 
 /* 注册 */
 const handleReg = () => {
-  $switchStore.$audioStore("36jn");
+  $controlStore.$audioStore("36jn");
 
   if (form_verify.value.some((item) => !item)) {
-    $switchStore.$msg("请正确填写", "error");
+    $controlStore.$msg("请正确填写", "error");
     return;
   }
 
   //注册
   register(form)
     .then(() => {
-      $switchStore.$msg("注册成功！");
+      $controlStore.$msg("注册成功！");
       emit("success", form);
     })
     .catch((err) => {
-      $switchStore.$msg(err, "warning");
+      $controlStore.$msg(err, "warning");
     });
 };
 </script>

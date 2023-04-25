@@ -2,11 +2,11 @@ import { ref } from "vue";
 
 import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
-import { settingStore, switchStore } from "@/store";
+import { Store } from "@/config";
 
 export default () => {
-  const $settingStore = settingStore();
-  const $switchStore = switchStore();
+  const $settingStore = Store.setting();
+  const $controlStore = Store.control();
 
   const show_tip = ref(false); //显示小贴士
   const title = ref(); //左上角标题
@@ -17,7 +17,7 @@ export default () => {
   const btn_text = ref<string>(); //按钮文字
   const btnFn = ref(() => {}); //点击按钮需要触发的函数
 
-  const tip: Switch.Tip = (config) => {
+  const tip: Control.Tip = (config) => {
     const {
       title: biaoti,
       text,
@@ -32,7 +32,7 @@ export default () => {
       //如果字符数超过4，则表示自定义tip
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
-        $switchStore.$audioStore("rt25");
+        $controlStore.$audioStore("rt25");
         title.value = biaoti;
         content.value = text;
         align.value = p;
@@ -55,7 +55,7 @@ export default () => {
           en: tips_en,
         };
         show_tip.value = !show_tip.value;
-        $switchStore.$audioStore("rt25");
+        $controlStore.$audioStore("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
         content.value = langs[lang][text as TipKeys];
         align.value = p;

@@ -5,9 +5,9 @@ import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 
 import { TOOL } from "@/utils";
-import { deviceStore } from "@/store";
+import { Store } from "@/config";
 
-const $deviceStore = deviceStore();
+const $deviceStore = Store.device();
 </script>
 
 <template>

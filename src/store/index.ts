@@ -1,44 +1,44 @@
 import { createPinia } from "pinia";
 import { App } from "vue";
 
-import audioStore from "./modules/audio";
-import authStore from "./modules/auth";
-import collapseStore from "./modules/collapse";
-import cssVarStore from "./modules/cssVar";
-import deviceStore from "./modules/device";
-import epigraphStore from "./modules/epigraph";
-import equipStore from "./modules/equip";
-import heroStore from "./modules/hero";
-import heroDetailStore from "./modules/heroDetail";
-import musicStore from "./modules/music";
-import routerStore from "./modules/router";
-import settingStore from "./modules/setting";
-import skinStore from "./modules/skin";
-import switchStore from "./modules/switch";
-import vConsoleStore from "./modules/vConsole";
-import versionStore from "./modules/version";
+import audio from "./modules/audio";
+import auth from "./modules/auth";
+import collapse from "./modules/collapse";
+import cssVar from "./modules/cssVar";
+import device from "./modules/device";
+import epigraph from "./modules/epigraph";
+import equip from "./modules/equip";
+import hero from "./modules/hero";
+import heroDetail from "./modules/heroDetail";
+import music from "./modules/music";
+import router from "./modules/router";
+import setting from "./modules/setting";
+import skin from "./modules/skin";
+import control from "./modules/control";
+import vConsole from "./modules/vConsole";
+import version from "./modules/version";
 
-const setupStore = (app: App) => {
+const setup = (app: App) => {
   const pinia = createPinia();
   app.use(pinia);
 };
 
-export {
-  audioStore,
-  authStore,
-  collapseStore,
-  cssVarStore,
-  deviceStore,
-  epigraphStore,
-  equipStore,
-  heroStore,
-  heroDetailStore,
-  musicStore,
-  routerStore,
-  settingStore,
-  skinStore,
-  switchStore,
-  vConsoleStore,
-  versionStore,
-  setupStore,
+export default {
+  audio,
+  auth,
+  collapse,
+  cssVar,
+  device,
+  epigraph,
+  equip,
+  hero,
+  heroDetail,
+  music,
+  router,
+  setting,
+  skin,
+  control,
+  vConsole,
+  version,
+  setup,
 };

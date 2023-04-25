@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 export default () => {
   const messages = reactive<MsgText[]>([]); //消息队列
@@ -17,7 +17,7 @@ export default () => {
         error: "vw31",
       };
 
-      switchStore().$audioStore(msgName[type]); //播放指定名称的音效
+      Store.control().$audioStore(msgName[type]); //播放指定名称的音效
 
       //创建消息内容
       const msgText: MsgText = {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
 interface Props {
@@ -26,7 +26,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -82,7 +82,7 @@ const handleSelect = (id: number, name: string) => {
     input_value.value = name;
   }
 
-  $switchStore.$audioStore();
+  $controlStore.$audioStore();
 };
 
 /* 删除选择的数据 */

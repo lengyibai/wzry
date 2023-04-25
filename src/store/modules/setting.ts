@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { TOOL } from "@/utils";
 import { configDefault } from "@/default";
-import { audioStore, musicStore, cssVarStore } from "@/store";
+import { Store } from "@/config";
 import { setLanguage } from "@/language";
 
 /** @description 设置相关 */
@@ -20,9 +20,9 @@ const settingStore = defineStore("setting", () => {
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
-    const $audioStore = audioStore();
-    const $musicStore = musicStore();
-    const $cssVarStore = cssVarStore();
+    const $audioStore = Store.audio();
+    const $musicStore = Store.music();
+    const $cssVarStore = Store.cssVar();
     setLanguage(config.value.language);
     $audioStore.setAudio(config.value.audio);
     $audioStore.setVolume(config.value.audioVolume);

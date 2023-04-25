@@ -2,12 +2,12 @@
 import { ref, onActivated } from "vue";
 
 import { TOOL } from "@/utils";
-import { switchStore, skinStore, heroStore } from "@/store";
+import { Store } from "@/config";
 import { API_DATA } from "@/api";
 
-const $skinStore = skinStore();
-const $heroStore = heroStore();
-const $switchStore = switchStore();
+const $skinStore = Store.skin();
+const $heroStore = Store.hero();
+const $controlStore = Store.control();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],
@@ -108,7 +108,7 @@ const setStatus = (data: any, v: any) => {
 };
 
 /* 音效触发 */
-const play = () => $switchStore.$audioStore();
+const play = () => $controlStore.$audioStore();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
@@ -137,7 +137,7 @@ const handleCheck = async (data: any) => {
       update_status = true;
     }, 3000);
   } else {
-    $switchStore.$msg("更新太频繁，更新间隔为3秒", "warning");
+    $controlStore.$msg("更新太频繁，更新间隔为3秒", "warning");
   }
 };
 
@@ -179,7 +179,7 @@ const EmitsSortChange = (v: number[]) => {
 };
 
 onActivated(() => {
-  $switchStore.$audioStore("bq69");
+  $controlStore.$audioStore("bq69");
 });
 </script>
 

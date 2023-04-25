@@ -6,18 +6,18 @@ import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 import { TOOL } from "@/utils";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { audioStore, musicStore, settingStore, cssVarStore, switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   modelValue: boolean;
 }
 defineProps<Props>();
 
-const $audioStore = audioStore();
-const $musicStore = musicStore();
-const $settingStore = settingStore();
-const $cssVarStore = cssVarStore();
-const $switchStore = switchStore();
+const $audioStore = Store.audio();
+const $musicStore = Store.music();
+const $settingStore = Store.setting();
+const $cssVarStore = Store.cssVar();
+const $controlStore = Store.control();
 
 //默认配置
 const default_config: SettingConfig = { ...configDefault };
@@ -100,13 +100,13 @@ const EmitParticle = () => {
 /* 启用/禁用Tip */
 const EmitTip = (v: boolean) => {
   EmitSaveConfig();
-  v && $switchStore.$tip({ text: "2rb7" });
+  v && $controlStore.$tip({ text: "2rb7" });
 };
 
 /* 恢复所有小贴士 */
 const handleResetTip = () => {
   $settingStore.restoreTip();
-  $switchStore.$msg("已恢复所有小贴士");
+  $controlStore.$msg("已恢复所有小贴士");
 };
 
 /* 保存配置 */
@@ -125,7 +125,7 @@ const EmitResetConfig = () => {
   $cssVarStore.setShine(config.value.shine);
   $cssVarStore.setShadow(config.value.shadow);
   $cssVarStore.setBorder(config.value.border);
-  $switchStore.$msg("已重置所有配置项");
+  $controlStore.$msg("已重置所有配置项");
 };
 </script>
 

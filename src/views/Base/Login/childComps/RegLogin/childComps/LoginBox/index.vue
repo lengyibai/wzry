@@ -7,15 +7,15 @@ import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
 import { TOOL } from "@/utils";
-import { switchStore, authStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
 }
 const props = defineProps<Props>();
 
-const $switchStore = switchStore();
-const $authStore = authStore();
+const $controlStore = Store.control();
+const $authStore = Store.auth();
 
 const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
 const remember = ref(true);
@@ -31,15 +31,15 @@ if (props.userInfo) {
 /* 登录 */
 const handleLogin = () => {
   if (TOOL.existEmpty(form.value, ["id", "password"])) {
-    $switchStore.$msg("请完整填写", "error");
+    $controlStore.$msg("请完整填写", "error");
     return;
   }
 
   $authStore
     .login(form.value)
     .then(() => {
-      $switchStore.$audioStore("e84n");
-      $switchStore.$msg("登录成功");
+      $controlStore.$audioStore("e84n");
+      $controlStore.$msg("登录成功");
       //记住密码
       if (remember.value) {
         localStorage.setItem("remember_user", JSON.stringify(form.value));
@@ -48,7 +48,7 @@ const handleLogin = () => {
       }
     })
     .catch((err) => {
-      $switchStore.$msg(err, "error");
+      $controlStore.$msg(err, "error");
     });
 };
 </script>

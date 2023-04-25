@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { updateUser } from "@/api/modules/user";
-import { authStore, switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   id: string; //帐号
@@ -16,8 +16,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $authStore = authStore();
-const $switchStore = switchStore();
+const $authStore = Store.auth();
+const $controlStore = Store.control();
 
 const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
 
@@ -33,7 +33,7 @@ const handleContrast = () => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.setUserInfo(user_info.value);
-  $switchStore.$audioStore("36jn");
+  $controlStore.$audioStore("36jn");
 
   //更新本地当前用户信息
   updateUser($authStore.userInfo.id, user_info.value).then(() => {
@@ -48,7 +48,7 @@ const handleSave = () => {
       })
     );
 
-    $switchStore.$msg("保存成功");
+    $controlStore.$msg("保存成功");
   });
 
   emit("close");

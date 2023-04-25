@@ -5,7 +5,7 @@ export default () => {
   const loading_text = ref(""); //loading描述
 
   //设置方法
-  const loading: Switch.Loading = {
+  const loading: Control.Loading = {
     //显示
     show(text = "正在加载") {
       loading_text.value = text;

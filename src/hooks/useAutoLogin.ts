@@ -1,11 +1,11 @@
-import { authStore, routerStore } from "@/store";
+import { Store } from "@/config";
 
 /** @description 通过获取本地用户权限在路由还未挂载时动态添加路由 */
 const addRouter = () => {
   const user = localStorage.getItem("user");
 
-  const $authStore = authStore();
-  const $routerStore = routerStore();
+  const $authStore = Store.auth();
+  const $routerStore = Store.router();
 
   //通过获取本地用户权限，动态添加路由
   if (user) {

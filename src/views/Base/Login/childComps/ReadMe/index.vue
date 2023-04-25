@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 interface Props {
   modelValue?: boolean;
 }
@@ -10,14 +10,14 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
-  $switchStore.$audioStore("6xc6");
+  $controlStore.$audioStore("6xc6");
 };
 </script>
 

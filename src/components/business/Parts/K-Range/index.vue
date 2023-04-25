@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from "vue";
 
 import { TOOL } from "@/utils";
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   modelValue: string | number; //值
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const down = ref(false); //是否处于按下状态
 
@@ -67,7 +67,7 @@ const changeValue = (e: Event) => {
   down.value = true;
   emit("update:modelValue", parseFloat(v));
   TOOL.throttleInstant(() => {
-    $switchStore.$audioStore("range");
+    $controlStore.$audioStore("range");
   }, 50);
 };
 

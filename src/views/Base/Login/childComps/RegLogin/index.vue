@@ -7,11 +7,11 @@ import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
 import { TOOL } from "@/utils";
 import { userList } from "@/api/modules/user";
-import { switchStore, settingStore, deviceStore } from "@/store";
+import { Store } from "@/config";
 
-const $settingStore = settingStore();
-const $switchStore = switchStore();
-const $deviceStore = deviceStore();
+const $settingStore = Store.setting();
+const $controlStore = Store.control();
+const $deviceStore = Store.device();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -31,7 +31,7 @@ const component = computed(() => {
 /* 重新选择登录还是注册 */
 const handleBack = () => {
   is_reg.value = "";
-  $switchStore.$audioStore("p60v");
+  $controlStore.$audioStore("p60v");
 };
 
 /**

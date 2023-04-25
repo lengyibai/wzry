@@ -6,11 +6,11 @@ import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
-import { switchStore, heroDetailStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
-const $heroDetail = heroDetailStore();
-const $switchStore = switchStore();
+const $heroDetail = Store.heroDetail();
+const $controlStore = Store.control();
 
 let tip_text = "0vk2"; //通过设备来显示不同的提示
 
@@ -37,7 +37,7 @@ onMounted(() => {
         tip_text = "1zs6";
       }
 
-      $switchStore.$tip({
+      $controlStore.$tip({
         text: tip_text,
         align: "left-top",
         createFn: () => {
@@ -48,7 +48,7 @@ onMounted(() => {
           focusdown.blur();
 
           /* 显示完滚动提示后显示关系提示 */
-          $switchStore.$tip({
+          $controlStore.$tip({
             text: "05su",
             align: "right-bottom",
             createFn: () => {

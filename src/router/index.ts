@@ -5,7 +5,7 @@ import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { HOME_URL } from "@/enum";
-import { switchStore, authStore, deviceStore } from "@/store";
+import { Store } from "@/config";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -13,8 +13,8 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  const $authStore = authStore();
-  const $deviceStore = deviceStore();
+  const $authStore = Store.auth();
+  const $deviceStore = Store.device();
 
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);
@@ -22,7 +22,7 @@ useRouter.beforeEach(async (to, from, next) => {
 
   //如果当前路径不等于跳转路径&&跳转路径非403、404&&、400，并且存在title，则使用loading
   if (to.path !== from.path && !["/403", "/404", "/400"].includes(to.path) && to.meta.title) {
-    switchStore().$loading.show(to.meta.title as string);
+    Store.control().$loading.show(to.meta.title as string);
   }
 
   //浏览器版本过低
@@ -69,7 +69,7 @@ useRouter.beforeEach(async (to, from, next) => {
 });
 
 useRouter.afterEach((to) => {
-  switchStore().$loading.close();
+  Store.control().$loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 

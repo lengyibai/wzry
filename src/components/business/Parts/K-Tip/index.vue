@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { switchStore, settingStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   modelValue: boolean;
@@ -25,8 +25,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $settingStore = settingStore();
-const $switchStore = switchStore();
+const $settingStore = Store.setting();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -60,7 +60,7 @@ const handleClose = () => {
   props.noTipName && $settingStore.setNoTip(props.noTipName as TipKeys);
 
   emit("update:modelValue", false);
-  $switchStore.$audioStore("6xc6");
+  $controlStore.$audioStore("6xc6");
 
   setTimeout(() => {
     props.btnFn();

@@ -4,10 +4,10 @@ import { ref, onActivated } from "vue";
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
 
-import { switchStore, epigraphStore } from "@/store";
+import { Store } from "@/config";
 
-const $epigraphStore = epigraphStore();
-const $switchStore = switchStore();
+const $epigraphStore = Store.epigraph();
+const $controlStore = Store.control();
 
 const show_epigraph = ref(false); //显示铭文顶部分类
 
@@ -17,7 +17,7 @@ $epigraphStore.getEpigraph().then(() => {
 });
 
 onActivated(() => {
-  $switchStore.$audioStore("h7t9");
+  $controlStore.$audioStore("h7t9");
 });
 </script>
 

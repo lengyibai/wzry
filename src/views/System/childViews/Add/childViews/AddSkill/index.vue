@@ -7,7 +7,7 @@ import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { TOOL } from "@/utils";
 import { skillDefault, skillEffectDefault } from "@/default";
-import { switchStore, heroStore } from "@/store";
+import { Store } from "@/config";
 import { API_HERO, API_SKILL } from "@/api";
 
 interface Emits {
@@ -15,8 +15,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
-const $heroStore = heroStore();
+const $controlStore = Store.control();
+const $heroStore = Store.hero();
 
 const { show, finish, status, form_data, EmitConfirmRemove, EmitConfirmSave } = viewHide<Hero.Skill[][]>(
   emit,
@@ -70,7 +70,7 @@ const EmitSelectHeroChange = (id: number) => {
   const v = JSON.parse(d) as Hero.SkillParams[];
 
   if (v.some((item) => item.id === id)) {
-    $switchStore.$msg("该英雄已拥有技能，如需修改请前往修改页面", "warning");
+    $controlStore.$msg("该英雄已拥有技能，如需修改请前往修改页面", "warning");
   }
 };
 
@@ -112,7 +112,7 @@ const handleDelDeputys = () => {
 /* 确认删除技能 */
 const EmitConfirmDelSkill = () => {
   if (skill_num.value === 1) {
-    $switchStore.$msg("至少保留一个技能", "error");
+    $controlStore.$msg("至少保留一个技能", "error");
     return;
   }
   activeSkills()?.splice(active_index.value, 1);
@@ -223,17 +223,17 @@ const EmitCommit = async () => {
     setTimeout(() => {
       finish.value = true;
       EmitConfirmRemove();
-      $switchStore.$msg("发布成功", "info");
+      $controlStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $switchStore.$msg("请完整填写必填项，且主技能个数不低于3个", "error");
+    $controlStore.$msg("请完整填写必填项，且主技能个数不低于3个", "error");
     status.value = 0;
   }
 };
 
 /* 延迟显示 */
-$switchStore.$loading.close();
+$controlStore.$loading.close();
 setTimeout(async () => {
   show.value = true;
 }, 1000);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   size?: string;
@@ -19,7 +19,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const show_up = ref(true); //显示纸飞机
 
@@ -30,7 +30,7 @@ const commit = () => {
     show_up.value = false;
     emit("commit");
   }, 750);
-  $switchStore.$audioStore("36jn");
+  $controlStore.$audioStore("36jn");
 };
 
 watch(

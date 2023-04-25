@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { switchStore } from "@/store";
+import { Store } from "@/config";
+
 interface Props {
   width: string;
   modelValue: number; //索引号
@@ -14,12 +15,12 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 /* 选择 */
 const handleSelect = (index: number) => {
   emit("update:modelValue", index);
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 </script>
 

@@ -3,7 +3,7 @@ import { nextTick, ref } from "vue";
 
 import MuiscList from "../MuiscList/index.vue";
 
-import { switchStore, musicStore, settingStore, deviceStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
 interface Emits {
@@ -11,17 +11,17 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $musicStore = musicStore();
-const $settingStore = settingStore();
-const $deviceStore = deviceStore();
-const $switchStore = switchStore();
+const $musicStore = Store.music();
+const $settingStore = Store.setting();
+const $deviceStore = Store.device();
+const $controlStore = Store.control();
 
 const musicTool = ref();
 
 nextTick(() => {
   if (TOOL.isPhone || !$settingStore.config.music) return;
   const musicToolFocus = new TOOL.FocusElement(musicTool.value);
-  $switchStore.$tip({
+  $controlStore.$tip({
     text: "58mz",
     align: "right-top",
     createFn: () => {

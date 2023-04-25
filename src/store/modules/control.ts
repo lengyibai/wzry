@@ -2,32 +2,32 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 /** @description 全局触发 */
-const switchStore = defineStore("switch", () => {
-  const $audioStore = ref<Switch.ClickAudio>(() => {}); //点击音效
-  const $msg = ref<Switch.Msg>(() => {}); //消息提示
-  const $tip = ref<Switch.Tip>(() => {}); //小贴士提示
-  const $loading = ref<Switch.Loading>({
+const controlStore = defineStore("control", () => {
+  const $audioStore = ref<Control.ClickAudio>(() => {}); //点击音效
+  const $msg = ref<Control.Msg>(() => {}); //消息提示
+  const $tip = ref<Control.Tip>(() => {}); //小贴士提示
+  const $loading = ref<Control.Loading>({
     show: () => {},
     close: () => new Promise(() => {}),
   }); //loading
 
   /** @description 挂载点击音效 */
-  const setAudioStore = (fn: Switch.ClickAudio) => {
+  const setAudioStore = (fn: Control.ClickAudio) => {
     $audioStore.value = fn;
   };
 
   /** @description 挂载消息提醒 */
-  const setMsg = (fn: Switch.Msg) => {
+  const setMsg = (fn: Control.Msg) => {
     $msg.value = fn;
   };
 
   /** @description 挂载小贴士 */
-  const setTip = (fn: Switch.Tip) => {
+  const setTip = (fn: Control.Tip) => {
     $tip.value = fn;
   };
 
   /** @description 挂载loading */
-  const setLoading = (fn: Switch.Loading) => {
+  const setLoading = (fn: Control.Loading) => {
     $loading.value = fn;
   };
 
@@ -47,5 +47,5 @@ const switchStore = defineStore("switch", () => {
   };
 });
 
-export default switchStore;
-export type SwitchStore = ReturnType<typeof switchStore>;
+export default controlStore;
+export type ControlStore = ReturnType<typeof controlStore>;

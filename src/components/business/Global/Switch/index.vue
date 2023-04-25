@@ -4,20 +4,20 @@ import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
 import { $bus } from "@/utils";
-import { audioStore, switchStore } from "@/store";
+import { Store } from "@/config";
 
-const $switchStore = switchStore();
-const $audioStoreStore = audioStore();
+const $controlStore = Store.control();
+const $audioStoreStore = Store.audio();
 
 const { loading, show_loading, loading_text } = useLoading();
 const { msg, messages } = useMessage();
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
 /* 挂载全局 */
-$switchStore.setAudioStore($audioStoreStore.play);
-$switchStore.setMsg(msg);
-$switchStore.setTip(tip);
-$switchStore.setLoading(loading);
+$controlStore.setAudioStore($audioStoreStore.play);
+$controlStore.setMsg(msg);
+$controlStore.setTip(tip);
+$controlStore.setLoading(loading);
 
 /* 全局监听事件 */
 const events = ["resize", "mousemove", "mouseup"];

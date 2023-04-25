@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 interface Props {
   index: number; //滚动索引
 }
@@ -10,14 +10,14 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const page_name = ["英雄资料", "技能信息", "皮肤语音"]; //滚动索引标题
 
 /* 设置进度 */
 const handleToggle = (index: number) => {
   emit("toggle", index);
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 </script>
 

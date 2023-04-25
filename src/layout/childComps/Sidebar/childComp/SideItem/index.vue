@@ -4,8 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
 
-//import { Route } from "@/router/interface";
-import { switchStore, collapseStore } from "@/store";
+import { Store } from "@/config";
 
 interface RouteFormat {
   path: string; //路由路径
@@ -28,8 +27,8 @@ const emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $route = useRoute();
-const $collapseStore = collapseStore();
-const $switchStore = switchStore();
+const $collapseStore = Store.collapse();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
@@ -62,7 +61,7 @@ const fn = () => {
   } /* 否则移除子菜单 */ else {
     routes.length = 0;
   }
-  $switchStore.$audioStore();
+  $controlStore.$audioStore();
 };
 
 /* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */

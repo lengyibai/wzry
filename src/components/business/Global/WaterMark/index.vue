@@ -2,13 +2,13 @@
 import { computed } from "vue";
 
 import { TOOL } from "@/utils";
-import { collapseStore, versionStore, deviceStore, vConsoleStore, authStore } from "@/store";
+import { Store } from "@/config";
 
-const $collapseStore = collapseStore();
-const $versionStore = versionStore();
-const $deviceStore = deviceStore();
-const $vConsoleStore = vConsoleStore();
-const $authStore = authStore();
+const $collapseStore = Store.collapse();
+const $versionStore = Store.version();
+const $deviceStore = Store.device();
+const $vConsoleStore = Store.vConsole();
+const $authStore = Store.auth();
 
 /* 是否为旧版 */
 const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);

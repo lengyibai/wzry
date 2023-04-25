@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { switchStore, versionStore } from "@/store";
+import { Store } from "@/config";
 
-const $switchStore = switchStore();
-const $versionStore = versionStore();
+const $controlStore = Store.control();
+const $versionStore = Store.version();
 
-$switchStore.$audioStore("u4c5");
+$controlStore.$audioStore("u4c5");
 
 const data_status = computed(() => $versionStore.data_status); //数据需要更新
 const file_status = computed(() => $versionStore.file_status); //文件需要更新

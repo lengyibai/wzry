@@ -7,11 +7,11 @@ import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { TOOL } from "@/utils";
 import { $bus } from "@/utils";
-import { switchStore, skinStore } from "@/store";
+import { Store } from "@/config";
 import { API_VOICE } from "@/api";
 
-const $skinStore = skinStore();
-const $switchStore = switchStore();
+const $skinStore = Store.skin();
+const $controlStore = Store.control();
 
 const skinListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目
@@ -45,12 +45,12 @@ const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
       show_voice.value = true;
     });
   }
-  $switchStore.$audioStore();
+  $controlStore.$audioStore();
 };
 
 /* 悬浮卡片 */
 const handleEnterCard = () => {
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 
 /* 监听筛选后的英雄列表 */
@@ -67,7 +67,7 @@ watch(
 );
 
 onActivated(() => {
-  $switchStore.$audioStore("9u8z");
+  $controlStore.$audioStore("9u8z");
 });
 
 onMounted(() => {

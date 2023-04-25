@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { heroStore } from "@/store";
+import { Store } from "@/config";
 import { $bus } from "@/utils";
 import { API_HERO } from "@/api";
 
-const $heroStore = heroStore();
+const $heroStore = Store.hero();
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },

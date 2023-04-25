@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { switchStore, heroDetailStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
 interface Emits {
@@ -9,8 +9,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetailStore();
-const $switchStore = switchStore();
+const $heroDetail = Store.heroDetail();
+const $controlStore = Store.control();
 
 let deputy_index = 0; //主副技能索引
 
@@ -40,7 +40,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
     setTimeout(() => {
       const toggleFocus = new TOOL.FocusElement(toggle.value);
 
-      $switchStore.$tip({
+      $controlStore.$tip({
         align: "right-top",
         text: `${hero_data.value.name}存在${
           length == 3 ? "三" : "两"
@@ -64,7 +64,7 @@ const handleSelectSkill = (index: number) => {
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
   emit("select-skill", calcActiveSkill.value);
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 handleSelectSkill(0);
 
@@ -87,7 +87,7 @@ const handleToggleSkill = () => {
 
   //更新技能信息
   handleSelectSkill(current_index.value);
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 
 onUnmounted(() => {

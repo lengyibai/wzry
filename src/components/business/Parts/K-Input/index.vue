@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   modelValue: number | string; //值
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const tip = ref(""); //不合法提示
 const legal = ref(true); //是否合法
@@ -92,7 +92,7 @@ const is_focus = ref(false); //是否获取焦点
 const focus = () => {
   is_focus.value = true;
   emit("focus");
-  $switchStore.$audioStore();
+  $controlStore.$audioStore();
 };
 
 /* 失去焦点 */

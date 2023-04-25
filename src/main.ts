@@ -5,7 +5,7 @@ import App from "./App.vue";
 
 import { flexible, setFontsize } from "@/utils";
 import { setupRouter } from "@/router";
-import { setupStore } from "@/store";
+import { Store } from "@/config";
 import i18n from "@/language";
 import setupDirective from "@/directives";
 import useAutoLogin from "@/hooks/useAutoLogin";
@@ -34,7 +34,7 @@ flexible.trigger([480, 0], () => {
 
 const app = createApp(App);
 
-setupStore(app);
+Store.setup(app);
 useAutoLogin();
 setupDirective(app);
 setupRouter(app);

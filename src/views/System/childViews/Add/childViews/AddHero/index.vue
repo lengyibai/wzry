@@ -5,7 +5,7 @@ import viewHide from "../../../../hooks/useViewHide";
 
 import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
-import { switchStore, heroStore } from "@/store";
+import { Store } from "@/config";
 import { API_HERO } from "@/api";
 
 interface Emits {
@@ -13,8 +13,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
-const $heroStore = heroStore();
+const $controlStore = Store.control();
+const $heroStore = Store.hero();
 
 const attr: Record<string, string> = {
   survival: "生存能力",
@@ -68,17 +68,17 @@ const EmitCommit = async () => {
     finish.value = true;
     setTimeout(() => {
       EmitConfirmRemove();
-      $switchStore.$msg("发布成功", "info");
+      $controlStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $switchStore.$msg("请完整填写", "error");
+    $controlStore.$msg("请完整填写", "error");
     status.value = 0;
   }
 };
 
 /* 延迟显示 */
-$switchStore.$loading.close();
+$controlStore.$loading.close();
 setTimeout(async () => {
   type_list.campType = await API_HERO.getCampType();
   type_list.raceType = await API_HERO.getRaceType();

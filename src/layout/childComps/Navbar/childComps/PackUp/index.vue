@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { switchStore, collapseStore } from "@/store";
+import { Store } from "@/config";
 
-const $collapseStore = collapseStore();
-const $switchStore = switchStore();
+const $collapseStore = Store.collapse();
+const $controlStore = Store.control();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {
-  $switchStore.$audioStore("d5e2");
+  $controlStore.$audioStore("d5e2");
   $collapseStore.toggleCollapse();
 };
 </script>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { settingStore } from "@/store";
+import { Store } from "@/config";
 
-const $settingStore = settingStore();
+const $settingStore = Store.setting();
 $settingStore.takeEffect();
 </script>
 
@@ -14,7 +14,7 @@ $settingStore.takeEffect();
   </router-view>
 
   <!-- 全局开关 -->
-  <Switch />
+  <Control />
 
   <!-- 左下角水印 -->
   <WaterMark />

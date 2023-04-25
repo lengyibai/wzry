@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { switchStore, collapseStore, heroStore, skinStore, equipStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   type: "hero" | "skin" | "equip";
@@ -15,11 +15,11 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
-const $skinStore = skinStore();
-const $heroStore = heroStore();
-const $collapseStore = collapseStore();
-const $equipStore = equipStore();
+const $controlStore = Store.control();
+const $skinStore = Store.skin();
+const $heroStore = Store.hero();
+const $collapseStore = Store.collapse();
+const $equipStore = Store.equip();
 
 const hero_type: { name: Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -57,7 +57,7 @@ const filter_type = computed(() => {
 
 /* 选择类型并筛选显示 */
 const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
-  $switchStore.$audioStore(`默认${index}`);
+  $controlStore.$audioStore(`默认${index}`);
 
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),

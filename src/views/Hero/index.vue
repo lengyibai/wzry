@@ -9,14 +9,14 @@ import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
 import { $bus } from "@/utils";
-import { switchStore, heroDetailStore, heroStore } from "@/store";
+import { Store } from "@/config";
 import { API_HERO } from "@/api";
 
 const $route = useRoute();
 const $router = useRouter();
-const $switchStore = switchStore();
-const $heroStore = heroStore();
-const $heroDetail = heroDetailStore();
+const $controlStore = Store.control();
+const $heroStore = Store.hero();
+const $heroDetail = Store.heroDetail();
 
 let id: unknown = $route.query.id; //地址栏参数
 
@@ -31,7 +31,7 @@ const hero_info = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄信息
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
   new Image().src = data.headImg; //图片预加载
 };
 
@@ -92,7 +92,7 @@ watch(
 );
 
 onActivated(() => {
-  $switchStore.$audioStore("4d8m");
+  $controlStore.$audioStore("4d8m");
 });
 
 onMounted(async () => {

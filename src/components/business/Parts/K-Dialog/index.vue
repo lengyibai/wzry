@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 
 interface Props {
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
@@ -28,7 +28,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -37,7 +37,7 @@ const show = ref(false); //显示弹窗
 onMounted(() => {
   show.value = true;
   if (props.up) {
-    $switchStore.$audioStore("e6b4");
+    $controlStore.$audioStore("e6b4");
   }
 });
 
@@ -45,7 +45,7 @@ onMounted(() => {
 const handleClose = () => {
   emit("update:modelValue", false);
   emit("close");
-  $switchStore.$audioStore("6xc6");
+  $controlStore.$audioStore("6xc6");
 };
 </script>
 

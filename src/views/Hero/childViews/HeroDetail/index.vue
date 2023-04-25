@@ -10,7 +10,7 @@ import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
 import { TOOL } from "@/utils";
-import { switchStore, heroStore, heroDetailStore } from "@/store";
+import { Store } from "@/config";
 import { heroDefault } from "@/default";
 
 interface Emits {
@@ -19,9 +19,9 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $router = useRouter();
-const $heroDetail = heroDetailStore();
-const $heroStore = heroStore();
-const $switchStore = switchStore();
+const $heroDetail = Store.heroDetail();
+const $heroStore = Store.hero();
+const $controlStore = Store.control();
 
 const scroll_index = ref(1); //滚动索引
 const show_close = ref(false); //显示左上角关闭
@@ -56,7 +56,7 @@ const EmitToggle = (index: number) => {
 
 /* 滚动立即触发 */
 const EmitScollStart = () => {
-  $switchStore.$audioStore("n4r4");
+  $controlStore.$audioStore("n4r4");
 };
 
 /* 滚动结束触发 */
@@ -68,7 +68,7 @@ const EmitScrollEnd = (index: number) => {
 const handleHide = () => {
   $router.replace("/hero");
   $heroDetail.setSkinVoice("盾山"); //置空语音
-  $switchStore.$audioStore("6xc6");
+  $controlStore.$audioStore("6xc6");
 
   //延迟0.1秒显示解决移动端动画掉帧
   setTimeout(() => {
@@ -80,7 +80,7 @@ const handleHide = () => {
     setTimeout(() => {
       $heroStore.getHeroList();
       setTimeout(() => {
-        $switchStore.$audioStore("4d8m");
+        $controlStore.$audioStore("4d8m");
       }, 250);
     }, 1500);
   }
@@ -95,7 +95,7 @@ setTimeout(() => {
   });
 }, 1500);
 
-$switchStore.$audioStore("u4c5");
+$controlStore.$audioStore("u4c5");
 </script>
 
 <template>

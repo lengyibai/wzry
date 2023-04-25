@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
-import { switchStore, heroDetailStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
 interface Emits {
@@ -9,8 +9,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetailStore();
-const $switchStore = switchStore();
+const $heroDetail = Store.heroDetail();
+const $controlStore = Store.control();
 
 const skin = ref();
 const showSkin = ref();
@@ -121,14 +121,14 @@ $heroDetail.setScollFn("skin", (index) => {
               skinHeadFocus.blur();
             };
             if (TOOL.isPhone) {
-              $switchStore.$tip({
+              $controlStore.$tip({
                 text: "1w7o",
                 align: "right-top",
                 createFn: a,
                 btnFn: b,
               });
             } else {
-              $switchStore.$tip({
+              $controlStore.$tip({
                 text: "9oy5",
                 align: "right-top",
                 createFn: a,

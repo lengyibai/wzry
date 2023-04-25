@@ -10,11 +10,11 @@ import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
 import { $bus } from "@/utils";
-import { switchStore, settingStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 
-const $settingStore = settingStore();
-const $switchStore = switchStore();
+const $settingStore = Store.setting();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -44,7 +44,7 @@ const EmitToolType = (v: string) => {
 const EmitCloseNotice = () => {
   const toolbarFocus = new TOOL.FocusElement(toolbar.value.el);
 
-  $switchStore.$tip({
+  $controlStore.$tip({
     text: "9f5m",
     align: "right-bottom",
     createFn: () => {

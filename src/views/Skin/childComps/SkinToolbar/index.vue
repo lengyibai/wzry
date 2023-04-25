@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { skinStore } from "@/store";
+import { Store } from "@/config";
 import { $bus } from "@/utils";
 
-const $skinStore = skinStore();
+const $skinStore = Store.skin();
 
 const select_price = [
   { label: "默认价格", value: "默认价格" },

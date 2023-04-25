@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { switchStore } from "@/store";
+import { Store } from "@/config";
 import { TOOL } from "@/utils";
 import { API_DATA } from "@/api";
 
-const $switchStore = switchStore();
+const $controlStore = Store.control();
 
 const active = ref(-1); //当前显示的图片的索引号
 const imgs = ref<string[]>([]);
 
-$switchStore.$audioStore("u4c5");
+$controlStore.$audioStore("u4c5");
 
 API_DATA.Team().then((res) => {
   imgs.value = res.data as unknown as string[];

@@ -4,10 +4,10 @@ import { ref, onActivated } from "vue";
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
-import { switchStore, equipStore } from "@/store";
+import { Store } from "@/config";
 
-const $equipStore = equipStore();
-const $switchStore = switchStore();
+const $equipStore = Store.equip();
+const $controlStore = Store.control();
 
 const equipList = ref();
 const equipMain = ref();
@@ -26,7 +26,7 @@ $equipStore.getEquipList().then(() => {
 });
 
 onActivated(() => {
-  $switchStore.$audioStore("3k4s");
+  $controlStore.$audioStore("3k4s");
 });
 </script>
 

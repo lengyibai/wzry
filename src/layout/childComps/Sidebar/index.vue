@@ -5,11 +5,11 @@ import sideItem from "./childComp/SideItem/index.vue"; //子菜单
 import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
-import { routerStore, collapseStore } from "@/store";
+import { Store } from "@/config";
 import { $bus } from "@/utils";
 
-const $collapseStore = collapseStore();
-const $routerStore = routerStore();
+const $collapseStore = Store.collapse();
+const $routerStore = Store.router();
 
 const top = ref(0); //滑块坐标
 const show_slider = ref(false); //显示滑块

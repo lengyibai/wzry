@@ -2,14 +2,14 @@
 import { ref, computed, onMounted } from "vue";
 
 import { TOOL } from "@/utils";
-import { switchStore, settingStore } from "@/store";
+import { Store } from "@/config";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
 import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
 
-const $settingStore = settingStore();
-const $switchStore = switchStore();
+const $settingStore = Store.setting();
+const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -21,7 +21,7 @@ const show_appmain = ref(false); //显示主体页面
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
-  $switchStore.$audioStore("p53r");
+  $controlStore.$audioStore("p53r");
 
   await TOOL.promiseTimeout(() => {
     show_sidebar.value = true;
