@@ -7,10 +7,10 @@ import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
 import { TOOL } from "@/utils";
-import { getHeroDetail } from "@/api/modules/games/hero";
 import { heroDefault } from "@/default";
 import { $bus } from "@/utils";
 import { switchStore, heroDetailStore, heroStore } from "@/store";
+import { API_HERO } from "@/api";
 
 const $route = useRoute();
 const $router = useRouter();
@@ -38,7 +38,7 @@ const handleEnterCard = (data: Hero.Data) => {
 /* 查看详情 */
 const EmitViewClick = (id: number) => {
   //获取指定英雄数据
-  getHeroDetail(id).then((hero) => {
+  API_HERO.getHeroDetail(id).then((hero) => {
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
 

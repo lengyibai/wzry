@@ -1,9 +1,8 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-import { getSkin } from "@/api/modules/games/skin";
-import { getSkinType } from "@/api/modules/games/skin";
 import { TOOL } from "@/utils";
+import { API_SKIN } from "@/api";
 
 /** @description 皮肤列表页 */
 const skinStore = defineStore("skin", () => {
@@ -54,8 +53,8 @@ const skinStore = defineStore("skin", () => {
 
   /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
   const getSkinList = async () => {
-    const skinList = await getSkin();
-    const skinType = await getSkinType();
+    const skinList = await API_SKIN.getSkin();
+    const skinType = await API_SKIN.getSkinType();
     skinList.forEach((skin) => {
       const type = skinType.find((type) => type.id === skin.type)!;
       skin.type = type.link;

@@ -2,13 +2,13 @@
 import { ref } from "vue";
 
 import { switchStore } from "@/store";
-import { Todo } from "@/api/modules/data";
+import { API_DATA } from "@/api";
 
 const $switchStore = switchStore();
 
 const todo = ref("");
 
-Todo().then((res) => {
+API_DATA.Todo().then((res) => {
   todo.value = res.data;
 });
 

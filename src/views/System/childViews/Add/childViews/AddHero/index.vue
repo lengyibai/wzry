@@ -3,21 +3,10 @@ import { reactive } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import {
-  addHeroBasic,
-  addHeroImg,
-  addHeroData,
-  getHeroBasic,
-  getCampType,
-  getLocationType,
-  getPeriodType,
-  getProfessionType,
-  getSpecialtyType,
-  getRaceType,
-} from "@/api/modules/games/hero";
 import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
 import { switchStore, heroStore } from "@/store";
+import { API_HERO } from "@/api";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -54,7 +43,7 @@ const type_list: Record<string, any[]> = reactive({
 });
 
 //根据英雄总数设置id
-getHeroBasic().then((res) => {
+API_HERO.getHeroBasic().then((res) => {
   form_data.value!.id = res.length + 1;
 });
 
@@ -66,16 +55,16 @@ const EmitCommit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
 
   if (id && mark && name && cover && headImg && poster) {
-    await addHeroBasic({
+    await API_HERO.addHeroBasic({
       id,
       name,
     });
-    await addHeroImg({
+    await API_HERO.addHeroImg({
       id,
       name,
       headImg,
     });
-    await addHeroData(form_data.value!);
+    await API_HERO.addHeroData(form_data.value!);
     finish.value = true;
     setTimeout(() => {
       EmitConfirmRemove();
@@ -91,12 +80,12 @@ const EmitCommit = async () => {
 /* 延迟显示 */
 $switchStore.$loading.close();
 setTimeout(async () => {
-  type_list.campType = await getCampType();
-  type_list.raceType = await getRaceType();
-  type_list.locationType = await getLocationType();
-  type_list.periodType = await getPeriodType();
-  type_list.professionType = await getProfessionType();
-  type_list.specialtyType = await getSpecialtyType();
+  type_list.campType = await API_HERO.getCampType();
+  type_list.raceType = await API_HERO.getRaceType();
+  type_list.locationType = await API_HERO.getLocationType();
+  type_list.periodType = await API_HERO.getPeriodType();
+  type_list.professionType = await API_HERO.getProfessionType();
+  type_list.specialtyType = await API_HERO.getSpecialtyType();
   show.value = true;
 }, 1000);
 </script>

@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { Version } from "@/api/modules/data";
 import { switchStore } from "@/store";
 import useUpdateData from "@/hooks/useUpdateData";
+import { API_DATA } from "@/api";
 
 const versionStore = defineStore("version", () => {
   const $switchStore = switchStore();
@@ -40,7 +40,7 @@ const versionStore = defineStore("version", () => {
 
   /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
-    Version().then((res) => {
+    API_DATA.Version().then((res) => {
       const { main, file, log, time } = res.data;
       remote_version.value = main;
       file_version.value = file;

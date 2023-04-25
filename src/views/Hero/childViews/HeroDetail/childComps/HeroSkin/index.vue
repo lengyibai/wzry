@@ -8,10 +8,10 @@ import HeroSkinType from "./childComps/HeroSkinType/index.vue"; //皮肤类型�
 import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
 
-import { getAssignSkinType } from "@/api/modules/games/skin";
 import { heroDefault } from "@/default";
 import { TOOL } from "@/utils";
 import { heroDetailStore } from "@/store";
+import { API_SKIN } from "@/api";
 
 const hero_data = ref<Hero.Data>(TOOL.deepCopy(heroDefault)); //英雄数据
 const $heroDetail = heroDetailStore();
@@ -47,7 +47,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
 
     //0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = (await getAssignSkinType(skin_type as number)).link;
+      active_skin_type.value = (await API_SKIN.getAssignSkinType(skin_type as number)).link;
     } else {
       active_skin_type.value = ""; //伴生皮肤没有标志
     }

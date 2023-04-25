@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { getSkinVoice } from "@/api/modules/games/voice";
 import { TOOL } from "@/utils";
 import { heroDefault } from "@/default";
+import { API_VOICE } from "@/api";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
@@ -88,7 +88,7 @@ const heroDetailStore = defineStore("heroDetail", () => {
    * @param skin_name 皮肤名
    */
   const setSkinVoice = async (hero_name: string, skin_name = "盾山") => {
-    skin_voice.value = await getSkinVoice(hero_name, skin_name);
+    skin_voice.value = await API_VOICE.getSkinVoice(hero_name, skin_name);
   };
 
   return {

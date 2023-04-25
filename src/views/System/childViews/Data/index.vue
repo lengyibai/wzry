@@ -3,30 +3,7 @@ import { ref, onActivated } from "vue";
 
 import { TOOL } from "@/utils";
 import { switchStore, skinStore, heroStore } from "@/store";
-import {
-  HeroBasic,
-  HeroImg,
-  Herodata,
-  Skill,
-  Skilltype,
-  Skilleffect,
-  Skin,
-  Skintype,
-  Relationship,
-  Equip,
-  EquipSynthetic,
-  Equiptype,
-  Equipeffect,
-  Epigraph,
-  Epigraphtype,
-  Epigrapheffect,
-  Professiontype,
-  Locationtype,
-  Specialtytype,
-  Periodtype,
-  Camptype,
-  RaceType,
-} from "@/api/modules/data";
+import { API_DATA } from "@/api";
 
 const $skinStore = skinStore();
 const $heroStore = heroStore();
@@ -58,28 +35,28 @@ const keywords: [string, string][] = [
 ];
 
 const requests: Record<string, () => Promise<any>> = {
-  herobasic: HeroBasic,
-  heroimg: HeroImg,
-  herodata: Herodata,
-  skill: Skill,
-  skilltype: Skilltype,
-  skilleffect: Skilleffect,
-  skin: Skin,
-  skintype: Skintype,
-  relationship: Relationship,
-  equip: Equip,
-  equipSynthetic: EquipSynthetic,
-  equiptype: Equiptype,
-  equipeffect: Equipeffect,
-  epigraph: Epigraph,
-  epigraphtype: Epigraphtype,
-  epigrapheffect: Epigrapheffect,
-  professiontype: Professiontype,
-  locationtype: Locationtype,
-  specialtytype: Specialtytype,
-  periodtype: Periodtype,
-  camptype: Camptype,
-  racetype: RaceType,
+  herobasic: API_DATA.HeroBasic,
+  heroimg: API_DATA.HeroImg,
+  herodata: API_DATA.Herodata,
+  skill: API_DATA.Skill,
+  skilltype: API_DATA.Skilltype,
+  skilleffect: API_DATA.Skilleffect,
+  skin: API_DATA.Skin,
+  skintype: API_DATA.Skintype,
+  relationship: API_DATA.Relationship,
+  equip: API_DATA.Equip,
+  equipSynthetic: API_DATA.EquipSynthetic,
+  equiptype: API_DATA.Equiptype,
+  equipeffect: API_DATA.Equipeffect,
+  epigraph: API_DATA.Epigraph,
+  epigraphtype: API_DATA.Epigraphtype,
+  epigrapheffect: API_DATA.Epigrapheffect,
+  professiontype: API_DATA.Professiontype,
+  locationtype: API_DATA.Locationtype,
+  specialtytype: API_DATA.Specialtytype,
+  periodtype: API_DATA.Periodtype,
+  camptype: API_DATA.Camptype,
+  racetype: API_DATA.RaceType,
 };
 
 let update_status = true; //更新限制

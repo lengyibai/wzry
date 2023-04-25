@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { getCampType } from "@/api/modules/games/hero";
 import { heroStore } from "@/store";
 import { $bus } from "@/utils";
+import { API_HERO } from "@/api";
 
 const $heroStore = heroStore();
 
@@ -45,7 +45,7 @@ const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }])
 gender.value = $heroStore.gender_type;
 
 //获取阵营列表
-getCampType().then((res) => {
+API_HERO.getCampType().then((res) => {
   res.forEach((item) => {
     select_camp.push({
       label: item.name,

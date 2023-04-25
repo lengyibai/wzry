@@ -3,9 +3,8 @@ import { ref } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import { getSkinType, getHeroSkin, addSkin } from "@/api/modules/games/skin";
-import { getHeroDetail } from "@/api/modules/games/hero";
 import { switchStore, skinStore } from "@/store";
+import { API_HERO, API_SKIN } from "@/api";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -34,12 +33,12 @@ const current_index = ref<number | null>(null); //根据悬浮的位置显示垃
 
 /* 选择英雄后触发 */
 const EmitSelectHero = (id: number) => {
-  getHeroSkin(id).then((res) => {
+  API_SKIN.getHeroSkin(id).then((res) => {
     skin_num.value = res.length;
     skins = res;
   });
 
-  getHeroDetail(id).then((res) => {
+  API_HERO.getHeroDetail(id).then((res) => {
     hero_info = res;
   });
 };
@@ -101,7 +100,7 @@ const EmitCommit = async () => {
   if (form_data.value!.every((item) => item.hero !== 0)) {
     for (let i = 0; i < form_data.value!.length; i++) {
       const item = form_data.value![i];
-      await addSkin(item);
+      await API_SKIN.addSkin(item);
       finish.value = true;
 
       setTimeout(() => {
@@ -119,7 +118,7 @@ const EmitCommit = async () => {
 /* 延迟显示 */
 $switchStore.$loading.close();
 setTimeout(async () => {
-  skin_types.value = await getSkinType();
+  skin_types.value = await API_SKIN.getSkinType();
   show.value = true;
 }, 1000);
 </script>

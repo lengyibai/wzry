@@ -1,32 +1,6 @@
 import { ref } from "vue";
 
-import {
-  Camptype,
-  RaceType,
-  Epigraph,
-  Epigrapheffect,
-  Epigraphtype,
-  Equip,
-  Equipeffect,
-  EquipSynthetic,
-  Equiptype,
-  HeroBasic,
-  Herodata,
-  HeroImg,
-  Locationtype,
-  Periodtype,
-  Professiontype,
-  Relationship,
-  Skill,
-  Skilleffect,
-  Skilltype,
-  Skin,
-  Skintype,
-  Specialtytype,
-  User,
-  Voice,
-} from "@/api/modules/data";
-import { getHeroBasic } from "@/api/modules/games/hero";
+import { API_DATA, API_HERO } from "@/api";
 
 export default () => {
   const total = ref(0); //请求总数
@@ -35,29 +9,29 @@ export default () => {
   const finish = ref(false); //请求结束
 
   const requests: [string, () => Promise<any>, string][] = [
-    ["user", User, "用户"],
-    ["herobasic", HeroBasic, "英雄基础"],
-    ["heroimg", HeroImg, "英雄图片"],
-    ["herodata", Herodata, "英雄信息"],
-    ["skill", Skill, "技能列表"],
-    ["skilltype", Skilltype, "技能类型"],
-    ["skilleffect", Skilleffect, "技能效果"],
-    ["skin", Skin, "皮肤"],
-    ["skintype", Skintype, "皮肤类型"],
-    ["relationship", Relationship, "关系"],
-    ["equip", Equip, "装备"],
-    ["equipSynthetic", EquipSynthetic, "装备合成"],
-    ["equiptype", Equiptype, "装备类型"],
-    ["equipeffect", Equipeffect, "装备效果"],
-    ["epigraph", Epigraph, "铭文"],
-    ["epigraphtype", Epigraphtype, "铭文类型"],
-    ["epigrapheffect", Epigrapheffect, "铭文效果"],
-    ["professiontype", Professiontype, "职业"],
-    ["locationtype", Locationtype, "定位"],
-    ["specialtytype", Specialtytype, "特长"],
-    ["periodtype", Periodtype, "时期"],
-    ["camptype", Camptype, "阵营"],
-    ["racetype", RaceType, "种族"],
+    ["user", API_DATA.User, "用户"],
+    ["herobasic", API_DATA.HeroBasic, "英雄基础"],
+    ["heroimg", API_DATA.HeroImg, "英雄图片"],
+    ["herodata", API_DATA.Herodata, "英雄信息"],
+    ["skill", API_DATA.Skill, "技能列表"],
+    ["skilltype", API_DATA.Skilltype, "技能类型"],
+    ["skilleffect", API_DATA.Skilleffect, "技能效果"],
+    ["skin", API_DATA.Skin, "皮肤"],
+    ["skintype", API_DATA.Skintype, "皮肤类型"],
+    ["relationship", API_DATA.Relationship, "关系"],
+    ["equip", API_DATA.Equip, "装备"],
+    ["equipSynthetic", API_DATA.EquipSynthetic, "装备合成"],
+    ["equiptype", API_DATA.Equiptype, "装备类型"],
+    ["equipeffect", API_DATA.Equipeffect, "装备效果"],
+    ["epigraph", API_DATA.Epigraph, "铭文"],
+    ["epigraphtype", API_DATA.Epigraphtype, "铭文类型"],
+    ["epigrapheffect", API_DATA.Epigrapheffect, "铭文效果"],
+    ["professiontype", API_DATA.Professiontype, "职业"],
+    ["locationtype", API_DATA.Locationtype, "定位"],
+    ["specialtytype", API_DATA.Specialtytype, "特长"],
+    ["periodtype", API_DATA.Periodtype, "时期"],
+    ["camptype", API_DATA.Camptype, "阵营"],
+    ["racetype", API_DATA.RaceType, "种族"],
   ];
 
   const setData = <T extends { data: unknown }>(name: string, data: T) => {
@@ -80,7 +54,7 @@ export default () => {
     });
     await Promise.all(data_requests);
 
-    const hero_list = await getHeroBasic();
+    const hero_list = await API_HERO.getHeroBasic();
     total.value = hero_list.length - 2;
 
     /* 下载语音数据 */
@@ -91,7 +65,7 @@ export default () => {
       if (!["梦奇", "盾山"].includes(item.name)) {
         if (!isExist(item.pinyin, "voice_")) {
           setData(`voice_${item.pinyin}`, {
-            data: (await Voice(item.name)).data,
+            data: (await API_DATA.Voice(item.name)).data,
           });
           index.value++;
         }

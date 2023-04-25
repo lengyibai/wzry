@@ -2,13 +2,13 @@
 import { ref } from "vue";
 
 import { switchStore } from "@/store";
-import { Notice } from "@/api/modules/data";
+import { API_DATA } from "@/api";
 
 const $switchStore = switchStore();
 
 const notice = ref("");
 
-Notice().then((res) => {
+API_DATA.Notice().then((res) => {
   notice.value = res.data;
 });
 

@@ -3,9 +3,8 @@ import { ref } from "vue";
 
 import { top, height } from "../helper";
 
-import { getEquip } from "@/api/modules/games/equip";
-import { getEquipSynthetic } from "@/api/modules/games/equipSynthetic";
 import { TOOL } from "@/utils";
+import { API_EQUIP, API_EQUIPSYNTHETIC } from "@/api";
 
 /** 装备Dom元素信息 */
 type EquipElement = {
@@ -66,7 +65,7 @@ const equipStore = defineStore("equip", () => {
 
   /** @description 获取装备列表 */
   const getEquipList = async () => {
-    equip_list.value = await getEquip();
+    equip_list.value = await API_EQUIP.getEquip();
 
     //设置初始攻击类型的装备列表
     equip_list.value.forEach((item: Equip.Data) => {
@@ -113,7 +112,7 @@ const equipStore = defineStore("equip", () => {
     show_details.value = true;
     active_data.value = equip_list.value.find((item) => item.id === id);
 
-    getEquipSynthetic(id).then((res) => {
+    API_EQUIPSYNTHETIC.getEquipSynthetic(id).then((res) => {
       if (!res) return;
       active_array = res.id.toString().split("") || [];
       synthetic.value = res;
@@ -132,7 +131,7 @@ const equipStore = defineStore("equip", () => {
       try {
         for (let i = 0; i < synthetic.to!.length; i++) {
           const to = synthetic.to![i];
-          const res = await getEquipSynthetic(to.id);
+          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
           synthetic_id.value[1].push(res);
         }
       } catch (error) {
@@ -146,7 +145,7 @@ const equipStore = defineStore("equip", () => {
       synthetic_id.value[2] = [];
       for (let i = 0; i < synthetic_id.value[1].length; i++) {
         const to = synthetic_id.value[1][i];
-        const res = await getEquipSynthetic(to.id);
+        const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
         res?.to && synthetic_id.value[2].push(...res.to);
         synthetic_id.value[2].sort(function (a, b) {
           return a.id - b.id;
@@ -181,7 +180,7 @@ const equipStore = defineStore("equip", () => {
       try {
         for (let i = 0; i < synthetic.need!.length; i++) {
           const need = synthetic.need![i];
-          const res = await getEquipSynthetic(need.id);
+          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need.id);
           synthetic_id.value[0].push(res);
         }
       } catch (error) {
@@ -225,7 +224,7 @@ const equipStore = defineStore("equip", () => {
       try {
         for (let i = 0; i < synthetic.need!.length; i++) {
           const need = synthetic.need![i];
-          const res = await getEquipSynthetic(need.id);
+          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need.id);
           synthetic_id.value[1].push(res);
         }
 
@@ -242,7 +241,7 @@ const equipStore = defineStore("equip", () => {
         const need = synthetic_id.value[1][i].need;
         if (need) {
           for (let i = 0; i < need?.length; i++) {
-            const res = await getEquipSynthetic(need[i].id);
+            const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need[i].id);
             synthetic_id.value[0].push(res);
           }
         }

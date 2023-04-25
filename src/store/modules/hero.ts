@@ -1,11 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { getHeroData } from "@/api/modules/games/hero";
-import { getHeroSkill } from "@/api/modules/games/skill";
-import { getHeroSkin } from "@/api/modules/games/skin";
-import { getHeroRelationship } from "@/api/modules/games/relationship";
 import { TOOL } from "@/utils";
+import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 
 /** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {
@@ -54,11 +51,11 @@ const heroStore = defineStore("hero", () => {
 
   /** @description 获取英雄列表 */
   const getHeroList = async () => {
-    hero_list.value = await getHeroData();
+    hero_list.value = await API_HERO.getHeroData();
     for (let i = 0; i < hero_list.value.length; i++) {
-      hero_list.value[i].skills = await getHeroSkill(hero_list.value[i].id);
-      hero_list.value[i].skins = await getHeroSkin(hero_list.value[i].id);
-      hero_list.value[i].relationships = await getHeroRelationship(hero_list.value[i].id);
+      hero_list.value[i].skills = await API_SKILL.getHeroSkill(hero_list.value[i].id);
+      hero_list.value[i].skins = await API_SKIN.getHeroSkin(hero_list.value[i].id);
+      hero_list.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(hero_list.value[i].id);
     }
     setProfessional("全部");
   };

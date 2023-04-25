@@ -5,10 +5,10 @@ import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
-import { getSkinVoice } from "@/api/modules/games/voice";
 import { TOOL } from "@/utils";
 import { $bus } from "@/utils";
 import { switchStore, skinStore } from "@/store";
+import { API_VOICE } from "@/api";
 
 const $skinStore = skinStore();
 const $switchStore = switchStore();
@@ -40,7 +40,7 @@ const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
     show_poster.value = true;
     new TOOL.ScaleImage(v.data.poster);
   } else if (v.type === "voice") {
-    getSkinVoice(v.data.heroName, v.data.name).then((res) => {
+    API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;
       show_voice.value = true;
     });

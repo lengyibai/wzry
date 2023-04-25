@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Team } from "@/api/modules/data";
 import { switchStore } from "@/store";
 import { TOOL } from "@/utils";
+import { API_DATA } from "@/api";
 
 const $switchStore = switchStore();
 
@@ -12,7 +12,7 @@ const imgs = ref<string[]>([]);
 
 $switchStore.$audioStore("u4c5");
 
-Team().then((res) => {
+API_DATA.Team().then((res) => {
   imgs.value = res.data as unknown as string[];
 });
 

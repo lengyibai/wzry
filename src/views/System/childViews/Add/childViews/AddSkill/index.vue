@@ -6,10 +6,9 @@ import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { TOOL } from "@/utils";
-import { addHeroSkill } from "@/api/modules/games/skill";
-import { getSkillType, getSkillEffect } from "@/api/modules/games/hero";
 import { skillDefault, skillEffectDefault } from "@/default";
 import { switchStore, heroStore } from "@/store";
+import { API_HERO, API_SKILL } from "@/api";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -56,12 +55,12 @@ const skills_num = computed(() => (form_data.value ? form_data.value.length : 0)
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
 /* 获取技能类型 */
-getSkillType().then((res) => {
+API_HERO.getSkillType().then((res) => {
   skill_types.value = res;
 });
 
 /* 获取技能效果 */
-getSkillEffect().then((res) => {
+API_HERO.getSkillEffect().then((res) => {
   skill_effects.value = res;
 });
 
@@ -216,7 +215,7 @@ const handleDelConsume = () => {
 const EmitCommit = async () => {
   const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
   if (is_Finish && form_data.value![0].length >= 3) {
-    await addHeroSkill({
+    await API_SKILL.addHeroSkill({
       id: hero_id.value,
       unit: skill_unit.value,
       skills: form_data.value!,

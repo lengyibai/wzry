@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { getHeroBasic } from "@/api/modules/games/hero";
+import { API_HERO } from "@/api";
 
 interface Props {
   modelValue: number; //英雄id
@@ -23,7 +23,7 @@ const id = ref(0); //英雄id
 const hero_list = ref<General[]>([]); //获取英雄基础列表
 
 /* 获取英雄基础列表 */
-getHeroBasic().then((res) => {
+API_HERO.getHeroBasic().then((res) => {
   hero_list.value = res;
 
   //查找当前id的英雄名

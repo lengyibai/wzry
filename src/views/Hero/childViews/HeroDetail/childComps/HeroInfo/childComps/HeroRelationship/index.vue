@@ -3,7 +3,7 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 
 import { heroDetailStore } from "@/store";
-import { getHeroDetail } from "@/api/modules/games/hero";
+import { API_HERO } from "@/api";
 
 const $heroDetail = heroDetailStore();
 const $router = useRouter();
@@ -12,7 +12,7 @@ const relationship = ref();
 
 /* 切换英雄信息 */
 const toggleHero = (id: number) => {
-  getHeroDetail(id).then((hero) => {
+  API_HERO.getHeroDetail(id).then((hero) => {
     $heroDetail.setHeroInfo(hero);
     $router.replace({
       path: "/hero",

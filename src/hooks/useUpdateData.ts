@@ -1,29 +1,4 @@
-import {
-  HeroBasic,
-  HeroImg,
-  Herodata,
-  Skill,
-  Skilltype,
-  Skilleffect,
-  Skin,
-  Skintype,
-  Relationship,
-  Equip,
-  EquipSynthetic,
-  Equiptype,
-  Equipeffect,
-  Epigraph,
-  Epigraphtype,
-  Epigrapheffect,
-  Professiontype,
-  Locationtype,
-  Specialtytype,
-  Periodtype,
-  Camptype,
-  RaceType,
-  Voice,
-} from "@/api/modules/data";
-import { getHeroBasic } from "@/api/modules/games/hero";
+import { API_DATA, API_HERO } from "@/api";
 
 export default () => {
   const keywords: [string, string][] = [
@@ -52,28 +27,28 @@ export default () => {
   ];
 
   const requests: Record<string, () => Promise<any>> = {
-    herobasic: HeroBasic,
-    heroimg: HeroImg,
-    herodata: Herodata,
-    skill: Skill,
-    skilltype: Skilltype,
-    skilleffect: Skilleffect,
-    skin: Skin,
-    skintype: Skintype,
-    relationship: Relationship,
-    equip: Equip,
-    equipSynthetic: EquipSynthetic,
-    equiptype: Equiptype,
-    equipeffect: Equipeffect,
-    epigraph: Epigraph,
-    epigraphtype: Epigraphtype,
-    epigrapheffect: Epigrapheffect,
-    professiontype: Professiontype,
-    locationtype: Locationtype,
-    specialtytype: Specialtytype,
-    periodtype: Periodtype,
-    camptype: Camptype,
-    racetype: RaceType,
+    herobasic: API_DATA.HeroBasic,
+    heroimg: API_DATA.HeroImg,
+    herodata: API_DATA.Herodata,
+    skill: API_DATA.Skill,
+    skilltype: API_DATA.Skilltype,
+    skilleffect: API_DATA.Skilleffect,
+    skin: API_DATA.Skin,
+    skintype: API_DATA.Skintype,
+    relationship: API_DATA.Relationship,
+    equip: API_DATA.Equip,
+    equipSynthetic: API_DATA.EquipSynthetic,
+    equiptype: API_DATA.Equiptype,
+    equipeffect: API_DATA.Equipeffect,
+    epigraph: API_DATA.Epigraph,
+    epigraphtype: API_DATA.Epigraphtype,
+    epigrapheffect: API_DATA.Epigrapheffect,
+    professiontype: API_DATA.Professiontype,
+    locationtype: API_DATA.Locationtype,
+    specialtytype: API_DATA.Specialtytype,
+    periodtype: API_DATA.Periodtype,
+    camptype: API_DATA.Camptype,
+    racetype: API_DATA.RaceType,
   };
 
   let hero_list: Hero.Basic[] = []; //英雄基础列表
@@ -95,7 +70,7 @@ export default () => {
 
   /* 加载数据 */
   const load = async () => {
-    hero_list = await getHeroBasic(); //获取英雄基础列表
+    hero_list = await API_HERO.getHeroBasic(); //获取英雄基础列表
 
     //获取远程数据并比对
     const data_requests = keywords.map(async ([key, name]) => {
@@ -112,7 +87,7 @@ export default () => {
     //获取远程语音并比对
     const voice_requests = hero_list.map(async (hero) => {
       if (!["梦奇", "盾山"].includes(hero.name)) {
-        const v = (await Voice(hero.name)).data;
+        const v = (await API_DATA.Voice(hero.name)).data;
         const l = getLocalData(hero.pinyin, "voice_");
 
         if (JSON.stringify(l) !== JSON.stringify(v)) {
