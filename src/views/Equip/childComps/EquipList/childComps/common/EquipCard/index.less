@@ -6,15 +6,15 @@
 
   .border {
     position: absolute;
-    overflow: hidden;
     left: 0;
     z-index: 1;
+    overflow: hidden;
     width: 4.6875rem;
     height: 4.6875rem;
     border: 0.3125rem solid #fef5b2;
     border-radius: 50%;
-    pointer-events: none;
     box-shadow: var(--shine-20) #fef5b2, var(--shine-10) #fef5b2 inset;
+    pointer-events: none;
 
     &::before,
     &::after {
@@ -42,7 +42,7 @@
     width: 4.6875rem;
     height: 4.6875rem;
     margin-right: 0.3125rem;
-    border: 0.1875rem solid var(--theme-color-two);
+    border: 0.1875rem solid var(--theme-border-color-one);
     border-radius: 50%;
   }
 
@@ -71,7 +71,7 @@
   }
 
   .box {
-    color: var(--theme-color-nine);
+    color: var(--theme-font-color-seven);
     font-size: 1.25rem;
     text-shadow: var(--t-shadow-e);
     line-height: 1.25;
@@ -87,13 +87,13 @@
       transition: all var(--time-250);
 
       .desc {
-        color: var(--theme-color-seven);
+        color: var(--theme-font-color-five);
         font-size: 1rem;
         transition: inherit;
       }
 
       .price {
-        color: var(--theme-color-five);
+        color: var(--theme-font-color-four);
         font-size: 1rem;
         transition: inherit;
       }

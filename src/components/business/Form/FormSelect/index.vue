@@ -145,7 +145,7 @@ watch(
             :placeholder="active_value || '搜索'"
             line
             width="15.625rem"
-            color="var(--theme-color-five)"
+            color="var(--theme-font-color-four)"
             @input="handleSearch"
             @focus="handleFocus"
             @blur="handleBlur"

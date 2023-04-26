@@ -75,7 +75,7 @@ const handleSave = () => {
       <K-Input
         v-model="user_info.nickname"
         class="input"
-        border-color="var(--theme-color-three)"
+        border-color="var(--theme-border-color-two)"
         width="15.625rem"
         align="center"
         @update:model-value="handleContrast"
@@ -88,7 +88,7 @@ const handleSave = () => {
       <K-Input
         v-model="user_info.password"
         class="input"
-        border-color="var(--theme-color-three)"
+        border-color="var(--theme-border-color-two)"
         width="15.625rem"
         align="center"
         @update:model-value="handleContrast"

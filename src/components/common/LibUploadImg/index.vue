@@ -54,7 +54,7 @@ const fn = (e: Event) => {
   overflow: hidden;
   width: 6.25rem;
   height: 6.25rem;
-  border: 0.1875rem solid var(--theme-color-three);
+  border: 0.1875rem solid var(--theme-border-color-two);
   border-radius: 50%;
 
   &:hover {

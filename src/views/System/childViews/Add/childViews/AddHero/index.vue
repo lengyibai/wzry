@@ -140,7 +140,7 @@ setTimeout(async () => {
     <!-- 属性相关 -->
     <div class="flex-box">
       <FormLabel v-for="(v, k) in attr" :label="v" label-width="12.5rem" :key="k">
-        <K-Range v-model="form_data![k]" :text="form_data![k] + '%'" track-color="var(--theme-color-nine)" />
+        <K-Range v-model="form_data![k]" :text="form_data![k] + '%'" track-color="var(--theme-el-color-four)" />
       </FormLabel>
     </div>
 

@@ -23,7 +23,7 @@ setInterval(() => {
   align-items: center;
   height: 100%;
   padding: 0 0.625rem;
-  color: var(--theme-color-five);
+  color: var(--theme-font-color-four);
   font-size: 1.25rem;
   text-shadow: var(--t-shadow-e);
   border-left: var(--subline);

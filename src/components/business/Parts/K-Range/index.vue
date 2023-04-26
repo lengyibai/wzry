@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
   text: "",
   size: "2.1875rem",
   showDot: true,
-  trackColor: "var(--theme-color-one)",
+  trackColor: "var(--theme-el-color-one)",
   showIcon: true,
   icon: IMGBED + "/image/range_icon.png",
   showNum: true,

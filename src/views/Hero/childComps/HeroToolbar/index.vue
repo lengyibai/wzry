@@ -178,8 +178,8 @@ onBeforeUnmount(() => {
     <K-Input
       v-model="search_value"
       placeholder="搜索英雄"
-      border-color="var(--theme-color-three)"
-      color="var(--theme-color-five)"
+      border-color="var(--theme-border-color-two)"
+      color="var(--theme-font-color-four)"
       align="center"
       width="15em"
       font-size="1.5rem"
