@@ -17,7 +17,7 @@ const emit = defineEmits<Emits>();
 const $controlStore = Store.control();
 const $heroStore = Store.hero();
 
-const { show, finish, status, form_data, EmitConfirmRemove, EmitConfirmSave } = viewHide<Hero.Skill[][]>(
+const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
   emit,
   "add_skill_list"
 );
@@ -64,7 +64,7 @@ API_HERO.getSkillEffect().then((res) => {
 });
 
 /* 判断是否已存在该英雄技能 */
-const EmitSelectHeroChange = (id: number) => {
+const onSelectHeroChange = (id: number) => {
   const d = localStorage.getItem("data_skill") as string;
   const v = JSON.parse(d) as Hero.SkillParams[];
 
@@ -99,7 +99,7 @@ const handleToggleSkill = () => {
 };
 
 /* 删除技能 */
-const EmitDelSkill = () => {
+const onDelSkill = () => {
   show_DelSkill.value = true;
 };
 
@@ -109,21 +109,21 @@ const handleDelDeputys = () => {
 };
 
 /* 确认删除技能 */
-const EmitConfirmDelSkill = () => {
+const onConfirmDelSkill = () => {
   if (skill_num.value === 1) {
     $controlStore.$msg("至少保留一个技能", "error");
     return;
   }
   activeSkills()?.splice(active_index.value, 1);
   if (active_index.value === 0) {
-    EmitSelectSkill(active_index.value + 1);
+    onSelectSkill(active_index.value + 1);
   } else {
-    EmitSelectSkill(active_index.value - 1);
+    onSelectSkill(active_index.value - 1);
   }
 };
 
 /* 确认删除技能组 */
-const EmitConfirmDelDeputys = () => {
+const onConfirmDelDeputys = () => {
   form_data.value?.splice(deputy_index.value, 1);
   if (deputy_index.value === 0 && skills_num.value > 2) {
     deputy_index.value += 1;
@@ -133,7 +133,7 @@ const EmitConfirmDelDeputys = () => {
 };
 
 /* 选择技能后触发 */
-const EmitSelectSkill = (index: number) => {
+const onSelectSkill = (index: number) => {
   skill_effect.value = "";
   active_index.value = index;
   const effect = activeSkill().effect;
@@ -148,7 +148,7 @@ const EmitSelectSkill = (index: number) => {
 };
 
 /* 选择效果后触发 */
-const EmitSelectEffect = (v: string | number | any[]) => {
+const onSelectEffect = (v: string | number | any[]) => {
   activeSkill().effect![effectIndex.value].type = v as string;
 };
 
@@ -211,7 +211,7 @@ const handleDelConsume = () => {
 };
 
 /* 发布 */
-const EmitCommit = async () => {
+const onCommit = async () => {
   const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
   if (is_Finish && form_data.value![0].length >= 3) {
     await API_SKILL.addHeroSkill({
@@ -221,7 +221,7 @@ const EmitCommit = async () => {
     });
     setTimeout(() => {
       finish.value = true;
-      EmitConfirmRemove();
+      onConfirmRemove();
       $controlStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
@@ -257,7 +257,7 @@ setTimeout(async () => {
       </FormLabel>
 
       <!-- 选择英雄 -->
-      <SelectHero v-model="hero_id" @update:model-value="EmitSelectHeroChange" key="SelectHero" />
+      <SelectHero v-model="hero_id" @update:model-value="onSelectHeroChange" key="SelectHero" />
 
       <!-- 技能名称 -->
       <FormInput v-model="activeSkill().name" label="名称" required placeholder="技能名称" />
@@ -281,7 +281,7 @@ setTimeout(async () => {
           :value="skill_effect"
           label="技能效果"
           :disabled="!activeSkill().effect![effectIndex]"
-          @update:model-value="EmitSelectEffect"
+          @update:model-value="onSelectEffect"
         />
         <button class="add" @click="handleAddEffect">添加/下一行</button>
         <button class="add" @click="handleEditEffect">上一行</button>
@@ -318,17 +318,17 @@ setTimeout(async () => {
     <AddSkillBasic
       :active-index="active_index"
       :skills="form_data![deputy_index]"
-      @select="EmitSelectSkill"
-      @del="EmitDelSkill"
+      @select="onSelectSkill"
+      @del="onDelSkill"
     />
 
     <!-- 发布相关 -->
     <ReleaseConfirm
       v-model:status="status"
       :finish="finish"
-      @commit="EmitCommit"
-      @confirm="EmitConfirmSave"
-      @cancel="EmitConfirmRemove"
+      @commit="onCommit"
+      @confirm="onConfirmSave"
+      @cancel="onConfirmRemove"
     />
 
     <!-- 确认删除技能 -->
@@ -337,7 +337,7 @@ setTimeout(async () => {
         v-if="show_DelSkill"
         v-model="show_DelSkill"
         text="确认删除当前技能？"
-        @confirm="EmitConfirmDelSkill"
+        @confirm="onConfirmDelSkill"
       />
     </transition>
 
@@ -347,7 +347,7 @@ setTimeout(async () => {
         v-if="show_DelDeputys"
         v-model="show_DelDeputys"
         text="确认删除当前技能组？"
-        @confirm="EmitConfirmDelDeputys"
+        @confirm="onConfirmDelDeputys"
       />
     </transition>
   </ManageMask>

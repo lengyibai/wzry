@@ -14,7 +14,7 @@ const emit = defineEmits<Emits>();
 const $controlStore = Store.control();
 const $skinStore = Store.skin();
 
-const { hero_id, show, finish, status, form_data, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Skin[]>(
+const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<Hero.Skin[]>(
   emit,
   "add_skin_list"
 );
@@ -32,7 +32,7 @@ const skin_types = ref<Hero.SkinType[]>([]); //皮肤类型表
 const current_index = ref<number | null>(null); //根据悬浮的位置显示垃圾桶
 
 /* 选择英雄后触发 */
-const EmitSelectHero = (id: number) => {
+const onSelectHero = (id: number) => {
   API_SKIN.getHeroSkin(id).then((res) => {
     skin_num.value = res.length;
     skins = res;
@@ -44,7 +44,7 @@ const EmitSelectHero = (id: number) => {
 };
 
 //如果本地存在英雄id，则自动选中
-hero_id.value && EmitSelectHero(hero_id.value);
+hero_id.value && onSelectHero(hero_id.value);
 
 /* 增加一项 */
 const handleAddOne = () => {
@@ -76,7 +76,7 @@ const handleAddOne = () => {
 };
 
 /* 判断皮肤是否存在 */
-const EmitExist = (v: number | string) => {
+const onExist = (v: number | string) => {
   let isExist = skins.some((item: Hero.Skin) => {
     return item.name === v;
   });
@@ -90,7 +90,7 @@ const handleDelOne = (i: number) => {
 };
 
 /* 发布 */
-const EmitCommit = async () => {
+const onCommit = async () => {
   //设置皮肤id
   form_data.value!.forEach((item, index) => {
     item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
@@ -104,7 +104,7 @@ const EmitCommit = async () => {
       finish.value = true;
 
       setTimeout(() => {
-        EmitConfirmRemove();
+        onConfirmRemove();
         $controlStore.$msg("发布成功", "info");
         $skinStore.getSkin();
       }, 500);
@@ -141,7 +141,7 @@ setTimeout(async () => {
         v-model="hero_id"
         class="select-hero"
         :disabled="!!form_data!.length"
-        @update:model-value="EmitSelectHero"
+        @update:model-value="onSelectHero"
         key="SelectHero"
       />
 
@@ -156,7 +156,7 @@ setTimeout(async () => {
         @mouseleave="current_index = null"
         :key="index"
       >
-        <FormInput v-model="item.name" label="皮肤名" required @blur="EmitExist" />
+        <FormInput v-model="item.name" label="皮肤名" required @blur="onExist" />
         <FormInput v-model="item.price" label="价格" placeholder="请输入" />
 
         <!-- 皮肤类型 -->
@@ -180,9 +180,9 @@ setTimeout(async () => {
     <ReleaseConfirm
       v-model:status="status"
       :finish="finish"
-      @commit="EmitCommit"
-      @confirm="EmitConfirmSave"
-      @cancel="EmitConfirmRemove"
+      @commit="onCommit"
+      @confirm="onConfirmSave"
+      @cancel="onConfirmRemove"
     />
   </ManageMask>
 </template>

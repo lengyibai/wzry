@@ -49,7 +49,7 @@ const handleMoveLine = (e: MouseEvent) => {
 };
 
 /* 点击音乐工具栏 */
-const EmitMusicToole = (type: string) => {
+const onMusicToole = (type: string) => {
   if (type === "play") {
     $musicStore.play(false);
     return;
@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
     <Time v-show="!$deviceStore.vertical" class="time" />
 
     <!-- 音乐工具栏 -->
-    <MusicTool v-show="enable_music" @toggle="EmitMusicToole" />
+    <MusicTool v-show="enable_music" @toggle="onMusicToole" />
 
     <!-- 右侧作者 -->
     <Copyright v-show="!$deviceStore.vertical" class="copyright" />

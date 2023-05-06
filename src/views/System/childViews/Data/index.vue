@@ -160,14 +160,14 @@ const handleExport = (data: any) => {
 };
 
 /* 确认覆盖 */
-const EmitConfirmReset = async () => {
+const onConfirmReset = async () => {
   const v = (await requests[replace_data.key]()).data;
   updateData(replace_data.key, v);
   handleCheck(replace_data);
 };
 
 /* 排序触发 */
-const EmitsSortChange = (v: number[]) => {
+const onsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
     table_data.value = Util.TOOL.typeSort(table_data.value, "length", v[1] === 1 ? true : false);
   } else {
@@ -189,7 +189,7 @@ onActivated(() => {
       :data="table_data"
       :head="[$t('数据类型'), $t('数据量'), $t('状态'), $t('操作')]"
       :sort="['数据量']"
-      @sortChange="EmitsSortChange"
+      @sortChange="onsSortChange"
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
@@ -221,7 +221,7 @@ onActivated(() => {
         v-model="show_ConfirmClose"
         text="下载覆盖"
         title="确认重置"
-        @confirm="EmitConfirmReset"
+        @confirm="onConfirmReset"
       />
     </transition>
   </div>

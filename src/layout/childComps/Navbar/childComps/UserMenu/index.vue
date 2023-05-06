@@ -38,7 +38,7 @@ const handleLogoff = async () => {
 };
 
 /* 显示确认关闭弹窗 */
-const EmitClose = () => {
+const onClose = () => {
   if (edit_status.value) {
     show_close.value = true;
   } else {
@@ -76,7 +76,7 @@ const EmitClose = () => {
     </div>
   </div>
   <transition name="fade">
-    <K-Dialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="EmitClose">
+    <K-Dialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="onClose">
       <EditUserInfo :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
     </K-Dialog>
   </transition>

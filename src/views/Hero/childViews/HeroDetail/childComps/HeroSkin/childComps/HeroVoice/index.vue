@@ -67,7 +67,7 @@ const handleEnter = () => {
 const play = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    EmitEnded();
+    onEnded();
     return;
   }
   current_index.value = index;
@@ -75,12 +75,12 @@ const play = (voice: string, index: number) => {
 };
 
 /* 语音信息 */
-const EmitInfo = (voice_info: HTMLMediaElement) => {
+const onInfo = (voice_info: HTMLMediaElement) => {
   time.value = voice_info.duration + 0.35;
 };
 
 /* 语音播放结束后触发 */
-const EmitEnded = () => {
+const onEnded = () => {
   current_index.value = -1;
   play_link.value = "";
 };
@@ -112,7 +112,7 @@ const EmitEnded = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @info="EmitInfo" @ended="EmitEnded" />
+    <PlayVoice v-if="play_link" :link="play_link" @info="onInfo" @ended="onEnded" />
   </div>
 </template>
 

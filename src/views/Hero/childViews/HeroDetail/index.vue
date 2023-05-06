@@ -49,17 +49,17 @@ const skin_num = computed(() => {
 });
 
 /* 点击滚动索引 */
-const EmitToggle = (index: number) => {
+const onToggle = (index: number) => {
   scroll_index.value = index;
 };
 
 /* 滚动立即触发 */
-const EmitScollStart = () => {
+const onScollStart = () => {
   $controlStore.$audioStore("n4r4");
 };
 
 /* 滚动结束触发 */
-const EmitScrollEnd = (index: number) => {
+const onScrollEnd = (index: number) => {
   $heroDetail.setIndex(index);
 };
 
@@ -108,7 +108,7 @@ $controlStore.$audioStore("u4c5");
       @dragstart.prevent
       @click="handleHide"
     />
-    <HeroScroll v-model="scroll_index" @start="EmitScollStart" @end="EmitScrollEnd">
+    <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />
@@ -127,7 +127,7 @@ $controlStore.$audioStore("u4c5");
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="EmitToggle" />
+      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
     </transition>
   </div>
 </template>

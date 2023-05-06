@@ -18,7 +18,7 @@ const emit = defineEmits<Emits>();
 const show_AddLink = ref(false); //显示/隐藏添加链接弹窗
 
 /* 获取链接 */
-const EmitGetLink = (link: string) => {
+const onGetLink = (link: string) => {
   emit("update:modelValue", link);
   show_AddLink.value = false;
 };
@@ -32,7 +32,7 @@ const EmitGetLink = (link: string) => {
 
   <!-- 添加图片链接弹窗组件 -->
   <transition name="fade">
-    <AddLink v-if="show_AddLink" v-model="show_AddLink" :title="title" :link="modelValue" @get-link="EmitGetLink" />
+    <AddLink v-if="show_AddLink" v-model="show_AddLink" :title="title" :link="modelValue" @get-link="onGetLink" />
   </transition>
 </template>
 

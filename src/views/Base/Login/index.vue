@@ -31,7 +31,7 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
  * 点击右上角工具栏
  * @param v 点击工具栏的静音、README、公告按钮类型
  */
-const EmitToolType = (v: string) => {
+const onToolType = (v: string) => {
   show_readme.value = v === "readme";
   show_notice.value = v === "notice";
   show_team.value = v === "team";
@@ -39,7 +39,7 @@ const EmitToolType = (v: string) => {
 };
 
 /* 关闭公告触发 */
-const EmitCloseNotice = () => {
+const onCloseNotice = () => {
   const toolbarFocus = new Util.TOOL.FocusElement(toolbar.value.el);
 
   $controlStore.$tip({
@@ -85,7 +85,7 @@ onUnmounted(() => {
     <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo || show_team }" />
 
     <!-- 工具栏 -->
-    <ToolBar :notice="finish" @clicks="EmitToolType" ref="toolbar" />
+    <ToolBar :notice="finish" @clicks="onToolType" ref="toolbar" />
 
     <!-- 视频背景 -->
     <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />
@@ -95,7 +95,7 @@ onUnmounted(() => {
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">
-      <Notice v-if="show_notice" v-model="show_notice" @close="EmitCloseNotice" />
+      <Notice v-if="show_notice" v-model="show_notice" @close="onCloseNotice" />
     </transition>
 
     <!-- README -->

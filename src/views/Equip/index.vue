@@ -14,7 +14,7 @@ const equipMain = ref();
 const show = ref(false); //显示装备列表
 
 /* 点击筛选后触发返回顶部 */
-const EmitChangeFilter = () => {
+const onChangeFilter = () => {
   setTimeout(() => {
     equipMain.value.scroll({ top: 0 });
   }, 450);
@@ -44,7 +44,7 @@ onActivated(() => {
 
     <!-- 装备侧边栏 -->
     <transition name="sidebar" appear>
-      <FilterSidebar type="equip" @change="EmitChangeFilter" />
+      <FilterSidebar type="equip" @change="onChangeFilter" />
     </transition>
   </div>
 </template>

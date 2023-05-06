@@ -7,7 +7,7 @@ import HeroSkillContent from "./childComps/HeroSkillContent/index.vue"; //主体
 const hero_skill = ref<Hero.Skill>(); //技能信息
 
 /* 选择技能 */
-const EmitSelectSkill = (skill: Hero.Skill) => {
+const onSelectSkill = (skill: Hero.Skill) => {
   setTimeout(() => {
     hero_skill.value = skill;
   }, 375);
@@ -17,7 +17,7 @@ const EmitSelectSkill = (skill: Hero.Skill) => {
 <template>
   <div class="hero-skill">
     <!--技能图标-->
-    <HeroSkillIcon @select-skill="EmitSelectSkill" />
+    <HeroSkillIcon @select-skill="onSelectSkill" />
 
     <!--主体内容-->
     <transition name="fade">

@@ -40,11 +40,11 @@ export default <T>(emit: Emits, key: string) => {
   };
 
   /* 关闭前保存 */
-  const EmitConfirmSave = () => {
+  const onConfirmSave = () => {
     close();
   };
   /* 关闭后删除 */
-  const EmitConfirmRemove = () => {
+  const onConfirmRemove = () => {
     localStorage.removeItem(key);
     close();
   };
@@ -60,7 +60,7 @@ export default <T>(emit: Emits, key: string) => {
     form_data,
     /** 发布成功 */
     finish,
-    EmitConfirmSave,
-    EmitConfirmRemove,
+    onConfirmSave,
+    onConfirmRemove,
   };
 };

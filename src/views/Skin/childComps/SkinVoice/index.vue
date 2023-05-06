@@ -21,7 +21,7 @@ const current_index = ref(-1); //当前播放索引
 const handlePlay = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    EmitEnded();
+    onEnded();
     return;
   }
 
@@ -30,7 +30,7 @@ const handlePlay = (voice: string, index: number) => {
 };
 
 /* 语音播放结束后触发 */
-let EmitEnded = () => {
+const onEnded = () => {
   current_index.value = -1;
   play_link.value = "";
 };
@@ -84,7 +84,7 @@ onMounted(() => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @ended="EmitEnded" />
+    <PlayVoice v-if="play_link" :link="play_link" @ended="onEnded" />
   </div>
 </template>
 

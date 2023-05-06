@@ -49,17 +49,17 @@ const current_index = ref(-1); //当前展开的菜单
 const select_status = reactive([false, false, false, false, false]); //记录展开状态
 
 /* 价格排序 */
-const EmitPriceSort = (v: string) => {
+const onPriceSort = (v: string) => {
   $skinStore.sortPrice(v);
 };
 
 /* 皮肤类型筛选 */
-const EmitTypeFilter = (v: string) => {
+const onTypeFilter = (v: string) => {
   $skinStore.filterType(v);
 };
 
 /* 正序/倒序 */
-const EmitSortType = (v: string) => {
+const onSortType = (v: string) => {
   $skinStore.sortType(v);
 };
 
@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
         :status="select_status[0]"
         :data="select_price"
         @click="handleSelectStatus(0)"
-        @select="EmitPriceSort"
+        @select="onPriceSort"
       />
 
       <!-- 皮肤类型筛选 -->
@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
         :data="select_type"
         list-height="31.25rem"
         @click="handleSelectStatus(1)"
-        @select="EmitTypeFilter"
+        @select="onTypeFilter"
       />
 
       <!-- 正序/倒序 -->
@@ -131,7 +131,7 @@ onBeforeUnmount(() => {
         :data="sort_type"
         list-height="6.25rem"
         @click="handleSelectStatus(2)"
-        @select="EmitSortType"
+        @select="onSortType"
       />
     </div>
 

@@ -34,7 +34,7 @@ const handleEnterCard = (data: Hero.Data) => {
 };
 
 /* 查看详情 */
-const EmitViewClick = (id: number) => {
+const onViewClick = (id: number) => {
   //获取指定英雄数据
   API_HERO.getHeroDetail(id).then((hero) => {
     hero_info.value = hero;
@@ -58,21 +58,21 @@ const EmitViewClick = (id: number) => {
 //如果地址栏存在id，则打开查看详情
 if ($heroStore.hero_list.length === 0) {
   if (id) {
-    EmitViewClick(Number(id));
+    onViewClick(Number(id));
   } else {
     $heroStore.getHeroList();
   }
 }
 
 /* 滚动触发 */
-const EmitScroll = (v: number) => {
+const onScroll = (v: number) => {
   Util.TOOL.debounce(() => {
     $heroStore.setScroll(v);
   }, 250);
 };
 
 /* 加载更多 */
-const EmitLoadMore = () => {
+const onLoadMore = () => {
   $heroStore.loadMore();
 };
 
@@ -155,8 +155,8 @@ onBeforeUnmount(() => {
           gap="1.5625rem"
           :count="count"
           :scroll-top="$heroStore.scroll"
-          @scroll="EmitScroll"
-          @load-more="EmitLoadMore"
+          @scroll="onScroll"
+          @load-more="onLoadMore"
           ref="heroListRef"
         >
           <transition-group name="card" appear>
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
               @mouseenter="handleEnterCard(item)"
               :key="index"
             >
-              <HeroCard :data="item" @view="EmitViewClick(item.id!)" />
+              <HeroCard :data="item" @view="onViewClick(item.id!)" />
             </div>
           </transition-group>
         </LibGrid>

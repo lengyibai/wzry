@@ -29,7 +29,7 @@ const info: string[][] = [
   ["种族", "raceType", "race"],
 ];
 
-const { status, show, form_data, finish, EmitConfirmSave, EmitConfirmRemove } = viewHide<Hero.Data>(emit, "add_hero");
+const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>(emit, "add_hero");
 
 //类型列表
 const type_list: Record<string, any[]> = reactive({
@@ -50,7 +50,7 @@ API_HERO.getHeroBasic().then((res) => {
 form_data.value ??= Util.TOOL.deepCopy(heroDefault);
 
 /* 发布 */
-const EmitCommit = async () => {
+const onCommit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
 
   if (id && mark && name && cover && headImg && poster) {
@@ -66,7 +66,7 @@ const EmitCommit = async () => {
     await API_HERO.addHeroData(form_data.value!);
     finish.value = true;
     setTimeout(() => {
-      EmitConfirmRemove();
+      onConfirmRemove();
       $controlStore.$msg("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
@@ -157,9 +157,9 @@ setTimeout(async () => {
     <ReleaseConfirm
       v-model:status="status"
       :finish="finish"
-      @commit="EmitCommit"
-      @confirm="EmitConfirmSave"
-      @cancel="EmitConfirmRemove"
+      @commit="onCommit"
+      @confirm="onConfirmSave"
+      @cancel="onConfirmRemove"
     />
   </ManageMask>
 </template>

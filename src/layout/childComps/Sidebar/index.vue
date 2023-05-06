@@ -18,7 +18,7 @@ const options = $routerStore.routes; //路由数据
 const routes = formatSidebarRoutes(options); //格式化后的路由数据
 
 /* 设置坐标 */
-const EmitCoord = (v: number) => {
+const onCoord = (v: number) => {
   if (v === 0) {
     show_slider.value = false;
   } else {
@@ -43,7 +43,7 @@ onBeforeUnmount(() => {
 
     <!-- 侧边栏列表 -->
     <div class="side-item">
-      <sideItem v-for="route in routes" :route="route" :coord="top" @coord="EmitCoord" :key="route.path" />
+      <sideItem v-for="route in routes" :route="route" :coord="top" @coord="onCoord" :key="route.path" />
     </div>
 
     <!-- 滑块 -->

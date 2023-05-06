@@ -27,7 +27,7 @@ const skin_price_toggle = ref(false); //皮肤价格切换
 const skin_bg = reactive<string[]>([]); //背景图
 
 /* 切换皮肤海报 */
-const EmitTogglePoster = ([i, index]: number[]) => {
+const onTogglePoster = ([i, index]: number[]) => {
   const skins = hero_data.value.skins;
   skin_bg[i] = (skins && skins[index].poster) || ""; //设置背景图
   skin_bg_toggle.value = !skin_bg_toggle.value; //用于皮肤背景的切换动画
@@ -88,7 +88,7 @@ const EmitTogglePoster = ([i, index]: number[]) => {
             v-if="hero_data.skins!.length"
             class="hero-skin-head-img"
             :skins="hero_data.skins"
-            @bg-imgs="EmitTogglePoster"
+            @bg-imgs="onTogglePoster"
           />
         </div>
       </div>

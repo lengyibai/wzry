@@ -21,19 +21,19 @@ const voices = ref<Hero.Voice[]>([]); //语音列表
 $skinStore.getSkin(); //获取皮肤列表
 
 /* 滚动触发 */
-const EmitScroll = (v: number) => {
+const onScroll = (v: number) => {
   Util.TOOL.debounce(() => {
     $skinStore.setScroll(v);
   }, 250);
 };
 
 /* 加载更多 */
-const EmitLoadMore = () => {
+const onLoadMore = () => {
   $skinStore.loadMore();
 };
 
 /* 点击工具栏中的选项 */
-const EmitShowTool = (v: { type: string; data: Hero.Skin }) => {
+const onShowTool = (v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
     new Util.TOOL.ScaleImage(v.data.poster);
@@ -112,12 +112,12 @@ onBeforeUnmount(() => {
           gap="1.5625rem"
           :count="count"
           :scroll-top="$skinStore.scroll"
-          @load-more="EmitLoadMore"
-          @scroll="EmitScroll"
+          @load-more="onLoadMore"
+          @scroll="onScroll"
           ref="skinListRef"
         >
           <div v-for="item in $skinStore.show_list" class="skin-card" @mouseenter="handleEnterCard" :key="item.id">
-            <SkinCard :data="item" @showTool="EmitShowTool" />
+            <SkinCard :data="item" @showTool="onShowTool" />
           </div>
         </LibGrid>
       </transition>

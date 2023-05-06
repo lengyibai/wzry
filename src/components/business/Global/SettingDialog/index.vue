@@ -25,20 +25,20 @@ const show_confirm_reset = ref(false); //显示/隐藏确认重置弹窗
 const config = ref<SettingConfig>({ ...$settingStore.config });
 
 /* 语言 */
-const EmitLanguage = (v: number) => {
+const onLanguage = (v: number) => {
   setLanguage(v as 0 | 1 | 2);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 动画速率 */
-const EmitSpeed = (v: number) => {
+const onSpeed = (v: number) => {
   $cssVarStore.setSpeed(v as 0 | 1 | 2);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 开启音乐 */
-const EmitMusic = (v: boolean) => {
-  EmitSaveConfig();
+const onMusic = (v: boolean) => {
+  onSaveConfig();
   if (v) {
     $musicStore.play(false);
   } else {
@@ -47,58 +47,58 @@ const EmitMusic = (v: boolean) => {
 };
 
 /* 音乐音量调节 */
-const EmitMusicVolume = (v: number) => {
+const onMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
   Util.TOOL.debounce(() => {
-    EmitSaveConfig();
+    onSaveConfig();
   }, 1000);
 };
 
 /* 支持控制音乐进度 */
-const EmitMusicProgress = () => {
-  EmitSaveConfig();
+const onMusicProgress = () => {
+  onSaveConfig();
 };
 
 /* 开启音效 */
-const EmitAudio = (v: boolean) => {
+const onAudio = (v: boolean) => {
   $audioStore.setAudio(v);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 音效音量调节 */
-const EmitAudioVolume = (v: number) => {
+const onAudioVolume = (v: number) => {
   $audioStore.setVolume(v);
   Util.TOOL.debounce(() => {
-    EmitSaveConfig();
+    onSaveConfig();
   }, 1000);
 };
 
 /* 线条 */
-const EmitBorder = (v: boolean) => {
+const onBorder = (v: boolean) => {
   $cssVarStore.setBorder(v);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 阴影 */
-const EmitShadow = (v: boolean) => {
+const onShadow = (v: boolean) => {
   $cssVarStore.setShadow(v);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 柔光 */
-const EmitShine = (v: boolean) => {
+const onShine = (v: boolean) => {
   $cssVarStore.setShine(v);
-  EmitSaveConfig();
+  onSaveConfig();
 };
 
 /* 粒子特效 */
-const EmitParticle = () => {
-  EmitSaveConfig();
+const onParticle = () => {
+  onSaveConfig();
 };
 
 /* 启用/禁用Tip */
-const EmitTip = (v: boolean) => {
-  EmitSaveConfig();
+const onTip = (v: boolean) => {
+  onSaveConfig();
   v && $controlStore.$tip({ text: "2rb7" });
 };
 
@@ -109,12 +109,12 @@ const handleResetTip = () => {
 };
 
 /* 保存配置 */
-const EmitSaveConfig = () => {
+const onSaveConfig = () => {
   $settingStore.saveConfig(config.value);
 };
 
 /* 重置配置 */
-const EmitResetConfig = () => {
+const onResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
   $audioStore.setAudio(config.value.audio);
@@ -139,7 +139,7 @@ const EmitResetConfig = () => {
             v-model="config.language"
             width="7rem"
             :option="['中文', '繁体', 'English']"
-            @update:model-value="EmitLanguage"
+            @update:model-value="onLanguage"
           />
         </div>
 
@@ -150,7 +150,7 @@ const EmitResetConfig = () => {
             v-model="config.speed"
             width="7rem"
             :option="[$t('迅速'), $t('均衡'), $t('优雅')]"
-            @update:model-value="EmitSpeed"
+            @update:model-value="onSpeed"
           />
         </div>
 
@@ -161,9 +161,9 @@ const EmitResetConfig = () => {
             v-model="config.audioVolume"
             :text="config.audioVolume + '%'"
             :disabled="!config.audio"
-            @update:model-value="EmitAudioVolume"
+            @update:model-value="onAudioVolume"
           />
-          <K-Check v-model="config.audio" @update:model-value="EmitAudio" />
+          <K-Check v-model="config.audio" @update:model-value="onAudio" />
         </div>
 
         <!-- 音乐 -->
@@ -173,9 +173,9 @@ const EmitResetConfig = () => {
             v-model="config.musicVolume"
             :text="config.musicVolume + '%'"
             :disabled="!config.music"
-            @update:model-value="EmitMusicVolume"
+            @update:model-value="onMusicVolume"
           />
-          <K-Check v-model="config.music" @update:model-value="EmitMusic" />
+          <K-Check v-model="config.music" @update:model-value="onMusic" />
         </div>
 
         <!-- 音乐进度控制 -->
@@ -184,19 +184,19 @@ const EmitResetConfig = () => {
             {{ $t("音乐进度控制") }}
             <DescSet desc="音乐进度控制描述" />
           </div>
-          <K-Check v-model="config.musicProgress" @update:model-value="EmitMusicProgress" />
+          <K-Check v-model="config.musicProgress" @update:model-value="onMusicProgress" />
         </div>
 
         <!-- 线条 -->
         <div class="option">
           <div class="label">{{ $t("元素线条") }}</div>
-          <K-Check v-model="config.border" @update:model-value="EmitBorder" />
+          <K-Check v-model="config.border" @update:model-value="onBorder" />
         </div>
 
         <!-- 阴影 -->
         <div class="option">
           <div class="label">{{ $t("元素阴影") }}</div>
-          <K-Check v-model="config.shadow" @update:model-value="EmitShadow" />
+          <K-Check v-model="config.shadow" @update:model-value="onShadow" />
         </div>
 
         <!-- 柔光 -->
@@ -205,7 +205,7 @@ const EmitResetConfig = () => {
             {{ $t("元素发光") }}
             <DescSet desc="元素发光描述" />
           </div>
-          <K-Check v-model="config.shine" @update:model-value="EmitShine" />
+          <K-Check v-model="config.shine" @update:model-value="onShine" />
         </div>
 
         <!-- 粒子特效 -->
@@ -214,7 +214,7 @@ const EmitResetConfig = () => {
             {{ $t("粒子特效") }}
             <DescSet desc="粒子特效描述" />
           </div>
-          <K-Check v-model="config.particle" @update:model-value="EmitParticle" />
+          <K-Check v-model="config.particle" @update:model-value="onParticle" />
         </div>
 
         <!-- 视频背景 -->
@@ -223,7 +223,7 @@ const EmitResetConfig = () => {
             {{ $t("视频背景") }}
             <DescSet desc="视频背景描述" />
           </div>
-          <K-Check v-model="config.videoBg" @update:model-value="EmitSaveConfig" />
+          <K-Check v-model="config.videoBg" @update:model-value="onSaveConfig" />
         </div>
 
         <!-- 小贴士 -->
@@ -232,7 +232,7 @@ const EmitResetConfig = () => {
             {{ $t("小贴士") }}
             <DescSet desc="小贴士描述" />
           </div>
-          <K-Check v-model="config.tip" @update:model-value="EmitTip" />
+          <K-Check v-model="config.tip" @update:model-value="onTip" />
         </div>
 
         <!-- 恢复所有不再提示 -->
@@ -250,12 +250,7 @@ const EmitResetConfig = () => {
 
     <!-- 确认重置 -->
     <transition name="fade">
-      <ConfirmClose
-        v-if="show_confirm_reset"
-        v-model="show_confirm_reset"
-        text="重置配置项"
-        @confirm="EmitResetConfig"
-      />
+      <ConfirmClose v-if="show_confirm_reset" v-model="show_confirm_reset" text="重置配置项" @confirm="onResetConfig" />
     </transition>
   </div>
 </template>

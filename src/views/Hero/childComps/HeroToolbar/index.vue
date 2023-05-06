@@ -54,27 +54,27 @@ API_HERO.getCampType().then((res) => {
 });
 
 /* 阵营筛选 */
-const EmitSelectCamp = (v: string) => {
+const onSelectCamp = (v: string) => {
   $heroStore.filterCamp(v);
 };
 
 /* 属性筛选 */
-const EmitSelectAttr = (v: string) => {
+const onSelectAttr = (v: string) => {
   $heroStore.filterAttr(v);
 };
 
 /* 杂项筛选 */
-const EmitSelectMisc = (v: string) => {
+const onSelectMisc = (v: string) => {
   $heroStore.filterMisc(v);
 };
 
 /* 杂项排序 */
-const EmitSelectSort = (v: string) => {
+const onSelectSort = (v: string) => {
   $heroStore.sortMisc(v);
 };
 
 /* 正序/倒序 */
-const EmitSortType = (v: string) => {
+const onSortType = (v: string) => {
   $heroStore.sortType(v);
 };
 
@@ -127,7 +127,7 @@ onBeforeUnmount(() => {
         :data="select_camp"
         list-height="26.5625rem"
         @click="handleSelectStatus(0)"
-        @select="EmitSelectCamp"
+        @select="onSelectCamp"
       />
 
       <!-- 自带属性筛选按钮 -->
@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
         :data="select_attr"
         list-height="21.5625rem"
         @click="handleSelectStatus(1)"
-        @select="EmitSelectAttr"
+        @select="onSelectAttr"
       />
 
       <!-- 杂项筛选按钮 -->
@@ -147,7 +147,7 @@ onBeforeUnmount(() => {
         :data="select_misc"
         list-height="18.5rem"
         @click="handleSelectStatus(2)"
-        @select="EmitSelectMisc"
+        @select="onSelectMisc"
       />
 
       <!-- 杂项排序按钮 -->
@@ -157,7 +157,7 @@ onBeforeUnmount(() => {
         :data="select_sort"
         list-height="15.4375rem"
         @click="handleSelectStatus(3)"
-        @select="EmitSelectSort"
+        @select="onSelectSort"
       />
 
       <!-- 正序/倒序 -->
@@ -167,7 +167,7 @@ onBeforeUnmount(() => {
         :data="sort_type"
         list-height="6.25rem"
         @click="handleSelectStatus(4)"
-        @select="EmitSortType"
+        @select="onSortType"
       />
     </div>
 

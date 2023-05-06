@@ -37,7 +37,7 @@ const handleBack = () => {
  * 进入方式，用于切换注册和登录组件
  * @param v 注册或登录
  */
-const EmitIntoType = (v: string) => {
+const onIntoType = (v: string) => {
   is_reg.value = v;
 };
 
@@ -45,7 +45,7 @@ const EmitIntoType = (v: string) => {
  * 注册成功
  * @param form 注册成功的表单
  */
-const EmitRegSuccess = (form: User) => {
+const onRegSuccess = (form: User) => {
   is_reg.value = "登录";
   reg_form.value = form;
 };
@@ -94,7 +94,7 @@ if (!Util.TOOL.isPhone || $deviceStore.browser_name === "safari") {
     </div>
 
     <!-- 组件切换 -->
-    <component :is="component" :user-info="reg_form" @into="EmitIntoType" @success="EmitRegSuccess" />
+    <component :is="component" :user-info="reg_form" @into="onIntoType" @success="onRegSuccess" />
   </div>
 </template>
 
