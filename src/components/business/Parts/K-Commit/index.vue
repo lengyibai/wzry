@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 interface Props {
   size?: string;

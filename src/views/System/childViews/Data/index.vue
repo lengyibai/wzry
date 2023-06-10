@@ -1,7 +1,8 @@
 <script setup lang="ts" name="database">
 import { ref, onActivated } from "vue";
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 
 const $skinStore = Store.skin();

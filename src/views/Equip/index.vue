@@ -4,7 +4,7 @@ import { ref, onActivated } from "vue";
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $equipStore = Store.equip();
 const $controlStore = Store.control();

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $heroDetail = Store.heroDetail();
 const $controlStore = Store.control();
@@ -15,7 +15,7 @@ const current_index = ref(-1); //当前播放索引
 const voices = ref<Hero.Voice[]>([]); //语音列表
 
 /* 切换语音时触发 */
-$heroDetail.setSkinToggleFn(async (hero_name, skin_name) => {
+$heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
   await $heroDetail.setSkinVoice(hero_name, skin_name);
   if (!skin_name) {
     voices.value = [];

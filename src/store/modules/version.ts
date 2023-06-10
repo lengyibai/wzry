@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 import useUpdateData from "@/hooks/useUpdateData";
 import { API_DATA } from "@/api";
 

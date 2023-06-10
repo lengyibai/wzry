@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
 import { API_USER } from "@/api";

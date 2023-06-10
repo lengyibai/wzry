@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 interface Props {
   modelValue: boolean | string; //选中状态

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store } from "@/config";
+import { Store } from "@/store";
 interface Props {
   modelValue: boolean; //显示/隐藏
   text?: string; //提示描述

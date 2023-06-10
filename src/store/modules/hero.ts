@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 /** @description 英雄列表页 */
 const heroStore = defineStore("hero", () => {

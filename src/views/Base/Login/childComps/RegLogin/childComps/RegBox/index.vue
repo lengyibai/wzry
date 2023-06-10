@@ -6,7 +6,7 @@ import IntoBtn from "../IntoBtn/index.vue"; //按钮
 import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 import { userDefaultInfo } from "@/default";
-import { Store } from "@/config";
+import { Store } from "@/store";
 import { API_USER } from "@/api";
 
 interface Emits {

@@ -5,7 +5,8 @@ import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
 
 const $skinStore = Store.skin();

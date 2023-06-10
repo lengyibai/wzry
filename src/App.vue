@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store } from "@/config";
+import { Store } from "./store";
 
 const $settingStore = Store.setting();
 $settingStore.takeEffect();

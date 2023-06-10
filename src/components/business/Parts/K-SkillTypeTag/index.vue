@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 interface Props {
   type: string; //技能类型

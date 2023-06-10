@@ -23,7 +23,7 @@ const setup = (app: App) => {
   app.use(pinia);
 };
 
-export default {
+const Store = {
   audio,
   auth,
   collapse,
@@ -42,3 +42,5 @@ export default {
   version,
   setup,
 };
+
+export { Store };

@@ -7,7 +7,8 @@ import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
 import { heroDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 
 const $route = useRoute();

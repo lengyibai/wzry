@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 interface Props {
   equip: Equip.Data; //装备信息

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $collapseStore = Store.collapse();
 const $controlStore = Store.control();

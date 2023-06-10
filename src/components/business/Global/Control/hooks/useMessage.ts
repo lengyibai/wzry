@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 export default () => {
   const messages = reactive<MsgText[]>([]); //消息队列

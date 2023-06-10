@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { Store, Util } from "@/config";
 import { API_HERO } from "@/api";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 const $heroStore = Store.hero();
 

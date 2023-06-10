@@ -4,7 +4,7 @@ import { ref, computed, onUnmounted } from "vue";
 import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue"; //左侧描述
 import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"; //右侧效果
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 interface Props {
   skill: Hero.Skill; //技能信息

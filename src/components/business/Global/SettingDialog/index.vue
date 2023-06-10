@@ -5,7 +5,8 @@ import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 interface Props {
   modelValue: boolean;

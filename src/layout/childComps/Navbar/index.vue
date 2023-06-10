@@ -4,7 +4,8 @@ import PassTime from "./childComps/PassTime/index.vue"; //中间过去时
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 const $deviceStore = Store.device();
 </script>

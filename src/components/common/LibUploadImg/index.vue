@@ -11,7 +11,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 interface Props {
   modelValue?: string;

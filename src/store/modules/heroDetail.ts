@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { heroDefault } from "@/default";
 import { API_VOICE } from "@/api";
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];

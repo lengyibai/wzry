@@ -6,7 +6,7 @@ import MusicTool from "./childComps/MusicTool/index.vue"; //工具栏
 import Copyright from "./childComps/Copyright/index.vue"; //右侧版权
 import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $musicStore = Store.music();
 const $settingStore = Store.setting();

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 /** @description 设备信息 */
 const deviceStore = defineStore("phone", () => {

@@ -4,7 +4,7 @@ import { ref, onActivated } from "vue";
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $epigraphStore = Store.epigraph();
 const $controlStore = Store.control();

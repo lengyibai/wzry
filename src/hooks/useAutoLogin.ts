@@ -1,4 +1,4 @@
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 /** @description 通过获取本地用户权限在路由还未挂载时动态添加路由 */
 const addRouter = () => {

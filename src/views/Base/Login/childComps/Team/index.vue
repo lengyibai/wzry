@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store, Util } from "@/config";
 import { API_DATA } from "@/api";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 const $controlStore = Store.control();
 

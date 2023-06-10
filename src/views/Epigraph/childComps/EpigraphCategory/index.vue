@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 const $controlStore = Store.control();
 const $epigraphStore = Store.epigraph();

@@ -9,7 +9,8 @@ import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue"; //皮肤价格
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue"; //切换皮肤工具
 
 import { heroDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_SKIN } from "@/api";
 
 const hero_data = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄数据

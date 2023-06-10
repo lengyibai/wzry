@@ -3,7 +3,7 @@ import { defineAsyncComponent, reactive, onActivated } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 type Options = Record<
   string,

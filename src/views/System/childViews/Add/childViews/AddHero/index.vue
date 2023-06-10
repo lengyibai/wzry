@@ -4,7 +4,8 @@ import { reactive } from "vue";
 import viewHide from "../../../../hooks/useViewHide";
 
 import { heroDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 
 interface Emits {

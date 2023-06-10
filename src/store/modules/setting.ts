@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { configDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { setLanguage } from "@/language";
 
 /** @description 设置相关 */

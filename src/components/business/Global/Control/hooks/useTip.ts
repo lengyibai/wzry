@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 export default () => {
   const $settingStore = Store.setting();

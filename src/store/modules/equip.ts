@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { top, height } from "../helper";
 
 import { API_EQUIP, API_EQUIPSYNTHETIC } from "@/api";
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 /** 装备Dom元素信息 */
 type EquipElement = {

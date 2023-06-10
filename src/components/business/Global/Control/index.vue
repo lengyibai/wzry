@@ -3,7 +3,8 @@ import useLoading from "./hooks/useLoading"; //loading
 import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 const $controlStore = Store.control();
 const $audioStoreStore = Store.audio();

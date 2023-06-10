@@ -4,7 +4,8 @@ import VConsole from "vconsole";
 import App from "./App.vue";
 
 import { setupRouter } from "@/router";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import i18n from "@/language";
 import setupDirective from "@/directives";
 import useAutoLogin from "@/hooks/useAutoLogin";

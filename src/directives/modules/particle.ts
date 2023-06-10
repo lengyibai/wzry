@@ -4,7 +4,7 @@
  */
 import type { Directive, DirectiveBinding } from "vue";
 
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 const fn = (el: HTMLElement, binding: DirectiveBinding) => {
   setTimeout(() => {

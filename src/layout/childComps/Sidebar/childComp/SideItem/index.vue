@@ -4,7 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 
 interface RouteFormat {
   path: string; //路由路径

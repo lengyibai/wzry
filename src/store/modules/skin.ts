@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 import { API_SKIN } from "@/api";
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 /** @description 皮肤列表页 */
 const skinStore = defineStore("skin", () => {

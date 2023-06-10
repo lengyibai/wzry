@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import { Store } from "@/config";
+import { Store } from "@/store";
 import { API_HERO, API_SKIN } from "@/api";
 
 interface Emits {

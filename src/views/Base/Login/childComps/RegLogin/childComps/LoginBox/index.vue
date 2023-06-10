@@ -6,7 +6,8 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 
 interface Props {
   userInfo: User; //注册成功后用于填充

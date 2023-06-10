@@ -3,7 +3,7 @@ import { onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 interface Props {
   data: Epigraph.Data[]; //铭文列表

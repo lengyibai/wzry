@@ -6,7 +6,8 @@ import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { skillDefault, skillEffectDefault } from "@/default";
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_HERO, API_SKILL } from "@/api";
 
 interface Emits {

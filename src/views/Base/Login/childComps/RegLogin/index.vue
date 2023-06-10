@@ -5,7 +5,8 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-import { Store, Util } from "@/config";
+import { Store } from "@/store";
+import { Util } from "@/utils";
 import { API_USER } from "@/api";
 
 const $settingStore = Store.setting();
@@ -52,7 +53,7 @@ const onRegSuccess = (form: User) => {
 
 /* 视差动画(如果为移动端，则取消) */
 if (!Util.TOOL.isPhone || $deviceStore.browser_name === "safari") {
-  const parallax = new Util.TOOL.Parallax((x, y) => {
+  const parallax = new Util.TOOL.Parallax((x: number, y: number) => {
     loginBox.value &&
       (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`);
   });

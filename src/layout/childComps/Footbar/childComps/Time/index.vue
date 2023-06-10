@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { Util } from "@/config";
+import { Util } from "@/utils";
 
 //当前时间
 const time = computed(() => Util.TOOL.fmtTime(new Date(), "YYYY.MM.DD"));
