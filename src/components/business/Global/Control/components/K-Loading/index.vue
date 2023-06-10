@@ -1,14 +1,17 @@
 <script setup lang="ts">
-interface Props {
-  show: boolean;
-  text: string;
-}
-withDefaults(defineProps<Props>(), {
-  text: "加载中",
-});
+import useLoading from "./hooks/useLoading"; //loading
+
+import { Util } from "@/utils";
+
+const { show, text } = useLoading();
 
 const IMGBED = window.IMGBED; //全局图床链接
 const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
+
+Util.$Bus.on("loading", (v) => {
+  show.value = v.show;
+  text.value = v.text;
+});
 </script>
 
 <template>

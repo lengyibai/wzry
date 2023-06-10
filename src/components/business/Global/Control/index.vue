@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import useLoading from "./hooks/useLoading"; //loading
-import useMessage from "./hooks/useMessage"; //消息提醒
 import useTip from "./hooks/useTip"; //小贴士
 
 import { Store } from "@/store";
@@ -9,32 +7,34 @@ import { Util } from "@/utils";
 const $controlStore = Store.control();
 const $audioStoreStore = Store.audio();
 
-const { loading, show_loading, loading_text } = useLoading();
-const { msg, messages } = useMessage();
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
+
+Util.$Bus.on("tip", (data) => {
+  tip(data);
+});
 
 /* 挂载全局 */
 $controlStore.setAudioStore($audioStoreStore.play);
-$controlStore.setMsg(msg);
-$controlStore.setTip(tip);
-$controlStore.setLoading(loading);
 
 /* 全局监听事件 */
-const events = ["resize", "mousemove", "mouseup"];
-for (const v of events) {
-  window.addEventListener(v, (e) => {
-    Util.$Bus.emit(v, e);
-  });
-}
+window.addEventListener("resize", (e) => {
+  Util.$Bus.emit("resize", e);
+});
+window.addEventListener("mousemove", (e) => {
+  Util.$Bus.emit("mousemove", e);
+});
+window.addEventListener("mouseup", (e) => {
+  Util.$Bus.emit("mouseup", e);
+});
 </script>
 
 <template>
   <div class="GlobalSwitch">
     <!-- loading -->
-    <K-Loading :show="show_loading" :text="loading_text" />
+    <K-Loading />
 
     <!-- 消息提醒 -->
-    <K-Message :messages="messages" />
+    <K-Message />
 
     <!-- NPC -->
     <transition name="fade">

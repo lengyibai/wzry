@@ -1,8 +1,9 @@
 <script setup lang="ts">
-interface Props {
-  messages: MsgText[]; //消息队列
-}
-defineProps<Props>();
+import useMessage from "./hooks/useMessage"; //消息提醒
+
+import { Util } from "@/utils";
+
+const { msg, messages } = useMessage();
 
 //字体颜色
 const color: Record<string, string> = {
@@ -30,6 +31,10 @@ const imgs: Record<string, Record<string, string>> = {
     right: getImg("right_danger"),
   },
 };
+
+Util.$Bus.on("msg", (data) => {
+  msg(data.text, data.type);
+});
 </script>
 
 <template>

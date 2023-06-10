@@ -8,6 +8,7 @@ import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 import { userDefaultInfo } from "@/default";
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $message } from "@/config";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
@@ -31,7 +32,7 @@ if (props.userInfo) {
 /* 登录 */
 const handleLogin = () => {
   if (Util.TOOL.existEmpty(form.value, ["id", "password"])) {
-    $controlStore.$msg("请完整填写", "error");
+    $message("请完整填写", "error");
     return;
   }
 
@@ -39,7 +40,7 @@ const handleLogin = () => {
     .login(form.value)
     .then(() => {
       $controlStore.$audioStore("e84n");
-      $controlStore.$msg("登录成功");
+      $message("登录成功");
       //记住密码
       if (remember.value) {
         localStorage.setItem("remember_user", JSON.stringify(form.value));
@@ -48,7 +49,7 @@ const handleLogin = () => {
       }
     })
     .catch((err) => {
-      $controlStore.$msg(err, "error");
+      $message(err, "error");
     });
 };
 </script>

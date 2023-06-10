@@ -6,6 +6,7 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { HOME_URL } from "@/enum";
 import { Store } from "@/store";
+import { $loading } from "@/config";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -22,7 +23,7 @@ useRouter.beforeEach(async (to, from, next) => {
 
   //如果当前路径不等于跳转路径&&跳转路径非403、404&&、400，并且存在title，则使用loading
   if (to.path !== from.path && !["/403", "/404", "/400"].includes(to.path) && to.meta.title) {
-    Store.control().$loading.show(to.meta.title as string);
+    $loading.show(to.meta.title as string);
   }
 
   //浏览器版本过低
@@ -69,7 +70,7 @@ useRouter.beforeEach(async (to, from, next) => {
 });
 
 useRouter.afterEach((to) => {
-  Store.control().$loading.close();
+  $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 

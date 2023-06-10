@@ -4,6 +4,7 @@ import { defineAsyncComponent, reactive, onActivated } from "vue";
 import useManageCard from "../../hooks/useManageCard";
 
 import { Store } from "@/store";
+import { $loading } from "@/config";
 
 type Options = Record<
   string,
@@ -43,7 +44,7 @@ const options: Options = reactive({
 const open = (key: string) => {
   options[key].show = true;
   $controlStore.$audioStore();
-  $controlStore.$loading.show(list[key]);
+  $loading.show(list[key]);
 };
 
 onActivated(() => {

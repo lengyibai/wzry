@@ -5,6 +5,7 @@ import MuiscList from "../MuiscList/index.vue";
 
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $tip } from "@/config";
 
 interface Emits {
   (e: "toggle", v: string): void;
@@ -14,14 +15,13 @@ const emit = defineEmits<Emits>();
 const $musicStore = Store.music();
 const $settingStore = Store.setting();
 const $deviceStore = Store.device();
-const $controlStore = Store.control();
 
 const musicTool = ref();
 
 nextTick(() => {
   if (Util.TOOL.isPhone || !$settingStore.config.music) return;
   const musicToolFocus = new Util.TOOL.FocusElement(musicTool.value);
-  $controlStore.$tip({
+  $tip({
     text: "58mz",
     align: "right-top",
     createFn: () => {

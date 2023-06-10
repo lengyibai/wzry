@@ -5,13 +5,13 @@ import viewHide from "../../../../hooks/useViewHide";
 
 import { Store } from "@/store";
 import { API_HERO, API_SKIN } from "@/api";
+import { $loading, $message } from "@/config";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
 const $skinStore = Store.skin();
 
 const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<Hero.Skin[]>(
@@ -71,7 +71,7 @@ const handleAddOne = () => {
       });
     });
   } else {
-    $controlStore.$msg("请选择英雄后新增", "error");
+    $message("请选择英雄后新增", "error");
   }
 };
 
@@ -80,7 +80,7 @@ const onExist = (v: number | string) => {
   let isExist = skins.some((item: Hero.Skin) => {
     return item.name === v;
   });
-  isExist && $controlStore.$msg("该皮肤已存在", "warning");
+  isExist && $message("该皮肤已存在", "warning");
 };
 
 /* 删除一项 */
@@ -105,18 +105,18 @@ const onCommit = async () => {
 
       setTimeout(() => {
         onConfirmRemove();
-        $controlStore.$msg("发布成功", "info");
+        $message("发布成功", "info");
         $skinStore.getSkin();
       }, 500);
     }
   } else {
-    $controlStore.$msg("请完整填写", "error");
+    $message("请完整填写", "error");
     status.value = 0;
   }
 };
 
 /* 延迟显示 */
-$controlStore.$loading.close();
+$loading.close();
 setTimeout(async () => {
   skin_types.value = await API_SKIN.getSkinType();
   show.value = true;

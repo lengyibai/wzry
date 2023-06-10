@@ -8,6 +8,7 @@ import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 import { userDefaultInfo } from "@/default";
 import { Store } from "@/store";
 import { API_USER } from "@/api";
+import { $message } from "@/config";
 
 interface Emits {
   (e: "success", form: User): void;
@@ -25,18 +26,18 @@ const handleReg = () => {
   $controlStore.$audioStore("36jn");
 
   if (form_verify.value.some((item) => !item)) {
-    $controlStore.$msg("请正确填写", "error");
+    $message("请正确填写", "error");
     return;
   }
 
   //注册
   API_USER.register(form)
     .then(() => {
-      $controlStore.$msg("注册成功！");
+      $message("注册成功！");
       emit("success", form);
     })
     .catch((err) => {
-      $controlStore.$msg(err, "warning");
+      $message(err, "warning");
     });
 };
 </script>

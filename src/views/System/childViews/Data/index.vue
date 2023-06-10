@@ -4,6 +4,7 @@ import { ref, onActivated } from "vue";
 import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_DATA } from "@/api";
+import { $message } from "@/config";
 
 const $skinStore = Store.skin();
 const $heroStore = Store.hero();
@@ -137,7 +138,7 @@ const handleCheck = async (data: any) => {
       update_status = true;
     }, 3000);
   } else {
-    $controlStore.$msg("更新太频繁，更新间隔为3秒", "warning");
+    $message("更新太频繁，更新间隔为3秒", "warning");
   }
 };
 

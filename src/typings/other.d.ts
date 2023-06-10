@@ -57,7 +57,7 @@ declare namespace Control {
   type Msg = (text: string, type?: MsgType) => void;
 
   /** @description 小贴士 */
-  type Tip = (obj: {
+  interface Tip {
     /** 左上角标题 */
     title?: string;
     /** 提示内容 */
@@ -70,7 +70,7 @@ declare namespace Control {
     btnFn?: Func;
     /** tip创建后执行的函数 */
     createFn?: Func;
-  }) => void;
+  }
 
   /** @description loading */
   interface Loading {

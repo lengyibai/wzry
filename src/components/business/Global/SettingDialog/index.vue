@@ -7,6 +7,7 @@ import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $message, $tip } from "@/config";
 
 interface Props {
   modelValue: boolean;
@@ -17,7 +18,6 @@ const $audioStore = Store.audio();
 const $musicStore = Store.music();
 const $settingStore = Store.setting();
 const $cssVarStore = Store.cssVar();
-const $controlStore = Store.control();
 
 //默认配置
 const default_config: SettingConfig = { ...configDefault };
@@ -100,13 +100,13 @@ const onParticle = () => {
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
   onSaveConfig();
-  v && $controlStore.$tip({ text: "2rb7" });
+  v && $tip({ text: "2rb7" });
 };
 
 /* 恢复所有小贴士 */
 const handleResetTip = () => {
   $settingStore.restoreTip();
-  $controlStore.$msg("已恢复所有小贴士");
+  $message("已恢复所有小贴士");
 };
 
 /* 保存配置 */
@@ -125,7 +125,7 @@ const onResetConfig = () => {
   $cssVarStore.setShine(config.value.shine);
   $cssVarStore.setShadow(config.value.shadow);
   $cssVarStore.setBorder(config.value.border);
-  $controlStore.$msg("已重置所有配置项");
+  $message("已重置所有配置项");
 };
 </script>
 

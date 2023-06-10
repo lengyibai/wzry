@@ -7,13 +7,13 @@ import { heroDefault } from "@/default";
 import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
+import { $loading, $message } from "@/config";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
 const $heroStore = Store.hero();
 
 const attr: Record<string, string> = {
@@ -68,17 +68,17 @@ const onCommit = async () => {
     finish.value = true;
     setTimeout(() => {
       onConfirmRemove();
-      $controlStore.$msg("发布成功", "info");
+      $message("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $controlStore.$msg("请完整填写", "error");
+    $message("请完整填写", "error");
     status.value = 0;
   }
 };
 
 /* 延迟显示 */
-$controlStore.$loading.close();
+$loading.close();
 setTimeout(async () => {
   type_list.campType = await API_HERO.getCampType();
   type_list.raceType = await API_HERO.getRaceType();

@@ -9,13 +9,13 @@ import { skillDefault, skillEffectDefault } from "@/default";
 import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_HERO, API_SKILL } from "@/api";
+import { $loading, $message } from "@/config";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
 const $heroStore = Store.hero();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
@@ -70,7 +70,7 @@ const onSelectHeroChange = (id: number) => {
   const v = JSON.parse(d) as Hero.SkillParams[];
 
   if (v.some((item) => item.id === id)) {
-    $controlStore.$msg("该英雄已拥有技能，如需修改请前往修改页面", "warning");
+    $message("该英雄已拥有技能，如需修改请前往修改页面", "warning");
   }
 };
 
@@ -112,7 +112,7 @@ const handleDelDeputys = () => {
 /* 确认删除技能 */
 const onConfirmDelSkill = () => {
   if (skill_num.value === 1) {
-    $controlStore.$msg("至少保留一个技能", "error");
+    $message("至少保留一个技能", "error");
     return;
   }
   activeSkills()?.splice(active_index.value, 1);
@@ -223,17 +223,17 @@ const onCommit = async () => {
     setTimeout(() => {
       finish.value = true;
       onConfirmRemove();
-      $controlStore.$msg("发布成功", "info");
+      $message("发布成功", "info");
       $heroStore.getHeroList();
     }, 500);
   } else {
-    $controlStore.$msg("请完整填写必填项，且主技能个数不低于3个", "error");
+    $message("请完整填写必填项，且主技能个数不低于3个", "error");
     status.value = 0;
   }
 };
 
 /* 延迟显示 */
-$controlStore.$loading.close();
+$loading.close();
 setTimeout(async () => {
   show.value = true;
 }, 1000);

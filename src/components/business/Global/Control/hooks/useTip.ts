@@ -17,7 +17,7 @@ export default () => {
   const btn_text = ref<string>(); //按钮文字
   const btnFn = ref(() => {}); //点击按钮需要触发的函数
 
-  const tip: Control.Tip = (config) => {
+  const tip = (config: Control.Tip) => {
     const {
       title: biaoti,
       text,

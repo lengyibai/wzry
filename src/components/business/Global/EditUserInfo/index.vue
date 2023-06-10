@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { Store } from "@/store";
 import { API_USER } from "@/api";
+import { $message } from "@/config";
 
 interface Props {
   id: string; //帐号
@@ -48,7 +49,7 @@ const handleSave = () => {
       })
     );
 
-    $controlStore.$msg("保存成功");
+    $message("保存成功");
   });
 
   emit("close");

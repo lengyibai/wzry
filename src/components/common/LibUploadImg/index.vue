@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Store } from "@/store";
+import { $loading, $message } from "@/config";
 import { Util } from "@/utils";
 
 interface Props {
@@ -24,11 +24,9 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
-
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
-  $controlStore.$loading.show("图片压缩中...");
+  $loading.show("图片压缩中...");
   Util.TOOL.imageOptimizer({
     file,
     width: 150, //压缩尺寸
@@ -36,12 +34,12 @@ const fn = (e: Event) => {
     maxsize: 300, //超过多大进行压缩
     /* 成功回调 */
     success: (...data: any[]) => {
-      $controlStore.$loading.close();
+      $loading.close();
       emit("update:modelValue", data[2]);
     },
     fail: () => {
-      $controlStore.$loading.close();
-      $controlStore.$msg("请上传图片文件", "error");
+      $loading.close();
+      $message("请上传图片文件", "error");
     },
   });
 };

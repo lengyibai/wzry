@@ -1,13 +1,11 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { Store } from "@/store";
 import useUpdateData from "@/hooks/useUpdateData";
 import { API_DATA } from "@/api";
+import { $message } from "@/config";
 
 const versionStore = defineStore("version", () => {
-  const $controlStore = Store.control();
-
   let timer: Interval = 0; //实时更新计时器
   const local_version = ref(""); //本地版本
   const remote_version = ref(""); //远程版本
@@ -59,7 +57,7 @@ const versionStore = defineStore("version", () => {
         if (test > 0) {
           clearInterval(timer);
           data_status.value = true;
-          $controlStore.$msg("正在更新版本，更新后可查看数据改动，请稍等...");
+          $message("正在更新版本，更新后可查看数据改动，请稍等...");
           useUpdateData().then((res) => {
             update_log.value = { ...update_log.value, ...res };
             show_update.value = true;

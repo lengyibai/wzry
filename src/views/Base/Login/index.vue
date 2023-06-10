@@ -11,9 +11,9 @@ import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $tip } from "@/config";
 
 const $settingStore = Store.setting();
-const $controlStore = Store.control();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -43,7 +43,7 @@ const onToolType = (v: string) => {
 const onCloseNotice = () => {
   const toolbarFocus = new Util.TOOL.FocusElement(toolbar.value.el);
 
-  $controlStore.$tip({
+  $tip({
     text: "9f5m",
     align: "right-bottom",
     createFn: () => {

@@ -3,6 +3,7 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $tip } from "@/config";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
@@ -10,7 +11,6 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $heroDetail = Store.heroDetail();
-const $controlStore = Store.control();
 
 const skin = ref();
 const showSkin = ref();
@@ -121,14 +121,14 @@ $heroDetail.setScollFn("skin", (index) => {
               skinHeadFocus.blur();
             };
             if (Util.TOOL.isPhone) {
-              $controlStore.$tip({
+              $tip({
                 text: "1w7o",
                 align: "right-top",
                 createFn: a,
                 btnFn: b,
               });
             } else {
-              $controlStore.$tip({
+              $tip({
                 text: "9oy5",
                 align: "right-top",
                 createFn: a,

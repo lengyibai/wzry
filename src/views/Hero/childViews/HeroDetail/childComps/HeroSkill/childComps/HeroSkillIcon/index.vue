@@ -3,6 +3,7 @@ import { ref, computed, onUnmounted } from "vue";
 
 import { Store } from "@/store";
 import { Util } from "@/utils";
+import { $tip } from "@/config";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
@@ -40,7 +41,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
     setTimeout(() => {
       const toggleFocus = new Util.TOOL.FocusElement(toggle.value);
 
-      $controlStore.$tip({
+      $tip({
         align: "right-top",
         text: `${hero_data.value.name}存在${
           length == 3 ? "三" : "两"
