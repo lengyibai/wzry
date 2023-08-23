@@ -1,12 +1,12 @@
 import PIN_YIN from "./pinyin";
 
 /** @description 随机数 */
-const random = (min: number, max: number, num = 0) => {
+export const random = (min: number, max: number, num = 0) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(num));
 };
 
 /** @description 小数百分比互转 */
-const potEoPct = (str: string | number, ret = 4) => {
+export const potEoPct = (str: string | number, ret = 4) => {
   if (typeof str === "string") {
     return Number(str.replace("%", "")) / 100;
   }
@@ -14,14 +14,14 @@ const potEoPct = (str: string | number, ret = 4) => {
 };
 
 /** @description 根据时间段问候 */
-const timeGreet = (greet: Record<string, string> = {}) => {
+export const timeGreet = (greet: Record<string, string> = {}) => {
   const { a = "午夜好", b = "早上好", c = "上午好", d = "中午好", e = "下午好", f = "晚上好" } = greet;
   const now = new Date().getHours();
   return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 };
 
 /** @description requestAnimationFrame计时器 */
-const frameInterval = (fn: () => void, fre = 0) => {
+export const frameInterval = (fn: () => void, fre = 0) => {
   let time = 0;
   f();
   function f() {
@@ -35,10 +35,10 @@ const frameInterval = (fn: () => void, fre = 0) => {
 };
 
 /** @description 判断是否为数组 */
-const isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
+export const isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
 
 /** @description 中文转拼音 */
-const pinyin = (str: string) => {
+export const pinyin = (str: string) => {
   if (typeof str !== "string") return str;
   let result = "";
   let abbreviation = "";
@@ -58,7 +58,12 @@ const pinyin = (str: string) => {
 };
 
 /** @description 正则搜索 */
-const search = <T>(data: T[], value: string | string[], keys: string | string[], highlight: boolean = false): T[] => {
+export const search = <T>(
+  data: T[],
+  value: string | string[],
+  keys: string | string[],
+  highlight: boolean = false,
+): T[] => {
   const arr: T[] = [];
   const data_copy = deepCopy<T[]>(data);
 
@@ -96,7 +101,7 @@ const search = <T>(data: T[], value: string | string[], keys: string | string[],
 };
 
 /** @description 防抖 */
-const debounce = (() => {
+export const debounce = (() => {
   let timer: NodeJS.Timeout;
   return (callback: () => void, wait = 800) => {
     timer && clearTimeout(timer);
@@ -105,7 +110,7 @@ const debounce = (() => {
 })();
 
 /** @description 深拷贝 */
-const deepCopy = <T>(e: any): T => {
+export const deepCopy = <T>(e: any): T => {
   const t = new WeakMap(),
     r = (e: any) => {
       const t = Object.prototype.toString.call(e);
@@ -183,7 +188,7 @@ const deepCopy = <T>(e: any): T => {
 };
 
 /** @description 获取浏览器版本 */
-const browserV = (() => {
+export const browserV = (() => {
   const ua = navigator.userAgent;
   let browser = "";
   let version = 0;
@@ -216,7 +221,7 @@ const browserV = (() => {
 })();
 
 /** @description 排序 */
-const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
+export const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
   const num = typeof key == "boolean" ? (key ? 1 : -1) : rev ? 1 : -1;
   return data.sort(((a: any, b: any) => {
     if (typeof data[0] == "object") {
@@ -239,7 +244,7 @@ const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
 };
 
 /** @description 保存为文件 */
-const savefiles = (data: any, name: string): void => {
+export const savefiles = (data: any, name: string): void => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
   const save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a") as HTMLAnchorElement;
@@ -258,7 +263,7 @@ type ImageOptimizerOptions = {
   fail?: (error: ErrorEvent) => void;
 };
 /** @description 图片压缩 */
-const imageOptimizer = (obj: ImageOptimizerOptions) => {
+export const imageOptimizer = (obj: ImageOptimizerOptions) => {
   const canvas = document.createElement("canvas");
   canvas.classList.add("imageOptimizer");
   document.body.appendChild(canvas);
@@ -328,7 +333,7 @@ const imageOptimizer = (obj: ImageOptimizerOptions) => {
 };
 
 /** @description Promise定时器 */
-const promiseTimeout = (fn: () => void, delay: number) => {
+export const promiseTimeout = (fn: () => void, delay: number) => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       fn();
@@ -338,16 +343,16 @@ const promiseTimeout = (fn: () => void, delay: number) => {
 };
 
 /** @description 判断是否为移动端 */
-const isPhone = (() => /mobile/i.test(navigator.userAgent))();
+export const isPhone = (() => /mobile/i.test(navigator.userAgent))();
 
 /** @description 判断表单指定属性名是否为空 */
-const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
+export const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
   (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
 
 /** @description 节流(立即执行) */
-const throttleInstant = (() => {
+export const throttleInstant = (() => {
   let last = 0;
   return (callback: () => void, wait = 800) => {
     const now = +new Date();
@@ -359,7 +364,7 @@ const throttleInstant = (() => {
 })();
 
 /** @description 防抖立即执行 */
-const debounceInstant = (() => {
+export const debounceInstant = (() => {
   let timer: NodeJS.Timeout | undefined;
   return <T extends (...args: any[]) => any>(fn: T, delay: number, ...args: Parameters<T>): void => {
     if (timer) clearTimeout(timer);
@@ -373,7 +378,7 @@ const debounceInstant = (() => {
 })();
 
 /** @description 视差动画 */
-class Parallax {
+export class Parallax {
   fn: (x: number, y: number) => void = () => {};
 
   constructor(fn: (x: number, y: number) => void) {
@@ -390,7 +395,7 @@ class Parallax {
 }
 
 /** @description 查看图片 */
-class ScaleImage {
+export class ScaleImage {
   src: string;
   scale: number;
   x: number;
@@ -578,7 +583,7 @@ class ScaleImage {
 }
 
 /** @description 音频可视化 */
-class AudioVisual {
+export class AudioVisual {
   audio: HTMLMediaElement;
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -665,7 +670,7 @@ class AudioVisual {
  * @param el 需要进行聚焦的元素
  * @param status 聚焦状态
  */
-class FocusElement {
+export class FocusElement {
   el: HTMLElement;
   zIndex: string;
   outline: string;
@@ -696,52 +701,3 @@ class FocusElement {
     }, 500);
   }
 }
-
-export default {
-  /** 随机数 */
-  random,
-  /** 小数百分比互转 */
-  potEoPct,
-  /** 根据时间段问候 */
-  timeGreet,
-  /** requestAnimationFrame计时器 */
-  frameInterval,
-  /** 判断是否为数组 */
-  isArray,
-  /** 中文转拼音 */
-  pinyin,
-  /** 正则搜索 */
-  search,
-  /** 防抖 */
-  debounce,
-  /** 深拷贝 */
-  deepCopy,
-  /** 获取浏览器版本 */
-  browserV,
-  /** 排序 */
-  typeSort,
-  /** 保存为文件 */
-  savefiles,
-  /** 图片压缩 */
-  imageOptimizer,
-  /** Promise定时器 */
-  promiseTimeout,
-  /** 判断是否为移动端 */
-  isPhone,
-  /** 判断表单指定属性名是否为空 */
-  existEmpty,
-  /** 节流(立即执行) */
-  throttleInstant,
-  /** 防抖立即执行 */
-  debounceInstant,
-  /** 视差动画 */
-  Parallax,
-  /** 查看图片 */
-  ScaleImage,
-  /** 音频可视化 */
-  AudioVisual,
-  /** 元素聚焦 */
-  FocusElement,
-};
-
-export { AudioVisual };
