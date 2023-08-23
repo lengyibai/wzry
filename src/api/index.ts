@@ -1,13 +1,13 @@
-import API_DATA from "./modules/data";
-import API_EPIGRAPH from "./modules/games/epigraph";
-import API_EQUIP from "./modules/games/equip";
-import API_EQUIPSYNTHETIC from "./modules/games/equipSynthetic";
-import API_HERO from "./modules/games/hero";
-import API_RELATIONSHIP from "./modules/games/relationship";
-import API_SKILL from "./modules/games/skill";
-import API_SKIN from "./modules/games/skin";
-import API_VOICE from "./modules/games/voice";
-import API_USER from "./modules/user";
+import * as API_DATA from "./modules/data";
+import * as API_EPIGRAPH from "./modules/games/epigraph";
+import * as API_EQUIP from "./modules/games/equip";
+import * as API_EQUIPSYNTHETIC from "./modules/games/equipSynthetic";
+import * as API_HERO from "./modules/games/hero";
+import * as API_RELATIONSHIP from "./modules/games/relationship";
+import * as API_SKILL from "./modules/games/skill";
+import * as API_SKIN from "./modules/games/skin";
+import * as API_VOICE from "./modules/games/voice";
+import * as API_USER from "./modules/user";
 
 export {
   API_DATA,

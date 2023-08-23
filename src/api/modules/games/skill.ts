@@ -4,7 +4,7 @@ import { get, post } from "@/api/helper/transfer";
  * @description 获取指定英雄技能
  * @param hero_id 英雄id
  */
-const getHeroSkill = (hero_id: number) => {
+export const getHeroSkill = (hero_id: number) => {
   const data = get<Hero.SkillParams>({
     name: "data_skill",
     key: "id",
@@ -14,9 +14,4 @@ const getHeroSkill = (hero_id: number) => {
 };
 
 /** @description 添加英雄技能 */
-const addHeroSkill = (data: Hero.SkillParams) => Promise.resolve(post<Hero.SkillParams>("data_skill", data));
-
-export default {
-  getHeroSkill,
-  addHeroSkill,
-};
+export const addHeroSkill = (data: Hero.SkillParams) => Promise.resolve(post<Hero.SkillParams>("data_skill", data));

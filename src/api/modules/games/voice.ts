@@ -5,7 +5,7 @@ import { get } from "@/api/helper/transfer";
  * @description 获取语音列表
  * @param hero_name 英雄名
  */
-const getVoice = async (hero_name: string) => {
+export const getVoice = async (hero_name: string) => {
   const pinyin = await API_HERO.getHeroPinyin(hero_name);
   return Promise.resolve(get<General[]>({ name: "voice_" + pinyin }));
 };
@@ -15,7 +15,7 @@ const getVoice = async (hero_name: string) => {
  * @param hero_name 英雄名
  * @param skin_name 皮肤名
  */
-const getSkinVoice = async (hero_name: string, skin_name: string) => {
+export const getSkinVoice = async (hero_name: string, skin_name: string) => {
   const pinyin = await API_HERO.getHeroPinyin(hero_name);
 
   if (!["梦奇", "盾山"].includes(hero_name)) {
@@ -38,9 +38,4 @@ const getSkinVoice = async (hero_name: string, skin_name: string) => {
   } else {
     return Promise.resolve([]);
   }
-};
-
-export default {
-  getVoice,
-  getSkinVoice,
 };

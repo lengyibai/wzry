@@ -4,7 +4,7 @@ import { get, post, patch, del } from "@/api/helper/transfer";
 import { OVERDUE_ROLE_TIME } from "@/enum";
 
 /** @description 获取本地用户列表 */
-const userList = () => {
+export const userList = () => {
   return Promise.resolve(get<User[]>({ name: "data_user" }));
 };
 
@@ -12,7 +12,7 @@ const userList = () => {
  * @description: 登录
  * @param form 表单对象
  */
-const login = async (form: User) => {
+export const login = async (form: User) => {
   //通过帐号查询用户
   const data = get<User>({
     name: "data_user",
@@ -60,7 +60,7 @@ const login = async (form: User) => {
  * @description: 获取用户信息
  * @param token token
  */
-const userInfo = (token: string) => {
+export const userInfo = (token: string) => {
   //通过token来查询用户
   return Promise.resolve(get<User>({ name: "data_user", key: "wzryToken", value: token }));
 };
@@ -69,7 +69,7 @@ const userInfo = (token: string) => {
  * @description: 注册
  * @param form 表单对象
  */
-const register = async (form: User) => {
+export const register = async (form: User) => {
   //通过帐号查询用户
   const data = get<User>({
     name: "data_user",
@@ -90,7 +90,7 @@ const register = async (form: User) => {
  * @param id 用户id
  * @param info 用户信息
  */
-const updateUser = (id: string, info: Partial<User>) => {
+export const updateUser = (id: string, info: Partial<User>) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true);
   return Promise.resolve(info); //返回新信息
 };
@@ -99,16 +99,7 @@ const updateUser = (id: string, info: Partial<User>) => {
  * @description: 注销用户
  * @param id 用户id
  */
-const deleteUser = (id: string) => {
+export const deleteUser = (id: string) => {
   del({ name: "data_user", id }); //查询用户并删除
   return Promise.resolve("注销成功");
-};
-
-export default {
-  userList,
-  login,
-  userInfo,
-  register,
-  updateUser,
-  deleteUser,
 };
