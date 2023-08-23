@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 import { ResultData } from "@/api/interface";
 
@@ -12,13 +12,13 @@ class RequestHttp {
   constructor(config: AxiosRequestConfig) {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
+      (config: InternalAxiosRequestConfig) => {
         config.url += `?temp=${Math.random()}`;
         return config;
       },
       (error: AxiosError) => {
         return Promise.reject(error);
-      }
+      },
     );
 
     let err_status = false;
@@ -29,11 +29,11 @@ class RequestHttp {
       },
       (error: AxiosError) => {
         //如果是获取版本信息造成的报错，则不提醒
-        if (error.config.url?.includes("version")) return;
+        if (error.config?.url?.includes("version")) return;
         if (error.code === "ERR_NETWORK" && !err_status) {
           err_status = true;
           const reset = confirm(
-            "检测到数据请求失败，可能是服务器异常导致，请尝试点击【取消】自动刷新浏览器解决，刷新后依旧显示此弹窗，请点击【确定】清除数据重新下载，如果扔未解决，请反馈给作者。"
+            "检测到数据请求失败，可能是服务器异常导致，请尝试点击【取消】自动刷新浏览器解决，刷新后依旧显示此弹窗，请点击【确定】清除数据重新下载，如果扔未解决，请反馈给作者。",
           );
           if (reset) {
             localStorage.clear();
@@ -42,7 +42,7 @@ class RequestHttp {
         }
 
         return Promise.reject(error);
-      }
+      },
     );
   }
 
