@@ -1,13 +1,9 @@
 <script setup lang="ts">
 import PackUp from "./childComps/PackUp/index.vue"; //折叠侧边栏按钮
-import PassTime from "./childComps/PassTime/index.vue"; //中间过去时
 import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
 import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
-
-const $deviceStore = Store.device();
 </script>
 
 <template>
@@ -15,11 +11,6 @@ const $deviceStore = Store.device();
   <div class="navbar border-1">
     <!-- 折叠按钮 -->
     <PackUp />
-
-    <div v-show="!$deviceStore.vertical" v-if="false" class="center">
-      <!-- 已过去时间 -->
-      <PassTime />
-    </div>
 
     <div class="right">
       <span class="timeGreet">{{ $t(Util.TOOL.timeGreet()) }}</span>
