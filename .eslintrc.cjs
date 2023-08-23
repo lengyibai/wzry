@@ -1,4 +1,3 @@
-/* eslint-env node */
 module.exports = {
   root: true,
   extends: [
@@ -38,12 +37,12 @@ module.exports = {
           "CONDITIONALS",
           "RENDER_MODIFIERS",
           "GLOBAL",
+          "UNIQUE",
           "TWO_WAY_BINDING",
           "OTHER_DIRECTIVES",
           "OTHER_ATTR",
           "EVENTS",
           "CONTENT",
-          "UNIQUE",
         ],
       },
     ],
@@ -51,6 +50,7 @@ module.exports = {
     semi: "off", //额外的分号
     "no-undef": "off",
     "no-unused-vars": "off",
+    "no-empty": "off", //不允许空代码块
     "comma-dangle": "off", //尾随的逗号
     "import/no-self-import": "off", //禁止调用引入自身
     "no-underscore-dangle": "off", //禁止标识符中有悬空下划线
@@ -65,7 +65,7 @@ module.exports = {
     "no-plusplus": "off", // 禁用一元操作符 ++ 和 --
     "no-param-reassign": "warn", //禁止对 function 的参数进行重新赋值
     "no-new": "off", //禁止使用 new
-    "no-param-reassign": "off", //禁止改变函数参数
+    "no-useless-escape": "off",
     "no-console": "warn", //不允许出现打印
     "no-await-in-loop": "off", // 禁止在循环中出现 await
     "import/prefer-default-export": "off", //禁止只有一个按需导出
@@ -73,11 +73,14 @@ module.exports = {
     "import/extensions": "off", //需要补全文件后缀
     "no-restricted-globals": "off", //未知错误
     "no-unused-expressions": "off", //不能将方法用于三元运算符
+    "no-prototype-builtins": "off",
 
     "@typescript-eslint/no-unused-vars": "warn", //禁止使用var
     "@typescript-eslint/no-explicit-any": "off", //不允许使用any
     "@typescript-eslint/no-empty-function": "off", //不允许空函数
     "@typescript-eslint/no-namespace": "off", //禁止使用命名空间
     "@typescript-eslint/ban-types": "off",
+
+    "vue/no-unused-vars": "warn",
   },
 };
