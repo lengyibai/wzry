@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 import { get, post, patch, del } from "@/api/helper/transfer";
 import { OVERDUE_ROLE_TIME } from "@/enum";
 
@@ -22,7 +24,8 @@ const login = async (form: User) => {
   if (data) {
     //判断密码是否正确
     if (form.password === data.password) {
-      let token = Number(new Date().getTime().toString().slice(0, 10)); //生成token
+      //生成token
+      let token = dayjs().unix();
       const data_token = localStorage.getItem("data_token");
 
       //设置时间token，用户完整下载数据

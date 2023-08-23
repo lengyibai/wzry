@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
-import { Util } from "@/utils";
+import dayjs from "dayjs";
 
 //当前时间
-const time = computed(() => Util.TOOL.fmtTime(new Date(), "YYYY.MM.DD"));
+const time = dayjs().format("YYYY.MM.DD");
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import dayjs from "dayjs";
 
 import { Store } from "@/store";
 
@@ -21,7 +22,7 @@ export default () => {
 
       //创建消息内容
       const msgText: MsgText = {
-        id: new Date().getTime(),
+        id: dayjs().unix(),
         text,
         type,
       };
