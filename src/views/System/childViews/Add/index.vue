@@ -60,9 +60,11 @@ onActivated(() => {
     </transition-group>
 
     <!--发布列表-->
-    <transition v-for="(v, k) in options" :key="k" name="tv-clip">
-      <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
-    </transition>
+    <template v-for="(v, k) in options" :key="k">
+      <transition name="tv-clip">
+        <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
+      </transition>
+    </template>
   </div>
 </template>
 
