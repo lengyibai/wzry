@@ -22,7 +22,7 @@ useRouter.beforeEach(async (to, from, next) => {
   const token = $authStore.userInfo?.wzryToken;
 
   //如果当前路径不等于跳转路径&&跳转路径非403、404&&、400，并且存在title，则使用loading
-  if (to.path !== from.path && !["/403", "/404", "/400"].includes(to.path) && to.meta.title) {
+  if (to.path !== from.path && !["/403", "/404", "/400", "/login"].includes(to.path) && to.meta.title) {
     $loading.show(to.meta.title as string);
   }
 
