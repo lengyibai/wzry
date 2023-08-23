@@ -16,7 +16,7 @@ const line = ref();
 const canvas = ref<HTMLCanvasElement>();
 const footbar = ref();
 
-let timer: Timeout; //隐藏工具栏定时器
+let timer: NodeJS.Timeout; //隐藏工具栏定时器
 
 const progress = ref(0); //播放进度
 
@@ -54,7 +54,7 @@ const onMusicToole = (type: string) => {
     $musicStore.play(false);
     return;
   }
-  const strategy: Record<string, Func> = {
+  const strategy: Record<string, () => void> = {
     last: $musicStore.last,
     pause: $musicStore.pause,
     next: $musicStore.next,

@@ -10,11 +10,10 @@ const typewriterSingle: Directive = {
     const say = lyb.innerHTML;
     lyb.innerHTML = "";
     function again() {
-      let timer: Interval = 0;
       let num = 0; //用于累加遍历字符串
       let text = ""; //用于输出在屏幕上
       lyb.innerHTML = "";
-      timer = setInterval(() => {
+      const timer = setInterval(() => {
         if (num >= say.length) {
           //如果文字输出完毕
           clearInterval(timer); //清除用于输出文字的计时器

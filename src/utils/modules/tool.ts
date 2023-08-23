@@ -21,7 +21,7 @@ const timeGreet = (greet: Record<string, string> = {}) => {
 };
 
 /** @description requestAnimationFrame计时器 */
-const frameInterval = (fn: Func, fre = 0) => {
+const frameInterval = (fn: () => void, fre = 0) => {
   let time = 0;
   f();
   function f() {
@@ -97,8 +97,8 @@ const search = <T>(data: T[], value: string | string[], keys: string | string[],
 
 /** @description 防抖 */
 const debounce = (() => {
-  let timer: Timeout = 0;
-  return (callback: Func, wait = 800) => {
+  let timer: NodeJS.Timeout;
+  return (callback: () => void, wait = 800) => {
     timer && clearTimeout(timer);
     timer = setTimeout(callback, wait);
   };
@@ -328,7 +328,7 @@ const imageOptimizer = (obj: ImageOptimizerOptions) => {
 };
 
 /** @description Promise定时器 */
-const promiseTimeout = (fn: Func, delay: number) => {
+const promiseTimeout = (fn: () => void, delay: number) => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       fn();
@@ -349,7 +349,7 @@ const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
 /** @description 节流(立即执行) */
 const throttleInstant = (() => {
   let last = 0;
-  return (callback: Func, wait = 800) => {
+  return (callback: () => void, wait = 800) => {
     const now = +new Date();
     if (now - last > wait) {
       callback();
@@ -360,12 +360,12 @@ const throttleInstant = (() => {
 
 /** @description 防抖立即执行 */
 const debounceInstant = (() => {
-  let timer: Timeout = 0;
+  let timer: NodeJS.Timeout | undefined;
   return <T extends (...args: any[]) => any>(fn: T, delay: number, ...args: Parameters<T>): void => {
     if (timer) clearTimeout(timer);
     const callNow = !timer;
     timer = setTimeout(() => {
-      timer = 0;
+      timer = undefined;
     }, delay);
     // eslint-disable-next-line prefer-spread
     if (callNow) fn.apply(undefined, args);

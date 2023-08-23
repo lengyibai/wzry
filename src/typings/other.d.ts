@@ -67,9 +67,9 @@ declare namespace Control {
     /** 按钮上的文字 */
     btnText?: string;
     /** 点击确认后执行的函数 */
-    btnFn?: Func;
+    btnFn?: () => void;
     /** tip创建后执行的函数 */
-    createFn?: Func;
+    createFn?: () => void;
   }
 
   /** @description loading */
@@ -80,7 +80,7 @@ declare namespace Control {
      */
     show: (text?: string) => void;
     /** 关闭loading */
-    close: Func;
+    close: () => void;
   }
 }
 

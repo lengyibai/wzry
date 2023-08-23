@@ -6,7 +6,7 @@ import { API_DATA } from "@/api";
 import { $message } from "@/config";
 
 const versionStore = defineStore("version", () => {
-  let timer: Interval = 0; //实时更新计时器
+  let timer: NodeJS.Timer | undefined = undefined; //实时更新计时器
   const local_version = ref(""); //本地版本
   const remote_version = ref(""); //远程版本
   const local_file = ref(""); //本地文件版本

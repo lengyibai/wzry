@@ -70,7 +70,7 @@ const heroDetailStore = defineStore("heroDetail", () => {
   };
 
   /** @description 设置技能选择函数 */
-  const setSkillSelectFn = (fn: Func) => {
+  const setSkillSelectFn = (fn: () => void) => {
     skillSelectFn.value = fn;
   };
 

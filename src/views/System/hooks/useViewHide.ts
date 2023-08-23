@@ -6,7 +6,7 @@ interface Emits {
 
 export default <T>(emit: Emits, key: string) => {
   const show = ref(false); //显示页面
-  const timer = ref<Interval>(); //自动保存计时器
+  const timer = ref<NodeJS.Timer>(); //自动保存计时器
   const finish = ref(false); //发布成功
   const status = ref(0); //发布状态
   const hero_id = ref<number | undefined>(); //英雄id

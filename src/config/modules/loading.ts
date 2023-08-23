@@ -2,7 +2,7 @@
 
 import { Util } from "@/utils";
 
-let loadingTimeout: NodeJS.Timeout | null;
+let loadingTimeout: NodeJS.Timeout | undefined;
 let needLoadingRequestCount = 0;
 
 /** @description 开启loading */
@@ -26,7 +26,7 @@ const close = async () => {
   if (needLoadingRequestCount === 0) {
     loadingTimeout = setTimeout(() => {
       Util.$Bus.emit("loading", { show: false, text: "" });
-      loadingTimeout = null;
+      loadingTimeout = undefined;
     }, 500);
   }
 };

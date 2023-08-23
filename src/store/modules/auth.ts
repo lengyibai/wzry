@@ -14,7 +14,7 @@ const authStore = defineStore("auth", () => {
   const $routerStore = Store.router();
 
   const userStatus = ref(false); //用户状态
-  const timer = ref<Interval>(); //实时检测帐号状态
+  let timer: NodeJS.Timer | undefined; //实时检测帐号状态
   const userInfo = ref<User>(Util.TOOL.deepCopy(userDefaultInfo)); //用户相关信息
 
   /**
@@ -85,10 +85,10 @@ const authStore = defineStore("auth", () => {
 
   /** @description 清除token */
   const clearToken = () => {
-    clearInterval(timer.value);
+    clearInterval(timer);
     router.replace("/login");
     userStatus.value = false;
-    timer.value = 0;
+    timer = undefined;
     userInfo.value = Util.TOOL.deepCopy(userDefaultInfo);
     $routerStore.removeRoutes();
     localStorage.removeItem("user");
@@ -96,12 +96,12 @@ const authStore = defineStore("auth", () => {
 
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
-    if (timer.value) return;
-    timer.value = setInterval(() => {
+    if (timer) return;
+    timer = setInterval(() => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
       const data_token = localStorage.getItem("data_token");
       if (token - Number(data_token) > OVERDUE_DATA_TIME) {
-        clearInterval(timer.value);
+        clearInterval(timer);
         $message("数据每三天完整下载一次，即将开始下载", "error");
         setTimeout(async () => {
           localStorage.clear();

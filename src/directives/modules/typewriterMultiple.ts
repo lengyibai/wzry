@@ -9,7 +9,7 @@ const typewriterMultiple: Directive = {
     const say = el.innerHTML;
     el.innerHTML = "";
     setTimeout(() => {
-      let timer: Interval;
+      let timer: NodeJS.Timer;
       let num = 0, //用于累加遍历字符串
         text = ""; //用于输出在屏幕上
       fn();
