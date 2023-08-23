@@ -2,12 +2,12 @@
 
 import { Util } from "@/utils";
 
-let loadingInterval: NodeJS.Timeout | null;
+let loadingTimeout: NodeJS.Timeout | null;
 let needLoadingRequestCount = 0;
 
 /** @description 开启loading */
 const show = async (text: string) => {
-  if (loadingInterval) clearTimeout(loadingInterval);
+  if (loadingTimeout) clearTimeout(loadingTimeout);
 
   if (needLoadingRequestCount === 0) {
     Util.$Bus.emit("loading", {
@@ -24,11 +24,11 @@ const close = async () => {
   needLoadingRequestCount--;
 
   if (needLoadingRequestCount === 0) {
-    loadingInterval = setTimeout(() => {
+    loadingTimeout = setTimeout(() => {
       Util.$Bus.emit("loading", { show: false, text: "" });
-      loadingInterval = null;
+      loadingTimeout = null;
     }, 500);
   }
 };
 
-export { show, close };
+export default { show, close };
