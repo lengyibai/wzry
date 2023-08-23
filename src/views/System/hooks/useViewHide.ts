@@ -26,7 +26,7 @@ export default <T>(emit: Emits, key: string) => {
       JSON.stringify({
         hero_id: hero_id.value,
         form_data: form_data.value,
-      })
+      }),
     );
   }, 1000);
 

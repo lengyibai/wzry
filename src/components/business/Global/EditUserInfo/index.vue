@@ -46,7 +46,7 @@ const handleSave = () => {
       JSON.stringify({
         id: user_info.value.id,
         password: user_info.value.password,
-      })
+      }),
     );
 
     $message("保存成功");

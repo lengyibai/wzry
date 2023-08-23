@@ -39,7 +39,7 @@ watch(
       equip_list.value = props.equipList;
       show.value = true;
     }, 300);
-  }
+  },
 );
 </script>
 
@@ -48,11 +48,11 @@ watch(
     <!-- 装备卡片列表 -->
     <EquipCard
       v-for="item in equip_list"
+      ref="card"
+      :key="item.id"
       :left-line="showLine(item.id, 'left')"
       :right-line="showLine(item.id, 'right')"
       :equip="item"
-      ref="card"
-      :key="item.id"
     />
 
     <!-- 右侧长竖线 -->

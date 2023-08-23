@@ -20,7 +20,7 @@ const $heroStore = Store.hero();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
   emit,
-  "add_skill_list"
+  "add_skill_list",
 );
 
 const left = ref(); //左侧元素
@@ -241,7 +241,7 @@ setTimeout(async () => {
 
 <template>
   <ManageMask class="content" :show="show">
-    <div class="content-left" ref="left">
+    <div ref="left" class="content-left">
       <!-- 右上角新增 -->
       <div class="add-skill">
         <span v-show="exist_deputys" class="desc">副技能无被动或低于3个，可以留空，但要与主技能数量一致</span>
@@ -258,7 +258,7 @@ setTimeout(async () => {
       </FormLabel>
 
       <!-- 选择英雄 -->
-      <SelectHero v-model="hero_id" @update:model-value="onSelectHeroChange" key="SelectHero" />
+      <SelectHero key="SelectHero" v-model="hero_id" @update:model-value="onSelectHeroChange" />
 
       <!-- 技能名称 -->
       <FormInput v-model="activeSkill().name" label="名称" required placeholder="技能名称" />
@@ -301,9 +301,9 @@ setTimeout(async () => {
         <transition-group name="del-skill-type">
           <div
             v-for="(item, index) in activeSkill().effect"
+            :key="item.type"
             class="skill-effect"
             :class="{ 'active-effect': effectIndex === index }"
-            :key="item.type"
           >
             <span class="type">{{ item.type || "待选择" }}：</span>
             <div class="phase">{{ item.phase?.join(" | ") }} |</div>
@@ -312,7 +312,7 @@ setTimeout(async () => {
       </div>
 
       <!-- 技能描述 -->
-      <LibRichText v-model="activeSkill().desc" placeholder="技能描述" :key="activeSkill().img" />
+      <LibRichText :key="activeSkill().img" v-model="activeSkill().desc" placeholder="技能描述" />
     </div>
 
     <!-- 右边 -->

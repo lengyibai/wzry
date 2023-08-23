@@ -1,13 +1,13 @@
 .into-btn {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 22rem;
   height: 5rem;
   background: url("@{IMGBED}/image/login_btn.png") no-repeat center center;
   background-size: 100%;
-  flex-direction: column;
 
   &:hover {
     img {
@@ -23,8 +23,8 @@
   &:active {
     box-shadow: initial;
     transition: all 0.05s;
-    transform-origin: bottom center;
     transform: scale(0.95);
+    transform-origin: bottom center;
 
     img {
       filter: contrast(1) brightness(0.75);
@@ -44,16 +44,16 @@
 
     &:nth-of-type(1) {
       color: var(--white);
-      font-size: 2.1875rem;
       text-shadow: var(--t-shadow-d);
+      font-size: 2.1875rem;
     }
 
     &:nth-of-type(2) {
       color: #895c36;
-      font-size: 1rem;
-      letter-spacing: 0.125rem;
-      line-height: 0.875rem;
       text-shadow: var(--shine-5) #8b5e37;
+      letter-spacing: 0.125rem;
+      font-size: 1rem;
+      line-height: 0.875rem;
     }
   }
 }

@@ -1,24 +1,24 @@
 .log-box {
   display: flex;
   align-items: center;
-  width: 100%;
   flex-direction: column;
+  width: 100%;
   transform-style: preserve-3d;
 
   .box {
     position: relative;
     display: flex;
     align-items: center;
-    width: 85%;
     margin-bottom: 1.25rem;
+    width: 85%;
     border-bottom: 0.0625rem solid var(--theme-border-color-six);
 
     .iconfont {
       position: absolute;
-      transform: translateY(-0.3125rem);
       color: var(--theme-font-color-ten);
-      font-size: 2.1875rem;
       text-shadow: var(--t-shadow-d);
+      font-size: 2.1875rem;
+      transform: translateY(-0.3125rem);
     }
 
     :deep(.form-input) {
@@ -27,10 +27,10 @@
 
       input {
         border: none;
-        color: var(--theme-font-color-ten) !important;
-        font-size: 1.625rem;
-        text-align: left !important;
         background-color: transparent;
+        color: var(--theme-font-color-ten) !important;
+        text-align: left !important;
+        font-size: 1.625rem;
 
         &::placeholder {
           color: var(--theme-font-color-eleven);
@@ -58,15 +58,15 @@
 
     .log {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       width: 18.75rem;
       height: 2.8125rem;
       border-radius: 0.3125rem;
-      color: var(--white);
-      font-size: 1.125rem;
       background-color: var(--theme-color-six);
+      color: var(--white);
       font-weight: bold;
+      font-size: 1.125rem;
       cursor: pointer;
     }
   }

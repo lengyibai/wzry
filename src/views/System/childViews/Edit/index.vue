@@ -44,11 +44,11 @@ const open = (key: string) => {
   <div class="edit" :style="box">
     <!-- 卡片 -->
     <transition-group name="fade" appear>
-      <K-Manage v-for="(v, k) in list" :title="v" type="edit" @click="open(k as string)" :key="k" />
+      <K-Manage v-for="(v, k) in list" :key="k" :title="v" type="edit" @click="open(k as string)" />
     </transition-group>
 
     <!-- 页面 -->
-    <transition v-for="(v, k) in options" name="tv-clip" :key="k">
+    <transition v-for="(v, k) in options" :key="k" name="tv-clip">
       <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
     </transition>
   </div>

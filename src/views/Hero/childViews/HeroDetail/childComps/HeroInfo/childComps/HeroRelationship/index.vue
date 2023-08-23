@@ -29,13 +29,13 @@ defineExpose({
 </script>
 
 <template>
-  <div class="hero-relationship" ref="relationship">
+  <div ref="relationship" class="hero-relationship">
     <transition-group name="fade-a">
       <button
         v-for="item in $heroDetail.hero_info.relationships"
+        :key="item.id"
         class="relation"
         @click="toggleHero(item.id)"
-        :key="item.id"
       >
         <img :src="item.hero.headImg" alt="" @dragstart.prevent />
         <span class="name">{{ item.relation }}</span>

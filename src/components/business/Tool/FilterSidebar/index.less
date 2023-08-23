@@ -1,19 +1,19 @@
 .filter-sidebar {
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 11rem;
   height: 100%;
-  transition: all var(--time-250);
   border-left: var(--subline);
-  flex-direction: column;
+  transition: all var(--time-250);
 
   .filter-type {
     display: flex;
     align-items: center;
     padding: 0.625rem 1.25rem;
+    border-bottom: var(--subline);
     color: var(--theme-font-color-four);
     text-shadow: var(--t-shadow-e);
-    border-bottom: var(--subline);
 
     &:hover {
       color: var(--blue);
@@ -33,8 +33,8 @@
     }
 
     .name {
-      font-size: 1.25rem;
       white-space: nowrap;
+      font-size: 1.25rem;
       transition: all var(--time-250) 0.1s;
       pointer-events: none;
     }
@@ -44,10 +44,10 @@
     position: absolute;
     width: 100%;
     height: 4.6875rem;
-    transform: translateY(-0.625rem);
-    transition: all var(--time-500);
-    pointer-events: none;
     background-image: linear-gradient(135deg, rgb(34 58 94 / 0%) 10%, rgb(34 130 199 / 35%) 100%);
+    transition: all var(--time-500);
+    transform: translateY(-0.625rem);
+    pointer-events: none;
     -webkit-mask: linear-gradient(transparent 0, #000 0.9375rem, #000 calc(100% - 0.9375rem), transparent 100%);
   }
 }

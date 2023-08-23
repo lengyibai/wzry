@@ -17,15 +17,15 @@ watch(
       index.value = 0;
     }
     index.value++;
-  }
+  },
 );
 </script>
 
 <template>
   <div class="hero-bg-img">
     <transition-group :name="animates[index]">
-      <img v-if="bgImg[0]" v-show="toggle" class="bg" :src="bgImg[0]" alt="" key="a" />
-      <img v-show="!toggle" class="bg" :src="bgImg[1]" alt="" key="b" />
+      <img v-if="bgImg[0]" v-show="toggle" key="a" class="bg" :src="bgImg[0]" alt="" />
+      <img v-show="!toggle" key="b" class="bg" :src="bgImg[1]" alt="" />
     </transition-group>
   </div>
 </template>

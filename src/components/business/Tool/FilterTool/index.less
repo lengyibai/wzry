@@ -4,10 +4,10 @@
   align-items: center;
   padding: 0.25em 1.4em;
   border: 0.0625rem solid #2e4e75;
-  box-shadow: var(--b-shadow-c);
-  font-size: 1rem;
-  text-shadow: var(--t-shadow-d);
   background-image: linear-gradient(180deg, var(--theme-el-color-seven) 0%, #263657 100%);
+  box-shadow: var(--b-shadow-c);
+  text-shadow: var(--t-shadow-d);
+  font-size: 1rem;
 
   .title {
     color: var(--theme-font-color-four);
@@ -15,9 +15,9 @@
   }
 
   .arrow {
+    margin-left: 0.9375rem;
     width: 0.9375rem;
     height: 0.5625rem;
-    margin-left: 0.9375rem;
     transition: all var(--time-250);
     pointer-events: none;
   }
@@ -28,8 +28,8 @@
     left: 0;
     z-index: 2;
     overflow: auto;
-    width: 100%;
     min-width: 6.25rem;
+    width: 100%;
     border: 0.0625rem solid var(--theme-border-color-three);
     border-radius: 0.3125rem;
     background-color: var(--theme-el-color-seven);
@@ -40,15 +40,15 @@
 
     .box {
       position: relative;
-      width: 100%;
       padding: 0.9375rem;
+      width: 100%;
+      border-bottom: var(--subline);
       color: var(--theme-font-color-seven);
       text-align: left;
-      border-bottom: var(--subline);
 
       .item {
-        font-size: 1rem;
         text-shadow: var(--t-shadow-d);
+        font-size: 1rem;
         transition: all var(--time-250);
       }
     }
@@ -56,8 +56,8 @@
 }
 
 .active {
-  color: var(--white) !important;
   background-color: #347cb6 !important;
+  color: var(--white) !important;
 
   &::after {
     position: absolute;
@@ -67,8 +67,8 @@
     width: 100%;
     height: 100%;
     background-color: #347cb6;
-    filter: blur(0.9375rem);
     content: "";
+    filter: blur(0.9375rem);
   }
 
   .item {

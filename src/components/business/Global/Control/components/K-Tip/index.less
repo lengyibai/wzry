@@ -10,18 +10,18 @@
   .k-tip {
     position: absolute;
     display: flex;
-    width: 31.25rem;
-    min-height: calc(31.25rem * 0.5989);
+    flex-direction: column;
     padding-bottom: 1.5625rem;
+    min-height: calc(31.25rem * 0.5989);
+    width: 31.25rem;
     background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
     background-size: 100% 100%;
     filter: var(--d-shadow-c);
-    flex-direction: column;
 
     .top {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       height: 5.625rem;
       color: var(--theme-font-color-seven);
       text-shadow: var(--t-shadow-e);
@@ -33,29 +33,29 @@
 
       .soldier {
         height: 6.25rem;
-        transform: translateY(-50%) rotateY(180deg);
         filter: var(--d-shadow-b);
+        transform: translateY(-50%) rotateY(180deg);
       }
     }
 
     .content {
       overflow: auto;
-      width: 100%;
+      flex-grow: 1;
       margin-bottom: 2.1875rem;
       padding: 0 1.875rem 0 3.125rem;
-      font-size: 1.5rem;
+      width: 100%;
       text-indent: 2em;
-      flex-grow: 1;
-      line-height: 1.25;
       text-shadow: var(--t-shadow-e);
+      font-size: 1.5rem;
+      line-height: 1.25;
     }
 
     .btns {
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 100%;
+      justify-content: center;
       padding: 0 1.875rem 0 3.125rem;
+      width: 100%;
     }
   }
 }

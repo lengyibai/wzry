@@ -3,9 +3,9 @@
   z-index: 2;
   display: flex;
   align-items: center;
+  margin-right: 0.9375rem;
   width: 3.125rem;
   height: 3.125rem;
-  margin-right: 0.9375rem;
   border-radius: 50%;
 
   .head-img {
@@ -13,8 +13,8 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    box-shadow: var(--b-shadow-c);
     background-color: var(--white-50);
+    box-shadow: var(--b-shadow-c);
     transition: all var(--time-500);
     transform-origin: left top;
   }
@@ -25,24 +25,24 @@
     left: -10.9375rem;
     display: flex;
     align-items: center;
-    width: 18.75rem;
+    flex-direction: column;
     padding: 3.4375rem 1.5625rem 1.5625rem;
+    width: 18.75rem;
     border: 0.0625rem solid var(--white-10);
     border-radius: 0.625rem;
-    text-shadow: var(--t-shadow-d);
     background-color: var(--theme-el-color-one);
-    transition: all var(--time-500);
+    text-shadow: var(--t-shadow-d);
     opacity: 0;
-    flex-direction: column;
+    transition: all var(--time-500);
     transform: translateY(1.5625rem);
     pointer-events: none;
 
     .name {
-      width: 100%;
       margin-bottom: 0.3125rem;
+      width: 100%;
       color: var(--theme-font-color-six);
-      font-size: 1.375rem;
       text-align: center;
+      font-size: 1.375rem;
       line-height: 1.3;
     }
 
@@ -56,9 +56,9 @@
       bottom: 0;
       display: flex;
       align-items: center;
-      width: 100%;
       flex-direction: column;
       margin-top: 3.125rem;
+      width: 100%;
 
       .edit,
       .logout,
@@ -66,8 +66,8 @@
         width: 75%;
         height: 3.125rem;
         color: #fff;
-        font-size: 1.5625rem;
         text-align: center;
+        font-size: 1.5625rem;
       }
 
       .edit,
@@ -80,13 +80,13 @@
 
 .hover {
   .head-img {
-    transform-origin: center center;
     transform: translate(-3.125rem, 2.1875rem) scale(2);
+    transform-origin: center center;
   }
 
   .user-card {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0);
     pointer-events: auto;
   }
 }

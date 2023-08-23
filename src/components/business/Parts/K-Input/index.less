@@ -3,14 +3,14 @@
   display: flex;
 
   input {
-    width: 100%;
     padding: 0 0.25em;
-    border: none;
-    border-bottom-style: solid;
-    border-bottom-width: 0.0625rem;
+    width: 100%;
     outline: none;
-    text-shadow: var(--t-shadow-d);
+    border: none;
+    border-bottom-width: 0.0625rem;
+    border-bottom-style: solid;
     background-color: transparent;
+    text-shadow: var(--t-shadow-d);
 
     &::placeholder {
       text-shadow: var(--t-shadow-d);
@@ -50,8 +50,8 @@
 
 .tip-enter-from,
 .tip-leave-active {
-  transform-origin: top center;
   transform: translateY(125%) scaleY(0) !important;
+  transform-origin: top center;
 }
 
 .tip-enter-active,

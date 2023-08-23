@@ -3,23 +3,23 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
+  padding: 0.625rem 10.9375rem;
   width: 100%;
   height: 6.25rem;
-  padding: 0.625rem 10.9375rem;
   background-color: rgb(20 35 60 / 90%);
 
   .bar {
     position: relative;
+    padding: 0.0625rem;
     width: 100%;
     height: 0.9375rem;
-    padding: 0.0625rem;
     background-color: #000;
 
     .progress {
       height: 100%;
-      box-shadow: 0 0.1875rem 0.1875rem 0 var(--white-50) inset, 0 -0.1875rem 0.1875rem 0 var(--black-50) inset;
       background-color: #1c78b3;
       background-image: linear-gradient(90deg, #1c78b3 0%, #0768af 35%, #269bde 100%);
+      box-shadow: 0 0.1875rem 0.1875rem 0 var(--white-50) inset, 0 -0.1875rem 0.1875rem 0 var(--black-50) inset;
       transition: all 0.1s ease-out;
     }
   }
@@ -28,13 +28,13 @@
     display: flex;
     justify-content: space-between;
     margin-top: 0.5em;
-    font-size: 1.375rem;
     text-shadow: var(--t-shadow-e);
+    font-size: 1.375rem;
 
     .num {
       color: #848996;
-      font-size: 1.625rem;
       text-shadow: var(--t-shadow-e);
+      font-size: 1.625rem;
     }
   }
 

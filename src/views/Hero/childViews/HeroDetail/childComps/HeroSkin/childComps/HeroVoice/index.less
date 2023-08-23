@@ -1,27 +1,27 @@
 .hero-voice {
   position: relative;
   display: flex;
-  align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100%;
-  padding-right: 0.625rem;
-  flex-grow: 1;
+  align-items: center;
   flex-direction: column;
+  flex-grow: 1;
+  padding-right: 0.625rem;
+  height: 100%;
   perspective: 62.5rem;
 
   .voice {
     display: flex;
     overflow: hidden;
-    width: 100%;
-    height: 4.0625rem;
     flex-shrink: 0;
     margin-bottom: 0.625rem;
     padding: 0 3.125rem;
+    width: 100%;
+    height: 4.0625rem;
     border-radius: 0.625rem;
+    background-color: var(--black-50);
     color: var(--white);
     white-space: nowrap;
-    background-color: var(--black-50);
     transition: all 0.5s ease-in-out;
 
     &:hover {
@@ -39,14 +39,14 @@
 
     .content {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       width: 100%;
       font-size: 1.375rem;
 
       .text {
-        width: 100%;
         padding: 0.625rem;
+        width: 100%;
       }
 
       .iconfont {
@@ -58,13 +58,13 @@
 }
 
 .active-width {
-  transform: rotateX(25deg) scaleX(0.9) !important;
   text-shadow: var(--shine-10), var(--shine-20);
+  transform: rotateX(25deg) scaleX(0.9) !important;
 }
 
 .active-rotate {
-  animation: rotate 0s linear;
   color: var(--blue);
+  animation: rotate 0s linear;
 }
 
 .active-color {

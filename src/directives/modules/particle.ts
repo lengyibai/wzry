@@ -40,7 +40,7 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
         }
       }
       `,
-          document.styleSheets[0].cssRules.length
+          document.styleSheets[0].cssRules.length,
         );
       } else {
         document.styleSheets[0].insertRule(
@@ -60,7 +60,7 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
           }
         }
         `,
-          document.styleSheets[0].cssRules.length
+          document.styleSheets[0].cssRules.length,
         );
       }
       for (let i = 0; i < num; i++) {

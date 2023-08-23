@@ -32,7 +32,7 @@ const drag: Directive = {
             x: el.getBoundingClientRect().left + el.offsetWidth / 2,
             y: el.getBoundingClientRect().top + el.offsetHeight / 2,
           },
-          binding.value.index
+          binding.value.index,
         );
       }
       window.addEventListener("mousemove", fn);
@@ -64,7 +64,7 @@ const drag: Directive = {
             x: el.getBoundingClientRect().left + el.offsetWidth / 2,
             y: el.getBoundingClientRect().top + el.offsetHeight / 2,
           },
-          binding.value.index
+          binding.value.index,
         );
       }
       window.addEventListener("touchmove", fn);

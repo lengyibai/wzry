@@ -47,7 +47,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="attribute" ref="attribute">
+  <div ref="attribute" class="attribute">
     <span>{{ $t(text[attr]) }}</span>
     <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
     <div class="bar">

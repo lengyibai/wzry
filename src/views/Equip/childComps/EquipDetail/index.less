@@ -3,13 +3,13 @@
   top: 0;
   z-index: 1;
   overflow: auto;
-  width: 30%;
   flex-shrink: 0;
-  height: 100%;
   padding-left: 1.25rem;
-  transition: all 0.25s;
-  opacity: 0;
+  width: 30%;
+  height: 100%;
   line-height: 1.25;
+  opacity: 0;
+  transition: all 0.25s;
 
   .name {
     margin-bottom: 1em;
@@ -44,23 +44,23 @@
     font-family: var(--font-f);
   }
 
-  @media screen and (max-width: 95.9375rem) {
+  @media screen and (width <= 95.9375rem) {
     width: 11.25rem;
   }
 
-  @media screen and (max-width: 70rem) {
+  @media screen and (width <= 70rem) {
     left: 0;
+    padding: 0.625rem;
     width: 100%;
     height: initial;
-    padding: 0.625rem;
     background-color: var(--black-25);
     backdrop-filter: blur(0.3125rem);
   }
 }
 
 .show {
-  transition: all 0.5s;
   opacity: 1;
+  transition: all 0.5s;
 }
 
 .common,
@@ -81,14 +81,14 @@
 .lq {
   @size: 1rem;
 
-  height: @size;
   margin-bottom: 0.3125rem;
   padding-left: 1.375rem;
+  height: @size;
+  background-size: contain;
+  background-repeat: no-repeat;
   color: var(--theme-font-color-seven);
   font-size: 1rem;
   font-family: var(--font-f);
-  background-repeat: no-repeat;
-  background-size: contain;
   line-height: 1;
 }
 

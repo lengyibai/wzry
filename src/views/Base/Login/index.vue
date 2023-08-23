@@ -86,7 +86,7 @@ onUnmounted(() => {
     <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo || show_team }" />
 
     <!-- 工具栏 -->
-    <ToolBar :notice="finish" @clicks="onToolType" ref="toolbar" />
+    <ToolBar ref="toolbar" :notice="finish" @clicks="onToolType" />
 
     <!-- 视频背景 -->
     <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />

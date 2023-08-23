@@ -2,13 +2,13 @@
   position: relative;
   display: flex;
   overflow: hidden;
+  flex-direction: column;
+  padding: 0 3.125rem;
   width: 100%;
   height: 100%;
-  padding: 0 3.125rem;
+  background-color: var(--black-50);
   box-shadow: 0 0 6.25rem 1.5625rem #000 inset;
   color: var(--white);
-  background-color: var(--black-50);
-  flex-direction: column;
 
   .content {
     display: flex;
@@ -27,9 +27,9 @@
       .hero-attribute1 {
         position: relative;
         display: none;
+        flex-direction: column;
         width: 100%;
         border: var(--subline);
-        flex-direction: column;
 
         .attribute {
           width: 0%;
@@ -42,15 +42,15 @@
     .right {
       position: relative;
       display: flex;
-      flex-grow: 1;
       flex-direction: column;
+      flex-grow: 1;
 
       .hero-attribute2 {
         position: relative;
         display: flex;
+        flex-direction: column;
         width: 100%;
         border: var(--subline);
-        flex-direction: column;
 
         .attribute {
           width: 0%;

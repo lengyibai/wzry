@@ -53,7 +53,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="tool-bar" ref="toolbar">
+  <div ref="toolbar" class="tool-bar">
     <!-- 静音 -->
     <div v-if="video_bg" class="tool" title="静音">
       <div class="line"></div>

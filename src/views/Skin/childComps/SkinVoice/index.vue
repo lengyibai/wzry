@@ -72,11 +72,11 @@ onMounted(() => {
   <div class="skin-voice" @mousewheel.stop>
     <button
       v-for="(item, index) in voices"
+      ref="voiceRef"
+      :key="index"
       class="voice flex"
       :class="{ 'active-width': current_index === index }"
       @click="handlePlay(item.link, index)"
-      ref="voiceRef"
-      :key="index"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
         <span v-if="current_index !== index" class="text lib-one-line"> {{ item.text }}</span>

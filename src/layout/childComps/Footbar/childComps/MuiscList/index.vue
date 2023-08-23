@@ -28,10 +28,10 @@ const handleToggleMusic = (index: number) => {
       <div class="list" title="点击播放">
         <div
           v-for="(item, index) in $musicStore.musics"
+          :key="index"
           class="card cursor-pointer"
           :class="{ active: index === $musicStore.bgmIndex }"
           @click="handleToggleMusic(index)"
-          :key="index"
         >
           <!-- 左侧音乐标题 -->
           <div class="left">

@@ -39,7 +39,7 @@ watch(
   () => props.modelValue,
   (v) => {
     id.value = v;
-  }
+  },
 );
 </script>
 

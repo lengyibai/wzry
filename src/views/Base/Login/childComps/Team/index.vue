@@ -28,6 +28,7 @@ const handleView = (v: string, i: number) => {
     <div class="team">
       <img
         v-for="(item, index) in imgs"
+        :key="index"
         class="cursor-pointer"
         :class="{
           active: index === active,
@@ -35,7 +36,6 @@ const handleView = (v: string, i: number) => {
         :src="item"
         alt=""
         @click="handleView(item, index)"
-        :key="index"
       />
     </div>
   </K-Dialog>

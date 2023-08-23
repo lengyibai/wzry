@@ -7,7 +7,7 @@ const $equipStore = Store.equip();
 </script>
 
 <template>
-  <div class="equip-list" ref="equipList">
+  <div ref="equipList" class="equip-list">
     <EquipListColumn
       :line-data="$equipStore.synthetic_id[0]"
       :equip-list="$equipStore.equip_list_column[0]"

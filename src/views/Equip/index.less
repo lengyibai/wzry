@@ -8,14 +8,14 @@
     position: relative;
     display: flex;
     overflow: auto;
-    width: 100%;
-    padding: 1.25rem;
     flex-direction: row-reverse;
     flex-grow: 1;
+    padding: 1.25rem;
+    width: 100%;
 
-    @media screen and (max-width: 70rem) {
-      padding: 0;
+    @media screen and (width <= 70rem) {
       flex-direction: column;
+      padding: 0;
     }
   }
 }

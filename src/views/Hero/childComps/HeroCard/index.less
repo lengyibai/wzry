@@ -1,13 +1,13 @@
 .hero-card {
   position: relative;
   display: flex;
-  align-items: flex-start;
   overflow: hidden;
+  align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
   transition: box-shadow var(--time-250), transform var(--time-250);
-  flex-direction: column;
 
   &:hover {
     border: 0.0625rem solid var(--white-50);
@@ -17,8 +17,8 @@
   .num {
     z-index: 1;
     margin: 0.9375rem;
-    font-size: 1rem;
     text-shadow: var(--t-shadow-d);
+    font-size: 1rem;
     transition: all var(--time-250);
   }
 
@@ -33,37 +33,37 @@
     left: 0;
     z-index: 2;
     display: flex;
-    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     height: 100%;
     background-color: rgb(0 0 0 / 73.7%);
     transition: all var(--time-250);
-    flex-direction: column;
 
     .head {
-      width: 50%;
       margin-bottom: 0.9375rem;
+      width: 50%;
       border-radius: 50%;
       box-shadow: var(--b-shadow-a);
-      transition: all var(--time-250);
-      animation: scale var(--time-250) 0.1s forwards;
-      transform: translateY(-3.125rem) scale(1.5);
       opacity: 0;
+      transition: all var(--time-250);
+      transform: translateY(-3.125rem) scale(1.5);
+      animation: scale var(--time-250) 0.1s forwards;
     }
 
     .view {
       color: var(--blue);
       font-size: 1.875rem;
-      transition: all var(--time-250);
-      animation: scale var(--time-250) 0.1s forwards;
-      transform: translateY(3.125rem) scale(0.75);
       opacity: 0;
+      transition: all var(--time-250);
+      transform: translateY(3.125rem) scale(0.75);
+      animation: scale var(--time-250) 0.1s forwards;
 
       @keyframes scale {
         100% {
-          transform: translateY(0%) scale(1);
           opacity: 1;
+          transform: translateY(0%) scale(1);
         }
       }
     }
@@ -83,27 +83,27 @@
     z-index: 1;
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 0.9375rem;
     flex-direction: column;
+    padding: 0.9375rem;
+    width: 100%;
 
     .name {
-      width: fit-content;
       margin-bottom: 0.3125rem;
+      width: fit-content;
       color: var(--white);
-      font-size: 1.875rem;
       text-shadow: var(--t-shadow-e);
-      transition: all var(--time-250);
-      opacity: 1;
+      font-size: 1.875rem;
       line-height: 1;
+      opacity: 1;
+      transition: all var(--time-250);
       transform: translate(0);
     }
 
     .mark {
       color: var(--white-75);
       font-size: 1.25rem;
-      transition: all var(--time-250);
       opacity: 1;
+      transition: all var(--time-250);
       transform: translate(0);
     }
   }
@@ -115,20 +115,20 @@
 
   .bottom {
     .name {
-      transform: translateX(-6.25rem);
       opacity: 0;
+      transform: translateX(-6.25rem);
     }
 
     .mark {
-      transform: translateX(6.25rem);
       opacity: 0;
+      transform: translateX(6.25rem);
     }
   }
 
   .id,
   .num {
-    transform: scale(1.5);
     opacity: 0;
+    transform: scale(1.5);
   }
 
   .bg {

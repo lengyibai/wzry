@@ -46,7 +46,7 @@ const skinStore = defineStore("skin", () => {
       page.value += 1;
 
       show_list.value.push(
-        ...filter_list.value.slice(page.value * page_count.value, (page.value + 1) * page_count.value)
+        ...filter_list.value.slice(page.value * page_count.value, (page.value + 1) * page_count.value),
       );
     }
   };

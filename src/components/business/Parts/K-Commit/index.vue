@@ -39,7 +39,7 @@ watch(
     if (v === 0) {
       show_up.value = true;
     }
-  }
+  },
 );
 </script>
 

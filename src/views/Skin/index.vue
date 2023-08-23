@@ -62,7 +62,7 @@ watch(
       show_list.value = true;
     });
   },
-  { deep: true, immediate: true }
+  { deep: true, immediate: true },
 );
 
 onActivated(() => {
@@ -108,6 +108,7 @@ onBeforeUnmount(() => {
       <transition name="card-list">
         <LibGrid
           v-if="$skinStore.show_list.length && show_list"
+          ref="skinListRef"
           scroll-id="skin_list"
           class="skin-list"
           gap="1.5625rem"
@@ -115,9 +116,8 @@ onBeforeUnmount(() => {
           :scroll-top="$skinStore.scroll"
           @load-more="onLoadMore"
           @scroll="onScroll"
-          ref="skinListRef"
         >
-          <div v-for="item in $skinStore.show_list" class="skin-card" @mouseenter="handleEnterCard" :key="item.id">
+          <div v-for="item in $skinStore.show_list" :key="item.id" class="skin-card" @mouseenter="handleEnterCard">
             <SkinCard :data="item" @showTool="onShowTool" />
           </div>
         </LibGrid>

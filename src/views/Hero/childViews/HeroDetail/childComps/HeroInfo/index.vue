@@ -103,7 +103,7 @@ onMounted(() => {
     </div>
 
     <!-- 向上滚动提示 -->
-    <i v-show="show_down" class="iconfont wzry-down" ref="down"></i>
+    <i v-show="show_down" ref="down" class="iconfont wzry-down"></i>
   </div>
 </template>
 

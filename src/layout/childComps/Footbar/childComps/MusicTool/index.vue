@@ -42,10 +42,10 @@ const handleTool = (type: string) => {
   <transition name="tool">
     <div
       v-show="$musicStore.show_tool || $deviceStore.vertical"
+      ref="musicTool"
       class="music-tool"
       :class="{ center: $deviceStore.vertical }"
       @click.stop
-      ref="musicTool"
     >
       <i class="cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i

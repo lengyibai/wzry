@@ -18,13 +18,13 @@
 
     &::before,
     &::after {
-      content: "";
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
-      border-style: solid;
-      border-width: 0.625rem;
       box-sizing: border-box;
+      border-width: 0.625rem;
+      border-style: solid;
+      content: "";
+      transform: translateX(-50%);
     }
 
     &::before {
@@ -39,9 +39,9 @@
   }
 
   img {
+    margin-right: 0.3125rem;
     width: 4.6875rem;
     height: 4.6875rem;
-    margin-right: 0.3125rem;
     border: 0.1875rem solid var(--theme-border-color-one);
     border-radius: 50%;
   }
@@ -52,10 +52,10 @@
     left: 0;
     width: 1.25rem;
     height: 0.1875rem;
-    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     background-color: var(--blue);
-    transform-origin: right;
+    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     transform: translate(-100%, -50%);
+    transform-origin: right;
   }
 
   .right-line {
@@ -64,27 +64,27 @@
     left: 0;
     width: calc(100% - 4.6875rem - 1.25rem);
     height: 0.1875rem;
-    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     background-color: var(--blue);
-    transform-origin: left;
+    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
     transform: translate(4.6875rem, -50%);
+    transform-origin: left;
   }
 
   .box {
     color: var(--theme-font-color-seven);
-    font-size: 1.25rem;
     text-shadow: var(--t-shadow-e);
+    font-size: 1.25rem;
     line-height: 1.25;
 
     .name {
       font-size: inherit;
-      transform: translateY(0.9375rem);
       transition: all var(--time-250);
+      transform: translateY(0.9375rem);
     }
 
     .info {
-      transform: translateY(0.9375rem);
       transition: all var(--time-250);
+      transform: translateY(0.9375rem);
 
       .desc {
         color: var(--theme-font-color-five);

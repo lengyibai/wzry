@@ -43,12 +43,12 @@ Util.$Bus.on("msg", (data) => {
       <transition-group name="message">
         <div
           v-for="(item, index) in messages"
+          :key="item.id"
           class="message"
           :class="item.type"
           :style="{
             transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
           }"
-          :key="item.id"
         >
           <span :style="{ color: color[item.type] }" v-html="$t(item.text)"></span>
           <div class="bg">

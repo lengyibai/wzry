@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <video :muted="muted" :src="video" autoplay class="video" loop ref="videoPlayer"></video>
+  <video ref="videoPlayer" :muted="muted" :src="video" autoplay class="video" loop></video>
 </template>
 
 <style scoped lang="less">

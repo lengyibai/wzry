@@ -87,7 +87,7 @@ watch(
       toggle_show.value = true;
     });
   },
-  { deep: true, immediate: true }
+  { deep: true, immediate: true },
 );
 
 onActivated(() => {
@@ -151,6 +151,7 @@ onBeforeUnmount(() => {
         <LibGrid
           v-show="show_list"
           v-if="$heroStore.show_list.length && toggle_show && show_list"
+          ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
           gap="1.5625rem"
@@ -158,17 +159,16 @@ onBeforeUnmount(() => {
           :scroll-top="$heroStore.scroll"
           @scroll="onScroll"
           @load-more="onLoadMore"
-          ref="heroListRef"
         >
           <transition-group name="card" appear>
             <div
               v-for="(item, index) in $heroStore.show_list"
+              :key="index"
               class="hero-card"
               :style="{
                 'transition-delay': (index % 30) * 0.025 + 's',
               }"
               @mouseenter="handleEnterCard(item)"
-              :key="index"
             >
               <HeroCard :data="item" @view="onViewClick(item.id!)" />
             </div>

@@ -3,16 +3,16 @@
 
   .question-icon {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    margin-left: 1.25rem;
     width: 1.5rem;
     height: 1.5rem;
-    margin-left: 1.25rem;
     border: 0.0625rem solid var(--theme-border-color-two);
-    color: var(--theme-font-color-two);
     background-color: var(--theme-el-color-one);
-    transform: rotate(45deg);
+    color: var(--theme-font-color-two);
     transition: all 0.1s;
+    transform: rotate(45deg);
 
     span {
       font-size: 1.25rem;
@@ -31,16 +31,16 @@
     left: 0;
     display: flex;
     align-items: center;
-    width: 25rem;
     margin-left: 1.25rem;
     padding: 0.75em;
+    width: 25rem;
     border-radius: 0.625rem;
-    transform-origin: center bottom;
-    color: var(--theme-font-color-four);
-    font-size: 1.125rem;
-    text-align: center;
     background-color: var(--theme-el-color-one);
+    color: var(--theme-font-color-four);
+    text-align: center;
+    font-size: 1.125rem;
     transform: translate(-45%, -3.125rem);
+    transform-origin: center bottom;
 
     &::after {
       position: absolute;
@@ -50,8 +50,8 @@
       height: 1.25rem;
       border-radius: 0% 100% 0% 100% / 100% 100% 0% 0%;
       background-color: var(--theme-el-color-one);
-      transform: translate(-0.8125rem, 0.625rem) rotate(-45deg);
       content: "";
+      transform: translate(-0.8125rem, 0.625rem) rotate(-45deg);
     }
   }
 }
@@ -66,8 +66,4 @@
 
 .desc-set-enter-active {
   transition: all var(--time-250);
-}
-
-.desc-set-leave-active {
-  transition: all var(--time-250) 0.25s;
 }

@@ -25,10 +25,10 @@ const handleSelect = (index: number) => {
   <div class="role-select">
     <div
       v-for="(item, index) in option"
+      :key="index"
       class="option cursor-pointer"
       :class="{ active: modelValue === index }"
       @click="handleSelect(index)"
-      :key="index"
     >
       {{ item }}
     </div>

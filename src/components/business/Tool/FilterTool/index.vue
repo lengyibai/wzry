@@ -71,6 +71,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
       <transition-group name="select-list">
         <button
           v-for="item in data"
+          :key="item.value"
           class="box"
           :class="{
             active: current_value === item.label || sort_text === item.label,
@@ -78,7 +79,6 @@ const handleSelect = (v: { label: string; value: number | string }) => {
           @mousedown="handleSelect(item)"
           @mouseenter="handleEnterItem(item)"
           @mouseleave="current_value = ''"
-          :key="item.value"
         >
           <div class="item">{{ item.label }}</div>
         </button>

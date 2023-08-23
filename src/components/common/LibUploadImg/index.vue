@@ -48,9 +48,9 @@ const fn = (e: Event) => {
 .upload-img {
   position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  align-items: center;
+  justify-content: center;
   width: 6.25rem;
   height: 6.25rem;
   border: 0.1875rem solid var(--theme-border-color-two);
@@ -85,9 +85,9 @@ const fn = (e: Event) => {
       position: absolute;
       z-index: 2;
       display: none;
+      padding: 1.5625rem;
       width: 100%;
       height: 100%;
-      padding: 1.5625rem;
 
       &:hover {
         background-color: var(--black-25);
@@ -97,8 +97,8 @@ const fn = (e: Event) => {
 
   .add {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
 

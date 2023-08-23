@@ -1,14 +1,14 @@
 .skin-card {
   position: relative;
   display: flex;
-  align-items: flex-start;
   overflow: hidden;
+  align-items: flex-start;
+  flex-direction: column;
   width: 100%;
   border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
-  transition: all var(--time-250);
-  flex-direction: column;
   opacity: 1;
+  transition: all var(--time-250);
 
   &:hover {
     border: 0.0625rem solid var(--white-50);
@@ -38,16 +38,16 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    pointer-events: none;
     transition: all var(--time-250);
+    pointer-events: none;
+    object-fit: cover;
   }
 
   .type {
     position: absolute;
     width: 30%;
-    transform: translate(0.3125rem, 0.3125rem);
     transition: all var(--time-250);
+    transform: translate(0.3125rem, 0.3125rem);
   }
 
   .price {
@@ -55,8 +55,8 @@
     right: 0;
     display: flex;
     align-items: center;
-    transform: translate(-0.3125rem, 0.3125rem);
     transition: all var(--time-250);
+    transform: translate(-0.3125rem, 0.3125rem);
 
     img {
       width: 1.375rem;
@@ -65,8 +65,8 @@
 
     span {
       margin: 0.3125rem;
-      font-size: 1.25rem;
       text-shadow: var(--t-shadow-e);
+      font-size: 1.25rem;
     }
   }
 
@@ -75,20 +75,20 @@
     bottom: 0;
     z-index: 1;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
-    width: 100%;
+    justify-content: space-between;
     padding: 0.9375rem;
-    pointer-events: none;
+    width: 100%;
     transition: all var(--time-250);
+    pointer-events: none;
 
     .name {
       width: fit-content;
       color: var(--white);
-      font-size: 1.625rem;
       text-shadow: var(--t-shadow-e);
-      opacity: 1;
+      font-size: 1.625rem;
       line-height: 1;
+      opacity: 1;
     }
 
     .mark {
@@ -169,14 +169,14 @@
     top: 0;
     z-index: 1;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
-    text-shadow: var(--shine-25), var(--shine-50);
     background-color: var(--black-50);
-    transition: all var(--time-250) calc(var(--time-250) - 0.15s);
+    text-shadow: var(--shine-25), var(--shine-50);
     opacity: 0;
+    transition: all var(--time-250) calc(var(--time-250) - 0.15s);
 
     span {
       display: flex;

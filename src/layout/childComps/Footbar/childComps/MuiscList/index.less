@@ -3,11 +3,11 @@
   top: 0;
   z-index: 1;
   display: flex;
+  flex-direction: column;
   width: 18.75rem;
   height: 31.25rem;
   border: 0.125rem solid var(--theme-border-color-five);
   background-color: var(--theme-el-color-one);
-  flex-direction: column;
   transform: translateY(-100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 
@@ -24,8 +24,8 @@
       transition: all var(--time-250);
 
       &:hover {
-        transform: rotate(180deg);
         text-shadow: var(--shine-10), var(--shine-20);
+        transform: rotate(180deg);
       }
     }
 
@@ -37,20 +37,21 @@
   .list {
     display: flex;
     overflow: auto;
-    width: 100%;
-    flex-grow: 1;
     flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
 
     .card {
       position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      padding: 0 0.625rem;
       width: 100%;
       height: 3.125rem;
-      padding: 0 0.625rem;
 
       &:hover {
+        background-color: var(--theme-el-color-two);
         text-shadow: var(--shine-15) !important;
 
         .left {
@@ -66,8 +67,8 @@
           width: 100%;
           height: 100%;
           background-color: #347cb6;
-          filter: blur(0.9375rem);
           content: "";
+          filter: blur(0.9375rem);
         }
       }
 
@@ -88,10 +89,6 @@
       .time {
         margin-left: auto;
         justify-self: flex-end;
-      }
-
-      &:hover {
-        background-color: var(--theme-el-color-two);
       }
     }
   }

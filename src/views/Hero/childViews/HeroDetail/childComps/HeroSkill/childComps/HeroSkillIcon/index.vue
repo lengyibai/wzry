@@ -100,13 +100,13 @@ onUnmounted(() => {
   <div class="hero-skill-icon">
     <div
       v-for="(item, index) in active_skills"
+      ref="skillImg"
+      :key="index"
       class="icon cursor-pointer"
       :class="{ active: show }"
       :style="{
         'transition-delay': 0.05 * index + 's',
       }"
-      ref="skillImg"
-      :key="index"
     >
       <!-- 技能选中圆圈 -->
       <transition name="border-fade">
@@ -121,11 +121,11 @@ onUnmounted(() => {
     <!-- 切换副技能 -->
     <i
       v-if="hero_data.skills!.length > 1"
+      ref="toggle"
       class="toggle iconfont wzry-qiehuan cursor-pointer"
       :class="{ 'hide-bottom': !show }"
       title="切换技能"
       @click="handleToggleSkill"
-      ref="toggle"
     />
   </div>
 </template>

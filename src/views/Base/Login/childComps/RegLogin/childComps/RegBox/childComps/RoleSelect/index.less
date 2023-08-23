@@ -3,10 +3,10 @@
 
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: @height;
+  justify-content: center;
   margin-bottom: 1.5625rem;
+  height: @height;
   border: 0.0625rem solid var(--theme-border-color-six);
   background-color: var(--theme-el-color-six);
 
@@ -14,11 +14,11 @@
     z-index: 1;
     width: 6.25rem;
     color: var(--theme-font-color-ten);
-    font-size: 1.25rem;
     text-align: center;
     text-shadow: var(--t-shadow-d);
-    transition: all var(--time-250);
+    font-size: 1.25rem;
     line-height: @height;
+    transition: all var(--time-250);
   }
 
   .active-bg {
@@ -27,8 +27,8 @@
     width: 6.25rem;
     height: 100%;
     border: 0.0625rem solid var(--theme-border-color-six);
-    transition: all var(--time-250);
     background-image: linear-gradient(180deg, #c5b184 0%, #ca9d2a 100%);
+    transition: all var(--time-250);
   }
 }
 

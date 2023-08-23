@@ -102,13 +102,13 @@ const handleChildCoord = (v: number) => {
 <template>
   <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
     <button
+      ref="menuItem"
       class="menu-item"
       :style="textStyle"
       :class="{
         active: route.path === $route.path,
       }"
       @click="handleCoord($event), fn()"
-      ref="menuItem"
     >
       <!-- 图标 -->
       <i class="iconfont" :class="route.meta.icon" />
@@ -132,11 +132,11 @@ const handleChildCoord = (v: number) => {
       <transition-group name="menu-list" appear>
         <SideItem
           v-for="(r, i) in routes"
+          :key="r.path"
           :route="r"
           :style="{ transitionDelay: (routes.length - i) * 0.05 + 's' }"
           :coord="coord"
           @coord="handleChildCoord"
-          :key="r.path"
         />
       </transition-group>
     </div>

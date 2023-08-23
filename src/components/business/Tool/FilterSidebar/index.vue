@@ -81,10 +81,10 @@ const handleCoord = (e: Event) => {
   <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
     <div
       v-for="(item, index) in list"
+      :key="index"
       class="filter-type cursor-pointer"
       :class="{ active: item.name === filter_type }"
       @click="handleSelect(item.name, index), handleCoord($event)"
-      :key="index"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ $t(item.name) }}</span>

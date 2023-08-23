@@ -137,7 +137,7 @@ const search = <T>(data: T[], value: string | string[], keys: string | string[],
           }
           return true;
         }
-      })
+      }),
     );
   };
 
@@ -256,7 +256,7 @@ const browserV = (() => {
       ua
         .match(/Chrome\/[\d.]+/)![0]
         .split("/")[1]
-        .split(".")[0]
+        .split(".")[0],
     );
   } else if (ua.indexOf("Safari") > -1) {
     browser = "safari";
@@ -264,7 +264,7 @@ const browserV = (() => {
       ua
         .match(/Version\/[\d.]+/)![0]
         .split("/")[1]
-        .split(".")[0]
+        .split(".")[0],
     );
   } else if (ua.indexOf("Firefox") > -1) {
     browser = "firefox";
@@ -272,7 +272,7 @@ const browserV = (() => {
       ua
         .match(/Firefox\/[\d.]+/)![0]
         .split("/")[1]
-        .split(".")[0]
+        .split(".")[0],
     );
   }
   return { browser, version };

@@ -15,7 +15,7 @@ const $heroDetail = Store.heroDetail();
     <!--名称及类型-->
     <div class="name-type">
       <div class="name">{{ activeSkill.name }}</div>
-      <K-SkillTypeTag v-for="item in activeSkill.type" :type="item" :key="item" />
+      <K-SkillTypeTag v-for="item in activeSkill.type" :key="item" :type="item" />
     </div>
 
     <!--数字相关-->

@@ -25,7 +25,7 @@ watch(
   () => props.status,
   (v) => {
     commit_status.value = v;
-  }
+  },
 );
 
 watch(commit_status, (v) => {

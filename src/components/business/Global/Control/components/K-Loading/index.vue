@@ -20,12 +20,12 @@ Util.$Bus.on("loading", (v) => {
       <img :src="IMGBED + '/image/daji.png'" alt="妲己" @dragstart.prevent />
       <span
         v-for="(item, index) in color"
+        :key="index"
         :style="{
           backgroundColor: item,
           animationDelay: index * 0.1 - 0.8 + 0.5 + 's',
           boxShadow: '0 0 50px ' + item,
         }"
-        :key="index"
       ></span>
       <h1>{{ $t("正在加载") + $t(text) + $t("页面") }}...</h1>
     </div>

@@ -53,7 +53,7 @@ watch(
   },
   {
     immediate: true,
-  }
+  },
 );
 
 onMounted(() => {
@@ -111,12 +111,12 @@ onMounted(() => {
 
 <template>
   <div
+    ref="HeroScroll"
     class="hero-scroll"
     :style="{
       display: direction === 'x' ? 'flex' : 'block',
       transition: `all ${duration}ms`,
     }"
-    ref="HeroScroll"
   >
     <slot></slot>
   </div>

@@ -18,7 +18,7 @@ defineExpose({
   <transition name="fade">
     <div class="manage-mask">
       <transition name="fade">
-        <div v-if="show" class="content" :style="styles" ref="content">
+        <div v-if="show" ref="content" class="content" :style="styles">
           <slot></slot>
         </div>
       </transition>

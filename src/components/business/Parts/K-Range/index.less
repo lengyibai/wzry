@@ -13,19 +13,19 @@
       .value {
         position: absolute;
         z-index: 2;
-        height: 3.125rem;
         padding: 0 0.9375rem;
+        height: 3.125rem;
         border-radius: 1.875rem;
+        background-color: var(--theme-el-color-one);
         color: var(--theme-font-color-six);
-        font-size: 1.5625rem;
         text-align: center;
         white-space: nowrap;
-        background-color: var(--theme-el-color-one);
-        transition: transform 0.3s ease-in-out;
         font-weight: 500;
-        transform-origin: bottom;
+        font-size: 1.5625rem;
         line-height: 3.125rem;
+        transition: transform 0.3s ease-in-out;
         transform: translateX(-50%) scale(0);
+        transform-origin: bottom;
       }
     }
 
@@ -41,25 +41,25 @@
         width: 0%;
         height: @height;
         border-radius: @height;
-        pointer-events: none;
         background-image: linear-gradient(90deg, #2d59a0 0%, #6bb8ff 100%);
+        pointer-events: none;
 
         img,
         span {
           position: absolute;
-          transform: translateX(50%) translateY(-50%);
           top: 0.0938rem;
           right: 0;
           border-radius: 50%;
+          transform: translateX(50%) translateY(-50%);
         }
       }
 
       input {
+        margin: 0;
         width: 100%;
         height: @height;
-        margin: 0;
-        border-radius: @height;
         outline: none;
+        border-radius: @height;
         appearance: none;
 
         &::-webkit-slider-thumb {
@@ -74,8 +74,8 @@
       .value {
         position: relative;
         color: #000;
-        font-size: 1.125rem;
         font-weight: 600;
+        font-size: 1.125rem;
 
         &.left {
           left: -1.375rem;

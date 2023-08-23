@@ -163,7 +163,7 @@ const equipStore = defineStore("equip", () => {
           height: height(
             synthetic_id.value[1][0].id,
             synthetic_id.value[2][0].id,
-            synthetic_id.value[2].at(-1)?.id || 0
+            synthetic_id.value[2].at(-1)?.id || 0,
           ),
         };
       } catch (error) {
@@ -209,7 +209,7 @@ const equipStore = defineStore("equip", () => {
           height: height(
             synthetic_id.value[1][0].id,
             synthetic_id.value[2][0].id,
-            synthetic_id.value[2].at(-1)?.id || 0
+            synthetic_id.value[2].at(-1)?.id || 0,
           ),
         };
       }
@@ -257,7 +257,7 @@ const equipStore = defineStore("equip", () => {
           height: height(
             synthetic_id.value[1].at(-1)!.id,
             synthetic_id.value[0][0].id,
-            synthetic_id.value[0].at(-1)!.id
+            synthetic_id.value[0].at(-1)!.id,
           ),
         };
 
@@ -267,7 +267,7 @@ const equipStore = defineStore("equip", () => {
             height: height(
               synthetic_id.value[2].at(-1)?.id || 0,
               synthetic_id.value[1][0].id,
-              synthetic_id.value[1].at(-1)!.id
+              synthetic_id.value[1].at(-1)!.id,
             ),
           };
         }

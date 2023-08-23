@@ -21,12 +21,12 @@ setInterval(() => {
 .pass-time {
   display: flex;
   align-items: center;
-  height: 100%;
   padding: 0 0.625rem;
-  color: var(--theme-font-color-four);
-  font-size: 1.25rem;
-  text-shadow: var(--t-shadow-e);
-  border-left: var(--subline);
+  height: 100%;
   border-right: var(--subline);
+  border-left: var(--subline);
+  color: var(--theme-font-color-four);
+  text-shadow: var(--t-shadow-e);
+  font-size: 1.25rem;
 }
 </style>

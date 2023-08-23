@@ -23,7 +23,7 @@ const handleEndTime = () => {
 <template>
   <div class="game-logo" @touchstart="handleStartTime" @touchend="handleEndTime">
     <transition-group name="fade-a">
-      <i class="iconfont wzry-logo" key="icon" />
+      <i key="icon" class="iconfont wzry-logo" />
       <span v-show="!$collapseStore.collapse" key="text">{{ $t("王者图鉴") }}</span>
     </transition-group>
   </div>
