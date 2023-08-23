@@ -87,13 +87,6 @@ export const admin: RouterSheel[] = [
         name: "add",
         component: "@/views/System/childViews/Add",
       },
-      //{
-      //  title: "编辑",
-      //  icon: "wzry-bianji",
-      //  path: "/system/edit",
-      //  name: "edit",
-      //  component: "@/views/System/childViews/Edit",
-      //},
       {
         title: "本地数据管理",
         icon: "wzry-database",
