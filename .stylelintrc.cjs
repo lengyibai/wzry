@@ -12,6 +12,8 @@ module.exports = {
     },
   ],
   rules: {
+    /** 检测代码中多余的分号 */
+    "no-extra-semicolons": null,
     /** 允许无效的媒体查询 */
     "media-query-no-invalid": null,
     /** 允许行尾空白 */
