@@ -23,13 +23,12 @@ const HeroScroll = ref();
 const index = ref(0);
 
 const change = async (i: number) => {
-  if (i === -1) i = 0;
+  index.value = i === -1 ? 0 : i;
   await nextTick();
-  index.value = i;
   let direction = props.direction === "y";
   try {
     HeroScroll.value.style[direction ? "top" : "left"] =
-      -i * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
+      -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
   } catch (error) {
     /*  */
   }
