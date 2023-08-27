@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   modelValue: number;
@@ -12,12 +12,12 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 /* 选择 */
 const handleSelect = (index: number) => {
   emit("update:modelValue", index);
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 </script>
 

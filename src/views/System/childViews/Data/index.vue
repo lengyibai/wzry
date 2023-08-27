@@ -5,12 +5,12 @@ import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
 import skinStore from "@/store/modules/skin";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import heroStore from "@/store/modules/hero";
 
 const $skinStore = skinStore();
 const $heroStore = heroStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],
@@ -111,7 +111,7 @@ const setStatus = (data: any, v: any) => {
 };
 
 /* 音效触发 */
-const play = () => $controlStore.$audioStore();
+const play = () => $audioStore.play();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
@@ -182,7 +182,7 @@ const onsSortChange = (v: number[]) => {
 };
 
 onActivated(() => {
-  $controlStore.$audioStore("bq69");
+  $audioStore.play("bq69");
 });
 </script>
 

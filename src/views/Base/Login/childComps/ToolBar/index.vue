@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import settingStore from "@/store/modules/setting";
 
 interface Props {
@@ -17,7 +17,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $settingStore = settingStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const toolbar = ref();
 
@@ -38,12 +38,12 @@ const icon = computed(() => {
  */
 const handleTool = (v: string) => {
   if (v === "sound") {
-    $controlStore.$audioStore("n4r4");
+    $audioStore.play("n4r4");
     $settingStore.saveConfig({ muted: !muted.value });
     return;
   }
   if (v === "readme") {
-    $controlStore.$audioStore("n4r4");
+    $audioStore.play("n4r4");
   }
   emit("clicks", v);
 };

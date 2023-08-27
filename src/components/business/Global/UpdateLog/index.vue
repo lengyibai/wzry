@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import versionStore from "@/store/modules/version";
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $versionStore = versionStore();
 
-$controlStore.$audioStore("u4c5");
+$audioStore.play("u4c5");
 
 const data_status = computed(() => $versionStore.data_status); //数据需要更新
 const file_status = computed(() => $versionStore.file_status); //文件需要更新

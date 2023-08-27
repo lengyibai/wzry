@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   modelValue?: boolean;
@@ -11,14 +11,14 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
 /* 关闭 */
 const handleClose = () => {
   emit("update:modelValue", false);
-  $controlStore.$audioStore("6xc6");
+  $audioStore.play("6xc6");
 };
 </script>
 

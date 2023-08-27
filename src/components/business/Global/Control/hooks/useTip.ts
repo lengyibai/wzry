@@ -2,12 +2,12 @@ import { ref } from "vue";
 
 import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import settingStore from "@/store/modules/setting";
 
 export default () => {
   const $settingStore = settingStore();
-  const $controlStore = controlStore();
+  const $audioStore = audioStore();
 
   const show_tip = ref(false); //显示小贴士
   const title = ref(); //左上角标题
@@ -33,7 +33,7 @@ export default () => {
       //如果字符数超过4，则表示自定义tip
       if (text.length !== 4) {
         show_tip.value = !show_tip.value;
-        $controlStore.$audioStore("rt25");
+        $audioStore.play("rt25");
         title.value = biaoti;
         content.value = text;
         align.value = p;
@@ -56,7 +56,7 @@ export default () => {
           en: tips_en,
         };
         show_tip.value = !show_tip.value;
-        $controlStore.$audioStore("rt25");
+        $audioStore.play("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
         content.value = langs[lang][text as TipKeys];
         align.value = p;

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import controlStore from "@/store/modules/control";
 import audioStore from "@/store/modules/audio";
 
 type Data = { label: string; value: string | number };

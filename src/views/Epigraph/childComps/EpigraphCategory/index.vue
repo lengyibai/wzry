@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import epigraphStore from "@/store/modules/epigraph";
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $epigraphStore = epigraphStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
@@ -26,7 +26,7 @@ const epigraph: Record<string, Epigraph.Category>[] = [
 
 /* 点击分类标题 */
 const handleToggle = (index: number, type: Epigraph.Category) => {
-  $controlStore.$audioStore(`n4r4${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
+  $audioStore.play(`n4r4${index}`); //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
   current_index.value = index;
   $epigraphStore.setFilter(type); //每次点击重新筛选数据
 };

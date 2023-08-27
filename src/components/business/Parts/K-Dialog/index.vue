@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
@@ -28,7 +28,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -37,7 +37,7 @@ const show = ref(false); //显示弹窗
 onMounted(() => {
   show.value = true;
   if (props.up) {
-    $controlStore.$audioStore("e6b4");
+    $audioStore.play("e6b4");
   }
 });
 
@@ -45,7 +45,7 @@ onMounted(() => {
 const handleClose = () => {
   emit("update:modelValue", false);
   emit("close");
-  $controlStore.$audioStore("6xc6");
+  $audioStore.play("6xc6");
 };
 </script>
 

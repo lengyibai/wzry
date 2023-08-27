@@ -2,14 +2,14 @@
 import { ref } from "vue";
 
 import { API_USER } from "@/api";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Emits {
   (e: "into", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const user_list = ref<User[]>([]); //本地用户列表
 
@@ -21,9 +21,9 @@ API_USER.userList().then((res) => {
 const handleInto = (v: string) => {
   emit("into", v);
   if (v === "注册") {
-    $controlStore.$audioStore("0o5c");
+    $audioStore.play("0o5c");
   } else {
-    $controlStore.$audioStore("36jn");
+    $audioStore.play("36jn");
   }
 };
 </script>

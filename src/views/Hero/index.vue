@@ -9,13 +9,13 @@ import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 import { heroDefault } from "@/default";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import heroStore from "@/store/modules/hero";
 import heroDetailStore from "@/store/modules/heroDetail";
 
 const $route = useRoute();
 const $router = useRouter();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $heroStore = heroStore();
 const $heroDetail = heroDetailStore();
 
@@ -32,7 +32,7 @@ const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信�
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
   new Image().src = data.headImg; //图片预加载
 };
 
@@ -93,7 +93,7 @@ watch(
 );
 
 onActivated(() => {
-  $controlStore.$audioStore("4d8m");
+  $audioStore.play("4d8m");
 });
 
 onMounted(async () => {

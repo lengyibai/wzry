@@ -9,14 +9,14 @@ import { userDefaultInfo } from "@/default";
 import { Util } from "@/utils";
 import { $message } from "@/config";
 import authStore from "@/store/modules/auth";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
 }
 const props = defineProps<Props>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $authStore = authStore();
 
 const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
@@ -40,7 +40,7 @@ const handleLogin = () => {
   $authStore
     .login(form.value)
     .then(() => {
-      $controlStore.$audioStore("e84n");
+      $audioStore.play("e84n");
       $message("登录成功");
       //记住密码
       if (remember.value) {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import heroDetailStore from "@/store/modules/heroDetail";
 
 const $heroDetail = heroDetailStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const voiceRef = ref();
 const voiceList = ref();
@@ -61,7 +61,7 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
 
 /* 悬浮语音 */
 const handleEnter = () => {
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 
 /* 点击播放 */

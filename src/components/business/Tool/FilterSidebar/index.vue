@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 
 import collapseStore from "@/store/modules/collapse";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import equipStore from "@/store/modules/equip";
 import heroStore from "@/store/modules/hero";
 import skinStore from "@/store/modules/skin";
@@ -19,7 +19,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $skinStore = skinStore();
 const $heroStore = heroStore();
 const $collapseStore = collapseStore();
@@ -61,7 +61,7 @@ const filter_type = computed(() => {
 
 /* 选择类型并筛选显示 */
 const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
-  $controlStore.$audioStore(`默认${index}`);
+  $audioStore.play(`默认${index}`);
 
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),

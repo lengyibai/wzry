@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import equipStore from "@/store/modules/equip";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const $equipStore = equipStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const icon = ref();
 
@@ -23,7 +23,7 @@ const shine = computed(() => props.leftLine || props.rightLine); //装备文字�
 /* 查看装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive(props.equip.id);
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 
 /* 设置装备信息，用于计算竖线高度和偏移量 */

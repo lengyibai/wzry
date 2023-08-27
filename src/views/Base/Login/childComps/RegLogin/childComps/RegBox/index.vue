@@ -8,14 +8,14 @@ import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 import { userDefaultInfo } from "@/default";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Emits {
   (e: "success", form: User): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const form = reactive<User>({ ...userDefaultInfo }); //表单数据
 
@@ -23,7 +23,7 @@ const form_verify = ref<boolean[]>([false, false, false]); //表单验证
 
 /* 注册 */
 const handleReg = () => {
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
 
   if (form_verify.value.some((item) => !item)) {
     $message("请正确填写", "error");

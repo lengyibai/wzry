@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   modelValue: boolean; //显示/隐藏
@@ -16,9 +16,9 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
-$controlStore.$audioStore("45iy");
+$audioStore.play("45iy");
 
 /* 关闭 */
 const close = () => {
@@ -29,14 +29,14 @@ const close = () => {
 const handleCancel = () => {
   emit("cancel");
   close();
-  $controlStore.$audioStore("6xc6");
+  $audioStore.play("6xc6");
 };
 
 /* 确定 */
 const handleConfirm = () => {
   emit("confirm");
   close();
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
 };
 </script>
 

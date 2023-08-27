@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
 import authStore from "@/store/modules/auth";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   id: string; //帐号
@@ -19,7 +19,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $authStore = authStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
 
@@ -35,7 +35,7 @@ const handleContrast = () => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.setUserInfo(user_info.value);
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
 
   //更新本地当前用户信息
   API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {

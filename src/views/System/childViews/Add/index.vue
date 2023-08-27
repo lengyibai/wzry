@@ -4,7 +4,7 @@ import { defineAsyncComponent, reactive, onActivated } from "vue";
 import useManageCard from "../../hooks/useManageCard";
 
 import { $loading } from "@/config";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 type Options = Record<
   string,
@@ -18,7 +18,7 @@ const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vu
 const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue")); //皮肤
 const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue")); //技能
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const { box, list } = useManageCard;
 
@@ -43,12 +43,12 @@ const options: Options = reactive({
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
   options[key].show = true;
-  $controlStore.$audioStore();
+  $audioStore.play();
   $loading.show(list[key]);
 };
 
 onActivated(() => {
-  $controlStore.$audioStore("u4c5");
+  $audioStore.play("u4c5");
 });
 </script>
 

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import collapseStore from "@/store/modules/collapse";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 const $collapseStore = collapseStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {
-  $controlStore.$audioStore("d5e2");
+  $audioStore.play("d5e2");
   $collapseStore.toggleCollapse();
 };
 </script>

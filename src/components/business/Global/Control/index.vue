@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import useTip from "./hooks/useTip";
 
-import audioStore from "@/store/modules/audio";
-import controlStore from "@/store/modules/control";
 import { Util } from "@/utils";
-
-const $controlStore = controlStore();
-const $audioStore = audioStore();
 
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
 Util.$Bus.on("tip", (data) => {
   tip(data);
 });
-
-/* 挂载全局 */
-$controlStore.setAudioStore($audioStore.play);
 
 /* 全局监听事件 */
 window.addEventListener("resize", (e) => {

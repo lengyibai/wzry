@@ -7,12 +7,12 @@ import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
 import { Util } from "@/utils";
 import { API_USER } from "@/api";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import deviceStore from "@/store/modules/device";
 import settingStore from "@/store/modules/setting";
 
 const $settingStore = settingStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 const $deviceStore = deviceStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
@@ -33,7 +33,7 @@ const component = computed(() => {
 /* 重新选择登录还是注册 */
 const handleBack = () => {
   is_reg.value = "";
-  $controlStore.$audioStore("p60v");
+  $audioStore.play("p60v");
 };
 
 /**

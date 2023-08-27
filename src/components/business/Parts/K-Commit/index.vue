@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   size?: string;
@@ -19,7 +19,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const show_up = ref(true); //显示纸飞机
 
@@ -30,7 +30,7 @@ const commit = () => {
     show_up.value = false;
     emit("commit");
   }, 750);
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
 };
 
 watch(

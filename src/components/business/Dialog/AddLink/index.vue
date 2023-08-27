@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   placeholder?: string; //输入框描述
@@ -17,19 +17,19 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const input_link = ref(""); //输入的链接
 
 input_link.value = props.link;
 
-$controlStore.$audioStore("0o5c");
+$audioStore.play("0o5c");
 
 /* 确定 */
 const handleConfirm = () => {
   emit("get-link", input_link.value);
   input_link.value = "";
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
 };
 </script>
 

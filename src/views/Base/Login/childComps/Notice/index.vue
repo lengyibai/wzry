@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const notice = ref("");
 
@@ -12,7 +12,7 @@ API_DATA.Notice().then((res) => {
   notice.value = res.data;
 });
 
-$controlStore.$audioStore("u4c5");
+$audioStore.play("u4c5");
 </script>
 
 <template>

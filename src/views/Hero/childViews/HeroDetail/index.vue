@@ -11,7 +11,7 @@ import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
 import { Util } from "@/utils";
 import { heroDefault } from "@/default";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import heroStore from "@/store/modules/hero";
 import heroDetailStore from "@/store/modules/heroDetail";
 
@@ -23,7 +23,7 @@ const emit = defineEmits<Emits>();
 const $router = useRouter();
 const $heroDetail = heroDetailStore();
 const $heroStore = heroStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const scroll_index = ref(1); //滚动索引
 const show_close = ref(false); //显示左上角关闭
@@ -58,7 +58,7 @@ const onToggle = (index: number) => {
 
 /* 滚动立即触发 */
 const onScollStart = () => {
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 
 /* 滚动结束触发 */
@@ -70,7 +70,7 @@ const onScrollEnd = (index: number) => {
 const handleHide = () => {
   $router.replace("/hero");
   $heroDetail.setSkinVoice("盾山"); //置空语音
-  $controlStore.$audioStore("6xc6");
+  $audioStore.play("6xc6");
 
   //延迟0.1秒显示解决移动端动画掉帧
   setTimeout(() => {
@@ -82,7 +82,7 @@ const handleHide = () => {
     setTimeout(() => {
       $heroStore.getHeroList();
       setTimeout(() => {
-        $controlStore.$audioStore("4d8m");
+        $audioStore.play("4d8m");
       }, 250);
     }, 1500);
   }
@@ -97,7 +97,7 @@ setTimeout(() => {
   });
 }, 1500);
 
-$controlStore.$audioStore("u4c5");
+$audioStore.play("u4c5");
 </script>
 
 <template>

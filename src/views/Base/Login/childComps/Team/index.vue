@@ -3,14 +3,14 @@ import { ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { Util } from "@/utils";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const active = ref(-1); //当前显示的图片的索引号
 const imgs = ref<string[]>([]);
 
-$controlStore.$audioStore("u4c5");
+$audioStore.play("u4c5");
 
 API_DATA.Team().then((res) => {
   imgs.value = res.data as unknown as string[];

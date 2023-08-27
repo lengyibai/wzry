@@ -3,7 +3,7 @@ import { ref, computed, onUnmounted } from "vue";
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import heroDetailStore from "@/store/modules/heroDetail";
 
 interface Emits {
@@ -12,7 +12,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $heroDetail = heroDetailStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 let deputy_index = 0; //主副技能索引
 
@@ -66,7 +66,7 @@ const handleSelectSkill = (index: number) => {
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
   emit("select-skill", calcActiveSkill.value);
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 handleSelectSkill(0);
 
@@ -89,7 +89,7 @@ const handleToggleSkill = () => {
 
   //更新技能信息
   handleSelectSkill(current_index.value);
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 
 onUnmounted(() => {

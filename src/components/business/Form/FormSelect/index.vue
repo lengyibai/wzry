@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 
 import { Util } from "@/utils";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   label: string; //左侧文字
@@ -26,7 +26,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -82,7 +82,7 @@ const handleSelect = (id: number, name: string) => {
     input_value.value = name;
   }
 
-  $controlStore.$audioStore();
+  $audioStore.play();
 };
 
 /* 删除选择的数据 */

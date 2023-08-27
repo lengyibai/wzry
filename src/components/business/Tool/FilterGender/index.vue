@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 interface Props {
   modelValue: Gender; //标识符
@@ -11,12 +11,12 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {
   emit("update:modelValue", v);
-  $controlStore.$audioStore();
+  $audioStore.play();
 };
 </script>
 

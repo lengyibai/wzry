@@ -2,10 +2,10 @@
 import { ref, computed } from "vue";
 
 import authStore from "@/store/modules/auth";
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 const $authStore = authStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -29,7 +29,7 @@ const handleEditInfo = () => {
 
 /* 退出登录 */
 const handleLogout = () => {
-  $controlStore.$audioStore("36jn");
+  $audioStore.play("36jn");
   $authStore.logout();
 };
 

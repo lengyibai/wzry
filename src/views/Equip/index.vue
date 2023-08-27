@@ -4,11 +4,11 @@ import { ref, onActivated } from "vue";
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
-import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 import equipStore from "@/store/modules/equip";
 
 const $equipStore = equipStore();
-const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const equipList = ref();
 const equipMain = ref();
@@ -27,7 +27,7 @@ $equipStore.getEquipList().then(() => {
 });
 
 onActivated(() => {
-  $controlStore.$audioStore("3k4s");
+  $audioStore.play("3k4s");
 });
 </script>
 
