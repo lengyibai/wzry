@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
+import authStore from "@/store/modules/auth";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   id: string; //帐号
@@ -17,8 +18,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $authStore = Store.auth();
-const $controlStore = Store.control();
+const $authStore = authStore();
+const $controlStore = controlStore();
 
 const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import collapseStore from "@/store/modules/collapse";
 
-const $collapseStore = Store.collapse();
+const $collapseStore = collapseStore();
 
 /* 开始确认刷新计时 */
 const handleStartTime = () => {

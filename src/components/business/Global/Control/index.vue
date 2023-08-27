@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import useTip from "./hooks/useTip"; //小贴士
+import useTip from "./hooks/useTip";
 
-import { Store } from "@/store";
+import audioStore from "@/store/modules/audio";
+import controlStore from "@/store/modules/control";
 import { Util } from "@/utils";
 
-const $controlStore = Store.control();
-const $audioStoreStore = Store.audio();
+const $controlStore = controlStore();
+const $audioStore = audioStore();
 
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
@@ -14,7 +15,7 @@ Util.$Bus.on("tip", (data) => {
 });
 
 /* 挂载全局 */
-$controlStore.setAudioStore($audioStoreStore.play);
+$controlStore.setAudioStore($audioStore.play);
 
 /* 全局监听事件 */
 window.addEventListener("resize", (e) => {

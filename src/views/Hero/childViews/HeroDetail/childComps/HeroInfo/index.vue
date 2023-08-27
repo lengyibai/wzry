@@ -6,11 +6,11 @@ import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
 import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
 import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $tip } from "@/config";
+import heroDetailStore from "@/store/modules/heroDetail";
 
-const $heroDetail = Store.heroDetail();
+const $heroDetail = heroDetailStore();
 
 let tip_text = "0vk2"; //通过设备来显示不同的提示
 

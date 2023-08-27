@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref, nextTick, onMounted } from "vue";
 
-import { Store } from "@/store";
+import heroDetailStore from "@/store/modules/heroDetail";
 
 interface Props {
   voices: Hero.Voice[]; //语音列表
 }
 defineProps<Props>();
 
-const $heroDetailStore = Store.heroDetail();
+const $heroDetailStore = heroDetailStore();
 
 const voiceRef = ref();
 

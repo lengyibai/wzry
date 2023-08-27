@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   size?: string;
@@ -19,7 +19,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const show_up = ref(true); //显示纸飞机
 

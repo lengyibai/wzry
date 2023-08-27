@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $tip } from "@/config";
+import controlStore from "@/store/modules/control";
+import heroDetailStore from "@/store/modules/heroDetail";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = Store.heroDetail();
-const $controlStore = Store.control();
+const $heroDetail = heroDetailStore();
+const $controlStore = controlStore();
 
 let deputy_index = 0; //主副技能索引
 

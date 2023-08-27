@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import deviceStore from "@/store/modules/device";
 
-const $deviceStore = Store.device();
+const $deviceStore = deviceStore();
 </script>
 
 <template>

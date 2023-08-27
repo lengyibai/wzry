@@ -5,8 +5,9 @@ import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { HOME_URL } from "@/enum";
-import { Store } from "@/store";
 import { $loading } from "@/config";
+import authStore from "@/store/modules/auth";
+import deviceStore from "@/store/modules/device";
 
 const useRouter = createRouter({
   history: createWebHashHistory(),
@@ -14,8 +15,8 @@ const useRouter = createRouter({
 });
 
 useRouter.beforeEach(async (to, from, next) => {
-  const $authStore = Store.auth();
-  const $deviceStore = Store.device();
+  const $authStore = authStore();
+  const $deviceStore = deviceStore();
 
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);

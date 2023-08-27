@@ -6,17 +6,18 @@ import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
 import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 
 import { userDefaultInfo } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $message } from "@/config";
+import authStore from "@/store/modules/auth";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
 }
 const props = defineProps<Props>();
 
-const $controlStore = Store.control();
-const $authStore = Store.auth();
+const $controlStore = controlStore();
+const $authStore = authStore();
 
 const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
 const remember = ref(true);

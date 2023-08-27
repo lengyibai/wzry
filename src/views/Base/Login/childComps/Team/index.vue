@@ -2,10 +2,10 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { Store } from "@/store";
 import { Util } from "@/utils";
+import controlStore from "@/store/modules/control";
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const active = ref(-1); //当前显示的图片的索引号
 const imgs = ref<string[]>([]);

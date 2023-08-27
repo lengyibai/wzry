@@ -8,7 +8,7 @@ import { RouterSheel } from "@/router/interface";
 import sheelToRoute from "@/router/helper/sheelToRoute";
 
 /** @description 路由相关 */
-const routeStore = defineStore("route", () => {
+const routerStore = defineStore("route", () => {
   const routes = ref<RouteRecordRaw[]>([]); //当前路由列表，针对侧边栏，解决通过vue-router提供的方法获取的路由列表与侧边栏要求的格式不匹配
   const routeNames = ref<RouteRecordName[]>([]); //添加的路由name组，用于匹配并删除路由
 
@@ -61,5 +61,5 @@ const routeStore = defineStore("route", () => {
   };
 });
 
-export default routeStore;
-export type RouteStore = ReturnType<typeof routeStore>;
+export default routerStore;
+export type routerStore = ReturnType<typeof routerStore>;

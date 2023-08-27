@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import heroDetailStore from "@/store/modules/heroDetail";
 
-const $heroDetail = Store.heroDetail();
-const $controlStore = Store.control();
+const $heroDetail = heroDetailStore();
+const $controlStore = controlStore();
 
 const voiceRef = ref();
 const voiceList = ref();

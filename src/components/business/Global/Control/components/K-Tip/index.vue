@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import settingStore from "@/store/modules/setting";
 
 interface Props {
   modelValue: boolean;
@@ -25,8 +26,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $settingStore = Store.setting();
-const $controlStore = Store.control();
+const $settingStore = settingStore();
+const $controlStore = controlStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

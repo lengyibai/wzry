@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   modelValue: number | string; //值
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const tip = ref(""); //不合法提示
 const legal = ref(true); //是否合法

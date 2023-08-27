@@ -3,7 +3,7 @@ import { ref, watch } from "vue";
 
 import EquipCard from "../common/EquipCard/index.vue"; //装备卡片
 
-import { Store } from "@/store";
+import equipStore from "@/store/modules/equip";
 
 interface Props {
   equipList: Equip.Data[];
@@ -12,7 +12,7 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-const $equipStore = Store.equip();
+const $equipStore = equipStore();
 
 const card = ref();
 

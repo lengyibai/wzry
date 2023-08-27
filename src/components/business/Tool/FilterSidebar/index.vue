@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { Store } from "@/store";
+import collapseStore from "@/store/modules/collapse";
+import controlStore from "@/store/modules/control";
+import equipStore from "@/store/modules/equip";
+import heroStore from "@/store/modules/hero";
+import skinStore from "@/store/modules/skin";
 
 interface Props {
   type: "hero" | "skin" | "equip";
@@ -15,11 +19,11 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
-const $skinStore = Store.skin();
-const $heroStore = Store.hero();
-const $collapseStore = Store.collapse();
-const $equipStore = Store.equip();
+const $controlStore = controlStore();
+const $skinStore = skinStore();
+const $heroStore = heroStore();
+const $collapseStore = collapseStore();
+const $equipStore = equipStore();
 
 const hero_type: { name: Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },

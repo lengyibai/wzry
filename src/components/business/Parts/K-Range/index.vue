@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   modelValue: string | number; //值
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const down = ref(false); //是否处于按下状态
 

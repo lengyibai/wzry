@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { Store } from "@/store";
+import heroStore from "@/store/modules/hero";
 
 interface Props {
   data: Hero.Data; //英雄数据
@@ -13,7 +13,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $heroStore = Store.hero();
+const $heroStore = heroStore();
 
 const show = ref(false); //显示查看详情选项
 const finish = ref(false); //头像是否加载完成

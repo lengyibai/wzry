@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
@@ -28,7 +28,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

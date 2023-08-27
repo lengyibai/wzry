@@ -2,11 +2,12 @@ import { ref } from "vue";
 
 import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import settingStore from "@/store/modules/setting";
 
 export default () => {
-  const $settingStore = Store.setting();
-  const $controlStore = Store.control();
+  const $settingStore = settingStore();
+  const $controlStore = controlStore();
 
   const show_tip = ref(false); //显示小贴士
   const title = ref(); //左上角标题

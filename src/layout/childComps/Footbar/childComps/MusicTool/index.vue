@@ -3,18 +3,20 @@ import { nextTick, ref } from "vue";
 
 import MuiscList from "../MuiscList/index.vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $tip } from "@/config";
+import deviceStore from "@/store/modules/device";
+import musicStore from "@/store/modules/music";
+import settingStore from "@/store/modules/setting";
 
 interface Emits {
   (e: "toggle", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
-const $musicStore = Store.music();
-const $settingStore = Store.setting();
-const $deviceStore = Store.device();
+const $musicStore = musicStore();
+const $settingStore = settingStore();
+const $deviceStore = deviceStore();
 
 const musicTool = ref();
 

@@ -2,10 +2,10 @@
 import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { API_HERO } from "@/api";
-import { Store } from "@/store";
 import { Util } from "@/utils";
+import heroStore from "@/store/modules/hero";
 
-const $heroStore = Store.hero();
+const $heroStore = heroStore();
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },

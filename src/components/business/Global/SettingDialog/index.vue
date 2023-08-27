@@ -5,19 +5,22 @@ import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
 
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $message, $tip } from "@/config";
+import audioStore from "@/store/modules/audio";
+import musicStore from "@/store/modules/music";
+import settingStore from "@/store/modules/setting";
+import cssVarStore from "@/store/modules/cssVar";
 
 interface Props {
   modelValue: boolean;
 }
 defineProps<Props>();
 
-const $audioStore = Store.audio();
-const $musicStore = Store.music();
-const $settingStore = Store.setting();
-const $cssVarStore = Store.cssVar();
+const $audioStore = audioStore();
+const $musicStore = musicStore();
+const $settingStore = settingStore();
+const $cssVarStore = cssVarStore();
 
 //默认配置
 const default_config: SettingConfig = { ...configDefault };

@@ -5,13 +5,15 @@ import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
 import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
 import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_USER } from "@/api";
+import controlStore from "@/store/modules/control";
+import deviceStore from "@/store/modules/device";
+import settingStore from "@/store/modules/setting";
 
-const $settingStore = Store.setting();
-const $controlStore = Store.control();
-const $deviceStore = Store.device();
+const $settingStore = settingStore();
+const $controlStore = controlStore();
+const $deviceStore = deviceStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

@@ -1,14 +1,16 @@
 <script setup lang="ts" name="database">
 import { ref, onActivated } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
+import skinStore from "@/store/modules/skin";
+import controlStore from "@/store/modules/control";
+import heroStore from "@/store/modules/hero";
 
-const $skinStore = Store.skin();
-const $heroStore = Store.hero();
-const $controlStore = Store.control();
+const $skinStore = skinStore();
+const $heroStore = heroStore();
+const $controlStore = controlStore();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],

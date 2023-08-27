@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   modelValue: Gender; //标识符
@@ -11,7 +11,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {

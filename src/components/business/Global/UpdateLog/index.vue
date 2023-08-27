@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import versionStore from "@/store/modules/version";
 
-const $controlStore = Store.control();
-const $versionStore = Store.version();
+const $controlStore = controlStore();
+const $versionStore = versionStore();
 
 $controlStore.$audioStore("u4c5");
 

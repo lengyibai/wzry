@@ -7,15 +7,17 @@ import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
 import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 
 import { heroDefault } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
+import controlStore from "@/store/modules/control";
+import heroStore from "@/store/modules/hero";
+import heroDetailStore from "@/store/modules/heroDetail";
 
 const $route = useRoute();
 const $router = useRouter();
-const $controlStore = Store.control();
-const $heroStore = Store.hero();
-const $heroDetail = Store.heroDetail();
+const $controlStore = controlStore();
+const $heroStore = heroStore();
+const $heroDetail = heroDetailStore();
 
 let id: unknown = $route.query.id; //地址栏参数
 

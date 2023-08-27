@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Store } from "./store";
+import settingStore from "@/store/modules/setting";
 
-const $settingStore = Store.setting();
+const $settingStore = settingStore();
 $settingStore.takeEffect();
 </script>
 
@@ -21,7 +21,6 @@ $settingStore.takeEffect();
 </template>
 
 <style scoped lang="less">
-/* 圆形路由跳转 */
 .round-clip-enter-active {
   animation: round-clip-in 0.75s;
 }

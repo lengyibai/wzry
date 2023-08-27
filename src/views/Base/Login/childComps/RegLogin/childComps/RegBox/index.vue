@@ -6,16 +6,16 @@ import IntoBtn from "../IntoBtn/index.vue"; //按钮
 import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 
 import { userDefaultInfo } from "@/default";
-import { Store } from "@/store";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
+import controlStore from "@/store/modules/control";
 
 interface Emits {
   (e: "success", form: User): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const form = reactive<User>({ ...userDefaultInfo }); //表单数据
 

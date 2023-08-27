@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   placeholder?: string; //输入框描述
@@ -17,7 +17,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const input_link = ref(""); //输入的链接
 

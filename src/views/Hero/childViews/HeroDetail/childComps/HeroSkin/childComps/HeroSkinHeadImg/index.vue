@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $tip } from "@/config";
+import heroDetailStore from "@/store/modules/heroDetail";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = Store.heroDetail();
+const $heroDetail = heroDetailStore();
 
 const skin = ref();
 const showSkin = ref();

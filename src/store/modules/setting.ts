@@ -2,9 +2,11 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { configDefault } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { setLanguage } from "@/language";
+import audioStore from "@/store/modules/audio";
+import musicStore from "@/store/modules/music";
+import cssVarStore from "@/store/modules/cssVar";
 
 /** @description 设置相关 */
 const settingStore = defineStore("setting", () => {
@@ -20,9 +22,9 @@ const settingStore = defineStore("setting", () => {
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
-    const $audioStore = Store.audio();
-    const $musicStore = Store.music();
-    const $cssVarStore = Store.cssVar();
+    const $audioStore = audioStore();
+    const $musicStore = musicStore();
+    const $cssVarStore = cssVarStore();
     setLanguage(config.value.language);
     $audioStore.setAudio(config.value.audio);
     $audioStore.setVolume(config.value.audioVolume);

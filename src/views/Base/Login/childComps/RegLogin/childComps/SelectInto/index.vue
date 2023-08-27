@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
 import { API_USER } from "@/api";
+import controlStore from "@/store/modules/control";
 
 interface Emits {
   (e: "into", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const user_list = ref<User[]>([]); //本地用户列表
 

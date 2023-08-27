@@ -5,12 +5,13 @@ import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
 import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
 import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
+import controlStore from "@/store/modules/control";
+import skinStore from "@/store/modules/skin";
 
-const $skinStore = Store.skin();
-const $controlStore = Store.control();
+const $skinStore = skinStore();
+const $controlStore = controlStore();
 
 const skinListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import epigraphStore from "@/store/modules/epigraph";
 
-const $controlStore = Store.control();
-const $epigraphStore = Store.epigraph();
+const $controlStore = controlStore();
+const $epigraphStore = epigraphStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

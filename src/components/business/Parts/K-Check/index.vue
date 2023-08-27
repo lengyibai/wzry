@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   modelValue: boolean | string; //选中状态
@@ -13,7 +13,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const icon = computed(() => `${IMGBED}/image/${props.modelValue ? "select_true" : "select_false"}.png`);
 

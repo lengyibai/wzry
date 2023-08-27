@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import settingStore from "@/store/modules/setting";
 
 interface Props {
   notice?: boolean; //显示公告按钮
@@ -15,8 +16,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $settingStore = Store.setting();
-const $controlStore = Store.control();
+const $settingStore = settingStore();
+const $controlStore = controlStore();
 
 const toolbar = ref();
 

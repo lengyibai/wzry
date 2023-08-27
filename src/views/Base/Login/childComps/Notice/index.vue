@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
 import { API_DATA } from "@/api";
+import controlStore from "@/store/modules/control";
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const notice = ref("");
 

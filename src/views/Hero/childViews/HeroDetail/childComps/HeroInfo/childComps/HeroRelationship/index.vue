@@ -2,10 +2,10 @@
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
-import { Store } from "@/store";
 import { API_HERO } from "@/api";
+import heroDetailStore from "@/store/modules/heroDetail";
 
-const $heroDetail = Store.heroDetail();
+const $heroDetail = heroDetailStore();
 const $router = useRouter();
 
 const relationship = ref();

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import { Store } from "@/store";
+import versionStore from "@/store/modules/version";
 
-const $versionStore = Store.version();
+const $versionStore = versionStore();
 
 const show_setting = ref(false); //显示/隐藏设置弹窗
 const show_update = ref(false); //显示/隐藏日志弹窗

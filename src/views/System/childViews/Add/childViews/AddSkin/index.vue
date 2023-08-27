@@ -3,16 +3,16 @@ import { ref } from "vue";
 
 import viewHide from "../../../../hooks/useViewHide";
 
-import { Store } from "@/store";
 import { API_HERO, API_SKIN } from "@/api";
 import { $loading, $message } from "@/config";
+import skinStore from "@/store/modules/skin";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $skinStore = Store.skin();
+const $skinStore = skinStore();
 
 const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<Hero.Skin[]>(
   emit,

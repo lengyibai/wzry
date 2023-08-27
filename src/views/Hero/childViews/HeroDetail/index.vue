@@ -9,9 +9,11 @@ import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
 import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
 import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { heroDefault } from "@/default";
+import controlStore from "@/store/modules/control";
+import heroStore from "@/store/modules/hero";
+import heroDetailStore from "@/store/modules/heroDetail";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -19,9 +21,9 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $router = useRouter();
-const $heroDetail = Store.heroDetail();
-const $heroStore = Store.hero();
-const $controlStore = Store.control();
+const $heroDetail = heroDetailStore();
+const $heroStore = heroStore();
+const $controlStore = controlStore();
 
 const scroll_index = ref(1); //滚动索引
 const show_close = ref(false); //显示左上角关闭

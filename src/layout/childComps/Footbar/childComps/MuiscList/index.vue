@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import musicStore from "@/store/modules/music";
 
-const $musicStore = Store.music();
+const $musicStore = musicStore();
 
 /* 关闭播放列表 */
 const handleClose = () => {

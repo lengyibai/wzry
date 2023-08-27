@@ -9,11 +9,11 @@ import Team from "./childComps/Team/index.vue"; //开黑
 import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
 import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { $tip } from "@/config";
+import settingStore from "@/store/modules/setting";
 
-const $settingStore = Store.setting();
+const $settingStore = settingStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

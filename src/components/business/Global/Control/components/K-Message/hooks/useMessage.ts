@@ -1,9 +1,11 @@
 import { reactive } from "vue";
 import dayjs from "dayjs";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
 
 export default () => {
+  const $controlStore = controlStore();
+
   const messages = reactive<MsgText[]>([]); //消息队列
 
   const msg = (text = "未设置提示", type: MsgType = "info") => {
@@ -18,7 +20,7 @@ export default () => {
         error: "vw31",
       };
 
-      Store.control().$audioStore(msgName[type]); //播放指定名称的音效
+      $controlStore.$audioStore(msgName[type]); //播放指定名称的音效
 
       //创建消息内容
       const msgText: MsgText = {

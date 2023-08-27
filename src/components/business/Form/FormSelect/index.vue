@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
+import controlStore from "@/store/modules/control";
 
 interface Props {
   label: string; //左侧文字
@@ -26,7 +26,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

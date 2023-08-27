@@ -4,7 +4,7 @@ import VConsole from "vconsole";
 import App from "./App.vue";
 
 import { setupRouter } from "@/router";
-import { Store } from "@/store";
+import setupStore from "@/store";
 import { Util } from "@/utils";
 import i18n from "@/language";
 import setupDirective from "@/directives";
@@ -34,7 +34,7 @@ Util.flexible.trigger([480, 0], () => {
 
 const app = createApp(App);
 
-Store.setup(app);
+setupStore(app);
 useAutoLogin();
 setupDirective(app);
 setupRouter(app);

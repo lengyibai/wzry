@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import settingStore from "@/store/modules/setting";
 
 interface Props {
   text: string; //文字
@@ -7,7 +7,7 @@ interface Props {
 }
 defineProps<Props>();
 
-const $settingStore = Store.setting();
+const $settingStore = settingStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 </script>

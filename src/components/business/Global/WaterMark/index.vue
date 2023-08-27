@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { Store } from "@/store";
 import { Util } from "@/utils";
+import authStore from "@/store/modules/auth";
+import collapseStore from "@/store/modules/collapse";
+import deviceStore from "@/store/modules/device";
+import vConsoleStore from "@/store/modules/vConsole";
+import versionStore from "@/store/modules/version";
 
-const $collapseStore = Store.collapse();
-const $versionStore = Store.version();
-const $deviceStore = Store.device();
-const $vConsoleStore = Store.vConsole();
-const $authStore = Store.auth();
+const $collapseStore = collapseStore();
+const $versionStore = versionStore();
+const $deviceStore = deviceStore();
+const $vConsoleStore = vConsoleStore();
+const $authStore = authStore();
 
 /* 是否为旧版 */
 const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);

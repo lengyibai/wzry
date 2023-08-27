@@ -4,10 +4,11 @@ import { ref, onActivated } from "vue";
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import epigraphStore from "@/store/modules/epigraph";
 
-const $epigraphStore = Store.epigraph();
-const $controlStore = Store.control();
+const $epigraphStore = epigraphStore();
+const $controlStore = controlStore();
 
 const show_epigraph = ref(false); //显示铭文顶部分类
 

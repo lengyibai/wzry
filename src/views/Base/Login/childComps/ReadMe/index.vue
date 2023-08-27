@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+
 interface Props {
   modelValue?: boolean;
 }
@@ -10,7 +11,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

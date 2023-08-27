@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 /** @description 控制CSS变量相关(动画速率、线条、阴影、柔光) */
-const cssVariableStore = defineStore("cssVariable", () => {
+const cssVarStore = defineStore("cssVariable", () => {
   const html = document.documentElement.classList;
 
   /** @description 设置动画速率 */
@@ -77,5 +77,5 @@ const cssVariableStore = defineStore("cssVariable", () => {
   };
 });
 
-export default cssVariableStore;
-export type CssVariableStore = ReturnType<typeof cssVariableStore>;
+export default cssVarStore;
+export type cssVarStore = ReturnType<typeof cssVarStore>;

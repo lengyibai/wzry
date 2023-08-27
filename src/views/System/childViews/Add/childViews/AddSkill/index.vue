@@ -6,17 +6,17 @@ import viewHide from "../../../../hooks/useViewHide";
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { skillDefault, skillEffectDefault } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_HERO, API_SKILL } from "@/api";
 import { $loading, $message } from "@/config";
+import heroStore from "@/store/modules/hero";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroStore = Store.hero();
+const $heroStore = heroStore();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
   emit,

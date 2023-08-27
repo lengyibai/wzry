@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+import audioStore from "@/store/modules/audio";
 
 type Data = { label: string; value: string | number };
 
@@ -21,7 +22,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $audioStore = audioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 
@@ -36,7 +37,7 @@ if (props.modelValue) {
 
 /* 显示列表 */
 const handleShowList = () => {
-  $controlStore.$audioStore("n4r4");
+  $audioStore.play("n4r4");
 };
 
 /* 悬浮触发 */
@@ -49,7 +50,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
   current_value.value = v.label;
   sort_text.value = v.label;
   emit("select", v.value);
-  $controlStore.$audioStore();
+  $audioStore.play();
 };
 </script>
 

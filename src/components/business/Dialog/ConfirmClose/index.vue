@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+
 interface Props {
   modelValue: boolean; //显示/隐藏
   text?: string; //提示描述
@@ -15,7 +16,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 $controlStore.$audioStore("45iy");
 

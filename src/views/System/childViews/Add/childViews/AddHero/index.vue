@@ -4,17 +4,17 @@ import { reactive } from "vue";
 import viewHide from "../../../../hooks/useViewHide";
 
 import { heroDefault } from "@/default";
-import { Store } from "@/store";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 import { $loading, $message } from "@/config";
+import heroStore from "@/store/modules/hero";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroStore = Store.hero();
+const $heroStore = heroStore();
 
 const attr: Record<string, string> = {
   survival: "生存能力",

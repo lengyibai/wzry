@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import collapseStore from "@/store/modules/collapse";
+import controlStore from "@/store/modules/control";
 
-const $collapseStore = Store.collapse();
-const $controlStore = Store.control();
+const $collapseStore = collapseStore();
+const $controlStore = controlStore();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watchEffect, onMounted } from "vue";
 
-import { Store } from "@/store";
+import heroDetailStore from "@/store/modules/heroDetail";
 
-const $heroDetail = Store.heroDetail();
+const $heroDetail = heroDetailStore();
 
 const info = ref();
 const hero_data = ref<any>([]);

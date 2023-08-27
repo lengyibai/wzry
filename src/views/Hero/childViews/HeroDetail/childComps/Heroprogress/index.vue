@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Store } from "@/store";
+import controlStore from "@/store/modules/control";
+
 interface Props {
   index: number; //滚动索引
 }
@@ -10,7 +11,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $controlStore = Store.control();
+const $controlStore = controlStore();
 
 const page_name = ["英雄资料", "技能信息", "皮肤语音"]; //滚动索引标题
 
