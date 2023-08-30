@@ -9,7 +9,7 @@ const skinStore = defineStore("skin", () => {
   const profession = ref(""); //职业类型
   const price_type = ref(""); //价格排序类型
   const skin_type = ref(""); //皮肤筛选类型
-  const sort_type = ref("正序"); //排序类型
+  const sort_type = ref("倒序"); //排序类型
   const gender_type = ref(0); //性别筛选类型
   const skin_list = ref<Hero.Skin[]>([]); //皮肤列表
   const filter_list = ref<Hero.Skin[]>([]); //筛选后的列表

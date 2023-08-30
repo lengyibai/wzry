@@ -11,7 +11,7 @@ const heroStore = defineStore("hero", () => {
   const attr_type = ref("全部属性"); //属性排序类型
   const misc_type = ref("全部筛选"); //杂项筛选类型
   const misc_sort = ref("全部排序"); //杂项排序类型
-  const sort_type = ref("正序"); //当前排序类型
+  const sort_type = ref("倒序"); //当前排序类型
   const gender_type = ref<Gender>(0); //当前性别排序类型
   const hero_list = ref<Hero.Data[]>([]); //英雄完整列表
   const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
