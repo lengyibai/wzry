@@ -32,6 +32,8 @@ Util.flexible.trigger([480, 0], () => {
   document.documentElement.style.fontSize = "10px";
 });
 
+window.IMGBED = "https://lyb.cbb.plus/wzry-material";
+
 const app = createApp(App);
 
 setupStore(app);
