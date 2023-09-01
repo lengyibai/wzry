@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import useUpdateData from "@/hooks/useUpdateData";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
+import { useUpdateData } from "@/hooks";
 
 const VersionStore = defineStore("version", () => {
   let timer: NodeJS.Timer | undefined = undefined; //实时更新计时器

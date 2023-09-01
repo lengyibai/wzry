@@ -1,14 +1,14 @@
-import { createApp } from "vue";
 import VConsole from "vconsole";
+import { createApp } from "vue";
 
 import App from "./App.vue";
+import { useAutoLogin } from "./hooks";
 
-import { setupRouter } from "@/router";
 import setupStore from "@/store";
-import { Util } from "@/utils";
-import i18n from "@/language";
 import setupDirective from "@/directives";
-import useAutoLogin from "@/hooks/useAutoLogin";
+import i18n from "@/language";
+import { Util } from "@/utils";
+import { setupRouter } from "@/router";
 
 import "@/styles/index.less";
 

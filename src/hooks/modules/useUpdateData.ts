@@ -1,6 +1,6 @@
 import { API_DATA, API_HERO } from "@/api";
 
-export default () => {
+const useUpdateData = () => {
   const keywords: [string, string][] = [
     ["herobasic", "英雄基础"],
     ["heroimg", "英雄图片"],
@@ -118,3 +118,5 @@ export default () => {
 
   return load();
 };
+
+export { useUpdateData };

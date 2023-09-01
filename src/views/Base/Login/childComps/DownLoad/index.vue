@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, watch } from "vue";
 
-import useGetData from "@/hooks/useGetData";
+import { useGetData } from "@/hooks";
 
 interface Emits {
   (e: "update:finish", v: boolean): void;
