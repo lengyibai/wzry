@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   placeholder?: string; //输入框描述
@@ -17,7 +17,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const input_link = ref(""); //输入的链接
 

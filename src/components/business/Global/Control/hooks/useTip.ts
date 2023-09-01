@@ -2,12 +2,11 @@ import { ref } from "vue";
 
 import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
-import audioStore from "@/store/modules/audio";
-import settingStore from "@/store/modules/setting";
+import { SettingStore, AudioStore } from "@/store";
 
 export default () => {
-  const $settingStore = settingStore();
-  const $audioStore = audioStore();
+  const $settingStore = SettingStore();
+  const $audioStore = AudioStore();
 
   const show_tip = ref(false); //显示小贴士
   const title = ref(); //左上角标题

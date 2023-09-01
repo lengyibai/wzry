@@ -7,14 +7,14 @@ import { heroDefault } from "@/default";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 import { $loading, $message } from "@/config";
-import heroStore from "@/store/modules/hero";
+import { HeroStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroStore = heroStore();
+const $heroStore = HeroStore();
 
 const attr: Record<string, string> = {
   survival: "生存能力",

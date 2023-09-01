@@ -2,9 +2,9 @@
 import { ref, reactive, onBeforeUnmount } from "vue";
 
 import { Util } from "@/utils";
-import skinStore from "@/store/modules/skin";
+import { SkinStore } from "@/store";
 
-const $skinStore = skinStore();
+const $skinStore = SkinStore();
 
 const select_price = [
   { label: "默认价格", value: "默认价格" },

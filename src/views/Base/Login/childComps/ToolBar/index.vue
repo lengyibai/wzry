@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import audioStore from "@/store/modules/audio";
-import settingStore from "@/store/modules/setting";
+import { SettingStore, AudioStore } from "@/store";
 
 interface Props {
   notice?: boolean; //显示公告按钮
@@ -16,8 +15,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $settingStore = settingStore();
-const $audioStore = audioStore();
+const $settingStore = SettingStore();
+const $audioStore = AudioStore();
 
 const toolbar = ref();
 

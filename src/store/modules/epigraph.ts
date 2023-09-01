@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { API_EPIGRAPH } from "@/api";
 
 /** @description 铭文相关 */
-const epigraphStore = defineStore("epigraph", () => {
+const EpigraphStore = defineStore("epigraph", () => {
   const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
   const filter_list = ref<Epigraph.Data[]>([]); //筛选后的列表
 
@@ -41,5 +41,5 @@ const epigraphStore = defineStore("epigraph", () => {
   };
 });
 
-export default epigraphStore;
-export type EpigraphStore = ReturnType<typeof epigraphStore>;
+export { EpigraphStore };
+export type EpigraphStore = ReturnType<typeof EpigraphStore>;

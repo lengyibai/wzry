@@ -6,11 +6,10 @@ import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
 import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
 import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
 import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
-import audioStore from "@/store/modules/audio";
-import settingStore from "@/store/modules/setting";
+import { SettingStore, AudioStore } from "@/store";
 
-const $settingStore = settingStore();
-const $audioStore = audioStore();
+const $settingStore = SettingStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

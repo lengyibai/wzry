@@ -4,14 +4,14 @@ import { ref, computed, onUnmounted } from "vue";
 import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue"; //左侧描述
 import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"; //右侧效果
 
-import heroDetailStore from "@/store/modules/heroDetail";
+import { HeroDetailStore } from "@/store";
 
 interface Props {
   skill: Hero.Skill; //技能信息
 }
 const props = defineProps<Props>();
 
-const $heroDetail = heroDetailStore();
+const $heroDetail = HeroDetailStore();
 
 const show = ref(false); //左右两边的入场动画
 const toggle = ref(false); //用于技能选择

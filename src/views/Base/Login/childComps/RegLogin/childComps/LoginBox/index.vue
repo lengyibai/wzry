@@ -8,16 +8,15 @@ import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
 import { userDefaultInfo } from "@/default";
 import { Util } from "@/utils";
 import { $message } from "@/config";
-import authStore from "@/store/modules/auth";
-import audioStore from "@/store/modules/audio";
+import { AudioStore, AuthStore } from "@/store";
 
 interface Props {
   userInfo: User; //注册成功后用于填充
 }
 const props = defineProps<Props>();
 
-const $audioStore = audioStore();
-const $authStore = authStore();
+const $audioStore = AudioStore();
+const $authStore = AuthStore();
 
 const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
 const remember = ref(true);

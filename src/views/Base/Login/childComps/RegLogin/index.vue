@@ -7,13 +7,11 @@ import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
 
 import { Util } from "@/utils";
 import { API_USER } from "@/api";
-import audioStore from "@/store/modules/audio";
-import deviceStore from "@/store/modules/device";
-import settingStore from "@/store/modules/setting";
+import { SettingStore, AudioStore, DeviceStore } from "@/store";
 
-const $settingStore = settingStore();
-const $audioStore = audioStore();
-const $deviceStore = deviceStore();
+const $settingStore = SettingStore();
+const $audioStore = AudioStore();
+const $deviceStore = DeviceStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const notice = ref("");
 

@@ -4,11 +4,10 @@ import { ref, onActivated } from "vue";
 import EquipList from "./childComps/EquipList/index.vue"; //装备列表
 import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
 
-import audioStore from "@/store/modules/audio";
-import equipStore from "@/store/modules/equip";
+import { EquipStore, AudioStore } from "@/store";
 
-const $equipStore = equipStore();
-const $audioStore = audioStore();
+const $equipStore = EquipStore();
+const $audioStore = AudioStore();
 
 const equipList = ref();
 const equipMain = ref();

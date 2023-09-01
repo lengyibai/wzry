@@ -17,7 +17,7 @@ type EquipElement = {
 };
 
 /** @description 装备相关 */
-const equipStore = defineStore("equip", () => {
+const EquipStore = defineStore("equip", () => {
   /** 当前被点击装备排列位置，通过分解id获得 */
   let active_array: string[] = [];
   /** 相关职业列表 */
@@ -309,5 +309,5 @@ const equipStore = defineStore("equip", () => {
   };
 });
 
-export default equipStore;
-export type EquipStore = ReturnType<typeof equipStore>;
+export { EquipStore };
+export type EquipStore = ReturnType<typeof EquipStore>;

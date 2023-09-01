@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import audioStore from "@/store/modules/audio";
-import epigraphStore from "@/store/modules/epigraph";
+import { AudioStore, EpigraphStore } from "@/store";
 
-const $audioStore = audioStore();
-const $epigraphStore = epigraphStore();
+const $audioStore = AudioStore();
+const $epigraphStore = EpigraphStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

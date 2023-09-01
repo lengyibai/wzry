@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { AudioStore, MusicStore } from "..";
+
+import { CssVarStore } from "./cssVar";
+
 import { configDefault } from "@/default";
 import { Util } from "@/utils";
 import { setLanguage } from "@/language";
-import audioStore from "@/store/modules/audio";
-import musicStore from "@/store/modules/music";
-import cssVarStore from "@/store/modules/cssVar";
 
 /** @description 设置相关 */
-const settingStore = defineStore("setting", () => {
+const SettingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
 
   /* 从本地获取配置进行合并 */
@@ -22,9 +23,9 @@ const settingStore = defineStore("setting", () => {
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
-    const $audioStore = audioStore();
-    const $musicStore = musicStore();
-    const $cssVarStore = cssVarStore();
+    const $audioStore = AudioStore();
+    const $musicStore = MusicStore();
+    const $cssVarStore = CssVarStore();
     setLanguage(config.value.language);
     $audioStore.setAudio(config.value.audio);
     $audioStore.setVolume(config.value.audioVolume);
@@ -69,5 +70,5 @@ const settingStore = defineStore("setting", () => {
   return { config, saveConfig, setNoTip, restoreTip, takeEffect };
 });
 
-export default settingStore;
-export type SettingStore = ReturnType<typeof settingStore>;
+export { SettingStore };
+export type SettingStore = ReturnType<typeof SettingStore>;

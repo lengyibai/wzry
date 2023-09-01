@@ -5,7 +5,7 @@ import { API_SKIN } from "@/api";
 import { Util } from "@/utils";
 
 /** @description 皮肤列表页 */
-const skinStore = defineStore("skin", () => {
+const SkinStore = defineStore("skin", () => {
   const profession = ref(""); //职业类型
   const price_type = ref(""); //价格排序类型
   const skin_type = ref(""); //皮肤筛选类型
@@ -362,5 +362,5 @@ const skinStore = defineStore("skin", () => {
   };
 });
 
-export default skinStore;
-export type SkinStore = ReturnType<typeof skinStore>;
+export { SkinStore };
+export type SkinStore = ReturnType<typeof SkinStore>;

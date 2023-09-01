@@ -4,7 +4,7 @@ import { defineAsyncComponent, reactive, onActivated } from "vue";
 import useManageCard from "../../hooks/useManageCard";
 
 import { $loading } from "@/config";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 type Options = Record<
   string,
@@ -18,7 +18,7 @@ const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vu
 const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue")); //皮肤
 const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue")); //技能
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const { box, list } = useManageCard;
 

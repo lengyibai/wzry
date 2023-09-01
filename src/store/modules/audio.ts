@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { Util } from "@/utils";
 
 /** @description 点击音效 */
-const audioStore = defineStore("audio", () => {
+const AudioStore = defineStore("audio", () => {
   let sound_name = "默认"; //音效名
   let volume = 0.5; //音量
   let status = true; //启用音效
@@ -92,5 +92,5 @@ const audioStore = defineStore("audio", () => {
   return { play, setVolume, setAudio };
 });
 
-export default audioStore;
-export type AudioStore = ReturnType<typeof audioStore>;
+export { AudioStore };
+export type AudioStore = ReturnType<typeof AudioStore>;

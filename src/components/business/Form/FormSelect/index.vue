@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 
 import { Util } from "@/utils";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   label: string; //左侧文字
@@ -26,7 +26,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

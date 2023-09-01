@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import settingStore from "@/store/modules/setting";
+import { SettingStore } from "@/store";
 
 interface Props {
   autoSize?: boolean; //自适应
@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Props>(), {
   width: "14rem",
 });
 
-const $settingStore = settingStore();
+const $settingStore = SettingStore();
 
 //按钮宽高
 const style1 = {

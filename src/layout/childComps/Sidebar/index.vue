@@ -6,11 +6,10 @@ import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
 import { Util } from "@/utils";
-import collapseStore from "@/store/modules/collapse";
-import routerStore from "@/store/modules/router";
+import { CollapseStore, RouterStore } from "@/store";
 
-const $collapseStore = collapseStore();
-const $routerStore = routerStore();
+const $collapseStore = CollapseStore();
+const $routerStore = RouterStore();
 
 const top = ref(0); //滑块坐标
 const show_slider = ref(false); //显示滑块

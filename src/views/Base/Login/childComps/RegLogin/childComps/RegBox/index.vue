@@ -8,14 +8,14 @@ import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
 import { userDefaultInfo } from "@/default";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Emits {
   (e: "success", form: User): void;
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const form = reactive<User>({ ...userDefaultInfo }); //表单数据
 

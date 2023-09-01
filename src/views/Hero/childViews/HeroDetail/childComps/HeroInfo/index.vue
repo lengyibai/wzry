@@ -8,9 +8,9 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { HeroDetailStore } from "@/store";
 
-const $heroDetail = heroDetailStore();
+const $heroDetail = HeroDetailStore();
 
 let tip_text = "0vk2"; //通过设备来显示不同的提示
 

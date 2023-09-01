@@ -3,16 +3,15 @@ import { ref, computed, onUnmounted } from "vue";
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
-import audioStore from "@/store/modules/audio";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { AudioStore, HeroDetailStore } from "@/store";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetailStore();
-const $audioStore = audioStore();
+const $heroDetail = HeroDetailStore();
+const $audioStore = AudioStore();
 
 let deputy_index = 0; //主副技能索引
 

@@ -3,8 +3,7 @@ import { ref } from "vue";
 
 import { API_USER } from "@/api";
 import { $message } from "@/config";
-import authStore from "@/store/modules/auth";
-import audioStore from "@/store/modules/audio";
+import { AuthStore, AudioStore } from "@/store";
 
 interface Props {
   id: string; //帐号
@@ -18,8 +17,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $authStore = authStore();
-const $audioStore = audioStore();
+const $authStore = AuthStore();
+const $audioStore = AudioStore();
 
 const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
 

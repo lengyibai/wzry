@@ -1,17 +1,18 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { RouterStore } from "..";
+
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { Util } from "@/utils";
 import { userDefaultInfo } from "@/default";
 import router from "@/router";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
-import routerStore from "@/store/modules/router";
 
 /** @description 用户相关 */
-const authStore = defineStore("auth", () => {
-  const $routerStore = routerStore();
+const AuthStore = defineStore("auth", () => {
+  const $routerStore = RouterStore();
 
   const userStatus = ref(false); //用户状态
   let timer: NodeJS.Timer | undefined; //实时检测帐号状态
@@ -135,5 +136,5 @@ const authStore = defineStore("auth", () => {
   };
 });
 
-export default authStore;
-export type AuthStore = ReturnType<typeof authStore>;
+export { AuthStore };
+export type AuthStore = ReturnType<typeof AuthStore>;

@@ -1,10 +1,10 @@
 import { reactive } from "vue";
 import dayjs from "dayjs";
 
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 export default () => {
-  const $audioStore = audioStore();
+  const $audioStore = AudioStore();
 
   const messages = reactive<MsgText[]>([]); //消息队列
 

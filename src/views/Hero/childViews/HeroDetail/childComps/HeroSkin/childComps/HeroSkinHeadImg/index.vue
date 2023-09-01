@@ -3,14 +3,14 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { HeroDetailStore } from "@/store";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroDetail = heroDetailStore();
+const $heroDetail = HeroDetailStore();
 
 const skin = ref();
 const showSkin = ref();

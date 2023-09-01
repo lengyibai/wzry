@@ -7,20 +7,17 @@ import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { Util } from "@/utils";
 import { $message, $tip } from "@/config";
-import audioStore from "@/store/modules/audio";
-import musicStore from "@/store/modules/music";
-import settingStore from "@/store/modules/setting";
-import cssVarStore from "@/store/modules/cssVar";
+import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
 
 interface Props {
   modelValue: boolean;
 }
 defineProps<Props>();
 
-const $audioStore = audioStore();
-const $musicStore = musicStore();
-const $settingStore = settingStore();
-const $cssVarStore = cssVarStore();
+const $audioStore = AudioStore();
+const $musicStore = MusicStore();
+const $settingStore = SettingStore();
+const $cssVarStore = CssVarStore();
 
 //默认配置
 const default_config: SettingConfig = { ...configDefault };

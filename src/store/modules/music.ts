@@ -1,13 +1,13 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import settingStore from "./setting";
+import { SettingStore } from "..";
 
 import { Util } from "@/utils";
 import { AudioVisual } from "@/utils/modules/tool";
 
 /** @description 音乐播放器 */
-const musicStore = defineStore("music", () => {
+const MusicStore = defineStore("music", () => {
   let progress_timer: NodeJS.Timer; //进度条宽度设置
   let tool_timer: NodeJS.Timer; //工具显示设置
   const bgmIndex = ref(0); //音乐索引
@@ -63,7 +63,7 @@ const musicStore = defineStore("music", () => {
         //播放成功后开始分析音频
         audio_visual.value?.play();
         //如果未启用音乐播放器，则暂停播放
-        if (!settingStore().config.music) {
+        if (!SettingStore().config.music) {
           bgm.value.pause();
         }
       })
@@ -191,5 +191,5 @@ const musicStore = defineStore("music", () => {
   };
 });
 
-export default musicStore;
-export type MusicStore = ReturnType<typeof musicStore>;
+export { MusicStore };
+export type MusicStore = ReturnType<typeof MusicStore>;

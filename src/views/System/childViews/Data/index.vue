@@ -4,13 +4,11 @@ import { ref, onActivated } from "vue";
 import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
-import skinStore from "@/store/modules/skin";
-import audioStore from "@/store/modules/audio";
-import heroStore from "@/store/modules/hero";
+import { SkinStore, HeroStore, AudioStore } from "@/store";
 
-const $skinStore = skinStore();
-const $heroStore = heroStore();
-const $audioStore = audioStore();
+const $skinStore = SkinStore();
+const $heroStore = HeroStore();
+const $audioStore = AudioStore();
 
 const keywords: [string, string][] = [
   ["herobasic", "英雄基础"],

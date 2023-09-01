@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import settingStore from "@/store/modules/setting";
+import { SettingStore } from "./store";
 
-const $settingStore = settingStore();
+const $settingStore = SettingStore();
 $settingStore.takeEffect();
 </script>
 

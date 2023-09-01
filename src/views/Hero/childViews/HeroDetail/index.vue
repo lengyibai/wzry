@@ -11,9 +11,7 @@ import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
 
 import { Util } from "@/utils";
 import { heroDefault } from "@/default";
-import audioStore from "@/store/modules/audio";
-import heroStore from "@/store/modules/hero";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -21,9 +19,9 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const $router = useRouter();
-const $heroDetail = heroDetailStore();
-const $heroStore = heroStore();
-const $audioStore = audioStore();
+const $heroDetail = HeroDetailStore();
+const $heroStore = HeroStore();
+const $audioStore = AudioStore();
 
 const scroll_index = ref(1); //滚动索引
 const show_close = ref(false); //显示左上角关闭

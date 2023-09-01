@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import collapseStore from "@/store/modules/collapse";
-import audioStore from "@/store/modules/audio";
+import { CollapseStore, AudioStore } from "@/store";
 
-const $collapseStore = collapseStore();
-const $audioStore = audioStore();
+const $collapseStore = CollapseStore();
+const $audioStore = AudioStore();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {

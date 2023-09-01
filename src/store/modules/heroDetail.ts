@@ -9,7 +9,7 @@ type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
 
 /** @description 英雄详情 */
-const heroDetailStore = defineStore("heroDetail", () => {
+const HeroDetailStore = defineStore("heroDetail", () => {
   const skill_index = ref(0); //处于展示的技能索引
   const scroll_index = ref(1); //滚动索引
   const scollFns = ref<ScollFn>([]); //滚动结束后触发函数组
@@ -119,5 +119,5 @@ const heroDetailStore = defineStore("heroDetail", () => {
   };
 });
 
-export default heroDetailStore;
-export type HeroDetailStore = ReturnType<typeof heroDetailStore>;
+export { HeroDetailStore };
+export type HeroDetailStore = ReturnType<typeof HeroDetailStore>;

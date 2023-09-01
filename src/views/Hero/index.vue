@@ -9,15 +9,13 @@ import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
 import { heroDefault } from "@/default";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
-import audioStore from "@/store/modules/audio";
-import heroStore from "@/store/modules/hero";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
 
 const $route = useRoute();
 const $router = useRouter();
-const $audioStore = audioStore();
-const $heroStore = heroStore();
-const $heroDetail = heroDetailStore();
+const $audioStore = AudioStore();
+const $heroStore = HeroStore();
+const $heroDetail = HeroDetailStore();
 
 let id: unknown = $route.query.id; //地址栏参数
 

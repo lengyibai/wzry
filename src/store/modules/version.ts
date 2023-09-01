@@ -5,7 +5,7 @@ import useUpdateData from "@/hooks/useUpdateData";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
 
-const versionStore = defineStore("version", () => {
+const VersionStore = defineStore("version", () => {
   let timer: NodeJS.Timer | undefined = undefined; //实时更新计时器
   const local_version = ref(""); //本地版本
   const remote_version = ref(""); //远程版本
@@ -124,5 +124,5 @@ const versionStore = defineStore("version", () => {
   };
 });
 
-export default versionStore;
-export type VersionStore = ReturnType<typeof versionStore>;
+export { VersionStore };
+export type VersionStore = ReturnType<typeof VersionStore>;

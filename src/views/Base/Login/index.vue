@@ -11,9 +11,9 @@ import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
-import settingStore from "@/store/modules/setting";
+import { SettingStore } from "@/store";
 
-const $settingStore = settingStore();
+const $settingStore = SettingStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

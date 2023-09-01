@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
-import audioStore from "@/store/modules/audio";
-import equipStore from "@/store/modules/equip";
+import { AudioStore, EquipStore } from "@/store";
 
 interface Props {
   equip: Equip.Data; //装备信息
@@ -11,8 +10,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-const $equipStore = equipStore();
-const $audioStore = audioStore();
+const $equipStore = EquipStore();
+const $audioStore = AudioStore();
 
 const icon = ref();
 

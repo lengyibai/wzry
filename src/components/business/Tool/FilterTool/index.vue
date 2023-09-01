@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 type Data = { label: string; value: string | number };
 
@@ -21,7 +21,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import authStore from "@/store/modules/auth";
-import audioStore from "@/store/modules/audio";
+import { AuthStore, AudioStore } from "@/store";
 
-const $authStore = authStore();
-const $audioStore = audioStore();
+const $authStore = AuthStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

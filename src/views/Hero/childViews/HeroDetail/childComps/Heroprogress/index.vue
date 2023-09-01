@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   index: number; //滚动索引
@@ -11,7 +11,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const page_name = ["英雄资料", "技能信息", "皮肤语音"]; //滚动索引标题
 

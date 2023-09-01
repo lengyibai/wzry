@@ -7,11 +7,10 @@ import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
 
 import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
-import audioStore from "@/store/modules/audio";
-import skinStore from "@/store/modules/skin";
+import { SkinStore, AudioStore } from "@/store";
 
-const $skinStore = skinStore();
-const $audioStore = audioStore();
+const $skinStore = SkinStore();
+const $audioStore = AudioStore();
 
 const skinListRef = ref(); //布局容器
 const count = ref(0); //一行显示的数目

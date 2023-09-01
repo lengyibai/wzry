@@ -4,8 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue"; //调用自身
 
-import collapseStore from "@/store/modules/collapse";
-import audioStore from "@/store/modules/audio";
+import { CollapseStore, AudioStore } from "@/store";
 
 interface RouteFormat {
   path: string; //路由路径
@@ -28,8 +27,8 @@ const emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $route = useRoute();
-const $collapseStore = collapseStore();
-const $audioStore = audioStore();
+const $collapseStore = CollapseStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔

@@ -2,14 +2,14 @@
 import { ref } from "vue";
 
 import { API_USER } from "@/api";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Emits {
   (e: "into", v: string): void;
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const user_list = ref<User[]>([]); //本地用户列表
 

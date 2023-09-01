@@ -5,7 +5,7 @@ import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 import { Util } from "@/utils";
 
 /** @description 英雄列表页 */
-const heroStore = defineStore("hero", () => {
+const HeroStore = defineStore("hero", () => {
   const profession = ref<Hero.Profession>(); //职业类型
   const camp_type = ref("全部阵营"); //阵营排序类型
   const attr_type = ref("全部属性"); //属性排序类型
@@ -335,5 +335,5 @@ const heroStore = defineStore("hero", () => {
   };
 });
 
-export default heroStore;
-export type HeroStore = ReturnType<typeof heroStore>;
+export { HeroStore };
+export type HeroStore = ReturnType<typeof HeroStore>;

@@ -3,9 +3,9 @@ import { useRouter } from "vue-router";
 import { ref } from "vue";
 
 import { API_HERO } from "@/api";
-import heroDetailStore from "@/store/modules/heroDetail";
+import { HeroDetailStore } from "@/store";
 
-const $heroDetail = heroDetailStore();
+const $heroDetail = HeroDetailStore();
 const $router = useRouter();
 
 const relationship = ref();

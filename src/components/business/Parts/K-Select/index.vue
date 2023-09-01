@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   width: string;
@@ -15,7 +15,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 /* 选择 */
 const handleSelect = (index: number) => {

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
-import audioStore from "@/store/modules/audio";
-import settingStore from "@/store/modules/setting";
+import { SettingStore, AudioStore } from "@/store";
 
 interface Props {
   modelValue: boolean;
@@ -26,8 +25,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $settingStore = settingStore();
-const $audioStore = audioStore();
+const $settingStore = SettingStore();
+const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED; //全局图床链接
 

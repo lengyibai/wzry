@@ -9,14 +9,14 @@ import { skillDefault, skillEffectDefault } from "@/default";
 import { Util } from "@/utils";
 import { API_HERO, API_SKILL } from "@/api";
 import { $loading, $message } from "@/config";
-import heroStore from "@/store/modules/hero";
+import { HeroStore } from "@/store";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 const emit = defineEmits<Emits>();
 
-const $heroStore = heroStore();
+const $heroStore = HeroStore();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
   emit,

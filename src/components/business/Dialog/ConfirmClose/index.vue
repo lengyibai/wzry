@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   modelValue: boolean; //显示/隐藏
@@ -16,7 +16,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 $audioStore.play("45iy");
 

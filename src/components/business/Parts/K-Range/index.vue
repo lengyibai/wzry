@@ -2,7 +2,7 @@
 import { ref, onMounted, computed } from "vue";
 
 import { Util } from "@/utils";
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   modelValue: string | number; //值
@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const down = ref(false); //是否处于按下状态
 

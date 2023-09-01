@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import audioStore from "@/store/modules/audio";
+import { AudioStore } from "@/store";
 
 interface Props {
   modelValue: number | string; //值
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const emit = defineEmits<Emits>();
 
-const $audioStore = audioStore();
+const $audioStore = AudioStore();
 
 const tip = ref(""); //不合法提示
 const legal = ref(true); //是否合法

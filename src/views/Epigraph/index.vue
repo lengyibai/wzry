@@ -4,11 +4,10 @@ import { ref, onActivated } from "vue";
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
 import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
 
-import audioStore from "@/store/modules/audio";
-import epigraphStore from "@/store/modules/epigraph";
+import { EpigraphStore, AudioStore } from "@/store";
 
-const $epigraphStore = epigraphStore();
-const $audioStore = audioStore();
+const $epigraphStore = EpigraphStore();
+const $audioStore = AudioStore();
 
 const show_epigraph = ref(false); //显示铭文顶部分类
 

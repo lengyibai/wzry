@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 /** @description 移动端调试工具 */
-const vConsoleStore = defineStore("vConsole", () => {
+const VConsoleStore = defineStore("vConsole", () => {
   const vconsole = document.querySelector("#__vconsole") as HTMLElement;
 
   const status = ref(true); //显示
@@ -17,5 +17,5 @@ const vConsoleStore = defineStore("vConsole", () => {
   return { setStatus };
 });
 
-export default vConsoleStore;
-export type VConsoleStore = ReturnType<typeof vConsoleStore>;
+export { VConsoleStore };
+export type VConsoleStore = ReturnType<typeof VConsoleStore>;
