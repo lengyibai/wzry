@@ -66,14 +66,14 @@ const fn = () => {
 
 /* 递归判断当前路由如果等于某个父级菜单的子路由，则父级菜单自动展开，暂时不需要 */
 //const sidebarActive = (routes: Route) => {
-//  if (routes.children && routes.children.length) {
-//    routes.children.forEach((item) => {
-//      if (item.path === $route.path) {
-//        fn();
-//        sidebarActive(item);
-//      }
-//    });
-//  }
+// if (routes.children && routes.children.length) {
+//   routes.children.forEach((item) => {
+//     if (item.path === $route.path) {
+//       fn();
+//       sidebarActive(item);
+//     }
+//   });
+// }
 //};
 
 //sidebarActive(props.route);

@@ -14,8 +14,8 @@ const lang = localStorage.getItem("language");
 
 const i18n = createI18n({
   locale: lang || "zh", //默认语言
-  legacy: false, // 如果要支持 compositionAPI，此项必须设置为 false
-  globalInjection: true, // 全局注册$t方法
+  legacy: false, //如果要支持 compositionAPI，此项必须设置为 false
+  globalInjection: true, //全局注册$t方法
   messages,
 });
 

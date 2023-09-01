@@ -178,7 +178,7 @@ export const deepCopy = <T>(e: any): T => {
       return (
         t.set(e, r),
         Reflect.ownKeys(e).forEach((t) => {
-          // eslint-disable-next-line no-prototype-builtins
+          //eslint-disable-next-line no-prototype-builtins
           e.propertyIsEnumerable(t) && (r[t] = u(e[t]));
         }),
         r
@@ -372,7 +372,7 @@ export const debounceInstant = (() => {
     timer = setTimeout(() => {
       timer = undefined;
     }, delay);
-    // eslint-disable-next-line prefer-spread
+    //eslint-disable-next-line prefer-spread
     if (callNow) fn.apply(undefined, args);
   };
 })();
@@ -588,9 +588,9 @@ export class AudioVisual {
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   animationFrameId!: number;
-  isInit: boolean = false; // 是否已初始化
-  dataArray: string | any[] | Uint8Array = []; // 数组，用于接收分析器节点的分析数据
-  analyser!: AnalyserNode; // 分析器节点
+  isInit: boolean = false; //是否已初始化
+  dataArray: string | any[] | Uint8Array = []; //数组，用于接收分析器节点的分析数据
+  analyser!: AnalyserNode; //分析器节点
   constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
     this.audio = audio;
     this.cvs = canvas;
@@ -607,45 +607,45 @@ export class AudioVisual {
   }
   /** 播放音频 */
   play() {
-    // 判断是否初始化
+    //判断是否初始化
     if (this.isInit) {
       return;
     }
 
-    // 开始初始化
-    // 创建音频上下文
+    //开始初始化
+    //创建音频上下文
     const audioCtx = new AudioContext();
-    // 创建音频源节点
+    //创建音频源节点
     const source = audioCtx.createMediaElementSource(this.audio);
-    // 创建分析器节点
+    //创建分析器节点
     this.analyser = audioCtx.createAnalyser();
     this.analyser.fftSize = 512;
-    // 接收分析器节点的分析数据
+    //接收分析器节点的分析数据
     this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
     source.connect(this.analyser);
     this.analyser.connect(audioCtx.destination);
-    // 已初始化
+    //已初始化
     this.isInit = true;
   }
 
   /** 把分析出来的波形绘制到canvas上 */
   draw() {
     const draw = () => {
-      // 逐帧绘制
+      //逐帧绘制
       this.animationFrameId = requestAnimationFrame(draw);
 
-      // 接下来清空画布
+      //接下来清空画布
       const { width, height } = this.cvs;
       this.ctx.clearRect(0, 0, width, height);
       if (!this.isInit) {
         return;
       }
-      // 让分析器节点分析出数据到数组中
+      //让分析器节点分析出数据到数组中
       this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
       const len = this.dataArray.length; //条的数量
       const barWidth = width / len; //条的宽度
       this.ctx.fillStyle = "#72b0d540";
-      // 循环绘制
+      //循环绘制
       for (let i = 0; i < len; i++) {
         const data = this.dataArray[i];
         const barHeight = (data / 255) * height; //条的高度

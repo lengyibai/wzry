@@ -14,7 +14,7 @@ const g = (a) => {
   }
   return arr;
 };
-// eslint-disable-next-line no-console
+//eslint-disable-next-line no-console
 console.log(
   g([
     "bq69",

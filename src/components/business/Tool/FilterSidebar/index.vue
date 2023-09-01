@@ -40,7 +40,7 @@ const equip_type: { name: Equip.Category; icon: string }[] = [
   { name: "游走", icon: "wzry-youzou" },
 ];
 
-const top = ref(0); // 滑块坐标
+const top = ref(0); //滑块坐标
 
 //动态list
 const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));

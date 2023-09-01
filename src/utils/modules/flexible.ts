@@ -23,21 +23,21 @@ class Flexible {
     this.triggers.push({ range, callback, lock0: true, lock1: true });
   }
 
-  // 处理缩放事件
+  //处理缩放事件
   private handleResize() {
     this.scrollPos = window.innerWidth;
     this.checkTriggers();
   }
 
-  // 检查触发回调函数
+  //检查触发回调函数
   private checkTriggers() {
-    // 遍历所有的回调函数
+    //遍历所有的回调函数
     this.triggers.forEach((t) => {
       const [start, end] = t.range;
 
       //检查是否进入区间
       if (this.scrollPos <= start && this.scrollPos >= end) {
-        // 计算进度
+        //计算进度
         const progress = (this.scrollPos - start) / (end - start);
 
         //触发回调
