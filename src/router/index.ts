@@ -8,12 +8,12 @@ import { HOME_URL } from "@/enum";
 import { $loading } from "@/config";
 import { AuthStore, DeviceStore } from "@/store";
 
-const useRouter = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes: [...staticRouter, ...errorRouter],
 });
 
-useRouter.beforeEach(async (to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const $authStore = AuthStore();
   const $deviceStore = DeviceStore();
 
@@ -69,14 +69,14 @@ useRouter.beforeEach(async (to, from, next) => {
   next();
 });
 
-useRouter.afterEach((to) => {
+router.afterEach((to) => {
   $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 
 const setupRouter = (app: App) => {
-  app.use(useRouter);
+  app.use(router);
 };
 
-export default useRouter;
-export { setupRouter };
+export default setupRouter;
+export { router };

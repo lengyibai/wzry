@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import { RouteRecordName, RouteRecordRaw } from "vue-router";
 
-import router from "@/router";
+import { router } from "@/router";
 import { admin, user } from "@/router/modules/routeSheel";
 import { RouterSheel } from "@/router/interface";
 import sheelToRoute from "@/router/helper/sheelToRoute";

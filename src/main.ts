@@ -8,7 +8,7 @@ import setupStore from "@/store";
 import setupDirective from "@/directives";
 import i18n from "@/language";
 import { Util } from "@/utils";
-import { setupRouter } from "@/router";
+import setupRouter from "@/router";
 
 import "@/styles/index.less";
 

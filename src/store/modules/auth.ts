@@ -6,7 +6,7 @@ import { RouterStore } from "..";
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { Util } from "@/utils";
 import { userDefaultInfo } from "@/default";
-import router from "@/router";
+import { router } from "@/router";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
 
