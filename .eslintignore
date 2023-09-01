@@ -4,7 +4,4 @@ node_modules
 *.ttf
 .vscode
 dist
-public
-.eslintrc.js
-.prettierrc.js
-.eslintrc.cjs
+src/typings/components.d.ts

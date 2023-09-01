@@ -1,9 +1,8 @@
-/dist/*
-/node_modules/**
+dist
+node_modules
 
-**/*.svg
-**/*.md
+*.svg
+*.md
 
-/public/*
 # src/utils/index.ts
 src/typings/components.d.ts
