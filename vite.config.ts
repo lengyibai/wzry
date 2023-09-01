@@ -31,7 +31,6 @@ export default defineConfig({
     //css预处理器
     preprocessorOptions: {
       less: {
-        charset: false,
         additionalData: '@import "./src/styles/index.less";', //全局less变量文件
       },
     },
@@ -45,7 +44,6 @@ export default defineConfig({
         target: "https://lyb.cbb.plus", //目标url
         changeOrigin: true, //支持跨域
         rewrite: (path) => path.replace(/^\/api/, ""),
-        //重写路径,替换/api
       },
     },
   },
@@ -56,8 +54,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: "dist",
-    minify: "terser",
+    minify: "esbuild",
     chunkSizeWarningLimit: 1500,
     cssTarget: "chrome61",
     rollupOptions: {
