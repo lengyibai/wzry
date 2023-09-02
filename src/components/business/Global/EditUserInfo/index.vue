@@ -2,8 +2,8 @@
 import { ref } from "vue";
 
 import { API_USER } from "@/api";
-import { $message } from "@/config";
 import { AuthStore, AudioStore } from "@/store";
+import { $message } from "@/utils";
 
 interface Props {
   /** 帐号 */

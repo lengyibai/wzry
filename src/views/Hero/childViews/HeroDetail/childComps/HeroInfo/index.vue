@@ -6,9 +6,8 @@ import HeroBasic from "./childComps/HeroBasic/index.vue";
 import HeroRelationship from "./childComps/HeroRelationship/index.vue";
 import HeroAttribute from "./childComps/HeroAttribute/index.vue";
 
-import { $tip } from "@/config";
 import { HeroDetailStore } from "@/store";
-import { $tool } from "@/utils";
+import { $tip, $tool } from "@/utils";
 
 const $heroDetail = HeroDetailStore();
 

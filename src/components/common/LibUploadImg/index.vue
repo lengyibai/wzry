@@ -1,18 +1,5 @@
-<template>
-  <div class="upload-img">
-    <input v-show="false" id="file" type="file" @change="fn" />
-    <img v-if="modelValue" class="img" :src="modelValue" @dragstart.prevent />
-    <label v-if="modelValue" for="file" class="op">
-      <img src="./img/edit.svg" class="edit cursor-pointer" alt="" @dragstart.prevent />
-    </label>
-    <label v-if="!modelValue" for="file" class="add">
-      <img src="./img/add.svg" alt="" @dragstart.prevent />
-    </label>
-  </div>
-</template>
 <script setup lang="ts">
-import { $loading, $message } from "@/config";
-import { $tool } from "@/utils";
+import { $loading, $message, $tool } from "@/utils";
 
 interface Props {
   /** 图片链接 */
@@ -48,6 +35,20 @@ const fn = (e: Event) => {
   });
 };
 </script>
+
+<template>
+  <div class="upload-img">
+    <input v-show="false" id="file" type="file" @change="fn" />
+    <img v-if="modelValue" class="img" :src="modelValue" @dragstart.prevent />
+    <label v-if="modelValue" for="file" class="op">
+      <img src="./img/edit.svg" class="edit cursor-pointer" alt="" @dragstart.prevent />
+    </label>
+    <label v-if="!modelValue" for="file" class="add">
+      <img src="./img/add.svg" alt="" @dragstart.prevent />
+    </label>
+  </div>
+</template>
+
 <style scoped lang="less">
 .upload-img {
   position: relative;

@@ -3,8 +3,8 @@ import { defineAsyncComponent, reactive, onActivated } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
 
-import { $loading } from "@/config";
 import { AudioStore } from "@/store";
+import { $loading } from "@/utils";
 
 defineOptions({
   name: "add",

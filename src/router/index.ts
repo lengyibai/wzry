@@ -5,8 +5,8 @@ import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { HOME_URL } from "@/enum";
-import { $loading } from "@/config";
 import { AuthStore, DeviceStore } from "@/store";
+import { $loading } from "@/utils";
 
 const router = createRouter({
   history: createWebHashHistory(),

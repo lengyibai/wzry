@@ -2,9 +2,8 @@
 import { ref, onActivated } from "vue";
 
 import { API_DATA } from "@/api";
-import { $message } from "@/config";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
-import { $tool } from "@/utils";
+import { $message, $tool } from "@/utils";
 
 defineOptions({
   name: "database",

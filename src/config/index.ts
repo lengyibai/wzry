@@ -1,5 +1,6 @@
-import $loading from "./modules/loading";
-import $message from "./modules/message";
-import $tip from "./modules/tip";
+import * as TIP_TEXT from "./modules/tip";
 
-export { $loading, $message, $tip };
+const CONFIG = {
+  TIP_TEXT,
+};
+export { CONFIG };

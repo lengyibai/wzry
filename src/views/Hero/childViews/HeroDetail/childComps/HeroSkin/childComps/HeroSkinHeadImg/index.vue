@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
-import { $tip } from "@/config";
 import { HeroDetailStore } from "@/store";
-import { $tool } from "@/utils";
+import { $tip, $tool } from "@/utils";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;

@@ -7,8 +7,8 @@ import RoleSelect from "./childComps/RoleSelect/index.vue";
 
 import { userDefaultInfo } from "@/default";
 import { API_USER } from "@/api";
-import { $message } from "@/config";
 import { AudioStore } from "@/store";
+import { $message } from "@/utils";
 
 interface Emits {
   (e: "success", form: User): void;

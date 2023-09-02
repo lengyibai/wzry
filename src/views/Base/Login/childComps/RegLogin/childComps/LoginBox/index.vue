@@ -6,9 +6,8 @@ import IntoBtn from "../IntoBtn/index.vue";
 import RememberPwd from "./childComps/RememberPwd/index.vue";
 
 import { userDefaultInfo } from "@/default";
-import { $message } from "@/config";
 import { AudioStore, AuthStore } from "@/store";
-import { $tool } from "@/utils";
+import { $message, $tool } from "@/utils";
 
 interface Props {
   /** 注册成功后用于填充 */

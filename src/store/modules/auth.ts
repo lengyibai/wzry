@@ -7,8 +7,7 @@ import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
-import { $message } from "@/config";
-import { $tool } from "@/utils";
+import { $message, $tool } from "@/utils";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {

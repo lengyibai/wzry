@@ -4,8 +4,8 @@ import { ref } from "vue";
 import viewHide from "../../../../hooks/useViewHide";
 
 import { API_HERO, API_SKIN } from "@/api";
-import { $loading, $message } from "@/config";
 import { SkinStore } from "@/store";
+import { $message, $loading } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

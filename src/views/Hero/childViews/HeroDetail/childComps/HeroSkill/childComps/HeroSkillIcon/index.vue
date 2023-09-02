@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { $tip } from "@/config";
 import { AudioStore, HeroDetailStore } from "@/store";
-import { $tool } from "@/utils";
+import { $tip, $tool } from "@/utils";
 
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;

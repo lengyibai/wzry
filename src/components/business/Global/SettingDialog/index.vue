@@ -5,9 +5,8 @@ import DescSet from "./childComps/DescSet/index.vue";
 
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { $message, $tip } from "@/config";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
-import { $tool } from "@/utils";
+import { $message, $tip, $tool } from "@/utils";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();

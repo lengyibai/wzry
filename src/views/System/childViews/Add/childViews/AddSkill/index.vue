@@ -7,9 +7,8 @@ import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { skillDefault, skillEffectDefault } from "@/default";
 import { API_HERO, API_SKILL } from "@/api";
-import { $loading, $message } from "@/config";
 import { HeroStore } from "@/store";
-import { $tool } from "@/utils";
+import { $loading, $message, $tool } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;

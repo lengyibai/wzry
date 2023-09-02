@@ -2,8 +2,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { $message } from "@/config";
 import { useUpdateData } from "@/hooks";
+import { $message } from "@/utils";
 
 const VersionStore = defineStore("version", () => {
   /** 实时更新计时器 */

@@ -9,9 +9,8 @@ import Team from "./childComps/Team/index.vue";
 import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
 
-import { $tip } from "@/config";
 import { SettingStore } from "@/store";
-import { $bus, $tool } from "@/utils";
+import { $bus, $tip, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 

@@ -3,9 +3,8 @@ import { nextTick, ref } from "vue";
 
 import MuiscList from "../MuiscList/index.vue";
 
-import { $tip } from "@/config";
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
-import { $tool } from "@/utils";
+import { $tip, $tool } from "@/utils";
 
 interface Emits {
   (e: "toggle", v: string): void;
