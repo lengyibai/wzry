@@ -1,10 +1,14 @@
-<script setup lang="ts" name="epigraph">
+<script setup lang="ts">
 import { ref, onActivated } from "vue";
 
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue";
 import EpigraphList from "./childComps/EpigraphList/index.vue";
 
 import { EpigraphStore, AudioStore } from "@/store";
+
+defineOptions({
+  name: "epigraph",
+});
 
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();

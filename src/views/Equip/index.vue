@@ -1,4 +1,4 @@
-<script setup lang="ts" name="equip">
+<script setup lang="ts">
 import { ref, onActivated } from "vue";
 
 import EquipList from "./childComps/EquipList/index.vue";
@@ -7,7 +7,7 @@ import EquipDetail from "./childComps/EquipDetail/index.vue";
 import { EquipStore, AudioStore } from "@/store";
 
 defineOptions({
-  name: "epigraph",
+  name: "equip",
 });
 
 const $equipStore = EquipStore();

@@ -1,10 +1,14 @@
-<script setup lang="ts" name="add">
+<script setup lang="ts">
 import { defineAsyncComponent, reactive, onActivated } from "vue";
 
 import useManageCard from "../../hooks/useManageCard";
 
 import { $loading } from "@/config";
 import { AudioStore } from "@/store";
+
+defineOptions({
+  name: "add",
+});
 
 type Options = Record<
   string,

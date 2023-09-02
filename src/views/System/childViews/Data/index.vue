@@ -1,10 +1,14 @@
-<script setup lang="ts" name="database">
+<script setup lang="ts">
 import { ref, onActivated } from "vue";
 
 import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
+
+defineOptions({
+  name: "database",
+});
 
 const $skinStore = SkinStore();
 const $heroStore = HeroStore();

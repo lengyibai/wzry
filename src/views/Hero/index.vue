@@ -1,4 +1,4 @@
-<script setup lang="ts" name="hero">
+<script setup lang="ts">
 import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
@@ -10,6 +10,10 @@ import { heroDefault } from "@/default";
 import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
+
+defineOptions({
+  name: "hero",
+});
 
 const $route = useRoute();
 const $router = useRouter();

@@ -5,14 +5,12 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { visualizer } from "rollup-plugin-visualizer";
 import Components from "unplugin-vue-components/vite";
-import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import legacyPlugin from "@vitejs/plugin-legacy";
 
 export default defineConfig({
   base: "./",
   plugins: [
     vue(),
-    VueSetupExtend(),
     Components({
       dts: "src/typings/components.d.ts",
       dirs: ["src/components"],

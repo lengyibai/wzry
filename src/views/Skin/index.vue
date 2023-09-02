@@ -1,4 +1,4 @@
-<script setup lang="ts" name="skin">
+<script setup lang="ts">
 import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
@@ -8,6 +8,10 @@ import SkinVoice from "./childComps/SkinVoice/index.vue";
 import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
+
+defineOptions({
+  name: "skin",
+});
 
 const $skinStore = SkinStore();
 const $audioStore = AudioStore();
