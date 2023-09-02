@@ -1,4 +1,4 @@
-import { $bus } from "@/utils";
+import $bus from "@/utils/modules/eventBus";
 
 let loadingTimeout: NodeJS.Timeout | undefined;
 let needLoadingRequestCount = 0;
