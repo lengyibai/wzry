@@ -28,20 +28,15 @@ const textHoverColor: Directive = {
       z-index: 9;
       position: absolute;
       width: 0%;
-      height: ${line_height}px;
+      height: ${line_height / 16}rem;
       bottom: 0;
       color: transparent;
       background-color: #2980b9;
       transition: all 0.35s;
       left: 50%;
       transform: translate(-50%,5px);
-      border-radius: ${line_height}px;
+      border-radius: ${line_height / 16}rem;
     `;
-    window.addEventListener("resize", () => {
-      const line_height = el.offsetHeight / 20;
-      line.style.height = line_height + "px";
-      line.style.borderRadius = line_height + "px";
-    });
 
     el.appendChild(mask);
     el.appendChild(line);

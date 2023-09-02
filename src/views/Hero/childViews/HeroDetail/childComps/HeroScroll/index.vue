@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+
+import { Util } from "@/utils";
 
 interface Props {
   /** 滚动索引 */
@@ -107,9 +109,13 @@ onMounted(() => {
     }, 10);
   });
 
-  window.addEventListener("resize", () => {
+  Util.$Bus.on("resize", () => {
     change(props.modelValue - 1);
   });
+});
+
+onBeforeUnmount(() => {
+  Util.$Bus.off("resize");
 });
 </script>
 

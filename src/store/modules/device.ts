@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import { onScopeDispose } from "vue";
 
 import { Util } from "@/utils";
 
@@ -44,8 +45,13 @@ const DeviceStore = defineStore("device", () => {
     height.value = window.innerHeight;
   };
   tip();
-  window.addEventListener("resize", () => {
+
+  Util.$Bus.on("resize", () => {
     tip();
+  });
+
+  onScopeDispose(() => {
+    Util.$Bus.off("resize");
   });
 
   return {
