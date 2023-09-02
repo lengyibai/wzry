@@ -1,8 +1,8 @@
 import { ref } from "vue";
 
-import { tips_zh, tips_tc, tips_en } from "@/config/tips";
 import i18n from "@/language";
 import { SettingStore, AudioStore } from "@/store";
+import { CONFIG } from "@/config";
 
 export default () => {
   const $settingStore = SettingStore();
@@ -58,9 +58,9 @@ export default () => {
       if (!$settingStore.config.noTips[text as TipKeys]) {
         const lang = i18n.global.locale.value;
         const langs: Record<string, Tips<string>> = {
-          zh: tips_zh,
-          tc: tips_tc,
-          en: tips_en,
+          zh: CONFIG.TIP_TEXT.tips_zh,
+          tc: CONFIG.TIP_TEXT.tips_tc,
+          en: CONFIG.TIP_TEXT.tips_en,
         };
         show_tip.value = !show_tip.value;
         $audioStore.play("rt25");
