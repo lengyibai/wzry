@@ -27,7 +27,7 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
     return;
   }
   //如果皮肤语音相同，则不需要播放出场动画
-  if (voices.value[0]?.link === $heroDetail.skin_voice[0].link) return;
+  if (voices.value[0]?.link === $heroDetail.skin_voice[0]?.link) return;
 
   nextTick(() => {
     if (!voiceRef.value) return;
@@ -58,7 +58,8 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
       if (current_index.value !== -1 && voices.value[current_index.value].link !== play_link.value) {
         current_index.value = -1;
       }
-      play(voices.value[0].link, 0);
+
+      voices.value[0] && play(voices.value[0].link, 0);
     }, 500);
   });
 });
