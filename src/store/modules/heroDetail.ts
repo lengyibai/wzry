@@ -10,13 +10,20 @@ type ScollFn = { name: string; fn: (index: number) => void }[];
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
-  const skill_index = ref(0); //处于展示的技能索引
-  const scroll_index = ref(1); //滚动索引
-  const scollFns = ref<ScollFn>([]); //滚动结束后触发函数组
-  const skinToggleFns = ref<SkinToggleFn[]>([]); //皮肤切换后触发函数组
-  const skin_voice = ref<Hero.Voice[]>([]); //皮肤语音列表
-  const skillSelectFn = ref<(index: number) => void>(() => {}); //技能选择触发的函数
-  const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
+  /** 处于展示的技能索引 */
+  const skill_index = ref(0);
+  /** 滚动索引 */
+  const scroll_index = ref(1);
+  /** 滚动结束后触发函数组 */
+  const scollFns = ref<ScollFn>([]);
+  /** 皮肤切换后触发函数组 */
+  const skinToggleFns = ref<SkinToggleFn[]>([]);
+  /** 皮肤语音列表 */
+  const skin_voice = ref<Hero.Voice[]>([]);
+  /** 技能选择触发的函数 */
+  const skillSelectFn = ref<(index: number) => void>(() => {});
+  /** 英雄信息 */
+  const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault));
 
   /** @description 设置英雄数据 */
   const setHeroInfo = (data: Hero.Data) => {

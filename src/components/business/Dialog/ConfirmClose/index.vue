@@ -2,8 +2,10 @@
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: boolean; //显示/隐藏
-  text?: string; //提示描述
+  /** 是否显示 */
+  modelValue: boolean;
+  /** 提示描述 */
+  text?: string;
 }
 withDefaults(defineProps<Props>(), {
   text: "保存草稿",

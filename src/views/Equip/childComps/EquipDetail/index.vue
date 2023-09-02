@@ -1,11 +1,13 @@
 <script setup lang="ts">
 interface Props {
-  equip: Equip.Data | undefined; //装备
-  show: boolean; //显示/隐藏
+  /** 装备 */
+  equip: Equip.Data | undefined;
+  /** 是否显示 */
+  show: boolean;
 }
 defineProps<Props>();
 
-//css类名值
+/** css类名值 */
 const abbreviations: Record<string, string> = {
   最大生命: "zdsm",
   每5秒回血: "hx",

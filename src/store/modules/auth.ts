@@ -14,9 +14,12 @@ import { $message } from "@/config";
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
 
-  const userStatus = ref(false); //用户状态
-  let timer: NodeJS.Timer | undefined; //实时检测帐号状态
-  const userInfo = ref<User>(Util.TOOL.deepCopy(userDefaultInfo)); //用户相关信息
+  /** 用户状态 */
+  const userStatus = ref(false);
+  /** 实时检测帐号状态 */
+  let timer: NodeJS.Timer | undefined;
+  /** 用户相关信息 */
+  const userInfo = ref<User>(Util.TOOL.deepCopy(userDefaultInfo));
 
   /**
    * @description: 设置用户状态

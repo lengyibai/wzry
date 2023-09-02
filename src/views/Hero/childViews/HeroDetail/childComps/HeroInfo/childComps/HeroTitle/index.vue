@@ -5,7 +5,7 @@ import { HeroDetailStore } from "@/store";
 
 const $heroDetail = HeroDetailStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 const hero = computed(() => $heroDetail.hero_info);
 </script>

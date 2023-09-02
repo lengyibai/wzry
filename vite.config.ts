@@ -3,9 +3,9 @@ import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { visualizer } from "rollup-plugin-visualizer"; //build 视图分析依赖文件
-import Components from "unplugin-vue-components/vite"; //组件自动注册
-import VueSetupExtend from "vite-plugin-vue-setup-extend"; //设置name
+import { visualizer } from "rollup-plugin-visualizer";
+import Components from "unplugin-vue-components/vite";
+import VueSetupExtend from "vite-plugin-vue-setup-extend";
 import legacyPlugin from "@vitejs/plugin-legacy";
 
 export default defineConfig({
@@ -14,12 +14,12 @@ export default defineConfig({
     vue(),
     VueSetupExtend(),
     Components({
-      dts: "src/typings/components.d.ts", //生成在src路径下名为auto-import.d.ts的声明文件
-      dirs: ["src/components"], //配置需要默认导入的自定义组件文件夹，该文件夹下的所有组件都会自动 import
+      dts: "src/typings/components.d.ts",
+      dirs: ["src/components"],
     }),
     legacyPlugin({
-      targets: ["last 2 versions", "safari >=7", "chrome >= 30"], //需要兼容的目标列表，可以设置多个
-      additionalLegacyPolyfills: ["regenerator-runtime/runtime"], //面向IE11时需要此插件
+      targets: ["last 2 versions", "safari >=7", "chrome >= 30"],
+      additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
     }),
     //visualizer({
     // emitFile: true,
@@ -31,7 +31,7 @@ export default defineConfig({
     //css预处理器
     preprocessorOptions: {
       less: {
-        additionalData: '@import "./src/styles/index.less";', //全局less变量文件
+        additionalData: '@import "./src/styles/index.less";',
       },
     },
   },
@@ -41,8 +41,8 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: "https://lyb.cbb.plus", //目标url
-        changeOrigin: true, //支持跨域
+        target: "https://lyb.cbb.plus",
+        changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },

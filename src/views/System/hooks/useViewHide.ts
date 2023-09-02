@@ -5,11 +5,17 @@ interface Emits {
 }
 
 export default <T>(emit: Emits, key: string) => {
-  const show = ref(false); //显示页面
-  const timer = ref<NodeJS.Timer>(); //自动保存计时器
-  const finish = ref(false); //发布成功
-  const status = ref(0); //发布状态
-  const hero_id = ref<number | undefined>(); //英雄id
+  /** 显示页面 */
+  const show = ref(false);
+  /** 自动保存计时器 */
+  const timer = ref<NodeJS.Timer>();
+  /** 发布成功 */
+  const finish = ref(false);
+  /** 发布状态 */
+  const status = ref(0);
+  /** 英雄id */
+  const hero_id = ref<number | undefined>();
+  /** 提交数据 */
   const form_data = ref<T>();
 
   /* 判断是否存在草稿 */

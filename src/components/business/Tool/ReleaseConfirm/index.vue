@@ -2,8 +2,10 @@
 import { ref, watch } from "vue";
 
 interface Props {
-  status: number; //提交状态
-  finish: boolean; //完成提交
+  /** 提交状态 */
+  status: number;
+  /** 完成提交 */
+  finish: boolean;
 }
 const props = defineProps<Props>();
 
@@ -13,8 +15,10 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const commit_status = ref(0); //提交状态
-const show_ConfirmClose = ref(false); //是否显示确认关闭弹窗
+/** 提交状态 */
+const commit_status = ref(0);
+/** 是否显示确认关闭弹窗 */
+const show_ConfirmClose = ref(false);
 
 /* 关闭页面 */
 const handleClose = () => {

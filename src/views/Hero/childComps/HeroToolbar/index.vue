@@ -36,15 +36,20 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
-const gender = ref<Gender>(0); //性别排序
-const search_value = ref(""); //搜索值
-const current_index = ref(-1); //当前展开的菜单
-const select_status = reactive([false, false, false, false, false]); //记录展开状态
+/** 性别排序 */
+const gender = ref<Gender>(0);
+/** 搜索值 */
+const search_value = ref("");
+/** 当前展开的菜单 */
+const current_index = ref(-1);
+/** 记录展开状态 */
+const select_status = reactive([false, false, false, false, false]);
+/** 阵营列表 */
 const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
 
 gender.value = $heroStore.gender_type;
 
-//获取阵营列表
+/* 获取阵营列表 */
 API_HERO.getCampType().then((res) => {
   res.forEach((item) => {
     select_camp.push({

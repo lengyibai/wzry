@@ -2,7 +2,8 @@
 import { AudioStore } from "@/store";
 
 interface Props {
-  index: number; //滚动索引
+  /** 滚动索引 */
+  index: number;
 }
 defineProps<Props>();
 
@@ -13,7 +14,8 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const page_name = ["英雄资料", "技能信息", "皮肤语音"]; //滚动索引标题
+/** 滚动索引标题 */
+const page_name = ["英雄资料", "技能信息", "皮肤语音"];
 
 /* 设置进度 */
 const handleToggle = (index: number) => {

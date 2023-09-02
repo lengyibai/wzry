@@ -60,12 +60,17 @@ const requests: Record<string, () => Promise<any>> = {
   racetype: API_DATA.RaceType,
 };
 
-let update_status = true; //更新限制
-let data_cache: any[] = []; //数据缓存
-let replace_data: any = {}; //替换的数据
+/** 更新限制 */
+let update_status = true;
+/** 数据缓存 */
+let data_cache: any[] = [];
+/** 替换的数据 */
+let replace_data: any = {};
 
-const show_ConfirmClose = ref(false); //显示确认关闭弹窗
-const table_data = ref<any[]>([]); //表格数据
+/** 显示确认关闭弹窗 */
+const show_ConfirmClose = ref(false);
+/** 表格数据 */
+const table_data = ref<any[]>([]);
 
 /* 获取本地数据 */
 const getLocalData = (name: string, prefix = "data_") => {

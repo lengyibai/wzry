@@ -4,7 +4,8 @@ import { computed, ref } from "vue";
 import { SettingStore, AudioStore } from "@/store";
 
 interface Props {
-  notice?: boolean; //显示公告按钮
+  /** 显示公告按钮 */
+  notice?: boolean;
 }
 withDefaults(defineProps<Props>(), {
   notice: true,
@@ -18,18 +19,14 @@ const emit = defineEmits<Emits>();
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
-const toolbar = ref();
+const toolbarRef = ref();
 
-//静音
+/** 静音 */
 const muted = computed(() => $settingStore.config.muted);
-
-//视频背景
+/** 视频背景 */
 const video_bg = computed(() => $settingStore.config.videoBg);
-
-//静音图标
-const icon = computed(() => {
-  return muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing";
-});
+/** 静音图标 */
+const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 
 /**
  * 点击某个按钮
@@ -48,12 +45,12 @@ const handleTool = (v: string) => {
 };
 
 defineExpose({
-  el: toolbar,
+  el: toolbarRef,
 });
 </script>
 
 <template>
-  <div ref="toolbar" class="tool-bar">
+  <div ref="toolbarRef" class="tool-bar">
     <!-- 静音 -->
     <div v-if="video_bg" class="tool" title="静音">
       <div class="line"></div>

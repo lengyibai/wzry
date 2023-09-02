@@ -1,9 +1,13 @@
 <script setup lang="ts">
 interface Props {
-  label: string; //标题文字
-  labelWidth?: string; //标题宽度
-  center?: boolean; //居中
-  required?: boolean; //必填
+  /** 标题文字 */
+  label: string;
+  /** 标题宽度 */
+  labelWidth?: string;
+  /** 居中 */
+  center?: boolean;
+  /** 必填 */
+  required?: boolean;
 }
 withDefaults(defineProps<Props>(), {
   label: "",

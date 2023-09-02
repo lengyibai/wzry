@@ -3,7 +3,8 @@ import { ref } from "vue";
 
 /** @description 折叠侧边栏 */
 const CollapseStore = defineStore("collapse", () => {
-  const collapse = ref(false); //折叠
+  /** 折叠 */
+  const collapse = ref(false);
 
   /* 如果浏览器宽度低于高度，则自动折叠 */
   collapse.value = window.innerWidth < 1380;

@@ -81,7 +81,8 @@ const EquipStore = defineStore("equip", () => {
 
   /** @description 设置装备类型 */
   const setType = async (type: Equip.Category) => {
-    if (category.value === type) return; //避免重复点击调用
+    //避免重复点击调用
+    if (category.value === type) return;
 
     clearSynthetic();
     equip_list_column.value = type_list[type];
@@ -124,7 +125,8 @@ const EquipStore = defineStore("equip", () => {
   const addSynthetic = async (synthetic: Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
-      synthetic_id.value[0][0] = synthetic; //获取第一列id组
+      //获取第一列id组
+      synthetic_id.value[0][0] = synthetic;
 
       //通过第一列获取第二列
       synthetic_id.value[1] = [];
@@ -134,9 +136,7 @@ const EquipStore = defineStore("equip", () => {
           const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
           synthetic_id.value[1].push(res);
         }
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
 
       //将id组从小到大排序
       synthetic_id.value[1].sort((a, b) => a.id - b.id);
@@ -166,14 +166,13 @@ const EquipStore = defineStore("equip", () => {
             synthetic_id.value[2].at(-1)?.id || 0,
           ),
         };
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
     }
 
     /* 当点击的是第二列 */
     if (active_array[1] === "2") {
-      synthetic_id.value[1][0] = synthetic; //获取第二列id组
+      //获取第二列id组
+      synthetic_id.value[1][0] = synthetic;
 
       //通过第二列获取第一列
       synthetic_id.value[0] = [];
@@ -183,9 +182,7 @@ const EquipStore = defineStore("equip", () => {
           const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need.id);
           synthetic_id.value[0].push(res);
         }
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
       synthetic_id.value[0].sort(function (a, b) {
         return a.id - b.id;
       });
@@ -200,9 +197,7 @@ const EquipStore = defineStore("equip", () => {
           top: top(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
           height: height(synthetic_id.value[1][0].id, synthetic_id.value[0][0].id, synthetic_id.value[0].at(-1)!.id),
         };
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
       if (synthetic_id.value[2][0]) {
         vertical_line.value[2] = {
           top: top(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
@@ -217,7 +212,8 @@ const EquipStore = defineStore("equip", () => {
 
     /* 当点击的是第三列 */
     if (active_array[1] === "3") {
-      synthetic_id.value[2][0] = synthetic; //获取第二列id组
+      //获取第二列id组
+      synthetic_id.value[2][0] = synthetic;
 
       //通过第三列获取第二列
       synthetic_id.value[1] = [];
@@ -231,9 +227,7 @@ const EquipStore = defineStore("equip", () => {
         synthetic_id.value[1].sort(function (a, b) {
           return a.id - b.id;
         });
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
 
       //通过第二列获取第一列
       synthetic_id.value[0] = [];
@@ -271,9 +265,7 @@ const EquipStore = defineStore("equip", () => {
             ),
           };
         }
-      } catch (error) {
-        /*  */
-      }
+      } catch (error) {}
     }
   };
 

@@ -7,19 +7,24 @@ const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
 
 const voiceRef = ref();
-const voiceList = ref();
+const voiceListRef = ref();
 
-const play_link = ref(""); //播放链接
-const time = ref(0); //当前播放时长
-const current_index = ref(-1); //当前播放索引
-const voices = ref<Hero.Voice[]>([]); //语音列表
+/** 播放链接 */
+const play_link = ref("");
+/** 当前播放时长 */
+const time = ref(0);
+/** 当前播放索引 */
+const current_index = ref(-1);
+/** 语音列表 */
+const voices = ref<Hero.Voice[]>([]);
 
 /* 切换语音时触发 */
 $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
   await $heroDetail.setSkinVoice(hero_name, skin_name);
   if (!skin_name) {
+    //为了切换关系
     voices.value = [];
-    return; //为了切换关系
+    return;
   }
   //如果皮肤语音相同，则不需要播放出场动画
   if (voices.value[0]?.link === $heroDetail.skin_voice[0].link) return;
@@ -33,11 +38,11 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
       } else {
         item.style.transform = "translateX(100%) translateY(500%) scale(0)";
       }
-
       //设置语音列表，并播放入场动画
       setTimeout(() => {
         voices.value = $heroDetail.skin_voice;
-        item.style.transitionDelay = `${index / 15}s`; //入场间隔
+        //入场间隔
+        item.style.transitionDelay = `${index / 15}s`;
         item.style.transform = "translateX(0%) translateY(0%) scale(1)";
 
         //动画结束后初始化
@@ -49,7 +54,7 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
 
     //播放第一个语音
     setTimeout(() => {
-      voiceList.value?.scroll({ top: 0 });
+      voiceListRef.value?.scroll({ top: 0 });
       if (current_index.value !== -1 && voices.value[current_index.value].link !== play_link.value) {
         current_index.value = -1;
       }
@@ -87,7 +92,7 @@ const onEnded = () => {
 </script>
 
 <template>
-  <div ref="voiceList" class="hero-voice scroll-white" @mousewheel.stop>
+  <div ref="voiceListRef" class="hero-voice scroll-white" @mousewheel.stop>
     <button
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"

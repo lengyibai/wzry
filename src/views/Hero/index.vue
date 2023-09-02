@@ -2,9 +2,9 @@
 import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import HeroToolbar from "./childComps/HeroToolbar/index.vue"; //工具栏
-import HeroCard from "./childComps/HeroCard/index.vue"; //英雄卡片
-import HeroDetail from "./childViews/HeroDetail/index.vue"; //英雄详情
+import HeroToolbar from "./childComps/HeroToolbar/index.vue";
+import HeroCard from "./childComps/HeroCard/index.vue";
+import HeroDetail from "./childViews/HeroDetail/index.vue";
 
 import { heroDefault } from "@/default";
 import { Util } from "@/utils";
@@ -17,21 +17,27 @@ const $audioStore = AudioStore();
 const $heroStore = HeroStore();
 const $heroDetail = HeroDetailStore();
 
-let id: unknown = $route.query.id; //地址栏参数
+/** 地址栏参数 */
+let id: unknown = $route.query.id;
 
-const heroListRef = ref(); //布局容器
-
-const count = ref(0); //一行显示的数目
-const show_HeroDetail = ref(false); //显示英雄详情
-const show_list = ref(false); //显示列表
-const show_tool = ref(false); //显示工具栏
-const toggle_show = ref(false); //切换显示列表
-const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
+/** 一行显示的数目 */
+const count = ref(0);
+/** 显示英雄详情 */
+const show_HeroDetail = ref(false);
+/** 显示列表 */
+const show_list = ref(false);
+/** 显示工具栏 */
+const show_tool = ref(false);
+/** 切换显示列表 */
+const toggle_show = ref(false);
+/** 英雄信息 */
+const hero_info = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault));
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
   $audioStore.play("n4r4");
-  new Image().src = data.headImg; //图片预加载
+  //图片预加载
+  new Image().src = data.headImg;
 };
 
 /* 查看详情 */
@@ -151,7 +157,6 @@ onBeforeUnmount(() => {
         <LibGrid
           v-show="show_list"
           v-if="$heroStore.show_list.length && toggle_show && show_list"
-          ref="heroListRef"
           class="hero-list"
           scroll-id="hero_list"
           gap="1.5625rem"

@@ -1,23 +1,26 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import EquipCard from "../common/EquipCard/index.vue"; //装备卡片
+import EquipCard from "../common/EquipCard/index.vue";
 
 import { EquipStore } from "@/store";
 
 interface Props {
+  /** 装备列表 */
   equipList: Equip.Data[];
+  /** 线条数据 */
   lineData: any[];
+  /** 列索引 */
   index: number;
 }
 const props = defineProps<Props>();
 
 const $equipStore = EquipStore();
 
-const card = ref();
-
-const show = ref(true); //淡入显示列表
-const equip_list = ref<Equip.Data[]>([]); //装备列表
+/** 淡入显示列表 */
+const show = ref(true);
+/** 装备列表 */
+const equip_list = ref<Equip.Data[]>([]);
 
 /* 控制左右线条显示 */
 const showLine = (id: number, line: string) => {
@@ -48,7 +51,6 @@ watch(
     <!-- 装备卡片列表 -->
     <EquipCard
       v-for="item in equip_list"
-      ref="card"
       :key="item.id"
       :left-line="showLine(item.id, 'left')"
       :right-line="showLine(item.id, 'right')"

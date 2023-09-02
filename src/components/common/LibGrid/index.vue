@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref, onActivated } from "vue";
 interface Props {
+  /** 一行显示的个数 */
   count: number;
+  /** 间隔 */
   gap?: string;
+  /** 上一次的滚动坐标 */
   scrollTop?: number;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -16,9 +19,10 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-let lock = false; //滚动状态下锁定
+/** 滚动状态下锁定 */
+let lock = false;
 
-const LibGrid = ref();
+const LibGridRef = ref();
 
 let childrens = ref<HTMLElement[]>([]);
 
@@ -32,7 +36,7 @@ const scroll = (e: Event) => {
 };
 
 const backTop = () => {
-  LibGrid.value?.scroll({ top: props.scrollTop });
+  LibGridRef.value?.scroll({ top: props.scrollTop });
 };
 
 onMounted(() => {
@@ -50,8 +54,8 @@ defineExpose({
 
 <template>
   <div
-    ref="LibGrid"
-    class="LibGrid"
+    ref="LibGridRef"
+    class="lib-grid"
     :style="{ gridTemplateColumns: 'repeat(' + count + ', 1fr)', gridGap: gap }"
     @scroll.passive="scroll"
   >

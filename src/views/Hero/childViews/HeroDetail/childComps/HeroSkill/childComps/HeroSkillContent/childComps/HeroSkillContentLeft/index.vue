@@ -2,7 +2,9 @@
 import { HeroDetailStore } from "@/store";
 
 interface Props {
+  /** 选中的技能 */
   activeSkill: Hero.Skill;
+  /** 是否为被动技能 */
   isPassive: boolean;
 }
 defineProps<Props>();

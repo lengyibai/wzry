@@ -2,6 +2,7 @@
 import { AudioStore } from "@/store";
 
 interface Props {
+  /** 是否显示 */
   modelValue?: boolean;
 }
 defineProps<Props>();
@@ -13,7 +14,7 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 /* 关闭 */
 const handleClose = () => {

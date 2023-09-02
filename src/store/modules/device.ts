@@ -5,14 +5,21 @@ import { Util } from "@/utils";
 
 /** @description 设备信息 */
 const DeviceStore = defineStore("device", () => {
-  const browser_name = Util.TOOL.browserV.browser; //浏览器名称
-  const browser_version = Util.TOOL.browserV.version; //浏览器版本
-  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15; //满足浏览器访问条件
+  /** 浏览器名称 */
+  const browser_name = Util.TOOL.browserV.browser;
+  /** 浏览器版本 */
+  const browser_version = Util.TOOL.browserV.version;
+  /** 满足浏览器访问条件 */
+  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15;
 
-  const vertical = ref(false); //是否为竖屏
-  const width = ref(0); //设备宽度
-  const height = ref(0); //设备高度
-  const fps = ref(0); //帧率
+  /** 是否为竖屏 */
+  const vertical = ref(false);
+  /** 设备宽度 */
+  const width = ref(0);
+  /** 设备高度 */
+  const height = ref(0);
+  /** 帧率 */
+  const fps = ref(0);
 
   /* 获取设备帧率 */
   let start = 0;

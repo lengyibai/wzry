@@ -23,35 +23,46 @@ const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = view
   "add_skill_list",
 );
 
-const left = ref(); //左侧元素
+const leftRef = ref();
 
-const skill_effect = ref(""); //选择的技能效果
-const skill_unit = ref(""); //技能消耗单位
-const skill_consume = ref<number | "">(""); //阶段值
-const hero_id = ref(0); //英雄id
-const effectIndex = ref(-1); //处于编辑状态的技能效果索引
-const active_index = ref(0); //处于编辑状态的技能
-const deputy_index = ref(0); //用于切换副技能的索引
-const show_DelDeputys = ref(false); //显示技能组删除弹窗
-const show_DelSkill = ref(false); //显示技能删除弹窗
-const skill_effects = ref<General[]>([]); //技能效果
-const skill_types = ref<Hero.SkillType[]>([]); //技能类型表
+/** 选择的技能效果 */
+const skill_effect = ref("");
+/** 技能消耗单位 */
+const skill_unit = ref("");
+/** 阶段值 */
+const skill_consume = ref<number | "">("");
+/** 英雄id */
+const hero_id = ref(0);
+/** 处于编辑状态的技能效果索引 */
+const effectIndex = ref(-1);
+/** 处于编辑状态的技能 */
+const active_index = ref(0);
+/** 用于切换副技能的索引 */
+const deputy_index = ref(0);
+/** 显示技能组删除弹窗 */
+const show_DelDeputys = ref(false);
+/** 显示技能删除弹窗 */
+const show_DelSkill = ref(false);
+/** 技能效果 */
+const skill_effects = ref<General[]>([]);
+/** 技能类型表 */
+const skill_types = ref<Hero.SkillType[]>([]);
 
-//判断是否存在缓存
+/** 判断是否存在缓存 */
 form_data.value ??= [[Util.TOOL.deepCopy<Hero.Skill>(skillDefault)]] as Hero.Skill[][];
 
-//处于编辑的技能组
+/** 处于编辑的技能组 */
 const activeSkills = () => form_data.value![deputy_index.value];
-//处于编辑的技能
+/** 处于编辑的技能 */
 const activeSkill = () => activeSkills()[active_index.value];
 
-//判断是否为被动技能
+/** 判断是否为被动技能 */
 const noFirst = computed(() => active_index.value !== 0);
-//判断是否为被动技能
+/** 判断是否为被动技能 */
 const exist_deputys = computed(() => form_data.value!.length > 1);
-//技能组数量
+/** 技能组数量 */
 const skills_num = computed(() => (form_data.value ? form_data.value.length : 0));
-//当前技能数量
+/** 当前技能数量 */
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
 /* 获取技能类型 */
@@ -141,11 +152,14 @@ const onSelectSkill = (index: number) => {
   const data = effect?.at(-1);
   if (data && data.type) {
     skill_effect.value = data.type;
-    effectIndex.value = effect!.length - 1; //重置效果索引
+    //重置效果索引
+    effectIndex.value = effect!.length - 1;
   } else {
-    effectIndex.value = -1; //重置效果索引
+    //重置效果索引
+    effectIndex.value = -1;
   }
-  left.value && left.value.scroll({ behavior: "smooth", top: 0 }); //选择技能后，左侧回到顶部
+  //选择技能后，左侧回到顶部
+  leftRef.value && leftRef.value.scroll({ behavior: "smooth", top: 0 });
 };
 
 /* 选择效果后触发 */
@@ -173,11 +187,13 @@ const handleEditEffect = () => {
 
 /* 删除一行 */
 const handleDelEffect = () => {
-  skill_effect.value = ""; //选择器值置空
+  //选择器值置空
+  skill_effect.value = "";
 
   //技能效果索引大于等于0才执行
   if (effectIndex.value >= 0) {
-    activeSkill().effect!.splice(effectIndex.value, 1); //删除自身
+    //删除自身
+    activeSkill().effect!.splice(effectIndex.value, 1);
     const flag1 = effectIndex.value > 0;
     const flag2 = activeSkill().effect!.length > 0;
 
@@ -241,7 +257,7 @@ setTimeout(async () => {
 
 <template>
   <ManageMask class="content" :show="show">
-    <div ref="left" class="content-left">
+    <div ref="leftRef" class="content-left">
       <!-- 右上角新增 -->
       <div class="add-skill">
         <span v-show="exist_deputys" class="desc">副技能无被动或低于3个，可以留空，但要与主技能数量一致</span>

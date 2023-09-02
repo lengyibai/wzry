@@ -4,9 +4,12 @@ import { Util } from "@/utils";
 
 /** @description 点击音效 */
 const AudioStore = defineStore("audio", () => {
-  let sound_name = "默认"; //音效名
-  let volume = 0.5; //音量
-  let status = true; //启用音效
+  /** 音效名 */
+  let sound_name = "默认";
+  /** 音量 */
+  let volume = 0.5;
+  /** 启用音效 */
+  let status = true;
 
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {
@@ -42,19 +45,18 @@ const AudioStore = defineStore("audio", () => {
    * @param name 音效名
    */
   const playAudio = (name?: string) => {
-    //获取点击触发的音效名
+    /** 获取点击触发的音效名 */
     sound_name =
       (typeof name === "string" &&
         Object.keys(sound_type).find((item) => sound_type[item].find((item: string) => name.includes(item)))) ||
       "default";
 
-    const audio = new Audio(); //播放器
+    /** 播放器 */
+    const audio = new Audio();
     audio.src = `${IMGBED}/audio/${sound_name}.mp3`;
     audio.volume = volume;
 
-    audio.play().catch(() => {
-      /*  */
-    });
+    audio.play().catch(() => {});
   };
 
   /**

@@ -5,7 +5,8 @@ import { ref } from "vue";
 const VConsoleStore = defineStore("vConsole", () => {
   const vconsole = document.querySelector("#__vconsole") as HTMLElement;
 
-  const status = ref(true); //显示
+  /** 显示 */
+  const status = ref(true);
 
   /** @description 控制显示或隐藏 */
   const setStatus = () => {

@@ -2,16 +2,21 @@
 import { reactive, ref, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
-import SideItem from "./index.vue"; //调用自身
+import SideItem from "./index.vue";
 
 import { CollapseStore, AudioStore } from "@/store";
 
 interface RouteFormat {
-  path: string; //路由路径
-  title: string; //路由标题
-  meta: { title: string }; //路由元素
-  children: RouteFormat[] | null; //子路由
-  zIndex: number; //层级
+  /** 路由路径 */
+  path: string;
+  /** 路由标题 */
+  title: string;
+  /** 路由元素 */
+  meta: { title: string };
+  /** 子路由 */
+  children: RouteFormat[] | null;
+  /** 层级 */
+  zIndex: number;
 }
 
 interface Props {
@@ -30,18 +35,23 @@ const $route = useRoute();
 const $collapseStore = CollapseStore();
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
-const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`; //设置子菜单与上级菜单水平间隔
+const IMGBED = window.IMGBED;
+/** 设置子菜单与上级菜单水平间隔 */
+const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`;
 
-const menuItem = ref();
-const show = ref(false); //用于父级菜单专属
-const routes = reactive<RouteFormat[]>([]); //父级菜单专属用于生成子菜单
+const menuItemRef = ref();
+
+/** 用于父级菜单专属 */
+const show = ref(false);
+/** 父级菜单专属用于生成子菜单 */
+const routes = reactive<RouteFormat[]>([]);
 
 //当前路由如果等于props路由，则父级菜单自动展开，前提当前组件为父级菜单
 show.value = $route.path.includes(props.route.path);
+
 nextTick(() => {
   setTimeout(() => {
-    show.value && emit("coord", menuItem.value.getBoundingClientRect().top);
+    show.value && emit("coord", menuItemRef.value.getBoundingClientRect().top);
   }, 100);
 });
 
@@ -102,7 +112,7 @@ const handleChildCoord = (v: number) => {
 <template>
   <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
     <button
-      ref="menuItem"
+      ref="menuItemRef"
       class="menu-item"
       :style="textStyle"
       :class="{

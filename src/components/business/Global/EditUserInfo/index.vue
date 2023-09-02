@@ -6,8 +6,10 @@ import { $message } from "@/config";
 import { AuthStore, AudioStore } from "@/store";
 
 interface Props {
-  id: string; //帐号
-  status: boolean; //信息是否修改
+  /** 帐号 */
+  id: string;
+  /** 信息是否修改 */
+  status: boolean;
 }
 defineProps<Props>();
 
@@ -20,7 +22,8 @@ const emit = defineEmits<Emits>();
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
 
-const user_info = ref<User>({ ...$authStore.userInfo }); //用户信息
+/** 用户信息 */
+const user_info = ref<User>({ ...$authStore.userInfo });
 
 /* 判断信息是否被修改 */
 const handleContrast = () => {

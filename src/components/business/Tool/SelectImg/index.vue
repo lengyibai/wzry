@@ -2,9 +2,12 @@
 import { ref } from "vue";
 
 interface Props {
-  modelValue: string; //图片路径
-  title: string; //添加链接弹窗标题
-  type?: "width" | "height" | "square"; //图片比例
+  /** 图片路径 */
+  modelValue: string;
+  /** 添加链接弹窗标题 */
+  title: string;
+  /** 图片比例 */
+  type?: "width" | "height" | "square";
 }
 withDefaults(defineProps<Props>(), {
   type: "square",
@@ -15,7 +18,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const show_AddLink = ref(false); //显示/隐藏添加链接弹窗
+/** 是否显示添加链接弹窗 */
+const show_AddLink = ref(false);
 
 /* 获取链接 */
 const onGetLink = (link: string) => {

@@ -2,11 +2,13 @@
 import { ref } from "vue";
 
 interface Props {
-  desc: string; //描述
+  /** 描述 */
+  desc: string;
 }
 defineProps<Props>();
 
-const show_desc = ref(false); //显示tip
+/** 显示tip */
+const show_desc = ref(false);
 </script>
 
 <template>

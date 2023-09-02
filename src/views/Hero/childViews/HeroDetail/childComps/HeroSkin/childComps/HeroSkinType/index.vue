@@ -1,7 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  skinTypeImg: string; //皮肤类型图
-  toggle: boolean; //用于皮肤类型切换动画
+  /** 皮肤类型图 */
+  skinTypeImg: string;
+  /** 用于皮肤类型切换动画 */
+  toggle: boolean;
 }
 withDefaults(defineProps<Props>(), {
   skinTypeImg: "",

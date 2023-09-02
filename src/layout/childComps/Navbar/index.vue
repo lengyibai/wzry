@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import PackUp from "./childComps/PackUp/index.vue"; //折叠侧边栏按钮
-import UserMenu from "./childComps/UserMenu/index.vue"; //用户卡片
-import BtnIcon from "./childComps/BtnIcon/index.vue"; //图标按钮
+import PackUp from "./childComps/PackUp/index.vue";
+import UserMenu from "./childComps/UserMenu/index.vue";
+import BtnIcon from "./childComps/BtnIcon/index.vue";
 
 import { Util } from "@/utils";
 </script>

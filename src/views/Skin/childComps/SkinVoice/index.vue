@@ -4,7 +4,8 @@ import { ref, nextTick, onMounted } from "vue";
 import { HeroDetailStore } from "@/store";
 
 interface Props {
-  voices: Hero.Voice[]; //语音列表
+  /** 语音列表 */
+  voices: Hero.Voice[];
 }
 defineProps<Props>();
 
@@ -12,10 +13,13 @@ const $heroDetailStore = HeroDetailStore();
 
 const voiceRef = ref();
 
-let voice_length = 1; //当前语音数量
+/** 当前语音数量 */
+let voice_length = 1;
 
-const play_link = ref(""); //播放链接
-const current_index = ref(-1); //当前播放索引
+/** 播放链接 */
+const play_link = ref("");
+/** 当前播放索引 */
+const current_index = ref(-1);
 
 /* 点击播放 */
 const handlePlay = (voice: string, index: number) => {
@@ -54,7 +58,8 @@ onMounted(() => {
 
           //播放第一个语音
           setTimeout(() => {
-            item.style.transitionDelay = `${index / 15}s`; //入场间隔
+            //入场间隔
+            item.style.transitionDelay = `${index / 15}s`;
             item.style.transform = "translateX(0%) translateY(0%) scale(1)";
 
             //动画结束后初始化

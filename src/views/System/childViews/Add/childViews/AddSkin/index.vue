@@ -22,14 +22,19 @@ const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove
 //判断是否存在缓存
 form_data.value ??= [];
 
-let skins: Hero.Skin[] = []; //英雄皮肤列表
+/** 英雄皮肤列表 */
+let skins: Hero.Skin[] = [];
 
-const scrollBox = ref();
+const scrollBoxRef = ref();
 
-let skin_num = ref(0); //当前英雄的皮肤数量
-let hero_info: Hero.Data; //当前英雄的信息
-const skin_types = ref<Hero.SkinType[]>([]); //皮肤类型表
-const current_index = ref<number | null>(null); //根据悬浮的位置显示垃圾桶
+/** 当前英雄的皮肤数量 */
+let skin_num = ref(0);
+/** 当前英雄的信息 */
+let hero_info: Hero.Data;
+/** 皮肤类型表 */
+const skin_types = ref<Hero.SkinType[]>([]);
+/** 根据悬浮的位置显示垃圾桶 */
+const current_index = ref<number | null>(null);
 
 /* 选择英雄后触发 */
 const onSelectHero = (id: number) => {
@@ -43,7 +48,7 @@ const onSelectHero = (id: number) => {
   });
 };
 
-//如果本地存在英雄id，则自动选中
+/* 如果本地存在英雄id，则自动选中 */
 hero_id.value && onSelectHero(hero_id.value);
 
 /* 增加一项 */
@@ -51,22 +56,23 @@ const handleAddOne = () => {
   if (hero_id.value) {
     form_data.value!.push({
       id: 0,
-      hero: hero_info.id, //所属英雄id
+      hero: hero_info.id,
       num: 0,
-      price: 0, //价格
-      type: "", //类型
-      name: "", //名称
-      poster: "", //海报
-      cover: "", //封面
-      headImg: "", //头像
-      profession: hero_info.profession, //职业
-      heroName: hero_info.name, //英雄名称
-      gender: hero_info.gender, //英雄名称
+      price: 0,
+      type: "",
+      name: "",
+      poster: "",
+      cover: "",
+      headImg: "",
+      profession: hero_info.profession,
+      heroName: hero_info.name,
+      gender: hero_info.gender,
     });
+
     //滚动到底部
     setTimeout(() => {
-      scrollBox.value.el.scroll({
-        top: scrollBox.value.el.scrollHeight,
+      scrollBoxRef.value.el.scroll({
+        top: scrollBoxRef.value.el.scrollHeight,
         behavior: "smooth",
       });
     });
@@ -125,7 +131,7 @@ setTimeout(async () => {
 
 <template>
   <ManageMask
-    ref="scrollBox"
+    ref="scrollBoxRef"
     class="content"
     :show="show"
     :styles="{

@@ -8,7 +8,7 @@ import { HeroDetailStore } from "@/store";
 const $heroDetail = HeroDetailStore();
 const $router = useRouter();
 
-const relationship = ref();
+const relationshipRef = ref();
 
 /* 切换英雄信息 */
 const toggleHero = (id: number) => {
@@ -24,12 +24,12 @@ const toggleHero = (id: number) => {
 };
 
 defineExpose({
-  el: relationship,
+  el: relationshipRef,
 });
 </script>
 
 <template>
-  <div ref="relationship" class="hero-relationship">
+  <div ref="relationshipRef" class="hero-relationship">
     <transition-group name="fade-a">
       <button
         v-for="item in $heroDetail.hero_info.relationships"

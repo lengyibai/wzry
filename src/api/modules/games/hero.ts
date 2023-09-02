@@ -33,10 +33,14 @@ export const addHeroData = (data: Hero.Data) => Promise.resolve(post<Hero.Data>(
  */
 export const getHeroDetail = async (hero_id: number) => {
   const hero = get<Hero.Data>({ name: "data_herodata", key: "id", value: hero_id });
-  const skins = await API_SKIN.getHeroSkin(hero_id); //获取皮肤列表
-  const skills = await API_SKILL.getHeroSkill(hero_id); //获取技能列表
-  const voices = await API_VOICE.getSkinVoice(hero.name, "原皮"); //获取语音列表
-  const relationships = await API_RELATIONSHIP.getHeroRelationship(hero_id); //获取关系列表
+  /** 获取皮肤列表 */
+  const skins = await API_SKIN.getHeroSkin(hero_id);
+  /** 获取技能列表 */
+  const skills = await API_SKILL.getHeroSkill(hero_id);
+  /** 获取语音列表 */
+  const voices = await API_VOICE.getSkinVoice(hero.name, "原皮");
+  /** 获取关系列表 */
+  const relationships = await API_RELATIONSHIP.getHeroRelationship(hero_id);
 
   //如果存在关系，则请求相关人物的头像
   if (relationships) {

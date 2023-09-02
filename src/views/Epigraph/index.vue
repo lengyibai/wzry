@@ -1,15 +1,16 @@
 <script setup lang="ts" name="epigraph">
 import { ref, onActivated } from "vue";
 
-import EpigraphCategory from "./childComps/EpigraphCategory/index.vue"; //铭文类型分类
-import EpigraphList from "./childComps/EpigraphList/index.vue"; //铭文列表
+import EpigraphCategory from "./childComps/EpigraphCategory/index.vue";
+import EpigraphList from "./childComps/EpigraphList/index.vue";
 
 import { EpigraphStore, AudioStore } from "@/store";
 
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();
 
-const show_epigraph = ref(false); //显示铭文顶部分类
+/** 显示铭文顶部分类 */
+const show_epigraph = ref(false);
 
 /* 获取铭文列表 */
 $epigraphStore.getEpigraph().then(() => {

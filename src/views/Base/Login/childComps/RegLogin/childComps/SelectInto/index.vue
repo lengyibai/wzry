@@ -11,7 +11,8 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const user_list = ref<User[]>([]); //本地用户列表
+/** 本地用户列表 */
+const user_list = ref<User[]>([]);
 
 API_USER.userList().then((res) => {
   user_list.value = res;

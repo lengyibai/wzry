@@ -2,19 +2,25 @@
 import { onMounted, ref } from "vue";
 
 interface Text extends Record<string, string> {
-  survival: string; //生存能力
-  attack: string; //攻击伤害
-  effect: string; //技能效果
-  difficulty: string; //上手难度
+  /** 生存能力 */
+  survival: string;
+  /** 攻击伤害 */
+  attack: string;
+  /** 技能效果 */
+  effect: string;
+  /** 上手难度 */
+  difficulty: string;
 }
 
 interface Props {
-  attr: string; //属性名
-  length: number; //长度
+  /** 属性名 */
+  attr: string;
+  /** 长度 */
+  length: number;
 }
 defineProps<Props>();
 
-//精灵图坐标
+/** 精灵图坐标 */
 const y: Record<string, string> = {
   survival: "0 0px",
   attack: "-60px 0px",
@@ -22,7 +28,7 @@ const y: Record<string, string> = {
   difficulty: "-180px 0px",
 };
 
-//背景色
+/** 背景色 */
 const bgc: Record<string, string> = {
   survival: "#1081d2",
   attack: "#d3b95b",
@@ -30,24 +36,23 @@ const bgc: Record<string, string> = {
   difficulty: "#d3422b",
 };
 
-//描述
+/** 描述 */
 const text: Text = {
   survival: "生存能力",
   attack: "攻击伤害",
   effect: "技能效果",
   difficulty: "上手难度",
 };
+/** 属性元素 */
+const attributeRef = ref();
 
-const attribute = ref(); //属性元素
-
-//延迟显示英雄属性
 onMounted(() => {
-  attribute.value.style.width = "100%";
+  attributeRef.value.style.width = "100%";
 });
 </script>
 
 <template>
-  <div ref="attribute" class="attribute">
+  <div ref="attributeRef" class="attribute">
     <span>{{ $t(text[attr]) }}</span>
     <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
     <div class="bar">

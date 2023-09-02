@@ -4,8 +4,10 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  placeholder?: string; //输入框描述
-  link?: string; //图片链接，用于修改原有的图片
+  /** 输入框描述 */
+  placeholder?: string;
+  /** 图片链接，用于修改原有的图片 */
+  link?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   placeholder: "请输入",
@@ -19,7 +21,8 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const input_link = ref(""); //输入的链接
+/** 输入的链接 */
+const input_link = ref("");
 
 input_link.value = props.link;
 

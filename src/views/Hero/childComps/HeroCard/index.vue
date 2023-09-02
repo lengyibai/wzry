@@ -4,7 +4,8 @@ import { ref, computed } from "vue";
 import { HeroStore } from "@/store";
 
 interface Props {
-  data: Hero.Data; //英雄数据
+  /** 英雄数据 */
+  data: Hero.Data;
 }
 defineProps<Props>();
 
@@ -15,14 +16,17 @@ const emit = defineEmits<Emits>();
 
 const $heroStore = HeroStore();
 
-const show = ref(false); //显示查看详情选项
-const finish = ref(false); //头像是否加载完成
+/** 显示查看详情选项 */
+const show = ref(false);
+/** 头像是否加载完成 */
+const finish = ref(false);
 
-//用于身高和皮肤数量排序显示相应数字
+/** 用于身高和皮肤数量排序显示相应数字 */
 const num_type = computed(() => $heroStore.misc_sort);
-
-//显示右上角数字
+/** 显示右上角数字 */
 const show_num = computed(() => ["身高", "皮肤数量", "关系数量"].includes(num_type.value));
+
+/** 单位格式化 */
 const num = (data: Hero.Data) =>
   num_type.value === "身高"
     ? data.height + "cm"

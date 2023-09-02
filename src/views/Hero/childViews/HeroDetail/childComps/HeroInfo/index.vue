@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick } from "vue";
 
-import HeroTitle from "./childComps/HeroTitle/index.vue"; //英雄标题
-import HeroBasic from "./childComps/HeroBasic/index.vue"; //英雄基础信息
-import HeroRelationship from "./childComps/HeroRelationship/index.vue"; //英雄关系
-import HeroAttribute from "./childComps/HeroAttribute/index.vue"; //英雄属性
+import HeroTitle from "./childComps/HeroTitle/index.vue";
+import HeroBasic from "./childComps/HeroBasic/index.vue";
+import HeroRelationship from "./childComps/HeroRelationship/index.vue";
+import HeroAttribute from "./childComps/HeroAttribute/index.vue";
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
@@ -12,15 +12,19 @@ import { HeroDetailStore } from "@/store";
 
 const $heroDetail = HeroDetailStore();
 
-let tip_text = "0vk2"; //通过设备来显示不同的提示
+/** 通过设备来显示不同的提示 */
+let tip_text = "0vk2";
 
-const relationship = ref();
-const down = ref();
+const relationshipRef = ref();
+const downRef = ref();
 
-const into = ref(false); //控制页面元素显示
-const show_down = ref(false); //显示向上滚动提示
+/** 控制页面元素显示 */
+const into = ref(false);
+/** 显示向上滚动提示 */
+const show_down = ref(false);
 
-const hero_data = computed(() => $heroDetail.hero_info); //英雄数据
+/** 英雄数据 */
+const hero_data = computed(() => $heroDetail.hero_info);
 
 onMounted(() => {
   //设置按顺序出场的动画
@@ -30,8 +34,8 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      const focusRelationship = new Util.TOOL.FocusElement(relationship.value.el);
-      const focusdown = new Util.TOOL.FocusElement(down.value);
+      const focusRelationship = new Util.TOOL.FocusElement(relationshipRef.value.el);
+      const focusdown = new Util.TOOL.FocusElement(downRef.value);
 
       if (Util.TOOL.isPhone) {
         tip_text = "1zs6";
@@ -47,7 +51,7 @@ onMounted(() => {
         btnFn: () => {
           focusdown.blur();
 
-          /* 显示完滚动提示后显示关系提示 */
+          //显示完滚动提示后显示关系提示
           $tip({
             text: "05su",
             align: "right-bottom",
@@ -87,7 +91,7 @@ onMounted(() => {
       <div class="right">
         <!-- 关系 -->
         <transition name="relationship">
-          <HeroRelationship v-if="into" ref="relationship" />
+          <HeroRelationship v-if="into" ref="relationshipRef" />
         </transition>
 
         <!-- 属性 -->
@@ -103,7 +107,7 @@ onMounted(() => {
     </div>
 
     <!-- 向上滚动提示 -->
-    <i v-show="show_down" ref="down" class="iconfont wzry-down"></i>
+    <i v-show="show_down" ref="downRef" class="iconfont wzry-down"></i>
   </div>
 </template>
 

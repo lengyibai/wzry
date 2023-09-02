@@ -2,7 +2,8 @@
 import { Util } from "@/utils";
 
 interface Props {
-  type: string; //技能类型
+  /** 技能类型 */
+  type: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   type: "",

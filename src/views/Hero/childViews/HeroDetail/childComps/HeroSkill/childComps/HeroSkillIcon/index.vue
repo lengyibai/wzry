@@ -13,15 +13,19 @@ const emit = defineEmits<Emits>();
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
 
-let deputy_index = 0; //主副技能索引
+/** 主副技能索引 */
+let deputy_index = 0;
 
-const toggle = ref();
+const toggleRef = ref();
 
-const current_index = ref(0); //处于展示的技能索引
-const show = ref(false); //显示技能
-const active_skills = ref<Hero.Skill[]>([]); //展示的技能组
+/** 处于展示的技能索引 */
+const current_index = ref(0);
+/** 显示技能 */
+const show = ref(false);
+/** 展示的技能组 */
+const active_skills = ref<Hero.Skill[]>([]);
 
-//设置英雄详情
+/** 设置英雄详情 */
 const hero_data = computed(() => {
   return $heroDetail.hero_info;
 });
@@ -39,7 +43,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   const length = hero_data.value.skills!.length;
   if (length > 1) {
     setTimeout(() => {
-      const toggleFocus = new Util.TOOL.FocusElement(toggle.value);
+      const toggleFocus = new Util.TOOL.FocusElement(toggleRef.value);
 
       $tip({
         align: "right-top",
@@ -121,7 +125,7 @@ onUnmounted(() => {
     <!-- 切换副技能 -->
     <i
       v-if="hero_data.skills!.length > 1"
-      ref="toggle"
+      ref="toggleRef"
       class="toggle iconfont wzry-qiehuan cursor-pointer"
       :class="{ 'hide-bottom': !show }"
       title="切换技能"

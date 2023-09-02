@@ -12,23 +12,27 @@ const emit = defineEmits<Emits>();
 
 const $heroDetail = HeroDetailStore();
 
-const skin = ref();
-const showSkin = ref();
-const skinHead = ref();
+const skinRef = ref();
+const skinHeadRef = ref();
+const skinBoxRef = ref();
 
-let toggle = true; //用于切换背景
-
-const is_into_drap = ref(false); //拖动头像进入头像框范围
-const show_skin_box = ref(false); //用于头像容器初次加载显示
-const show_skin_head = ref(false); //用于头像初次加载显示
-
-const skins = computed(() => $heroDetail.hero_info.skins); //皮肤列表
-
-//当前处于展示的皮肤的DOM元素及坐标
+/** 用于切换背景 */
+let toggle = true;
+/** 当前处于展示的皮肤的DOM元素及坐标 */
 const active_skin: { el: HTMLElement | null; transform: string } = {
   el: null,
   transform: "",
 };
+
+/** 拖动头像进入头像框范围 */
+const is_into_drap = ref(false);
+/** 用于头像容器初次加载显示 */
+const show_skin_box = ref(false);
+/** 用于头像初次加载显示 */
+const show_skin_head = ref(false);
+
+/** 皮肤列表 */
+const skins = computed(() => $heroDetail.hero_info.skins);
 
 /* 将正在展示的皮肤头像过渡到初始位置 */
 const initPosition = () => {
@@ -64,12 +68,12 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
     const o = offset as { x: number; y: number };
     initPosition();
     //判断头像是否进入头像框可吸附范围
-    const d = showSkin.value.getBoundingClientRect();
+    const d = skinHeadRef.value.getBoundingClientRect();
     is_into_drap.value =
       d.left < o.x &&
       d.top < o.y &&
-      d.left + showSkin.value.offsetWidth > o.x &&
-      d.top + showSkin.value.offsetHeight > o.y;
+      d.left + skinHeadRef.value.offsetWidth > o.x &&
+      d.top + skinHeadRef.value.offsetHeight > o.y;
   } else if (is_into_drap.value) {
     //松手触发，并且头像已进入头像框吸附范围
     initPosition();
@@ -86,7 +90,8 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
       } else {
         emit("bg-imgs", [0, index]);
       }
-      toggle = !toggle; //用于皮肤背景的切换动画
+      /** 用于皮肤背景的切换动画 */
+      toggle = !toggle;
     }, 1000);
   } else {
     setPosition(active_skin.el);
@@ -108,11 +113,11 @@ $heroDetail.setScollFn("skin", (index) => {
       setTimeout(() => {
         is_into_drap.value = true;
         nextTick(() => {
-          handleDrag(skin.value[0], false, 0);
-          setPosition(skin.value[0]);
+          handleDrag(skinRef.value[0], false, 0);
+          setPosition(skinRef.value[0]);
 
           setTimeout(() => {
-            const skinHeadFocus = new Util.TOOL.FocusElement(skinHead.value);
+            const skinHeadFocus = new Util.TOOL.FocusElement(skinBoxRef.value);
 
             const a = () => {
               skinHeadFocus.focus();
@@ -148,9 +153,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="skinHead" class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
+  <div ref="skinBoxRef" class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
-    <div ref="showSkin" class="show-skin flex">
+    <div ref="skinHeadRef" class="show-skin flex">
       {{ is_into_drap ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
@@ -161,7 +166,7 @@ onUnmounted(() => {
     <!--皮肤头像-->
     <button
       v-for="(item, index) in skins"
-      ref="skin"
+      ref="skinRef"
       :key="index"
       v-drag="{ fn: handleDrag, index }"
       class="skin"

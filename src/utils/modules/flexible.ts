@@ -55,7 +55,8 @@ class Flexible {
         //判断是否允许触发(此处只能触发一次)
         if (t.lock1) return;
         t.callback(0);
-        t.lock1 = true; //设置禁止出发
+        //设置禁止触发
+        t.lock1 = true;
       }
     });
   }

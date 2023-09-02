@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import RegLogin from "./childComps/RegLogin/index.vue"; //登录盒子
-import Notice from "./childComps/Notice/index.vue"; //公告
-import ReadMe from "./childComps/ReadMe/index.vue"; //README
-import Todo from "./childComps/Todo/index.vue"; //计划
-import Team from "./childComps/Team/index.vue"; //开黑
-import ToolBar from "./childComps/ToolBar/index.vue"; //工具栏
-import DownLoad from "./childComps/DownLoad/index.vue"; //下载数据
+import RegLogin from "./childComps/RegLogin/index.vue";
+import Notice from "./childComps/Notice/index.vue";
+import ReadMe from "./childComps/ReadMe/index.vue";
+import Todo from "./childComps/Todo/index.vue";
+import Team from "./childComps/Team/index.vue";
+import ToolBar from "./childComps/ToolBar/index.vue";
+import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { Util } from "@/utils";
 import { $tip } from "@/config";
@@ -15,17 +15,22 @@ import { SettingStore } from "@/store";
 
 const $settingStore = SettingStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const toolbar = ref();
+const toolbarRef = ref();
 
-const show_notice = ref(true); //显示公告
-const show_readme = ref(false); //显示README
-const show_todo = ref(false); //显示计划
-const show_team = ref(false); //显示开黑
-const finish = ref(false); //数据下载完成
+/** 显示公告 */
+const show_notice = ref(true);
+/** 显示README */
+const show_readme = ref(false);
+/** 显示计划 */
+const show_todo = ref(false);
+/** 显示开黑 */
+const show_team = ref(false);
+/** 数据下载完成 */
+const finish = ref(false);
 
-//启用视频背景
+/** 启用视频背景 */
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 /**
@@ -41,7 +46,7 @@ const onToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const onCloseNotice = () => {
-  const toolbarFocus = new Util.TOOL.FocusElement(toolbar.value.el);
+  const toolbarFocus = new Util.TOOL.FocusElement(toolbarRef.value.el);
 
   $tip({
     text: "9f5m",
@@ -86,7 +91,7 @@ onUnmounted(() => {
     <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo || show_team }" />
 
     <!-- 工具栏 -->
-    <ToolBar ref="toolbar" :notice="finish" @clicks="onToolType" />
+    <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- 视频背景 -->
     <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />

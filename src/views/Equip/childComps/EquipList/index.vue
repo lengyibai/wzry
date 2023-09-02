@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EquipListColumn from "./childComps/EquipListColumn/index.vue"; //装备栏
+import EquipListColumn from "./childComps/EquipListColumn/index.vue";
 
 import { EquipStore } from "@/store";
 

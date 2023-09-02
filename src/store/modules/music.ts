@@ -8,17 +8,28 @@ import { AudioVisual } from "@/utils/modules/tool";
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
-  let progress_timer: NodeJS.Timer; //进度条宽度设置
-  let tool_timer: NodeJS.Timer; //工具显示设置
-  const bgmIndex = ref(0); //音乐索引
-  const progress = ref(0); //播放进度
-  const volume = ref(0); //音量
-  const status = ref(false); //当前音乐播放状态，false:暂停
-  const show_list = ref(false); //显示播放列表
-  const show_tool = ref(true); //显示工具栏
-  const bgm = ref(new Audio()); //播放器
+  /** 进度条宽度设置 */
+  let progress_timer: NodeJS.Timer;
+  /** 工具显示设置 */
+  let tool_timer: NodeJS.Timer;
+  /** 音乐索引 */
+  const bgmIndex = ref(0);
+  /** 播放进度 */
+  const progress = ref(0);
+  /** 音量 */
+  const volume = ref(0);
+  /** 当前音乐播放状态，false:暂停 */
+  const status = ref(false);
+  /** 显示播放列表 */
+  const show_list = ref(false);
+  /** 显示工具栏 */
+  const show_tool = ref(true);
+  /** 播放器 */
+  const bgm = ref(new Audio());
 
+  /** 音乐可视化 */
   const audio_visual = ref<AudioVisual>();
+  /** 音乐列表 */
   const musics = [
     { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
     { name: "永远的长安城", url: "cac", time: "00:02:42" },
@@ -31,10 +42,12 @@ const MusicStore = defineStore("music", () => {
     { name: "荣耀主题", url: "ryzt", time: "00:03:36" },
     { name: "荣耀之路", url: "ryzl", time: "00:08:06" },
     { name: "冠军杯", url: "gjb", time: "00:03:33" },
-  ]; //音乐列表
+  ];
 
-  musics.sort(() => 0.5 - Math.random()); //打乱顺序
-  bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
+  //打乱顺序
+  musics.sort(() => 0.5 - Math.random());
+  //允许音频可视化跨域
+  bgm.value.setAttribute("crossOrigin", "anonymous");
 
   /** @description 上一首 */
   const last = () => {
@@ -158,7 +171,8 @@ const MusicStore = defineStore("music", () => {
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */
   const resetAudio = () => {
     bgm.value = new Audio();
-    bgm.value.setAttribute("crossOrigin", "anonymous"); //允许音频可视化跨域
+    /** 允许音频可视化跨域 */
+    bgm.value.setAttribute("crossOrigin", "anonymous");
   };
 
   return {

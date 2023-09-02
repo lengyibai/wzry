@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 
-import IntoBtn from "../IntoBtn/index.vue"; //按钮
+import IntoBtn from "../IntoBtn/index.vue";
 
-import RoleSelect from "./childComps/RoleSelect/index.vue"; //权限选择
+import RoleSelect from "./childComps/RoleSelect/index.vue";
 
 import { userDefaultInfo } from "@/default";
 import { API_USER } from "@/api";
@@ -17,9 +17,10 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const form = reactive<User>({ ...userDefaultInfo }); //表单数据
-
-const form_verify = ref<boolean[]>([false, false, false]); //表单验证
+/** 表单数据 */
+const form = reactive<User>({ ...userDefaultInfo });
+/** 表单验证 */
+const form_verify = ref<boolean[]>([false, false, false]);
 
 /* 注册 */
 const handleReg = () => {

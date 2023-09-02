@@ -15,6 +15,7 @@ import { $loading, $message } from "@/config";
 import { Util } from "@/utils";
 
 interface Props {
+  /** 图片链接 */
   modelValue?: string;
 }
 defineProps<Props>();
@@ -29,9 +30,12 @@ const fn = (e: Event) => {
   $loading.show("图片压缩中...");
   Util.TOOL.imageOptimizer({
     file,
-    width: 150, //压缩尺寸
-    ratio: 0.75, //压缩率
-    maxsize: 300, //超过多大进行压缩
+    /** 压缩尺寸 */
+    width: 150,
+    /** 压缩率 */
+    ratio: 0.75,
+    /** 超过多大进行压缩 */
+    maxsize: 300,
     /* 成功回调 */
     success: (...data: any[]) => {
       $loading.close();

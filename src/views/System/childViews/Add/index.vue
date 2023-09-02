@@ -9,14 +9,16 @@ import { AudioStore } from "@/store";
 type Options = Record<
   string,
   {
-    i: number; //标识符
-    show: boolean; //显示
+    /** 标识符 */
+    i: number;
+    /** 显示 */
+    show: boolean;
   }
 >;
 
-const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue")); //英雄
-const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue")); //皮肤
-const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue")); //技能
+const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue"));
+const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue"));
+const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue"));
 
 const $audioStore = AudioStore();
 

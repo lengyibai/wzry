@@ -44,10 +44,14 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
-const search_value = ref(""); //搜索值
-const gender = ref<Gender>(0); //性别排序
-const current_index = ref(-1); //当前展开的菜单
-const select_status = reactive([false, false, false, false, false]); //记录展开状态
+/** 搜索值 */
+const search_value = ref("");
+/** 性别排序 */
+const gender = ref<Gender>(0);
+/** 当前展开的菜单 */
+const current_index = ref(-1);
+/** 记录展开状态 */
+const select_status = reactive([false, false, false, false, false]);
 
 /* 价格排序 */
 const onPriceSort = (v: string) => {

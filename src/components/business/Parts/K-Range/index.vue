@@ -5,19 +5,32 @@ import { Util } from "@/utils";
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: string | number; //值
-  disabled?: boolean; //禁用
-  width?: string; //输入框宽度
-  min?: number; //最小值
-  max?: number; //最大值
-  text?: string; //进度条自定义悬浮文本
-  size?: string; //圆点和图标大小，实际上可点击的范围依然是20px * 20px
-  trackColor?: string; //轨道背景色
-  showDot?: boolean; //显示圆点，也决定显示图标
-  showIcon?: boolean; //显示图标
-  icon?: string; //自定义图标1:1
-  showNum?: boolean; //在滑动的时候显示数字
-  step?: number; //步长
+  /** 值 */
+  modelValue: string | number;
+  /** 禁用 */
+  disabled?: boolean;
+  /** 输入框宽度 */
+  width?: string;
+  /** 最小值 */
+  min?: number;
+  /** 最大值 */
+  max?: number;
+  /** 进度条自定义悬浮文本 */
+  text?: string;
+  /** 圆点和图标大小，实际上可点击的范围依然是20px * 20px */
+  size?: string;
+  /** 轨道背景色 */
+  trackColor?: string;
+  /** 显示圆点，也决定显示图标 */
+  showDot?: boolean;
+  /** 显示图标 */
+  showIcon?: boolean;
+  /** 自定义图标1:1 */
+  icon?: string;
+  /** 在滑动的时候显示数字 */
+  showNum?: boolean;
+  /** 步长 */
+  step?: number;
 }
 interface Emits {
   (e: "update:modelValue", v: number): void;
@@ -44,7 +57,8 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const down = ref(false); //是否处于按下状态
+/** 是否处于按下状态 */
+const down = ref(false);
 
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {

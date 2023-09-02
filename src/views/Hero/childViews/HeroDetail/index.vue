@@ -2,12 +2,12 @@
 import { watchEffect, nextTick, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
-import HeroScroll from "./childComps/HeroScroll/index.vue"; //全屏滚动组件
-import HeroParallax from "./childComps/HeroParallax/index.vue"; //滚动视差背景
-import Heroprogress from "./childComps/Heroprogress/index.vue"; //滚动索引
-import HeroInfo from "./childComps/HeroInfo/index.vue"; //资料
-import HeroSkin from "./childComps/HeroSkin/index.vue"; //皮肤鉴赏
-import HeroSkill from "./childComps/HeroSkill/index.vue"; //技能页
+import HeroScroll from "./childComps/HeroScroll/index.vue";
+import HeroParallax from "./childComps/HeroParallax/index.vue";
+import Heroprogress from "./childComps/Heroprogress/index.vue";
+import HeroInfo from "./childComps/HeroInfo/index.vue";
+import HeroSkin from "./childComps/HeroSkin/index.vue";
+import HeroSkill from "./childComps/HeroSkill/index.vue";
 
 import { Util } from "@/utils";
 import { heroDefault } from "@/default";
@@ -23,19 +23,24 @@ const $heroDetail = HeroDetailStore();
 const $heroStore = HeroStore();
 const $audioStore = AudioStore();
 
-const scroll_index = ref(1); //滚动索引
-const show_close = ref(false); //显示左上角关闭
-const show_progress = ref(false); //显示滚动索引组件
-const hero_toggle = ref(true); //英雄关系切换时重新加载皮肤页
-
-const hero_data = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault)); //英雄信息
+/** 滚动索引 */
+const scroll_index = ref(1);
+/** 显示左上角关闭 */
+const show_close = ref(false);
+/** 显示滚动索引组件 */
+const show_progress = ref(false);
+/** 英雄关系切换时重新加载皮肤页 */
+const hero_toggle = ref(true);
+/** 英雄信息 */
+const hero_data = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault));
 
 watchEffect(() => {
   hero_data.value = $heroDetail.hero_info;
   hero_toggle.value = false;
   nextTick(() => {
     hero_toggle.value = true;
-    $heroDetail.skinToggle(hero_data.value.name, ""); //切换皮肤
+    //切换皮肤
+    $heroDetail.skinToggle(hero_data.value.name, "");
   });
 });
 
@@ -67,7 +72,8 @@ const onScrollEnd = (index: number) => {
 /* 隐藏自身 */
 const handleHide = () => {
   $router.replace("/hero");
-  $heroDetail.setSkinVoice("盾山"); //置空语音
+  //置空语音（盾山没有语音，可以用于置空）
+  $heroDetail.setSkinVoice("盾山");
   $audioStore.play("6xc6");
 
   //延迟0.1秒显示解决移动端动画掉帧
@@ -91,7 +97,8 @@ setTimeout(() => {
   show_progress.value = true;
   show_close.value = true;
   hero_data.value.skins?.forEach((item) => {
-    new Image().src = item.poster; //海报预加载
+    /** 海报预加载 */
+    new Image().src = item.poster;
   });
 }, 1500);
 

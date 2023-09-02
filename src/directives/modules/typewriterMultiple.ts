@@ -10,19 +10,20 @@ const typewriterMultiple: Directive = {
     el.innerHTML = "";
     setTimeout(() => {
       let timer: NodeJS.Timer;
-      let num = 0, //用于累加遍历字符串
-        text = ""; //用于输出在屏幕上
+      /** 用于累加遍历字符串 */
+      let num = 0,
+        /** 用于输出在屏幕上 */
+        text = "";
       fn();
       function fn() {
         timer = setInterval(() => {
           if (num >= say.length) {
-            //如果文字输出完毕
-            clearInterval(timer); //清除用于输出文字的计时器
+            clearInterval(timer);
             binding.value && binding.value();
             return;
           }
-          text += say[num]; //遍历输出的文字
-          el.innerHTML = text; //输出在屏幕上
+          text += say[num];
+          el.innerHTML = text;
           num++;
         }, 50);
       }

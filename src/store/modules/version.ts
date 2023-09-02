@@ -6,23 +6,34 @@ import { $message } from "@/config";
 import { useUpdateData } from "@/hooks";
 
 const VersionStore = defineStore("version", () => {
-  let timer: NodeJS.Timer | undefined = undefined; //实时更新计时器
-  const local_version = ref(""); //本地版本
-  const remote_version = ref(""); //远程版本
-  const local_file = ref(""); //本地文件版本
-  const file_version = ref(""); //文件版本
-  const show_update = ref(false); //显示更新公告
-  const data_status = ref(false); //数据是否需要更新
-  const file_status = ref(false); //文件是否需要更新
+  /** 实时更新计时器 */
+  let timer: NodeJS.Timer | undefined = undefined;
+  /** 本地版本 */
+  const local_version = ref("");
+  /** 远程版本 */
+  const remote_version = ref("");
+  /** 本地文件版本 */
+  const local_file = ref("");
+  /** 文件版本 */
+  const file_version = ref("");
+  /** 显示更新公告 */
+  const show_update = ref(false);
+  /** 数据是否需要更新 */
+  const data_status = ref(false);
+  /** 文件是否需要更新 */
+  const file_status = ref(false);
+  /** 更新日志汇总 */
   const update_log = ref<UpdateLog>({
     data: "",
     voice: "",
     file: "",
     time: "",
-  }); //更新日志汇总
+  });
 
-  local_version.value = localStorage.getItem("version") || ""; //本地版本
-  local_file.value = localStorage.getItem("version_file") || ""; //文件文件版本
+  /** 本地版本 */
+  local_version.value = localStorage.getItem("version") || "";
+  /** 文件文件版本 */
+  local_file.value = localStorage.getItem("version_file") || "";
 
   /** @description 更新本地版本 */
   const updateVersion = (v: string) => {

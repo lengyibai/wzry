@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onBeforeUnmount } from "vue";
 
-import sideItem from "./childComp/SideItem/index.vue"; //子菜单
-import GameLogo from "./childComp/GameLogo/index.vue"; //游戏logo
+import sideItem from "./childComp/SideItem/index.vue";
+import GameLogo from "./childComp/GameLogo/index.vue";
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
 import { Util } from "@/utils";
@@ -11,12 +11,16 @@ import { CollapseStore, RouterStore } from "@/store";
 const $collapseStore = CollapseStore();
 const $routerStore = RouterStore();
 
-const top = ref(0); //滑块坐标
-const show_slider = ref(false); //显示滑块
+/** 滑块坐标 */
+const top = ref(0);
+/** 显示滑块 */
+const show_slider = ref(false);
 
-const options = $routerStore.routes; //路由数据
+/** 路由数据 */
+const options = $routerStore.routes;
 
-const routes = formatSidebarRoutes(options); //格式化后的路由数据
+/** 格式化后的路由数据 */
+const routes = formatSidebarRoutes(options);
 
 /* 设置坐标 */
 const onCoord = (v: number) => {

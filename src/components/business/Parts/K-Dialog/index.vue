@@ -4,15 +4,24 @@ import { ref, onMounted } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  align?: "flex-start" | "center" | "flex-end"; //垂直对齐方式
-  ctxWidth?: string; //内容宽度
-  header?: string; //中间标题文字
-  desc?: string; //中间标题下描述
-  modelValue?: boolean; //显示/隐藏
-  showClose?: boolean; //显示/隐藏右上角关闭按钮
-  title?: string; //左上角描述文字
-  up?: boolean; //上升动画
-  width?: string; //弹窗宽度
+  /** 垂直对齐方式 */
+  align?: "flex-start" | "center" | "flex-end";
+  /** 内容宽度 */
+  ctxWidth?: string;
+  /** 中间标题文字 */
+  header?: string;
+  /** 中间标题下描述 */
+  desc?: string;
+  /** 是否显示 */
+  modelValue?: boolean;
+  /** 是否显示右上角关闭按钮 */
+  showClose?: boolean;
+  /** 左上角描述文字 */
+  title?: string;
+  /** 上升动画 */
+  up?: boolean;
+  /** 弹窗宽度 */
+  width?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   align: "flex-start",
@@ -30,9 +39,10 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const show = ref(false); //显示弹窗
+/** 显示弹窗 */
+const show = ref(false);
 
 onMounted(() => {
   show.value = true;

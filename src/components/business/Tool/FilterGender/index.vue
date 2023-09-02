@@ -2,7 +2,8 @@
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: Gender; //标识符
+  /** 选择的值 */
+  modelValue: Gender;
 }
 defineProps<Props>();
 

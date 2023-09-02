@@ -16,11 +16,11 @@ const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $deviceStore = DeviceStore();
 
-const musicTool = ref();
+const musicToolRef = ref();
 
 nextTick(() => {
   if (Util.TOOL.isPhone || !$settingStore.config.music) return;
-  const musicToolFocus = new Util.TOOL.FocusElement(musicTool.value);
+  const musicToolFocus = new Util.TOOL.FocusElement(musicToolRef.value);
   $tip({
     text: "58mz",
     align: "right-top",
@@ -42,7 +42,7 @@ const handleTool = (type: string) => {
   <transition name="tool">
     <div
       v-show="$musicStore.show_tool || $deviceStore.vertical"
-      ref="musicTool"
+      ref="musicToolRef"
       class="music-tool"
       :class="{ center: $deviceStore.vertical }"
       @click.stop

@@ -1,8 +1,10 @@
 import { ref } from "vue";
 
 export default () => {
-  const show = ref(false); //显示loading
-  const text = ref(""); //loading描述
+  /** 显示loading */
+  const show = ref(false);
+  /** loading描述 */
+  const text = ref("");
 
   return {
     /** 显示loading */

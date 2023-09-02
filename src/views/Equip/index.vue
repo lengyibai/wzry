@@ -1,22 +1,28 @@
 <script setup lang="ts" name="equip">
 import { ref, onActivated } from "vue";
 
-import EquipList from "./childComps/EquipList/index.vue"; //装备列表
-import EquipDetail from "./childComps/EquipDetail/index.vue"; //装备详情
+import EquipList from "./childComps/EquipList/index.vue";
+import EquipDetail from "./childComps/EquipDetail/index.vue";
 
 import { EquipStore, AudioStore } from "@/store";
+
+defineOptions({
+  name: "epigraph",
+});
 
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
-const equipList = ref();
-const equipMain = ref();
-const show = ref(false); //显示装备列表
+const equipListRef = ref();
+const equipMainRef = ref();
+
+/** 显示装备列表 */
+const show = ref(false);
 
 /* 点击筛选后触发返回顶部 */
 const onChangeFilter = () => {
   setTimeout(() => {
-    equipMain.value.scroll({ top: 0 });
+    equipMainRef.value.scroll({ top: 0 });
   }, 450);
 };
 
@@ -33,12 +39,12 @@ onActivated(() => {
 <template>
   <div class="equip">
     <transition name="fade">
-      <div v-if="show" ref="equipMain" class="equip-main">
+      <div v-if="show" ref="equipMainRef" class="equip-main">
         <!-- 装备详情 -->
         <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 
         <!-- 装备列表 -->
-        <EquipList ref="equipList" />
+        <EquipList ref="equipListRef" />
       </div>
     </transition>
 

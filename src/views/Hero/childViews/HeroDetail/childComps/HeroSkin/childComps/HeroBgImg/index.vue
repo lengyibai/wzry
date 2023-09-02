@@ -2,8 +2,10 @@
 import { ref, watch } from "vue";
 
 interface Props {
-  bgImg: string[]; //背景图组
-  toggle: boolean; //用于切换
+  /** 背景图组 */
+  bgImg: string[];
+  /** 用于切换 */
+  toggle: boolean;
 }
 const props = defineProps<Props>();
 

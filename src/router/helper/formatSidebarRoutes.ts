@@ -4,7 +4,8 @@ import { Route } from "../interface";
 
 /** @description 将Vue路由格式化，用于生成侧边栏 */
 const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
-  const formattedRoutes: Route[] = []; //格式化后的路由
+  /** 格式化后的路由 */
+  const formattedRoutes: Route[] = [];
 
   /**
    * @description
@@ -12,7 +13,8 @@ const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
    * @param zIndex 当前路由的层级，用于设置子菜单左边距
    */
   const formatChildren = (childRoutes: Route[] | null | undefined, zIndex: number) => {
-    const formattedChildRoutes: Route[] = []; //子路由
+    /** 子路由 */
+    const formattedChildRoutes: Route[] = [];
 
     //判断是否存在子路由，否则返回 null
     if (childRoutes && childRoutes[0].path) {

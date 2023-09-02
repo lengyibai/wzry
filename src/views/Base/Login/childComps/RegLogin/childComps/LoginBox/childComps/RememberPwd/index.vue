@@ -4,7 +4,8 @@ import { computed } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: boolean | string; //选中状态
+  /** 是否选中 */
+  modelValue: boolean | string;
 }
 const props = defineProps<Props>();
 
@@ -15,7 +16,7 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-//选中/未选中图标
+/** 是否选中图标 */
 const checkIcon = computed(
   () => `${IMGBED}/image/${props.modelValue ? "check_true_yellow" : "check_false_yellow"}.png`,
 );

@@ -5,8 +5,10 @@ import { VersionStore } from "@/store";
 
 const $versionStore = VersionStore();
 
-const show_setting = ref(false); //显示/隐藏设置弹窗
-const show_update = ref(false); //显示/隐藏日志弹窗
+/** 是否显示设置弹窗 */
+const show_setting = ref(false);
+/** 是否显示日志弹窗 */
+const show_update = ref(false);
 
 onMounted(() => {
   setTimeout(() => {
@@ -28,7 +30,7 @@ const handleUpdateLog = (v: boolean) => {
 
     <!-- 设置弹窗 -->
     <transition name="fade">
-      <SettingDialog v-if="show_setting" v-model="show_setting" @close="show_setting = false" />
+      <SettingDialog v-if="show_setting" v-model="show_setting" />
     </transition>
 
     <!-- 更新日志 -->

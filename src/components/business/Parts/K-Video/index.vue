@@ -2,8 +2,10 @@
 import { onMounted, ref } from "vue";
 
 interface Props {
-  video: string; //视频链接
-  muted?: boolean; //静音
+  /** 视频链接 */
+  video: string;
+  /** 静音 */
+  muted?: boolean;
 }
 defineProps<Props>();
 

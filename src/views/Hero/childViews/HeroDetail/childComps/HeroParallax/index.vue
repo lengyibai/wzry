@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Props {
-  bg: string; //背景图
+  /** 背景图 */
+  bg: string;
 }
 defineProps<Props>();
 </script>

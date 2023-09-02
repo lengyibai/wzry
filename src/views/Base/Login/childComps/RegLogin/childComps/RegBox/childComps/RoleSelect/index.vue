@@ -2,7 +2,9 @@
 import { AudioStore } from "@/store";
 
 interface Props {
+  /** 选择的索引号 */
   modelValue: number;
+  /** 选项 */
   option: string[];
 }
 defineProps<Props>();

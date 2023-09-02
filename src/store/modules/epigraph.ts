@@ -5,8 +5,10 @@ import { API_EPIGRAPH } from "@/api";
 
 /** @description 铭文相关 */
 const EpigraphStore = defineStore("epigraph", () => {
-  const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
-  const filter_list = ref<Epigraph.Data[]>([]); //筛选后的列表
+  /** 铭文列表 */
+  const epigraph_list = ref<Epigraph.Data[]>([]);
+  /** 筛选后的列表 */
+  const filter_list = ref<Epigraph.Data[]>([]);
 
   /** @description 获取铭文列表 */
   const getEpigraph = async () => {

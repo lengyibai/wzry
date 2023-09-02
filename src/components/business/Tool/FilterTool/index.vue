@@ -6,10 +6,14 @@ import { AudioStore } from "@/store";
 type Data = { label: string; value: string | number };
 
 interface Props {
-  modelValue: string; //选择的值
-  data: Data[]; //下拉列表
-  listHeight?: string; //列表高度
-  status: boolean; //下拉状态
+  /** 选择的值 */
+  modelValue: string;
+  /** 下拉列表 */
+  data: Data[];
+  /** 列表高度 */
+  listHeight?: string;
+  /** 下拉状态 */
+  status: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
@@ -23,10 +27,12 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const sort_text = ref("默认排序"); //标题
-const current_value = ref(""); //选择的值
+/** 标题 */
+const sort_text = ref("默认排序");
+/** 选择的值 */
+const current_value = ref("");
 
 sort_text.value = props.data[0].label;
 if (props.modelValue) {

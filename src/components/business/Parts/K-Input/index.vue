@@ -12,7 +12,6 @@
         fontSize: fontSize,
         paddingLeft: paddingLeft,
       }"
-      :name="name"
       @input="input"
       @focus="focus"
       @blur="blur"
@@ -42,24 +41,40 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: number | string; //值
-  width?: string; //整体宽度
-  disabled?: boolean; //禁用
-  placeholder?: string; //输入框描述
-  borderColor?: string; //边框颜色
-  line?: boolean; //显示聚焦线
-  color?: string; //字体颜色
-  paddingLeft?: string; //
-  align?: "left" | "center" | "right"; //对齐方式
-  fontSize?: string; //字体大小
-  type?: string; //输入框类型
-  min?: number; //最小位数
-  max?: number; //最大位数
-  name?: any;
-  required?: boolean; //必填
-  number?: boolean; //为数字
-  noSpecial?: boolean; //禁止含有特殊字符
-  validate?: (val: string) => string; //自定义表单验证
+  /** 值 */
+  modelValue: number | string;
+  /** 整体宽度 */
+  width?: string;
+  /** 禁用 */
+  disabled?: boolean;
+  /** 输入框描述 */
+  placeholder?: string;
+  /** 边框颜色 */
+  borderColor?: string;
+  /** 显示聚焦线 */
+  line?: boolean;
+  /** 字体颜色 */
+  color?: string;
+  /** 左内边距 */
+  paddingLeft?: string;
+  /** 对齐方式 */
+  align?: "left" | "center" | "right";
+  /** 字体大小 */
+  fontSize?: string;
+  /** 输入框类型 */
+  type?: string;
+  /** 最小位数 */
+  min?: number;
+  /** 最大位数 */
+  max?: number;
+  /** 必填 */
+  required?: boolean;
+  /** 为数字 */
+  number?: boolean;
+  /** 禁止含有特殊字符 */
+  noSpecial?: boolean;
+  /** 自定义表单验证 */
+  validate?: (val: string) => string;
 }
 interface Emits {
   (e: "update:modelValue", v: string | number): void;
@@ -84,9 +99,12 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const tip = ref(""); //不合法提示
-const legal = ref(true); //是否合法
-const is_focus = ref(false); //是否获取焦点
+/** 不合法提示 */
+const tip = ref("");
+/** 是否合法 */
+const legal = ref(true);
+/** 是否获取焦点 */
+const is_focus = ref(false);
 
 /* 获取焦点 */
 const focus = () => {

@@ -4,20 +4,24 @@ import { ref, computed, nextTick } from "vue";
 import { AudioStore, EquipStore } from "@/store";
 
 interface Props {
-  equip: Equip.Data; //装备信息
-  leftLine?: boolean; //显示左线
-  rightLine?: boolean; //显示右线
+  /** 装备信息 */
+  equip: Equip.Data;
+  /** 显示左线 */
+  leftLine?: boolean;
+  /** 显示右线 */
+  rightLine?: boolean;
 }
 const props = defineProps<Props>();
 
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
-const icon = ref();
+const iconRef = ref();
 
-const active_id = computed(() => $equipStore.active_id); //获取点击的装备id
-
-const shine = computed(() => props.leftLine || props.rightLine); //装备文字是否开启柔光
+/** 获取点击的装备id */
+const active_id = computed(() => $equipStore.active_id);
+/** 装备文字是否开启柔光 */
+const shine = computed(() => props.leftLine || props.rightLine);
 
 /* 查看装备详情 */
 const handleDetail = () => {
@@ -28,7 +32,7 @@ const handleDetail = () => {
 /* 设置装备信息，用于计算竖线高度和偏移量 */
 nextTick(() => {
   $equipStore.setEquipElement({
-    el: icon.value,
+    el: iconRef.value,
     name: props.equip.name,
     id: props.equip.id,
   });
@@ -43,7 +47,7 @@ nextTick(() => {
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="icon" :src="equip.icon" alt="" @dragstart.prevent />
+    <img ref="iconRef" :src="equip.icon" alt="" @dragstart.prevent />
 
     <!-- 左线 -->
     <transition name="left-line">

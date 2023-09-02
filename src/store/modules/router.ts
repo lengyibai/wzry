@@ -9,8 +9,10 @@ import sheelToRoute from "@/router/helper/sheelToRoute";
 
 /** @description 路由相关 */
 const RouterStore = defineStore("route", () => {
-  const routes = ref<RouteRecordRaw[]>([]); //当前路由列表，针对侧边栏，解决通过vue-router提供的方法获取的路由列表与侧边栏要求的格式不匹配
-  const routeNames = ref<RouteRecordName[]>([]); //添加的路由name组，用于匹配并删除路由
+  /** 当前路由列表，针对侧边栏，解决通过vue-router提供的方法获取的路由列表与侧边栏要求的格式不匹配 */
+  const routes = ref<RouteRecordRaw[]>([]);
+  /** 添加的路由name组，用于匹配并删除路由 */
+  const routeNames = ref<RouteRecordName[]>([]);
 
   /**
    * @description: 添加路由及存储路由侧边栏
@@ -34,7 +36,8 @@ const RouterStore = defineStore("route", () => {
     //动态添加路由
     dynamicRouter.forEach((item) => {
       router.addRoute(item);
-      routes.value.push(item); //存储属于侧边栏的路由
+      //存储属于侧边栏的路由
+      routes.value.push(item);
     });
   };
 

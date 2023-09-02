@@ -1,9 +1,9 @@
 <script setup lang="ts" name="skin">
 import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
 
-import SkinCard from "./childComps/SkinCard/index.vue"; //英雄卡片
-import SkinToolbar from "./childComps/SkinToolbar/index.vue"; //顶部工具栏
-import SkinVoice from "./childComps/SkinVoice/index.vue"; //皮肤语音
+import SkinCard from "./childComps/SkinCard/index.vue";
+import SkinToolbar from "./childComps/SkinToolbar/index.vue";
+import SkinVoice from "./childComps/SkinVoice/index.vue";
 
 import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
@@ -12,14 +12,21 @@ import { SkinStore, AudioStore } from "@/store";
 const $skinStore = SkinStore();
 const $audioStore = AudioStore();
 
-const skinListRef = ref(); //布局容器
-const count = ref(0); //一行显示的数目
-const show_list = ref(false); //显示列表
-const show_poster = ref(false); //查看海报
-const show_voice = ref(false); //查看语音
-const voices = ref<Hero.Voice[]>([]); //语音列表
+const skinListRef = ref();
 
-$skinStore.getSkin(); //获取皮肤列表
+/** 一行显示的数目 */
+const count = ref(0);
+/** 显示列表 */
+const show_list = ref(false);
+/** 查看海报 */
+const show_poster = ref(false);
+/** 查看语音 */
+const show_voice = ref(false);
+/** 语音列表 */
+const voices = ref<Hero.Voice[]>([]);
+
+/* 获取皮肤列表 */
+$skinStore.getSkin();
 
 /* 滚动触发 */
 const onScroll = (v: number) => {

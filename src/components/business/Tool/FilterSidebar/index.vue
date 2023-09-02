@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore } from "@/store";
 
 interface Props {
+  /** 用于不同列表的筛选类型 */
   type: "hero" | "skin" | "equip";
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -40,12 +41,13 @@ const equip_type: { name: Equip.Category; icon: string }[] = [
   { name: "游走", icon: "wzry-youzou" },
 ];
 
-const top = ref(0); //滑块坐标
+/** 滑块坐标 */
+const top = ref(0);
 
-//动态list
+/** 动态list */
 const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));
 
-//用于比较的筛选类型
+/** 用于比较的筛选类型 */
 const filter_type = computed(() => {
   const obj = {
     hero: $heroStore.profession,

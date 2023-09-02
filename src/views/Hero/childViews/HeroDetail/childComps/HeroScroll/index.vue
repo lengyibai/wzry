@@ -2,9 +2,12 @@
 import { nextTick, onMounted, ref, watch } from "vue";
 
 interface Props {
-  modelValue?: number; //滚动索引
-  duration?: number; //滚动时长
-  direction?: string; //纵向或横向
+  /** 滚动索引 */
+  modelValue?: number;
+  /** 滚动时长 */
+  duration?: number;
+  /** 纵向或横向 */
+  direction?: string;
 }
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
@@ -19,7 +22,8 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const HeroScroll = ref();
+const heroScrollRef = ref();
+
 const index = ref(0);
 
 const change = async (i: number) => {
@@ -27,11 +31,9 @@ const change = async (i: number) => {
   await nextTick();
   let direction = props.direction === "y";
   try {
-    HeroScroll.value.style[direction ? "top" : "left"] =
-      -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
-  } catch (error) {
-    /*  */
-  }
+    heroScrollRef.value.style[direction ? "top" : "left"] =
+      -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
+  } catch (error) {}
   setTimeout(() => {
     emit("end", index.value + 1);
   }, props.duration);
@@ -56,12 +58,15 @@ watch(
 );
 
 onMounted(() => {
-  let direction = props.direction === "y"; //是否为纵向滚动
-  let scroll = true; //是否滚动
-  const sonCount = HeroScroll.value.querySelectorAll(".scroll-item").length; //页面数量
-  HeroScroll.value.addEventListener("mousewheel", (e: WheelEvent) => {
+  //是否为纵向滚动
+  let direction = props.direction === "y";
+  //是否滚动
+  let scroll = true;
+  //页面数量
+  const sonCount = heroScrollRef.value.querySelectorAll(".scroll-item").length;
+  heroScrollRef.value.addEventListener("mousewheel", (e: WheelEvent) => {
     $debounceDelay(() => {
-      HeroScroll.value.style.transition = `all ${props.duration}ms`;
+      heroScrollRef.value.style.transition = `all ${props.duration}ms`;
       if (!scroll) return;
       emit("start", index.value + 1);
       scroll = false;
@@ -70,8 +75,8 @@ onMounted(() => {
         : -e.deltaY > 0 && index.value > 0
         ? index.value--
         : "";
-      HeroScroll.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
+      heroScrollRef.value.style[direction ? "top" : "left"] =
+        -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
       emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;
@@ -81,20 +86,20 @@ onMounted(() => {
 
   /* 兼容移动端 */
   let start = 0;
-  HeroScroll.value.addEventListener("touchstart", (e: TouchEvent) => {
+  heroScrollRef.value.addEventListener("touchstart", (e: TouchEvent) => {
     start = e.changedTouches[0].pageY;
   });
-  HeroScroll.value.addEventListener("touchmove", (e: TouchEvent) => {
+  heroScrollRef.value.addEventListener("touchmove", (e: TouchEvent) => {
     const status = start - e.changedTouches[0].pageY;
     if (Math.abs(status) < window.innerHeight / 3) return;
     $debounceDelay(() => {
-      HeroScroll.value.style.transition = `all ${props.duration}ms`;
+      heroScrollRef.value.style.transition = `all ${props.duration}ms`;
       if (!scroll) return;
       emit("start", index.value + 1);
       scroll = false;
       -status < 0 && index.value < sonCount - 1 ? index.value++ : -status > 0 && index.value > 0 ? index.value-- : "";
-      HeroScroll.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? HeroScroll.value.offsetHeight : HeroScroll.value.offsetWidth) + "px";
+      heroScrollRef.value.style[direction ? "top" : "left"] =
+        -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
       emit("update:modelValue", index.value + 1);
       setTimeout(() => {
         scroll = true;
@@ -110,7 +115,7 @@ onMounted(() => {
 
 <template>
   <div
-    ref="HeroScroll"
+    ref="heroScrollRef"
     class="hero-scroll"
     :style="{
       display: direction === 'x' ? 'flex' : 'block',

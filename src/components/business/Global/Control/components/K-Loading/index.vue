@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import useLoading from "./hooks/useLoading"; //loading
+import useLoading from "./hooks/useLoading";
 
 import { Util } from "@/utils";
 
 const { show, text } = useLoading();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
 
 Util.$Bus.on("loading", (v) => {

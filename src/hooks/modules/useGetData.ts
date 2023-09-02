@@ -3,10 +3,14 @@ import { ref } from "vue";
 import { API_DATA, API_HERO } from "@/api";
 
 const useGetData = () => {
-  const total = ref(0); //请求总数
-  const index = ref(1); //用于计算下载进度
-  const type = ref("基础数据"); //正在下载的数据类型
-  const finish = ref(false); //请求结束
+  /** 请求总数 */
+  const total = ref(0);
+  /** 用于计算下载进度 */
+  const index = ref(1);
+  /** 正在下载的数据类型 */
+  const type = ref("基础数据");
+  /** 请求结束 */
+  const finish = ref(false);
 
   const requests: [string, () => Promise<any>, string][] = [
     ["user", API_DATA.User, "用户"],

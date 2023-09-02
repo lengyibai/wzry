@@ -1,23 +1,6 @@
-<template>
-  <div style="margin-bottom: 3.125rem; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
-    <Toolbar
-      style="border-bottom: 1px solid var(--theme-color-eight)"
-      :editor="editorRef"
-      :default-config="toolbarConfig"
-      :mode="mode"
-    />
-    <Editor
-      v-model="valueHtml"
-      style="overflow-y: hidden; height: 18.75rem"
-      :default-config="editorConfig"
-      :mode="mode"
-      @onCreated="handleCreated"
-    />
-  </div>
-</template>
 <script setup>
 //https://www.wangeditor.com/
-import "@wangeditor/editor/dist/css/style.css"; //引入 css
+import "@wangeditor/editor/dist/css/style.css";
 import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 
@@ -37,6 +20,7 @@ const props = defineProps({
 });
 
 const editorRef = shallowRef();
+
 const valueHtml = ref("");
 valueHtml.value = props.modelValue;
 
@@ -49,7 +33,7 @@ const toolbarConfig = {
   toolbarKeys: ["color", "clearStyle"],
 };
 const editorConfig = { placeholder: props.placeholder };
-const mode = "simple"; //或 'simple'
+const mode = "simple";
 
 onBeforeUnmount(() => {
   const editor = editorRef.value;
@@ -58,9 +42,27 @@ onBeforeUnmount(() => {
 });
 
 const handleCreated = (editor) => {
-  editorRef.value = editor; //记录 editor 实例，重要！
+  editorRef.value = editor;
 };
 </script>
+
+<template>
+  <div style="margin-bottom: 3.125rem; border: 1px solid var(--theme-color-eight)" :style="{ width: width }">
+    <Toolbar
+      style="border-bottom: 1px solid var(--theme-color-eight)"
+      :editor="editorRef"
+      :default-config="toolbarConfig"
+      :mode="mode"
+    />
+    <Editor
+      v-model="valueHtml"
+      style="overflow-y: hidden; height: 18.75rem"
+      :default-config="editorConfig"
+      :mode="mode"
+      @onCreated="handleCreated"
+    />
+  </div>
+</template>
 
 <style>
 :root {

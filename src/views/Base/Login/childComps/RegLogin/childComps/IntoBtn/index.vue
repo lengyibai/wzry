@@ -2,14 +2,16 @@
 import { SettingStore } from "@/store";
 
 interface Props {
-  text: string; //文字
-  desc: string; //小字
+  /** 文字 */
+  text: string;
+  /** 小字 */
+  desc: string;
 }
 defineProps<Props>();
 
 const $settingStore = SettingStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 </script>
 
 <template>

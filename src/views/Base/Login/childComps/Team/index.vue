@@ -7,7 +7,8 @@ import { AudioStore } from "@/store";
 
 const $audioStore = AudioStore();
 
-const active = ref(-1); //当前显示的图片的索引号
+/** 当前显示的图片的索引号 */
+const active = ref(-1);
 const imgs = ref<string[]>([]);
 
 $audioStore.play("u4c5");

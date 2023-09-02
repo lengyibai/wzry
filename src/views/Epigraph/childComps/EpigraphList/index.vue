@@ -6,15 +6,19 @@ import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 import { Util } from "@/utils";
 
 interface Props {
-  data: Epigraph.Data[]; //铭文列表
+  /** 铭文列表 */
+  data: Epigraph.Data[];
 }
 const props = defineProps<Props>();
 
 const epigraphListRef = ref();
 
-const show = ref(false); //淡入显示列表
-const count = ref(4); //一行的个数
-const epigraph_list = ref<Epigraph.Data[]>([]); //铭文列表
+/** 淡入显示列表 */
+const show = ref(false);
+/** 一行的个数 */
+const count = ref(4);
+/** 铭文列表 */
+const epigraph_list = ref<Epigraph.Data[]>([]);
 
 /* 每次修改更新列表 */
 watch(

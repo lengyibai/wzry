@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import HeroSkillIcon from "./childComps/HeroSkillIcon/index.vue"; //技能图标
-import HeroSkillContent from "./childComps/HeroSkillContent/index.vue"; //主体内容
+import HeroSkillIcon from "./childComps/HeroSkillIcon/index.vue";
+import HeroSkillContent from "./childComps/HeroSkillContent/index.vue";
 
-const hero_skill = ref<Hero.Skill>(); //技能信息
+/** 技能信息 */
+const hero_skill = ref<Hero.Skill>();
 
 /* 选择技能 */
 const onSelectSkill = (skill: Hero.Skill) => {

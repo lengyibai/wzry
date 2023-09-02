@@ -37,9 +37,12 @@ import { ref } from "vue";
 
 import TableSort from "./childComps/table-sort/index.vue";
 interface Props {
-  head: string[]; //表头名
-  data: any[]; //表格数据
-  sort: string[]; //规定哪些列进行排序，从0开始
+  /** 表头名 */
+  head: string[];
+  /** 表格数据 */
+  data: any[];
+  /** 规定哪些列进行排序，从0开始 */
+  sort: string[];
 }
 const props = defineProps<Props>();
 

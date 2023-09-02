@@ -4,13 +4,20 @@ import { ref, onMounted } from "vue";
 import { SettingStore, AudioStore } from "@/store";
 
 interface Props {
+  /** 是否显示 */
   modelValue: boolean;
-  text: string; //内容
-  title?: string; //左上角标题
-  noTipName?: TipKeys | string; //不再提示的属性名
-  align?: TipType; //对齐方式
-  btnText?: string; //按钮文字
-  btnFn?: () => void; //点击按钮触发的函数
+  /** 内容 */
+  text: string;
+  /** 左上角标题 */
+  title?: string;
+  /** 不再提示的属性名 */
+  noTipName?: TipKeys | string;
+  /** 对齐方式 */
+  align?: TipType;
+  /** 按钮文字 */
+  btnText?: string;
+  /** 点击按钮触发的函数 */
+  btnFn?: () => void;
 }
 const props = withDefaults(defineProps<Props>(), {
   align: "right-bottom",
@@ -28,7 +35,7 @@ const emit = defineEmits<Emits>();
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 const show_tip = ref(false);
 

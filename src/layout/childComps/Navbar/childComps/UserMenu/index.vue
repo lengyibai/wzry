@@ -6,20 +6,28 @@ import { AuthStore, AudioStore } from "@/store";
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const show_menu = ref(false); //显示用户菜单
-const show_edit = ref(false); //显示编辑个人信息弹窗
-const show_close = ref(false); //显示确认保存弹窗
-const show_logoff = ref(false); //显示确认注销弹窗
-const edit_status = ref(false); //信息是否修改
+/** 显示用户菜单 */
+const show_menu = ref(false);
+/** 显示编辑个人信息弹窗 */
+const show_edit = ref(false);
+/** 显示确认保存弹窗 */
+const show_close = ref(false);
+/** 显示确认注销弹窗 */
+const show_logoff = ref(false);
+/** 信息是否修改 */
+const edit_status = ref(false);
 
-const userInfo = computed(() => $authStore.userInfo); //用户本地信息
+/** 用户本地信息 */
+const userInfo = computed(() => $authStore.userInfo);
+/** 用户权限 */
 const role = computed(() => {
   return user_info.value.role === 0 ? "管理员" : "普通用户";
-}); //用户权限
+});
 
-const user_info = ref<Partial<User>>({ ...userInfo.value }); //编辑的用户信息
+/** 编辑的用户信息 */
+const user_info = ref<Partial<User>>({ ...userInfo.value });
 
 /* 编辑个人信息 */
 const handleEditInfo = () => {

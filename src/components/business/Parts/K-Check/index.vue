@@ -4,7 +4,8 @@ import { computed } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  modelValue: boolean | string; //选中状态
+  /** 选中状态 */
+  modelValue: boolean | string;
 }
 const props = defineProps<Props>();
 

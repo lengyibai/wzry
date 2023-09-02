@@ -5,15 +5,24 @@ import { Util } from "@/utils";
 import { AudioStore } from "@/store";
 
 interface Props {
-  label: string; //左侧文字
-  data: any[]; //数据
-  id?: boolean; //传递id还是name
-  autoSize?: boolean; //自适应大小
-  disabled?: boolean; //禁用
-  modelValue?: string | number | any[]; //选择的值
-  multi?: boolean; //多选
-  required?: boolean; //必填
-  value?: string | number | any[]; //输入框默认值
+  /** 左侧文字 */
+  label: string;
+  /** 数据 */
+  data: any[];
+  /** 传递id还是name */
+  id?: boolean;
+  /** 自适应大小 */
+  autoSize?: boolean;
+  /** 禁用 */
+  disabled?: boolean;
+  /** 选择的值 */
+  modelValue?: string | number | any[];
+  /** 多选 */
+  multi?: boolean;
+  /** 必填 */
+  required?: boolean;
+  /** 输入框默认值 */
+  value?: string | number | any[];
 }
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
@@ -28,14 +37,20 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const input_value = ref<any>(""); //输入框的值
-const active_value = ref<any>(""); //选中的值
-const is_unfold = ref(false); //展开
-const current_index = ref<number | null>(null); //当前点击
-const select_list = ref<any[]>([]); //下拉列表
-const selected_list = ref<any[]>([]); //选择的列表
+/** 输入框的值 */
+const input_value = ref<any>("");
+/** 选中的值 */
+const active_value = ref<any>("");
+/** 展开 */
+const is_unfold = ref(false);
+/** 当前点击 */
+const current_index = ref<number | null>(null);
+/** 下拉列表 */
+const select_list = ref<any[]>([]);
+/** 选择的列表 */
+const selected_list = ref<any[]>([]);
 
 /* 实时搜索 */
 const handleSearch = () => {
@@ -46,13 +61,13 @@ const handleSearch = () => {
 
 /* 获取焦点 */
 const handleFocus = () => {
-  is_unfold.value = true; //展开下拉列表
-  input_value.value = ""; //清空输入框
+  is_unfold.value = true;
+  input_value.value = "";
 };
 
 /* 失去焦点 */
 const handleBlur = () => {
-  is_unfold.value = false; //收起下拉列表
+  is_unfold.value = false;
   select_list.value = props.data;
 
   //如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
@@ -71,7 +86,7 @@ const handleSelect = (id: number, name: string) => {
   //是否为多选
   if (props.multi) {
     selected_list.value.push(name);
-    selected_list.value = [...new Set(selected_list.value)]; //去重
+    selected_list.value = [...new Set(selected_list.value)];
     emit("update:modelValue", selected_list.value);
     input_value.value = "请选择";
   } else {

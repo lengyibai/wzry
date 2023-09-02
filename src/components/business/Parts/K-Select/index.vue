@@ -2,9 +2,12 @@
 import { AudioStore } from "@/store";
 
 interface Props {
+  /** 整体宽度 */
   width: string;
-  modelValue: number; //索引号
-  option: string[]; //选项文字
+  /** 索引号 */
+  modelValue: number;
+  /** 选项文字 */
+  option: string[];
 }
 withDefaults(defineProps<Props>(), {
   width: "6.25rem",

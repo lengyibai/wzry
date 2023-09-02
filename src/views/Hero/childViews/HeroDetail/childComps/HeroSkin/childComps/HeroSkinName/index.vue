@@ -1,7 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  toggle: boolean; //触发打字机
-  name: string; //皮肤名
+  /** 触发打字机 */
+  toggle: boolean;
+  /** 皮肤名 */
+  name: string;
 }
 defineProps<Props>();
 </script>

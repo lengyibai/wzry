@@ -4,8 +4,11 @@ import { ref, watch } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
+  /** 按钮大小 */
   size?: string;
+  /** 是否完整提交 */
   finish?: boolean;
+  /** 提交状态 */
   modelValue: number;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -21,7 +24,8 @@ const emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const show_up = ref(true); //显示纸飞机
+/** 显示纸飞机 */
+const show_up = ref(true);
 
 /* 提交 */
 const commit = () => {

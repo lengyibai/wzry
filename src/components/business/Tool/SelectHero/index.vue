@@ -4,8 +4,10 @@ import { ref, watch } from "vue";
 import { API_HERO } from "@/api";
 
 interface Props {
-  modelValue: number; //英雄id
-  disabled?: boolean; //禁用
+  /** 英雄id */
+  modelValue: number;
+  /** 禁用 */
+  disabled?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
@@ -17,10 +19,12 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const hero_name = ref(""); //英雄名称
-const id = ref(0); //英雄id
-
-const hero_list = ref<General[]>([]); //获取英雄基础列表
+/** 英雄名称 */
+const hero_name = ref("");
+/** 英雄id */
+const id = ref(0);
+/** 获取英雄基础列表 */
+const hero_list = ref<General[]>([]);
 
 /* 获取英雄基础列表 */
 API_HERO.getHeroBasic().then((res) => {

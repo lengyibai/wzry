@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import DescSet from "./childComps/DescSet/index.vue"; //悬浮问号显示tip
+import DescSet from "./childComps/DescSet/index.vue";
 
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
@@ -9,20 +9,16 @@ import { Util } from "@/utils";
 import { $message, $tip } from "@/config";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
 
-interface Props {
-  modelValue: boolean;
-}
-defineProps<Props>();
-
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $cssVarStore = CssVarStore();
 
-//默认配置
+/** 默认配置 */
 const default_config: SettingConfig = { ...configDefault };
 
-const show_confirm_reset = ref(false); //显示/隐藏确认重置弹窗
+/** 是否显示确认重置弹窗 */
+const show_confirm_reset = ref(false);
 const config = ref<SettingConfig>({ ...$settingStore.config });
 
 /* 语言 */

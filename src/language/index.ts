@@ -13,9 +13,12 @@ const messages: Record<string, Record<string, string>> = {
 const lang = localStorage.getItem("language");
 
 const i18n = createI18n({
-  locale: lang || "zh", //默认语言
-  legacy: false, //如果要支持 compositionAPI，此项必须设置为 false
-  globalInjection: true, //全局注册$t方法
+  /** 默认语言 */
+  locale: lang || "zh",
+  /** 如果要支持 compositionAPI，此项必须设置为 false */
+  legacy: false,
+  /** 全局注册$t方法 */
+  globalInjection: true,
   messages,
 });
 

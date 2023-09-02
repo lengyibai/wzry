@@ -6,21 +6,35 @@ import { Util } from "@/utils";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
-  const profession = ref<Hero.Profession>(); //职业类型
-  const camp_type = ref("全部阵营"); //阵营排序类型
-  const attr_type = ref("全部属性"); //属性排序类型
-  const misc_type = ref("全部筛选"); //杂项筛选类型
-  const misc_sort = ref("全部排序"); //杂项排序类型
-  const sort_type = ref("倒序"); //当前排序类型
-  const gender_type = ref<Gender>(0); //当前性别排序类型
-  const hero_list = ref<Hero.Data[]>([]); //英雄完整列表
-  const filter_list = ref<Hero.Data[]>([]); //筛选后的列表
+  /** 职业类型 */
+  const profession = ref<Hero.Profession>();
+  /** 阵营排序类型 */
+  const camp_type = ref("全部阵营");
+  /** 属性排序类型 */
+  const attr_type = ref("全部属性");
+  /** 杂项筛选类型 */
+  const misc_type = ref("全部筛选");
+  /** 杂项排序类型 */
+  const misc_sort = ref("全部排序");
+  /** 当前排序类型 */
+  const sort_type = ref("倒序");
+  /** 当前性别排序类型 */
+  const gender_type = ref<Gender>(0);
+  /** 英雄完整列表 */
+  const hero_list = ref<Hero.Data[]>([]);
+  /** 筛选后的列表 */
+  const filter_list = ref<Hero.Data[]>([]);
 
-  const scroll = ref(0); //滚动坐标
-  const page = ref(1); //当前页数
-  const page_total = ref(0); //总页数
-  const page_count = ref(30); //一页显示的个数
-  const show_list = ref<Hero.Data[]>([]); //展示的列表
+  /** 滚动坐标 */
+  const scroll = ref(0);
+  /** 当前页数 */
+  const page = ref(1);
+  /** 总页数 */
+  const page_total = ref(0);
+  /** 一页显示的个数 */
+  const page_count = ref(30);
+  /** 展示的列表 */
+  const show_list = ref<Hero.Data[]>([]);
 
   /**
    * @description: 设置滚动坐标
@@ -133,7 +147,8 @@ const HeroStore = defineStore("hero", () => {
 
     //职业筛选
     if (profession.value === "全部") {
-      filter_list.value = [...hero_list.value]; //为了解决排序拷贝问题
+      //为了解决排序拷贝问题
+      filter_list.value = [...hero_list.value];
     } else {
       filter_list.value = hero_list.value.filter((item: Hero.Data) => {
         return item.profession.includes(profession.value!);

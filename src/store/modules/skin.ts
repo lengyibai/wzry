@@ -6,26 +6,38 @@ import { Util } from "@/utils";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const profession = ref(""); //职业类型
-  const price_type = ref(""); //价格排序类型
-  const skin_type = ref(""); //皮肤筛选类型
-  const sort_type = ref("倒序"); //排序类型
-  const gender_type = ref(0); //性别筛选类型
-  const skin_list = ref<Hero.Skin[]>([]); //皮肤列表
-  const filter_list = ref<Hero.Skin[]>([]); //筛选后的列表
+  /** 职业类型 */
+  const profession = ref("");
+  /** 价格排序类型 */
+  const price_type = ref("");
+  /** 皮肤筛选类型 */
+  const skin_type = ref("");
+  /** 排序类型 */
+  const sort_type = ref("倒序");
+  /** 性别筛选类型 */
+  const gender_type = ref(0);
+  /** 皮肤列表 */
+  const skin_list = ref<Hero.Skin[]>([]);
+  /** 筛选后的列表 */
+  const filter_list = ref<Hero.Skin[]>([]);
+  /** 皮肤类型logo列表 */
   const type_logo = ref<
     {
       id: number;
       name: string;
       link: string;
     }[]
-  >([]); //皮肤类型logo列表
-
-  const scroll = ref(0); //滚动坐标
-  const page = ref(1); //当前页数
-  const page_total = ref(0); //总页数
-  const page_count = ref(50); //一页显示的个数
-  const show_list = ref<Hero.Skin[]>([]); //展示的列表
+  >([]);
+  /** 滚动坐标 */
+  const scroll = ref(0);
+  /** 当前页数 */
+  const page = ref(1);
+  /** 总页数 */
+  const page_total = ref(0);
+  /** 一页显示的个数 */
+  const page_count = ref(50);
+  /** 展示的列表 */
+  const show_list = ref<Hero.Skin[]>([]);
 
   /** @description 设置滚动坐标 */
   const setScroll = (v: number) => {
@@ -123,7 +135,8 @@ const SkinStore = defineStore("skin", () => {
 
     //职业筛选
     if (profession.value === "全部") {
-      filter_list.value = [...skin_list.value]; //为了解决排序拷贝问题
+      //为了解决排序拷贝问题
+      filter_list.value = [...skin_list.value];
     } else {
       filter_list.value = skin_list.value.filter((item: Hero.Skin) => {
         return item.profession.includes(profession.value);

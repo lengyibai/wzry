@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeUnmount } from "vue";
 
-import LoginBox from "./childComps/LoginBox/index.vue"; //登录盒子
-import RegBox from "./childComps/RegBox/index.vue"; //注册盒子
-import SelectInto from "./childComps/SelectInto/index.vue"; //选择进入方式
+import LoginBox from "./childComps/LoginBox/index.vue";
+import RegBox from "./childComps/RegBox/index.vue";
+import SelectInto from "./childComps/SelectInto/index.vue";
 
 import { Util } from "@/utils";
 import { API_USER } from "@/api";
@@ -13,17 +13,19 @@ const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 const $deviceStore = DeviceStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 const loginBox = ref<HTMLElement>();
-const is_reg = ref(""); //注册及登录状态下要显示的输入框及按钮
-const reg_form = ref<User>(); //用户表单
+/** 注册及登录状态下要显示的输入框及按钮 */
+const is_reg = ref("");
+/** 用户表单 */
+const reg_form = ref<User>();
 
 API_USER.userList().then((res) => {
   if (res.length) is_reg.value = "登录";
 });
 
-//登录、注册的组件切换
+/** 登录、注册的组件切换 */
 const component = computed(() => {
   return is_reg.value === "登录" ? LoginBox : is_reg.value === "注册" ? RegBox : SelectInto;
 });

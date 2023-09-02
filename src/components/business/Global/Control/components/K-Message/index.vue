@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import useMessage from "./hooks/useMessage"; //消息提醒
+import useMessage from "./hooks/useMessage";
 
 import { Util } from "@/utils";
 
 const { msg, messages } = useMessage();
 
-//字体颜色
+/** 字体颜色 */
 const color: Record<string, string> = {
   info: "#84ade2",
   warning: "#e2c484",
@@ -13,7 +13,7 @@ const color: Record<string, string> = {
 };
 const getImg = (src: string) => `${IMGBED}/image/msg_${src}.png`;
 
-//消息类型提醒左中右图标
+/** 消息类型提醒左中右图标 */
 const imgs: Record<string, Record<string, string>> = {
   info: {
     left: getImg("left_default"),

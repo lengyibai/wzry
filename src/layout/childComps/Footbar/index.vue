@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, computed, onBeforeUnmount, nextTick } from "vue";
 
-import Time from "./childComps/Time/index.vue"; //左侧时间
-import MusicTool from "./childComps/MusicTool/index.vue"; //工具栏
-import Copyright from "./childComps/Copyright/index.vue"; //右侧版权
-import MusicPlay from "./childComps/MusicPlay/index.vue"; //音乐进度条
+import Time from "./childComps/Time/index.vue";
+import MusicTool from "./childComps/MusicTool/index.vue";
+import Copyright from "./childComps/Copyright/index.vue";
+import MusicPlay from "./childComps/MusicPlay/index.vue";
 
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 
@@ -12,40 +12,42 @@ const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $deviceStore = DeviceStore();
 
-const line = ref();
-const canvas = ref<HTMLCanvasElement>();
-const footbar = ref();
+const lineRef = ref();
+const canvasRef = ref<HTMLCanvasElement>();
+const footbarRef = ref();
 
-let timer: NodeJS.Timeout; //隐藏工具栏定时器
+/** 隐藏工具栏定时器 */
+let timer: NodeJS.Timeout;
+/** 播放进度 */
+const progress = ref(0);
 
-const progress = ref(0); //播放进度
+/** 启用音乐播放器 */
+const enable_music = computed(() => $settingStore.config.music);
+/** 音乐进度控制 */
+const music_progress = computed(() => $settingStore.config.musicProgress);
 
 nextTick(() => {
-  $musicStore.initAudioVisual(canvas.value!);
+  $musicStore.initAudioVisual(canvasRef.value!);
   $musicStore.play();
 });
-
-//启用音乐播放器
-const enable_music = computed(() => $settingStore.config.music);
-//音乐进度控制
-const music_progress = computed(() => $settingStore.config.musicProgress);
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {
   if (!enable_music.value) return;
 
   //计算出小数
-  progress.value = parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2));
-  music_progress.value && $musicStore.setCurrentTime(progress.value); //设置播放进度
+  progress.value = parseFloat(((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2));
+  //设置播放进度
+  music_progress.value && $musicStore.setCurrentTime(progress.value);
 };
 
 /* 悬浮移动竖线 */
-const handleMoveLine = (e: MouseEvent) => {
+const handleMoveLineRef = (e: MouseEvent) => {
   if (!enable_music.value || !music_progress.value) return;
 
   //设置底部刻度线x坐标
-  line.value.style.left =
-    parseFloat(((e.pageX - footbar.value.offsetLeft) / footbar.value.offsetWidth).toFixed(2)) * 100 + "%";
+  lineRef.value.style.left =
+    parseFloat(((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2)) * 100 + "%";
 };
 
 /* 点击音乐工具栏 */
@@ -84,7 +86,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    ref="footbar"
+    ref="footbarRef"
     v-particle="{
       color: '#2e5283',
       filter: false,
@@ -95,11 +97,11 @@ onBeforeUnmount(() => {
     :class="{ 'cursor-pointer': music_progress }"
     @click="handleSetProgress"
     @mouseenter="handleShowTool(true)"
-    @mousemove="handleMoveLine"
+    @mousemove="handleMoveLineRef"
     @mouseleave="handleShowTool(false)"
   >
     <!-- 底部竖线 -->
-    <div v-if="enable_music && music_progress" ref="line" class="line"></div>
+    <div v-if="enable_music && music_progress" ref="lineRef" class="line"></div>
 
     <!-- 音乐播放器 -->
     <MusicPlay v-if="enable_music" class="music-play" />
@@ -114,7 +116,7 @@ onBeforeUnmount(() => {
     <Copyright v-show="!$deviceStore.vertical" class="copyright" />
 
     <!-- 音频可视化 -->
-    <canvas ref="canvas"></canvas>
+    <canvas ref="canvasRef"></canvas>
   </div>
 </template>
 

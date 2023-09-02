@@ -1,6 +1,7 @@
 <script setup lang="ts">
 interface Props {
-  data: Hero.Skin; //皮肤数据
+  /** 皮肤数据 */
+  data: Hero.Skin;
 }
 const props = defineProps<Props>();
 
@@ -9,7 +10,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {

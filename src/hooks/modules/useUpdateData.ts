@@ -51,17 +51,20 @@ const useUpdateData = () => {
     racetype: API_DATA.RaceType,
   };
 
-  let hero_list: Hero.Basic[] = []; //英雄基础列表
+  /** 英雄基础列表 */
+  let hero_list: Hero.Basic[] = [];
+  /** 需要更新的语音 */
   const need_update_data: Record<string, any[]> = {
     names: [],
     keys: [],
     data: [],
-  }; //需要更新的数据
+  };
+  /** 需要更新的数据 */
   const need_update_voice: Record<string, any[]> = {
     names: [],
     keys: [],
     data: [],
-  }; //需要更新的语音
+  };
 
   /* 获取本地数据 */
   const getLocalData = (name: string, prefix = "data_") => {
@@ -70,7 +73,8 @@ const useUpdateData = () => {
 
   /* 加载数据 */
   const load = async () => {
-    hero_list = await API_HERO.getHeroBasic(); //获取英雄基础列表
+    //获取英雄基础列表
+    hero_list = await API_HERO.getHeroBasic();
 
     //获取远程数据并比对
     const data_requests = keywords.map(async ([key, name]) => {

@@ -47,7 +47,8 @@ export const login = async (form: User) => {
         token = form.wzryToken;
       }
 
-      return Promise.resolve({ ...data, wzryToken: token }); //更新token并返回新的用户信息
+      //更新token并返回新的用户信息
+      return Promise.resolve({ ...data, wzryToken: token });
     } else {
       return Promise.reject("密码错误");
     }
@@ -92,7 +93,8 @@ export const register = async (form: User) => {
  */
 export const updateUser = (id: string, info: Partial<User>) => {
   patch({ name: "data_user", key: "id", value: id, v: info }, true);
-  return Promise.resolve(info); //返回新信息
+  //返回新信息
+  return Promise.resolve(info);
 };
 
 /**
@@ -100,6 +102,7 @@ export const updateUser = (id: string, info: Partial<User>) => {
  * @param id 用户id
  */
 export const deleteUser = (id: string) => {
-  del({ name: "data_user", id }); //查询用户并删除
+  //查询用户并删除
+  del({ name: "data_user", id });
   return Promise.resolve("注销成功");
 };

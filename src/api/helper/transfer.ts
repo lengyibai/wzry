@@ -95,7 +95,8 @@ export const patch = <R>(params: Patch, obj?: boolean) => {
 
   //替换原数据表指定索引的数据
   data[index] = newData;
-  localStorage.setItem(name, JSON.stringify(data)); //合并数据并存储
+  //合并数据并存储
+  localStorage.setItem(name, JSON.stringify(data));
   return newData as R;
 };
 

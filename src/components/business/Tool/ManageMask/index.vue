@@ -2,15 +2,17 @@
 import { ref, StyleValue } from "vue";
 
 interface Props {
-  show: boolean; //显示/隐藏
-  styles?: StyleValue; //样式
+  /** 是否显示 */
+  show: boolean;
+  /** 样式 */
+  styles?: StyleValue;
 }
 defineProps<Props>();
 
-const content = ref();
+const contentRef = ref();
 
 defineExpose({
-  el: content,
+  el: contentRef,
 });
 </script>
 
@@ -18,7 +20,7 @@ defineExpose({
   <transition name="fade">
     <div class="manage-mask">
       <transition name="fade">
-        <div v-if="show" ref="content" class="content" :style="styles">
+        <div v-if="show" ref="contentRef" class="content" :style="styles">
           <slot></slot>
         </div>
       </transition>

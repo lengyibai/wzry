@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue"; //左侧描述
-import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue"; //右侧效果
+import HeroSkillContentLeft from "./childComps/HeroSkillContentLeft/index.vue";
+import HeroSkillContentRight from "./childComps/HeroSkillContentRight/index.vue";
 
 import { HeroDetailStore } from "@/store";
 
 interface Props {
-  skill: Hero.Skill; //技能信息
+  /** 技能信息 */
+  skill: Hero.Skill;
 }
 const props = defineProps<Props>();
 
 const $heroDetail = HeroDetailStore();
 
-const show = ref(false); //左右两边的入场动画
-const toggle = ref(false); //用于技能选择
+/** 左右两边的入场动画 */
+const show = ref(false);
+/** 用于技能选择 */
+const toggle = ref(false);
 
-const exist_effect = computed(() => props.skill.effect?.length); //存在技能效果
+/** 存在技能效果 */
+const exist_effect = computed(() => props.skill.effect?.length);
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn("skillContent", (index) => {

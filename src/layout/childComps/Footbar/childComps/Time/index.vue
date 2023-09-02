@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from "dayjs";
 
-//当前时间
+/** 当前时间 */
 const time = dayjs().format("YYYY.MM.DD");
 </script>
 

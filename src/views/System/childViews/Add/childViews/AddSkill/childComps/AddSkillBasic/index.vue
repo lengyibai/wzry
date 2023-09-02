@@ -1,6 +1,8 @@
 <script setup lang="ts">
 interface Props {
-  skills: Hero.Skill[]; //技能列表
+  /** 技能列表 */
+  skills: Hero.Skill[];
+  /** 当前点击的技能 */
   activeIndex: number;
 }
 const props = defineProps<Props>();
@@ -11,7 +13,7 @@ interface Emits {
 }
 const emit = defineEmits<Emits>();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
 /* 处于被编辑中 */
 const active = (index: number) => props.activeIndex === index;

@@ -6,11 +6,14 @@ import { AudioStore } from "@/store";
 export default () => {
   const $audioStore = AudioStore();
 
-  const messages = reactive<MsgText[]>([]); //消息队列
+  /** 消息队列 */
+  const messages = reactive<MsgText[]>([]);
 
   const msg = (text = "未设置提示", type: MsgType = "info") => {
-    const text_length = text.split("").length / 3; //获取文字长度
-    const time = text_length > 3 ? text_length : text_length + 1; //通过文字长度，设置显示时长
+    /** 获取文字长度 */
+    const text_length = text.split("").length / 3;
+    /** 通过文字长度，设置显示时长 */
+    const time = text_length > 3 ? text_length : text_length + 1;
 
     //延迟提醒，避免与点击操作同时播放
     setTimeout(() => {
@@ -20,7 +23,8 @@ export default () => {
         error: "vw31",
       };
 
-      $audioStore.play(msgName[type]); //播放指定名称的音效
+      //播放指定名称的音效
+      $audioStore.play(msgName[type]);
 
       //创建消息内容
       const msgText: MsgText = {

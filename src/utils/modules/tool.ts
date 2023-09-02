@@ -588,9 +588,9 @@ export class AudioVisual {
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   animationFrameId!: number;
-  isInit: boolean = false; //是否已初始化
-  dataArray: string | any[] | Uint8Array = []; //数组，用于接收分析器节点的分析数据
-  analyser!: AnalyserNode; //分析器节点
+  isInit: boolean = false;
+  dataArray: string | any[] | Uint8Array = [];
+  analyser!: AnalyserNode;
   constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
     this.audio = audio;
     this.cvs = canvas;
@@ -642,7 +642,8 @@ export class AudioVisual {
       }
       //让分析器节点分析出数据到数组中
       this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
-      const len = this.dataArray.length; //条的数量
+      /** 条的数量 */
+      const len = this.dataArray.length;
       const barWidth = width / len; //条的宽度
       this.ctx.fillStyle = "#72b0d540";
       //循环绘制

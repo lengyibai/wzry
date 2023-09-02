@@ -2,21 +2,25 @@
 import { ref, computed, onMounted } from "vue";
 
 import { Util } from "@/utils";
-import Sidebar from "@/layout/childComps/Sidebar/index.vue"; //侧边栏
-import Navbar from "@/layout/childComps/Navbar/index.vue"; //顶部栏
-import AppMain from "@/layout/childComps/AppMain/index.vue"; //路由视图
-import Footbar from "@/layout/childComps/Footbar/index.vue"; //底部栏
+import Sidebar from "@/layout/childComps/Sidebar/index.vue";
+import Navbar from "@/layout/childComps/Navbar/index.vue";
+import AppMain from "@/layout/childComps/AppMain/index.vue";
+import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { SettingStore, AudioStore } from "@/store";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED; //全局图床链接
+const IMGBED = window.IMGBED;
 
-const show_sidebar = ref(false); //显示侧边栏
-const show_navbar = ref(false); //显示导航栏
-const show_footbar = ref(false); //显示底部栏
-const show_appmain = ref(false); //显示主体页面
+/** 显示侧边栏 */
+const show_sidebar = ref(false);
+/** 显示导航栏 */
+const show_navbar = ref(false);
+/** 显示底部栏 */
+const show_footbar = ref(false);
+/** 显示主体页面 */
+const show_appmain = ref(false);
 
 const enable_video_bg = computed(() => $settingStore.config.videoBg);
 

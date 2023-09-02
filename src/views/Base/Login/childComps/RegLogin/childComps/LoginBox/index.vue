@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import IntoBtn from "../IntoBtn/index.vue"; //登录/注册按钮
+import IntoBtn from "../IntoBtn/index.vue";
 
-import RememberPwd from "./childComps/RememberPwd/index.vue"; //记住密码
+import RememberPwd from "./childComps/RememberPwd/index.vue";
 
 import { userDefaultInfo } from "@/default";
 import { Util } from "@/utils";
@@ -11,7 +11,8 @@ import { $message } from "@/config";
 import { AudioStore, AuthStore } from "@/store";
 
 interface Props {
-  userInfo: User; //注册成功后用于填充
+  /** 注册成功后用于填充 */
+  userInfo: User;
 }
 const props = defineProps<Props>();
 
@@ -41,7 +42,6 @@ const handleLogin = () => {
     .then(() => {
       $audioStore.play("e84n");
       $message("登录成功");
-      //记住密码
       if (remember.value) {
         localStorage.setItem("remember_user", JSON.stringify(form.value));
       } else {

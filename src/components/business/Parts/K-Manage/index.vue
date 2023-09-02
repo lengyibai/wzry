@@ -1,7 +1,9 @@
 <script setup lang="ts">
 interface Props {
-  type: string; //图标类型
-  title: string; //文字
+  /** 图标类型 */
+  type: string;
+  /** 文字 */
+  title: string;
 }
 defineProps<Props>();
 
@@ -11,7 +13,7 @@ const icon_type: Record<string, string> = {
   delete: "wzry-delbig",
 };
 
-//卡片背景图
+/** 卡片背景图 */
 const cardImg = (src: string) => `${IMGBED}/image/card_${src}.jpg`;
 </script>
 

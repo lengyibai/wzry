@@ -2,11 +2,10 @@
 import { onMounted, ref } from "vue";
 
 interface Props {
-  link: string; //语音链接
+  /** 语音链接 */
+  link: string;
 }
-withDefaults(defineProps<Props>(), {
-  link: "",
-});
+defineProps<Props>();
 
 interface Emits {
   (e: "ended"): void;
