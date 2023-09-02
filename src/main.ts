@@ -1,34 +1,33 @@
-import VConsole from "vconsole";
-import { createApp } from "vue";
-
-import App from "./App.vue";
-import { useAutoLogin } from "./hooks";
-
-import setupStore from "@/store";
-import setupDirective from "@/directives";
-import i18n from "@/language";
-import { Util } from "@/utils";
-import setupRouter from "@/router";
-
 import "@/styles/index.less";
+import { createApp } from "vue";
+import VConsole from "vconsole";
+
+import { useAutoLogin } from "./hooks";
+import App from "./App.vue";
+
+import { $flexible } from "@/utils";
+import i18n from "@/language";
+import setupDirective from "@/directives";
+import setupRouter from "@/router";
+import setupStore from "@/store";
 
 new VConsole();
-Util.flexible.trigger([4000, 1920], () => {
+$flexible.init.trigger([4000, 1920], () => {
   document.documentElement.style.fontSize = "16px";
 });
-Util.flexible.trigger([1920, 960], (v: number) => {
-  Util.setFontsize([16, 14], v);
+$flexible.init.trigger([1920, 960], (v: number) => {
+  $flexible.setFontsize([16, 14], v);
 });
 
-Util.flexible.trigger([960, 720], (v: number) => {
-  Util.setFontsize([14, 12], v);
+$flexible.init.trigger([960, 720], (v: number) => {
+  $flexible.setFontsize([14, 12], v);
 });
 
-Util.flexible.trigger([720, 480], (v: number) => {
-  Util.setFontsize([12, 10], v);
+$flexible.init.trigger([720, 480], (v: number) => {
+  $flexible.setFontsize([12, 10], v);
 });
 
-Util.flexible.trigger([480, 0], () => {
+$flexible.init.trigger([480, 0], () => {
   document.documentElement.style.fontSize = "10px";
 });
 

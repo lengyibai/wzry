@@ -9,9 +9,9 @@ import Team from "./childComps/Team/index.vue";
 import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
 
-import { Util } from "@/utils";
 import { $tip } from "@/config";
 import { SettingStore } from "@/store";
+import { $bus, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 
@@ -46,7 +46,7 @@ const onToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const onCloseNotice = () => {
-  const toolbarFocus = new Util.TOOL.FocusElement(toolbarRef.value.el);
+  const toolbarFocus = new $tool.FocusElement(toolbarRef.value.el);
 
   $tip({
     text: "9f5m",
@@ -77,7 +77,7 @@ const handleEndTime = () => {
 };
 
 onUnmounted(() => {
-  Util.$Bus.off("resize");
+  $bus.off("resize");
 });
 </script>
 

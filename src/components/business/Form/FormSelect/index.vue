@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { Util } from "@/utils";
 import { AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 左侧文字 */
@@ -54,8 +54,8 @@ const selected_list = ref<any[]>([]);
 
 /* 实时搜索 */
 const handleSearch = () => {
-  Util.TOOL.debounce(() => {
-    select_list.value = Util.TOOL.search(props.data, input_value.value, ["name"]);
+  $tool.debounce(() => {
+    select_list.value = $tool.search(props.data, input_value.value, ["name"]);
   }, 100);
 };
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
-import { Util } from "@/utils";
 import { $tip } from "@/config";
 import { HeroDetailStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
@@ -117,7 +117,7 @@ $heroDetail.setScollFn("skin", (index) => {
           setPosition(skinRef.value[0]);
 
           setTimeout(() => {
-            const skinHeadFocus = new Util.TOOL.FocusElement(skinBoxRef.value);
+            const skinHeadFocus = new $tool.FocusElement(skinBoxRef.value);
 
             const a = () => {
               skinHeadFocus.focus();
@@ -125,7 +125,7 @@ $heroDetail.setScollFn("skin", (index) => {
             const b = () => {
               skinHeadFocus.blur();
             };
-            if (Util.TOOL.isPhone) {
+            if ($tool.isPhone) {
               $tip({
                 text: "1w7o",
                 align: "right-top",

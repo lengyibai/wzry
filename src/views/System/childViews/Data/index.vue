@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onActivated } from "vue";
 
-import { Util } from "@/utils";
 import { API_DATA } from "@/api";
 import { $message } from "@/config";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 defineOptions({
   name: "database",
@@ -100,7 +100,7 @@ const load = async () => {
     setStatus(data, v);
   }
 
-  data_cache = Util.TOOL.deepCopy<any[]>(table_data.value);
+  data_cache = $tool.deepCopy<any[]>(table_data.value);
 };
 load();
 
@@ -167,7 +167,7 @@ const handleReplace = (data: any) => {
 
 /* 导出 */
 const handleExport = (data: any) => {
-  Util.TOOL.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+  $tool.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
 /* 确认覆盖 */
@@ -180,9 +180,9 @@ const onConfirmReset = async () => {
 /* 排序触发 */
 const onsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
-    table_data.value = Util.TOOL.typeSort(table_data.value, "length", v[1] === 1 ? true : false);
+    table_data.value = $tool.typeSort(table_data.value, "length", v[1] === 1 ? true : false);
   } else {
-    table_data.value = Util.TOOL.deepCopy(data_cache);
+    table_data.value = $tool.deepCopy(data_cache);
   }
 
   play();

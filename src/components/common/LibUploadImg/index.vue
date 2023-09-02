@@ -12,7 +12,7 @@
 </template>
 <script setup lang="ts">
 import { $loading, $message } from "@/config";
-import { Util } from "@/utils";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 图片链接 */
@@ -28,7 +28,7 @@ const emit = defineEmits<Emits>();
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
   $loading.show("图片压缩中...");
-  Util.TOOL.imageOptimizer({
+  $tool.imageOptimizer({
     file,
     /** 压缩尺寸 */
     width: 150,

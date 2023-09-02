@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 
-import { Util } from "@/utils";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue";
 import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
 import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { SettingStore, AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
@@ -27,16 +27,16 @@ const enable_video_bg = computed(() => $settingStore.config.videoBg);
 onMounted(async () => {
   $audioStore.play("p53r");
 
-  await Util.TOOL.promiseTimeout(() => {
+  await $tool.promiseTimeout(() => {
     show_sidebar.value = true;
   }, 500);
-  await Util.TOOL.promiseTimeout(() => {
+  await $tool.promiseTimeout(() => {
     show_navbar.value = true;
   }, 500);
-  await Util.TOOL.promiseTimeout(() => {
+  await $tool.promiseTimeout(() => {
     show_appmain.value = true;
   }, 500);
-  await Util.TOOL.promiseTimeout(() => {
+  await $tool.promiseTimeout(() => {
     show_footbar.value = true;
   }, 500);
 });

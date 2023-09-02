@@ -5,9 +5,9 @@ import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinVoice from "./childComps/SkinVoice/index.vue";
 
-import { Util } from "@/utils";
 import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
+import { $tool, $bus } from "@/utils";
 
 defineOptions({
   name: "skin",
@@ -34,7 +34,7 @@ $skinStore.getSkin();
 
 /* 滚动触发 */
 const onScroll = (v: number) => {
-  Util.TOOL.debounce(() => {
+  $tool.debounce(() => {
     $skinStore.setScroll(v);
   }, 250);
 };
@@ -48,7 +48,7 @@ const onLoadMore = () => {
 const onShowTool = (v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
-    new Util.TOOL.ScaleImage(v.data.poster);
+    new $tool.ScaleImage(v.data.poster);
   } else if (v.type === "voice") {
     API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;
@@ -102,13 +102,13 @@ onMounted(() => {
     }
   };
   changeCount();
-  Util.$Bus.on("resize", () => {
+  $bus.on("resize", () => {
     changeCount();
   });
 });
 
 onBeforeUnmount(() => {
-  Util.$Bus.off("resize");
+  $bus.off("resize");
 });
 </script>
 

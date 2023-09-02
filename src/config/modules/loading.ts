@@ -1,6 +1,4 @@
-/* Loading防抖 */
-
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 let loadingTimeout: NodeJS.Timeout | undefined;
 let needLoadingRequestCount = 0;
@@ -12,7 +10,7 @@ const show = async (text: string) => {
     if (loadingTimeout) clearTimeout(loadingTimeout);
 
     if (needLoadingRequestCount === 0) {
-      Util.$Bus.emit("loading", {
+      $bus.emit("loading", {
         show: true,
         text,
       });
@@ -29,7 +27,7 @@ const close = async () => {
 
   if (needLoadingRequestCount === 0) {
     loadingTimeout = setTimeout(() => {
-      Util.$Bus.emit("loading", { show: false, text: "" });
+      $bus.emit("loading", { show: false, text: "" });
       loadingTimeout = undefined;
     }, 500);
   }

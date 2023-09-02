@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Util } from "@/utils";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 技能类型 */
@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: "",
 });
 
-const name = Util.TOOL.pinyin(props.type)[0];
+const name = $tool.pinyin(props.type)[0];
 </script>
 
 <template>

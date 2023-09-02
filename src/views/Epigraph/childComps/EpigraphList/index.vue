@@ -3,7 +3,7 @@ import { onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 interface Props {
   /** 铭文列表 */
@@ -57,13 +57,13 @@ onMounted(() => {
   };
   changeCount();
 
-  Util.$Bus.on("resize", () => {
+  $bus.on("resize", () => {
     changeCount();
   });
 });
 
 onBeforeUnmount(() => {
-  Util.$Bus.off("resize");
+  $bus.off("resize");
 });
 </script>
 

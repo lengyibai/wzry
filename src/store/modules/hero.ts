@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
-import { Util } from "@/utils";
+import { $tool } from "@/utils";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
@@ -302,9 +302,9 @@ const HeroStore = defineStore("hero", () => {
 
   /** @description 搜索英雄 */
   const searchHero = (name: string) => {
-    Util.TOOL.debounce(() => {
+    $tool.debounce(() => {
       if (name) {
-        filter_list.value = Util.TOOL.search<Hero.Data>(hero_list.value, name, "name", true);
+        filter_list.value = $tool.search<Hero.Data>(hero_list.value, name, "name", true);
       } else {
         sortAll();
       }

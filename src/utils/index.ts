@@ -1,7 +1,5 @@
-import $Bus from "./modules/eventBus";
-import { flexible, setFontsize } from "./modules/flexible";
-import * as TOOL from "./modules/tool";
+import $bus from "./modules/eventBus";
+import $flexible from "./modules/flexible";
+import * as $tool from "./modules/tool";
 
-const Util = { $Bus, flexible, setFontsize, TOOL };
-
-export { Util };
+export { $bus, $flexible, $tool };

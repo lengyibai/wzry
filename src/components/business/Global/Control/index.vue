@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import useTip from "./hooks/useTip";
 
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 const { show_tip, title, btn_text, content, align, noTipName, btn, btnFn, tip } = useTip();
 
-Util.$Bus.on("tip", (data) => {
+$bus.on("tip", (data) => {
   tip(data);
 });
 
 /* 全局监听事件 */
 window.addEventListener("resize", (e) => {
-  Util.$Bus.emit("resize", e);
+  $bus.emit("resize", e);
 });
 window.addEventListener("mousemove", (e) => {
-  Util.$Bus.emit("mousemove", e);
+  $bus.emit("mousemove", e);
 });
 window.addEventListener("mouseup", (e) => {
-  Util.$Bus.emit("mouseup", e);
+  $bus.emit("mouseup", e);
 });
 </script>
 

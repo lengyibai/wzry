@@ -2,14 +2,14 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { onScopeDispose } from "vue";
 
-import { Util } from "@/utils";
+import { $bus, $tool } from "@/utils";
 
 /** @description 设备信息 */
 const DeviceStore = defineStore("device", () => {
   /** 浏览器名称 */
-  const browser_name = Util.TOOL.browserV.browser;
+  const browser_name = $tool.browserV.browser;
   /** 浏览器版本 */
-  const browser_version = Util.TOOL.browserV.version;
+  const browser_version = $tool.browserV.version;
   /** 满足浏览器访问条件 */
   const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15;
 
@@ -46,12 +46,12 @@ const DeviceStore = defineStore("device", () => {
   };
   tip();
 
-  Util.$Bus.on("resize", () => {
+  $bus.on("resize", () => {
     tip();
   });
 
   onScopeDispose(() => {
-    Util.$Bus.off("resize");
+    $bus.off("resize");
   });
 
   return {

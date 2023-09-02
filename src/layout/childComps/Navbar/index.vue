@@ -3,7 +3,7 @@ import PackUp from "./childComps/PackUp/index.vue";
 import UserMenu from "./childComps/UserMenu/index.vue";
 import BtnIcon from "./childComps/BtnIcon/index.vue";
 
-import { Util } from "@/utils";
+import { $tool } from "@/utils";
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import { Util } from "@/utils";
     <PackUp />
 
     <div class="right">
-      <span class="timeGreet">{{ $t(Util.TOOL.timeGreet()) }}</span>
+      <span class="timeGreet">{{ $t($tool.timeGreet()) }}</span>
       <!-- 用户菜单 -->
       <UserMenu />
 

@@ -4,11 +4,11 @@ import { ref } from "vue";
 import { RouterStore } from "..";
 
 import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
-import { Util } from "@/utils";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
 import { $message } from "@/config";
+import { $tool } from "@/utils";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
@@ -19,7 +19,7 @@ const AuthStore = defineStore("auth", () => {
   /** 实时检测帐号状态 */
   let timer: NodeJS.Timer | undefined;
   /** 用户相关信息 */
-  const userInfo = ref<User>(Util.TOOL.deepCopy(userDefaultInfo));
+  const userInfo = ref<User>($tool.deepCopy(userDefaultInfo));
 
   /**
    * @description: 设置用户状态
@@ -93,7 +93,7 @@ const AuthStore = defineStore("auth", () => {
     router.replace("/login");
     userStatus.value = false;
     timer = undefined;
-    userInfo.value = Util.TOOL.deepCopy(userDefaultInfo);
+    userInfo.value = $tool.deepCopy(userDefaultInfo);
     $routerStore.removeRoutes();
     localStorage.removeItem("user");
   };

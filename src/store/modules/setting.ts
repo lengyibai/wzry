@@ -6,8 +6,8 @@ import { AudioStore, MusicStore } from "..";
 import { CssVarStore } from "./cssVar";
 
 import { configDefault } from "@/default";
-import { Util } from "@/utils";
 import { setLanguage } from "@/language";
+import { $tool } from "@/utils";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
@@ -19,7 +19,7 @@ const SettingStore = defineStore("setting", () => {
   localStorage.setItem("config", JSON.stringify(config.value));
 
   //如果为移动端，则隐藏视频背景
-  config.value.videoBg = !Util.TOOL.isPhone;
+  config.value.videoBg = !$tool.isPhone;
 
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {

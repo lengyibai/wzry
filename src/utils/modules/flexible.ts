@@ -68,4 +68,4 @@ const setFontsize = (size: [number, number], v: number) => {
   document.documentElement.style.fontSize = size[0] - (size[0] - size[1]) * v + "px";
 };
 
-export { flexible, setFontsize };
+export default { init: flexible, setFontsize };

@@ -9,9 +9,9 @@ import HeroInfo from "./childComps/HeroInfo/index.vue";
 import HeroSkin from "./childComps/HeroSkin/index.vue";
 import HeroSkill from "./childComps/HeroSkill/index.vue";
 
-import { Util } from "@/utils";
 import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -32,7 +32,7 @@ const show_progress = ref(false);
 /** 英雄关系切换时重新加载皮肤页 */
 const hero_toggle = ref(true);
 /** 英雄信息 */
-const hero_data = ref<Hero.Data>(Util.TOOL.deepCopy(heroDefault));
+const hero_data = ref<Hero.Data>($tool.deepCopy(heroDefault));
 
 watchEffect(() => {
   hero_data.value = $heroDetail.hero_info;

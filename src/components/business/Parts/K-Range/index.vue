@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 
-import { Util } from "@/utils";
 import { AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 值 */
@@ -80,7 +80,7 @@ const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   down.value = true;
   emit("update:modelValue", parseFloat(v));
-  Util.TOOL.throttleInstant(() => {
+  $tool.throttleInstant(() => {
     $audioStore.play("range");
   }, 50);
 };

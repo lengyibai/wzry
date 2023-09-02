@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, onBeforeUnmount } from "vue";
 
-import { Util } from "@/utils";
 import { SkinStore } from "@/store";
+import { $bus } from "@/utils";
 
 const $skinStore = SkinStore();
 
@@ -93,7 +93,7 @@ const handleSelectStatus = (i: number) => {
   current_index.value = i;
 };
 
-Util.$Bus.on("mouseup", (e) => {
+$bus.on("mouseup", (e) => {
   const el = (e as MouseEvent).target as HTMLElement;
   //如果点击的不是下拉菜单，则隐藏
   if (!el.className.includes("select-filter")) {
@@ -103,7 +103,7 @@ Util.$Bus.on("mouseup", (e) => {
 });
 
 onBeforeUnmount(() => {
-  Util.$Bus.off("mouseup");
+  $bus.off("mouseup");
 });
 </script>
 

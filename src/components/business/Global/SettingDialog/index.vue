@@ -5,9 +5,9 @@ import DescSet from "./childComps/DescSet/index.vue";
 
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { Util } from "@/utils";
 import { $message, $tip } from "@/config";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
+import { $tool } from "@/utils";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
@@ -46,7 +46,7 @@ const onMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const onMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
-  Util.TOOL.debounce(() => {
+  $tool.debounce(() => {
     onSaveConfig();
   }, 1000);
 };
@@ -65,7 +65,7 @@ const onAudio = (v: boolean) => {
 /* 音效音量调节 */
 const onAudioVolume = (v: number) => {
   $audioStore.setVolume(v);
-  Util.TOOL.debounce(() => {
+  $tool.debounce(() => {
     onSaveConfig();
   }, 1000);
 };

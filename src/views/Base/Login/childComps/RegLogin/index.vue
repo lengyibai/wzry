@@ -5,9 +5,9 @@ import LoginBox from "./childComps/LoginBox/index.vue";
 import RegBox from "./childComps/RegBox/index.vue";
 import SelectInto from "./childComps/SelectInto/index.vue";
 
-import { Util } from "@/utils";
 import { API_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
+import { $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
@@ -54,13 +54,13 @@ const onRegSuccess = (form: User) => {
 };
 
 /* 视差动画(如果为移动端，则取消) */
-if (!Util.TOOL.isPhone || $deviceStore.browser_name === "safari") {
-  const parallax = new Util.TOOL.Parallax((x: number, y: number) => {
+if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
+  const parallax = new $tool.Parallax((x: number, y: number) => {
     loginBox.value &&
       (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`);
   });
   const fn = (e: MouseEvent) => {
-    Util.TOOL.throttleInstant(() => parallax.move(e), 50);
+    $tool.throttleInstant(() => parallax.move(e), 50);
   };
   window.addEventListener("mousemove", fn);
   onBeforeUnmount(() => {

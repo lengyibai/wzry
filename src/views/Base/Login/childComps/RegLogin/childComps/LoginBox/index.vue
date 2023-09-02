@@ -6,9 +6,9 @@ import IntoBtn from "../IntoBtn/index.vue";
 import RememberPwd from "./childComps/RememberPwd/index.vue";
 
 import { userDefaultInfo } from "@/default";
-import { Util } from "@/utils";
 import { $message } from "@/config";
 import { AudioStore, AuthStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 注册成功后用于填充 */
@@ -32,7 +32,7 @@ if (props.userInfo) {
 
 /* 登录 */
 const handleLogin = () => {
-  if (Util.TOOL.existEmpty(form.value, ["id", "password"])) {
+  if ($tool.existEmpty(form.value, ["id", "password"])) {
     $message("请完整填写", "error");
     return;
   }

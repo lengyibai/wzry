@@ -1,5 +1,5 @@
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 export default (data: Control.Tip) => {
-  Util.$Bus.emit("tip", data);
+  $bus.emit("tip", data);
 };

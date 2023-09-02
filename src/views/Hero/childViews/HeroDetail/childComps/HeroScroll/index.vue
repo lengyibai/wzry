@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 interface Props {
   /** 滚动索引 */
@@ -109,13 +109,13 @@ onMounted(() => {
     }, 10);
   });
 
-  Util.$Bus.on("resize", () => {
+  $bus.on("resize", () => {
     change(props.modelValue - 1);
   });
 });
 
 onBeforeUnmount(() => {
-  Util.$Bus.off("resize");
+  $bus.off("resize");
 });
 </script>
 

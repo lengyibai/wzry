@@ -2,8 +2,8 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { Util } from "@/utils";
 import { AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 const $audioStore = AudioStore();
 
@@ -19,7 +19,7 @@ API_DATA.Team().then((res) => {
 
 /* 查看图片 */
 const handleView = (v: string, i: number) => {
-  new Util.TOOL.ScaleImage(v);
+  new $tool.ScaleImage(v);
   active.value = i;
 };
 </script>

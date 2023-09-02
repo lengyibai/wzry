@@ -4,10 +4,10 @@ import { reactive } from "vue";
 import viewHide from "../../../../hooks/useViewHide";
 
 import { heroDefault } from "@/default";
-import { Util } from "@/utils";
 import { API_HERO } from "@/api";
 import { $loading, $message } from "@/config";
 import { HeroStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -48,7 +48,7 @@ API_HERO.getHeroBasic().then((res) => {
 });
 
 //判断是否存在缓存
-form_data.value ??= Util.TOOL.deepCopy(heroDefault);
+form_data.value ??= $tool.deepCopy(heroDefault);
 
 /* 发布 */
 const onCommit = async () => {

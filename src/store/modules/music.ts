@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import { SettingStore } from "..";
 
-import { Util } from "@/utils";
 import { AudioVisual } from "@/utils/modules/tool";
+import { $tool } from "@/utils";
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
@@ -88,7 +88,7 @@ const MusicStore = defineStore("music", () => {
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
-      progress.value = Util.TOOL.potEoPct(bgm.value.currentTime / bgm.value.duration);
+      progress.value = $tool.potEoPct(bgm.value.currentTime / bgm.value.duration);
     }, 500);
 
     //播放结束后执行下一次播放
@@ -165,7 +165,7 @@ const MusicStore = defineStore("music", () => {
 
   /** @description 音频可视化初始化 */
   const initAudioVisual = (canvas: HTMLCanvasElement) => {
-    audio_visual.value = new Util.TOOL.AudioVisual(bgm.value, canvas);
+    audio_visual.value = new $tool.AudioVisual(bgm.value, canvas);
   };
 
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */

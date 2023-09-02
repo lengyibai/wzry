@@ -1,7 +1,7 @@
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 export default (text: string, type: MsgType = "info") => {
-  Util.$Bus.emit("msg", {
+  $bus.emit("msg", {
     text,
     type,
   });

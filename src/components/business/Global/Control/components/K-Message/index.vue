@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useMessage from "./hooks/useMessage";
 
-import { Util } from "@/utils";
+import { $bus } from "@/utils";
 
 const { msg, messages } = useMessage();
 
@@ -32,7 +32,7 @@ const imgs: Record<string, Record<string, string>> = {
   },
 };
 
-Util.$Bus.on("msg", (data) => {
+$bus.on("msg", (data) => {
   msg(data.text, data.type);
 });
 </script>

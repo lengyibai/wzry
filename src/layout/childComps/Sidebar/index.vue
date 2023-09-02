@@ -5,8 +5,8 @@ import sideItem from "./childComp/SideItem/index.vue";
 import GameLogo from "./childComp/GameLogo/index.vue";
 
 import formatSidebarRoutes from "@/router/helper/formatSidebarRoutes";
-import { Util } from "@/utils";
 import { CollapseStore, RouterStore } from "@/store";
+import { $bus } from "@/utils";
 
 const $collapseStore = CollapseStore();
 const $routerStore = RouterStore();
@@ -32,12 +32,12 @@ const onCoord = (v: number) => {
   }
 };
 
-Util.$Bus.on("resize", () => {
+$bus.on("resize", () => {
   $collapseStore.setCollapse(window.innerWidth < 1380);
 });
 
 onBeforeUnmount(() => {
-  Util.$Bus.off("resize");
+  $bus.off("resize");
 });
 </script>
 
