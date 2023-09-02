@@ -39,7 +39,7 @@ onMounted(() => {
   <div class="hero-basic">
     <span v-for="(item, index) in hero_data" ref="infoRef" :key="index" class="info">
       <i class="iconfont" :class="'wzry-' + item[1]" />
-      <span class="label">{{ $t(item[2]) }}：</span>
+      <span class="label">{{ item[2] }}：</span>
       <span class="name">{{ item[0] || "未知" }}</span>
     </span>
   </div>

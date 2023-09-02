@@ -50,7 +50,7 @@ $bus.on("msg", (data) => {
             transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
           }"
         >
-          <span :style="{ color: color[item.type] }" v-html="$t(item.text)"></span>
+          <span :style="{ color: color[item.type] }" v-html="item.text"></span>
           <div class="bg">
             <img :src="imgs[item.type].left" />
             <img :src="imgs[item.type].center" />

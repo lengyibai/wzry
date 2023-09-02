@@ -53,7 +53,7 @@ onMounted(() => {
 
 <template>
   <div ref="attributeRef" class="attribute">
-    <span>{{ $t(text[attr]) }}</span>
+    <span>{{ text[attr] }}</span>
     <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
     <div class="bar">
       <i

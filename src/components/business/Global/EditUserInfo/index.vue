@@ -63,19 +63,19 @@ const handleSave = () => {
   <div class="edit-user-info">
     <!-- 帐号 -->
     <div class="option">
-      <div class="label">{{ $t("帐号") }}</div>
+      <div class="label">帐号</div>
       <span class="id">{{ id }}</span>
     </div>
 
     <!-- 头像 -->
     <div class="option">
-      <div class="label">{{ $t("头像") }}</div>
+      <div class="label">头像</div>
       <LibUploadImg v-model="user_info.headImg" @update:model-value="handleContrast" />
     </div>
 
     <!-- 用户名 -->
     <div class="option">
-      <div class="label">{{ $t("用户名") }}</div>
+      <div class="label">用户名</div>
       <K-Input
         v-model="user_info.nickname"
         class="input"
@@ -88,7 +88,7 @@ const handleSave = () => {
 
     <!-- 密码 -->
     <div class="option">
-      <div class="label">{{ $t("密码") }}</div>
+      <div class="label">密码</div>
       <K-Input
         v-model="user_info.password"
         class="input"
@@ -101,7 +101,7 @@ const handleSave = () => {
   </div>
 
   <!-- 保存 -->
-  <K-Button type="warning" @click="handleSave">{{ $t("保存") }}</K-Button>
+  <K-Button type="warning" @click="handleSave">保存</K-Button>
 </template>
 
 <style scoped lang="less">

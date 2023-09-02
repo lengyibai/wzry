@@ -61,7 +61,7 @@ defineExpose({
         @click="handleTool('sound')"
       >
         <i class="iconfont" :class="icon" />
-        <span class="text">{{ $t("静音") }}</span>
+        <span class="text">静音</span>
       </div>
       <div class="base"></div>
     </div>
@@ -71,7 +71,7 @@ defineExpose({
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('readme')">
         <i class="iconfont wzry-readme" />
-        <span class="text">{{ $t("介绍") }}</span>
+        <span class="text">介绍</span>
       </div>
       <div class="base"></div>
     </div>
@@ -81,7 +81,7 @@ defineExpose({
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('notice')">
         <i class="iconfont wzry-gonggao" />
-        <span class="text">{{ $t("公告") }}</span>
+        <span class="text">公告</span>
       </div>
       <div class="base"></div>
     </div>
@@ -91,7 +91,7 @@ defineExpose({
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('todo')">
         <i class="iconfont wzry-todo" />
-        <span class="text">{{ $t("计划") }}</span>
+        <span class="text">计划</span>
       </div>
       <div class="base"></div>
     </div>
@@ -101,7 +101,7 @@ defineExpose({
       <div class="line"></div>
       <div class="box cursor-pointer elastic" @click="handleTool('team')">
         <i class="iconfont wzry-youxi" />
-        <span class="text">{{ $t("开黑") }}</span>
+        <span class="text">开黑</span>
       </div>
       <div class="base"></div>
     </div>

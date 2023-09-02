@@ -1,4 +1,4 @@
-import * as TIP_TEXT from "./modules/tips";
+import TIP_TEXT from "./modules/tips";
 
 const CONFIG = {
   TIP_TEXT,

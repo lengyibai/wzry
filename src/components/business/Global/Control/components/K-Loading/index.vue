@@ -27,7 +27,7 @@ $bus.on("loading", (v) => {
           boxShadow: '0 0 50px ' + item,
         }"
       ></span>
-      <h1>{{ $t("正在加载") + $t(text) + $t("页面") }}...</h1>
+      <h1>正在加载{{ text }}页面...</h1>
     </div>
   </transition>
 </template>

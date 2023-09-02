@@ -62,23 +62,23 @@ const onClose = () => {
     <img
       class="head-img"
       :src="userInfo.headImg || IMGBED + '/image/unknown.png'"
-      :alt="$t('头像')"
+      alt="头像"
       @touchend="show_menu = !show_menu"
       @dragstart.prevent
     />
     <div class="user-card">
       <div class="name lib-one-line">{{ userInfo.nickname }}</div>
-      <div class="role">{{ $t("身份") }}：{{ $t(role) }}</div>
+      <div class="role">身份：{{ role }}</div>
 
       <div class="btns">
         <div class="edit">
-          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo">{{ $t("编辑个人信息") }}</K-Button>
+          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</K-Button>
         </div>
         <div class="logout" @click="handleLogout">
-          <K-Button type="warning" font-size="1.25rem" auto-size>{{ $t("退出登录") }}</K-Button>
+          <K-Button type="warning" font-size="1.25rem" auto-size>退出登录</K-Button>
         </div>
         <div class="logoff" @click="show_logoff = true">
-          <K-Button type="error" font-size="1.25rem" auto-size>{{ $t("注销帐号") }}</K-Button>
+          <K-Button type="error" font-size="1.25rem" auto-size>注销帐号</K-Button>
         </div>
       </div>
     </div>
@@ -91,12 +91,17 @@ const onClose = () => {
 
   <!-- 注销确认 -->
   <transition name="fade">
-    <ConfirmClose v-if="show_logoff" v-model="show_logoff" text="注销提醒" @confirm="handleLogoff" />
+    <ConfirmClose
+      v-if="show_logoff"
+      v-model="show_logoff"
+      text="注销后，当前帐号需重新注册才能登录，确定注销吗？"
+      @confirm="handleLogoff"
+    />
   </transition>
 
   <!-- 关闭设置弹窗确认 -->
   <transition name="fade">
-    <ConfirmClose v-if="show_close" v-model="show_close" text="资料保存关闭" @confirm="show_edit = false" />
+    <ConfirmClose v-if="show_close" v-model="show_close" text="资料未保存，确定关闭吗？" @confirm="show_edit = false" />
   </transition>
 </template>
 

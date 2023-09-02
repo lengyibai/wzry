@@ -183,7 +183,7 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      placeholder="搜索英雄"
+      placeholder="英雄/字母"
       border-color="var(--theme-border-color-two)"
       color="var(--theme-font-color-four)"
       align="center"

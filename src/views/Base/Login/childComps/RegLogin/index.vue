@@ -74,7 +74,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     <!-- 左上角重新选择 -->
     <div v-show="is_reg" class="back cursor-pointer lib-click" @click="handleBack">
       <i class="iconfont wzry-fanhui" />
-      <span>{{ $t("重新选择") }}</span>
+      <span>重新选择</span>
     </div>
 
     <!-- logo -->
@@ -93,7 +93,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
 
     <!-- 标题 -->
     <div class="title">
-      {{ is_reg === "" ? "Welcome" : $t(is_reg) }}
+      {{ is_reg === "" ? "Welcome" : is_reg }}
     </div>
 
     <!-- 组件切换 -->

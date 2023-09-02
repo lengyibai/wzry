@@ -88,7 +88,7 @@ const handleLogin = () => {
 
     <!-- 登录 -->
     <div class="btns">
-      <IntoBtn :text="$t('登录')" desc="LOGIN" @click="handleLogin" />
+      <IntoBtn text="登录" desc="LOGIN" @click="handleLogin" />
     </div>
   </div>
 </template>

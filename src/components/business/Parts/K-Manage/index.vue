@@ -21,7 +21,7 @@ const cardImg = (src: string) => `${IMGBED}/image/card_${src}.jpg`;
   <div class="k-manage cursor-pointer">
     <div class="box flex">
       <i class="iconfont" :class="icon_type[type]" />
-      <div class="title">{{ $t(title) }}</div>
+      <div class="title">{{ title }}</div>
     </div>
     <img :src="cardImg(type)" alt="" />
   </div>

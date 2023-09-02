@@ -146,7 +146,7 @@ onBeforeUnmount(() => {
     <!-- 搜索 -->
     <K-Input
       v-model="search_value"
-      placeholder="搜索皮肤"
+      placeholder="皮肤/英雄"
       border-color="var(--theme-border-color-two)"
       color="var(--theme-font-color-four)"
       align="center"

@@ -56,16 +56,10 @@ export default () => {
 
       //如果已经设置了不再提示
       if (!$settingStore.config.noTips[text as TipKeys]) {
-        const lang = i18n.global.locale.value;
-        const langs: Record<string, Tips<string>> = {
-          zh: CONFIG.TIP_TEXT.tips_zh,
-          tc: CONFIG.TIP_TEXT.tips_tc,
-          en: CONFIG.TIP_TEXT.tips_en,
-        };
         show_tip.value = !show_tip.value;
         $audioStore.play("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = langs[lang][text as TipKeys];
+        content.value = CONFIG.TIP_TEXT[text as TipKeys];
         align.value = p;
         title.value = biaoti || "";
         btn_text.value = btnText;
