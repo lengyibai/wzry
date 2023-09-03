@@ -46,20 +46,20 @@ class RequestHttp {
     );
   }
 
-  Get<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return this.service.get(url, { params, ...obj });
+  Get<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.get(url, { params, ...config });
   }
 
-  Post<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return this.service.post(url, params, obj);
+  Post<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.post(url, params, config);
   }
 
-  Patch<T>(url: string, params?: object, obj = {}): Promise<ResultData<T>> {
-    return this.service.patch(url, params, obj);
+  Patch<T = any>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.put(url, params, config);
   }
 
-  Del<T>(url: string, params?: any, obj = {}): Promise<ResultData<T>> {
-    return this.service.delete(url, { params, ...obj });
+  Del<T = any>(url: string, params?: any, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.delete(url, { params, ...config });
   }
 }
 
