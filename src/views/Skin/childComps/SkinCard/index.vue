@@ -3,12 +3,12 @@ interface Props {
   /** 皮肤数据 */
   data: Hero.Skin;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 interface Emits {
   (e: "showTool", v: { type: string; data: Hero.Skin }): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const IMGBED = window.IMGBED;
 
@@ -19,7 +19,7 @@ const priceShow = (price: number | string) => {
 
 /* 点击工具选项 */
 const handle = (v: string) => {
-  emit("showTool", { type: v, data: props.data });
+  $emit("showTool", { type: v, data: $props.data });
 };
 </script>
 

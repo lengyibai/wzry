@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 interface Emits {
   (e: "clicks", v: string): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
@@ -41,7 +41,7 @@ const handleTool = (v: string) => {
   if (v === "readme") {
     $audioStore.play("n4r4");
   }
-  emit("clicks", v);
+  $emit("clicks", v);
 };
 
 defineExpose({

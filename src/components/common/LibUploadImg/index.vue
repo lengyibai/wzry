@@ -10,7 +10,7 @@ defineProps<Props>();
 interface Emits {
   (e: "update:modelValue", v: string): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
@@ -26,7 +26,7 @@ const fn = (e: Event) => {
     /* 成功回调 */
     success: (...data: any[]) => {
       $loading.close();
-      emit("update:modelValue", data[2]);
+      $emit("update:modelValue", data[2]);
     },
     fail: () => {
       $loading.close();

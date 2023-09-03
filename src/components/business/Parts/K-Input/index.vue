@@ -83,7 +83,7 @@ interface Emits {
   (e: "update:empty", v: boolean): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   width: "initial",
   modelValue: "",
   placeholder: "请输入",
@@ -95,7 +95,7 @@ const props = withDefaults(defineProps<Props>(), {
   type: "text",
   noSpecial: false,
 });
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -109,7 +109,7 @@ const is_focus = ref(false);
 /* 获取焦点 */
 const focus = () => {
   is_focus.value = true;
-  emit("focus");
+  $emit("focus");
   $audioStore.play();
 };
 
@@ -117,47 +117,47 @@ const focus = () => {
 const blur = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   is_focus.value = false;
-  emit("update:empty", false);
+  $emit("update:empty", false);
   setTimeout(() => {
-    if (props.required && v === "") {
+    if ($props.required && v === "") {
       tip.value = "必填项";
       legal.value = false;
       return;
     }
-    if (props.noSpecial && !/^[\u4E00-\u9FA5A-Za-z0-9._]+$/.test(v) && v !== "") {
+    if ($props.noSpecial && !/^[\u4E00-\u9FA5A-Za-z0-9._]+$/.test(v) && v !== "") {
       tip.value = "不能含有特殊字符";
       legal.value = false;
       return;
     }
 
-    if (props.number && !/^[0-9]*$/.test(v)) {
+    if ($props.number && !/^[0-9]*$/.test(v)) {
       tip.value = "限制为数字";
       legal.value = false;
       return;
     }
 
-    if (props.min && v.length < props.min) {
-      tip.value = `至少${props.min}位`;
+    if ($props.min && v.length < $props.min) {
+      tip.value = `至少${$props.min}位`;
       legal.value = false;
       return;
     }
 
-    if (props.validate(v)) {
-      tip.value = props.validate(v);
+    if ($props.validate(v)) {
+      tip.value = $props.validate(v);
       legal.value = false;
       return;
     }
 
     legal.value = true;
-    emit("update:empty", true);
+    $emit("update:empty", true);
   });
 
-  emit("blur", v);
+  $emit("blur", v);
 };
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  emit("update:modelValue", v);
+  $emit("update:modelValue", v);
 };
 </script>
 <style scoped lang="less">

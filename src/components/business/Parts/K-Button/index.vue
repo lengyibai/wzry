@@ -13,7 +13,7 @@ interface Props {
   /** 宽度 */
   width?: string;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   fontSize: "1.5rem",
   height: "3.5rem",
   type: "info",
@@ -24,12 +24,12 @@ const $settingStore = SettingStore();
 
 /** 按钮宽高 */
 const style1 = {
-  width: props.autoSize ? "100%" : props.width,
-  height: props.autoSize ? "100%" : props.height,
+  width: $props.autoSize ? "100%" : $props.width,
+  height: $props.autoSize ? "100%" : $props.height,
 };
 /** 字体大小 */
 const style2 = {
-  fontSize: props.fontSize,
+  fontSize: $props.fontSize,
 };
 /** 粒子颜色 */
 const particle_color: Record<string, string> = {

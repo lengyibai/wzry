@@ -13,7 +13,7 @@ interface Props {
   /** 注册成功后用于填充 */
   userInfo: User;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const $audioStore = AudioStore();
 const $authStore = AuthStore();
@@ -23,8 +23,8 @@ const remember = ref(true);
 
 const local_user = localStorage.getItem("remember_user");
 
-if (props.userInfo) {
-  form.value = props.userInfo;
+if ($props.userInfo) {
+  form.value = $props.userInfo;
 } else if (local_user) {
   form.value = JSON.parse(local_user);
 }

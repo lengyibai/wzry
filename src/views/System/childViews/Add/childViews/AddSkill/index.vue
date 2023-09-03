@@ -13,12 +13,12 @@ import { $loading, $message, $tool } from "@/utils";
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $heroStore = HeroStore();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<Hero.Skill[][]>(
-  emit,
+  $emit,
   "add_skill_list",
 );
 

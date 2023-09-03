@@ -11,7 +11,7 @@ import { $loading, $message, $tool } from "@/utils";
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $heroStore = HeroStore();
 
@@ -29,7 +29,7 @@ const info: string[][] = [
   ["种族", "raceType", "race"],
 ];
 
-const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>(emit, "add_hero");
+const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>($emit, "add_hero");
 
 //类型列表
 const type_list: Record<string, any[]> = reactive({

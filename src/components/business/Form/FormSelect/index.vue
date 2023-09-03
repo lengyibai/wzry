@@ -24,7 +24,7 @@ interface Props {
   /** 输入框默认值 */
   value?: string | number | any[];
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   data: () => [],
   modelValue: "",
   value: "",
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
 interface Emits {
   (e: "update:modelValue", v: string | number | any[]): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -55,7 +55,7 @@ const selected_list = ref<any[]>([]);
 /* 实时搜索 */
 const handleSearch = () => {
   $tool.debounce(() => {
-    select_list.value = $tool.search(props.data, input_value.value, ["name"]);
+    select_list.value = $tool.search($props.data, input_value.value, ["name"]);
   }, 100);
 };
 
@@ -68,7 +68,7 @@ const handleFocus = () => {
 /* 失去焦点 */
 const handleBlur = () => {
   is_unfold.value = false;
-  select_list.value = props.data;
+  select_list.value = $props.data;
 
   //如果失去焦点但输入框的值与之前选中的值不一致，则还原之前
   if (input_value.value !== active_value.value) {
@@ -84,15 +84,15 @@ const handleEnterItem = (v: number) => {
 /* 选择的数据 */
 const handleSelect = (id: number, name: string) => {
   //是否为多选
-  if (props.multi) {
+  if ($props.multi) {
     selected_list.value.push(name);
     selected_list.value = [...new Set(selected_list.value)];
-    emit("update:modelValue", selected_list.value);
+    $emit("update:modelValue", selected_list.value);
     input_value.value = "请选择";
   } else {
     //是否要求传递id
-    emit("update:modelValue", props.id ? Number(id) : name);
-    select_list.value = props.data;
+    $emit("update:modelValue", $props.id ? Number(id) : name);
+    select_list.value = $props.data;
     active_value.value = name;
     input_value.value = name;
   }
@@ -103,26 +103,26 @@ const handleSelect = (id: number, name: string) => {
 /* 删除选择的数据 */
 const handleDel = (index: number) => {
   selected_list.value.splice(index, 1);
-  emit("update:modelValue", selected_list.value);
+  $emit("update:modelValue", selected_list.value);
 };
 
 /* 在created会赋空值，只能通过侦听器 */
 watch(
-  () => props.data,
+  () => $props.data,
   (v) => (select_list.value = v),
   { immediate: true },
 );
 
 /* 设置默认填充 */
 watch(
-  () => props.value,
+  () => $props.value,
   (v) => {
     //如果为多选则不做处理
-    if (!props.multi) {
+    if (!$props.multi) {
       if (v) {
         //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
-          input_value.value = props.data.find((item) => {
+          input_value.value = $props.data.find((item) => {
             return item.id === v;
           }).name;
         } else {
@@ -141,7 +141,7 @@ watch(
   () => input_value.value,
   (v) => {
     //如果为多选则不做处理
-    if (!props.multi) {
+    if (!$props.multi) {
       if (v) active_value.value = v;
     }
   },

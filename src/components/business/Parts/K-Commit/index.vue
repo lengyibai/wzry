@@ -11,7 +11,7 @@ interface Props {
   /** 提交状态 */
   modelValue: number;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   size: "3.125rem",
   modelValue: 0,
 });
@@ -20,7 +20,7 @@ interface Emits {
   (e: "update:modelValue", v: number): void;
   (e: "commit"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -29,16 +29,16 @@ const show_up = ref(true);
 
 /* 提交 */
 const commit = () => {
-  emit("update:modelValue", 1);
+  $emit("update:modelValue", 1);
   setTimeout(() => {
     show_up.value = false;
-    emit("commit");
+    $emit("commit");
   }, 750);
   $audioStore.play("36jn");
 };
 
 watch(
-  () => props.modelValue,
+  () => $props.modelValue,
   (v) => {
     if (v === 0) {
       show_up.value = true;

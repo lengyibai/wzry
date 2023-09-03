@@ -10,7 +10,7 @@ defineProps<Props>();
 interface Emits {
   (e: "toggle", v: number): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -19,7 +19,7 @@ const page_name = ["英雄资料", "技能信息", "皮肤语音"];
 
 /* 设置进度 */
 const handleToggle = (index: number) => {
-  emit("toggle", index);
+  $emit("toggle", index);
   $audioStore.play("n4r4");
 };
 </script>

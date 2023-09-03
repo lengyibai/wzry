@@ -23,7 +23,7 @@ interface Props {
   /** 弹窗宽度 */
   width?: string;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   align: "flex-start",
   ctxWidth: "80%",
   modelValue: true,
@@ -35,7 +35,7 @@ interface Emits {
   (e: "update:modelValue", v: boolean): void;
   (e: "close"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -46,15 +46,15 @@ const show = ref(false);
 
 onMounted(() => {
   show.value = true;
-  if (props.up) {
+  if ($props.up) {
     $audioStore.play("e6b4");
   }
 });
 
 /* 关闭 */
 const handleClose = () => {
-  emit("update:modelValue", false);
-  emit("close");
+  $emit("update:modelValue", false);
+  $emit("close");
   $audioStore.play("6xc6");
 };
 </script>

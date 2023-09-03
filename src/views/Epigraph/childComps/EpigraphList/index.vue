@@ -9,7 +9,7 @@ interface Props {
   /** 铭文列表 */
   data: Epigraph.Data[];
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const epigraphListRef = ref();
 
@@ -22,7 +22,7 @@ const epigraph_list = ref<Epigraph.Data[]>([]);
 
 /* 每次修改更新列表 */
 watch(
-  () => props.data,
+  () => $props.data,
   (v: Epigraph.Data[]) => {
     show.value = false;
     nextTick(() => {

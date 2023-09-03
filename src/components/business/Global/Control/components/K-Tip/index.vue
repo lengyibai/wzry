@@ -19,7 +19,7 @@ interface Props {
   /** 点击按钮触发的函数 */
   btnFn?: () => void;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   align: "right-bottom",
   title: "小贴士",
   btnText: "确定",
@@ -30,7 +30,7 @@ interface Emits {
   (e: "update:modelValue", v: boolean): void;
   (e: "update:btn", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
@@ -64,13 +64,13 @@ const position = {
 
 /* 不再提示 */
 const handleClose = () => {
-  props.noTipName && $settingStore.setNoTip(props.noTipName as TipKeys);
+  $props.noTipName && $settingStore.setNoTip($props.noTipName as TipKeys);
 
-  emit("update:modelValue", false);
+  $emit("update:modelValue", false);
   $audioStore.play("6xc6");
 
   setTimeout(() => {
-    props.btnFn();
+    $props.btnFn();
   }, 500);
 };
 </script>

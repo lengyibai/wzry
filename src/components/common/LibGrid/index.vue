@@ -8,7 +8,7 @@ interface Props {
   /** 上一次的滚动坐标 */
   scrollTop?: number;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   gap: "0px",
   scrollTop: 0,
 });
@@ -17,7 +17,7 @@ interface Emits {
   (e: "load-more"): void;
   (e: "scroll", v: number): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 /** 滚动状态下锁定 */
 let lock = false;
@@ -28,15 +28,15 @@ let childrens = ref<HTMLElement[]>([]);
 
 const scroll = (e: Event) => {
   const el = e.target as HTMLElement;
-  emit("scroll", el.scrollTop);
+  $emit("scroll", el.scrollTop);
 
   if (el.scrollHeight < el.scrollTop + el.clientHeight * 1.5 && !lock) {
-    emit("load-more");
+    $emit("load-more");
   }
 };
 
 const backTop = () => {
-  LibGridRef.value?.scroll({ top: props.scrollTop });
+  LibGridRef.value?.scroll({ top: $props.scrollTop });
 };
 
 onMounted(() => {

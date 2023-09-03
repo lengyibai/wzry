@@ -13,7 +13,7 @@ import { $message } from "@/utils";
 interface Emits {
   (e: "success", form: User): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -35,7 +35,7 @@ const handleReg = () => {
   API_USER.register(form)
     .then(() => {
       $message("注册成功！");
-      emit("success", form);
+      $emit("success", form);
     })
     .catch((err) => {
       $message(err, "warning");

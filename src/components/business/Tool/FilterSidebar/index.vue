@@ -7,14 +7,14 @@ interface Props {
   /** 用于不同列表的筛选类型 */
   type: "hero" | "skin" | "equip";
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   type: "hero",
 });
 
 interface Emits {
   (e: "change"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 const $skinStore = SkinStore();
@@ -45,7 +45,7 @@ const equip_type: { name: Equip.Category; icon: string }[] = [
 const top = ref(0);
 
 /** 动态list */
-const list = computed(() => (["hero", "skin"].includes(props.type) ? hero_type : equip_type));
+const list = computed(() => (["hero", "skin"].includes($props.type) ? hero_type : equip_type));
 
 /** 用于比较的筛选类型 */
 const filter_type = computed(() => {
@@ -54,7 +54,7 @@ const filter_type = computed(() => {
     skin: $skinStore.profession,
     equip: $equipStore.category,
   };
-  return obj[props.type];
+  return obj[$props.type];
 });
 
 /* 选择类型并筛选显示 */
@@ -67,9 +67,9 @@ const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => 
     equip: () => $equipStore.setType(name as Equip.Category),
   };
 
-  obj[props.type]();
+  obj[$props.type]();
 
-  emit("change");
+  $emit("change");
 };
 
 /* 设置滑块位置 */

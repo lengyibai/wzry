@@ -5,24 +5,24 @@ interface Props {
   /** 当前点击的技能 */
   activeIndex: number;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 interface Emits {
   (e: "select", v: number): void;
   (e: "del"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const IMGBED = window.IMGBED;
 
 /* 处于被编辑中 */
-const active = (index: number) => props.activeIndex === index;
+const active = (index: number) => $props.activeIndex === index;
 
 /* 选择技能 */
-const handleSelectSkill = (index: number) => emit("select", index);
+const handleSelectSkill = (index: number) => $emit("select", index);
 
 /* 删除技能 */
-const handleDel = () => emit("del");
+const handleDel = () => $emit("del");
 </script>
 
 <template>

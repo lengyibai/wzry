@@ -16,7 +16,7 @@ interface Emits {
   (e: "confirm"): void;
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -24,19 +24,19 @@ $audioStore.play("45iy");
 
 /* 关闭 */
 const close = () => {
-  emit("update:modelValue", false);
+  $emit("update:modelValue", false);
 };
 
 /* 取消 */
 const handleCancel = () => {
-  emit("cancel");
+  $emit("cancel");
   close();
   $audioStore.play("6xc6");
 };
 
 /* 确定 */
 const handleConfirm = () => {
-  emit("confirm");
+  $emit("confirm");
   close();
   $audioStore.play("36jn");
 };

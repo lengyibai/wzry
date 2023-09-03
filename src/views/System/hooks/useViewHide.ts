@@ -4,7 +4,7 @@ interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
 
-export default <T>(emit: Emits, key: string) => {
+export default <T>($emit: Emits, key: string) => {
   /** 显示页面 */
   const show = ref(false);
   /** 自动保存计时器 */
@@ -41,7 +41,7 @@ export default <T>(emit: Emits, key: string) => {
     clearInterval(timer.value);
     show.value = false;
     setTimeout(() => {
-      emit("update:modelValue", false);
+      $emit("update:modelValue", false);
     }, 500);
   };
 

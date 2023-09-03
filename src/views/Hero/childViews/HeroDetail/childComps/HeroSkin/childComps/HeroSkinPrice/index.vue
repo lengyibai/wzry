@@ -7,12 +7,12 @@ interface Props {
   /** 隐藏和显示价格信息 */
   toggle: boolean;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const IMGBED = window.IMGBED;
 
 //通过判断价格是否为数字来显示点券图标及获取途径
-const show = computed(() => props.price && !isNaN(Number(props.price)));
+const show = computed(() => $props.price && !isNaN(Number($props.price)));
 </script>
 
 <template>

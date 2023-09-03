@@ -10,12 +10,12 @@ import { $message, $loading } from "@/utils";
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $skinStore = SkinStore();
 
 const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<Hero.Skin[]>(
-  emit,
+  $emit,
   "add_skin_list",
 );
 

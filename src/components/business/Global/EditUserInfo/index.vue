@@ -17,7 +17,7 @@ interface Emits {
   (e: "close"): void;
   (e: "update:status", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -28,9 +28,9 @@ const user_info = ref<User>({ ...$authStore.userInfo });
 /* 判断信息是否被修改 */
 const handleContrast = () => {
   if (JSON.stringify(user_info.value) !== JSON.stringify($authStore.userInfo)) {
-    emit("update:status", true);
+    $emit("update:status", true);
   } else {
-    emit("update:status", false);
+    $emit("update:status", false);
   }
 };
 
@@ -55,7 +55,7 @@ const handleSave = () => {
     $message("保存成功");
   });
 
-  emit("close");
+  $emit("close");
 };
 </script>
 

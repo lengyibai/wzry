@@ -7,19 +7,19 @@ interface Props {
   /** 选中状态 */
   modelValue: boolean | string;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
-const icon = computed(() => `${IMGBED}/image/${props.modelValue ? "select_true" : "select_false"}.png`);
+const icon = computed(() => `${IMGBED}/image/${$props.modelValue ? "select_true" : "select_false"}.png`);
 
 const toggle = () => {
-  emit("update:modelValue", !props.modelValue);
+  $emit("update:modelValue", !$props.modelValue);
   $audioStore.play();
 };
 </script>

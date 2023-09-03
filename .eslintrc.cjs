@@ -66,8 +66,8 @@ module.exports = {
     "arrow-body-style": "off",
     //禁用特定的语法
     "no-restricted-syntax": "off",
-    //禁止对传递给 setup 的 props 进行解构
-    "vue/no-setup-props-destructure": "off",
+    //禁止对传递给 setup 的 $props 进行解构
+    "vue/no-setup-$props-destructure": "off",
     //禁止抛出字面量异常
     "no-throw-literal": "off",
     //组件名称可以为单词

@@ -7,7 +7,7 @@ import { $tip, $tool } from "@/utils";
 interface Emits {
   (e: "select-skill", skills: Hero.Skill): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
@@ -67,7 +67,7 @@ const handleSelectSkill = (index: number) => {
   current_index.value = index;
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
-  emit("select-skill", calcActiveSkill.value);
+  $emit("select-skill", calcActiveSkill.value);
   $audioStore.play("n4r4");
 };
 handleSelectSkill(0);

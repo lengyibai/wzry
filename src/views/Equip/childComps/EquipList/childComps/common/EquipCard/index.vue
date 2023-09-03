@@ -11,7 +11,7 @@ interface Props {
   /** 显示右线 */
   rightLine?: boolean;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
@@ -21,11 +21,11 @@ const iconRef = ref();
 /** 获取点击的装备id */
 const active_id = computed(() => $equipStore.active_id);
 /** 装备文字是否开启柔光 */
-const shine = computed(() => props.leftLine || props.rightLine);
+const shine = computed(() => $props.leftLine || $props.rightLine);
 
 /* 查看装备详情 */
 const handleDetail = () => {
-  $equipStore.setEquipActive(props.equip.id);
+  $equipStore.setEquipActive($props.equip.id);
   $audioStore.play("n4r4");
 };
 
@@ -33,8 +33,8 @@ const handleDetail = () => {
 nextTick(() => {
   $equipStore.setEquipElement({
     el: iconRef.value,
-    name: props.equip.name,
-    id: props.equip.id,
+    name: $props.equip.name,
+    id: $props.equip.id,
   });
 });
 </script>

@@ -23,12 +23,12 @@ interface Props {
   route: any;
   coord: number;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 interface Emits {
   (e: "coord", v: number): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $route = useRoute();
@@ -37,7 +37,7 @@ const $audioStore = AudioStore();
 
 const IMGBED = window.IMGBED;
 /** 设置子菜单与上级菜单水平间隔 */
-const textStyle = `padding-left: ${0.5 * props.route.zIndex}em !important;`;
+const textStyle = `padding-left: ${0.5 * $props.route.zIndex}em !important;`;
 
 const menuItemRef = ref();
 
@@ -47,27 +47,27 @@ const show = ref(false);
 const routes = reactive<RouteFormat[]>([]);
 
 //当前路由如果等于props路由，则父级菜单自动展开，前提当前组件为父级菜单
-show.value = $route.path.includes(props.route.path);
+show.value = $route.path.includes($props.route.path);
 
 nextTick(() => {
   setTimeout(() => {
-    show.value && emit("coord", menuItemRef.value.getBoundingClientRect().top);
+    show.value && $emit("coord", menuItemRef.value.getBoundingClientRect().top);
   }, 100);
 });
 
 //如果当前路由存在子路由，则添加进子菜单用于循环生成
-if (show.value && props.route.children) routes.push(...props.route.children);
+if (show.value && $props.route.children) routes.push(...$props.route.children);
 
 /* 点击后触发 */
 const fn = () => {
   show.value = !show.value;
 
   //如果当前组件没有子路由，则直接跳转
-  if (!props.route.children) {
-    $router.push(props.route.path);
+  if (!$props.route.children) {
+    $router.push($props.route.path);
     return;
   } /* 如果父级菜单已经展开，则添加子路由去生成子菜单 */ else if (show.value) {
-    routes.push(...props.route.children);
+    routes.push(...$props.route.children);
   } /* 否则移除子菜单 */ else {
     routes.length = 0;
   }
@@ -86,26 +86,26 @@ const fn = () => {
 // }
 //};
 
-//sidebarActive(props.route);
+//sidebarActive($props.route);
 
 /* 发送坐标 */
 const handleCoord = (e: Event) => {
   const el = e.target as HTMLElement;
   const coord = el.getBoundingClientRect().top;
 
-  if (props.route.title === "系统管理") {
-    if (show.value && props.coord > coord) {
-      emit("coord", 0);
+  if ($props.route.title === "系统管理") {
+    if (show.value && $props.coord > coord) {
+      $emit("coord", 0);
     } else {
-      emit("coord", props.coord);
+      $emit("coord", $props.coord);
     }
   } else {
-    emit("coord", coord);
+    $emit("coord", coord);
   }
 };
 
 const handleChildCoord = (v: number) => {
-  emit("coord", v);
+  $emit("coord", v);
 };
 </script>
 

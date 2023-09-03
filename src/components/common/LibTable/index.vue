@@ -44,25 +44,25 @@ interface Props {
   /** 规定哪些列进行排序，从0开始 */
   sort: string[];
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const head_key = ref<any[]>([]);
 const sort_id = ref<any[]>([]);
 
-head_key.value = props.data.map((item, index) => {
+head_key.value = $props.data.map((item, index) => {
   return Object.keys(item)[index];
 });
 
-sort_id.value = props.head.map(() => {
+sort_id.value = $props.head.map(() => {
   return 0;
 });
 
 interface Emits {
   (e: "sort-change", v: [any, any]): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 const sortChange = ({ key, index, id, item }: any) => {
-  if (!props.sort.includes(item)) return;
+  if (!$props.sort.includes(item)) return;
   let status = id;
   if (status === 2) {
     sort_id.value[index] = 0;
@@ -70,7 +70,7 @@ const sortChange = ({ key, index, id, item }: any) => {
   }
   status += 1;
   sort_id.value[index] = status;
-  emit("sort-change", [key, status]);
+  $emit("sort-change", [key, status]);
   sort_id.value = sort_id.value.map((item: any, i: any) => {
     return index === i ? item : 0;
   });

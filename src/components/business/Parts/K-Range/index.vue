@@ -36,7 +36,7 @@ interface Emits {
   (e: "update:modelValue", v: number): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   width: "12.5rem",
   disabled: false,
@@ -53,7 +53,7 @@ const props = withDefaults(defineProps<Props>(), {
   showNum: true,
   step: 1,
 });
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -62,24 +62,24 @@ const down = ref(false);
 
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {
-  const value = Number(props.modelValue) - props.min;
-  const maxs = props.max - props.min;
-  const size = Number(props.size.replace(/\b\d+(rem|px)\b/g, ""));
+  const value = Number($props.modelValue) - $props.min;
+  const maxs = $props.max - $props.min;
+  const size = Number($props.size.replace(/\b\d+(rem|px)\b/g, ""));
 
-  return `calc(${value / (maxs / 100)}% + ${((size - (props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
+  return `calc(${value / (maxs / 100)}% + ${((size - ($props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
 });
 
 /* 设置按钮大小 */
 onMounted(() => {
   const root = document.querySelector(":root") as HTMLElement;
-  root.style.setProperty("--size", `${props.size}`);
+  root.style.setProperty("--size", `${$props.size}`);
 });
 
 /* 拖动时触发 */
 const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   down.value = true;
-  emit("update:modelValue", parseFloat(v));
+  $emit("update:modelValue", parseFloat(v));
   $tool.throttleInstant(() => {
     $audioStore.play("range");
   }, 50);

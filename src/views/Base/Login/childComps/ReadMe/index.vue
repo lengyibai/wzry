@@ -10,7 +10,7 @@ defineProps<Props>();
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -18,7 +18,7 @@ const IMGBED = window.IMGBED;
 
 /* 关闭 */
 const handleClose = () => {
-  emit("update:modelValue", false);
+  $emit("update:modelValue", false);
   $audioStore.play("6xc6");
 };
 </script>

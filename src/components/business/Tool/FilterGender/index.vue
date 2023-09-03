@@ -10,13 +10,13 @@ defineProps<Props>();
 interface Emits {
   (e: "update:modelValue", v: Gender): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {
-  emit("update:modelValue", v);
+  $emit("update:modelValue", v);
   $audioStore.play();
 };
 </script>

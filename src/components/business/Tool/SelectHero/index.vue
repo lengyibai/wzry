@@ -9,7 +9,7 @@ interface Props {
   /** 禁用 */
   disabled?: boolean;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   disabled: false,
 });
@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), {
 interface Emits {
   (e: "update:modelValue", v: number): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 /** 英雄名称 */
 const hero_name = ref("");
@@ -31,16 +31,16 @@ API_HERO.getHeroBasic().then((res) => {
   hero_list.value = res;
 
   //查找当前id的英雄名
-  hero_name.value = hero_list.value.find((item) => item.id === props.modelValue)?.name || "";
+  hero_name.value = hero_list.value.find((item) => item.id === $props.modelValue)?.name || "";
 });
 
 /* 选择英雄后触发 */
 const selectHero = (id: string | number | any[]) => {
-  emit("update:modelValue", id as number);
+  $emit("update:modelValue", id as number);
 };
 
 watch(
-  () => props.modelValue,
+  () => $props.modelValue,
   (v) => {
     id.value = v;
   },

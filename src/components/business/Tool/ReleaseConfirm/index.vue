@@ -7,13 +7,13 @@ interface Props {
   /** 完成提交 */
   finish: boolean;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 interface Emits {
   (e: "update:status", v: number): void;
   (e: "close"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 /** 提交状态 */
 const commit_status = ref(0);
@@ -26,14 +26,14 @@ const handleClose = () => {
 };
 
 watch(
-  () => props.status,
+  () => $props.status,
   (v) => {
     commit_status.value = v;
   },
 );
 
 watch(commit_status, (v) => {
-  emit("update:status", v);
+  $emit("update:status", v);
 });
 </script>
 

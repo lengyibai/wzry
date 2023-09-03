@@ -7,13 +7,13 @@ interface Props {
   /** 用于切换 */
   toggle: boolean;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const index = ref(0);
 const animates = ["xmove", "ymove", "square", "clip", "spin", "tv", "fold", "deploy"];
 
 watch(
-  () => props.toggle,
+  () => $props.toggle,
   () => {
     if (animates.length - 1 === index.value) {
       index.value = 0;

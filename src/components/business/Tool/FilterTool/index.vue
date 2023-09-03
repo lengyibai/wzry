@@ -15,7 +15,7 @@ interface Props {
   /** 下拉状态 */
   status: boolean;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
 });
 
@@ -23,7 +23,7 @@ interface Emits {
   (e: "update:modelValue", v: string): void;
   (e: "select", v: any): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -34,10 +34,10 @@ const sort_text = ref("默认排序");
 /** 选择的值 */
 const current_value = ref("");
 
-sort_text.value = props.data[0].label;
-if (props.modelValue) {
-  current_value.value = props.modelValue;
-  sort_text.value = props.modelValue;
+sort_text.value = $props.data[0].label;
+if ($props.modelValue) {
+  current_value.value = $props.modelValue;
+  sort_text.value = $props.modelValue;
 }
 
 /* 显示列表 */
@@ -54,7 +54,7 @@ const handleEnterItem = (v: Data) => {
 const handleSelect = (v: { label: string; value: number | string }) => {
   current_value.value = v.label;
   sort_text.value = v.label;
-  emit("select", v.value);
+  $emit("select", v.value);
   $audioStore.play();
 };
 </script>

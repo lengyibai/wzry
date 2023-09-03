@@ -16,7 +16,7 @@ import { $tool } from "@/utils";
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $router = useRouter();
 const $heroDetail = HeroDetailStore();
@@ -78,7 +78,7 @@ const handleHide = () => {
 
   //延迟0.1秒显示解决移动端动画掉帧
   setTimeout(() => {
-    emit("update:modelValue", false);
+    $emit("update:modelValue", false);
   }, 100);
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */

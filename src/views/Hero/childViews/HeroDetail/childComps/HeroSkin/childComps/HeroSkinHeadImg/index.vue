@@ -7,7 +7,7 @@ import { $tip, $tool } from "@/utils";
 interface Emits {
   (e: "bg-imgs", data: number[]): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $heroDetail = HeroDetailStore();
 
@@ -85,9 +85,9 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
       data.style.zIndex = "1";
       //切换背景图
       if (toggle) {
-        emit("bg-imgs", [1, index]);
+        $emit("bg-imgs", [1, index]);
       } else {
-        emit("bg-imgs", [0, index]);
+        $emit("bg-imgs", [0, index]);
       }
       /** 用于皮肤背景的切换动画 */
       toggle = !toggle;

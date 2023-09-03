@@ -13,7 +13,7 @@ interface Props {
   /** 列索引 */
   index: number;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const $equipStore = EquipStore();
 
@@ -24,11 +24,11 @@ const equip_list = ref<Equip.Data[]>([]);
 
 /* 控制左右线条显示 */
 const showLine = (id: number, line: string) => {
-  return props.lineData.some((item) => {
+  return $props.lineData.some((item) => {
     if (line === "left") {
-      return item.id === id && props.index !== 0;
+      return item.id === id && $props.index !== 0;
     } else {
-      return item.id === id && props.index !== 2 && item.to;
+      return item.id === id && $props.index !== 2 && item.to;
     }
   });
 };
@@ -39,7 +39,7 @@ watch(
   () => {
     show.value = false;
     setTimeout(() => {
-      equip_list.value = props.equipList;
+      equip_list.value = $props.equipList;
       show.value = true;
     }, 300);
   },

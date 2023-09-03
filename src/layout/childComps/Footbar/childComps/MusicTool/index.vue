@@ -9,7 +9,7 @@ import { $tip, $tool } from "@/utils";
 interface Emits {
   (e: "toggle", v: string): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
@@ -33,7 +33,7 @@ nextTick(() => {
 });
 /* 点击按钮 */
 const handleTool = (type: string) => {
-  emit("toggle", type);
+  $emit("toggle", type);
 };
 </script>
 

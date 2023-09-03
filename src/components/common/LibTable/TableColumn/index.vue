@@ -6,7 +6,7 @@
 <script>
 export default {
   name: "TableColumn",
-  props: {
+  $props: {
     minWidth: {
       type: String,
       default: "0",

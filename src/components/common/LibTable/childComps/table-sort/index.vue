@@ -28,7 +28,7 @@
 </template>
 <script>
 export default {
-  props: {
+  $props: {
     isShow: {
       type: Number,
       default: 0,

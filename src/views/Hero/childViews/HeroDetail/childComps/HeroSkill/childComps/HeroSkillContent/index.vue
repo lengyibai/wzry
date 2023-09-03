@@ -10,7 +10,7 @@ interface Props {
   /** 技能信息 */
   skill: Hero.Skill;
 }
-const props = defineProps<Props>();
+const $props = defineProps<Props>();
 
 const $heroDetail = HeroDetailStore();
 
@@ -20,7 +20,7 @@ const show = ref(false);
 const toggle = ref(false);
 
 /** 存在技能效果 */
-const exist_effect = computed(() => props.skill.effect?.length);
+const exist_effect = computed(() => $props.skill.effect?.length);
 
 /* 当滚动到技能页则显示技能 */
 $heroDetail.setScollFn("skillContent", (index) => {

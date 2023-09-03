@@ -4,7 +4,7 @@ import "@wangeditor/editor/dist/css/style.css";
 import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 
-const props = defineProps({
+const $props = defineProps({
   modelValue: {
     type: String,
     default: "<p>Hello World!</p>",
@@ -22,17 +22,17 @@ const props = defineProps({
 const editorRef = shallowRef();
 
 const valueHtml = ref("");
-valueHtml.value = props.modelValue;
+valueHtml.value = $props.modelValue;
 
-const emit = defineEmits(["update:modelValue"]);
+const $emit = defineEmits(["update:modelValue"]);
 watch(valueHtml, (v) => {
-  emit("update:modelValue", v);
+  $emit("update:modelValue", v);
 });
 
 const toolbarConfig = {
   toolbarKeys: ["color", "clearStyle"],
 };
-const editorConfig = { placeholder: props.placeholder };
+const editorConfig = { placeholder: $props.placeholder };
 const mode = "simple";
 
 onBeforeUnmount(() => {

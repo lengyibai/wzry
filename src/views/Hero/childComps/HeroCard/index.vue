@@ -12,7 +12,7 @@ defineProps<Props>();
 interface Emits {
   (e: "view"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $heroStore = HeroStore();
 
@@ -38,7 +38,7 @@ const num = (data: Hero.Data) =>
 
 /* 查看详情 */
 const handleViewClick = () => {
-  emit("view");
+  $emit("view");
 };
 </script>
 

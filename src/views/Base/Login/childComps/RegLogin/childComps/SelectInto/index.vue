@@ -7,7 +7,7 @@ import { AudioStore } from "@/store";
 interface Emits {
   (e: "into", v: string): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
@@ -20,7 +20,7 @@ API_USER.userList().then((res) => {
 
 /* 进入方式 */
 const handleInto = (v: string) => {
-  emit("into", v);
+  $emit("into", v);
   if (v === "注册") {
     $audioStore.play("0o5c");
   } else {

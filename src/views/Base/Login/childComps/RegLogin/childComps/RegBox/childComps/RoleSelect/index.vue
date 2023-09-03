@@ -12,13 +12,13 @@ defineProps<Props>();
 interface Emits {
   (e: "update:modelValue", v: number): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const $audioStore = AudioStore();
 
 /* 选择 */
 const handleSelect = (index: number) => {
-  emit("update:modelValue", index);
+  $emit("update:modelValue", index);
   $audioStore.play("n4r4");
 };
 </script>

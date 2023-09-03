@@ -16,14 +16,14 @@ withDefaults(defineProps<Props>(), {
 interface Emits {
   (e: "update:modelValue", link: string): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 /** 是否显示添加链接弹窗 */
 const show_AddLink = ref(false);
 
 /* 获取链接 */
 const onGetLink = (link: string) => {
-  emit("update:modelValue", link);
+  $emit("update:modelValue", link);
   show_AddLink.value = false;
 };
 </script>

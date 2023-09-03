@@ -6,7 +6,7 @@ import { useGetData } from "@/hooks";
 interface Emits {
   (e: "update:finish", v: boolean): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const { total, index, type, finish } = useGetData();
 
@@ -15,7 +15,7 @@ const progress = computed(() => ((index.value / total.value) * 100).toFixed(0) +
 
 /* 监听是否完成 */
 watch(finish, (v) => {
-  emit("update:finish", v);
+  $emit("update:finish", v);
 });
 </script>
 

@@ -5,11 +5,11 @@ interface Props {
   /** 技能类型 */
   type: string;
 }
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   type: "",
 });
 
-const name = $tool.pinyin(props.type)[0];
+const name = $tool.pinyin($props.type)[0];
 </script>
 
 <template>
