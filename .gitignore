@@ -1,4 +1,4 @@
 node_modules
 dist
 src/typings/components.d.ts
-package-lock.json
+pnpm-lock.yaml
