@@ -1,20 +1,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
-interface Text extends Record<string, string> {
-  /** 生存能力 */
-  survival: string;
-  /** 攻击伤害 */
-  attack: string;
-  /** 技能效果 */
-  effect: string;
-  /** 上手难度 */
-  difficulty: string;
-}
-
 interface Props {
   /** 属性名 */
-  attr: string;
+  attr: keyof Hero.SkillKey;
   /** 长度 */
   length: number;
 }
@@ -37,7 +26,7 @@ const bgc: Record<string, string> = {
 };
 
 /** 描述 */
-const text: Text = {
+const text: Hero.SkillKey = {
   survival: "生存能力",
   attack: "攻击伤害",
   effect: "技能效果",

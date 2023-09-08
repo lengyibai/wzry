@@ -17,7 +17,7 @@ export default () => {
 
     //延迟提醒，避免与点击操作同时播放
     setTimeout(() => {
-      const msgName: Record<string, string> = {
+      const msgName = {
         info: "n74s",
         warning: "16vy",
         error: "vw31",

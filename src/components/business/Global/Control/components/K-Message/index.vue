@@ -6,7 +6,7 @@ import { $bus } from "@/utils";
 const { msg, messages } = useMessage();
 
 /** 字体颜色 */
-const color: Record<string, string> = {
+const color = {
   info: "#84ade2",
   warning: "#e2c484",
   error: "#e28484",
@@ -14,7 +14,7 @@ const color: Record<string, string> = {
 const getImg = (src: string) => `${IMGBED}/image/msg_${src}.png`;
 
 /** 消息类型提醒左中右图标 */
-const imgs: Record<string, Record<string, string>> = {
+const imgs = {
   info: {
     left: getImg("left_default"),
     center: getImg("center_default"),

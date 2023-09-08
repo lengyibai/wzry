@@ -32,7 +32,7 @@ const style2 = {
   fontSize: $props.fontSize,
 };
 /** 粒子颜色 */
-const particle_color: Record<string, string> = {
+const particle_color = {
   info: "#3f9ed3",
   error: "#d83e41",
   warning: "#e1c673",

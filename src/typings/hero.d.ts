@@ -116,6 +116,18 @@ declare namespace Hero {
     name: string;
   }
 
+  /** @description 技能键 */
+  interface SkillKey {
+    /** 生存能力 */
+    survival: string;
+    /** 攻击伤害 */
+    attack: string;
+    /** 技能效果 */
+    effect: string;
+    /** 上手难度 */
+    difficulty: string;
+  }
+
   /** @description 关系信息 */
   interface Relationship {
     /** 英雄id */
