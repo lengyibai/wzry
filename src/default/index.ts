@@ -42,7 +42,7 @@ export const skillEffectDefault: Hero.SkillEffect = {
 /** @description 默认用户信息 */
 export const userDefaultInfo: User = {
   id: "",
-  headImg: window.IMGBED + "/image/head.jpg",
+  headImg: "",
   nickname: "",
   password: "",
   role: 1,
