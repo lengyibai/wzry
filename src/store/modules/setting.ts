@@ -8,15 +8,16 @@ import { CssVarStore } from "./cssVar";
 import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
 import { $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
   const config = ref<SettingConfig>({ ...configDefault });
 
   /* 从本地获取配置进行合并 */
-  const data = localStorage.getItem("config");
+  const data = localStorage.getItem(CONFIG.LOCAL_KEY.CONFIG);
   if (data) config.value = { ...config.value, ...JSON.parse(data) };
-  localStorage.setItem("config", JSON.stringify(config.value));
+  localStorage.setItem(CONFIG.LOCAL_KEY.CONFIG, JSON.stringify(config.value));
 
   //如果为移动端，则隐藏视频背景
   config.value.videoBg = !$tool.isPhone;
@@ -38,7 +39,7 @@ const SettingStore = defineStore("setting", () => {
 
   /** @description 保存配置到本地 */
   const saveLocal = () => {
-    localStorage.setItem("config", JSON.stringify(config.value));
+    localStorage.setItem(CONFIG.LOCAL_KEY.CONFIG, JSON.stringify(config.value));
   };
 
   /**

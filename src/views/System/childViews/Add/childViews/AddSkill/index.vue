@@ -9,6 +9,7 @@ import { skillDefault, skillEffectDefault } from "@/default";
 import { API_HERO, API_SKILL } from "@/api";
 import { HeroStore } from "@/store";
 import { $loading, $message, $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -76,7 +77,7 @@ API_HERO.getSkillEffect().then((res) => {
 
 /* 判断是否已存在该英雄技能 */
 const onSelectHeroChange = (id: number) => {
-  const d = localStorage.getItem("data_skill") as string;
+  const d = localStorage.getItem(CONFIG.LOCAL_KEY.SKILL) as string;
   const v = JSON.parse(d) as Hero.SkillParams[];
 
   if (v.some((item) => item.id === id)) {

@@ -2,10 +2,11 @@ import dayjs from "dayjs";
 
 import { get, post, patch, del } from "@/api/helper/transfer";
 import { OVERDUE_ROLE_TIME } from "@/enum";
+import { CONFIG } from "@/config";
 
 /** @description 获取本地用户列表 */
 export const userList = () => {
-  return Promise.resolve(get<User[]>({ name: "data_user" }));
+  return Promise.resolve(get<User[]>({ name: CONFIG.LOCAL_KEY.USER_LIST }));
 };
 
 /**
@@ -15,7 +16,7 @@ export const userList = () => {
 export const login = async (form: User) => {
   //通过帐号查询用户
   const data = get<User>({
-    name: "data_user",
+    name: CONFIG.LOCAL_KEY.USER_LIST,
     key: "id",
     value: form.id,
   });
@@ -26,11 +27,11 @@ export const login = async (form: User) => {
     if (form.password === data.password) {
       //生成token
       let token = dayjs().unix();
-      const data_token = localStorage.getItem("data_token");
+      const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
 
       //设置时间token，用户完整下载数据
       if (!data_token) {
-        localStorage.setItem("data_token", token.toString());
+        localStorage.setItem(CONFIG.LOCAL_KEY.TOKEN, token.toString());
       }
 
       //如果本地存在token则进行过期判断，否则直接更新
@@ -63,7 +64,7 @@ export const login = async (form: User) => {
  */
 export const userInfo = (token: string) => {
   //通过token来查询用户
-  return Promise.resolve(get<User>({ name: "data_user", key: "wzryToken", value: token }));
+  return Promise.resolve(get<User>({ name: CONFIG.LOCAL_KEY.USER_LIST, key: "wzryToken", value: token }));
 };
 
 /**
@@ -73,7 +74,7 @@ export const userInfo = (token: string) => {
 export const register = async (form: User) => {
   //通过帐号查询用户
   const data = get<User>({
-    name: "data_user",
+    name: CONFIG.LOCAL_KEY.USER_LIST,
     key: "id",
     value: form.id,
   });
@@ -82,7 +83,7 @@ export const register = async (form: User) => {
   if (data) {
     return Promise.reject("用户已存在，请直接登录");
   } else {
-    return Promise.resolve(post<User>("data_user", form));
+    return Promise.resolve(post<User>(CONFIG.LOCAL_KEY.USER_LIST, form));
   }
 };
 
@@ -92,7 +93,7 @@ export const register = async (form: User) => {
  * @param info 用户信息
  */
 export const updateUser = (id: string, info: Partial<User>) => {
-  patch({ name: "data_user", key: "id", value: id, v: info }, true);
+  patch({ name: CONFIG.LOCAL_KEY.USER_LIST, key: "id", value: id, v: info }, true);
   //返回新信息
   return Promise.resolve(info);
 };
@@ -103,6 +104,6 @@ export const updateUser = (id: string, info: Partial<User>) => {
  */
 export const deleteUser = (id: string) => {
   //查询用户并删除
-  del({ name: "data_user", id });
+  del({ name: CONFIG.LOCAL_KEY.USER_LIST, id });
   return Promise.resolve("注销成功");
 };

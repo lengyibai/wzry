@@ -8,6 +8,7 @@ import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
 import { $message, $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
@@ -43,7 +44,7 @@ const AuthStore = defineStore("auth", () => {
     });
     userInfo.value = res;
     userStatus.value = true;
-    window.localStorage.setItem("user", JSON.stringify(res));
+    window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
     $routerStore.addRoutes(res.role);
     router.push(HOME_URL);
     watchStatus();
@@ -51,14 +52,14 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 自动登录 */
   const autoLogin = async () => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO) || "{}");
     try {
       const res = await API_USER.login(user).catch((err) => {
         throw err;
       });
       userInfo.value = res;
       userStatus.value = true;
-      window.localStorage.setItem("user", JSON.stringify(res));
+      window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
       $message("自动登录成功");
       watchStatus();
     } catch (err) {
@@ -79,9 +80,9 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 注销账号 */
   const logoff = async () => {
-    const user = JSON.parse(localStorage.getItem("user")!) as User;
+    const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)!) as User;
     const msg = await API_USER.deleteUser(user.id);
-    localStorage.removeItem("remember_user");
+    localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
     clearToken();
     $message(msg);
   };
@@ -94,7 +95,7 @@ const AuthStore = defineStore("auth", () => {
     timer = undefined;
     userInfo.value = $tool.deepCopy(userDefaultInfo);
     $routerStore.removeRoutes();
-    localStorage.removeItem("user");
+    localStorage.removeItem(CONFIG.LOCAL_KEY.USER_INFO);
   };
 
   /** @description 实时检测帐号状态 */
@@ -102,7 +103,7 @@ const AuthStore = defineStore("auth", () => {
     if (timer) return;
     timer = setInterval(() => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
-      const data_token = localStorage.getItem("data_token");
+      const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
       if (token - Number(data_token) > OVERDUE_DATA_TIME) {
         clearInterval(timer);
         $message("数据每三天完整下载一次，即将开始下载", "error");
@@ -113,7 +114,7 @@ const AuthStore = defineStore("auth", () => {
         return;
       }
 
-      if (!localStorage.getItem("user")) {
+      if (!localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)) {
         $message("身份已过期，请重登录", "error");
         clearToken();
       }

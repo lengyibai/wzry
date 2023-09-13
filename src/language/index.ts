@@ -4,13 +4,15 @@ import zh from "./modules/zh";
 import tc from "./modules/tc";
 import en from "./modules/en";
 
+import { CONFIG } from "@/config";
+
 const messages: Record<string, Record<string, string>> = {
   zh,
   tc,
   en,
 };
 
-const lang = localStorage.getItem("language");
+const lang = localStorage.getItem(CONFIG.LOCAL_KEY.LANGUAGE);
 
 const i18n = createI18n({
   /** 默认语言 */
@@ -28,7 +30,7 @@ const setLanguage = (index: 0 | 1 | 2) => {
   const lang = langs[index];
   i18n.global.setLocaleMessage(lang, messages[lang]);
   i18n.global.locale.value = lang;
-  localStorage.setItem("language", lang);
+  localStorage.setItem(CONFIG.LOCAL_KEY.LANGUAGE, lang);
 };
 
 export default i18n;

@@ -67,7 +67,7 @@ const useUpdateData = () => {
   };
 
   /* 获取本地数据 */
-  const getLocalData = (name: string, prefix = "data_") => {
+  const getLocalData = (name: string, prefix = "") => {
     return JSON.parse(localStorage.getItem(prefix + name) as string);
   };
 
@@ -106,7 +106,7 @@ const useUpdateData = () => {
     //更新覆盖数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
-      localStorage.setItem("data_" + key, JSON.stringify(need_update_data.data[i]));
+      localStorage.setItem(key, JSON.stringify(need_update_data.data[i]));
     }
     for (let i = 0; i < need_update_voice.keys.length; i++) {
       const key = need_update_voice.keys[i];

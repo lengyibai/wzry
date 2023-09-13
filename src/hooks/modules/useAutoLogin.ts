@@ -1,8 +1,9 @@
+import { CONFIG } from "@/config";
 import { AuthStore, RouterStore } from "@/store";
 
 /** @description 通过获取本地用户权限在路由还未挂载时动态添加路由 */
 const useAutoLogin = () => {
-  const user = localStorage.getItem("user");
+  const user = localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO);
 
   const $authStore = AuthStore();
   const $routerStore = RouterStore();

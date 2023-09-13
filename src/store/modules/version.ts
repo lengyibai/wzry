@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { API_DATA } from "@/api";
 import { useUpdateData } from "@/hooks";
 import { $message } from "@/utils";
+import { CONFIG } from "@/config";
 
 const VersionStore = defineStore("version", () => {
   /** 实时更新计时器 */
@@ -31,19 +32,19 @@ const VersionStore = defineStore("version", () => {
   });
 
   /** 本地版本 */
-  local_version.value = localStorage.getItem("version") || "";
+  local_version.value = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
   /** 文件文件版本 */
-  local_file.value = localStorage.getItem("version_file") || "";
+  local_file.value = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_FILE) || "";
 
   /** @description 更新本地版本 */
   const updateVersion = (v: string) => {
-    localStorage.setItem("version", v);
+    localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_MAIN, v);
     local_version.value = v;
   };
 
   /** @description 更新文件本地版本 */
   const updateFileVersion = (v: string) => {
-    localStorage.setItem("version_file", v);
+    localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_FILE, v);
     local_file.value = v;
   };
 

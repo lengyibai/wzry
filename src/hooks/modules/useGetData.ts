@@ -1,6 +1,7 @@
 import { ref } from "vue";
 
 import { API_DATA, API_HERO } from "@/api";
+import { CONFIG } from "@/config";
 
 const useGetData = () => {
   /** 请求总数 */
@@ -13,35 +14,35 @@ const useGetData = () => {
   const finish = ref(false);
 
   const requests: [string, () => Promise<any>, string][] = [
-    ["user", API_DATA.User, "用户"],
-    ["herobasic", API_DATA.HeroBasic, "英雄基础"],
-    ["heroimg", API_DATA.HeroImg, "英雄图片"],
-    ["herodata", API_DATA.Herodata, "英雄信息"],
-    ["skill", API_DATA.Skill, "技能列表"],
-    ["skilltype", API_DATA.Skilltype, "技能类型"],
-    ["skilleffect", API_DATA.Skilleffect, "技能效果"],
-    ["skin", API_DATA.Skin, "皮肤"],
-    ["skintype", API_DATA.Skintype, "皮肤类型"],
-    ["relationship", API_DATA.Relationship, "关系"],
-    ["equip", API_DATA.Equip, "装备"],
-    ["equipSynthetic", API_DATA.EquipSynthetic, "装备合成"],
-    ["equiptype", API_DATA.Equiptype, "装备类型"],
-    ["equipeffect", API_DATA.Equipeffect, "装备效果"],
-    ["epigraph", API_DATA.Epigraph, "铭文"],
-    ["epigraphtype", API_DATA.Epigraphtype, "铭文类型"],
-    ["epigrapheffect", API_DATA.Epigrapheffect, "铭文效果"],
-    ["professiontype", API_DATA.Professiontype, "职业"],
-    ["locationtype", API_DATA.Locationtype, "定位"],
-    ["specialtytype", API_DATA.Specialtytype, "特长"],
-    ["periodtype", API_DATA.Periodtype, "时期"],
-    ["camptype", API_DATA.Camptype, "阵营"],
-    ["racetype", API_DATA.RaceType, "种族"],
+    [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
+    [CONFIG.LOCAL_KEY.HERO_BASIC, API_DATA.HeroBasic, "英雄基础"],
+    [CONFIG.LOCAL_KEY.HERO_IMG, API_DATA.HeroImg, "英雄图片"],
+    [CONFIG.LOCAL_KEY.HERO_DATA, API_DATA.Herodata, "英雄信息"],
+    [CONFIG.LOCAL_KEY.SKILL, API_DATA.Skill, "技能列表"],
+    [CONFIG.LOCAL_KEY.SKILL_TYPE, API_DATA.Skilltype, "技能类型"],
+    [CONFIG.LOCAL_KEY.SKILL_EFFECT, API_DATA.Skilleffect, "技能效果"],
+    [CONFIG.LOCAL_KEY.SKIN, API_DATA.Skin, "皮肤"],
+    [CONFIG.LOCAL_KEY.SKIN_TYPE, API_DATA.Skintype, "皮肤类型"],
+    [CONFIG.LOCAL_KEY.RELATIONSHIP, API_DATA.Relationship, "关系"],
+    [CONFIG.LOCAL_KEY.EQUIP, API_DATA.Equip, "装备"],
+    [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC, API_DATA.EquipSynthetic, "装备合成"],
+    [CONFIG.LOCAL_KEY.EQUIP_TYPE, API_DATA.Equiptype, "装备类型"],
+    [CONFIG.LOCAL_KEY.EQUIP_EFFECT, API_DATA.Equipeffect, "装备效果"],
+    [CONFIG.LOCAL_KEY.EPIGRAPH, API_DATA.Epigraph, "铭文"],
+    [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE, API_DATA.Epigraphtype, "铭文类型"],
+    [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT, API_DATA.Epigrapheffect, "铭文效果"],
+    [CONFIG.LOCAL_KEY.PROFESSION_TYPE, API_DATA.Professiontype, "职业"],
+    [CONFIG.LOCAL_KEY.LOCATION_TYPE, API_DATA.Locationtype, "定位"],
+    [CONFIG.LOCAL_KEY.SPECIALTY_TYPE, API_DATA.Specialtytype, "特长"],
+    [CONFIG.LOCAL_KEY.PERIOD_TYPE, API_DATA.Periodtype, "时期"],
+    [CONFIG.LOCAL_KEY.CAMP_TYPE, API_DATA.Camptype, "阵营"],
+    [CONFIG.LOCAL_KEY.RACE_TYPE, API_DATA.RaceType, "种族"],
   ];
 
   const setData = <T extends { data: unknown }>(name: string, data: T) => {
     localStorage.setItem(name, JSON.stringify(data.data));
   };
-  const isExist = (name: string, prefix = "data_") => {
+  const isExist = (name: string, prefix = "") => {
     return !!localStorage.getItem(prefix + name);
   };
 
@@ -52,7 +53,7 @@ const useGetData = () => {
     //收集处理请求
     const data_requests = requests.map(async ([key, request]) => {
       if (!isExist(key)) {
-        setData("data_" + key, await request());
+        setData(key, await request());
         index.value++;
       }
     });

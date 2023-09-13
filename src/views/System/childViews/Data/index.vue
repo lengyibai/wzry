@@ -4,6 +4,7 @@ import { ref, onActivated } from "vue";
 import { API_DATA } from "@/api";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
 import { $message, $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 defineOptions({
   name: "database",
@@ -14,53 +15,53 @@ const $heroStore = HeroStore();
 const $audioStore = AudioStore();
 
 const keywords: [string, string][] = [
-  ["herobasic", "英雄基础"],
-  ["heroimg", "英雄图片"],
-  ["herodata", "英雄信息"],
-  ["skill", "技能列表"],
-  ["skilltype", "技能类型"],
-  ["skilleffect", "技能效果"],
-  ["skin", "皮肤"],
-  ["skintype", "皮肤类型"],
-  ["relationship", "关系"],
-  ["equip", "装备"],
-  ["equipSynthetic", "装备合成"],
-  ["equiptype", "装备类型"],
-  ["equipeffect", "装备效果"],
-  ["epigraph", "铭文"],
-  ["epigraphtype", "铭文类型"],
-  ["epigrapheffect", "铭文效果"],
-  ["professiontype", "职业"],
-  ["locationtype", "定位"],
-  ["specialtytype", "特长"],
-  ["periodtype", "时期"],
-  ["camptype", "阵营"],
-  ["racetype", "种族"],
+  [CONFIG.LOCAL_KEY.HERO_BASIC, "英雄基础"],
+  [CONFIG.LOCAL_KEY.HERO_IMG, "英雄图片"],
+  [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
+  [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
+  [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
+  [CONFIG.LOCAL_KEY.SKILL_EFFECT, "技能效果"],
+  [CONFIG.LOCAL_KEY.SKIN, "皮肤"],
+  [CONFIG.LOCAL_KEY.SKIN_TYPE, "皮肤类型"],
+  [CONFIG.LOCAL_KEY.RELATIONSHIP, "关系"],
+  [CONFIG.LOCAL_KEY.EQUIP, "装备"],
+  [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC, "装备合成"],
+  [CONFIG.LOCAL_KEY.EQUIP_TYPE, "装备类型"],
+  [CONFIG.LOCAL_KEY.EQUIP_EFFECT, "装备效果"],
+  [CONFIG.LOCAL_KEY.EPIGRAPH, "铭文"],
+  [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE, "铭文类型"],
+  [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT, "铭文效果"],
+  [CONFIG.LOCAL_KEY.PROFESSION_TYPE, "职业"],
+  [CONFIG.LOCAL_KEY.LOCATION_TYPE, "定位"],
+  [CONFIG.LOCAL_KEY.SPECIALTY_TYPE, "特长"],
+  [CONFIG.LOCAL_KEY.PERIOD_TYPE, "时期"],
+  [CONFIG.LOCAL_KEY.CAMP_TYPE, "阵营"],
+  [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
 ];
 
 const requests: Record<string, () => Promise<any>> = {
-  herobasic: API_DATA.HeroBasic,
-  heroimg: API_DATA.HeroImg,
-  herodata: API_DATA.Herodata,
-  skill: API_DATA.Skill,
-  skilltype: API_DATA.Skilltype,
-  skilleffect: API_DATA.Skilleffect,
-  skin: API_DATA.Skin,
-  skintype: API_DATA.Skintype,
-  relationship: API_DATA.Relationship,
-  equip: API_DATA.Equip,
-  equipSynthetic: API_DATA.EquipSynthetic,
-  equiptype: API_DATA.Equiptype,
-  equipeffect: API_DATA.Equipeffect,
-  epigraph: API_DATA.Epigraph,
-  epigraphtype: API_DATA.Epigraphtype,
-  epigrapheffect: API_DATA.Epigrapheffect,
-  professiontype: API_DATA.Professiontype,
-  locationtype: API_DATA.Locationtype,
-  specialtytype: API_DATA.Specialtytype,
-  periodtype: API_DATA.Periodtype,
-  camptype: API_DATA.Camptype,
-  racetype: API_DATA.RaceType,
+  [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
+  [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
+  [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
+  [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
+  [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
+  [CONFIG.LOCAL_KEY.SKILL_EFFECT]: API_DATA.Skilleffect,
+  [CONFIG.LOCAL_KEY.SKIN]: API_DATA.Skin,
+  [CONFIG.LOCAL_KEY.SKIN_TYPE]: API_DATA.Skintype,
+  [CONFIG.LOCAL_KEY.RELATIONSHIP]: API_DATA.Relationship,
+  [CONFIG.LOCAL_KEY.EQUIP]: API_DATA.Equip,
+  [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC]: API_DATA.EquipSynthetic,
+  [CONFIG.LOCAL_KEY.EQUIP_TYPE]: API_DATA.Equiptype,
+  [CONFIG.LOCAL_KEY.EQUIP_EFFECT]: API_DATA.Equipeffect,
+  [CONFIG.LOCAL_KEY.EPIGRAPH]: API_DATA.Epigraph,
+  [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE]: API_DATA.Epigraphtype,
+  [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT]: API_DATA.Epigrapheffect,
+  [CONFIG.LOCAL_KEY.PROFESSION_TYPE]: API_DATA.Professiontype,
+  [CONFIG.LOCAL_KEY.LOCATION_TYPE]: API_DATA.Locationtype,
+  [CONFIG.LOCAL_KEY.SPECIALTY_TYPE]: API_DATA.Specialtytype,
+  [CONFIG.LOCAL_KEY.PERIOD_TYPE]: API_DATA.Periodtype,
+  [CONFIG.LOCAL_KEY.CAMP_TYPE]: API_DATA.Camptype,
+  [CONFIG.LOCAL_KEY.RACE_TYPE]: API_DATA.RaceType,
 };
 
 /** 更新限制 */
@@ -75,15 +76,10 @@ const show_ConfirmClose = ref(false);
 /** 表格数据 */
 const table_data = ref<any[]>([]);
 
-/* 获取本地数据 */
-const getLocalData = (name: string, prefix = "data_") => {
-  return JSON.parse(localStorage.getItem(prefix + name) as string);
-};
-
 /* 加载数据 */
 const load = async () => {
   table_data.value = keywords.map((item) => {
-    const v = getLocalData(item[0]) || [];
+    const v = JSON.parse(localStorage.getItem(item[0]) as string) || [];
     return {
       name: item[1],
       key: item[0],
@@ -105,7 +101,7 @@ load();
 
 /* 比对远程数据设置状态 */
 const setStatus = (data: any, v: any) => {
-  data.data = JSON.parse(localStorage.getItem("data_" + data.key) as string) || [];
+  data.data = JSON.parse(localStorage.getItem(data.key) as string) || [];
 
   if (JSON.stringify(v) === JSON.stringify(data.data)) {
     data.status = "最新";
@@ -121,7 +117,7 @@ const play = () => $audioStore.play();
 
 /* 更新数据 */
 const updateData = (key: string, data: any) => {
-  localStorage.setItem("data_" + key, JSON.stringify(data));
+  localStorage.setItem(key, JSON.stringify(data));
 
   //如果为皮肤/英雄，则重新获取皮肤/英雄列表
   if (key.includes("skin")) {

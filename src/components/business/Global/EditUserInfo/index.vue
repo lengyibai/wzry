@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { API_USER } from "@/api";
 import { AuthStore, AudioStore } from "@/store";
 import { $message } from "@/utils";
+import { CONFIG } from "@/config";
 
 interface Props {
   /** 帐号 */
@@ -41,11 +42,11 @@ const handleSave = () => {
 
   //更新本地当前用户信息
   API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem("user", JSON.stringify(user_info.value));
+    localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(user_info.value));
 
     //更新记住密码
     localStorage.setItem(
-      "remember_user",
+      CONFIG.LOCAL_KEY.REMEMBER_USER,
       JSON.stringify({
         id: user_info.value.id,
         password: user_info.value.password,
