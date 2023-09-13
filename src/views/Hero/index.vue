@@ -51,11 +51,6 @@ const onViewClick = (id: number) => {
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
 
-    //延迟0.1秒显示解决移动端动画掉帧
-    setTimeout(() => {
-      show_HeroDetail.value = true;
-    }, 100);
-
     //设置路由参数只用于记录，方便刷新时直接打开详情
     $router.push({
       path: "/hero",
@@ -98,6 +93,23 @@ watch(
     });
   },
   { deep: true, immediate: true },
+);
+
+watch(
+  () => $route.query,
+  (v) => {
+    if (v.id) {
+      //延迟0.1秒显示解决移动端动画掉帧
+      setTimeout(() => {
+        show_HeroDetail.value = true;
+      }, 100);
+    } else {
+      show_HeroDetail.value = false;
+    }
+  },
+  {
+    immediate: true,
+  },
 );
 
 onActivated(() => {
@@ -195,7 +207,6 @@ onBeforeUnmount(() => {
     <transition name="clip">
       <HeroDetail
         v-if="show_HeroDetail"
-        v-model="show_HeroDetail"
         :data="hero_info"
         :voices="hero_info.voices"
         :skins="hero_info.skins"

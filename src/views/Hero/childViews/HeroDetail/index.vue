@@ -13,11 +13,6 @@ import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
-
 const $router = useRouter();
 const $heroDetail = HeroDetailStore();
 const $heroStore = HeroStore();
@@ -75,11 +70,6 @@ const handleHide = () => {
   //置空语音（盾山没有语音，可以用于置空）
   $heroDetail.setSkinVoice("盾山");
   $audioStore.play("6xc6");
-
-  //延迟0.1秒显示解决移动端动画掉帧
-  setTimeout(() => {
-    $emit("update:modelValue", false);
-  }, 100);
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
   if (!$heroStore.profession) {
