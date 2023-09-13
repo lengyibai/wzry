@@ -15,7 +15,7 @@ class Flexible {
 
   constructor() {
     window.addEventListener("resize", this.handleResize.bind(this));
-    window.addEventListener("pageshow", this.handleResize.bind(this));
+    window.addEventListener("DOMContentLoaded", this.handleResize.bind(this));
   }
 
   /** @description 添加回调函数 */
@@ -23,21 +23,21 @@ class Flexible {
     this.triggers.push({ range, callback, lock0: true, lock1: true });
   }
 
-  //处理缩放事件
+  // 处理缩放事件
   private handleResize() {
     this.scrollPos = window.innerWidth;
     this.checkTriggers();
   }
 
-  //检查触发回调函数
+  // 检查触发回调函数
   private checkTriggers() {
-    //遍历所有的回调函数
+    // 遍历所有的回调函数
     this.triggers.forEach((t) => {
       const [start, end] = t.range;
 
       //检查是否进入区间
       if (this.scrollPos <= start && this.scrollPos >= end) {
-        //计算进度
+        // 计算进度
         const progress = (this.scrollPos - start) / (end - start);
 
         //触发回调
@@ -55,8 +55,7 @@ class Flexible {
         //判断是否允许触发(此处只能触发一次)
         if (t.lock1) return;
         t.callback(0);
-        //设置禁止触发
-        t.lock1 = true;
+        t.lock1 = true; //设置禁止出发
       }
     });
   }
