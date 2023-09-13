@@ -1,6 +1,5 @@
 import { ref } from "vue";
 
-import i18n from "@/language";
 import { SettingStore, AudioStore } from "@/store";
 import { CONFIG } from "@/config";
 
