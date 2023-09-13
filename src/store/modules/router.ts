@@ -45,13 +45,8 @@ const RouterStore = defineStore("route", () => {
   const removeRoutes = () => {
     routeNames.value.forEach((item) => {
       router.removeRoute(item);
-      //删除侧边栏
-      routes.value.forEach((route, index) => {
-        if (route.name === item) {
-          routes.value.splice(index, 1);
-        }
-      });
     });
+    routes.value = [];
   };
 
   return {
