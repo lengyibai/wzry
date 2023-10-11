@@ -2,13 +2,11 @@
 
 ## 前言
 
-> 因兴趣开发此项目，与同行一起交流与学习，并无实际用途
+> 因失业开发此项目，与同行一起交流与学习，无实际用途
 >
 > 但也可用于游戏玩家获取一些比较感兴趣皮肤排名和筛选
 >
 > 如英雄性别筛选、身高排名、皮肤数量排名等
->
-> 以及技能属性筛选，如无位移、无蓝条、无控制、自带免控的英雄等
 
 ## 技术栈
 
@@ -16,35 +14,35 @@
 
 ## 第三方依赖
 
-> 事件总线[Mitt](https://github.com/developit/mitt)、富文本编辑器[wangEditor](https://www.wangeditor.com)、手机端调试工具[vconsole](https://github.com/Tencent/vConsole)
+> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、手机端调试工具[vConsole](https://github.com/Tencent/vConsole)、时间库[Day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)
 
-## 文件目录
+## 项目内截图
 
-![思维导图](https://lyb.cbb.plus//wzry-material/image/mind_mapping.png)
+![0](https://lyb.cbb.plus//wzry-material/html/0.png)![0](https://lyb.cbb.plus//wzry-material/html/1.png)![0](https://lyb.cbb.plus//wzry-material/html/2.png)![0](https://lyb.cbb.plus//wzry-material/html/3.png)![0](https://lyb.cbb.plus//wzry-material/html/4.png)![0](https://lyb.cbb.plus//wzry-material/html/5.png)![0](https://lyb.cbb.plus//wzry-material/html/6.png)![0](https://lyb.cbb.plus//wzry-material/html/7.png)![0](https://lyb.cbb.plus//wzry-material/html/8.png)
 
 ## 素材来源
 
-> 游戏图片素材和语音音效从`王者荣耀`官网获取，一些素材如装备、技能图标使用了`AI修复`，所以比原版更清晰
+> 英雄头像、技能图标、图片素材——王者荣耀官网](https://pvp.qq.com)
 >
-> 部分素材从游戏中截图、抠图获取
+> 英雄语音——[王者世界观体验站](https://pvp.qq.com/ip)
 >
-> 部分音效通过在游戏内录制点击音效进行截取
+> 游戏音乐——网易云音乐
 >
-> 像英雄列表中的封面只存在于游戏中，无法获取，只能对`100`多个英雄的海报进行裁剪来获取封面
+> 点击音效——游戏内录制视频、提取音频、截取音频
 >
-> 游戏官网中的技能信息过于简陋和老旧，为了保证信息质量，选择在游戏中通过对每个英雄的详情页进行截图、识字，再通过富文本编辑器对关键文字的设置颜色
+> 英雄封面——对`100`多个英雄的海报进行裁剪获取
 >
-> 一些英雄信息如阵营、身高、身份、种族等数据也是通过手敲，并整合所有类型
+> 技能信息——游戏内对每个英雄的详情页进行截图、识字、富文本编辑器对关键文字的设置颜色
 >
-> 在这类文字信息获取上，耗费了大量时间
+> 英雄信息——手敲，并整合所有类型
+>
+> 游戏装备——游戏内截图、抠图、AI修复
 
 ## 项目介绍
 
 > 此项目无数据库，无后端参与，一切数据存储于`json`文件中，将`json`文件托管至服务器，只存在文件的`get`请求
 >
 > 注册、登录、设置、用户信息等数据都存在于`localStorage`，只能在当前浏览器使用
->
-> 项目并未使用第三方组件库，难以对第三方组件的样式及功能自定义
 >
 
 ## 数据下载
