@@ -13,6 +13,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
+    "noEmit": true,
     "types": ["vite/client"],
     "useDefineForClassFields": true,
     "paths": {
