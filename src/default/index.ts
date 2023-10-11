@@ -1,5 +1,5 @@
 /** @description 默认英雄信息 */
-export const heroDefault: Hero.Data = {
+export const heroDefault: () => Hero.Data = () => ({
   id: 0,
   attack: 0,
   difficulty: 0,
@@ -20,10 +20,10 @@ export const heroDefault: Hero.Data = {
   skillUnit: "无",
   profession: [],
   specialty: [],
-};
+});
 
 /** @description 默认技能信息 */
-export const skillDefault: Hero.Skill = {
+export const skillDefault: () => Hero.Skill = () => ({
   cd: 0,
   consume: "",
   name: "",
@@ -31,25 +31,25 @@ export const skillDefault: Hero.Skill = {
   img: "",
   type: [],
   effect: [],
-};
+});
 
 /** @description 默认技能效果信息 */
-export const skillEffectDefault: Hero.SkillEffect = {
+export const skillEffectDefault: () => Hero.SkillEffect = () => ({
   type: "",
   phase: [],
-};
+});
 
 /** @description 默认用户信息 */
-export const userDefaultInfo: User = {
+export const userDefaultInfo: () => User = () => ({
   id: "",
   headImg: "",
   nickname: "",
   password: "",
   role: 1,
-};
+});
 
 /** @description 默认配置信息 */
-export const configDefault: SettingConfig = {
+export const configDefault: () => SettingConfig = () => ({
   tip: true,
   videoBg: true,
   audio: true,
@@ -77,4 +77,4 @@ export const configDefault: SettingConfig = {
     "2l5m": false,
     "9ms5": false,
   },
-};
+});

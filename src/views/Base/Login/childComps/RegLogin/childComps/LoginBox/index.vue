@@ -19,7 +19,7 @@ const $props = defineProps<Props>();
 const $audioStore = AudioStore();
 const $authStore = AuthStore();
 
-const form = ref({ ...userDefaultInfo, id: "123456", password: "lengyibai" });
+const form = ref({ ...userDefaultInfo(), id: "123456", password: "lengyibai" });
 const remember = ref(true);
 
 const local_user = localStorage.getItem(CONFIG.LOCAL_KEY.REMEMBER_USER);

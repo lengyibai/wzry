@@ -18,7 +18,7 @@ const $emit = defineEmits<Emits>();
 const $audioStore = AudioStore();
 
 /** 表单数据 */
-const form = reactive<User>({ ...userDefaultInfo });
+const form = reactive<User>({ ...userDefaultInfo() });
 /** 表单验证 */
 const form_verify = ref<boolean[]>([false, false, false]);
 

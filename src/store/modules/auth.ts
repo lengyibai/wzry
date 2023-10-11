@@ -7,7 +7,7 @@ import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
-import { $message, $tool } from "@/utils";
+import { $message } from "@/utils";
 import { CONFIG } from "@/config";
 
 /** @description 用户相关 */
@@ -19,7 +19,7 @@ const AuthStore = defineStore("auth", () => {
   /** 实时检测帐号状态 */
   let timer: NodeJS.Timer | undefined;
   /** 用户相关信息 */
-  const userInfo = ref<User>($tool.deepCopy(userDefaultInfo));
+  const userInfo = ref<User>(userDefaultInfo());
 
   /**
    * @description: 设置用户状态
@@ -93,7 +93,7 @@ const AuthStore = defineStore("auth", () => {
     router.replace("/login");
     userStatus.value = false;
     timer = undefined;
-    userInfo.value = $tool.deepCopy(userDefaultInfo);
+    userInfo.value = userDefaultInfo();
     $routerStore.removeRoutes();
     localStorage.removeItem(CONFIG.LOCAL_KEY.USER_INFO);
   };

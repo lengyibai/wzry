@@ -35,7 +35,7 @@ const show_tool = ref(false);
 /** 切换显示列表 */
 const toggle_show = ref(false);
 /** 英雄信息 */
-const hero_info = ref<Hero.Data>($tool.deepCopy(heroDefault));
+const hero_info = ref<Hero.Data>(heroDefault());
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {

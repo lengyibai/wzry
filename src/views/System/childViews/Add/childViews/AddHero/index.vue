@@ -6,7 +6,7 @@ import viewHide from "../../../../hooks/useViewHide";
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
-import { $loading, $message, $tool } from "@/utils";
+import { $loading, $message } from "@/utils";
 
 interface Emits {
   (e: "update:modelValue", v: boolean): void;
@@ -47,7 +47,7 @@ API_HERO.getHeroBasic().then((res) => {
 });
 
 //判断是否存在缓存
-form_data.value ??= $tool.deepCopy(heroDefault);
+form_data.value ??= heroDefault();
 
 /* 发布 */
 const onCommit = async () => {

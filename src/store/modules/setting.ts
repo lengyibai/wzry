@@ -12,7 +12,7 @@ import { CONFIG } from "@/config";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
-  const config = ref<SettingConfig>({ ...configDefault });
+  const config = ref<SettingConfig>({ ...configDefault() });
 
   /* 从本地获取配置进行合并 */
   const data = localStorage.getItem(CONFIG.LOCAL_KEY.CONFIG);

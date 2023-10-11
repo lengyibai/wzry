@@ -3,7 +3,6 @@ import { ref } from "vue";
 
 import { heroDefault } from "@/default";
 import { API_VOICE } from "@/api";
-import { $tool } from "@/utils";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
@@ -23,7 +22,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
   /** 技能选择触发的函数 */
   const skillSelectFn = ref<(index: number) => void>(() => {});
   /** 英雄信息 */
-  const hero_info = ref<Hero.Data>($tool.deepCopy(heroDefault));
+  const hero_info = ref<Hero.Data>(heroDefault());
 
   /** @description 设置英雄数据 */
   const setHeroInfo = (data: Hero.Data) => {

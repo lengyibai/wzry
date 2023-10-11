@@ -14,7 +14,7 @@ const $settingStore = SettingStore();
 const $cssVarStore = CssVarStore();
 
 /** 默认配置 */
-const default_config: SettingConfig = { ...configDefault };
+const default_config: SettingConfig = { ...configDefault() };
 
 /** 是否显示确认重置弹窗 */
 const show_confirm_reset = ref(false);
