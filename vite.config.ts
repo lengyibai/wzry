@@ -36,7 +36,6 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     port: 9527,
-    open: true,
     proxy: {
       "/api": {
         target: "https://lyb.cbb.plus",
