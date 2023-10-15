@@ -38,28 +38,30 @@ $bus.on("msg", (data) => {
 </script>
 
 <template>
-  <transition name="fade">
-    <div v-show="messages.length" class="k-message">
-      <transition-group name="message">
-        <div
-          v-for="(item, index) in messages"
-          :key="item.id"
-          class="message"
-          :class="item.type"
-          :style="{
-            transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
-          }"
-        >
-          <span :style="{ color: color[item.type] }" v-html="item.text"></span>
-          <div class="bg">
-            <img :src="imgs[item.type].left" />
-            <img :src="imgs[item.type].center" />
-            <img :src="imgs[item.type].right" />
+  <teleport to="body">
+    <transition name="fade">
+      <div v-show="messages.length" class="k-message">
+        <transition-group name="message">
+          <div
+            v-for="(item, index) in messages"
+            :key="item.id"
+            class="message"
+            :class="item.type"
+            :style="{
+              transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
+            }"
+          >
+            <span :style="{ color: color[item.type] }" v-html="item.text"></span>
+            <div class="bg">
+              <img :src="imgs[item.type].left" />
+              <img :src="imgs[item.type].center" />
+              <img :src="imgs[item.type].right" />
+            </div>
           </div>
-        </div>
-      </transition-group>
-    </div>
-  </transition>
+        </transition-group>
+      </div>
+    </transition>
+  </teleport>
 </template>
 
 <style scoped lang="less">

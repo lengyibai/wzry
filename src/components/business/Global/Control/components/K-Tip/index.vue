@@ -76,27 +76,29 @@ const handleClose = () => {
 </script>
 
 <template>
-  <div class="mask">
-    <transition :name="align">
-      <div v-show="show_tip" class="k-tip" :style="position[align]">
-        <div class="top">
-          <!-- 左上角标题 -->
-          <div class="title">{{ title }}</div>
+  <teleport to="body">
+    <div class="mask">
+      <transition :name="align">
+        <div v-show="show_tip" class="k-tip" :style="position[align]">
+          <div class="top">
+            <!-- 左上角标题 -->
+            <div class="title">{{ title }}</div>
 
-          <!-- 小兵 -->
-          <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+            <!-- 小兵 -->
+            <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+          </div>
+
+          <!-- 内容 -->
+          <div v-typewriterMultiple class="content">{{ text }}</div>
+
+          <!-- 按钮 -->
+          <div class="btns">
+            <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{ btnText }}</K-Button>
+          </div>
         </div>
-
-        <!-- 内容 -->
-        <div v-typewriterMultiple class="content">{{ text }}</div>
-
-        <!-- 按钮 -->
-        <div class="btns">
-          <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{ btnText }}</K-Button>
-        </div>
-      </div>
-    </transition>
-  </div>
+      </transition>
+    </div>
+  </teleport>
 </template>
 
 <style scoped lang="less">

@@ -15,21 +15,23 @@ $bus.on("loading", (v) => {
 </script>
 
 <template>
-  <transition name="fade">
-    <div v-show="show" class="k-loading flex">
-      <img :src="IMGBED + '/image/daji.png'" alt="妲己" @dragstart.prevent />
-      <span
-        v-for="(item, index) in color"
-        :key="index"
-        :style="{
-          backgroundColor: item,
-          animationDelay: index * 0.1 - 0.8 + 0.5 + 's',
-          boxShadow: '0 0 50px ' + item,
-        }"
-      ></span>
-      <h1>正在加载{{ text }}页面...</h1>
-    </div>
-  </transition>
+  <teleport to="body">
+    <transition name="fade">
+      <div v-show="show" class="k-loading flex">
+        <img :src="IMGBED + '/image/daji.png'" alt="妲己" @dragstart.prevent />
+        <span
+          v-for="(item, index) in color"
+          :key="index"
+          :style="{
+            backgroundColor: item,
+            animationDelay: index * 0.1 - 0.8 + 0.5 + 's',
+            boxShadow: '0 0 50px ' + item,
+          }"
+        ></span>
+        <h1>正在加载{{ text }}页面...</h1>
+      </div>
+    </transition>
+  </teleport>
 </template>
 
 <style scoped lang="less">

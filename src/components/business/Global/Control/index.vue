@@ -22,26 +22,24 @@ window.addEventListener("mouseup", (e) => {
 </script>
 
 <template>
-  <div class="GlobalSwitch">
-    <!-- loading -->
-    <K-Loading />
+  <!-- loading -->
+  <K-Loading />
 
-    <!-- 消息提醒 -->
-    <K-Message />
+  <!-- 消息提醒 -->
+  <K-Message />
 
-    <!-- NPC -->
-    <transition name="fade">
-      <K-Tip
-        v-if="show_tip"
-        v-model="show_tip"
-        v-model:btn="btn"
-        :text="content"
-        :align="align"
-        :no-tip-name="noTipName"
-        :title="title"
-        :btn-text="btn_text"
-        :btn-fn="btnFn"
-      />
-    </transition>
-  </div>
+  <!-- NPC -->
+  <transition name="fade">
+    <K-Tip
+      v-if="show_tip"
+      v-model="show_tip"
+      v-model:btn="btn"
+      :text="content"
+      :align="align"
+      :no-tip-name="noTipName"
+      :title="title"
+      :btn-text="btn_text"
+      :btn-fn="btnFn"
+    />
+  </transition>
 </template>
