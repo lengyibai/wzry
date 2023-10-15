@@ -1,29 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, watch } from "vue";
 
+import useTip from "./hooks/useTip";
+
+import { $bus } from "@/utils";
 import { SettingStore, AudioStore } from "@/store";
 
-interface Props {
-  /** 是否显示 */
-  modelValue: boolean;
-  /** 内容 */
-  text: string;
-  /** 左上角标题 */
-  title?: string;
-  /** 不再提示的属性名 */
-  noTipName?: TipKeys | string;
-  /** 对齐方式 */
-  align?: TipType;
-  /** 按钮文字 */
-  btnText?: string;
-  /** 点击按钮触发的函数 */
-  btnFn?: () => void;
-}
-const $props = withDefaults(defineProps<Props>(), {
-  align: "right-bottom",
-  title: "小贴士",
-  btnText: "确定",
-  btnFn: () => {},
+const { show_tip: show, content, align, noTipName, btnFn, tip } = useTip();
+
+$bus.on("tip", (data) => {
+  tip(data);
 });
 
 interface Emits {
@@ -38,10 +24,6 @@ const $audioStore = AudioStore();
 const IMGBED = window.IMGBED;
 
 const show_tip = ref(false);
-
-onMounted(() => {
-  show_tip.value = true;
-});
 
 const position = {
   "left-top": {
@@ -64,40 +46,50 @@ const position = {
 
 /* 不再提示 */
 const handleClose = () => {
-  $props.noTipName && $settingStore.setNoTip($props.noTipName as TipKeys);
-
-  $emit("update:modelValue", false);
+  noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
+  show.value = false;
   $audioStore.play("6xc6");
 
   setTimeout(() => {
-    $props.btnFn();
+    btnFn.value();
   }, 500);
 };
+
+watch(
+  () => show.value,
+  (v) => {
+    setTimeout(() => {
+      show_tip.value = v;
+    });
+  },
+);
 </script>
 
 <template>
   <teleport to="body">
-    <div class="mask">
-      <transition :name="align">
-        <div v-show="show_tip" class="k-tip" :style="position[align]">
-          <div class="top">
-            <!-- 左上角标题 -->
-            <div class="title">{{ title }}</div>
+    <transition name="fade">
+      <div v-if="show" class="mask">
+        <transition :name="align">
+          <div v-show="show_tip" class="k-tip" :style="position[align]">
+            <div class="top">
+              <!-- 左上角标题 -->
+              <div class="title">小贴士</div>
 
-            <!-- 小兵 -->
-            <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+              <!-- 小兵 -->
+              <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+            </div>
+
+            <!-- 内容 -->
+            <div v-typewriterMultiple class="content">{{ content }}</div>
+
+            <!-- 按钮 -->
+            <div class="btns">
+              <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">确定</K-Button>
+            </div>
           </div>
-
-          <!-- 内容 -->
-          <div v-typewriterMultiple class="content">{{ text }}</div>
-
-          <!-- 按钮 -->
-          <div class="btns">
-            <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">{{ btnText }}</K-Button>
-          </div>
-        </div>
-      </transition>
-    </div>
+        </transition>
+      </div>
+    </transition>
   </teleport>
 </template>
 
