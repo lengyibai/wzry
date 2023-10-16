@@ -1,29 +1,29 @@
 /* 鼠标样式 */
-.cursor-default {
+.global_cursor-default {
   cursor: url("@{IMGBED}/cursor/default.png"), auto;
 }
 
-.cursor-pointer {
+.global_cursor-pointer {
   cursor: url("@{IMGBED}/cursor/pointer.png"), auto;
 }
 
-.cursor-not-allowed {
+.global_cursor-not-allowed {
   cursor: url("@{IMGBED}/cursor/not-allowed.png"), auto;
 }
 
-.cursor-text {
+.global_cursor-text {
   cursor: url("@{IMGBED}/cursor/text.png"), auto;
 }
 
 /* 文字渐变 */
-.text-gradient-one {
+.global_text-gradient {
   background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
   background-clip: text;
   color: transparent;
 }
 
 /* 溢出省略号显示单行 */
-.lib-one-line {
+.global_one-line {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -31,49 +31,49 @@
 }
 
 /* 溢出省略号显示多行 */
-.lib-two-line,
-.lib-three-line {
+.global_two-line,
+.global_three-line {
   display: -webkit-box;
   overflow: hidden;
   word-break: break-all;
   -webkit-box-orient: vertical;
 }
 
-.lib-two-line {
+.global_two-line {
   -webkit-line-clamp: 2;
 }
 
-.lib-three-line {
+.global_three-line {
   -webkit-line-clamp: 3;
 }
 
-/* 布局 */
-.flex {
+/* 超级居中 */
+.global_flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /* 白色滚动条 */
-.scroll-white::-webkit-scrollbar {
+.global_scroll-white::-webkit-scrollbar {
   width: 3px;
   background: transparent;
 }
 
-.scroll-white::-webkit-scrollbar-thumb {
+.global_scroll-white::-webkit-scrollbar-thumb {
   background: var(--white-25);
 }
 
-.scroll-white::-webkit-scrollbar-thumb:hover {
+.global_scroll-white::-webkit-scrollbar-thumb:hover {
   background: rgb(255 255 255 / 35%);
 }
 
-.scroll-white::-webkit-scrollbar-thumb:active {
+.global_scroll-white::-webkit-scrollbar-thumb:active {
   background: var(--white-50);
 }
 
 /* 可点击按钮 */
-.lib-click {
+.global_click-btn {
   &:hover {
     opacity: 0.75;
   }

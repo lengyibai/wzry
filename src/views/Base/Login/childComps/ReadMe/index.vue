@@ -25,7 +25,7 @@ const handleClose = () => {
 
 <template>
   <div class="readme">
-    <i class="iconfont wzry-guanbi cursor-pointer" @click="handleClose"></i>
+    <i class="iconfont wzry-guanbi global_cursor-pointer" @click="handleClose"></i>
     <iframe
       class="iframe"
       :src="IMGBED + '/html/readme.html'"

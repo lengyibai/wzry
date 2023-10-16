@@ -17,7 +17,7 @@ const handleToggleMusic = (index: number) => {
 
 <template>
   <transition name="muisc-list">
-    <div v-show="$musicStore.show_list" class="muisc-list cursor-default">
+    <div v-show="$musicStore.show_list" class="muisc-list global_cursor-default">
       <!-- 顶部标题 -->
       <div class="top">
         <div class="title">播放列表</div>
@@ -29,7 +29,7 @@ const handleToggleMusic = (index: number) => {
         <div
           v-for="(item, index) in $musicStore.musics"
           :key="index"
-          class="card cursor-pointer"
+          class="card global_cursor-pointer"
           :class="{ active: index === $musicStore.bgmIndex }"
           @click="handleToggleMusic(index)"
         >

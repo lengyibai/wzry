@@ -7,7 +7,7 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="hero-skill-content-right scroll-white">
+  <div class="hero-skill-content-right global_scroll-white">
     <table class="table">
       <tr>
         <td></td>

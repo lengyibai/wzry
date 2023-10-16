@@ -105,7 +105,7 @@ onUnmounted(() => {
       v-for="(item, index) in active_skills"
       ref="skillImg"
       :key="index"
-      class="icon cursor-pointer"
+      class="icon global_cursor-pointer"
       :class="{ active: show }"
       :style="{
         'transition-delay': 0.05 * index + 's',
@@ -125,7 +125,7 @@ onUnmounted(() => {
     <i
       v-if="hero_data.skills!.length > 1"
       ref="toggleRef"
-      class="toggle iconfont wzry-qiehuan cursor-pointer"
+      class="toggle iconfont wzry-qiehuan global_cursor-pointer"
       :class="{ 'hide-bottom': !show }"
       title="切换技能"
       @click="handleToggleSkill"

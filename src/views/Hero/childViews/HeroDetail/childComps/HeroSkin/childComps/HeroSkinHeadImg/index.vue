@@ -152,14 +152,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="skinBoxRef" class="hero-skin-head-img flex" :class="{ into: show_skin_box }">
+  <div ref="skinBoxRef" class="hero-skin-head-img global_flex-center" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
-    <div ref="skinHeadRef" class="show-skin flex">
+    <div ref="skinHeadRef" class="show-skin global_flex-center">
       {{ is_into_drap ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
     <transition name="fade">
-      <div v-show="is_into_drap" class="show-skin flex clone"></div>
+      <div v-show="is_into_drap" class="show-skin global_flex-center clone"></div>
     </transition>
 
     <!--皮肤头像-->

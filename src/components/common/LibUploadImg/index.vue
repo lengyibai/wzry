@@ -41,7 +41,7 @@ const fn = (e: Event) => {
     <input v-show="false" id="file" type="file" @change="fn" />
     <img v-if="modelValue" class="img" :src="modelValue" @dragstart.prevent />
     <label v-if="modelValue" for="file" class="op">
-      <img src="./img/edit.svg" class="edit cursor-pointer" alt="" @dragstart.prevent />
+      <img src="./img/edit.svg" class="edit global_cursor-pointer" alt="" @dragstart.prevent />
     </label>
     <label v-if="!modelValue" for="file" class="add">
       <img src="./img/add.svg" alt="" @dragstart.prevent />

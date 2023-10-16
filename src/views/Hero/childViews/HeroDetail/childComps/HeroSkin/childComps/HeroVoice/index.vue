@@ -93,18 +93,18 @@ const onEnded = () => {
 </script>
 
 <template>
-  <div ref="voiceListRef" class="hero-voice scroll-white" @mousewheel.stop>
+  <div ref="voiceListRef" class="hero-voice global_scroll-white" @mousewheel.stop>
     <button
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"
       :key="index"
-      class="voice flex"
+      class="voice global_flex-center"
       :class="{ 'active-width': current_index === index }"
       @click="play(item.link, index)"
       @mouseenter="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text lib-one-line"> {{ item.text }}</span>
+        <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
         <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
         <i
           class="iconfont"

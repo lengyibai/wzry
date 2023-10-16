@@ -18,8 +18,8 @@ const cardImg = (src: string) => `${IMGBED}/image/card_${src}.jpg`;
 </script>
 
 <template>
-  <div class="k-manage cursor-pointer">
-    <div class="box flex">
+  <div class="k-manage global_cursor-pointer">
+    <div class="box global_flex-center">
       <i class="iconfont" :class="icon_type[type]" />
       <div class="title">{{ title }}</div>
     </div>

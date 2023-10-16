@@ -89,7 +89,7 @@ const handleClose = () => {
         <!-- 关闭 -->
         <img
           v-show="showClose"
-          class="close cursor-pointer"
+          class="close global_cursor-pointer"
           :src="IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="handleClose"

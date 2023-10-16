@@ -49,7 +49,7 @@ watch(
 
 <template>
   <div
-    class="lib-commit-btn cursor-pointer"
+    class="lib-commit-btn global_cursor-pointer"
     :style="{
       width: size,
       height: size,

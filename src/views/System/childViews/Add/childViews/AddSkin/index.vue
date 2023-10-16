@@ -140,7 +140,7 @@ setTimeout(async () => {
   >
     <transition-group name="fade">
       <!--左上角新增-->
-      <i key="LibSvg" class="add-one iconfont wzry-addcircle cursor-pointer" @click="handleAddOne" />
+      <i key="LibSvg" class="add-one iconfont wzry-addcircle global_cursor-pointer" @click="handleAddOne" />
 
       <!--指派英雄-->
       <SelectHero

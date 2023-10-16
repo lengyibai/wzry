@@ -60,7 +60,7 @@ const handleSelect = (v: { label: string; value: number | string }) => {
 </script>
 
 <template>
-  <div class="select-filter cursor-pointer" @click="handleShowList">
+  <div class="select-filter global_cursor-pointer" @click="handleShowList">
     <div class="title">{{ sort_text }}</div>
 
     <!-- 下拉图标 -->

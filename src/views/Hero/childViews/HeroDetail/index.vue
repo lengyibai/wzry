@@ -98,7 +98,7 @@ $audioStore.play("u4c5");
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <img
-      class="close cursor-pointer"
+      class="close global_cursor-pointer"
       :class="{ 'close-show': show_close }"
       src="https://lengyibai.gitee.io/wzry-material/image/back.png"
       alt="返回"

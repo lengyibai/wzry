@@ -30,7 +30,7 @@ const handleDel = () => $emit("del");
     <div
       v-for="(item, index) in skills"
       :key="index"
-      class="add-skill-basic cursor-pointer"
+      class="add-skill-basic global_cursor-pointer"
       :class="{ active: active(index) }"
       @click="handleSelectSkill(index)"
     >
@@ -41,7 +41,9 @@ const handleDel = () => $emit("del");
         <div class="types">
           <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
         </div>
-        <button v-show="active(index)" v-if="index !== 0" class="del lib-click" @click.stop="handleDel">删除</button>
+        <button v-show="active(index)" v-if="index !== 0" class="del global_click-btn" @click.stop="handleDel">
+          删除
+        </button>
         <div v-show="active(index)" class="editing">编辑中...</div>
       </div>
 

@@ -40,7 +40,7 @@ nextTick(() => {
 </script>
 
 <template>
-  <div class="equip-card cursor-pointer" @click="handleDetail">
+  <div class="equip-card global_cursor-pointer" @click="handleDetail">
     <!-- 选中圆圈 -->
     <transition name="border-fade">
       <div v-show="active_id === equip.id" class="border"></div>

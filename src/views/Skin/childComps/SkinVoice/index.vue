@@ -39,12 +39,12 @@ const onEnded = () => {
       v-for="(item, index) in voices"
       ref="voiceRef"
       :key="index"
-      class="voice flex"
+      class="voice global_flex-center"
       :class="{ 'active-width': current_index === index }"
       @click="handlePlay(item.link, index)"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text lib-one-line"> {{ item.text }}</span>
+        <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
         <marquee v-else class="text" scrollamount="12.5"> {{ item.text }}</marquee>
       </div>
     </button>

@@ -17,7 +17,7 @@ $bus.on("loading", (v) => {
 <template>
   <teleport to="body">
     <transition name="fade">
-      <div v-show="show" class="k-loading flex">
+      <div v-show="show" class="k-loading global_flex-center">
         <img :src="IMGBED + '/image/daji.png'" alt="妲己" @dragstart.prevent />
         <span
           v-for="(item, index) in color"

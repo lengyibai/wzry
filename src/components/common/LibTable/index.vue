@@ -4,7 +4,7 @@
       <th
         v-for="(item, index) in head"
         :key="index"
-        :class="{ 'cursor-pointer': sort.includes(item) }"
+        :class="{ 'global_cursor-pointer': sort.includes(item) }"
         @click="
           sortChange({
             key: head_key[index],

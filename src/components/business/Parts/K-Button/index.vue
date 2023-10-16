@@ -50,7 +50,7 @@ const btnIcon = (src: string) => `${IMGBED}/image/btn_${src}.png`;
       enable: $settingStore.config.particle,
     }"
     :class="type"
-    class="k-button flex"
+    class="k-button global_flex-center"
     :style="style1"
   >
     <span :style="style2">

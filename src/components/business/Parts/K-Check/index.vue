@@ -25,7 +25,7 @@ const toggle = () => {
 </script>
 
 <template>
-  <div class="k-check cursor-pointer" @click="toggle">
+  <div class="k-check global_cursor-pointer" @click="toggle">
     <img :class="{ checked: modelValue }" :src="icon" @dragstart.prevent />
     <span :class="{ active: modelValue }">{{ $t("开启") }}</span>
   </div>

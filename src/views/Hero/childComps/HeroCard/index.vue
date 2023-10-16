@@ -46,7 +46,7 @@ const handleViewClick = () => {
   <div
     v-maskGradient
     v-sweepLight
-    class="hero-card cursor-pointer"
+    class="hero-card global_cursor-pointer"
     :class="{ hide: show }"
     @mouseenter="show = true"
     @mouseleave="show = false"

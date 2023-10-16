@@ -29,9 +29,9 @@ const handleToggle = () => {
 </script>
 
 <template>
-  <div class="remember-pwd cursor-pointer" @click="handleToggle">
+  <div class="remember-pwd global_cursor-pointer" @click="handleToggle">
     <img :src="checkIcon" @dragstart.prevent />
-    <span class="lib-click">记住密码</span>
+    <span class="global_click-btn">记住密码</span>
   </div>
 </template>
 

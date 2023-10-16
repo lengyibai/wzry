@@ -67,7 +67,7 @@ const onClose = () => {
       @dragstart.prevent
     />
     <div class="user-card">
-      <div class="name lib-one-line">{{ userInfo.nickname }}</div>
+      <div class="name global_one-line">{{ userInfo.nickname }}</div>
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">

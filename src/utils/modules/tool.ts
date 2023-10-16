@@ -470,7 +470,7 @@ export class ScaleImage {
     //关闭按钮
     this.closeButton = document.createElement("button");
     this.closeButton.style.cssText = button_style;
-    this.closeButton.className += "cursor-pointer iconfont wzry-guanbi";
+    this.closeButton.className += "global_cursor-pointer iconfont wzry-guanbi";
     this.closeButton.style.top = "0";
     this.closeButton.style.right = "0";
     this.closeButton.style.transform = "translate(-100%, 100%) scale(0.75)";
@@ -478,7 +478,7 @@ export class ScaleImage {
     //放大按钮
     this.zoomInButton = document.createElement("button");
     this.zoomInButton.style.cssText = button_style;
-    this.zoomInButton.className += "cursor-pointer iconfont wzry-fangda";
+    this.zoomInButton.className += "global_cursor-pointer iconfont wzry-fangda";
     this.zoomInButton.style.bottom = "0";
     this.zoomInButton.style.left = "50%";
     this.zoomInButton.style.transform = "translate(-150%, -100%)";
@@ -486,7 +486,7 @@ export class ScaleImage {
     //缩小按钮
     this.zoomOutButton = document.createElement("button");
     this.zoomOutButton.style.cssText = button_style;
-    this.zoomOutButton.className += "cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.className += "global_cursor-pointer iconfont wzry-suoxiao";
     this.zoomOutButton.style.bottom = "0";
     this.zoomOutButton.style.left = "50%";
     this.zoomOutButton.style.transform = "translate(50%, -100%)";
