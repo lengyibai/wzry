@@ -9,9 +9,9 @@ import { $tool } from "@/utils";
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
   /** 进度条宽度设置 */
-  let progress_timer: NodeJS.Timer;
+  let progress_timer: NodeJS.Timeout;
   /** 工具显示设置 */
-  let tool_timer: NodeJS.Timer;
+  let tool_timer: NodeJS.Timeout;
   /** 音乐索引 */
   const bgmIndex = ref(0);
   /** 播放进度 */

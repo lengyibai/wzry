@@ -8,7 +8,7 @@ export default <T>($emit: Emits, key: string) => {
   /** 显示页面 */
   const show = ref(false);
   /** 自动保存计时器 */
-  const timer = ref<NodeJS.Timer>();
+  const timer = ref<NodeJS.Timeout>();
   /** 发布成功 */
   const finish = ref(false);
   /** 发布状态 */

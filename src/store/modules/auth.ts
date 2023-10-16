@@ -17,7 +17,7 @@ const AuthStore = defineStore("auth", () => {
   /** 用户状态 */
   const userStatus = ref(false);
   /** 实时检测帐号状态 */
-  let timer: NodeJS.Timer | undefined;
+  let timer: NodeJS.Timeout | undefined;
   /** 用户相关信息 */
   const userInfo = ref<User>(userDefaultInfo());
 
