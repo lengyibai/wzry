@@ -40,17 +40,17 @@ const handleBack = () => {
  * 进入方式，用于切换注册和登录组件
  * @param v 注册或登录
  */
-const onIntoType = (v: string) => {
-  is_reg.value = v;
+const onIntoType = (v: unknown) => {
+  is_reg.value = v as string;
 };
 
 /**
  * 注册成功
  * @param form 注册成功的表单
  */
-const onRegSuccess = (form: User) => {
+const onRegSuccess = (form: unknown) => {
   is_reg.value = "登录";
-  reg_form.value = form;
+  reg_form.value = form as User;
 };
 
 /* 视差动画(如果为移动端，则取消) */
