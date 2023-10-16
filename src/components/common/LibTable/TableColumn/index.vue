@@ -3,18 +3,13 @@
     <slot></slot>
   </td>
 </template>
-<script>
-export default {
-  name: "TableColumn",
-  $props: {
-    minWidth: {
-      type: String,
-      default: "0",
-    },
-    width: {
-      type: [String, Number],
-      default: "",
-    },
-  },
-};
+<script lang="ts" setup>
+interface Props {
+  minWidth: string;
+  width: string;
+}
+withDefaults(defineProps<Props>(), {
+  minWidth: "0",
+  width: "",
+});
 </script>
