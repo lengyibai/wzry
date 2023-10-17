@@ -19,8 +19,10 @@ const $props = defineProps<Props>();
 const $audioStore = AudioStore();
 const $authStore = AuthStore();
 
-const form = ref({ ...userDefaultInfo(), id: "123456", password: "lengyibai" });
+let is_login = false;
+
 const remember = ref(true);
+const form = ref({ ...userDefaultInfo(), id: "123456", password: "lengyibai" });
 
 const local_user = localStorage.getItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
 
@@ -37,6 +39,8 @@ const handleLogin = () => {
     return;
   }
 
+  if (is_login) return;
+  is_login = true;
   $authStore
     .login(form.value)
     .then(() => {
@@ -48,8 +52,8 @@ const handleLogin = () => {
         localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
       }
     })
-    .catch((err) => {
-      $message(err, "error");
+    .catch(() => {
+      is_login = false;
     });
 };
 </script>

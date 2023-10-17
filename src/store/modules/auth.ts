@@ -39,15 +39,21 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 登录 */
   const login = async (form: User) => {
-    const res = await API_USER.login(form).catch((err) => {
-      throw err;
-    });
-    userInfo.value = res;
-    userStatus.value = true;
-    window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
-    $routerStore.addRoutes(res.role);
-    router.push(HOME_URL);
-    watchStatus();
+    try {
+      const res = await API_USER.login(form);
+
+      userInfo.value = res;
+      userStatus.value = true;
+      window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
+      $routerStore.addRoutes(res.role);
+      watchStatus();
+      setTimeout(() => {
+        router.push(HOME_URL);
+      });
+    } catch (error) {
+      $message(error as string, "error");
+      return Promise.reject(error);
+    }
   };
 
   /** @description 自动登录 */
