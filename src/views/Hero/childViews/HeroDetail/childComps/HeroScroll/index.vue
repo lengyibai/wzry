@@ -26,18 +26,18 @@ const $emit = defineEmits<Emits>();
 
 const heroScrollRef = ref();
 
-const index = ref(0);
+let index = 0;
 
 const change = async (i: number) => {
-  index.value = i === -1 ? 0 : i;
+  index = i === -1 ? 0 : i;
   await nextTick();
   let direction = $props.direction === "y";
   try {
     heroScrollRef.value.style[direction ? "top" : "left"] =
-      -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
+      -index * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
   } catch (error) {}
   setTimeout(() => {
-    $emit("end", index.value + 1);
+    $emit("end", index + 1);
   }, $props.duration);
 };
 
@@ -70,16 +70,12 @@ onMounted(() => {
     $debounceDelay(() => {
       heroScrollRef.value.style.transition = `all ${$props.duration}ms`;
       if (!scroll) return;
-      $emit("start", index.value + 1);
+      $emit("start", index + 1);
       scroll = false;
-      -e.deltaY < 0 && index.value < sonCount - 1
-        ? index.value++
-        : -e.deltaY > 0 && index.value > 0
-        ? index.value--
-        : "";
+      -e.deltaY < 0 && index < sonCount - 1 ? index++ : -e.deltaY > 0 && index > 0 ? index-- : "";
       heroScrollRef.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
-      $emit("update:modelValue", index.value + 1);
+        -index * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
+      $emit("update:modelValue", index + 1);
       setTimeout(() => {
         scroll = true;
       }, $props.duration);
@@ -97,12 +93,12 @@ onMounted(() => {
     $debounceDelay(() => {
       heroScrollRef.value.style.transition = `all ${$props.duration}ms`;
       if (!scroll) return;
-      $emit("start", index.value + 1);
+      $emit("start", index + 1);
       scroll = false;
-      -status < 0 && index.value < sonCount - 1 ? index.value++ : -status > 0 && index.value > 0 ? index.value-- : "";
+      -status < 0 && index < sonCount - 1 ? index++ : -status > 0 && index > 0 ? index-- : "";
       heroScrollRef.value.style[direction ? "top" : "left"] =
-        -index.value * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
-      $emit("update:modelValue", index.value + 1);
+        -index * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
+      $emit("update:modelValue", index + 1);
       setTimeout(() => {
         scroll = true;
       }, $props.duration);

@@ -44,12 +44,13 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
+/** 当前展开的菜单 */
+let current_index = -1;
+
 /** 搜索值 */
 const search_value = ref("");
 /** 性别排序 */
 const gender = ref<Gender>(0);
-/** 当前展开的菜单 */
-const current_index = ref(-1);
 /** 记录展开状态 */
 const select_status = reactive([false, false, false, false, false]);
 
@@ -85,12 +86,12 @@ const handleSelectStatus = (i: number) => {
   select_status.fill(false);
 
   //如果重复点击一个，则不做处理
-  if (current_index.value === i) {
-    current_index.value = -1;
+  if (current_index === i) {
+    current_index = -1;
     return;
   }
   select_status[i] = true;
-  current_index.value = i;
+  current_index = i;
 };
 
 $bus.on("mouseup", (e) => {
@@ -98,7 +99,7 @@ $bus.on("mouseup", (e) => {
   //如果点击的不是下拉菜单，则隐藏
   if (!el.className.includes("select-filter")) {
     select_status.fill(false);
-    current_index.value = -1;
+    current_index = -1;
   }
 });
 

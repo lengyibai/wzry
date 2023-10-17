@@ -6,12 +6,12 @@ const VConsoleStore = defineStore("vConsole", () => {
   const vconsole = document.querySelector("#__vconsole") as HTMLElement;
 
   /** 显示 */
-  const status = ref(true);
+  let status = true;
 
   /** @description 控制显示或隐藏 */
   const setStatus = () => {
-    status.value = !status.value;
-    vconsole.style.display = status.value ? "block" : "none";
+    status = !status;
+    vconsole.style.display = status ? "block" : "none";
   };
   setStatus();
 

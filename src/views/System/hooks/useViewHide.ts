@@ -7,8 +7,6 @@ interface Emits {
 export default <T>($emit: Emits, key: string) => {
   /** 显示页面 */
   const show = ref(false);
-  /** 自动保存计时器 */
-  const timer = ref<NodeJS.Timeout>();
   /** 发布成功 */
   const finish = ref(false);
   /** 发布状态 */
@@ -26,7 +24,7 @@ export default <T>($emit: Emits, key: string) => {
     hero_id.value = data.hero_id;
   }
   /* 实时保存为草稿 */
-  timer.value = setInterval(() => {
+  const timer = setInterval(() => {
     localStorage.setItem(
       key,
       JSON.stringify({
@@ -38,7 +36,7 @@ export default <T>($emit: Emits, key: string) => {
 
   /* 关闭后操作 */
   const close = () => {
-    clearInterval(timer.value);
+    clearInterval(timer);
     show.value = false;
     setTimeout(() => {
       $emit("update:modelValue", false);
