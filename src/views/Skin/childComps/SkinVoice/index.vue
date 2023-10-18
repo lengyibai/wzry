@@ -5,6 +5,7 @@ interface Props {
   /** 语音列表 */
   voices: Hero.Voice[];
 }
+
 defineProps<Props>();
 
 const voiceRef = ref();

@@ -7,12 +7,11 @@ interface Props {
   /** 选项 */
   option: string[];
 }
-defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+defineProps<Props>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: number];
+}>();
 
 const $audioStore = AudioStore();
 

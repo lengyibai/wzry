@@ -2,6 +2,7 @@
 interface Props {
   data: Epigraph.Data;
 }
+
 defineProps<Props>();
 </script>
 

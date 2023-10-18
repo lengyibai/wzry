@@ -44,7 +44,11 @@ interface Props {
   /** 规定哪些列进行排序，从0开始 */
   sort: string[];
 }
+
 const $props = defineProps<Props>();
+const $emit = defineEmits<{
+  "sort-change": [v: [any, any]];
+}>();
 
 const head_key = ref<any[]>([]);
 const sort_id = ref<any[]>([]);
@@ -57,10 +61,6 @@ sort_id.value = $props.head.map(() => {
   return 0;
 });
 
-interface Emits {
-  (e: "sort-change", v: [any, any]): void;
-}
-const $emit = defineEmits<Emits>();
 const sortChange = ({ key, index, id, item }: any) => {
   if (!$props.sort.includes(item)) return;
   let status = id;

@@ -7,6 +7,7 @@ interface Props {
   /** 用于切换 */
   toggle: boolean;
 }
+
 const $props = defineProps<Props>();
 
 const index = ref(0);

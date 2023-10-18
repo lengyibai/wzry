@@ -10,10 +10,9 @@ import { API_USER } from "@/api";
 import { AudioStore } from "@/store";
 import { $message } from "@/utils";
 
-interface Emits {
-  (e: "success", form: User): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  success: [form: User];
+}>();
 
 const $audioStore = AudioStore();
 

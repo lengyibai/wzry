@@ -11,16 +11,15 @@ interface Props {
   /** 提交状态 */
   modelValue: number;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   size: "3.125rem",
   modelValue: 0,
 });
-
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-  (e: "commit"): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  commit: [];
+  "update:modelValue": [v: number];
+}>();
 
 const $audioStore = AudioStore();
 

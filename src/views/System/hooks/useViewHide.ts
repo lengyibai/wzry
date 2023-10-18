@@ -1,8 +1,6 @@
 import { ref } from "vue";
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
+type Emits = (e: "update:modelValue", v: boolean) => void;
 
 export default <T>($emit: Emits, key: string) => {
   /** 显示页面 */

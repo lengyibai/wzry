@@ -5,12 +5,11 @@ interface Props {
   /** 选择的值 */
   modelValue: Gender;
 }
-defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: Gender): void;
-}
-const $emit = defineEmits<Emits>();
+defineProps<Props>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: Gender];
+}>();
 
 const $audioStore = AudioStore();
 

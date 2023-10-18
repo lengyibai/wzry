@@ -9,15 +9,14 @@ interface Props {
   /** 图片链接，用于修改原有的图片 */
   link?: string;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   placeholder: "请输入",
   link: "",
 });
-
-interface Emits {
-  (e: "get-link", v: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "get-link": [v: string];
+}>();
 
 const $audioStore = AudioStore();
 

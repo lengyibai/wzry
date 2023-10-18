@@ -7,14 +7,13 @@ interface Props {
   /** 显示公告按钮 */
   notice?: boolean;
 }
+
 withDefaults(defineProps<Props>(), {
   notice: true,
 });
-
-interface Emits {
-  (e: "clicks", v: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  clicks: [v: string];
+}>();
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();

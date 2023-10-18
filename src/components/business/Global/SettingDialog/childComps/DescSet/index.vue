@@ -5,6 +5,7 @@ interface Props {
   /** 描述 */
   desc: string;
 }
+
 defineProps<Props>();
 
 /** 显示tip */

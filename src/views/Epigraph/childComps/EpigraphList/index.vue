@@ -9,6 +9,7 @@ interface Props {
   /** 铭文列表 */
   data: Epigraph.Data[];
 }
+
 const $props = defineProps<Props>();
 
 const epigraphListRef = ref();

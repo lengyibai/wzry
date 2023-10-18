@@ -7,6 +7,7 @@ interface Props {
   /** 小字 */
   desc: string;
 }
+
 defineProps<Props>();
 
 const $settingStore = SettingStore();

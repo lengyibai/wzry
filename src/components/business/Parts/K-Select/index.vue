@@ -9,14 +9,13 @@ interface Props {
   /** 选项文字 */
   option: string[];
 }
+
 withDefaults(defineProps<Props>(), {
   width: "6.25rem",
 });
-
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: number];
+}>();
 
 const $audioStore = AudioStore();
 

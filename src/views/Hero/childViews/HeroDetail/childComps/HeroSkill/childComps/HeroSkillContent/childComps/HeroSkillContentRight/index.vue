@@ -3,6 +3,7 @@ interface Props {
   /** 选中的技能 */
   activeSkill: Hero.Skill;
 }
+
 defineProps<Props>();
 </script>
 

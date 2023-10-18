@@ -11,10 +11,9 @@ import { HeroStore } from "@/store";
 import { $loading, $message } from "@/utils";
 import { CONFIG } from "@/config";
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: boolean];
+}>();
 
 const $heroStore = HeroStore();
 

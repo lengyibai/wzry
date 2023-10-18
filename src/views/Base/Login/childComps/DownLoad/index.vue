@@ -3,10 +3,9 @@ import { computed, watch } from "vue";
 
 import { useGetData } from "@/hooks";
 
-interface Emits {
-  (e: "update:finish", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:finish": [v: boolean];
+}>();
 
 const { total, index, type, finish } = useGetData();
 

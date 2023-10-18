@@ -12,12 +12,6 @@ $bus.on("tip", (data) => {
   tip(data);
 });
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-  (e: "update:btn", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
-
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 

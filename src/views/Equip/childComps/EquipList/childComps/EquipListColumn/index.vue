@@ -13,6 +13,7 @@ interface Props {
   /** 列索引 */
   index: number;
 }
+
 const $props = defineProps<Props>();
 
 const $equipStore = EquipStore();

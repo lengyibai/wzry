@@ -23,6 +23,7 @@ interface Props {
   /** 弹窗宽度 */
   width?: string;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   align: "flex-start",
   ctxWidth: "80%",
@@ -30,12 +31,10 @@ const $props = withDefaults(defineProps<Props>(), {
   showClose: true,
   width: "45rem",
 });
-
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-  (e: "close"): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  close: [];
+  "update:modelValue": [v: boolean];
+}>();
 
 const $audioStore = AudioStore();
 

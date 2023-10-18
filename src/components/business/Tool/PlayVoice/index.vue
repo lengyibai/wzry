@@ -5,13 +5,12 @@ interface Props {
   /** 语音链接 */
   link: string;
 }
-defineProps<Props>();
 
-interface Emits {
-  (e: "ended"): void;
-  (e: "info", voice: HTMLMediaElement): void;
-}
-const $emit = defineEmits<Emits>();
+defineProps<Props>();
+const $emit = defineEmits<{
+  ended: [];
+  info: [voice: HTMLMediaElement];
+}>();
 
 const voice = ref<HTMLMediaElement>();
 

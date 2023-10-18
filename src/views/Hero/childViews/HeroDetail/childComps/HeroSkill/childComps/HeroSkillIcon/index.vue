@@ -4,10 +4,9 @@ import { ref, computed, onUnmounted } from "vue";
 import { AudioStore, HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 
-interface Emits {
-  (e: "select-skill", skills: Hero.Skill): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "select-skill": [skills: Hero.Skill];
+}>();
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();

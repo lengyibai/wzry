@@ -11,6 +11,7 @@ interface Props {
   /** 显示右线 */
   rightLine?: boolean;
 }
+
 const $props = defineProps<Props>();
 
 const $equipStore = EquipStore();

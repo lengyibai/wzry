@@ -3,6 +3,7 @@ interface Props {
   /** 背景图 */
   bg: string;
 }
+
 defineProps<Props>();
 </script>
 

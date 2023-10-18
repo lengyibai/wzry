@@ -7,12 +7,12 @@ interface Props {
   /** 英雄数据 */
   data: Hero.Data;
 }
+
 defineProps<Props>();
 
-interface Emits {
-  (e: "view"): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  view: [];
+}>();
 
 const $heroStore = HeroStore();
 

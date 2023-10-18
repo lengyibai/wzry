@@ -32,9 +32,6 @@ interface Props {
   /** 步长 */
   step?: number;
 }
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-}
 
 const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
@@ -53,7 +50,9 @@ const $props = withDefaults(defineProps<Props>(), {
   showNum: true,
   step: 1,
 });
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: number];
+}>();
 
 const $audioStore = AudioStore();
 

@@ -6,10 +6,9 @@ import MuiscList from "../MuiscList/index.vue";
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 
-interface Emits {
-  (e: "toggle", v: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  toggle: [v: string];
+}>();
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();

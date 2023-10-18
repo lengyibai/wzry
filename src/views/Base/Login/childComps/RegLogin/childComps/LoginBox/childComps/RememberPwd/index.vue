@@ -7,12 +7,11 @@ interface Props {
   /** 是否选中 */
   modelValue: boolean | string;
 }
-const $props = defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $props = defineProps<Props>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: boolean];
+}>();
 
 const $audioStore = AudioStore();
 

@@ -4,10 +4,9 @@ import { ref } from "vue";
 import { API_USER } from "@/api";
 import { AudioStore } from "@/store";
 
-interface Emits {
-  (e: "into", v: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  into: [v: string];
+}>();
 
 const $audioStore = AudioStore();
 

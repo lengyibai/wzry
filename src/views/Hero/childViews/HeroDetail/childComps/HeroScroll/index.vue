@@ -11,18 +11,17 @@ interface Props {
   /** 纵向或横向 */
   direction?: string;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   duration: 750,
   direction: "y",
 });
-
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-  (e: "start", v: number): void;
-  (e: "end", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: number];
+  start: [v: number];
+  end: [v: number];
+}>();
 
 const heroScrollRef = ref();
 

@@ -10,6 +10,7 @@ interface Props {
   /** 技能信息 */
   skill: Hero.Skill;
 }
+
 const $props = defineProps<Props>();
 
 const $heroDetail = HeroDetailStore();

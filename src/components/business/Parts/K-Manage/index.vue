@@ -5,6 +5,7 @@ interface Props {
   /** 文字 */
   title: string;
 }
+
 defineProps<Props>();
 
 const icon_type: Record<string, string> = {

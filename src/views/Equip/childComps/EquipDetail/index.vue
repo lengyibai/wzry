@@ -5,6 +5,7 @@ interface Props {
   /** 是否显示 */
   show: boolean;
 }
+
 defineProps<Props>();
 
 /** css类名值 */

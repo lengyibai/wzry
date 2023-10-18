@@ -4,10 +4,9 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 
-interface Emits {
-  (e: "bg-imgs", data: number[]): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "bg-imgs": [data: number[]];
+}>();
 
 const $heroDetail = HeroDetailStore();
 

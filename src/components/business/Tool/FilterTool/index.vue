@@ -15,15 +15,14 @@ interface Props {
   /** 下拉状态 */
   status: boolean;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
 });
-
-interface Emits {
-  (e: "update:modelValue", v: string): void;
-  (e: "select", v: any): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  select: [v: any];
+  "update:modelValue": [v: string];
+}>();
 
 const $audioStore = AudioStore();
 

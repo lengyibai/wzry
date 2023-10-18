@@ -12,13 +12,12 @@ interface Props {
   /** 信息是否修改 */
   status: boolean;
 }
-defineProps<Props>();
 
-interface Emits {
-  (e: "close"): void;
-  (e: "update:status", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+defineProps<Props>();
+const $emit = defineEmits<{
+  close: [];
+  "update:status": [v: boolean];
+}>();
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();

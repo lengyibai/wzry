@@ -8,10 +8,9 @@ import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $loading, $message } from "@/utils";
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: boolean];
+}>();
 
 const $heroStore = HeroStore();
 

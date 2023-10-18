@@ -5,13 +5,12 @@ interface Props {
   /** 当前点击的技能 */
   activeIndex: number;
 }
-const $props = defineProps<Props>();
 
-interface Emits {
-  (e: "select", v: number): void;
-  (e: "del"): void;
-}
-const $emit = defineEmits<Emits>();
+const $props = defineProps<Props>();
+const $emit = defineEmits<{
+  select: [v: number];
+  del: [];
+}>();
 
 const IMGBED = window.IMGBED;
 

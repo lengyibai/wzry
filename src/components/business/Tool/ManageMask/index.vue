@@ -7,6 +7,7 @@ interface Props {
   /** 样式 */
   styles?: StyleValue;
 }
+
 defineProps<Props>();
 
 const contentRef = ref();

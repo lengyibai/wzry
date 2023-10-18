@@ -3,12 +3,11 @@ interface Props {
   /** 皮肤数据 */
   data: Hero.Skin;
 }
-const $props = defineProps<Props>();
 
-interface Emits {
-  (e: "showTool", v: { type: string; data: Hero.Skin }): void;
-}
-const $emit = defineEmits<Emits>();
+const $props = defineProps<Props>();
+const $emit = defineEmits<{
+  showTool: [v: { type: string; data: Hero.Skin }];
+}>();
 
 const IMGBED = window.IMGBED;
 

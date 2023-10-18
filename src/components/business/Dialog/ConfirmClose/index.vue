@@ -7,16 +7,15 @@ interface Props {
   /** 提示描述 */
   text?: string;
 }
+
 withDefaults(defineProps<Props>(), {
   text: "即将关闭，是否保存为草稿？",
 });
-
-interface Emits {
-  (e: "cancel"): void;
-  (e: "confirm"): void;
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  cancel: [];
+  confirm: [];
+  "update:modelValue": [v: boolean];
+}>();
 
 const $audioStore = AudioStore();
 

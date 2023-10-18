@@ -14,6 +14,7 @@ interface Props {
   /** 注册成功后用于填充 */
   userInfo: User;
 }
+
 const $props = defineProps<Props>();
 
 const $audioStore = AudioStore();

@@ -13,6 +13,7 @@ interface Props {
   /** 宽度 */
   width?: string;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   fontSize: "1.5rem",
   height: "3.5rem",

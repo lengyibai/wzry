@@ -5,12 +5,12 @@ interface Props {
   /** 是否显示 */
   modelValue?: boolean;
 }
+
 defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: boolean];
+}>();
 
 const $audioStore = AudioStore();
 

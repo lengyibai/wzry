@@ -9,6 +9,7 @@ interface Props {
   /** 必填 */
   required?: boolean;
 }
+
 withDefaults(defineProps<Props>(), {
   label: "",
   labelWidth: "9.375rem",

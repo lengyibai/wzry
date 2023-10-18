@@ -76,12 +76,6 @@ interface Props {
   /** 自定义表单验证 */
   validate?: (val: string) => string;
 }
-interface Emits {
-  (e: "update:modelValue", v: string | number): void;
-  (e: "blur", v: string | number): void;
-  (e: "focus"): void;
-  (e: "update:empty", v: boolean): void;
-}
 
 const $props = withDefaults(defineProps<Props>(), {
   width: "initial",
@@ -95,7 +89,12 @@ const $props = withDefaults(defineProps<Props>(), {
   type: "text",
   noSpecial: false,
 });
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: string | number];
+  blur: [v: string | number];
+  focus: [];
+  "update:empty": [v: boolean];
+}>();
 
 const $audioStore = AudioStore();
 

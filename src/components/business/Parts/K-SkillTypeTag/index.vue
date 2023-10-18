@@ -5,6 +5,7 @@ interface Props {
   /** 技能类型 */
   type: string;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   type: "",
 });

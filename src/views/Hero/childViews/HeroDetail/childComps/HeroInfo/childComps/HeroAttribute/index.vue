@@ -7,6 +7,7 @@ interface Props {
   /** 长度 */
   length: number;
 }
+
 defineProps<Props>();
 
 /** 精灵图坐标 */

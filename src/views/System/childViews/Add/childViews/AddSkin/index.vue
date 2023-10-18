@@ -7,10 +7,9 @@ import { API_HERO, API_SKIN } from "@/api";
 import { SkinStore } from "@/store";
 import { $message, $loading } from "@/utils";
 
-interface Emits {
-  (e: "update:modelValue", v: boolean): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: boolean];
+}>();
 
 const $skinStore = SkinStore();
 

@@ -7,14 +7,13 @@ interface Props {
   /** 用于不同列表的筛选类型 */
   type: "hero" | "skin" | "equip";
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   type: "hero",
 });
-
-interface Emits {
-  (e: "change"): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  change: [];
+}>();
 
 const $audioStore = AudioStore();
 const $skinStore = SkinStore();

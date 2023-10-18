@@ -9,14 +9,13 @@ interface Props {
   /** 图片比例 */
   type?: "width" | "height" | "square";
 }
+
 withDefaults(defineProps<Props>(), {
   type: "square",
 });
-
-interface Emits {
-  (e: "update:modelValue", link: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [link: string];
+}>();
 
 /** 是否显示添加链接弹窗 */
 const show_AddLink = ref(false);

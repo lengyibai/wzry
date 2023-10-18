@@ -5,6 +5,7 @@ interface Props {
   /** 用于皮肤类型切换动画 */
   toggle: boolean;
 }
+
 withDefaults(defineProps<Props>(), {
   skinTypeImg: "",
 });

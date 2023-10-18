@@ -24,16 +24,15 @@ interface Props {
   /** 输入框默认值 */
   value?: string | number | any[];
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   data: () => [],
   modelValue: "",
   value: "",
 });
-
-interface Emits {
-  (e: "update:modelValue", v: string | number | any[]): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: string | number | any[]];
+}>();
 
 const $audioStore = AudioStore();
 

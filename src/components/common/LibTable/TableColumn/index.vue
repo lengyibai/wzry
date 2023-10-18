@@ -8,6 +8,7 @@ interface Props {
   minWidth: string;
   width: string;
 }
+
 withDefaults(defineProps<Props>(), {
   minWidth: "0",
   width: "",

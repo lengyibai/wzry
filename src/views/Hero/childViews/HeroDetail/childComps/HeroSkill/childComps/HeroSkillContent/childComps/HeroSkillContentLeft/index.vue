@@ -7,6 +7,7 @@ interface Props {
   /** 是否为被动技能 */
   isPassive: boolean;
 }
+
 defineProps<Props>();
 
 const $heroDetail = HeroDetailStore();

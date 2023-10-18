@@ -5,6 +5,7 @@ interface Props {
   /** 皮肤名 */
   name: string;
 }
+
 defineProps<Props>();
 </script>
 

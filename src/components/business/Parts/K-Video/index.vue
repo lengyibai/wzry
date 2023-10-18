@@ -7,6 +7,7 @@ interface Props {
   /** 静音 */
   muted?: boolean;
 }
+
 defineProps<Props>();
 
 const videoPlayer = ref<HTMLVideoElement>();

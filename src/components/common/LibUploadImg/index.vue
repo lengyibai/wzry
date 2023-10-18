@@ -5,12 +5,12 @@ interface Props {
   /** 图片链接 */
   modelValue?: string;
 }
+
 defineProps<Props>();
 
-interface Emits {
-  (e: "update:modelValue", v: string): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: string];
+}>();
 
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];

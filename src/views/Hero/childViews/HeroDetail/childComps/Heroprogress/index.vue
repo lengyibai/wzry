@@ -5,12 +5,11 @@ interface Props {
   /** 滚动索引 */
   index: number;
 }
-defineProps<Props>();
 
-interface Emits {
-  (e: "toggle", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+defineProps<Props>();
+const $emit = defineEmits<{
+  toggle: [v: number];
+}>();
 
 const $audioStore = AudioStore();
 

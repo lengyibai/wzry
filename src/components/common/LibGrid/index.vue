@@ -8,16 +8,15 @@ interface Props {
   /** 上一次的滚动坐标 */
   scrollTop?: number;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   gap: "0px",
   scrollTop: 0,
 });
-
-interface Emits {
-  (e: "load-more"): void;
-  (e: "scroll", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "load-more": [];
+  scroll: [v: number];
+}>();
 
 /** 滚动状态下锁定 */
 let lock = false;

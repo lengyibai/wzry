@@ -23,12 +23,11 @@ interface Props {
   route: any;
   coord: number;
 }
-const $props = defineProps<Props>();
 
-interface Emits {
-  (e: "coord", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+const $props = defineProps<Props>();
+const $emit = defineEmits<{
+  coord: [v: number];
+}>();
 
 const $router = useRouter();
 const $route = useRoute();

@@ -7,6 +7,7 @@ interface Props {
   /** 隐藏和显示价格信息 */
   toggle: boolean;
 }
+
 const $props = defineProps<Props>();
 
 const IMGBED = window.IMGBED;

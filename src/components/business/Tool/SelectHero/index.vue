@@ -9,15 +9,14 @@ interface Props {
   /** 禁用 */
   disabled?: boolean;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   disabled: false,
 });
-
-interface Emits {
-  (e: "update:modelValue", v: number): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  "update:modelValue": [v: number];
+}>();
 
 /** 英雄名称 */
 const hero_name = ref("");
