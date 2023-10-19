@@ -18,7 +18,7 @@ const $emit = defineEmits<{
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
-const toolbarRef = ref();
+const toolbarRef = ref<HTMLElement>();
 
 /** 静音 */
 const muted = computed(() => $settingStore.config.muted);

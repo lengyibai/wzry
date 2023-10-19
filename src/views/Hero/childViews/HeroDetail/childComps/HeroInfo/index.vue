@@ -14,8 +14,8 @@ const $heroDetail = HeroDetailStore();
 /** 通过设备来显示不同的提示 */
 let tip_text = "0vk2";
 
-const relationshipRef = ref();
-const downRef = ref();
+const relationshipRef = ref<InstanceType<typeof HeroRelationship>>();
+const downRef = ref<HTMLElement>();
 
 /** 控制页面元素显示 */
 const into = ref(false);
@@ -33,7 +33,8 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
+      if (!relationshipRef.value?.el || !downRef.value) return;
+      const focusRelationship = new $tool.FocusElement(relationshipRef.value?.el);
       const focusdown = new $tool.FocusElement(downRef.value);
 
       if ($tool.isPhone) {

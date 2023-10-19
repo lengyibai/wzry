@@ -13,8 +13,8 @@ defineOptions({
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
-const equipListRef = ref();
-const equipMainRef = ref();
+const equipListRef = ref<HTMLElement>();
+const equipMainRef = ref<HTMLElement>();
 
 /** 显示装备列表 */
 const show = ref(false);
@@ -22,7 +22,7 @@ const show = ref(false);
 /* 点击筛选后触发返回顶部 */
 const onChangeFilter = () => {
   setTimeout(() => {
-    equipMainRef.value.scroll({ top: 0 });
+    equipMainRef.value?.scroll({ top: 0 });
   }, 450);
 };
 

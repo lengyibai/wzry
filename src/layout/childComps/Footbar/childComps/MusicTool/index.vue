@@ -14,10 +14,10 @@ const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $deviceStore = DeviceStore();
 
-const musicToolRef = ref();
+const musicToolRef = ref<HTMLElement>();
 
 nextTick(() => {
-  if ($tool.isPhone || !$settingStore.config.music) return;
+  if ($tool.isPhone || !$settingStore.config.music || !musicToolRef.value) return;
   const musicToolFocus = new $tool.FocusElement(musicToolRef.value);
   $tip({
     text: "58mz",

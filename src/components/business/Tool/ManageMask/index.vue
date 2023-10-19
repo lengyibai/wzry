@@ -10,7 +10,7 @@ interface Props {
 
 defineProps<Props>();
 
-const contentRef = ref();
+const contentRef = ref<HTMLElement>();
 
 defineExpose({
   el: contentRef,

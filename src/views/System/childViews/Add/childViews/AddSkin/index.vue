@@ -6,6 +6,7 @@ import viewHide from "../../../../hooks/useViewHide";
 import { API_HERO, API_SKIN } from "@/api";
 import { SkinStore } from "@/store";
 import { $message, $loading } from "@/utils";
+import ManageMask from "@/components/business/Tool/ManageMask/index.vue";
 
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
@@ -24,7 +25,7 @@ form_data.value ??= [];
 /** 英雄皮肤列表 */
 let skins: Hero.Skin[] = [];
 
-const scrollBoxRef = ref();
+const scrollBoxRef = ref<InstanceType<typeof ManageMask>>();
 
 /** 当前英雄的皮肤数量 */
 let skin_num = ref(0);
@@ -70,6 +71,7 @@ const handleAddOne = () => {
 
     //滚动到底部
     setTimeout(() => {
+      if (!(scrollBoxRef.value && scrollBoxRef.value.el)) return;
       scrollBoxRef.value.el.scroll({
         top: scrollBoxRef.value.el.scrollHeight,
         behavior: "smooth",

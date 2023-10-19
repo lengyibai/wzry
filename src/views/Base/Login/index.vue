@@ -16,7 +16,7 @@ const $settingStore = SettingStore();
 
 const IMGBED = window.IMGBED;
 
-const toolbarRef = ref();
+const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
 /** 显示公告 */
 const show_notice = ref(true);
@@ -45,6 +45,7 @@ const onToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const onCloseNotice = () => {
+  if (!(toolbarRef.value && toolbarRef.value.el)) return;
   const toolbarFocus = new $tool.FocusElement(toolbarRef.value.el);
 
   $tip({

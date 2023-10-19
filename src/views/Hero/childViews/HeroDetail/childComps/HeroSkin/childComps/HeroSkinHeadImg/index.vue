@@ -10,9 +10,9 @@ const $emit = defineEmits<{
 
 const $heroDetail = HeroDetailStore();
 
-const skinRef = ref();
-const skinHeadRef = ref();
-const skinBoxRef = ref();
+const skinRef = ref<HTMLElement[]>();
+const skinHeadRef = ref<HTMLElement>();
+const skinBoxRef = ref<HTMLElement>();
 
 /** 用于切换背景 */
 let toggle = true;
@@ -62,7 +62,7 @@ const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolea
   data.style.zIndex = "2";
 
   //offset用来判断是移动触发的还是松开触发的
-  if (offset) {
+  if (offset && skinHeadRef.value) {
     const o = offset as { x: number; y: number };
     initPosition();
     //判断头像是否进入头像框可吸附范围
@@ -111,10 +111,12 @@ $heroDetail.setScollFn("skin", (index) => {
       setTimeout(() => {
         is_into_drap.value = true;
         nextTick(() => {
+          if (!skinRef.value) return;
           handleDrag(skinRef.value[0], false, 0);
           setPosition(skinRef.value[0]);
 
           setTimeout(() => {
+            if (!skinBoxRef.value) return;
             const skinHeadFocus = new $tool.FocusElement(skinBoxRef.value);
 
             const a = () => {

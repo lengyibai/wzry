@@ -5,7 +5,7 @@ import { HeroDetailStore } from "@/store";
 
 const $heroDetail = HeroDetailStore();
 
-const infoRef = ref();
+const infoRef = ref<HTMLElement[]>();
 const hero_data = ref<any>([]);
 
 watchEffect(() => {
@@ -24,7 +24,7 @@ watchEffect(() => {
 onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(() => {
-    infoRef.value.forEach((item: HTMLElement, index: number) => {
+    infoRef.value?.forEach((item: HTMLElement, index: number) => {
       item.style.transitionDelay = `${index / 14}s`;
       setTimeout(() => {
         item.style.transform = "translateX(0)";

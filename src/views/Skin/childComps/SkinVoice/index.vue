@@ -8,7 +8,7 @@ interface Props {
 
 defineProps<Props>();
 
-const voiceRef = ref();
+const voiceRef = ref<HTMLElement>();
 
 /** 播放链接 */
 const play_link = ref("");

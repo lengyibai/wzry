@@ -22,7 +22,7 @@ const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = view
   "add_skill_list",
 );
 
-const leftRef = ref();
+const leftRef = ref<HTMLElement>();
 
 /** 选择的技能效果 */
 const skill_effect = ref("");

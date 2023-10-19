@@ -38,7 +38,7 @@ const IMGBED = window.IMGBED;
 /** 设置子菜单与上级菜单水平间隔 */
 const textStyle = `padding-left: ${0.5 * $props.route.zIndex}em !important;`;
 
-const menuItemRef = ref();
+const menuItemRef = ref<HTMLElement>();
 
 /** 用于父级菜单专属 */
 const show = ref(false);
@@ -50,6 +50,7 @@ show.value = $route.path.includes($props.route.path);
 
 nextTick(() => {
   setTimeout(() => {
+    if (!show.value || !menuItemRef.value) return;
     show.value && $emit("coord", menuItemRef.value.getBoundingClientRect().top);
   }, 100);
 });

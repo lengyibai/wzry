@@ -16,7 +16,7 @@ defineOptions({
 const $skinStore = SkinStore();
 const $audioStore = AudioStore();
 
-const skinListRef = ref();
+const skinListRef = ref<HTMLElement>();
 
 /** 一行显示的数目 */
 const count = ref(0);

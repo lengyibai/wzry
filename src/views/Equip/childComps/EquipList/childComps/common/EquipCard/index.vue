@@ -17,7 +17,7 @@ const $props = defineProps<Props>();
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
-const iconRef = ref();
+const iconRef = ref<HTMLElement>();
 
 /** 获取点击的装备id */
 const active_id = computed(() => $equipStore.active_id);

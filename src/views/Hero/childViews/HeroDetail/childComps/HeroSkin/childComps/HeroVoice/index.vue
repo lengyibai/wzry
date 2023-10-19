@@ -6,8 +6,8 @@ import { HeroDetailStore, AudioStore } from "@/store";
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
 
-const voiceRef = ref();
-const voiceListRef = ref();
+const voiceRef = ref<HTMLElement[]>();
+const voiceListRef = ref<HTMLElement>();
 
 /** 播放链接 */
 const play_link = ref("");

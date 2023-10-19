@@ -12,9 +12,9 @@ const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $deviceStore = DeviceStore();
 
-const lineRef = ref();
+const lineRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
-const footbarRef = ref();
+const footbarRef = ref<HTMLElement>();
 
 /** 隐藏工具栏定时器 */
 let timer: NodeJS.Timeout;
@@ -33,7 +33,7 @@ nextTick(() => {
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {
-  if (!enable_music.value) return;
+  if (!enable_music.value || !footbarRef.value) return;
 
   //计算出小数
   progress.value = parseFloat(((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2));
@@ -43,7 +43,7 @@ const handleSetProgress = (e: MouseEvent) => {
 
 /* 悬浮移动竖线 */
 const handleMoveLineRef = (e: MouseEvent) => {
-  if (!enable_music.value || !music_progress.value) return;
+  if (!enable_music.value || !music_progress.value || !footbarRef.value || !lineRef.value) return;
 
   //设置底部刻度线x坐标
   lineRef.value.style.left =

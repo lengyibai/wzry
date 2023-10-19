@@ -21,7 +21,7 @@ const $emit = defineEmits<{
 /** 滚动状态下锁定 */
 let lock = false;
 
-const LibGridRef = ref();
+const LibGridRef = ref<HTMLElement>();
 
 let childrens = ref<HTMLElement[]>([]);
 

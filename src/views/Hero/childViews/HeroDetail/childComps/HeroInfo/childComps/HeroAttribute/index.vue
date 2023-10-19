@@ -34,9 +34,10 @@ const text: Hero.SkillKey = {
   difficulty: "上手难度",
 };
 /** 属性元素 */
-const attributeRef = ref();
+const attributeRef = ref<HTMLElement>();
 
 onMounted(() => {
+  if (!attributeRef.value) return;
   attributeRef.value.style.width = "100%";
 });
 </script>

@@ -12,7 +12,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const epigraphListRef = ref();
+const epigraphListRef = ref<HTMLElement>();
 
 /** 淡入显示列表 */
 const show = ref(false);

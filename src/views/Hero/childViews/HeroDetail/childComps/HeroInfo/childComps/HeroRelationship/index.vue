@@ -8,7 +8,7 @@ import { HeroDetailStore } from "@/store";
 const $heroDetail = HeroDetailStore();
 const $router = useRouter();
 
-const relationshipRef = ref();
+const relationshipRef = ref<HTMLElement>();
 
 /* 切换英雄信息 */
 const toggleHero = (id: number) => {

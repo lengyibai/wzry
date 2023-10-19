@@ -14,7 +14,7 @@ const $audioStore = AudioStore();
 /** 主副技能索引 */
 let deputy_index = 0;
 
-const toggleRef = ref();
+const toggleRef = ref<HTMLElement>();
 
 /** 处于展示的技能索引 */
 const current_index = ref(0);
@@ -41,6 +41,7 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   const length = hero_data.value.skills!.length;
   if (length > 1) {
     setTimeout(() => {
+      if (!toggleRef.value) return;
       const toggleFocus = new $tool.FocusElement(toggleRef.value);
 
       $tip({
