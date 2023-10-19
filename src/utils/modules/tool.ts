@@ -435,7 +435,7 @@ export class ScaleImage {
       align-items: center;
       justify-content: center;
       transition: all 0.25s;
-      z-index: 9;
+      z-index: var(--z-index-view-img);
       opacity: 0;
     `;
     document.body.appendChild(this.overlay);
