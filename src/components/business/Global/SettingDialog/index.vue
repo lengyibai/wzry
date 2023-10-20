@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import DescSet from "./childComps/DescSet/index.vue";
-
+import DescSet from "@/components/subitem/DescSet/index.vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
