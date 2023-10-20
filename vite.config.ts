@@ -13,7 +13,7 @@ export default defineConfig({
     vue(),
     Components({
       dts: "src/typings/components.d.ts",
-      dirs: ["src/components"],
+      dirs: ["src/components/business", "src/components/common"],
     }),
     legacyPlugin({
       targets: ["last 2 versions", "safari >=7", "chrome >= 30"],
