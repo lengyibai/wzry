@@ -1,20 +1,14 @@
 import { API_HERO } from "@/api";
 import { get } from "@/api/helper/transfer";
 
-/**
- * @description 获取语音列表
- * @param hero_name 英雄名
- */
+/** @description 获取语音列表 */
 export const getVoice = async (hero_name: string) => {
   const pinyin = await API_HERO.getHeroPinyin(hero_name);
-  return Promise.resolve(get<General[]>({ name: "voice_" + pinyin }));
+  const voices = get<General[]>({ name: "voice_" + pinyin });
+  return Promise.resolve(voices);
 };
 
-/**
- * @description 获取指定皮肤语音
- * @param hero_name 英雄名
- * @param skin_name 皮肤名
- */
+/** @description 获取指定皮肤语音 */
 export const getSkinVoice = async (hero_name: string, skin_name: string) => {
   const pinyin = await API_HERO.getHeroPinyin(hero_name);
 
