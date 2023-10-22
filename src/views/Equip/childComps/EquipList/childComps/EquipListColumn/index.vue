@@ -9,7 +9,12 @@ interface Props {
   /** 装备列表 */
   equipList: Equip.Data[];
   /** 线条数据 */
-  lineData: any[];
+  lineData: {
+    /** 装备id */
+    id: number;
+    /** 可合成的装备 */
+    to?: General[];
+  }[];
   /** 列索引 */
   index: number;
 }

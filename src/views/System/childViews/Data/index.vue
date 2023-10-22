@@ -5,6 +5,20 @@ import { API_DATA } from "@/api";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
 import { $message, $tool } from "@/utils";
 import { CONFIG } from "@/config";
+import { ResultData } from "@/api/interface";
+
+interface TableData {
+  /** 数据名 */
+  name: string;
+  /** 数据键名 */
+  key: string;
+  /** 数据 */
+  data: unknown[];
+  /** 检查状态 */
+  status: string;
+  /** 数据量 */
+  length: number;
+}
 
 defineOptions({
   name: "database",
@@ -39,7 +53,7 @@ const keywords: [string, string][] = [
   [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
 ];
 
-const requests: Record<string, () => Promise<any>> = {
+const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
   [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
   [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
   [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
@@ -67,14 +81,14 @@ const requests: Record<string, () => Promise<any>> = {
 /** 更新限制 */
 let update_status = true;
 /** 数据缓存 */
-let data_cache: any[] = [];
+let data_cache: TableData[] = [];
 /** 替换的数据 */
-let replace_data: any = {};
+let replace_data: TableData;
 
 /** 显示确认关闭弹窗 */
 const show_ConfirmClose = ref(false);
 /** 表格数据 */
-const table_data = ref<any[]>([]);
+const table_data = ref<TableData[]>([]);
 
 /* 加载数据 */
 const load = async () => {
@@ -95,12 +109,12 @@ const load = async () => {
     setStatus(data, v);
   }
 
-  data_cache = $tool.deepCopy<any[]>(table_data.value);
+  data_cache = $tool.deepCopy<TableData[]>(table_data.value);
 };
 load();
 
 /* 比对远程数据设置状态 */
-const setStatus = (data: any, v: any) => {
+const setStatus = (data: TableData, v: unknown[]) => {
   data.data = JSON.parse(localStorage.getItem(data.key) as string) || [];
 
   if (JSON.stringify(v) === JSON.stringify(data.data)) {
@@ -116,7 +130,7 @@ const setStatus = (data: any, v: any) => {
 const play = () => $audioStore.play();
 
 /* 更新数据 */
-const updateData = (key: string, data: any) => {
+const updateData = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data));
 
   //如果为皮肤/英雄，则重新获取皮肤/英雄列表
@@ -128,7 +142,7 @@ const updateData = (key: string, data: any) => {
 };
 
 /* 检查更新 */
-const handleCheck = async (data: any) => {
+const handleCheck = async (data: TableData) => {
   if (update_status) {
     data.status = "正在检查...";
     const v = (await requests[data.key]()).data;
@@ -147,7 +161,7 @@ const handleCheck = async (data: any) => {
 };
 
 /* 更新指定 */
-const handleUpdate = async (data: any) => {
+const handleUpdate = async (data: TableData) => {
   const v = (await requests[data.key]()).data;
   updateData(data.key, v);
   data.data = v;
@@ -155,13 +169,13 @@ const handleUpdate = async (data: any) => {
 };
 
 /* 强制覆盖 */
-const handleReplace = (data: any) => {
+const handleReplace = (data: TableData) => {
   replace_data = data;
   show_ConfirmClose.value = true;
 };
 
 /* 导出 */
-const handleExport = (data: any) => {
+const handleExport = (data: TableData) => {
   $tool.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
@@ -199,7 +213,7 @@ onActivated(() => {
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
-        <TableColumn min-width="10rem">{{ data.data.length }}</TableColumn>
+        <TableColumn min-width="10rem">{{ data.length }}</TableColumn>
         <TableColumn min-width="12.5rem">{{ data.status }}</TableColumn>
         <TableColumn min-width="20.5rem">
           <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">检查更新</button>

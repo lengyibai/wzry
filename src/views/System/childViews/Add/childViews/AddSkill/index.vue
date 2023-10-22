@@ -162,8 +162,9 @@ const onSelectSkill = (index: number) => {
 };
 
 /* 选择效果后触发 */
-const onSelectEffect = (v: string | number | any[]) => {
-  activeSkill().effect![effectIndex.value].type = v as string;
+const onSelectEffect = (v: string | number | unknown[]) => {
+  if (typeof v !== "string") return;
+  activeSkill().effect![effectIndex.value].type = v;
 };
 
 /* 添加一行 */

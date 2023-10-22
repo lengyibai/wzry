@@ -6,7 +6,7 @@ import { HeroDetailStore } from "@/store";
 const $heroDetail = HeroDetailStore();
 
 const infoRef = ref<HTMLElement[]>();
-const hero_data = ref<any>([]);
+const hero_data = ref<unknown>([]);
 
 watchEffect(() => {
   const hero = $heroDetail.hero_info;

@@ -1,4 +1,4 @@
-import type { App } from "vue";
+import type { App, Directive } from "vue";
 
 import drag from "./modules/drag";
 import focus from "./modules/focus";
@@ -9,7 +9,7 @@ import textHoverColor from "./modules/textHoverColor";
 import typewriterMultiple from "./modules/typewriterMultiple";
 import typewriterSingle from "./modules/typewriterSingle";
 
-const directivesList: any = {
+const directivesList: Record<string, Directive> = {
   drag,
   focus,
   maskGradient,

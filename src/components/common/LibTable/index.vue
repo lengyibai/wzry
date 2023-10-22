@@ -32,7 +32,7 @@
     </tbody>
   </table>
 </template>
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends Record<string, any>">
 import { ref } from "vue";
 
 import TableSort from "./childComps/table-sort/index.vue";
@@ -40,18 +40,18 @@ interface Props {
   /** 表头名 */
   head: string[];
   /** 表格数据 */
-  data: any[];
+  data: T[];
   /** 规定哪些列进行排序，从0开始 */
   sort: string[];
 }
 
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
-  "sort-change": [v: [any, any]];
+  "sort-change": [v: [string, number]];
 }>();
 
-const head_key = ref<any[]>([]);
-const sort_id = ref<any[]>([]);
+const head_key = ref<string[]>([]);
+const sort_id = ref<number[]>([]);
 
 head_key.value = $props.data.map((item, index) => {
   return Object.keys(item)[index];
@@ -61,7 +61,7 @@ sort_id.value = $props.head.map(() => {
   return 0;
 });
 
-const sortChange = ({ key, index, id, item }: any) => {
+const sortChange = ({ key, index, id, item }: { key: string; index: number; id: number; item: string }) => {
   if (!$props.sort.includes(item)) return;
   let status = id;
   if (status === 2) {
@@ -70,8 +70,9 @@ const sortChange = ({ key, index, id, item }: any) => {
   }
   status += 1;
   sort_id.value[index] = status;
+
   $emit("sort-change", [key, status]);
-  sort_id.value = sort_id.value.map((item: any, i: any) => {
+  sort_id.value = sort_id.value.map((item, i) => {
     return index === i ? item : 0;
   });
 };

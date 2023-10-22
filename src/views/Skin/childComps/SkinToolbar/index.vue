@@ -55,18 +55,18 @@ const gender = ref<Gender>(0);
 const select_status = reactive([false, false, false, false, false]);
 
 /* 价格排序 */
-const onPriceSort = (v: string) => {
-  $skinStore.sortPrice(v);
+const onPriceSort = (v: string | number) => {
+  $skinStore.sortPrice(v as string);
 };
 
 /* 皮肤类型筛选 */
-const onTypeFilter = (v: string) => {
-  $skinStore.filterType(v);
+const onTypeFilter = (v: string | number) => {
+  $skinStore.filterType(v as string);
 };
 
 /* 正序/倒序 */
-const onSortType = (v: string) => {
-  $skinStore.sortType(v);
+const onSortType = (v: string | number) => {
+  $skinStore.sortType(v as string);
 };
 
 /* 设置性别 */

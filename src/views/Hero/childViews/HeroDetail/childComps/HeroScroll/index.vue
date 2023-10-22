@@ -41,7 +41,7 @@ const change = async (i: number) => {
 };
 
 const $debounceDelay = (() => {
-  let timer: any = null;
+  let timer: NodeJS.Timeout;
   return (callback = () => {}, wait = 800) => {
     timer && clearTimeout(timer);
     timer = setTimeout(callback, wait);

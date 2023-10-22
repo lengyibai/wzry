@@ -34,8 +34,9 @@ API_HERO.getHeroBasic().then((res) => {
 });
 
 /* 选择英雄后触发 */
-const selectHero = (id: string | number | any[]) => {
-  $emit("update:modelValue", id as number);
+const selectHero = (id: string | number | unknown[]) => {
+  if (typeof id !== "number") return;
+  $emit("update:modelValue", id);
 };
 
 watch(

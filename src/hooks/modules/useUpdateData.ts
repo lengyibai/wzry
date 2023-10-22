@@ -1,4 +1,5 @@
 import { API_DATA, API_HERO } from "@/api";
+import { ResultData } from "@/api/interface";
 
 const useUpdateData = () => {
   const keywords: [string, string][] = [
@@ -26,7 +27,7 @@ const useUpdateData = () => {
     ["racetype", "种族"],
   ];
 
-  const requests: Record<string, () => Promise<any>> = {
+  const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
     herobasic: API_DATA.HeroBasic,
     heroimg: API_DATA.HeroImg,
     herodata: API_DATA.Herodata,
@@ -54,13 +55,13 @@ const useUpdateData = () => {
   /** 英雄基础列表 */
   let hero_list: Hero.Basic[] = [];
   /** 需要更新的语音 */
-  const need_update_data: Record<string, any[]> = {
+  const need_update_data: Record<string, unknown[]> = {
     names: [],
     keys: [],
     data: [],
   };
   /** 需要更新的数据 */
-  const need_update_voice: Record<string, any[]> = {
+  const need_update_voice: Record<string, unknown[]> = {
     names: [],
     keys: [],
     data: [],
@@ -106,6 +107,7 @@ const useUpdateData = () => {
     //更新覆盖数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
+      if (typeof key !== "string") return;
       localStorage.setItem(key, JSON.stringify(need_update_data.data[i]));
     }
     for (let i = 0; i < need_update_voice.keys.length; i++) {

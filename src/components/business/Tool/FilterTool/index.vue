@@ -20,7 +20,7 @@ const $props = withDefaults(defineProps<Props>(), {
   listHeight: "initial",
 });
 const $emit = defineEmits<{
-  select: [v: any];
+  select: [v: string | number];
   "update:modelValue": [v: string];
 }>();
 
@@ -50,7 +50,7 @@ const handleEnterItem = (v: Data) => {
 };
 
 /* 选择的值 */
-const handleSelect = (v: { label: string; value: number | string }) => {
+const handleSelect = (v: Data) => {
   current_value.value = v.label;
   sort_text.value = v.label;
   $emit("select", v.value);

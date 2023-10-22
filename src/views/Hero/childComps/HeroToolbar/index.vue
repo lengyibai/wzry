@@ -60,28 +60,28 @@ API_HERO.getCampType().then((res) => {
 });
 
 /* 阵营筛选 */
-const onSelectCamp = (v: string) => {
-  $heroStore.filterCamp(v);
+const onSelectCamp = (v: string | number) => {
+  $heroStore.filterCamp(v as string);
 };
 
 /* 属性筛选 */
-const onSelectAttr = (v: string) => {
-  $heroStore.filterAttr(v);
+const onSelectAttr = (v: string | number) => {
+  $heroStore.filterAttr(v as string);
 };
 
 /* 杂项筛选 */
-const onSelectMisc = (v: string) => {
-  $heroStore.filterMisc(v);
+const onSelectMisc = (v: string | number) => {
+  $heroStore.filterMisc(v as string);
 };
 
 /* 杂项排序 */
-const onSelectSort = (v: string) => {
-  $heroStore.sortMisc(v);
+const onSelectSort = (v: string | number) => {
+  $heroStore.sortMisc(v as string);
 };
 
 /* 正序/倒序 */
-const onSortType = (v: string) => {
-  $heroStore.sortType(v);
+const onSortType = (v: string | number) => {
+  $heroStore.sortType(v as string);
 };
 
 /* 设置性别 */

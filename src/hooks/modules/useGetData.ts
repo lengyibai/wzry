@@ -2,6 +2,7 @@ import { ref } from "vue";
 
 import { API_DATA, API_HERO } from "@/api";
 import { CONFIG } from "@/config";
+import { ResultData } from "@/api/interface";
 
 const useGetData = () => {
   /** 请求总数 */
@@ -13,7 +14,7 @@ const useGetData = () => {
   /** 请求结束 */
   const finish = ref(false);
 
-  const requests: [string, () => Promise<any>, string][] = [
+  const requests: [string, () => Promise<ResultData<unknown>>, string][] = [
     [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
     [CONFIG.LOCAL_KEY.HERO_BASIC, API_DATA.HeroBasic, "英雄基础"],
     [CONFIG.LOCAL_KEY.HERO_IMG, API_DATA.HeroImg, "英雄图片"],

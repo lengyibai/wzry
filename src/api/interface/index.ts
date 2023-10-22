@@ -7,6 +7,6 @@ export interface Result {
 }
 
 /** @description 请求响应参数(包含data) */
-export interface ResultData<T = any> extends Result {
+export interface ResultData<T = unknown> extends Result {
   data: T;
 }

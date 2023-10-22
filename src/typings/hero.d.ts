@@ -1,7 +1,7 @@
 /** 英雄信息  */
 declare namespace Hero {
   /** @description 主要数据 */
-  interface Data {
+  interface Data extends Record<string, any> {
     /** 英雄id */
     id: number;
     /** 攻击 */
@@ -50,7 +50,6 @@ declare namespace Hero {
     skins?: Skin[];
     /** 关系表 */
     relationships?: RelationType[];
-    [propsName: string]: any;
   }
 
   /** @description 职业类型 */

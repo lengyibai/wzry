@@ -24,7 +24,7 @@ const fn = (e: Event) => {
     /** 超过多大进行压缩 */
     maxsize: 300,
     /* 成功回调 */
-    success: (...data: any[]) => {
+    success: (...data) => {
       $loading.close();
       $emit("update:modelValue", data[2]);
     },

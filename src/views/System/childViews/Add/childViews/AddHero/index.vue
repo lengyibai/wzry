@@ -31,7 +31,7 @@ const info: string[][] = [
 const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>($emit, "add_hero");
 
 //类型列表
-const type_list: Record<string, any[]> = reactive({
+const type_list: Record<string, General[]> = reactive({
   campType: [],
   locationType: [],
   periodType: [],
@@ -98,23 +98,23 @@ setTimeout(async () => {
     }"
   >
     <!-- 英雄名、代号、身高 -->
-    <div class="flex-box">
-      <FormInput v-model="form_data!.name" label="英雄名" required />
-      <FormInput v-model="form_data!.gender" label="性别" required placeholder="男/女" />
-      <FormInput v-model="form_data!.mark" label="代号" required />
-      <FormInput v-model="form_data!.height" label="身高" />
-      <FormInput v-model="form_data!.identity" label="身份" placeholder="多个身份/分隔" />
+    <div v-if="form_data" class="flex-box">
+      <FormInput v-model="form_data.name" label="英雄名" required />
+      <FormInput v-model="form_data.gender" label="性别" required placeholder="男/女" />
+      <FormInput v-model="form_data.mark" label="代号" required />
+      <FormInput v-model="form_data.height" label="身高" />
+      <FormInput v-model="form_data.identity" label="身份" placeholder="多个身份/分隔" />
     </div>
 
     <!-- 选择器相关 -->
-    <div class="flex-box">
+    <div v-if="form_data" class="flex-box">
       <FormSelect
         v-for="(v, k) in info"
         :key="k"
-        v-model="form_data![v[2]]"
+        v-model="form_data[v[2]]"
         :label="v[0]"
         :data="type_list[v[1]]"
-        :value="form_data![v[2]]"
+        :value="form_data[v[2]]"
       />
     </div>
 

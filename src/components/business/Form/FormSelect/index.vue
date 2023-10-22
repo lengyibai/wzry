@@ -8,7 +8,7 @@ interface Props {
   /** 左侧文字 */
   label: string;
   /** 数据 */
-  data: any[];
+  data: General[];
   /** 传递id还是name */
   id?: boolean;
   /** 自适应大小 */
@@ -16,13 +16,13 @@ interface Props {
   /** 禁用 */
   disabled?: boolean;
   /** 选择的值 */
-  modelValue?: string | number | any[];
+  modelValue?: string | number | unknown[];
   /** 多选 */
   multi?: boolean;
   /** 必填 */
   required?: boolean;
   /** 输入框默认值 */
-  value?: string | number | any[];
+  value?: string | number | General[] | string[];
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -31,7 +31,7 @@ const $props = withDefaults(defineProps<Props>(), {
   value: "",
 });
 const $emit = defineEmits<{
-  "update:modelValue": [v: string | number | any[]];
+  "update:modelValue": [v: string | number | unknown[]];
 }>();
 
 const $audioStore = AudioStore();
@@ -39,17 +39,17 @@ const $audioStore = AudioStore();
 const IMGBED = window.IMGBED;
 
 /** 输入框的值 */
-const input_value = ref<any>("");
+const input_value = ref("");
 /** 选中的值 */
-const active_value = ref<any>("");
+const active_value = ref("");
 /** 展开 */
 const is_unfold = ref(false);
 /** 当前点击 */
 const current_index = ref<number | null>(null);
 /** 下拉列表 */
-const select_list = ref<any[]>([]);
+const select_list = ref<General[]>([]);
 /** 选择的列表 */
-const selected_list = ref<any[]>([]);
+const selected_list = ref<General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
 const handleSearch = () => {
@@ -84,8 +84,8 @@ const handleEnterItem = (v: number) => {
 const handleSelect = (id: number, name: string) => {
   //是否为多选
   if ($props.multi) {
-    selected_list.value.push(name);
-    selected_list.value = [...new Set(selected_list.value)];
+    (selected_list.value as string[]).push(name);
+    selected_list.value = [...new Set(selected_list.value as string[])];
     $emit("update:modelValue", selected_list.value);
     input_value.value = "请选择";
   } else {
@@ -117,19 +117,17 @@ watch(
   () => $props.value,
   (v) => {
     //如果为多选则不做处理
-    if (!$props.multi) {
+    if ($props.multi && typeof v !== "string" && typeof v !== "number") {
+      selected_list.value = v;
+    } else if (typeof v !== "object") {
       if (v) {
         //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
-          input_value.value = $props.data.find((item) => {
-            return item.id === v;
-          }).name;
+          input_value.value = $props.data.find((item) => item.id === v)?.name || "";
         } else {
           input_value.value = v;
         }
       }
-    } else {
-      selected_list.value = v as any[];
     }
   },
   { immediate: true },
@@ -199,7 +197,7 @@ watch(
   <!-- 选择的列表 -->
   <div v-if="multi" class="selected-list">
     <transition-group name="fade-a">
-      <div v-for="(item, index) in selected_list" :key="item" class="selected">
+      <div v-for="(item, index) in selected_list" :key="index" class="selected">
         <span class="name">{{ item }}</span>
         <button class="del" @click="handleDel(index)">×</button>
       </div>
