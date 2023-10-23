@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 
 import { get, post, patch, del } from "@/api/helper/transfer";
-import { OVERDUE_ROLE_TIME } from "@/enum";
 import { CONFIG } from "@/config";
 
 /** @description 获取本地用户列表 */
@@ -37,7 +36,7 @@ export const login = async (form: User) => {
       //如果本地存在token则进行过期判断，否则直接更新
       if (form.wzryToken) {
         //超过指定时间过期
-        if (token - form.wzryToken > OVERDUE_ROLE_TIME) {
+        if (token - form.wzryToken > CONFIG.BASE.OVERDUE_ROLE_TIME) {
           return Promise.reject({
             type: "WZRY_TOKEN",
             msg: "身份已过期，请重新登录",

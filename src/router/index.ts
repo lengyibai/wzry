@@ -4,9 +4,9 @@ import type { App } from "vue";
 import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
-import { HOME_URL } from "@/enum";
 import { AuthStore, DeviceStore } from "@/store";
 import { $loading } from "@/utils";
+import { CONFIG } from "@/config";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -57,7 +57,7 @@ router.beforeEach(async (to, from, next) => {
 
   //如果本地有用户信息，并且跳转到静态路由
   else if (token && to.meta.noVerify) {
-    next(HOME_URL);
+    next(CONFIG.BASE.HOME_URL);
     return;
   }
 
@@ -78,5 +78,4 @@ const setupRouter = (app: App) => {
   app.use(router);
 };
 
-export default setupRouter;
-export { router };
+export { setupRouter, router };

@@ -3,7 +3,6 @@ import { ref } from "vue";
 
 import { RouterStore } from "..";
 
-import { HOME_URL, OVERDUE_DATA_TIME } from "@/enum";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
@@ -48,7 +47,7 @@ const AuthStore = defineStore("auth", () => {
       $routerStore.addRoutes(res.role);
       watchStatus();
       setTimeout(() => {
-        router.push(HOME_URL);
+        router.push(CONFIG.BASE.HOME_URL);
       });
     } catch (error) {
       $message(error as string, "error");
@@ -110,7 +109,7 @@ const AuthStore = defineStore("auth", () => {
     timer = setInterval(() => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
       const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
-      if (token - Number(data_token) > OVERDUE_DATA_TIME) {
+      if (token - Number(data_token) > CONFIG.BASE.OVERDUE_DATA_TIME) {
         clearInterval(timer);
         $message("数据每三天完整下载一次，即将开始下载", "error");
         setTimeout(async () => {
