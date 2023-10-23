@@ -32,4 +32,4 @@ const setupDirective = (app: App) => {
   app.use(directives);
 };
 
-export default setupDirective;
+export { setupDirective };

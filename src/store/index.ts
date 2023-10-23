@@ -22,4 +22,4 @@ const setupStore = (app: App) => {
   app.use(pinia);
 };
 
-export default setupStore;
+export { setupStore };

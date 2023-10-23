@@ -1,5 +1,5 @@
 /** @description 本地存储键名 */
-const local_key = {
+export default {
   /** 文件版本 */
   VERSION_FILE: "version_file",
   /** 数据版本 */
@@ -61,5 +61,3 @@ const local_key = {
   /** 种族 */
   RACE_TYPE: "data_racetype",
 };
-
-export default local_key;
