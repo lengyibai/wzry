@@ -11,10 +11,9 @@ import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
 import { $bus, $tip, $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 const $settingStore = SettingStore();
-
-const IMGBED = window.IMGBED;
 
 const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
@@ -84,7 +83,7 @@ onUnmounted(() => {
 <template>
   <div class="login">
     <div class="logo" @touchstart="handleStartTime" @touchend="handleEndTime">
-      <img :src="IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
+      <img :src="CONFIG.BASE.IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
     </div>
 
     <!-- 登录注册盒子 -->
@@ -94,10 +93,14 @@ onUnmounted(() => {
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- 视频背景 -->
-    <K-Video v-if="enable_video_bg" :video="IMGBED + '/video/login_bg.mp4'" :muted="$settingStore.config.muted" />
+    <K-Video
+      v-if="enable_video_bg"
+      :video="CONFIG.BASE.IMGBED + '/video/login_bg.mp4'"
+      :muted="$settingStore.config.muted"
+    />
 
     <!-- 图片 -->
-    <img v-else class="login-bg" :src="IMGBED + '/image/login_bg.png'" alt="" />
+    <img v-else class="login-bg" :src="CONFIG.BASE.IMGBED + '/image/login_bg.png'" alt="" />
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">

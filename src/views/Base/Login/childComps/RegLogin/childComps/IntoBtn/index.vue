@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
 import { SettingStore } from "@/store";
 
 interface Props {
@@ -11,8 +12,6 @@ interface Props {
 defineProps<Props>();
 
 const $settingStore = SettingStore();
-
-const IMGBED = window.IMGBED;
 </script>
 
 <template>
@@ -24,7 +23,7 @@ const IMGBED = window.IMGBED;
   >
     <span>{{ text }}</span>
     <span>{{ desc }}</span>
-    <img :src="IMGBED + '/image/login_btn.png'" alt="" @dragstart.prevent />
+    <img :src="CONFIG.BASE.IMGBED + '/image/login_btn.png'" alt="" @dragstart.prevent />
   </button>
 </template>
 

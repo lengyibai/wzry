@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
+
 interface Props {
   /** 皮肤数据 */
   data: Hero.Skin;
@@ -8,8 +10,6 @@ const $props = defineProps<Props>();
 const $emit = defineEmits<{
   showTool: [v: { type: string; data: Hero.Skin }];
 }>();
-
-const IMGBED = window.IMGBED;
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
@@ -29,7 +29,7 @@ const handle = (v: string) => {
 
     <!-- 价格 -->
     <div class="price">
-      <img v-if="priceShow(data.price)" :src="IMGBED + '/image/coupon.png'" alt="" />
+      <img v-if="priceShow(data.price)" :src="CONFIG.BASE.IMGBED + '/image/coupon.png'" alt="" />
       <span>{{ data.price }}</span>
     </div>
 

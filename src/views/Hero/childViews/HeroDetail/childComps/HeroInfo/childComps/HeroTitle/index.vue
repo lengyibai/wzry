@@ -2,10 +2,9 @@
 import { computed } from "vue";
 
 import { HeroDetailStore } from "@/store";
+import { CONFIG } from "@/config";
 
 const $heroDetail = HeroDetailStore();
-
-const IMGBED = window.IMGBED;
 
 const hero = computed(() => $heroDetail.hero_info);
 </script>
@@ -14,9 +13,9 @@ const hero = computed(() => $heroDetail.hero_info);
   <div class="hero-title">
     <div class="title-name">{{ hero.name }}</div>
     <div class="title-mark">
-      <img class="left" :src="IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
+      <img class="left" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
       <span class="text">{{ hero.mark }}</span>
-      <img class="right" :src="IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
+      <img class="right" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
     </div>
   </div>
 </template>

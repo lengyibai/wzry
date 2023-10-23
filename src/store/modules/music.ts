@@ -5,6 +5,7 @@ import { SettingStore } from "..";
 
 import { AudioVisual } from "@/utils/modules/tool";
 import { $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
@@ -64,7 +65,7 @@ const MusicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.value.src = `${IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
+      bgm.value.src = `${CONFIG.BASE.IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
 
     status.value = true;

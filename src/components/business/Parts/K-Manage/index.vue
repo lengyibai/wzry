@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
+
 interface Props {
   /** 图标类型 */
   type: string;
@@ -15,7 +17,7 @@ const icon_type: Record<string, string> = {
 };
 
 /** 卡片背景图 */
-const cardImg = (src: string) => `${IMGBED}/image/card_${src}.jpg`;
+const cardImg = (src: string) => `${CONFIG.BASE.IMGBED}/image/card_${src}.jpg`;
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
 import { $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 /** @description 点击音效 */
 const AudioStore = defineStore("audio", () => {
@@ -53,7 +54,7 @@ const AudioStore = defineStore("audio", () => {
 
     /** 播放器 */
     const audio = new Audio();
-    audio.src = `${IMGBED}/audio/${sound_name}.mp3`;
+    audio.src = `${CONFIG.BASE.IMGBED}/audio/${sound_name}.mp3`;
     audio.volume = volume;
 
     audio.play().catch(() => {});

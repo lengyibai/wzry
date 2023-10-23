@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import useMessage from "./hooks/useMessage";
 
+import { CONFIG } from "@/config";
 import { $bus } from "@/utils";
 
 const { msg, messages } = useMessage();
@@ -11,7 +12,7 @@ const color = {
   warning: "#e2c484",
   error: "#e28484",
 };
-const getImg = (src: string) => `${IMGBED}/image/msg_${src}.png`;
+const getImg = (src: string) => `${CONFIG.BASE.IMGBED}/image/msg_${src}.png`;
 
 /** 消息类型提醒左中右图标 */
 const imgs = {

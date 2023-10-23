@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
+import { CONFIG } from "@/config";
 
 type Data = { label: string; value: string | number };
 
@@ -25,8 +26,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-const IMGBED = window.IMGBED;
 
 /** 标题 */
 const sort_text = ref("默认排序");
@@ -65,7 +64,7 @@ const handleSelect = (v: Data) => {
     <!-- 下拉图标 -->
     <img
       :class="{ 'arrow-active': status }"
-      :src="IMGBED + '/image/arrow.png'"
+      :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
       alt="arrow"
       class="arrow"
       @dragstart.prevent

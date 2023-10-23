@@ -8,12 +8,11 @@ import SelectInto from "./childComps/SelectInto/index.vue";
 import { API_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
 import { $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 const $deviceStore = DeviceStore();
-
-const IMGBED = window.IMGBED;
 
 const loginBox = ref<HTMLElement>();
 /** 注册及登录状态下要显示的输入框及按钮 */
@@ -88,7 +87,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
       }"
       class="logo"
     >
-      <img :src="IMGBED + '/image/login_logo.png'" alt="logo" @dragstart.prevent />
+      <img :src="CONFIG.BASE.IMGBED + '/image/login_logo.png'" alt="logo" @dragstart.prevent />
     </div>
 
     <!-- 标题 -->

@@ -5,6 +5,7 @@ import useTip from "./hooks/useTip";
 
 import { $bus } from "@/utils";
 import { SettingStore, AudioStore } from "@/store";
+import { CONFIG } from "@/config";
 
 const { show_tip: show, content, align, noTipName, btnFn, tip } = useTip();
 
@@ -14,8 +15,6 @@ $bus.on("tip", (data) => {
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
-
-const IMGBED = window.IMGBED;
 
 const show_tip = ref(false);
 
@@ -70,7 +69,7 @@ watch(
               <div class="title">小贴士</div>
 
               <!-- 小兵 -->
-              <img class="soldier" :src="IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+              <img class="soldier" :src="CONFIG.BASE.IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
             </div>
 
             <!-- 内容 -->

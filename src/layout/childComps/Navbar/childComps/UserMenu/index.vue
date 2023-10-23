@@ -2,11 +2,10 @@
 import { ref, computed } from "vue";
 
 import { AuthStore, AudioStore } from "@/store";
+import { CONFIG } from "@/config";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
-
-const IMGBED = window.IMGBED;
 
 /** 显示用户菜单 */
 const show_menu = ref(false);
@@ -61,7 +60,7 @@ const onClose = () => {
   <div class="user-menu" :class="{ hover: show_menu }" @mouseenter="show_menu = true" @mouseleave="show_menu = false">
     <img
       class="head-img"
-      :src="userInfo.headImg || IMGBED + '/image/unknown.png'"
+      :src="userInfo.headImg || CONFIG.BASE.IMGBED + '/image/unknown.png'"
       alt="头像"
       @touchend="show_menu = !show_menu"
       @dragstart.prevent

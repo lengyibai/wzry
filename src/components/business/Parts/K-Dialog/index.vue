@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 
 import { AudioStore } from "@/store";
+import { CONFIG } from "@/config";
 
 interface Props {
   /** 垂直对齐方式 */
@@ -37,8 +38,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-const IMGBED = window.IMGBED;
 
 /** 显示弹窗 */
 const show = ref(false);
@@ -89,13 +88,13 @@ const handleClose = () => {
         <img
           v-show="showClose"
           class="close global_cursor-pointer"
-          :src="IMGBED + '/image/close.png'"
+          :src="CONFIG.BASE.IMGBED + '/image/close.png'"
           @dragstart.prevent
           @click="handleClose"
         />
 
         <!-- 背景图 -->
-        <img class="bg" :src="IMGBED + '/image/dialog.png'" @dragstart.prevent />
+        <img class="bg" :src="CONFIG.BASE.IMGBED + '/image/dialog.png'" @dragstart.prevent />
 
         <!-- 内容区 -->
         <div

@@ -3,6 +3,7 @@ import { ref, watch } from "vue";
 
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
+import { CONFIG } from "@/config";
 
 interface Props {
   /** 左侧文字 */
@@ -35,8 +36,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-const IMGBED = window.IMGBED;
 
 /** 输入框的值 */
 const input_value = ref("");
@@ -166,7 +165,7 @@ watch(
           <img
             class="arrow"
             :class="{ rotate: is_unfold }"
-            :src="IMGBED + '/image/arrow.png'"
+            :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
             alt=""
             @dragstart.prevent
           />

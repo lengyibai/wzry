@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
+
 interface Props {
   /** 技能列表 */
   skills: Hero.Skill[];
@@ -11,8 +13,6 @@ const $emit = defineEmits<{
   select: [v: number];
   del: [];
 }>();
-
-const IMGBED = window.IMGBED;
 
 /* 处于被编辑中 */
 const active = (index: number) => $props.activeIndex === index;
@@ -35,7 +35,7 @@ const handleDel = () => $emit("del");
     >
       <!-- 标题 -->
       <div class="title">
-        <img :src="item.img || IMGBED + '/image/unknown.png'" alt="" @dragstart.prevent />
+        <img :src="item.img || CONFIG.BASE.IMGBED + '/image/unknown.png'" alt="" @dragstart.prevent />
         <div class="name">{{ item.name }}</div>
         <div class="types">
           <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
 import { AudioStore } from "@/store";
 
 interface Props {
@@ -14,8 +15,6 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-const IMGBED = window.IMGBED;
-
 /* 关闭 */
 const handleClose = () => {
   $emit("update:modelValue", false);
@@ -28,7 +27,7 @@ const handleClose = () => {
     <i class="iconfont wzry-guanbi global_cursor-pointer" @click="handleClose"></i>
     <iframe
       class="iframe"
-      :src="IMGBED + '/html/readme.html'"
+      :src="CONFIG.BASE.IMGBED + '/html/readme.html'"
       marginheight="0"
       marginwidth="0"
       frameborder="0"

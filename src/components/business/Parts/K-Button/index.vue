@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { CONFIG } from "@/config";
 import { SettingStore } from "@/store";
 
 interface Props {
@@ -40,7 +41,7 @@ const particle_color = {
 };
 
 /* 按钮图标 */
-const btnIcon = (src: string) => `${IMGBED}/image/btn_${src}.png`;
+const btnIcon = (src: string) => `${CONFIG.BASE.IMGBED}/image/btn_${src}.png`;
 </script>
 
 <template>
