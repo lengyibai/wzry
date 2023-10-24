@@ -33,4 +33,4 @@ const sheelToRoute = (route: RouterSheel[], asyncRoutes: Partial<RouteRecordRaw>
   });
 };
 
-export default sheelToRoute;
+export { sheelToRoute };

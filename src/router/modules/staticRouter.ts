@@ -1,4 +1,4 @@
-import getSheelPath from "../helper/getSheelPath";
+import { getPathsNames } from "../helper/getSheelPath";
 
 /** @description 静态路由 */
 export const staticRouter = [
@@ -49,4 +49,4 @@ export const errorRouter = [
 ];
 
 /** @description 静态路由path组 */
-export const static_paths = getSheelPath([...staticRouter, ...errorRouter])[0];
+export const static_paths = getPathsNames([...staticRouter, ...errorRouter])[0];

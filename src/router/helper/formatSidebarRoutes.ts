@@ -49,4 +49,4 @@ const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
   return formattedRoutes;
 };
 
-export default formatSidebarRoutes;
+export { formatSidebarRoutes };

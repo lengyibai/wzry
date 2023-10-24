@@ -13,4 +13,4 @@ const getPathsNames = (routes: any[]) => {
   return [paths, names];
 };
 
-export default getPathsNames;
+export { getPathsNames };

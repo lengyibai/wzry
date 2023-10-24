@@ -1,5 +1,5 @@
 import { RouterSheel } from "../interface";
-import getSheelPath from "../helper/getSheelPath";
+import { getPathsNames } from "../helper/getSheelPath";
 
 import { static_paths } from "./staticRouter";
 
@@ -99,7 +99,7 @@ export const admin: RouterSheel[] = [
 ];
 
 /** @description 动态路由path组 */
-const dynamic_paths: string[] = getSheelPath(admin)[0];
+const dynamic_paths: string[] = getPathsNames(admin)[0];
 
 /** @description 路由表里是否存在该路径 */
 export const isExist = (path: string) => {

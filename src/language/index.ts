@@ -33,6 +33,4 @@ const setLanguage = (index: 0 | 1 | 2) => {
   localStorage.setItem(CONFIG.LOCAL_KEY.LANGUAGE, lang);
 };
 
-export default i18n;
-
-export { setLanguage };
+export { i18n, setLanguage };
