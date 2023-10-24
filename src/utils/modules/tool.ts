@@ -1,4 +1,4 @@
-import PIN_YIN from "./pinyin";
+import { CONFIG } from "@/config";
 
 /** @description 随机数 */
 export const random = (min: number, max: number, num = 0) => {
@@ -45,8 +45,8 @@ export const pinyin = (str: string) => {
   const reg = /[a-zA-Z0-9]/;
   for (const val of str) {
     let name = "";
-    for (const key in PIN_YIN) {
-      if (PIN_YIN[key].includes(val)) {
+    for (const key in CONFIG.PINYIN) {
+      if (CONFIG.PINYIN[key].includes(val)) {
         name = key;
         abbreviation += name[0].toLowerCase();
         break;
