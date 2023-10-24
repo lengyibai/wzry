@@ -38,7 +38,7 @@ export default defineConfig({
     port: 9527,
     proxy: {
       "/api": {
-        target: "https://lyb.cbb.plus",
+        target: "https://lyb.cbb.plus/wzry",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
