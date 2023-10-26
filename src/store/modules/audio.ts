@@ -42,17 +42,17 @@ const AudioStore = defineStore("audio", () => {
   };
 
   /**
-   * @description: play封装
-   * @param name 音效名
+   * @description: 播放音效
+   * @param name 音效随机标识
    */
   const playAudio = (name?: string) => {
-    /** 获取点击触发的音效名 */
+    //获取点击触发的音效名
     sound_name =
       (typeof name === "string" &&
         Object.keys(sound_type).find((item) => sound_type[item].find((item: string) => name.includes(item)))) ||
       "default";
 
-    /** 播放器 */
+    //播放器
     const audio = new Audio();
     audio.src = `${CONFIG.BASE.IMGBED}/audio/${sound_name}.mp3`;
     audio.volume = volume;
@@ -67,6 +67,7 @@ const AudioStore = defineStore("audio", () => {
   const play = (name?: string) => {
     if (!status) return;
 
+    //悬浮音效防抖处理
     if (name === "n4r4") {
       $tool.debounceInstant(() => {
         playAudio(name);
