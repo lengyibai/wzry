@@ -78,4 +78,3 @@ const CssVarStore = defineStore("cssVariable", () => {
 });
 
 export { CssVarStore };
-export type cssVarStore = ReturnType<typeof CssVarStore>;

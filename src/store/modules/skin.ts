@@ -375,4 +375,3 @@ const SkinStore = defineStore("skin", () => {
 });
 
 export { SkinStore };
-export type SkinStore = ReturnType<typeof SkinStore>;

@@ -28,4 +28,3 @@ const CollapseStore = defineStore("collapse", () => {
 });
 
 export { CollapseStore };
-export type CollapseStore = ReturnType<typeof CollapseStore>;

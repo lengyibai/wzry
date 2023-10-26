@@ -13,6 +13,9 @@ const MusicStore = defineStore("music", () => {
   let progress_timer: NodeJS.Timeout;
   /** 工具显示设置 */
   let tool_timer: NodeJS.Timeout;
+  /** 播放器 */
+  let bgm = new Audio();
+
   /** 音乐索引 */
   const bgmIndex = ref(0);
   /** 播放进度 */
@@ -25,8 +28,6 @@ const MusicStore = defineStore("music", () => {
   const show_list = ref(false);
   /** 显示工具栏 */
   const show_tool = ref(true);
-  /** 播放器 */
-  const bgm = ref(new Audio());
 
   /** 音乐可视化 */
   const audio_visual = ref<AudioVisual>();
@@ -48,7 +49,7 @@ const MusicStore = defineStore("music", () => {
   //打乱顺序
   musics.sort(() => 0.5 - Math.random());
   //允许音频可视化跨域
-  bgm.value.setAttribute("crossOrigin", "anonymous");
+  bgm.setAttribute("crossOrigin", "anonymous");
 
   /** @description 上一首 */
   const last = () => {
@@ -65,20 +66,20 @@ const MusicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.value.src = `${CONFIG.BASE.IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
+      bgm.src = `${CONFIG.BASE.IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
     }
 
     status.value = true;
-    bgm.value.volume = volume.value;
+    bgm.volume = volume.value;
 
-    bgm.value
+    bgm
       .play()
       .then(() => {
         //播放成功后开始分析音频
         audio_visual.value?.play();
         //如果未启用音乐播放器，则暂停播放
         if (!SettingStore().config.music) {
-          bgm.value.pause();
+          bgm.pause();
         }
       })
       .catch(() => {
@@ -89,17 +90,17 @@ const MusicStore = defineStore("music", () => {
 
     //实时设置播放进度
     progress_timer = setInterval(() => {
-      progress.value = $tool.potEoPct(bgm.value.currentTime / bgm.value.duration);
+      progress.value = $tool.potEoPct(bgm.currentTime / bgm.duration);
     }, 500);
 
     //播放结束后执行下一次播放
-    bgm.value.onended = next;
+    bgm.onended = next;
   };
 
   /** @description 暂停 */
   const pause = () => {
     status.value = false;
-    bgm.value.pause();
+    bgm.pause();
     clearInterval(progress_timer);
   };
 
@@ -118,7 +119,7 @@ const MusicStore = defineStore("music", () => {
    * @param v 0-1保留两位小数
    */
   const setCurrentTime = (v: number) => {
-    bgm.value.currentTime = bgm.value.duration * v;
+    bgm.currentTime = bgm.duration * v;
   };
 
   /** @description 显示播放列表 */
@@ -155,25 +156,25 @@ const MusicStore = defineStore("music", () => {
    */
   const setVolume = (v: number) => {
     volume.value = (v / 100) * 0.25;
-    bgm.value.volume = volume.value;
+    bgm.volume = volume.value;
   };
 
   /** @description 停止播放 */
   const stop = () => {
-    bgm.value.pause();
-    bgm.value.currentTime = 0;
+    bgm.pause();
+    bgm.currentTime = 0;
   };
 
   /** @description 音频可视化初始化 */
   const initAudioVisual = (canvas: HTMLCanvasElement) => {
-    audio_visual.value = new $tool.AudioVisual(bgm.value, canvas);
+    audio_visual.value = new $tool.AudioVisual(bgm, canvas);
   };
 
   /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */
   const resetAudio = () => {
-    bgm.value = new Audio();
+    bgm = new Audio();
     /** 允许音频可视化跨域 */
-    bgm.value.setAttribute("crossOrigin", "anonymous");
+    bgm.setAttribute("crossOrigin", "anonymous");
   };
 
   return {
@@ -207,4 +208,3 @@ const MusicStore = defineStore("music", () => {
 });
 
 export { MusicStore };
-export type MusicStore = ReturnType<typeof MusicStore>;

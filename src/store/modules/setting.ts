@@ -72,4 +72,3 @@ const SettingStore = defineStore("setting", () => {
 });
 
 export { SettingStore };
-export type SettingStore = ReturnType<typeof SettingStore>;

@@ -302,4 +302,3 @@ const EquipStore = defineStore("equip", () => {
 });
 
 export { EquipStore };
-export type EquipStore = ReturnType<typeof EquipStore>;

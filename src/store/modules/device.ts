@@ -73,4 +73,3 @@ const DeviceStore = defineStore("device", () => {
 });
 
 export { DeviceStore };
-export type deviceStore = ReturnType<typeof DeviceStore>;

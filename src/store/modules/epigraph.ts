@@ -44,4 +44,3 @@ const EpigraphStore = defineStore("epigraph", () => {
 });
 
 export { EpigraphStore };
-export type EpigraphStore = ReturnType<typeof EpigraphStore>;

@@ -145,4 +145,3 @@ const AuthStore = defineStore("auth", () => {
 });
 
 export { AuthStore };
-export type AuthStore = ReturnType<typeof AuthStore>;

@@ -137,4 +137,3 @@ const VersionStore = defineStore("version", () => {
 });
 
 export { VersionStore };
-export type VersionStore = ReturnType<typeof VersionStore>;

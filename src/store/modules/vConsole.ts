@@ -19,4 +19,3 @@ const VConsoleStore = defineStore("vConsole", () => {
 });
 
 export { VConsoleStore };
-export type VConsoleStore = ReturnType<typeof VConsoleStore>;

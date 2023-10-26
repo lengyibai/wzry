@@ -126,4 +126,3 @@ const HeroDetailStore = defineStore("heroDetail", () => {
 });
 
 export { HeroDetailStore };
-export type HeroDetailStore = ReturnType<typeof HeroDetailStore>;

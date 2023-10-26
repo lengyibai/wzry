@@ -96,4 +96,3 @@ const AudioStore = defineStore("audio", () => {
 });
 
 export { AudioStore };
-export type AudioStore = ReturnType<typeof AudioStore>;

@@ -60,4 +60,3 @@ const RouterStore = defineStore("route", () => {
 });
 
 export { RouterStore };
-export type routerStore = ReturnType<typeof RouterStore>;
