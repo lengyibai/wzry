@@ -19,24 +19,6 @@ const DeviceStore = defineStore("device", () => {
   const width = ref(0);
   /** 设备高度 */
   const height = ref(0);
-  /** 帧率 */
-  const fps = ref(0);
-
-  /* 获取设备帧率 */
-  let start = 0;
-  let count = 0;
-  const getFPS = () => {
-    count++;
-    const current = performance.now();
-    if (start === undefined) start = current;
-    if (current - start >= 500) {
-      fps.value = count;
-      start = current;
-      count = 0;
-    }
-    window.requestAnimationFrame(getFPS);
-  };
-  getFPS();
 
   /* 判断手机是否竖屏 */
   const tip = () => {
@@ -61,8 +43,6 @@ const DeviceStore = defineStore("device", () => {
     width,
     /** 设备高度 */
     height,
-    /** 帧率 */
-    fps,
     /** 浏览器名称 */
     browser_name,
     /** 浏览器版本 */

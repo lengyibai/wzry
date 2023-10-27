@@ -3,12 +3,15 @@ import { computed } from "vue";
 
 import { CollapseStore, VersionStore, DeviceStore, VConsoleStore, AuthStore } from "@/store";
 import { $tool } from "@/utils";
+import { useGetFps } from "@/hooks";
 
 const $collapseStore = CollapseStore();
 const $versionStore = VersionStore();
 const $deviceStore = DeviceStore();
 const $vConsoleStore = VConsoleStore();
 const $authStore = AuthStore();
+
+const { fps } = useGetFps();
 
 /* 是否为旧版 */
 const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);
@@ -30,7 +33,7 @@ const version = `${$tool.browserV.version} ${
     class="water-mark"
     @touchend="$vConsoleStore.setStatus"
   >
-    <p>{{ $t("帧率") }}：{{ $deviceStore.fps }}</p>
+    <p>{{ $t("帧率") }}：{{ fps }}</p>
     <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
     <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
     <p :class="{ old: old }">{{ $t("数据") }}：{{ $versionStore.local_version }}</p>
