@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { watch } from "vue";
 
 import { AudioStore } from "@/store";
 import { CONFIG } from "@/config";
@@ -32,11 +33,18 @@ const sort_text = ref("默认排序");
 /** 选择的值 */
 const current_value = ref("");
 
-sort_text.value = $props.data[0].label;
-if ($props.modelValue) {
-  current_value.value = $props.modelValue;
-  sort_text.value = $props.modelValue;
-}
+watch(
+  () => $props.modelValue,
+  (v) => {
+    const data = $props.data.find((item) => v === item.value);
+    if (!data) return;
+    current_value.value = v;
+    sort_text.value = data!.label;
+  },
+  {
+    immediate: true,
+  },
+);
 
 /* 显示列表 */
 const handleShowList = () => {
