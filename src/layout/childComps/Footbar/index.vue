@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeUnmount, nextTick } from "vue";
+import { ref, computed, onUnmounted, nextTick } from "vue";
 
 import Time from "./childComps/Time/index.vue";
 import MusicTool from "./childComps/MusicTool/index.vue";
@@ -78,7 +78,7 @@ const handleShowTool = (v: boolean) => {
   }
 };
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $musicStore.stop();
   $musicStore.resetAudio();
 });

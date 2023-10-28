@@ -1,7 +1,7 @@
 <script setup>
 //https://www.wangeditor.com/
 import "@wangeditor/editor/dist/css/style.css";
-import { onBeforeUnmount, ref, shallowRef, watch } from "vue";
+import { onUnmounted, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 
 const $props = defineProps({
@@ -35,7 +35,7 @@ const toolbarConfig = {
 const editorConfig = { placeholder: $props.placeholder };
 const mode = "simple";
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   const editor = editorRef.value;
   if (editor == null) return;
   editor.destroy();

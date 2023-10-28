@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
+import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
@@ -155,7 +155,7 @@ onMounted(async () => {
   }, 250);
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("resize");
 });
 </script>

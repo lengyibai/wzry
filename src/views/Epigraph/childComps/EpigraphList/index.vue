@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch, nextTick, onMounted } from "vue";
+import { onUnmounted, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
@@ -63,7 +63,7 @@ onMounted(() => {
   });
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("resize");
 });
 </script>

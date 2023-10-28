@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onBeforeUnmount } from "vue";
+import { ref, computed, onUnmounted } from "vue";
 
 import LoginBox from "./childComps/LoginBox/index.vue";
 import RegBox from "./childComps/RegBox/index.vue";
@@ -62,7 +62,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     $tool.throttleInstant(() => parallax.move(e), 50);
   };
   window.addEventListener("mousemove", fn);
-  onBeforeUnmount(() => {
+  onUnmounted(() => {
     window.removeEventListener("mousemove", fn);
   });
 }

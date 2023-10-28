@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { nextTick, onUnmounted, onMounted, ref, watch } from "vue";
 
 import { $bus } from "@/utils";
 
@@ -109,7 +109,7 @@ onMounted(() => {
   });
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("resize");
 });
 </script>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onActivated, onMounted, ref, watch } from "vue";
+import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -107,7 +107,7 @@ onMounted(() => {
   });
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("resize");
 });
 </script>

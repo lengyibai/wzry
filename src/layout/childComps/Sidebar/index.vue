@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from "vue";
+import { ref, onUnmounted } from "vue";
 
 import sideItem from "./childComp/SideItem/index.vue";
 import GameLogo from "./childComp/GameLogo/index.vue";
@@ -36,7 +36,7 @@ $bus.on("resize", () => {
   $collapseStore.setCollapse(window.innerWidth < 1380);
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("resize");
 });
 </script>
