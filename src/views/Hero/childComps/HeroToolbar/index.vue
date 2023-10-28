@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onBeforeUnmount } from "vue";
+import { ref, reactive, onUnmounted } from "vue";
 
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
@@ -9,16 +9,13 @@ const $heroStore = HeroStore();
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },
-  { label: "无位移", value: "无位移" },
   { label: "无控制", value: "无控制" },
-  { label: "位移", value: "位移" },
   { label: "免控", value: "免控" },
   { label: "回血", value: "回血" },
   { label: "真伤", value: "真伤" },
 ];
 const select_misc = [
   { label: "全部筛选", value: "全部筛选" },
-  { label: "爆发", value: "爆发" },
   { label: "团控", value: "团控" },
   { label: "无蓝条", value: "无蓝条" },
   { label: "非人类", value: "非人类" },
@@ -118,7 +115,7 @@ $bus.on("mouseup", (e) => {
   }
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   $bus.off("mouseup");
 });
 </script>
@@ -141,7 +138,6 @@ onBeforeUnmount(() => {
         v-model="$heroStore.attr_type"
         :status="select_status[1]"
         :data="select_attr"
-        list-height="21.5625rem"
         @click="handleSelectStatus(1)"
         @select="onSelectAttr"
       />
@@ -151,7 +147,6 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_type"
         :status="select_status[2]"
         :data="select_misc"
-        list-height="18.5rem"
         @click="handleSelectStatus(2)"
         @select="onSelectMisc"
       />
@@ -161,7 +156,6 @@ onBeforeUnmount(() => {
         v-model="$heroStore.misc_sort"
         :status="select_status[3]"
         :data="select_sort"
-        list-height="15.4375rem"
         @click="handleSelectStatus(3)"
         @select="onSelectSort"
       />
@@ -171,7 +165,6 @@ onBeforeUnmount(() => {
         v-model="$heroStore.sort_type"
         :status="select_status[4]"
         :data="sort_type"
-        list-height="6.25rem"
         @click="handleSelectStatus(4)"
         @select="onSortType"
       />
