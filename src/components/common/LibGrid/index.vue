@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, onActivated } from "vue";
+import { ref, onActivated } from "vue";
 interface Props {
   /** 一行显示的个数 */
   count: number;
@@ -37,10 +37,6 @@ const scroll = (e: Event) => {
 const backTop = () => {
   LibGridRef.value?.scroll({ top: $props.scrollTop });
 };
-
-onMounted(() => {
-  backTop();
-});
 
 onActivated(() => {
   backTop();
