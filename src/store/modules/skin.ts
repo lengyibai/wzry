@@ -6,6 +6,15 @@ import { $tool } from "@/utils";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
+  /** 当前页数 */
+  let page = 1;
+  /** 总页数 */
+  let page_total = 0;
+  /** 一页显示的个数 */
+  const page_count = 50;
+
+  /** 滚动坐标 */
+  const scroll = ref(0);
   /** 职业类型 */
   const profession = ref("");
   /** 价格排序类型 */
@@ -15,38 +24,21 @@ const SkinStore = defineStore("skin", () => {
   /** 排序类型 */
   const sort_type = ref("倒序");
   /** 性别筛选类型 */
-  const gender_type = ref(0);
+  const gender_type = ref<Gender>(0);
   /** 皮肤列表 */
   const skin_list = ref<Hero.Skin[]>([]);
   /** 筛选后的列表 */
   const filter_list = ref<Hero.Skin[]>([]);
-  /** 皮肤类型logo列表 */
-  const type_logo = ref<
-    {
-      id: number;
-      name: string;
-      link: string;
-    }[]
-  >([]);
   /** 展示的列表 */
   const show_list = ref<Hero.Skin[]>([]);
 
-  /** 滚动坐标 */
-  let scroll = 0;
-  /** 当前页数 */
-  let page = 1;
-  /** 总页数 */
-  let page_total = 0;
-  /** 一页显示的个数 */
-  const page_count = 50;
-
   /** @description 设置滚动坐标 */
   const setScroll = (v: number) => {
-    scroll = v;
+    scroll.value = v;
   };
 
   /** @description 重新计算分页 */
-  const filterListChange = () => {
+  const resetPage = () => {
     page = 0;
     show_list.value = [];
     show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
@@ -66,25 +58,48 @@ const SkinStore = defineStore("skin", () => {
   const getSkinList = async () => {
     const skinList = await API_SKIN.getSkin();
     const skinType = await API_SKIN.getSkinType();
+
     skinList.forEach((skin) => {
       const type = skinType.find((type) => type.id === skin.type)!;
       skin.type = type.link;
       skin.category = type.name;
+
       //设置备用名称，解决高亮问题
       skin.hero_name = skin.heroName;
       skin.skin_name = skin.name;
     });
+
     skin_list.value = skinList;
     setProfessional("全部");
   };
 
   /**
    * @description: 设置职业
-   * @param p 职业名称
+   * @param name 职业名称
    */
-  const setProfessional = (p: Hero.Profession) => {
-    if (profession.value === p) return;
-    profession.value = p;
+  const setProfessional = (name: Hero.Profession) => {
+    if (profession.value === name) return;
+    profession.value = name;
+    sortAll();
+  };
+
+  /**
+   * @description: 性别筛选
+   * @param type 性别标识符
+   */
+  const filterGender = (type: Gender) => {
+    if (gender_type.value === type) return;
+    gender_type.value = type;
+    sortAll();
+  };
+
+  /**
+   * @description: 皮肤类型筛选
+   * @param type 皮肤类型名称
+   */
+  const filterSkinType = (type: string) => {
+    if (skin_type.value === type) return;
+    skin_type.value = type;
     sortAll();
   };
 
@@ -99,16 +114,6 @@ const SkinStore = defineStore("skin", () => {
   };
 
   /**
-   * @description: 皮肤类型筛选
-   * @param type 皮肤类型名称
-   */
-  const filterType = (type: string) => {
-    if (skin_type.value === type) return;
-    skin_type.value = type;
-    sortAll();
-  };
-
-  /**
    * @description: 正序|倒序
    * @param type 排序名称
    */
@@ -118,212 +123,153 @@ const SkinStore = defineStore("skin", () => {
     sortAll();
   };
 
-  /**
-   * @description: 性别筛选
-   * @param type 性别标识符
-   */
-  const sortGender = (type: number) => {
-    if (gender_type.value === type) return;
-    gender_type.value = type;
-    sortAll();
-  };
-
   /** @description 一键排序 */
   const sortAll = () => {
-    scroll = 0;
+    scroll.value = 0;
 
-    //职业筛选
-    if (profession.value === "全部") {
-      //为了解决排序拷贝问题
-      filter_list.value = [...skin_list.value];
-    } else {
-      filter_list.value = skin_list.value.filter((item: Hero.Skin) => {
-        return item.profession.includes(profession.value);
+    /** 职业筛选 */
+    const filterProfession = () => {
+      if (profession.value === "全部") {
+        //为了解决排序拷贝问题
+        filter_list.value = [...skin_list.value];
+      } else {
+        filter_list.value = skin_list.value.filter((item: Hero.Skin) => {
+          return item.profession.includes(profession.value);
+        });
+      }
+    };
+
+    /** 性别筛选 */
+    const filterGender = () => {
+      const boy: Hero.Skin[] = [];
+      const girl: Hero.Skin[] = [];
+      filter_list.value.forEach((item) => {
+        if (item.gender === "男") {
+          boy.push(item);
+        } else {
+          girl.push(item);
+        }
       });
-    }
 
-    //性别筛选
-    const boy: Hero.Skin[] = [];
-    const girl: Hero.Skin[] = [];
-    filter_list.value.forEach((item) => {
-      if (item.gender === "男") {
-        boy.push(item);
-      } else {
-        girl.push(item);
+      if (gender_type.value === 1) {
+        filter_list.value = boy;
+      } else if (gender_type.value === 2) {
+        filter_list.value = girl;
       }
-    });
+    };
 
-    if (gender_type.value === 1) {
-      filter_list.value = boy;
-    } else if (gender_type.value === 2) {
-      filter_list.value = girl;
-    }
-
-    //价格排序
-    const p = price_type.value;
-    const noFree = ["贵族专属", "荣耀战令获取", "积分夺宝获取", "会员限定", "限时兑换", "星会员15级"];
-    if (p && p !== "全部价格") {
-      if (price_type.value === "免费") {
-        const noNum: Hero.Skin[] = [];
-        filter_list.value.forEach((item) => {
-          if (!noFree.includes(item.price.toString()) && isNaN(Number(item.price))) noNum.push(item);
-        });
-        filter_list.value = $tool.typeSort(noNum, "price");
-      } else if (price_type.value === "价格由低到高") {
-        const isNum: Hero.Skin[] = [];
-        const noNum: Hero.Skin[] = [];
-        filter_list.value.forEach((item) => {
-          if (!isNaN(Number(item.price))) {
-            isNum.push(item);
-          } else {
-            noNum.push(item);
-          }
-        });
-        isNum.sort((a, b) => {
-          return Number(a.price) - Number(b.price);
-        });
-        filter_list.value = [...isNum, ...noNum];
-      } else if (price_type.value === "价格由高到低") {
-        const isNum: Hero.Skin[] = [];
-        const strange: Hero.Skin[] = [];
-        const noNum: Hero.Skin[] = [];
-        filter_list.value.forEach((item) => {
-          if (!isNaN(Number(item.price))) {
-            isNum.push(item);
-          } else {
-            if (item.type.toString().indexOf("26.png") !== -1) {
-              strange.push(item);
-            } else {
-              noNum.push(item);
+    /** 皮肤类型筛选 */
+    const filterSkinType = () => {
+      //皮肤类型筛选
+      const alone = [
+        "勇者",
+        "史诗",
+        "传说",
+        "唯一限定",
+        "荣耀典藏",
+        "KPL",
+        "星传说",
+        "五虎上将",
+        "战令限定",
+        "赛季专属",
+        "周年限定",
+        "五五",
+        "正版授权",
+        "世冠",
+        "王者之证",
+        "FMVP",
+        "年限定",
+      ];
+      const multiple = [
+        {
+          label: "情侣",
+          value: ["情人节限定", "520限定"],
+        },
+        {
+          label: "其他限定",
+          value: [
+            "成就限定",
+            "圣诞限定",
+            "贵族限定",
+            "会员限定",
+            "赏金赛限定",
+            "战队赛限定",
+            "浪一夏限定",
+            "圣诞限定",
+            "航天限定",
+            "仙剑限定",
+          ],
+        },
+        {
+          label: "其他专属",
+          value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
+        },
+        {
+          label: "特殊标志",
+          value: ["御龙在天", "国家宝藏", "敦煌研究院", "永宁纪"],
+        },
+        { label: "团战精神", value: ["沉稳", "敏锐", "掌控", "守护", "坚韧"] },
+      ];
+      if (skin_type.value && skin_type.value !== "全部类型") {
+        if (alone.includes(skin_type.value)) {
+          filter_list.value = filter_list.value.filter((item) => {
+            return item.category.includes(skin_type.value);
+          });
+        } else {
+          multiple.forEach((type) => {
+            if (skin_type.value === type.label) {
+              filter_list.value = filter_list.value.filter((skin) => {
+                return type.value.some((item) => {
+                  return skin.category.includes(item);
+                });
+              });
             }
-          }
-        });
-        isNum.sort((a, b) => {
-          return Number(b.price) - Number(a.price);
-        });
-        filter_list.value = [...strange, ...isNum, ...noNum];
+          });
+        }
+        filter_list.value = $tool.typeSort(filter_list.value, "category");
       }
-    }
+    };
 
-    //皮肤类型筛选
-    const s = skin_type.value;
-    const alone = ["勇者", "史诗", "传说", "限定", "荣耀典藏", "KPL限定", "星传说", "五虎上将", "战令限定"];
-    const multiple = [
-      {
-        label: "世冠",
-        value: ["世冠2019", "世冠2020", "世冠2021", "世冠2022", "世冠2023"],
-      },
-      {
-        label: "王者之证",
-        value: ["2020王者之证", "2021王者之证", "2022王者之证"],
-      },
-      { label: "FMVP", value: ["FMVP/gold", "FMVP/blue"] },
-      {
-        label: "生肖限定",
-        value: ["猴年限定", "鸡年限定", "狗年限定", "猪年限定", "鼠年限定", "牛年限定", "虎年限定", "兔年限定"],
-      },
-      {
-        label: "情侣",
-        value: [
-          "情人节限定(zx)",
-          "情人节限定(zz)",
-          "情人节限定(z)",
-          "情人节限定(dy)",
-          "情人节限定(hc)",
-          "情人节限定(m)",
-          "情人节限定(yy)",
-          "520限定(sd)",
-        ],
-      },
-      {
-        label: "其他限定",
-        value: [
-          "成就限定",
-          "圣诞限定",
-          "贵族限定",
-          "会员限定",
-          "赏金赛限定",
-          "战队赛限定",
-          "浪一夏限定",
-          "圣诞限定",
-          "航天限定",
-        ],
-      },
-      { label: "五五节", value: ["五五开黑节", "五五朋友节"] },
-      {
-        label: "赛季专属",
-        value: [
-          "S3赛季专属",
-          "S4赛季专属",
-          "S5赛季专属",
-          "S6赛季专属",
-          "S7赛季专属",
-          "S8赛季专属",
-          "S9赛季专属",
-          "S10赛季专属",
-          "S11赛季专属",
-          "S12赛季专属",
-          "S13赛季专属",
-          "S14赛季专属",
-          "S15赛季专属",
-          "S16赛季专属",
-          "S17赛季专属",
-          "S18赛季专属",
-          "S19赛季专属",
-          "S20赛季专属",
-          "S21赛季专属",
-          "S22赛季专属",
-          "S23赛季专属",
-          "S24赛季专属",
-          "S25赛季专属",
-          "S26赛季专属",
-          "S27赛季专属",
-          "S28赛季专属",
-          "S29赛季专属",
-          "S30赛季专属",
-        ],
-      },
-      {
-        label: "其他专属",
-        value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
-      },
-      {
-        label: "特殊标志",
-        value: ["御龙在天", "国家宝藏", "敦煌研究院", "永宁纪"],
-      },
-      { label: "团战精神", value: ["沉稳", "敏锐", "掌控", "守护", "坚韧"] },
-      {
-        label: "正版授权",
-        value: ["梅西正版授权", "DC正版授权", "圣斗士星矢正版授权", "SNK正版授权", "西游记86版正版授权"],
-      },
-      {
-        label: "周年限定",
-        value: ["1周年限定", "2周年限定", "3周年限定", "4周年限定", "5周年限定", "6周年限定", "7周年限定"],
-      },
-    ];
-    if (s && s !== "全部类型") {
-      if (alone.includes(s)) {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.category === s;
-        });
-      } else {
-        multiple.forEach((item) => {
-          if (s === item.label) {
-            filter_list.value = filter_list.value.filter((skin) => {
-              return item.value.includes(skin.category || "");
-            });
-          }
-        });
+    /** 价格排序 */
+    const sortPrice = () => {
+      const SortStrategy: Record<string, (list: Hero.Skin[]) => Hero.Skin[]> = {
+        免费: (list) => {
+          const noFree = ["积分夺宝", "星会员15级", "贵族专属", "荣耀战令获取", "会员限定", "限时兑换"];
+          const noNum = list.filter((item) => !noFree.includes(item.price.toString()) && isNaN(Number(item.price)));
+          return $tool.typeSort(noNum, "price");
+        },
+        由低到高: (list) => {
+          const isNum = list.filter((item) => !isNaN(Number(item.price)));
+          return isNum.sort((a, b) => Number(a.price) - Number(b.price));
+        },
+        由高到低: (list) => {
+          const isNum = list.filter((item) => !isNaN(Number(item.price)));
+          const strange = list.filter((item) => item.type.toString().indexOf("26.png") !== -1);
+          return [...strange, ...isNum].sort((a, b) => Number(b.price) - Number(a.price));
+        },
+      };
+
+      if (price_type.value && price_type.value !== "全部价格") {
+        if (SortStrategy.hasOwnProperty(price_type.value)) {
+          filter_list.value = SortStrategy[price_type.value](filter_list.value);
+          sort_type.value = "正序";
+        }
       }
-      filter_list.value = $tool.typeSort(filter_list.value, "category");
-    }
+    };
 
-    //正序/倒序
-    if (sort_type.value === "倒序") {
-      filter_list.value.reverse();
-    }
+    /** 正/倒排序 */
+    const sortType = () => {
+      if (sort_type.value === "倒序") {
+        filter_list.value.reverse();
+      }
+    };
 
-    filterListChange();
+    filterProfession();
+    filterGender();
+    filterSkinType();
+    sortPrice();
+    sortType();
+    resetPage();
   };
 
   /** @description 搜索皮肤 */
@@ -335,7 +281,7 @@ const SkinStore = defineStore("skin", () => {
         sortAll();
       }
 
-      filterListChange();
+      resetPage();
     }, 500);
   };
 
@@ -358,18 +304,16 @@ const SkinStore = defineStore("skin", () => {
     skin_list,
     /** 皮肤筛选类型 */
     skin_type,
-    /** 皮肤类型logo列表 */
-    type_logo,
     getSkin: getSkinList,
     setProfessional,
     sortPrice,
-    sortGender,
+    filterGender,
     sortAll,
     searchSkin,
-    filterType,
+    filterSkinType,
     sortType,
     loadMore,
-    filterListChange,
+    resetPage,
     setScroll,
   };
 });

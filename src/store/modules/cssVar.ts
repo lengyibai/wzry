@@ -7,6 +7,7 @@ const CssVarStore = defineStore("cssVariable", () => {
   /** @description 设置动画速率 */
   const setSpeed = (v: 0 | 1 | 2) => {
     resetSpeed();
+
     if (v === 0) {
       html.add("animate-time-xx");
     } else if (v === 2) {
@@ -23,6 +24,7 @@ const CssVarStore = defineStore("cssVariable", () => {
   /** @description 设置线条 */
   const setBorder = (v: boolean) => {
     resetBorder();
+
     if (v) {
       html.add("border-line");
     } else {
@@ -38,6 +40,7 @@ const CssVarStore = defineStore("cssVariable", () => {
   /** @description 设置阴影 */
   const setShadow = (v: boolean) => {
     resetShadow();
+
     if (v) {
       html.add("tbd-shadow");
     } else {

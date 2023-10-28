@@ -1,10 +1,9 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 
 /** @description 移动端调试工具 */
 const VConsoleStore = defineStore("vConsole", () => {
+  /** 获取dom元素 */
   const vconsole = document.querySelector("#__vconsole") as HTMLElement;
-
   /** 显示 */
   let status = true;
 

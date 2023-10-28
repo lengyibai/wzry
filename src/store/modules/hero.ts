@@ -6,6 +6,15 @@ import { $tool } from "@/utils";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
+  /** 当前页数 */
+  let page = 1;
+  /** 总页数 */
+  let page_total = 0;
+  /** 一页显示的个数 */
+  const page_count = 30;
+
+  /** 滚动坐标 */
+  const scroll = ref(0);
   /** 职业类型 */
   const profession = ref<Hero.Profession>();
   /** 阵营排序类型 */
@@ -27,25 +36,16 @@ const HeroStore = defineStore("hero", () => {
   /** 展示的列表 */
   const show_list = ref<Hero.Data[]>([]);
 
-  /** 滚动坐标 */
-  let scroll = 0;
-  /** 当前页数 */
-  let page = 1;
-  /** 总页数 */
-  let page_total = 0;
-  /** 一页显示的个数 */
-  const page_count = 30;
-
   /**
    * @description: 设置滚动坐标
    * @param v y轴坐标
    */
   const setScroll = (v: number) => {
-    scroll = v;
+    scroll.value = v;
   };
 
-  /** @description 重新计算分页 */
-  const filterListChange = () => {
+  /** @description 每次筛选后重新计算分页 */
+  const resetPage = () => {
     page = 0;
     show_list.value = [];
     show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
@@ -56,12 +56,11 @@ const HeroStore = defineStore("hero", () => {
   const loadMore = () => {
     if (page_total > page) {
       page += 1;
-
       show_list.value.push(...filter_list.value.slice(page * page_count, (page + 1) * page_count));
     }
   };
 
-  /** @description 获取英雄列表 */
+  /** @description 初次获取英雄列表并设置相关信息 */
   const getHeroList = async () => {
     hero_list.value = await API_HERO.getHeroData();
     for (let i = 0; i < hero_list.value.length; i++) {
@@ -69,43 +68,57 @@ const HeroStore = defineStore("hero", () => {
       hero_list.value[i].skins = await API_SKIN.getHeroSkin(hero_list.value[i].id);
       hero_list.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(hero_list.value[i].id);
     }
+
     setProfessional("全部");
   };
 
-  /** @description 设置职业 */
-  const setProfessional = (p: Hero.Profession) => {
-    if (profession.value === p) return;
-    profession.value = p;
+  /**
+   * @description: 职业筛选
+   * @param name 职业名称
+   */
+  const setProfessional = (name: Hero.Profession) => {
+    if (profession.value === name) return;
+    profession.value = name;
+    sortAll();
+  };
+
+  /**
+   * @description: 性别筛选
+   * @param name 性别标识符
+   */
+  const filterGender = (name: Gender) => {
+    if (gender_type.value === name) return;
+    gender_type.value = name;
     sortAll();
   };
 
   /**
    * @description: 阵营筛选
-   * @param type 阵营名称
+   * @param name 阵营名称
    */
-  const filterCamp = (type: string) => {
-    if (camp_type.value === type) return;
-    camp_type.value = type;
+  const filterCamp = (name: string) => {
+    if (camp_type.value === name) return;
+    camp_type.value = name;
     sortAll();
   };
 
   /**
    * @description: 属性筛选
-   * @param type 属性名称
+   * @param name 属性名称
    */
-  const filterAttr = (type: string) => {
-    if (attr_type.value === type) return;
-    attr_type.value = type;
+  const filterAttr = (name: string) => {
+    if (attr_type.value === name) return;
+    attr_type.value = name;
     sortAll();
   };
 
   /**
    * @description: 杂项筛选
-   * @param type 杂项名称
+   * @param name 杂项名称
    */
-  const filterMisc = (type: string) => {
-    if (misc_type.value === type) return;
-    misc_type.value = type;
+  const filterMisc = (name: string) => {
+    if (misc_type.value === name) return;
+    misc_type.value = name;
     sortAll();
   };
 
@@ -113,9 +126,9 @@ const HeroStore = defineStore("hero", () => {
    * @description: 杂项排序
    * @param type 杂项名称
    */
-  const sortMisc = (type: string) => {
-    if (misc_sort.value === type) return;
-    misc_sort.value = type;
+  const sortMisc = (name: string) => {
+    if (misc_sort.value === name) return;
+    misc_sort.value = name;
     sortAll();
   };
 
@@ -123,179 +136,143 @@ const HeroStore = defineStore("hero", () => {
    * @description: 正序|倒序
    * @param type 排序名称
    */
-  const sortType = (type: string) => {
-    if (sort_type.value === type) return;
-    sort_type.value = type;
-    sortAll();
-  };
-
-  /**
-   * @description: 性别筛选
-   * @param type 性别标识符
-   */
-  const filterGender = (type: Gender) => {
-    if (gender_type.value === type) return;
-    gender_type.value = type;
+  const sortType = (name: string) => {
+    if (sort_type.value === name) return;
+    sort_type.value = name;
     sortAll();
   };
 
   /** @description 一键排序 */
   const sortAll = () => {
-    scroll = 0;
+    scroll.value = 0;
 
-    //职业筛选
-    if (profession.value === "全部") {
-      //为了解决排序拷贝问题
-      filter_list.value = [...hero_list.value];
-    } else {
-      filter_list.value = hero_list.value.filter((item: Hero.Data) => {
-        return item.profession.includes(profession.value!);
-      });
-    }
-
-    //性别筛选
-    const boy: Hero.Data[] = [];
-    const girl: Hero.Data[] = [];
-    filter_list.value.forEach((item) => {
-      if (item.gender === "男") {
-        boy.push(item);
+    /** 职业筛选 */
+    const filterProfession = () => {
+      if (profession.value === "全部") {
+        //为了解决排序拷贝问题
+        filter_list.value = [...hero_list.value];
       } else {
-        girl.push(item);
+        filter_list.value = hero_list.value.filter((item: Hero.Data) => {
+          return item.profession.includes(profession.value!);
+        });
       }
-    });
+    };
 
-    if (gender_type.value === 1) {
-      filter_list.value = boy;
-    } else if (gender_type.value === 2) {
-      filter_list.value = girl;
-    }
-
-    //阵营筛选
-    if (camp_type.value && camp_type.value !== "全部阵营") {
-      filter_list.value = filter_list.value.filter((item) => {
-        return item.camp === camp_type.value;
+    /** 性别筛选 */
+    const filterGender = () => {
+      const boy: Hero.Data[] = [];
+      const girl: Hero.Data[] = [];
+      filter_list.value.forEach((item) => {
+        if (item.gender === "男") {
+          boy.push(item);
+        } else {
+          girl.push(item);
+        }
       });
-    }
 
-    //属性筛选
-    const a = attr_type.value;
-    const multiple = [
-      {
-        label: "免控",
-        value: ["霸体", "净化", "解控"],
-      },
-      {
-        label: "回血",
-        value: ["回复", "治疗"],
-      },
-      {
-        label: "真伤",
-        value: ["真伤"],
-      },
-    ];
+      if (gender_type.value === 1) {
+        filter_list.value = boy;
+      } else if (gender_type.value === 2) {
+        filter_list.value = girl;
+      }
+    };
 
-    if (a && a !== "全部属性") {
-      multiple.forEach((effect) => {
-        if (a === effect.label) {
+    /** 阵营筛选 */
+    const filterCamp = () => {
+      if (camp_type.value && camp_type.value !== "全部阵营") {
+        filter_list.value = filter_list.value.filter((item) => {
+          return item.camp === camp_type.value;
+        });
+      }
+    };
+
+    /** 属性筛选 */
+    const filterAttr = () => {
+      const multiple = [
+        {
+          label: "免控",
+          value: ["霸体", "净化", "解控"],
+        },
+        {
+          label: "回血",
+          value: ["回复", "治疗"],
+        },
+        {
+          label: "真伤",
+          value: ["真伤"],
+        },
+      ];
+
+      if (attr_type.value && attr_type.value !== "全部属性") {
+        multiple.forEach((effect) => {
+          if (attr_type.value === effect.label) {
+            filter_list.value = filter_list.value.filter((item) => {
+              return item.skills.some((item) => {
+                return item.some((item) => {
+                  return item.type.some((item) => {
+                    return effect.value.includes(item);
+                  });
+                });
+              });
+            });
+          }
+        });
+
+        if (attr_type.value === "无控制") {
           filter_list.value = filter_list.value.filter((item) => {
-            return item.skills!.some((item) => {
+            return !item.skills.some((item) => {
               return item.some((item) => {
                 return item.type.some((item) => {
-                  return effect.value.includes(item);
+                  return ["控制", "束缚", "压制", "牵引", "限制"].includes(item);
                 });
               });
             });
           });
         }
-      });
-
-      if (a === "无位移") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.every((item) => {
-            return item.every((item) => {
-              return !item.type.includes("位移");
-            });
-          });
-        });
-      } else if (a === "位移") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.some((item) => {
-            return item.some((item) => {
-              return item.type.includes("位移");
-            });
-          });
-        });
       }
+    };
 
-      if (a === "无控制") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return !item.skills!.some((item) => {
-            return item.some((item) => {
-              return item.type.some((item) => {
-                return ["控制", "束缚", "压制", "牵引", "限制"].includes(item);
-              });
-            });
-          });
-        });
+    /** 杂项筛选 */
+    const filterMisc = () => {
+      const filter_msic: Record<string, (v: Hero.Data) => boolean> = {
+        团控: (item) => item.specialty.includes("团控"),
+        无蓝条: (item) => item.skillUnit !== "法力",
+        非人类: (item) => item.race !== "人类",
+        多套技能: (item) => item.skills.length > 1,
+      };
+      if (misc_type.value && misc_type.value !== "全部筛选") {
+        filter_list.value = filter_list.value.filter(filter_msic[misc_type.value]);
       }
-    }
+    };
 
-    //杂项筛选
-    if (misc_type.value && misc_type.value !== "全部筛选") {
-      const a = misc_type.value;
-
-      if (a === "爆发") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.specialty.includes("爆发");
-        });
-      } else if (a === "团控") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.specialty.includes("团控");
-        });
-      } else if (a === "无蓝条") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skillUnit !== "法力";
-        });
-      } else if (a === "非人类") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.race !== "人类";
-        });
-      } else if (a === "多套技能") {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.skills!.length > 1;
-        });
+    /** 杂项排序 */
+    const sortMisc = () => {
+      const sortingFunctions: Record<string, (a: Hero.Data, b: Hero.Data) => number> = {
+        身高: (a, b) => a.height - b.height,
+        上手难度: (a, b) => a.difficulty - b.difficulty,
+        皮肤数量: (a, b) => b.skins.length - a.skins.length,
+        关系数量: (a, b) => b.relationships.length - a.relationships.length,
+      };
+      if (misc_sort.value && misc_sort.value !== "全部排序") {
+        filter_list.value.sort(sortingFunctions[misc_sort.value]);
       }
-    }
+    };
 
-    //杂项排序
-    if (misc_sort.value && misc_sort.value !== "全部排序") {
-      const a = misc_sort.value;
-
-      if (a === "身高") {
-        filter_list.value.sort((a, b) => {
-          return a.height - b.height;
-        });
-      } else if (a === "上手难度") {
-        filter_list.value.sort((a, b) => {
-          return a.difficulty - b.difficulty;
-        });
-      } else if (a === "皮肤数量") {
-        filter_list.value.sort((a, b) => {
-          return b.skins!.length - a.skins!.length;
-        });
-      } else if (a === "关系数量") {
-        filter_list.value.sort((a, b) => {
-          return b.relationships!.length - a.relationships!.length;
-        });
+    /** 正/倒排序 */
+    const sortType = () => {
+      if (sort_type.value === "倒序") {
+        filter_list.value.reverse();
       }
-    }
+    };
 
-    //正序/倒序
-    if (sort_type.value === "倒序") {
-      filter_list.value.reverse();
-    }
-
-    filterListChange();
+    filterProfession();
+    filterGender();
+    filterCamp();
+    filterAttr();
+    filterMisc();
+    sortMisc();
+    sortType();
+    resetPage();
   };
 
   /** @description 搜索英雄 */
@@ -307,7 +284,7 @@ const HeroStore = defineStore("hero", () => {
         sortAll();
       }
 
-      filterListChange();
+      resetPage();
     }, 500);
   };
 

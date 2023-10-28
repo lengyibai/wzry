@@ -9,6 +9,7 @@ import { CONFIG } from "@/config";
 const VersionStore = defineStore("version", () => {
   /** 实时更新计时器 */
   let timer: NodeJS.Timeout | undefined = undefined;
+
   /** 本地版本 */
   const local_version = ref("");
   /** 远程版本 */
