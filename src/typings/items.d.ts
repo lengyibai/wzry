@@ -73,7 +73,7 @@ declare namespace Epigraph {
     /** 名称 */
     name: string;
     /** 类型 */
-    type: string[];
+    type: Epigraph.Category[];
     /** 图标 */
     img: string;
     /** 效果 */

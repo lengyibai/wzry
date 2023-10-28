@@ -67,6 +67,7 @@ const handleAddOne = () => {
       profession: hero_info.profession,
       heroName: hero_info.name,
       gender: hero_info.gender,
+      category: "",
     });
 
     //滚动到底部

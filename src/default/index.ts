@@ -16,10 +16,14 @@ export const heroDefault: () => Hero.Data = () => ({
   period: "",
   poster: "",
   race: "",
-  gender: "",
+  gender: "男",
   skillUnit: "无",
   profession: [],
   specialty: [],
+  voices: [],
+  skills: [],
+  skins: [],
+  relationships: [],
 });
 
 /** @description 默认技能信息 */

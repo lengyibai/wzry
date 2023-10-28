@@ -93,7 +93,8 @@ export const getHeroDetail = async (hero_id: number) => {
     headImg: hero.headImg,
     cover: "",
     profession: [],
-    gender: "",
+    gender: "男",
+    category: "",
   });
 
   return Promise.resolve(hero);

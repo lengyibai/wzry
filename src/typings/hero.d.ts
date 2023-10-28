@@ -37,19 +37,19 @@ declare namespace Hero {
     /** 技能消耗单位 */
     skillUnit: string;
     /** 性别 */
-    gender: string;
+    gender: "男" | "女";
     /** 职业 */
     profession: Profession[];
     /** 特长 */
     specialty: string[];
     /** 语音 */
-    voices?: Voice[];
+    voices: Voice[];
     /** 技能 */
-    skills?: Skill[][];
+    skills: Skill[][];
     /** 皮肤 */
-    skins?: Skin[];
+    skins: Skin[];
     /** 关系表 */
-    relationships?: RelationType[];
+    relationships: RelationType[];
   }
 
   /** @description 职业类型 */
@@ -160,9 +160,9 @@ declare namespace Hero {
     /** 类型 */
     type: number | string;
     /** 皮肤类型名 */
-    category?: string;
+    category: string;
     /** 性别 */
-    gender: string;
+    gender: "男" | "女";
     /** 皮肤名称 */
     name: string;
     /** 备用皮肤名称 */
