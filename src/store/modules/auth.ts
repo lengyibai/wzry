@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { RouterStore } from "..";
-
+import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
@@ -13,10 +12,11 @@ import { CONFIG } from "@/config";
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
 
-  /** 用户状态 */
-  const userStatus = ref(false);
   /** 实时检测帐号状态 */
   let timer: NodeJS.Timeout | undefined;
+
+  /** 用户状态 */
+  const userStatus = ref(false);
   /** 用户相关信息 */
   const userInfo = ref<User>(userDefaultInfo());
 
@@ -43,12 +43,10 @@ const AuthStore = defineStore("auth", () => {
 
       userInfo.value = res;
       userStatus.value = true;
-      window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
+      localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
       $routerStore.addRoutes(res.role);
       watchStatus();
-      setTimeout(() => {
-        router.push(CONFIG.BASE.HOME_URL);
-      });
+      router.push(CONFIG.BASE.HOME_URL);
     } catch (error) {
       $message(error as string, "error");
       return Promise.reject(error);
@@ -64,7 +62,7 @@ const AuthStore = defineStore("auth", () => {
       });
       userInfo.value = res;
       userStatus.value = true;
-      window.localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
+      localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
       $message("自动登录成功");
       watchStatus();
     } catch (err) {
@@ -109,6 +107,8 @@ const AuthStore = defineStore("auth", () => {
     timer = setInterval(() => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
       const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
+
+      //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
       if (token - Number(data_token) > CONFIG.BASE.OVERDUE_DATA_TIME) {
         clearInterval(timer);
         $message("数据每三天完整下载一次，即将开始下载", "error");
@@ -120,7 +120,7 @@ const AuthStore = defineStore("auth", () => {
       }
 
       if (!localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)) {
-        $message("身份已过期，请重登录", "error");
+        $message("数据已过期，请重登录", "error");
         clearToken();
       }
     }, 3000);

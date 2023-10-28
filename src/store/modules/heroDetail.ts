@@ -45,7 +45,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
   };
 
   /**
-   * @description: 移除需要滚动触发的函数
+   * @description: 设置需要滚动触发的函数
    * @param name 标识符
    * @param fn 触发函数
    */
@@ -59,11 +59,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     scollFns.value.splice(index, 1);
   };
 
-  /**
-   * @description: 切换皮肤时触发
-   * @param hero_name 英雄名
-   * @param skin_name 皮肤名
-   */
+  /** @description 切换皮肤时触发 */
   const skinToggle = (hero_name: string, skin_name: string) => {
     skinToggleFns.value.forEach((item) => {
       item(hero_name, skin_name);
@@ -80,19 +76,12 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     skillSelectFn.value = fn;
   };
 
-  /**
-   * @description: 点击技能后触发
-   * @param index 技能索引号
-   */
+  /** @description 点击技能后触发 */
   const skillToggler = (index: number) => {
     skillSelectFn.value(index);
   };
 
-  /**
-   * @description: 获取设置皮肤语音
-   * @param hero_name 英雄名
-   * @param skin_name 皮肤名
-   */
+  /** @description 获取设置皮肤语音 */
   const setSkinVoice = async (hero_name: string, skin_name = "盾山") => {
     skin_voice.value = await API_VOICE.getSkinVoice(hero_name, skin_name);
   };

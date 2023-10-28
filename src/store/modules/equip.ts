@@ -67,14 +67,14 @@ const EquipStore = defineStore("equip", () => {
   const getEquipList = async () => {
     equip_list.value = await API_EQUIP.getEquip();
 
-    //设置初始攻击类型的装备列表
+    //将装备分类
     equip_list.value.forEach((item: Equip.Data) => {
       type_list[item.type][item.level - 1].push(item);
     });
     setType("攻击");
   };
 
-  /** @description 存储列表所有装备Dom元素 */
+  /** @description 存储列表所有装备Dom元素及相关信息 */
   const setEquipElement = (data: EquipElement) => {
     equip_element.value.push(data);
   };
@@ -98,7 +98,7 @@ const EquipStore = defineStore("equip", () => {
     }, 500);
   };
 
-  /** @description 装备卡片被点击的id */
+  /** @description 点击的装备id */
   const setEquipActive = (id = 0) => {
     clearSynthetic();
 
@@ -147,9 +147,7 @@ const EquipStore = defineStore("equip", () => {
         const to = synthetic_id.value[1][i];
         const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
         res?.to && synthetic_id.value[2].push(...res.to);
-        synthetic_id.value[2].sort(function (a, b) {
-          return a.id - b.id;
-        });
+        synthetic_id.value[2].sort((a, b) => a.id - b.id);
       }
 
       //计算二三列竖线距离顶部及高度

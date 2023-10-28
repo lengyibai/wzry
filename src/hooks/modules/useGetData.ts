@@ -4,6 +4,7 @@ import { API_DATA, API_HERO } from "@/api";
 import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
 
+/** @description 初次进入网站下载数据 */
 const useGetData = () => {
   /** 请求总数 */
   const total = ref(0);
@@ -40,9 +41,12 @@ const useGetData = () => {
     [CONFIG.LOCAL_KEY.RACE_TYPE, API_DATA.RaceType, "种族"],
   ];
 
+  /* 将数据写入本地存储 */
   const setData = <T extends { data: unknown }>(name: string, data: T) => {
     localStorage.setItem(name, JSON.stringify(data.data));
   };
+
+  /* 判断本地是否存在数据 */
   const isExist = (name: string, prefix = "") => {
     return !!localStorage.getItem(prefix + name);
   };
@@ -53,6 +57,7 @@ const useGetData = () => {
     /* 下载数据 */
     //收集处理请求
     const data_requests = requests.map(async ([key, request]) => {
+      //如果本地存储不存在，则下载数据并存储
       if (!isExist(key)) {
         setData(key, await request());
         index.value++;
@@ -61,6 +66,7 @@ const useGetData = () => {
     await Promise.all(data_requests);
 
     const hero_list = await API_HERO.getHeroBasic();
+    //减2是为了忽略掉没有语音的盾山和梦奇，否则进度会出现错误
     total.value = hero_list.length - 2;
 
     /* 下载语音数据 */
@@ -68,6 +74,7 @@ const useGetData = () => {
     index.value = 0;
     //收集处理请求
     const voice_requests = hero_list.map(async (item) => {
+      //如果不是梦奇和盾山，并且本地不存在英雄语音，则请求
       if (!["梦奇", "盾山"].includes(item.name)) {
         if (!isExist(item.pinyin, "voice_")) {
           setData(`voice_${item.pinyin}`, {

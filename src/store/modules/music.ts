@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { SettingStore } from "..";
-
+import { SettingStore } from "@/store";
 import { AudioVisual } from "@/utils/modules/tool";
 import { $tool } from "@/utils";
 import { CONFIG } from "@/config";
@@ -57,6 +56,7 @@ const MusicStore = defineStore("music", () => {
     if (bgmIndex.value === 0) {
       bgmIndex.value = musics.length;
     }
+
     playIndex(bgmIndex.value - 1);
   };
 
@@ -83,6 +83,7 @@ const MusicStore = defineStore("music", () => {
         }
       })
       .catch(() => {
+        //播放失败后重试
         setTimeout(() => {
           play(false);
         }, 1000);
@@ -129,7 +130,7 @@ const MusicStore = defineStore("music", () => {
 
   /**
    * @description: 播放指定音乐
-   * @param index 音乐音乐索引号
+   * @param index 音乐索引号
    */
   const playIndex = (index: number) => {
     progress.value = 0;
