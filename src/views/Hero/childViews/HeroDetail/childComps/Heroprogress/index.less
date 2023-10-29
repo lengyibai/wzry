@@ -22,6 +22,8 @@
     backdrop-filter: blur(0.3125rem);
 
     .tab {
+      .global_flex-center();
+
       position: absolute;
       width: 18.75rem;
       height: 100%;
@@ -59,7 +61,9 @@
   .active {
     width: 75%;
     background-color: var(--blue);
-    box-shadow: var(--shine-10) var(--blue), var(--shine-25) var(--blue),
+    box-shadow:
+      var(--shine-10) var(--blue),
+      var(--shine-25) var(--blue),
       var(--shine-50) var(--blue);
   }
 }

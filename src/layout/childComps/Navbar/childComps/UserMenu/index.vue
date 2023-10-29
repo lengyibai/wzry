@@ -65,7 +65,7 @@ const onClose = () => {
       @touchend="show_menu = !show_menu"
     />
     <div class="user-card">
-      <div class="name global_one-line">{{ userInfo.nickname }}</div>
+      <div class="name">{{ userInfo.nickname }}</div>
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">

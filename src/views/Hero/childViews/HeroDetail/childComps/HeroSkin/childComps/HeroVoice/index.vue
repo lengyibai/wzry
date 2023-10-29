@@ -93,12 +93,12 @@ const onEnded = () => {
 </script>
 
 <template>
-  <div ref="voiceListRef" class="hero-voice global_scroll-white" @mousewheel.stop>
+  <div ref="voiceListRef" class="hero-voice" @mousewheel.stop>
     <button
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"
       :key="index"
-      class="voice global_flex-center"
+      class="voice"
       :class="{ 'active-width': current_index === index }"
       @click="play(item.link, index)"
       @mouseenter="handleEnter"

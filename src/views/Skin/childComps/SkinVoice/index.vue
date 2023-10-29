@@ -40,7 +40,7 @@ const onEnded = () => {
       v-for="(item, index) in voices"
       ref="voiceRef"
       :key="index"
-      class="voice global_flex-center"
+      class="voice"
       :class="{ 'active-width': current_index === index }"
       @click="handlePlay(item.link, index)"
     >

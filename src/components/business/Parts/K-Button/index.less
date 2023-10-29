@@ -1,4 +1,6 @@
 .k-button {
+  .global_flex-center();
+
   position: relative;
   flex-shrink: 0;
   box-shadow: var(--b-shadow-a);
@@ -17,15 +19,21 @@
     }
 
     &.info {
-      box-shadow: var(--b-shadow-a), var(--shine-20) #4b9be6;
+      box-shadow:
+        var(--b-shadow-a),
+        var(--shine-20) #4b9be6;
     }
 
     &.warning {
-      box-shadow: var(--b-shadow-a), var(--shine-20) #e8b76b;
+      box-shadow:
+        var(--b-shadow-a),
+        var(--shine-20) #e8b76b;
     }
 
     &.error {
-      box-shadow: var(--b-shadow-a), var(--shine-20) #d23f43;
+      box-shadow:
+        var(--b-shadow-a),
+        var(--shine-20) #d23f43;
     }
   }
 
