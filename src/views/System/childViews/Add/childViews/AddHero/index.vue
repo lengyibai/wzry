@@ -48,6 +48,18 @@ API_HERO.getHeroBasic().then((res) => {
 //判断是否存在缓存
 form_data.value ??= heroDefault();
 
+/* 延迟显示 */
+$loading.close();
+setTimeout(async () => {
+  type_list.campType = await API_HERO.getCampType();
+  type_list.raceType = await API_HERO.getRaceType();
+  type_list.locationType = await API_HERO.getLocationType();
+  type_list.periodType = await API_HERO.getPeriodType();
+  type_list.professionType = await API_HERO.getProfessionType();
+  type_list.specialtyType = await API_HERO.getSpecialtyType();
+  show.value = true;
+}, 1000);
+
 /* 发布 */
 const onCommit = async () => {
   const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
@@ -74,18 +86,6 @@ const onCommit = async () => {
     status.value = 0;
   }
 };
-
-/* 延迟显示 */
-$loading.close();
-setTimeout(async () => {
-  type_list.campType = await API_HERO.getCampType();
-  type_list.raceType = await API_HERO.getRaceType();
-  type_list.locationType = await API_HERO.getLocationType();
-  type_list.periodType = await API_HERO.getPeriodType();
-  type_list.professionType = await API_HERO.getProfessionType();
-  type_list.specialtyType = await API_HERO.getSpecialtyType();
-  show.value = true;
-}, 1000);
 </script>
 
 <template>

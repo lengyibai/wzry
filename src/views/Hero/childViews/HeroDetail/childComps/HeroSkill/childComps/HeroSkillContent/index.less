@@ -12,6 +12,16 @@
     border: var(--subline);
   }
 
+  .hide-left {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+
+  .hide-right {
+    opacity: 0;
+    transform: translateX(10%);
+  }
+
   @media screen and (max-width: @large) {
     flex-direction: column;
     justify-content: flex-start;
@@ -25,14 +35,4 @@
       margin-bottom: 6.25rem;
     }
   }
-}
-
-.hide-left {
-  opacity: 0;
-  transform: translateX(-10%);
-}
-
-.hide-right {
-  opacity: 0;
-  transform: translateX(10%);
 }

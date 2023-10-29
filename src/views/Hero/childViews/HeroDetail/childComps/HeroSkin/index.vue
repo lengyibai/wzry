@@ -39,39 +39,44 @@ const skin_bg = reactive<string[]>([]);
 /* 切换皮肤海报 */
 const onTogglePoster = ([i, index]: number[]) => {
   const skins = hero_data.value.skins;
+  if (!skins.length) return;
+
   /** 设置背景图 */
-  skin_bg[i] = (skins && skins[index].poster) || "";
+  skin_bg[i] = skins[index].poster;
   /** 用于皮肤背景的切换动画 */
   skin_bg_toggle.value = !skin_bg_toggle.value;
 
-  //设置皮肤名，皮肤名需要有切换时的打字机效果
-  active_skin_name.value = (skins && skins[index].name) || "";
+  //设置皮肤名
+  active_skin_name.value = skins[index].name;
+
+  //用于皮肤名切换时的打字机效果
   skin_name_toggle.value = !skin_name_toggle.value;
 
-  //隐藏价格
+  //暂时隐藏价格
   skin_price_toggle.value = false;
 
   //延迟设置
   setTimeout(async () => {
     const skins = hero_data.value.skins;
-    const skin_type = (skins && skins[index].type) || "";
+    const skin_type = skins[index].type;
 
     //0 为伴生
     if (skin_type !== 0) {
       active_skin_type.value = (await API_SKIN.getAssignSkinType(skin_type as number)).link;
     } else {
-      //伴生皮肤没有标志
+      //伴生皮肤没有标签
       active_skin_type.value = "";
     }
 
-    //使切换标志时有淡入淡出效果
+    //使切换标签时有淡入淡出效果
     skin_type_toggle.value = !skin_type_toggle.value;
+
     //切换皮肤
     $heroDetail.skinToggle(hero_data.value.name, active_skin_name.value);
 
     //延迟显示价格
     setTimeout(() => {
-      skin_price.value = (skins && skins[index].price) || "";
+      skin_price.value = skins[index].price;
       skin_price_toggle.value = true;
     }, 100);
   }, 250);

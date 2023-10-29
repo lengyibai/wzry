@@ -1,21 +1,20 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { AudioStore } from "@/store";
 
-interface Props {
-  /** 选择的值 */
-  modelValue: Gender;
-}
-
-defineProps<Props>();
 const $emit = defineEmits<{
-  "update:modelValue": [v: Gender];
+  change: [v: Gender];
 }>();
 
 const $audioStore = AudioStore();
 
+const gender = ref<Gender>(0);
+
 /* 选择触发 */
 const handerSetGender = (v: Gender) => {
-  $emit("update:modelValue", v);
+  gender.value = v;
+  $emit("change", v);
   $audioStore.play();
 };
 </script>
@@ -24,14 +23,9 @@ const handerSetGender = (v: Gender) => {
   <!-- 只看性别 -->
   <div class="filter-gender">
     <span class="label">只看：</span>
-    <i class="iconfont wzry-nan" :class="{ 'nan-active': modelValue === 1 }" title="男" @click="handerSetGender(1)" />
-    <i class="iconfont wzry-nv" :class="{ 'nv-active': modelValue === 2 }" title="女" @click="handerSetGender(2)" />
-    <i
-      class="iconfont wzry-xingbie"
-      :class="{ 'all-active': modelValue === 0 }"
-      title="全部"
-      @click="handerSetGender(0)"
-    />
+    <i class="iconfont wzry-nan" :class="{ 'nan-active': gender === 1 }" title="男" @click="handerSetGender(1)" />
+    <i class="iconfont wzry-nv" :class="{ 'nv-active': gender === 2 }" title="女" @click="handerSetGender(2)" />
+    <i class="iconfont wzry-xingbie" :class="{ 'all-active': gender === 0 }" title="全部" @click="handerSetGender(0)" />
   </div>
 </template>
 

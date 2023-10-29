@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { watch } from "vue";
 
 import { AudioStore } from "@/store";
 import { CONFIG } from "@/config";
@@ -8,8 +7,6 @@ import { CONFIG } from "@/config";
 type Data = { label: string; value: string | number };
 
 interface Props {
-  /** 选择的值 */
-  modelValue: string;
   /** 下拉列表 */
   data: Data[];
   /** 列表高度 */
@@ -18,7 +15,7 @@ interface Props {
   status: boolean;
 }
 
-const $props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   listHeight: "initial",
 });
 const $emit = defineEmits<{
@@ -32,19 +29,6 @@ const $audioStore = AudioStore();
 const sort_text = ref("默认排序");
 /** 选择的值 */
 const current_value = ref("");
-
-watch(
-  () => $props.modelValue,
-  (v) => {
-    const data = $props.data.find((item) => v === item.value);
-    if (!data) return;
-    current_value.value = v;
-    sort_text.value = data!.label;
-  },
-  {
-    immediate: true,
-  },
-);
 
 /* 显示列表 */
 const handleShowList = () => {

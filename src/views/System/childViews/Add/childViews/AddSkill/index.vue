@@ -64,6 +64,12 @@ const skills_num = computed(() => (form_data.value ? form_data.value.length : 0)
 /** 当前技能数量 */
 const skill_num = computed(() => form_data.value![deputy_index.value].length);
 
+/* 延迟显示 */
+$loading.close();
+setTimeout(async () => {
+  show.value = true;
+}, 1000);
+
 /* 获取技能类型 */
 API_HERO.getSkillType().then((res) => {
   skill_types.value = res;
@@ -247,12 +253,6 @@ const onCommit = async () => {
     status.value = 0;
   }
 };
-
-/* 延迟显示 */
-$loading.close();
-setTimeout(async () => {
-  show.value = true;
-}, 1000);
 </script>
 
 <template>

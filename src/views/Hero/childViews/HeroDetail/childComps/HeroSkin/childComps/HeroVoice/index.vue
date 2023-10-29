@@ -76,6 +76,7 @@ const play = (voice: string, index: number) => {
     onEnded();
     return;
   }
+
   current_index.value = index;
   play_link.value = voice;
 };

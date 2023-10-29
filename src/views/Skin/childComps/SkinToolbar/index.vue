@@ -4,7 +4,7 @@ import { ref, reactive, onUnmounted } from "vue";
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
 
-const $skinStore = SkinStore();
+const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
 
 const select_price = [
   { label: "默认价格", value: "默认价格" },
@@ -56,28 +56,28 @@ const select_status = reactive([false, false, false, false, false]);
 
 /* 价格排序 */
 const onPriceSort = (v: string | number) => {
-  $skinStore.sortPrice(v as string);
+  sortPrice(v as string);
 };
 
 /* 皮肤类型筛选 */
 const onTypeFilter = (v: string | number) => {
-  $skinStore.filterSkinType(v as string);
+  filterSkinType(v as string);
 };
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
-  $skinStore.sortType(v as string);
+  sortType(v as string);
 };
 
 /* 设置性别 */
 const handerSetGender = (type: Gender) => {
   gender.value = type;
-  $skinStore.filterGender(type);
+  filterGender(type);
 };
 
 /** 搜索皮肤 */
 const handSearch = () => {
-  $skinStore.searchSkin(search_value.value);
+  searchSkin(search_value.value);
 };
 
 /** 设置下拉状态 */
@@ -90,12 +90,14 @@ const handleSelectStatus = (i: number) => {
     current_index = -1;
     return;
   }
+
   select_status[i] = true;
   current_index = i;
 };
 
 $bus.on("mouseup", (e) => {
   const el = (e as MouseEvent).target as HTMLElement;
+
   //如果点击的不是下拉菜单，则隐藏
   if (!el.className.includes("select-filter")) {
     select_status.fill(false);
@@ -113,7 +115,6 @@ onUnmounted(() => {
     <div class="filter-select">
       <!-- 价格排序 -->
       <FilterTool
-        v-model="$skinStore.price_type"
         :status="select_status[0]"
         :data="select_price"
         @click="handleSelectStatus(0)"
@@ -122,7 +123,6 @@ onUnmounted(() => {
 
       <!-- 皮肤类型筛选 -->
       <FilterTool
-        v-model="$skinStore.skin_type"
         :status="select_status[1]"
         :data="select_type"
         list-height="31.25rem"
@@ -131,17 +131,11 @@ onUnmounted(() => {
       />
 
       <!-- 正序/倒序 -->
-      <FilterTool
-        v-model="$skinStore.sort_type"
-        :status="select_status[2]"
-        :data="sort_type"
-        @click="handleSelectStatus(2)"
-        @select="onSortType"
-      />
+      <FilterTool :status="select_status[2]" :data="sort_type" @click="handleSelectStatus(2)" @select="onSortType" />
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender v-model="gender" @update:model-value="handerSetGender" />
+    <FilterGender @change="handerSetGender" />
 
     <!-- 搜索 -->
     <K-Input

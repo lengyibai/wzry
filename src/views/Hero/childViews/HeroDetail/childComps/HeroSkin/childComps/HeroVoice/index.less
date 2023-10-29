@@ -40,12 +40,21 @@
       }
     }
 
+    &.active-width {
+      text-shadow: var(--shine-10), var(--shine-20);
+      transform: rotateX(25deg) scaleX(0.9) !important;
+    }
+
     .content {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
       font-size: 1.375rem;
+
+      &.active-color {
+        color: var(--blue);
+      }
 
       .text {
         padding: 0.625rem;
@@ -55,31 +64,22 @@
       .iconfont {
         color: var(--white);
         font-size: 1.625rem;
+
+        &.active-rotate {
+          color: var(--blue);
+          animation: rotate 0s linear;
+
+          @keyframes rotate {
+            0% {
+              transform: rotate(0deg);
+            }
+
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        }
       }
     }
-  }
-}
-
-.active-width {
-  text-shadow: var(--shine-10), var(--shine-20);
-  transform: rotateX(25deg) scaleX(0.9) !important;
-}
-
-.active-rotate {
-  color: var(--blue);
-  animation: rotate 0s linear;
-}
-
-.active-color {
-  color: var(--blue) !important;
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
   }
 }

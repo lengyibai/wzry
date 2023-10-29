@@ -12,7 +12,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-//通过判断价格是否为数字来显示点券图标及获取途径
+/** 通过判断价格是否为数字来显示点券图标及获取途径 */
 const show = computed(() => $props.price && !isNaN(Number($props.price)));
 </script>
 

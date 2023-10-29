@@ -11,11 +11,14 @@ import HeroSkill from "./childComps/HeroSkill/index.vue";
 
 import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
+import { $concise } from "@/utils";
 
 const $router = useRouter();
 const $heroDetail = HeroDetailStore();
 const $heroStore = HeroStore();
 const $audioStore = AudioStore();
+
+const { getImgLink } = $concise;
 
 /** 滚动索引 */
 const scroll_index = ref(1);
@@ -42,7 +45,6 @@ watchEffect(() => {
 const skill_num = computed(() => {
   return (hero_data.value.skills && hero_data.value.skills.length) || 0;
 });
-
 //皮肤数量
 const skin_num = computed(() => {
   return (hero_data.value.skins && hero_data.value.skins.length) || 0;
@@ -97,13 +99,7 @@ $audioStore.play("u4c5");
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <img
-      class="close"
-      :class="{ 'close-show': show_close }"
-      src="https://lengyibai.gitee.io/wzry-material/image/back.png"
-      alt="返回"
-      @click="handleHide"
-    />
+    <img class="close" :class="{ 'close-show': show_close }" :src="getImgLink('back')" alt="返回" @click="handleHide" />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">
@@ -111,7 +107,7 @@ $audioStore.play("u4c5");
       </HeroParallax>
 
       <!--技能-->
-      <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins![skin_num - 1].poster">
+      <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins[skin_num - 1].poster">
         <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
 

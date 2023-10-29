@@ -101,6 +101,7 @@ onMounted(() => {
       }
     }
   };
+
   changeCount();
   $bus.on("resize", () => {
     changeCount();

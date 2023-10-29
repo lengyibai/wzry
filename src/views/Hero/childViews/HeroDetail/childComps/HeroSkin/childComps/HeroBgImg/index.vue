@@ -10,8 +10,9 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const index = ref(0);
 const animates = ["xmove", "ymove", "square", "clip", "spin", "tv", "fold", "deploy"];
+
+const index = ref(0);
 
 watch(
   () => $props.toggle,

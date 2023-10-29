@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { defineAsyncComponent, reactive, onActivated } from "vue";
-
-import useManageCard from "../../hooks/useManageCard";
+import { defineAsyncComponent, reactive, onActivated, StyleValue } from "vue";
 
 import { AudioStore } from "@/store";
 import { $loading } from "@/utils";
@@ -10,7 +8,33 @@ defineOptions({
   name: "add",
 });
 
-type Options = Record<
+const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue"));
+const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue"));
+const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue"));
+
+const $audioStore = AudioStore();
+
+const box: StyleValue = {
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  overflow: "auto",
+  alignContent: "flex-start",
+};
+
+const list: Record<string, string> = {
+  Hero: "英雄",
+  Skin: "皮肤",
+  Skill: "技能",
+};
+
+const components = [AddHero, AddSkin, AddSkill];
+
+/* 循环判断打开页面 */
+const options: Record<
   string,
   {
     /** 标识符 */
@@ -18,20 +42,7 @@ type Options = Record<
     /** 显示 */
     show: boolean;
   }
->;
-
-const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue"));
-const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue"));
-const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue"));
-
-const $audioStore = AudioStore();
-
-const { box, list } = useManageCard;
-
-const components = [AddHero, AddSkin, AddSkill];
-
-/* 循环判断打开页面 */
-const options: Options = reactive({
+> = reactive({
   Hero: {
     i: 0,
     show: false,

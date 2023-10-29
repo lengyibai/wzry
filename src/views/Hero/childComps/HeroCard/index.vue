@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 
 import { HeroStore } from "@/store";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 英雄数据 */
@@ -16,6 +17,8 @@ const $emit = defineEmits<{
 
 const $heroStore = HeroStore();
 
+const { getImgLink } = $concise;
+
 /** 显示查看详情选项 */
 const show = ref(false);
 /** 头像是否加载完成 */
@@ -27,14 +30,17 @@ const num_type = computed(() => $heroStore.misc_sort);
 const show_num = computed(() => ["身高", "皮肤数量", "关系数量"].includes(num_type.value));
 
 /** 单位格式化 */
-const num = (data: Hero.Data) =>
-  num_type.value === "身高"
-    ? data.height + "cm"
-    : num_type.value === "皮肤数量"
-    ? (data.skins?.length || 0) + "款"
-    : num_type.value === "关系数量"
-    ? (data.relationships?.length || 0) + "位"
-    : "";
+const num = (data: Hero.Data) => {
+  const numType = num_type.value;
+
+  const obj: Record<string, string> = {
+    身高: data.height + "cm",
+    皮肤数量: (data.skins?.length || 0) + "款",
+    关系数量: (data.relationships?.length || 0) + "位",
+  };
+
+  return obj[numType] || "";
+};
 
 /* 查看详情 */
 const handleViewClick = () => {
@@ -61,7 +67,7 @@ const handleViewClick = () => {
     <transition name="fade">
       <div v-if="show" class="select-mask">
         <img
-          :src="finish ? data.headImg : 'https://lengyibai.gitee.io/wzry-material/image/unknown.png'"
+          :src="finish ? data.headImg : getImgLink('unknown')"
           class="head"
           @click="handleViewClick"
           @load="finish = true"

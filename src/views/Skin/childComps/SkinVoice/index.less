@@ -32,10 +32,19 @@
       }
     }
 
+    &.active-width {
+      transform: rotateX(25deg) scaleX(0.9) !important;
+    }
+
     .content {
       display: flex;
       justify-content: space-between;
       width: 100%;
+
+      &.active-color {
+        color: var(--blue);
+        text-shadow: var(--shine-20);
+      }
 
       .text {
         padding: 0.9375rem;
@@ -44,13 +53,4 @@
       }
     }
   }
-}
-
-.active-width {
-  transform: rotateX(25deg) scaleX(0.9) !important;
-}
-
-.active-color {
-  color: var(--blue) !important;
-  text-shadow: var(--shine-20);
 }

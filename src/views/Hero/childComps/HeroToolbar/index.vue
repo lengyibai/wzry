@@ -5,7 +5,7 @@ import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 
-const $heroStore = HeroStore();
+const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } = HeroStore();
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },
@@ -33,8 +33,6 @@ const sort_type = [
   { label: "倒序", value: "倒序" },
 ];
 
-/** 性别排序 */
-const gender = ref<Gender>(0);
 /** 搜索值 */
 const search_value = ref("");
 /** 当前展开的菜单 */
@@ -43,8 +41,6 @@ const current_index = ref(-1);
 const select_status = reactive([false, false, false, false, false]);
 /** 阵营列表 */
 const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
-
-gender.value = $heroStore.gender_type;
 
 /* 获取阵营列表 */
 API_HERO.getCampType().then((res) => {
@@ -58,38 +54,32 @@ API_HERO.getCampType().then((res) => {
 
 /* 阵营筛选 */
 const onSelectCamp = (v: string | number) => {
-  $heroStore.filterCamp(v as string);
+  filterCamp(v as string);
 };
 
 /* 属性筛选 */
 const onSelectAttr = (v: string | number) => {
-  $heroStore.filterAttr(v as string);
+  filterAttr(v as string);
 };
 
 /* 杂项筛选 */
 const onSelectMisc = (v: string | number) => {
-  $heroStore.filterMisc(v as string);
+  filterMisc(v as string);
 };
 
 /* 杂项排序 */
 const onSelectSort = (v: string | number) => {
-  $heroStore.sortMisc(v as string);
+  sortMisc(v as string);
 };
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
-  $heroStore.sortType(v as string);
-};
-
-/* 设置性别 */
-const handerSetGender = (type: Gender) => {
-  gender.value = type;
-  $heroStore.filterGender(type);
+  sortType(v as string);
 };
 
 /** 搜索英雄 */
 const handSearch = () => {
-  $heroStore.searchHero(search_value.value);
+  searchHero(search_value.value);
 };
 
 /** 设置下拉状态 */
@@ -125,7 +115,6 @@ onUnmounted(() => {
     <div class="filter-select">
       <!-- 阵营筛选按钮 -->
       <FilterTool
-        v-model="$heroStore.camp_type"
         :status="select_status[0]"
         :data="select_camp"
         list-height="26.5625rem"
@@ -135,7 +124,6 @@ onUnmounted(() => {
 
       <!-- 自带属性筛选按钮 -->
       <FilterTool
-        v-model="$heroStore.attr_type"
         :status="select_status[1]"
         :data="select_attr"
         @click="handleSelectStatus(1)"
@@ -144,7 +132,6 @@ onUnmounted(() => {
 
       <!-- 杂项筛选按钮 -->
       <FilterTool
-        v-model="$heroStore.misc_type"
         :status="select_status[2]"
         :data="select_misc"
         @click="handleSelectStatus(2)"
@@ -153,7 +140,6 @@ onUnmounted(() => {
 
       <!-- 杂项排序按钮 -->
       <FilterTool
-        v-model="$heroStore.misc_sort"
         :status="select_status[3]"
         :data="select_sort"
         @click="handleSelectStatus(3)"
@@ -161,17 +147,11 @@ onUnmounted(() => {
       />
 
       <!-- 正序/倒序 -->
-      <FilterTool
-        v-model="$heroStore.sort_type"
-        :status="select_status[4]"
-        :data="sort_type"
-        @click="handleSelectStatus(4)"
-        @select="onSortType"
-      />
+      <FilterTool :status="select_status[4]" :data="sort_type" @click="handleSelectStatus(4)" @select="onSortType" />
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender v-model="gender" @update:model-value="handerSetGender" />
+    <FilterGender @change="filterGender" />
 
     <!-- 搜索 -->
     <K-Input

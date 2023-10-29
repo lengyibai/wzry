@@ -36,6 +36,13 @@ const skin_types = ref<Hero.SkinType[]>([]);
 /** 根据悬浮的位置显示垃圾桶 */
 const current_index = ref<number | null>(null);
 
+/* 延迟显示 */
+$loading.close();
+setTimeout(async () => {
+  skin_types.value = await API_SKIN.getSkinType();
+  show.value = true;
+}, 1000);
+
 /* 选择英雄后触发 */
 const onSelectHero = (id: number) => {
   API_SKIN.getHeroSkin(id).then((res) => {
@@ -122,13 +129,6 @@ const onCommit = async () => {
     status.value = 0;
   }
 };
-
-/* 延迟显示 */
-$loading.close();
-setTimeout(async () => {
-  skin_types.value = await API_SKIN.getSkinType();
-  show.value = true;
-}, 1000);
 </script>
 
 <template>

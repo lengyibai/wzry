@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
+import { nextTick, onUnmounted, onActivated, onMounted, ref, watch, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
@@ -36,6 +36,9 @@ const show_tool = ref(false);
 const toggle_show = ref(false);
 /** 英雄信息 */
 const hero_info = ref<Hero.Data>(heroDefault());
+
+/** 渲染英雄列表 */
+const show_herolist = computed(() => $heroStore.show_list.length && toggle_show.value && show_list.value);
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -92,7 +95,7 @@ watch(
       toggle_show.value = true;
     });
   },
-  { deep: true, immediate: true },
+  { immediate: true },
 );
 
 watch(
@@ -172,7 +175,7 @@ onUnmounted(() => {
         <!-- 列表 -->
         <LibGrid
           v-show="show_list"
-          v-if="$heroStore.show_list.length && toggle_show && show_list"
+          v-if="show_herolist"
           class="hero-list"
           scroll-id="hero_list"
           gap="1.5625rem"

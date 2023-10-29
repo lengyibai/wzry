@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, nextTick } from "vue";
+import { ref, onMounted, nextTick } from "vue";
+import { storeToRefs } from "pinia";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue";
 import HeroBasic from "./childComps/HeroBasic/index.vue";
@@ -9,7 +10,7 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue";
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 
-const $heroDetail = HeroDetailStore();
+const { hero_info } = storeToRefs(HeroDetailStore());
 
 /** 通过设备来显示不同的提示 */
 let tip_text = "0vk2";
@@ -22,9 +23,6 @@ const into = ref(false);
 /** 显示向上滚动提示 */
 const show_down = ref(false);
 
-/** 英雄数据 */
-const hero_data = computed(() => $heroDetail.hero_info);
-
 onMounted(() => {
   //设置按顺序出场的动画
   setTimeout(async () => {
@@ -34,7 +32,7 @@ onMounted(() => {
 
     setTimeout(() => {
       if (!relationshipRef.value?.el || !downRef.value) return;
-      const focusRelationship = new $tool.FocusElement(relationshipRef.value?.el);
+      const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
       const focusdown = new $tool.FocusElement(downRef.value);
 
       if ($tool.isPhone) {
@@ -81,10 +79,10 @@ onMounted(() => {
         <!-- 属性 -->
         <transition name="attribute">
           <div v-if="into" class="hero-attribute1">
-            <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
-            <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
-            <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
-            <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
           </div>
         </transition>
       </div>
@@ -97,10 +95,10 @@ onMounted(() => {
         <!-- 属性 -->
         <transition name="attribute">
           <div v-if="into" class="hero-attribute2">
-            <HeroAttribute class="attribute" attr="survival" :length="hero_data.survival" />
-            <HeroAttribute class="attribute" attr="attack" :length="hero_data.attack" />
-            <HeroAttribute class="attribute" attr="effect" :length="hero_data.effect" />
-            <HeroAttribute class="attribute" attr="difficulty" :length="hero_data.difficulty" />
+            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
           </div>
         </transition>
       </div>
