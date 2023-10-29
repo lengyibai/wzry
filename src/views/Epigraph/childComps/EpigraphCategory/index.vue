@@ -2,10 +2,12 @@
 import { ref } from "vue";
 
 import { AudioStore, EpigraphStore } from "@/store";
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 const $audioStore = AudioStore();
 const $epigraphStore = EpigraphStore();
+
+const { getImgLink } = $concise;
 
 /** 顶部铭文分类标题 */
 const epigraph: Record<string, Epigraph.Category>[] = [
@@ -37,11 +39,7 @@ const handleToggle = (index: number, type: Epigraph.Category) => {
   <div class="epigraph-tool">
     <div class="epigraph-category">
       <!-- 滑动的图标 -->
-      <img
-        :style="{ left: current_index * 11.11 + '%' }"
-        :src="CONFIG.BASE.IMGBED + '/image/epigraph_active.png'"
-        alt=""
-      />
+      <img :style="{ left: current_index * 11.11 + '%' }" :src="getImgLink('epigraph_active')" alt="" />
 
       <!-- 文字 -->
       <button

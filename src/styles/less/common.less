@@ -55,21 +55,23 @@
 }
 
 /* 白色滚动条 */
-.global_scroll-white::-webkit-scrollbar {
-  width: 3px;
-  background: transparent;
-}
+.global_scroll-white {
+  &::-webkit-scrollbar {
+    width: 3px;
+    background: transparent;
+  }
 
-.global_scroll-white::-webkit-scrollbar-thumb {
-  background: var(--white-25);
-}
+  &::-webkit-scrollbar-thumb {
+    background: var(--white-25);
+  }
 
-.global_scroll-white::-webkit-scrollbar-thumb:hover {
-  background: rgb(255 255 255 / 35%);
-}
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(255 255 255 / 35%);
+  }
 
-.global_scroll-white::-webkit-scrollbar-thumb:active {
-  background: var(--white-50);
+  &::-webkit-scrollbar-thumb:active {
+    background: var(--white-50);
+  }
 }
 
 /* 可点击按钮 */

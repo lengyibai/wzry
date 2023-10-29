@@ -11,6 +11,11 @@
   opacity: 0;
   transition: all 0.25s;
 
+  &.show {
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
   .name {
     margin-bottom: 1em;
     color: var(--theme-font-color-seven);
@@ -44,11 +49,11 @@
     font-family: var(--font-f);
   }
 
-  @media screen and (width <= 95.9375rem) {
+  @media screen and (width <= 1535px) {
     width: 11.25rem;
   }
 
-  @media screen and (width <= 70rem) {
+  @media screen and (width <= 1120px) {
     left: 0;
     padding: 0.625rem;
     width: 100%;
@@ -56,11 +61,6 @@
     background-color: var(--black-25);
     backdrop-filter: blur(0.3125rem);
   }
-}
-
-.show {
-  opacity: 1;
-  transition: all 0.5s;
 }
 
 .common,

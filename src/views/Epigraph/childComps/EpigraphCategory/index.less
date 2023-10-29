@@ -27,6 +27,11 @@
       text-align: center;
       transition: all var(--time-250) 0.1s;
 
+      &.active {
+        color: var(--white);
+        text-shadow: var(--shine-15);
+      }
+
       span {
         font-size: 1.625rem;
       }
@@ -44,9 +49,4 @@
       }
     }
   }
-}
-
-.active {
-  color: var(--white) !important;
-  text-shadow: var(--shine-15);
 }

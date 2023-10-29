@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 import EquipCard from "../common/EquipCard/index.vue";
 
@@ -21,7 +22,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const $equipStore = EquipStore();
+const { category, vertical_line } = storeToRefs(EquipStore());
 
 /** 淡入显示列表 */
 const show = ref(true);
@@ -41,7 +42,7 @@ const showLine = (id: number, line: string) => {
 
 /* 监听列表，实时更新列表 */
 watch(
-  () => $equipStore.category,
+  () => category.value,
   () => {
     show.value = false;
     setTimeout(() => {
@@ -68,8 +69,8 @@ watch(
       v-if="index !== 0"
       class="vertical-line"
       :style="{
-        top: $equipStore.vertical_line[index].top,
-        height: $equipStore.vertical_line[index].height,
+        top: vertical_line[index].top,
+        height: vertical_line[index].height,
       }"
     ></div>
   </div>
