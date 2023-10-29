@@ -162,13 +162,7 @@ watch(
             @focus="handleFocus"
             @blur="handleBlur"
           />
-          <img
-            class="arrow"
-            :class="{ rotate: is_unfold }"
-            :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
-            alt=""
-            @dragstart.prevent
-          />
+          <img class="arrow" :class="{ rotate: is_unfold }" :src="CONFIG.BASE.IMGBED + '/image/arrow.png'" alt="" />
         </div>
 
         <!-- 展开列表 -->

@@ -1,4 +1,6 @@
 .k-manage {
+  .global_cursor-pointer();
+
   position: relative;
   margin: 2.5rem;
   width: 12.5rem;
@@ -6,12 +8,11 @@
   box-shadow: var(--b-shadow-a);
 
   .box {
+    .global_flex-center();
+
     position: absolute;
     z-index: 1;
-    display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
     width: 100%;
     height: 100%;
 

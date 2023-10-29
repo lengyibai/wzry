@@ -41,7 +41,6 @@ const handleToggle = (index: number, type: Epigraph.Category) => {
         :style="{ left: current_index * 11.11 + '%' }"
         :src="CONFIG.BASE.IMGBED + '/image/epigraph_active.png'"
         alt=""
-        @dragstart.prevent
       />
 
       <!-- 文字 -->

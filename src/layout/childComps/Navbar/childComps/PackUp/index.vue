@@ -12,11 +12,7 @@ const handleToggle = () => {
 </script>
 
 <template>
-  <i
-    class="iconfont wzry-packup global_cursor-pointer"
-    :class="{ 'is-active': !$collapseStore.collapse }"
-    @click="handleToggle"
-  />
+  <i class="iconfont wzry-packup" :class="{ 'is-active': !$collapseStore.collapse }" @click="handleToggle" />
 </template>
 
 <style scoped lang="less">

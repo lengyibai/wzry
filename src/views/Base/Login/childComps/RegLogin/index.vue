@@ -7,21 +7,24 @@ import SelectInto from "./childComps/SelectInto/index.vue";
 
 import { API_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
-import { $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { $concise, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 const $deviceStore = DeviceStore();
 
-const loginBox = ref<HTMLElement>();
+const RegLoginRef = ref<HTMLElement>();
 /** 注册及登录状态下要显示的输入框及按钮 */
 const is_reg = ref("");
 /** 用户表单 */
 const reg_form = ref<User>();
 
+const { getImgLink } = $concise;
+
 API_USER.userList().then((res) => {
-  if (res.length) is_reg.value = "登录";
+  if (res.length) {
+    is_reg.value = "登录";
+  }
 });
 
 /** 登录、注册的组件切换 */
@@ -52,15 +55,17 @@ const onRegSuccess = (form: unknown) => {
   reg_form.value = form as User;
 };
 
-/* 视差动画(如果为移动端，则取消) */
+/* 视差动画(如果为移动端或为safari浏览器则取消) */
 if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
   const parallax = new $tool.Parallax((x: number, y: number) => {
-    loginBox.value &&
-      (loginBox.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`);
+    if (!RegLoginRef.value) return;
+    RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${-x * 10}deg)`;
   });
+
   const fn = (e: MouseEvent) => {
     $tool.throttleInstant(() => parallax.move(e), 50);
   };
+
   window.addEventListener("mousemove", fn);
   onUnmounted(() => {
     window.removeEventListener("mousemove", fn);
@@ -69,11 +74,11 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
 </script>
 
 <template>
-  <div ref="loginBox" class="login-box">
+  <div ref="RegLoginRef" class="reg-login">
     <!-- 左上角重新选择 -->
-    <div v-show="is_reg" class="back global_cursor-pointer global_click-btn" @click="handleBack">
-      <i class="iconfont wzry-fanhui" />
-      <span>重新选择</span>
+    <div v-show="is_reg" class="reg-login__back" @click="handleBack">
+      <i class="iconfont wzry-fanhui back" />
+      <span class="text">重新选择</span>
     </div>
 
     <!-- logo -->
@@ -85,13 +90,13 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
         lock: true,
         enable: $settingStore.config.particle,
       }"
-      class="logo"
+      class="reg-login__logo"
     >
-      <img :src="CONFIG.BASE.IMGBED + '/image/login_logo.png'" alt="logo" @dragstart.prevent />
+      <img class="logo" :src="getImgLink('login_logo')" alt="logo" />
     </div>
 
     <!-- 标题 -->
-    <div class="title">
+    <div class="reg-login__title">
       {{ is_reg === "" ? "Welcome" : is_reg }}
     </div>
 

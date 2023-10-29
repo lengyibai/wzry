@@ -1,4 +1,6 @@
 .muisc-list {
+  .global_cursor-default();
+
   position: absolute;
   top: 0;
   z-index: 1;
@@ -42,6 +44,8 @@
     width: 100%;
 
     .card {
+      .global_cursor-pointer();
+
       position: relative;
       display: flex;
       align-items: center;
@@ -72,6 +76,11 @@
         }
       }
 
+      &.active {
+        color: var(--blue);
+        text-shadow: var(--shine-15);
+      }
+
       .left {
         display: flex;
         align-items: center;
@@ -92,11 +101,6 @@
       }
     }
   }
-}
-
-.active {
-  color: var(--blue) !important;
-  text-shadow: var(--shine-15) !important;
 }
 
 .muisc-list-enter-from,

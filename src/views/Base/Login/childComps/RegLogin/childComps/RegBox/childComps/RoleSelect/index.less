@@ -1,16 +1,16 @@
 .role-select {
   @height: 2.1875rem;
+  .global_flex-center();
 
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1.5625rem;
   height: @height;
   border: 0.0625rem solid var(--theme-border-color-six);
   background-color: var(--theme-el-color-six);
 
   .option {
+    .global_cursor-pointer();
+
     z-index: 1;
     width: 6.25rem;
     color: var(--theme-font-color-ten);
@@ -19,6 +19,10 @@
     font-size: 1.25rem;
     line-height: @height;
     transition: all var(--time-250);
+
+    &.active {
+      color: var(--white);
+    }
   }
 
   .active-bg {
@@ -30,8 +34,4 @@
     background-image: linear-gradient(180deg, #c5b184 0%, #ca9d2a 100%);
     transition: all var(--time-250);
   }
-}
-
-.active {
-  color: var(--white) !important;
 }

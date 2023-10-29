@@ -19,7 +19,7 @@ const show_desc = ref(false);
         {{ desc }}
       </div>
     </transition>
-    <div class="question-icon global_cursor-pointer" @mouseenter="show_desc = true" @mouseleave="show_desc = false">
+    <div class="question-icon" @mouseenter="show_desc = true" @mouseleave="show_desc = false">
       <span>?</span>
     </div>
   </div>

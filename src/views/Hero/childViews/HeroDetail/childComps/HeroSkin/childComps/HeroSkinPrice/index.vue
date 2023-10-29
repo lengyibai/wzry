@@ -18,7 +18,7 @@ const show = computed(() => $props.price && !isNaN(Number($props.price)));
 
 <template>
   <div class="hero-skin-price" :class="{ show: toggle }">
-    <img v-show="show" :src="CONFIG.BASE.IMGBED + '/image/coupon.png'" alt="点券" @dragstart.prevent />
+    <img v-show="show" :src="CONFIG.BASE.IMGBED + '/image/coupon.png'" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span>{{ price }}</span>
   </div>

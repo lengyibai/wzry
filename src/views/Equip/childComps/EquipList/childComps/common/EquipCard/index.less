@@ -1,4 +1,6 @@
 .equip-card {
+  .global_cursor-pointer();
+
   position: relative;
   display: flex;
   margin-bottom: 1.5625rem;
@@ -13,7 +15,9 @@
     height: 4.6875rem;
     border: 0.3125rem solid #fef5b2;
     border-radius: 50%;
-    box-shadow: var(--shine-20) #fef5b2, var(--shine-10) #fef5b2 inset;
+    box-shadow:
+      var(--shine-20) #fef5b2,
+      var(--shine-10) #fef5b2 inset;
     pointer-events: none;
 
     &::before,
@@ -53,7 +57,9 @@
     width: 1.25rem;
     height: 0.1875rem;
     background-color: var(--blue);
-    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
+    box-shadow:
+      var(--shine-10) var(--blue),
+      var(--shine-20) var(--blue);
     transform: translate(-100%, -50%);
     transform-origin: right;
   }
@@ -65,7 +71,9 @@
     width: calc(100% - 4.6875rem - 1.25rem);
     height: 0.1875rem;
     background-color: var(--blue);
-    box-shadow: var(--shine-10) var(--blue), var(--shine-20) var(--blue);
+    box-shadow:
+      var(--shine-10) var(--blue),
+      var(--shine-20) var(--blue);
     transform: translate(4.6875rem, -50%);
     transform-origin: left;
   }
@@ -80,6 +88,10 @@
       font-size: inherit;
       transition: all var(--time-250);
       transform: translateY(0.9375rem);
+
+      &.shine {
+        text-shadow: var(--shine-10);
+      }
     }
 
     .info {
@@ -112,10 +124,6 @@
 
 .border-fade-leave-active {
   transition: all var(--time-250);
-}
-
-.shine {
-  text-shadow: var(--shine-10);
 }
 
 /* 左边 */

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
 import { SettingStore } from "@/store";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 文字 */
@@ -10,6 +10,8 @@ interface Props {
 }
 
 defineProps<Props>();
+
+const { getImgLink } = $concise;
 
 const $settingStore = SettingStore();
 </script>
@@ -21,9 +23,9 @@ const $settingStore = SettingStore();
     }"
     class="into-btn"
   >
-    <span>{{ text }}</span>
-    <span>{{ desc }}</span>
-    <img :src="CONFIG.BASE.IMGBED + '/image/login_btn.png'" alt="" @dragstart.prevent />
+    <span class="text">{{ text }}</span>
+    <span class="desc">{{ desc }}</span>
+    <img class="bg" :src="getImgLink('login_btn')" alt="" />
   </button>
 </template>
 

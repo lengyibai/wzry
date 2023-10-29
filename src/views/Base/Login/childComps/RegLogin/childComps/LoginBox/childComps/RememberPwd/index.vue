@@ -3,6 +3,7 @@ import { computed } from "vue";
 
 import { AudioStore } from "@/store";
 import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 是否选中 */
@@ -16,10 +17,10 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
+const { getImgLink } = $concise;
+
 /** 是否选中图标 */
-const checkIcon = computed(
-  () => `${CONFIG.BASE.IMGBED}/image/${$props.modelValue ? "check_true_yellow" : "check_false_yellow"}.png`,
-);
+const checkIcon = computed(() => getImgLink(`${$props.modelValue ? "check_true_yellow" : "check_false_yellow"}`));
 
 /* 选中按钮 */
 const handleToggle = () => {
@@ -29,9 +30,9 @@ const handleToggle = () => {
 </script>
 
 <template>
-  <div class="remember-pwd global_cursor-pointer" @click="handleToggle">
-    <img :src="checkIcon" @dragstart.prevent />
-    <span class="global_click-btn">记住密码</span>
+  <div class="remember-pwd" @click="handleToggle">
+    <img class="icon" :src="checkIcon" />
+    <span class="text">记住密码</span>
   </div>
 </template>
 

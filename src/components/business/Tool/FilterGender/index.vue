@@ -24,20 +24,10 @@ const handerSetGender = (v: Gender) => {
   <!-- 只看性别 -->
   <div class="filter-gender">
     <span class="label">只看：</span>
+    <i class="iconfont wzry-nan" :class="{ 'nan-active': modelValue === 1 }" title="男" @click="handerSetGender(1)" />
+    <i class="iconfont wzry-nv" :class="{ 'nv-active': modelValue === 2 }" title="女" @click="handerSetGender(2)" />
     <i
-      class="iconfont wzry-nan global_cursor-pointer"
-      :class="{ 'nan-active': modelValue === 1 }"
-      title="男"
-      @click="handerSetGender(1)"
-    />
-    <i
-      class="iconfont wzry-nv global_cursor-pointer"
-      :class="{ 'nv-active': modelValue === 2 }"
-      title="女"
-      @click="handerSetGender(2)"
-    />
-    <i
-      class="iconfont wzry-xingbie global_cursor-pointer"
+      class="iconfont wzry-xingbie"
       :class="{ 'all-active': modelValue === 0 }"
       title="全部"
       @click="handerSetGender(0)"

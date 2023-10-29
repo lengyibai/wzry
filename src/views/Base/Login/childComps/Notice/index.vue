@@ -17,7 +17,7 @@ $audioStore.play("u4c5");
 
 <template>
   <K-Dialog v-bind="$attrs" width="56.25rem" header="系统公告">
-    <div class="main" v-html="notice"></div>
+    <div class="notice" v-html="notice"></div>
   </K-Dialog>
 </template>
 

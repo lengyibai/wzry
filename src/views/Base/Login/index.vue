@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
+import { storeToRefs } from "pinia";
 
 import RegLogin from "./childComps/RegLogin/index.vue";
 import Notice from "./childComps/Notice/index.vue";
@@ -10,12 +11,13 @@ import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
-import { $bus, $tip, $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { $bus, $concise, $tip, $tool } from "@/utils";
 
-const $settingStore = SettingStore();
+const { config } = storeToRefs(SettingStore());
 
 const toolbarRef = ref<InstanceType<typeof ToolBar>>();
+
+const { getImgLink, getVideoLink } = $concise;
 
 /** 显示公告 */
 const show_notice = ref(true);
@@ -28,8 +30,8 @@ const show_team = ref(false);
 /** 数据下载完成 */
 const finish = ref(false);
 
-/** 启用视频背景 */
-const enable_video_bg = computed(() => $settingStore.config.videoBg);
+/* 隐藏注册登录盒子 */
+const hideRegLogin = computed(() => !finish.value || show_notice.value || show_todo.value || show_team.value);
 
 /**
  * 点击右上角工具栏
@@ -82,25 +84,21 @@ onUnmounted(() => {
 
 <template>
   <div class="login">
-    <div class="logo" @touchstart="handleStartTime" @touchend="handleEndTime">
-      <img :src="CONFIG.BASE.IMGBED + '/image/logo.png'" alt="" @dragstart.prevent />
+    <div class="login__logo" @touchstart="handleStartTime" @touchend="handleEndTime">
+      <img :src="getImgLink('logo')" alt="" />
     </div>
 
     <!-- 登录注册盒子 -->
-    <RegLogin v-if="finish" :class="{ hide: !finish || show_notice || show_todo || show_team }" />
+    <RegLogin v-if="finish" :class="{ 'hide-reg-login': hideRegLogin }" />
 
     <!-- 工具栏 -->
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
-    <!-- 视频背景 -->
-    <K-Video
-      v-if="enable_video_bg"
-      :video="CONFIG.BASE.IMGBED + '/video/login_bg.mp4'"
-      :muted="$settingStore.config.muted"
-    />
+    <!-- PC端视频背景 -->
+    <K-Video v-if="config.videoBg" :video="getVideoLink('login_bg')" :muted="config.muted" />
 
-    <!-- 图片 -->
-    <img v-else class="login-bg" :src="CONFIG.BASE.IMGBED + '/image/login_bg.png'" alt="" />
+    <!-- 移动端图片背景 -->
+    <img v-else class="login__bg" :src="getImgLink('login_bg')" alt="" />
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">

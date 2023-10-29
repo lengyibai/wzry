@@ -37,7 +37,7 @@ defineExpose({
         class="relation"
         @click="toggleHero(item.id)"
       >
-        <img :src="item.hero.headImg" alt="" @dragstart.prevent />
+        <img :src="item.hero.headImg" alt="" />
         <span class="name">{{ item.relation }}</span>
       </button>
     </transition-group>

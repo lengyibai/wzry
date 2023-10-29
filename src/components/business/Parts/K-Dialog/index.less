@@ -1,13 +1,9 @@
 .mask {
+  .global_flex-center();
+  .global_fill-container();
+
   position: fixed;
-  top: 0;
-  left: 0;
   z-index: var(--z-index-dialog);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
   background-color: var(--black-50);
   color: var(--white);
 
@@ -63,6 +59,8 @@
     }
 
     .close {
+      .global_cursor-pointer();
+
       position: absolute;
       top: 2rem;
       right: 1.75rem;

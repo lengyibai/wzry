@@ -1,0 +1,59 @@
+.upload-img {
+  .global_flex-center();
+
+  position: relative;
+  overflow: hidden;
+  width: 6.25rem;
+  height: 6.25rem;
+  border: 0.1875rem solid var(--theme-border-color-two);
+  border-radius: 50%;
+
+  &:hover {
+    border-style: dashed;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  .img {
+    .global_fill-container();
+
+    object-fit: cover;
+  }
+
+  .op {
+    position: absolute;
+    .global_fill-container();
+
+    &:hover {
+      .edit {
+        display: block;
+      }
+    }
+
+    .edit {
+      .global_cursor-pointer();
+      .global_fill-container();
+
+      position: absolute;
+      z-index: 2;
+      display: none;
+      padding: 1.5625rem;
+
+      &:hover {
+        background-color: var(--black-25);
+      }
+    }
+  }
+
+  .add {
+    .global_flex-center();
+    .global_fill-container();
+
+    img {
+      width: 50%;
+      height: 50%;
+    }
+  }
+}

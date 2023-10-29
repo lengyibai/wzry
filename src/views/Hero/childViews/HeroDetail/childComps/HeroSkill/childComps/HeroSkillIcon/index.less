@@ -7,12 +7,11 @@
 
   .icon {
     @size: 6.25rem;
+    .global_cursor-pointer();
+    .global_flex-center();
 
     position: relative;
-    display: flex;
     overflow: hidden;
-    align-items: center;
-    justify-content: center;
     width: @size;
     height: @size;
     border-radius: 50%;
@@ -20,6 +19,11 @@
     filter: var(--d-shadow-a);
     transition: all 0.5s;
     transform: translateY(-100%);
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .border {
       position: absolute;
@@ -68,17 +72,22 @@
         opacity: 0;
         transition: all 0.5s;
         transform: translateY(-100%);
+
+        &.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     }
   }
 
   .toggle {
+    .global_flex-center();
+    .global_cursor-pointer();
+
     position: absolute;
     bottom: 0;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: var(--white-50);
     font-size: 3.125rem;
     transition: color var(--time-250);
@@ -92,11 +101,6 @@
       transition: color 0.1s;
     }
   }
-}
-
-.active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
 }
 
 .hide-bottom {

@@ -11,7 +11,7 @@ defineProps<Props>();
     v-maskGradient="{ color: 'rgb(45, 90, 142)', num1: '-35%', num2: '35%' }"
     class="epigraph-card global_flex-center"
   >
-    <img :src="data.img" alt="" @dragstart.prevent />
+    <img :src="data.img" alt="" />
     <div class="box">
       <div class="name">5级铭文:{{ data.name }}</div>
       <div class="attr">

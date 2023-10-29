@@ -27,7 +27,7 @@ const handleSelect = (index: number) => {
     <div
       v-for="(item, index) in option"
       :key="index"
-      class="option global_cursor-pointer"
+      class="option"
       :class="{ active: modelValue === index }"
       @click="handleSelect(index)"
     >

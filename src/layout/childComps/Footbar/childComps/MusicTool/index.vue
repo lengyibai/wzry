@@ -45,15 +45,15 @@ const handleTool = (type: string) => {
       :class="{ center: $deviceStore.vertical }"
       @click.stop
     >
-      <i class="global_cursor-pointer iconfont wzry-last" title="上一首" @click="handleTool('last')" />
+      <i class="iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i
-        class="global_cursor-pointer iconfont"
+        class="iconfont"
         :class="$musicStore.status ? 'wzry-play' : 'wzry-pause'"
         title="播放/暂停"
         @click="handleTool(!$musicStore.status ? 'play' : 'pause')"
       />
-      <i class="global_cursor-pointer iconfont wzry-next" title="下一首" @click="handleTool('next')" />
-      <i class="global_cursor-pointer iconfont wzry-musiclist" title="播放列表" @click="handleTool('list')" />
+      <i class="iconfont wzry-next" title="下一首" @click="handleTool('next')" />
+      <i class="iconfont wzry-musiclist" title="播放列表" @click="handleTool('list')" />
 
       <MuiscList class="muisc-list" />
     </div>

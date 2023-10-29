@@ -30,7 +30,6 @@ const handleView = (v: string, i: number) => {
       <img
         v-for="(item, index) in imgs"
         :key="index"
-        class="global_cursor-pointer"
         :class="{
           active: index === active,
         }"

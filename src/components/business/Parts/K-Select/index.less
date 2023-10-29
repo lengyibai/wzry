@@ -1,10 +1,8 @@
 .k-select {
   @height: 2.1875rem;
+  .global_flex-center();
 
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: @height;
   border: 0.0625rem solid var(--theme-border-color-five);
   background-color: var(--theme-el-color-one);
@@ -12,6 +10,8 @@
   color: var(--theme-font-color-two);
 
   .option {
+    .global_cursor-pointer();
+
     z-index: 1;
     width: 6.25rem;
     color: var(--theme-font-color-four);

@@ -83,7 +83,7 @@ const handleCoord = (e: Event) => {
     <div
       v-for="(item, index) in list"
       :key="index"
-      class="filter-type global_cursor-pointer"
+      class="filter-type"
       :class="{ active: item.name === filter_type }"
       @click="handleSelect(item.name, index), handleCoord($event)"
     >

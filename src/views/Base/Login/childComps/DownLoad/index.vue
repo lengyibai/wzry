@@ -20,10 +20,10 @@ watch(finish, (v) => {
 
 <template>
   <div class="down-load">
-    <div class="bar">
+    <div class="down-load__bar">
       <div class="progress" :style="{ width: progress }"></div>
     </div>
-    <div class="desc">
+    <div class="down-load__desc">
       <div class="text">正在为您下载{{ type }}</div>
       <div class="num">{{ progress }}</div>
     </div>

@@ -10,8 +10,14 @@
   gap: 0.625rem;
 
   img {
+    .global_cursor-pointer();
+
     max-width: calc(50% - 0.3125rem);
     aspect-ratio: 2.22/1;
+
+    &.active {
+      outline: 0.125rem solid var(--blue);
+    }
 
     &:nth-child(1) {
       min-width: 100%;
@@ -25,8 +31,4 @@
       outline: 0.0625rem solid var(--white);
     }
   }
-}
-
-.active {
-  outline: 0.125rem solid var(--blue);
 }

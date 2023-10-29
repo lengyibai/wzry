@@ -20,10 +20,10 @@
     }
 
     .box {
+      .global_cursor-pointer();
+      .global_flex-center();
+
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       margin-bottom: 1.0625rem;
       width: 3.125rem;
       height: 3.125rem;
@@ -58,18 +58,14 @@
     }
 
     .elastic {
-      .text {
-        .text();
-      }
-
       &:active {
         transform: rotate(45deg) translateX(0.3125rem) translateY(0.3125rem);
       }
     }
 
     .jingyin {
-      .text {
-        .text();
+      &.active {
+        transform: rotate(45deg) translateX(0.3125rem) translateY(0.3125rem) !important;
       }
     }
 
@@ -83,8 +79,4 @@
       transform: rotate(45deg);
     }
   }
-}
-
-.active {
-  transform: rotate(45deg) translateX(0.3125rem) translateY(0.3125rem) !important;
 }

@@ -58,7 +58,7 @@ const btnIcon = (src: string) => `${CONFIG.BASE.IMGBED}/image/btn_${src}.png`;
     <span :style="style2">
       <slot>按钮</slot>
     </span>
-    <img :src="btnIcon(type)" @dragstart.prevent />
+    <img :src="btnIcon(type)" />
   </button>
 </template>
 

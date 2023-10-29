@@ -28,6 +28,8 @@ module.exports = {
     "no-descending-specificity": null,
     /** 字体名称问题 */
     "font-family-no-missing-generic-family-keyword": null,
+    /** 使用inset代替上下左右为0 */
+    "declaration-block-no-redundant-longhand-properties": null,
     /** 选择器伪元素未知时进行检查 */
     "selector-pseudo-element-no-unknown": [
       true,

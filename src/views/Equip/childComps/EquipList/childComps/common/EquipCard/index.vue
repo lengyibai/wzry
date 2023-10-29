@@ -41,14 +41,14 @@ nextTick(() => {
 </script>
 
 <template>
-  <div class="equip-card global_cursor-pointer" @click="handleDetail">
+  <div class="equip-card" @click="handleDetail">
     <!-- 选中圆圈 -->
     <transition name="border-fade">
       <div v-show="active_id === equip.id" class="border"></div>
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="iconRef" :src="equip.icon" alt="" @dragstart.prevent />
+    <img ref="iconRef" :src="equip.icon" alt="" />
 
     <!-- 左线 -->
     <transition name="left-line">

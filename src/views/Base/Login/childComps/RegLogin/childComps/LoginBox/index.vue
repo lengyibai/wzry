@@ -20,8 +20,10 @@ const $props = defineProps<Props>();
 const $audioStore = AudioStore();
 const $authStore = AuthStore();
 
+/** 用于登录后禁用按钮 */
 let is_login = false;
 
+/** 是否记住密码 */
 const remember = ref(true);
 const form = ref({ ...userDefaultInfo(), id: "123456", password: "lengyibai" });
 
@@ -62,7 +64,7 @@ const handleLogin = () => {
 <template>
   <div class="log-box">
     <!-- 帐号 -->
-    <div class="box">
+    <div class="log-box__box">
       <i class="iconfont wzry-user" />
       <K-Input
         v-model.number="form.id"
@@ -75,7 +77,7 @@ const handleLogin = () => {
     </div>
 
     <!-- 密码 -->
-    <div class="box">
+    <div class="log-box__box">
       <i class="iconfont wzry-password" />
       <K-Input
         v-model="form.password"
@@ -88,12 +90,12 @@ const handleLogin = () => {
     </div>
 
     <!-- 记住密码 -->
-    <div class="remember">
+    <div class="log-box__remember">
       <RememberPwd v-model="remember" />
     </div>
 
     <!-- 登录 -->
-    <div class="btns">
+    <div class="log-box__btns">
       <IntoBtn text="登录" desc="LOGIN" @click="handleLogin" />
     </div>
   </div>

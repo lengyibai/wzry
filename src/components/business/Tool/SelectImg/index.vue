@@ -28,12 +28,8 @@ const onGetLink = (link: string) => {
 </script>
 
 <template>
-  <div
-    class="select-img global_flex-center global_cursor-pointer"
-    :class="[type, { border: !modelValue }]"
-    @click="show_AddLink = true"
-  >
-    <img v-show="modelValue" :src="modelValue" alt="" @dragstart.prevent />
+  <div class="select-img" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
+    <img v-show="modelValue" :src="modelValue" alt="" />
     <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
 

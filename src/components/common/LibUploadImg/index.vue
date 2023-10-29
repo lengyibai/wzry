@@ -39,78 +39,16 @@ const fn = (e: Event) => {
 <template>
   <div class="upload-img">
     <input v-show="false" id="file" type="file" @change="fn" />
-    <img v-if="modelValue" class="img" :src="modelValue" @dragstart.prevent />
+    <img v-if="modelValue" class="img" :src="modelValue" />
     <label v-if="modelValue" for="file" class="op">
-      <img src="./img/edit.svg" class="edit global_cursor-pointer" alt="" @dragstart.prevent />
+      <img src="./img/edit.svg" class="edit" alt="" />
     </label>
     <label v-if="!modelValue" for="file" class="add">
-      <img src="./img/add.svg" alt="" @dragstart.prevent />
+      <img src="./img/add.svg" alt="" />
     </label>
   </div>
 </template>
 
 <style scoped lang="less">
-.upload-img {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  width: 6.25rem;
-  height: 6.25rem;
-  border: 0.1875rem solid var(--theme-border-color-two);
-  border-radius: 50%;
-
-  &:hover {
-    border-style: dashed;
-  }
-
-  label {
-    margin-bottom: 0;
-  }
-
-  .img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .op {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-
-    &:hover {
-      .edit {
-        display: block;
-      }
-    }
-
-    .edit {
-      position: absolute;
-      z-index: 2;
-      display: none;
-      padding: 1.5625rem;
-      width: 100%;
-      height: 100%;
-
-      &:hover {
-        background-color: var(--black-25);
-      }
-    }
-  }
-
-  .add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-
-    img {
-      width: 50%;
-      height: 50%;
-    }
-  }
-}
+@import url("./index.less");
 </style>

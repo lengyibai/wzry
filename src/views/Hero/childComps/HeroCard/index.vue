@@ -46,7 +46,7 @@ const handleViewClick = () => {
   <div
     v-maskGradient
     v-sweepLight
-    class="hero-card global_cursor-pointer"
+    class="hero-card"
     :class="{ hide: show }"
     @mouseenter="show = true"
     @mouseleave="show = false"
@@ -65,14 +65,13 @@ const handleViewClick = () => {
           class="head"
           @click="handleViewClick"
           @load="finish = true"
-          @dragstart.prevent
         />
         <button v-textHoverColor class="view" @click="handleViewClick">点击此处</button>
       </div>
     </transition>
 
     <!-- 背景图 -->
-    <img class="bg" :src="data.cover" @dragstart.prevent />
+    <img class="bg" :src="data.cover" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">

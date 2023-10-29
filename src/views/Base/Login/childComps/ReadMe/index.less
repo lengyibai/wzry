@@ -1,19 +1,21 @@
 .readme {
+  .global_fill-container();
+
   position: fixed;
   z-index: var(--z-index-readme);
-  width: 100vw;
-  height: 100vh;
+  background-color: var(--black-75);
   transition: all 0.25s;
 
-  .wzry-guanbi {
+  &__close {
+    .global_cursor-pointer();
+
     position: absolute;
     top: 2.1875rem;
     right: 2.1875rem;
     font-size: 2.1875rem;
   }
 
-  .iframe {
-    width: 100%;
-    height: 100%;
+  &__iframe {
+    .global_fill-container();
   }
 }

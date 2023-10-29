@@ -20,6 +20,7 @@ API_USER.userList().then((res) => {
 /* 进入方式 */
 const handleInto = (v: string) => {
   $emit("into", v);
+
   if (v === "注册") {
     $audioStore.play("0o5c");
   } else {

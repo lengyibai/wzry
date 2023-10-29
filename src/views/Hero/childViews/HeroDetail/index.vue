@@ -98,11 +98,10 @@ $audioStore.play("u4c5");
   <div class="hero-detail">
     <!-- 顶部关闭 -->
     <img
-      class="close global_cursor-pointer"
+      class="close"
       :class="{ 'close-show': show_close }"
       src="https://lengyibai.gitee.io/wzry-material/image/back.png"
       alt="返回"
-      @dragstart.prevent
       @click="handleHide"
     />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">

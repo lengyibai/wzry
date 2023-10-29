@@ -178,7 +178,7 @@ onUnmounted(() => {
           : '',
       }"
     >
-      <img :src="item.headImg" alt="" @dragstart.prevent />
+      <img :src="item.headImg" alt="" />
     </button>
   </div>
 </template>

@@ -1,16 +1,15 @@
 .into-btn {
+  .global_flex-center();
+
   position: relative;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
   width: 22rem;
   height: 5rem;
   background: url("@{IMGBED}/image/login_btn.png") no-repeat center center;
   background-size: 100%;
 
   &:hover {
-    img {
+    .bg {
       filter: contrast(1.1) brightness(1.3);
       transition: all 0.25s;
     }
@@ -26,34 +25,35 @@
     transform: scale(0.95);
     transform-origin: bottom center;
 
-    img {
+    .bg {
       filter: contrast(1) brightness(0.75);
       transition: all 0.05s;
     }
   }
 
-  img {
+  .bg {
+    .global_fill-container();
+
     position: absolute;
-    width: 100%;
-    height: 100%;
     transition: all 0.25s;
   }
 
-  span {
+  .text,
+  .desc {
     z-index: 1;
+  }
 
-    &:nth-of-type(1) {
-      color: var(--white);
-      text-shadow: var(--t-shadow-d);
-      font-size: 2.1875rem;
-    }
+  .text {
+    color: var(--white);
+    text-shadow: var(--t-shadow-d);
+    font-size: 2.1875rem;
+  }
 
-    &:nth-of-type(2) {
-      color: #895c36;
-      text-shadow: var(--shine-5) #8b5e37;
-      letter-spacing: 0.125rem;
-      font-size: 1rem;
-      line-height: 0.875rem;
-    }
+  .desc {
+    color: #895c36;
+    text-shadow: var(--shine-5) #8b5e37;
+    letter-spacing: 0.125rem;
+    font-size: 1rem;
+    line-height: 0.875rem;
   }
 }

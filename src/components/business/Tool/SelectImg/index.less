@@ -1,9 +1,44 @@
 .select-img {
+  .global_flex-center();
+  .global_cursor-pointer();
+
   position: relative;
   margin-right: 1.5625rem;
   width: 9.375rem;
   height: 9.375rem;
   background-color: transparent;
+
+  &.border {
+    border: 0.1875rem solid var(--theme-color-eight);
+
+    &:hover {
+      border-style: dashed;
+      border-color: var(--theme-border-color-three);
+
+      .iconfont {
+        color: var(--theme-font-color-three);
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &.width {
+    width: 22.1875rem;
+    height: 12.5rem;
+  }
+
+  &.height {
+    width: 8.3125rem;
+    height: 12.5rem;
+  }
+
+  &.square {
+    width: 6.25rem;
+    height: 6.25rem;
+  }
 
   img {
     object-fit: cover;
@@ -15,36 +50,4 @@
     color: var(--theme-font-color-six);
     font-size: 3.125rem;
   }
-}
-
-.border {
-  border: 0.1875rem solid var(--theme-color-eight);
-
-  &:hover {
-    border-style: dashed;
-    border-color: var(--theme-border-color-three);
-
-    .iconfont {
-      color: var(--theme-font-color-three);
-    }
-  }
-
-  &:active {
-    transform: scale(0.95);
-  }
-}
-
-.width {
-  width: 22.1875rem !important;
-  height: 12.5rem !important;
-}
-
-.height {
-  width: 8.3125rem !important;
-  height: 12.5rem !important;
-}
-
-.square {
-  width: 6.25rem !important;
-  height: 6.25rem !important;
 }

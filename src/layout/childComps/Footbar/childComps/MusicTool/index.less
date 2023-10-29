@@ -6,7 +6,16 @@
   border-right: var(--subline);
   border-left: var(--subline);
 
+  &.center {
+    position: absolute;
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+  }
+
   .iconfont {
+    .global_cursor-pointer();
+
     display: inline-block;
     margin: 0 0.625rem;
     color: var(--theme-font-color-four);
@@ -22,13 +31,6 @@
       transform: scale(1);
     }
   }
-}
-
-.center {
-  position: absolute;
-  left: 50%;
-  z-index: 1;
-  transform: translateX(-50%);
 }
 
 .tool-enter-from,

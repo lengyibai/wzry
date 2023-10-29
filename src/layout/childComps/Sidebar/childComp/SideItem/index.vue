@@ -133,7 +133,6 @@ const handleChildCoord = (v: number) => {
         :class="{ 'arrow-active': show }"
         :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
         alt=""
-        @dragstart.prevent
       />
     </button>
 

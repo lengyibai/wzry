@@ -13,9 +13,9 @@ const hero = computed(() => $heroDetail.hero_info);
   <div class="hero-title">
     <div class="title-name">{{ hero.name }}</div>
     <div class="title-mark">
-      <img class="left" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
+      <img class="left" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" />
       <span class="text">{{ hero.mark }}</span>
-      <img class="right" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" @dragstart.prevent />
+      <img class="right" :src="CONFIG.BASE.IMGBED + '/image/mark.png'" alt="" />
     </div>
   </div>
 </template>

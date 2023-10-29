@@ -6,7 +6,7 @@
   width: 100%;
   transform-style: preserve-3d;
 
-  .box {
+  &__box {
     position: relative;
     display: flex;
     align-items: center;
@@ -40,22 +40,21 @@
     }
   }
 
-  .box:nth-child(1),
-  .box:nth-child(2),
-  .box:nth-child(3),
-  .role-select {
+  &__box:nth-child(1),
+  &__box:nth-child(2),
+  &__box:nth-child(3),
+  &__role-select {
     transform: translateZ(7.8125rem);
   }
 
-  .btns {
+  &__btns {
     margin-bottom: 1.5625rem;
     -webkit-box-reflect: below 0.625rem linear-gradient(transparent, transparent 0%, var(--black-25));
     transform: translateZ(4.6875rem);
 
     .reg {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      .global_flex-center();
+
       width: 18.75rem;
       height: 2.8125rem;
       border-radius: 0.3125rem;

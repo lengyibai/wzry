@@ -45,7 +45,7 @@ const handleReg = () => {
 <template>
   <div class="reg-box">
     <!-- 昵称 -->
-    <div class="box">
+    <div class="reg-box__box">
       <i class="iconfont wzry-nickname" />
       <K-Input
         v-model:empty="form_verify[0]"
@@ -60,7 +60,7 @@ const handleReg = () => {
     </div>
 
     <!-- 帐号 -->
-    <div class="box">
+    <div class="reg-box__box">
       <i class="iconfont wzry-user" />
       <K-Input
         v-model:empty="form_verify[1]"
@@ -76,7 +76,7 @@ const handleReg = () => {
     </div>
 
     <!-- 密码 -->
-    <div class="box">
+    <div class="reg-box__box">
       <i class="iconfont wzry-password" />
       <K-Input
         v-model:empty="form_verify[2]"
@@ -91,10 +91,10 @@ const handleReg = () => {
     </div>
 
     <!-- 权限选择 -->
-    <RoleSelect v-model="form.role" class="role-select" :option="['管理员', '用户']" />
+    <RoleSelect v-model="form.role" class="reg-box__role-select" :option="['管理员', '用户']" />
 
     <!-- 注册 -->
-    <div class="btns">
+    <div class="reg-box__btns">
       <IntoBtn text="注册" desc="REGISTER" @click="handleReg" />
     </div>
   </div>

@@ -1,4 +1,6 @@
 .wzry-packup {
+  .global_cursor-pointer();
+
   display: inline-block;
   margin-right: 1.25rem;
   margin-left: 1.25rem;
@@ -11,9 +13,9 @@
     color: var(--white);
     text-shadow: var(--shine-15) !important;
   }
-}
 
-.wzry-packup.is-active {
-  text-shadow: var(--t-shadow-a);
-  transform: rotate(180deg);
+  &.is-active {
+    text-shadow: var(--t-shadow-a);
+    transform: rotate(180deg);
+  }
 }

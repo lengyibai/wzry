@@ -25,8 +25,8 @@ const handleUpdateLog = (v: boolean) => {
 <template>
   <div class="btn-icon">
     <!-- 按钮 -->
-    <i class="iconfont wzry-setting global_cursor-pointer" title="设置" @click="show_setting = true" />
-    <i class="iconfont wzry-gengxinrizhi global_cursor-pointer" title="更新日志" @click="handleUpdateLog(true)" />
+    <i class="iconfont wzry-setting" title="设置" @click="show_setting = true" />
+    <i class="iconfont wzry-gengxinrizhi" title="更新日志" @click="handleUpdateLog(true)" />
 
     <!-- 设置弹窗 -->
     <transition name="fade">

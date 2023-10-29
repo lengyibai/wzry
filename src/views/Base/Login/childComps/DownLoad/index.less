@@ -8,7 +8,7 @@
   height: 6.25rem;
   background-color: rgb(20 35 60 / 90%);
 
-  .bar {
+  &__bar {
     position: relative;
     padding: 0.0625rem;
     width: 100%;
@@ -19,12 +19,14 @@
       height: 100%;
       background-color: #1c78b3;
       background-image: linear-gradient(90deg, #1c78b3 0%, #0768af 35%, #269bde 100%);
-      box-shadow: 0 0.1875rem 0.1875rem 0 var(--white-50) inset, 0 -0.1875rem 0.1875rem 0 var(--black-50) inset;
+      box-shadow:
+        0 0.1875rem 0.1875rem 0 var(--white-50) inset,
+        0 -0.1875rem 0.1875rem 0 var(--black-50) inset;
       transition: all 0.1s ease-out;
     }
   }
 
-  .desc {
+  &__desc {
     display: flex;
     justify-content: space-between;
     margin-top: 0.5em;

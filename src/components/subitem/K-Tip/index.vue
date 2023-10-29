@@ -69,7 +69,7 @@ watch(
               <div class="title">小贴士</div>
 
               <!-- 小兵 -->
-              <img class="soldier" :src="CONFIG.BASE.IMGBED + '/image/warn.png'" alt="小兵" @dragstart.prevent />
+              <img class="soldier" :src="CONFIG.BASE.IMGBED + '/image/warn.png'" alt="小兵" />
             </div>
 
             <!-- 内容 -->

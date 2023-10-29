@@ -63,7 +63,6 @@ const onClose = () => {
       :src="userInfo.headImg || CONFIG.BASE.IMGBED + '/image/unknown.png'"
       alt="头像"
       @touchend="show_menu = !show_menu"
-      @dragstart.prevent
     />
     <div class="user-card">
       <div class="name global_one-line">{{ userInfo.nickname }}</div>

@@ -1,7 +1,7 @@
-.login-box {
+.reg-login {
+  .global_self-center();
+
   position: fixed;
-  top: 50%;
-  left: 50%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -12,10 +12,12 @@
   background: var(--black-50);
   box-shadow: 0 0 0.625rem 0 var(--black-75);
   transition: all 0.25s ease-out;
-  transform: translate(-50%, -50%);
   transform-style: preserve-3d;
 
-  .back {
+  &__back {
+    .global_cursor-pointer();
+    .global_click-btn();
+
     position: absolute;
     top: 1.5625rem;
     left: 1.5625rem;
@@ -24,24 +26,24 @@
     color: var(--white-50);
     font-size: 1.125rem;
 
-    .wzry-fanhui {
+    .back {
       margin-right: 0.625rem;
       font-size: inherit;
     }
 
-    span {
+    .text {
       line-height: 1.625rem;
     }
   }
 
-  .logo {
+  &__logo {
     margin-bottom: 0.9375rem;
     width: 6.25rem;
     height: 6.25rem;
     transform: translate3d(0, 0, 6.25rem);
     animation: light 1.5s infinite alternate-reverse ease-out;
 
-    img {
+    .logo {
       width: 100%;
 
       @keyframes light {
@@ -53,7 +55,7 @@
     }
   }
 
-  .title {
+  &__title {
     margin-bottom: 3.125rem;
     background: linear-gradient(155deg, #f6dda5 25%, #ffb700);
     background-clip: text;

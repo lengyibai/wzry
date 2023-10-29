@@ -66,17 +66,11 @@ const handleSelect = (v: Data) => {
 </script>
 
 <template>
-  <div class="select-filter global_cursor-pointer" @click="handleShowList">
+  <div class="select-filter" @click="handleShowList">
     <div class="title">{{ sort_text }}</div>
 
     <!-- 下拉图标 -->
-    <img
-      :class="{ 'arrow-active': status }"
-      :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
-      alt="arrow"
-      class="arrow"
-      @dragstart.prevent
-    />
+    <img :class="{ 'arrow-active': status }" :src="CONFIG.BASE.IMGBED + '/image/arrow.png'" alt="arrow" class="arrow" />
 
     <!-- 展开列表 -->
     <div class="select-list" :class="{ unfold: !status }" :style="{ height: listHeight }" @click.stop>

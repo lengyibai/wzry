@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
 import { AudioStore } from "@/store";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 是否显示 */
@@ -8,12 +8,13 @@ interface Props {
 }
 
 defineProps<Props>();
-
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
 }>();
 
 const $audioStore = AudioStore();
+
+const { getHtmlLink } = $concise;
 
 /* 关闭 */
 const handleClose = () => {
@@ -24,10 +25,10 @@ const handleClose = () => {
 
 <template>
   <div class="readme">
-    <i class="iconfont wzry-guanbi global_cursor-pointer" @click="handleClose"></i>
+    <i class="iconfont wzry-guanbi readme__close" @click="handleClose"></i>
     <iframe
-      class="iframe"
-      :src="CONFIG.BASE.IMGBED + '/html/readme.html'"
+      class="readme__iframe"
+      :src="getHtmlLink('readme')"
       marginheight="0"
       marginwidth="0"
       frameborder="0"
