@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 
-const $router = useRouter();
+const { replace } = useRouter();
 </script>
 
 <template>
-  <div class="main three">
-    <div class="text">
-      <div class="a">403</div>
-      <div class="b">无权访问</div>
-      <div class="c">你可能没有登录，或者你访问了需要管理员权限的页面</div>
+  <div class="error unauthorized">
+    <div class="error__content">
+      <div class="title">403</div>
+      <div class="text">无权访问</div>
+      <div class="desc">你可能没有登录，或者你访问了需要管理员权限的页面</div>
     </div>
-    <K-Button class="home" @click="$router.replace('/login')">回到主页</K-Button>
+    <K-Button class="back-home" @click="replace('/login')">回到主页</K-Button>
   </div>
 </template>
 

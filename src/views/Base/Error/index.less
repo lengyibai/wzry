@@ -1,4 +1,4 @@
-.main {
+.error {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -8,53 +8,53 @@
   background-repeat: no-repeat;
   text-shadow: var(--t-shadow-f);
 
-  .text {
+  &__content {
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 1.5625rem;
 
-    .a {
+    .title {
       margin-bottom: 1.5625rem;
       font-weight: bold;
       font-size: 10vw;
     }
 
-    .b {
+    .text {
       margin-bottom: 2.1875rem;
       font-weight: bold;
       font-size: 5vw;
     }
 
-    .c {
+    .desc {
       width: 75vw;
       text-align: center;
       font-size: 2.1875rem;
       font-size: 2.5vw;
       line-height: 1.25;
+
+      &__red {
+        color: var(--red);
+      }
+
+      &_green {
+        color: var(--green);
+      }
     }
   }
 
-  .home {
+  .back-home {
     position: absolute;
     right: 2.1875rem;
     bottom: 2.1875rem;
   }
 }
 
-.red-text {
-  color: var(--red);
-}
-
-.green-text {
-  color: var(--green);
-}
-
-.three {
+.unauthorized {
   background-image: url("@{IMGBED}/image/403.jpg");
 }
 
-.four {
+.notfound {
   background-image: url("@{IMGBED}/image/404.jpg");
 }
 
