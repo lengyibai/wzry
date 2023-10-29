@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 
-import EquipCard from "../common/EquipCard/index.vue";
+import EquipCard from "./components/EquipCard/index.vue";
 
 import { EquipStore } from "@/store";
 
