@@ -6,7 +6,7 @@
   background-color: var(--black-75);
   color: var(--white);
 
-  .box {
+  &__content {
     position: absolute;
     z-index: 1;
     display: flex;
@@ -70,13 +70,13 @@
       justify-content: center;
       box-sizing: content-box;
       padding: 1.5625rem 0;
-      height: 3.125rem;
+      min-height: 3.125rem;
       border-top: var(--subline);
     }
   }
 
   @media screen and (max-width: @medium) {
-    .box {
+    &__content {
       flex-direction: column;
     }
   }
