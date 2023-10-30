@@ -2,7 +2,6 @@
 import { computed } from "vue";
 
 import { AudioStore } from "@/store";
-import { CONFIG } from "@/config";
 import { $concise } from "@/utils";
 
 interface Props {
