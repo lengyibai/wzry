@@ -34,7 +34,7 @@ onActivated(() => {
     </transition>
 
     <!-- 铭文列表 -->
-    <div class="epigraph-main">
+    <div class="epigraph__main">
       <EpigraphList :data="$epigraphStore.filter_list" />
     </div>
   </div>

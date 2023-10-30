@@ -167,7 +167,7 @@ onUnmounted(() => {
 <template>
   <div class="hero">
     <transition name="card-list">
-      <div class="hero-main">
+      <div class="hero__main">
         <!-- 工具栏 -->
         <transition name="fade" appear>
           <HeroToolbar v-show="show_tool" />

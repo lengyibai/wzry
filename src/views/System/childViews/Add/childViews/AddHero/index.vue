@@ -30,7 +30,7 @@ const info: string[][] = [
 
 const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>($emit, "add_hero");
 
-//类型列表
+/** 类型列表 */
 const type_list: Record<string, General[]> = reactive({
   campType: [],
   locationType: [],

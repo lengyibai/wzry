@@ -39,7 +39,7 @@ onActivated(() => {
 <template>
   <div class="equip">
     <transition name="fade">
-      <div v-if="show" ref="equipMainRef" class="equip-main">
+      <div v-if="show" ref="equipMainRef" class="equip__main">
         <!-- 装备详情 -->
         <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 

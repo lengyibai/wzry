@@ -49,7 +49,7 @@ onMounted(async () => {
     </transition>
 
     <!-- 右侧主体 -->
-    <div class="layout-container">
+    <div class="layout__container">
       <!-- 导航栏 -->
       <transition name="navbar">
         <Navbar v-if="show_navbar" />
@@ -68,7 +68,7 @@ onMounted(async () => {
     <K-Video v-if="enable_video_bg" :video="CONFIG.BASE.IMGBED + '/video/bg.mp4'" />
 
     <!-- 图片壁纸 -->
-    <img v-else class="layout-bg" :src="CONFIG.BASE.IMGBED + '/image/background.png'" alt="" />
+    <img v-else class="layout__bg" :src="CONFIG.BASE.IMGBED + '/image/background.png'" alt="" />
   </div>
 </template>
 

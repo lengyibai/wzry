@@ -6,7 +6,7 @@
   overflow: hidden;
   background-color: #000;
 
-  .close {
+  &__close {
     .global_cursor-pointer();
 
     position: absolute;
@@ -18,7 +18,7 @@
     transition: all var(--time-500);
     transform: translateX(-110%);
 
-    &-show {
+    &.show {
       opacity: 1;
       transform: translateX(0);
     }

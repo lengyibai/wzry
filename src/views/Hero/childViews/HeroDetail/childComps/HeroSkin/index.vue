@@ -85,7 +85,7 @@ const onTogglePoster = ([i, index]: number[]) => {
 
 <template>
   <div class="hero-skin">
-    <div class="box">
+    <div class="hero-skin__content">
       <!-- 顶部 -->
       <div class="top">
         <!-- 皮肤类型 -->

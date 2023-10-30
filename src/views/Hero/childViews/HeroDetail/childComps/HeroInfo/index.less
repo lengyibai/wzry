@@ -10,14 +10,14 @@
   box-shadow: 0 0 6.25rem 1.5625rem #000 inset;
   color: var(--white);
 
-  .content {
+  &__content {
     display: flex;
     flex-grow: 1;
     justify-content: space-between;
     margin-bottom: 1.5625rem;
     border: var(--subline);
 
-    .left {
+    &__left {
       margin-right: 6.25rem;
 
       .hero-basic {
@@ -39,7 +39,7 @@
       }
     }
 
-    .right {
+    &__right {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -82,8 +82,8 @@
   }
 
   @media screen and (max-width: @medium) {
-    .content {
-      .left {
+    &__content {
+      &__left {
         margin-right: 0;
 
         .hero-attribute1 {
@@ -91,7 +91,7 @@
         }
       }
 
-      .right {
+      &__right {
         .hero-attribute2 {
           display: none;
         }

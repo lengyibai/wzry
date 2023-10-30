@@ -12,7 +12,7 @@ import { $tool } from "@/utils";
     <!-- 折叠按钮 -->
     <PackUp />
 
-    <div class="right">
+    <div class="navbar__right">
       <span class="timeGreet">{{ $t($tool.timeGreet()) }}</span>
       <!-- 用户菜单 -->
       <UserMenu />

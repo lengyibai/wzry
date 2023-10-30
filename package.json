@@ -9,7 +9,8 @@
     "type-check": "vue-tsc",
     "eslint": "eslint . --ext .vue,.js,.ts --fix",
     "stylelint": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
-    "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\""
+    "prettier": "prettier --write \"./**/*.{html,vue,ts,js,json,md}\"",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@wangeditor/editor": "^5.1.23",

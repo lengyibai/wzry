@@ -72,8 +72,8 @@ onMounted(() => {
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" />
 
-    <div class="content">
-      <div class="left">
+    <div class="basic-info__content">
+      <div class="basic-info__content__left">
         <HeroBasic class="hero-basic" />
 
         <!-- 属性 -->
@@ -86,7 +86,7 @@ onMounted(() => {
           </div>
         </transition>
       </div>
-      <div class="right">
+      <div class="basic-info__content__right">
         <!-- 关系 -->
         <transition name="relationship">
           <HeroRelationship v-if="into" ref="relationshipRef" />

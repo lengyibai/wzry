@@ -99,7 +99,13 @@ $audioStore.play("u4c5");
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <img class="close" :class="{ 'close-show': show_close }" :src="getImgLink('back')" alt="返回" @click="handleHide" />
+    <img
+      class="hero-detail__close"
+      :class="{ show: show_close }"
+      :src="getImgLink('back')"
+      alt="返回"
+      @click="handleHide"
+    />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax class="scroll-item" :bg="hero_data.poster">

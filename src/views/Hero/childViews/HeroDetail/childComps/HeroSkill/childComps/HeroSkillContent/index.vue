@@ -45,14 +45,14 @@ onUnmounted(() => {
 
 <template>
   <div class="hero-skill-content">
-    <div class="left" :style="{ width: exist_effect ? '45%' : '100%' }">
+    <div class="hero-skill-content__left" :style="{ width: exist_effect ? '45%' : '100%' }">
       <HeroSkillContentLeft
         :class="{ 'hide-left': !show || toggle }"
         :active-skill="skill"
         :is-passive="$heroDetail.skill_index === 0"
       />
     </div>
-    <div class="right">
+    <div class="hero-skill-content__right">
       <HeroSkillContentRight v-if="exist_effect" :class="{ 'hide-right': !show || toggle }" :active-skill="skill" />
     </div>
   </div>

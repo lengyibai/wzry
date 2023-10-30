@@ -21,6 +21,7 @@ export default <T>($emit: Emits, key: string) => {
     form_data.value = data.form_data;
     hero_id.value = data.hero_id;
   }
+
   /* 实时保存为草稿 */
   const timer = setInterval(() => {
     localStorage.setItem(
@@ -45,6 +46,7 @@ export default <T>($emit: Emits, key: string) => {
   const onConfirmSave = () => {
     close();
   };
+
   /* 关闭后删除 */
   const onConfirmRemove = () => {
     localStorage.removeItem(key);
