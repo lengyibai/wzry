@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { nextTick, onUnmounted, onActivated, onMounted, ref, watch, computed } from "vue";
+import { nextTick, onUnmounted, onActivated, onMounted, ref, watch, computed, defineAsyncComponent } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
-import HeroDetail from "./childViews/HeroDetail/index.vue";
 
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
@@ -14,6 +13,8 @@ import { $tool, $bus } from "@/utils";
 defineOptions({
   name: "hero",
 });
+
+const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue"));
 
 const $route = useRoute();
 const $router = useRouter();
