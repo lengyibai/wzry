@@ -116,9 +116,9 @@ onMounted(() => {
       scroll = false;
 
       //判断触摸滑动方向，并更新索引
-      if (status < 0 && index < sonCount - 1) {
+      if (-status < 0 && index < sonCount - 1) {
         index++;
-      } else if (status > 0 && index > 0) {
+      } else if (-status > 0 && index > 0) {
         index--;
       }
 
