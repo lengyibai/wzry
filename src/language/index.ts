@@ -6,11 +6,9 @@ import en from "./modules/en";
 
 import { CONFIG } from "@/config";
 
-const messages: Record<string, Record<string, string>> = {
-  zh,
-  tc,
-  en,
-};
+type I18nTypeEnum = typeof zh;
+
+const messages: Record<string, I18nTypeEnum> = { zh, tc, en };
 
 const lang = localStorage.getItem(CONFIG.LOCAL_KEY.LANGUAGE);
 
@@ -24,6 +22,8 @@ const i18n = createI18n({
   messages,
 });
 
+const t = i18n.global.t;
+
 /** @description 设置语言 */
 const setLanguage = (index: 0 | 1 | 2) => {
   const langs = ["zh", "tc", "en"];
@@ -33,4 +33,5 @@ const setLanguage = (index: 0 | 1 | 2) => {
   localStorage.setItem(CONFIG.LOCAL_KEY.LANGUAGE, lang);
 };
 
-export { i18n, setLanguage };
+export { i18n, setLanguage, t };
+export type { I18nTypeEnum };
