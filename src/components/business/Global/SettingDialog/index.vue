@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import DescSet from "@/components/subitem/DescSet/index.vue";
-import { setLanguage } from "@/language";
+import { setLanguage, t } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
 import { $message, $tip, $tool } from "@/utils";
