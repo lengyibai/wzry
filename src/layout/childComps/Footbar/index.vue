@@ -104,16 +104,16 @@ onUnmounted(() => {
     <div v-if="enable_music && music_progress" ref="lineRef" class="line"></div>
 
     <!-- 音乐播放器 -->
-    <MusicPlay v-if="enable_music" class="music-play" />
+    <MusicPlay v-if="enable_music" />
 
     <!-- 左侧时间 -->
-    <Time v-show="!$deviceStore.vertical" class="time" />
+    <Time v-show="!$deviceStore.vertical" />
 
     <!-- 音乐工具栏 -->
     <MusicTool v-show="enable_music" @toggle="onMusicToole" />
 
     <!-- 右侧作者 -->
-    <Copyright v-show="!$deviceStore.vertical" class="copyright" />
+    <Copyright v-show="!$deviceStore.vertical" />
 
     <!-- 音频可视化 -->
     <canvas ref="canvasRef"></canvas>

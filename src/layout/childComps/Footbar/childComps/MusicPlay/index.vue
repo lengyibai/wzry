@@ -5,9 +5,7 @@ const $musicStore = MusicStore();
 </script>
 
 <template>
-  <transition name="music-play">
-    <div class="music-play" :style="{ width: $musicStore.progress + '%' }"></div>
-  </transition>
+  <div class="music-play" :style="{ width: $musicStore.progress + '%' }"></div>
 </template>
 
 <style scoped lang="less">

@@ -178,9 +178,7 @@ const onCommit = async () => {
         </FormLabel>
 
         <!--··右上角删除··-->
-        <transition name="fade">
-          <i class="del iconfont wzry-guanbi" @click="handleDelOne(index)" />
-        </transition>
+        <i class="del iconfont wzry-guanbi" @click="handleDelOne(index)" />
       </div>
     </transition-group>
 

@@ -18,15 +18,13 @@ defineExpose({
 </script>
 
 <template>
-  <transition name="fade">
-    <div class="manage-mask">
-      <transition name="fade">
-        <div v-if="show" ref="contentRef" class="content" :style="styles">
-          <slot></slot>
-        </div>
-      </transition>
-    </div>
-  </transition>
+  <div class="manage-mask">
+    <transition name="fade">
+      <div v-if="show" ref="contentRef" class="content" :style="styles">
+        <slot></slot>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <style scoped lang="less">
