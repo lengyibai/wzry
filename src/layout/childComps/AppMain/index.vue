@@ -1,12 +1,21 @@
+<script lang="ts" setup>
+import { $loading } from "@/utils";
+
+const onComponentMounted = () => {
+  $loading.close();
+};
+</script>
+
 <template>
   <div class="app-main">
     <router-view v-slot="{ Component }">
       <KeepAlive include="hero,skin,equip,epigraph,add,database">
-        <component :is="Component" />
+        <component :is="Component" @vue:mounted="onComponentMounted" />
       </KeepAlive>
     </router-view>
   </div>
 </template>
+
 <style scoped>
 @import url("./index.less");
 </style>

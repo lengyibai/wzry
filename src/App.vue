@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { SettingStore } from "./store";
+import { $loading } from "./utils";
 
 const $settingStore = SettingStore();
 $settingStore.takeEffect();
+
+const onComponentMounted = () => {
+  $loading.close();
+};
 </script>
 
 <template>
   <!-- 路由页面 -->
   <router-view v-slot="{ Component }">
     <transition name="round-clip" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component" @vue:mounted="onComponentMounted" />
     </transition>
   </router-view>
 

@@ -20,10 +20,15 @@ router.beforeEach(async (to, from, next) => {
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);
   const token = $authStore.userInfo?.wzryToken;
+  const no_verify = ["/403", "/404", "/400", "/login"].includes(to.path);
+
+  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
+  if (!to.query.id && !from.query.id) {
+    $loading.show(to.meta.title as string);
+  }
 
   //如果当前路径不等于跳转路径&&跳转路径非403、404&&、400，并且存在title，则使用loading
-  if (to.path !== from.path && !["/403", "/404", "/400", "/login"].includes(to.path) && to.meta.title) {
-    $loading.show(to.meta.title as string);
+  if (to.path !== from.path && !no_verify && to.meta.title) {
   }
 
   //浏览器版本过低
@@ -70,7 +75,6 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to) => {
-  $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 

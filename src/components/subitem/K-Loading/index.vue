@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import useLoading from "./hooks/useLoading";
+import { ref } from "vue";
 
 import { CONFIG } from "@/config";
 import { $bus } from "@/utils";
 
-const { show, text } = useLoading();
+/** 显示loading */
+const show = ref(false);
+/** loading描述 */
+const text = ref("");
 
 const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
 
 $bus.on("loading", (v) => {
   show.value = v.show;
-  text.value = v.text;
+
+  if (v.text) {
+    text.value = v.text;
+  }
 });
 </script>
 

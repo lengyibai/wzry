@@ -23,11 +23,14 @@ const show = async (text: string) => {
 /** @description 关闭loading */
 const close = async () => {
   clearTimeout(timer);
-  needLoadingRequestCount--;
+
+  if (needLoadingRequestCount > 0) {
+    needLoadingRequestCount--;
+  }
 
   if (needLoadingRequestCount === 0) {
     loadingTimeout = setTimeout(() => {
-      $bus.emit("loading", { show: false, text: "" });
+      $bus.emit("loading", { show: false });
       loadingTimeout = undefined;
     }, 500);
   }
