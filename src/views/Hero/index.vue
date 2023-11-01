@@ -166,41 +166,39 @@ onUnmounted(() => {
 
 <template>
   <div class="hero">
-    <transition name="card-list">
-      <div class="hero__main">
-        <!-- 工具栏 -->
-        <transition name="fade" appear>
-          <HeroToolbar v-show="show_tool" />
-        </transition>
+    <div class="hero__main">
+      <!-- 工具栏 -->
+      <transition name="fade" appear>
+        <HeroToolbar v-show="show_tool" />
+      </transition>
 
-        <!-- 列表 -->
-        <LibGrid
-          v-show="show_list"
-          v-if="show_herolist"
-          class="hero-list"
-          scroll-id="hero_list"
-          gap="1.5625rem"
-          :count="count"
-          :scroll-top="$heroStore.scroll"
-          @scroll="onScroll"
-          @load-more="onLoadMore"
-        >
-          <transition-group name="card" appear>
-            <div
-              v-for="(item, index) in $heroStore.show_list"
-              :key="index"
-              class="hero-card"
-              :style="{
-                'transition-delay': (index % 30) * 0.025 + 's',
-              }"
-              @mouseenter="handleEnterCard(item)"
-            >
-              <HeroCard :data="item" @view="onViewClick(item.id!)" />
-            </div>
-          </transition-group>
-        </LibGrid>
-      </div>
-    </transition>
+      <!-- 列表 -->
+      <LibGrid
+        v-show="show_list"
+        v-if="show_herolist"
+        class="hero-list"
+        scroll-id="hero_list"
+        gap="1.5625rem"
+        :count="count"
+        :scroll-top="$heroStore.scroll"
+        @scroll="onScroll"
+        @load-more="onLoadMore"
+      >
+        <transition-group name="card" appear>
+          <div
+            v-for="(item, index) in $heroStore.show_list"
+            :key="index"
+            class="hero-card"
+            :style="{
+              'transition-delay': (index % 30) * 0.025 + 's',
+            }"
+            @mouseenter="handleEnterCard(item)"
+          >
+            <HeroCard :data="item" @view="onViewClick(item.id!)" />
+          </div>
+        </transition-group>
+      </LibGrid>
+    </div>
 
     <!--右侧英雄职业分类侧边栏-->
     <transition name="sidebar" appear>
