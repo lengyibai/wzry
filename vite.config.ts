@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-import { visualizer } from "rollup-plugin-visualizer";
 import Components from "unplugin-vue-components/vite";
 import legacyPlugin from "@vitejs/plugin-legacy";
 
@@ -19,11 +17,6 @@ export default defineConfig({
       targets: ["last 2 versions", "safari >=7", "chrome >= 30"],
       additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
     }),
-    //visualizer({
-    // emitFile: true,
-    // filename: "visualizer.html", //分析图生成的文件名
-    // open: true, //如果存在本地服务端口，将在打包后自动展示
-    //}),
   ],
   css: {
     //css预处理器
