@@ -1,0 +1,203 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  overflow: hidden;
+
+  .loading {
+    @time: 3s;
+
+    display: flex;
+    align-items: center;
+
+    .box {
+      animation:
+        into-scale @time forwards ease-out,
+        into-opacity @time - 1 forwards;
+
+      @keyframes into-opacity {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes into-scale {
+        0% {
+          opacity: 0;
+          transform: scale(3);
+        }
+
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .logo {
+        width: calc(26.0417vw / 2);
+        height: calc(24.2188vw / 2);
+
+        .a,
+        .b,
+        .c,
+        .d {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+        }
+
+        .inside-box {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          animation: inside-box @time * 2 @time infinite linear;
+
+          @keyframes inside-box {
+            100% {
+              transform: rotate(-360deg);
+            }
+          }
+
+          .inside {
+            width: 100%;
+            height: 100%;
+            animation: inside-rotate @time * 2 forwards linear;
+
+            @keyframes inside-rotate {
+              100% {
+                transform: rotate(-360deg);
+              }
+            }
+
+            .a {
+              animation: into-a @time forwards ease-out;
+
+              @keyframes into-a {
+                0% {
+                  transform: translateX(-100%);
+                }
+
+                100% {
+                  transform: translateX(0%);
+                }
+              }
+            }
+
+            .b {
+              animation: into-b @time forwards ease-out;
+
+              @keyframes into-b {
+                0% {
+                  transform: translateX(100%);
+                }
+
+                100% {
+                  transform: translateX(0%);
+                }
+              }
+            }
+          }
+        }
+
+        .outside-box {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          animation: outside-box @time @time infinite linear;
+
+          @keyframes outside-box {
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+
+          .outside {
+            width: 100%;
+            height: 100%;
+            animation: outside-rotate @time forwards linear;
+
+            @keyframes outside-rotate {
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+
+            .c {
+              animation: into-c @time forwards ease-out;
+
+              @keyframes into-c {
+                0% {
+                  transform: translate(-100%, -100%);
+                }
+
+                100% {
+                  transform: translateX(0%);
+                }
+              }
+            }
+
+            .d {
+              animation: into-d @time forwards ease-out;
+
+              @keyframes into-d {
+                0% {
+                  transform: translate(100%, 100%);
+                }
+
+                100% {
+                  transform: translateX(0%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .text-box {
+      width: 0;
+      height: 13.8021vw;
+      position: relative;
+      overflow: hidden;
+      animation: into-move 0.5s @time - 0.1s forwards;
+
+      @keyframes into-move {
+        100% {
+          width: 37.0833vw;
+          margin-left: 2.6042vw;
+        }
+      }
+
+      .text {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #fff, #fff) no-repeat right center / 100% 100%;
+        animation: leave-bg 0.5s @time + 0.25s forwards;
+
+        @keyframes leave-bg {
+          100% {
+            background-size: 0 100%;
+          }
+        }
+      }
+    }
+  }
+}
