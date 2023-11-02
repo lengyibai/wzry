@@ -19,7 +19,7 @@ export interface Routes {
     noVerify?: boolean;
   };
   leftHidden?: boolean;
-  component?: typeof import("*.vue");
+  component?: any;
   children?: Routes[];
   [propName: string]: any;
 }
