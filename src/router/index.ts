@@ -20,10 +20,11 @@ router.beforeEach(async (to, from, next) => {
   const is_exist = isExist(to.path);
   const is_login = isLogin(to.path);
   const token = $authStore.userInfo?.wzryToken;
-  const no_verify = ["/403", "/404", "/400", "/login"].includes(to.path);
+  const no_loading = ["/403", "/404", "/400"];
+  const no_verify = [...no_loading, "/login"].includes(to.path);
 
   /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
-  if (!to.query.id && !from.query.id) {
+  if (!to.query.id && !from.query.id && !no_loading.includes(to.path)) {
     $loading.show(to.meta.title as string);
   }
 
