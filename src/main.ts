@@ -15,7 +15,8 @@ setupStore(app);
 useAutoLogin();
 setupDirective(app);
 setupRouter(app);
+app.use(i18n);
 
 setTimeout(() => {
-  app.use(i18n).mount("#app");
+  app.mount("#app");
 }, 5000);
