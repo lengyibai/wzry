@@ -14,7 +14,7 @@
 
 ## 第三方依赖
 
-> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、手机端调试工具[vConsole](https://github.com/Tencent/vConsole)、时间库[Day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)
+> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、时间库[Day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)
 
 ## 项目内截图
 
