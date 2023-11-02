@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { CONFIG } from "@/config";
-import { $bus } from "@/utils";
+import { $bus, $concise } from "@/utils";
+
+const { getImgLink } = $concise;
 
 /** 显示loading */
 const show = ref(false);
 /** loading描述 */
 const text = ref("");
-
-const color = ["#ffff00", "#76ff03", "#f06292", "#4fc3f7", "#ba68c8", "#f57c00", "#673ab7"];
 
 $bus.on("loading", (v) => {
   show.value = v.show;
@@ -24,17 +23,18 @@ $bus.on("loading", (v) => {
   <teleport to="body">
     <transition name="fade">
       <div v-show="show" class="k-loading">
-        <img :src="CONFIG.BASE.IMGBED + '/image/daji.png'" alt="妲己" />
-        <span
-          v-for="(item, index) in color"
-          :key="index"
-          :style="{
-            backgroundColor: item,
-            animationDelay: index * 0.1 - 0.8 + 0.5 + 's',
-            boxShadow: '0 0 50px ' + item,
-          }"
-        ></span>
-        <h1>正在加载{{ text }}页面...</h1>
+        <div class="logo">
+          <div class="inside">
+            <img :src="getImgLink('into_1')" alt="" class="a" />
+            <img :src="getImgLink('into_2')" alt="" class="b" />
+          </div>
+
+          <div class="outside">
+            <img :src="getImgLink('into_3')" alt="" class="c" />
+            <img :src="getImgLink('into_4')" alt="" class="d" />
+          </div>
+        </div>
+        <div class="text">正在加载{{ text }}页面</div>
       </div>
     </transition>
   </teleport>
