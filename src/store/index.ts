@@ -14,7 +14,6 @@ export { MusicStore } from "./modules/music";
 export { RouterStore } from "./modules/router";
 export { SettingStore } from "./modules/setting";
 export { SkinStore } from "./modules/skin";
-export { VConsoleStore } from "./modules/vConsole";
 export { VersionStore } from "./modules/version";
 
 const setupStore = (app: App) => {

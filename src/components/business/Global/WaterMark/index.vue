@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { CollapseStore, VersionStore, DeviceStore, VConsoleStore, AuthStore } from "@/store";
+import { CollapseStore, VersionStore, DeviceStore, AuthStore } from "@/store";
 import { $tool } from "@/utils";
 import { useGetFps } from "@/hooks";
 
 const $collapseStore = CollapseStore();
 const $versionStore = VersionStore();
 const $deviceStore = DeviceStore();
-const $vConsoleStore = VConsoleStore();
 const $authStore = AuthStore();
 
 const { fps } = useGetFps();
@@ -31,7 +30,6 @@ const version = `${$tool.browserV.version} ${
       opacity: !$collapseStore.collapse || !$authStore.userStatus ? 1 : 0,
     }"
     class="water-mark"
-    @touchend="$vConsoleStore.setStatus"
   >
     <p>{{ $t("帧率") }}：{{ fps }}</p>
     <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
