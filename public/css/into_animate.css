@@ -2,15 +2,11 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+
 .body {
   display: none;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   background-color: #000;
@@ -21,7 +17,9 @@ body {
   align-items: center;
 }
 .body .loading .box {
-  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
+  animation:
+    into-scale 3s forwards ease-out,
+    into-opacity 2s forwards;
 }
 @keyframes into-opacity {
   0% {
