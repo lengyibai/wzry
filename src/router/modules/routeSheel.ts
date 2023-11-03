@@ -36,6 +36,21 @@ export const user: RouterSheel[] = [
     ],
   },
   {
+    title: "鉴赏",
+    icon: "wzry-pubuliu",
+    path: "/savor",
+    name: "savor",
+    redirect: "",
+    component: "@/layout",
+    children: [
+      {
+        path: "",
+        name: "savorChild",
+        component: "@/views/Savor",
+      },
+    ],
+  },
+  {
     title: "装备",
     icon: "wzry-zhuangbei",
     path: "/equip",

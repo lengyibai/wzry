@@ -4,6 +4,7 @@ const en = {
   王者图鉴: "King book",
   英雄: "Hero",
   皮肤: "Skin",
+  鉴赏: "Savor",
   装备: "Equip",
   铭文: " Epigraph",
   系统管理: "System",
