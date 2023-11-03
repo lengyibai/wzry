@@ -1,0 +1,39 @@
+.lib-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(10px);
+
+    th {
+      .head {
+        display: flex;
+        align-items: center;
+        height: 3.125rem;
+        border: var(--subline);
+        color: #fff;
+      }
+    }
+  }
+
+  th,
+  tr {
+    padding: 0.5em 1em;
+    color: #fff;
+    text-align: left;
+    word-break: break-all;
+    font-size: 1.5rem;
+
+    :deep(td) {
+      border-right: var(--subline) !important;
+    }
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: rgb(255 255 255 / 5%);
+    }
+  }
+}

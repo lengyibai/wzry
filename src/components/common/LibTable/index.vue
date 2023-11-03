@@ -1,41 +1,8 @@
-<template>
-  <table class="LibTable">
-    <thead>
-      <th
-        v-for="(item, index) in head"
-        :key="index"
-        :class="{ 'global_cursor-pointer': sort.includes(item) }"
-        @click="
-          sortChange({
-            key: head_key[index],
-            item,
-            index,
-            id: sort_id[index],
-          })
-        "
-      >
-        <div class="head">
-          <slot :data="head" :name="head_key[index]">{{ item }}</slot>
-          <TableSort v-if="sort.includes(item)" :is-show="sort_id[index]" />
-        </div>
-      </th>
-    </thead>
-
-    <tbody>
-      <tr v-for="(item, index) in data" :key="index" :style="{ backgroundColor: item.bgColor }">
-        <slot :data="item" name="body">
-          <td v-for="(_item, _index) in Object.values(item)" :key="_index">
-            {{ _item }}
-          </td>
-        </slot>
-      </tr>
-    </tbody>
-  </table>
-</template>
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { ref } from "vue";
 
-import TableSort from "./childComps/table-sort/index.vue";
+import TableSort from "@/components/subitem/TableSort/index.vue";
+
 interface Props {
   /** 表头名 */
   head: string[];
@@ -77,44 +44,42 @@ const sortChange = ({ key, index, id, item }: { key: string; index: number; id: 
   });
 };
 </script>
+
+<template>
+  <table class="lib-table">
+    <thead>
+      <th
+        v-for="(item, index) in head"
+        :key="index"
+        :class="{ 'global_cursor-pointer': sort.includes(item) }"
+        @click="
+          sortChange({
+            key: head_key[index],
+            item,
+            index,
+            id: sort_id[index],
+          })
+        "
+      >
+        <div class="head">
+          <slot :data="head" :name="head_key[index]">{{ item }}</slot>
+          <TableSort v-if="sort.includes(item)" :status="sort_id[index]" />
+        </div>
+      </th>
+    </thead>
+
+    <tbody>
+      <tr v-for="(item, index) in data" :key="index" :style="{ backgroundColor: item.bgColor }">
+        <slot :data="item" name="body">
+          <td v-for="(_item, _index) in Object.values(item)" :key="_index">
+            {{ _item }}
+          </td>
+        </slot>
+      </tr>
+    </tbody>
+  </table>
+</template>
+
 <style scoped lang="less">
-.LibTable {
-  width: 100%;
-  border-collapse: collapse;
-
-  thead {
-    position: sticky;
-    top: 0;
-    backdrop-filter: blur(10px);
-
-    th {
-      .head {
-        display: flex;
-        align-items: center;
-        height: 3.125rem;
-        border: var(--subline);
-        color: #fff;
-      }
-    }
-  }
-
-  th,
-  tr {
-    padding: 0.5em 1em;
-    color: #fff;
-    text-align: left;
-    word-break: break-all;
-    font-size: 1.5rem;
-
-    :deep(td) {
-      border-right: var(--subline) !important;
-    }
-  }
-
-  tr {
-    &:nth-child(even) {
-      background-color: rgb(255 255 255 / 5%);
-    }
-  }
-}
+@import url("./index.less");
 </style>
