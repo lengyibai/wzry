@@ -20,6 +20,8 @@ export default {
   HERO_BASIC: "data_herobasic",
   /** 英雄图片 */
   HERO_IMG: "data_heroimg",
+  /** 英雄图集 */
+  HERO_ATLAS: "data_hero_atlas",
   /** 英雄信息 */
   HERO_DATA: "data_herodata",
   /** 技能列表 */

@@ -31,6 +31,7 @@ const $audioStore = AudioStore();
 const keywords: [string, string][] = [
   [CONFIG.LOCAL_KEY.HERO_BASIC, "英雄基础"],
   [CONFIG.LOCAL_KEY.HERO_IMG, "英雄图片"],
+  [CONFIG.LOCAL_KEY.HERO_ATLAS, "英雄图集"],
   [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
   [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
   [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
@@ -56,6 +57,7 @@ const keywords: [string, string][] = [
 const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
   [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
   [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
+  [CONFIG.LOCAL_KEY.HERO_ATLAS]: API_DATA.HeroAtlas,
   [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
   [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
   [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
@@ -94,6 +96,7 @@ const table_data = ref<TableData[]>([]);
 const load = async () => {
   table_data.value = keywords.map((item) => {
     const v = JSON.parse(localStorage.getItem(item[0]) as string) || [];
+
     return {
       name: item[1],
       key: item[0],

@@ -51,6 +51,12 @@ export const addHeroData = (data: Hero.Data) => {
   return Promise.resolve(hero_data);
 };
 
+/** @description 获取英雄图集列表 */
+export const getHeroAtlas = () => {
+  const hero_atlas_list = get<Hero.Atlas[]>({ name: CONFIG.LOCAL_KEY.HERO_ATLAS });
+  return Promise.resolve(hero_atlas_list);
+};
+
 /**
  * @description 获取英雄详情
  * @param hero_id 英雄id

@@ -22,6 +22,9 @@ export const HeroBasic = () => http.Get<General[]>("/heroBasic.json");
 /** @description 获取英雄图片列表 */
 export const HeroImg = () => http.Get<Hero.HeadImg[]>("/heroImg.json");
 
+/** @description 获取英雄图集列表 */
+export const HeroAtlas = () => http.Get<Hero.Atlas[]>("/heroAtlas.json");
+
 /** @description 获取英雄信息列表 */
 export const Herodata = () => http.Get<Hero.Data[]>("/heroData.json");
 

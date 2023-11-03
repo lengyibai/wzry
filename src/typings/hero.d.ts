@@ -180,6 +180,7 @@ declare namespace Hero {
     /** 职业 */
     profession: string[];
   }
+
   /** @description 皮肤类型 */
   interface SkinType {
     /** 类型id */
@@ -194,6 +195,12 @@ declare namespace Hero {
   interface HeadImg extends General {
     /** 头像 */
     headImg: string;
+  }
+
+  /** @description 英雄图集列表 */
+  interface Atlas extends Pick<Data, "id" | "name" | "cover" | "poster" | "gender" | "profession"> {
+    /** 皮肤图集 */
+    skins: Pick<Skin, "id" | "name" | "cover" | "poster">[];
   }
 
   /** @description 英雄基础列表 */

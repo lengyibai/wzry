@@ -7,6 +7,7 @@ const useUpdateData = () => {
   const keywords: [string, string][] = [
     [CONFIG.LOCAL_KEY.HERO_BASIC, "英雄基础"],
     [CONFIG.LOCAL_KEY.HERO_IMG, "英雄图片"],
+    [CONFIG.LOCAL_KEY.HERO_ATLAS, "英雄图集"],
     [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
     [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
     [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
@@ -32,6 +33,7 @@ const useUpdateData = () => {
   const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
     [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
     [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
+    [CONFIG.LOCAL_KEY.HERO_ATLAS]: API_DATA.HeroAtlas,
     [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
     [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
     [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
