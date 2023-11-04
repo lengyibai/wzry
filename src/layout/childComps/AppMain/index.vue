@@ -9,7 +9,7 @@ const onComponentMounted = () => {
 <template>
   <div class="app-main">
     <router-view v-slot="{ Component }">
-      <KeepAlive include="hero,skin,equip,epigraph,add,database">
+      <KeepAlive include="hero,skin,savor,equip,epigraph,add,database">
         <component :is="Component" @vue:mounted="onComponentMounted" />
       </KeepAlive>
     </router-view>
