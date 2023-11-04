@@ -19,7 +19,7 @@ const useGetData = () => {
     [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
     [CONFIG.LOCAL_KEY.HERO_BASIC, API_DATA.HeroBasic, "英雄基础"],
     [CONFIG.LOCAL_KEY.HERO_IMG, API_DATA.HeroImg, "英雄图片"],
-    [CONFIG.LOCAL_KEY.HERO_IMG, API_DATA.HeroAtlas, "英雄图集"],
+    [CONFIG.LOCAL_KEY.HERO_ATLAS, API_DATA.HeroAtlas, "英雄图集"],
     [CONFIG.LOCAL_KEY.HERO_DATA, API_DATA.Herodata, "英雄信息"],
     [CONFIG.LOCAL_KEY.SKILL, API_DATA.Skill, "技能列表"],
     [CONFIG.LOCAL_KEY.SKILL_TYPE, API_DATA.Skilltype, "技能类型"],
