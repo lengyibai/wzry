@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import axios from "axios";
+import dayjs from "dayjs";
 
 import { API_DATA } from "@/api";
 import { useUpdateData } from "@/hooks";
@@ -51,7 +53,7 @@ const VersionStore = defineStore("version", () => {
 
   /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
-    API_DATA.Version().then((res) => {
+    axios.get(location.origin + "/json/version.json?t=" + dayjs().unix()).then((res) => {
       const { main, file, log, time } = res.data;
       remote_version.value = main;
       file_version.value = file;
