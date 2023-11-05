@@ -8,9 +8,6 @@ import { $message } from "@/utils";
 import { CONFIG } from "@/config";
 
 const VersionStore = defineStore("version", () => {
-  /** 实时更新计时器 */
-  let timer: NodeJS.Timeout | undefined = undefined;
-
   /** 本地版本 */
   const local_version = ref("");
   /** 远程版本 */
@@ -53,6 +50,9 @@ const VersionStore = defineStore("version", () => {
 
   /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
+    const timer = setTimeout(() => {
+      watchVersion();
+    }, 10000);
     axios
       .get(
         `${location.origin}/king-honor/json/version.json?t=${dayjs().unix()}`,
@@ -74,7 +74,7 @@ const VersionStore = defineStore("version", () => {
 
           //如果为旧版，则自动更新并更新本地版本并返回更新改动
           if (test > 0) {
-            clearInterval(timer);
+            clearTimeout(timer);
             data_status.value = true;
             $message("正在更新版本，更新后可查看数据改动，请稍等...");
             useUpdateData().then((res) => {
@@ -95,7 +95,7 @@ const VersionStore = defineStore("version", () => {
 
           //如果为旧版，则自动更新并更新本地版本
           if (test > 0 && !data_status.value) {
-            clearInterval(timer);
+            clearTimeout(timer);
             show_update.value = true;
             file_status.value = true;
           }
@@ -104,10 +104,9 @@ const VersionStore = defineStore("version", () => {
   };
 
   /* 实时接收更新通知 */
-  watchVersion();
-  timer = setInterval(() => {
+  if (!import.meta.env.DEV) {
     watchVersion();
-  }, 10000);
+  }
 
   /** @description 控制弹窗显示 */
   const setShowLog = (v: boolean) => {

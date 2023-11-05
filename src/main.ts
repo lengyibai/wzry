@@ -17,6 +17,9 @@ setupDirective(app);
 setupRouter(app);
 app.use(i18n);
 
-setTimeout(() => {
-  app.mount("#app");
-}, 5000);
+setTimeout(
+  () => {
+    app.mount("#app");
+  },
+  import.meta.env.DEV ? 0 : 5000,
+);
