@@ -34,9 +34,11 @@ const onCoord = (v: number) => {
 };
 
 const debounceSetCollapse = _.debounce(() => {
-  $collapseStore.setCollapse(window.innerWidth < 1380);
+  $collapseStore.setCollapse(window.innerWidth < 960);
 }, 250);
-$bus.on("resize", debounceSetCollapse);
+$bus.on("resize", () => {
+  debounceSetCollapse();
+});
 
 onUnmounted(() => {
   $bus.off("resize");

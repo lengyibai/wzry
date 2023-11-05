@@ -10,7 +10,7 @@ const CollapseStore = defineStore("collapse", () => {
   const collapse = ref(false);
 
   /* 如果浏览器宽度低于高度，则自动折叠 */
-  collapse.value = window.innerWidth < 1380;
+  collapse.value = window.innerWidth < 960;
 
   /** @description 切换折叠 */
   const toggleCollapse = () => {
