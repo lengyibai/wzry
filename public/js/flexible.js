@@ -13,7 +13,8 @@ function onResizeFn() {
   } else if (width > max_device_width) {
     font_size = max_font_size;
   } else {
-    const progress = (width - min_device_width) / (max_device_width - min_device_width);
+    const progress =
+      (width - min_device_width) / (max_device_width - min_device_width);
     font_size = min_font_size + progress * (max_font_size - min_font_size);
   }
 
