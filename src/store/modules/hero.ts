@@ -18,8 +18,8 @@ const HeroStore = defineStore("hero", () => {
     show_list,
   } = usePagingLoad<Hero.Data>();
 
-  /** 职业类型 */
-  const profession = ref<Hero.Profession>("全部");
+  /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
+  const profession = ref<Hero.Profession>();
   /** 阵营排序类型 */
   const camp_type = ref("全部阵营");
   /** 属性排序类型 */
