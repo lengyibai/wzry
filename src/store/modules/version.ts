@@ -3,7 +3,6 @@ import { ref } from "vue";
 import axios from "axios";
 import dayjs from "dayjs";
 
-import { API_DATA } from "@/api";
 import { useUpdateData } from "@/hooks";
 import { $message } from "@/utils";
 import { CONFIG } from "@/config";
