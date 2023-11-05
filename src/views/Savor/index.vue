@@ -3,7 +3,7 @@ import { nextTick, ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
-import { useWaterfallPage } from "./hooks/useWaterfallPage";
+import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
 import Waterfall from "@/components/common/LibWaterfall/index.vue";
 import { $tool } from "@/utils";
@@ -18,7 +18,7 @@ const { show_list, scroll } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof Waterfall>>();
 
-const { count } = useWaterfallPage(waterfallRef);
+const { count } = useWaterfallResponsive(waterfallRef);
 
 /** 当前悬浮的英雄id */
 const hero_id = ref(0);
