@@ -47,7 +47,7 @@ const onLoadMore = () => {
   loadMore();
 
   nextTick(() => {
-    waterfallRef.value?.updateLoad();
+    debounceUpdateLoad();
   });
 };
 
@@ -83,8 +83,8 @@ onUnmounted(() => {
           @scroll="setScroll"
         >
           <div
-            v-for="(item, index) in show_list"
-            :key="index"
+            v-for="item in show_list"
+            :key="item.poster"
             class="atlas-card"
             :class="{
               active: hero_id === item.id,

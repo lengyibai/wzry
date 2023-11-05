@@ -17,13 +17,17 @@
 
       .atlas-card {
         position: absolute;
+        top: 0;
+        left: 50%;
         overflow: hidden;
         min-width: 6.25rem;
         border-radius: 0.9375rem;
+        opacity: 0;
         filter: grayscale(75%) brightness(35%)
           drop-shadow(0 0.1875rem 0.3125rem #000);
         cursor: pointer;
         transition: 0.5s;
+        transform: translateX(-50%) scale(0.1);
 
         &.active {
           filter: grayscale(0%) brightness(100%)
