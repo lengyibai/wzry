@@ -38,7 +38,7 @@ const handSearch = () => {
 
 /** 设置下拉状态 */
 const handleSelectStatus = () => {
-  select_status.value = true;
+  select_status.value = !select_status.value;
 };
 
 $bus.on("mouseup", (e) => {
