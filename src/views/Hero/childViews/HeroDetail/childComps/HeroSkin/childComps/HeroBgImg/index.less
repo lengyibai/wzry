@@ -14,11 +14,11 @@
 
 /* 蒙版裁剪 */
 .clip-enter-active {
-  animation: clip-in var(--time-1000);
+  animation: clip-in 1s;
 }
 
 .clip-leave-active {
-  animation: clip-out var(--time-1000);
+  animation: clip-out 1s;
 }
 
 @keyframes clip-in {
@@ -42,11 +42,11 @@
 }
 
 .spin-enter-active {
-  animation: spin-in var(--time-1000) linear;
+  animation: spin-in 1s linear;
 }
 
 .spin-leave-active {
-  animation: spin-out var(--time-1000) linear;
+  animation: spin-out 1s linear;
 }
 
 @keyframes spin-in {
@@ -143,21 +143,57 @@
 
 @keyframes fold-in {
   0% {
-    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+    clip-path: polygon(
+      0 0,
+      50% 50%,
+      0 100%,
+      50% 50%,
+      100% 100%,
+      50% 50%,
+      100% 0,
+      50% 50%
+    );
   }
 
   100% {
-    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+    clip-path: polygon(
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0,
+      50% 0
+    );
   }
 }
 
 @keyframes fold-out {
   0% {
-    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+    clip-path: polygon(
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0,
+      50% 0
+    );
   }
 
   100% {
-    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+    clip-path: polygon(
+      0 0,
+      50% 50%,
+      0 100%,
+      50% 50%,
+      100% 100%,
+      50% 50%,
+      100% 0,
+      50% 50%
+    );
   }
 }
 
@@ -171,46 +207,118 @@
 
 @keyframes deploy-in {
   0% {
-    clip-path: polygon(50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%, 0 0, 50% 50%, 0 100%);
+    clip-path: polygon(
+      50% 50%,
+      100% 100%,
+      50% 50%,
+      100% 0,
+      50% 50%,
+      0 0,
+      50% 50%,
+      0 100%
+    );
   }
 
   33% {
-    clip-path: polygon(50% 0, 100% 100%, 0 50%, 100% 0, 50% 100%, 0 0, 100% 50%, 0 100%);
+    clip-path: polygon(
+      50% 0,
+      100% 100%,
+      0 50%,
+      100% 0,
+      50% 100%,
+      0 0,
+      100% 50%,
+      0 100%
+    );
   }
 
   66% {
-    clip-path: polygon(50% 0, 100% 100%, 0 50%, 0 100%, 50% 100%, 0 0, 100% 50%, 100% 0);
+    clip-path: polygon(
+      50% 0,
+      100% 100%,
+      0 50%,
+      0 100%,
+      50% 100%,
+      0 0,
+      100% 50%,
+      100% 0
+    );
   }
 
   100% {
-    clip-path: polygon(50% 0, 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0);
+    clip-path: polygon(
+      50% 0,
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0
+    );
   }
 }
 
 @keyframes deploy-out {
   0% {
-    clip-path: polygon(50% 0, 0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0);
+    clip-path: polygon(
+      50% 0,
+      0 0,
+      0 50%,
+      0 100%,
+      50% 100%,
+      100% 100%,
+      100% 50%,
+      100% 0
+    );
   }
 
   33% {
-    clip-path: polygon(50% 0, 100% 100%, 0 50%, 0 100%, 50% 100%, 0 0, 100% 50%, 100% 0);
+    clip-path: polygon(
+      50% 0,
+      100% 100%,
+      0 50%,
+      0 100%,
+      50% 100%,
+      0 0,
+      100% 50%,
+      100% 0
+    );
   }
 
   66% {
-    clip-path: polygon(50% 0, 100% 100%, 0 50%, 100% 0, 50% 100%, 0 0, 100% 50%, 0 100%);
+    clip-path: polygon(
+      50% 0,
+      100% 100%,
+      0 50%,
+      100% 0,
+      50% 100%,
+      0 0,
+      100% 50%,
+      0 100%
+    );
   }
 
   100% {
-    clip-path: polygon(50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%, 0 0, 50% 50%, 0 100%);
+    clip-path: polygon(
+      50% 50%,
+      100% 100%,
+      50% 50%,
+      100% 0,
+      50% 50%,
+      0 0,
+      50% 50%,
+      0 100%
+    );
   }
 }
 
 .xmove-enter-active {
-  animation: xmove-in var(--time-1000);
+  animation: xmove-in 1s;
 }
 
 .xmove-leave-active {
-  animation: xmove-out var(--time-1000);
+  animation: xmove-out 1s;
 }
 
 @keyframes xmove-in {
@@ -234,11 +342,11 @@
 }
 
 .ymove-enter-active {
-  animation: ymove-in var(--time-1000);
+  animation: ymove-in 1s;
 }
 
 .ymove-leave-active {
-  animation: ymove-out var(--time-1000);
+  animation: ymove-out 1s;
 }
 
 @keyframes ymove-in {
@@ -262,11 +370,11 @@
 }
 
 .square-enter-active {
-  animation: square-in var(--time-1000);
+  animation: square-in 1s;
 }
 
 .square-leave-active {
-  animation: square-out var(--time-1000);
+  animation: square-out 1s;
 }
 
 @keyframes square-in {

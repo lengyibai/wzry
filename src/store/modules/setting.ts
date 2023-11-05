@@ -31,7 +31,6 @@ const SettingStore = defineStore("setting", () => {
     $audioStore.setAudio(config.value.audio);
     $audioStore.setVolume(config.value.audioVolume);
     $musicStore.setVolume(config.value.musicVolume);
-    $cssVarStore.setSpeed(config.value.speed);
     $cssVarStore.setBorder(config.value.border);
     $cssVarStore.setShadow(config.value.shadow);
     $cssVarStore.setShine(config.value.shine);

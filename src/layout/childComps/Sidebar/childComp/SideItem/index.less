@@ -16,7 +16,7 @@
     color: var(--theme-font-color-four);
     text-shadow: var(--t-shadow-e);
     font-size: 1.25rem;
-    transition: all var(--time-500);
+    transition: all 0.5s;
 
     &:hover {
       color: var(--blue);
@@ -32,13 +32,13 @@
     .iconfont {
       margin-right: 0.9375rem;
       font-size: 2.1875rem;
-      transition: all var(--time-250) ease-out;
+      transition: all 0.25s ease-out;
     }
 
     .name {
       white-space: nowrap;
       font-size: 1.25rem;
-      transition: all var(--time-250) ease-out;
+      transition: all 0.25s ease-out;
     }
 
     .arrow {
@@ -46,7 +46,7 @@
       top: 50%;
       right: 0;
       width: 1.5625rem;
-      transition: all var(--time-250);
+      transition: all 0.25s;
       transform: translate(-100%, -50%);
       pointer-events: none;
     }
@@ -84,5 +84,5 @@
 /* 进入和离开动画属性 */
 .menu-list-leave-active,
 .menu-list-enter-active {
-  transition: all var(--time-250);
+  transition: all 0.25s;
 }

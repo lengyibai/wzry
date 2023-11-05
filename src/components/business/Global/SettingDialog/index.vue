@@ -26,12 +26,6 @@ const onLanguage = (v: number) => {
   debounceSaveConfig();
 };
 
-/* 动画速率 */
-const onSpeed = (v: number) => {
-  $cssVarStore.setSpeed(v as 0 | 1 | 2);
-  debounceSaveConfig();
-};
-
 /* 开启音乐 */
 const onMusic = (v: boolean) => {
   debounceSaveConfig();
@@ -112,7 +106,6 @@ const onResetConfig = () => {
   $audioStore.setAudio(config.value.audio);
   $audioStore.setVolume(config.value.audioVolume);
   $musicStore.setVolume(config.value.musicVolume);
-  $cssVarStore.setSpeed(config.value.speed);
   $cssVarStore.setShine(config.value.shine);
   $cssVarStore.setShadow(config.value.shadow);
   $cssVarStore.setBorder(config.value.border);
@@ -132,17 +125,6 @@ const onResetConfig = () => {
             width="7rem"
             :option="['中文', '繁体', 'English']"
             @update:model-value="onLanguage"
-          />
-        </div>
-
-        <!-- 动画速率 -->
-        <div class="option">
-          <div class="label">{{ $t("动画") }}</div>
-          <K-Select
-            v-model="config.speed"
-            width="7rem"
-            :option="[$t('迅速'), $t('均衡'), $t('优雅')]"
-            @update:model-value="onSpeed"
           />
         </div>
 

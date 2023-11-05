@@ -33,7 +33,7 @@
 
         .attribute {
           width: 0%;
-          transition: all var(--time-1000);
+          transition: all 1s;
           transform: translateY(0%);
         }
       }
@@ -54,7 +54,7 @@
 
         .attribute {
           width: 0%;
-          transition: all var(--time-1000);
+          transition: all 1s;
           transform: translateY(0%);
         }
       }
@@ -68,7 +68,7 @@
     color: var(--white-75);
     font-size: 4.6875rem;
     transform: translateX(-50%);
-    animation: down-up var(--time-1000) infinite alternate-reverse;
+    animation: down-up 1s infinite alternate-reverse;
 
     @keyframes down-up {
       0% {
@@ -113,7 +113,7 @@
 
 .relationship-leave-active,
 .relationship-enter-active {
-  transition: transform var(--time-1000);
+  transition: transform 1s;
 }
 
 .attribute-enter-from,
@@ -124,5 +124,5 @@
 
 .attribute-leave-active,
 .attribute-enter-active {
-  transition: all var(--time-1000);
+  transition: all 1s;
 }

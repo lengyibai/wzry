@@ -10,8 +10,8 @@
   border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
   transition:
-    box-shadow var(--time-250),
-    transform var(--time-250);
+    box-shadow 0.25s,
+    transform 0.25s;
 
   &:hover {
     border: 0.0625rem solid var(--white-50);
@@ -50,7 +50,7 @@
     margin: 0.9375rem;
     text-shadow: var(--t-shadow-d);
     font-size: 1rem;
-    transition: all var(--time-250);
+    transition: all 0.25s;
   }
 
   .num {
@@ -66,7 +66,7 @@
     z-index: 2;
     flex-direction: column;
     background-color: rgb(0 0 0 / 73.7%);
-    transition: all var(--time-250);
+    transition: all 0.25s;
 
     .head {
       margin-bottom: 0.9375rem;
@@ -74,18 +74,18 @@
       border-radius: 50%;
       box-shadow: var(--b-shadow-a);
       opacity: 0;
-      transition: all var(--time-250);
+      transition: all 0.25s;
       transform: translateY(-3.125rem) scale(1.5);
-      animation: scale var(--time-250) 0.1s forwards;
+      animation: scale 0.25s 0.1s forwards;
     }
 
     .view {
       color: var(--blue);
       font-size: 1.5rem;
       opacity: 0;
-      transition: all var(--time-250);
+      transition: all 0.25s;
       transform: translateY(3.125rem) scale(0.75);
-      animation: scale var(--time-250) 0.1s forwards;
+      animation: scale 0.25s 0.1s forwards;
 
       @keyframes scale {
         100% {
@@ -101,7 +101,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: all var(--time-250);
+    transition: all 0.25s;
   }
 
   .bottom {
@@ -122,7 +122,7 @@
       font-size: 1.875rem;
       line-height: 1;
       opacity: 1;
-      transition: all var(--time-250);
+      transition: all 0.25s;
       transform: translate(0);
     }
 
@@ -130,7 +130,7 @@
       color: var(--white-75);
       font-size: 1.25rem;
       opacity: 1;
-      transition: all var(--time-250);
+      transition: all 0.25s;
       transform: translate(0);
     }
   }

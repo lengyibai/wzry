@@ -30,8 +30,6 @@ interface SettingConfig {
   musicVolume: number;
   /** 音乐进度控制 */
   musicProgress: boolean;
-  /** 动画速率 */
-  speed: 0 | 1 | 2;
   /** 语言 */
   language: 0 | 1 | 2;
   /** 线条 */

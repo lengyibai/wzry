@@ -38,7 +38,7 @@ const initPosition = () => {
     active_skin.el.style.pointerEvents = "auto";
     active_skin.el.style.left = "0";
     active_skin.el.style.top = "0";
-    active_skin.el.style.transition = "all var(--time-1000)";
+    active_skin.el.style.transition = "all 1s";
     active_skin.el.style.transform = active_skin.transform;
   }
 };
