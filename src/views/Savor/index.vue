@@ -19,18 +19,17 @@ const { show_list, scroll } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof Waterfall>>();
 
-const { count } = useWaterfallResponsive(waterfallRef);
+const { count } = useWaterfallResponsive();
 
 /** 当前悬浮的英雄id */
 const hero_id = ref(0);
 
 getAtlasList();
 
-$bus.on("update-waterfall", () => {
-  _.debounce(() => {
-    waterfallRef.value?.updateLoad();
-  }, 500);
-});
+const debounceUpdateLoad = _.debounce(() => {
+  waterfallRef.value?.updateLoad();
+}, 500);
+$bus.on("update-waterfall", debounceUpdateLoad);
 
 /* 当前高亮的图片id */
 const handleRelated = (e: Event, id: number, poster?: string) => {
