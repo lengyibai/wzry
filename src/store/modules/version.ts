@@ -54,7 +54,9 @@ const VersionStore = defineStore("version", () => {
   /** @description 获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
     axios
-      .get(location.origin + "/json/version.json?t=" + dayjs().unix())
+      .get(
+        `${location.origin}/king-honor/json/version.json?t=${dayjs().unix()}`,
+      )
       .then((res) => {
         const { main, file, log, time } = res.data;
         remote_version.value = main;
