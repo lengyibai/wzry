@@ -179,7 +179,10 @@ const handleReplace = (data: TableData) => {
 
 /* 导出 */
 const handleExport = (data: TableData) => {
-  $tool.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+  $tool.savefiles(
+    JSON.stringify({ data: data.data }, null, 2),
+    data.key + ".json",
+  );
 };
 
 /* 确认覆盖 */
@@ -192,7 +195,11 @@ const onConfirmReset = async () => {
 /* 排序触发 */
 const onsSortChange = (v: number[]) => {
   if (v[1] === 1 || v[1] === 2) {
-    table_data.value = $tool.typeSort(table_data.value, "length", v[1] === 1 ? true : false);
+    table_data.value = $tool.typeSort(
+      table_data.value,
+      "length",
+      v[1] === 1 ? true : false,
+    );
   } else {
     table_data.value = $tool.deepCopy(data_cache);
   }
@@ -219,9 +226,23 @@ onActivated(() => {
         <TableColumn min-width="10rem">{{ data.length }}</TableColumn>
         <TableColumn min-width="12.5rem">{{ data.status }}</TableColumn>
         <TableColumn min-width="20.5rem">
-          <button v-if="data.status !== '本地已更改'" class="check" @click="handleCheck(data), play()">检查更新</button>
-          <button class="export" @click="handleExport(data), play()">导出</button>
-          <button v-if="data.status === '待更新'" class="update" @click="handleUpdate(data), play()">更新</button>
+          <button
+            v-if="data.status !== '本地已更改'"
+            class="check"
+            @click="handleCheck(data), play()"
+          >
+            检查更新
+          </button>
+          <button class="export" @click="handleExport(data), play()">
+            导出
+          </button>
+          <button
+            v-if="data.status === '待更新'"
+            class="update"
+            @click="handleUpdate(data), play()"
+          >
+            更新
+          </button>
           <button
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
             class="replace"

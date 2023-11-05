@@ -7,7 +7,15 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list } = usePagingLoad<Hero.Skin>();
+  const {
+    all_data,
+    resetPage,
+    loadMore,
+    setScroll,
+    scroll,
+    filter_list,
+    show_list,
+  } = usePagingLoad<Hero.Skin>();
 
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
@@ -169,7 +177,14 @@ const SkinStore = defineStore("skin", () => {
         },
         {
           label: "其他专属",
-          value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
+          value: [
+            "必胜客专属",
+            "新春专属",
+            "信誉专属",
+            "源梦",
+            "活动专属",
+            "星会员专属",
+          ],
         },
         {
           label: "特殊标志",
@@ -201,8 +216,19 @@ const SkinStore = defineStore("skin", () => {
     const sortPrice = () => {
       const SortStrategy: Record<string, (list: Hero.Skin[]) => Hero.Skin[]> = {
         免费: (list) => {
-          const noFree = ["积分夺宝", "星会员15级", "贵族专属", "荣耀战令获取", "会员限定", "限时兑换"];
-          const noNum = list.filter((item) => !noFree.includes(item.price.toString()) && isNaN(Number(item.price)));
+          const noFree = [
+            "积分夺宝",
+            "星会员15级",
+            "贵族专属",
+            "荣耀战令获取",
+            "会员限定",
+            "限时兑换",
+          ];
+          const noNum = list.filter(
+            (item) =>
+              !noFree.includes(item.price.toString()) &&
+              isNaN(Number(item.price)),
+          );
           return $tool.typeSort(noNum, "price");
         },
         由低到高: (list) => {
@@ -211,8 +237,12 @@ const SkinStore = defineStore("skin", () => {
         },
         由高到低: (list) => {
           const isNum = list.filter((item) => !isNaN(Number(item.price)));
-          const strange = list.filter((item) => item.type.toString().indexOf("26.png") !== -1);
-          return [...strange, ...isNum].sort((a, b) => Number(b.price) - Number(a.price));
+          const strange = list.filter(
+            (item) => item.type.toString().indexOf("26.png") !== -1,
+          );
+          return [...strange, ...isNum].sort(
+            (a, b) => Number(b.price) - Number(a.price),
+          );
         },
       };
 
@@ -243,7 +273,12 @@ const SkinStore = defineStore("skin", () => {
   const searchSkin = (name: string) => {
     $tool.debounce(() => {
       if (name) {
-        filter_list.value = $tool.search(all_data.value, name, ["skin_name", "hero_name", "category"], true);
+        filter_list.value = $tool.search(
+          all_data.value,
+          name,
+          ["skin_name", "hero_name", "category"],
+          true,
+        );
       } else {
         sortAll();
       }

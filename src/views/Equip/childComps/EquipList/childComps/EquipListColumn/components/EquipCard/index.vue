@@ -64,7 +64,9 @@ nextTick(() => {
     <div class="box">
       <div class="name" :class="{ shine: shine }">{{ equip.name }}</div>
       <div class="info">
-        <div v-if="equip.desc" class="desc" :class="{ shine: shine }">{{ equip.desc }}</div>
+        <div v-if="equip.desc" class="desc" :class="{ shine: shine }">
+          {{ equip.desc }}
+        </div>
         <div class="price" :class="{ shine: shine }">{{ equip.price }}</div>
       </div>
     </div>

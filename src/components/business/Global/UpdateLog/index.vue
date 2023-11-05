@@ -32,7 +32,11 @@ const handleReset = () => {
     <div class="main">
       <!-- 页面更新 -->
       <h1>页面更新</h1>
-      <div v-if="update_log.file" class="content" v-html="update_log.file"></div>
+      <div
+        v-if="update_log.file"
+        class="content"
+        v-html="update_log.file"
+      ></div>
       <div v-else class="content"><p>暂无</p></div>
 
       <!-- 基础数据更新 -->
@@ -51,7 +55,12 @@ const handleReset = () => {
     </div>
 
     <!-- 重启 -->
-    <K-Button v-if="data_status || file_status" type="warning" @click="handleReset">更新并重启</K-Button>
+    <K-Button
+      v-if="data_status || file_status"
+      type="warning"
+      @click="handleReset"
+      >更新并重启</K-Button
+    >
   </K-Dialog>
 </template>
 

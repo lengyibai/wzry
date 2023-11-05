@@ -5,7 +5,8 @@ import { storeToRefs } from "pinia";
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
 
-const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
+const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } =
+  SkinStore();
 const { price_type, sort_type, skin_type } = storeToRefs(SkinStore());
 
 const select_price = [

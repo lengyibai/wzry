@@ -4,7 +4,9 @@ import { CONFIG } from "@/config";
 
 /** @description 获取英雄基础列表 */
 export const getHeroBasic = () => {
-  const hero_basic_list = get<Hero.Basic[]>({ name: CONFIG.LOCAL_KEY.HERO_BASIC });
+  const hero_basic_list = get<Hero.Basic[]>({
+    name: CONFIG.LOCAL_KEY.HERO_BASIC,
+  });
   return Promise.resolve(hero_basic_list);
 };
 
@@ -53,7 +55,9 @@ export const addHeroData = (data: Hero.Data) => {
 
 /** @description 获取英雄图集列表 */
 export const getHeroAtlas = () => {
-  const hero_atlas_list = get<Hero.Atlas[]>({ name: CONFIG.LOCAL_KEY.HERO_ATLAS });
+  const hero_atlas_list = get<Hero.Atlas[]>({
+    name: CONFIG.LOCAL_KEY.HERO_ATLAS,
+  });
   return Promise.resolve(hero_atlas_list);
 };
 
@@ -62,7 +66,11 @@ export const getHeroAtlas = () => {
  * @param hero_id 英雄id
  */
 export const getHeroDetail = async (hero_id: number) => {
-  const params = { name: CONFIG.LOCAL_KEY.HERO_DATA, key: "id", value: hero_id };
+  const params = {
+    name: CONFIG.LOCAL_KEY.HERO_DATA,
+    key: "id",
+    value: hero_id,
+  };
   const hero = get<Hero.Data>(params);
 
   /** 获取皮肤列表 */
@@ -114,7 +122,9 @@ export const getSkillType = () => {
 
 /** @description 获取技能效果列表 */
 export const getSkillEffect = () => {
-  const skill_effect_list = get<General[]>({ name: CONFIG.LOCAL_KEY.SKILL_EFFECT });
+  const skill_effect_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.SKILL_EFFECT,
+  });
   return Promise.resolve(skill_effect_list);
 };
 
@@ -132,24 +142,32 @@ export const getCampType = () => {
 
 /** @description 获取定位列表 */
 export const getLocationType = () => {
-  const location_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.LOCATION_TYPE });
+  const location_type_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.LOCATION_TYPE,
+  });
   return Promise.resolve(location_type_list);
 };
 
 /** @description 获取时期列表 */
 export const getPeriodType = () => {
-  const period_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.PERIOD_TYPE });
+  const period_type_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.PERIOD_TYPE,
+  });
   return Promise.resolve(period_type_list);
 };
 
 /** @description 获取职业列表 */
 export const getProfessionType = () => {
-  const profession_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.PROFESSION_TYPE });
+  const profession_type_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.PROFESSION_TYPE,
+  });
   return Promise.resolve(profession_type_list);
 };
 
 /** @description 获取特长列表 */
 export const getSpecialtyType = () => {
-  const specialty_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.SPECIALTY_TYPE });
+  const specialty_type_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.SPECIALTY_TYPE,
+  });
   return Promise.resolve(specialty_type_list);
 };

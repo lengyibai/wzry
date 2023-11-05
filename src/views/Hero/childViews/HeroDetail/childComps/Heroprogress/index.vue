@@ -26,7 +26,12 @@ const handleToggle = (index: number) => {
 <template>
   <!-- 滚动进度 -->
   <div class="hero-progress">
-    <div v-for="(item, i) in page_name" :key="i" class="page-index" :class="{ active: index === i + 1 }">
+    <div
+      v-for="(item, i) in page_name"
+      :key="i"
+      class="page-index"
+      :class="{ active: index === i + 1 }"
+    >
       <div v-show="index !== i + 1" class="tab" @click="handleToggle(i + 1)">
         {{ item }}
       </div>

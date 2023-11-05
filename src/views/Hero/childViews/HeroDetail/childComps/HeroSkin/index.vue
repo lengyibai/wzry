@@ -62,7 +62,9 @@ const onTogglePoster = ([i, index]: number[]) => {
 
     //0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = (await API_SKIN.getAssignSkinType(skin_type as number)).link;
+      active_skin_type.value = (
+        await API_SKIN.getAssignSkinType(skin_type as number)
+      ).link;
     } else {
       //伴生皮肤没有标签
       active_skin_type.value = "";
@@ -89,7 +91,10 @@ const onTogglePoster = ([i, index]: number[]) => {
       <!-- 顶部 -->
       <div class="top">
         <!-- 皮肤类型 -->
-        <HeroSkinType :skin-type-img="active_skin_type" :toggle="skin_type_toggle" />
+        <HeroSkinType
+          :skin-type-img="active_skin_type"
+          :toggle="skin_type_toggle"
+        />
 
         <!-- 皮肤价格 -->
         <HeroSkinPrice :toggle="skin_price_toggle" :price="skin_price" />

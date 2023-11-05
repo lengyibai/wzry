@@ -48,7 +48,13 @@ onUnmounted(() => {
 
     <!-- 侧边栏列表 -->
     <div class="side-item">
-      <sideItem v-for="route in routes" :key="route.path" :route="route" :coord="top" @coord="onCoord" />
+      <sideItem
+        v-for="route in routes"
+        :key="route.path"
+        :route="route"
+        :coord="top"
+        @coord="onCoord"
+      />
     </div>
 
     <!-- 滑块 -->

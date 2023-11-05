@@ -1,5 +1,14 @@
 <script setup lang="ts">
-import { nextTick, onUnmounted, onActivated, onMounted, ref, watch, computed, defineAsyncComponent } from "vue";
+import {
+  nextTick,
+  onUnmounted,
+  onActivated,
+  onMounted,
+  ref,
+  watch,
+  computed,
+  defineAsyncComponent,
+} from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
@@ -14,7 +23,9 @@ defineOptions({
   name: "hero",
 });
 
-const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue"));
+const HeroDetail = defineAsyncComponent(
+  () => import("./childViews/HeroDetail/index.vue"),
+);
 
 const $route = useRoute();
 const $router = useRouter();
@@ -39,7 +50,9 @@ const toggle_show = ref(false);
 const hero_info = ref<Hero.Data>(heroDefault());
 
 /** 渲染英雄列表 */
-const show_herolist = computed(() => $heroStore.show_list.length && toggle_show.value && show_list.value);
+const show_herolist = computed(
+  () => $heroStore.show_list.length && toggle_show.value && show_list.value,
+);
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {

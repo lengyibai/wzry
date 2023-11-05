@@ -6,8 +6,18 @@ import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 
-const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } = HeroStore();
-const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs(HeroStore());
+const {
+  filterGender,
+  filterCamp,
+  filterAttr,
+  filterMisc,
+  sortMisc,
+  sortType,
+  searchHero,
+} = HeroStore();
+const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs(
+  HeroStore(),
+);
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },

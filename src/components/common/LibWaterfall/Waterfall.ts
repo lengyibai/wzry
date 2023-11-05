@@ -1,5 +1,9 @@
 export default function (
-  obj: { count: number; gap: number; childs: HTMLElement[] } = { count: 2, gap: 10, childs: [] },
+  obj: { count: number; gap: number; childs: HTMLElement[] } = {
+    count: 2,
+    gap: 10,
+    childs: [],
+  },
 ) {
   const { count, gap, childs } = obj;
   if (!childs[0]) return;
@@ -33,7 +37,8 @@ export default function (
       childs[i].style.opacity = "1";
 
       /* 更新上一行的高度，用于下一行计算 */
-      height_List[minItem["minIndex"]] = parseFloat(childs[i].style.top) + childs[i].offsetHeight;
+      height_List[minItem["minIndex"]] =
+        parseFloat(childs[i].style.top) + childs[i].offsetHeight;
     }
   }
 }

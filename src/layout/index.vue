@@ -65,10 +65,18 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <K-Video v-if="enable_video_bg" :video="CONFIG.BASE.IMGBED + '/video/bg.mp4'" />
+    <K-Video
+      v-if="enable_video_bg"
+      :video="CONFIG.BASE.IMGBED + '/video/bg.mp4'"
+    />
 
     <!-- 图片壁纸 -->
-    <img v-else class="layout__bg" :src="CONFIG.BASE.IMGBED + '/image/background.png'" alt="" />
+    <img
+      v-else
+      class="layout__bg"
+      :src="CONFIG.BASE.IMGBED + '/image/background.png'"
+      alt=""
+    />
   </div>
 </template>
 

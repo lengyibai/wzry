@@ -28,7 +28,17 @@ sort_id.value = $props.head.map(() => {
   return 0;
 });
 
-const sortChange = ({ key, index, id, item }: { key: string; index: number; id: number; item: string }) => {
+const sortChange = ({
+  key,
+  index,
+  id,
+  item,
+}: {
+  key: string;
+  index: number;
+  id: number;
+  item: string;
+}) => {
   if (!$props.sort.includes(item)) return;
   let status = id;
   if (status === 2) {
@@ -69,7 +79,11 @@ const sortChange = ({ key, index, id, item }: { key: string; index: number; id: 
     </thead>
 
     <tbody>
-      <tr v-for="(item, index) in data" :key="index" :style="{ backgroundColor: item.bgColor }">
+      <tr
+        v-for="(item, index) in data"
+        :key="index"
+        :style="{ backgroundColor: item.bgColor }"
+      >
         <slot :data="item" name="body">
           <td v-for="(_item, _index) in Object.values(item)" :key="_index">
             {{ _item }}

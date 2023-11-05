@@ -42,11 +42,20 @@ watch(commit_status, (v) => {
     <i class="iconfont wzry-guanbi" title="取消" @click="handleClose"></i>
 
     <!-- 发布按钮 -->
-    <K-Commit v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
+    <K-Commit
+      v-model="commit_status"
+      class="lib-commit-btn"
+      v-bind="$attrs"
+      title="发布"
+    />
 
     <!-- 确认关闭 -->
     <transition name="fade">
-      <ConfirmClose v-if="show_ConfirmClose" v-model="show_ConfirmClose" v-bind="$attrs" />
+      <ConfirmClose
+        v-if="show_ConfirmClose"
+        v-model="show_ConfirmClose"
+        v-bind="$attrs"
+      />
     </transition>
   </div>
 </template>

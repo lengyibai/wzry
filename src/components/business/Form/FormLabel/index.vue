@@ -19,7 +19,9 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div class="form-label" :class="{ center: center }">
     <div class="label" :style="{ width: labelWidth }">
-      <span class="global_text-gradient"><i v-if="required" class="star">*</i>{{ label }}： </span>
+      <span class="global_text-gradient"
+        ><i v-if="required" class="star">*</i>{{ label }}：
+      </span>
     </div>
     <slot></slot>
   </div>

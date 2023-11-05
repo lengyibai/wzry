@@ -122,7 +122,8 @@ watch(
       if (v) {
         //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
-          input_value.value = $props.data.find((item) => item.id === v)?.name || "";
+          input_value.value =
+            $props.data.find((item) => item.id === v)?.name || "";
         } else {
           input_value.value = v;
         }
@@ -162,7 +163,12 @@ watch(
             @focus="handleFocus"
             @blur="handleBlur"
           />
-          <img class="arrow" :class="{ rotate: is_unfold }" :src="CONFIG.BASE.IMGBED + '/image/arrow.png'" alt="" />
+          <img
+            class="arrow"
+            :class="{ rotate: is_unfold }"
+            :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
+            alt=""
+          />
         </div>
 
         <!-- 展开列表 -->
@@ -173,7 +179,10 @@ watch(
               :key="item.id"
               class="box"
               :class="{
-                active: current_index === index || modelValue === item.name || modelValue === item.id,
+                active:
+                  current_index === index ||
+                  modelValue === item.name ||
+                  modelValue === item.id,
               }"
               @mousedown="handleSelect(item.id, item.name)"
               @mouseenter="handleEnterItem(index)"

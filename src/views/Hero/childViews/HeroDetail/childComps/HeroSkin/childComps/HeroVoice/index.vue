@@ -55,7 +55,10 @@ $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
     //播放第一个语音
     setTimeout(() => {
       voiceListRef.value?.scroll({ top: 0 });
-      if (current_index.value !== -1 && voices.value[current_index.value].link !== play_link.value) {
+      if (
+        current_index.value !== -1 &&
+        voices.value[current_index.value].link !== play_link.value
+      ) {
         current_index.value = -1;
       }
 
@@ -105,8 +108,12 @@ const onEnded = () => {
       @mouseenter="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
-        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
+        <span v-if="current_index !== index" class="text global_one-line">
+          {{ item.text }}</span
+        >
+        <marquee v-else class="text" scrollamount="8.5">
+          {{ item.text }}</marquee
+        >
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
@@ -119,7 +126,12 @@ const onEnded = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @info="onInfo" @ended="onEnded" />
+    <PlayVoice
+      v-if="play_link"
+      :link="play_link"
+      @info="onInfo"
+      @ended="onEnded"
+    />
   </div>
 </template>
 

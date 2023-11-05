@@ -28,14 +28,24 @@ const onGetLink = (link: string) => {
 </script>
 
 <template>
-  <div class="select-img" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
+  <div
+    class="select-img"
+    :class="[type, { border: !modelValue }]"
+    @click="show_AddLink = true"
+  >
     <img v-show="modelValue" :src="modelValue" alt="" />
     <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
 
   <!-- 添加图片链接弹窗组件 -->
   <transition name="fade">
-    <AddLink v-if="show_AddLink" v-model="show_AddLink" :title="title" :link="modelValue" @get-link="onGetLink" />
+    <AddLink
+      v-if="show_AddLink"
+      v-model="show_AddLink"
+      :title="title"
+      :link="modelValue"
+      @get-link="onGetLink"
+    />
   </transition>
 </template>
 

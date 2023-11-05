@@ -33,7 +33,10 @@ const handleSelect = (index: number) => {
     >
       {{ item }}
     </div>
-    <div class="active-bg" :style="{ transform: 'translateX(calc(' + modelValue + ' * 100%))' }"></div>
+    <div
+      class="active-bg"
+      :style="{ transform: 'translateX(calc(' + modelValue + ' * 100%))' }"
+    ></div>
   </div>
 </template>
 

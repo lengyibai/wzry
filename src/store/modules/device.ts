@@ -11,7 +11,9 @@ const DeviceStore = defineStore("device", () => {
   /** 浏览器版本 */
   const browser_version = $tool.browserV.version;
   /** 满足浏览器访问条件 */
-  const browser_status = ["chrome", "firefox"].includes(browser_name) ? browser_version >= 90 : browser_version >= 15;
+  const browser_status = ["chrome", "firefox"].includes(browser_name)
+    ? browser_version >= 90
+    : browser_version >= 15;
 
   /** 是否为竖屏 */
   const vertical = ref(false);

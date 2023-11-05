@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
+import {
+  AudioStore,
+  HeroStore,
+  CollapseStore,
+  SkinStore,
+  EquipStore,
+  AtlasStore,
+} from "@/store";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
@@ -45,7 +52,9 @@ const equip_type: { name: Equip.Category; icon: string }[] = [
 const top = ref(0);
 
 /** 动态list */
-const list = computed(() => (["hero", "skin", "atlas"].includes($props.type) ? hero_type : equip_type));
+const list = computed(() =>
+  ["hero", "skin", "atlas"].includes($props.type) ? hero_type : equip_type,
+);
 
 /** 用于比较的筛选类型 */
 const filter_type = computed(() => {
@@ -59,7 +68,10 @@ const filter_type = computed(() => {
 });
 
 /* 选择类型并筛选显示 */
-const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
+const handleSelect = (
+  name: Hero.Profession | Equip.Category,
+  index: number,
+) => {
   $audioStore.play(`默认${index}`);
 
   const obj = {

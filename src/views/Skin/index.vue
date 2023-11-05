@@ -128,7 +128,12 @@ onUnmounted(() => {
           @load-more="onLoadMore"
           @scroll="onScroll"
         >
-          <div v-for="item in $skinStore.show_list" :key="item.id" class="skin-card" @mouseenter="handleEnterCard">
+          <div
+            v-for="item in $skinStore.show_list"
+            :key="item.id"
+            class="skin-card"
+            @mouseenter="handleEnterCard"
+          >
             <SkinCard :data="item" @showTool="onShowTool" />
           </div>
         </LibGrid>
@@ -142,7 +147,12 @@ onUnmounted(() => {
 
     <!-- 语音列表 -->
     <transition name="fade">
-      <K-Dialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
+      <K-Dialog
+        v-if="show_voice"
+        v-model="show_voice"
+        width="45rem"
+        title="皮肤语音列表"
+      >
         <SkinVoice :voices="voices" />
       </K-Dialog>
     </transition>

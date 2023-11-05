@@ -35,7 +35,11 @@ const change = async (i: number) => {
   try {
     if (!heroScrollRef.value) return;
     heroScrollRef.value.style[direction ? "top" : "left"] =
-      -index * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) + "px";
+      -index *
+        (direction
+          ? heroScrollRef.value.offsetHeight
+          : heroScrollRef.value.offsetWidth) +
+      "px";
   } catch (error) {}
   setTimeout(() => {
     $emit("end", index + 1);
@@ -87,9 +91,11 @@ onMounted(() => {
 
       //根据滚动方向更新滚动位置
       if (direction) {
-        heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
+        heroScrollRef.value.style.top =
+          -index * heroScrollRef.value.offsetHeight + "px";
       } else {
-        heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
+        heroScrollRef.value.style.left =
+          -index * heroScrollRef.value.offsetWidth + "px";
       }
 
       $emit("update:modelValue", index + 1);
@@ -124,9 +130,11 @@ onMounted(() => {
 
       //根据滑动方向更新滚动位置
       if (direction) {
-        heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
+        heroScrollRef.value.style.top =
+          -index * heroScrollRef.value.offsetHeight + "px";
       } else {
-        heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
+        heroScrollRef.value.style.left =
+          -index * heroScrollRef.value.offsetWidth + "px";
       }
 
       $emit("update:modelValue", index + 1);

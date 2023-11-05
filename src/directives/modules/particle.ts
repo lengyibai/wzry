@@ -8,7 +8,13 @@ import { $tool } from "@/utils";
 
 const fn = (el: HTMLElement, binding: DirectiveBinding) => {
   setTimeout(() => {
-    const { color = "#cfb45c", size = 10, num = 35, down = false, enable = true } = binding.value || {};
+    const {
+      color = "#cfb45c",
+      size = 10,
+      num = 35,
+      down = false,
+      enable = true,
+    } = binding.value || {};
 
     const clear = (el: HTMLElement) => {
       const list = el.querySelectorAll(".particle-item");

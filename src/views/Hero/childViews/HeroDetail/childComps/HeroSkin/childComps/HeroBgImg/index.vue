@@ -10,7 +10,16 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const animates = ["xmove", "ymove", "square", "clip", "spin", "tv", "fold", "deploy"];
+const animates = [
+  "xmove",
+  "ymove",
+  "square",
+  "clip",
+  "spin",
+  "tv",
+  "fold",
+  "deploy",
+];
 
 const index = ref(0);
 
@@ -28,7 +37,14 @@ watch(
 <template>
   <div class="hero-bg-img">
     <transition-group :name="animates[index]">
-      <img v-if="bgImg[0]" v-show="toggle" key="a" class="bg" :src="bgImg[0]" alt="" />
+      <img
+        v-if="bgImg[0]"
+        v-show="toggle"
+        key="a"
+        class="bg"
+        :src="bgImg[0]"
+        alt=""
+      />
       <img v-show="!toggle" key="b" class="bg" :src="bgImg[1]" alt="" />
     </transition-group>
   </div>

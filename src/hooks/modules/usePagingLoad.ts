@@ -30,7 +30,10 @@ const usePagingLoad = <T>() => {
   const resetPage = () => {
     page = 0;
     show_list.value = [];
-    show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
+    show_list.value = filter_list.value.slice(
+      page * page_count,
+      (page + 1) * page_count,
+    );
     page_total = Math.round(filter_list.value.length / page_count);
   };
 
@@ -38,7 +41,9 @@ const usePagingLoad = <T>() => {
   const loadMore = () => {
     if (page_total > page) {
       page += 1;
-      show_list.value.push(...filter_list.value.slice(page * page_count, (page + 1) * page_count));
+      show_list.value.push(
+        ...filter_list.value.slice(page * page_count, (page + 1) * page_count),
+      );
     }
   };
 

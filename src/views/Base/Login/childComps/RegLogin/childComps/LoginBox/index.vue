@@ -50,7 +50,10 @@ const handleLogin = () => {
       $audioStore.play("e84n");
       $message("登录成功");
       if (remember.value) {
-        localStorage.setItem(CONFIG.LOCAL_KEY.REMEMBER_USER, JSON.stringify(form.value));
+        localStorage.setItem(
+          CONFIG.LOCAL_KEY.REMEMBER_USER,
+          JSON.stringify(form.value),
+        );
       } else {
         localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
       }

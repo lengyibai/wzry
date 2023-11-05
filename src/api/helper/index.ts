@@ -1,4 +1,10 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 import { ResultData } from "@/api/interface";
 
@@ -46,19 +52,35 @@ class RequestHttp {
     );
   }
 
-  Get<T = unknown>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+  Get<T = unknown>(
+    url: string,
+    params?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
     return this.service.get(url, { params, ...config });
   }
 
-  Post<T = unknown>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+  Post<T = unknown>(
+    url: string,
+    params?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
     return this.service.post(url, params, config);
   }
 
-  Patch<T = unknown>(url: string, params?: object, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+  Patch<T = unknown>(
+    url: string,
+    params?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
     return this.service.put(url, params, config);
   }
 
-  Del<T = unknown>(url: string, params?: unknown, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+  Del<T = unknown>(
+    url: string,
+    params?: unknown,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
     return this.service.delete(url, { params, ...config });
   }
 }

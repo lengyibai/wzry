@@ -36,7 +36,11 @@ const updateChilds = () => {
 
     if (!children) return;
     childs.value = children;
-    waterFullLayout({ count: $props.count, gap: $props.gap, childs: childs.value });
+    waterFullLayout({
+      count: $props.count,
+      gap: $props.gap,
+      childs: childs.value,
+    });
   });
 };
 

@@ -53,7 +53,14 @@ declare namespace Hero {
   }
 
   /** @description 职业类型 */
-  type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
+  type Profession =
+    | "全部"
+    | "坦克"
+    | "战士"
+    | "刺客"
+    | "法师"
+    | "射手"
+    | "辅助";
 
   /** @description 语音 */
   interface Voice {
@@ -198,13 +205,21 @@ declare namespace Hero {
   }
 
   /** @description 英雄图集列表 */
-  interface Atlas extends Pick<Data, "id" | "name" | "cover" | "poster" | "gender" | "profession"> {
+  interface Atlas
+    extends Pick<
+      Data,
+      "id" | "name" | "cover" | "poster" | "gender" | "profession"
+    > {
     /** 皮肤图集 */
     skins: Pick<Skin, "id" | "name" | "cover" | "poster">[];
   }
 
   /** @description 独立图集类型 */
-  interface AloneAtlas extends Pick<Data, "id" | "cover" | "poster" | "name" | "profession" | "gender"> {
+  interface AloneAtlas
+    extends Pick<
+      Data,
+      "id" | "cover" | "poster" | "name" | "profession" | "gender"
+    > {
     /** 图集类型 */
     type: "HERO" | "SKIN";
     /** 英雄名 */

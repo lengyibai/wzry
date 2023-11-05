@@ -35,12 +35,26 @@ const handleDel = () => $emit("del");
     >
       <!-- 标题 -->
       <div class="title">
-        <img :src="item.img || CONFIG.BASE.IMGBED + '/image/unknown.png'" alt="" />
+        <img
+          :src="item.img || CONFIG.BASE.IMGBED + '/image/unknown.png'"
+          alt=""
+        />
         <div class="name">{{ item.name }}</div>
         <div class="types">
-          <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
+          <K-SkillTypeTag
+            v-for="(type, index) in item.type"
+            :key="index"
+            :type="type"
+          />
         </div>
-        <button v-show="active(index)" v-if="index !== 0" class="del" @click.stop="handleDel">删除</button>
+        <button
+          v-show="active(index)"
+          v-if="index !== 0"
+          class="del"
+          @click.stop="handleDel"
+        >
+          删除
+        </button>
         <div v-show="active(index)" class="editing">编辑中...</div>
       </div>
 

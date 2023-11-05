@@ -39,7 +39,11 @@ const handleToggle = (index: number, type: Epigraph.Category) => {
   <div class="epigraph-tool">
     <div class="epigraph-category">
       <!-- 滑动的图标 -->
-      <img :style="{ left: current_index * 11.11 + '%' }" :src="getImgLink('epigraph_active')" alt="" />
+      <img
+        :style="{ left: current_index * 11.11 + '%' }"
+        :src="getImgLink('epigraph_active')"
+        alt=""
+      />
 
       <!-- 文字 -->
       <button

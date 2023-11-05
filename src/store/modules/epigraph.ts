@@ -28,7 +28,9 @@ const EpigraphStore = defineStore("epigraph", () => {
     if (type === "全部") {
       filter_list.value = epigraph_list.value;
     } else {
-      filter_list.value = epigraph_list.value.filter((item) => item.type.includes(type));
+      filter_list.value = epigraph_list.value.filter((item) =>
+        item.type.includes(type),
+      );
     }
   };
 

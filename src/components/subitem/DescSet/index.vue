@@ -15,11 +15,20 @@ const show_desc = ref(false);
 <template>
   <div class="desc-set">
     <transition name="desc-set">
-      <div v-show="show_desc" class="desc-tip" @mouseenter="show_desc = true" @mouseleave="show_desc = false">
+      <div
+        v-show="show_desc"
+        class="desc-tip"
+        @mouseenter="show_desc = true"
+        @mouseleave="show_desc = false"
+      >
         {{ desc }}
       </div>
     </transition>
-    <div class="question-icon" @mouseenter="show_desc = true" @mouseleave="show_desc = false">
+    <div
+      class="question-icon"
+      @mouseenter="show_desc = true"
+      @mouseleave="show_desc = false"
+    >
       <span>?</span>
     </div>
   </div>

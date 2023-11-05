@@ -53,10 +53,20 @@ const handleSelect = (v: Data) => {
     <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->
-    <img :class="{ 'arrow-active': status }" :src="CONFIG.BASE.IMGBED + '/image/arrow.png'" alt="arrow" class="arrow" />
+    <img
+      :class="{ 'arrow-active': status }"
+      :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
+      alt="arrow"
+      class="arrow"
+    />
 
     <!-- 展开列表 -->
-    <div class="select-list" :class="{ unfold: !status }" :style="{ height: listHeight }" @click.stop>
+    <div
+      class="select-list"
+      :class="{ unfold: !status }"
+      :style="{ height: listHeight }"
+      @click.stop
+    >
       <transition-group name="select-list">
         <button
           v-for="item in data"

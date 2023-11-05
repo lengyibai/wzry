@@ -154,7 +154,11 @@ const EquipStore = defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: top(active_id.value, synthetic_id.value[1][0].id),
-          height: height(active_id.value, synthetic_id.value[1][0].id, synthetic_id.value[1].at(-1)!.id),
+          height: height(
+            active_id.value,
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[1].at(-1)!.id,
+          ),
         };
         vertical_line.value[2] = {
           top: top(synthetic_id.value[1][0]?.id, synthetic_id.value[2][0]?.id),
@@ -193,7 +197,11 @@ const EquipStore = defineStore("equip", () => {
       try {
         vertical_line.value[1] = {
           top: top(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
-          height: height(synthetic_id.value[1][0].id, synthetic_id.value[0][0].id, synthetic_id.value[0].at(-1)!.id),
+          height: height(
+            synthetic_id.value[1][0].id,
+            synthetic_id.value[0][0].id,
+            synthetic_id.value[0].at(-1)!.id,
+          ),
         };
       } catch (error) {}
       if (synthetic_id.value[2][0]) {
@@ -269,7 +277,11 @@ const EquipStore = defineStore("equip", () => {
 
   /** @description 清空合成组 */
   const clearSynthetic = () => {
-    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
+    vertical_line.value = [
+      {},
+      { top: "0", height: "0" },
+      { top: "0", height: "0" },
+    ];
     synthetic_id.value = [[], [], []];
   };
 

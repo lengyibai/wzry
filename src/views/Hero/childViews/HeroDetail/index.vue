@@ -113,7 +113,11 @@ $audioStore.play("u4c5");
       </HeroParallax>
 
       <!--技能-->
-      <HeroParallax v-if="skill_num" class="scroll-item" :bg="hero_data.skins[skin_num - 1].poster">
+      <HeroParallax
+        v-if="skill_num"
+        class="scroll-item"
+        :bg="hero_data.skins[skin_num - 1].poster"
+      >
         <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
 
@@ -125,7 +129,11 @@ $audioStore.play("u4c5");
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
+      <Heroprogress
+        v-show="show_progress"
+        :index="scroll_index"
+        @toggle="onToggle"
+      />
     </transition>
   </div>
 </template>

@@ -30,7 +30,8 @@ API_HERO.getHeroBasic().then((res) => {
   hero_list.value = res;
 
   //查找当前id的英雄名
-  hero_name.value = hero_list.value.find((item) => item.id === $props.modelValue)?.name || "";
+  hero_name.value =
+    hero_list.value.find((item) => item.id === $props.modelValue)?.name || "";
 });
 
 /* 选择英雄后触发 */

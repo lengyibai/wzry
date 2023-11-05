@@ -8,9 +8,15 @@ defineOptions({
   name: "add",
 });
 
-const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue"));
-const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue"));
-const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue"));
+const AddHero = defineAsyncComponent(
+  () => import("./childViews/AddHero/index.vue"),
+);
+const AddSkin = defineAsyncComponent(
+  () => import("./childViews/AddSkin/index.vue"),
+);
+const AddSkill = defineAsyncComponent(
+  () => import("./childViews/AddSkill/index.vue"),
+);
 
 const $audioStore = AudioStore();
 
@@ -73,7 +79,13 @@ onActivated(() => {
   <div class="add" :style="box">
     <transition-group name="add" appear>
       <!-- 卡片 -->
-      <K-Manage v-for="(v, k) in list" :key="k" :title="v" type="add" @click="open(k as string)" />
+      <K-Manage
+        v-for="(v, k) in list"
+        :key="k"
+        :title="v"
+        type="add"
+        @click="open(k as string)"
+      />
     </transition-group>
 
     <!--发布列表-->

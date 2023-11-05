@@ -10,12 +10,17 @@ const routePath: Record<string, any> = {
   "@/views/Savor": () => import("@/views/Savor/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
-  "@/views/System/childViews/Add": () => import("@/views/System/childViews/Add/index.vue"),
-  "@/views/System/childViews/Data": () => import("@/views/System/childViews/Data/index.vue"),
+  "@/views/System/childViews/Add": () =>
+    import("@/views/System/childViews/Add/index.vue"),
+  "@/views/System/childViews/Data": () =>
+    import("@/views/System/childViews/Data/index.vue"),
 };
 
 /** @description 将路由表转换成真实路由 */
-const sheelToRoute = (route: RouterSheel[], asyncRoutes: Partial<RouteRecordRaw>[]) => {
+const sheelToRoute = (
+  route: RouterSheel[],
+  asyncRoutes: Partial<RouteRecordRaw>[],
+) => {
   route.forEach((item: RouterSheel, index: number) => {
     asyncRoutes[index] = {};
     for (const [key, value] of Object.entries(item)) {

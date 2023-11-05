@@ -27,7 +27,9 @@ const finish = ref(false);
 /** 用于身高和皮肤数量排序显示相应数字 */
 const num_type = computed(() => $heroStore.misc_sort);
 /** 显示右上角数字 */
-const show_num = computed(() => ["身高", "皮肤数量", "关系数量"].includes(num_type.value));
+const show_num = computed(() =>
+  ["身高", "皮肤数量", "关系数量"].includes(num_type.value),
+);
 
 /** 单位格式化 */
 const num = (data: Hero.Data) => {
@@ -72,7 +74,9 @@ const handleViewClick = () => {
           @click="handleViewClick"
           @load="finish = true"
         />
-        <button v-textHoverColor class="view" @click="handleViewClick">点击此处</button>
+        <button v-textHoverColor class="view" @click="handleViewClick">
+          点击此处
+        </button>
       </div>
     </transition>
 

@@ -19,7 +19,11 @@ const $audioStore = AudioStore();
 const { getImgLink } = $concise;
 
 /** 是否选中图标 */
-const checkIcon = computed(() => getImgLink(`${$props.modelValue ? "check_true_yellow" : "check_false_yellow"}`));
+const checkIcon = computed(() =>
+  getImgLink(
+    `${$props.modelValue ? "check_true_yellow" : "check_false_yellow"}`,
+  ),
+);
 
 /* 选中按钮 */
 const handleToggle = () => {

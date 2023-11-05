@@ -179,7 +179,10 @@ const onResetConfig = () => {
             {{ $t("音乐进度控制") }}
             <DescSet desc="开启后，点击底部导航栏就可以调整播放进度" />
           </div>
-          <K-Check v-model="config.musicProgress" @update:model-value="onMusicProgress" />
+          <K-Check
+            v-model="config.musicProgress"
+            @update:model-value="onMusicProgress"
+          />
         </div>
 
         <!-- 线条 -->
@@ -222,14 +225,19 @@ const onResetConfig = () => {
               desc="主要是登录页和登录后的背景，PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决"
             />
           </div>
-          <K-Check v-model="config.videoBg" @update:model-value="onSaveConfig" />
+          <K-Check
+            v-model="config.videoBg"
+            @update:model-value="onSaveConfig"
+          />
         </div>
 
         <!-- 小贴士 -->
         <div class="option">
           <div class="label">
             {{ $t("小贴士") }}
-            <DescSet desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息" />
+            <DescSet
+              desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
+            />
           </div>
           <K-Check v-model="config.tip" @update:model-value="onTip" />
         </div>
@@ -237,14 +245,20 @@ const onResetConfig = () => {
         <!-- 恢复所有不再提示 -->
         <div class="option">
           <div class="label">{{ $t("恢复所有小贴士") }}</div>
-          <K-Button width="6.5rem" height="2.1875rem" font-size="1.25rem" @click="handleResetTip">{{
-            $t("恢复")
-          }}</K-Button>
+          <K-Button
+            width="6.5rem"
+            height="2.1875rem"
+            font-size="1.25rem"
+            @click="handleResetTip"
+            >{{ $t("恢复") }}</K-Button
+          >
         </div>
       </div>
 
       <!-- 重置配置 -->
-      <K-Button type="error" @click="show_confirm_reset = true">{{ $t("重置配置") }}</K-Button>
+      <K-Button type="error" @click="show_confirm_reset = true">{{
+        $t("重置配置")
+      }}</K-Button>
     </K-Dialog>
 
     <!-- 确认重置 -->

@@ -66,7 +66,9 @@ const barWidth = computed(() => {
   const maxs = $props.max - $props.min;
   const size = Number($props.size.replace(/\b\d+(rem|px)\b/g, ""));
 
-  return `calc(${value / (maxs / 100)}% + ${((size - ($props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs}px)`;
+  return `calc(${value / (maxs / 100)}% + ${
+    ((size - ($props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs
+  }px)`;
 });
 
 /* 设置按钮大小 */
@@ -96,13 +98,21 @@ const hide = () => {
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
       <div v-if="showNum" class="slider-value">
-        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
+        <span
+          class="value"
+          :class="{ 'show-num': down }"
+          :style="{ left: barWidth }"
+        >
           {{ text || modelValue }}
         </span>
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth }">
-          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
+          <img
+            v-show="showIcon && showDot"
+            :src="icon"
+            :style="{ width: size, height: size }"
+          />
           <span
             v-show="showDot && !showIcon"
             :style="{

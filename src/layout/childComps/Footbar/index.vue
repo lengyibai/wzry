@@ -36,18 +36,36 @@ const handleSetProgress = (e: MouseEvent) => {
   if (!enable_music.value || !footbarRef.value) return;
 
   //计算出小数
-  progress.value = parseFloat(((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2));
+  progress.value = parseFloat(
+    (
+      (e.pageX - footbarRef.value.offsetLeft) /
+      footbarRef.value.offsetWidth
+    ).toFixed(2),
+  );
   //设置播放进度
   music_progress.value && $musicStore.setCurrentTime(progress.value);
 };
 
 /* 悬浮移动竖线 */
 const handleMoveLineRef = (e: MouseEvent) => {
-  if (!enable_music.value || !music_progress.value || !footbarRef.value || !lineRef.value) return;
+  if (
+    !enable_music.value ||
+    !music_progress.value ||
+    !footbarRef.value ||
+    !lineRef.value
+  )
+    return;
 
   //设置底部刻度线x坐标
   lineRef.value.style.left =
-    parseFloat(((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2)) * 100 + "%";
+    parseFloat(
+      (
+        (e.pageX - footbarRef.value.offsetLeft) /
+        footbarRef.value.offsetWidth
+      ).toFixed(2),
+    ) *
+      100 +
+    "%";
 };
 
 /* 点击音乐工具栏 */

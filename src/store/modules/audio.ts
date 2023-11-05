@@ -49,7 +49,9 @@ const AudioStore = defineStore("audio", () => {
     //获取点击触发的音效名
     sound_name =
       (typeof name === "string" &&
-        Object.keys(sound_type).find((item) => sound_type[item].find((item: string) => name.includes(item)))) ||
+        Object.keys(sound_type).find((item) =>
+          sound_type[item].find((item: string) => name.includes(item)),
+        )) ||
       "default";
 
     //播放器

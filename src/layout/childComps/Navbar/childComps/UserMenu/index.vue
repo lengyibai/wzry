@@ -57,7 +57,12 @@ const onClose = () => {
 </script>
 
 <template>
-  <div class="user-menu" :class="{ hover: show_menu }" @mouseenter="show_menu = true" @mouseleave="show_menu = false">
+  <div
+    class="user-menu"
+    :class="{ hover: show_menu }"
+    @mouseenter="show_menu = true"
+    @mouseleave="show_menu = false"
+  >
     <img
       class="head-img"
       :src="userInfo.headImg || CONFIG.BASE.IMGBED + '/image/unknown.png'"
@@ -70,20 +75,36 @@ const onClose = () => {
 
       <div class="btns">
         <div class="edit">
-          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</K-Button>
+          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo"
+            >编辑个人信息</K-Button
+          >
         </div>
         <div class="logout" @click="handleLogout">
-          <K-Button type="warning" font-size="1.25rem" auto-size>退出登录</K-Button>
+          <K-Button type="warning" font-size="1.25rem" auto-size
+            >退出登录</K-Button
+          >
         </div>
         <div class="logoff" @click="show_logoff = true">
-          <K-Button type="error" font-size="1.25rem" auto-size>注销帐号</K-Button>
+          <K-Button type="error" font-size="1.25rem" auto-size
+            >注销帐号</K-Button
+          >
         </div>
       </div>
     </div>
   </div>
   <transition name="fade">
-    <K-Dialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="onClose">
-      <EditUserInfo :id="$authStore.userInfo.id" v-model:status="edit_status" @close="show_edit = false" />
+    <K-Dialog
+      v-if="show_edit"
+      title="编辑个人信息"
+      width="57.5rem"
+      up
+      @close="onClose"
+    >
+      <EditUserInfo
+        :id="$authStore.userInfo.id"
+        v-model:status="edit_status"
+        @close="show_edit = false"
+      />
     </K-Dialog>
   </transition>
 
@@ -99,7 +120,12 @@ const onClose = () => {
 
   <!-- 关闭设置弹窗确认 -->
   <transition name="fade">
-    <ConfirmClose v-if="show_close" v-model="show_close" text="资料未保存，确定关闭吗？" @confirm="show_edit = false" />
+    <ConfirmClose
+      v-if="show_close"
+      v-model="show_close"
+      text="资料未保存，确定关闭吗？"
+      @confirm="show_edit = false"
+    />
   </transition>
 </template>
 

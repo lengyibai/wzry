@@ -69,7 +69,11 @@ watch(
               <div class="title">小贴士</div>
 
               <!-- 小兵 -->
-              <img class="soldier" :src="CONFIG.BASE.IMGBED + '/image/warn.png'" alt="小兵" />
+              <img
+                class="soldier"
+                :src="CONFIG.BASE.IMGBED + '/image/warn.png'"
+                alt="小兵"
+              />
             </div>
 
             <!-- 内容 -->
@@ -77,7 +81,13 @@ watch(
 
             <!-- 按钮 -->
             <div class="btns">
-              <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">确定</K-Button>
+              <K-Button
+                width="9.375rem"
+                height="2.5rem"
+                font-size="1.25rem"
+                @click="handleClose"
+                >确定</K-Button
+              >
             </div>
           </div>
         </transition>

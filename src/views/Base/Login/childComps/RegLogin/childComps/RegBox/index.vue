@@ -91,7 +91,11 @@ const handleReg = () => {
     </div>
 
     <!-- 权限选择 -->
-    <RoleSelect v-model="form.role" class="reg-box__role-select" :option="['管理员', '用户']" />
+    <RoleSelect
+      v-model="form.role"
+      class="reg-box__role-select"
+      :option="['管理员', '用户']"
+    />
 
     <!-- 注册 -->
     <div class="reg-box__btns">

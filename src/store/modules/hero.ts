@@ -7,7 +7,15 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
-  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list } = usePagingLoad<Hero.Data>();
+  const {
+    all_data,
+    resetPage,
+    loadMore,
+    setScroll,
+    scroll,
+    filter_list,
+    show_list,
+  } = usePagingLoad<Hero.Data>();
 
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
@@ -28,9 +36,14 @@ const HeroStore = defineStore("hero", () => {
   const getHeroList = async () => {
     all_data.value = await API_HERO.getHeroData();
     for (let i = 0; i < all_data.value.length; i++) {
-      all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
-      all_data.value[i].skins = await API_SKIN.getHeroSkin(all_data.value[i].id);
-      all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(all_data.value[i].id);
+      all_data.value[i].skills = await API_SKILL.getHeroSkill(
+        all_data.value[i].id,
+      );
+      all_data.value[i].skins = await API_SKIN.getHeroSkin(
+        all_data.value[i].id,
+      );
+      all_data.value[i].relationships =
+        await API_RELATIONSHIP.getHeroRelationship(all_data.value[i].id);
     }
 
     sortAll();
@@ -187,7 +200,9 @@ const HeroStore = defineStore("hero", () => {
             return !item.skills.some((item) => {
               return item.some((item) => {
                 return item.type.some((item) => {
-                  return ["控制", "束缚", "压制", "牵引", "限制"].includes(item);
+                  return ["控制", "束缚", "压制", "牵引", "限制"].includes(
+                    item,
+                  );
                 });
               });
             });
@@ -205,13 +220,18 @@ const HeroStore = defineStore("hero", () => {
         多套技能: (item) => item.skills.length > 1,
       };
       if (misc_type.value && misc_type.value !== "全部筛选") {
-        filter_list.value = filter_list.value.filter(filter_msic[misc_type.value]);
+        filter_list.value = filter_list.value.filter(
+          filter_msic[misc_type.value],
+        );
       }
     };
 
     /** 杂项排序 */
     const sortMisc = () => {
-      const sortingFunctions: Record<string, (a: Hero.Data, b: Hero.Data) => number> = {
+      const sortingFunctions: Record<
+        string,
+        (a: Hero.Data, b: Hero.Data) => number
+      > = {
         身高: (a, b) => a.height - b.height,
         上手难度: (a, b) => a.difficulty - b.difficulty,
         皮肤数量: (a, b) => b.skins.length - a.skins.length,
@@ -243,7 +263,12 @@ const HeroStore = defineStore("hero", () => {
   const searchHero = (name: string) => {
     $tool.debounce(() => {
       if (name) {
-        filter_list.value = $tool.search<Hero.Data>(all_data.value, name, "name", true);
+        filter_list.value = $tool.search<Hero.Data>(
+          all_data.value,
+          name,
+          "name",
+          true,
+        );
       } else {
         sortAll();
       }

@@ -3,7 +3,9 @@ import { CONFIG } from "@/config";
 
 /** @description 获取关系列表 */
 export const getRelationship = () => {
-  const relationship_list = get<Hero.Relationship[]>({ name: CONFIG.LOCAL_KEY.RELATIONSHIP });
+  const relationship_list = get<Hero.Relationship[]>({
+    name: CONFIG.LOCAL_KEY.RELATIONSHIP,
+  });
   return Promise.resolve(relationship_list);
 };
 

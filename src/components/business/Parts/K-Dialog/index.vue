@@ -85,7 +85,12 @@ const handleClose = () => {
         </div>
 
         <!-- 关闭 -->
-        <img v-show="showClose" class="close" :src="CONFIG.BASE.IMGBED + '/image/close.png'" @click="handleClose" />
+        <img
+          v-show="showClose"
+          class="close"
+          :src="CONFIG.BASE.IMGBED + '/image/close.png'"
+          @click="handleClose"
+        />
 
         <!-- 背景图 -->
         <img class="bg" :src="CONFIG.BASE.IMGBED + '/image/dialog.png'" />

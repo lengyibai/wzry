@@ -15,6 +15,8 @@ export const getEquipType = () => {
 
 /** @description 获取装备效果列表 */
 export const getEquipEffect = () => {
-  const equip_effect_list = get<General[]>({ name: CONFIG.LOCAL_KEY.EQUIP_EFFECT });
+  const equip_effect_list = get<General[]>({
+    name: CONFIG.LOCAL_KEY.EQUIP_EFFECT,
+  });
   return Promise.resolve(equip_effect_list);
 };

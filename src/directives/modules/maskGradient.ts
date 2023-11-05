@@ -6,7 +6,12 @@ import type { Directive, DirectiveBinding } from "vue";
 
 const maskGradient: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
-    const { color = "rgba(0, 0, 0, 0.75)", rotate = "0deg", num1 = "0%", num2 = "50%" } = binding.value || {};
+    const {
+      color = "rgba(0, 0, 0, 0.75)",
+      rotate = "0deg",
+      num1 = "0%",
+      num2 = "50%",
+    } = binding.value || {};
     const mask = document.createElement("div");
     mask.style.cssText = `
     position: absolute;

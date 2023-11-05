@@ -55,7 +55,11 @@ const setPosition = (data: HTMLElement | null) => {
 };
 
 /* 自定义指令函数回调 */
-const handleDrag = (data: HTMLElement, offset: { x: number; y: number } | boolean, index: number) => {
+const handleDrag = (
+  data: HTMLElement,
+  offset: { x: number; y: number } | boolean,
+  index: number,
+) => {
   if (!data) return;
   //清除正在拖拽的皮肤头像动画，避免拖拽高延迟
   data.style.transition = "all 0s";
@@ -153,7 +157,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="skinBoxRef" class="hero-skin-head-img" :class="{ into: show_skin_box }">
+  <div
+    ref="skinBoxRef"
+    class="hero-skin-head-img"
+    :class="{ into: show_skin_box }"
+  >
     <!--中心头衔框-->
     <div ref="skinHeadRef" class="show-skin">
       {{ is_into_drap ? "松开" : "拖过来" }}

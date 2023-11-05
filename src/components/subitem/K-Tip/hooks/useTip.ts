@@ -21,7 +21,12 @@ export default () => {
   const btnFn = ref(() => {});
 
   const tip = (config: Control.Tip) => {
-    const { text, align: p = "right-bottom", btnFn: fn1 = () => {}, createFn = () => {} } = config;
+    const {
+      text,
+      align: p = "right-bottom",
+      btnFn: fn1 = () => {},
+      createFn = () => {},
+    } = config;
 
     //如果开启了tip
     if ($settingStore.config.tip) {

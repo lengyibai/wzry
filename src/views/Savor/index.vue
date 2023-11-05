@@ -48,7 +48,13 @@ const onLoadMore = () => {
       <SavorToolbar />
 
       <div class="savor-list">
-        <Waterfall ref="waterfallRef" :count="count" :scroll-top="scroll" @load-more="onLoadMore" @scroll="setScroll">
+        <Waterfall
+          ref="waterfallRef"
+          :count="count"
+          :scroll-top="scroll"
+          @load-more="onLoadMore"
+          @scroll="setScroll"
+        >
           <div
             v-for="(item, index) in show_list"
             :key="index"
@@ -62,8 +68,12 @@ const onLoadMore = () => {
             @touchend="handleRelated($event, item.id)"
             @mouseleave="hero_id = 0"
           >
-            <div v-if="item.type === 'HERO'" class="hero-name">{{ item.name }}</div>
-            <div v-if="item.type === 'SKIN'" class="skin-name">{{ item.name }}</div>
+            <div v-if="item.type === 'HERO'" class="hero-name">
+              {{ item.name }}
+            </div>
+            <div v-if="item.type === 'SKIN'" class="skin-name">
+              {{ item.name }}
+            </div>
             <img :src="item.cover" alt="" @dragstart.prevent />
           </div>
         </Waterfall>

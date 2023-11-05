@@ -15,9 +15,26 @@ export const potEoPct = (str: string | number, ret = 4) => {
 
 /** @description 根据时间段问候 */
 export const timeGreet = (greet: Record<string, string> = {}) => {
-  const { a = "午夜好", b = "早上好", c = "上午好", d = "中午好", e = "下午好", f = "晚上好" } = greet;
+  const {
+    a = "午夜好",
+    b = "早上好",
+    c = "上午好",
+    d = "中午好",
+    e = "下午好",
+    f = "晚上好",
+  } = greet;
   const now = new Date().getHours();
-  return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
+  return now < 4
+    ? a
+    : now < 10
+    ? b
+    : now < 12
+    ? c
+    : now < 14
+    ? d
+    : now < 18
+    ? e
+    : f;
 };
 
 /** @description requestAnimationFrame计时器 */
@@ -35,7 +52,8 @@ export const frameInterval = (fn: () => void, fre = 0) => {
 };
 
 /** @description 判断是否为数组 */
-export const isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
+export const isArray = (type: any) =>
+  Object.prototype.toString.call(type) === "[object Array]";
 
 /** @description 中文转拼音 */
 export const pinyin = (str: string) => {
@@ -75,7 +93,10 @@ export const search = <T>(
         const pin_yin: string[] = pinyin(item[key]);
         if (pin_yin.some((py) => reg.test(py) || reg.test(item[key]))) {
           if (highlight) {
-            item[key] = item[key].replace(reg, (match: string) => `<i style="color:var(--blue)">${match}</i>`);
+            item[key] = item[key].replace(
+              reg,
+              (match: string) => `<i style="color:var(--blue)">${match}</i>`,
+            );
           }
           return true;
         }
@@ -117,10 +138,21 @@ export const deepCopy = <T>(e: any): T => {
       return /^\[object (.*)\]$/.exec(t)![1];
     },
     n = (e: any) => "Array" === r(e),
-    c = (e: any) => null !== e && ("object" == typeof e || "function" == typeof e),
+    c = (e: any) =>
+      null !== e && ("object" == typeof e || "function" == typeof e),
     o = (e: any) => {
       const t = r(e);
-      return ["Boolean", "Number", "String", "Symbol", "BigInt", "Date", "Map", "Set", "RegExp"].includes(t);
+      return [
+        "Boolean",
+        "Number",
+        "String",
+        "Symbol",
+        "BigInt",
+        "Date",
+        "Map",
+        "Set",
+        "RegExp",
+      ].includes(t);
     },
     s = (e: any) => {
       const t = r(e),
@@ -164,7 +196,10 @@ export const deepCopy = <T>(e: any): T => {
     },
     a = (e: any) => {
       if (void 0 === e.constructor) return Object.create(null);
-      if ("function" == typeof e.constructor && (e !== e.constructor || e !== Object.prototype)) {
+      if (
+        "function" == typeof e.constructor &&
+        (e !== e.constructor || e !== Object.prototype)
+      ) {
         const t = Object.getPrototypeOf(e);
         return Object.create(t);
       }
@@ -247,7 +282,10 @@ export const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
 export const savefiles = (data: any, name: string): void => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
-  const save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a") as HTMLAnchorElement;
+  const save_link = document.createElementNS(
+    "http://www.w3.org/1999/xhtml",
+    "a",
+  ) as HTMLAnchorElement;
   save_link.href = urlObject.createObjectURL(export_blob);
   save_link.download = name;
   save_link.click();
@@ -310,7 +348,13 @@ export const imageOptimizer = (obj: ImageOptimizerOptions) => {
         if (scale < 1) {
           canvas.width = image.width * scale;
           canvas.height = image.height * scale;
-          context!.drawImage(image, 0, 0, image.width * scale, image.height * scale);
+          context!.drawImage(
+            image,
+            0,
+            0,
+            image.width * scale,
+            image.height * scale,
+          );
         } else {
           canvas.width = image.width;
           canvas.height = image.height;
@@ -347,7 +391,8 @@ export const isPhone = (() => /mobile/i.test(navigator.userAgent))();
 
 /** @description 判断表单指定属性名是否为空 */
 export const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
-  (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
+  (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
+    .length > 0
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
 
@@ -366,7 +411,11 @@ export const throttleInstant = (() => {
 /** @description 防抖立即执行 */
 export const debounceInstant = (() => {
   let timer: NodeJS.Timeout | undefined;
-  return <T extends (...args: any[]) => any>(fn: T, delay: number, ...args: Parameters<T>): void => {
+  return <T extends (...args: any[]) => any>(
+    fn: T,
+    delay: number,
+    ...args: Parameters<T>
+  ): void => {
     if (timer) clearTimeout(timer);
     const callNow = !timer;
     timer = setTimeout(() => {
@@ -487,7 +536,8 @@ export class ScaleImage {
     //缩小按钮
     this.zoomOutButton = document.createElement("button");
     this.zoomOutButton.style.cssText = button_style;
-    this.zoomOutButton.className += "global_cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.className +=
+      "global_cursor-pointer iconfont wzry-suoxiao";
     this.zoomOutButton.style.bottom = "0";
     this.zoomOutButton.style.left = "50%";
     this.zoomOutButton.style.transform = "translate(50%, -100%)";
@@ -704,7 +754,8 @@ export class ScaleFLIPImage {
     //缩小按钮
     this.zoomOutButton = document.createElement("button");
     this.zoomOutButton.style.cssText = button_style;
-    this.zoomOutButton.className += "global_cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.className +=
+      "global_cursor-pointer iconfont wzry-suoxiao";
     this.zoomOutButton.style.bottom = "0";
     this.zoomOutButton.style.left = "50%";
     this.zoomOutButton.style.transform = "translate(50%, -100%)";

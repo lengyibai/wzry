@@ -16,7 +16,12 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-const icon = computed(() => `${CONFIG.BASE.IMGBED}/image/${$props.modelValue ? "select_true" : "select_false"}.png`);
+const icon = computed(
+  () =>
+    `${CONFIG.BASE.IMGBED}/image/${
+      $props.modelValue ? "select_true" : "select_false"
+    }.png`,
+);
 
 const toggle = () => {
   $emit("update:modelValue", !$props.modelValue);

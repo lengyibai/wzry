@@ -22,13 +22,19 @@ export const getHeroSkin = (hero_id: number) => {
 
 /** @description 获取皮肤类型列表 */
 export const getSkinType = () => {
-  const skin_type_list = get<Hero.SkinType[]>({ name: CONFIG.LOCAL_KEY.SKIN_TYPE });
+  const skin_type_list = get<Hero.SkinType[]>({
+    name: CONFIG.LOCAL_KEY.SKIN_TYPE,
+  });
   return Promise.resolve(skin_type_list);
 };
 
 /** @description 获取指定皮肤类型 */
 export const getAssignSkinType = (skin_id: number) => {
-  const params = { name: CONFIG.LOCAL_KEY.SKIN_TYPE, key: "id", value: skin_id };
+  const params = {
+    name: CONFIG.LOCAL_KEY.SKIN_TYPE,
+    key: "id",
+    value: skin_id,
+  };
   const skin_type = get<Hero.SkinType>(params);
   return Promise.resolve(skin_type);
 };
