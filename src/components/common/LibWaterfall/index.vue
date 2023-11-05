@@ -13,7 +13,7 @@ interface Props {
 
 const $props = withDefaults(defineProps<Props>(), {
   count: 2,
-  gap: 10,
+  gap: 15,
   loadHeight: 250,
   scrollTop: 0,
 });
@@ -36,6 +36,7 @@ const updateChilds = () => {
 
     if (!children) return;
     childs.value = children;
+
     waterFullLayout({
       count: $props.count,
       gap: $props.gap,
