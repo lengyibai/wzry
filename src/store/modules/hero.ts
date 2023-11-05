@@ -47,6 +47,7 @@ const HeroStore = defineStore("hero", () => {
         await API_RELATIONSHIP.getHeroRelationship(all_data.value[i].id);
     }
 
+    setProfessional("全部");
     sortAll();
   };
 
