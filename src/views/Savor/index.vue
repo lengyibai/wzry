@@ -1,84 +1,68 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from "vue";
+import { ref } from "vue";
+import { storeToRefs } from "pinia";
 
-import { useGetHeroAtlas } from "./hooks/useGetHeroAtlas";
+import SavorToolbar from "./components/SavorToolbar/index.vue";
+import { useWaterfallPage } from "./hooks/useWaterfallPage";
 
 import Waterfall from "@/components/common/LibWaterfall/index.vue";
 import { $tool } from "@/utils";
+import { AtlasStore } from "@/store";
 
-const { hero_atlas } = useGetHeroAtlas();
+defineOptions({
+  name: "savor",
+});
+
+const { getAtlasList, setScroll } = AtlasStore();
+getAtlasList();
+const { show_list, scroll } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof Waterfall>>();
 
-/** 当前页数 */
-const page = ref(0);
-/** 总数 */
-const total = ref(0);
-/** 总页数 */
-const total_page = ref(0);
-/** 一页个数 */
-const limit = ref(50);
-/** 当前展示数据 */
-const data = ref<HeroAtlas[]>([]);
-/** 一行个数 */
-const count = ref(2);
+const { count, loadMore } = useWaterfallPage(waterfallRef);
 
-const loadMore = () => {
-  if (page.value > total_page.value) {
-    return;
-  }
-  if (page.value === 0) {
-    total.value = hero_atlas.value.length;
-    total_page.value = Math.ceil(total.value / limit.value);
-  }
+const hero_id = ref(0);
 
-  const start = page.value * limit.value;
-  const end = start + limit.value;
-  const newData = hero_atlas.value.slice(start, end);
-  data.value = data.value.concat(newData);
-  page.value += 1;
+/* 当前高亮的图片id */
+const handleRelated = (e: Event, id: number, poster?: string) => {
+  hero_id.value = id;
 
-  nextTick(() => {
-    waterfallRef.value?.updateLoad();
-  });
+  poster && new $tool.ScaleFLIPImage(e, poster);
 };
-
-const setCount = () => {
-  const w = document.documentElement.clientWidth;
-  if (w >= 1500) {
-    count.value = 5;
-  } else if (w >= 1000) {
-    count.value = 4;
-  } else if (w >= 500) {
-    count.value = 3;
-  } else if (w < 500) {
-    count.value = 2;
-  }
-
-  waterfallRef.value?.updateLoad();
-};
-
-onMounted(() => {
-  setTimeout(() => {
-    loadMore();
-    setCount();
-  });
-});
-
-window.addEventListener("resize", () => {
-  $tool.debounce(() => {
-    setCount();
-  }, 500);
-});
 </script>
 
 <template>
   <div class="savor">
-    <Waterfall ref="waterfallRef" :count="count" @load-more="loadMore">
-      <div v-for="(item, index) in data" :key="index" class="atlas-card">
-        <img :src="item.cover" alt="" />
+    <div class="savor-main">
+      <SavorToolbar />
+
+      <div class="savor-list">
+        <Waterfall ref="waterfallRef" :count="count" :scroll-top="scroll" @load-more="loadMore" @scroll="setScroll">
+          <div
+            v-for="(item, index) in show_list"
+            :key="index"
+            class="atlas-card"
+            :class="{
+              active: hero_id === item.id,
+            }"
+            @mouseenter="handleRelated($event, item.id)"
+            @mouseup="handleRelated($event, item.id, item.poster)"
+            @touchstart="handleRelated($event, item.id)"
+            @touchend="handleRelated($event, item.id)"
+            @mouseleave="hero_id = 0"
+          >
+            <div v-if="item.type === 'HERO'" class="hero-name">{{ item.name }}</div>
+            <div v-if="item.type === 'SKIN'" class="skin-name">{{ item.name }}</div>
+            <img :src="item.cover" alt="" @dragstart.prevent />
+          </div>
+        </Waterfall>
       </div>
-    </Waterfall>
+    </div>
+
+    <!--右侧职业分类侧边栏-->
+    <transition name="sidebar" appear>
+      <FilterSidebar type="atlas" />
+    </transition>
   </div>
 </template>
 
