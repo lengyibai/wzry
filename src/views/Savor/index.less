@@ -1,37 +1,84 @@
 .savor {
   position: relative;
-  overflow: auto;
-  flex: 1;
-  padding: 10px;
-  padding-top: 0;
+  display: flex;
   width: 100%;
   height: 100%;
 
-  .atlas-card {
-    position: absolute;
-    min-width: 100px;
-    transition: 0.5s ease-in-out;
+  &-main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .savor-list {
+      position: relative;
+      overflow: auto;
+      flex-grow: 1;
+      padding: 1.25rem;
 
-    @media screen and (width < 500px) {
-      width: calc(50% - 3px);
-    }
+      .atlas-card {
+        position: absolute;
+        overflow: hidden;
+        min-width: 6.25rem;
+        border-radius: 0.9375rem;
+        filter: grayscale(75%) brightness(35%) drop-shadow(0 0.1875rem 0.3125rem #000);
+        cursor: pointer;
+        transition: 0.5s;
 
-    @media screen and (width >= 500px) {
-      width: calc(33.33% - 6px);
-    }
+        &.active {
+          filter: grayscale(0%) brightness(100%) drop-shadow(0 0.1875rem 0.3125rem #000);
+          transition: 0.1s;
+        }
 
-    @media screen and (width >= 1000px) {
-      width: calc(25% - 7px);
-    }
+        .hero-name,
+        .skin-name {
+          position: absolute;
+          z-index: 1;
+          transition: 0.25s;
+        }
 
-    @media screen and (width >= 1500px) {
-      width: calc(20% - 8px);
+        .hero-name {
+          top: 0.5em;
+          left: 0.5em;
+          text-shadow: var(--t-shadow-e);
+          letter-spacing: 0.5em;
+          font-size: 2.5rem;
+          writing-mode: vertical-lr;
+        }
+
+        .skin-name {
+          right: 0.5em;
+          bottom: 0.5em;
+          text-shadow: var(--t-shadow-d);
+          font-size: 1.25rem;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: 0.25s;
+
+          &:hover {
+            transform: scale(1.25);
+          }
+        }
+
+        @media screen and (width < 500px) {
+          width: calc(50% - 3px);
+        }
+
+        @media screen and (width >= 500px) {
+          width: calc(33.33% - 6px);
+        }
+
+        @media screen and (width >= 1000px) {
+          width: calc(25% - 7px);
+        }
+
+        @media screen and (width >= 1500px) {
+          width: calc(20% - 8px);
+        }
+      }
     }
   }
 }
