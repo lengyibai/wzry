@@ -260,22 +260,23 @@ const HeroStore = defineStore("hero", () => {
     resetPage();
   };
 
-  /** @description 搜索英雄 */
-  const debounceSearchHero = (name: string) => {
-    _.debounce(() => {
-      if (name) {
-        filter_list.value = $tool.search<Hero.Data>(
-          all_data.value,
-          name,
-          "name",
-          true,
-        );
-      } else {
-        sortAll();
-      }
+  const debounceSearchHero = _.debounce((name: string) => {
+    if (name) {
+      filter_list.value = $tool.search<Hero.Data>(
+        all_data.value,
+        name,
+        "name",
+        true,
+      );
+    } else {
+      sortAll();
+    }
 
-      resetPage();
-    }, 500);
+    resetPage();
+  }, 500);
+  /** @description 搜索英雄 */
+  const searchHero = (name: string) => {
+    debounceSearchHero(name);
   };
 
   return {
@@ -306,7 +307,7 @@ const HeroStore = defineStore("hero", () => {
     filterGender,
     filterMisc,
     getHeroList,
-    searchHero: debounceSearchHero,
+    searchHero,
     setProfessional,
     setScroll,
     sortMisc,

@@ -33,11 +33,12 @@ const voices = ref<Hero.Voice[]>([]);
 /* 获取皮肤列表 */
 $skinStore.getSkin();
 
+const debounceScroll = _.debounce((v: number) => {
+  $skinStore.setScroll(v);
+}, 250);
 /* 滚动触发 */
-const debounceScroll = (v: number) => {
-  _.debounce(() => {
-    $skinStore.setScroll(v);
-  }, 250);
+const onScroll = (v: number) => {
+  debounceScroll(v);
 };
 
 /* 加载更多 */
@@ -127,7 +128,7 @@ onUnmounted(() => {
           :count="count"
           :scroll-top="$skinStore.scroll"
           @load-more="onLoadMore"
-          @scroll="debounceScroll"
+          @scroll="onScroll"
         >
           <div
             v-for="item in $skinStore.show_list"

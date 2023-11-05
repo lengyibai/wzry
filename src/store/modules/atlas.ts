@@ -134,22 +134,23 @@ const AtlasStore = defineStore("atlas", () => {
     resetPage();
   };
 
-  /** @description 搜索图集 */
-  const debounceSearchAtlas = (name: string) => {
-    _.debounce(() => {
-      if (name) {
-        filter_list.value = $tool.search<Hero.AloneAtlas>(
-          all_data.value,
-          name,
-          ["name", "heroName"],
-          true,
-        );
-      } else {
-        sortAll();
-      }
+  const debounceSearchAtlas = _.debounce((name: string) => {
+    if (name) {
+      filter_list.value = $tool.search<Hero.AloneAtlas>(
+        all_data.value,
+        name,
+        ["name", "heroName"],
+        true,
+      );
+    } else {
+      sortAll();
+    }
 
-      resetPage();
-    }, 500);
+    resetPage();
+  }, 500);
+  /** @description 搜索图集 */
+  const searchAtlas = (name: string) => {
+    debounceSearchAtlas(name);
   };
 
   return {
@@ -167,7 +168,7 @@ const AtlasStore = defineStore("atlas", () => {
     sortType,
     setProfessional,
     filterGender,
-    searchAtlas: debounceSearchAtlas,
+    searchAtlas,
   };
 });
 

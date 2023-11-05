@@ -270,22 +270,23 @@ const SkinStore = defineStore("skin", () => {
     resetPage();
   };
 
-  /** @description 搜索皮肤 */
-  const debounceSearchSkin = (name: string) => {
-    _.debounce(() => {
-      if (name) {
-        filter_list.value = $tool.search(
-          all_data.value,
-          name,
-          ["skin_name", "hero_name", "category"],
-          true,
-        );
-      } else {
-        sortAll();
-      }
+  const debounceSearchSkin = _.debounce((name: string) => {
+    if (name) {
+      filter_list.value = $tool.search(
+        all_data.value,
+        name,
+        ["skin_name", "hero_name", "category"],
+        true,
+      );
+    } else {
+      sortAll();
+    }
 
-      resetPage();
-    }, 500);
+    resetPage();
+  }, 500);
+  /** @description 搜索皮肤 */
+  const searchSkin = (name: string) => {
+    debounceSearchSkin(name);
   };
 
   return {
@@ -312,7 +313,7 @@ const SkinStore = defineStore("skin", () => {
     sortPrice,
     filterGender,
     sortAll,
-    searchSkin: debounceSearchSkin,
+    searchSkin,
     filterSkinType,
     sortType,
     loadMore,

@@ -62,11 +62,9 @@ const AudioStore = defineStore("audio", () => {
     audio.play().catch(() => {});
   };
 
-  const debouncePlayAudio = (name: string) => {
-    _.debounce(() => {
-      playAudio(name);
-    }, 50);
-  };
+  const debouncePlayAudio = _.debounce((name: string) => {
+    playAudio(name);
+  }, 50);
   /**
    * @description: 调用播放
    * @param name 音效名

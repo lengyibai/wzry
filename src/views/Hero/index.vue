@@ -88,11 +88,12 @@ if ($heroStore.all_data.length === 0) {
   }
 }
 
+const debounceScroll = _.debounce((v: number) => {
+  $heroStore.setScroll(v);
+}, 250);
 /* 滚动触发 */
-const debounceScroll = (v: number) => {
-  _.debounce(() => {
-    $heroStore.setScroll(v);
-  }, 250);
+const onScroll = (v: number) => {
+  debounceScroll(v);
 };
 
 /* 加载更多 */
@@ -194,7 +195,7 @@ onUnmounted(() => {
         gap="1.5625rem"
         :count="count"
         :scroll-top="$heroStore.scroll"
-        @scroll="debounceScroll"
+        @scroll="onScroll"
         @load-more="onLoadMore"
       >
         <transition-group name="card" appear>
