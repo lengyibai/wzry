@@ -14,7 +14,7 @@
 
 ## 第三方依赖
 
-> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、时间库[Day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)
+> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、时间库[day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)、工具库[lodash.js][https://www.lodashjs.com]
 
 ## 项目内截图
 
@@ -22,25 +22,25 @@
 
 ## 素材来源
 
-> 英雄头像、技能图标、图片素材——[王者荣耀官网](https://pvp.qq.com)
->
-> 英雄语音——[王者世界观体验站](https://pvp.qq.com/ip)
->
-> 游戏音乐——网易云音乐
->
-> 点击音效——游戏内录制视频、提取音频、截取音频
->
-> 英雄封面——对`100`多个英雄的海报进行裁剪获取
->
-> 技能信息——游戏内对每个英雄的详情页进行截图、识字、富文本编辑器对关键文字的设置颜色
->
-> 英雄信息——手敲，并整合所有类型
->
-> 游戏装备——游戏内截图、抠图、AI修复
+英雄头像、技能图标、图片素材——[王者荣耀官网](https://pvp.qq.com)
 
-## 项目介绍
+英雄语音——[王者世界观体验站](https://pvp.qq.com/ip)
 
-> 此项目无数据库，无后端参与，一切数据存储于`json`文件中，将`json`文件托管至服务器，只存在文件的`get`请求
+游戏音乐——网易云音乐
+
+点击音效——游戏内录制视频、提取音频、截取音频
+
+英雄封面——对`100`多个英雄的海报进行裁剪获取
+
+技能信息——游戏内对每个英雄的详情页进行截图、识字、富文本编辑器对关键文字的设置颜色
+
+英雄信息——手敲，并整合所有类型
+
+游戏装备——游戏内截图、抠图、AI修复
+
+## 数据介绍
+
+> 此项目无数据库，无后端参与，一切数据存储于`json`文件中，将`json`文件托管至服务器，第一次进入网页时下载`json`获取数据并写入`localStorage`，通过本地的增、删、查、改方法操作`localStorage`里的数据
 >
 > 注册、登录、设置、用户信息等数据都存在于`localStorage`，只能在当前浏览器使用
 >
