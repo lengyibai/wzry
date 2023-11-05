@@ -176,7 +176,6 @@ onUnmounted(() => {
       <LibGrid
         v-show="show_list"
         v-if="show_herolist"
-        class="hero-list"
         scroll-id="hero_list"
         gap="1.5625rem"
         :count="count"

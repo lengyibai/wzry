@@ -122,7 +122,6 @@ onUnmounted(() => {
           v-if="$skinStore.show_list.length && show_list"
           ref="skinListRef"
           scroll-id="skin_list"
-          class="skin-list"
           gap="1.5625rem"
           :count="count"
           :scroll-top="$skinStore.scroll"

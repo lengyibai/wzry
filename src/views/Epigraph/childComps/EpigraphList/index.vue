@@ -71,13 +71,7 @@ onUnmounted(() => {
 <template>
   <div>
     <transition name="card-list">
-      <LibGrid
-        v-if="show && epigraph_list.length"
-        ref="epigraphListRef"
-        class="epigraph-list"
-        gap="15px"
-        :count="count"
-      >
+      <LibGrid v-if="show && epigraph_list.length" ref="epigraphListRef" gap="15px" :count="count">
         <transition-group name="card" appear>
           <div
             v-for="(item, index) in epigraph_list"
