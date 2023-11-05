@@ -1,6 +1,6 @@
 feat: 新功能特性
 fix: bug修复
-perf: 功能优化，包括性能优化
+perf: 功能优化
 refactor: 代码重构，改变逻辑，不涉及代码功能
 remove: 移除代码
 delete: 文件删除
