@@ -44,12 +44,18 @@ export default defineConfig({
     },
   },
   build: {
-    minify: "esbuild",
+    minify: "terser",
     chunkSizeWarningLimit: 1500,
     cssTarget: "chrome61",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     rollupOptions: {
       output: {
-        chunkFileNames: "assets/js/[name]-[hash].js",
+        chunkFileNames: "assets/js/[format][name]-[hash].js",
         entryFileNames: "assets/js/[name]-[hash].js",
         assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
       },
