@@ -1,5 +1,8 @@
 import { defineStore } from "pinia";
+import { watch } from "vue";
 import { ref } from "vue";
+
+import { $bus } from "@/utils";
 
 /** @description 折叠侧边栏 */
 const CollapseStore = defineStore("collapse", () => {
@@ -18,6 +21,10 @@ const CollapseStore = defineStore("collapse", () => {
   const setCollapse = (v: boolean) => {
     collapse.value = v;
   };
+
+  watch(collapse, () => {
+    $bus.emit("update-waterfall");
+  });
 
   return {
     /** 折叠状态 */
