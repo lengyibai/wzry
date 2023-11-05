@@ -2,6 +2,10 @@
 import { nextTick, ref } from "vue";
 import { storeToRefs } from "pinia";
 import _ from "lodash";
+import { onMounted } from "vue";
+import { onUnmounted } from "vue";
+import { onActivated } from "vue";
+import { onDeactivated } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
@@ -46,6 +50,23 @@ const onLoadMore = () => {
     waterfallRef.value?.updateLoad();
   });
 };
+
+onActivated(() => {
+  $bus.on("update-waterfall", debounceUpdateLoad);
+  debounceUpdateLoad();
+});
+
+onMounted(() => {
+  $bus.on("update-waterfall", debounceUpdateLoad);
+});
+
+onDeactivated(() => {
+  $bus.off("update-waterfall");
+});
+
+onUnmounted(() => {
+  $bus.off("update-waterfall");
+});
 </script>
 
 <template>
