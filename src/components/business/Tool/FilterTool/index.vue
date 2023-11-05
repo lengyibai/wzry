@@ -13,6 +13,8 @@ interface Props {
   listHeight?: string;
   /** 下拉状态 */
   status: boolean;
+  /** 选中的名称 */
+  sortText: string;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -25,8 +27,6 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-/** 标题 */
-const sort_text = ref("默认排序");
 /** 选择的值 */
 const current_value = ref("");
 
@@ -43,7 +43,6 @@ const handleEnterItem = (v: Data) => {
 /* 选择的值 */
 const handleSelect = (v: Data) => {
   current_value.value = v.label;
-  sort_text.value = v.label;
   $emit("select", v.value);
   $audioStore.play();
 };
@@ -51,7 +50,7 @@ const handleSelect = (v: Data) => {
 
 <template>
   <div class="select-filter" @click="handleShowList">
-    <div class="title">{{ sort_text }}</div>
+    <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->
     <img :class="{ 'arrow-active': status }" :src="CONFIG.BASE.IMGBED + '/image/arrow.png'" alt="arrow" class="arrow" />
@@ -64,7 +63,7 @@ const handleSelect = (v: Data) => {
           :key="item.value"
           class="box"
           :class="{
-            active: current_value === item.label || sort_text === item.label,
+            active: current_value === item.label || sortText === item.label,
           }"
           @mousedown="handleSelect(item)"
           @mouseenter="handleEnterItem(item)"
