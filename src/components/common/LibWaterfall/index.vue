@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, onActivated, onMounted, ref, watch } from "vue";
 
 import waterFullLayout from "./Waterfall";
 interface Props {
@@ -7,12 +7,15 @@ interface Props {
   gap?: number;
   loadHeight?: number;
   loading?: boolean;
+  /** 上一次的滚动坐标 */
+  scrollTop?: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 10,
   loadHeight: 250,
+  scrollTop: 0,
 });
 
 interface Emits {
@@ -33,7 +36,7 @@ const updateChilds = () => {
 
     if (!children) return;
     childs.value = children;
-    waterFullLayout({ count: props.count, gap: props.gap, childs: childs.value });
+    waterFullLayout({ count: $props.count, gap: $props.gap, childs: childs.value });
   });
 };
 
@@ -52,6 +55,8 @@ const updateLoad = () => {
   });
 };
 
+watch(() => $props.count, updateChilds);
+
 onMounted(() => {
   updateChilds();
   updateLoad();
@@ -64,10 +69,10 @@ onMounted(() => {
       emit("update:loading", true);
     }
 
-    if (d <= props.loadHeight && isLoadMore.value) {
+    if (d <= $props.loadHeight && isLoadMore.value) {
       emit("load-more");
       isLoadMore.value = false;
-    } else if (d > props.loadHeight) {
+    } else if (d > $props.loadHeight) {
       isLoadMore.value = true;
     }
 
@@ -75,7 +80,13 @@ onMounted(() => {
   });
 });
 
-watch(() => props.count, updateChilds);
+const backTop = () => {
+  waterfallRef.value?.scroll({ top: $props.scrollTop });
+};
+
+onActivated(() => {
+  backTop();
+});
 
 defineExpose({
   updateLoad,

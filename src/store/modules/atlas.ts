@@ -179,6 +179,8 @@ const AtlasStore = defineStore("atlas", () => {
   };
 
   return {
+    /** 滚动坐标 */
+    scroll,
     /** 展示的列表 */
     show_list,
     /** 职业类型 */
