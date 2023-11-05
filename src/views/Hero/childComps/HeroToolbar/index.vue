@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive, onUnmounted } from "vue";
+import { storeToRefs } from "pinia";
 
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 
 const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } = HeroStore();
+const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs(HeroStore());
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },
@@ -28,7 +30,7 @@ const select_sort = [
   { label: "皮肤数量", value: "皮肤数量" },
   { label: "关系数量", value: "关系数量" },
 ];
-const sort_type = [
+const sort_types = [
   { label: "正序", value: "正序" },
   { label: "倒序", value: "倒序" },
 ];
@@ -115,6 +117,7 @@ onUnmounted(() => {
     <div class="filter-select">
       <!-- 阵营筛选按钮 -->
       <FilterTool
+        :sort-text="camp_type"
         :status="select_status[0]"
         :data="select_camp"
         list-height="26.5625rem"
@@ -124,6 +127,7 @@ onUnmounted(() => {
 
       <!-- 自带属性筛选按钮 -->
       <FilterTool
+        :sort-text="attr_type"
         :status="select_status[1]"
         :data="select_attr"
         @click="handleSelectStatus(1)"
@@ -132,6 +136,7 @@ onUnmounted(() => {
 
       <!-- 杂项筛选按钮 -->
       <FilterTool
+        :sort-text="misc_type"
         :status="select_status[2]"
         :data="select_misc"
         @click="handleSelectStatus(2)"
@@ -140,6 +145,7 @@ onUnmounted(() => {
 
       <!-- 杂项排序按钮 -->
       <FilterTool
+        :sort-text="misc_sort"
         :status="select_status[3]"
         :data="select_sort"
         @click="handleSelectStatus(3)"
@@ -147,7 +153,13 @@ onUnmounted(() => {
       />
 
       <!-- 正序/倒序 -->
-      <FilterTool :status="select_status[4]" :data="sort_type" @click="handleSelectStatus(4)" @select="onSortType" />
+      <FilterTool
+        :sort-text="sort_type"
+        :status="select_status[4]"
+        :data="sort_types"
+        @click="handleSelectStatus(4)"
+        @select="onSortType"
+      />
     </div>
 
     <!-- 只看性别 -->

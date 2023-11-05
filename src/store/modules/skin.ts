@@ -16,11 +16,11 @@ const SkinStore = defineStore("skin", () => {
   /** 滚动坐标 */
   const scroll = ref(0);
   /** 职业类型 */
-  const profession = ref("");
+  const profession = ref<Hero.Profession>("全部");
   /** 价格排序类型 */
-  const price_type = ref("");
+  const price_type = ref("全部价格");
   /** 皮肤筛选类型 */
-  const skin_type = ref("");
+  const skin_type = ref("全部皮肤");
   /** 排序类型 */
   const sort_type = ref("倒序");
   /** 性别筛选类型 */
@@ -70,7 +70,8 @@ const SkinStore = defineStore("skin", () => {
     });
 
     skin_list.value = skinList;
-    setProfessional("全部");
+
+    sortAll();
   };
 
   /**
@@ -210,7 +211,7 @@ const SkinStore = defineStore("skin", () => {
         },
         { label: "团战精神", value: ["沉稳", "敏锐", "掌控", "守护", "坚韧"] },
       ];
-      if (skin_type.value && skin_type.value !== "全部类型") {
+      if (skin_type.value && skin_type.value !== "全部皮肤") {
         if (alone.includes(skin_type.value)) {
           filter_list.value = filter_list.value.filter((item) => {
             return item.category.includes(skin_type.value);

@@ -16,7 +16,7 @@ const HeroStore = defineStore("hero", () => {
   /** 滚动坐标 */
   const scroll = ref(0);
   /** 职业类型 */
-  const profession = ref<Hero.Profession>();
+  const profession = ref<Hero.Profession>("全部");
   /** 阵营排序类型 */
   const camp_type = ref("全部阵营");
   /** 属性排序类型 */
@@ -69,7 +69,7 @@ const HeroStore = defineStore("hero", () => {
       hero_list.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(hero_list.value[i].id);
     }
 
-    setProfessional("全部");
+    sortAll();
   };
 
   /**

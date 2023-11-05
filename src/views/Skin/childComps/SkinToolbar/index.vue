@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { ref, reactive, onUnmounted } from "vue";
+import { storeToRefs } from "pinia";
 
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
 
 const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
+const { price_type, sort_type, skin_type } = storeToRefs(SkinStore());
 
 const select_price = [
-  { label: "默认价格", value: "默认价格" },
+  { label: "全部价格", value: "全部价格" },
   { label: "免费", value: "免费" },
   { label: "由低到高", value: "由低到高" },
   { label: "由高到低", value: "由高到低" },
 ];
 
 const select_type = [
-  { label: "全部类型", value: "全部类型" },
+  { label: "全部皮肤", value: "全部皮肤" },
   { label: "勇者", value: "勇者" },
   { label: "史诗", value: "史诗" },
   { label: "传说", value: "传说" },
@@ -39,7 +41,7 @@ const select_type = [
   { label: "特殊标志", value: "特殊标志" },
 ];
 
-const sort_type = [
+const sort_types = [
   { label: "正序", value: "正序" },
   { label: "倒序", value: "倒序" },
 ];
@@ -117,6 +119,7 @@ onUnmounted(() => {
       <FilterTool
         :status="select_status[0]"
         :data="select_price"
+        :sort-text="price_type"
         @click="handleSelectStatus(0)"
         @select="onPriceSort"
       />
@@ -125,13 +128,20 @@ onUnmounted(() => {
       <FilterTool
         :status="select_status[1]"
         :data="select_type"
+        :sort-text="skin_type"
         list-height="31.25rem"
         @click="handleSelectStatus(1)"
         @select="onTypeFilter"
       />
 
       <!-- 正序/倒序 -->
-      <FilterTool :status="select_status[2]" :data="sort_type" @click="handleSelectStatus(2)" @select="onSortType" />
+      <FilterTool
+        :status="select_status[2]"
+        :sort-text="sort_type"
+        :data="sort_types"
+        @click="handleSelectStatus(2)"
+        @select="onSortType"
+      />
     </div>
 
     <!-- 只看性别 -->
