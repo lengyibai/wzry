@@ -20,12 +20,14 @@
         overflow: hidden;
         min-width: 6.25rem;
         border-radius: 0.9375rem;
-        filter: grayscale(75%) brightness(35%) drop-shadow(0 0.1875rem 0.3125rem #000);
+        filter: grayscale(75%) brightness(35%)
+          drop-shadow(0 0.1875rem 0.3125rem #000);
         cursor: pointer;
         transition: 0.5s;
 
         &.active {
-          filter: grayscale(0%) brightness(100%) drop-shadow(0 0.1875rem 0.3125rem #000);
+          filter: grayscale(0%) brightness(100%)
+            drop-shadow(0 0.1875rem 0.3125rem #000);
           transition: 0.1s;
         }
 
@@ -64,19 +66,19 @@
         }
 
         @media screen and (width < 500px) {
-          width: calc(50% - 3px);
+          width: calc(50% - 0.75rem);
         }
 
         @media screen and (width >= 500px) {
-          width: calc(33.33% - 6px);
+          width: calc(33.33% - 0.9rem);
         }
 
         @media screen and (width >= 1000px) {
-          width: calc(25% - 7px);
+          width: calc(25% - 0.9rem);
         }
 
         @media screen and (width >= 1500px) {
-          width: calc(20% - 8px);
+          width: calc(20% - 0.75rem);
         }
       }
     }
