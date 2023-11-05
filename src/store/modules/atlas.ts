@@ -3,7 +3,7 @@ import { ref } from "vue";
 import _ from "lodash";
 
 import { API_HERO } from "@/api";
-import { $tool } from "@/utils";
+import { $bus, $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
 
 /** @description 图集 */
@@ -34,7 +34,7 @@ const AtlasStore = defineStore("atlas", () => {
         cover: hero.cover,
         poster: hero.poster,
         name: hero.name,
-        heroName: hero.name,
+        heroName: "",
         type: "HERO",
         profession: hero.profession,
         gender: hero.gender,
@@ -132,6 +132,7 @@ const AtlasStore = defineStore("atlas", () => {
     filterGender();
     sortType();
     resetPage();
+    $bus.emit("update-waterfall");
   };
 
   const debounceSearchAtlas = _.debounce((name: string) => {
@@ -142,6 +143,7 @@ const AtlasStore = defineStore("atlas", () => {
         ["name", "heroName"],
         true,
       );
+      $bus.emit("update-waterfall");
     } else {
       sortAll();
     }
