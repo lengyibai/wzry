@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore } from "@/store";
+import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
-  type: "hero" | "skin" | "equip";
+  type: "hero" | "skin" | "equip" | "atlas";
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -20,6 +20,7 @@ const $skinStore = SkinStore();
 const $heroStore = HeroStore();
 const $collapseStore = CollapseStore();
 const $equipStore = EquipStore();
+const $atlasStore = AtlasStore();
 
 const hero_type: { name: Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -44,13 +45,14 @@ const equip_type: { name: Equip.Category; icon: string }[] = [
 const top = ref(0);
 
 /** 动态list */
-const list = computed(() => (["hero", "skin"].includes($props.type) ? hero_type : equip_type));
+const list = computed(() => (["hero", "skin", "atlas"].includes($props.type) ? hero_type : equip_type));
 
 /** 用于比较的筛选类型 */
 const filter_type = computed(() => {
   const obj = {
     hero: $heroStore.profession,
     skin: $skinStore.profession,
+    atlas: $atlasStore.profession,
     equip: $equipStore.category,
   };
   return obj[$props.type];
@@ -63,6 +65,7 @@ const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => 
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Hero.Profession),
+    atlas: () => $atlasStore.setProfessional(name as Hero.Profession),
     equip: () => $equipStore.setType(name as Equip.Category),
   };
 
