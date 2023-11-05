@@ -15,6 +15,7 @@ export { RouterStore } from "./modules/router";
 export { SettingStore } from "./modules/setting";
 export { SkinStore } from "./modules/skin";
 export { VersionStore } from "./modules/version";
+export { AtlasStore } from "./modules/atlas";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();
