@@ -21,7 +21,7 @@ const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs(
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },
-  { label: "无控制", value: "无控制" },
+  { label: "非硬控", value: "非硬控" },
   { label: "免控", value: "免控" },
   { label: "回血", value: "回血" },
   { label: "真伤", value: "真伤" },

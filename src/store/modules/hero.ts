@@ -196,7 +196,7 @@ const HeroStore = defineStore("hero", () => {
           }
         });
 
-        if (attr_type.value === "无控制") {
+        if (attr_type.value === "非硬控") {
           filter_list.value = filter_list.value.filter((item) => {
             return !item.skills.some((item) => {
               return item.some((item) => {
