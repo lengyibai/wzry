@@ -1,0 +1,44 @@
+.savor-toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: var(--subline);
+
+  .filter-select {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    padding: 0.625rem;
+    max-width: 8.1rem;
+    border-right: var(--subline);
+    gap: 0.625rem;
+  }
+
+  &:deep(.form-input) {
+    margin-left: auto;
+    padding: 0.625rem;
+
+    & > input::placeholder {
+      color: var(--theme-font-color-two);
+    }
+  }
+
+  @media screen and (max-width: @medium) {
+    flex-direction: column;
+
+    .filter-select {
+      justify-content: center;
+      margin-bottom: 1.5625rem;
+    }
+
+    &:deep(.form-input) {
+      margin-top: 1.5625rem;
+      margin-left: 0;
+    }
+  }
+}
+
+.active {
+  background-color: #347cb6 !important;
+  color: var(--white) !important;
+}
