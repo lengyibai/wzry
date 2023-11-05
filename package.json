@@ -17,6 +17,7 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
+    "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
@@ -26,6 +27,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.5.1",
     "@tsconfig/node18": "^18.2.1",
+    "@types/lodash": "^4.14.200",
     "@types/node": "^18.11.12",
     "@vitejs/plugin-legacy": "^4.1.1",
     "@vitejs/plugin-vue": "^4.3.3",
