@@ -975,3 +975,12 @@ export class FocusElement {
     }, 500);
   }
 }
+
+/** @description 计算文件大小 */
+export const getFileSizeInKB = (file: any) => {
+  const str = JSON.stringify(file, null, 2);
+  const blob = new Blob([str]);
+  const fileSizeInBytes = blob.size;
+  const fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
+  return Number(fileSizeInKB);
+};

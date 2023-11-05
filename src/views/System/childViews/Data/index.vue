@@ -18,6 +18,8 @@ interface TableData {
   status: string;
   /** 数据量 */
   length: number;
+  /** 占用大小 */
+  size: number;
 }
 
 defineOptions({
@@ -103,6 +105,7 @@ const load = async () => {
       data: v,
       status: "正在检查...",
       length: v.length,
+      size: $tool.getFileSizeInKB(v),
     };
   });
 
@@ -193,11 +196,11 @@ const onConfirmReset = async () => {
 };
 
 /* 排序触发 */
-const onsSortChange = (v: number[]) => {
+const onsSortChange = (v: any[]) => {
   if (v[1] === 1 || v[1] === 2) {
     table_data.value = $tool.typeSort(
       table_data.value,
-      "length",
+      v[3] === "数据量" ? "length" : "size",
       v[1] === 1 ? true : false,
     );
   } else {
@@ -217,13 +220,14 @@ onActivated(() => {
     <!-- 表格 -->
     <LibTable
       :data="table_data"
-      :head="['数据类型', '数据量', '状态', '操作']"
+      :head="['数据类型', '数据量', '占用', '状态', '操作']"
       :sort="['数据量']"
       @sortChange="onsSortChange"
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
         <TableColumn min-width="10rem">{{ data.length }}</TableColumn>
+        <TableColumn min-width="10rem">{{ data.size }}KB</TableColumn>
         <TableColumn min-width="12.5rem">{{ data.status }}</TableColumn>
         <TableColumn min-width="20.5rem">
           <button
