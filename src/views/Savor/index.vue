@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
@@ -13,21 +13,32 @@ defineOptions({
   name: "savor",
 });
 
-const { getAtlasList, setScroll } = AtlasStore();
-getAtlasList();
+const { getAtlasList, setScroll, loadMore } = AtlasStore();
 const { show_list, scroll } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof Waterfall>>();
 
-const { count, loadMore } = useWaterfallPage(waterfallRef);
+const { count } = useWaterfallPage(waterfallRef);
 
+/** 当前悬浮的英雄id */
 const hero_id = ref(0);
+
+getAtlasList();
 
 /* 当前高亮的图片id */
 const handleRelated = (e: Event, id: number, poster?: string) => {
   hero_id.value = id;
 
   poster && new $tool.ScaleFLIPImage(e, poster);
+};
+
+/* 加载更多 */
+const onLoadMore = () => {
+  loadMore();
+
+  nextTick(() => {
+    waterfallRef.value?.updateLoad();
+  });
 };
 </script>
 
@@ -37,7 +48,7 @@ const handleRelated = (e: Event, id: number, poster?: string) => {
       <SavorToolbar />
 
       <div class="savor-list">
-        <Waterfall ref="waterfallRef" :count="count" :scroll-top="scroll" @load-more="loadMore" @scroll="setScroll">
+        <Waterfall ref="waterfallRef" :count="count" :scroll-top="scroll" @load-more="onLoadMore" @scroll="setScroll">
           <div
             v-for="(item, index) in show_list"
             :key="index"

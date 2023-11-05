@@ -3,18 +3,12 @@ import { defineStore } from "pinia";
 
 import { API_SKIN } from "@/api";
 import { $tool } from "@/utils";
+import { usePagingLoad } from "@/hooks";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  /** 当前页数 */
-  let page = 1;
-  /** 总页数 */
-  let page_total = 0;
-  /** 一页显示的个数 */
-  const page_count = 50;
+  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list } = usePagingLoad<Hero.Skin>();
 
-  /** 滚动坐标 */
-  const scroll = ref(0);
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
   /** 价格排序类型 */
@@ -25,34 +19,6 @@ const SkinStore = defineStore("skin", () => {
   const sort_type = ref("倒序");
   /** 性别筛选类型 */
   const gender_type = ref<Gender>(0);
-  /** 皮肤列表 */
-  const skin_list = ref<Hero.Skin[]>([]);
-  /** 筛选后的列表 */
-  const filter_list = ref<Hero.Skin[]>([]);
-  /** 展示的列表 */
-  const show_list = ref<Hero.Skin[]>([]);
-
-  /** @description 设置滚动坐标 */
-  const setScroll = (v: number) => {
-    scroll.value = v;
-  };
-
-  /** @description 重新计算分页 */
-  const resetPage = () => {
-    page = 0;
-    show_list.value = [];
-    show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
-    page_total = Math.round(filter_list.value.length / page_count);
-  };
-
-  /** @description 加载更多 */
-  const loadMore = () => {
-    if (page_total > page) {
-      page += 1;
-
-      show_list.value.push(...filter_list.value.slice(page * page_count, (page + 1) * page_count));
-    }
-  };
 
   /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
   const getSkinList = async () => {
@@ -69,7 +35,7 @@ const SkinStore = defineStore("skin", () => {
       skin.skin_name = skin.name;
     });
 
-    skin_list.value = skinList;
+    all_data.value = skinList;
 
     sortAll();
   };
@@ -132,9 +98,9 @@ const SkinStore = defineStore("skin", () => {
     const filterProfession = () => {
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...skin_list.value];
+        filter_list.value = [...all_data.value];
       } else {
-        filter_list.value = skin_list.value.filter((item: Hero.Skin) => {
+        filter_list.value = all_data.value.filter((item: Hero.Skin) => {
           return item.profession.includes(profession.value);
         });
       }
@@ -277,7 +243,7 @@ const SkinStore = defineStore("skin", () => {
   const searchSkin = (name: string) => {
     $tool.debounce(() => {
       if (name) {
-        filter_list.value = $tool.search(skin_list.value, name, ["skin_name", "hero_name", "category"], true);
+        filter_list.value = $tool.search(all_data.value, name, ["skin_name", "hero_name", "category"], true);
       } else {
         sortAll();
       }
@@ -302,7 +268,7 @@ const SkinStore = defineStore("skin", () => {
     /** 展示的列表 */
     show_list,
     /** 皮肤完整列表 */
-    skin_list,
+    all_data,
     /** 皮肤筛选类型 */
     skin_type,
     getSkin: getSkinList,

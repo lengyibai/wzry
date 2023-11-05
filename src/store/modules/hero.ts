@@ -3,18 +3,12 @@ import { ref } from "vue";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 import { $tool } from "@/utils";
+import { usePagingLoad } from "@/hooks";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
-  /** 当前页数 */
-  let page = 1;
-  /** 总页数 */
-  let page_total = 0;
-  /** 一页显示的个数 */
-  const page_count = 30;
+  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list } = usePagingLoad<Hero.Data>();
 
-  /** 滚动坐标 */
-  const scroll = ref(0);
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
   /** 阵营排序类型 */
@@ -29,44 +23,14 @@ const HeroStore = defineStore("hero", () => {
   const sort_type = ref("倒序");
   /** 当前性别排序类型 */
   const gender_type = ref<Gender>(0);
-  /** 英雄完整列表 */
-  const hero_list = ref<Hero.Data[]>([]);
-  /** 筛选后的列表 */
-  const filter_list = ref<Hero.Data[]>([]);
-  /** 展示的列表 */
-  const show_list = ref<Hero.Data[]>([]);
-
-  /**
-   * @description: 设置滚动坐标
-   * @param v y轴坐标
-   */
-  const setScroll = (v: number) => {
-    scroll.value = v;
-  };
-
-  /** @description 每次筛选后重新计算分页 */
-  const resetPage = () => {
-    page = 0;
-    show_list.value = [];
-    show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
-    page_total = Math.round(filter_list.value.length / page_count);
-  };
-
-  /** @description 加载更多 */
-  const loadMore = () => {
-    if (page_total > page) {
-      page += 1;
-      show_list.value.push(...filter_list.value.slice(page * page_count, (page + 1) * page_count));
-    }
-  };
 
   /** @description 初次获取英雄列表并设置相关信息 */
   const getHeroList = async () => {
-    hero_list.value = await API_HERO.getHeroData();
-    for (let i = 0; i < hero_list.value.length; i++) {
-      hero_list.value[i].skills = await API_SKILL.getHeroSkill(hero_list.value[i].id);
-      hero_list.value[i].skins = await API_SKIN.getHeroSkin(hero_list.value[i].id);
-      hero_list.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(hero_list.value[i].id);
+    all_data.value = await API_HERO.getHeroData();
+    for (let i = 0; i < all_data.value.length; i++) {
+      all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
+      all_data.value[i].skins = await API_SKIN.getHeroSkin(all_data.value[i].id);
+      all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(all_data.value[i].id);
     }
 
     sortAll();
@@ -150,9 +114,9 @@ const HeroStore = defineStore("hero", () => {
     const filterProfession = () => {
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...hero_list.value];
+        filter_list.value = [...all_data.value];
       } else {
-        filter_list.value = hero_list.value.filter((item: Hero.Data) => {
+        filter_list.value = all_data.value.filter((item: Hero.Data) => {
           return item.profession.includes(profession.value!);
         });
       }
@@ -279,7 +243,7 @@ const HeroStore = defineStore("hero", () => {
   const searchHero = (name: string) => {
     $tool.debounce(() => {
       if (name) {
-        filter_list.value = $tool.search<Hero.Data>(hero_list.value, name, "name", true);
+        filter_list.value = $tool.search<Hero.Data>(all_data.value, name, "name", true);
       } else {
         sortAll();
       }
@@ -300,7 +264,7 @@ const HeroStore = defineStore("hero", () => {
     /** 当前性别排序类型 */
     gender_type,
     /** 英雄列表 */
-    hero_list,
+    all_data,
     /** 杂项排序类型 */
     misc_sort,
     /** 杂项排序类型 */

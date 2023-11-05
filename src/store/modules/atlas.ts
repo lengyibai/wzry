@@ -1,46 +1,26 @@
 import { defineStore } from "pinia";
-import { Ref, nextTick, ref } from "vue";
+import { ref } from "vue";
 
 import { API_HERO } from "@/api";
 import { $tool } from "@/utils";
+import { usePagingLoad } from "@/hooks";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
-  /** 当前页数 */
-  let page = 0;
-  /** 总页数 */
-  let page_total = 0;
-  /** 一页个数 */
-  const page_count = 25;
+  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list } = usePagingLoad<Hero.AloneAtlas>();
 
-  /** 滚动坐标 */
-  const scroll = ref(0);
   /** 当前排序类型 */
   const sort_type = ref("倒序");
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
   /** 当前性别排序类型 */
   const gender_type = ref<Gender>(0);
-  /** 图集完整列表 */
-  const hero_atlas = ref<Hero.AloneAtlas[]>([]);
-  /** 筛选后的列表 */
-  const filter_list = ref<Hero.AloneAtlas[]>([]);
-  /** 展示的列表 */
-  const show_list = ref<Hero.AloneAtlas[]>([]);
-
-  /**
-   * @description: 设置滚动坐标
-   * @param v y轴坐标
-   */
-  const setScroll = (v: number) => {
-    scroll.value = v;
-  };
 
   /** @description 获取图集列表 */
   const getAtlasList = async () => {
     const res = await API_HERO.getHeroAtlas();
     res.forEach((hero) => {
-      hero_atlas.value.push({
+      all_data.value.push({
         id: hero.id,
         cover: hero.cover,
         poster: hero.poster,
@@ -51,7 +31,7 @@ const AtlasStore = defineStore("atlas", () => {
         gender: hero.gender,
       });
       hero.skins.forEach((skin) => {
-        hero_atlas.value.push({
+        all_data.value.push({
           id: hero.id,
           cover: skin.cover,
           poster: skin.poster,
@@ -65,26 +45,6 @@ const AtlasStore = defineStore("atlas", () => {
     });
 
     sortAll();
-  };
-
-  /** @description 每次筛选后重新计算分页 */
-  const resetPage = () => {
-    page = 0;
-    show_list.value = [];
-    show_list.value = filter_list.value.slice(page * page_count, (page + 1) * page_count);
-    page_total = Math.round(filter_list.value.length / page_count);
-  };
-
-  /** @description 加载更多 */
-  const loadMore = (waterfallRef: Ref<any>) => {
-    if (page_total > page) {
-      page += 1;
-      show_list.value.push(...filter_list.value.slice(page * page_count, (page + 1) * page_count));
-    }
-
-    nextTick(() => {
-      waterfallRef.value?.updateLoad();
-    });
   };
 
   /**
@@ -125,9 +85,9 @@ const AtlasStore = defineStore("atlas", () => {
     const filterProfession = () => {
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...hero_atlas.value];
+        filter_list.value = [...all_data.value];
       } else {
-        filter_list.value = hero_atlas.value.filter((item: Hero.AloneAtlas) => {
+        filter_list.value = all_data.value.filter((item: Hero.AloneAtlas) => {
           return item.profession.includes(profession.value!);
         });
       }
@@ -169,7 +129,7 @@ const AtlasStore = defineStore("atlas", () => {
   const searchAtlas = (name: string) => {
     $tool.debounce(() => {
       if (name) {
-        filter_list.value = $tool.search<Hero.AloneAtlas>(hero_atlas.value, name, ["name", "heroName"], true);
+        filter_list.value = $tool.search<Hero.AloneAtlas>(all_data.value, name, ["name", "heroName"], true);
       } else {
         sortAll();
       }

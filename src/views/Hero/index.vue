@@ -66,7 +66,7 @@ const onViewClick = (id: number) => {
 };
 
 //如果地址栏存在id，则打开查看详情
-if ($heroStore.hero_list.length === 0) {
+if ($heroStore.all_data.length === 0) {
   if (id) {
     onViewClick(Number(id));
   } else {
