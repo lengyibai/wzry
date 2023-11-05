@@ -72,18 +72,20 @@ const handleSelect = (
   name: Hero.Profession | Equip.Category,
   index: number,
 ) => {
-  $audioStore.play(`默认${index}`);
-
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Hero.Profession),
     atlas: () => $atlasStore.setProfessional(name as Hero.Profession),
     equip: () => $equipStore.setType(name as Equip.Category),
   };
-
   obj[$props.type]();
 
+  if (window.innerWidth < 960) {
+    $collapseStore.setCollapse(true);
+  }
+
   $emit("change");
+  $audioStore.play(`默认${index}`);
 };
 
 /* 设置滑块位置 */

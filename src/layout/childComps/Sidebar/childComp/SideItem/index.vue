@@ -62,6 +62,10 @@ if (show.value && $props.route.children) routes.push(...$props.route.children);
 const fn = () => {
   show.value = !show.value;
 
+  if (window.innerWidth < 960) {
+    $collapseStore.setCollapse(true);
+  }
+
   //如果当前组件没有子路由，则直接跳转
   if (!$props.route.children) {
     $router.push($props.route.path);
