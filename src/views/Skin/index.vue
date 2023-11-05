@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
+import _ from "lodash";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -33,8 +34,8 @@ const voices = ref<Hero.Voice[]>([]);
 $skinStore.getSkin();
 
 /* 滚动触发 */
-const onScroll = (v: number) => {
-  $tool.debounce(() => {
+const debounceScroll = (v: number) => {
+  _.debounce(() => {
     $skinStore.setScroll(v);
   }, 250);
 };
@@ -126,7 +127,7 @@ onUnmounted(() => {
           :count="count"
           :scroll-top="$skinStore.scroll"
           @load-more="onLoadMore"
-          @scroll="onScroll"
+          @scroll="debounceScroll"
         >
           <div
             v-for="item in $skinStore.show_list"

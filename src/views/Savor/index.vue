@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
 import { storeToRefs } from "pinia";
+import _ from "lodash";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
 import Waterfall from "@/components/common/LibWaterfall/index.vue";
-import { $tool } from "@/utils";
+import { $bus, $tool } from "@/utils";
 import { AtlasStore } from "@/store";
 
 defineOptions({
@@ -24,6 +25,12 @@ const { count } = useWaterfallResponsive(waterfallRef);
 const hero_id = ref(0);
 
 getAtlasList();
+
+$bus.on("update-waterfall", () => {
+  _.debounce(() => {
+    waterfallRef.value?.updateLoad();
+  }, 500);
+});
 
 /* 当前高亮的图片id */
 const handleRelated = (e: Event, id: number, poster?: string) => {

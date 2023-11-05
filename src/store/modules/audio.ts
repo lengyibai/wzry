@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
+import _ from "lodash";
 
-import { $tool } from "@/utils";
 import { CONFIG } from "@/config";
 
 /** @description 点击音效 */
@@ -62,6 +62,11 @@ const AudioStore = defineStore("audio", () => {
     audio.play().catch(() => {});
   };
 
+  const debouncePlayAudio = (name: string) => {
+    _.debounce(() => {
+      playAudio(name);
+    }, 50);
+  };
   /**
    * @description: 调用播放
    * @param name 音效名
@@ -71,9 +76,7 @@ const AudioStore = defineStore("audio", () => {
 
     //悬浮音效防抖处理
     if (name === "n4r4") {
-      $tool.debounceInstant(() => {
-        playAudio(name);
-      }, 50);
+      debouncePlayAudio(name);
     } else {
       playAudio(name);
     }

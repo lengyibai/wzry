@@ -121,15 +121,6 @@ export const search = <T>(
   return arr;
 };
 
-/** @description 防抖 */
-export const debounce = (() => {
-  let timer: NodeJS.Timeout;
-  return (callback: () => void, wait = 800) => {
-    timer && clearTimeout(timer);
-    timer = setTimeout(callback, wait);
-  };
-})();
-
 /** @description 深拷贝 */
 export const deepCopy = <T>(e: any): T => {
   const t = new WeakMap(),

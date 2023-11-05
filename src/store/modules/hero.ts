@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import _ from "lodash";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -260,8 +261,8 @@ const HeroStore = defineStore("hero", () => {
   };
 
   /** @description 搜索英雄 */
-  const searchHero = (name: string) => {
-    $tool.debounce(() => {
+  const debounceSearchHero = (name: string) => {
+    _.debounce(() => {
       if (name) {
         filter_list.value = $tool.search<Hero.Data>(
           all_data.value,
@@ -305,7 +306,7 @@ const HeroStore = defineStore("hero", () => {
     filterGender,
     filterMisc,
     getHeroList,
-    searchHero,
+    searchHero: debounceSearchHero,
     setProfessional,
     setScroll,
     sortMisc,

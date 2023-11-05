@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import _ from "lodash";
 
 import DescSet from "@/components/subitem/DescSet/index.vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
-import { $message, $tip, $tool } from "@/utils";
+import { $message, $tip } from "@/utils";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
@@ -22,18 +23,18 @@ const config = ref<SettingConfig>({ ...$settingStore.config });
 /* 语言 */
 const onLanguage = (v: number) => {
   setLanguage(v as 0 | 1 | 2);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 动画速率 */
 const onSpeed = (v: number) => {
   $cssVarStore.setSpeed(v as 0 | 1 | 2);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 开启音乐 */
 const onMusic = (v: boolean) => {
-  onSaveConfig();
+  debounceSaveConfig();
   if (v) {
     $musicStore.play(false);
   } else {
@@ -44,56 +45,52 @@ const onMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const onMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
-  $tool.debounce(() => {
-    onSaveConfig();
-  }, 1000);
+  debounceSaveConfig();
 };
 
 /* 支持控制音乐进度 */
 const onMusicProgress = () => {
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 开启音效 */
 const onAudio = (v: boolean) => {
   $audioStore.setAudio(v);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 音效音量调节 */
 const onAudioVolume = (v: number) => {
   $audioStore.setVolume(v);
-  $tool.debounce(() => {
-    onSaveConfig();
-  }, 1000);
+  debounceSaveConfig();
 };
 
 /* 线条 */
 const onBorder = (v: boolean) => {
   $cssVarStore.setBorder(v);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 阴影 */
 const onShadow = (v: boolean) => {
   $cssVarStore.setShadow(v);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 柔光 */
 const onShine = (v: boolean) => {
   $cssVarStore.setShine(v);
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 粒子特效 */
 const onParticle = () => {
-  onSaveConfig();
+  debounceSaveConfig();
 };
 
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
-  onSaveConfig();
+  debounceSaveConfig();
   v && $tip({ text: "2rb7" });
 };
 
@@ -104,9 +101,9 @@ const handleResetTip = () => {
 };
 
 /* 保存配置 */
-const onSaveConfig = () => {
+const debounceSaveConfig = _.debounce(() => {
   $settingStore.saveConfig(config.value);
-};
+}, 500);
 
 /* 重置配置 */
 const onResetConfig = () => {
@@ -227,7 +224,7 @@ const onResetConfig = () => {
           </div>
           <K-Check
             v-model="config.videoBg"
-            @update:model-value="onSaveConfig"
+            @update:model-value="debounceSaveConfig"
           />
         </div>
 

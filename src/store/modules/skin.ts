@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import _ from "lodash";
 
 import { API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -270,8 +271,8 @@ const SkinStore = defineStore("skin", () => {
   };
 
   /** @description 搜索皮肤 */
-  const searchSkin = (name: string) => {
-    $tool.debounce(() => {
+  const debounceSearchSkin = (name: string) => {
+    _.debounce(() => {
       if (name) {
         filter_list.value = $tool.search(
           all_data.value,
@@ -311,7 +312,7 @@ const SkinStore = defineStore("skin", () => {
     sortPrice,
     filterGender,
     sortAll,
-    searchSkin,
+    searchSkin: debounceSearchSkin,
     filterSkinType,
     sortType,
     loadMore,

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import _ from "lodash";
 
 import { API_HERO } from "@/api";
 import { $tool } from "@/utils";
@@ -134,8 +135,8 @@ const AtlasStore = defineStore("atlas", () => {
   };
 
   /** @description 搜索图集 */
-  const searchAtlas = (name: string) => {
-    $tool.debounce(() => {
+  const debounceSearchAtlas = (name: string) => {
+    _.debounce(() => {
       if (name) {
         filter_list.value = $tool.search<Hero.AloneAtlas>(
           all_data.value,
@@ -166,7 +167,7 @@ const AtlasStore = defineStore("atlas", () => {
     sortType,
     setProfessional,
     filterGender,
-    searchAtlas,
+    searchAtlas: debounceSearchAtlas,
   };
 });
 

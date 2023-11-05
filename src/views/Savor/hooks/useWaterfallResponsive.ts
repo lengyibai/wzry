@@ -1,8 +1,9 @@
 import { Ref } from "vue";
 import { ref, onMounted } from "vue";
 import { onScopeDispose } from "vue";
+import _ from "lodash";
 
-import { $bus, $tool } from "@/utils";
+import { $bus } from "@/utils";
 
 /** @description 瀑布流响应式相关 */
 const useWaterfallResponsive = (waterfallRef: Ref<any>) => {
@@ -10,7 +11,8 @@ const useWaterfallResponsive = (waterfallRef: Ref<any>) => {
   const count = ref(2);
 
   const setCount = () => {
-    const w = document.documentElement.clientWidth;
+    const w = window.innerWidth;
+
     if (w >= 1500) {
       count.value = 5;
     } else if (w >= 1000) {
@@ -30,11 +32,8 @@ const useWaterfallResponsive = (waterfallRef: Ref<any>) => {
     });
   });
 
-  $bus.on("resize", () => {
-    $tool.debounce(() => {
-      setCount();
-    }, 500);
-  });
+  const debounceSetCount = _.debounce(setCount, 500);
+  $bus.on("resize", debounceSetCount);
 
   onScopeDispose(() => {
     $bus.off("resize");

@@ -10,6 +10,7 @@ import {
   defineAsyncComponent,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import _ from "lodash";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
@@ -88,8 +89,8 @@ if ($heroStore.all_data.length === 0) {
 }
 
 /* 滚动触发 */
-const onScroll = (v: number) => {
-  $tool.debounce(() => {
+const debounceScroll = (v: number) => {
+  _.debounce(() => {
     $heroStore.setScroll(v);
   }, 250);
 };
@@ -193,7 +194,7 @@ onUnmounted(() => {
         gap="1.5625rem"
         :count="count"
         :scroll-top="$heroStore.scroll"
-        @scroll="onScroll"
+        @scroll="debounceScroll"
         @load-more="onLoadMore"
       >
         <transition-group name="card" appear>
