@@ -128,9 +128,3 @@ interface UpdateLog {
 
 /** @description 性别 */
 type Gender = 0 | 1 | 2;
-
-/** @description 图集类型 */
-interface HeroAtlas extends Pick<Hero.Data, "id" | "cover" | "poster" | "name"> {
-  /** 图集类型 */
-  type: "HERO" | "SKIN";
-}

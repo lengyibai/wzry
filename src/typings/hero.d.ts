@@ -203,6 +203,14 @@ declare namespace Hero {
     skins: Pick<Skin, "id" | "name" | "cover" | "poster">[];
   }
 
+  /** @description 独立图集类型 */
+  interface AloneAtlas extends Pick<Data, "id" | "cover" | "poster" | "name" | "profession" | "gender"> {
+    /** 图集类型 */
+    type: "HERO" | "SKIN";
+    /** 英雄名 */
+    heroName: string;
+  }
+
   /** @description 英雄基础列表 */
   interface Basic extends General {
     /** 英雄拼音 */
