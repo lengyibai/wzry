@@ -4,7 +4,7 @@ import { createApp } from "vue";
 import { useAutoLogin } from "./hooks";
 import App from "./App.vue";
 
-import { i18n } from "@/language";
+import { setupLanguage } from "@/language";
 import { setupDirective } from "@/directives";
 import { setupRouter } from "@/router";
 import { setupStore } from "@/store";
@@ -15,7 +15,7 @@ setupStore(app);
 useAutoLogin();
 setupDirective(app);
 setupRouter(app);
-app.use(i18n);
+setupLanguage(app);
 
 setTimeout(
   () => {
