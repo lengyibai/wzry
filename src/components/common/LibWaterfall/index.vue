@@ -14,7 +14,7 @@ interface Props {
 const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 15,
-  loadHeight: 250,
+  loadHeight: 500,
   scrollTop: 0,
 });
 
