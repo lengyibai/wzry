@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
 /** @description 分页加载 */
 const usePagingLoad = <T>() => {
@@ -30,11 +30,13 @@ const usePagingLoad = <T>() => {
   const resetPage = () => {
     page = 0;
     show_list.value = [];
-    show_list.value = filter_list.value.slice(
-      page * page_count,
-      (page + 1) * page_count,
-    );
-    page_total = Math.round(filter_list.value.length / page_count);
+    nextTick(() => {
+      show_list.value = filter_list.value.slice(
+        page * page_count,
+        (page + 1) * page_count,
+      );
+      page_total = Math.round(filter_list.value.length / page_count);
+    });
   };
 
   /** @description 加载更多 */

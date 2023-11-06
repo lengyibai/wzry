@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onActivated, onMounted, ref, watch } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 
 import waterFullLayout from "./Waterfall";
 interface Props {
@@ -15,7 +15,6 @@ const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 15,
   loadHeight: 500,
-  scrollTop: 0,
 });
 
 interface Emits {
@@ -33,19 +32,17 @@ const waterfallContentRef = ref<HTMLElement>();
 
 /** @description 更新元素的坐标及尺寸 */
 const updateSizePosition = () => {
-  nextTick(() => {
-    const children = Array.from(
-      waterfallContentRef.value!.children,
-    ) as HTMLElement[];
+  const children = Array.from(
+    waterfallContentRef.value!.children,
+  ) as HTMLElement[];
 
-    if (!children) return;
-    childs.value = children;
+  if (!children) return;
+  childs.value = children;
 
-    waterFullLayout({
-      count: $props.count,
-      gap: $props.gap,
-      childs: childs.value,
-    });
+  waterFullLayout({
+    count: $props.count,
+    gap: $props.gap,
+    childs: childs.value,
   });
 };
 
@@ -93,15 +90,14 @@ onMounted(() => {
 });
 
 /** @description 回到上次位置 */
-const backTop = () => {
-  waterfallRef.value?.scroll({ top: $props.scrollTop });
+const setPosition = (top: number) => {
+  waterfallRef.value?.scroll({ top });
 };
-
-onActivated(backTop);
 
 defineExpose({
   watchImgLoad,
   updateSizePosition,
+  setPosition,
 });
 </script>
 

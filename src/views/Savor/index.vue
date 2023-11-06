@@ -37,7 +37,6 @@ const debounceWatchImgLoad = _debounce(() => {
 /* 当前高亮的图片id */
 const handleRelated = (e: Event, id: number, poster?: string) => {
   hero_id.value = id;
-
   poster && new $tool.ScaleFLIPImage(e, poster);
 };
 
@@ -49,6 +48,7 @@ const onLoadMore = () => {
 
 onActivated(() => {
   debounceUpdateSizePosition();
+  waterfallRef.value?.setPosition(scroll.value);
   $bus.on("update-waterfall", debounceUpdateSizePosition);
   $bus.on("watch-waterfall", debounceWatchImgLoad);
 });
@@ -75,6 +75,7 @@ onUnmounted(() => {
       <SavorToolbar />
 
       <Waterfall
+        v-if="show_list.length"
         ref="waterfallRef"
         :count="count"
         :scroll-top="scroll"
