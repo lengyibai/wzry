@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
@@ -52,7 +52,7 @@ const select_list = ref<General[]>([]);
 const selected_list = ref<General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
-const handleSearch = _.debounce(() => {
+const handleSearch = _debounce(() => {
   select_list.value = $tool.search($props.data, input_value.value, ["name"]);
 }, 250);
 

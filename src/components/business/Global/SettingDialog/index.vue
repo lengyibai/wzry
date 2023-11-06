@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import DescSet from "@/components/subitem/DescSet/index.vue";
 import { setLanguage } from "@/language";
@@ -95,7 +95,7 @@ const handleResetTip = () => {
 };
 
 /* 保存配置 */
-const debounceSaveConfig = _.debounce(() => {
+const debounceSaveConfig = _debounce(() => {
   $settingStore.saveConfig(config.value);
 }, 500);
 

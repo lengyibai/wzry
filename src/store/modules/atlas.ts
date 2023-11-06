@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { API_HERO } from "@/api";
 import { $bus, $tool } from "@/utils";
@@ -135,14 +135,12 @@ const AtlasStore = defineStore("atlas", () => {
     $bus.emit("update-waterfall");
   };
 
-  const debounceSearchAtlas = _.debounce((name: string) => {
+  const debounceSearchAtlas = _debounce((name: string) => {
     if (name) {
-      filter_list.value = $tool.search<Hero.AloneAtlas>(
-        all_data.value,
-        name,
-        ["name", "heroName"],
-        true,
-      );
+      filter_list.value = $tool.search<Hero.AloneAtlas>(all_data.value, name, [
+        "name",
+        "heroName",
+      ]);
       $bus.emit("update-waterfall");
     } else {
       sortAll();

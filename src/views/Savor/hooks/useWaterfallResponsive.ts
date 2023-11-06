@@ -1,6 +1,6 @@
 import { ref, onMounted } from "vue";
 import { onScopeDispose } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { $bus } from "@/utils";
 
@@ -31,7 +31,7 @@ const useWaterfallResponsive = () => {
     });
   });
 
-  const debounceSetCount = _.debounce(setCount, 250);
+  const debounceSetCount = _debounce(setCount, 250);
   $bus.on("resize", debounceSetCount);
 
   onScopeDispose(() => {

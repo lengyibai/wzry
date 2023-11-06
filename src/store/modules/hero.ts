@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -261,7 +261,7 @@ const HeroStore = defineStore("hero", () => {
     resetPage();
   };
 
-  const debounceSearchHero = _.debounce((name: string) => {
+  const debounceSearchHero = _debounce((name: string) => {
     if (name) {
       filter_list.value = $tool.search<Hero.Data>(
         all_data.value,

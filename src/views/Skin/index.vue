@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -33,7 +33,7 @@ const voices = ref<Hero.Voice[]>([]);
 /* 获取皮肤列表 */
 $skinStore.getSkin();
 
-const debounceScroll = _.debounce((v: number) => {
+const debounceScroll = _debounce((v: number) => {
   $skinStore.setScroll(v);
 }, 250);
 /* 滚动触发 */

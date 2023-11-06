@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
 import { storeToRefs } from "pinia";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 import { onMounted } from "vue";
 import { onUnmounted } from "vue";
 import { onActivated } from "vue";
@@ -30,7 +30,7 @@ const hero_id = ref(0);
 
 getAtlasList();
 
-const debounceUpdateLoad = _.debounce(() => {
+const debounceUpdateLoad = _debounce(() => {
   waterfallRef.value?.updateLoad();
 }, 500);
 $bus.on("update-waterfall", debounceUpdateLoad);

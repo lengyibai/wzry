@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -270,7 +270,7 @@ const SkinStore = defineStore("skin", () => {
     resetPage();
   };
 
-  const debounceSearchSkin = _.debounce((name: string) => {
+  const debounceSearchSkin = _debounce((name: string) => {
     if (name) {
       filter_list.value = $tool.search(
         all_data.value,

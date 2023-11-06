@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import { CONFIG } from "@/config";
 
@@ -62,7 +62,7 @@ const AudioStore = defineStore("audio", () => {
     audio.play().catch(() => {});
   };
 
-  const debouncePlayAudio = _.debounce((name: string) => {
+  const debouncePlayAudio = _debounce((name: string) => {
     playAudio(name);
   }, 50);
   /**

@@ -10,7 +10,7 @@ import {
   defineAsyncComponent,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import _ from "lodash";
+import _debounce from "lodash/debounce";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
@@ -88,7 +88,7 @@ if ($heroStore.all_data.length === 0) {
   }
 }
 
-const debounceScroll = _.debounce((v: number) => {
+const debounceScroll = _debounce((v: number) => {
   $heroStore.setScroll(v);
 }, 250);
 /* 滚动触发 */
