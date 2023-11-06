@@ -45,15 +45,8 @@ const show_HeroDetail = ref(false);
 const show_list = ref(false);
 /** 显示工具栏 */
 const show_tool = ref(false);
-/** 切换显示列表 */
-const toggle_show = ref(false);
 /** 英雄信息 */
 const hero_info = ref<Hero.Data>(heroDefault());
-
-/** 渲染英雄列表 */
-const show_herolist = computed(
-  () => $heroStore.show_list.length && toggle_show.value && show_list.value,
-);
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -100,19 +93,6 @@ const onScroll = (v: number) => {
 const onLoadMore = () => {
   $heroStore.loadMore();
 };
-
-/* 监听筛选后的英雄列表用于切换显示 */
-watch(
-  () => $heroStore.filter_list,
-  () => {
-    toggle_show.value = false;
-
-    nextTick(() => {
-      toggle_show.value = true;
-    });
-  },
-  { immediate: true },
-);
 
 watch(
   () => $route.query,
@@ -182,15 +162,13 @@ onUnmounted(() => {
 <template>
   <div class="hero">
     <div class="hero__main">
-      <!-- 工具栏 -->
       <transition name="fade" appear>
         <HeroToolbar v-show="show_tool" />
       </transition>
 
       <!-- 列表 -->
       <LibGrid
-        v-show="show_list"
-        v-if="show_herolist"
+        v-if="$heroStore.show_list.length && show_list"
         scroll-id="hero_list"
         gap="1.5625rem"
         :count="count"

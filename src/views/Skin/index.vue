@@ -25,6 +25,8 @@ const count = ref(0);
 const show_list = ref(false);
 /** 查看海报 */
 const show_poster = ref(false);
+/** 显示工具栏 */
+const show_tool = ref(false);
 /** 查看语音 */
 const show_voice = ref(false);
 /** 语音列表 */
@@ -65,24 +67,11 @@ const handleEnterCard = () => {
   $audioStore.play("n4r4");
 };
 
-/* 监听筛选后的英雄列表 */
-watch(
-  () => $skinStore.filter_list,
-  () => {
-    show_list.value = false;
-
-    nextTick(() => {
-      show_list.value = true;
-    });
-  },
-  { deep: true, immediate: true },
-);
-
 onActivated(() => {
   $audioStore.play("9u8z");
 });
 
-onMounted(() => {
+onMounted(async () => {
   //实时修改一行个数
   const change = [
     [2400, 5],
@@ -108,6 +97,15 @@ onMounted(() => {
   $bus.on("resize", () => {
     changeCount();
   });
+
+  //显示工具栏
+  await $tool.promiseTimeout(() => {
+    show_tool.value = true;
+  }, 500);
+  //显示英雄列表
+  await $tool.promiseTimeout(() => {
+    show_list.value = true;
+  }, 250);
 });
 
 onUnmounted(() => {
@@ -118,7 +116,10 @@ onUnmounted(() => {
 <template>
   <div class="skin">
     <div class="skin-main">
-      <SkinToolbar />
+      <transition name="fade" appear>
+        <SkinToolbar v-show="show_tool" />
+      </transition>
+
       <transition name="card-list">
         <LibGrid
           v-if="$skinStore.show_list.length && show_list"
