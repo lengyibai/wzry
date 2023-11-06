@@ -8,6 +8,10 @@ export const getImgLink = (name: string, suffix = "png") =>
 export const getAudioLink = (name: string) =>
   `${CONFIG.BASE.IMGBED}/audio/${name}.mp3`;
 
+/** @description 获取远程音乐链接 */
+export const getMusicLink = (name: string) =>
+  `${CONFIG.BASE.IMGBED}/music/${name}.mp3`;
+
 /** @description 获取远程视频链接 */
 export const getVideoLink = (name: string) =>
   `${CONFIG.BASE.IMGBED}/video/${name}.mp4`;

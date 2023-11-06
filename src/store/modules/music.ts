@@ -5,7 +5,7 @@ import { SettingStore } from "@/store";
 import { AudioVisual } from "@/utils/modules/tool";
 import { $concise, $tool } from "@/utils";
 
-const { getAudioLink } = $concise;
+const { getMusicLink } = $concise;
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
@@ -67,7 +67,7 @@ const MusicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.src = getAudioLink(musics[bgmIndex.value].url);
+      bgm.src = getMusicLink(musics[bgmIndex.value].url);
     }
 
     status.value = true;

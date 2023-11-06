@@ -11,7 +11,7 @@ const $emit = defineEmits<{
   showTool: [v: { type: string; data: Hero.Skin }];
 }>();
 
-const { getAudioLink } = $concise;
+const { getImgLink } = $concise;
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
@@ -31,7 +31,7 @@ const handle = (v: string) => {
 
     <!-- 价格 -->
     <div class="price">
-      <img v-if="priceShow(data.price)" :src="getAudioLink('coupon')" alt="" />
+      <img v-if="priceShow(data.price)" :src="getImgLink('coupon')" alt="" />
       <span>{{ data.price }}</span>
     </div>
 
