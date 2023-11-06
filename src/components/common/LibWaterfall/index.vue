@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 import waterFullLayout from "./Waterfall";
+
+import { $tool } from "@/utils";
 interface Props {
   count?: number;
   gap?: number;
@@ -22,18 +24,19 @@ interface Emits {
   (e: "scroll", v: number): void;
   (e: "load-more"): void;
 }
-const emit = defineEmits<Emits>();
+const $emit = defineEmits<Emits>();
 
 const childs = ref<HTMLElement[]>([]);
-const isLoadMore = ref(true);
 
 const waterfallRef = ref<HTMLElement>();
 const waterfallContentRef = ref<HTMLElement>();
 
 /** @description 更新元素的坐标及尺寸 */
 const updateSizePosition = () => {
+  if (!waterfallContentRef.value) return;
+
   const children = Array.from(
-    waterfallContentRef.value!.children,
+    waterfallContentRef.value.children,
   ) as HTMLElement[];
 
   if (!children) return;
@@ -66,30 +69,24 @@ watch(() => $props.count, updateSizePosition);
 
 onMounted(() => {
   watchImgLoad();
-  waterfallContentRef.value!.parentElement!.addEventListener(
-    "scroll",
-    (e: Event) => {
-      const el = e.target as HTMLDivElement;
-      let d = Math.abs(el.scrollTop - el.scrollHeight + el.clientHeight);
 
-      /* 当到达底部显示正在加载 */
-      if (d <= 0) {
-        emit("update:loading", true);
-      }
-
-      if (d <= $props.loadHeight && isLoadMore.value) {
-        emit("load-more");
-        isLoadMore.value = false;
-      } else if (d > $props.loadHeight) {
-        isLoadMore.value = true;
-      }
-
-      emit("scroll", el.scrollTop);
+  new $tool.LoadMore(
+    {
+      parent: waterfallContentRef.value!.parentElement!,
+      loadHeight: $props.loadHeight,
+    },
+    {
+      load: () => {
+        $emit("load-more");
+      },
+      scroll: (v) => {
+        $emit("scroll", v);
+      },
     },
   );
 });
 
-/** @description 回到上次位置 */
+/** @description 滚动指定位置 */
 const setPosition = (top: number) => {
   waterfallRef.value?.scroll({ top });
 };

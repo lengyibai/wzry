@@ -975,3 +975,58 @@ export const getFileSizeInKB = (file: any) => {
   const fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
   return Number(fileSizeInKB);
 };
+
+/** @description 触底加载 */
+export class LoadMore {
+  /** 是否允许加载 */
+  private allowLoad: boolean = true;
+  /** 元素 */
+  private readonly el: HTMLElement;
+  /** 元素 */
+  private readonly loadHeight: number;
+  /** 回调函数 */
+  private readonly load: () => void;
+  /** 滚动回调 */
+  private readonly scroll!: (v: number) => void;
+
+  constructor(
+    config: {
+      parent: HTMLElement;
+      loadHeight?: number;
+    },
+    callback: {
+      load: () => void;
+      scroll?: (v: number) => void;
+    },
+  ) {
+    const { parent, loadHeight = 1 } = config;
+    const { load, scroll } = callback;
+
+    this.el = parent;
+    this.loadHeight = loadHeight;
+    this.load = load;
+    scroll && (this.scroll = scroll);
+    this.el.addEventListener("scroll", this.handleScroll.bind(this));
+
+    //如果滚动高度小于等于容器高度，意味着无法滚动，则自动加载一页
+    if (parent.scrollHeight <= parent.clientHeight) {
+      this.load();
+    }
+  }
+
+  private handleScroll() {
+    const y = this.el.scrollTop;
+    this.scroll && this.scroll(y);
+
+    //就算距离底部的距离
+    const d = this.el.scrollHeight - this.el.clientHeight - y;
+
+    //注意：当所有数据加载完成，在进入加载高度时会持续触发，需要在加载更多方法里通过总页数>当前页数来进行限制触发
+    if (d <= this.loadHeight && this.allowLoad) {
+      this.load();
+      this.allowLoad = false;
+    } else {
+      this.allowLoad = true;
+    }
+  }
+}
