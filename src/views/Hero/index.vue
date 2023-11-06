@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import {
-  nextTick,
   onUnmounted,
   onActivated,
   onMounted,
   ref,
   watch,
-  computed,
   defineAsyncComponent,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -15,6 +13,7 @@ import _debounce from "lodash/debounce";
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
 
+import LibGrid from "@/components/common/LibGrid/index.vue";
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
@@ -36,6 +35,8 @@ const $heroDetail = HeroDetailStore();
 
 /** 地址栏参数 */
 let id: unknown = $route.query.id;
+
+const libGridRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
@@ -113,6 +114,7 @@ watch(
 
 onActivated(() => {
   $audioStore.play("4d8m");
+  libGridRef.value?.setPosition($heroStore.scroll);
 });
 
 onMounted(async () => {
@@ -129,7 +131,7 @@ onMounted(async () => {
   //实时修改一行个数
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
-    if (v > 2200) {
+    if (v >= 2200) {
       count.value = 9;
     }
     for (const [a, b] of change) {
@@ -169,10 +171,10 @@ onUnmounted(() => {
       <!-- 列表 -->
       <LibGrid
         v-if="$heroStore.show_list.length && show_list"
+        ref="libGridRef"
         scroll-id="hero_list"
         gap="1.5625rem"
         :count="count"
-        :scroll-top="$heroStore.scroll"
         @scroll="onScroll"
         @load-more="onLoadMore"
       >

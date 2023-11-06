@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { nextTick, onUnmounted, onActivated, onMounted, ref, watch } from "vue";
+import { onUnmounted, onActivated, onMounted, ref } from "vue";
 import _debounce from "lodash/debounce";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinVoice from "./childComps/SkinVoice/index.vue";
 
+import LibGrid from "@/components/common/LibGrid/index.vue";
 import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
 import { $tool, $bus } from "@/utils";
@@ -17,7 +18,7 @@ defineOptions({
 const $skinStore = SkinStore();
 const $audioStore = AudioStore();
 
-const skinListRef = ref<HTMLElement>();
+const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
@@ -69,6 +70,7 @@ const handleEnterCard = () => {
 
 onActivated(() => {
   $audioStore.play("9u8z");
+  skinListRef.value?.setPosition($skinStore.scroll);
 });
 
 onMounted(async () => {
@@ -83,7 +85,7 @@ onMounted(async () => {
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
 
-    if (v > 2400) {
+    if (v >= 2400) {
       count.value = 6;
     }
     for (const [a, b] of change) {
