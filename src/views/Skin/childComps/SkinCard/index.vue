@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 皮肤数据 */
@@ -10,6 +10,8 @@ const $props = defineProps<Props>();
 const $emit = defineEmits<{
   showTool: [v: { type: string; data: Hero.Skin }];
 }>();
+
+const { getAudioLink } = $concise;
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
@@ -25,15 +27,11 @@ const handle = (v: string) => {
 <template>
   <div v-maskGradient class="skin-card">
     <img class="bg" :src="data.cover" />
-    <img v-if="data.type" class="type" :src="data.type as string" />
+    <img v-if="data.type" class="type" :src="data.type.toString()" />
 
     <!-- 价格 -->
     <div class="price">
-      <img
-        v-if="priceShow(data.price)"
-        :src="CONFIG.BASE.IMGBED + '/image/coupon.png'"
-        alt=""
-      />
+      <img v-if="priceShow(data.price)" :src="getAudioLink('coupon')" alt="" />
       <span>{{ data.price }}</span>
     </div>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
 import { SettingStore } from "@/store";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 自适应 */
@@ -24,6 +24,8 @@ const $props = withDefaults(defineProps<Props>(), {
 
 const $settingStore = SettingStore();
 
+const { getImgLink } = $concise;
+
 /** 按钮宽高 */
 const style1 = {
   width: $props.autoSize ? "100%" : $props.width,
@@ -39,9 +41,6 @@ const particle_color = {
   error: "#d83e41",
   warning: "#e1c673",
 };
-
-/* 按钮图标 */
-const btnIcon = (src: string) => `${CONFIG.BASE.IMGBED}/image/btn_${src}.png`;
 </script>
 
 <template>
@@ -58,7 +57,7 @@ const btnIcon = (src: string) => `${CONFIG.BASE.IMGBED}/image/btn_${src}.png`;
     <span :style="style2">
       <slot>按钮</slot>
     </span>
-    <img :src="btnIcon(type)" />
+    <img :src="getImgLink(`btn_${type}`)" />
   </button>
 </template>
 

@@ -6,11 +6,12 @@ import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
 import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { SettingStore, AudioStore } from "@/store";
-import { $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { $concise, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
+
+const { getImgLink, getVideoLink } = $concise;
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);
@@ -65,18 +66,10 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <K-Video
-      v-if="enable_video_bg"
-      :video="CONFIG.BASE.IMGBED + '/video/bg.mp4'"
-    />
+    <K-Video v-if="enable_video_bg" :video="getVideoLink('bg')" />
 
     <!-- 图片壁纸 -->
-    <img
-      v-else
-      class="layout__bg"
-      :src="CONFIG.BASE.IMGBED + '/image/background.png'"
-      alt=""
-    />
+    <img v-else class="layout__bg" :src="getImgLink('background')" alt="" />
   </div>
 </template>
 

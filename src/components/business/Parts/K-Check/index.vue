@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 import { AudioStore } from "@/store";
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 选中状态 */
@@ -16,12 +16,11 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-const icon = computed(
-  () =>
-    `${CONFIG.BASE.IMGBED}/image/${
-      $props.modelValue ? "select_true" : "select_false"
-    }.png`,
-);
+const { getImgLink } = $concise;
+
+const icon = computed(() => {
+  return getImgLink($props.modelValue ? "select_true" : "select_false");
+});
 
 const toggle = () => {
   $emit("update:modelValue", !$props.modelValue);

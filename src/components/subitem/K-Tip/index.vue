@@ -3,9 +3,8 @@ import { ref, watch } from "vue";
 
 import useTip from "./hooks/useTip";
 
-import { $bus } from "@/utils";
+import { $bus, $concise } from "@/utils";
 import { SettingStore, AudioStore } from "@/store";
-import { CONFIG } from "@/config";
 
 const { show_tip: show, content, align, noTipName, btnFn, tip } = useTip();
 
@@ -15,6 +14,8 @@ $bus.on("tip", (data) => {
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
+
+const { getImgLink } = $concise;
 
 const show_tip = ref(false);
 
@@ -69,11 +70,7 @@ watch(
               <div class="title">小贴士</div>
 
               <!-- 小兵 -->
-              <img
-                class="soldier"
-                :src="CONFIG.BASE.IMGBED + '/image/warn.png'"
-                alt="小兵"
-              />
+              <img class="soldier" :src="getImgLink('warn')" alt="小兵" />
             </div>
 
             <!-- 内容 -->

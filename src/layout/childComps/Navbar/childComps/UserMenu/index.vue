@@ -2,10 +2,12 @@
 import { ref, computed } from "vue";
 
 import { AuthStore, AudioStore } from "@/store";
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
+
+const { getImgLink } = $concise;
 
 /** 显示用户菜单 */
 const show_menu = ref(false);
@@ -65,7 +67,7 @@ const onClose = () => {
   >
     <img
       class="head-img"
-      :src="userInfo.headImg || CONFIG.BASE.IMGBED + '/image/unknown.png'"
+      :src="userInfo.headImg || getImgLink('unknown')"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />

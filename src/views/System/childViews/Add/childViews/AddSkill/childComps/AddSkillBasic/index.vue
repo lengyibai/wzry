@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 技能列表 */
@@ -13,6 +13,8 @@ const $emit = defineEmits<{
   select: [v: number];
   del: [];
 }>();
+
+const { getAudioLink } = $concise;
 
 /* 处于被编辑中 */
 const active = (index: number) => $props.activeIndex === index;
@@ -35,10 +37,7 @@ const handleDel = () => $emit("del");
     >
       <!-- 标题 -->
       <div class="title">
-        <img
-          :src="item.img || CONFIG.BASE.IMGBED + '/image/unknown.png'"
-          alt=""
-        />
+        <img :src="item.img || getAudioLink('unknown')" alt="" />
         <div class="name">{{ item.name }}</div>
         <div class="types">
           <K-SkillTypeTag

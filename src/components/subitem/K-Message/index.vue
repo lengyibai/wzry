@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import useMessage from "./hooks/useMessage";
 
-import { CONFIG } from "@/config";
-import { $bus } from "@/utils";
+import { $bus, $concise } from "@/utils";
 
 const { msg, messages } = useMessage();
+
+const { getImgLink } = $concise;
 
 /** 字体颜色 */
 const color = {
@@ -12,7 +13,7 @@ const color = {
   warning: "#e2c484",
   error: "#e28484",
 };
-const getImg = (src: string) => `${CONFIG.BASE.IMGBED}/image/msg_${src}.png`;
+const getImg = (src: string) => getImgLink(`msg_${src}`);
 
 /** 消息类型提醒左中右图标 */
 const imgs = {

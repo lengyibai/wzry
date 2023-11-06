@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CONFIG } from "@/config";
+import { $concise } from "@/utils";
 
 interface Props {
   /** 图标类型 */
@@ -10,14 +10,13 @@ interface Props {
 
 defineProps<Props>();
 
+const { getImgLink } = $concise;
+
 const icon_type: Record<string, string> = {
   add: "wzry-addbig",
   edit: "wzry-editbig",
   delete: "wzry-delbig",
 };
-
-/** 卡片背景图 */
-const cardImg = (src: string) => `${CONFIG.BASE.IMGBED}/image/card_${src}.jpg`;
 </script>
 
 <template>
@@ -26,7 +25,7 @@ const cardImg = (src: string) => `${CONFIG.BASE.IMGBED}/image/card_${src}.jpg`;
       <i class="iconfont" :class="icon_type[type]" />
       <div class="title">{{ title }}</div>
     </div>
-    <img :src="cardImg(type)" alt="" />
+    <img :src="getImgLink(`card_${type}`, 'jpg')" alt="" />
   </div>
 </template>
 

@@ -3,8 +3,9 @@ import { ref } from "vue";
 
 import { SettingStore } from "@/store";
 import { AudioVisual } from "@/utils/modules/tool";
-import { $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { $concise, $tool } from "@/utils";
+
+const { getAudioLink } = $concise;
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
@@ -66,7 +67,7 @@ const MusicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.src = `${CONFIG.BASE.IMGBED}/music/${musics[bgmIndex.value].url}.mp3`;
+      bgm.src = getAudioLink(musics[bgmIndex.value].url);
     }
 
     status.value = true;

@@ -3,8 +3,7 @@ import { ref, watch } from "vue";
 import _debounce from "lodash/debounce";
 
 import { AudioStore } from "@/store";
-import { $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { $concise, $tool } from "@/utils";
 
 interface Props {
   /** 左侧文字 */
@@ -37,6 +36,8 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
+
+const { getImgLink } = $concise;
 
 /** 输入框的值 */
 const input_value = ref("");
@@ -165,7 +166,7 @@ watch(
           <img
             class="arrow"
             :class="{ rotate: is_unfold }"
-            :src="CONFIG.BASE.IMGBED + '/image/arrow.png'"
+            :src="getImgLink('arrow')"
             alt=""
           />
         </div>
