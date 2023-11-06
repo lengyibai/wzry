@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
-import legacyPlugin from "@vitejs/plugin-legacy";
 import { visualizer } from "rollup-plugin-visualizer";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -18,10 +17,6 @@ export default defineConfig(({ mode }) => {
       Components({
         dts: "src/typings/components.d.ts",
         dirs: ["src/components/business", "src/components/common"],
-      }),
-      legacyPlugin({
-        targets: ["last 2 versions", "safari >=7", "chrome >= 30"],
-        additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
       }),
       visualizer({
         emitFile: getViteEnv("VITE_VISUALIZER"),
