@@ -17,6 +17,7 @@ export default function (
       childs[i].style.left = (item_width + gap) * i + "px";
       childs[i].style.opacity = "1";
       childs[i].style.transform = "initial";
+      childs[i].style.bottom = "initial";
     } else {
       /* 第一行元素设置完毕开始计算后面行的元素 */
       const minItem: Record<string, number> = {
@@ -37,6 +38,7 @@ export default function (
       childs[i].style.left = (item_width + gap) * minItem["minIndex"] + "px";
       childs[i].style.opacity = "1";
       childs[i].style.transform = "initial";
+      childs[i].style.bottom = "initial";
 
       /* 更新上一行的高度，用于下一行计算 */
       height_List[minItem["minIndex"]] =
