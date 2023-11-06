@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
-import { onMounted } from "vue";
-import { onUnmounted } from "vue";
-import { onActivated } from "vue";
-import { onDeactivated } from "vue";
+import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
@@ -30,10 +27,12 @@ const hero_id = ref(0);
 
 getAtlasList();
 
-const debounceUpdateLoad = _debounce(() => {
-  waterfallRef.value?.updateLoad();
+const debounceUpdateSizePosition = _debounce(() => {
+  waterfallRef.value?.updateSizePosition();
 }, 500);
-$bus.on("update-waterfall", debounceUpdateLoad);
+const debounceWatchImgLoad = _debounce(() => {
+  waterfallRef.value?.watchImgLoad();
+}, 500);
 
 /* 当前高亮的图片id */
 const handleRelated = (e: Event, id: number, poster?: string) => {
@@ -45,27 +44,28 @@ const handleRelated = (e: Event, id: number, poster?: string) => {
 /* 加载更多 */
 const onLoadMore = () => {
   loadMore();
-
-  nextTick(() => {
-    debounceUpdateLoad();
-  });
+  debounceWatchImgLoad();
 };
 
 onActivated(() => {
-  $bus.on("update-waterfall", debounceUpdateLoad);
-  debounceUpdateLoad();
+  debounceUpdateSizePosition();
+  $bus.on("update-waterfall", debounceUpdateSizePosition);
+  $bus.on("watch-waterfall", debounceWatchImgLoad);
 });
 
 onMounted(() => {
-  $bus.on("update-waterfall", debounceUpdateLoad);
+  $bus.on("update-waterfall", debounceUpdateSizePosition);
+  $bus.on("watch-waterfall", debounceWatchImgLoad);
 });
 
 onDeactivated(() => {
   $bus.off("update-waterfall");
+  $bus.off("watch-waterfall");
 });
 
 onUnmounted(() => {
   $bus.off("update-waterfall");
+  $bus.off("watch-waterfall");
 });
 </script>
 
@@ -74,37 +74,35 @@ onUnmounted(() => {
     <div class="savor-main">
       <SavorToolbar />
 
-      <div class="savor-list">
-        <Waterfall
-          ref="waterfallRef"
-          :count="count"
-          :scroll-top="scroll"
-          @load-more="onLoadMore"
-          @scroll="setScroll"
+      <Waterfall
+        ref="waterfallRef"
+        :count="count"
+        :scroll-top="scroll"
+        @load-more="onLoadMore"
+        @scroll="setScroll"
+      >
+        <div
+          v-for="item in show_list"
+          :key="item.poster"
+          class="atlas-card"
+          :class="{
+            active: hero_id === item.id,
+          }"
+          @mouseenter="handleRelated($event, item.id)"
+          @mouseup="handleRelated($event, item.id, item.poster)"
+          @touchstart="handleRelated($event, item.id)"
+          @touchend="handleRelated($event, item.id)"
+          @mouseleave="hero_id = 0"
         >
-          <div
-            v-for="item in show_list"
-            :key="item.poster"
-            class="atlas-card"
-            :class="{
-              active: hero_id === item.id,
-            }"
-            @mouseenter="handleRelated($event, item.id)"
-            @mouseup="handleRelated($event, item.id, item.poster)"
-            @touchstart="handleRelated($event, item.id)"
-            @touchend="handleRelated($event, item.id)"
-            @mouseleave="hero_id = 0"
-          >
-            <div v-if="item.type === 'HERO'" class="hero-name">
-              {{ item.name }}
-            </div>
-            <div v-if="item.type === 'SKIN'" class="skin-name">
-              {{ item.name }}
-            </div>
-            <img :src="item.cover" alt="" @dragstart.prevent />
+          <div v-if="item.type === 'HERO'" class="hero-name">
+            {{ item.name }}
           </div>
-        </Waterfall>
-      </div>
+          <div v-if="item.type === 'SKIN'" class="skin-name">
+            {{ item.name }}
+          </div>
+          <img :src="item.cover" alt="" @dragstart.prevent />
+        </div>
+      </Waterfall>
     </div>
 
     <!--右侧职业分类侧边栏-->

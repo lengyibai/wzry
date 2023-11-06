@@ -132,7 +132,7 @@ const AtlasStore = defineStore("atlas", () => {
     filterGender();
     sortType();
     resetPage();
-    $bus.emit("update-waterfall");
+    $bus.emit("watch-waterfall");
   };
 
   const debounceSearchAtlas = _debounce((name: string) => {
@@ -141,13 +141,14 @@ const AtlasStore = defineStore("atlas", () => {
         "name",
         "heroName",
       ]);
-      $bus.emit("update-waterfall");
+      $bus.emit("watch-waterfall");
     } else {
       sortAll();
     }
 
     resetPage();
   }, 500);
+
   /** @description 搜索图集 */
   const searchAtlas = (name: string) => {
     debounceSearchAtlas(name);

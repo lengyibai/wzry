@@ -29,10 +29,14 @@ const childs = ref<HTMLElement[]>([]);
 const isLoadMore = ref(true);
 
 const waterfallRef = ref<HTMLElement>();
+const waterfallContentRef = ref<HTMLElement>();
 
-const updateChilds = () => {
+/** @description 更新元素的坐标及尺寸 */
+const updateSizePosition = () => {
   nextTick(() => {
-    const children = Array.from(waterfallRef.value!.children) as HTMLElement[];
+    const children = Array.from(
+      waterfallContentRef.value!.children,
+    ) as HTMLElement[];
 
     if (!children) return;
     childs.value = children;
@@ -45,68 +49,70 @@ const updateChilds = () => {
   });
 };
 
-const updateLoad = () => {
+/** @description 通过给图片设置监听事件，图片加载自动调用updateChilds，适用于生成了新的图片时调用 */
+const watchImgLoad = () => {
+  //监听所有图片加载，有一个加载完成则调用回调函数
   const onAllImgLoaded = (root: HTMLElement, callback: () => void) => {
     const imgNodes = root.querySelectorAll("img");
-    Array.from(imgNodes).map((img) => {
-      img.addEventListener("load", () => {
-        callback();
-      });
+    Array.from(imgNodes).forEach((img) => {
+      img.addEventListener("load", callback);
     });
   };
-  updateChilds();
-  onAllImgLoaded(waterfallRef.value!, () => {
-    updateChilds();
+
+  updateSizePosition();
+  onAllImgLoaded(waterfallContentRef.value!, () => {
+    updateSizePosition();
   });
 };
 
-watch(() => $props.count, updateChilds);
+watch(() => $props.count, updateSizePosition);
 
 onMounted(() => {
-  updateChilds();
-  updateLoad();
-  waterfallRef.value!.parentElement!.addEventListener("scroll", (e: Event) => {
-    const el = e.target as HTMLDivElement;
-    let d = Math.abs(el.scrollTop - el.scrollHeight + el.clientHeight);
+  watchImgLoad();
+  waterfallContentRef.value!.parentElement!.addEventListener(
+    "scroll",
+    (e: Event) => {
+      const el = e.target as HTMLDivElement;
+      let d = Math.abs(el.scrollTop - el.scrollHeight + el.clientHeight);
 
-    /* 当到达底部显示正在加载 */
-    if (d <= 0) {
-      emit("update:loading", true);
-    }
+      /* 当到达底部显示正在加载 */
+      if (d <= 0) {
+        emit("update:loading", true);
+      }
 
-    if (d <= $props.loadHeight && isLoadMore.value) {
-      emit("load-more");
-      isLoadMore.value = false;
-    } else if (d > $props.loadHeight) {
-      isLoadMore.value = true;
-    }
+      if (d <= $props.loadHeight && isLoadMore.value) {
+        emit("load-more");
+        isLoadMore.value = false;
+      } else if (d > $props.loadHeight) {
+        isLoadMore.value = true;
+      }
 
-    emit("scroll", el.scrollTop);
-  });
+      emit("scroll", el.scrollTop);
+    },
+  );
 });
 
+/** @description 回到上次位置 */
 const backTop = () => {
   waterfallRef.value?.scroll({ top: $props.scrollTop });
 };
 
-onActivated(() => {
-  backTop();
-});
+onActivated(backTop);
 
 defineExpose({
-  updateLoad,
-  updateChilds,
+  watchImgLoad,
+  updateSizePosition,
 });
 </script>
 
 <template>
   <div ref="waterfallRef" class="waterfall">
-    <slot></slot>
+    <div ref="waterfallContentRef" class="waterfall-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
-.waterfall {
-  position: relative;
-}
+@import url("./index.less");
 </style>

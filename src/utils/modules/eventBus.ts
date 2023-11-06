@@ -8,7 +8,9 @@ type EventData = {
   resize: Event;
   mousemove: Event;
   mouseup: Event;
-  /** 瀑布流刷新布局 */
+  /** 瀑布流监听图片加载 */
+  "watch-waterfall": any;
+  /** 瀑布流更新图片大小及坐标 */
   "update-waterfall": any;
 };
 
