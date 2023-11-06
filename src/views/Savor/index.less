@@ -9,80 +9,73 @@
     flex-direction: column;
     flex-grow: 1;
 
-    .savor-list {
-      position: relative;
-      overflow: auto;
-      flex-grow: 1;
-      padding: 1.25rem;
+    .atlas-card {
+      position: absolute;
+      left: 50%;
+      overflow: hidden;
+      min-width: 6.25rem;
+      border-radius: 0.9375rem;
+      opacity: 0;
+      filter: grayscale(75%) brightness(35%)
+        drop-shadow(0 0.1875rem 0.3125rem #000);
+      cursor: pointer;
+      transition: 0.5s;
+      transform: translateX(-50%) scale(0.1);
 
-      .atlas-card {
-        position: absolute;
-        left: 50%;
-        overflow: hidden;
-        min-width: 6.25rem;
-        border-radius: 0.9375rem;
-        opacity: 0;
-        filter: grayscale(75%) brightness(35%)
+      &.active {
+        filter: grayscale(0%) brightness(100%)
           drop-shadow(0 0.1875rem 0.3125rem #000);
-        cursor: pointer;
-        transition: 0.5s;
-        transform: translateX(-50%) scale(0.1);
+        transition: 0.1s;
+      }
 
-        &.active {
-          filter: grayscale(0%) brightness(100%)
-            drop-shadow(0 0.1875rem 0.3125rem #000);
-          transition: 0.1s;
+      .hero-name,
+      .skin-name {
+        position: absolute;
+        z-index: 1;
+        transition: 0.25s;
+      }
+
+      .hero-name {
+        top: 0.5em;
+        left: 0.5em;
+        text-shadow: var(--t-shadow-e);
+        letter-spacing: 0.25em;
+        font-size: 2.25rem;
+        writing-mode: vertical-lr;
+      }
+
+      .skin-name {
+        right: 0.5em;
+        bottom: 0.5em;
+        text-shadow: var(--t-shadow-d);
+        font-size: 1.25rem;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.25s;
+
+        &:hover {
+          transform: scale(1.25);
         }
+      }
 
-        .hero-name,
-        .skin-name {
-          position: absolute;
-          z-index: 1;
-          transition: 0.25s;
-        }
+      @media screen and (width < 500px) {
+        width: calc(50% - 0.75rem);
+      }
 
-        .hero-name {
-          top: 0.5em;
-          left: 0.5em;
-          text-shadow: var(--t-shadow-e);
-          letter-spacing: 0.25em;
-          font-size: 2.25rem;
-          writing-mode: vertical-lr;
-        }
+      @media screen and (width >= 500px) {
+        width: calc(33.33% - 0.9rem);
+      }
 
-        .skin-name {
-          right: 0.5em;
-          bottom: 0.5em;
-          text-shadow: var(--t-shadow-d);
-          font-size: 1.25rem;
-        }
+      @media screen and (width >= 1000px) {
+        width: calc(25% - 0.9rem);
+      }
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: 0.25s;
-
-          &:hover {
-            transform: scale(1.25);
-          }
-        }
-
-        @media screen and (width < 500px) {
-          width: calc(50% - 0.75rem);
-        }
-
-        @media screen and (width >= 500px) {
-          width: calc(33.33% - 0.9rem);
-        }
-
-        @media screen and (width >= 1000px) {
-          width: calc(25% - 0.9rem);
-        }
-
-        @media screen and (width >= 1500px) {
-          width: calc(20% - 0.75rem);
-        }
+      @media screen and (width >= 1500px) {
+        width: calc(20% - 0.75rem);
       }
     }
   }
