@@ -9,6 +9,7 @@ import {
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import _debounce from "lodash/debounce";
+import { storeToRefs } from "pinia";
 
 import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
@@ -30,8 +31,9 @@ const HeroDetail = defineAsyncComponent(
 const $route = useRoute();
 const $router = useRouter();
 const $audioStore = AudioStore();
-const $heroStore = HeroStore();
 const $heroDetail = HeroDetailStore();
+const { getHeroList, setScroll, loadMore } = HeroStore();
+const { all_data, scroll, show_list, finish } = storeToRefs(HeroStore());
 
 /** 地址栏参数 */
 let id: unknown = $route.query.id;
@@ -43,7 +45,7 @@ const count = ref(0);
 /** 显示英雄详情 */
 const show_HeroDetail = ref(false);
 /** 显示列表 */
-const show_list = ref(false);
+const show_herolist = ref(false);
 /** 显示工具栏 */
 const show_tool = ref(false);
 /** 英雄信息 */
@@ -74,16 +76,16 @@ const onViewClick = (id: number) => {
 };
 
 //如果地址栏存在id，则打开查看详情
-if ($heroStore.all_data.length === 0) {
+if (all_data.value.length === 0) {
   if (id) {
     onViewClick(Number(id));
   } else {
-    $heroStore.getHeroList();
+    getHeroList();
   }
 }
 
 const debounceScroll = _debounce((v: number) => {
-  $heroStore.setScroll(v);
+  setScroll(v);
 }, 250);
 /* 滚动触发 */
 const onScroll = (v: number) => {
@@ -92,7 +94,7 @@ const onScroll = (v: number) => {
 
 /* 加载更多 */
 const onLoadMore = () => {
-  $heroStore.loadMore();
+  loadMore();
 };
 
 watch(
@@ -114,7 +116,7 @@ watch(
 
 onActivated(() => {
   $audioStore.play("4d8m");
-  libGridRef.value?.setPosition($heroStore.scroll);
+  libGridRef.value?.setPosition(scroll.value);
 });
 
 onMounted(async () => {
@@ -153,7 +155,7 @@ onMounted(async () => {
   }, 500);
   //显示英雄列表
   await $tool.promiseTimeout(() => {
-    show_list.value = true;
+    show_herolist.value = true;
   }, 250);
 });
 
@@ -171,8 +173,9 @@ onUnmounted(() => {
 
       <!-- 列表 -->
       <LibGrid
-        v-if="$heroStore.show_list.length && show_list"
+        v-if="show_list.length && show_herolist"
         ref="libGridRef"
+        :finish="finish"
         scroll-id="hero_list"
         gap="1.5625rem"
         :count="count"
@@ -181,7 +184,7 @@ onUnmounted(() => {
       >
         <transition-group name="card" appear>
           <div
-            v-for="(item, index) in $heroStore.show_list"
+            v-for="(item, index) in show_list"
             :key="index"
             class="hero-card"
             :style="{

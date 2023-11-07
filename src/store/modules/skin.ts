@@ -16,6 +16,7 @@ const SkinStore = defineStore("skin", () => {
     scroll,
     filter_list,
     show_list,
+    finish,
   } = usePagingLoad<Hero.Skin>();
 
   /** 职业类型 */
@@ -308,6 +309,8 @@ const SkinStore = defineStore("skin", () => {
     all_data,
     /** 皮肤筛选类型 */
     skin_type,
+    /** 暂无更多 */
+    finish,
     getSkin: getSkinList,
     setProfessional,
     sortPrice,

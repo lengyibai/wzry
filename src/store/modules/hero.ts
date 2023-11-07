@@ -16,6 +16,7 @@ const HeroStore = defineStore("hero", () => {
     scroll,
     filter_list,
     show_list,
+    finish,
   } = usePagingLoad<Hero.Data>();
 
   /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
@@ -48,7 +49,6 @@ const HeroStore = defineStore("hero", () => {
     }
 
     setProfessional("全部");
-    sortAll();
   };
 
   /**
@@ -303,6 +303,8 @@ const HeroStore = defineStore("hero", () => {
     show_list,
     /** 当前排序类型：正序|倒序 */
     sort_type,
+    /** 暂无更多 */
+    finish,
     filterAttr,
     filterCamp,
     filterGender,

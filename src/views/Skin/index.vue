@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onUnmounted, onActivated, onMounted, ref } from "vue";
 import _debounce from "lodash/debounce";
+import { storeToRefs } from "pinia";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -15,7 +16,8 @@ defineOptions({
   name: "skin",
 });
 
-const $skinStore = SkinStore();
+const { getSkin, setScroll, loadMore } = SkinStore();
+const { scroll, finish, show_list } = storeToRefs(SkinStore());
 const $audioStore = AudioStore();
 
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
@@ -23,7 +25,7 @@ const skinListRef = ref<InstanceType<typeof LibGrid>>();
 /** 一行显示的数目 */
 const count = ref(0);
 /** 显示列表 */
-const show_list = ref(false);
+const show_skinlist = ref(false);
 /** 查看海报 */
 const show_poster = ref(false);
 /** 显示工具栏 */
@@ -34,10 +36,10 @@ const show_voice = ref(false);
 const voices = ref<Hero.Voice[]>([]);
 
 /* 获取皮肤列表 */
-$skinStore.getSkin();
+getSkin();
 
 const debounceScroll = _debounce((v: number) => {
-  $skinStore.setScroll(v);
+  setScroll(v);
 }, 250);
 /* 滚动触发 */
 const onScroll = (v: number) => {
@@ -46,7 +48,7 @@ const onScroll = (v: number) => {
 
 /* 加载更多 */
 const onLoadMore = () => {
-  $skinStore.loadMore();
+  loadMore();
 };
 
 /* 点击工具栏中的选项 */
@@ -70,7 +72,7 @@ const handleEnterCard = () => {
 
 onActivated(() => {
   $audioStore.play("9u8z");
-  skinListRef.value?.setPosition($skinStore.scroll);
+  skinListRef.value?.setPosition(scroll.value);
 });
 
 onMounted(async () => {
@@ -106,7 +108,7 @@ onMounted(async () => {
   }, 500);
   //显示英雄列表
   await $tool.promiseTimeout(() => {
-    show_list.value = true;
+    show_skinlist.value = true;
   }, 250);
 });
 
@@ -124,17 +126,18 @@ onUnmounted(() => {
 
       <transition name="card-list">
         <LibGrid
-          v-if="$skinStore.show_list.length && show_list"
+          v-if="show_list.length && show_skinlist"
           ref="skinListRef"
+          :finish="finish"
           scroll-id="skin_list"
           gap="1.5625rem"
           :count="count"
-          :scroll-top="$skinStore.scroll"
+          :scroll-top="scroll"
           @load-more="onLoadMore"
           @scroll="onScroll"
         >
           <div
-            v-for="item in $skinStore.show_list"
+            v-for="item in show_list"
             :key="item.id"
             class="skin-card"
             @mouseenter="handleEnterCard"

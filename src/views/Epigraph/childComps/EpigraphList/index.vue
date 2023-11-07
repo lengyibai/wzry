@@ -74,6 +74,7 @@ onUnmounted(() => {
       <LibGrid
         v-if="show && epigraph_list.length"
         ref="epigraphListRef"
+        :load-more="false"
         gap="15px"
         :count="count"
       >

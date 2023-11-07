@@ -1,9 +1,14 @@
 .lib-grid {
-  display: grid;
+  display: flex;
   overflow: auto;
-  align-content: flex-start;
+  flex-direction: column;
   flex-grow: 1;
-  padding: 1.25rem;
   width: 100%;
-  grid-auto-flow: row dense;
+
+  &_content {
+    display: grid;
+    align-content: flex-start;
+    padding: 1.25rem;
+    grid-auto-flow: row dense;
+  }
 }
