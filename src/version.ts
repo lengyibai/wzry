@@ -6,7 +6,11 @@ import { CONFIG } from "@/config";
 const local_version = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
 
 axios
-  .get(`${location.origin}/json/version.json?t=${dayjs().unix()}`)
+  .get(
+    `${location.origin}${
+      import.meta.env.DEV ? "" : "/king-honor"
+    }/json/version.json?t=${dayjs().unix()}`,
+  )
   .then((res) => {
     const { file } = res.data;
 
