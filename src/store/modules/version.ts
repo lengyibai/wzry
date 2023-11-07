@@ -34,7 +34,7 @@ const VersionStore = defineStore("version", () => {
 
   /** 已读状态 */
   readed_status.value =
-    localStorage.getItem(CONFIG.LOCAL_KEY.READ_STATUS) === "1";
+    localStorage.getItem(CONFIG.LOCAL_KEY.READED_STATUS) === "1";
   /** 本地版本 */
   local_version.value =
     localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
@@ -117,6 +117,7 @@ const VersionStore = defineStore("version", () => {
   const setShowLog = (v: boolean) => {
     show_update.value = v;
     readed_status.value = true;
+    localStorage.setItem(CONFIG.LOCAL_KEY.READED_STATUS, "1");
   };
 
   /** @description 一键更新所有 */

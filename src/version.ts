@@ -26,7 +26,7 @@ axios
   });
 
 const updateLocalVersion = (file: string) => {
-  localStorage.setItem(CONFIG.LOCAL_KEY.READ_STATUS, "0");
+  localStorage.setItem(CONFIG.LOCAL_KEY.READED_STATUS, "0");
   localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_MAIN, file);
 };
 
