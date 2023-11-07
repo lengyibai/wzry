@@ -8,6 +8,8 @@ import { $message } from "@/utils";
 import { CONFIG } from "@/config";
 
 const VersionStore = defineStore("version", () => {
+  /** 是否已读 */
+  const readed_status = ref(false);
   /** 本地版本 */
   const local_version = ref("");
   /** 远程版本 */
@@ -30,6 +32,9 @@ const VersionStore = defineStore("version", () => {
     time: "",
   });
 
+  /** 已读状态 */
+  readed_status.value =
+    localStorage.getItem(CONFIG.LOCAL_KEY.READ_STATUS) === "1";
   /** 本地版本 */
   local_version.value =
     localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
@@ -111,6 +116,7 @@ const VersionStore = defineStore("version", () => {
   /** @description 控制弹窗显示 */
   const setShowLog = (v: boolean) => {
     show_update.value = v;
+    readed_status.value = true;
   };
 
   /** @description 一键更新所有 */
@@ -121,6 +127,8 @@ const VersionStore = defineStore("version", () => {
   };
 
   return {
+    /** 已读状态 */
+    readed_status,
     /** 显示更新公告 */
     show_update,
     /** 本地版本 */

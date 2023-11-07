@@ -26,13 +26,27 @@
     }
   }
 
-  .wzry-gengxinrizhi {
-    display: inline-block;
-    transition: all 0.25s;
+  .update-log {
+    position: relative;
 
-    &:hover {
-      color: var(--white);
-      text-shadow: var(--shine-15);
+    .red-dot {
+      position: absolute;
+      top: 0;
+      right: 0.625rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 50%;
+      background-color: var(--red);
+    }
+
+    .wzry-gengxinrizhi {
+      display: inline-block;
+      transition: all 0.25s;
+
+      &:hover {
+        color: var(--white);
+        text-shadow: var(--shine-15);
+      }
     }
   }
 }
