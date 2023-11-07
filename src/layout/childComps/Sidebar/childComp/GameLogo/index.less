@@ -6,39 +6,6 @@
   border-bottom: var(--subline);
   text-shadow: var(--t-shadow-e);
 
-  .logo {
-    position: relative;
-    width: 3.125rem;
-    height: 2.875rem;
-
-    .inside,
-    .outside {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .inside {
-      animation: rotate-inside 12s linear infinite;
-
-      @keyframes rotate-inside {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-    }
-
-    .outside {
-      animation: rotate-outside 6s linear infinite;
-
-      @keyframes rotate-outside {
-        100% {
-          transform: rotate(-360deg);
-        }
-      }
-    }
-  }
-
   span {
     margin-left: 0.625rem;
     color: var(--theme-font-color-four);

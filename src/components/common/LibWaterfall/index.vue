@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
+import _debounce from "lodash/debounce";
 
 import waterFullLayout from "./Waterfall";
 
@@ -7,7 +8,6 @@ import { $tool } from "@/utils";
 interface Props {
   count?: number;
   gap?: number;
-  loadHeight?: number;
   loading?: boolean;
   /** 上一次的滚动坐标 */
   scrollTop?: number;
@@ -16,7 +16,6 @@ interface Props {
 const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 15,
-  loadHeight: 500,
 });
 
 interface Emits {
@@ -70,15 +69,17 @@ watch(() => $props.count, updateSizePosition);
 onMounted(() => {
   watchImgLoad();
 
+  const _debounceLoad = _debounce(() => {
+    $emit("load-more");
+  }, 250);
+
   new $tool.LoadMore(
     {
       parent: waterfallContentRef.value!.parentElement!,
-      loadHeight: $props.loadHeight,
+      loadHeight: 10,
     },
     {
-      load: () => {
-        $emit("load-more");
-      },
+      load: _debounceLoad,
       scroll: (v) => {
         $emit("scroll", v);
       },

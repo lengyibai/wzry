@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { CollapseStore } from "@/store";
-import { $concise } from "@/utils";
 
 const $collapseStore = CollapseStore();
-
-const { getImgLink } = $concise;
 
 /* 开始确认刷新计时 */
 const handleStartTime = () => {
@@ -30,19 +27,8 @@ const handleEndTime = () => {
     @touchend="handleEndTime"
   >
     <transition-group name="fade-a">
-      <div key="logo" class="logo">
-        <img
-          :src="getImgLink('logo_inside')"
-          alt=""
-          class="inside"
-          @dragstart.prevent
-        />
-        <img
-          :src="getImgLink('logo_outside')"
-          alt=""
-          class="outside"
-          @dragstart.prevent
-        />
+      <div key="logo">
+        <K-Logo key="logo" />
       </div>
       <span v-show="!$collapseStore.collapse" key="text">{{
         $t("王者图鉴")
