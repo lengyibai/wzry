@@ -119,7 +119,7 @@ onActivated(() => {
 
 onMounted(async () => {
   const change = [
-    [2000, 8],
+    [2200, 8],
     [1800, 7],
     [1600, 6],
     [1400, 5],
@@ -130,7 +130,8 @@ onMounted(async () => {
 
   //实时修改一行个数
   const changeCount = () => {
-    const v = document.documentElement.clientWidth;
+    const v = window.innerWidth;
+
     if (v >= 2200) {
       count.value = 9;
     }
