@@ -19,7 +19,6 @@ export default defineConfig(({ mode }) => {
         dirs: ["src/components/business", "src/components/common"],
       }),
       visualizer({
-        emitFile: getViteEnv("VITE_VISUALIZER") === "1",
         filename: "visualizer.html",
       }),
       VitePWA({
