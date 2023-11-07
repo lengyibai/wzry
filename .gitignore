@@ -3,3 +3,4 @@ dist
 src/typings/components.d.ts
 package-lock.json
 dev-dist
+visualizer.html
