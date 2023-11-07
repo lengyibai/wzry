@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
         dirs: ["src/components/business", "src/components/common"],
       }),
       visualizer({
-        emitFile: getViteEnv("VITE_VISUALIZER"),
+        emitFile: getViteEnv("VITE_VISUALIZER") === "1",
         filename: "visualizer.html",
       }),
       VitePWA({
@@ -67,9 +67,10 @@ export default defineConfig(({ mode }) => {
     },
     // * 打包去除 console.log && debugger
     esbuild: {
-      pure: getViteEnv("VITE_CLEAR_LOG")
-        ? ["console.log", "console.warn", "console.error", "debugger"]
-        : [],
+      pure:
+        getViteEnv("VITE_CLEAR_LOG") === "1"
+          ? ["console.log", "console.warn", "console.error", "debugger"]
+          : [],
     },
     build: {
       chunkSizeWarningLimit: 1500,
