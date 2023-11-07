@@ -12,7 +12,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const { getAudioLink } = $concise;
+const { getImgLink } = $concise;
 
 /** 通过判断价格是否为数字来显示点券图标及获取途径 */
 const show = computed(() => $props.price && !isNaN(Number($props.price)));
@@ -20,7 +20,7 @@ const show = computed(() => $props.price && !isNaN(Number($props.price)));
 
 <template>
   <div class="hero-skin-price" :class="{ show: toggle }">
-    <img v-show="show" :src="getAudioLink('coupon')" alt="点券" />
+    <img v-show="show" :src="getImgLink('coupon')" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span>{{ price }}</span>
   </div>
