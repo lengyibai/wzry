@@ -2,24 +2,21 @@
   margin: 0;
   padding: 0;
 }
-
 .body {
   display: none;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
   background-color: #000;
-  overflow: hidden;
 }
 .body .loading {
   display: flex;
   align-items: center;
 }
 .body .loading .box {
-  animation:
-    into-scale 3s forwards ease-out,
-    into-opacity 2s forwards;
+  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
 }
 @keyframes into-opacity {
   0% {
@@ -47,9 +44,9 @@
 .body .loading .box .logo .b,
 .body .loading .box .logo .c,
 .body .loading .box .logo .d {
+  position: absolute;
   width: 100%;
   height: 100%;
-  position: absolute;
 }
 .body .loading .box .logo .inside-box {
   position: absolute;
@@ -65,7 +62,7 @@
 .body .loading .box .logo .inside-box .inside {
   width: 100%;
   height: 100%;
-  animation: inside-rotate 6s forwards linear;
+  animation: inside-rotate 3s forwards linear;
 }
 @keyframes inside-rotate {
   100% {
@@ -138,16 +135,16 @@
   }
 }
 .body .loading .text-box {
-  width: 0;
-  height: 13.8021vw;
   position: relative;
   overflow: hidden;
+  width: 0;
+  height: 13.8021vw;
   animation: into-move 0.5s 2.9s forwards;
 }
 @keyframes into-move {
   100% {
-    width: 37.0833vw;
     margin-left: 2.6042vw;
+    width: 37.0833vw;
   }
 }
 .body .loading .text-box .text {
