@@ -28,8 +28,6 @@ const $emit = defineEmits<{
 
 const LibGridRef = ref<HTMLElement>();
 
-let childrens = ref<HTMLElement[]>([]);
-
 onMounted(() => {
   const _debounceLoad = _debounce(() => {
     $emit("load-more");
@@ -55,7 +53,6 @@ const setPosition = (top: number) => {
 };
 
 defineExpose({
-  childrens,
   setPosition,
 });
 </script>
