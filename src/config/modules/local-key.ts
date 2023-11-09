@@ -1,7 +1,5 @@
 /** @description 本地存储键名 */
 export default {
-  /** 是否刚刚更新完 */
-  READED_STATUS: "readed_status",
   /** 文件版本 */
   VERSION_FILE: "version_file",
   /** 数据版本 */
