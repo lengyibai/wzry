@@ -8,18 +8,19 @@ import { $tool } from "@/utils";
 interface Props {
   count?: number;
   gap?: number;
-  loading?: boolean;
   /** 上一次的滚动坐标 */
   scrollTop?: number;
+  /** 是否暂无更多 */
+  finish?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 15,
+  finish: false,
 });
 
 interface Emits {
-  (e: "update:loading", v: boolean): void;
   (e: "scroll", v: number): void;
   (e: "load-more"): void;
 }
@@ -79,7 +80,9 @@ onMounted(() => {
       loadHeight: 10,
     },
     {
-      load: _debounceLoad,
+      load: () => {
+        _debounceLoad();
+      },
       scroll: (v) => {
         $emit("scroll", v);
       },
@@ -93,6 +96,7 @@ const setPosition = (top: number) => {
 };
 
 defineExpose({
+  el: waterfallContentRef,
   watchImgLoad,
   updateSizePosition,
   setPosition,
@@ -104,6 +108,9 @@ defineExpose({
     <div ref="waterfallContentRef" class="waterfall-content">
       <slot></slot>
     </div>
+    <transition name="fade">
+      <K-LoadMore class="load-more" :finish="finish" />
+    </transition>
   </div>
 </template>
 

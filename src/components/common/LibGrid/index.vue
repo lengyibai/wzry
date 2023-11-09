@@ -53,6 +53,7 @@ const setPosition = (top: number) => {
 };
 
 defineExpose({
+  el: LibGridRef,
   setPosition,
 });
 </script>

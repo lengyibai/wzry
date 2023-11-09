@@ -2,6 +2,7 @@
 import { onUnmounted, onActivated, onMounted, ref } from "vue";
 import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
+import { nextTick, watchEffect } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -55,7 +56,7 @@ const onLoadMore = () => {
 const onShowTool = (v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
-    new $tool.ScaleImage(v.data.poster);
+    new $tool.ScaleImage(v.data.posterBig, v.data.posterBlur);
   } else if (v.type === "voice") {
     API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;
@@ -69,6 +70,14 @@ const onShowTool = (v: { type: string; data: Hero.Skin }) => {
 const handleEnterCard = () => {
   $audioStore.play("n4r4");
 };
+
+/* 监听列表显示及上拉加载 */
+watchEffect(async () => {
+  if (show_list.value.length !== 0 && show_skinlist.value) {
+    await nextTick();
+    skinListRef.value?.el && new $tool.ImageLoader(skinListRef.value?.el);
+  }
+});
 
 onActivated(() => {
   $audioStore.play("9u8z");

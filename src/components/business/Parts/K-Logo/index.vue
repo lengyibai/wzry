@@ -17,7 +17,7 @@ const { getImgLink } = $concise;
       alt=""
       class="inside"
       :style="{
-        animationDuration: `${fast ? 1 : 6}s`,
+        animationDuration: `${fast ? 1 : 6}s!important`,
       }"
       :class="{
         animate: !stop,
@@ -29,7 +29,7 @@ const { getImgLink } = $concise;
       alt=""
       class="outside"
       :style="{
-        animationDuration: `${fast ? 2 : 12}s`,
+        animationDuration: `${fast ? 2 : 12}s!important`,
       }"
       :class="{
         animate: !stop,

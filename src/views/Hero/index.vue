@@ -6,6 +6,8 @@ import {
   ref,
   watch,
   defineAsyncComponent,
+  nextTick,
+  watchEffect,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import _debounce from "lodash/debounce";
@@ -38,7 +40,7 @@ const { all_data, scroll, show_list, finish } = storeToRefs(HeroStore());
 /** 地址栏参数 */
 let id: unknown = $route.query.id;
 
-const libGridRef = ref<InstanceType<typeof LibGrid>>();
+const heroListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
@@ -114,9 +116,17 @@ watch(
   },
 );
 
+/* 监听列表显示及上拉加载 */
+watchEffect(async () => {
+  if (show_list.value.length !== 0 && show_herolist.value) {
+    await nextTick();
+    heroListRef.value?.el && new $tool.ImageLoader(heroListRef.value?.el);
+  }
+});
+
 onActivated(() => {
   $audioStore.play("4d8m");
-  libGridRef.value?.setPosition(scroll.value);
+  heroListRef.value?.setPosition(scroll.value);
 });
 
 onMounted(async () => {
@@ -174,7 +184,7 @@ onUnmounted(() => {
       <!-- 列表 -->
       <LibGrid
         v-if="show_list.length && show_herolist"
-        ref="libGridRef"
+        ref="heroListRef"
         :finish="finish"
         scroll-id="hero_list"
         gap="1.5625rem"
