@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 import { CONFIG } from "@/config";
 
-const local_version = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
+const local_version = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_FILE) || "";
 
 axios
   .get(
@@ -25,13 +25,15 @@ axios
 
     if (remote > local) {
       updateLocalVersion(file);
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   });
 
 const updateLocalVersion = (file: string) => {
   localStorage.setItem(CONFIG.LOCAL_KEY.READED_STATUS, "0");
-  localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_MAIN, file);
+  localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_FILE, file);
 };
 
 const getVersionNumber = (version: string) => {
