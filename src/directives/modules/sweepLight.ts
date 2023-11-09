@@ -19,7 +19,7 @@ const sweepLight: Directive = {
       background-color: rgba(255, 255, 255, 0.5);
       transform: skewX(45deg) translateX(${el.offsetWidth * 1.75}px);
       transition: all 2s;
-      filter: blur(5px)
+      filter: blur(0.3125rem)
     `;
       el.appendChild(light);
       if (auto) {
