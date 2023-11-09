@@ -48,8 +48,8 @@ onMounted(() => {
 });
 
 /** @description 滚动指定位置 */
-const setPosition = (top: number) => {
-  LibGridRef.value?.scroll({ top });
+const setPosition = (top: number, animate: boolean = false) => {
+  LibGridRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
 };
 
 defineExpose({

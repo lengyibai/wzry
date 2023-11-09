@@ -48,8 +48,8 @@ const count = ref(0);
 const show_HeroDetail = ref(false);
 /** 显示列表 */
 const show_herolist = ref(false);
-/** 显示工具栏 */
-const show_tool = ref(false);
+/** 是否显示返回顶部 */
+const back_top = ref(false);
 /** 英雄信息 */
 const hero_info = ref<Hero.Data>(heroDefault());
 
@@ -91,12 +91,18 @@ const debounceScroll = _debounce((v: number) => {
 }, 250);
 /* 滚动触发 */
 const onScroll = (v: number) => {
+  back_top.value = v > 250;
   debounceScroll(v);
 };
 
 /* 加载更多 */
 const onLoadMore = () => {
   loadMore();
+};
+
+/* 返回顶部 */
+const onBackTop = () => {
+  heroListRef.value?.setPosition(0, true);
 };
 
 watch(
@@ -159,10 +165,6 @@ onMounted(async () => {
     changeCount();
   });
 
-  //显示工具栏
-  await $tool.promiseTimeout(() => {
-    show_tool.value = true;
-  }, 500);
   //显示英雄列表
   await $tool.promiseTimeout(() => {
     show_herolist.value = true;
@@ -178,8 +180,10 @@ onUnmounted(() => {
   <div class="hero">
     <div class="hero__main">
       <transition name="fade" appear>
-        <HeroToolbar v-show="show_tool" />
+        <HeroToolbar />
       </transition>
+
+      <K-BackTop :active="back_top" @back-top="onBackTop" />
 
       <!-- 列表 -->
       <LibGrid

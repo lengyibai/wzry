@@ -24,6 +24,8 @@ const { count } = useWaterfallResponsive();
 
 /** 当前悬浮的英雄id */
 const hero_id = ref(0);
+/** 是否显示返回顶部 */
+const back_top = ref(false);
 
 getAtlasList();
 
@@ -45,6 +47,20 @@ const handleRelated = (e: Event, id: number, poster: string, blur: string) => {
 const onLoadMore = () => {
   loadMore();
   debounceWatchImgLoad();
+};
+
+const debounceScroll = _debounce((v: number) => {
+  setScroll(v);
+}, 250);
+/* 滚动触发 */
+const onScroll = (v: number) => {
+  back_top.value = v > 250;
+  debounceScroll(v);
+};
+
+/* 返回顶部 */
+const onBackTop = () => {
+  waterfallRef.value?.setPosition(0, true);
 };
 
 /* 监听列表显示及上拉加载 */
@@ -82,6 +98,7 @@ onUnmounted(() => {
   <div class="savor">
     <div class="savor-main">
       <SavorToolbar />
+      <K-BackTop :active="back_top" @back-top="onBackTop" />
 
       <Waterfall
         v-if="show_list.length"
@@ -90,7 +107,7 @@ onUnmounted(() => {
         :finish="finish"
         :scroll-top="scroll"
         @load-more="onLoadMore"
-        @scroll="setScroll"
+        @scroll="onScroll"
       >
         <div
           v-for="item in show_list"
