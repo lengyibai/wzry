@@ -11,7 +11,7 @@ export const Notice = () => http.Get<string>("/notice.json");
 export const Todo = () => http.Get<string>("/todo.json");
 
 /** @description 获取战绩 */
-export const Team = () => http.Get<string>("/team.json");
+export const Team = () => http.Get<string[][]>("/team.json");
 
 /** @description 获取用户列表 */
 export const User = () => http.Get<User[]>("/user.json");
