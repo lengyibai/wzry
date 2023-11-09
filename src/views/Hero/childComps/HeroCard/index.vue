@@ -81,7 +81,7 @@ const handleViewClick = () => {
     </transition>
 
     <!-- 背景图 -->
-    <img class="bg" :src="data.cover" />
+    <img class="bg blur" :src="data.coverBlur" :data-src="data.cover" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">

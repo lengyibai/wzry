@@ -14,6 +14,7 @@
 
     max-width: calc(50% - 0.3125rem);
     aspect-ratio: 2.22/1;
+    transition: 0.5s;
 
     &.active {
       outline: 0.125rem solid var(--blue);
@@ -29,6 +30,10 @@
 
     &:hover {
       outline: 0.0625rem solid var(--white);
+    }
+
+    &.blur {
+      filter: blur(var(--image-load-blur));
     }
   }
 }

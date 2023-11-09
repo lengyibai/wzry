@@ -3,7 +3,8 @@ import { onUnmounted, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
-import { $bus } from "@/utils";
+import { $bus, $tool } from "@/utils";
+import LibGrid from "@/components/common/LibGrid/index.vue";
 
 interface Props {
   /** 铭文列表 */
@@ -12,7 +13,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const epigraphListRef = ref<HTMLElement>();
+const epigraphListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 淡入显示列表 */
 const show = ref(false);
@@ -29,6 +30,11 @@ watch(
     nextTick(() => {
       epigraph_list.value = v;
       show.value = true;
+
+      nextTick(() => {
+        epigraphListRef.value?.el &&
+          new $tool.ImageLoader(epigraphListRef.value.el);
+      });
     });
   },
   { deep: true, immediate: true },

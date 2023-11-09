@@ -102,6 +102,10 @@
     height: 100%;
     object-fit: cover;
     transition: all 0.25s;
+
+    &.blur {
+      filter: blur(var(--image-load-blur));
+    }
   }
 
   .bottom {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { nextTick, ref, watchEffect } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
 import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
@@ -16,7 +16,7 @@ defineOptions({
 });
 
 const { getAtlasList, setScroll, loadMore } = AtlasStore();
-const { show_list, scroll } = storeToRefs(AtlasStore());
+const { show_list, scroll, finish } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof Waterfall>>();
 
@@ -35,9 +35,10 @@ const debounceWatchImgLoad = _debounce(() => {
 }, 500);
 
 /* 当前高亮的图片id */
-const handleRelated = (e: Event, id: number, poster?: string) => {
+const handleRelated = (e: Event, id: number, poster: string, blur: string) => {
   hero_id.value = id;
-  poster && new $tool.ScaleFLIPImage(e, poster);
+  new Image().src = blur;
+  poster && new $tool.ScaleFLIPImage(e, poster, blur);
 };
 
 /* 加载更多 */
@@ -45,6 +46,14 @@ const onLoadMore = () => {
   loadMore();
   debounceWatchImgLoad();
 };
+
+/* 监听列表显示及上拉加载 */
+watchEffect(async () => {
+  if (show_list.value.length !== 0) {
+    await nextTick();
+    waterfallRef.value?.el && new $tool.ImageLoader(waterfallRef.value?.el);
+  }
+});
 
 onActivated(() => {
   debounceUpdateSizePosition();
@@ -78,6 +87,7 @@ onUnmounted(() => {
         v-if="show_list.length"
         ref="waterfallRef"
         :count="count"
+        :finish="finish"
         :scroll-top="scroll"
         @load-more="onLoadMore"
         @scroll="setScroll"
@@ -89,10 +99,14 @@ onUnmounted(() => {
           :class="{
             active: hero_id === item.id,
           }"
-          @mouseenter="handleRelated($event, item.id)"
-          @mouseup="handleRelated($event, item.id, item.poster)"
-          @touchstart="handleRelated($event, item.id)"
-          @touchend="handleRelated($event, item.id)"
+          @mouseenter="handleRelated($event, item.id, '', item.posterBlur)"
+          @mouseup="
+            handleRelated($event, item.id, item.posterBig, item.posterBlur)
+          "
+          @touchstart="handleRelated($event, item.id, '', item.posterBlur)"
+          @touchend="
+            handleRelated($event, item.id, item.posterBig, item.posterBlur)
+          "
           @mouseleave="hero_id = 0"
         >
           <div v-if="item.type === 'HERO'" class="hero-name">
@@ -101,7 +115,13 @@ onUnmounted(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <img :src="item.cover" alt="" @dragstart.prevent />
+          <img
+            class="blur"
+            :src="item.coverBlur"
+            :data-src="item.cover"
+            alt=""
+            @dragstart.prevent
+          />
         </div>
       </Waterfall>
     </div>

@@ -80,6 +80,8 @@ const handleAddOne = () => {
       heroName: hero_info.name,
       gender: hero_info.gender,
       category: "",
+      posterBlur: "",
+      posterBig: "",
     });
 
     //滚动到底部

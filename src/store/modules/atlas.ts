@@ -16,6 +16,7 @@ const AtlasStore = defineStore("atlas", () => {
     scroll,
     filter_list,
     show_list,
+    finish,
   } = usePagingLoad<Hero.AloneAtlas>();
 
   /** 当前排序类型 */
@@ -32,23 +33,29 @@ const AtlasStore = defineStore("atlas", () => {
       all_data.value.push({
         id: hero.id,
         cover: hero.cover,
+        coverBlur: hero.coverBlur,
         poster: hero.poster,
         name: hero.name,
         heroName: "",
         type: "HERO",
         profession: hero.profession,
         gender: hero.gender,
+        posterBlur: hero.posterBlur,
+        posterBig: hero.posterBig,
       });
       hero.skins.forEach((skin) => {
         all_data.value.push({
           id: hero.id,
           cover: skin.cover,
-          poster: skin.poster,
+          coverBlur: skin.posterBlur,
           name: skin.name,
           heroName: hero.name,
           type: "SKIN",
           profession: hero.profession,
           gender: hero.gender,
+          poster: skin.poster,
+          posterBlur: skin.posterBlur,
+          posterBig: skin.posterBig,
         });
       });
     });
@@ -163,6 +170,8 @@ const AtlasStore = defineStore("atlas", () => {
     profession,
     /** 排序方式 */
     sort_type,
+    /** 暂无更多 */
+    finish,
     setScroll,
     loadMore,
     getAtlasList,

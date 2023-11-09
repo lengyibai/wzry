@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
@@ -7,33 +7,39 @@ import { $tool } from "@/utils";
 
 const $audioStore = AudioStore();
 
+const teamRef = ref<HTMLElement>();
+
 /** 当前显示的图片的索引号 */
 const active = ref(-1);
-const imgs = ref<string[]>([]);
+const imgs = ref<string[][]>([]);
 
 $audioStore.play("u4c5");
 
-API_DATA.Team().then((res) => {
-  imgs.value = res.data as unknown as string[];
+API_DATA.Team().then(async (res) => {
+  imgs.value = res.data;
+  await nextTick();
+  teamRef.value && new $tool.ImageLoader(teamRef.value);
 });
 
 /* 查看图片 */
-const handleView = (v: string, i: number) => {
-  new $tool.ScaleImage(v);
+const handleView = (v: string[], i: number) => {
+  new $tool.ScaleImage(v[0], v[1]);
   active.value = i;
 };
 </script>
 
 <template>
   <K-Dialog v-bind="$attrs" width="56.25rem" header="辅助求带飞">
-    <div class="team">
+    <div ref="teamRef" class="team">
       <img
         v-for="(item, index) in imgs"
         :key="index"
+        class="blur"
         :class="{
           active: index === active,
         }"
-        :src="item"
+        :src="item[1]"
+        :data-src="item[0]"
         alt=""
         @click="handleView(item, index)"
       />

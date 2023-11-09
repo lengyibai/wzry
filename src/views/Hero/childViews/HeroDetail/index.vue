@@ -108,7 +108,11 @@ $audioStore.play("u4c5");
     />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
-      <HeroParallax class="scroll-item" :bg="hero_data.poster">
+      <HeroParallax
+        class="scroll-item"
+        :bg="hero_data.poster"
+        :blur="hero_data.posterBlur"
+      >
         <HeroInfo />
       </HeroParallax>
 
@@ -117,12 +121,18 @@ $audioStore.play("u4c5");
         v-if="skill_num"
         class="scroll-item"
         :bg="hero_data.skins[skin_num - 1].poster"
+        :blur="hero_data.skins[skin_num - 1].posterBlur"
       >
         <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
 
       <!--皮肤-->
-      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
+      <HeroParallax
+        v-if="skin_num"
+        class="scroll-item"
+        :bg="hero_data.poster"
+        :blur="hero_data.blur"
+      >
         <HeroSkin v-if="hero_toggle" />
       </HeroParallax>
     </HeroScroll>

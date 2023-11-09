@@ -437,6 +437,7 @@ export class Parallax {
 /** @description 查看图片 */
 export class ScaleImage {
   src: string;
+  blur: string;
   scale: number;
   x: number;
   y: number;
@@ -449,8 +450,9 @@ export class ScaleImage {
   startX!: number;
   startY!: number;
 
-  constructor(src: string) {
+  constructor(src: string, blur: string) {
     this.src = src;
+    this.blur = blur;
     this.scale = 1;
     this.x = 0;
     this.y = 0;
@@ -489,14 +491,29 @@ export class ScaleImage {
   createImage() {
     this.img = document.createElement("img");
     this.img.style.cssText = `
-      max-width: 75%;
+      width: 75%;
+      max-height: 75%;
       max-height: 75%;
       transform: scale(${this.scale});
       transition: all 0.25s;
       background-color: #1a1a1a;
+      filter: blur(var(--image-load-blur));
     `;
-    this.img.src = this.src;
+    this.img.src = this.blur;
     this.overlay.appendChild(this.img);
+
+    this.img.onload = () => {
+      const coverImg = new Image();
+      coverImg.src = this.src;
+
+      coverImg.onload = () => {
+        this.img.src = this.src;
+
+        this.img.onload = () => {
+          this.img.style.filter = "blur(0)";
+        };
+      };
+    };
   }
 
   /* 创建按钮 */
@@ -626,9 +643,9 @@ export class ScaleImage {
 
 /** @description FLIP查看图片 */
 
-/** @description 查看图片 */
 export class ScaleFLIPImage {
   src: string;
+  blur: string;
   scale: number;
   x: number;
   y: number;
@@ -642,9 +659,10 @@ export class ScaleFLIPImage {
   startX!: number;
   startY!: number;
 
-  constructor(e: Event, src: string) {
+  constructor(e: Event, src: string, blur: string) {
     this.parent = e.target as HTMLElement;
     this.src = src;
+    this.blur = blur;
     this.scale = 1;
     this.x = 0;
     this.y = 0;
@@ -682,18 +700,33 @@ export class ScaleFLIPImage {
   createImage() {
     setTimeout(() => {
       this.img = document.createElement("img");
+      this.img.style.width = "75%";
       this.img.style.maxWidth = this.parent.offsetWidth + "px";
       this.img.style.maxHeight = this.parent.offsetHeight + "px";
       this.img.style.position = "absolute";
       this.img.style.transition = "0.5s";
       this.img.style.opacity = "0";
+      this.img.style.filter = "blur(var(--image-load-blur))";
       this.img.style.transformOrigin = "left top";
       this.img.style.left = this.parent.getBoundingClientRect().left + "px";
       this.img.style.top = this.parent.getBoundingClientRect().top + "px";
 
-      this.img.src = this.src;
+      this.img.src = this.blur;
       this.overlay.appendChild(this.img);
-      this.bindEvents();
+
+      this.img.onload = () => {
+        const coverImg = new Image();
+        coverImg.src = this.src;
+
+        coverImg.onload = () => {
+          this.img.src = this.src;
+
+          this.img.onload = () => {
+            this.img.style.filter = "blur(0)";
+          };
+        };
+        this.bindEvents();
+      };
     }, 1);
 
     setTimeout(() => {
@@ -1028,5 +1061,39 @@ export class LoadMore {
     } else {
       this.allowLoad = true;
     }
+  }
+}
+
+/** @description 模糊加载大图 */
+export class ImageLoader {
+  private container: HTMLElement;
+
+  constructor(container: HTMLElement) {
+    this.container = container;
+    this.watchLoad();
+  }
+
+  /** @description 监听图片加载 */
+  private watchLoad() {
+    const imgElement = Array.from(
+      this.container.querySelectorAll("img[data-src]"),
+    ) as HTMLImageElement[];
+
+    imgElement.forEach((item) => {
+      const coverUrl = item.dataset.src;
+
+      if (!coverUrl) return;
+
+      const coverImg = new Image();
+      coverImg.src = coverUrl;
+
+      coverImg.onload = () => {
+        item.src = coverUrl;
+        item.removeAttribute("data-src");
+        item.onload = () => {
+          item.classList.remove("blur");
+        };
+      };
+    });
   }
 }

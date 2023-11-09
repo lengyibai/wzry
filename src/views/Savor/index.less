@@ -60,6 +60,10 @@
         &:hover {
           transform: scale(1.25);
         }
+
+        &.blur {
+          filter: blur(var(--image-load-blur));
+        }
       }
 
       @media screen and (width < 500px) {

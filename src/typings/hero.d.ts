@@ -16,6 +16,8 @@ declare namespace Hero {
     camp: string;
     /** 封面 */
     cover: string;
+    /** 小图模糊加载 */
+    coverBlur: string;
     /** 头像 */
     headImg: string;
     /** 身高 */
@@ -32,6 +34,10 @@ declare namespace Hero {
     period: string;
     /** 海报 */
     poster: string;
+    /** 小图模糊加载 */
+    posterBlur: string;
+    /** 海报大图 */
+    posterBig: string;
     /** 种族 */
     race: string;
     /** 技能消耗单位 */
@@ -176,6 +182,10 @@ declare namespace Hero {
     skin_name?: string;
     /** 海报 */
     poster: string;
+    /** 海报小图 */
+    posterBlur: string;
+    /** 海报大图 */
+    posterBig: string;
     /** 封面 */
     cover: string;
     /** 头像 */
@@ -208,17 +218,36 @@ declare namespace Hero {
   interface Atlas
     extends Pick<
       Data,
-      "id" | "name" | "cover" | "poster" | "gender" | "profession"
+      | "id"
+      | "name"
+      | "gender"
+      | "profession"
+      | "poster"
+      | "cover"
+      | "posterBlur"
+      | "posterBig"
+      | "coverBlur"
     > {
     /** 皮肤图集 */
-    skins: Pick<Skin, "id" | "name" | "cover" | "poster">[];
+    skins: Pick<
+      Skin,
+      "id" | "name" | "poster" | "cover" | "posterBlur" | "posterBig"
+    >[];
   }
 
   /** @description 独立图集类型 */
   interface AloneAtlas
     extends Pick<
       Data,
-      "id" | "cover" | "poster" | "name" | "profession" | "gender"
+      | "id"
+      | "cover"
+      | "poster"
+      | "name"
+      | "profession"
+      | "gender"
+      | "posterBig"
+      | "posterBlur"
+      | "coverBlur"
     > {
     /** 图集类型 */
     type: "HERO" | "SKIN";

@@ -16,6 +16,8 @@ declare namespace Equip {
     name: string;
     /** 图标 */
     icon: string;
+    /** 小图标 */
+    iconBlur: string;
     /** 备注 */
     note: string;
     /** 简述 */
@@ -76,6 +78,8 @@ declare namespace Epigraph {
     type: Epigraph.Category[];
     /** 图标 */
     img: string;
+    /** 小图标 */
+    imgBlur: string;
     /** 效果 */
     effect: EpigraphEffect[];
   }

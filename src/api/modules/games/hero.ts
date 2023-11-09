@@ -94,21 +94,34 @@ export const getHeroDetail = async (hero_id: number) => {
   hero.voices = voices;
   hero.relationships = relationships;
 
+  const {
+    cover,
+    gender,
+    headImg,
+    id,
+    name: heroName,
+    poster,
+    posterBig,
+    posterBlur,
+    profession,
+  } = hero;
   //皮肤列表第一个为原皮肤
   hero.skins.unshift({
     id: 0,
-    hero: hero.id,
-    num: 0,
-    price: "",
-    type: 0,
-    name: "原版皮肤",
-    heroName: "",
-    poster: hero.poster,
-    headImg: hero.headImg,
-    cover: "",
-    profession: [],
-    gender: "男",
     category: "",
+    cover,
+    gender,
+    headImg,
+    hero: id,
+    heroName,
+    name: "原版皮肤",
+    num: 0,
+    poster,
+    posterBig,
+    posterBlur,
+    price: "",
+    profession,
+    type: 0,
   });
 
   return Promise.resolve(hero);

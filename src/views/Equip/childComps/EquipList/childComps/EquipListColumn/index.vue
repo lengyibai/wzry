@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 
 import EquipCard from "./components/EquipCard/index.vue";
 
 import { EquipStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 装备列表 */
@@ -23,6 +24,8 @@ interface Props {
 const $props = defineProps<Props>();
 
 const { category, vertical_line } = storeToRefs(EquipStore());
+
+const equipListRef = ref<HTMLElement>();
 
 /** 淡入显示列表 */
 const show = ref(true);
@@ -48,13 +51,21 @@ watch(
     setTimeout(() => {
       equip_list.value = $props.equipList;
       show.value = true;
+
+      nextTick(() => {
+        equipListRef.value && new $tool.ImageLoader(equipListRef.value);
+      });
     }, 300);
   },
 );
 </script>
 
 <template>
-  <div class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
+  <div
+    ref="equipListRef"
+    class="equip-list-primary"
+    :style="{ opacity: show ? 1 : 0 }"
+  >
     <!-- 装备卡片列表 -->
     <EquipCard
       v-for="item in equip_list"

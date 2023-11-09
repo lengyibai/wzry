@@ -48,6 +48,11 @@
     height: 4.6875rem;
     border: 0.1875rem solid var(--theme-border-color-one);
     border-radius: 50%;
+    transition: 0.5s;
+
+    &.blur {
+      filter: blur(var(--image-load-blur));
+    }
   }
 
   .left-line {
