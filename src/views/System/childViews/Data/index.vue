@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onActivated } from "vue";
+import _debounce from "lodash/debounce";
 
 import { API_DATA } from "@/api";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
@@ -148,23 +149,26 @@ const updateData = (key: string, data: unknown) => {
 };
 
 /* 检查更新 */
-const handleCheck = async (data: TableData) => {
-  if (update_status) {
-    data.status = "正在检查...";
-    const v = (await requests[data.key]()).data;
-
-    setTimeout(() => {
-      setStatus(data, v);
-    }, 1000);
-
-    update_status = false;
-    setTimeout(() => {
+const handleCheck = _debounce(
+  async (data: TableData) => {
+    if (update_status) {
+      update_status = false;
+      data.status = "正在检查...";
+      const v = (await requests[data.key]()).data;
       update_status = true;
-    }, 3000);
-  } else {
-    $message("更新太频繁，更新间隔为3秒", "warning");
-  }
-};
+      setTimeout(() => {
+        setStatus(data, v);
+      }, 1000);
+    } else {
+      $message("正在检查更新", "warning");
+    }
+  },
+  1000,
+  {
+    leading: true,
+    trailing: false,
+  },
+);
 
 /* 更新指定 */
 const handleUpdate = async (data: TableData) => {
