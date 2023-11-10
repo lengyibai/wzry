@@ -91,8 +91,8 @@ onMounted(() => {
 });
 
 /** @description 滚动指定位置 */
-const setPosition = (top: number) => {
-  waterfallRef.value?.scroll({ top });
+const setPosition = (top: number, animate: boolean = false) => {
+  waterfallRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
 };
 
 defineExpose({

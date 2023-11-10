@@ -29,10 +29,10 @@ const count = ref(0);
 const show_skinlist = ref(false);
 /** 查看海报 */
 const show_poster = ref(false);
-/** 显示工具栏 */
-const show_tool = ref(false);
 /** 查看语音 */
 const show_voice = ref(false);
+/** 是否显示返回顶部 */
+const back_top = ref(false);
 /** 语音列表 */
 const voices = ref<Hero.Voice[]>([]);
 
@@ -44,6 +44,7 @@ const debounceScroll = _debounce((v: number) => {
 }, 250);
 /* 滚动触发 */
 const onScroll = (v: number) => {
+  back_top.value = v > 250;
   debounceScroll(v);
 };
 
@@ -69,6 +70,11 @@ const onShowTool = (v: { type: string; data: Hero.Skin }) => {
 /* 悬浮卡片 */
 const handleEnterCard = () => {
   $audioStore.play("n4r4");
+};
+
+/* 返回顶部 */
+const onBackTop = () => {
+  skinListRef.value?.setPosition(0, true);
 };
 
 /* 监听列表显示及上拉加载 */
@@ -111,10 +117,6 @@ onMounted(async () => {
     changeCount();
   });
 
-  //显示工具栏
-  await $tool.promiseTimeout(() => {
-    show_tool.value = true;
-  }, 500);
   //显示英雄列表
   await $tool.promiseTimeout(() => {
     show_skinlist.value = true;
@@ -130,8 +132,10 @@ onUnmounted(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar v-show="show_tool" />
+        <SkinToolbar />
       </transition>
+
+      <K-BackTop :active="back_top" @back-top="onBackTop" />
 
       <transition name="card-list">
         <LibGrid

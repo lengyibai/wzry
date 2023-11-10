@@ -30,14 +30,11 @@ const handleUpdateLog = (v: boolean) => {
       title="设置"
       @click="show_setting = true"
     />
-    <div class="update-log">
-      <div v-if="!$versionStore.readed_status" class="red-dot"></div>
-      <i
-        class="iconfont wzry-gengxinrizhi"
-        title="更新日志"
-        @click="handleUpdateLog(true)"
-      />
-    </div>
+    <i
+      class="iconfont wzry-gengxinrizhi"
+      title="更新日志"
+      @click="handleUpdateLog(true)"
+    />
 
     <!-- 设置弹窗 -->
     <transition name="fade">

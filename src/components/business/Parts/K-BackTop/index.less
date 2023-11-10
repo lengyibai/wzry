@@ -1,0 +1,33 @@
+.k-backtop {
+  position: fixed;
+  top: 0;
+  right: 15%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 0;
+  height: 0;
+  opacity: 0.85;
+  transition: 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transform: translateY(-4.5rem);
+
+  &.active {
+    height: 90%;
+  }
+
+  .line {
+    flex-grow: 1;
+    width: 0.1875rem;
+    background-color: #000;
+    pointer-events: none;
+  }
+
+  .wzry-spider {
+    .global_cursor-pointer();
+
+    color: #000;
+    font-size: 5rem;
+    transform: translateY(-0.75rem);
+  }
+}
