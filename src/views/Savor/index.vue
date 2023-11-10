@@ -121,9 +121,6 @@ onUnmounted(() => {
             handleRelated($event, item.id, item.posterBig, item.posterBlur)
           "
           @touchstart="handleRelated($event, item.id, '', item.posterBlur)"
-          @touchend="
-            handleRelated($event, item.id, item.posterBig, item.posterBlur)
-          "
           @mouseleave="hero_id = 0"
         >
           <div v-if="item.type === 'HERO'" class="hero-name">
