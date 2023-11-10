@@ -8,7 +8,12 @@ defineProps<Props>();
 
 <template>
   <div
-    v-maskGradient="{ color: 'rgb(45, 90, 142)', num1: '-35%', num2: '35%' }"
+    v-maskGradient="{
+      color: 'rgb(62 123 194)',
+      num1: '-50%',
+      num2: '50%',
+      rotate: '345deg',
+    }"
     class="epigraph-card"
   >
     <img :data-src="data.img" class="blur" :src="data.imgBlur" alt="" />
