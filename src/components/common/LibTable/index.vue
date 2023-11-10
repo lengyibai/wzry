@@ -1,15 +1,13 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { ref } from "vue";
 
-import TableSort from "@/components/subitem/TableSort/index.vue";
-
 interface Props {
   /** 表头名 */
   head: string[];
   /** 表格数据 */
   data: T[];
   /** 规定哪些列进行排序，从0开始 */
-  sort: string[];
+  sort?: string[];
 }
 
 const $props = defineProps<Props>();
@@ -39,7 +37,7 @@ const sortChange = ({
   id: number;
   item: string;
 }) => {
-  if (!$props.sort.includes(item)) return;
+  if (!$props.sort?.includes(item)) return;
   let status = id;
   if (status === 2) {
     sort_id.value[index] = 0;
@@ -61,7 +59,7 @@ const sortChange = ({
       <th
         v-for="(item, index) in head"
         :key="index"
-        :class="{ 'global_cursor-pointer': sort.includes(item) }"
+        :class="{ 'global_cursor-pointer': sort?.includes(item) }"
         @click="
           sortChange({
             key: head_key[index],
@@ -73,7 +71,6 @@ const sortChange = ({
       >
         <div class="head">
           <slot :data="head" :name="head_key[index]">{{ item }}</slot>
-          <TableSort v-if="sort.includes(item)" :status="sort_id[index]" />
         </div>
       </th>
     </thead>
