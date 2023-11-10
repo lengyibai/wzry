@@ -85,22 +85,17 @@ onUnmounted(() => {
         :count="count"
       >
         <transition-group name="card" appear>
-          <div
+          <EpigraphCard
             v-for="(item, index) in epigraph_list"
             :key="item.id"
+            :data="item"
             class="epigraph-card"
             :style="{
               'transition-delay': 0.025 * index + 's',
             }"
-          >
-            <EpigraphCard :data="item" />
-          </div>
+          />
         </transition-group>
       </LibGrid>
     </transition>
   </div>
 </template>
-
-<style scoped lang="less">
-@import url("./index.less");
-</style>
