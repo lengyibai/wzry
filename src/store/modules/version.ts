@@ -117,6 +117,7 @@ const VersionStore = defineStore("version", () => {
   const updateAll = () => {
     updateVersion(remote_version.value);
     updateFileVersion(file_version.value);
+    localStorage.setItem(CONFIG.LOCAL_KEY.AUTO_UPDATE_STATUS, "0");
     location.reload();
   };
 

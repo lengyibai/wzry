@@ -1,5 +1,7 @@
 /** @description 本地存储键名 */
 export default {
+  /** 版本自动更新状态，为0则下次版本更新时自动刷新浏览器 */
+  AUTO_UPDATE_STATUS: "auto_update_status",
   /** 文件版本 */
   VERSION_FILE: "version_file",
   /** 数据版本 */
