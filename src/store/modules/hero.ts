@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import _debounce from "lodash/debounce";
+import _cloneDeep from "lodash/cloneDeep";
 
 import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -264,7 +265,7 @@ const HeroStore = defineStore("hero", () => {
   const debounceSearchHero = _debounce((name: string) => {
     if (name) {
       filter_list.value = $tool.search<Hero.Data>(
-        all_data.value,
+        _cloneDeep(all_data.value),
         name,
         "name",
         true,

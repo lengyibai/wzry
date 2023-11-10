@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import _debounce from "lodash/debounce";
+import _cloneDeep from "lodash/cloneDeep";
 
 import { AudioStore } from "@/store";
 import { $concise, $tool } from "@/utils";
@@ -54,7 +55,9 @@ const selected_list = ref<General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
 const handleSearch = _debounce(() => {
-  select_list.value = $tool.search($props.data, input_value.value, ["name"]);
+  select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, [
+    "name",
+  ]);
 }, 250);
 
 /* 获取焦点 */

@@ -85,8 +85,6 @@ const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
 
 /** 更新限制 */
 let update_status = true;
-/** 数据缓存 */
-let data_cache: TableData[] = [];
 /** 替换的数据 */
 let replace_data: TableData;
 
@@ -115,8 +113,6 @@ const load = async () => {
     const v = (await requests[data.key]()).data;
     setStatus(data, v);
   }
-
-  data_cache = $tool.deepCopy<TableData[]>(table_data.value);
 };
 load();
 
@@ -199,21 +195,6 @@ const onConfirmReset = async () => {
   handleCheck(replace_data);
 };
 
-/* 排序触发 */
-const onsSortChange = (v: any[]) => {
-  if (v[1] === 1 || v[1] === 2) {
-    table_data.value = $tool.typeSort(
-      table_data.value,
-      v[3] === "数据量" ? "length" : "size",
-      v[1] === 1 ? true : false,
-    );
-  } else {
-    table_data.value = $tool.deepCopy(data_cache);
-  }
-
-  play();
-};
-
 onActivated(() => {
   $audioStore.play("bq69");
 });
@@ -225,8 +206,6 @@ onActivated(() => {
     <LibTable
       :data="table_data"
       :head="['数据类型', '数据量', '占用', '状态', '操作']"
-      :sort="['数据量']"
-      @sortChange="onsSortChange"
     >
       <template v-slot:body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>

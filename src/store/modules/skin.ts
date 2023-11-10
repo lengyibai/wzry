@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import _debounce from "lodash/debounce";
+import _cloneDeep from "lodash/cloneDeep";
 
 import { API_SKIN } from "@/api";
 import { $tool } from "@/utils";
@@ -274,7 +275,7 @@ const SkinStore = defineStore("skin", () => {
   const debounceSearchSkin = _debounce((name: string) => {
     if (name) {
       filter_list.value = $tool.search(
-        all_data.value,
+        _cloneDeep(all_data.value),
         name,
         ["skin_name", "hero_name", "category"],
         true,
