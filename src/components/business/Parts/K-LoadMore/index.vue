@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import KLogo from "@/components/business/Parts/K-Logo/index.vue";
+
 interface Props {
   finish: boolean;
 }
@@ -7,7 +9,7 @@ defineProps<Props>();
 
 <template>
   <div class="k-loadmore">
-    <K-Logo fast :stop="finish" />
+    <KLogo fast :stop="finish" />
     <div class="text">{{ finish ? "暂无更多" : "加载中..." }}</div>
   </div>
 </template>

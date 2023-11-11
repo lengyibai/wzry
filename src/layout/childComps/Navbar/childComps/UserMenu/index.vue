@@ -3,6 +3,7 @@ import { ref, computed } from "vue";
 
 import { AuthStore, AudioStore } from "@/store";
 import { $concise } from "@/utils";
+import { ConfirmClose, EditUserInfo, KButton, KDialog } from "@/components/business";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -77,25 +78,25 @@ const onClose = () => {
 
       <div class="btns">
         <div class="edit">
-          <K-Button font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</K-Button>
+          <KButton font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</KButton>
         </div>
         <div class="logout" @click="handleLogout">
-          <K-Button type="warning" font-size="1.25rem" auto-size>退出登录</K-Button>
+          <KButton type="warning" font-size="1.25rem" auto-size>退出登录</KButton>
         </div>
         <div class="logoff" @click="show_logoff = true">
-          <K-Button type="error" font-size="1.25rem" auto-size>注销帐号</K-Button>
+          <KButton type="error" font-size="1.25rem" auto-size>注销帐号</KButton>
         </div>
       </div>
     </div>
   </div>
   <transition name="fade">
-    <K-Dialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="onClose">
+    <KDialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="onClose">
       <EditUserInfo
         :id="$authStore.userInfo.id"
         v-model:status="edit_status"
         @close="show_edit = false"
       />
-    </K-Dialog>
+    </KDialog>
   </transition>
 
   <!-- 注销确认 -->

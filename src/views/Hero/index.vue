@@ -20,7 +20,8 @@ import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
 import { API_HERO } from "@/api";
 import { $tool, $bus } from "@/utils";
-import LibGrid from "@/components/common/LibGrid/index.vue";
+import { FilterSidebar, KBackTop } from "@/components/business";
+import { LibGrid } from "@/components/common";
 
 defineOptions({
   name: "Hero",
@@ -181,7 +182,7 @@ onUnmounted(() => {
         <HeroToolbar />
       </transition>
 
-      <K-BackTop :active="back_top" @back-top="onBackTop" />
+      <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <!-- 列表 -->
       <LibGrid

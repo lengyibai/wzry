@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
+import { FilterGender, FilterTool, KInput } from "@/components/business";
 
 const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
 const { price_type, sort_type, skin_type } = storeToRefs(SkinStore());
@@ -148,7 +149,7 @@ onUnmounted(() => {
     <FilterGender @change="handerSetGender" />
 
     <!-- 搜索 -->
-    <K-Input
+    <KInput
       v-model="search_value"
       placeholder="皮肤/英雄"
       border-color="var(--theme-border-color-two)"

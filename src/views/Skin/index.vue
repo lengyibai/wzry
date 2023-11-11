@@ -8,10 +8,11 @@ import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinVoice from "./childComps/SkinVoice/index.vue";
 
-import LibGrid from "@/components/common/LibGrid/index.vue";
 import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
 import { $tool, $bus } from "@/utils";
+import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
+import { LibGrid } from "@/components/common";
 
 defineOptions({
   name: "Skin",
@@ -135,7 +136,7 @@ onUnmounted(() => {
         <SkinToolbar />
       </transition>
 
-      <K-BackTop :active="back_top" @back-top="onBackTop" />
+      <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <transition name="card-list">
         <LibGrid
@@ -168,9 +169,9 @@ onUnmounted(() => {
 
     <!-- 语音列表 -->
     <transition name="fade">
-      <K-Dialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
+      <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
         <SkinVoice :voices="voices" />
-      </K-Dialog>
+      </KDialog>
     </transition>
   </div>
 </template>

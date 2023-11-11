@@ -3,6 +3,7 @@ import { onMounted } from "vue";
 import { ref } from "vue";
 import _debounce from "lodash/debounce";
 
+import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
 import { $tool } from "@/utils";
 
 interface Props {
@@ -69,7 +70,7 @@ defineExpose({
     >
       <slot></slot>
     </div>
-    <K-LoadMore v-if="loadMore" :finish="finish" />
+    <KLoadMore v-if="loadMore" :finish="finish" />
   </div>
 </template>
 

@@ -9,6 +9,7 @@ import { userDefaultInfo } from "@/default";
 import { AudioStore, AuthStore } from "@/store";
 import { $message, $tool } from "@/utils";
 import { CONFIG } from "@/config";
+import { KInput } from "@/components/business";
 
 interface Props {
   /** 注册成功后用于填充 */
@@ -66,7 +67,7 @@ const handleLogin = () => {
     <!-- 帐号 -->
     <div class="log-box__box">
       <i class="iconfont wzry-user" />
-      <K-Input
+      <KInput
         v-model.number="form.id"
         width="100%"
         padding-left="2.8125rem"
@@ -79,7 +80,7 @@ const handleLogin = () => {
     <!-- 密码 -->
     <div class="log-box__box">
       <i class="iconfont wzry-password" />
-      <K-Input
+      <KInput
         v-model="form.password"
         width="100%"
         padding-left="2.8125rem"

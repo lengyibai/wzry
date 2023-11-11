@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import viewHide from "../../../../hooks/useViewHide";
-
+import viewHide from "@/views/System/hooks/useViewHide";
 import { API_HERO, API_SKIN } from "@/api";
 import { SkinStore } from "@/store";
 import { $message, $loading } from "@/utils";
-import ManageMask from "@/components/business/Tool/ManageMask/index.vue";
+import {
+  FormInput,
+  FormLabel,
+  FormSelect,
+  ManageMask,
+  ReleaseConfirm,
+  SelectHero,
+  SelectImg,
+} from "@/components/business";
 
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];

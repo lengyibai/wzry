@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
+import { KDialog } from "@/components/business";
 
 const $audioStore = AudioStore();
 
@@ -16,12 +17,12 @@ $audioStore.play("u4c5");
 </script>
 
 <template>
-  <K-Dialog v-bind="$attrs" width="56.25rem" header="微信小程序">
+  <KDialog v-bind="$attrs" width="56.25rem" header="微信小程序">
     <div class="todo">
       <h1>商城系统</h1>
       <div class="content" v-html="todo"></div>
     </div>
-  </K-Dialog>
+  </KDialog>
 </template>
 
 <style scoped lang="less">

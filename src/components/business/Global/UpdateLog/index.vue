@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { AudioStore, VersionStore } from "@/store";
 
 const $audioStore = AudioStore();
@@ -22,7 +24,7 @@ const handleReset = () => {
 </script>
 
 <template>
-  <K-Dialog
+  <KDialog
     :show-close="!data_status && !file_status"
     v-bind="$attrs"
     width="56.25rem"
@@ -51,10 +53,10 @@ const handleReset = () => {
     </div>
 
     <!-- 重启 -->
-    <K-Button v-if="data_status || file_status" type="warning" @click="handleReset">
+    <KButton v-if="data_status || file_status" type="warning" @click="handleReset">
       更新并重启
-    </K-Button>
-  </K-Dialog>
+    </KButton>
+  </KDialog>
 </template>
 
 <style scoped lang="less">

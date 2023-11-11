@@ -7,9 +7,10 @@ import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
-import Waterfall from "@/components/common/LibWaterfall/index.vue";
 import { $bus, $tool } from "@/utils";
 import { AtlasStore } from "@/store";
+import { FilterSidebar, KBackTop } from "@/components/business";
+import { LibWaterfall } from "@/components/common";
 
 defineOptions({
   name: "Savor",
@@ -18,7 +19,7 @@ defineOptions({
 const { getAtlasList, setScroll, loadMore } = AtlasStore();
 const { show_list, scroll, finish } = storeToRefs(AtlasStore());
 
-const waterfallRef = ref<InstanceType<typeof Waterfall>>();
+const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
 const { count } = useWaterfallResponsive();
 
@@ -98,9 +99,9 @@ onUnmounted(() => {
   <div class="savor">
     <div class="savor-main">
       <SavorToolbar />
-      <K-BackTop :active="back_top" @back-top="onBackTop" />
+      <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <Waterfall
+      <LibWaterfall
         v-if="show_list.length"
         ref="waterfallRef"
         :count="count"
@@ -135,7 +136,7 @@ onUnmounted(() => {
             @dragstart.prevent
           />
         </div>
-      </Waterfall>
+      </LibWaterfall>
     </div>
 
     <!--右侧职业分类侧边栏-->

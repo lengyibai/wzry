@@ -4,6 +4,7 @@ import _debounce from "lodash/debounce";
 
 import waterFullLayout from "./Waterfall";
 
+import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
 import { $tool } from "@/utils";
 interface Props {
   count?: number;
@@ -107,7 +108,7 @@ defineExpose({
       <slot></slot>
     </div>
     <transition name="fade">
-      <K-LoadMore class="load-more" :finish="finish" />
+      <KLoadMore class="load-more" :finish="finish" />
     </transition>
   </div>
 </template>

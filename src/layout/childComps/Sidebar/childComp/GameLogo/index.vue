@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { CollapseStore } from "@/store";
+import KLogo from "@/components/business/Parts/K-Logo/index.vue";
 
 const $collapseStore = CollapseStore();
 
@@ -24,7 +25,7 @@ const handleEndTime = () => {
   <div class="game-logo" @touchstart="handleStartTime" @touchend="handleEndTime">
     <transition-group name="fade-a">
       <div key="logo">
-        <K-Logo key="logo" />
+        <KLogo key="logo" />
       </div>
       <span v-show="!$collapseStore.collapse" key="text">{{ $t("王者图鉴") }}</span>
     </transition-group>

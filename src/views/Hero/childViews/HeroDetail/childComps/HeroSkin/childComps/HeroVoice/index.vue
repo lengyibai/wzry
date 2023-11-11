@@ -2,6 +2,7 @@
 import { ref, nextTick } from "vue";
 
 import { HeroDetailStore, AudioStore } from "@/store";
+import { PlayVoice } from "@/components/business";
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();

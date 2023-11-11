@@ -4,7 +4,7 @@ import { onUnmounted, ref, watch, nextTick, onMounted } from "vue";
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
 import { $bus, $tool } from "@/utils";
-import LibGrid from "@/components/common/LibGrid/index.vue";
+import { LibGrid } from "@/components/common";
 
 interface Props {
   /** 铭文列表 */

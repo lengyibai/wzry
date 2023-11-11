@@ -5,6 +5,7 @@ import { storeToRefs } from "pinia";
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
+import { FilterGender, FilterTool, KInput } from "@/components/business";
 
 const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } =
   HeroStore();
@@ -167,7 +168,7 @@ onUnmounted(() => {
     <FilterGender @change="filterGender" />
 
     <!-- 搜索 -->
-    <K-Input
+    <KInput
       v-model="search_value"
       placeholder="英雄/字母"
       border-color="var(--theme-border-color-two)"

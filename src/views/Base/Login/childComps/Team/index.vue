@@ -4,6 +4,7 @@ import { nextTick, ref } from "vue";
 import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
+import { KDialog } from "@/components/business";
 
 const $audioStore = AudioStore();
 
@@ -29,7 +30,7 @@ const handleView = (v: string[], i: number) => {
 </script>
 
 <template>
-  <K-Dialog v-bind="$attrs" width="56.25rem" header="辅助求带飞">
+  <KDialog v-bind="$attrs" width="56.25rem" header="辅助求带飞">
     <div ref="teamRef" class="team">
       <img
         v-for="(item, index) in imgs"
@@ -44,7 +45,7 @@ const handleView = (v: string[], i: number) => {
         @click="handleView(item, index)"
       />
     </div>
-  </K-Dialog>
+  </KDialog>
 </template>
 
 <style scoped lang="less">

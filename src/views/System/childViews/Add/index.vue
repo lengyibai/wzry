@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent, reactive, onActivated, StyleValue } from "vue";
 
+import KManage from "@/components/business/Parts/K-Manage/index.vue";
 import { AudioStore } from "@/store";
 import { $loading } from "@/utils";
 
@@ -73,7 +74,7 @@ onActivated(() => {
   <div class="add" :style="box">
     <transition-group name="add" appear>
       <!-- 卡片 -->
-      <K-Manage v-for="(v, k) in list" :key="k" :title="v" type="add" @click="open(k as string)" />
+      <KManage v-for="(v, k) in list" :key="k" :title="v" type="add" @click="open(k as string)" />
     </transition-group>
 
     <!--发布列表-->

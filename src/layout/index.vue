@@ -7,6 +7,7 @@ import AppMain from "@/layout/childComps/AppMain/index.vue";
 import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { SettingStore, AudioStore } from "@/store";
 import { $concise, $tool } from "@/utils";
+import { KVideo } from "@/components/business";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
@@ -66,7 +67,7 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <K-Video v-if="enable_video_bg" :video="getVideoLink('bg')" />
+    <KVideo v-if="enable_video_bg" :video="getVideoLink('bg')" />
 
     <!-- 图片壁纸 -->
     <img v-else class="layout__bg" :src="getImgLink('background')" alt="" />

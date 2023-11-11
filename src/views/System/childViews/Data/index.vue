@@ -7,6 +7,8 @@ import { SkinStore, HeroStore, AudioStore } from "@/store";
 import { $message, $tool } from "@/utils";
 import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
+import { ConfirmClose } from "@/components/business";
+import { LibTable, TableColumn } from "@/components/common";
 
 interface TableData {
   /** 数据名 */

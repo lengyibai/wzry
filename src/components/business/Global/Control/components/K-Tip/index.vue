@@ -5,6 +5,7 @@ import useTip from "./hooks/useTip";
 
 import { $bus, $concise } from "@/utils";
 import { SettingStore, AudioStore } from "@/store";
+import { KButton } from "@/components/business";
 
 const { show_tip: show, content, align, noTipName, btnFn, tip } = useTip();
 
@@ -78,9 +79,9 @@ watch(
 
             <!-- 按钮 -->
             <div class="btns">
-              <K-Button width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">
+              <KButton width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">
                 确定
-              </K-Button>
+              </KButton>
             </div>
           </div>
         </transition>

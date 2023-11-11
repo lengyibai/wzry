@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { PlayVoice } from "@/components/business";
+
 interface Props {
   /** 语音列表 */
   voices: Hero.Voice[];

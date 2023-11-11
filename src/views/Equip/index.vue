@@ -5,6 +5,7 @@ import EquipList from "./childComps/EquipList/index.vue";
 import EquipDetail from "./childComps/EquipDetail/index.vue";
 
 import { EquipStore, AudioStore } from "@/store";
+import { FilterSidebar } from "@/components/business";
 
 defineOptions({
   name: "Equip",

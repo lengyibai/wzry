@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import AddLink from "@/components/business/Dialog/AddLink/index.vue";
+
 interface Props {
   /** 图片路径 */
   modelValue: string;

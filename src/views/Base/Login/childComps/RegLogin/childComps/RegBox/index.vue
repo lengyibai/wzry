@@ -9,6 +9,7 @@ import { userDefaultInfo } from "@/default";
 import { API_USER } from "@/api";
 import { AudioStore } from "@/store";
 import { $message } from "@/utils";
+import { KInput } from "@/components/business";
 
 const $emit = defineEmits<{
   success: [form: User];
@@ -47,7 +48,7 @@ const handleReg = () => {
     <!-- 昵称 -->
     <div class="reg-box__box">
       <i class="iconfont wzry-nickname" />
-      <K-Input
+      <KInput
         v-model:empty="form_verify[0]"
         v-model="form.nickname"
         :max="6"
@@ -62,7 +63,7 @@ const handleReg = () => {
     <!-- 帐号 -->
     <div class="reg-box__box">
       <i class="iconfont wzry-user" />
-      <K-Input
+      <KInput
         v-model:empty="form_verify[1]"
         v-model.number="form.id"
         :max="12"
@@ -78,7 +79,7 @@ const handleReg = () => {
     <!-- 密码 -->
     <div class="reg-box__box">
       <i class="iconfont wzry-password" />
-      <K-Input
+      <KInput
         v-model:empty="form_verify[2]"
         v-model="form.password"
         :max="18"

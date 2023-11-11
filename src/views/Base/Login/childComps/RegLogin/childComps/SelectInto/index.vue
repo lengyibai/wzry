@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { API_USER } from "@/api";
 import { AudioStore } from "@/store";
+import { KButton } from "@/components/business";
 
 const $emit = defineEmits<{
   into: [v: string];
@@ -31,10 +32,10 @@ const handleInto = (v: string) => {
 
 <template>
   <div class="select-into">
-    <K-Button class="reg" @click="handleInto('注册')">注册</K-Button>
-    <K-Button v-if="user_list.length" class="login" type="warning" @click="handleInto('登录')">
+    <KButton class="reg" @click="handleInto('注册')">注册</KButton>
+    <KButton v-if="user_list.length" class="login" type="warning" @click="handleInto('登录')">
       登录
-    </K-Button>
+    </KButton>
   </div>
 </template>
 

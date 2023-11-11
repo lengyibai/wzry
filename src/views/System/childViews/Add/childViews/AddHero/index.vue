@@ -7,6 +7,15 @@ import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $loading, $message } from "@/utils";
+import {
+  FormInput,
+  FormLabel,
+  FormSelect,
+  KRange,
+  ManageMask,
+  ReleaseConfirm,
+  SelectImg,
+} from "@/components/business";
 
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
@@ -142,7 +151,7 @@ const onCommit = async () => {
     <!-- 属性相关 -->
     <div class="flex-box">
       <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="12.5rem">
-        <K-Range
+        <KRange
           v-model="form_data![k]"
           :text="form_data![k] + '%'"
           track-color="var(--theme-el-color-four)"

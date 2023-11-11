@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import KLoading from "./components/K-Loading/index.vue";
+import KMessage from "./components/K-Message/index.vue";
+import KTip from "./components/K-Tip/index.vue";
+
 import { $bus } from "@/utils";
-import KLoading from "@/components/subitem/K-Loading/index.vue";
-import KMessage from "@/components/subitem/K-Message/index.vue";
-import KTip from "@/components/subitem/K-Tip/index.vue";
 
 /* 全局监听事件 */
 window.addEventListener("resize", (e) => {

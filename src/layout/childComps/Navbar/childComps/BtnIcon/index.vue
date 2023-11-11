@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 
 import { VersionStore } from "@/store";
+import { SettingDialog, UpdateLog } from "@/components/business";
 
 const $versionStore = VersionStore();
 

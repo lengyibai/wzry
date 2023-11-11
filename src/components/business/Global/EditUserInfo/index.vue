@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KInput from "@/components/business/Parts/K-Input/index.vue";
 import { API_USER } from "@/api";
 import { AuthStore, AudioStore } from "@/store";
 import { $message } from "@/utils";
 import { CONFIG } from "@/config";
+import { LibUploadImg } from "@/components/common";
 
 interface Props {
   /** 帐号 */
@@ -76,7 +79,7 @@ const handleSave = () => {
     <!-- 用户名 -->
     <div class="option">
       <div class="label">用户名</div>
-      <K-Input
+      <KInput
         v-model="user_info.nickname"
         class="input"
         border-color="var(--theme-border-color-two)"
@@ -89,7 +92,7 @@ const handleSave = () => {
     <!-- 密码 -->
     <div class="option">
       <div class="label">密码</div>
-      <K-Input
+      <KInput
         v-model="user_info.password"
         class="input"
         border-color="var(--theme-border-color-two)"
@@ -101,7 +104,7 @@ const handleSave = () => {
   </div>
 
   <!-- 保存 -->
-  <K-Button type="warning" @click="handleSave">保存</K-Button>
+  <KButton type="warning" @click="handleSave">保存</KButton>
 </template>
 
 <style scoped lang="less">

@@ -3,6 +3,8 @@ import { ref, watch } from "vue";
 import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
+import FormLabel from "@/components/business/Form/FormLabel/index.vue";
+import KInput from "@/components/business/Parts/K-Input/index.vue";
 import { AudioStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 
@@ -152,7 +154,7 @@ watch(
       <div class="select" :style="{ width: autoSize ? '100%' : '15.625rem' }">
         <!-- 选择器框 -->
         <div ref="selectBox" class="select-box">
-          <K-input
+          <KInput
             v-model="input_value"
             :required:="required"
             :placeholder="active_value || '搜索'"

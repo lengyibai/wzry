@@ -2,6 +2,8 @@
 import { SettingStore } from "./store";
 import { $loading } from "./utils";
 
+import { Control, WaterMark } from "@/components/business";
+
 const $settingStore = SettingStore();
 $settingStore.takeEffect();
 

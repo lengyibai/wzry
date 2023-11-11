@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { AudioStore } from "@/store";
 
 interface Props {
@@ -36,7 +38,7 @@ const handleConfirm = () => {
 </script>
 
 <template>
-  <K-Dialog v-bind="$attrs" align="center">
+  <KDialog v-bind="$attrs" align="center">
     <input
       v-model="input_link"
       v-focus
@@ -44,8 +46,8 @@ const handleConfirm = () => {
       :placeholder="placeholder"
       @keyup.enter="handleConfirm"
     />
-    <K-Button type="warning" @click="handleConfirm">确定</K-Button>
-  </K-Dialog>
+    <KButton type="warning" @click="handleConfirm">确定</KButton>
+  </KDialog>
 </template>
 
 <style scoped lang="less">

@@ -2,7 +2,14 @@
 import { ref } from "vue";
 import _debounce from "lodash/debounce";
 
-import DescSet from "@/components/subitem/DescSet/index.vue";
+import DescSet from "./components/DescSet/index.vue";
+
+import ConfirmClose from "@/components/business/Dialog/ConfirmClose/index.vue";
+import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KCheck from "@/components/business/Parts/K-Check/index.vue";
+import KRange from "@/components/business/Parts/K-Range/index.vue";
+import KSelect from "@/components/business/Parts/K-Select/index.vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
@@ -115,12 +122,12 @@ const onResetConfig = () => {
 
 <template>
   <div class="setting-dialog">
-    <K-Dialog v-bind="$attrs" title="设置" width="57.5rem" ctx-width="90%" up>
+    <KDialog v-bind="$attrs" title="设置" width="57.5rem" ctx-width="90%" up>
       <div class="options">
         <!-- 语言 -->
         <div class="option">
           <div class="label">{{ $t("语言") }}</div>
-          <K-Select
+          <KSelect
             v-model="config.language"
             width="7rem"
             :option="['中文', '繁体', 'English']"
@@ -131,25 +138,25 @@ const onResetConfig = () => {
         <!-- 音效 -->
         <div class="option">
           <div class="label">{{ $t("音效") }}</div>
-          <K-Range
+          <KRange
             v-model="config.audioVolume"
             :text="config.audioVolume + '%'"
             :disabled="!config.audio"
             @update:model-value="onAudioVolume"
           />
-          <K-Check v-model="config.audio" @update:model-value="onAudio" />
+          <KCheck v-model="config.audio" @update:model-value="onAudio" />
         </div>
 
         <!-- 音乐 -->
         <div class="option">
           <div class="label">{{ $t("音乐") }}</div>
-          <K-Range
+          <KRange
             v-model="config.musicVolume"
             :text="config.musicVolume + '%'"
             :disabled="!config.music"
             @update:model-value="onMusicVolume"
           />
-          <K-Check v-model="config.music" @update:model-value="onMusic" />
+          <KCheck v-model="config.music" @update:model-value="onMusic" />
         </div>
 
         <!-- 音乐进度控制 -->
@@ -158,19 +165,19 @@ const onResetConfig = () => {
             {{ $t("音乐进度控制") }}
             <DescSet desc="开启后，点击底部导航栏就可以调整播放进度" />
           </div>
-          <K-Check v-model="config.musicProgress" @update:model-value="onMusicProgress" />
+          <KCheck v-model="config.musicProgress" @update:model-value="onMusicProgress" />
         </div>
 
         <!-- 线条 -->
         <div class="option">
           <div class="label">{{ $t("元素线条") }}</div>
-          <K-Check v-model="config.border" @update:model-value="onBorder" />
+          <KCheck v-model="config.border" @update:model-value="onBorder" />
         </div>
 
         <!-- 阴影 -->
         <div class="option">
           <div class="label">{{ $t("元素阴影") }}</div>
-          <K-Check v-model="config.shadow" @update:model-value="onShadow" />
+          <KCheck v-model="config.shadow" @update:model-value="onShadow" />
         </div>
 
         <!-- 柔光 -->
@@ -179,7 +186,7 @@ const onResetConfig = () => {
             {{ $t("元素发光") }}
             <DescSet desc="开启后，在一些地方悬浮、选中元素会有发光效果" />
           </div>
-          <K-Check v-model="config.shine" @update:model-value="onShine" />
+          <KCheck v-model="config.shine" @update:model-value="onShine" />
         </div>
 
         <!-- 粒子特效 -->
@@ -190,7 +197,7 @@ const onResetConfig = () => {
               desc="开启后，对性能有一点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
             />
           </div>
-          <K-Check v-model="config.particle" @update:model-value="onParticle" />
+          <KCheck v-model="config.particle" @update:model-value="onParticle" />
         </div>
 
         <!-- 视频背景 -->
@@ -201,7 +208,7 @@ const onResetConfig = () => {
               desc="主要是登录页和登录后的背景，PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决"
             />
           </div>
-          <K-Check v-model="config.videoBg" @update:model-value="debounceSaveConfig" />
+          <KCheck v-model="config.videoBg" @update:model-value="debounceSaveConfig" />
         </div>
 
         <!-- 小贴士 -->
@@ -212,21 +219,21 @@ const onResetConfig = () => {
               desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
             />
           </div>
-          <K-Check v-model="config.tip" @update:model-value="onTip" />
+          <KCheck v-model="config.tip" @update:model-value="onTip" />
         </div>
 
         <!-- 恢复所有不再提示 -->
         <div class="option">
           <div class="label">{{ $t("恢复所有小贴士") }}</div>
-          <K-Button width="6.5rem" height="2.1875rem" font-size="1.25rem" @click="handleResetTip">{{
+          <KButton width="6.5rem" height="2.1875rem" font-size="1.25rem" @click="handleResetTip">{{
             $t("恢复")
-          }}</K-Button>
+          }}</KButton>
         </div>
       </div>
 
       <!-- 重置配置 -->
-      <K-Button type="error" @click="show_confirm_reset = true">{{ $t("重置配置") }}</K-Button>
-    </K-Dialog>
+      <KButton type="error" @click="show_confirm_reset = true">{{ $t("重置配置") }}</KButton>
+    </KDialog>
 
     <!-- 确认重置 -->
     <transition name="fade">

@@ -12,6 +12,7 @@ import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
 import { $bus, $concise, $tip, $tool } from "@/utils";
+import { KVideo } from "@/components/business";
 
 const { config } = storeToRefs(SettingStore());
 
@@ -97,7 +98,7 @@ onUnmounted(() => {
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- PC端视频背景 -->
-    <K-Video v-if="config.videoBg" :video="getVideoLink('login_bg')" :muted="config.muted" />
+    <KVideo v-if="config.videoBg" :video="getVideoLink('login_bg')" :muted="config.muted" />
 
     <!-- 移动端图片背景 -->
     <img v-else class="login__bg" :src="getImgLink('login_bg')" alt="" />

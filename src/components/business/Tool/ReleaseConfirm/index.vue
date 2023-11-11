@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
+import ConfirmClose from "@/components/business/Dialog/ConfirmClose/index.vue";
+import KCommit from "@/components/business/Parts/K-Commit/index.vue";
+
 interface Props {
   /** 提交状态 */
   status: number;
@@ -42,7 +45,7 @@ watch(commit_status, (v) => {
     <i class="iconfont wzry-guanbi" title="取消" @click="handleClose"></i>
 
     <!-- 发布按钮 -->
-    <K-Commit v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
+    <KCommit v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
 
     <!-- 确认关闭 -->
     <transition name="fade">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { AudioStore } from "@/store";
 
 interface Props {
@@ -42,13 +44,13 @@ const handleConfirm = () => {
 </script>
 
 <template>
-  <K-Dialog align="center" @close="close">
+  <KDialog align="center" @close="close">
     <div class="text">{{ text }}</div>
     <div class="button">
-      <K-Button type="info" @click="handleCancel">取消</K-Button>
-      <K-Button class="last" type="warning" @click="handleConfirm">确定</K-Button>
+      <KButton type="info" @click="handleCancel">取消</KButton>
+      <KButton class="last" type="warning" @click="handleConfirm">确定</KButton>
     </div>
-  </K-Dialog>
+  </KDialog>
 </template>
 
 <style scoped lang="less">

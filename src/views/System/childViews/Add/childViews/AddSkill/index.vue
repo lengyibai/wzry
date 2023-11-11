@@ -10,6 +10,17 @@ import { API_HERO, API_SKILL } from "@/api";
 import { HeroStore } from "@/store";
 import { $loading, $message } from "@/utils";
 import { CONFIG } from "@/config";
+import {
+  ConfirmClose,
+  FormInput,
+  FormLabel,
+  FormSelect,
+  ManageMask,
+  ReleaseConfirm,
+  SelectHero,
+  SelectImg,
+} from "@/components/business";
+import { LibRichText } from "@/components/common";
 
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];

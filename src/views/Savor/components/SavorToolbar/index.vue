@@ -4,6 +4,7 @@ import { storeToRefs } from "pinia";
 
 import { AtlasStore } from "@/store";
 import { $bus } from "@/utils";
+import { FilterGender, FilterTool, KInput } from "@/components/business";
 
 const { sortType, filterGender, searchAtlas } = AtlasStore();
 const { sort_type } = storeToRefs(AtlasStore());
@@ -72,7 +73,7 @@ onUnmounted(() => {
     <FilterGender @change="handerSetGender" />
 
     <!-- 搜索 -->
-    <K-Input
+    <KInput
       v-model="search_value"
       placeholder="英雄/皮肤"
       border-color="var(--theme-border-color-two)"

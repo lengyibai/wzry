@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
+import FormSelect from "@/components/business/Form/FormSelect/index.vue";
 import { API_HERO } from "@/api";
 
 interface Props {
@@ -48,7 +49,7 @@ watch(
 </script>
 
 <template>
-  <div class="SelectHero">
+  <div class="select-hero">
     <FormSelect
       id
       v-model="id"
