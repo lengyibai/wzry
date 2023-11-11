@@ -11,9 +11,7 @@ const $router = useRouter();
       <div class="text">页面未找到</div>
       <div class="desc">你访问了一个不存在的地址</div>
     </div>
-    <K-Button class="back-home" @click="$router.replace('/login')"
-      >回到主页</K-Button
-    >
+    <K-Button class="back-home" @click="$router.replace('/login')">回到主页</K-Button>
   </div>
 </template>
 
