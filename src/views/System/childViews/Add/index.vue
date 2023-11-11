@@ -60,6 +60,7 @@ const options: Record<
 
 /* 根据点击卡片索引打开页面 */
 const open = (key: string) => {
+  if (options[key].show) return;
   options[key].show = true;
   $audioStore.play();
   $loading.show(list[key]);
