@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ["stylelint-config-standard", "stylelint-config-recommended-less", "stylelint-config-standard-vue"],
+  extends: [
+    "stylelint-config-standard",
+    "stylelint-config-recommended-less",
+    "stylelint-config-standard-vue",
+  ],
   plugins: ["stylelint-order"],
   overrides: [
     {
@@ -12,25 +16,16 @@ module.exports = {
     },
   ],
   rules: {
-    /** 检测代码中多余的分号 */
-    "no-extra-semicolons": null,
-    /** 允许无效的媒体查询 */
-    "media-query-no-invalid": null,
-    /** 允许行尾空白 */
-    "no-eol-whitespace": null,
-    /** 允许选择器类名模式为空 */
-    "selector-class-pattern": null,
-    /** 禁止前缀 */
-    "property-no-vendor-prefix": null,
-    /** 禁止内联css变量 */
-    "custom-property-empty-line-before": null,
-    /** 禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器 */
-    "no-descending-specificity": null,
-    /** 字体名称问题 */
-    "font-family-no-missing-generic-family-keyword": null,
-    /** 使用inset代替上下左右为0 */
-    "declaration-block-no-redundant-longhand-properties": null,
-    /** 选择器伪元素未知时进行检查 */
+    "no-extra-semicolons": null, //检测代码中多余的分号
+    "media-query-no-invalid": null, //允许无效的媒体查询
+    "no-eol-whitespace": null, //允许行尾空白
+    "selector-class-pattern": null, //必须中划线命名
+    "property-no-vendor-prefix": null, // 禁止使用浏览器前缀
+    "custom-property-empty-line-before": null, //禁止内联css变量
+    "no-descending-specificity": null, //禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
+    "font-family-no-missing-generic-family-keyword": null, //字体名称问题
+    "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
+    //选择器伪元素未知时进行检查
     "selector-pseudo-element-no-unknown": [
       true,
       {
