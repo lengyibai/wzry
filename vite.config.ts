@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
-import Components from "unplugin-vue-components/vite";
 import { visualizer } from "rollup-plugin-visualizer";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -14,10 +13,6 @@ export default defineConfig(({ mode }) => {
     base: "./",
     plugins: [
       vue(),
-      Components({
-        dts: "src/typings/components.d.ts",
-        dirs: ["src/components/business", "src/components/common"],
-      }),
       visualizer({
         filename: "visualizer.html",
       }),
@@ -72,7 +67,10 @@ export default defineConfig(({ mode }) => {
           : [],
     },
     build: {
-      chunkSizeWarningLimit: 1500,
+      // 规定触发警告的 chunk 大小
+      chunkSizeWarningLimit: 2000,
+      // 禁用 gzip 压缩大小报告，可略微减少打包时间
+      reportCompressedSize: false,
       cssTarget: "chrome61",
       rollupOptions: {
         output: {
