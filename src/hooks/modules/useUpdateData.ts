@@ -114,17 +114,11 @@ const useUpdateData = () => {
     //更新并覆盖本地存储数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
       const key = need_update_data.keys[i];
-      localStorage.setItem(
-        key as string,
-        JSON.stringify(need_update_data.data[i]),
-      );
+      localStorage.setItem(key as string, JSON.stringify(need_update_data.data[i]));
     }
     for (let i = 0; i < need_update_voice.keys.length; i++) {
       const key = need_update_voice.keys[i];
-      localStorage.setItem(
-        "voice_" + key,
-        JSON.stringify(need_update_voice.data[i]),
-      );
+      localStorage.setItem("voice_" + key, JSON.stringify(need_update_voice.data[i]));
     }
 
     //返回需要更新的中文字段用于显示更新了哪些数据

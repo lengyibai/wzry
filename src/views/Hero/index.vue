@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import _debounce from "lodash/debounce";
 import {
   onUnmounted,
   onActivated,
@@ -9,26 +10,23 @@ import {
   nextTick,
   watchEffect,
 } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
+import { useRoute, useRouter } from "vue-router";
 
-import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import HeroCard from "./childComps/HeroCard/index.vue";
+import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 
-import LibGrid from "@/components/common/LibGrid/index.vue";
 import { heroDefault } from "@/default";
-import { API_HERO } from "@/api";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
+import { API_HERO } from "@/api";
 import { $tool, $bus } from "@/utils";
+import LibGrid from "@/components/common/LibGrid/index.vue";
 
 defineOptions({
-  name: "hero",
+  name: "Hero",
 });
 
-const HeroDetail = defineAsyncComponent(
-  () => import("./childViews/HeroDetail/index.vue"),
-);
+const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue"));
 
 const $route = useRoute();
 const $router = useRouter();
@@ -38,7 +36,7 @@ const { getHeroList, setScroll, loadMore } = HeroStore();
 const { all_data, scroll, show_list, finish } = storeToRefs(HeroStore());
 
 /** 地址栏参数 */
-let id: unknown = $route.query.id;
+const id: unknown = $route.query.id;
 
 const heroListRef = ref<InstanceType<typeof LibGrid>>();
 

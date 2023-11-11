@@ -98,21 +98,13 @@ const hide = () => {
     <!-- 输入框 -->
     <div class="input" :style="{ width: width }">
       <div v-if="showNum" class="slider-value">
-        <span
-          class="value"
-          :class="{ 'show-num': down }"
-          :style="{ left: barWidth }"
-        >
+        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
           {{ text || modelValue }}
         </span>
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth }">
-          <img
-            v-show="showIcon && showDot"
-            :src="icon"
-            :style="{ width: size, height: size }"
-          />
+          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
           <span
             v-show="showDot && !showIcon"
             :style="{

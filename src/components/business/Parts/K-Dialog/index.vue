@@ -87,12 +87,7 @@ const handleClose = () => {
         </div>
 
         <!-- 关闭 -->
-        <img
-          v-show="showClose"
-          class="close"
-          :src="getImgLink('close')"
-          @click="handleClose"
-        />
+        <img v-show="showClose" class="close" :src="getImgLink('close')" @click="handleClose" />
 
         <!-- 背景图 -->
         <img class="bg" :src="getImgLink('dialog')" />

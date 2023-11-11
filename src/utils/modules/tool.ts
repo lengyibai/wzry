@@ -24,17 +24,7 @@ export const timeGreet = (greet: Record<string, string> = {}) => {
     f = "晚上好",
   } = greet;
   const now = new Date().getHours();
-  return now < 4
-    ? a
-    : now < 10
-    ? b
-    : now < 12
-    ? c
-    : now < 14
-    ? d
-    : now < 18
-    ? e
-    : f;
+  return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 };
 
 /** @description requestAnimationFrame计时器 */
@@ -52,8 +42,7 @@ export const frameInterval = (fn: () => void, fre = 0) => {
 };
 
 /** @description 判断是否为数组 */
-export const isArray = (type: any) =>
-  Object.prototype.toString.call(type) === "[object Array]";
+export const isArray = (type: any) => Object.prototype.toString.call(type) === "[object Array]";
 
 /** @description 中文转拼音 */
 export const pinyin = (str: string) => {
@@ -80,7 +69,7 @@ export const search = <T>(
   data: T[],
   value: string | string[],
   keys: string | string[],
-  highlight: boolean = false,
+  highlight = false,
 ): T[] => {
   const arr: T[] = [];
   const fn = (item: any, key: string): void | undefined => {
@@ -245,13 +234,7 @@ export const imageOptimizer = (obj: ImageOptimizerOptions) => {
         if (scale < 1) {
           canvas.width = image.width * scale;
           canvas.height = image.height * scale;
-          context!.drawImage(
-            image,
-            0,
-            0,
-            image.width * scale,
-            image.height * scale,
-          );
+          context!.drawImage(image, 0, 0, image.width * scale, image.height * scale);
         } else {
           canvas.width = image.width;
           canvas.height = image.height;
@@ -288,8 +271,7 @@ export const isPhone = (() => /mobile/i.test(navigator.userAgent))();
 
 /** @description 判断表单指定属性名是否为空 */
 export const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
-  (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
-    .length > 0
+  (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
 
@@ -450,8 +432,7 @@ export class ScaleImage {
     //缩小按钮
     this.zoomOutButton = document.createElement("button");
     this.zoomOutButton.style.cssText = button_style;
-    this.zoomOutButton.className +=
-      "global_cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.className += "global_cursor-pointer iconfont wzry-suoxiao";
     this.zoomOutButton.style.bottom = "0";
     this.zoomOutButton.style.left = "50%";
     this.zoomOutButton.style.transform = "translate(50%, -100%)";
@@ -684,8 +665,7 @@ export class ScaleFLIPImage {
     //缩小按钮
     this.zoomOutButton = document.createElement("button");
     this.zoomOutButton.style.cssText = button_style;
-    this.zoomOutButton.className +=
-      "global_cursor-pointer iconfont wzry-suoxiao";
+    this.zoomOutButton.className += "global_cursor-pointer iconfont wzry-suoxiao";
     this.zoomOutButton.style.bottom = "0";
     this.zoomOutButton.style.left = "50%";
     this.zoomOutButton.style.transform = "translate(50%, -100%)";
@@ -791,7 +771,7 @@ export class AudioVisual {
   cvs: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   animationFrameId!: number;
-  isInit: boolean = false;
+  isInit = false;
   dataArray: string | any[] | Uint8Array = [];
   analyser!: AnalyserNode;
   constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
@@ -918,7 +898,7 @@ export const getFileSizeInKB = (file: any) => {
 /** @description 触底加载 */
 export class LoadMore {
   /** 是否允许加载 */
-  private allowLoad: boolean = true;
+  private allowLoad = true;
   /** 元素 */
   private readonly el: HTMLElement;
   /** 元素 */

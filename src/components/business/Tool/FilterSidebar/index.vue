@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import {
-  AudioStore,
-  HeroStore,
-  CollapseStore,
-  SkinStore,
-  EquipStore,
-  AtlasStore,
-} from "@/store";
+import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
@@ -68,10 +61,7 @@ const filter_type = computed(() => {
 });
 
 /* 选择类型并筛选显示 */
-const handleSelect = (
-  name: Hero.Profession | Equip.Category,
-  index: number,
-) => {
+const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Hero.Profession),

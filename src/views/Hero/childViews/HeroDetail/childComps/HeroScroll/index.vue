@@ -31,14 +31,11 @@ const heroScrollRef = ref<HTMLElement>();
 const change = async (i: number) => {
   index = i === -1 ? 0 : i;
   await nextTick();
-  let direction = $props.direction === "y";
+  const direction = $props.direction === "y";
   try {
     if (!heroScrollRef.value) return;
     heroScrollRef.value.style[direction ? "top" : "left"] =
-      -index *
-        (direction
-          ? heroScrollRef.value.offsetHeight
-          : heroScrollRef.value.offsetWidth) +
+      -index * (direction ? heroScrollRef.value.offsetHeight : heroScrollRef.value.offsetWidth) +
       "px";
   } catch (error) {}
   setTimeout(() => {
@@ -67,7 +64,7 @@ watch(
 onMounted(() => {
   if (!heroScrollRef.value) return;
   //是否为纵向滚动
-  let direction = $props.direction === "y";
+  const direction = $props.direction === "y";
   //是否滚动
   let scroll = true;
   //页面数量
@@ -91,11 +88,9 @@ onMounted(() => {
 
       //根据滚动方向更新滚动位置
       if (direction) {
-        heroScrollRef.value.style.top =
-          -index * heroScrollRef.value.offsetHeight + "px";
+        heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
       } else {
-        heroScrollRef.value.style.left =
-          -index * heroScrollRef.value.offsetWidth + "px";
+        heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
       }
 
       $emit("update:modelValue", index + 1);
@@ -130,11 +125,9 @@ onMounted(() => {
 
       //根据滑动方向更新滚动位置
       if (direction) {
-        heroScrollRef.value.style.top =
-          -index * heroScrollRef.value.offsetHeight + "px";
+        heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
       } else {
-        heroScrollRef.value.style.left =
-          -index * heroScrollRef.value.offsetWidth + "px";
+        heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
       }
 
       $emit("update:modelValue", index + 1);

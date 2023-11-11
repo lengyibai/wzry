@@ -55,9 +55,7 @@ const selected_list = ref<General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
 const handleSearch = _debounce(() => {
-  select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, [
-    "name",
-  ]);
+  select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, ["name"]);
 }, 250);
 
 /* 获取焦点 */
@@ -125,8 +123,7 @@ watch(
       if (v) {
         //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
-          input_value.value =
-            $props.data.find((item) => item.id === v)?.name || "";
+          input_value.value = $props.data.find((item) => item.id === v)?.name || "";
         } else {
           input_value.value = v;
         }
@@ -166,12 +163,7 @@ watch(
             @focus="handleFocus"
             @blur="handleBlur"
           />
-          <img
-            class="arrow"
-            :class="{ rotate: is_unfold }"
-            :src="getImgLink('arrow')"
-            alt=""
-          />
+          <img class="arrow" :class="{ rotate: is_unfold }" :src="getImgLink('arrow')" alt="" />
         </div>
 
         <!-- 展开列表 -->
@@ -183,9 +175,7 @@ watch(
               class="box"
               :class="{
                 active:
-                  current_index === index ||
-                  modelValue === item.name ||
-                  modelValue === item.id,
+                  current_index === index || modelValue === item.name || modelValue === item.id,
               }"
               @mousedown="handleSelect(item.id, item.name)"
               @mouseenter="handleEnterItem(index)"

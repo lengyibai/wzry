@@ -37,10 +37,7 @@ const handleSetProgress = (e: MouseEvent) => {
 
   //计算出小数
   progress.value = parseFloat(
-    (
-      (e.pageX - footbarRef.value.offsetLeft) /
-      footbarRef.value.offsetWidth
-    ).toFixed(2),
+    ((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2),
   );
   //设置播放进度
   music_progress.value && $musicStore.setCurrentTime(progress.value);
@@ -48,21 +45,12 @@ const handleSetProgress = (e: MouseEvent) => {
 
 /* 悬浮移动竖线 */
 const handleMoveLineRef = (e: MouseEvent) => {
-  if (
-    !enable_music.value ||
-    !music_progress.value ||
-    !footbarRef.value ||
-    !lineRef.value
-  )
-    return;
+  if (!enable_music.value || !music_progress.value || !footbarRef.value || !lineRef.value) return;
 
   //设置底部刻度线x坐标
   lineRef.value.style.left =
     parseFloat(
-      (
-        (e.pageX - footbarRef.value.offsetLeft) /
-        footbarRef.value.offsetWidth
-      ).toFixed(2),
+      ((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2),
     ) *
       100 +
     "%";

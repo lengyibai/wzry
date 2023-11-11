@@ -35,9 +35,7 @@ const waterfallContentRef = ref<HTMLElement>();
 const updateSizePosition = () => {
   if (!waterfallContentRef.value) return;
 
-  const children = Array.from(
-    waterfallContentRef.value.children,
-  ) as HTMLElement[];
+  const children = Array.from(waterfallContentRef.value.children) as HTMLElement[];
 
   if (!children) return;
   childs.value = children;
@@ -91,7 +89,7 @@ onMounted(() => {
 });
 
 /** @description 滚动指定位置 */
-const setPosition = (top: number, animate: boolean = false) => {
+const setPosition = (top: number, animate = false) => {
   waterfallRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
 };
 

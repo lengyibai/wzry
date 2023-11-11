@@ -32,9 +32,7 @@ onMounted(() => {
 
     setTimeout(() => {
       if (!relationshipRef.value?.el || !downRef.value) return;
-      const focusRelationship = new $tool.FocusElement(
-        relationshipRef.value.el,
-      );
+      const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
       const focusdown = new $tool.FocusElement(downRef.value);
 
       if ($tool.isPhone) {
@@ -81,26 +79,10 @@ onMounted(() => {
         <!-- 属性 -->
         <transition name="attribute">
           <div v-if="into" class="hero-attribute1">
-            <HeroAttribute
-              class="attribute"
-              attr="survival"
-              :length="hero_info.survival"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="attack"
-              :length="hero_info.attack"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="effect"
-              :length="hero_info.effect"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="difficulty"
-              :length="hero_info.difficulty"
-            />
+            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
           </div>
         </transition>
       </div>
@@ -113,26 +95,10 @@ onMounted(() => {
         <!-- 属性 -->
         <transition name="attribute">
           <div v-if="into" class="hero-attribute2">
-            <HeroAttribute
-              class="attribute"
-              attr="survival"
-              :length="hero_info.survival"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="attack"
-              :length="hero_info.attack"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="effect"
-              :length="hero_info.effect"
-            />
-            <HeroAttribute
-              class="attribute"
-              attr="difficulty"
-              :length="hero_info.difficulty"
-            />
+            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
+            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
+            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
+            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
           </div>
         </transition>
       </div>

@@ -55,12 +55,7 @@ const handleSelect = (v: Data) => {
     <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->
-    <img
-      :class="{ 'arrow-active': status }"
-      :src="getImgLink('arrow')"
-      alt="arrow"
-      class="arrow"
-    />
+    <img :class="{ 'arrow-active': status }" :src="getImgLink('arrow')" alt="arrow" class="arrow" />
 
     <!-- 展开列表 -->
     <div

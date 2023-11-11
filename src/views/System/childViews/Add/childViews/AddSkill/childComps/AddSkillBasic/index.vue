@@ -40,18 +40,9 @@ const handleDel = () => $emit("del");
         <img :src="item.img || getAudioLink('unknown')" alt="" />
         <div class="name">{{ item.name }}</div>
         <div class="types">
-          <K-SkillTypeTag
-            v-for="(type, index) in item.type"
-            :key="index"
-            :type="type"
-          />
+          <K-SkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
         </div>
-        <button
-          v-show="active(index)"
-          v-if="index !== 0"
-          class="del"
-          @click.stop="handleDel"
-        >
+        <button v-show="active(index)" v-if="index !== 0" class="del" @click.stop="handleDel">
           删除
         </button>
         <div v-show="active(index)" class="editing">编辑中...</div>

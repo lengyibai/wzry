@@ -7,7 +7,7 @@ import EpigraphList from "./childComps/EpigraphList/index.vue";
 import { EpigraphStore, AudioStore } from "@/store";
 
 defineOptions({
-  name: "epigraph",
+  name: "Epigraph",
 });
 
 const $epigraphStore = EpigraphStore();

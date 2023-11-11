@@ -24,23 +24,17 @@ const sweepLight: Directive = {
       el.appendChild(light);
       if (auto) {
         light.style.transitionDelay = ` ${binding.value}s`;
-        light.style.transform = `skewX(45deg) translateX(${
-          -el.offsetWidth * 1.25
-        }px)`;
+        light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.25}px)`;
         setTimeout(() => {
           el.removeChild(light);
         }, 2000);
       } else {
         el.addEventListener("mouseenter", () => {
-          light.style.transform = `skewX(45deg) translateX(${
-            -el.offsetWidth * 1.5
-          }px)`;
+          light.style.transform = `skewX(45deg) translateX(${-el.offsetWidth * 1.5}px)`;
         });
 
         el.addEventListener("mouseleave", () => {
-          light.style.transform = `skewX(45deg) translateX(${
-            el.offsetWidth * 1.75
-          }px)`;
+          light.style.transform = `skewX(45deg) translateX(${el.offsetWidth * 1.75}px)`;
         });
       }
     });

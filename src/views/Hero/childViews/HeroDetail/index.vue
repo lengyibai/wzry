@@ -108,11 +108,7 @@ $audioStore.play("u4c5");
     />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
-      <HeroParallax
-        class="scroll-item"
-        :bg="hero_data.poster"
-        :blur="hero_data.posterBlur"
-      >
+      <HeroParallax class="scroll-item" :bg="hero_data.poster" :blur="hero_data.posterBlur">
         <HeroInfo />
       </HeroParallax>
 
@@ -139,11 +135,7 @@ $audioStore.play("u4c5");
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress
-        v-show="show_progress"
-        :index="scroll_index"
-        @toggle="onToggle"
-      />
+      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
     </transition>
   </div>
 </template>

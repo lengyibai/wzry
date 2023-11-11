@@ -43,10 +43,7 @@ const usePagingLoad = <T>() => {
     setTimeout(() => {
       if (page_total > page) {
         show_list.value.push(
-          ...filter_list.value.slice(
-            page * page_count,
-            (page + 1) * page_count,
-          ),
+          ...filter_list.value.slice(page * page_count, (page + 1) * page_count),
         );
         page += 1;
       } else {

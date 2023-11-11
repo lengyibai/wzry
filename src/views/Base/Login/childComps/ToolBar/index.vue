@@ -25,9 +25,7 @@ const muted = computed(() => $settingStore.config.muted);
 /** 视频背景 */
 const video_bg = computed(() => $settingStore.config.videoBg);
 /** 静音图标 */
-const icon = computed(() =>
-  muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing",
-);
+const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 
 /**
  * 点击某个按钮

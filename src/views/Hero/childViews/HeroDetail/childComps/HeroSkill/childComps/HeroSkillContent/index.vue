@@ -45,10 +45,7 @@ onUnmounted(() => {
 
 <template>
   <div class="hero-skill-content">
-    <div
-      class="hero-skill-content__left"
-      :style="{ width: exist_effect ? '45%' : '100%' }"
-    >
+    <div class="hero-skill-content__left" :style="{ width: exist_effect ? '45%' : '100%' }">
       <HeroSkillContentLeft
         :class="{ 'hide-left': !show || toggle }"
         :active-skill="skill"

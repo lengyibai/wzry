@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="form-input"
-    :class="{ disabled: disabled }"
-    :style="{ width: width }"
-  >
+  <div class="form-input" :class="{ disabled: disabled }" :style="{ width: width }">
     <input
       :type="type"
       :value="modelValue"
@@ -127,11 +123,7 @@ const blur = (e: Event) => {
       legal.value = false;
       return;
     }
-    if (
-      $props.noSpecial &&
-      !/^[\u4E00-\u9FA5A-Za-z0-9._]+$/.test(v) &&
-      v !== ""
-    ) {
+    if ($props.noSpecial && !/^[\u4E00-\u9FA5A-Za-z0-9._]+$/.test(v) && v !== "") {
       tip.value = "不能含有特殊字符";
       legal.value = false;
       return;

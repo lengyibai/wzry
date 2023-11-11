@@ -12,10 +12,7 @@ const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {
    * @param childRoutes 当前递归的子路由数组
    * @param zIndex 当前路由的层级，用于设置子菜单左边距
    */
-  const formatChildren = (
-    childRoutes: Route[] | null | undefined,
-    zIndex: number,
-  ) => {
+  const formatChildren = (childRoutes: Route[] | null | undefined, zIndex: number) => {
     /** 子路由 */
     const formattedChildRoutes: Route[] = [];
 

@@ -157,11 +157,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    ref="skinBoxRef"
-    class="hero-skin-head-img"
-    :class="{ into: show_skin_box }"
-  >
+  <div ref="skinBoxRef" class="hero-skin-head-img" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
     <div ref="skinHeadRef" class="show-skin">
       {{ is_into_drap ? "松开" : "拖过来" }}

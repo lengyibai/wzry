@@ -31,7 +31,7 @@ export interface RouterSheel {
   path?: string;
   name?: string;
   redirect?: string;
-  leftHidden?: Boolean;
+  leftHidden?: boolean;
   component?: string;
   children?: RouterSheel[];
 }

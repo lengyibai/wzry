@@ -21,18 +21,12 @@ const handleEndTime = () => {
 </script>
 
 <template>
-  <div
-    class="game-logo"
-    @touchstart="handleStartTime"
-    @touchend="handleEndTime"
-  >
+  <div class="game-logo" @touchstart="handleStartTime" @touchend="handleEndTime">
     <transition-group name="fade-a">
       <div key="logo">
         <K-Logo key="logo" />
       </div>
-      <span v-show="!$collapseStore.collapse" key="text">{{
-        $t("王者图鉴")
-      }}</span>
+      <span v-show="!$collapseStore.collapse" key="text">{{ $t("王者图鉴") }}</span>
     </transition-group>
   </div>
 </template>

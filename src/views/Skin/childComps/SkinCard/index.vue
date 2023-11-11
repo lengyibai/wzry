@@ -44,11 +44,11 @@ const handle = (v: string) => {
     <!-- 悬浮工具 -->
     <div class="tool">
       <span class="global_cursor-pointer" @click="handle('poster')">
-        <i class="iconfont wzry-fangda" />大图</span
-      >
+        <i class="iconfont wzry-fangda" />大图
+      </span>
       <span class="global_cursor-pointer" @click="handle('voice')">
-        <i class="iconfont wzry-bofangyuyin" />语音</span
-      >
+        <i class="iconfont wzry-bofangyuyin" />语音
+      </span>
     </div>
   </div>
 </template>

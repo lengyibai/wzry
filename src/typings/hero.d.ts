@@ -59,14 +59,7 @@ declare namespace Hero {
   }
 
   /** @description 职业类型 */
-  type Profession =
-    | "全部"
-    | "坦克"
-    | "战士"
-    | "刺客"
-    | "法师"
-    | "射手"
-    | "辅助";
+  type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
 
   /** @description 语音 */
   interface Voice {
@@ -229,10 +222,7 @@ declare namespace Hero {
       | "coverBlur"
     > {
     /** 皮肤图集 */
-    skins: Pick<
-      Skin,
-      "id" | "name" | "poster" | "cover" | "posterBlur" | "posterBig"
-    >[];
+    skins: Pick<Skin, "id" | "name" | "poster" | "cover" | "posterBlur" | "posterBig">[];
   }
 
   /** @description 独立图集类型 */

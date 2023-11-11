@@ -55,9 +55,7 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 自动登录 */
   const autoLogin = async () => {
-    const user = JSON.parse(
-      localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO) || "{}",
-    );
+    const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO) || "{}");
     try {
       const res = await API_USER.login(user).catch((err) => {
         throw err;
@@ -85,9 +83,7 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 注销账号 */
   const logoff = async () => {
-    const user = JSON.parse(
-      localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)!,
-    ) as User;
+    const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)!) as User;
     const msg = await API_USER.deleteUser(user.id);
     localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
     clearToken();

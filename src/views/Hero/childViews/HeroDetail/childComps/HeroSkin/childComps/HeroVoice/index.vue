@@ -108,12 +108,8 @@ const onEnded = () => {
       @mouseenter="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text global_one-line">
-          {{ item.text }}</span
-        >
-        <marquee v-else class="text" scrollamount="8.5">
-          {{ item.text }}</marquee
-        >
+        <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
+        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
@@ -126,12 +122,7 @@ const onEnded = () => {
       </div>
     </button>
     <!--播放语音-->
-    <PlayVoice
-      v-if="play_link"
-      :link="play_link"
-      @info="onInfo"
-      @ended="onEnded"
-    />
+    <PlayVoice v-if="play_link" :link="play_link" @info="onInfo" @ended="onEnded" />
   </div>
 </template>
 

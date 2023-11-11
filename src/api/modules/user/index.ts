@@ -98,10 +98,7 @@ export const register = async (form: User) => {
  * @param info 用户信息
  */
 export const updateUser = (id: string, info: Partial<User>) => {
-  patch(
-    { name: CONFIG.LOCAL_KEY.USER_LIST, key: "id", value: id, v: info },
-    true,
-  );
+  patch({ name: CONFIG.LOCAL_KEY.USER_LIST, key: "id", value: id, v: info }, true);
   //返回新信息
   return Promise.resolve(info);
 };

@@ -12,7 +12,7 @@ import { $bus, $tool } from "@/utils";
 import { AtlasStore } from "@/store";
 
 defineOptions({
-  name: "savor",
+  name: "Savor",
 });
 
 const { getAtlasList, setScroll, loadMore } = AtlasStore();
@@ -117,9 +117,7 @@ onUnmounted(() => {
             active: hero_id === item.id,
           }"
           @mouseenter="handleRelated($event, item.id, '', item.posterBlur)"
-          @mouseup="
-            handleRelated($event, item.id, item.posterBig, item.posterBlur)
-          "
+          @mouseup="handleRelated($event, item.id, item.posterBig, item.posterBlur)"
           @touchstart="handleRelated($event, item.id, '', item.posterBlur)"
           @mouseleave="hero_id = 0"
         >

@@ -39,8 +39,7 @@ export default function (
       childs[i].style.transform = "initial";
 
       /* 更新上一行的高度，用于下一行计算 */
-      height_List[minItem["minIndex"]] =
-        parseFloat(childs[i].style.top) + childs[i].offsetHeight;
+      height_List[minItem["minIndex"]] = parseFloat(childs[i].style.top) + childs[i].offsetHeight;
     }
   }
 }

@@ -76,11 +76,7 @@ const sortChange = ({
     </thead>
 
     <tbody>
-      <tr
-        v-for="(item, index) in data"
-        :key="index"
-        :style="{ backgroundColor: item.bgColor }"
-      >
+      <tr v-for="(item, index) in data" :key="index" :style="{ backgroundColor: item.bgColor }">
         <slot :data="item" name="body">
           <td v-for="(_item, _index) in Object.values(item)" :key="_index">
             {{ _item }}

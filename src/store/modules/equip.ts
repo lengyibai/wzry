@@ -277,11 +277,7 @@ const EquipStore = defineStore("equip", () => {
 
   /** @description 清空合成组 */
   const clearSynthetic = () => {
-    vertical_line.value = [
-      {},
-      { top: "0", height: "0" },
-      { top: "0", height: "0" },
-    ];
+    vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
     synthetic_id.value = [[], [], []];
   };
 

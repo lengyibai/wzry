@@ -61,11 +61,7 @@ watch(
 </script>
 
 <template>
-  <div
-    ref="equipListRef"
-    class="equip-list-primary"
-    :style="{ opacity: show ? 1 : 0 }"
-  >
+  <div ref="equipListRef" class="equip-list-primary" :style="{ opacity: show ? 1 : 0 }">
     <!-- 装备卡片列表 -->
     <EquipCard
       v-for="item in equip_list"

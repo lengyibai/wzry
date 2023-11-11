@@ -85,16 +85,7 @@ declare namespace Epigraph {
   }
 
   /** @description 铭文类型 */
-  type Category =
-    | "全部"
-    | "攻击"
-    | "生命"
-    | "防御"
-    | "功能"
-    | "吸血"
-    | "攻速"
-    | "暴击"
-    | "穿透";
+  type Category = "全部" | "攻击" | "生命" | "防御" | "功能" | "吸血" | "攻速" | "暴击" | "穿透";
 
   /** @description 铭文效果 */
   interface EpigraphEffect {

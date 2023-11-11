@@ -7,7 +7,7 @@ import EquipDetail from "./childComps/EquipDetail/index.vue";
 import { EquipStore, AudioStore } from "@/store";
 
 defineOptions({
-  name: "equip",
+  name: "Equip",
 });
 
 const $equipStore = EquipStore();
@@ -41,10 +41,7 @@ onActivated(() => {
     <transition name="fade">
       <div v-if="show" ref="equipMainRef" class="equip__main">
         <!-- 装备详情 -->
-        <EquipDetail
-          :show="$equipStore.show_details"
-          :equip="$equipStore.active_data"
-        />
+        <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 
         <!-- 装备列表 -->
         <EquipList ref="equipListRef" />

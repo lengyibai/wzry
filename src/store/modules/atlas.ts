@@ -9,16 +9,8 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
-  const {
-    all_data,
-    resetPage,
-    loadMore,
-    setScroll,
-    scroll,
-    filter_list,
-    show_list,
-    finish,
-  } = usePagingLoad<Hero.AloneAtlas>();
+  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list, finish } =
+    usePagingLoad<Hero.AloneAtlas>();
 
   /** 当前排序类型 */
   const sort_type = ref("倒序");
@@ -145,11 +137,10 @@ const AtlasStore = defineStore("atlas", () => {
 
   const debounceSearchAtlas = _debounce((name: string) => {
     if (name) {
-      filter_list.value = $tool.search<Hero.AloneAtlas>(
-        _cloneDeep(all_data.value),
-        name,
-        ["name", "heroName"],
-      );
+      filter_list.value = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+        "name",
+        "heroName",
+      ]);
       $bus.emit("watch-waterfall");
     } else {
       sortAll();

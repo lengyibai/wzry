@@ -28,8 +28,10 @@ const info: string[][] = [
   ["种族", "raceType", "race"],
 ];
 
-const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } =
-  viewHide<Hero.Data>($emit, "add_hero");
+const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>(
+  $emit,
+  "add_hero",
+);
 
 /** 类型列表 */
 const type_list: Record<string, General[]> = reactive({
@@ -63,8 +65,7 @@ setTimeout(async () => {
 
 /* 发布 */
 const onCommit = async () => {
-  const { id, mark, name, cover, headImg, poster } =
-    form_data.value as Hero.Data;
+  const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
 
   if (id && mark && name && cover && headImg && poster) {
     await API_HERO.addHeroBasic({
@@ -102,19 +103,10 @@ const onCommit = async () => {
     <!-- 英雄名、代号、身高 -->
     <div v-if="form_data" class="flex-box">
       <FormInput v-model="form_data.name" label="英雄名" required />
-      <FormInput
-        v-model="form_data.gender"
-        label="性别"
-        required
-        placeholder="男/女"
-      />
+      <FormInput v-model="form_data.gender" label="性别" required placeholder="男/女" />
       <FormInput v-model="form_data.mark" label="代号" required />
       <FormInput v-model="form_data.height" label="身高" />
-      <FormInput
-        v-model="form_data.identity"
-        label="身份"
-        placeholder="多个身份/分隔"
-      />
+      <FormInput v-model="form_data.identity" label="身份" placeholder="多个身份/分隔" />
     </div>
 
     <!-- 选择器相关 -->
@@ -149,12 +141,7 @@ const onCommit = async () => {
 
     <!-- 属性相关 -->
     <div class="flex-box">
-      <FormLabel
-        v-for="(v, k) in attr"
-        :key="k"
-        :label="v"
-        label-width="12.5rem"
-      >
+      <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="12.5rem">
         <K-Range
           v-model="form_data![k]"
           :text="form_data![k] + '%'"

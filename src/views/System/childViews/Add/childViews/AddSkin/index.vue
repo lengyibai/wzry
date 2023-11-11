@@ -14,15 +14,9 @@ const $emit = defineEmits<{
 
 const $skinStore = SkinStore();
 
-const {
-  hero_id,
-  show,
-  finish,
-  status,
-  form_data,
-  onConfirmSave,
-  onConfirmRemove,
-} = viewHide<Hero.Skin[]>($emit, "add_skin_list");
+const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<
+  Hero.Skin[]
+>($emit, "add_skin_list");
 
 //判断是否存在缓存
 form_data.value ??= [];
@@ -33,7 +27,7 @@ let skins: Hero.Skin[] = [];
 const scrollBoxRef = ref<InstanceType<typeof ManageMask>>();
 
 /** 当前英雄的皮肤数量 */
-let skin_num = ref(0);
+const skin_num = ref(0);
 /** 当前英雄的信息 */
 let hero_info: Hero.Data;
 /** 皮肤类型表 */
@@ -99,7 +93,7 @@ const handleAddOne = () => {
 
 /* 判断皮肤是否存在 */
 const onExist = (v: number | string) => {
-  let isExist = skins.some((item: Hero.Skin) => {
+  const isExist = skins.some((item: Hero.Skin) => {
     return item.name === v;
   });
   isExist && $message("该皮肤已存在", "warning");
@@ -149,11 +143,7 @@ const onCommit = async () => {
   >
     <transition-group name="fade">
       <!--左上角新增-->
-      <i
-        key="LibSvg"
-        class="add-one iconfont wzry-addcircle"
-        @click="handleAddOne"
-      />
+      <i key="LibSvg" class="add-one iconfont wzry-addcircle" @click="handleAddOne" />
 
       <!--指派英雄-->
       <SelectHero
@@ -175,22 +165,11 @@ const onCommit = async () => {
         @mouseenter="current_index = index"
         @mouseleave="current_index = null"
       >
-        <FormInput
-          v-model="item.name"
-          label="皮肤名"
-          required
-          @blur="onExist"
-        />
+        <FormInput v-model="item.name" label="皮肤名" required @blur="onExist" />
         <FormInput v-model="item.price" label="价格" placeholder="请输入" />
 
         <!-- 皮肤类型 -->
-        <FormSelect
-          id
-          v-model="item.type"
-          label="皮肤类型"
-          :data="skin_types"
-          :value="item.type"
-        />
+        <FormSelect id v-model="item.type" label="皮肤类型" :data="skin_types" :value="item.type" />
 
         <!--··皮肤头像、海报··-->
         <FormLabel label-width="22.1875rem" label="头像&海报&小尺寸海报">

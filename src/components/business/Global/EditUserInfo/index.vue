@@ -41,10 +41,7 @@ const handleSave = () => {
 
   //更新本地当前用户信息
   API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem(
-      CONFIG.LOCAL_KEY.USER_INFO,
-      JSON.stringify(user_info.value),
-    );
+    localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(user_info.value));
 
     //更新记住密码
     localStorage.setItem(
@@ -73,10 +70,7 @@ const handleSave = () => {
     <!-- 头像 -->
     <div class="option">
       <div class="label">头像</div>
-      <LibUploadImg
-        v-model="user_info.headImg"
-        @update:model-value="handleContrast"
-      />
+      <LibUploadImg v-model="user_info.headImg" @update:model-value="handleContrast" />
     </div>
 
     <!-- 用户名 -->

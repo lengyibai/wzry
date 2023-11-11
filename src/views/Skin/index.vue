@@ -14,7 +14,7 @@ import { SkinStore, AudioStore } from "@/store";
 import { $tool, $bus } from "@/utils";
 
 defineOptions({
-  name: "skin",
+  name: "Skin",
 });
 
 const { getSkin, setScroll, loadMore } = SkinStore();
@@ -168,12 +168,7 @@ onUnmounted(() => {
 
     <!-- 语音列表 -->
     <transition name="fade">
-      <K-Dialog
-        v-if="show_voice"
-        v-model="show_voice"
-        width="45rem"
-        title="皮肤语音列表"
-      >
+      <K-Dialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
         <SkinVoice :voices="voices" />
       </K-Dialog>
     </transition>

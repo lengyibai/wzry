@@ -9,16 +9,8 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const {
-    all_data,
-    resetPage,
-    loadMore,
-    setScroll,
-    scroll,
-    filter_list,
-    show_list,
-    finish,
-  } = usePagingLoad<Hero.Skin>();
+  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list, finish } =
+    usePagingLoad<Hero.Skin>();
 
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
@@ -180,14 +172,7 @@ const SkinStore = defineStore("skin", () => {
         },
         {
           label: "其他专属",
-          value: [
-            "必胜客专属",
-            "新春专属",
-            "信誉专属",
-            "源梦",
-            "活动专属",
-            "星会员专属",
-          ],
+          value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
         },
         {
           label: "特殊标志",
@@ -228,9 +213,7 @@ const SkinStore = defineStore("skin", () => {
             "限时兑换",
           ];
           const noNum = list.filter(
-            (item) =>
-              !noFree.includes(item.price.toString()) &&
-              isNaN(Number(item.price)),
+            (item) => !noFree.includes(item.price.toString()) && isNaN(Number(item.price)),
           );
           return $tool.typeSort(noNum, "price");
         },
@@ -240,12 +223,8 @@ const SkinStore = defineStore("skin", () => {
         },
         由高到低: (list) => {
           const isNum = list.filter((item) => !isNaN(Number(item.price)));
-          const strange = list.filter(
-            (item) => item.type.toString().indexOf("26.png") !== -1,
-          );
-          return [...strange, ...isNum].sort(
-            (a, b) => Number(b.price) - Number(a.price),
-          );
+          const strange = list.filter((item) => item.type.toString().indexOf("26.png") !== -1);
+          return [...strange, ...isNum].sort((a, b) => Number(b.price) - Number(a.price));
         },
       };
 

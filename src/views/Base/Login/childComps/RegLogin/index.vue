@@ -29,11 +29,7 @@ API_USER.userList().then((res) => {
 
 /** 登录、注册的组件切换 */
 const component = computed(() => {
-  return is_reg.value === "登录"
-    ? LoginBox
-    : is_reg.value === "注册"
-    ? RegBox
-    : SelectInto;
+  return is_reg.value === "登录" ? LoginBox : is_reg.value === "注册" ? RegBox : SelectInto;
 });
 
 /* 重新选择登录还是注册 */
@@ -63,9 +59,9 @@ const onRegSuccess = (form: unknown) => {
 if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
   const parallax = new $tool.Parallax((x: number, y: number) => {
     if (!RegLoginRef.value) return;
-    RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${
-      y * 10
-    }deg) rotateY(${-x * 10}deg)`;
+    RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${
+      -x * 10
+    }deg)`;
   });
 
   const fn = (e: MouseEvent) => {
@@ -107,12 +103,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     </div>
 
     <!-- 组件切换 -->
-    <component
-      :is="component"
-      :user-info="reg_form"
-      @into="onIntoType"
-      @success="onRegSuccess"
-    />
+    <component :is="component" :user-info="reg_form" @into="onIntoType" @success="onRegSuccess" />
   </div>
 </template>
 

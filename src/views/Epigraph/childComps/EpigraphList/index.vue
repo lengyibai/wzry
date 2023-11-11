@@ -32,8 +32,7 @@ watch(
       show.value = true;
 
       nextTick(() => {
-        epigraphListRef.value?.el &&
-          new $tool.ImageLoader(epigraphListRef.value.el);
+        epigraphListRef.value?.el && new $tool.ImageLoader(epigraphListRef.value.el);
       });
     });
   },

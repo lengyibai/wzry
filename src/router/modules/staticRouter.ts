@@ -4,17 +4,17 @@ import { getPathsNames } from "../helper/getSheelPath";
 export const staticRouter = [
   {
     path: "/",
-    redirect: "/login"
+    redirect: "/login",
   },
   {
     path: "/login",
     meta: {
       title: "登录",
       noVerify: true,
-      hidden: true
+      hidden: true,
     },
-    component: () => import("@/views/Base/Login/index.vue")
-  }
+    component: () => import("@/views/Base/Login/index.vue"),
+  },
 ];
 
 /** @description 错误页面路由 */
@@ -25,8 +25,8 @@ export const errorRouter = [
     component: () => import("@/views/Base/Error/NotPermissions.vue"),
     meta: {
       title: "403",
-      noVerify: true
-    }
+      noVerify: true,
+    },
   },
   {
     path: "/404",
@@ -34,8 +34,8 @@ export const errorRouter = [
     component: () => import("@/views/Base/Error/NotFind.vue"),
     meta: {
       title: "404",
-      noVerify: true
-    }
+      noVerify: true,
+    },
   },
   {
     path: "/400",
@@ -43,9 +43,9 @@ export const errorRouter = [
     component: () => import("@/views/Base/Error/NotVersion.vue"),
     meta: {
       title: "400",
-      noVerify: true
-    }
-  }
+      noVerify: true,
+    },
+  },
 ];
 
 /** @description 静态路由path组 */

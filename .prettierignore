@@ -1,8 +1,6 @@
+*.md
+*.svg
+*.ttf
+*.woff
 dist
 node_modules
-
-*.svg
-*.md
-
-# src/utils/index.ts
-src/typings/components.d.ts

@@ -32,8 +32,7 @@ const finish = ref(false);
 
 /* 隐藏注册登录盒子 */
 const hideRegLogin = computed(
-  () =>
-    !finish.value || show_notice.value || show_todo.value || show_team.value,
+  () => !finish.value || show_notice.value || show_todo.value || show_team.value,
 );
 
 /**
@@ -87,11 +86,7 @@ onUnmounted(() => {
 
 <template>
   <div class="login">
-    <div
-      class="login__logo"
-      @touchstart="handleStartTime"
-      @touchend="handleEndTime"
-    >
+    <div class="login__logo" @touchstart="handleStartTime" @touchend="handleEndTime">
       <img :src="getImgLink('logo')" alt="" />
     </div>
 
@@ -102,11 +97,7 @@ onUnmounted(() => {
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- PC端视频背景 -->
-    <K-Video
-      v-if="config.videoBg"
-      :video="getVideoLink('login_bg')"
-      :muted="config.muted"
-    />
+    <K-Video v-if="config.videoBg" :video="getVideoLink('login_bg')" :muted="config.muted" />
 
     <!-- 移动端图片背景 -->
     <img v-else class="login__bg" :src="getImgLink('login_bg')" alt="" />

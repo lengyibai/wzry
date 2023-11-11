@@ -24,7 +24,7 @@ interface TableData {
 }
 
 defineOptions({
-  name: "database",
+  name: "Database",
 });
 
 const $skinStore = SkinStore();
@@ -182,10 +182,7 @@ const handleReplace = (data: TableData) => {
 
 /* 导出 */
 const handleExport = (data: TableData) => {
-  $tool.savefiles(
-    JSON.stringify({ data: data.data }, null, 2),
-    data.key + ".json",
-  );
+  $tool.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
 /* 确认覆盖 */
@@ -203,11 +200,8 @@ onActivated(() => {
 <template>
   <div class="data">
     <!-- 表格 -->
-    <LibTable
-      :data="table_data"
-      :head="['数据类型', '数据量', '占用', '状态', '操作']"
-    >
-      <template v-slot:body="{ data }">
+    <LibTable :data="table_data" :head="['数据类型', '数据量', '占用', '状态', '操作']">
+      <template #body="{ data }">
         <TableColumn min-width="10.9375rem">{{ data.name }}</TableColumn>
         <TableColumn min-width="10rem">{{ data.length }}</TableColumn>
         <TableColumn min-width="10rem">{{ data.size }}KB</TableColumn>
@@ -220,9 +214,7 @@ onActivated(() => {
           >
             检查更新
           </button>
-          <button class="export" @click="handleExport(data), play()">
-            导出
-          </button>
+          <button class="export" @click="handleExport(data), play()">导出</button>
           <button
             v-if="data.status === '待更新'"
             class="update"
