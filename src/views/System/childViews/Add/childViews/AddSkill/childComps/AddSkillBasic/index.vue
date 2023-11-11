@@ -15,7 +15,7 @@ const $emit = defineEmits<{
   del: [];
 }>();
 
-const { getAudioLink } = $concise;
+const { getImgLink } = $concise;
 
 /* 处于被编辑中 */
 const active = (index: number) => $props.activeIndex === index;
@@ -38,7 +38,7 @@ const handleDel = () => $emit("del");
     >
       <!-- 标题 -->
       <div class="title">
-        <img :src="item.img || getAudioLink('unknown')" alt="" />
+        <img :src="item.img || getImgLink('unknown')" alt="" />
         <div class="name">{{ item.name }}</div>
         <div class="types">
           <KSkillTypeTag v-for="(type, index) in item.type" :key="index" :type="type" />
