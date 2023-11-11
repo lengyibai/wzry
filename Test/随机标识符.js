@@ -9,8 +9,7 @@ const generateRandomStrings = (length, count, excludedStrings) => {
     let numbersCount = length - lettersCount; // 数字数量为生成长度减去字母数量
 
     while (randomString.length < length) {
-      const randomChar =
-        characters[Math.floor(Math.random() * characters.length)];
+      const randomChar = characters[Math.floor(Math.random() * characters.length)];
 
       if (!excludedSet.has(randomChar)) {
         if (/[a-z]/.test(randomChar) && lettersCount > 0) {
