@@ -6,23 +6,29 @@ import { CONFIG } from "@/config";
 const local_version = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_FILE) || "";
 const auto_update_status = localStorage.getItem(CONFIG.LOCAL_KEY.AUTO_UPDATE_STATUS) || "0";
 
-axios.get(`${location.origin}/king-honor/json/version.json?t=${dayjs().unix()}`).then((res) => {
-  const { file } = res.data;
+axios
+  .get(
+    `${location.origin}/${
+      import.meta.env.DEV ? "" : "king-honor/"
+    }json/version.json?t=${dayjs().unix()}`,
+  )
+  .then((res) => {
+    const { file } = res.data;
 
-  //如果本地没有版本信息，则直接写入
-  if (!local_version) {
-    updateLocalVersion();
-    return;
-  }
+    //如果本地没有版本信息，则直接写入
+    if (!local_version) {
+      updateLocalVersion();
+      return;
+    }
 
-  const local = getVersionNumber(local_version);
-  const remote = getVersionNumber(file);
+    const local = getVersionNumber(local_version);
+    const remote = getVersionNumber(file);
 
-  if (remote > local && auto_update_status === "0") {
-    updateLocalVersion();
-    location.reload();
-  }
-});
+    if (remote > local && auto_update_status === "0") {
+      updateLocalVersion();
+      location.reload();
+    }
+  });
 
 const updateLocalVersion = () => {
   localStorage.setItem(CONFIG.LOCAL_KEY.AUTO_UPDATE_STATUS, "1");
