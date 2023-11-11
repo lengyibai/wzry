@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { visualizer } from "rollup-plugin-visualizer";
 import { VitePWA } from "vite-plugin-pwa";
+import legacy from "@vitejs/plugin-legacy";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
@@ -15,6 +16,9 @@ export default defineConfig(({ mode }) => {
       vue(),
       visualizer({
         filename: "visualizer.html",
+      }),
+      legacy({
+        targets: [">0.1%", "last 2 version", "not dead"],
       }),
       VitePWA({
         registerType: "autoUpdate",
@@ -67,10 +71,8 @@ export default defineConfig(({ mode }) => {
           : [],
     },
     build: {
-      // 规定触发警告的 chunk 大小
-      chunkSizeWarningLimit: 2000,
-      // 禁用 gzip 压缩大小报告，可略微减少打包时间
-      reportCompressedSize: false,
+      chunkSizeWarningLimit: 2000, // 超过2000kb警告
+      reportCompressedSize: false, // 禁用 gzip 压缩大小报告，可略微减少打包时间
       cssTarget: "chrome61",
       rollupOptions: {
         output: {
