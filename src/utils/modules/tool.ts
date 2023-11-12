@@ -966,20 +966,35 @@ export class ImageLoader {
     ) as HTMLImageElement[];
 
     imgElement.forEach((item) => {
+      const coverImg = new Image();
       const coverUrl = item.dataset.src;
 
       if (!coverUrl) return;
 
-      const coverImg = new Image();
-      coverImg.src = coverUrl;
+      item.onload = () => {
+        coverImg.src = coverUrl;
 
-      coverImg.onload = () => {
-        item.src = coverUrl;
-        item.removeAttribute("data-src");
-        item.onload = () => {
-          item.classList.remove("blur");
+        coverImg.onload = () => {
+          item.src = coverUrl;
+          item.removeAttribute("data-src");
+          item.onload = () => {
+            item.classList.remove("blur");
+          };
         };
       };
     });
   }
 }
+
+/** @description 同步加载图片 */
+export const preloadImages = async (images: string[]) => {
+  for (let i = 0; i < images.length; i++) {
+    await new Promise<void>((resolve) => {
+      const img = new Image();
+      img.src = images[i];
+      img.onload = () => {
+        resolve();
+      };
+    });
+  }
+};

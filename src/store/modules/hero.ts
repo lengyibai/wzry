@@ -29,6 +29,9 @@ const HeroStore = defineStore("hero", () => {
 
   /** @description 初次获取英雄列表并设置相关信息 */
   const getHeroList = async () => {
+    /** 用于模糊图片预加载 */
+    const poster_blur: string[] = [];
+
     all_data.value = await API_HERO.getHeroData();
     for (let i = 0; i < all_data.value.length; i++) {
       all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
@@ -36,7 +39,11 @@ const HeroStore = defineStore("hero", () => {
       all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
         all_data.value[i].id,
       );
+
+      poster_blur.push(all_data.value[i].coverBlur);
     }
+
+    $tool.preloadImages(poster_blur);
 
     setProfessional("全部");
   };

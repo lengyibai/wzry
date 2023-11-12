@@ -25,6 +25,9 @@ const SkinStore = defineStore("skin", () => {
 
   /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
   const getSkinList = async () => {
+    /** 用于模糊图片预加载 */
+    const poster_blur: string[] = [];
+
     const skinList = await API_SKIN.getSkin();
     const skinType = await API_SKIN.getSkinType();
 
@@ -36,9 +39,13 @@ const SkinStore = defineStore("skin", () => {
       //设置备用名称，解决高亮问题
       skin.hero_name = skin.heroName;
       skin.skin_name = skin.name;
+
+      poster_blur.push(skin.posterBlur);
     });
 
     all_data.value = skinList;
+
+    $tool.preloadImages(poster_blur);
 
     sortAll();
   };

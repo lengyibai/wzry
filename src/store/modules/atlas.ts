@@ -21,7 +21,11 @@ const AtlasStore = defineStore("atlas", () => {
 
   /** @description 获取图集列表 */
   const getAtlasList = async () => {
+    /** 用于模糊图片预加载 */
+    const poster_blur: string[] = [];
+
     const res = await API_HERO.getHeroAtlas();
+
     res.forEach((hero) => {
       all_data.value.push({
         id: hero.id,
@@ -36,6 +40,7 @@ const AtlasStore = defineStore("atlas", () => {
         posterBlur: hero.posterBlur,
         posterBig: hero.posterBig,
       });
+      poster_blur.push(hero.posterBlur);
       hero.skins.forEach((skin) => {
         all_data.value.push({
           id: hero.id,
@@ -50,8 +55,12 @@ const AtlasStore = defineStore("atlas", () => {
           posterBlur: skin.posterBlur,
           posterBig: skin.posterBig,
         });
+
+        poster_blur.push(skin.posterBlur);
       });
     });
+
+    $tool.preloadImages(poster_blur);
 
     sortAll();
   };
