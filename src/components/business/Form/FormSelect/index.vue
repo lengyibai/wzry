@@ -156,11 +156,10 @@ watch(
         <div ref="selectBox" class="select-box">
           <KInput
             v-model="input_value"
+            class="k-input"
             :required:="required"
             :placeholder="active_value || '搜索'"
             line
-            width="15.625rem"
-            color="var(--theme-font-color-four)"
             @input="handleSearch"
             @focus="handleFocus"
             @blur="handleBlur"

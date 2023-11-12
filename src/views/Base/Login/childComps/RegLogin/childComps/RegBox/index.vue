@@ -53,10 +53,8 @@ const handleReg = () => {
         v-model="form.nickname"
         :max="6"
         :min="2"
-        padding-left="2.8125rem"
         placeholder="请输入昵称"
         required
-        width="100%"
       />
     </div>
 
@@ -69,10 +67,8 @@ const handleReg = () => {
         :max="12"
         :min="6"
         number
-        padding-left="2.8125rem"
         placeholder="请输入帐号"
         required
-        width="100%"
       />
     </div>
 

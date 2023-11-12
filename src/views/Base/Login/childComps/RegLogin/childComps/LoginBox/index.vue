@@ -69,8 +69,7 @@ const handleLogin = () => {
       <i class="iconfont wzry-user" />
       <KInput
         v-model.number="form.id"
-        width="100%"
-        padding-left="2.8125rem"
+        class="k-input"
         placeholder="请输入帐号"
         name="id"
         required
@@ -82,8 +81,7 @@ const handleLogin = () => {
       <i class="iconfont wzry-password" />
       <KInput
         v-model="form.password"
-        width="100%"
-        padding-left="2.8125rem"
+        class="k-input"
         placeholder="请输入密码"
         type="password"
         required

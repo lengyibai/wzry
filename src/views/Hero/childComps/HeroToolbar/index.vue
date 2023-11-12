@@ -170,12 +170,8 @@ onUnmounted(() => {
     <!-- 搜索 -->
     <KInput
       v-model="search_value"
+      class="k-input"
       placeholder="英雄/字母"
-      border-color="var(--theme-border-color-two)"
-      color="var(--theme-font-color-four)"
-      align="center"
-      width="15em"
-      font-size="1.5rem"
       :no-special="false"
       @input="handSearch"
     />

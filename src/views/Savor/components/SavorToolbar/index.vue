@@ -73,16 +73,7 @@ onUnmounted(() => {
     <FilterGender @change="handerSetGender" />
 
     <!-- 搜索 -->
-    <KInput
-      v-model="search_value"
-      placeholder="英雄/皮肤"
-      border-color="var(--theme-border-color-two)"
-      color="var(--theme-font-color-four)"
-      align="center"
-      width="15em"
-      font-size="1.5rem"
-      @input="handSearch"
-    />
+    <KInput v-model="search_value" placeholder="英雄/皮肤" @input="handSearch" />
   </div>
 </template>
 

@@ -79,27 +79,13 @@ const handleSave = () => {
     <!-- 用户名 -->
     <div class="option">
       <div class="label">用户名</div>
-      <KInput
-        v-model="user_info.nickname"
-        class="input"
-        border-color="var(--theme-border-color-two)"
-        width="15.625rem"
-        align="center"
-        @update:model-value="handleContrast"
-      />
+      <KInput v-model="user_info.nickname" class="k-input" @update:model-value="handleContrast" />
     </div>
 
     <!-- 密码 -->
     <div class="option">
       <div class="label">密码</div>
-      <KInput
-        v-model="user_info.password"
-        class="input"
-        border-color="var(--theme-border-color-two)"
-        width="15.625rem"
-        align="center"
-        @update:model-value="handleContrast"
-      />
+      <KInput v-model="user_info.password" class="k-input" @update:model-value="handleContrast" />
     </div>
   </div>
 

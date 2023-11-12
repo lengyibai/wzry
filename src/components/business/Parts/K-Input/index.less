@@ -1,16 +1,29 @@
 .form-input {
+  --border-color: #fff;
+  --color: #fff;
+  --padding-left: 0;
+  --font-size: 1.625rem;
+  --width: initial;
+  --align: left;
+
   position: relative;
   display: flex;
+  width: var(--width);
 
   input {
     padding: 0 0.25em;
+    padding-left: var(--padding-left);
     width: 100%;
     outline: none;
     border: none;
+    border-color: var(--border-color);
     border-bottom-width: 0.0625rem;
     border-bottom-style: solid;
     background-color: transparent;
+    color: var(--color);
+    text-align: var(--align);
     text-shadow: var(--t-shadow-d);
+    font-size: var(--font-size);
 
     &::placeholder {
       text-shadow: var(--t-shadow-d);
@@ -36,6 +49,7 @@
     position: absolute;
     bottom: 0;
     overflow: hidden;
+    padding-left: var(--padding-left);
     color: var(--red);
     font-size: 1rem;
     transform: translateY(125%);

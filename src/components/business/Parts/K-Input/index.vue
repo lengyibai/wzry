@@ -1,17 +1,10 @@
 <template>
-  <div class="form-input" :class="{ disabled: disabled }" :style="{ width: width }">
+  <div class="form-input" :class="{ disabled: disabled }">
     <input
       :type="type"
       :value="modelValue"
       :placeholder="placeholder"
       :maxlength="max"
-      :style="{
-        borderColor: borderColor,
-        color: color,
-        textAlign: align,
-        fontSize: fontSize,
-        paddingLeft: paddingLeft,
-      }"
       @input="input"
       @focus="focus"
       @blur="blur"
@@ -29,7 +22,7 @@
 
     <!-- 输入不合法提示 -->
     <transition name="tip">
-      <div v-if="!legal" :style="{ marginLeft: paddingLeft }" class="tip">
+      <div v-if="!legal" class="tip">
         {{ tip }}
       </div>
     </transition>
@@ -43,24 +36,12 @@ import { AudioStore } from "@/store";
 interface Props {
   /** 值 */
   modelValue: number | string;
-  /** 整体宽度 */
-  width?: string;
   /** 禁用 */
   disabled?: boolean;
   /** 输入框描述 */
   placeholder?: string;
-  /** 边框颜色 */
-  borderColor?: string;
   /** 显示聚焦线 */
   line?: boolean;
-  /** 字体颜色 */
-  color?: string;
-  /** 左内边距 */
-  paddingLeft?: string;
-  /** 对齐方式 */
-  align?: "left" | "center" | "right";
-  /** 字体大小 */
-  fontSize?: string;
   /** 输入框类型 */
   type?: string;
   /** 最小位数 */
@@ -78,14 +59,9 @@ interface Props {
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  width: "initial",
   modelValue: "",
   placeholder: "请输入",
   validate: () => "",
-  borderColor: "#fff",
-  color: "#fff",
-  align: "left",
-  fontSize: "1.625rem",
   type: "text",
   noSpecial: false,
 });

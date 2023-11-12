@@ -22,15 +22,17 @@
     }
 
     :deep(.form-input) {
-      width: 100%;
+      --width: 100%;
+      --algin: left;
+      --padding-left: 2.8125rem;
+      --font-size: 1.625rem;
+      --color: var(--theme-font-color-ten);
+
       transform: translateY(0.0625rem);
 
       input {
         border: none;
         background-color: transparent;
-        color: var(--theme-font-color-ten) !important;
-        text-align: left !important;
-        font-size: 1.625rem;
 
         &::placeholder {
           color: var(--theme-font-color-eleven);
@@ -53,7 +55,8 @@
 
   &__btns {
     margin: 1.875rem 0;
-    -webkit-box-reflect: below 0.625rem linear-gradient(transparent, transparent 0%, var(--black-25));
+    -webkit-box-reflect: below 0.625rem
+      linear-gradient(transparent, transparent 0%, var(--black-25));
     transform: translateZ(4.6875rem);
   }
 }
