@@ -3,38 +3,18 @@ import { SettingStore } from "@/store";
 import { $concise } from "@/utils";
 
 interface Props {
-  /** 自适应 */
-  autoSize?: boolean;
-  /** 文字大小 */
-  fontSize?: string;
-  /** 高度 */
-  height?: string;
   /** 类型 */
   type?: "info" | "error" | "warning";
-  /** 宽度 */
-  width?: string;
 }
 
-const $props = withDefaults(defineProps<Props>(), {
-  fontSize: "1.5rem",
-  height: "3.5rem",
+withDefaults(defineProps<Props>(), {
   type: "info",
-  width: "14rem",
 });
 
 const $settingStore = SettingStore();
 
 const { getImgLink } = $concise;
 
-/** 按钮宽高 */
-const style1 = {
-  width: $props.autoSize ? "100%" : $props.width,
-  height: $props.autoSize ? "100%" : $props.height,
-};
-/** 字体大小 */
-const style2 = {
-  fontSize: $props.fontSize,
-};
 /** 粒子颜色 */
 const particle_color = {
   info: "#3f9ed3",
@@ -52,12 +32,13 @@ const particle_color = {
     }"
     :class="type"
     class="k-button"
-    :style="style1"
+    :style="{
+      backgroundImage: `url(${getImgLink(`btn_${type}`)})`,
+    }"
   >
-    <span :style="style2">
+    <span class="text">
       <slot>按钮</slot>
     </span>
-    <img :src="getImgLink(`btn_${type}`)" />
   </button>
 </template>
 

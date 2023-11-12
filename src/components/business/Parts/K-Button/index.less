@@ -1,22 +1,24 @@
 .k-button {
   .global_flex-center();
 
+  --font-size: 1.5rem;
+  --width: 14rem;
+  --height: 3.5rem;
+
   position: relative;
   flex-shrink: 0;
+  width: var(--width);
+  height: var(--height);
   box-shadow: var(--b-shadow-a);
   color: var(--white);
   text-shadow: var(--t-shadow-d);
+  font-size: var(--font-size);
+  line-height: var(--height);
   transition: all 0.25s;
 
   &:hover {
-    img {
-      filter: contrast(1.1) brightness(1.3);
-      transition: all 0.25s;
-    }
-
-    span {
-      text-shadow: var(--shine-15);
-    }
+    text-shadow: var(--shine-25);
+    filter: contrast(1.1) brightness(1.3);
 
     &.info {
       box-shadow:
@@ -39,6 +41,8 @@
 
   &:active {
     box-shadow: initial;
+    text-shadow: initial;
+    filter: contrast(1) brightness(0.75);
     transition: all 0.05s;
     transform: scale(0.95);
     transform-origin: bottom center;
@@ -54,24 +58,6 @@
     &.error {
       box-shadow: none;
     }
-
-    img {
-      filter: contrast(1) brightness(0.75);
-      transition: all 0.05s;
-    }
-  }
-
-  span {
-    position: absolute;
-    z-index: 1;
-    margin-top: 0.25rem;
-  }
-
-  img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: all 0.25s;
   }
 }
 

@@ -62,19 +62,14 @@
       margin-top: 3.125rem;
       width: 100%;
 
-      .edit,
-      .logout,
-      .logoff {
-        width: 75%;
-        height: 3.125rem;
-        color: #fff;
-        text-align: center;
-        font-size: 1.5625rem;
-      }
+      .k-button {
+        --width: 75%;
+        --font-size: 1.25rem;
+        --height: 3.125rem;
 
-      .edit,
-      .logout {
-        margin-bottom: 0.625rem;
+        &:not(:last-child) {
+          margin-bottom: 0.625rem;
+        }
       }
     }
   }

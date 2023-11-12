@@ -79,9 +79,7 @@ watch(
 
             <!-- 按钮 -->
             <div class="btns">
-              <KButton width="9.375rem" height="2.5rem" font-size="1.25rem" @click="handleClose">
-                确定
-              </KButton>
+              <KButton class="k-button" @click="handleClose"> 确定 </KButton>
             </div>
           </div>
         </transition>

@@ -77,15 +77,9 @@ const onClose = () => {
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">
-        <div class="edit">
-          <KButton font-size="1.25rem" auto-size @click="handleEditInfo">编辑个人信息</KButton>
-        </div>
-        <div class="logout" @click="handleLogout">
-          <KButton type="warning" font-size="1.25rem" auto-size>退出登录</KButton>
-        </div>
-        <div class="logoff" @click="show_logoff = true">
-          <KButton type="error" font-size="1.25rem" auto-size>注销帐号</KButton>
-        </div>
+        <KButton class="k-button" @click="handleEditInfo">编辑个人信息</KButton>
+        <KButton class="k-button" type="warning" @click="handleLogout">退出登录</KButton>
+        <KButton class="k-button" type="error" @click="show_logoff = true">注销帐号</KButton>
       </div>
     </div>
   </div>

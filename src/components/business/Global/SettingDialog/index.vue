@@ -225,9 +225,9 @@ const onResetConfig = () => {
         <!-- 恢复所有不再提示 -->
         <div class="option">
           <div class="label">{{ $t("恢复所有小贴士") }}</div>
-          <KButton width="6.5rem" height="2.1875rem" font-size="1.25rem" @click="handleResetTip">{{
-            $t("恢复")
-          }}</KButton>
+          <KButton class="k-button" @click="handleResetTip">
+            {{ $t("恢复") }}
+          </KButton>
         </div>
       </div>
 
