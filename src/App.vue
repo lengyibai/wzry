@@ -29,40 +29,40 @@ const onComponentMounted = () => {
 
 <style scoped lang="less">
 .round-clip-enter-active {
-  transform-origin: bottom center;
-  animation: round-clip-in 1.25s ease-in-out;
+  transform-origin: center center;
+  animation: round-clip-in 1.5s cubic-bezier(1, -0.67, 0, 1.5);
 }
 
 .round-clip-leave-active {
-  transform-origin: top center;
-  animation: round-clip-out 1.5s ease-in-out;
+  transform-origin: center center;
+  animation: round-clip-out 1.5s cubic-bezier(1, -0.67, 0, 2.5);
 }
 
 @keyframes round-clip-in {
   0% {
-    transform: translateX(125%) scale(0.85) rotateX(25deg);
+    transform: translateY(-125%) scale(0.75);
   }
 
   50% {
-    transform: translateX(0%) scale(0.85) rotateX(25deg);
+    transform: translateY(0%) scale(0.75);
   }
 
   100% {
-    transform: translateX(0%) scale(1) rotateX(0deg);
+    transform: translateX(0%) scale(1);
   }
 }
 
 @keyframes round-clip-out {
   0% {
-    transform: translateX(0%) scale(1) rotateX(0deg);
+    transform: translateX(0%) scale(1);
   }
 
   50% {
-    transform: translateX(0%) scale(0.85) rotateX(-25deg);
+    transform: translateX(0%) scale(0.75);
   }
 
   100% {
-    transform: translateX(-125%) scale(0.85) rotateX(-25deg);
+    transform: translateX(-125%) scale(0.75);
   }
 }
 </style>
