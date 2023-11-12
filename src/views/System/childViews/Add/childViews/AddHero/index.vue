@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 
-import viewHide from "../../../../hooks/useViewHide";
-
+import viewHide from "@/views/System/hooks/useViewHide";
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import viewHide from "../../../../hooks/useViewHide";
-
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
+import viewHide from "@/views/System/hooks/useViewHide";
 import { skillDefault, skillEffectDefault } from "@/default";
 import { API_HERO, API_SKILL } from "@/api";
 import { HeroStore } from "@/store";
