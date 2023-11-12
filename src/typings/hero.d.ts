@@ -1,7 +1,7 @@
 /** 英雄信息  */
 declare namespace Hero {
   /** @description 主要数据 */
-  interface Data extends Record<string, any> {
+  interface Data {
     /** 英雄id */
     id: number;
     /** 攻击 */

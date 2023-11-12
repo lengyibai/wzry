@@ -26,7 +26,7 @@ interface Props {
   /** 必填 */
   required?: boolean;
   /** 输入框默认值 */
-  value?: string | number | General[] | string[];
+  value?: any;
 }
 
 const $props = withDefaults(defineProps<Props>(), {

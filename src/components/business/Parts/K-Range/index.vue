@@ -7,7 +7,7 @@ import { CONFIG } from "@/config";
 
 interface Props {
   /** 值 */
-  modelValue: string | number;
+  modelValue: any;
   /** 禁用 */
   disabled?: boolean;
   /** 输入框宽度 */

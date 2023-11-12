@@ -23,14 +23,14 @@ const $emit = defineEmits<{
 
 const $heroStore = HeroStore();
 
-const attr: Record<string, string> = {
+const attr: Partial<Record<keyof Hero.Data, string>> = {
   survival: "生存能力",
   attack: "攻击伤害",
   effect: "技能效果",
   difficulty: "上手难度",
 };
 
-const info: string[][] = [
+const info: [string, string, keyof Hero.Data][] = [
   ["阵营", "campType", "camp"],
   ["定位", "locationType", "location"],
   ["时期", "periodType", "period"],
@@ -132,39 +132,41 @@ const onCommit = async () => {
 
     <!-- 职业 -->
     <FormSelect
-      v-model="form_data!.profession"
+      v-if="form_data"
+      v-model="form_data.profession"
       :data="type_list.professionType"
-      :value="form_data!.profession"
+      :value="form_data.profession"
       label="职业"
       multi
     />
 
     <!-- 特长 -->
     <FormSelect
-      v-model="form_data!.specialty"
+      v-if="form_data"
+      v-model="form_data.specialty"
       :data="type_list.specialtyType"
-      :value="form_data!.specialty"
+      :value="form_data.specialty"
       label="特长"
       multi
     />
 
     <!-- 属性相关 -->
-    <div class="flex-box">
+    <div v-if="form_data" class="flex-box">
       <FormLabel v-for="(v, k) in attr" :key="k" :label="v" label-width="12.5rem">
         <KRange
-          v-model="form_data![k]"
-          :text="form_data![k] + '%'"
+          v-model="form_data[k]"
+          :text="form_data[k] + '%'"
           track-color="var(--theme-el-color-four)"
         />
       </FormLabel>
     </div>
 
     <!-- 设置头像&海报 -->
-    <div class="flex-box">
+    <div v-if="form_data" class="flex-box">
       <FormLabel label-width="18.125rem" label="头像&封面&&海报">
-        <SelectImg v-model="form_data!.headImg" title="头像" />
-        <SelectImg v-model="form_data!.cover" type="height" title="封面" />
-        <SelectImg v-model="form_data!.poster" type="width" title="海报" />
+        <SelectImg v-model="form_data.headImg" title="头像" />
+        <SelectImg v-model="form_data.cover" type="height" title="封面" />
+        <SelectImg v-model="form_data.poster" type="width" title="海报" />
       </FormLabel>
     </div>
 
