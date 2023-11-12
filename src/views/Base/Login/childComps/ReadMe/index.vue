@@ -25,7 +25,6 @@ const handleClose = () => {
 
 <template>
   <div class="readme">
-    <i class="iconfont wzry-guanbi readme__close" @click="handleClose"></i>
     <iframe
       class="readme__iframe"
       :src="getHtmlLink('readme')"
@@ -34,6 +33,7 @@ const handleClose = () => {
       frameborder="0"
       scrolling="auto"
     ></iframe>
+    <i class="iconfont wzry-guanbi readme__close" @click="handleClose"></i>
   </div>
 </template>
 
