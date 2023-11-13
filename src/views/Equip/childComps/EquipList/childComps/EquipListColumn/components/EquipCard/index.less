@@ -24,11 +24,11 @@
     &::after {
       position: absolute;
       left: 50%;
-      box-sizing: border-box;
-      border-width: 0.625rem;
       border-style: solid;
-      content: "";
+      border-width: 0.625rem;
       transform: translateX(-50%);
+      box-sizing: border-box;
+      content: "";
     }
 
     &::before {
@@ -43,9 +43,9 @@
   }
 
   img {
-    margin-right: 0.3125rem;
     width: 4.6875rem;
     height: 4.6875rem;
+    margin-right: 0.3125rem;
     border: 0.1875rem solid var(--theme-border-color-one);
     border-radius: 50%;
     transition: 0.5s;
@@ -61,10 +61,10 @@
     left: 0;
     width: 1.25rem;
     height: 0.1875rem;
-    background-color: var(--blue);
     box-shadow:
       var(--shine-10) var(--blue),
       var(--shine-20) var(--blue);
+    background-color: var(--blue);
     transform: translate(-100%, -50%);
     transform-origin: right;
   }
@@ -75,18 +75,18 @@
     left: 0;
     width: calc(100% - 4.6875rem - 1.25rem);
     height: 0.1875rem;
-    background-color: var(--blue);
     box-shadow:
       var(--shine-10) var(--blue),
       var(--shine-20) var(--blue);
+    background-color: var(--blue);
     transform: translate(4.6875rem, -50%);
     transform-origin: left;
   }
 
   .box {
     color: var(--theme-font-color-seven);
-    text-shadow: var(--t-shadow-e);
     font-size: 1.25rem;
+    text-shadow: var(--t-shadow-e);
     line-height: 1.25;
 
     .name {

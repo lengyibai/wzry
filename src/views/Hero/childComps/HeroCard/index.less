@@ -3,9 +3,9 @@
 
   position: relative;
   display: flex;
-  overflow: hidden;
   align-items: flex-start;
   flex-direction: column;
+  overflow: hidden;
   width: 100%;
   border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
@@ -23,20 +23,20 @@
 
     .bottom {
       .name {
-        opacity: 0;
         transform: translateX(-6.25rem);
+        opacity: 0;
       }
 
       .mark {
-        opacity: 0;
         transform: translateX(6.25rem);
+        opacity: 0;
       }
     }
 
     .id,
     .num {
-      opacity: 0;
       transform: scale(1.5);
+      opacity: 0;
     }
 
     .bg {
@@ -48,8 +48,8 @@
   .num {
     z-index: 1;
     margin: 0.9375rem;
-    text-shadow: var(--t-shadow-d);
     font-size: 1rem;
+    text-shadow: var(--t-shadow-d);
     transition: all 0.25s;
   }
 
@@ -68,28 +68,28 @@
     transition: all 0.25s;
 
     .head {
-      margin-bottom: 0.9375rem;
       width: 50%;
+      margin-bottom: 0.9375rem;
       border-radius: 50%;
       box-shadow: var(--b-shadow-a);
-      opacity: 0;
       transition: all 0.25s;
       transform: translateY(-3.125rem) scale(1.5);
       animation: scale 0.25s 0.1s forwards;
+      opacity: 0;
     }
 
     .view {
       color: var(--blue);
       font-size: 1.5rem;
-      opacity: 0;
       transition: all 0.25s;
       transform: translateY(3.125rem) scale(0.75);
       animation: scale 0.25s 0.1s forwards;
+      opacity: 0;
 
       @keyframes scale {
         100% {
-          opacity: 1;
           transform: translateY(0%) scale(1);
+          opacity: 1;
         }
       }
     }
@@ -114,27 +114,27 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 0.9375rem;
     width: 100%;
+    padding: 0.9375rem;
 
     .name {
-      margin-bottom: 0.3125rem;
       width: fit-content;
+      margin-bottom: 0.3125rem;
       color: var(--white);
-      text-shadow: var(--t-shadow-e);
       font-size: 1.875rem;
+      text-shadow: var(--t-shadow-e);
       line-height: 1;
-      opacity: 1;
       transition: all 0.25s;
       transform: translate(0);
+      opacity: 1;
     }
 
     .mark {
       color: var(--white-75);
       font-size: 1.25rem;
-      opacity: 1;
       transition: all 0.25s;
       transform: translate(0);
+      opacity: 1;
     }
   }
 }

@@ -15,17 +15,17 @@
       overflow: hidden;
       min-width: 6.25rem;
       border-radius: 0.9375rem;
+      transition: 0.5s;
+      transform: translateX(-50%) scale(0.1);
       opacity: 0;
       filter: grayscale(75%) brightness(35%)
         drop-shadow(0 0.1875rem 0.3125rem #000);
       cursor: pointer;
-      transition: 0.5s;
-      transform: translateX(-50%) scale(0.1);
 
       &.active {
+        transition: 0.1s;
         filter: grayscale(0%) brightness(100%)
           drop-shadow(0 0.1875rem 0.3125rem #000);
-        transition: 0.1s;
       }
 
       .hero-name,
@@ -38,17 +38,17 @@
       .hero-name {
         top: 0.5em;
         left: 0.5em;
+        font-size: 2.25rem;
         text-shadow: var(--t-shadow-e);
         letter-spacing: 0.25em;
-        font-size: 2.25rem;
         writing-mode: vertical-lr;
       }
 
       .skin-name {
         right: 0.5em;
         bottom: 0.5em;
-        text-shadow: var(--t-shadow-d);
         font-size: 1.25rem;
+        text-shadow: var(--t-shadow-d);
       }
 
       img {

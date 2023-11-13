@@ -1,8 +1,8 @@
 .hero-skill-content {
   position: relative;
   display: flex;
-  flex-grow: 1;
   justify-content: space-between;
+  flex-grow: 1;
   width: 100%;
   border: var(--subline);
 
@@ -13,18 +13,18 @@
   }
 
   .hide-left {
-    opacity: 0;
     transform: translateX(-10%);
+    opacity: 0;
   }
 
   .hide-right {
-    opacity: 0;
     transform: translateX(10%);
+    opacity: 0;
   }
 
   @media screen and (max-width: @large) {
-    flex-direction: column;
     justify-content: flex-start;
+    flex-direction: column;
 
     &__left,
     &__right {

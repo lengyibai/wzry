@@ -17,9 +17,9 @@
 
 /* 文字渐变 */
 .global_text-gradient {
+  color: transparent;
   background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
   background-clip: text;
-  color: transparent;
 }
 
 /* 溢出省略号显示单行 */
@@ -33,8 +33,8 @@
 /* 超级居中 */
 .global_flex-center {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 /* 自身居中 */
@@ -48,9 +48,9 @@
 .global_fill-container {
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
   bottom: 0;
-  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -94,7 +94,7 @@
   }
 
   &:active {
-    opacity: 0.5;
     transform-origin: bottom center;
+    opacity: 0.5;
   }
 }

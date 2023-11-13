@@ -1,19 +1,19 @@
 .basic-info {
   position: relative;
   display: flex;
-  overflow: hidden;
   flex-direction: column;
-  padding: 0 3.125rem;
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  background-color: var(--black-50);
+  padding: 0 3.125rem;
   box-shadow: 0 0 6.25rem 1.5625rem #000 inset;
   color: var(--white);
+  background-color: var(--black-50);
 
   &__content {
     display: flex;
-    flex-grow: 1;
     justify-content: space-between;
+    flex-grow: 1;
     margin-bottom: 1.5625rem;
     border: var(--subline);
 
@@ -63,8 +63,8 @@
 
   .wzry-down {
     position: absolute;
-    bottom: 0;
     left: 50%;
+    bottom: 0;
     color: var(--white-75);
     font-size: 4.6875rem;
     transform: translateX(-50%);
@@ -101,14 +101,14 @@
 }
 
 .show {
-  opacity: 0;
   transform: translateY(-100%);
+  opacity: 0;
 }
 
 .relationship-enter-from,
 .relationship-leave-active {
-  opacity: 0;
   transform: translateX(50%);
+  opacity: 0;
 }
 
 .relationship-leave-active,
@@ -118,8 +118,8 @@
 
 .attribute-enter-from,
 .attribute-leave-active {
-  opacity: 0;
   transform: translateY(100%);
+  opacity: 0;
 }
 
 .attribute-leave-active,

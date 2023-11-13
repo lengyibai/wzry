@@ -5,12 +5,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 3.125rem 4.6875rem;
   min-width: 16rem;
   max-width: 80vw;
+  padding: 3.125rem 4.6875rem;
   border-radius: 1.5625rem;
-  background: var(--black-50);
   box-shadow: 0 0 0.625rem 0 var(--black-75);
+  background: var(--black-50);
   transition: all 0.25s ease-out;
   transform-style: preserve-3d;
 
@@ -37,9 +37,9 @@
   }
 
   &__logo {
-    margin-bottom: 0.9375rem;
     width: 6.25rem;
     height: 6.25rem;
+    margin-bottom: 0.9375rem;
     transform: translate3d(0, 0, 6.25rem);
     animation: light 1.5s infinite alternate-reverse ease-out;
 
@@ -48,8 +48,8 @@
 
       @keyframes light {
         100% {
-          filter: drop-shadow(0 0 0.9375rem var(--theme-el-color-five));
           transform: translate3d(0, -1.25rem, 6.25rem);
+          filter: drop-shadow(0 0 0.9375rem var(--theme-el-color-five));
         }
       }
     }
@@ -57,13 +57,13 @@
 
   &__title {
     margin-bottom: 3.125rem;
+    color: transparent;
+    font-size: 3.125rem;
+    font-weight: bold;
+    text-shadow: var(--shine-35) #ffd363;
+    line-height: 1.25;
     background: linear-gradient(155deg, #f6dda5 25%, #ffb700);
     background-clip: text;
-    color: transparent;
-    text-shadow: var(--shine-35) #ffd363;
-    font-weight: bold;
-    font-size: 3.125rem;
-    line-height: 1.25;
     transform: translateZ(6.25rem);
   }
 }

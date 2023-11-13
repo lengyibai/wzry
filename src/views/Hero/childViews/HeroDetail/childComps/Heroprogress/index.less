@@ -13,9 +13,9 @@
     @height: 6.25rem;
 
     position: relative;
-    margin-bottom: 0.3125rem;
     width: 25%;
     height: @height;
+    margin-bottom: 0.3125rem;
     background-color: var(--white-75);
     transition: all 0.25s;
     transform-origin: right center;
@@ -28,12 +28,12 @@
       width: 18.75rem;
       height: 100%;
       border-radius: 0.9375rem 0 0 0.9375rem;
-      background-color: var(--black-75);
       color: var(--white);
       font-size: 2.25rem;
-      opacity: 0;
+      background-color: var(--black-75);
       transition: all 0.25s;
       transform: translateX(-125%);
+      opacity: 0;
       pointer-events: none;
 
       &:hover {
@@ -47,8 +47,8 @@
       width: 75%;
 
       .tab {
-        opacity: 1;
         transform: translateX(-100%);
+        opacity: 1;
         pointer-events: auto;
       }
     }
@@ -59,11 +59,11 @@
 
     &.active {
       width: 75%;
-      background-color: var(--blue);
       box-shadow:
         var(--shine-10) var(--blue),
         var(--shine-25) var(--blue),
         var(--shine-50) var(--blue);
+      background-color: var(--blue);
     }
   }
 }

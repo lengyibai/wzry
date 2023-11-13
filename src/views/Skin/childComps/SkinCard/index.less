@@ -1,14 +1,14 @@
 .skin-card {
   position: relative;
   display: flex;
-  overflow: hidden;
   align-items: flex-start;
   flex-direction: column;
+  overflow: hidden;
   width: 100%;
   border: 0.0625rem solid var(--white-25);
   background-color: var(--black-25);
-  opacity: 1;
   transition: all 0.25s;
+  opacity: 1;
 
   &:hover {
     border: 0.0625rem solid var(--white-50);
@@ -69,8 +69,8 @@
 
     span {
       margin: 0.3125rem;
-      text-shadow: var(--t-shadow-e);
       font-size: 1.25rem;
+      text-shadow: var(--t-shadow-e);
     }
   }
 
@@ -79,18 +79,18 @@
     bottom: 0;
     z-index: 1;
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
-    padding: 0.9375rem;
+    align-items: flex-end;
     width: 100%;
+    padding: 0.9375rem;
     transition: all 0.25s;
     pointer-events: none;
 
     .name {
       width: fit-content;
       color: var(--white);
-      text-shadow: var(--t-shadow-e);
       font-size: 1.625rem;
+      text-shadow: var(--t-shadow-e);
       line-height: 1;
       opacity: 1;
     }
@@ -173,10 +173,10 @@
     .global_fill-container();
 
     z-index: 1;
-    background-color: var(--black-50);
     text-shadow: var(--shine-25), var(--shine-50);
-    opacity: 0;
+    background-color: var(--black-50);
     transition: all 0.25s calc(0.25s - 0.15s);
+    opacity: 0;
 
     span {
       display: flex;

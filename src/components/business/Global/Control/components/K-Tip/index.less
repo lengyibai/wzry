@@ -8,17 +8,17 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    padding-bottom: 1.5625rem;
-    min-height: calc(31.25rem * 0.5989);
     width: 31.25rem;
+    min-height: calc(31.25rem * 0.5989);
+    padding-bottom: 1.5625rem;
     background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
     background-size: 100% 100%;
     filter: var(--d-shadow-c);
 
     .top {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       height: 5.625rem;
       color: var(--theme-font-color-seven);
       text-shadow: var(--t-shadow-e);
@@ -30,29 +30,29 @@
 
       .soldier {
         height: 6.25rem;
-        filter: var(--d-shadow-b);
         transform: translateY(-50%) rotateY(180deg);
+        filter: var(--d-shadow-b);
       }
     }
 
     .content {
-      overflow: auto;
       flex-grow: 1;
+      overflow: auto;
+      width: 100%;
       margin-bottom: 2.1875rem;
       padding: 0 1.875rem 0 3.125rem;
-      width: 100%;
+      font-size: 1.5rem;
       text-indent: 2em;
       text-shadow: var(--t-shadow-e);
-      font-size: 1.5rem;
       line-height: 1.25;
     }
 
     .btns {
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 0 1.875rem 0 3.125rem;
+      align-items: center;
       width: 100%;
+      padding: 0 1.875rem 0 3.125rem;
 
       .k-button {
         --width: 9.375rem;
@@ -65,14 +65,14 @@
 
 .left-top-enter-from,
 .left-bottom-enter-from {
-  opacity: 0;
   transform: translateX(-100%);
+  opacity: 0;
 }
 
 .right-top-enter-from,
 .right-bottom-enter-from {
-  opacity: 0;
   transform: translateX(100%);
+  opacity: 0;
 }
 
 .left-bottom-leave-active,

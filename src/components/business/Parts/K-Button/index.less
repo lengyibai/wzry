@@ -11,8 +11,8 @@
   height: var(--height);
   box-shadow: var(--b-shadow-a);
   color: var(--white);
-  text-shadow: var(--t-shadow-d);
   font-size: var(--font-size);
+  text-shadow: var(--t-shadow-d);
   line-height: var(--height);
   transition: all 0.25s;
 
@@ -42,10 +42,10 @@
   &:active {
     box-shadow: initial;
     text-shadow: initial;
-    filter: contrast(1) brightness(0.75);
     transition: all 0.05s;
     transform: scale(0.95);
     transform-origin: bottom center;
+    filter: contrast(1) brightness(0.75);
 
     &.info {
       box-shadow: none;

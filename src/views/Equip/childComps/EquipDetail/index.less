@@ -2,18 +2,18 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  overflow: auto;
   flex-shrink: 0;
-  padding-left: 1.25rem;
+  overflow: auto;
   width: 30%;
   height: 100%;
+  padding-left: 1.25rem;
   line-height: 1.25;
-  opacity: 0;
   transition: all 0.25s;
+  opacity: 0;
 
   &.show {
-    opacity: 1;
     transition: all 0.5s;
+    opacity: 1;
   }
 
   .name {
@@ -55,9 +55,9 @@
 
   @media screen and (width <= 1120px) {
     left: 0;
-    padding: 0.625rem;
     width: 100%;
     height: initial;
+    padding: 0.625rem;
     background-color: var(--black-25);
     backdrop-filter: blur(0.3125rem);
   }
@@ -81,15 +81,15 @@
 .lq {
   @size: 1rem;
 
+  height: @size;
   margin-bottom: 0.3125rem;
   padding-left: 1.375rem;
-  height: @size;
-  background-size: contain;
-  background-repeat: no-repeat;
   color: var(--theme-font-color-seven);
   font-size: 1rem;
   font-family: var(--font-f);
   line-height: 1;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .zdsm {

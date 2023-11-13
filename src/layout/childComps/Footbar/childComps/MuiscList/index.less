@@ -38,9 +38,9 @@
 
   .list {
     display: flex;
-    overflow: auto;
     flex-direction: column;
     flex-grow: 1;
+    overflow: auto;
     width: 100%;
 
     .card {
@@ -48,15 +48,15 @@
 
       position: relative;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      padding: 0 0.625rem;
+      align-items: center;
       width: 100%;
       height: 3.125rem;
+      padding: 0 0.625rem;
 
       &:hover {
-        background-color: var(--theme-el-color-two);
         text-shadow: var(--shine-15) !important;
+        background-color: var(--theme-el-color-two);
 
         .left {
           transition: all 0s;
