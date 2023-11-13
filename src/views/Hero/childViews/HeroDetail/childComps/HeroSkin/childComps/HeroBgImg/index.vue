@@ -10,7 +10,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const animates = ["xmove", "ymove", "square", "clip", "spin", "tv", "fold", "deploy"];
+const animates = ["xmove", "square"];
 
 const index = ref(0);
 
@@ -19,6 +19,7 @@ watch(
   () => {
     if (animates.length - 1 === index.value) {
       index.value = 0;
+      return;
     }
     index.value++;
   },
