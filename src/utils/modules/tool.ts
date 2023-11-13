@@ -971,17 +971,22 @@ export class ImageLoader {
 
       if (!coverUrl) return;
 
-      item.onload = () => {
+      const finishLoadBlur = () => {
         coverImg.src = coverUrl;
 
-        coverImg.onload = () => {
+        const finishLoadBig = () => {
           item.src = coverUrl;
           item.removeAttribute("data-src");
           item.onload = () => {
             item.classList.remove("blur");
           };
         };
+
+        coverImg.onload = finishLoadBig;
       };
+
+      item.onload = finishLoadBlur;
+      item.onerror = finishLoadBlur;
     });
   }
 }
@@ -993,6 +998,9 @@ export const preloadImages = async (images: string[]) => {
       const img = new Image();
       img.src = images[i];
       img.onload = () => {
+        resolve();
+      };
+      img.onerror = () => {
         resolve();
       };
     });
