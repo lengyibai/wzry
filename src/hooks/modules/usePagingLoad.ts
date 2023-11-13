@@ -63,6 +63,8 @@ const usePagingLoad = <T>() => {
     filter_list,
     /** 展示的数据列表 */
     show_list,
+    /** 一页个数 */
+    page_count,
     resetPage,
     loadMore,
     setScroll,
