@@ -22,6 +22,7 @@ import { API_HERO } from "@/api";
 import { $tool, $bus } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
+import { usePagingLoad } from "@/hooks";
 
 defineOptions({
   name: "Hero",
@@ -35,6 +36,8 @@ const $audioStore = AudioStore();
 const $heroDetail = HeroDetailStore();
 const { getHeroList, setScroll, loadMore } = HeroStore();
 const { all_data, scroll, show_list, finish } = storeToRefs(HeroStore());
+
+const { page_count } = usePagingLoad();
 
 /** 地址栏参数 */
 const id: unknown = $route.query.id;
@@ -201,7 +204,7 @@ onUnmounted(() => {
             :key="index"
             class="hero-card"
             :style="{
-              'transition-delay': (index % 30) * 0.025 + 's',
+              'transition-delay': (index % page_count) * 0.025 + 's',
             }"
             @mouseenter="handleEnterCard(item)"
           >

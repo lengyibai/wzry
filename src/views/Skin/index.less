@@ -14,3 +14,19 @@
     }
   }
 }
+
+.skin-card-enter-from {
+  bottom: 0;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.skin-card-enter-active,
+.skin-card-leave-active,
+.skin-card-move {
+  transition: all 0.5s;
+}
+
+.skin-card-leave-active {
+  position: absolute;
+}

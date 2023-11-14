@@ -150,14 +150,19 @@ onUnmounted(() => {
           @load-more="onLoadMore"
           @scroll="onScroll"
         >
-          <div
-            v-for="item in show_list"
-            :key="item.id"
-            class="skin-card"
-            @mouseenter="handleEnterCard"
-          >
-            <SkinCard :data="item" @showTool="onShowTool" />
-          </div>
+          <transition-group name="skin-card" appear>
+            <div
+              v-for="(item, index) in show_list"
+              :key="item.id"
+              class="skin-card"
+              :style="{
+                'transition-delay': (index % (count * 2)) * 0.1 + 's',
+              }"
+              @mouseenter="handleEnterCard"
+            >
+              <SkinCard :data="item" @showTool="onShowTool" />
+            </div>
+          </transition-group>
         </LibGrid>
       </transition>
     </div>

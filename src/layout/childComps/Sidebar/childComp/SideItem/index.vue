@@ -54,7 +54,7 @@ nextTick(() => {
   setTimeout(() => {
     if (!show.value || !menuItemRef.value) return;
     show.value && $emit("coord", menuItemRef.value.getBoundingClientRect().top);
-  }, 100);
+  }, 2000);
 });
 
 //如果当前路由存在子路由，则添加进子菜单用于循环生成
