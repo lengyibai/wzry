@@ -16,6 +16,7 @@ module.exports = {
     },
   ],
   rules: {
+    "media-feature-range-notation": null, //禁用将媒体查询max-width转换为width<=的形式
     "no-extra-semicolons": null, //检测代码中多余的分号
     "media-query-no-invalid": null, //允许无效的媒体查询
     "no-eol-whitespace": null, //允许行尾空白
