@@ -26,7 +26,9 @@ axios
 
     if (remote > local && auto_update_status === "0") {
       updateLocalVersion();
-      location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
     }
   });
 

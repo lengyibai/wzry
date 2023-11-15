@@ -33,17 +33,19 @@ const MusicStore = defineStore("music", () => {
   const audio_visual = ref<AudioVisual>();
   /** 音乐列表 */
   const musics = [
-    { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
-    { name: "永远的长安城", url: "cac", time: "00:02:42" },
-    { name: "英雄归来", url: "yxgl", time: "00:03:03" },
-    { name: "王者诸将", url: "wzzj", time: "00:03:31" },
-    { name: "王者战歌", url: "wzzg", time: "00:02:41" },
-    { name: "王者登陆", url: "wzdl", time: "00:03:14" },
-    { name: "王者出征", url: "wzcz", time: "00:04:07" },
-    { name: "王者冰刃", url: "wzbr", time: "00:04:07" },
-    { name: "荣耀主题", url: "ryzt", time: "00:03:36" },
-    { name: "荣耀之路", url: "ryzl", time: "00:08:06" },
-    { name: "冠军杯", url: "gjb", time: "00:03:33" },
+    // { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
+    // { name: "永远的长安城", url: "cac", time: "00:02:42" },
+    // { name: "英雄归来", url: "yxgl", time: "00:03:03" },
+    // { name: "王者诸将", url: "wzzj", time: "00:03:31" },
+    // { name: "王者战歌", url: "wzzg", time: "00:02:41" },
+    // { name: "王者登陆", url: "wzdl", time: "00:03:14" },
+    // { name: "王者出征", url: "wzcz", time: "00:04:07" },
+    // { name: "王者冰刃", url: "wzbr", time: "00:04:07" },
+    // { name: "荣耀主题", url: "ryzt", time: "00:03:36" },
+    // { name: "荣耀之路", url: "ryzl", time: "00:08:06" },
+    // { name: "冠军杯", url: "gjb", time: "00:03:33" },
+    { name: "天籁之歌", url: "tlzg", time: "00:03:29" },
+    { name: "海风协奏", url: "hfxz", time: "00:03:17" },
   ];
 
   //打乱顺序
