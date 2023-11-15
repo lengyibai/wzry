@@ -10,7 +10,7 @@ import { ResultData } from "@/api/interface";
 
 const config = {
   baseURL: import.meta.env.VITE_API_URL as string,
-  timeout: 30000,
+  timeout: 1000 * 600,
 };
 
 class RequestHttp {
