@@ -2,7 +2,7 @@
 import { ref, onMounted } from "vue";
 
 import { VersionStore } from "@/store";
-import { SettingDialog, UpdateLog } from "@/components/business";
+import { SettingDialog, UpdateLog, Todo } from "@/components/business";
 
 const $versionStore = VersionStore();
 
@@ -10,6 +10,8 @@ const $versionStore = VersionStore();
 const show_setting = ref(false);
 /** 是否显示日志弹窗 */
 const show_update = ref(false);
+/** 是否显示任务清单 */
+const show_todo = ref(false);
 
 onMounted(() => {
   setTimeout(() => {
@@ -28,10 +30,16 @@ const handleUpdateLog = (v: boolean) => {
     <!-- 按钮 -->
     <i class="iconfont wzry-setting" title="设置" @click="show_setting = true" />
     <i class="iconfont wzry-gengxinrizhi" title="更新日志" @click="handleUpdateLog(true)" />
+    <i class="iconfont wzry-todo" title="计划清单" @click="show_todo = true" />
 
     <!-- 设置弹窗 -->
     <transition name="fade">
       <SettingDialog v-if="show_setting" v-model="show_setting" />
+    </transition>
+
+    <!-- 任务清单 -->
+    <transition name="fade">
+      <Todo v-if="show_todo" v-model="show_todo" />
     </transition>
 
     <!-- 更新日志 -->

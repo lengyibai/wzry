@@ -5,7 +5,6 @@ import { storeToRefs } from "pinia";
 import RegLogin from "./childComps/RegLogin/index.vue";
 import Notice from "./childComps/Notice/index.vue";
 import ReadMe from "./childComps/ReadMe/index.vue";
-import Todo from "./childComps/Todo/index.vue";
 import Team from "./childComps/Team/index.vue";
 import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
@@ -24,17 +23,13 @@ const { getImgLink, getVideoLink } = $concise;
 const show_notice = ref(true);
 /** 显示README */
 const show_readme = ref(false);
-/** 显示计划 */
-const show_todo = ref(false);
 /** 显示开黑 */
 const show_team = ref(false);
 /** 数据下载完成 */
 const finish = ref(false);
 
 /* 隐藏注册登录盒子 */
-const hideRegLogin = computed(
-  () => !finish.value || show_notice.value || show_todo.value || show_team.value,
-);
+const hideRegLogin = computed(() => !finish.value || show_notice.value || show_team.value);
 
 /**
  * 点击右上角工具栏
@@ -44,7 +39,6 @@ const onToolType = (v: string) => {
   show_readme.value = v === "readme";
   show_notice.value = v === "notice";
   show_team.value = v === "team";
-  show_todo.value = v === "todo";
 };
 
 /* 关闭公告触发 */
@@ -111,11 +105,6 @@ onUnmounted(() => {
     <!-- README -->
     <transition name="fade">
       <ReadMe v-if="show_readme" v-model="show_readme" />
-    </transition>
-
-    <!-- 计划 -->
-    <transition name="fade">
-      <Todo v-if="show_todo" v-model="show_todo" />
     </transition>
 
     <!-- 开黑 -->

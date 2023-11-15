@@ -17,9 +17,8 @@ $audioStore.play("u4c5");
 </script>
 
 <template>
-  <KDialog v-bind="$attrs" width="56.25rem" header="微信小程序">
+  <KDialog v-bind="$attrs" width="56.25rem" header="网站计划清单">
     <div class="todo">
-      <h1>商城系统</h1>
       <div class="content" v-html="todo"></div>
     </div>
   </KDialog>

@@ -8,6 +8,7 @@ import EditUserInfo from "./Global/EditUserInfo/index.vue";
 import SettingDialog from "./Global/SettingDialog/index.vue";
 import UpdateLog from "./Global/UpdateLog/index.vue";
 import WaterMark from "./Global/WaterMark/index.vue";
+import Todo from "./Global/Todo/index.vue";
 import KBackTop from "./Parts/K-BackTop/index.vue";
 import KButton from "./Parts/K-Button/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
@@ -50,4 +51,5 @@ export {
   ReleaseConfirm,
   SelectHero,
   SelectImg,
+  Todo,
 };

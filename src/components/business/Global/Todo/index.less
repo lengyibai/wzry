@@ -8,23 +8,28 @@
   color: var(--theme-font-color-four);
   text-shadow: var(--t-shadow-e);
 
-  h1 {
-    margin-bottom: 0.625rem;
-    font-size: 1.875rem;
-  }
-
   :deep(.content) {
     margin-bottom: 1.875rem;
-    padding-left: 2em;
+
+    h1 {
+      margin-bottom: 0.625rem;
+      font-size: 1.875rem;
+
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
 
     h2 {
       margin-top: 1.25rem;
       margin-bottom: 0.625rem;
+      padding-left: -2em;
       font-size: 1.625rem;
       font-weight: normal;
     }
 
     p {
+      padding-left: -2em;
       font-size: 1.375rem;
       font-family: var(--font-f);
       text-shadow: var(--t-shadow-d);

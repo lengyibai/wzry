@@ -85,16 +85,6 @@ defineExpose({
       <div class="base"></div>
     </div>
 
-    <!--计划 -->
-    <div v-if="notice" class="tool" title="计划">
-      <div class="line"></div>
-      <div class="box elastic" @click="handleTool('todo')">
-        <i class="iconfont wzry-todo" />
-        <span class="text">计划</span>
-      </div>
-      <div class="base"></div>
-    </div>
-
     <!-- 开黑 -->
     <div v-if="notice" class="tool" title="开黑">
       <div class="line"></div>
