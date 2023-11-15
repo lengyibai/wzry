@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import axios from "axios";
-import dayjs from "dayjs";
 
 import { useUpdateData } from "@/hooks";
 import { $message } from "@/utils";
 import { CONFIG } from "@/config";
+import { API_DATA } from "@/api";
 
 const VersionStore = defineStore("version", () => {
   /** 本地版本 */
@@ -51,57 +50,52 @@ const VersionStore = defineStore("version", () => {
   const watchVersion = () => {
     const timer = setTimeout(() => {
       watchVersion();
-    }, 10000);
-    axios
-      .get(
-        `${location.origin}/${
-          import.meta.env.DEV ? "" : "king-honor/"
-        }json/version.json?t=${dayjs().unix()}`,
-      )
-      .then((res) => {
-        const { main, file, log, time } = res.data;
-        remote_version.value = main;
-        file_version.value = file;
-        update_log.value.file = log;
-        update_log.value.time = time;
+    }, 1000 * 60);
 
-        //如果无本地版本，则直接更新，否则比对
-        if (!local_version.value) {
-          updateVersion(main);
-        } else {
-          const local = Number(local_version.value.replaceAll(".", ""));
-          const remote = Number(main.replaceAll(".", ""));
-          const test = remote - local;
+    API_DATA.Version().then((res) => {
+      const { main, file, log, time } = res;
+      remote_version.value = main;
+      file_version.value = file;
+      update_log.value.file = log;
+      update_log.value.time = time;
 
-          //如果为旧版，则自动更新并更新本地版本并返回更新改动
-          if (test > 0) {
-            clearTimeout(timer);
-            data_status.value = true;
-            $message("正在更新版本，更新后可查看数据改动，请稍等...");
-            useUpdateData().then((res) => {
-              update_log.value = { ...update_log.value, ...res };
-              show_update.value = true;
-              updateVersion(remote_version.value);
-            });
-          }
-        }
+      //如果无本地版本，则直接更新，否则比对
+      if (!local_version.value) {
+        updateVersion(main);
+      } else {
+        const local = Number(local_version.value.replaceAll(".", ""));
+        const remote = Number(main.replaceAll(".", ""));
+        const test = remote - local;
 
-        //如果无本地文件版本，则直接更新，否则比对
-        if (!local_file.value) {
-          updateFileVersion(file);
-        } else {
-          const local = Number(local_file.value.replaceAll(".", ""));
-          const remote = Number(file.replaceAll(".", ""));
-          const test = remote - local;
-
-          //如果为旧版，则自动更新并更新本地版本
-          if (test > 0 && !data_status.value) {
-            clearTimeout(timer);
+        //如果为旧版，则自动更新并更新本地版本并返回更新改动
+        if (test > 0) {
+          clearTimeout(timer);
+          data_status.value = true;
+          $message("正在更新版本，更新后可查看数据改动，请稍等...");
+          useUpdateData().then((res) => {
+            update_log.value = { ...update_log.value, ...res };
             show_update.value = true;
-            file_status.value = true;
-          }
+            updateVersion(remote_version.value);
+          });
         }
-      });
+      }
+
+      //如果无本地文件版本，则直接更新，否则比对
+      if (!local_file.value) {
+        updateFileVersion(file);
+      } else {
+        const local = Number(local_file.value.replaceAll(".", ""));
+        const remote = Number(file.replaceAll(".", ""));
+        const test = remote - local;
+
+        //如果为旧版，则自动更新并更新本地版本
+        if (test > 0 && !data_status.value) {
+          clearTimeout(timer);
+          show_update.value = true;
+          file_status.value = true;
+        }
+      }
+    });
   };
 
   /* 实时接收更新通知 */

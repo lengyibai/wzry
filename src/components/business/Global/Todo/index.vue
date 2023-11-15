@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
 import { KDialog } from "@/components/business";
+import { API_DATA } from "@/api";
 
 const $audioStore = AudioStore();
 

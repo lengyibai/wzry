@@ -5,21 +5,56 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import dayjs from "dayjs";
 
 import { ResultData } from "@/api/interface";
 
-const config = {
-  baseURL: import.meta.env.VITE_API_URL as string,
+const local = {
+  baseURL: `${location.origin}/${import.meta.env.DEV ? "" : "king-honor/"}json`,
   timeout: 1000 * 600,
 };
 
-class RequestHttp {
-  service: AxiosInstance;
+const remote = {
+  baseURL: import.meta.env.VITE_REMOTE_API_URL as string,
+  timeout: 1000 * 600,
+};
+
+class LocaleHttp {
+  private service: AxiosInstance;
   constructor(config: AxiosRequestConfig) {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        config.url += `?temp=${Math.random()}`;
+        config.url += `?temp=${dayjs().valueOf()}`;
+        return config;
+      },
+      (error: AxiosError) => {
+        return Promise.reject(error);
+      },
+    );
+
+    /** @description 响应拦截器 */
+    this.service.interceptors.response.use(
+      (response: AxiosResponse) => {
+        return response.data;
+      },
+      (error: AxiosError) => {
+        return Promise.reject(error);
+      },
+    );
+  }
+
+  Get<T = unknown>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+    return this.service.get(url, { params, ...config });
+  }
+}
+class RemoteHttp {
+  private service: AxiosInstance;
+  constructor(config: AxiosRequestConfig) {
+    this.service = axios.create(config);
+    this.service.interceptors.request.use(
+      (config: InternalAxiosRequestConfig) => {
+        config.url += `?temp=${dayjs().valueOf()}`;
         return config;
       },
       (error: AxiosError) => {
@@ -85,4 +120,7 @@ class RequestHttp {
   }
 }
 
-export default new RequestHttp(config);
+const $LocaleHttp = new LocaleHttp(local);
+const $RemoteHttp = new RemoteHttp(remote);
+
+export { $LocaleHttp, $RemoteHttp };
