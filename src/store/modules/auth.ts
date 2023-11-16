@@ -1,16 +1,19 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { VersionStore } from "./version";
+
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
 import { API_USER } from "@/api";
-import { $message } from "@/utils";
+import { $bus, $message } from "@/utils";
 import { CONFIG } from "@/config";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
+  const $versionStore = VersionStore();
 
   /** 实时检测帐号状态 */
   let timer: NodeJS.Timeout | undefined;
@@ -108,22 +111,27 @@ const AuthStore = defineStore("auth", () => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
       const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
 
-      //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
-      if (token - Number(data_token) > CONFIG.BASE.OVERDUE_DATA_TIME) {
-        clearInterval(timer);
-        $message("数据每三天完整下载一次，即将开始下载", "error");
-        setTimeout(async () => {
-          localStorage.clear();
-          location.reload();
-        }, 5000);
+      if (!localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)) {
+        $message("数据丢失，请重新登录", "error");
+        clearToken();
         return;
       }
 
-      if (!localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)) {
-        $message("数据已过期，请重登录", "error");
-        clearToken();
+      //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
+      if (token - Number(data_token) > CONFIG.BASE.OVERDUE_DATA_TIME) {
+        clearInterval(timer);
+        $bus.emit("confirm", {
+          text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
+          close: false,
+          confirm: () => {
+            localStorage.clear();
+            clearToken();
+            $versionStore.watchVersion();
+          },
+        });
+        return;
       }
-    }, 3000);
+    }, 1000 * 10);
   };
 
   return {
@@ -139,7 +147,6 @@ const AuthStore = defineStore("auth", () => {
     autoLogin,
     logout,
     clearToken,
-    watchStatus,
     logoff,
   };
 });
