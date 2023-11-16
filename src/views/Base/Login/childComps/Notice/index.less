@@ -16,17 +16,39 @@
     padding-left: 2em;
     text-shadow: var(--t-shadow-d);
 
-    p {
-      font-size: 1.375rem;
-      font-family: var(--font-f);
-      line-height: 1.5;
+    .lyb {
+      display: flex;
+      align-items: center;
 
-      .iconfont {
-        font-size: 2rem !important;
+      .head-img {
+        width: 4.5rem;
+        height: 4.5rem;
+        margin-right: 1rem;
+        border-radius: 50%;
       }
 
-      span {
-        font-size: 1.5rem !important;
+      .name {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    }
+
+    p {
+      font-size: 1.375rem;
+      line-height: 1.5;
+
+      a {
+        color: #3498db;
+        text-shadow: 0 0 15px;
+      }
+
+      .link {
+        font-size: 1.75rem !important;
+
+        &__name {
+          margin-left: 0.25em;
+          font-size: 1.5rem !important;
+        }
       }
     }
   }
