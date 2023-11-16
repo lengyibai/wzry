@@ -17,9 +17,9 @@ export default defineConfig(({ mode }) => {
       visualizer({
         filename: "visualizer.html",
       }),
-      legacy({
-        targets: [">0.1%", "last 2 version", "not dead"],
-      }),
+      // legacy({
+      //   targets: [">0.1%", "last 2 version", "not dead"],
+      // }),
       VitePWA({
         registerType: "autoUpdate",
         manifest: {
