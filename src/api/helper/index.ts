@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import { ResultData } from "@/api/interface";
 
 const local = {
-  baseURL: `${location.origin}/${import.meta.env.DEV ? "" : "king-honor/"}json`,
+  baseURL: `${location.origin}/json`,
   timeout: 1000 * 600,
 };
 
