@@ -71,7 +71,7 @@ const useGetData = () => {
     total.value = hero_list.length - 2;
 
     /* 下载语音数据 */
-    type.value = "语音数据";
+    type.value = "语音包";
     index.value = 0;
     //收集处理请求
     const voice_requests = hero_list.map(async (item) => {
@@ -81,6 +81,7 @@ const useGetData = () => {
           setData(`voice_${item.pinyin}`, {
             data: (await API_DATA.Voice(item.name)).data,
           });
+          type.value = `${item.name}语音`;
           index.value++;
         }
       }
