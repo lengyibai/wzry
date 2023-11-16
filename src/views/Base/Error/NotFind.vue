@@ -11,7 +11,7 @@ const $router = useRouter();
     <div class="error__content">
       <div class="title">404</div>
       <div class="text">页面未找到</div>
-      <div class="desc">你访问了一个不存在的地址</div>
+      <div class="desc">您访问了一个不存在的地址</div>
     </div>
     <KButton class="back-home" @click="$router.replace('/login')">回到主页</KButton>
   </div>
