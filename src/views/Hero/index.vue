@@ -220,15 +220,17 @@ onUnmounted(() => {
     </transition>
 
     <!--英雄详情页-->
-    <transition name="clip">
-      <HeroDetail
-        v-if="show_HeroDetail"
-        :data="hero_info"
-        :voices="hero_info.voices"
-        :skins="hero_info.skins"
-        :skills="hero_info.skills"
-      />
-    </transition>
+    <teleport to="body">
+      <transition name="clip">
+        <HeroDetail
+          v-if="show_HeroDetail"
+          :data="hero_info"
+          :voices="hero_info.voices"
+          :skins="hero_info.skins"
+          :skills="hero_info.skills"
+        />
+      </transition>
+    </teleport>
   </div>
 </template>
 

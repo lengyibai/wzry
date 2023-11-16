@@ -80,9 +80,11 @@ onActivated(() => {
 
     <!--发布列表-->
     <template v-for="(v, k) in options" :key="k">
-      <transition name="tv-clip">
-        <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
-      </transition>
+      <teleport to="body">
+        <transition name="tv-clip">
+          <component :is="components[v.i]" v-if="v.show" v-model="v.show" />
+        </transition>
+      </teleport>
     </template>
   </div>
 </template>

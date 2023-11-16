@@ -173,11 +173,13 @@ onUnmounted(() => {
     </transition>
 
     <!-- 语音列表 -->
-    <transition name="fade">
-      <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
-        <SkinVoice :voices="voices" />
-      </KDialog>
-    </transition>
+    <teleport to="body">
+      <transition name="fade">
+        <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
+          <SkinVoice :voices="voices" />
+        </KDialog>
+      </transition>
+    </teleport>
   </div>
 </template>
 
