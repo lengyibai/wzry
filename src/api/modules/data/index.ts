@@ -7,14 +7,8 @@ export const Version = () => $LocaleHttp.Get<VersionUpdate>("/version.json");
 /** @description 获取计划 */
 export const Todo = () => $LocaleHttp.Get<{ data: string }>("/todo.json");
 
-/** @description 获取版本信息 */
-// export const Version = () => $RemoteHttp.Get<VersionUpdate>("/version.json");
-
 /** @description 获取公告 */
-export const Notice = () => $RemoteHttp.Get<string>("/notice.json");
-
-/** @description 获取计划 */
-// export const Todo = () => $RemoteHttp.Get<string>("/todo.json");
+export const Notice = () => $LocaleHttp.Get<{ data: string }>("/notice.json");
 
 /** @description 获取战绩 */
 export const Team = () => $RemoteHttp.Get<string[][]>("/team.json");
