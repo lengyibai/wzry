@@ -7,10 +7,9 @@ import viewHide from "@/views/System/hooks/useViewHide";
 import { skillDefault, skillEffectDefault } from "@/default";
 import { API_HERO, API_SKILL } from "@/api";
 import { HeroStore } from "@/store";
-import { $loading, $message } from "@/utils";
+import { $bus, $loading, $message } from "@/utils";
 import { CONFIG } from "@/config";
 import {
-  ConfirmClose,
   FormInput,
   FormLabel,
   FormSelect,
@@ -47,10 +46,6 @@ const effectIndex = ref(-1);
 const active_index = ref(0);
 /** 用于切换副技能的索引 */
 const deputy_index = ref(0);
-/** 显示技能组删除弹窗 */
-const show_DelDeputys = ref(false);
-/** 显示技能删除弹窗 */
-const show_DelSkill = ref(false);
 /** 技能效果 */
 const skill_effects = ref<General[]>([]);
 /** 技能类型表 */
@@ -126,12 +121,18 @@ const handleToggleSkill = () => {
 
 /* 删除技能 */
 const onDelSkill = () => {
-  show_DelSkill.value = true;
+  $bus.emit("confirm", {
+    text: "确定要删除该技能吗？",
+    confirm: onConfirmDelSkill,
+  });
 };
 
 /* 删除技能组 */
 const handleDelDeputys = () => {
-  show_DelDeputys.value = true;
+  $bus.emit("confirm", {
+    text: "确定要删除该技能组吗？",
+    confirm: onConfirmDelDeputys,
+  });
 };
 
 /* 确认删除技能 */
@@ -381,26 +382,6 @@ const onCommit = async () => {
       @confirm="onConfirmSave"
       @cancel="onConfirmRemove"
     />
-
-    <!-- 确认删除技能 -->
-    <transition name="fade">
-      <ConfirmClose
-        v-if="show_DelSkill"
-        v-model="show_DelSkill"
-        text="确认删除当前技能？"
-        @confirm="onConfirmDelSkill"
-      />
-    </transition>
-
-    <!-- 确认删除技能组 -->
-    <transition name="fade">
-      <ConfirmClose
-        v-if="show_DelDeputys"
-        v-model="show_DelDeputys"
-        text="确认删除当前技能组？"
-        @confirm="onConfirmDelDeputys"
-      />
-    </transition>
   </ManageMask>
 </template>
 

@@ -4,10 +4,9 @@ import _debounce from "lodash/debounce";
 
 import { API_DATA } from "@/api";
 import { SkinStore, HeroStore, AudioStore } from "@/store";
-import { $message, $tool } from "@/utils";
+import { $bus, $message, $tool } from "@/utils";
 import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
-import { ConfirmClose } from "@/components/business";
 import { LibTable, TableColumn } from "@/components/common";
 
 interface TableData {
@@ -90,8 +89,6 @@ let update_status = true;
 /** 替换的数据 */
 let replace_data: TableData;
 
-/** 显示确认关闭弹窗 */
-const show_ConfirmClose = ref(false);
 /** 表格数据 */
 const table_data = ref<TableData[]>([]);
 
@@ -179,7 +176,10 @@ const handleUpdate = async (data: TableData) => {
 /* 强制覆盖 */
 const handleReplace = (data: TableData) => {
   replace_data = data;
-  show_ConfirmClose.value = true;
+  $bus.emit("confirm", {
+    text: "即将从远程下载当前数据进行覆盖",
+    confirm: onConfirmReset,
+  });
 };
 
 /* 导出 */
@@ -234,17 +234,6 @@ onActivated(() => {
         </TableColumn>
       </template>
     </LibTable>
-
-    <!-- 确认弹窗 -->
-    <transition name="fade">
-      <ConfirmClose
-        v-if="show_ConfirmClose"
-        v-model="show_ConfirmClose"
-        text="即将从远程下载当前数据进行覆盖"
-        title="确认重置"
-        @confirm="onConfirmReset"
-      />
-    </transition>
   </div>
 </template>
 

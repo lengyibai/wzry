@@ -2,8 +2,8 @@
 import { ref, computed } from "vue";
 
 import { AuthStore, AudioStore } from "@/store";
-import { $concise } from "@/utils";
-import { ConfirmClose, EditUserInfo, KButton, KDialog } from "@/components/business";
+import { $bus, $concise } from "@/utils";
+import { EditUserInfo, KButton, KDialog } from "@/components/business";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -14,10 +14,6 @@ const { getImgLink } = $concise;
 const show_menu = ref(false);
 /** 显示编辑个人信息弹窗 */
 const show_edit = ref(false);
-/** 显示确认保存弹窗 */
-const show_close = ref(false);
-/** 显示确认注销弹窗 */
-const show_logoff = ref(false);
 /** 信息是否修改 */
 const edit_status = ref(false);
 
@@ -42,21 +38,32 @@ const handleLogout = () => {
   $authStore.logout();
 };
 
+/* 注销账号确认 */
+const handleConfirmLogoff = () => {
+  $bus.emit("confirm", {
+    text: "注销后，当前帐号需重新注册才能登录，确定注销吗？",
+    confirm: handleLogoff,
+  });
+};
+
 /* 注销账号 */
 const handleLogoff = async () => {
   $authStore.logoff();
 };
 
 /* 显示确认关闭弹窗 */
-const onClose = () => {
+const onCloseConfirmEdidInfo = () => {
   if (edit_status.value) {
-    show_close.value = true;
+    $bus.emit("confirm", {
+      text: "资料已修改，确定关闭吗？",
+      confirm: () => {
+        show_edit.value = false;
+      },
+    });
   } else {
     show_edit.value = false;
   }
 };
-//#TODO 移除
-/* 问候语 */
 </script>
 
 <template>
@@ -79,39 +86,28 @@ const onClose = () => {
       <div class="btns">
         <KButton class="k-button" @click="handleEditInfo">编辑个人信息</KButton>
         <KButton class="k-button" type="warning" @click="handleLogout">退出登录</KButton>
-        <KButton class="k-button" type="error" @click="show_logoff = true">注销帐号</KButton>
+        <KButton class="k-button" type="error" @click="handleConfirmLogoff">注销帐号</KButton>
       </div>
     </div>
   </div>
-  <transition name="fade">
-    <KDialog v-if="show_edit" title="编辑个人信息" width="57.5rem" up @close="onClose">
-      <EditUserInfo
-        :id="$authStore.userInfo.id"
-        v-model:status="edit_status"
-        @close="show_edit = false"
-      />
-    </KDialog>
-  </transition>
 
-  <!-- 注销确认 -->
-  <transition name="fade">
-    <ConfirmClose
-      v-if="show_logoff"
-      v-model="show_logoff"
-      text="注销后，当前帐号需重新注册才能登录，确定注销吗？"
-      @confirm="handleLogoff"
-    />
-  </transition>
-
-  <!-- 关闭设置弹窗确认 -->
-  <transition name="fade">
-    <ConfirmClose
-      v-if="show_close"
-      v-model="show_close"
-      text="资料未保存，确定关闭吗？"
-      @confirm="show_edit = false"
-    />
-  </transition>
+  <teleport to="body">
+    <transition name="fade">
+      <KDialog
+        v-if="show_edit"
+        title="编辑个人信息"
+        width="57.5rem"
+        up
+        @close="onCloseConfirmEdidInfo"
+      >
+        <EditUserInfo
+          :id="$authStore.userInfo.id"
+          v-model:status="edit_status"
+          @close="show_edit = false"
+        />
+      </KDialog>
+    </transition>
+  </teleport>
 </template>
 
 <style scoped lang="less">

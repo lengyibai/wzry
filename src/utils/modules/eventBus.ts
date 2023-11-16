@@ -1,8 +1,11 @@
 import mitt from "mitt";
 
+import { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/types";
+
 type EventData = {
   loading: { text?: string; show: boolean };
   msg: { text: string; type: MsgType };
+  confirm: ConfirmTip;
   tip: Control.Tip;
   /** 全局手指抬起事件 */
   resize: Event;

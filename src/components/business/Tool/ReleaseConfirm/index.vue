@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import ConfirmClose from "@/components/business/Dialog/ConfirmClose/index.vue";
 import KCommit from "@/components/business/Parts/K-Commit/index.vue";
+import { $bus } from "@/utils";
 
 interface Props {
   /** 提交状态 */
@@ -14,17 +14,24 @@ interface Props {
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
   "update:status": [v: number];
-  close: [];
+  confirm: [];
+  cancel: [];
 }>();
 
 /** 提交状态 */
 const commit_status = ref(0);
-/** 是否显示确认关闭弹窗 */
-const show_ConfirmClose = ref(false);
 
 /* 关闭页面 */
 const handleClose = () => {
-  show_ConfirmClose.value = true;
+  $bus.emit("confirm", {
+    text: "即将关闭，是否保存为草稿？",
+    confirm: () => {
+      $emit("confirm");
+    },
+    cancel: () => {
+      $emit("cancel");
+    },
+  });
 };
 
 watch(
@@ -46,11 +53,6 @@ watch(commit_status, (v) => {
 
     <!-- 发布按钮 -->
     <KCommit v-model="commit_status" class="lib-commit-btn" v-bind="$attrs" title="发布" />
-
-    <!-- 确认关闭 -->
-    <transition name="fade">
-      <ConfirmClose v-if="show_ConfirmClose" v-model="show_ConfirmClose" v-bind="$attrs" />
-    </transition>
   </div>
 </template>
 

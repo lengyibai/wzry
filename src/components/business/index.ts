@@ -1,5 +1,4 @@
 import AddLink from "./Dialog/AddLink/index.vue";
-import ConfirmClose from "./Dialog/ConfirmClose/index.vue";
 import FormInput from "./Form/FormInput/index.vue";
 import FormLabel from "./Form/FormLabel/index.vue";
 import FormSelect from "./Form/FormSelect/index.vue";
@@ -27,7 +26,6 @@ import SelectImg from "./Tool/SelectImg/index.vue";
 
 export {
   AddLink,
-  ConfirmClose,
   FormInput,
   FormLabel,
   FormSelect,

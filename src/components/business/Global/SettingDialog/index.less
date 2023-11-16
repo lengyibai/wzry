@@ -1,37 +1,30 @@
-.setting-dialog {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: var(--z-index-dialog);
+.options {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  width: 100%;
+  margin-bottom: 0.625rem;
+  padding: 0 3.125rem;
+  text-shadow: var(--t-shadow-e);
 
-  .options {
+  .option {
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    overflow-y: auto;
-    width: 100%;
-    margin-bottom: 0.625rem;
-    padding: 0 3.125rem;
-    text-shadow: var(--t-shadow-e);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 0;
+    border-bottom: var(--subline);
 
-    .option {
+    .label {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 0.625rem 0;
-      border-bottom: var(--subline);
+      font-size: 1.625rem;
+    }
 
-      .label {
-        display: flex;
-        align-items: center;
-        font-size: 1.625rem;
-      }
-
-      .k-button {
-        --width: 6.5rem;
-        --height: 2.1875rem;
-        --font-size: 1.25rem;
-      }
+    .k-button {
+      --width: 6.5rem;
+      --height: 2.1875rem;
+      --font-size: 1.25rem;
     }
   }
 }
