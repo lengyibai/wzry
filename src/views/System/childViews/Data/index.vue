@@ -134,13 +134,7 @@ const play = () => $audioStore.play();
 /* 更新数据 */
 const updateData = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data));
-
-  //如果为皮肤/英雄，则重新获取皮肤/英雄列表
-  if (key.includes("skin")) {
-    $skinStore.getSkin();
-  } else if (key.includes("hero")) {
-    $heroStore.getHeroList();
-  }
+  location.reload();
 };
 
 /* 检查更新 */
@@ -169,8 +163,6 @@ const handleCheck = _debounce(
 const handleUpdate = async (data: TableData) => {
   const v = (await requests[data.key]()).data;
   updateData(data.key, v);
-  data.data = v;
-  handleCheck(data);
 };
 
 /* 强制覆盖 */
@@ -191,7 +183,6 @@ const handleExport = (data: TableData) => {
 const onConfirmReset = async () => {
   const v = (await requests[replace_data.key]()).data;
   updateData(replace_data.key, v);
-  handleCheck(replace_data);
 };
 
 onActivated(() => {
