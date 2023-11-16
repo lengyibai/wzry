@@ -33,7 +33,6 @@ const handleReset = () => {
   >
     <div class="main">
       <!-- 页面更新 -->
-      <h1>页面更新</h1>
       <div v-if="update_log.file" class="content" v-html="update_log.file"></div>
       <div v-else class="content"><p>暂无</p></div>
 

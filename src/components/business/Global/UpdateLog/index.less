@@ -10,22 +10,30 @@
 
   h1 {
     margin-bottom: 0.625rem;
-    font-size: 1.875rem;
+    font-size: 2.25rem;
   }
 
   :deep(.content) {
     margin-bottom: 1.875rem;
-    padding-left: 2em;
+
+    h1 {
+      margin-bottom: 0.625rem;
+      font-size: 2.25rem;
+
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
 
     h2 {
       margin-top: 1.25rem;
       margin-bottom: 0.625rem;
-      font-size: 1.625rem;
+      font-size: 1.75rem;
       font-weight: normal;
     }
 
     p {
-      font-size: 1.375rem;
+      font-size: 1.25rem;
       font-family: var(--font-f);
       text-shadow: var(--t-shadow-d);
       line-height: 1.5;
