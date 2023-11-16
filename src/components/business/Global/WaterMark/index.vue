@@ -25,24 +25,26 @@ const version = `${$tool.browserV.version} ${
 </script>
 
 <template>
-  <div
-    :style="{
-      opacity: !$collapseStore.collapse || !$authStore.userStatus ? 1 : 0,
-    }"
-    class="water-mark"
-  >
-    <p>{{ $t("帧率") }}：{{ fps }}</p>
-    <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
-    <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
-    <p :class="{ old: old }">{{ $t("数据") }}：{{ $versionStore.local_version }}</p>
-    <p v-if="old" :class="{ new: old }">
-      {{ $t("正在更新数据") }}：{{ $versionStore.remote_version }}
-    </p>
-    <p :class="{ old: old_file }">{{ $t("网页") }}：{{ $versionStore.local_file }}</p>
-    <p v-if="old_file" :class="{ new: old_file }">
-      {{ $t("登录后更新") }}：{{ $versionStore.file_version }}
-    </p>
-  </div>
+  <teleport to="body">
+    <div
+      :style="{
+        opacity: !$collapseStore.collapse || !$authStore.userStatus ? 1 : 0,
+      }"
+      class="water-mark"
+    >
+      <p>{{ $t("帧率") }}：{{ fps }}</p>
+      <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
+      <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
+      <p :class="{ old: old }">{{ $t("数据") }}：{{ $versionStore.local_version }}</p>
+      <p v-if="old" :class="{ new: old }">
+        {{ $t("正在更新数据") }}：{{ $versionStore.remote_version }}
+      </p>
+      <p :class="{ old: old_file }">{{ $t("网页") }}：{{ $versionStore.local_file }}</p>
+      <p v-if="old_file" :class="{ new: old_file }">
+        {{ $t("登录后更新") }}：{{ $versionStore.file_version }}
+      </p>
+    </div>
+  </teleport>
 </template>
 
 <style scoped lang="less">

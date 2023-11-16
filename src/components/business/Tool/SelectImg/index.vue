@@ -36,15 +36,17 @@ const onGetLink = (link: string) => {
   </div>
 
   <!-- 添加图片链接弹窗组件 -->
-  <transition name="fade">
-    <AddLink
-      v-if="show_AddLink"
-      v-model="show_AddLink"
-      :title="title"
-      :link="modelValue"
-      @get-link="onGetLink"
-    />
-  </transition>
+  <teleport to="body">
+    <transition name="fade">
+      <AddLink
+        v-if="show_AddLink"
+        v-model="show_AddLink"
+        :title="title"
+        :link="modelValue"
+        @get-link="onGetLink"
+      />
+    </transition>
+  </teleport>
 </template>
 
 <style scoped lang="less">
