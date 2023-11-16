@@ -7,6 +7,9 @@ import { CONFIG } from "@/config";
 import { API_DATA } from "@/api";
 
 const VersionStore = defineStore("version", () => {
+  /** 版本计时器 */
+  let version_timer: NodeJS.Timeout;
+
   /** 本地版本 */
   const local_version = ref("");
   /** 远程版本 */
@@ -46,9 +49,10 @@ const VersionStore = defineStore("version", () => {
     local_file.value = v;
   };
 
-  /** @description 获取数据版本、文件版本、文件更新日志 */
+  /** @description 实时获取数据版本、文件版本、文件更新日志 */
   const watchVersion = () => {
-    const timer = setTimeout(() => {
+    clearTimeout(version_timer);
+    version_timer = setTimeout(() => {
       watchVersion();
     }, 1000 * 60);
 
@@ -69,9 +73,9 @@ const VersionStore = defineStore("version", () => {
 
         //如果为旧版，则自动更新并更新本地版本并返回更新改动
         if (test > 0) {
-          clearTimeout(timer);
+          clearTimeout(version_timer);
           data_status.value = true;
-          $message("正在更新版本，更新后可查看数据改动，请稍等...");
+          $message("检测到资源更新，正在为您自动更新资源，稍后可查看数据改动，请稍等...");
           useUpdateData().then((res) => {
             update_log.value = { ...update_log.value, ...res };
             show_update.value = true;
@@ -90,7 +94,7 @@ const VersionStore = defineStore("version", () => {
 
         //如果为旧版，则自动更新并更新本地版本
         if (test > 0 && !data_status.value) {
-          clearTimeout(timer);
+          clearTimeout(version_timer);
           show_update.value = true;
           file_status.value = true;
         }
@@ -133,6 +137,7 @@ const VersionStore = defineStore("version", () => {
     update_log,
     updateAll,
     setShowLog,
+    watchVersion,
   };
 });
 
