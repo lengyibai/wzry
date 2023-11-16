@@ -33,19 +33,25 @@ const handleUpdateLog = (v: boolean) => {
     <i class="iconfont wzry-todo" title="计划清单" @click="show_todo = true" />
 
     <!-- 设置弹窗 -->
-    <transition name="fade">
-      <SettingDialog v-if="show_setting" v-model="show_setting" />
-    </transition>
+    <teleport to="body">
+      <transition name="fade">
+        <SettingDialog v-if="show_setting" v-model="show_setting" />
+      </transition>
+    </teleport>
 
     <!-- 任务清单 -->
-    <transition name="fade">
-      <Todo v-if="show_todo" v-model="show_todo" />
-    </transition>
+    <teleport to="body">
+      <transition name="fade">
+        <Todo v-if="show_todo" v-model="show_todo" />
+      </transition>
+    </teleport>
 
     <!-- 更新日志 -->
-    <transition name="fade">
-      <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
-    </transition>
+    <teleport to="body">
+      <transition name="fade">
+        <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
+      </transition>
+    </teleport>
   </div>
 </template>
 

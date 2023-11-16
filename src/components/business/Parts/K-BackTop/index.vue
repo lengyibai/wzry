@@ -19,16 +19,18 @@ const handleBackTop = () => {
 </script>
 
 <template>
-  <div
-    ref="backTopRef"
-    class="k-backtop"
-    :class="{
-      active: active,
-    }"
-  >
-    <div class="line"></div>
-    <i class="iconfont wzry-spider" @click="handleBackTop" />
-  </div>
+  <teleport to="body">
+    <div
+      ref="backTopRef"
+      class="k-backtop"
+      :class="{
+        active: active,
+      }"
+    >
+      <div class="line"></div>
+      <i class="iconfont wzry-spider" @click="handleBackTop" />
+    </div>
+  </teleport>
 </template>
 
 <style scoped lang="less">
