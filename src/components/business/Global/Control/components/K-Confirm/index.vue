@@ -15,15 +15,16 @@ const show = ref(false);
 /** 接收的配置 */
 const config = ref<ConfirmTip>({
   text: "",
+  close: true,
   confirm: () => {},
   cancel: () => {},
 });
 
-$audioStore.play("45iy");
-
 $bus.on("confirm", (v) => {
   show.value = true;
   config.value = v;
+  $audioStore.play("45iy");
+  config.value.close = v.close === undefined ? true : v.close;
 });
 
 /* 关闭 */
@@ -49,10 +50,16 @@ const handleConfirm = () => {
 <template>
   <teleport to="body">
     <transition name="fade">
-      <KDialog v-if="show" class="k-dialog" align="center" @close="close">
+      <KDialog
+        v-if="show"
+        class="k-dialog"
+        align="center"
+        :show-close="config.close"
+        @close="close"
+      >
         <div class="text">{{ config.text }}</div>
         <div class="button">
-          <KButton type="info" @click="handleCancel">取消</KButton>
+          <KButton v-if="config.close" type="info" @click="handleCancel">取消</KButton>
           <KButton class="last" type="warning" @click="handleConfirm">确定</KButton>
         </div>
       </KDialog>
