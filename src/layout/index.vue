@@ -8,9 +8,12 @@ import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { SettingStore, AudioStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
+import { useGetData } from "@/hooks";
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
+
+useGetData();
 
 const { getImgLink, getVideoLink } = $concise;
 
