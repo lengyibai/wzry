@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { SettingStore } from "@/store";
 import { AudioVisual } from "@/utils/modules/tool";
 import { $concise, $tool } from "@/utils";
+import { API_DATA } from "@/api";
 
 const { getMusicLink } = $concise;
 
@@ -32,32 +33,27 @@ const MusicStore = defineStore("music", () => {
   /** 音乐可视化 */
   const audio_visual = ref<AudioVisual>();
   /** 音乐列表 */
-  const musics = [
-    // { name: "云宫迅音", url: "ygxy", time: "00:02:55" },
-    // { name: "永远的长安城", url: "cac", time: "00:02:42" },
-    // { name: "英雄归来", url: "yxgl", time: "00:03:03" },
-    // { name: "王者诸将", url: "wzzj", time: "00:03:31" },
-    // { name: "王者战歌", url: "wzzg", time: "00:02:41" },
-    // { name: "王者登陆", url: "wzdl", time: "00:03:14" },
-    // { name: "王者出征", url: "wzcz", time: "00:04:07" },
-    // { name: "王者冰刃", url: "wzbr", time: "00:04:07" },
-    // { name: "荣耀主题", url: "ryzt", time: "00:03:36" },
-    // { name: "荣耀之路", url: "ryzl", time: "00:08:06" },
-    // { name: "冠军杯", url: "gjb", time: "00:03:33" },
-    { name: "天籁之歌", url: "tlzg", time: "00:03:29" },
-    { name: "海风协奏", url: "hfxz", time: "00:03:17" },
-  ];
+  const musics = ref<Music[]>([]);
 
-  //打乱顺序
-  musics.sort(() => 0.5 - Math.random());
-  //允许音频可视化跨域
-  bgm.setAttribute("crossOrigin", "anonymous");
+  const initMusic = async () => {
+    const data = (await API_DATA.Music()).data;
+
+    //筛选优先级
+    const prior = data.filter((item) => item.sort === 1);
+    const lower = data.filter((item) => item.sort === 0);
+
+    musics.value = [...prior, ...$tool.shuffleArray<Music>(lower)];
+
+    //允许音频可视化跨域
+    bgm.setAttribute("crossOrigin", "anonymous");
+  };
+  initMusic();
 
   /** @description 上一首 */
   const last = () => {
     //如果为第一首，则最后一首开始播放
     if (bgmIndex.value === 0) {
-      bgmIndex.value = musics.length;
+      bgmIndex.value = musics.value.length;
     }
 
     playIndex(bgmIndex.value - 1);
@@ -69,7 +65,7 @@ const MusicStore = defineStore("music", () => {
    */
   const play = (isNext = true) => {
     if (isNext) {
-      bgm.src = getMusicLink(musics[bgmIndex.value].url);
+      bgm.src = getMusicLink(musics.value[bgmIndex.value].url);
     }
 
     status.value = true;
@@ -112,7 +108,7 @@ const MusicStore = defineStore("music", () => {
   const next = () => {
     //如果为最后一首，则下一首从第一首开始播放
     bgmIndex.value += 1;
-    if (bgmIndex.value === musics.length) {
+    if (bgmIndex.value === musics.value.length) {
       bgmIndex.value = 0;
     }
     playIndex(bgmIndex.value);

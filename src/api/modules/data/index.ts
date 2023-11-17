@@ -10,6 +10,9 @@ export const Todo = () => $LocaleHttp.Get<{ data: string }>("/todo.json");
 /** @description 获取公告 */
 export const Notice = () => $LocaleHttp.Get<{ data: string }>("/notice.json");
 
+/** @description 获取音乐列表 */
+export const Music = () => $LocaleHttp.Get<{ data: Music[] }>("/music.json");
+
 /** @description 获取战绩 */
 export const Team = () => $RemoteHttp.Get<string[][]>("/team.json");
 
