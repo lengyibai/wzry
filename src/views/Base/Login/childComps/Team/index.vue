@@ -10,8 +10,6 @@ const $audioStore = AudioStore();
 
 const teamRef = ref<HTMLElement>();
 
-/** 当前显示的图片的索引号 */
-const active = ref(-1);
 const imgs = ref<string[][]>([]);
 
 $audioStore.play("u4c5");
@@ -23,9 +21,8 @@ API_DATA.Team().then(async (res) => {
 });
 
 /* 查看图片 */
-const handleView = (v: string[], i: number) => {
+const handleView = (v: string[]) => {
   new $tool.ScaleImage(v[0], v[1]);
-  active.value = i;
 };
 </script>
 
@@ -36,13 +33,10 @@ const handleView = (v: string[], i: number) => {
         v-for="(item, index) in imgs"
         :key="index"
         class="blur"
-        :class="{
-          active: index === active,
-        }"
         :src="item[1]"
         :data-src="item[0]"
         alt=""
-        @click="handleView(item, index)"
+        @click="handleView(item)"
       />
     </div>
   </KDialog>
