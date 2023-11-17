@@ -379,9 +379,7 @@ export class ScaleImage {
   createImage() {
     this.img = document.createElement("img");
     this.img.style.cssText = `
-      width: 75%;
-      max-height: 75%;
-      max-height: 75%;
+      width: 50%;
       transform: scale(${this.scale});
       transition: all 0.25s;
       background-color: #1a1a1a;
