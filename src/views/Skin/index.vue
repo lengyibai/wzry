@@ -55,10 +55,10 @@ const onLoadMore = () => {
 };
 
 /* 点击工具栏中的选项 */
-const onShowTool = (v: { type: string; data: Hero.Skin }) => {
+const onShowTool = (e: Event, v: { type: string; data: Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
-    new $tool.ScaleImage(v.data.posterBig, v.data.posterBlur);
+    new $tool.ScaleFLIPImage(e, v.data.posterBig, v.data.posterBlur);
   } else if (v.type === "voice") {
     API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
       voices.value = res;

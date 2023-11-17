@@ -21,13 +21,13 @@ API_DATA.Team().then(async (res) => {
 });
 
 /* 查看图片 */
-const handleView = (v: string[]) => {
-  new $tool.ScaleImage(v[0], v[1]);
+const handleView = (e: Event, v: string[]) => {
+  new $tool.ScaleFLIPImage(e, v[0], v[1]);
 };
 </script>
 
 <template>
-  <KDialog v-bind="$attrs" width="56.25rem" header="辅助求带飞">
+  <KDialog v-bind="$attrs" width="56.25rem" header="本站开发者战绩">
     <div ref="teamRef" class="team">
       <img
         v-for="(item, index) in imgs"
@@ -36,7 +36,7 @@ const handleView = (v: string[]) => {
         :src="item[1]"
         :data-src="item[0]"
         alt=""
-        @click="handleView(item)"
+        @click="handleView($event, item)"
       />
     </div>
   </KDialog>

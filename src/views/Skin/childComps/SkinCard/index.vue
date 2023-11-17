@@ -8,7 +8,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
-  showTool: [v: { type: string; data: Hero.Skin }];
+  showTool: [e: Event, v: { type: string; data: Hero.Skin }];
 }>();
 
 const { getImgLink } = $concise;
@@ -19,8 +19,8 @@ const priceShow = (price: number | string) => {
 };
 
 /* 点击工具选项 */
-const handle = (v: string) => {
-  $emit("showTool", { type: v, data: $props.data });
+const handle = (e: Event, v: string) => {
+  $emit("showTool", e, { type: v, data: $props.data });
 };
 </script>
 
@@ -43,10 +43,10 @@ const handle = (v: string) => {
 
     <!-- 悬浮工具 -->
     <div class="tool">
-      <span class="global_cursor-pointer" @click="handle('poster')">
+      <span class="global_cursor-pointer" @click="handle($event, 'poster')">
         <i class="iconfont wzry-fangda" />大图
       </span>
-      <span class="global_cursor-pointer" @click="handle('voice')">
+      <span class="global_cursor-pointer" @click="handle($event, 'voice')">
         <i class="iconfont wzry-bofangyuyin" />语音
       </span>
     </div>
