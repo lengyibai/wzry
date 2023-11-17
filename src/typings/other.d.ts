@@ -126,3 +126,15 @@ interface UpdateLog {
 
 /** @description 性别 */
 type Gender = 0 | 1 | 2;
+
+/** @description 音乐列表 */
+interface Music {
+  /** 音乐名称 */
+  name: string;
+  /** 音乐播放地址 */
+  url: string;
+  /** 音乐时长 */
+  time: string;
+  /** 权重 */
+  sort: 0 | 1;
+}
