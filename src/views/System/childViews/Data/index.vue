@@ -3,7 +3,7 @@ import { ref, onActivated } from "vue";
 import _debounce from "lodash/debounce";
 
 import { API_DATA } from "@/api";
-import { SkinStore, HeroStore, AudioStore } from "@/store";
+import { AudioStore } from "@/store";
 import { $bus, $message, $tool } from "@/utils";
 import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
@@ -28,8 +28,6 @@ defineOptions({
   name: "Database",
 });
 
-const $skinStore = SkinStore();
-const $heroStore = HeroStore();
 const $audioStore = AudioStore();
 
 const keywords: [string, string][] = [
