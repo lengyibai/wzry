@@ -89,6 +89,8 @@
 
 /* 可点击按钮 */
 .global_click-btn {
+  .global_cursor-pointer();
+
   &:hover {
     opacity: 0.75;
   }
@@ -96,5 +98,22 @@
   &:active {
     transform-origin: bottom center;
     opacity: 0.5;
+  }
+}
+
+/* 文字描边 */
+.global_text-outline(@thickness, @color, @border) {
+  position: relative;
+  z-index: 1;
+  color: @color;
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    font-size: inherit;
+    font-family: inherit;
+    content: attr(data-text);
+    -webkit-text-stroke: @thickness @border;
   }
 }
