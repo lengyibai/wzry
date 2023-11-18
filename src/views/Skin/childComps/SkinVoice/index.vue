@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { PlayVoice } from "@/components/business";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 语音列表 */
@@ -12,27 +12,25 @@ defineProps<Props>();
 
 const voiceRef = ref<HTMLElement>();
 
-/** 播放链接 */
-const play_link = ref("");
 /** 当前播放索引 */
 const current_index = ref(-1);
+/** 语音播放器 */
+const audioPlayer = new $tool.AudioPlayer({
+  end() {
+    current_index.value = -1;
+  },
+});
 
 /* 点击播放 */
 const handlePlay = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    onEnded();
+    audioPlayer.stop();
     return;
   }
 
   current_index.value = index;
-  play_link.value = voice;
-};
-
-/* 语音播放结束后触发 */
-const onEnded = () => {
-  current_index.value = -1;
-  play_link.value = "";
+  audioPlayer.play(voice);
 };
 </script>
 
@@ -51,8 +49,6 @@ const onEnded = () => {
         <marquee v-else class="text" scrollamount="12.5"> {{ item.text }}</marquee>
       </div>
     </button>
-    <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @ended="onEnded" />
   </div>
 </template>
 

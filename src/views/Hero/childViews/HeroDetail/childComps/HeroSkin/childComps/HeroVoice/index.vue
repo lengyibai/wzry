@@ -2,7 +2,7 @@
 import { ref, nextTick } from "vue";
 
 import { HeroDetailStore, AudioStore } from "@/store";
-import { PlayVoice } from "@/components/business";
+import { $tool } from "@/utils";
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
@@ -18,6 +18,15 @@ const time = ref(0);
 const current_index = ref(-1);
 /** 语音列表 */
 const voices = ref<Hero.Voice[]>([]);
+
+const audioPlayer = new $tool.AudioPlayer({
+  end() {
+    current_index.value = -1;
+  },
+  info(v: HTMLMediaElement) {
+    time.value = v.duration + 0.35;
+  },
+});
 
 /* 切换语音时触发 */
 $heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
@@ -77,23 +86,12 @@ const handleEnter = () => {
 const play = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
-    onEnded();
+    audioPlayer.stop();
     return;
   }
 
   current_index.value = index;
-  play_link.value = voice;
-};
-
-/* 语音信息 */
-const onInfo = (voice_info: HTMLMediaElement) => {
-  time.value = voice_info.duration + 0.35;
-};
-
-/* 语音播放结束后触发 */
-const onEnded = () => {
-  current_index.value = -1;
-  play_link.value = "";
+  audioPlayer.play(voice);
 };
 </script>
 
@@ -122,8 +120,6 @@ const onEnded = () => {
         />
       </div>
     </button>
-    <!--播放语音-->
-    <PlayVoice v-if="play_link" :link="play_link" @info="onInfo" @ended="onEnded" />
   </div>
 </template>
 

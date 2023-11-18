@@ -19,7 +19,6 @@ import FilterGender from "./Tool/FilterGender/index.vue";
 import FilterSidebar from "./Tool/FilterSidebar/index.vue";
 import FilterTool from "./Tool/FilterTool/index.vue";
 import ManageMask from "./Tool/ManageMask/index.vue";
-import PlayVoice from "./Tool/PlayVoice/index.vue";
 import ReleaseConfirm from "./Tool/ReleaseConfirm/index.vue";
 import SelectHero from "./Tool/SelectHero/index.vue";
 import SelectImg from "./Tool/SelectImg/index.vue";
@@ -45,7 +44,6 @@ export {
   FilterSidebar,
   FilterTool,
   ManageMask,
-  PlayVoice,
   ReleaseConfirm,
   SelectHero,
   SelectImg,
