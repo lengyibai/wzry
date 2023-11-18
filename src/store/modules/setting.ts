@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { CssVarStore } from "./cssVar";
 
-import { AudioStore, MusicStore } from "@/store";
+import { AudioStore, BarrageStore, MusicStore } from "@/store";
 import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
 import { $tool } from "@/utils";
@@ -14,6 +14,7 @@ const SettingStore = defineStore("setting", () => {
   const $audioStore = AudioStore();
   const $musicStore = MusicStore();
   const $cssVarStore = CssVarStore();
+  const $barrageStore = BarrageStore();
 
   const config = ref<SettingConfig>({ ...configDefault() });
 
@@ -29,6 +30,7 @@ const SettingStore = defineStore("setting", () => {
   const takeEffect = () => {
     setLanguage(config.value.language);
     $audioStore.setAudio(config.value.audio);
+    $barrageStore.setBarrage(config.value.barrage);
     $audioStore.setVolume(config.value.audioVolume);
     $musicStore.setVolume(config.value.musicVolume);
     $cssVarStore.setBorder(config.value.border);
