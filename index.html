@@ -10,17 +10,9 @@
     <meta name="baidu-site-verification" content="codeva-L1DIn6LkUn" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>王者图鉴 - 冷弋白</title>
+    <!-- <link rel="preload" href="https://lyb.cbb.plus/wzry-material/font/wzry.ttf" as="font" /> -->
     <link rel="icon" type="image/png" href="/wzry.svg" />
     <link rel="stylesheet" href="/font/iconfont.css" />
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?2c84cd61316a5ce978ca513745ec7eaa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
   </head>
   <body>
     <script src="/js/flexible.js" type="text/javascript" defer></script>
@@ -59,6 +51,23 @@
       setTimeout(() => {
         body.style.display = "flex";
       }, 100);
+
+      document.addEventListener("selectstart", function (e) {
+        e.preventDefault();
+      });
+      document.ondragstart = () => false;
+
+      let document_title = "";
+
+      window.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          document_title = document.title;
+          document.title = "(〃'▽'〃)来和妲己玩耍吧！";
+          return;
+        }
+
+        document_title && (document.title = document_title);
+      });
     </script>
   </body>
 </html>
