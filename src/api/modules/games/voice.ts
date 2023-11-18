@@ -4,7 +4,9 @@ import { get } from "@/api/helper/transfer";
 /** @description 获取语音列表 */
 export const getVoice = async (hero_name: string) => {
   const pinyin = await API_HERO.getHeroPinyin(hero_name);
-  const voices = get<General[]>({ name: "voice_" + pinyin });
+  const voices = get<{ name: string; voice: { text: string; link: string }[] }[]>({
+    name: "voice_" + pinyin,
+  });
   return Promise.resolve(voices);
 };
 
