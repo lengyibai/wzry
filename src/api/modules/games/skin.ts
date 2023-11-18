@@ -13,11 +13,18 @@ export const addSkin = (data: Hero.Skin) => {
   return Promise.resolve(skin);
 };
 
-/** @description 获取指定英雄皮肤 */
-export const getHeroSkin = (hero_id: number) => {
+/** @description 获取指定英雄皮肤列表 */
+export const getHeroSkins = (hero_id: number) => {
   const params = { name: CONFIG.LOCAL_KEY.SKIN, key: "hero", value: hero_id };
   const hero_skin = get<Hero.Skin>(params, false);
   return Promise.resolve(hero_skin);
+};
+
+/** @description 获取指定英雄皮肤 */
+export const getHeroSkin = async (hero_id: number, skin_name: string) => {
+  const skins = await getHeroSkins(hero_id);
+  const skin = skins.find((skin) => skin.name === skin_name)!;
+  return Promise.resolve(skin);
 };
 
 /** @description 获取皮肤类型列表 */

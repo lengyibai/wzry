@@ -51,7 +51,7 @@ setTimeout(async () => {
 
 /* 选择英雄后触发 */
 const onSelectHero = (id: number) => {
-  API_SKIN.getHeroSkin(id).then((res) => {
+  API_SKIN.getHeroSkins(id).then((res) => {
     skin_num.value = res.length;
     skins = res;
   });
