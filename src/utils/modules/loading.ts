@@ -17,7 +17,7 @@ const show = async (text: string) => {
     }
 
     needLoadingRequestCount++;
-  }, 100);
+  }, 250);
 };
 
 /** @description 关闭loading */
