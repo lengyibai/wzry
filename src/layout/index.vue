@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
+import BarrageMain from "@/layout/childComps/BarrageMain/index.vue";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue";
 import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
 import Footbar from "@/layout/childComps/Footbar/index.vue";
-import { SettingStore, AudioStore } from "@/store";
+import { SettingStore, AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
 import { useGetData } from "@/hooks";
 
-const $settingStore = SettingStore();
 const $audioStore = AudioStore();
+
+const { config } = storeToRefs(SettingStore());
+const { status } = storeToRefs(BarrageStore());
 
 useGetData();
 
@@ -25,8 +29,6 @@ const show_navbar = ref(false);
 const show_footbar = ref(false);
 /** 显示主体页面 */
 const show_appmain = ref(false);
-
-const enable_video_bg = computed(() => $settingStore.config.videoBg);
 
 onMounted(async () => {
   $audioStore.play("p53r");
@@ -48,6 +50,11 @@ onMounted(async () => {
 
 <template>
   <div class="layout">
+    <!-- 弹幕 -->
+    <teleport v-if="status" to="body">
+      <BarrageMain />
+    </teleport>
+
     <!-- 侧边栏 -->
     <transition name="sidebar">
       <Sidebar v-if="show_sidebar" />
@@ -70,7 +77,7 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <KVideo v-if="enable_video_bg" :video="getVideoLink('bg')" />
+    <KVideo v-if="config.videoBg" :video="getVideoLink('bg')" />
 
     <!-- 图片壁纸 -->
     <img v-else class="layout__bg" :src="getImgLink('background')" alt="" />

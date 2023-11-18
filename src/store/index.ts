@@ -16,6 +16,7 @@ export { SettingStore } from "./modules/setting";
 export { SkinStore } from "./modules/skin";
 export { VersionStore } from "./modules/version";
 export { AtlasStore } from "./modules/atlas";
+export { BarrageStore } from "./modules/barrage";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();

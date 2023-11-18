@@ -1011,3 +1011,240 @@ export const shuffleArray = <T>(arr: T[]): T[] => {
   }
   return arr;
 };
+
+/** @description 弹幕生成器 */
+export class BarragesMove {
+  /** 弹幕容器 */
+  private parent: HTMLElement;
+  /** 弹幕数据 */
+  private data: Barrage[];
+  /** 点击回调函数 */
+  private clickCallback: (v: Barrage, e: MouseEvent) => void;
+  /** 弹幕结束回调 */
+  private endCallback: () => void;
+  /** 初始化 */
+  private init: () => void;
+  /** 弹幕间隔的位置 */
+  private gaps = ["0.25em", "1.5em", "3em", "4.5em", "6em", "7.5em", "9em"];
+  /** 已经使用过的弹幕间隔位置数组 */
+  private usedGaps: string[] = [];
+  /** 是否启用生成弹幕 */
+  private enable: boolean = true;
+  /** 生成计时器 */
+  private generateTimer: NodeJS.Timeout | undefined;
+  /** 自定义弹幕定时器 */
+  private customTimer: NodeJS.Timeout | undefined;
+
+  constructor(
+    parent: HTMLElement,
+    data: Barrage[],
+    event: {
+      click: (v: Barrage, e: MouseEvent) => void;
+      finish: () => void;
+    },
+  ) {
+    this.parent = parent;
+    this.data = data;
+    this.clickCallback = event.click;
+    this.endCallback = event.finish;
+
+    this.init = () => {
+      clearTimeout(this.generateTimer);
+      clearTimeout(this.customTimer);
+
+      //离开当前窗口停止生成
+      if (document.visibilityState == "hidden") {
+        this.enable = false;
+        return;
+      }
+
+      this.createLybBarrage(`冷弋白：弹幕已装填完毕，还剩${this.data.length}条弹幕`);
+
+      setTimeout(() => {
+        this.enable = true;
+        this.generateBarrage();
+      }, 5000);
+
+      this.customTimer = setTimeout(() => {
+        this.createLybBarrage(`冷弋白：还剩${this.data.length}条弹幕`);
+      }, 10000);
+    };
+    window.addEventListener("visibilitychange", this.init);
+    this.init();
+  }
+
+  /** @description 开启定时器生成弹幕 */
+  private generateBarrage() {
+    if (!this.enable) return;
+
+    //如果原数组为空，停止递归调用
+    if (this.data.length === 0) {
+      this.endCallback();
+      return;
+    }
+
+    if (this.data.length < 5) {
+      this.createLybBarrage("冷弋白：弹幕即将耗尽，准备装填弹幕");
+    }
+
+    //一次生成的弹幕数量
+    const count = random(1, 3);
+
+    //从原数组中截取随机个数的元素作为要生成的弹幕数据
+    const barrages = this.data.slice(0, count);
+
+    //生成弹幕
+    barrages.forEach((item: Barrage) => {
+      this.createBarrage(item);
+    });
+
+    //更新原数组，去掉已经生成的弹幕数据
+    this.data = this.data.slice(count);
+
+    //生成下次发送弹幕的时间间隔
+    const time = random(2, 4, 1) * 1000;
+
+    this.generateTimer = setTimeout(() => {
+      this.generateBarrage();
+    }, time);
+  }
+
+  /** @description 创建弹幕 */
+  private createBarrage(data: Barrage) {
+    const barrage = document.createElement("div") as HTMLElement;
+
+    //弹幕运动时长
+    const move_time = 10 * (data.text.length / 10);
+
+    //获取未使用的弹幕间隔位置
+    let availableGaps = this.gaps.filter((gap) => !this.usedGaps.includes(gap));
+
+    if (availableGaps.length === 0) {
+      //如果没有可用的弹幕间隔位置了，重新清空usedGaps数组
+      this.usedGaps = [];
+      availableGaps = this.gaps;
+    }
+
+    //随机选择一个弹幕间隔位置的索引
+    const gapIndex = random(0, availableGaps.length - 1);
+    //获取选中的弹幕间隔位置
+    const gap = availableGaps[gapIndex];
+    //将选中的弹幕间隔位置添加到已使用的数组中
+    this.usedGaps.push(gap);
+
+    barrage.style.top = gap;
+    barrage.style.animationDuration =
+      (move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time) + "s";
+    barrage.classList.add("barrage-animate");
+    barrage.innerHTML = data.text;
+    barrage.setAttribute("data-text", data.text);
+    if (data.gender === "女") {
+      barrage.classList.add("nv");
+    } else {
+      barrage.classList.add("nan");
+    }
+    this.parent.appendChild(barrage);
+    this.bindEvent(barrage, data);
+
+    //计算延迟移除间隔的时间
+    const removeTime = (data.text.length / 7.5) * 1000;
+    setTimeout(() => {
+      //移除已使用的弹幕间隔位置
+      const index = this.usedGaps.indexOf(gap);
+      if (index !== -1) {
+        this.usedGaps.splice(index, 1);
+      }
+    }, removeTime);
+  }
+
+  /** @description 创建私有字幕 */
+  private createLybBarrage(text: string) {
+    const barrage = document.createElement("div") as HTMLElement;
+
+    //弹幕运动时长
+    const move_time = 10 * (text.length / 10);
+
+    //获取未使用的弹幕间隔位置
+    let availableGaps = this.gaps.filter((gap) => !this.usedGaps.includes(gap));
+
+    if (availableGaps.length === 0) {
+      //如果没有可用的弹幕间隔位置了，重新清空usedGaps数组
+      this.usedGaps = [];
+      availableGaps = this.gaps;
+    }
+
+    //随机选择一个弹幕间隔位置的索引
+    const gapIndex = random(0, availableGaps.length - 1);
+    //获取选中的弹幕间隔位置
+    const gap = availableGaps[gapIndex];
+    //将选中的弹幕间隔位置添加到已使用的数组中
+    this.usedGaps.push(gap);
+
+    barrage.style.top = gap;
+    barrage.style.animationDuration =
+      (move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time) + "s";
+    barrage.classList.add("barrage-animate");
+    barrage.innerHTML = text;
+    barrage.setAttribute("data-text", text);
+    barrage.classList.add("lyb");
+    this.parent.appendChild(barrage);
+
+    //计算延迟移除间隔的时间
+    const removeTime = (text.length / 7.5) * 1000;
+    setTimeout(() => {
+      //移除已使用的弹幕间隔位置
+      const index = this.usedGaps.indexOf(gap);
+      if (index !== -1) {
+        this.usedGaps.splice(index, 1);
+      }
+    }, removeTime);
+  }
+
+  /** @description 给弹幕绑定事件 */
+  private bindEvent(barrage: HTMLElement, data: any) {
+    barrage.addEventListener("click", (e: MouseEvent) => {
+      this.clickCallback(data, e);
+    });
+
+    barrage.addEventListener("animationend", function () {
+      this.remove();
+    });
+  }
+
+  /** @description 销毁方法 */
+  destruction() {
+    clearTimeout(this.generateTimer);
+    this.enable = false;
+    window.removeEventListener("visibilitychange", this.init);
+  }
+}
+
+/** @description 音频播放器 */
+export class AudioPlayer {
+  private audio: HTMLAudioElement = new Audio();
+  private info?: (v: HTMLMediaElement) => void;
+
+  constructor(v: { end: () => void; info?: (v: HTMLMediaElement) => void }) {
+    const { end, info } = v;
+    this.audio.addEventListener("pause", end);
+    this.audio.addEventListener("ended", end);
+    this.info = info;
+
+    //允许音频可视化跨域
+    this.audio.setAttribute("crossOrigin", "anonymous");
+  }
+
+  play(link: string) {
+    this.stop();
+    this.audio.src = link;
+    this.audio.play().then(() => {
+      if (this.info) {
+        this.info(this.audio);
+      }
+    });
+  }
+
+  stop() {
+    this.audio.pause();
+  }
+}

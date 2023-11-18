@@ -63,6 +63,7 @@ export const configDefault: () => SettingConfig = () => ({
   audioVolume: 50,
   music: true,
   musicVolume: 50,
+  barrage: true,
   musicProgress: false,
   speed: 1,
   muted: false,

@@ -11,13 +11,14 @@ import KRange from "@/components/business/Parts/K-Range/index.vue";
 import KSelect from "@/components/business/Parts/K-Select/index.vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
-import { AudioStore, MusicStore, SettingStore, CssVarStore } from "@/store";
+import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $bus, $message, $tip } from "@/utils";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $cssVarStore = CssVarStore();
+const $barrageStore = BarrageStore();
 
 /** 默认配置 */
 const default_config: SettingConfig = { ...configDefault() };
@@ -34,7 +35,9 @@ const onLanguage = (v: number) => {
 const onMusic = (v: boolean) => {
   debounceSaveConfig();
   if (v) {
-    $musicStore.play(false);
+    setTimeout(() => {
+      $musicStore.play(false);
+    }, 1000);
   } else {
     $musicStore.pause();
   }
@@ -43,6 +46,12 @@ const onMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const onMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
+  debounceSaveConfig();
+};
+
+/* 开启弹幕 */
+const onBarrage = (v: boolean) => {
+  $barrageStore.setBarrage(v);
   debounceSaveConfig();
 };
 
@@ -161,6 +170,14 @@ const onResetConfig = () => {
           @update:model-value="onMusicVolume"
         />
         <KCheck v-model="config.music" @update:model-value="onMusic" />
+      </div>
+
+      <!-- 音乐进度控制 -->
+      <div class="option">
+        <div class="label">
+          {{ $t("弹幕语音") }}
+        </div>
+        <KCheck v-model="config.barrage" @update:model-value="onBarrage" />
       </div>
 
       <!-- 音乐进度控制 -->

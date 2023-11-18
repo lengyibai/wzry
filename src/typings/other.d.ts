@@ -28,6 +28,8 @@ interface SettingConfig {
   music: boolean;
   /** 音乐音量 */
   musicVolume: number;
+  /** 弹幕语音 */
+  barrage: boolean;
   /** 音乐进度控制 */
   musicProgress: boolean;
   /** 语言 */
@@ -127,7 +129,7 @@ interface UpdateLog {
 /** @description 性别 */
 type Gender = 0 | 1 | 2;
 
-/** @description 音乐列表 */
+/** @description 音乐信息 */
 interface Music {
   /** 音乐名称 */
   name: string;
@@ -137,4 +139,20 @@ interface Music {
   time: string;
   /** 权重 */
   sort: 0 | 1;
+}
+
+/** @description 弹幕信息 */
+interface Barrage {
+  /** 标识符 */
+  id: number;
+  /** 英雄ID */
+  heroId: number;
+  /** 性别 */
+  gender: "男" | "女";
+  /** 语音内容 */
+  text: string;
+  /** 语音链接 */
+  link: string;
+  /** 皮肤名 */
+  skinName: string;
 }

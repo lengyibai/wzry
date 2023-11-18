@@ -1,0 +1,131 @@
+.barrage-main {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: var(--z-index-barrage);
+  width: 0;
+  height: 25%;
+
+  :deep(.barrage-animate) {
+    --border-color: var(--theme-color-four);
+    --color: var(--white);
+    .global_cursor-pointer();
+    .global_text-outline(0.1875rem,var(--color),var(--border-color));
+
+    position: absolute;
+    right: 0%;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    background: linear-gradient(to right, var(--color), var(--theme-color-seven)) no-repeat right
+      bottom / 0 0.25rem;
+    transition: background-size 0.4s;
+    transform: translateX(100%);
+    animation-name: move;
+    animation-play-state: running;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+
+    &.lyb {
+      --border-color: var(--black);
+      --color: var(--white);
+
+      background: linear-gradient(to right, var(--white-50), var(--white)) no-repeat right bottom /
+        0 0.25rem;
+
+      &:hover {
+        --color: var(--white-75);
+      }
+    }
+
+    &.nan {
+      &:hover {
+        --color: var(--blue);
+      }
+    }
+
+    &.nv {
+      --border-color: #d58692;
+
+      background: linear-gradient(to right, rgb(213 134 146 / 50%), var(--border-color)) no-repeat
+        right bottom / 0 0.25rem;
+
+      &:hover {
+        --color: #c9564b;
+      }
+    }
+
+    &:hover {
+      z-index: 2;
+      background-position-x: left;
+      background-size: 100% 0.25rem;
+      animation-play-state: paused !important;
+    }
+
+    @keyframes move {
+      100% {
+        transform: translateX(-100vw);
+      }
+    }
+  }
+}
+
+.barrage-info {
+  position: absolute;
+  z-index: var(--z-index-barrage);
+  display: flex;
+  flex-direction: column;
+  width: 18.75rem;
+  padding: 1rem;
+  border: 1px solid var(--white-10);
+  background-color: var(--black-50);
+  backdrop-filter: blur(0.625rem);
+  transition: 0.25s ease-out;
+  filter: var(--d-shadow-a);
+
+  .wzry-guanbi {
+    .global_click-btn();
+
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  .hero-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .head-img {
+      width: 5.3125rem;
+      height: 5.3125rem;
+      margin-right: 0.75rem;
+      border-radius: 50%;
+    }
+
+    .info {
+      .hero-name {
+        margin-bottom: 0.5rem;
+        font-size: 1.75rem;
+      }
+
+      .skin-name {
+        color: var(--white-50);
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .voice-text {
+    margin-bottom: 0.5rem;
+    color: var(--white-75);
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .skin-poster {
+    .global_click-btn();
+
+    width: 100%;
+  }
+}
