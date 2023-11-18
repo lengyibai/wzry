@@ -1,3 +1,5 @@
+import { $tool } from "@/utils";
+
 /** @description 默认英雄信息 */
 export const heroDefault: () => Hero.Data = () => ({
   id: 0,
@@ -63,7 +65,7 @@ export const configDefault: () => SettingConfig = () => ({
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  barrage: true,
+  barrage: !$tool.isPhone,
   musicProgress: false,
   speed: 1,
   muted: false,
