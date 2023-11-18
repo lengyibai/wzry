@@ -1,6 +1,7 @@
 import type { App, Directive } from "vue";
 
 import drag from "./modules/drag";
+import downDrag from "./modules/downDrag";
 import focus from "./modules/focus";
 import maskGradient from "./modules/maskGradient";
 import particle from "./modules/particle";
@@ -11,6 +12,7 @@ import typewriterSingle from "./modules/typewriterSingle";
 
 const directivesList: Record<string, Directive> = {
   drag,
+  downDrag,
   focus,
   maskGradient,
   particle,
