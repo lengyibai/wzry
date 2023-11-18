@@ -13,9 +13,9 @@ defineProps<Props>();
 /** 精灵图坐标 */
 const y: Record<string, string> = {
   survival: "0 0px",
-  attack: "-60px 0px",
-  effect: "-120px 0px",
-  difficulty: "-180px 0px",
+  attack: "-3.75rem 0rem",
+  effect: "-7.5rem 0rem",
+  difficulty: "-11.25rem 0rem",
 };
 
 /** 背景色 */
