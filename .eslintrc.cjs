@@ -28,6 +28,7 @@ module.exports = {
     "no-console": "warn", //不允许使用 console
 
     "@typescript-eslint/no-explicit-any": "off", //禁止使用any类型
+    "typescript-eslint/no-this-alias": "off", //禁止使用this别名
     "vue/multi-word-component-names": "off", //组件名称必须包含多个单词
     "vue/no-v-html": "off", //禁止使用v-html
     "vue/custom-event-name-casing": "off", //为自定义事件名称强制使用特定大小写
