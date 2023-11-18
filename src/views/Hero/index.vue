@@ -19,7 +19,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
 import { API_HERO } from "@/api";
-import { $tool, $bus } from "@/utils";
+import { $tool, $bus, $loading } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { usePagingLoad } from "@/hooks";
@@ -66,6 +66,7 @@ const handleEnterCard = (data: Hero.Data) => {
 const onViewClick = (id: number) => {
   //获取指定英雄数据
   API_HERO.getHeroDetail(id).then((hero) => {
+    $loading.show(`${hero.name}详情`);
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
 

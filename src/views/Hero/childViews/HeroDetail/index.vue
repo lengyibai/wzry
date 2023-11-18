@@ -11,7 +11,7 @@ import HeroSkill from "./childComps/HeroSkill/index.vue";
 
 import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
-import { $concise } from "@/utils";
+import { $concise, $loading } from "@/utils";
 
 const $router = useRouter();
 const $heroDetail = HeroDetailStore();
@@ -30,6 +30,9 @@ const show_progress = ref(false);
 const hero_toggle = ref(true);
 /** 英雄信息 */
 const hero_data = ref<Hero.Data>(heroDefault());
+
+$audioStore.play("u4c5");
+$loading.close();
 
 watchEffect(() => {
   hero_data.value = $heroDetail.hero_info;
@@ -92,8 +95,6 @@ setTimeout(() => {
     new Image().src = item.poster;
   });
 }, 1500);
-
-$audioStore.play("u4c5");
 </script>
 
 <template>
