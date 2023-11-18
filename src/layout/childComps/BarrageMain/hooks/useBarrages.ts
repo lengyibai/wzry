@@ -35,7 +35,7 @@ const useBarrages = () => {
   const init = (data: Barrage[], parent: HTMLElement, card: HTMLElement) => {
     barragesMove?.destruction();
 
-    barragesMove = new $tool.BarragesMove(parent, data.slice(0, 20), {
+    barragesMove = new $tool.BarragesMove(parent, data, {
       async click(v, e) {
         const { skinName, heroId, link, text: voiceText } = v;
         barrage_info.value = undefined;
