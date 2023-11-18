@@ -1058,16 +1058,16 @@ export class BarragesMove {
         return;
       }
 
-      this.createLybBarrage(`冷弋白：弹幕已装填完毕，还剩${this.data.length}条弹幕`);
+      this.createLybBarrage(`冷弋白：弹幕已装填完毕，还剩${this.data.length}条`);
 
       setTimeout(() => {
         this.enable = true;
         this.generateBarrage();
       }, 5000);
 
-      this.customTimer = setTimeout(() => {
+      this.customTimer = setInterval(() => {
         this.createLybBarrage(`冷弋白：还剩${this.data.length}条弹幕`);
-      }, 10000);
+      }, 20000);
     };
     window.addEventListener("visibilitychange", this.init);
     this.init();
