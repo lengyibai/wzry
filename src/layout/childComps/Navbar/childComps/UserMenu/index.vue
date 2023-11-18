@@ -10,12 +10,17 @@ const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
 
+/** 离开定时器 */
+let timer: NodeJS.Timeout;
+
 /** 显示用户菜单 */
 const show_menu = ref(false);
 /** 显示编辑个人信息弹窗 */
 const show_edit = ref(false);
 /** 信息是否修改 */
 const edit_status = ref(false);
+/** 编辑的用户信息 */
+const user_info = ref<Partial<User>>({ ...$authStore.userInfo });
 
 /** 用户本地信息 */
 const userInfo = computed(() => $authStore.userInfo);
@@ -23,9 +28,18 @@ const userInfo = computed(() => $authStore.userInfo);
 const role = computed(() => {
   return user_info.value.role === 0 ? "管理员" : "普通用户";
 });
+/* 悬浮显示 */
+const handleEnter = () => {
+  show_menu.value = true;
+  clearTimeout(timer);
+};
 
-/** 编辑的用户信息 */
-const user_info = ref<Partial<User>>({ ...userInfo.value });
+/* 离开隐藏 */
+const handleLeave = () => {
+  timer = setTimeout(() => {
+    show_menu.value = false;
+  }, 500);
+};
 
 /* 编辑个人信息 */
 const handleEditInfo = () => {
@@ -70,8 +84,8 @@ const onCloseConfirmEdidInfo = () => {
   <div
     class="user-menu"
     :class="{ hover: show_menu }"
-    @mouseenter="show_menu = true"
-    @mouseleave="show_menu = false"
+    @mouseenter="handleEnter"
+    @mouseleave="handleLeave"
   >
     <img
       class="head-img"
