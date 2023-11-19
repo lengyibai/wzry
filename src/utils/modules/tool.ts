@@ -527,7 +527,6 @@ export class ScaleImage {
 }
 
 /** @description FLIP查看图片 */
-
 export class ScaleFLIPImage {
   src: string;
   blur: string;
@@ -1050,7 +1049,7 @@ export class BarragesMove {
 
     this.init = () => {
       clearTimeout(this.generateTimer);
-      clearTimeout(this.customTimer);
+      clearInterval(this.customTimer);
 
       //离开当前窗口停止生成
       if (document.visibilityState == "hidden") {
