@@ -132,7 +132,7 @@ const blur = (e: Event) => {
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  $emit("update:modelValue", v);
+  $emit("update:modelValue", v && ($props.number ? Number(v) : v));
 };
 </script>
 <style scoped lang="less">
