@@ -61,13 +61,9 @@
         body.style.display = "flex";
       }, 100);
 
-      document.addEventListener("selectstart", function (e) {
-        e.preventDefault();
-      });
       document.ondragstart = () => false;
 
       let document_title = "";
-
       window.addEventListener("visibilitychange", () => {
         if (document.hidden) {
           document_title = document.title;
