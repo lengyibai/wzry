@@ -35,7 +35,7 @@ const $router = useRouter();
 const $audioStore = AudioStore();
 const $heroDetail = HeroDetailStore();
 const { getHeroList, setScroll, loadMore } = HeroStore();
-const { all_data, scroll, show_list, finish } = storeToRefs(HeroStore());
+const { all_data, scroll, show_list, finish, loading } = storeToRefs(HeroStore());
 
 const { page_count } = usePagingLoad();
 
@@ -96,11 +96,6 @@ const debounceScroll = _debounce((v: number) => {
 const onScroll = (v: number) => {
   back_top.value = v > 250;
   debounceScroll(v);
-};
-
-/* 加载更多 */
-const onLoadMore = () => {
-  loadMore();
 };
 
 /* 返回顶部 */
@@ -193,11 +188,12 @@ onUnmounted(() => {
         v-if="show_list.length && show_herolist"
         ref="heroListRef"
         :finish="finish"
+        :loading="loading"
         scroll-id="hero_list"
         gap="1.5625rem"
         :count="count"
         @scroll="onScroll"
-        @load-more="onLoadMore"
+        @load-more="loadMore"
       >
         <transition-group name="card" appear>
           <div

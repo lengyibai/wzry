@@ -19,7 +19,7 @@ defineOptions({
 });
 
 const { getSkin, setScroll, loadMore } = SkinStore();
-const { scroll, finish, show_list } = storeToRefs(SkinStore());
+const { scroll, finish, show_list, loading } = storeToRefs(SkinStore());
 const $audioStore = AudioStore();
 
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
@@ -145,6 +145,7 @@ onUnmounted(() => {
           :finish="finish"
           scroll-id="skin_list"
           gap="1.5625rem"
+          :loading="loading"
           :count="count"
           :scroll-top="scroll"
           @load-more="onLoadMore"

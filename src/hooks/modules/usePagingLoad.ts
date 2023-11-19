@@ -11,6 +11,8 @@ const usePagingLoad = <T>() => {
 
   /** 滚动坐标 */
   const scroll = ref(0);
+  /** 是否处于加载中 */
+  const loading = ref(false);
   /** 暂无更多 */
   const finish = ref(false);
   /** 完整数据列表 */
@@ -31,6 +33,7 @@ const usePagingLoad = <T>() => {
   /** @description 重新计算分页 */
   const resetPage = () => {
     page = 1;
+    finish.value = false;
     show_list.value = [];
     nextTick(() => {
       show_list.value = filter_list.value.slice(0, page * page_count);
@@ -40,21 +43,33 @@ const usePagingLoad = <T>() => {
 
   /** @description 加载更多 */
   const loadMore = () => {
+    //处于加载中或列表加载完毕时禁止触发加载更多，避免消耗
+    if (loading.value || finish.value) return;
+
+    loading.value = true;
     setTimeout(() => {
       if (page_total > page) {
-        show_list.value.push(
-          ...filter_list.value.slice(page * page_count, (page + 1) * page_count),
+        const getCurrentPageData = filter_list.value.slice(
+          page * page_count,
+          (page + 1) * page_count,
         );
+        show_list.value.push(...getCurrentPageData);
         page += 1;
+
+        //如果当前页获取的个数低于每页个数，则意味着列表加载完毕
+        finish.value = getCurrentPageData.length < page_count;
       } else {
         finish.value = true;
       }
-    }, 250);
+      loading.value = false;
+    }, 500);
   };
 
   return {
     /** 滚动坐标 */
     scroll,
+    /** 是否处于加载中 */
+    loading,
     /** 暂无更多 */
     finish,
     /** 完整数据列表 */

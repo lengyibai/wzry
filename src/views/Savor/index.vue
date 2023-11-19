@@ -17,7 +17,7 @@ defineOptions({
 });
 
 const { getAtlasList, setScroll, loadMore } = AtlasStore();
-const { show_list, scroll, finish } = storeToRefs(AtlasStore());
+const { show_list, scroll, finish, loading } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
@@ -105,6 +105,7 @@ onUnmounted(() => {
         v-if="show_list.length"
         ref="waterfallRef"
         :count="count"
+        :loading="loading"
         :finish="finish"
         :scroll-top="scroll"
         @load-more="onLoadMore"

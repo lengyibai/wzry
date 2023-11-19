@@ -9,8 +9,17 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list, finish } =
-    usePagingLoad<Hero.Skin>();
+  const {
+    all_data,
+    resetPage,
+    loadMore,
+    setScroll,
+    scroll,
+    filter_list,
+    show_list,
+    finish,
+    loading,
+  } = usePagingLoad<Hero.Skin>();
 
   /** 职业类型 */
   const profession = ref<Hero.Profession>("全部");
@@ -299,6 +308,8 @@ const SkinStore = defineStore("skin", () => {
     skin_type,
     /** 暂无更多 */
     finish,
+    /** 是否处于加载中 */
+    loading,
     getSkin: getSkinList,
     setProfessional,
     sortPrice,

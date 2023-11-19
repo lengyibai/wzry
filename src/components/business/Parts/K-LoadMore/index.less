@@ -4,8 +4,13 @@
   flex-shrink: 0;
   width: 100%;
   height: 4.6875rem;
+  transition: 0.25s;
   filter: var(--d-shadow-b);
   pointer-events: none;
+
+  &.hide {
+    opacity: 0;
+  }
 
   .text {
     margin-left: 1rem;

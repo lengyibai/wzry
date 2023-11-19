@@ -9,8 +9,17 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
-  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list, finish } =
-    usePagingLoad<Hero.AloneAtlas>();
+  const {
+    all_data,
+    resetPage,
+    loadMore,
+    setScroll,
+    scroll,
+    filter_list,
+    show_list,
+    finish,
+    loading,
+  } = usePagingLoad<Hero.AloneAtlas>();
 
   /** 当前排序类型 */
   const sort_type = ref("倒序");
@@ -174,6 +183,8 @@ const AtlasStore = defineStore("atlas", () => {
     sort_type,
     /** 暂无更多 */
     finish,
+    /** 是否处于加载中 */
+    loading,
     setScroll,
     loadMore,
     getAtlasList,

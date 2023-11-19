@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import _debounce from "lodash/debounce";
 
 import waterFullLayout from "./Waterfall";
 
@@ -13,12 +12,15 @@ interface Props {
   scrollTop?: number;
   /** 是否暂无更多 */
   finish?: boolean;
+  /** 是否处于加载中 */
+  loading?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
   count: 2,
   gap: 15,
   finish: false,
+  loading: false,
 });
 
 interface Emits {
@@ -64,14 +66,15 @@ const watchImgLoad = () => {
   });
 };
 
+/** @description 滚动指定位置 */
+const setPosition = (top: number, animate = false) => {
+  waterfallRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
+};
+
 watch(() => $props.count, updateSizePosition);
 
 onMounted(() => {
   watchImgLoad();
-
-  const _debounceLoad = _debounce(() => {
-    $emit("load-more");
-  }, 250);
 
   new $tool.LoadMore(
     {
@@ -80,7 +83,9 @@ onMounted(() => {
     },
     {
       load: () => {
-        _debounceLoad();
+        //处于加载中或全部加载完毕禁止再次触发
+        if ($props.loading || $props.finish) return;
+        $emit("load-more");
       },
       scroll: (v) => {
         $emit("scroll", v);
@@ -88,11 +93,6 @@ onMounted(() => {
     },
   );
 });
-
-/** @description 滚动指定位置 */
-const setPosition = (top: number, animate = false) => {
-  waterfallRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
-};
 
 defineExpose({
   el: waterfallContentRef,
@@ -107,9 +107,8 @@ defineExpose({
     <div ref="waterfallContentRef" class="waterfall-content">
       <slot></slot>
     </div>
-    <transition name="fade">
-      <KLoadMore class="load-more" :finish="finish" />
-    </transition>
+
+    <KLoadMore :loading="loading" class="load-more" :finish="finish" />
   </div>
 </template>
 

@@ -9,8 +9,17 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
-  const { all_data, resetPage, loadMore, setScroll, scroll, filter_list, show_list, finish } =
-    usePagingLoad<Hero.Data>();
+  const {
+    all_data,
+    resetPage,
+    loadMore,
+    setScroll,
+    scroll,
+    filter_list,
+    show_list,
+    finish,
+    loading,
+  } = usePagingLoad<Hero.Data>();
 
   /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
   const profession = ref<Hero.Profession>();
@@ -290,6 +299,8 @@ const HeroStore = defineStore("hero", () => {
     sort_type,
     /** 暂无更多 */
     finish,
+    /** 是否处于加载中 */
+    loading,
     filterAttr,
     filterCamp,
     filterGender,
