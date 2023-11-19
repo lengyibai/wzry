@@ -132,7 +132,6 @@ const play = () => $audioStore.play();
 /* 更新数据 */
 const updateData = (key: string, data: unknown) => {
   localStorage.setItem(key, JSON.stringify(data));
-  location.reload();
 };
 
 /* 检查更新 */
@@ -161,6 +160,8 @@ const handleCheck = _debounce(
 const handleUpdate = async (data: TableData) => {
   const v = (await requests[data.key]()).data;
   updateData(data.key, v);
+  data.data = v;
+  handleCheck(data);
 };
 
 /* 强制覆盖 */
