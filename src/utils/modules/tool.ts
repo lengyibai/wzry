@@ -1038,7 +1038,9 @@ export class BarragesMove {
     parent: HTMLElement,
     data: Barrage[],
     event: {
+      /** 点击弹幕回调 */
       click: (v: Barrage, e: MouseEvent) => void;
+      /** 所有弹幕发射结束回调 */
       finish: () => void;
     },
   ) {
@@ -1057,7 +1059,7 @@ export class BarragesMove {
         return;
       }
 
-      this.createLybBarrage(`冷弋白：弹幕已装填完毕，还剩${this.data.length}条`);
+      this.createLybBarrage(`冷弋白：弹幕已装填完毕，剩余${this.data.length}条`);
 
       setTimeout(() => {
         this.enable = true;
