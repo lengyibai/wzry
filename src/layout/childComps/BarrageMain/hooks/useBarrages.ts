@@ -57,6 +57,8 @@ const useBarrages = () => {
           skinBigPoster: skin.posterBig || hero.posterBig,
         };
 
+        new Image().src = barrage_info.value.skinBlurPoster;
+
         //设置信息弹窗坐标
         if (!card) return;
 
