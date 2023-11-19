@@ -1,4 +1,5 @@
 .hero-card {
+  --rotate: 0deg;
   .global_cursor-pointer();
 
   position: relative;
@@ -7,14 +8,19 @@
   flex-direction: column;
   overflow: hidden;
   width: 100%;
-  border: 0.0625rem solid var(--white-25);
+  border: 1px solid var(--white-25);
   background-color: var(--black-25);
-  transition:
-    box-shadow 0.25s,
-    transform 0.25s;
+  background-image: linear-gradient(
+    var(--rotate),
+    transparent 0%,
+    var(--white-75) 40%,
+    var(--white-75) 60%,
+    transparent 100%
+  );
+  transition: 0.25s;
 
   &:hover {
-    border: 0.0625rem solid var(--white-50);
+    --rotate: 90deg;
   }
 
   &.hide {
