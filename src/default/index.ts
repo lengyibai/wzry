@@ -22,7 +22,7 @@ export const heroDefault: () => Hero.Data = () => ({
   posterBlur: "",
   race: "",
   gender: "男",
-  skillUnit: "无",
+  skillUnit: "",
   profession: [],
   specialty: [],
   voices: [],
@@ -34,7 +34,7 @@ export const heroDefault: () => Hero.Data = () => ({
 /** @description 默认技能信息 */
 export const skillDefault: () => Hero.Skill = () => ({
   cd: 0,
-  consume: "",
+  consume: 0,
   name: "",
   desc: "",
   img: "",

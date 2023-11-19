@@ -80,9 +80,9 @@ declare namespace Hero {
   /** @description 技能信息 */
   interface Skill {
     /** 技能冷却 */
-    cd?: number;
+    cd: number;
     /** 消耗 */
-    consume?: number | "";
+    consume: number;
     /** 名称 */
     name: string;
     /** 简述 */
