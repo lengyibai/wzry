@@ -322,10 +322,8 @@ const onCommit = async () => {
 
       <!-- 设置技能效果 -->
       <div v-if="noFirst" class="select-effect">
-        <FormSelect
+        <FormInput
           v-model="skill_effect"
-          :data="skill_effects"
-          :value="skill_effect"
           label="技能效果"
           :disabled="!activeSkill().effect![effectIndex]"
           @update:model-value="onSelectEffect"
