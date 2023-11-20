@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 
 import HeroScroll from "./childComps/HeroScroll/index.vue";
 import HeroParallax from "./childComps/HeroParallax/index.vue";
-import Heroprogress from "./childComps/Heroprogress/index.vue";
+import HeroProgress from "./childComps/HeroProgress/index.vue";
 import HeroInfo from "./childComps/HeroInfo/index.vue";
 import HeroSkin from "./childComps/HeroSkin/index.vue";
 import HeroSkill from "./childComps/HeroSkill/index.vue";
@@ -141,7 +141,7 @@ setTimeout(() => {
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <Heroprogress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
+      <HeroProgress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
     </transition>
   </div>
 </template>
