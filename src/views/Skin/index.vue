@@ -98,7 +98,7 @@ onMounted(async () => {
     [2000, 4],
     [1600, 3],
     [1400, 2],
-    [960, 1],
+    [720, 1],
   ];
   const changeCount = () => {
     const v = document.documentElement.clientWidth;
