@@ -1,6 +1,6 @@
 /**
  * v-drag
- * 元素支持拖动
+ * 用于英雄详情页-皮肤页拖拽头像
  */
 import type { Directive, DirectiveBinding } from "vue";
 
@@ -16,7 +16,7 @@ const drag: Directive = {
     let moveY = 0;
 
     /* PC端 */
-    el.addEventListener("mousedown", (e) => {
+    el.addEventListener("mousedown", (e: MouseEvent) => {
       x = e.pageX;
       y = e.pageY;
       startX = el.offsetLeft;
@@ -48,7 +48,7 @@ const drag: Directive = {
     });
 
     /* 兼容移动端 */
-    el.addEventListener("touchstart", (e) => {
+    el.addEventListener("touchstart", (e: TouchEvent) => {
       x = e.changedTouches[0].pageX;
       y = e.changedTouches[0].pageY;
       startX = el.offsetLeft;
