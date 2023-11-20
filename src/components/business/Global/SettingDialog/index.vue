@@ -124,12 +124,14 @@ const handleResetConfig = () => {
 const onResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-  $audioStore.setAudio(config.value.audio);
-  $audioStore.setVolume(config.value.audioVolume);
-  $musicStore.setVolume(config.value.musicVolume);
-  $cssVarStore.setShine(config.value.shine);
-  $cssVarStore.setShadow(config.value.shadow);
-  $cssVarStore.setBorder(config.value.border);
+  const { audio, audioVolume, musicVolume, shine, shadow, border, barrage } = config.value;
+  $audioStore.setAudio(audio);
+  $audioStore.setVolume(audioVolume);
+  $musicStore.setVolume(musicVolume);
+  $barrageStore.setBarrage(barrage);
+  $cssVarStore.setShine(shine);
+  $cssVarStore.setShadow(shadow);
+  $cssVarStore.setBorder(border);
   $message("已重置所有配置项");
 };
 </script>
