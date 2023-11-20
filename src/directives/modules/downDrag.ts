@@ -5,8 +5,14 @@
 
 import { Directive } from "vue";
 
-const downDrag: Directive = {
-  mounted(el: HTMLElement) {
+interface ElType extends HTMLElement {
+  _mouseDown: (e: MouseEvent | TouchEvent) => void;
+  _mouseMove: (e: MouseEvent | TouchEvent) => void;
+  _mouseUp: (e: MouseEvent | TouchEvent) => void;
+}
+
+const downDrag: Directive<ElType> = {
+  mounted(el) {
     const dragData = {
       isDragging: false,
       startX: 0,
@@ -17,20 +23,38 @@ const downDrag: Directive = {
 
     const time = el.style.transitionDuration;
 
-    const handleMouseDown = (event: any) => {
+    const handleMouseDown = (event: MouseEvent | TouchEvent) => {
       el.style.transitionDuration = "0s";
       dragData.isDragging = true;
-      dragData.startX = event.pageX || event.touches[0].pageX;
-      dragData.startY = event.pageY || event.touches[0].pageY;
+
+      if (event instanceof MouseEvent) {
+        dragData.startX = event.pageX;
+        dragData.startY = event.pageY;
+      } else if (event instanceof TouchEvent) {
+        dragData.startX = event.touches[0].pageX;
+        dragData.startY = event.touches[0].pageY;
+      }
+
       dragData.left = el.offsetLeft;
       dragData.top = el.offsetTop;
     };
 
-    const handleMouseMove = (event: any) => {
+    const handleMouseMove = (event: MouseEvent | TouchEvent) => {
       if (!dragData.isDragging) return;
 
-      const offsetX = (event.pageX || event.touches[0].pageX) - dragData.startX;
-      const offsetY = (event.pageY || event.touches[0].pageY) - dragData.startY;
+      let offsetX: number;
+      let offsetY: number;
+
+      if (event instanceof MouseEvent) {
+        offsetX = event.pageX - dragData.startX;
+        offsetY = event.pageY - dragData.startY;
+      } else if (event instanceof TouchEvent) {
+        offsetX = event.touches[0].pageX - dragData.startX;
+        offsetY = event.touches[0].pageY - dragData.startY;
+      } else {
+        offsetX = 0;
+        offsetY = 0;
+      }
 
       const left = dragData.left + offsetX;
       const top = dragData.top + offsetY;
@@ -57,17 +81,32 @@ const downDrag: Directive = {
       dragData.isDragging = false;
     };
 
+    // 将事件挂载到DOM上
+    el._mouseDown = handleMouseDown;
+    el._mouseMove = handleMouseMove;
+    el._mouseUp = handleMouseUp;
+
     // 监听鼠标事件
-    window.onmousedown = handleMouseDown;
-    window.onmousemove = handleMouseMove;
-    window.onmouseup = handleMouseUp;
+    window.addEventListener("mousedown", el._mouseDown);
+    window.addEventListener("mousemove", el._mouseMove);
+    window.addEventListener("mouseup", el._mouseUp);
 
     // 监听触摸事件
-    window.ontouchstart = handleMouseDown;
-    window.ontouchmove = handleMouseMove;
-    window.ontouchend = handleMouseUp;
+    window.addEventListener("touchstart", el._mouseDown);
+    window.addEventListener("touchmove", el._mouseMove);
+    window.addEventListener("touchend", el._mouseUp);
   },
-  unmounted() {},
+  unmounted(el) {
+    // 移除鼠标事件
+    window.removeEventListener("mousedown", el._mouseDown);
+    window.removeEventListener("mousemove", el._mouseMove);
+    window.removeEventListener("mouseup", el._mouseUp);
+
+    // 移除触摸事件
+    window.removeEventListener("touchstart", el._mouseDown);
+    window.removeEventListener("touchmove", el._mouseMove);
+    window.removeEventListener("touchend", el._mouseUp);
+  },
 };
 
 export default downDrag;
