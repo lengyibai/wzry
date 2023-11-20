@@ -3,7 +3,7 @@ import { onUnmounted, ref, watch, nextTick, onMounted } from "vue";
 
 import EpigraphCard from "./childComps/EpigraphCard/index.vue";
 
-import { $bus, $tool } from "@/utils";
+import { $bus } from "@/utils";
 import { LibGrid } from "@/components/common";
 
 interface Props {
@@ -30,10 +30,6 @@ watch(
     nextTick(() => {
       epigraph_list.value = v;
       show.value = true;
-
-      nextTick(() => {
-        epigraphListRef.value?.el && new $tool.ImageLoader(epigraphListRef.value.el);
-      });
     });
   },
   { deep: true, immediate: true },

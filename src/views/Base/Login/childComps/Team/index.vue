@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
+import { ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
@@ -16,8 +16,6 @@ $audioStore.play("u4c5");
 
 API_DATA.Team().then(async (res) => {
   imgs.value = res.data;
-  await nextTick();
-  teamRef.value && new $tool.ImageLoader(teamRef.value);
 });
 
 /* 查看图片 */
@@ -32,9 +30,9 @@ const handleView = (e: Event, v: string[]) => {
       <img
         v-for="(item, index) in imgs"
         :key="index"
+        v-blurLoad="item[0]"
         class="blur"
         :src="item[1]"
-        :data-src="item[0]"
         alt=""
         @click="handleView($event, item)"
       />

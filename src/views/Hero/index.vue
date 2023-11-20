@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import _debounce from "lodash/debounce";
-import {
-  onUnmounted,
-  onActivated,
-  onMounted,
-  ref,
-  watch,
-  defineAsyncComponent,
-  nextTick,
-  watchEffect,
-} from "vue";
+import { onUnmounted, onActivated, onMounted, ref, watch, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 
@@ -119,14 +110,6 @@ watch(
     immediate: true,
   },
 );
-
-/* 监听列表显示及上拉加载 */
-watchEffect(async () => {
-  if (show_list.value.length !== 0 && show_herolist.value) {
-    await nextTick();
-    heroListRef.value?.el && new $tool.ImageLoader(heroListRef.value?.el);
-  }
-});
 
 onActivated(() => {
   $audioStore.play("4d8m");

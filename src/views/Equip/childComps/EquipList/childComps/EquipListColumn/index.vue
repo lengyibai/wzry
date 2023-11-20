@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 
 import EquipCard from "./components/EquipCard/index.vue";
 
 import { EquipStore } from "@/store";
-import { $tool } from "@/utils";
 
 interface Props {
   /** 装备列表 */
@@ -51,10 +50,6 @@ watch(
     setTimeout(() => {
       equip_list.value = $props.equipList;
       show.value = true;
-
-      nextTick(() => {
-        equipListRef.value && new $tool.ImageLoader(equipListRef.value);
-      });
     }, 300);
   },
 );

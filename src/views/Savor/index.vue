@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, ref, watchEffect } from "vue";
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
 import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
@@ -64,14 +64,6 @@ const onBackTop = () => {
   waterfallRef.value?.setPosition(0, true);
 };
 
-/* 监听列表显示及上拉加载 */
-watchEffect(async () => {
-  if (show_list.value.length !== 0) {
-    await nextTick();
-    waterfallRef.value?.el && new $tool.ImageLoader(waterfallRef.value?.el);
-  }
-});
-
 onActivated(() => {
   debounceUpdateSizePosition();
   waterfallRef.value?.setPosition(scroll.value);
@@ -130,9 +122,9 @@ onUnmounted(() => {
             {{ item.name }}
           </div>
           <img
+            v-blurLoad="item.cover"
             class="blur"
             :src="item.coverBlur"
-            :data-src="item.cover"
             alt=""
             @dragstart.prevent
           />

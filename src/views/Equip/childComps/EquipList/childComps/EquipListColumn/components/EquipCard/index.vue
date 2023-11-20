@@ -48,7 +48,7 @@ nextTick(() => {
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="iconRef" class="blur" :src="equip.iconBlur" :data-src="equip.icon" alt="" />
+    <img ref="iconRef" v-blurLoad="equip.icon" class="blur" :src="equip.iconBlur" alt="" />
 
     <!-- 左线 -->
     <transition name="left-line">

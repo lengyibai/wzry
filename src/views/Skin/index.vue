@@ -2,7 +2,6 @@
 import { onUnmounted, onActivated, onMounted, ref } from "vue";
 import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
-import { nextTick, watchEffect } from "vue";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
@@ -77,14 +76,6 @@ const handleEnterCard = () => {
 const onBackTop = () => {
   skinListRef.value?.setPosition(0, true);
 };
-
-/* 监听列表显示及上拉加载 */
-watchEffect(async () => {
-  if (show_list.value.length !== 0 && show_skinlist.value) {
-    await nextTick();
-    skinListRef.value?.el && new $tool.ImageLoader(skinListRef.value?.el);
-  }
-});
 
 onActivated(() => {
   $audioStore.play("9u8z");
