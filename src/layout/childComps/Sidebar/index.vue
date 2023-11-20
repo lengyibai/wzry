@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from "vue";
-import _debounce from "lodash/debounce";
 
 import sideItem from "./childComp/SideItem/index.vue";
 import GameLogo from "./childComp/GameLogo/index.vue";
@@ -33,11 +32,8 @@ const onCoord = (v: number) => {
   }
 };
 
-const debounceSetCollapse = _debounce(() => {
-  $collapseStore.setCollapse(window.innerWidth < 960);
-}, 250);
 $bus.on("resize", () => {
-  debounceSetCollapse();
+  $collapseStore.setCollapse(window.innerWidth < 960);
 });
 
 onUnmounted(() => {
