@@ -15,6 +15,7 @@ import KInput from "./Parts/K-Input/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
 import KSkillTypeTag from "./Parts/K-SkillTypeTag/index.vue";
 import KVideo from "./Parts/K-Video/index.vue";
+import KScrollTip from "./Parts/K-ScrollTip/index.vue";
 import FilterGender from "./Tool/FilterGender/index.vue";
 import FilterSidebar from "./Tool/FilterSidebar/index.vue";
 import FilterTool from "./Tool/FilterTool/index.vue";
@@ -40,6 +41,7 @@ export {
   KRange,
   KSkillTypeTag,
   KVideo,
+  KScrollTip,
   FilterGender,
   FilterSidebar,
   FilterTool,

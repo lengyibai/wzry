@@ -9,6 +9,7 @@ import HeroAttribute from "./childComps/HeroAttribute/index.vue";
 
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
+import { KScrollTip } from "@/components/business";
 
 const { hero_info } = storeToRefs(HeroDetailStore());
 
@@ -16,12 +17,10 @@ const { hero_info } = storeToRefs(HeroDetailStore());
 let tip_text = "0vk2";
 
 const relationshipRef = ref<InstanceType<typeof HeroRelationship>>();
-const downRef = ref<HTMLElement>();
+const downRef = ref<InstanceType<typeof KScrollTip>>();
 
 /** 控制页面元素显示 */
 const into = ref(false);
-/** 显示向上滚动提示 */
-const show_down = ref(false);
 
 onMounted(() => {
   //设置按顺序出场的动画
@@ -31,9 +30,9 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      if (!relationshipRef.value?.el || !downRef.value) return;
+      if (!relationshipRef.value?.el || !downRef.value?.el) return;
       const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
-      const focusdown = new $tool.FocusElement(downRef.value);
+      const focusdown = new $tool.FocusElement(downRef.value.el);
 
       if ($tool.isPhone) {
         tip_text = "1zs6";
@@ -44,7 +43,6 @@ onMounted(() => {
         align: "left-top",
         createFn: () => {
           focusdown.focus();
-          show_down.value = true;
         },
         btnFn: () => {
           focusdown.blur();
@@ -104,8 +102,8 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- 向上滚动提示 -->
-    <i v-show="show_down" ref="downRef" class="iconfont wzry-down"></i>
+    <!-- 可滚动提示 -->
+    <KScrollTip ref="downRef" />
   </div>
 </template>
 

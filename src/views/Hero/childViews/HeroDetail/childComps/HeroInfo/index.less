@@ -61,26 +61,6 @@
     }
   }
 
-  .wzry-down {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    color: var(--white-75);
-    font-size: 4.6875rem;
-    transform: translateX(-50%);
-    animation: down-up 1s infinite alternate-reverse;
-
-    @keyframes down-up {
-      0% {
-        transform: translateX(-50%) translateY(0%);
-      }
-
-      100% {
-        transform: translateX(-50%) translateY(-75%);
-      }
-    }
-  }
-
   @media screen and (max-width: @medium) {
     &__content {
       &__left {

@@ -4,6 +4,8 @@ import { ref } from "vue";
 import HeroSkillIcon from "./childComps/HeroSkillIcon/index.vue";
 import HeroSkillContent from "./childComps/HeroSkillContent/index.vue";
 
+import { KScrollTip } from "@/components/business";
+
 /** 技能信息 */
 const hero_skill = ref<Hero.Skill>();
 
@@ -24,6 +26,9 @@ const onSelectSkill = (skill: Hero.Skill) => {
     <transition name="fade">
       <HeroSkillContent v-if="hero_skill" :skill="hero_skill" />
     </transition>
+
+    <!-- 可滚动提示 -->
+    <KScrollTip ref="downRef" />
   </div>
 </template>
 
