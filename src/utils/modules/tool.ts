@@ -1029,6 +1029,8 @@ export class BarragesMove {
   private usedGaps: string[] = [];
   /** 是否启用生成弹幕 */
   private enable: boolean = true;
+  /** 即将生成定时器 */
+  private readyTimer: NodeJS.Timeout | undefined;
   /** 生成计时器 */
   private generateTimer: NodeJS.Timeout | undefined;
   /** 自定义弹幕定时器 */
@@ -1051,6 +1053,7 @@ export class BarragesMove {
 
     this.init = () => {
       clearTimeout(this.generateTimer);
+      clearTimeout(this.readyTimer);
       clearInterval(this.customTimer);
 
       //离开当前窗口停止生成
@@ -1061,7 +1064,7 @@ export class BarragesMove {
 
       this.createLybBarrage(`冷弋白：弹幕已装填完毕，剩余${this.data.length}条`);
 
-      setTimeout(() => {
+      this.readyTimer = setTimeout(() => {
         this.enable = true;
         this.generateBarrage();
       }, 5000);
