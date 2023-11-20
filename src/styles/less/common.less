@@ -101,6 +101,24 @@
   }
 }
 
+/*  条纹背景 */
+.global_stripes-bg {
+  --color: rgba(0 0 0 / 10%);
+  .global_fill-container();
+
+  background-image: linear-gradient(
+    -45deg,
+    var(--color) 25%,
+    transparent 25%,
+    transparent 50%,
+    var(--color) 50%,
+    var(--color) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 0.3125rem 0.3125rem;
+}
+
 /* 文字描边 */
 .global_text-outline(@thickness, @color, @border) {
   position: relative;
