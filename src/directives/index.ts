@@ -1,37 +1,15 @@
-import type { App, Directive } from "vue";
+import type { Directive, App } from "vue";
 
-import drag from "./modules/drag";
-import downDrag from "./modules/downDrag";
-import focus from "./modules/focus";
-import maskGradient from "./modules/maskGradient";
-import particle from "./modules/particle";
-import sweepLight from "./modules/sweepLight";
-import textHoverColor from "./modules/textHoverColor";
-import typewriterMultiple from "./modules/typewriterMultiple";
-import typewriterSingle from "./modules/typewriterSingle";
+const modules = import.meta.glob("./modules/*.ts", { eager: true }) as Record<
+  string,
+  { default: Directive }
+>;
 
-const directivesList: Record<string, Directive> = {
-  drag,
-  downDrag,
-  focus,
-  maskGradient,
-  particle,
-  sweepLight,
-  textHoverColor,
-  typewriterMultiple,
-  typewriterSingle,
-};
-
-const directives = {
-  install: function (app: App<Element>) {
-    Object.keys(directivesList).forEach((key) => {
-      app.directive(key, directivesList[key]);
-    });
-  },
-};
-
-const setupDirective = (app: App) => {
-  app.use(directives);
-};
+function setupDirective(app: App) {
+  for (const key in modules) {
+    const name = key.slice(10, -3);
+    app.directive(name, modules[key].default);
+  }
+}
 
 export { setupDirective };
