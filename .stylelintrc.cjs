@@ -45,6 +45,7 @@ module.exports = {
     ],
     /** 指定样式的排序 */
     "order/properties-order": [
+      "content",
       /* 表示定位/布局的属性 */
       "position",
       "top",
