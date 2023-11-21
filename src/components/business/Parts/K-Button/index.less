@@ -61,6 +61,16 @@
       box-shadow: none;
     }
   }
+
+  &.disable {
+    .global_cursor-not-allowed();
+
+    box-shadow: initial !important;
+    text-shadow: initial !important;
+    transform: initial !important;
+    opacity: 0.5;
+    filter: initial !important;
+  }
 }
 
 .auto {
