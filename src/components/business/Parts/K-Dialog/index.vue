@@ -76,6 +76,7 @@ const handleClose = () => {
         :style="{
           width: width,
           height: 'calc(' + width + ' * 0.5989)',
+          backgroundImage: `url(${getImgLink('dialog')})`,
         }"
       >
         <!-- 左上标题 -->
@@ -89,9 +90,6 @@ const handleClose = () => {
 
         <!-- 关闭 -->
         <img v-show="showClose" class="close" :src="getImgLink('close')" @click="handleClose" />
-
-        <!-- 背景图 -->
-        <img class="bg" :src="getImgLink('dialog')" />
 
         <!-- 内容区 -->
         <div
