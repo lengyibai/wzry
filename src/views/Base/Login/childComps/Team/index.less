@@ -10,6 +10,7 @@
   gap: 0.625rem;
 
   img {
+    .global_click-btn();
     .global_cursor-pointer();
 
     max-width: calc(50% - 0.3125rem);
@@ -26,10 +27,6 @@
 
     &:nth-last-child(-n + 4) {
       object-fit: contain;
-    }
-
-    &:hover {
-      outline: 0.0625rem solid var(--white);
     }
 
     &.blur {
