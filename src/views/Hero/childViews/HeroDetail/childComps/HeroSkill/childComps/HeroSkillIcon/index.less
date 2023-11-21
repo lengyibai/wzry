@@ -80,31 +80,6 @@
       }
     }
   }
-
-  .toggle {
-    .global_flex-center();
-    .global_cursor-pointer();
-
-    position: absolute;
-    bottom: 0;
-    z-index: 1;
-    color: var(--white-50);
-    font-size: 3.125rem;
-    transition: color 0.25s;
-
-    &:hover {
-      color: var(--white);
-    }
-
-    &:active {
-      color: var(--white-25);
-      transition: color 0.1s;
-    }
-
-    &.hide-bottom {
-      transform: translateY(100%);
-    }
-  }
 }
 
 .border-fade-enter-from,

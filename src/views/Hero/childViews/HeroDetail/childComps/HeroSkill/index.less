@@ -10,4 +10,31 @@
   padding: 6.25rem 1.5625rem 3.125rem;
   color: var(--white);
   background-color: var(--black-50);
+
+  .toggle {
+    .global_flex-center();
+    .global_cursor-pointer();
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 1;
+    color: var(--white-50);
+    font-size: 3.125rem;
+    transition: 0.25s;
+    transform: translateX(-50%);
+
+    &:hover {
+      color: var(--white);
+    }
+
+    &:active {
+      color: var(--white-25);
+      transition: color 0.1s;
+    }
+
+    &.hide-bottom {
+      transform: translate(-50%, 100%);
+    }
+  }
 }

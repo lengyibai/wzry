@@ -96,6 +96,10 @@ const handleToggleSkill = () => {
 onUnmounted(() => {
   $heroDetail.removeScollFn("skinIcon");
 });
+
+defineExpose({
+  toggleSkill: handleToggleSkill,
+});
 </script>
 
 <template>
@@ -119,16 +123,6 @@ onUnmounted(() => {
       <img :src="item.img" @click="handleSelectSkill(index)" />
       <img :src="item.img" :class="{ active: current_index === index }" />
     </div>
-
-    <!-- 切换副技能 -->
-    <i
-      v-if="hero_info.skills!.length > 1"
-      ref="toggleRef"
-      class="toggle iconfont wzry-qiehuan"
-      :class="{ 'hide-bottom': !show }"
-      title="切换技能"
-      @click="handleToggleSkill"
-    />
   </div>
 </template>
 
