@@ -854,25 +854,27 @@ export class FocusElement {
   zIndex: string;
   outline: string;
   transition: string;
+  size: number;
 
   constructor(el: HTMLElement) {
     this.el = el;
     this.zIndex = el.style.zIndex;
     this.outline = el.style.outline;
     this.transition = el.style.transition;
+    this.size = window.innerHeight > window.innerWidth ? window.innerHeight : window.innerWidth;
   }
 
   focus() {
-    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0)";
+    this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0)`;
     this.el.style.zIndex = "9";
     setTimeout(() => {
       this.el.style.transition = "outline 0.5s";
-      this.el.style.outline = "4000px solid rgba(0, 0, 0, 0.8)";
+      this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0.8)`;
     }, 10);
   }
 
   blur() {
-    this.el.style.outline = "2000px solid rgba(0, 0, 0, 0)";
+    this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0)`;
     this.el.style.zIndex = this.zIndex;
     setTimeout(() => {
       this.el.style.outline = this.outline;
@@ -1252,3 +1254,26 @@ export class AudioPlayer {
     this.audio.pause();
   }
 }
+
+/** @description 网站标题小提示 */
+export const titleTip = () => {
+  let document_title = "";
+  let timer: NodeJS.Timeout;
+  window.addEventListener("visibilitychange", () => {
+    clearTimeout(timer);
+
+    if (document.hidden) {
+      if (document.title !== "o(*≧▽≦)ツ欢迎回来！") {
+        document_title = document.title;
+      }
+      document.title = "ヽ(≧∀≦)ﾉ来和妲己玩耍吧！";
+      return;
+    }
+
+    document.title = "o(*≧▽≦)ツ欢迎回来！";
+
+    timer = setTimeout(() => {
+      document.title = document_title;
+    }, 1000);
+  });
+};
