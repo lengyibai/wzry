@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-
-import useTip from "./hooks/useTip";
+import { storeToRefs } from "pinia";
 
 import { $bus, $concise } from "@/utils";
-import { SettingStore, AudioStore } from "@/store";
+import { SettingStore, AudioStore, TipStore } from "@/store";
 import { KButton } from "@/components/business";
+import { vTypewriterMultiple } from "@/directives";
 
-const { show_tip: show, content, align, noTipName, btnFn, tip } = useTip();
+const { show_tip: show, content, align, noTipName, btnFn } = storeToRefs(TipStore());
+const { tip, toTip } = TipStore();
 
 $bus.on("tip", (data) => {
   tip(data);
@@ -18,6 +19,8 @@ const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
 
+/** 是否锁定按钮 */
+const disable = ref(true);
 const show_tip = ref(false);
 
 const position = {
@@ -39,14 +42,22 @@ const position = {
   },
 };
 
+/* 打字机结束后触发 */
+const finish = () => {
+  disable.value = false;
+};
+
 /* 不再提示 */
 const handleClose = () => {
+  if (disable.value) return;
+  disable.value = true;
   noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
   show.value = false;
   $audioStore.play("6xc6");
 
   setTimeout(() => {
     btnFn.value();
+    toTip();
   }, 500);
 };
 
@@ -75,11 +86,11 @@ watch(
             </div>
 
             <!-- 内容 -->
-            <div v-typewriterMultiple class="content">{{ content }}</div>
+            <div v-typewriterMultiple="finish" class="content">{{ content }}</div>
 
             <!-- 按钮 -->
-            <div class="btns">
-              <KButton class="k-button" @click="handleClose"> 确定 </KButton>
+            <div class="btns" :class="{ disable }">
+              <KButton class="k-button" :disabled="disable" @click="handleClose">确定</KButton>
             </div>
           </div>
         </transition>
