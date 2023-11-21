@@ -43,6 +43,7 @@
     transform-origin: center bottom;
 
     &::after {
+      content: "";
       position: absolute;
       left: 50%;
       bottom: 0;
@@ -51,7 +52,6 @@
       border-radius: 0% 100% 0% 100% / 100% 100% 0% 0%;
       background-color: var(--theme-el-color-one);
       transform: translate(-0.8125rem, 0.625rem) rotate(-45deg);
-      content: "";
     }
   }
 }

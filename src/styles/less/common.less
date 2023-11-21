@@ -127,12 +127,12 @@
   color: @color;
 
   &::before {
+    content: attr(data-text);
     position: absolute;
-    inset: 0;
     z-index: -1;
     font-size: inherit;
     font-family: inherit;
-    content: attr(data-text);
+    inset: 0;
     -webkit-text-stroke: @thickness @border;
   }
 }
