@@ -117,7 +117,7 @@ const handleChildCoord = (v: number) => {
 
 <template>
   <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
-    <button
+    <div
       ref="menuItemRef"
       class="menu-item"
       :style="textStyle"
@@ -140,7 +140,7 @@ const handleChildCoord = (v: number) => {
         :src="getImgLink('arrow')"
         alt=""
       />
-    </button>
+    </div>
 
     <!-- 二级菜单 -->
     <div v-if="route.children">

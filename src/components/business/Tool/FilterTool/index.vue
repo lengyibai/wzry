@@ -65,7 +65,7 @@ const handleSelect = (v: Data) => {
       @click.stop
     >
       <transition-group name="select-list">
-        <button
+        <div
           v-for="item in data"
           :key="item.value"
           class="box"
@@ -77,7 +77,7 @@ const handleSelect = (v: Data) => {
           @mouseleave="current_value = ''"
         >
           <div class="item">{{ item.label }}</div>
-        </button>
+        </div>
       </transition-group>
     </div>
   </div>
