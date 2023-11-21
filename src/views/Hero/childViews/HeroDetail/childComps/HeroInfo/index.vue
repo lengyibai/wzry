@@ -13,9 +13,6 @@ import { KScrollTip } from "@/components/business";
 
 const { hero_info } = storeToRefs(HeroDetailStore());
 
-/** 通过设备来显示不同的提示 */
-let tip_text = "0vk2";
-
 const relationshipRef = ref<InstanceType<typeof HeroRelationship>>();
 const downRef = ref<InstanceType<typeof KScrollTip>>();
 
@@ -30,34 +27,18 @@ onMounted(() => {
     await nextTick();
 
     setTimeout(() => {
-      if (!relationshipRef.value?.el || !downRef.value?.el) return;
+      if (!relationshipRef.value?.el) return;
       const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
-      const focusdown = new $tool.FocusElement(downRef.value.el);
 
-      if ($tool.isPhone) {
-        tip_text = "1zs6";
-      }
-
+      //显示完滚动提示后显示关系提示
       $tip({
-        text: tip_text,
-        align: "left-top",
+        text: "05su",
+        align: "right-bottom",
         createFn: () => {
-          focusdown.focus();
+          focusRelationship.focus();
         },
         btnFn: () => {
-          focusdown.blur();
-
-          //显示完滚动提示后显示关系提示
-          $tip({
-            text: "05su",
-            align: "right-bottom",
-            createFn: () => {
-              focusRelationship.focus();
-            },
-            btnFn: () => {
-              focusRelationship.blur();
-            },
-          });
+          focusRelationship.blur();
         },
       });
     }, 1000);
