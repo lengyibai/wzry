@@ -8,7 +8,7 @@ import { KButton } from "@/components/business";
 import { vTypewriterMultiple } from "@/directives";
 
 const { show_tip: show, content, align, noTipName, btnFn } = storeToRefs(TipStore());
-const { tip, toTip } = TipStore();
+const { tip, toTip, setShowTip } = TipStore();
 
 $bus.on("tip", (data) => {
   tip(data);
@@ -52,7 +52,7 @@ const handleClose = () => {
   if (disable.value) return;
   disable.value = true;
   noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
-  show.value = false;
+  setShowTip(false);
   $audioStore.play("6xc6");
 
   setTimeout(() => {
