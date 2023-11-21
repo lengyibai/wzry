@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { $concise } from "@/utils";
+import { vBlurLoad, vMaskGradient } from "@/directives";
 
 interface Props {
   /** 皮肤数据 */

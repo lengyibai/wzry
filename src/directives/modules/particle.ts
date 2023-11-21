@@ -6,7 +6,22 @@ import type { Directive, DirectiveBinding } from "vue";
 
 import { $tool } from "@/utils";
 
-const fn = (el: HTMLElement, binding: DirectiveBinding) => {
+interface Params {
+  /** 粒子颜色 */
+  color: string;
+  /** 粒子大小 */
+  size: number;
+  /** 粒子数量 */
+  num: number;
+  /** 是否从下往上 */
+  down: boolean;
+  /** 是否启用 */
+  enable: boolean;
+  /** 是否锁定 */
+  lock: boolean;
+}
+
+const move = (el: HTMLElement, binding: DirectiveBinding<Partial<Params>>) => {
   setTimeout(() => {
     const {
       color = "#cfb45c",
@@ -102,14 +117,14 @@ const fn = (el: HTMLElement, binding: DirectiveBinding) => {
   }, 500);
 };
 
-const particle: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
-    fn(el, binding);
+const vParticle: Directive<HTMLElement, Partial<Params>> = {
+  mounted(el, binding) {
+    move(el, binding);
   },
-  updated(el: HTMLElement, binding: DirectiveBinding) {
+  updated(el, binding) {
     if (binding.value.lock) return;
-    fn(el, binding);
+    move(el, binding);
   },
 };
 
-export default particle;
+export { vParticle };

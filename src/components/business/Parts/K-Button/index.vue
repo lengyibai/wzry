@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { vParticle } from "@/directives";
 import { SettingStore } from "@/store";
 import { $concise } from "@/utils";
 
 interface Props {
   /** 类型 */
   type?: "info" | "error" | "warning";
+  /** 是否禁用 */
+  disabled?: boolean;
 }
 
 withDefaults(defineProps<Props>(), {
@@ -30,7 +33,8 @@ const particle_color = {
       size: 5,
       enable: $settingStore.config.particle,
     }"
-    :class="type"
+    :disabled="disabled"
+    :class="[type, { disable: disabled }]"
     class="k-button"
     :style="{
       backgroundImage: `url(${getImgLink(`btn_${type}`)})`,

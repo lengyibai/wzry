@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { vBlurLoad, vMaskGradient } from "@/directives";
+
 interface Props {
   data: Epigraph.Data;
 }
@@ -10,8 +12,8 @@ defineProps<Props>();
   <div
     v-maskGradient="{
       color: 'rgb(62 123 194)',
-      num1: '-50%',
-      num2: '50%',
+      start: '-50%',
+      end: '50%',
       rotate: '345deg',
     }"
     class="epigraph-card"

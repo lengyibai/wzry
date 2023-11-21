@@ -2,10 +2,10 @@
  * v-blurLoad
  * 模糊加载图片
  */
-import type { Directive, DirectiveBinding } from "vue";
+import type { Directive } from "vue";
 
-const blurLoad: Directive = {
-  mounted(el: HTMLImageElement, binding: DirectiveBinding<string>) {
+const vBlurLoad: Directive<HTMLImageElement, string> = {
+  mounted(el, binding) {
     const coverImg = new Image();
 
     const finishLoadBlur = () => {
@@ -27,4 +27,4 @@ const blurLoad: Directive = {
   },
 };
 
-export default blurLoad;
+export { vBlurLoad };

@@ -4,14 +4,12 @@ import { ref, computed } from "vue";
 import { AuthStore, AudioStore } from "@/store";
 import { $bus, $concise } from "@/utils";
 import { EditUserInfo, KButton, KDialog } from "@/components/business";
+import { vDelayHide } from "@/directives";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
-
-/** 离开定时器 */
-let timer: NodeJS.Timeout;
 
 /** 显示用户菜单 */
 const show_menu = ref(false);
@@ -31,14 +29,11 @@ const role = computed(() => {
 /* 悬浮显示 */
 const handleEnter = () => {
   show_menu.value = true;
-  clearTimeout(timer);
 };
 
 /* 离开隐藏 */
 const handleLeave = () => {
-  timer = setTimeout(() => {
-    show_menu.value = false;
-  }, 500);
+  show_menu.value = false;
 };
 
 /* 编辑个人信息 */
@@ -82,10 +77,12 @@ const onCloseConfirmEdidInfo = () => {
 
 <template>
   <div
+    v-delayHide="{
+      enter: handleEnter,
+      leave: handleLeave,
+    }"
     class="user-menu"
     :class="{ hover: show_menu }"
-    @mouseenter="handleEnter"
-    @mouseleave="handleLeave"
   >
     <img
       class="head-img"

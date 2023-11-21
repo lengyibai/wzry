@@ -5,8 +5,8 @@
 import type { Directive } from "vue";
 
 /* 文字悬浮变色 */
-const textHoverColor: Directive = {
-  mounted(el: HTMLElement, { value = "black" }) {
+const vTextHoverColor: Directive = {
+  mounted(el: HTMLElement) {
     //需要给父盒子加相对定位或绝对定位
     const mask = document.createElement("div");
     const line = document.createElement("div");
@@ -17,7 +17,7 @@ const textHoverColor: Directive = {
       top: 0;
       left: 0;
       color: #fff;
-      background-color: ${value};
+      background-color: #000;
       transition: all 0.35s;
       text-shadow: initial;
       -webkit-background-clip: text;
@@ -51,4 +51,4 @@ const textHoverColor: Directive = {
   },
 };
 
-export default textHoverColor;
+export { vTextHoverColor };

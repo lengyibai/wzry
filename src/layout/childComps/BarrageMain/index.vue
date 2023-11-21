@@ -6,6 +6,7 @@ import { useBarrages } from "./hooks/useBarrages";
 
 import { BarrageStore } from "@/store";
 import { $tool } from "@/utils";
+import { vBlurLoad, vDownDrag } from "@/directives";
 
 const $barrageStore = BarrageStore();
 
@@ -55,7 +56,8 @@ onMounted(() => {
             </div>
             <div class="voice-text">——{{ barrage_info.voiceText }}</div>
             <img
-              :src="barrage_info?.skinPoster"
+              v-blurLoad="barrage_info?.skinPoster"
+              :src="barrage_info?.skinBlurPoster"
               alt=""
               class="skin-poster"
               @click="handleView($event, barrage_info.skinBlurPoster, barrage_info.skinBigPoster)"

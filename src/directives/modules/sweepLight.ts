@@ -2,10 +2,10 @@
  * v-sweepLight
  * 卡片扫光
  */
-import type { Directive, DirectiveBinding } from "vue";
+import type { Directive } from "vue";
 
-const sweepLight: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const vSweepLight: Directive<HTMLElement, boolean> = {
+  mounted(el, binding) {
     setTimeout(() => {
       const auto = binding.value !== false;
       const light = document.createElement("div");
@@ -41,4 +41,4 @@ const sweepLight: Directive = {
   },
 };
 
-export default sweepLight;
+export { vSweepLight };

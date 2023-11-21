@@ -4,6 +4,7 @@ import { ref } from "vue";
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { AudioStore } from "@/store";
+import { vFocus } from "@/directives";
 
 interface Props {
   /** 输入框描述 */

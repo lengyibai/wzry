@@ -6,6 +6,7 @@ import MusicTool from "./childComps/MusicTool/index.vue";
 import Copyright from "./childComps/Copyright/index.vue";
 import MusicPlay from "./childComps/MusicPlay/index.vue";
 
+import { vParticle } from "@/directives";
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 
 const $musicStore = MusicStore();
@@ -95,7 +96,6 @@ onUnmounted(() => {
     ref="footbarRef"
     v-particle="{
       color: '#2e5283',
-      filter: false,
       size: 10,
       enable: $settingStore.config.particle,
     }"

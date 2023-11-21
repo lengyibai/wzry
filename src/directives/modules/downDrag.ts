@@ -6,12 +6,15 @@
 import { Directive } from "vue";
 
 interface ElType extends HTMLElement {
+  /** 鼠标按下事件 */
   _mouseDown: (e: MouseEvent | TouchEvent) => void;
+  /** 鼠标移动事件 */
   _mouseMove: (e: MouseEvent | TouchEvent) => void;
+  /** 鼠标抬起事件 */
   _mouseUp: (e: MouseEvent | TouchEvent) => void;
 }
 
-const downDrag: Directive<ElType> = {
+const vDownDrag: Directive<ElType> = {
   mounted(el) {
     const dragData = {
       isDragging: false,
@@ -109,4 +112,4 @@ const downDrag: Directive<ElType> = {
   },
 };
 
-export default downDrag;
+export { vDownDrag };

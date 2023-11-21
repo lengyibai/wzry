@@ -5,6 +5,7 @@ import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { KDialog } from "@/components/business";
+import { vBlurLoad } from "@/directives";
 
 const $audioStore = AudioStore();
 

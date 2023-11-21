@@ -7,6 +7,7 @@ import SelectInto from "./childComps/SelectInto/index.vue";
 
 import { API_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
+import { vParticle } from "@/directives";
 import { $concise, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
@@ -87,7 +88,6 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     <div
       v-particle="{
         down: true,
-        filter: false,
         color: '#e8cc7d',
         lock: true,
         enable: $settingStore.config.particle,

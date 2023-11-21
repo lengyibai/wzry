@@ -2,10 +2,10 @@
  * v-typewriterMultiple
  * 多行打字机
  */
-import type { Directive, DirectiveBinding } from "vue";
+import type { Directive } from "vue";
 
-const typewriterMultiple: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const vTypewriterMultiple: Directive<HTMLElement, () => void> = {
+  mounted(el, binding) {
     const say = el.innerHTML;
     el.innerHTML = "";
     setTimeout(() => {
@@ -25,10 +25,10 @@ const typewriterMultiple: Directive = {
           text += say[num];
           el.innerHTML = text;
           num++;
-        }, 50);
+        }, 100);
       }
     }, 750);
   },
 };
 
-export default typewriterMultiple;
+export { vTypewriterMultiple };

@@ -7,6 +7,7 @@ import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
+import { vBlurLoad } from "@/directives";
 import { $bus, $tool } from "@/utils";
 import { AtlasStore } from "@/store";
 import { FilterSidebar, KBackTop } from "@/components/business";

@@ -4,12 +4,12 @@
  */
 import type { Directive } from "vue";
 
-const focus: Directive = {
-  mounted(el: HTMLElement) {
+const vFocus: Directive<HTMLInputElement> = {
+  mounted(el) {
     setTimeout(() => {
       el.focus();
     });
   },
 };
 
-export default focus;
+export { vFocus };

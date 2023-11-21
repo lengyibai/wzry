@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue";
 
 import { AudioStore } from "@/store";
 import { $concise } from "@/utils";
+import { vMaskGradient } from "@/directives";
 
 interface Props {
   /** 垂直对齐方式 */
@@ -63,8 +64,8 @@ const handleClose = () => {
   <div
     v-maskGradient="{
       color: 'rgba(40, 100, 195, 0.5)',
-      num1: '0%',
-      num2: '50%',
+      start: '0%',
+      end: '50%',
     }"
     class="mask"
   >

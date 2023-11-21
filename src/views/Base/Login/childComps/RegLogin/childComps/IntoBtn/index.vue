@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SettingStore } from "@/store";
+import { vParticle } from "@/directives";
 import { $concise } from "@/utils";
 
 interface Props {

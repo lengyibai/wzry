@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from "vue";
 
+import { vBlurLoad } from "@/directives";
 import { AudioStore, EquipStore } from "@/store";
 
 interface Props {

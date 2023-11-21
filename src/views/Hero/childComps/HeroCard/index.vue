@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 
 import { HeroStore } from "@/store";
+import { vBlurLoad, vMaskGradient, vSweepLight, vTextHoverColor } from "@/directives";
 import { $concise } from "@/utils";
 
 interface Props {

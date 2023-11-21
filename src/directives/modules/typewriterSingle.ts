@@ -2,10 +2,10 @@
  * v-typewriterSingle
  * 单行打字机
  */
-import type { Directive, DirectiveBinding } from "vue";
+import type { Directive } from "vue";
 
-const typewriterSingle: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const vTypewriterSingle: Directive<HTMLElement, () => void> = {
+  mounted(el, binding) {
     const lyb = el;
     const say = lyb.innerHTML;
     lyb.innerHTML = "";
@@ -32,4 +32,4 @@ const typewriterSingle: Directive = {
   },
 };
 
-export default typewriterSingle;
+export { vTypewriterSingle };

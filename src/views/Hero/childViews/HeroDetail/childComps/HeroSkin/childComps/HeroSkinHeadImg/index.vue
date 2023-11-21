@@ -3,6 +3,7 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
+import { vDrag } from "@/directives";
 
 const $emit = defineEmits<{
   "bg-imgs": [data: number[]];
@@ -172,7 +173,7 @@ onUnmounted(() => {
       v-for="(item, index) in skins"
       ref="skinRef"
       :key="index"
-      v-drag="{ fn: handleDrag, index }"
+      v-drag="{ handleDrag, index }"
       class="skin"
       :style="{
         transform: show_skin_head
