@@ -5,7 +5,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { useBarrages } from "./hooks/useBarrages";
 
 import { BarrageStore } from "@/store";
-import { $tool } from "@/utils";
+import { $tip, $tool } from "@/utils";
 import { vBlurLoad, vDownDrag } from "@/directives";
 
 const $barrageStore = BarrageStore();
@@ -37,6 +37,10 @@ watch(
 
 onMounted(() => {
   $barrageStore.getBarrages();
+  $tip({
+    align: "right-bottom",
+    text: "9ms5",
+  });
 });
 </script>
 
