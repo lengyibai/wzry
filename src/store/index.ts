@@ -1,22 +1,23 @@
 import { createPinia } from "pinia";
 import { App } from "vue";
 
-export { AudioStore } from "./modules/audio";
-export { AuthStore } from "./modules/auth";
-export { CollapseStore } from "./modules/collapse";
-export { CssVarStore } from "./modules/cssVar";
-export { DeviceStore } from "./modules/device";
-export { EpigraphStore } from "./modules/epigraph";
-export { EquipStore } from "./modules/equip";
-export { HeroStore } from "./modules/hero";
-export { HeroDetailStore } from "./modules/heroDetail";
-export { MusicStore } from "./modules/music";
-export { RouterStore } from "./modules/router";
-export { SettingStore } from "./modules/setting";
-export { SkinStore } from "./modules/skin";
-export { VersionStore } from "./modules/version";
-export { AtlasStore } from "./modules/atlas";
-export { BarrageStore } from "./modules/barrage";
+export * from "./modules/audio";
+export * from "./modules/auth";
+export * from "./modules/collapse";
+export * from "./modules/cssVar";
+export * from "./modules/device";
+export * from "./modules/epigraph";
+export * from "./modules/equip";
+export * from "./modules/hero";
+export * from "./modules/heroDetail";
+export * from "./modules/music";
+export * from "./modules/router";
+export * from "./modules/setting";
+export * from "./modules/skin";
+export * from "./modules/version";
+export * from "./modules/atlas";
+export * from "./modules/barrage";
+export * from "./modules/tip";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();
