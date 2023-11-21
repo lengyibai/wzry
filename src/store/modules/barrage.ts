@@ -11,7 +11,7 @@ const BarrageStore = defineStore("barrage", () => {
   /** 弹幕组 */
   const barrages = ref<Barrage[]>([]);
 
-  /** @description: 关闭音效功能 */
+  /** @description: 设置是否启用弹幕 */
   const setBarrage = (v: boolean) => {
     status.value = v;
   };
