@@ -3,7 +3,6 @@ import { createApp } from "vue";
 
 import { useAutoLogin } from "./hooks";
 import App from "./App.vue";
-import { $tool } from "./utils";
 
 import { setupLanguage } from "@/language";
 import { setupRouter } from "@/router";
@@ -20,7 +19,6 @@ setupLanguage(app);
 setTimeout(
   () => {
     app.mount("#app");
-    $tool.titleTip();
   },
   import.meta.env.DEV ? 0 : 5000,
 );

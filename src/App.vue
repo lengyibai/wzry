@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { SettingStore } from "./store";
-import { $loading } from "./utils";
+import { onMounted } from "vue";
 
+import { SettingStore } from "@/store";
+import { $loading, $tool } from "@/utils";
 import { Control, WaterMark } from "@/components/business";
 
 const $settingStore = SettingStore();
 $settingStore.takeEffect();
 
+/* 路由组件加载结束后触发 */
 const onComponentMounted = () => {
   $loading.close();
 };
+
+/* 浏览器标题交互 */
+onMounted($tool.titleTip);
 </script>
 
 <template>
