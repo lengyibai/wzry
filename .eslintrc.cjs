@@ -27,6 +27,7 @@ module.exports = {
     "vue/html-closing-bracket-newline": "warn", //禁止html闭标签>内换行
     "no-console": "warn", //不允许使用 console
 
+    "@typescript-eslint/ban-types": "off", //禁止使用指定的类型
     "@typescript-eslint/no-explicit-any": "off", //禁止使用any类型
     "typescript-eslint/no-this-alias": "off", //禁止使用this别名
     "vue/multi-word-component-names": "off", //组件名称必须包含多个单词
