@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import DescSet from "./components/DescSet/index.vue";
 
@@ -28,12 +27,12 @@ const config = ref<SettingConfig>({ ...$settingStore.config });
 /* 语言 */
 const onLanguage = (v: number) => {
   setLanguage(v as 0 | 1 | 2);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 开启音乐 */
 const onMusic = (v: boolean) => {
-  debounceSaveConfig();
+  saveConfig();
   if (v) {
     setTimeout(() => {
       $musicStore.play(false);
@@ -46,58 +45,58 @@ const onMusic = (v: boolean) => {
 /* 音乐音量调节 */
 const onMusicVolume = (v: number) => {
   $musicStore.setVolume(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 开启弹幕 */
 const onBarrage = (v: boolean) => {
   $barrageStore.setBarrage(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 支持控制音乐进度 */
 const onMusicProgress = () => {
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 开启音效 */
 const onAudio = (v: boolean) => {
   $audioStore.setAudio(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 音效音量调节 */
 const onAudioVolume = (v: number) => {
   $audioStore.setVolume(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 线条 */
 const onBorder = (v: boolean) => {
   $cssVarStore.setBorder(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 阴影 */
 const onShadow = (v: boolean) => {
   $cssVarStore.setShadow(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 柔光 */
 const onShine = (v: boolean) => {
   $cssVarStore.setShine(v);
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 粒子特效 */
 const onParticle = () => {
-  debounceSaveConfig();
+  saveConfig();
 };
 
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
-  debounceSaveConfig();
+  saveConfig();
   v && $tip({ text: "2rb7" });
 };
 
@@ -108,9 +107,9 @@ const handleResetTip = () => {
 };
 
 /* 保存配置 */
-const debounceSaveConfig = _debounce(() => {
+const saveConfig = () => {
   $settingStore.saveConfig(config.value);
-}, 500);
+};
 
 /* 显示确认重置弹窗 */
 const handleResetConfig = () => {
@@ -231,7 +230,7 @@ const onResetConfig = () => {
             desc="主要是登录页和登录后的背景，PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决"
           />
         </div>
-        <KCheck v-model="config.videoBg" @update:model-value="debounceSaveConfig" />
+        <KCheck v-model="config.videoBg" @update:model-value="saveConfig" />
       </div>
 
       <!-- 小贴士 -->
