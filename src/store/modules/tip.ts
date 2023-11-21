@@ -18,7 +18,7 @@ const TipStore = defineStore("tip", () => {
   /** 弹窗位置 */
   const align = ref<TipType>("right-bottom");
   /** 不再提示的标识符 */
-  const noTipName = ref<TipKeys | string>();
+  const noTipName = ref<Control.Tip["text"]>();
   /** 是否需要按钮 */
   const btn = ref(false);
   /** 点击按钮需要触发的函数 */

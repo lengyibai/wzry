@@ -61,7 +61,7 @@ declare namespace Control {
     /** 左上角标题 */
     title?: string;
     /** 提示内容 */
-    text: TipKeys | string;
+    text: TipKeys | (string & {});
     /** 在页面上的位置 */
     align?: TipType;
     /** 按钮上的文字 */
