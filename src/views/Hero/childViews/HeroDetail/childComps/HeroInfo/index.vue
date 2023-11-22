@@ -51,38 +51,27 @@ onMounted(() => {
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" />
 
-    <div class="basic-info__content">
-      <div class="basic-info__content__left">
-        <HeroBasic class="hero-basic" />
+    <div class="basic-info__center">
+      <!-- 左侧基础数据 -->
+      <HeroBasic />
 
-        <!-- 属性 -->
-        <transition name="attribute">
-          <div v-if="into" class="hero-attribute1">
-            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
-            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
-            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
-            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
-          </div>
-        </transition>
-      </div>
-      <div class="basic-info__content__right">
-        <!-- 关系 -->
-        <transition name="relationship">
-          <HeroRelationship v-if="into" ref="relationshipRef" />
-        </transition>
-
-        <!-- 属性 -->
-        <transition name="attribute">
-          <div v-if="into" class="hero-attribute2">
-            <HeroAttribute class="attribute" attr="survival" :length="hero_info.survival" />
-            <HeroAttribute class="attribute" attr="attack" :length="hero_info.attack" />
-            <HeroAttribute class="attribute" attr="effect" :length="hero_info.effect" />
-            <HeroAttribute class="attribute" attr="difficulty" :length="hero_info.difficulty" />
-          </div>
-        </transition>
-      </div>
+      <transition name="relationship">
+        <HeroRelationship v-if="into" ref="relationshipRef" />
+      </transition>
     </div>
 
+    <!--  -->
+    <div class="basic-info__bottom">
+      <!-- 属性 -->
+      <transition name="attribute">
+        <div v-if="into" class="hero-attribute">
+          <HeroAttribute attr="survival" :length="hero_info.survival" />
+          <HeroAttribute attr="attack" :length="hero_info.attack" />
+          <HeroAttribute attr="effect" :length="hero_info.effect" />
+          <HeroAttribute attr="difficulty" :length="hero_info.difficulty" />
+        </div>
+      </transition>
+    </div>
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />
   </div>

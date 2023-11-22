@@ -1,12 +1,12 @@
 .hero-basic {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 
   .info {
     display: flex;
-    width: 34.6875rem;
     padding-bottom: 0.3125rem;
-    font-size: 2.1875rem;
+    font-size: 1.75rem;
     text-shadow: var(--t-shadow-e);
     transition: all 1s;
     transform: translateX(-100%);
@@ -29,20 +29,6 @@
 
     .name {
       color: var(--white);
-    }
-  }
-
-  @media screen and (max-width: @large) {
-    .info {
-      width: 23.4375rem;
-      font-size: 1.75rem;
-    }
-  }
-
-  @media screen and (max-width: @medium) {
-    .info {
-      width: 21.875rem;
-      font-size: 1.625rem;
     }
   }
 }

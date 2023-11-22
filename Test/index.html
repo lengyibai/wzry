@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>冷弋白的网页</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .center-circle {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: red;
+
+        .line {
+          position: absolute;
+          height: 2px;
+          background-color: black;
+          transform-origin: 0 50%;
+          z-index: 1;
+        }
+
+        .circle {
+          position: absolute;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background-color: blue;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center-circle"></div>
+
+    <!-- JS -->
+    <script type="text/javascript">
+      const createConnections = (centerElement, points, lineLength) => {
+        const centerX = centerElement.offsetWidth / 2;
+        const centerY = centerElement.offsetHeight / 2;
+        const angleIncrement = 360 / points.length;
+
+        points.forEach((point, index) => {
+          const angle = angleIncrement * index;
+          const radians = (angle * Math.PI) / 180;
+
+          //减去圆的半径来定位圆的中心
+          const x = centerX + lineLength * Math.cos(radians) - 50;
+          const y = centerY + lineLength * Math.sin(radians) - 50;
+
+          const line = document.createElement("div");
+          line.className = "line";
+          line.style.width = `${lineLength}px`;
+          line.style.top = `${centerY}px`;
+          line.style.left = `${centerX}px`;
+          line.style.transform = `rotate(${angle}deg)`;
+          centerElement.appendChild(line);
+
+          // 创建圆圈
+          const circle = document.createElement("div");
+          circle.className = "circle";
+          circle.style.top = `${y}px`;
+          circle.style.left = `${x}px`;
+          centerElement.appendChild(circle);
+        });
+      };
+
+      const centerCircle = document.querySelector(".center-circle");
+      const pointsArray = [1, 2, 3, 4, 5, 6, 7];
+      const lineLength = 300;
+      createConnections(centerCircle, pointsArray, lineLength);
+    </script>
+  </body>
+</html>
