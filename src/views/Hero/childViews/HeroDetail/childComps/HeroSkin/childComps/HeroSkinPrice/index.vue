@@ -26,6 +26,7 @@ const show = computed(() => $props.price && !isNaN(Number($props.price)));
     <img v-show="show" :src="getImgLink('coupon')" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
     <span
+      v-if="price"
       ref="priceRef"
       v-animate-number="{
         num: price,
