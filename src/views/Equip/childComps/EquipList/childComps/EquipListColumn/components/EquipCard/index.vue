@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, computed, nextTick } from "vue";
+import { ref, computed } from "vue";
 
-import { vBlurLoad } from "@/directives";
+import { vBlurLoad, vAnimateNumber } from "@/directives";
 import { AudioStore, EquipStore } from "@/store";
 
 interface Props {
@@ -19,6 +19,7 @@ const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
 const iconRef = ref<HTMLElement>();
+const priceRef = ref<HTMLElement>();
 
 /** 获取点击的装备id */
 const active_id = computed(() => $equipStore.active_id);
@@ -30,15 +31,6 @@ const handleDetail = () => {
   $equipStore.setEquipActive($props.equip.id);
   $audioStore.play("n4r4");
 };
-
-/* 设置装备信息，用于计算竖线高度和偏移量 */
-nextTick(() => {
-  $equipStore.setEquipElement({
-    el: iconRef.value,
-    name: $props.equip.name,
-    id: $props.equip.id,
-  });
-});
 </script>
 
 <template>
@@ -68,7 +60,14 @@ nextTick(() => {
         <div v-if="equip.desc" class="desc" :class="{ shine: shine }">
           {{ equip.desc }}
         </div>
-        <div class="price" :class="{ shine: shine }">{{ equip.price }}</div>
+        <div
+          ref="priceRef"
+          v-animateNumber="{
+            num: equip.price,
+          }"
+          class="price"
+          :class="{ shine: shine }"
+        ></div>
       </div>
     </div>
   </div>
