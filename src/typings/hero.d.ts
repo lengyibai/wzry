@@ -80,9 +80,9 @@ declare namespace Hero {
   /** @description 技能信息 */
   interface Skill {
     /** 技能冷却 */
-    cd: number;
+    cd: string;
     /** 消耗 */
-    consume: number;
+    consume: string;
     /** 名称 */
     name: string;
     /** 简述 */
@@ -140,7 +140,7 @@ declare namespace Hero {
     /** 英雄名称 */
     name: string;
     /** 存在关系的英雄 */
-    relationship: RelationType[];
+    relationships: RelationType[];
   }
 
   /** @description 关系类型 */
@@ -162,7 +162,7 @@ declare namespace Hero {
     /** 序号 */
     num: number;
     /** 价格 */
-    price: string | number;
+    price: string;
     /** 类型 */
     type: number | string;
     /** 皮肤类型名 */
