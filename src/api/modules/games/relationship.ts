@@ -16,5 +16,5 @@ export const getHeroRelationship = (hero_id: number) => {
     key: "id",
     value: hero_id,
   });
-  return Promise.resolve(Relationship?.relationship);
+  return Promise.resolve(Relationship?.relationships);
 };
