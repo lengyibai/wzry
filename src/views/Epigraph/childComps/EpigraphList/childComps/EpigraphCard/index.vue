@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vBlurLoad, vMaskGradient } from "@/directives";
+import { vAnimateNumber, vBlurLoad, vMaskGradient } from "@/directives";
 
 interface Props {
   data: Epigraph.Data;
@@ -23,7 +23,12 @@ defineProps<Props>();
       <div class="name">5级铭文:{{ data.name }}</div>
       <div class="attr">
         <div v-for="(item, index) in data.effect" :key="index" class="type">
-          {{ item.type }}+{{ item.num }}
+          {{ item.type }}+<span
+            v-animate-number="{
+              num: item.num,
+              decimalPlaces: 1,
+            }"
+          ></span>
         </div>
       </div>
     </div>

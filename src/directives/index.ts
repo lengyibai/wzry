@@ -1,3 +1,4 @@
+export * from "./modules/animateNumber";
 export * from "./modules/blurLoad";
 export * from "./modules/delayHide";
 export * from "./modules/downDrag";

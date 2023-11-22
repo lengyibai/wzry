@@ -59,6 +59,7 @@ const onTogglePoster = ([i, index]: number[]) => {
   setTimeout(async () => {
     const skins = hero_data.value.skins;
     const skin_type = skins[index].type;
+    skin_price.value = "";
 
     //0 为伴生
     if (skin_type !== 0) {

@@ -2,6 +2,7 @@
 import { ref, watchEffect, onMounted } from "vue";
 
 import { HeroDetailStore } from "@/store";
+import { vAnimateNumber } from "@/directives";
 
 const $heroDetail = HeroDetailStore();
 
@@ -40,7 +41,13 @@ onMounted(() => {
     <span v-for="(item, index) in hero_data" ref="infoRef" :key="index" class="info">
       <i class="iconfont" :class="'wzry-' + item[1]" />
       <span class="label">{{ item[2] }}：</span>
-      <span class="name">{{ item[0] || "未知" }}</span>
+      <span
+        v-animate-number="{
+          num: item[0],
+          duration: 3000,
+        }"
+        class="name"
+      ></span>
     </span>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { $concise } from "@/utils";
-import { vBlurLoad, vMaskGradient } from "@/directives";
+import { vAnimateNumber, vBlurLoad, vMaskGradient } from "@/directives";
 
 interface Props {
   /** 皮肤数据 */
@@ -33,7 +33,12 @@ const handle = (e: Event, v: string) => {
     <!-- 价格 -->
     <div class="price">
       <img v-if="priceShow(data.price)" :src="getImgLink('coupon')" alt="" />
-      <span>{{ data.price }}</span>
+      <span
+        v-animate-number="{
+          num: data.price,
+          duration: 2000,
+        }"
+      ></span>
     </div>
 
     <!-- 名字、代号 -->

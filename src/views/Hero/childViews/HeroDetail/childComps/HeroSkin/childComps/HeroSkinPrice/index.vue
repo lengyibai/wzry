@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import { $concise } from "@/utils";
+import { vAnimateNumber } from "@/directives";
 
 interface Props {
   /** 价格 */
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const $props = defineProps<Props>();
+
+const priceRef = ref<HTMLElement>();
 
 const { getImgLink } = $concise;
 
@@ -22,7 +25,12 @@ const show = computed(() => $props.price && !isNaN(Number($props.price)));
   <div class="hero-skin-price" :class="{ show: toggle }">
     <img v-show="show" :src="getImgLink('coupon')" alt="点券" />
     <span v-show="!show && show !== ''">获取途径：</span>
-    <span>{{ price }}</span>
+    <span
+      ref="priceRef"
+      v-animate-number="{
+        num: price,
+      }"
+    ></span>
   </div>
 </template>
 
