@@ -14,12 +14,11 @@ import { useGetData } from "@/hooks";
 
 const $audioStore = AudioStore();
 
-const { config } = storeToRefs(SettingStore());
 const { status } = storeToRefs(BarrageStore());
 
 useGetData();
 
-const { getImgLink, getVideoLink } = $concise;
+const { getVideoLink } = $concise;
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);
@@ -77,10 +76,7 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <KVideo v-if="config.videoBg" :video="getVideoLink('bg')" />
-
-    <!-- 图片壁纸 -->
-    <img v-else class="layout__bg" :src="getImgLink('background')" alt="" />
+    <KVideo muted :video="getVideoLink('bg')" />
   </div>
 </template>
 

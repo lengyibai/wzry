@@ -60,15 +60,14 @@ export const userDefaultInfo: () => User = () => ({
 /** @description 默认配置信息 */
 export const configDefault: () => SettingConfig = () => ({
   tip: true,
-  videoBg: true,
   audio: true,
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  barrage: !$tool.isPhone,
+  barrage: true,
   musicProgress: false,
   speed: 1,
-  muted: false,
+  muted: $tool.isPhone,
   border: false,
   shadow: true,
   shine: true,

@@ -92,10 +92,7 @@ onUnmounted(() => {
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- PC端视频背景 -->
-    <KVideo v-if="config.videoBg" :video="getVideoLink('login_bg')" :muted="config.muted" />
-
-    <!-- 移动端图片背景 -->
-    <img v-else class="login__bg" :src="getImgLink('login_bg')" alt="" />
+    <KVideo :video="getVideoLink('login_bg')" :muted="config.muted" />
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">

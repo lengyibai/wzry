@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 
 import { SettingStore, AudioStore } from "@/store";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 显示公告按钮 */
@@ -22,8 +23,6 @@ const toolbarRef = ref<HTMLElement>();
 
 /** 静音 */
 const muted = computed(() => $settingStore.config.muted);
-/** 视频背景 */
-const video_bg = computed(() => $settingStore.config.videoBg);
 /** 静音图标 */
 const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 
@@ -51,7 +50,7 @@ defineExpose({
 <template>
   <div ref="toolbarRef" class="tool-bar">
     <!-- 静音 -->
-    <div v-if="video_bg" class="tool" title="静音">
+    <div v-if="!$tool.isPhone" class="tool" title="静音">
       <div class="line"></div>
       <div
         class="box jingyin"

@@ -222,17 +222,6 @@ const onResetConfig = () => {
         <KCheck v-model="config.particle" @update:model-value="onParticle" />
       </div>
 
-      <!-- 视频背景 -->
-      <div class="option">
-        <div class="label">
-          {{ $t("视频背景") }}
-          <DescSet
-            desc="主要是登录页和登录后的背景，PC端默认为视频背景，手机端默认为图片背景是为了解决手机端部分浏览器使用视频背景会全屏遮挡的问题，但注意的是重置配置会开启视频背景，手机端如果出现全屏遮挡问题需要刷新浏览器解决"
-          />
-        </div>
-        <KCheck v-model="config.videoBg" @update:model-value="saveConfig" />
-      </div>
-
       <!-- 小贴士 -->
       <div class="option">
         <div class="label">

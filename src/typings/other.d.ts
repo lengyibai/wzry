@@ -18,8 +18,6 @@ interface MsgText {
 interface SettingConfig {
   /** 小贴士 */
   tip: boolean;
-  /** 使用视频背景 */
-  videoBg: boolean;
   /** 音效 */
   audio: boolean;
   /** 音效音量 */

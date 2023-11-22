@@ -23,9 +23,6 @@ const SettingStore = defineStore("setting", () => {
   if (data) config.value = { ...config.value, ...JSON.parse(data) };
   localStorage.setItem(CONFIG.LOCAL_KEY.CONFIG, JSON.stringify(config.value));
 
-  //如果为移动端，则隐藏视频背景
-  config.value.videoBg = !$tool.isPhone;
-
   /** @description 部分配置需手动生效 */
   const takeEffect = () => {
     setLanguage(config.value.language);
