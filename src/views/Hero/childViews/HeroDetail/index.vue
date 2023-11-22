@@ -109,12 +109,7 @@ setTimeout(() => {
     />
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
-      <HeroParallax
-        v-if="hero_data.posterBlur"
-        class="scroll-item"
-        :bg="hero_data.poster"
-        :blur="hero_data.posterBlur"
-      >
+      <HeroParallax v-if="hero_data.posterBlur" class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />
       </HeroParallax>
 
@@ -129,12 +124,7 @@ setTimeout(() => {
       </HeroParallax>
 
       <!--皮肤-->
-      <HeroParallax
-        v-if="skin_num"
-        class="scroll-item"
-        :bg="hero_data.poster"
-        :blur="hero_data.posterBlur"
-      >
+      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
         <HeroSkin v-if="hero_toggle" />
       </HeroParallax>
     </HeroScroll>
