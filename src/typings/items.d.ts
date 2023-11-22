@@ -6,8 +6,6 @@ declare namespace Equip {
     id: number;
     /** 等级 */
     level: number;
-    /** 当前列第几个 */
-    num: number;
     /** 价格 */
     price: number;
     /** 类型 */
@@ -36,7 +34,7 @@ declare namespace Equip {
     /** 名称 */
     name: string;
     /** 增益量 */
-    num: number;
+    num: string;
   }
 
   /** @description 被动/主动信息 */
@@ -48,7 +46,7 @@ declare namespace Equip {
     /** 描述 */
     desc: string;
     /** 冷却时间 */
-    time: number;
+    time: string;
     /** 备注 */
     note: string;
   }
