@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-
 interface Props {
   /** 属性名 */
   attr: keyof Hero.SkillKey;
@@ -33,26 +31,20 @@ const text: Hero.SkillKey = {
   effect: "技能效果",
   difficulty: "上手难度",
 };
-/** 属性元素 */
-const attributeRef = ref<HTMLElement>();
-
-onMounted(() => {
-  if (!attributeRef.value) return;
-  attributeRef.value.style.width = "100%";
-});
 </script>
 
 <template>
-  <div ref="attributeRef" class="attribute">
-    <span>{{ text[attr] }}</span>
+  <div class="hero-attribute">
+    <span class="label">{{ text[attr] }}</span>
     <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
     <div class="bar">
-      <i
+      <div
+        class="bar-inner"
         :style="{
           backgroundColor: bgc[attr],
           width: length + '%',
         }"
-      />
+      ></div>
     </div>
   </div>
 </template>

@@ -1,19 +1,20 @@
-.attribute {
+.hero-attribute {
   display: flex;
   align-items: center;
+  width: 100%;
   height: 1.625rem;
 
   &:not(:last-child) {
     margin-bottom: 2.5rem;
   }
 
-  span {
-    min-width: 8.2rem;
+  .label {
     margin-right: 1em;
     color: var(--white);
     font-size: 2.1875rem;
     text-align: right;
     text-shadow: var(--t-shadow-e);
+    white-space: nowrap;
   }
 
   .ico {
@@ -36,12 +37,14 @@
     box-shadow: var(--b-shadow-a);
     background-color: #1a1a1a;
 
-    i {
+    .bar-inner {
       position: absolute;
+      left: 0;
+      width: 0%;
       height: 100%;
       border-radius: 0 0.3125rem 0.3125rem 0;
       background-color: var(--white);
-      transition: all 1s;
+      transition: width 1s;
     }
   }
 
