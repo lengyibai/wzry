@@ -71,7 +71,7 @@ const handleAddOne = () => {
       id: 0,
       hero: hero_info.id,
       num: 0,
-      price: 0,
+      price: "",
       type: "",
       name: "",
       poster: "",
