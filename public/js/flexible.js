@@ -1,7 +1,7 @@
 var flexible_min_font_size = 10;
-var flexible_max_font_size = 16;
+var flexible_max_font_size = 18;
 var flexible_min_device_width = 320;
-var flexible_max_device_width = 1920;
+var flexible_max_device_width = 2560;
 var flexible_html = document.documentElement;
 
 function flexible_onResizeFn() {
