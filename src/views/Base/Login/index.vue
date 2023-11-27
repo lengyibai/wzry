@@ -15,9 +15,9 @@ import { KVideo } from "@/components/business";
 
 const { config } = storeToRefs(SettingStore());
 
-const toolbarRef = ref<InstanceType<typeof ToolBar>>();
-
 const { getImgLink, getVideoLink } = $concise;
+
+const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
 /** 显示公告 */
 const show_notice = ref(true);
@@ -58,22 +58,6 @@ const onCloseNotice = () => {
   });
 };
 
-/* 开始确认刷新计时 */
-const handleStartTime = () => {
-  setTimeout(() => {
-    const flag = confirm("确认清除本地数据重新下载并刷新页面？");
-    if (flag) {
-      localStorage.clear();
-      location.reload();
-    }
-  }, 2000);
-};
-
-/* 刷新页面 */
-const handleEndTime = () => {
-  location.reload();
-};
-
 onUnmounted(() => {
   $bus.off("resize");
 });
@@ -81,7 +65,7 @@ onUnmounted(() => {
 
 <template>
   <div class="login">
-    <div class="login__logo" @touchstart="handleStartTime" @touchend="handleEndTime">
+    <div class="login__logo">
       <img :src="getImgLink('logo')" alt="" />
     </div>
 
@@ -92,7 +76,7 @@ onUnmounted(() => {
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
     <!-- PC端视频背景 -->
-    <KVideo :video="getVideoLink('login_bg')" :muted="config.muted" />
+    <KVideo :link="getVideoLink('login_bg')" :muted="config.muted" />
 
     <!-- 公告 -->
     <transition v-if="finish" name="fade">
