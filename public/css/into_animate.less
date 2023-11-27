@@ -195,4 +195,47 @@
       }
     }
   }
+
+  .into {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 2.5vw;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: into 0.75s 3s forwards;
+
+    @keyframes into {
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .text {
+      margin-right: 1em;
+      font-size: inherit;
+      font-weight: bold;
+    }
+
+    .iconfont {
+      color: #fff;
+      font-size: inherit;
+      transform: rotate(180deg);
+      animation: breath 0.75s infinite ease alternate-reverse;
+
+      @keyframes breath {
+        100% {
+          transform: rotate(180deg) translateX(50%);
+        }
+      }
+    }
+    @media screen and (max-width: 960px) {
+      font-size: 5vw;
+    }
+  }
 }

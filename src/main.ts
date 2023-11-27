@@ -15,10 +15,7 @@ useAutoLogin();
 setupRouter(app);
 setupLanguage(app);
 
-/* 至少留5秒时间给开屏动画 */
-setTimeout(
-  () => {
-    app.mount("#app");
-  },
-  import.meta.env.DEV ? 0 : 5000,
-);
+const body = document.querySelector(".body");
+body!.addEventListener("click", () => {
+  app.mount("#app");
+});
