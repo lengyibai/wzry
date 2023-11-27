@@ -57,7 +57,7 @@ const handleEnterCard = (data: Hero.Data) => {
 const onViewClick = (id: number) => {
   //获取指定英雄数据
   API_HERO.getHeroDetail(id).then((hero) => {
-    $loading.show(`${hero.name}详情`);
+    $loading.show(`${hero.name}`);
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);
 
@@ -131,14 +131,20 @@ onMounted(async () => {
   const changeCount = () => {
     const v = window.innerWidth;
 
+    console.log(v);
+
     if (v >= 2200) {
       count.value = 9;
     }
+    console.log(count.value);
+
     for (const [a, b] of change) {
       if (v < a) {
         count.value = b;
       }
     }
+
+    console.warn(count.value);
   };
   changeCount();
 
