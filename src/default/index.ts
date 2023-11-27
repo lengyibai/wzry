@@ -67,7 +67,7 @@ export const configDefault: () => SettingConfig = () => ({
   barrage: true,
   musicProgress: false,
   speed: 1,
-  muted: $tool.isPhone,
+  muted: false,
   border: false,
   shadow: true,
   shine: true,
