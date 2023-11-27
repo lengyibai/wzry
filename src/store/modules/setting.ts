@@ -6,7 +6,6 @@ import { CssVarStore } from "./cssVar";
 import { AudioStore, BarrageStore, MusicStore } from "@/store";
 import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
-import { $tool } from "@/utils";
 import { CONFIG } from "@/config";
 
 /** @description 设置相关 */
