@@ -70,7 +70,14 @@ router.beforeEach(async (to, from, next) => {
   next();
 });
 
-router.afterEach((to) => {
+router.afterEach((to, from) => {
+  const no_loading = ["/403", "/404", "/400"];
+
+  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
+  if (!to.query.id && !from.query.id && !no_loading.includes(to.path) && to.path !== from.path) {
+    $loading.close();
+  }
+
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 
