@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect, nextTick, ref, computed } from "vue";
+import { watchEffect, nextTick, ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 import HeroScroll from "./childComps/HeroScroll/index.vue";
@@ -32,7 +32,6 @@ const hero_toggle = ref(true);
 const hero_data = ref<Hero.Data>(heroDefault());
 
 $audioStore.play("u4c5");
-$loading.close();
 
 watchEffect(() => {
   hero_data.value = $heroDetail.hero_info;
@@ -95,6 +94,8 @@ setTimeout(() => {
     new Image().src = item.poster;
   });
 }, 1500);
+
+onMounted($loading.close);
 </script>
 
 <template>
