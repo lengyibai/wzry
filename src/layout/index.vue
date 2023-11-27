@@ -7,7 +7,7 @@ import Sidebar from "@/layout/childComps/Sidebar/index.vue";
 import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
 import Footbar from "@/layout/childComps/Footbar/index.vue";
-import { SettingStore, AudioStore, BarrageStore } from "@/store";
+import { AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
 import { useGetData } from "@/hooks";
@@ -76,7 +76,7 @@ onMounted(async () => {
         <Footbar v-if="show_footbar" />
       </transition>
     </div>
-    <KVideo muted :video="getVideoLink('bg')" />
+    <KVideo :link="getVideoLink('bg')" />
   </div>
 </template>
 
