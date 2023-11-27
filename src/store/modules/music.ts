@@ -63,7 +63,7 @@ const MusicStore = defineStore("music", () => {
    * @description: 播放音乐
    * @param isReset 是否播放下一首
    */
-  const play = (isNext = true) => {
+  const play = async (isNext = true) => {
     if (isNext) {
       bgm.src = getMusicLink(musics.value[bgmIndex.value].url);
     }
@@ -71,30 +71,28 @@ const MusicStore = defineStore("music", () => {
     status.value = true;
     bgm.volume = volume.value;
 
-    bgm
-      .play()
-      .then(() => {
-        //播放成功后开始分析音频
-        audio_visual.value?.play();
-        //如果未启用音乐播放器，则暂停播放
-        if (!SettingStore().config.music) {
-          bgm.pause();
-        }
-      })
-      .catch(() => {
-        //播放失败后重试
-        setTimeout(() => {
-          play(false);
-        }, 1000);
-      });
+    try {
+      await bgm.play();
+      //播放成功后开始分析音频
+      audio_visual.value?.play();
+      //如果未启用音乐播放器，则暂停播放
+      if (!SettingStore().config.music) {
+        bgm.pause();
+      }
 
-    //实时设置播放进度
-    progress_timer = setInterval(() => {
-      progress.value = $tool.potEoPct(bgm.currentTime / bgm.duration);
-    }, 500);
+      //实时设置播放进度
+      progress_timer = setInterval(() => {
+        progress.value = $tool.potEoPct(bgm.currentTime / bgm.duration);
+      }, 500);
 
-    //播放结束后执行下一次播放
-    bgm.onended = next;
+      //播放结束后执行下一次播放
+      bgm.onended = next;
+    } catch (error) {
+      //播放失败后重试
+      setTimeout(() => {
+        play(false);
+      }, 1000);
+    }
   };
 
   /** @description 暂停 */
