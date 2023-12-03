@@ -29,6 +29,7 @@ module.exports = {
 
     "@typescript-eslint/ban-types": "off", //禁止使用指定的类型
     "@typescript-eslint/no-explicit-any": "off", //禁止使用any类型
+    "@typescript-eslint/no-this-alias": "off", //禁止使用this别名
     "typescript-eslint/no-this-alias": "off", //禁止使用this别名
     "vue/multi-word-component-names": "off", //组件名称必须包含多个单词
     "vue/no-v-html": "off", //禁止使用v-html
