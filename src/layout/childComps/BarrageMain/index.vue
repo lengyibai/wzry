@@ -38,7 +38,7 @@ watch(
 onMounted(() => {
   $barrageStore.getBarrages();
   $tip({
-    align: "right-bottom",
+    align: "left-top",
     text: "9ms5",
   });
 });
