@@ -71,6 +71,11 @@
       }, 100);
 
       document.ondragstart = () => false;
+      document.onkeydown = (e) => {
+        if (e.keyCode === 9) {
+          e.preventDefault();
+        }
+      };
     </script>
   </body>
 </html>
