@@ -73,6 +73,8 @@ export const getHeroDetail = async (hero_id: number) => {
   };
   const hero = get<Hero.Data>(params);
 
+  /** 获取英雄基础信息列表 */
+  const heros = await getHeroBasic();
   /** 获取皮肤列表 */
   const skins = await API_SKIN.getHeroSkins(hero_id);
   /** 获取技能列表 */
@@ -85,14 +87,20 @@ export const getHeroDetail = async (hero_id: number) => {
   //如果存在关系，则请求相关人物的头像
   if (relationships?.length) {
     for (let i = 0; i < relationships.length; i++) {
-      relationships[i].hero = await getHeroImg(relationships[i].id);
+      const hero_img = await getHeroImg(relationships[i].id);
+      relationships[i].headImage = hero_img.headImg;
     }
   }
 
   hero.skins = skins;
   hero.skills = skills;
   hero.voices = voices;
-  hero.relationships = relationships;
+  hero.relationships = relationships.map((item) => {
+    return {
+      ...item,
+      heroName: heros.find((hero) => hero.id === item.id)!.name,
+    };
+  });
 
   const {
     cover,
