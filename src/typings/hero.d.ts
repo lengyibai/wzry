@@ -149,8 +149,12 @@ declare namespace Hero {
     id: number;
     /** 对应关系 */
     relation: string;
+    /** 关系描述 */
+    desc: string;
+    /** 英雄名 */
+    heroName: string;
     /** 英雄头像 */
-    hero: HeadImg;
+    headImage: string;
   }
 
   /** @description 皮肤信息 */
