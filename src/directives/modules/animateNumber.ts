@@ -2,7 +2,12 @@
  * v-animateNumber
  * 数字滚动
  */
-import type { Directive } from "vue";
+import type { Directive, DirectiveBinding } from "vue";
+
+interface ElType extends HTMLElement {
+  /** 更新数据 */
+  update: (v: DirectiveBinding<Params>) => void;
+}
 
 interface Params {
   /** 数字 */
@@ -44,20 +49,26 @@ const animateNumber = (
   requestAnimationFrame(updateNumber);
 };
 
-const vAnimateNumber: Directive<HTMLInputElement, Params> = {
+const vAnimateNumber: Directive<ElType, Params> = {
   mounted(el, binding) {
-    const { num, duration, decimalPlaces } = binding.value;
+    el.update = (binding) => {
+      const { num, duration, decimalPlaces } = binding.value;
 
-    if (num === "") {
-      el.innerText = "";
-      return;
-    }
+      if (num === "") {
+        el.innerText = "";
+        return;
+      }
 
-    if (!isNaN(Number(num))) {
-      animateNumber(el, Number(num), duration, decimalPlaces);
-    } else {
-      el.innerText = num as string;
-    }
+      if (!isNaN(Number(num))) {
+        animateNumber(el, Number(num), duration, decimalPlaces);
+      } else {
+        el.innerText = num as string;
+      }
+    };
+    el.update(binding);
+  },
+  updated(el, binding) {
+    el.update(binding);
   },
 };
 
