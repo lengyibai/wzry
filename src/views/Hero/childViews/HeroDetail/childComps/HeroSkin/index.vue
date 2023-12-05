@@ -27,8 +27,6 @@ const active_skin_type = ref("");
 const skin_price = ref<string | number>("");
 /** 皮肤背景切换 */
 const skin_bg_toggle = ref(true);
-/** 皮肤名切换 */
-const skin_name_toggle = ref(true);
 /** 皮肤类型切换 */
 const skin_type_toggle = ref(true);
 /** 皮肤价格切换 */
@@ -48,9 +46,6 @@ const onTogglePoster = ([i, index]: number[]) => {
 
   //设置皮肤名
   active_skin_name.value = skins[index].name;
-
-  //用于皮肤名切换时的打字机效果
-  skin_name_toggle.value = !skin_name_toggle.value;
 
   //暂时隐藏价格
   skin_price_toggle.value = false;
@@ -117,11 +112,7 @@ const onTogglePoster = ([i, index]: number[]) => {
       <!-- 底部 -->
       <div class="bottom">
         <!-- 皮肤名 -->
-        <HeroSkinName
-          v-if="active_skin_name"
-          :toggle="skin_name_toggle"
-          :name="active_skin_name + '-' + hero_data.name"
-        />
+        <HeroSkinName v-if="active_skin_name" :name="active_skin_name + '-' + hero_data.name" />
       </div>
     </div>
 

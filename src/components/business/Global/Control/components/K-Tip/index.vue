@@ -86,7 +86,14 @@ watch(
             </div>
 
             <!-- 内容 -->
-            <div v-typewriterMultiple="finish" class="content">{{ content }}</div>
+            <div
+              v-typewriterMultiple="{
+                callback: finish,
+              }"
+              class="content"
+            >
+              {{ content }}
+            </div>
 
             <!-- 按钮 -->
             <div class="btns" :class="{ disable }">
