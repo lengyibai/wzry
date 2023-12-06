@@ -9,121 +9,140 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
-  const {
-    all_data,
-    resetPage,
-    loadMore,
-    setScroll,
-    scroll,
-    filter_list,
-    show_list,
-    finish,
-    loading,
-  } = usePagingLoad<Hero.AloneAtlas>();
+  const $usePagingLoad = usePagingLoad<Hero.AloneAtlas>();
 
-  /** 当前排序类型 */
-  const sort_type = ref("倒序");
-  /** 职业类型 */
-  const profession = ref<Hero.Profession>("全部");
-  /** 当前性别排序类型 */
-  const gender_type = ref<Gender>(0);
+  const ExposeData = {
+    /** 滚动坐标 */
+    scroll: $usePagingLoad.scroll,
+    /** 是否处于加载中 */
+    loading: $usePagingLoad.loading,
+    /** 暂无更多 */
+    finish: $usePagingLoad.finish,
+    /** 展示的数据列表 */
+    show_list: $usePagingLoad.show_list,
 
-  /** @description 获取图集列表 */
-  const getAtlasList = async () => {
-    /** 用于模糊图片预加载 */
-    const poster_blur: string[] = [];
+    /** 当前排序类型 */
+    sort_type: ref("倒序"),
+    /** 职业类型 */
+    profession: ref<Hero.Profession>("全部"),
+    /** 当前性别排序类型 */
+    gender_type: ref<Gender>(0),
+  };
 
-    const res = await API_HERO.getHeroAtlas();
+  const ExposeMethods = {
+    setScroll: $usePagingLoad.setScroll,
+    loadMore: $usePagingLoad.loadMore,
 
-    res.forEach((hero) => {
-      all_data.value.push({
-        id: hero.id,
-        cover: hero.cover,
-        coverBlur: hero.coverBlur,
-        poster: hero.poster,
-        name: hero.name,
-        heroName: "",
-        type: "HERO",
-        profession: hero.profession,
-        gender: hero.gender,
-        posterBlur: hero.posterBlur,
-        posterBig: hero.posterBig,
-      });
-      poster_blur.push(hero.posterBlur);
-      hero.skins.forEach((skin) => {
-        all_data.value.push({
+    /** @description 获取图集列表 */
+    async getAtlasList() {
+      //用于模糊图片预加载
+      const poster_blur: string[] = [];
+
+      const res = await API_HERO.getHeroAtlas();
+
+      res.forEach((hero) => {
+        $usePagingLoad.pushAllData({
           id: hero.id,
-          cover: skin.cover,
-          coverBlur: skin.posterBlur,
-          name: skin.name,
-          heroName: hero.name,
-          type: "SKIN",
+          cover: hero.cover,
+          coverBlur: hero.coverBlur,
+          poster: hero.poster,
+          name: hero.name,
+          heroName: "",
+          type: "HERO",
           profession: hero.profession,
           gender: hero.gender,
-          poster: skin.poster,
-          posterBlur: skin.posterBlur,
-          posterBig: skin.posterBig,
+          posterBlur: hero.posterBlur,
+          posterBig: hero.posterBig,
         });
 
-        poster_blur.push(skin.posterBlur);
+        poster_blur.push(hero.posterBlur);
+        hero.skins.forEach((skin) => {
+          $usePagingLoad.pushAllData({
+            id: hero.id,
+            cover: skin.cover,
+            coverBlur: skin.posterBlur,
+            name: skin.name,
+            heroName: hero.name,
+            type: "SKIN",
+            profession: hero.profession,
+            gender: hero.gender,
+            poster: skin.poster,
+            posterBlur: skin.posterBlur,
+            posterBig: skin.posterBig,
+          });
+
+          poster_blur.push(skin.posterBlur);
+        });
       });
-    });
 
-    $tool.preloadImages(poster_blur);
+      $tool.preloadImages(poster_blur);
 
-    sortAll();
+      sortAll();
+    },
+
+    /**
+     * @description: 职业筛选
+     * @param name 职业名称
+     */
+    setProfessional(name: Hero.Profession) {
+      if (profession.value === name) return;
+      profession.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 性别筛选
+     * @param name 性别标识符
+     */
+    filterGender(name: Gender) {
+      if (gender_type.value === name) return;
+      gender_type.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 正序|倒序
+     * @param type 排序名称
+     */
+    sortType(name: string) {
+      if (sort_type.value === name) return;
+      sort_type.value = name;
+      sortAll();
+    },
+
+    /** @description 搜索图集 */
+    searchAtlas(name: string) {
+      debounceSearchAtlas(name);
+    },
   };
 
-  /**
-   * @description: 职业筛选
-   * @param name 职业名称
-   */
-  const setProfessional = (name: Hero.Profession) => {
-    if (profession.value === name) return;
-    profession.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 性别筛选
-   * @param name 性别标识符
-   */
-  const filterGender = (name: Gender) => {
-    if (gender_type.value === name) return;
-    gender_type.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 正序|倒序
-   * @param type 排序名称
-   */
-  const sortType = (name: string) => {
-    if (sort_type.value === name) return;
-    sort_type.value = name;
-    sortAll();
-  };
+  const { sort_type, profession, gender_type } = ExposeData;
 
   /** @description 一键排序 */
   const sortAll = () => {
-    scroll.value = 0;
+    $usePagingLoad.setScroll(0);
 
     /** 职业筛选 */
     const filterProfession = () => {
+      const { all_data, setFilterData } = $usePagingLoad;
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...all_data.value];
+        setFilterData([...all_data.value]);
       } else {
-        filter_list.value = all_data.value.filter((item: Hero.AloneAtlas) => {
+        const data = all_data.value.filter((item: Hero.AloneAtlas) => {
           return item.profession.includes(profession.value!);
         });
+        setFilterData(data);
       }
     };
 
     /** 性别筛选 */
     const filterGender = () => {
+      const { filter_list, setFilterData } = $usePagingLoad;
+
       const boy: Hero.AloneAtlas[] = [];
       const girl: Hero.AloneAtlas[] = [];
+
       filter_list.value.forEach((item) => {
         if (item.gender === "男") {
           boy.push(item);
@@ -133,65 +152,49 @@ const AtlasStore = defineStore("atlas", () => {
       });
 
       if (gender_type.value === 1) {
-        filter_list.value = boy;
+        setFilterData(boy);
       } else if (gender_type.value === 2) {
-        filter_list.value = girl;
+        setFilterData(girl);
       }
     };
 
     /** 正/倒排序 */
     const sortType = () => {
       if (sort_type.value === "倒序") {
-        filter_list.value.reverse();
+        $usePagingLoad.reverseFilterData();
       }
     };
 
     filterProfession();
     filterGender();
     sortType();
-    resetPage();
+    $usePagingLoad.resetPage();
     $bus.emit("watch-waterfall");
   };
 
+  /** @description 搜索图集 */
   const debounceSearchAtlas = _debounce((name: string) => {
+    const { all_data, setFilterData } = $usePagingLoad;
+
+    //如果搜索的值不为空，则进行搜索，否则重新排序
     if (name) {
-      filter_list.value = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+      const data = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
         "name",
         "heroName",
       ]);
+      setFilterData(data);
+
       $bus.emit("watch-waterfall");
     } else {
       sortAll();
     }
 
-    resetPage();
+    $usePagingLoad.resetPage();
   }, 500);
 
-  /** @description 搜索图集 */
-  const searchAtlas = (name: string) => {
-    debounceSearchAtlas(name);
-  };
-
   return {
-    /** 滚动坐标 */
-    scroll,
-    /** 展示的列表 */
-    show_list,
-    /** 职业类型 */
-    profession,
-    /** 排序方式 */
-    sort_type,
-    /** 暂无更多 */
-    finish,
-    /** 是否处于加载中 */
-    loading,
-    setScroll,
-    loadMore,
-    getAtlasList,
-    sortType,
-    setProfessional,
-    filterGender,
-    searchAtlas,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 });
 

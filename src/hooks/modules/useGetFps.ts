@@ -5,9 +5,15 @@ const useGetFps = () => {
   let start = 0;
   let count = 0;
 
-  const fps = ref(0);
+  const ExposeData = {
+    /** 帧率 */
+    fps: ref(0),
+  };
 
-  const getFPS = () => {
+  const { fps } = ExposeData;
+
+  /* 获取FPS */
+  (function getFPS() {
     count++;
     const current = performance.now();
     if (start === undefined) start = current;
@@ -18,12 +24,9 @@ const useGetFps = () => {
     }
 
     window.requestAnimationFrame(getFPS);
-  };
-  getFPS();
+  })();
 
-  return {
-    fps,
-  };
+  return ExposeData;
 };
 
 export { useGetFps };

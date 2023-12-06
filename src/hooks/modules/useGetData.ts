@@ -6,14 +6,18 @@ import { ResultData } from "@/api/interface";
 
 /** @description 初次进入网站下载数据 */
 const useGetData = () => {
-  /** 请求总数 */
-  const total = ref(0);
-  /** 用于计算下载进度 */
-  const index = ref(1);
-  /** 正在下载的数据类型 */
-  const type = ref("基础数据");
-  /** 请求结束 */
-  const finish = ref(false);
+  const ExposeData = {
+    /** 请求总数 */
+    total: ref(0),
+    /** 用于计算下载进度 */
+    index: ref(1),
+    /** 正在下载的数据类型 */
+    type: ref("基础数据"),
+    /** 请求结束 */
+    finish: ref(false),
+  };
+
+  const { total, index, type, finish } = ExposeData;
 
   const requests: [string, () => Promise<ResultData<unknown>>, string][] = [
     [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
@@ -52,7 +56,8 @@ const useGetData = () => {
     return !!localStorage.getItem(prefix + name);
   };
 
-  const getData = async () => {
+  /* 获取数据 */
+  (async function getData() {
     total.value = requests.length;
 
     /* 下载数据 */
@@ -89,19 +94,9 @@ const useGetData = () => {
     await Promise.all(voice_requests);
 
     finish.value = true;
-  };
-  getData();
+  })();
 
-  return {
-    /** 请求总数 */
-    total,
-    /** 用于计算下载进度 */
-    index,
-    /** 正在下载的数据类型 */
-    type,
-    /** 请求结束 */
-    finish,
-  };
+  return ExposeData;
 };
 
 export { useGetData };

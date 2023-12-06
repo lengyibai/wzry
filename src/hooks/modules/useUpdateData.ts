@@ -2,8 +2,9 @@ import { API_DATA, API_HERO } from "@/api";
 import { ResultData } from "@/api/interface";
 import { CONFIG } from "@/config";
 
-/* 同步更新远程数据 */
+/** @description 同步更新远程数据 */
 const useUpdateData = () => {
+  /** 用于请求的关键字 */
   const keywords: [string, string][] = [
     [CONFIG.LOCAL_KEY.HERO_BASIC, "英雄基础"],
     [CONFIG.LOCAL_KEY.HERO_IMG, "英雄图片"],
@@ -30,6 +31,7 @@ const useUpdateData = () => {
     [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
   ];
 
+  /** 请求列表 */
   const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
     [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
     [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
@@ -58,12 +60,14 @@ const useUpdateData = () => {
 
   /** 英雄基础列表 */
   let hero_list: Hero.Basic[] = [];
+
   /** 需要更新的语音 */
   const need_update_data: Record<string, unknown[]> = {
     names: [],
     keys: [],
     data: [],
   };
+
   /** 需要更新的数据 */
   const need_update_voice: Record<string, unknown[]> = {
     names: [],
