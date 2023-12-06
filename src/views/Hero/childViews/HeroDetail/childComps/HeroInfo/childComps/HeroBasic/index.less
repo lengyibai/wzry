@@ -1,13 +1,17 @@
 .hero-basic {
   display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-width: 22.5rem;
+  align-content: flex-start;
 
   .info {
     display: flex;
+    margin-right: 3rem;
     padding-bottom: 0.3125rem;
     font-size: 1.75rem;
     text-shadow: var(--t-shadow-e);
+    white-space: nowrap;
     transition: all 1s;
     transform: translateX(-100%);
     opacity: 0;
