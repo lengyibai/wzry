@@ -1,0 +1,48 @@
+.attribute {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  .label {
+    margin: 0 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    font-size: 2.1875rem;
+    text-align: right;
+    text-shadow: var(--t-shadow-e);
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+  }
+
+  .ico {
+    z-index: 2;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin-right: -0.3125rem;
+    background-image: url("@{IMGBED}/image/attribute.png");
+    background-size: 14.75rem 3.25rem;
+    background-repeat: no-repeat;
+    transform: rotate(-90deg);
+    filter: drop-shadow(-0.3125rem 0 0.1875rem #000);
+  }
+
+  .bar {
+    position: relative;
+    flex-grow: 1;
+    width: 1rem;
+    border-radius: 0.3125rem 0.3125rem 0 0;
+    box-shadow: var(--b-shadow-a);
+    background-color: #1a1a1a;
+
+    .bar-inner {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border-radius: 0.3125rem 0.3125rem 0 0;
+      background-color: var(--white);
+      transition: width 1s;
+    }
+  }
+}
