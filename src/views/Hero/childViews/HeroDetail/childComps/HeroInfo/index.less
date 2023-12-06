@@ -13,10 +13,17 @@
 
   &__center {
     display: flex;
-    justify-content: space-between;
+    height: 100%;
+
+    .center-left {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
   }
 
   &__bottom {
+    width: 100%;
     height: 100px;
   }
 }
