@@ -11,6 +11,7 @@ const hero_data = ref<unknown>([]);
 
 watchEffect(() => {
   const hero = $heroDetail.hero_info;
+
   hero_data.value = [
     [hero.profession.join("/"), "profession", "游戏职业"],
     [hero.location, "location", "细分定位"],
@@ -44,10 +45,11 @@ onMounted(() => {
       <span
         v-animate-number="{
           num: item[0],
-          duration: 3000,
+          duration: 2000,
         }"
         class="name"
-      ></span>
+      >
+      </span>
     </span>
   </div>
 </template>
