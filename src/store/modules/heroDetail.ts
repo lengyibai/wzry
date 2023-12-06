@@ -2,10 +2,19 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { heroDefault } from "@/default";
-import { API_VOICE } from "@/api";
+import { API_RELATIONSHIP, API_VOICE } from "@/api";
+import { getImgLink } from "@/utils/modules/concise";
 
 type SkinToggleFn = (hero_name: string, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
+interface RelationInfoType extends Hero.RelationType {
+  /** 对应关系英雄的回复 */
+  reply: string;
+  /** 对应关系 */
+  replyRelation: string;
+  /** 对应关系的性别 */
+  replyGender: string;
+}
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
@@ -23,10 +32,46 @@ const HeroDetailStore = defineStore("heroDetail", () => {
   const skillSelectFn = ref<(index: number) => void>(() => {});
   /** 英雄信息 */
   const hero_info = ref<Hero.Data>(heroDefault());
+  /** 当前悬浮显示的关系信息 */
+  const relation_info = ref<RelationInfoType>({
+    reply: "？",
+    replyRelation: "？",
+    desc: "？",
+    replyGender: "",
+    relation: "？",
+    id: 0,
+    heroName: "？",
+    headImage: getImgLink("unknown"),
+  });
 
   /** @description 设置英雄数据 */
   const setHeroInfo = (data: Hero.Data) => {
     hero_info.value = data;
+  };
+
+  /** @description 设置关系信息 */
+  const setRelationInfo = (data?: Hero.RelationType) => {
+    if (!data) {
+      relation_info.value = {
+        reply: "？",
+        replyRelation: "？",
+        desc: "？",
+        replyGender: "",
+        relation: "？",
+        id: 0,
+        heroName: "？",
+        headImage: getImgLink("unknown"),
+      };
+      return;
+    }
+    API_RELATIONSHIP.getHeroRelationshipDesc(data.id, hero_info.value.id).then((res) => {
+      relation_info.value = {
+        ...data,
+        reply: res.desc || "？",
+        replyGender: res.gender === "男" ? "nan" : "nv",
+        replyRelation: res.relation || "？",
+      };
+    });
   };
 
   /** @description 设置滚动索引 */
@@ -101,6 +146,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     skinToggleFns,
     /** 皮肤语音列表 */
     skin_voice,
+    relation_info,
     setHeroInfo,
     setIndex,
     setScollFn,
@@ -111,6 +157,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     setSkinVoice,
     skillToggler,
     skinToggle,
+    setRelationInfo,
   };
 });
 
