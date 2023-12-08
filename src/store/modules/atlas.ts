@@ -30,7 +30,9 @@ const AtlasStore = defineStore("atlas", () => {
   };
 
   const ExposeMethods = {
+    /** @description 设置滚动坐标 */
     setScroll: $usePagingLoad.setScroll,
+    /** @description 加载更多 */
     loadMore: $usePagingLoad.loadMore,
 
     /** @description 获取图集列表 */
