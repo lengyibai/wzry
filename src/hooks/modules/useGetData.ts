@@ -6,19 +6,6 @@ import { ResultData } from "@/api/interface";
 
 /** @description 初次进入网站下载数据 */
 const useGetData = () => {
-  const ExposeData = {
-    /** 请求总数 */
-    total: ref(0),
-    /** 用于计算下载进度 */
-    index: ref(1),
-    /** 正在下载的数据类型 */
-    type: ref("基础数据"),
-    /** 请求结束 */
-    finish: ref(false),
-  };
-
-  const { total, index, type, finish } = ExposeData;
-
   const requests: [string, () => Promise<ResultData<unknown>>, string][] = [
     [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
     [CONFIG.LOCAL_KEY.HERO_BASIC, API_DATA.HeroBasic, "英雄基础"],
@@ -45,6 +32,18 @@ const useGetData = () => {
     [CONFIG.LOCAL_KEY.CAMP_TYPE, API_DATA.Camptype, "阵营"],
     [CONFIG.LOCAL_KEY.RACE_TYPE, API_DATA.RaceType, "种族"],
   ];
+
+  const ExposeData = {
+    /** 请求总数 */
+    total: ref(0),
+    /** 用于计算下载进度 */
+    index: ref(1),
+    /** 正在下载的数据类型 */
+    type: ref("基础数据"),
+    /** 请求结束 */
+    finish: ref(false),
+  };
+  const { total, index, type, finish } = ExposeData;
 
   /* 将数据写入本地存储 */
   const setData = <T extends { data: unknown }>(name: string, data: T) => {

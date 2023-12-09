@@ -42,39 +42,6 @@ const AudioStore = defineStore("audio", () => {
     warning: ["16vy"],
   };
 
-  const ExposeMethods = {
-    /**
-     * @description: 调用播放
-     * @param name 音效名
-     */
-    play: (name?: string) => {
-      if (!status) return;
-
-      //悬浮音效防抖处理
-      if (name === "n4r4") {
-        debouncePlayAudio(name);
-      } else {
-        playAudio(name);
-      }
-    },
-
-    /**
-     * @description: 音量调节
-     * @param v 音量：1-100
-     */
-    setVolume: (v: number) => {
-      volume = (v / 100) * 0.75;
-    },
-
-    /**
-     * @description: 关闭音效功能
-     * @param v false关闭
-     */
-    setAudio: (v: boolean) => {
-      status = v;
-    },
-  };
-
   /**
    * @description: 播放音效
    * @param name 音效随机标识
@@ -100,6 +67,39 @@ const AudioStore = defineStore("audio", () => {
   const debouncePlayAudio = _debounce((name: string) => {
     playAudio(name);
   }, 50);
+
+  const ExposeMethods = {
+    /**
+     * @description: 调用播放
+     * @param name 音效名
+     */
+    play(name?: string) {
+      if (!status) return;
+
+      //悬浮音效防抖处理
+      if (name === "n4r4") {
+        debouncePlayAudio(name);
+      } else {
+        playAudio(name);
+      }
+    },
+
+    /**
+     * @description: 音量调节
+     * @param v 音量：1-100
+     */
+    setVolume(v: number) {
+      volume = (v / 100) * 0.75;
+    },
+
+    /**
+     * @description: 关闭音效功能
+     * @param v false关闭
+     */
+    setAudio(v: boolean) {
+      status = v;
+    },
+  };
 
   return ExposeMethods;
 });

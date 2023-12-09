@@ -9,7 +9,6 @@ const useGetFps = () => {
     /** 帧率 */
     fps: ref(0),
   };
-
   const { fps } = ExposeData;
 
   /* 获取FPS */

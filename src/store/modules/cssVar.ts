@@ -4,61 +4,56 @@ import { defineStore } from "pinia";
 const CssVarStore = defineStore("cssVariable", () => {
   const html = document.documentElement.classList;
 
-  /** @description 设置线条 */
-  const setBorder = (v: boolean) => {
-    resetBorder();
+  const ExposeMethods = {
+    /** @description 设置线条 */
+    setBorder(v: boolean) {
+      this.resetBorder();
 
-    if (v) {
-      html.add("border-line");
-    } else {
-      resetBorder();
-    }
+      if (v) {
+        html.add("border-line");
+      } else {
+        this.resetBorder();
+      }
+    },
+
+    /** @description 重置线条 */
+    resetBorder() {
+      html.remove("border-line");
+    },
+
+    /** @description 设置阴影 */
+    setShadow(v: boolean) {
+      this.resetShadow();
+
+      if (v) {
+        html.add("tbd-shadow");
+      } else {
+        this.resetShadow();
+      }
+    },
+
+    /** @description 重置阴影 */
+    resetShadow() {
+      html.remove("tbd-shadow");
+    },
+
+    /** @description 设置柔光 */
+    setShine(v: boolean) {
+      this.resetShine();
+      if (v) {
+        html.add("soft-light");
+      } else {
+        this.resetShine();
+      }
+    },
+
+    /** @description 重置柔光 */
+    resetShine() {
+      html.remove("soft-light");
+    },
   };
 
-  /** @description 重置线条 */
-  const resetBorder = () => {
-    html.remove("border-line");
-  };
-
-  /** @description 设置阴影 */
-  const setShadow = (v: boolean) => {
-    resetShadow();
-
-    if (v) {
-      html.add("tbd-shadow");
-    } else {
-      resetShadow();
-    }
-  };
-
-  /** @description 重置阴影 */
-  const resetShadow = () => {
-    html.remove("tbd-shadow");
-  };
-
-  /** @description 设置柔光 */
-  const setShine = (v: boolean) => {
-    resetShine();
-    if (v) {
-      html.add("soft-light");
-    } else {
-      resetShine();
-    }
-  };
-
-  /** @description 重置柔光 */
-  const resetShine = () => {
-    html.remove("soft-light");
-  };
-
-  return {
-    setBorder,
-    resetBorder,
-    setShine,
-    setShadow,
-    resetShine,
-    resetShadow,
-  };
+  return ExposeMethods;
 });
 
 export { CssVarStore };

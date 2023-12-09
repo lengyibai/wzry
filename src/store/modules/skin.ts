@@ -9,112 +9,42 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const {
-    all_data,
-    resetPage,
-    loadMore,
-    setScroll,
-    scroll,
-    filter_list,
-    show_list,
-    finish,
-    loading,
-  } = usePagingLoad<Hero.Skin>();
+  const $usePagingLoad = usePagingLoad<Hero.Skin>();
 
-  /** 职业类型 */
-  const profession = ref<Hero.Profession>("全部");
-  /** 价格排序类型 */
-  const price_type = ref("全部价格");
-  /** 皮肤筛选类型 */
-  const skin_type = ref("全部皮肤");
-  /** 排序类型 */
-  const sort_type = ref("倒序");
-  /** 性别筛选类型 */
-  const gender_type = ref<Gender>(0);
+  const ExposeData = {
+    /** 是否处于加载中 */
+    loading: $usePagingLoad.loading,
+    /** 滚动坐标 */
+    scroll: $usePagingLoad.scroll,
+    /** 暂无更多 */
+    finish: $usePagingLoad.finish,
+    /** 筛选后的数据列表 */
+    filter_list: $usePagingLoad.filter_list,
+    /** 展示的数据列表 */
+    show_list: $usePagingLoad.show_list,
 
-  /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
-  const getSkinList = async () => {
-    /** 用于模糊图片预加载 */
-    const poster_blur: string[] = [];
-
-    const skinList = await API_SKIN.getSkin();
-    const skinType = await API_SKIN.getSkinType();
-
-    skinList.forEach((skin) => {
-      const type = skinType.find((type) => type.id === skin.type)!;
-      skin.type = type.link;
-      skin.category = type.name;
-
-      //设置备用名称，解决高亮问题
-      skin.hero_name = skin.heroName;
-      skin.skin_name = skin.name;
-
-      poster_blur.push(skin.posterBlur);
-    });
-
-    all_data.value = skinList;
-
-    $tool.preloadImages(poster_blur);
-
-    sortAll();
+    /** 性别筛选类型 */
+    gender_type: ref<Gender>(0),
+    /** 职业类型 */
+    profession: ref<Hero.Profession>("全部"),
+    /** 价格排序类型 */
+    price_type: ref("全部价格"),
+    /** 皮肤筛选类型 */
+    skin_type: ref("全部皮肤"),
+    /** 排序类型 */
+    sort_type: ref("倒序"),
   };
+  const { scroll, filter_list, gender_type, profession, price_type, skin_type, sort_type } =
+    ExposeData;
 
-  /**
-   * @description: 设置职业
-   * @param name 职业名称
-   */
-  const setProfessional = (name: Hero.Profession) => {
-    if (profession.value === name) return;
-    profession.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 性别筛选
-   * @param type 性别标识符
-   */
-  const filterGender = (type: Gender) => {
-    if (gender_type.value === type) return;
-    gender_type.value = type;
-    sortAll();
-  };
-
-  /**
-   * @description: 皮肤类型筛选
-   * @param type 皮肤类型名称
-   */
-  const filterSkinType = (type: string) => {
-    if (skin_type.value === type) return;
-    skin_type.value = type;
-    sortAll();
-  };
-
-  /**
-   * @description: 价格排序
-   * @param type 价格排序方式
-   */
-  const sortPrice = (type: string) => {
-    if (price_type.value === type) return;
-    price_type.value = type;
-    sortAll();
-  };
-
-  /**
-   * @description: 正序|倒序
-   * @param type 排序名称
-   */
-  const sortType = (type: string) => {
-    if (sort_type.value === type) return;
-    sort_type.value = type;
-    sortAll();
-  };
-
-  /** @description 一键排序 */
+  /* 一键排序 */
   const sortAll = () => {
     scroll.value = 0;
 
     /** 职业筛选 */
     const filterProfession = () => {
+      const { all_data } = $usePagingLoad;
+
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
         filter_list.value = [...all_data.value];
@@ -268,10 +198,11 @@ const SkinStore = defineStore("skin", () => {
     resetPage();
   };
 
+  /* 防抖筛选皮肤 */
   const debounceSearchSkin = _debounce((name: string) => {
     if (name) {
       filter_list.value = $tool.search(
-        _cloneDeep(all_data.value),
+        _cloneDeep($usePagingLoad.all_data.value),
         name,
         ["skin_name", "hero_name", "category"],
         true,
@@ -282,45 +213,102 @@ const SkinStore = defineStore("skin", () => {
 
     resetPage();
   }, 500);
-  /** @description 搜索皮肤 */
-  const searchSkin = (name: string) => {
-    debounceSearchSkin(name);
+
+  const ExposeMethods = {
+    /** @description 设置滚动坐标 */
+    setScroll: $usePagingLoad.setScroll,
+    /** @description 重新计算分页 */
+    resetPage: $usePagingLoad.resetPage,
+    /** @description 加载更多 */
+    loadMore: $usePagingLoad.loadMore,
+
+    /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
+    async getSkin() {
+      /** 用于模糊图片预加载 */
+      const poster_blur: string[] = [];
+
+      const skinList = await API_SKIN.getSkin();
+      const skinType = await API_SKIN.getSkinType();
+
+      skinList.forEach((skin) => {
+        const type = skinType.find((type) => type.id === skin.type)!;
+        skin.type = type.link;
+        skin.category = type.name;
+
+        //设置备用名称，解决高亮问题
+        skin.hero_name = skin.heroName;
+        skin.skin_name = skin.name;
+
+        poster_blur.push(skin.posterBlur);
+      });
+
+      $usePagingLoad.all_data.value = skinList;
+
+      $tool.preloadImages(poster_blur);
+
+      sortAll();
+    },
+
+    /**
+     * @description: 设置职业
+     * @param name 职业名称
+     */
+    setProfessional(name: Hero.Profession) {
+      if (profession.value === name) return;
+      profession.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 性别筛选
+     * @param type 性别标识符
+     */
+    filterGender(type: Gender) {
+      if (gender_type.value === type) return;
+      gender_type.value = type;
+      sortAll();
+    },
+
+    /**
+     * @description: 皮肤类型筛选
+     * @param type 皮肤类型名称
+     */
+    filterSkinType(type: string) {
+      if (skin_type.value === type) return;
+      skin_type.value = type;
+      sortAll();
+    },
+
+    /**
+     * @description: 价格排序
+     * @param type 价格排序方式
+     */
+    sortPrice(type: string) {
+      if (price_type.value === type) return;
+      price_type.value = type;
+      sortAll();
+    },
+
+    /**
+     * @description: 正序|倒序
+     * @param type 排序名称
+     */
+    sortType(type: string) {
+      if (sort_type.value === type) return;
+      sort_type.value = type;
+      sortAll();
+    },
+
+    /** @description 搜索皮肤 */
+    searchSkin(name: string) {
+      debounceSearchSkin(name);
+    },
   };
+  const { resetPage } = ExposeMethods;
 
   return {
-    /** 筛选后的列表 */
-    filter_list,
-    /** 性别筛选类型 */
-    gender_type,
-    /** price_type */
-    price_type,
-    /** 职业类型 */
-    profession,
-    /** 滚动坐标 */
-    scroll,
-    /** 排序类型，正序|倒序 */
-    sort_type,
-    /** 展示的列表 */
-    show_list,
-    /** 皮肤完整列表 */
-    all_data,
-    /** 皮肤筛选类型 */
-    skin_type,
-    /** 暂无更多 */
-    finish,
-    /** 是否处于加载中 */
-    loading,
-    getSkin: getSkinList,
-    setProfessional,
-    sortPrice,
-    filterGender,
-    sortAll,
-    searchSkin,
-    filterSkinType,
-    sortType,
-    loadMore,
-    resetPage,
-    setScroll,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 });
 

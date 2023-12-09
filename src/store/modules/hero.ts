@@ -9,125 +9,63 @@ import { usePagingLoad } from "@/hooks";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
+  const $usePagingLoad = usePagingLoad<Hero.Data>();
+
+  const ExposeData = {
+    /** 暂无更多 */
+    finish: $usePagingLoad.finish,
+    /** 是否处于加载中 */
+    loading: $usePagingLoad.loading,
+    /** 滚动坐标 */
+    scroll: $usePagingLoad.scroll,
+    /** 筛选后的列表 */
+    filter_list: $usePagingLoad.filter_list,
+    /** 英雄列表 */
+    all_data: $usePagingLoad.all_data,
+    /** 展示的英雄列表 */
+    show_list: $usePagingLoad.show_list,
+
+    /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
+    profession: ref<Hero.Profession>(),
+    /** 当前属性排序类型 */
+    attr_type: ref("全部属性"),
+    /** 阵营排序类型 */
+    camp_type: ref("全部阵营"),
+    /** 当前性别排序类型 */
+    gender_type: ref<Gender>(0),
+    /** 杂项排序类型 */
+    misc_sort: ref("全部排序"),
+    /** 杂项排序类型 */
+    misc_type: ref("全部筛选"),
+    /** 当前排序类型：正序|倒序 */
+    sort_type: ref("倒序"),
+  };
   const {
-    all_data,
-    resetPage,
-    loadMore,
-    setScroll,
     scroll,
     filter_list,
-    show_list,
-    finish,
-    loading,
-  } = usePagingLoad<Hero.Data>();
+    all_data,
 
-  /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
-  const profession = ref<Hero.Profession>();
-  /** 阵营排序类型 */
-  const camp_type = ref("全部阵营");
-  /** 属性排序类型 */
-  const attr_type = ref("全部属性");
-  /** 杂项筛选类型 */
-  const misc_type = ref("全部筛选");
-  /** 杂项排序类型 */
-  const misc_sort = ref("全部排序");
-  /** 当前排序类型 */
-  const sort_type = ref("倒序");
-  /** 当前性别排序类型 */
-  const gender_type = ref<Gender>(0);
+    profession,
+    attr_type,
+    camp_type,
+    gender_type,
+    misc_sort,
+    misc_type,
+    sort_type,
+  } = ExposeData;
 
-  /** @description 初次获取英雄列表并设置相关信息 */
-  const getHeroList = async () => {
-    /** 用于模糊图片预加载 */
-    const poster_blur: string[] = [];
-
-    all_data.value = await API_HERO.getHeroData();
-    for (let i = 0; i < all_data.value.length; i++) {
-      all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
-      all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
-      all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
-        all_data.value[i].id,
-      );
-
-      poster_blur.push(all_data.value[i].coverBlur);
+  /* 防抖筛选英雄 */
+  const debounceSearchHero = _debounce((name: string) => {
+    if (name) {
+      filter_list.value = $tool.search<Hero.Data>(_cloneDeep(all_data.value), name, "name", true);
+    } else {
+      sortAll();
     }
 
-    $tool.preloadImages(poster_blur);
+    resetPage();
+  }, 500);
 
-    setProfessional("全部");
-  };
-
-  /**
-   * @description: 职业筛选
-   * @param name 职业名称
-   */
-  const setProfessional = (name: Hero.Profession) => {
-    if (profession.value === name) return;
-    profession.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 性别筛选
-   * @param name 性别标识符
-   */
-  const filterGender = (name: Gender) => {
-    if (gender_type.value === name) return;
-    gender_type.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 阵营筛选
-   * @param name 阵营名称
-   */
-  const filterCamp = (name: string) => {
-    if (camp_type.value === name) return;
-    camp_type.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 属性筛选
-   * @param name 属性名称
-   */
-  const filterAttr = (name: string) => {
-    if (attr_type.value === name) return;
-    attr_type.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 杂项筛选
-   * @param name 杂项名称
-   */
-  const filterMisc = (name: string) => {
-    if (misc_type.value === name) return;
-    misc_type.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 杂项排序
-   * @param type 杂项名称
-   */
-  const sortMisc = (name: string) => {
-    if (misc_sort.value === name) return;
-    misc_sort.value = name;
-    sortAll();
-  };
-
-  /**
-   * @description: 正序|倒序
-   * @param type 排序名称
-   */
-  const sortType = (name: string) => {
-    if (sort_type.value === name) return;
-    sort_type.value = name;
-    sortAll();
-  };
-
-  /** @description 一键排序 */
+  /* 一键排序 */
   const sortAll = () => {
     scroll.value = 0;
 
@@ -260,58 +198,136 @@ const HeroStore = defineStore("hero", () => {
     resetPage();
   };
 
-  const debounceSearchHero = _debounce((name: string) => {
-    if (name) {
-      filter_list.value = $tool.search<Hero.Data>(_cloneDeep(all_data.value), name, "name", true);
-    } else {
-      sortAll();
-    }
+  const ExposeMethods = {
+    /** @description 设置滚动坐标 */
+    setScroll: $usePagingLoad.setScroll,
+    /** @description 加载更多 */
+    loadMore: $usePagingLoad.loadMore,
+    /** @description 重新计算分页 */
+    resetPage: $usePagingLoad.resetPage,
 
-    resetPage();
-  }, 500);
-  /** @description 搜索英雄 */
-  const searchHero = (name: string) => {
-    debounceSearchHero(name);
+    /** @description 初次获取英雄列表并设置相关信息 */
+    async getHeroList() {
+      /** 用于模糊图片预加载 */
+      const poster_blur: string[] = [];
+
+      all_data.value = await API_HERO.getHeroData();
+      for (let i = 0; i < all_data.value.length; i++) {
+        all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
+        all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
+        all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
+          all_data.value[i].id,
+        );
+
+        poster_blur.push(all_data.value[i].coverBlur);
+      }
+
+      $tool.preloadImages(poster_blur);
+
+      this.setProfessional("全部");
+    },
+
+    /** @description 初次获取英雄列表并设置相关信息 */
+    async getHeroListasync() {
+      /** 用于模糊图片预加载 */
+      const poster_blur: string[] = [];
+
+      all_data.value = await API_HERO.getHeroData();
+      for (let i = 0; i < all_data.value.length; i++) {
+        all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
+        all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
+        all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
+          all_data.value[i].id,
+        );
+
+        poster_blur.push(all_data.value[i].coverBlur);
+      }
+
+      $tool.preloadImages(poster_blur);
+
+      this.setProfessional("全部");
+    },
+
+    /**
+     * @description: 职业筛选
+     * @param name 职业名称
+     */
+    setProfessional(name: Hero.Profession) {
+      if (profession.value === name) return;
+      profession.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 属性筛选
+     * @param name 属性名称
+     */
+    filterAttr(name: string) {
+      if (attr_type.value === name) return;
+      attr_type.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 阵营筛选
+     * @param name 阵营名称
+     */
+    filterCamp(name: string) {
+      if (camp_type.value === name) return;
+      camp_type.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 性别筛选
+     * @param name 性别标识符
+     */
+    filterGender(name: Gender) {
+      if (gender_type.value === name) return;
+      gender_type.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 杂项筛选
+     * @param name 杂项名称
+     */
+    filterMisc(name: string) {
+      if (misc_type.value === name) return;
+      misc_type.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 杂项排序
+     * @param type 杂项名称
+     */
+    sortMisc(name: string) {
+      if (misc_sort.value === name) return;
+      misc_sort.value = name;
+      sortAll();
+    },
+
+    /**
+     * @description: 正序|倒序
+     * @param type 排序名称
+     */
+    sortType(name: string) {
+      if (sort_type.value === name) return;
+      sort_type.value = name;
+      sortAll();
+    },
+
+    /** @description 搜索英雄 */
+    searchHero(name: string) {
+      debounceSearchHero(name);
+    },
   };
+  const { resetPage } = ExposeMethods;
 
   return {
-    /** 职业类型 */
-    profession,
-    /** 当前属性排序类型 */
-    attr_type,
-    /** 阵营排序类型 */
-    camp_type,
-    /** 筛选后的列表 */
-    filter_list,
-    /** 当前性别排序类型 */
-    gender_type,
-    /** 英雄列表 */
-    all_data,
-    /** 杂项排序类型 */
-    misc_sort,
-    /** 杂项排序类型 */
-    misc_type,
-    /** 滚动坐标 */
-    scroll,
-    /** 展示的英雄列表 */
-    show_list,
-    /** 当前排序类型：正序|倒序 */
-    sort_type,
-    /** 暂无更多 */
-    finish,
-    /** 是否处于加载中 */
-    loading,
-    filterAttr,
-    filterCamp,
-    filterGender,
-    filterMisc,
-    getHeroList,
-    searchHero,
-    setProfessional,
-    setScroll,
-    sortMisc,
-    sortType,
-    loadMore,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 });
 

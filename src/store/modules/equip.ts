@@ -20,6 +20,7 @@ type EquipElement = {
 const EquipStore = defineStore("equip", () => {
   /** 当前被点击装备排列位置，通过分解id获得 */
   let active_array: string[] = [];
+
   /** 相关职业列表 */
   const type_list: Record<Equip.Category, Equip.Data[][]> = {
     攻击: [[], [], []],
@@ -38,90 +39,46 @@ const EquipStore = defineStore("equip", () => {
     打野: 5,
     游走: 6,
   };
-  /** 当前被点击的装备id */
-  const active_id = ref(0);
-  /** 显示装备详情 */
-  const show_details = ref(false);
-  /** 当前被点击的装备详情 */
-  const active_data = ref<Equip.Data>();
-  /** 列表装备类型 */
-  const category = ref("");
-  /** 装备总列表 */
-  const equip_list = ref<Equip.Data[]>([]);
-  /** 三列装备数据 */
-  const equip_list_column = ref<Equip.Data[][]>([]);
   /** 装备列表的所有元素 */
   const equip_element = ref<EquipElement[]>([]);
-  /** 当前点击的装备合成 */
-  const synthetic = ref<Equip.Synthetic>({ id: 0, name: "" });
-  /** 当前点击的装备合成相关id */
-  const synthetic_id = ref<Equip.Synthetic[][]>([[], [], []]);
-  /** 二三列的竖线 */
-  const vertical_line = ref<{ top?: string; height?: string }[]>([
-    {},
-    { top: "0", height: "0" },
-    { top: "0", height: "0" },
-  ]);
 
-  /** @description 获取装备列表 */
-  const getEquipList = async () => {
-    equip_list.value = await API_EQUIP.getEquip();
-
-    //将装备分类
-    equip_list.value.forEach((item: Equip.Data) => {
-      type_list[item.type][item.level - 1].push(item);
-    });
-    setType("攻击");
+  const ExposeData = {
+    /** 列表装备类型 */
+    category: ref(""),
+    /** 当前被点击的装备id */
+    active_id: ref(0),
+    /** 显示装备详情 */
+    show_details: ref(false),
+    /** 当前被点击的装备详情 */
+    active_data: ref<Equip.Data>(),
+    /** 当前点击的装备合成 */
+    synthetic: ref<Equip.Synthetic>({ id: 0, name: "" }),
+    /** 当前点击的装备合成相关id */
+    synthetic_id: ref<Equip.Synthetic[][]>([[], [], []]),
+    /** 装备总列表 */
+    equip_list: ref<Equip.Data[]>([]),
+    /** 三列装备数据 */
+    equip_list_column: ref<Equip.Data[][]>([]),
+    /** 二三列的竖线 */
+    vertical_line: ref<{ top?: string; height?: string }[]>([
+      {},
+      { top: "0", height: "0" },
+      { top: "0", height: "0" },
+    ]),
   };
+  const {
+    category,
+    active_id,
+    show_details,
+    active_data,
+    synthetic,
+    synthetic_id,
+    equip_list,
+    equip_list_column,
+    vertical_line,
+  } = ExposeData;
 
-  /** @description 存储列表所有装备Dom元素及相关信息 */
-  const setEquipElement = (data: EquipElement) => {
-    equip_element.value.push(data);
-  };
-
-  /** @description 设置装备类型 */
-  const setType = async (type: Equip.Category) => {
-    //避免重复点击调用
-    if (category.value === type) return;
-
-    clearSynthetic();
-    equip_list_column.value = type_list[type];
-
-    //每次切换装备类型，延迟显示列表及详情
-    await $tool.promiseTimeout(() => {
-      category.value = type;
-      show_details.value = false;
-    }, 200);
-
-    await $tool.promiseTimeout(() => {
-      setEquipActive(Number(type_index[type] + "11"));
-    }, 500);
-  };
-
-  /** @description 点击的装备id */
-  const setEquipActive = (id = 0) => {
-    clearSynthetic();
-
-    //如果再次点击了装备，则重置
-    if (active_id.value === id) {
-      active_id.value = 0;
-      return;
-    }
-
-    //隐藏详情，延迟延迟设置装备信息并显示详情
-    active_id.value = id;
-    show_details.value = true;
-    active_data.value = equip_list.value.find((item) => item.id === id);
-
-    API_EQUIPSYNTHETIC.getEquipSynthetic(id).then((res) => {
-      if (!res) return;
-      active_array = res.id.toString().split("") || [];
-      synthetic.value = res;
-      addSynthetic(res);
-    });
-  };
-
-  /** @description 添加合成组 */
+  /* 添加合成组 */
   const addSynthetic = async (synthetic: Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
@@ -275,35 +232,75 @@ const EquipStore = defineStore("equip", () => {
     }
   };
 
-  /** @description 清空合成组 */
+  /* 清空合成组 */
   const clearSynthetic = () => {
     vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
     synthetic_id.value = [[], [], []];
   };
 
+  const ExposeMethods = {
+    /** @description 获取装备列表 */
+    async getEquipList() {
+      equip_list.value = await API_EQUIP.getEquip();
+
+      //将装备分类
+      equip_list.value.forEach((item: Equip.Data) => {
+        type_list[item.type][item.level - 1].push(item);
+      });
+      this.setType("攻击");
+    },
+
+    /** @description 存储列表所有装备Dom元素及相关信息 */
+    setEquipElement(data: EquipElement) {
+      equip_element.value.push(data);
+    },
+
+    /** @description 设置装备类型 */
+    async setType(type: Equip.Category) {
+      //避免重复点击调用
+      if (category.value === type) return;
+
+      clearSynthetic();
+      equip_list_column.value = type_list[type];
+
+      //每次切换装备类型，延迟显示列表及详情
+      await $tool.promiseTimeout(() => {
+        category.value = type;
+        show_details.value = false;
+      }, 200);
+
+      await $tool.promiseTimeout(() => {
+        this.setEquipActive(Number(type_index[type] + "11"));
+      }, 500);
+    },
+
+    /** @description 点击的装备id */
+    setEquipActive(id = 0) {
+      clearSynthetic();
+
+      //如果再次点击了装备，则重置
+      if (active_id.value === id) {
+        active_id.value = 0;
+        return;
+      }
+
+      //隐藏详情，延迟延迟设置装备信息并显示详情
+      active_id.value = id;
+      show_details.value = true;
+      active_data.value = equip_list.value.find((item) => item.id === id);
+
+      API_EQUIPSYNTHETIC.getEquipSynthetic(id).then((res) => {
+        if (!res) return;
+        active_array = res.id.toString().split("") || [];
+        synthetic.value = res;
+        addSynthetic(res);
+      });
+    },
+  };
+
   return {
-    /** 列表装备类型 */
-    category,
-    /** 当前被点击的装备id */
-    active_id,
-    /** 当前被点击的装备详情 */
-    active_data,
-    /** 显示装备详情 */
-    show_details,
-    /** 当前点击的装备合成 */
-    synthetic,
-    /** 当前点击的装备合成所需装备的id */
-    synthetic_id,
-    /** 装备总列表 */
-    equip_list,
-    /** 三列装备数据 */
-    equip_list_column,
-    /** 二三列的竖线 */
-    vertical_line,
-    getEquipList,
-    setEquipElement,
-    setType,
-    setEquipActive,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 });
 

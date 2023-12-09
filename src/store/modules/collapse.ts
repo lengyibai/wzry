@@ -6,31 +6,34 @@ import { $bus } from "@/utils";
 
 /** @description 折叠侧边栏 */
 const CollapseStore = defineStore("collapse", () => {
-  /** 折叠 */
-  const collapse = ref(false);
+  const ExposeData = {
+    /** 折叠 */
+    collapse: ref(false),
+  };
+  const { collapse } = ExposeData;
 
   /* 如果浏览器宽度低于高度，则自动折叠 */
   collapse.value = window.innerWidth < 960;
-
-  /** @description 切换折叠 */
-  const toggleCollapse = () => {
-    collapse.value = !collapse.value;
-  };
-
-  /** @description 控制折叠 */
-  const setCollapse = (v: boolean) => {
-    collapse.value = v;
-  };
 
   watch(collapse, () => {
     $bus.emit("update-waterfall");
   });
 
+  const ExposeMethods = {
+    /** @description 切换折叠 */
+    toggleCollapse() {
+      collapse.value = !collapse.value;
+    },
+
+    /** @description 控制折叠 */
+    setCollapse(v: boolean) {
+      collapse.value = v;
+    },
+  };
+
   return {
-    /** 折叠状态 */
-    collapse,
-    toggleCollapse,
-    setCollapse,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 });
 

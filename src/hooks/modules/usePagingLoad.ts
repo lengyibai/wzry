@@ -24,30 +24,31 @@ const usePagingLoad = <T>() => {
     /** 展示的数据列表 */
     show_list: ref<T[]>([]),
   };
+  const { all_data, scroll, loading, finish, filter_list, show_list, page_count } = ExposeData;
 
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
-    setScroll: (v: number) => {
+    setScroll(v: number) {
       scroll.value = v;
     },
 
     /** @description 设置全部数据 */
-    pushAllData: (v: T) => {
+    pushAllData(v: T) {
       (all_data.value as T[]).push(v);
     },
 
     /** @description 设置筛选后的数据 */
-    setFilterData: (v: T[]) => {
+    setFilterData(v: T[]) {
       (filter_list.value as T[]) = v;
     },
 
     /** @description 将筛选后的列表反向排序 */
-    reverseFilterData: () => {
+    reverseFilterData() {
       filter_list.value.reverse();
     },
 
     /** @description 重新计算分页 */
-    resetPage: () => {
+    resetPage() {
       page = 1;
       finish.value = false;
       show_list.value = [];
@@ -58,7 +59,7 @@ const usePagingLoad = <T>() => {
     },
 
     /** @description 加载更多 */
-    loadMore: () => {
+    loadMore() {
       //处于加载中或列表加载完毕时禁止触发加载更多，避免消耗
       if (loading.value || finish.value) return;
 
@@ -81,8 +82,6 @@ const usePagingLoad = <T>() => {
       }, 500);
     },
   };
-
-  const { all_data, scroll, loading, finish, filter_list, show_list, page_count } = ExposeData;
 
   return {
     ...ExposeData,

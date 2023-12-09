@@ -11,6 +11,80 @@ import { usePagingLoad } from "@/hooks";
 const AtlasStore = defineStore("atlas", () => {
   const $usePagingLoad = usePagingLoad<Hero.AloneAtlas>();
 
+  /** @description 一键排序 */
+  const sortAll = () => {
+    $usePagingLoad.setScroll(0);
+
+    /** 职业筛选 */
+    const filterProfession = () => {
+      const { all_data, setFilterData } = $usePagingLoad;
+      if (profession.value === "全部") {
+        //为了解决排序拷贝问题
+        setFilterData([...all_data.value]);
+      } else {
+        const data = all_data.value.filter((item: Hero.AloneAtlas) => {
+          return item.profession.includes(profession.value!);
+        });
+        setFilterData(data);
+      }
+    };
+
+    /** 性别筛选 */
+    const filterGender = () => {
+      const { filter_list, setFilterData } = $usePagingLoad;
+
+      const boy: Hero.AloneAtlas[] = [];
+      const girl: Hero.AloneAtlas[] = [];
+
+      filter_list.value.forEach((item) => {
+        if (item.gender === "男") {
+          boy.push(item);
+        } else {
+          girl.push(item);
+        }
+      });
+
+      if (gender_type.value === 1) {
+        setFilterData(boy);
+      } else if (gender_type.value === 2) {
+        setFilterData(girl);
+      }
+    };
+
+    /** 正/倒排序 */
+    const sortType = () => {
+      if (sort_type.value === "倒序") {
+        $usePagingLoad.reverseFilterData();
+      }
+    };
+
+    filterProfession();
+    filterGender();
+    sortType();
+    $usePagingLoad.resetPage();
+    $bus.emit("watch-waterfall");
+  };
+
+  /** @description 搜索图集 */
+  const debounceSearchAtlas = _debounce((name: string) => {
+    const { all_data, setFilterData } = $usePagingLoad;
+
+    //如果搜索的值不为空，则进行搜索，否则重新排序
+    if (name) {
+      const data = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+        "name",
+        "heroName",
+      ]);
+      setFilterData(data);
+
+      $bus.emit("watch-waterfall");
+    } else {
+      sortAll();
+    }
+
+    $usePagingLoad.resetPage();
+  }, 500);
+
   const ExposeData = {
     /** 滚动坐标 */
     scroll: $usePagingLoad.scroll,
@@ -28,6 +102,7 @@ const AtlasStore = defineStore("atlas", () => {
     /** 当前性别排序类型 */
     gender_type: ref<Gender>(0),
   };
+  const { sort_type, profession, gender_type } = ExposeData;
 
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
@@ -117,82 +192,6 @@ const AtlasStore = defineStore("atlas", () => {
       debounceSearchAtlas(name);
     },
   };
-
-  const { sort_type, profession, gender_type } = ExposeData;
-
-  /** @description 一键排序 */
-  const sortAll = () => {
-    $usePagingLoad.setScroll(0);
-
-    /** 职业筛选 */
-    const filterProfession = () => {
-      const { all_data, setFilterData } = $usePagingLoad;
-      if (profession.value === "全部") {
-        //为了解决排序拷贝问题
-        setFilterData([...all_data.value]);
-      } else {
-        const data = all_data.value.filter((item: Hero.AloneAtlas) => {
-          return item.profession.includes(profession.value!);
-        });
-        setFilterData(data);
-      }
-    };
-
-    /** 性别筛选 */
-    const filterGender = () => {
-      const { filter_list, setFilterData } = $usePagingLoad;
-
-      const boy: Hero.AloneAtlas[] = [];
-      const girl: Hero.AloneAtlas[] = [];
-
-      filter_list.value.forEach((item) => {
-        if (item.gender === "男") {
-          boy.push(item);
-        } else {
-          girl.push(item);
-        }
-      });
-
-      if (gender_type.value === 1) {
-        setFilterData(boy);
-      } else if (gender_type.value === 2) {
-        setFilterData(girl);
-      }
-    };
-
-    /** 正/倒排序 */
-    const sortType = () => {
-      if (sort_type.value === "倒序") {
-        $usePagingLoad.reverseFilterData();
-      }
-    };
-
-    filterProfession();
-    filterGender();
-    sortType();
-    $usePagingLoad.resetPage();
-    $bus.emit("watch-waterfall");
-  };
-
-  /** @description 搜索图集 */
-  const debounceSearchAtlas = _debounce((name: string) => {
-    const { all_data, setFilterData } = $usePagingLoad;
-
-    //如果搜索的值不为空，则进行搜索，否则重新排序
-    if (name) {
-      const data = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
-        "name",
-        "heroName",
-      ]);
-      setFilterData(data);
-
-      $bus.emit("watch-waterfall");
-    } else {
-      sortAll();
-    }
-
-    $usePagingLoad.resetPage();
-  }, 500);
 
   return {
     ...ExposeData,
