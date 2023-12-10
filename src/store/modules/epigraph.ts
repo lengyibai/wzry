@@ -19,14 +19,12 @@ const EpigraphStore = defineStore("epigraph", () => {
     ExposeMethods.setFilter("全部");
   };
 
-  /* 获取铭文列表 */
-  const getEpigraph = async () => {
-    const res = await API_EPIGRAPH.getEpigraphList();
-    setEpigraphList(res);
-  };
-  getEpigraph();
-
   const ExposeMethods = {
+    /** @description 获取铭文列表 */
+    async getEpigraph() {
+      const res = await API_EPIGRAPH.getEpigraphList();
+      setEpigraphList(res);
+    },
     /** @description 筛选显示 */
     setFilter(type: Epigraph.Category) {
       if (type === "全部") {

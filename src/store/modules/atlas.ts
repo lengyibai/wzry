@@ -104,59 +104,58 @@ const AtlasStore = defineStore("atlas", () => {
   };
   const { sort_type, profession, gender_type } = ExposeData;
 
-  /* 获取图集列表 */
-  const getAtlasList = async () => {
-    //用于模糊图片预加载
-    const poster_blur: string[] = [];
-
-    const res = await API_HERO.getHeroAtlas();
-
-    res.forEach((hero) => {
-      $usePagingLoad.pushAllData({
-        id: hero.id,
-        cover: hero.cover,
-        coverBlur: hero.coverBlur,
-        poster: hero.poster,
-        name: hero.name,
-        heroName: "",
-        type: "HERO",
-        profession: hero.profession,
-        gender: hero.gender,
-        posterBlur: hero.posterBlur,
-        posterBig: hero.posterBig,
-      });
-
-      poster_blur.push(hero.posterBlur);
-      hero.skins.forEach((skin) => {
-        $usePagingLoad.pushAllData({
-          id: hero.id,
-          cover: skin.cover,
-          coverBlur: skin.posterBlur,
-          name: skin.name,
-          heroName: hero.name,
-          type: "SKIN",
-          profession: hero.profession,
-          gender: hero.gender,
-          poster: skin.poster,
-          posterBlur: skin.posterBlur,
-          posterBig: skin.posterBig,
-        });
-
-        poster_blur.push(skin.posterBlur);
-      });
-    });
-
-    $tool.preloadImages(poster_blur);
-
-    sortAll();
-  };
-  getAtlasList();
-
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
     setScroll: $usePagingLoad.setScroll,
     /** @description 加载更多 */
     loadMore: $usePagingLoad.loadMore,
+
+    /* 获取图集列表 */
+    async getAtlasList() {
+      //用于模糊图片预加载
+      const poster_blur: string[] = [];
+
+      const res = await API_HERO.getHeroAtlas();
+
+      res.forEach((hero) => {
+        $usePagingLoad.pushAllData({
+          id: hero.id,
+          cover: hero.cover,
+          coverBlur: hero.coverBlur,
+          poster: hero.poster,
+          name: hero.name,
+          heroName: "",
+          type: "HERO",
+          profession: hero.profession,
+          gender: hero.gender,
+          posterBlur: hero.posterBlur,
+          posterBig: hero.posterBig,
+        });
+
+        poster_blur.push(hero.posterBlur);
+        hero.skins.forEach((skin) => {
+          $usePagingLoad.pushAllData({
+            id: hero.id,
+            cover: skin.cover,
+            coverBlur: skin.posterBlur,
+            name: skin.name,
+            heroName: hero.name,
+            type: "SKIN",
+            profession: hero.profession,
+            gender: hero.gender,
+            poster: skin.poster,
+            posterBlur: skin.posterBlur,
+            posterBig: skin.posterBig,
+          });
+
+          poster_blur.push(skin.posterBlur);
+        });
+      });
+
+      $tool.preloadImages(poster_blur);
+
+      sortAll();
+    },
 
     /**
      * @description: 职业筛选

@@ -13,6 +13,8 @@ defineOptions({
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();
 
+$epigraphStore.getEpigraph();
+
 onActivated(() => {
   $audioStore.play("h7t9");
 });

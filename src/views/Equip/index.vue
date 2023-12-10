@@ -17,6 +17,8 @@ const $audioStore = AudioStore();
 const equipListRef = ref<HTMLElement>();
 const equipMainRef = ref<HTMLElement>();
 
+$equipStore.getEquipList();
+
 /* 点击筛选后触发返回顶部 */
 const onChangeFilter = () => {
   setTimeout(() => {

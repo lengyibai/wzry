@@ -78,18 +78,6 @@ const EquipStore = defineStore("equip", () => {
     vertical_line,
   } = ExposeData;
 
-  /** @description 获取装备列表 */
-  const getEquipList = async () => {
-    equip_list.value = await API_EQUIP.getEquip();
-
-    //将装备分类
-    equip_list.value.forEach((item: Equip.Data) => {
-      type_list[item.type][item.level - 1].push(item);
-    });
-    ExposeMethods.setType("攻击");
-  };
-  getEquipList();
-
   /* 添加合成组 */
   const addSynthetic = async (synthetic: Equip.Synthetic) => {
     /* 当点击的是第一列 */
@@ -251,6 +239,17 @@ const EquipStore = defineStore("equip", () => {
   };
 
   const ExposeMethods = {
+    /** @description 获取装备列表 */
+    async getEquipList() {
+      equip_list.value = await API_EQUIP.getEquip();
+
+      //将装备分类
+      equip_list.value.forEach((item: Equip.Data) => {
+        type_list[item.type][item.level - 1].push(item);
+      });
+
+      ExposeMethods.setType("攻击");
+    },
     /** @description 存储列表所有装备Dom元素及相关信息 */
     setEquipElement(data: EquipElement) {
       equip_element.value.push(data);
