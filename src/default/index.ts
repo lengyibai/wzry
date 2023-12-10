@@ -1,5 +1,3 @@
-import { $tool } from "@/utils";
-
 /** @description 默认英雄信息 */
 export const heroDefault: () => Hero.Data = () => ({
   id: 0,

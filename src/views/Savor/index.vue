@@ -2,14 +2,14 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
-import { onUnmounted, onActivated, onMounted, onDeactivated } from "vue";
+import { onActivated, onDeactivated } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
 import { vBlurLoad } from "@/directives";
 import { $bus, $tool } from "@/utils";
-import { AtlasStore } from "@/store";
+import { AtlasStore, AudioStore } from "@/store";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
 
@@ -17,7 +17,8 @@ defineOptions({
   name: "Savor",
 });
 
-const { getAtlasList, setScroll, loadMore } = AtlasStore();
+const $audioStore = AudioStore();
+const { setScroll, loadMore, getAtlasList } = AtlasStore();
 const { show_list, scroll, finish, loading } = storeToRefs(AtlasStore());
 
 const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
@@ -66,23 +67,14 @@ const onBackTop = () => {
 };
 
 onActivated(() => {
+  $audioStore.play("kj62");
   debounceUpdateSizePosition();
   waterfallRef.value?.setPosition(scroll.value);
   $bus.on("update-waterfall", debounceUpdateSizePosition);
   $bus.on("watch-waterfall", debounceWatchImgLoad);
 });
 
-onMounted(() => {
-  $bus.on("update-waterfall", debounceUpdateSizePosition);
-  $bus.on("watch-waterfall", debounceWatchImgLoad);
-});
-
 onDeactivated(() => {
-  $bus.off("update-waterfall");
-  $bus.off("watch-waterfall");
-});
-
-onUnmounted(() => {
   $bus.off("update-waterfall");
   $bus.off("watch-waterfall");
 });
