@@ -35,9 +35,6 @@ const EpigraphStore = defineStore("epigraph", () => {
       }
     },
   };
-  const { getEpigraph } = ExposeMethods;
-
-  getEpigraph();
 
   return {
     ...ExposeData,
