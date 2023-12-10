@@ -11,48 +11,21 @@ interface ElType extends HTMLElement {
 
 interface Params {
   /** 数字 */
-  num: any;
+  num: string | number;
   /** 动画时间 */
   duration?: number;
   /** 保留几位小数 */
   decimalPlaces?: number;
+  /** 是否只执行一次 */
+  once?: boolean;
+  /** 格式化 */
+  format?: (v: string) => string;
 }
-
-/* 数字动画 */
-const animateNumber = (
-  el: HTMLElement,
-  targetNumber: number,
-  duration: number = 1000,
-  decimalPlaces = 0,
-) => {
-  const startNumber = 0;
-  const startTime = performance.now();
-
-  const updateNumber = (timestamp: number) => {
-    const elapsed = timestamp - startTime;
-    const progress = elapsed / duration;
-
-    if (progress >= 1) {
-      el.innerText = targetNumber.toFixed(decimalPlaces);
-      return;
-    }
-
-    const currentNumber = startNumber + (targetNumber - startNumber) * progress;
-
-    el.innerText = Math.max(startNumber, Math.min(targetNumber, currentNumber)).toFixed(
-      decimalPlaces,
-    );
-
-    requestAnimationFrame(updateNumber);
-  };
-
-  requestAnimationFrame(updateNumber);
-};
 
 const vAnimateNumber: Directive<ElType, Params> = {
   mounted(el, binding) {
     el.update = (binding) => {
-      const { num, duration, decimalPlaces } = binding.value;
+      const { num, duration = 1000, decimalPlaces = 0, format = (v) => v } = binding.value;
 
       if (num === "") {
         el.innerText = "";
@@ -60,7 +33,31 @@ const vAnimateNumber: Directive<ElType, Params> = {
       }
 
       if (!isNaN(Number(num))) {
-        animateNumber(el, Number(num), duration, decimalPlaces);
+        const startNumber = 0;
+        const startTime = performance.now();
+        const targetNumber = Number(num);
+
+        const updateNumber = (timestamp: number) => {
+          const elapsed = timestamp - startTime;
+          const progress = elapsed / duration;
+
+          if (progress >= 1) {
+            el.innerText = format(targetNumber.toFixed(decimalPlaces));
+            return;
+          }
+
+          const currentNumber = startNumber + (targetNumber - startNumber) * progress;
+
+          const num = Math.max(startNumber, Math.min(targetNumber, currentNumber)).toFixed(
+            decimalPlaces,
+          );
+
+          el.innerText = format(num);
+
+          requestAnimationFrame(updateNumber);
+        };
+
+        requestAnimationFrame(updateNumber);
       } else {
         el.innerText = num as string;
       }
@@ -68,6 +65,8 @@ const vAnimateNumber: Directive<ElType, Params> = {
     el.update(binding);
   },
   updated(el, binding) {
+    const { once = true } = binding.value;
+    if (once) return;
     el.update(binding);
   },
 };

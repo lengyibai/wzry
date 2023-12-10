@@ -46,6 +46,10 @@ onMounted(() => {
         v-animate-number="{
           num: item[0],
           duration: 2000,
+          once: false,
+          format: (v) => {
+            return v + 'cm';
+          },
         }"
         class="name"
       >
