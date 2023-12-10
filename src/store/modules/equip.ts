@@ -58,7 +58,7 @@ const EquipStore = defineStore("equip", () => {
     /** 装备总列表 */
     equip_list: ref<Equip.Data[]>([]),
     /** 三列装备数据 */
-    equip_list_column: ref<Equip.Data[][]>([]),
+    equip_list_column: ref<Equip.Data[][]>([[], [], []]),
     /** 二三列的竖线 */
     vertical_line: ref<{ top?: string; height?: string }[]>([
       {},
@@ -262,6 +262,7 @@ const EquipStore = defineStore("equip", () => {
       if (category.value === type) return;
 
       clearSynthetic();
+
       equip_list_column.value = type_list[type];
 
       //每次切换装备类型，延迟显示列表及详情
