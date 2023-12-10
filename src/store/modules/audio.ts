@@ -16,7 +16,9 @@ const AudioStore = defineStore("audio", () => {
   /* 音效类型 */
   const sound_type: Record<string, string[]> = {
     activity: ["bq69"],
+    atlas: ["kj62"],
     back: ["p60v"],
+    btn: ["3tx6"],
     cancel: ["45iy"],
     close: ["6xc6"],
     confirm_dialog: ["e6b4"],
