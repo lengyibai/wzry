@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 
-import viewHide from "@/views/System/hooks/useViewHide";
+import { useViewHide } from "@/views/System/hooks/useViewHide";
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
@@ -36,7 +36,7 @@ const info: [string, string, keyof Hero.Data][] = [
   ["种族", "raceType", "race"],
 ];
 
-const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = viewHide<Hero.Data>(
+const { status, show, form_data, finish, onConfirmSave, onConfirmRemove } = useViewHide<Hero.Data>(
   $emit,
   "add_hero",
 );

@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 
 import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
-import viewHide from "@/views/System/hooks/useViewHide";
+import { useViewHide } from "@/views/System/hooks/useViewHide";
 import { skillDefault, skillEffectDefault } from "@/default";
 import { API_HERO, API_SKILL } from "@/api";
 import { HeroStore } from "@/store";
@@ -26,7 +26,7 @@ const $emit = defineEmits<{
 
 const $heroStore = HeroStore();
 
-const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = viewHide<
+const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = useViewHide<
   Hero.Skill[][]
 >($emit, "add_skill_list");
 

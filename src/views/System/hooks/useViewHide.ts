@@ -2,17 +2,20 @@ import { ref } from "vue";
 
 type Emits = (e: "update:modelValue", v: boolean) => void;
 
-export default <T>($emit: Emits, key: string) => {
-  /** 显示页面 */
-  const show = ref(false);
-  /** 发布成功 */
-  const finish = ref(false);
-  /** 发布状态 */
-  const status = ref(0);
-  /** 英雄id */
-  const hero_id = ref<number | undefined>();
-  /** 提交数据 */
-  const form_data = ref<T>();
+const useViewHide = <T>($emit: Emits, key: string) => {
+  const ExposeData = {
+    /** 显示页面 */
+    show: ref(false),
+    /** 发布成功 */
+    finish: ref(false),
+    /** 发布状态 */
+    status: ref(0),
+    /** 英雄id */
+    hero_id: ref<number | undefined>(),
+    /** 提交数据 */
+    form_data: ref<T>(),
+  };
+  const { show, hero_id, form_data } = ExposeData;
 
   /* 判断是否存在草稿 */
   const cache = localStorage.getItem(key);
@@ -42,29 +45,23 @@ export default <T>($emit: Emits, key: string) => {
     }, 500);
   };
 
-  /* 关闭前保存 */
-  const onConfirmSave = () => {
-    close();
-  };
+  const ExposeMethods = {
+    /** @description 关闭前保存 */
+    onConfirmSave() {
+      close();
+    },
 
-  /* 关闭后删除 */
-  const onConfirmRemove = () => {
-    localStorage.removeItem(key);
-    close();
+    /** @description 关闭后删除 */
+    onConfirmRemove() {
+      localStorage.removeItem(key);
+      close();
+    },
   };
 
   return {
-    /** 英雄id */
-    hero_id,
-    /** 发布状态 */
-    status,
-    /** 显示页面 */
-    show,
-    /** 表单对象 */
-    form_data,
-    /** 发布成功 */
-    finish,
-    onConfirmSave,
-    onConfirmRemove,
+    ...ExposeData,
+    ...ExposeMethods,
   };
 };
+
+export { useViewHide };

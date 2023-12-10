@@ -6,8 +6,11 @@ import { $bus } from "@/utils";
 
 /** @description 瀑布流响应式相关 */
 const useWaterfallResponsive = () => {
-  /** 一行个数 */
-  const count = ref(2);
+  const ExposeData = {
+    /** 一行个数 */
+    count: ref(2),
+  };
+  const { count } = ExposeData;
 
   const setCount = () => {
     const w = window.innerWidth;
@@ -39,8 +42,7 @@ const useWaterfallResponsive = () => {
   });
 
   return {
-    /** 一行个数 */
-    count,
+    ...ExposeData,
   };
 };
 

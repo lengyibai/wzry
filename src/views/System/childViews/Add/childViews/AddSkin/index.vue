@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import viewHide from "@/views/System/hooks/useViewHide";
+import { useViewHide } from "@/views/System/hooks/useViewHide";
 import { API_HERO, API_SKIN } from "@/api";
 import { SkinStore } from "@/store";
 import { $message, $loading } from "@/utils";
@@ -21,7 +21,7 @@ const $emit = defineEmits<{
 
 const $skinStore = SkinStore();
 
-const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = viewHide<
+const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = useViewHide<
   Hero.Skin[]
 >($emit, "add_skin_list");
 
