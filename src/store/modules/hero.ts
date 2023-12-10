@@ -62,8 +62,30 @@ const HeroStore = defineStore("hero", () => {
       sortAll();
     }
 
-    resetPage();
+    ExposeMethods.resetPage();
   }, 500);
+
+  /** @description 初次获取英雄列表并设置相关信息 */
+  const getHeroListasync = async () => {
+    /** 用于模糊图片预加载 */
+    const poster_blur: string[] = [];
+
+    all_data.value = await API_HERO.getHeroData();
+    for (let i = 0; i < all_data.value.length; i++) {
+      all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
+      all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
+      all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
+        all_data.value[i].id,
+      );
+
+      poster_blur.push(all_data.value[i].coverBlur);
+    }
+
+    $tool.preloadImages(poster_blur);
+
+    ExposeMethods.setProfessional("全部");
+  };
+  getHeroListasync();
 
   /* 一键排序 */
   const sortAll = () => {
@@ -195,7 +217,7 @@ const HeroStore = defineStore("hero", () => {
     filterMisc();
     sortMisc();
     sortType();
-    resetPage();
+    ExposeMethods.resetPage();
   };
 
   const ExposeMethods = {
@@ -208,27 +230,6 @@ const HeroStore = defineStore("hero", () => {
 
     /** @description 初次获取英雄列表并设置相关信息 */
     async getHeroList() {
-      /** 用于模糊图片预加载 */
-      const poster_blur: string[] = [];
-
-      all_data.value = await API_HERO.getHeroData();
-      for (let i = 0; i < all_data.value.length; i++) {
-        all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
-        all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
-        all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
-          all_data.value[i].id,
-        );
-
-        poster_blur.push(all_data.value[i].coverBlur);
-      }
-
-      $tool.preloadImages(poster_blur);
-
-      this.setProfessional("全部");
-    },
-
-    /** @description 初次获取英雄列表并设置相关信息 */
-    async getHeroListasync() {
       /** 用于模糊图片预加载 */
       const poster_blur: string[] = [];
 
@@ -323,7 +324,6 @@ const HeroStore = defineStore("hero", () => {
       debounceSearchHero(name);
     },
   };
-  const { resetPage } = ExposeMethods;
 
   return {
     ...ExposeData,

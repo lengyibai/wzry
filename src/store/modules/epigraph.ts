@@ -13,19 +13,20 @@ const EpigraphStore = defineStore("epigraph", () => {
   };
   const { epigraph_list, filter_list } = ExposeData;
 
+  /* 设置铭文列表 */
+  const setEpigraphList = (data: Epigraph.Data[]) => {
+    epigraph_list.value = data;
+    ExposeMethods.setFilter("全部");
+  };
+
+  /* 获取铭文列表 */
+  const getEpigraph = async () => {
+    const res = await API_EPIGRAPH.getEpigraphList();
+    setEpigraphList(res);
+  };
+  getEpigraph();
+
   const ExposeMethods = {
-    /** @description 获取铭文列表 */
-    async getEpigraph() {
-      const res = await API_EPIGRAPH.getEpigraphList();
-      this.setEpigraphList(res);
-    },
-
-    /** @description 设置铭文列表 */
-    setEpigraphList(data: Epigraph.Data[]) {
-      epigraph_list.value = data;
-      this.setFilter("全部");
-    },
-
     /** @description 筛选显示 */
     setFilter(type: Epigraph.Category) {
       if (type === "全部") {

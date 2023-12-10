@@ -195,7 +195,7 @@ const SkinStore = defineStore("skin", () => {
     filterSkinType();
     sortPrice();
     sortType();
-    resetPage();
+    ExposeMethods.resetPage();
   };
 
   /* 防抖筛选皮肤 */
@@ -211,8 +211,36 @@ const SkinStore = defineStore("skin", () => {
       sortAll();
     }
 
-    resetPage();
+    ExposeMethods.resetPage();
   }, 500);
+
+  /* 获取皮肤列表并设置皮肤类型图片及类型命 */
+  const getSkin = async () => {
+    /** 用于模糊图片预加载 */
+    const poster_blur: string[] = [];
+
+    const skinList = await API_SKIN.getSkin();
+    const skinType = await API_SKIN.getSkinType();
+
+    skinList.forEach((skin) => {
+      const type = skinType.find((type) => type.id === skin.type)!;
+      skin.type = type.link;
+      skin.category = type.name;
+
+      //设置备用名称，解决高亮问题
+      skin.hero_name = skin.heroName;
+      skin.skin_name = skin.name;
+
+      poster_blur.push(skin.posterBlur);
+    });
+
+    $usePagingLoad.all_data.value = skinList;
+
+    $tool.preloadImages(poster_blur);
+
+    sortAll();
+  };
+  getSkin();
 
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
@@ -221,33 +249,6 @@ const SkinStore = defineStore("skin", () => {
     resetPage: $usePagingLoad.resetPage,
     /** @description 加载更多 */
     loadMore: $usePagingLoad.loadMore,
-
-    /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
-    async getSkin() {
-      /** 用于模糊图片预加载 */
-      const poster_blur: string[] = [];
-
-      const skinList = await API_SKIN.getSkin();
-      const skinType = await API_SKIN.getSkinType();
-
-      skinList.forEach((skin) => {
-        const type = skinType.find((type) => type.id === skin.type)!;
-        skin.type = type.link;
-        skin.category = type.name;
-
-        //设置备用名称，解决高亮问题
-        skin.hero_name = skin.heroName;
-        skin.skin_name = skin.name;
-
-        poster_blur.push(skin.posterBlur);
-      });
-
-      $usePagingLoad.all_data.value = skinList;
-
-      $tool.preloadImages(poster_blur);
-
-      sortAll();
-    },
 
     /**
      * @description: 设置职业
@@ -304,7 +305,6 @@ const SkinStore = defineStore("skin", () => {
       debounceSearchSkin(name);
     },
   };
-  const { resetPage } = ExposeMethods;
 
   return {
     ...ExposeData,
