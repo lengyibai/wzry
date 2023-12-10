@@ -6,7 +6,6 @@ import GameLogo from "./childComp/GameLogo/index.vue";
 
 import { formatSidebarRoutes } from "@/router/helper/formatSidebarRoutes";
 import { CollapseStore, RouterStore } from "@/store";
-import { $bus } from "@/utils";
 
 const $collapseStore = CollapseStore();
 const $routerStore = RouterStore();
@@ -32,12 +31,15 @@ const onCoord = (v: number) => {
   }
 };
 
-$bus.on("resize", () => {
+/* 监听浏览器尺寸设置侧边栏状态 */
+const sidebarStatus = () => {
   $collapseStore.setCollapse(window.innerWidth < 960);
-});
+};
+
+window.addEventListener("resize", sidebarStatus);
 
 onUnmounted(() => {
-  $bus.off("resize");
+  window.removeEventListener("resize", sidebarStatus);
 });
 </script>
 

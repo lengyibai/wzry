@@ -29,16 +29,14 @@ const useWaterfallResponsive = () => {
   };
 
   onMounted(() => {
-    setTimeout(() => {
-      setCount();
-    });
+    setCount();
   });
 
   const debounceSetCount = _debounce(setCount, 250);
-  $bus.on("resize", debounceSetCount);
+  window.addEventListener("resize", debounceSetCount);
 
   onScopeDispose(() => {
-    $bus.off("resize");
+    window.removeEventListener("resize", debounceSetCount);
   });
 
   return {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import _debounce from "lodash/debounce";
-import { onUnmounted, onActivated, onMounted, ref, watch, defineAsyncComponent } from "vue";
+import { onDeactivated, onActivated, ref, watch, defineAsyncComponent } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 
@@ -10,7 +10,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
 import { API_HERO } from "@/api";
-import { $tool, $bus, $loading } from "@/utils";
+import { $tool, $loading } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { usePagingLoad } from "@/hooks";
@@ -33,6 +33,17 @@ const { page_count } = usePagingLoad();
 /** 地址栏参数 */
 const id: unknown = $route.query.id;
 
+/** 一行个数区间 */
+const interval_count = [
+  [2200, 8],
+  [1800, 7],
+  [1600, 6],
+  [1400, 5],
+  [1024, 4],
+  [720, 3],
+  [480, 2],
+];
+
 const heroListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
@@ -45,6 +56,21 @@ const show_herolist = ref(false);
 const back_top = ref(false);
 /** 英雄信息 */
 const hero_info = ref<Hero.Data>(heroDefault());
+
+/* 实时修改一行个数 */
+const changeCount = () => {
+  const v = window.innerWidth;
+
+  if (v >= 2200) {
+    count.value = 9;
+  }
+
+  for (const [a, b] of interval_count) {
+    if (v < a) {
+      count.value = b;
+    }
+  }
+};
 
 /* 悬浮卡片 */
 const handleEnterCard = (data: Hero.Data) => {
@@ -111,46 +137,12 @@ watch(
   },
 );
 
-onActivated(() => {
+onActivated(async () => {
+  changeCount();
+  window.addEventListener("resize", changeCount);
+
   $audioStore.play("4d8m");
   heroListRef.value?.setPosition(scroll.value);
-});
-
-onMounted(async () => {
-  const change = [
-    [2200, 8],
-    [1800, 7],
-    [1600, 6],
-    [1400, 5],
-    [1024, 4],
-    [720, 3],
-    [480, 2],
-  ];
-
-  //实时修改一行个数
-  const changeCount = () => {
-    const v = window.innerWidth;
-
-    console.log(v);
-
-    if (v >= 2200) {
-      count.value = 9;
-    }
-    console.log(count.value);
-
-    for (const [a, b] of change) {
-      if (v < a) {
-        count.value = b;
-      }
-    }
-
-    console.warn(count.value);
-  };
-  changeCount();
-
-  $bus.on("resize", () => {
-    changeCount();
-  });
 
   //显示英雄列表
   await $tool.promiseTimeout(() => {
@@ -158,8 +150,8 @@ onMounted(async () => {
   }, 250);
 });
 
-onUnmounted(() => {
-  $bus.off("resize");
+onDeactivated(() => {
+  window.removeEventListener("resize", changeCount);
 });
 </script>
 

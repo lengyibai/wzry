@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onUnmounted, onActivated, onMounted, ref } from "vue";
+import { onActivated, ref, onDeactivated } from "vue";
 import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
 
@@ -9,7 +9,7 @@ import SkinVoice from "./childComps/SkinVoice/index.vue";
 
 import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
-import { $tool, $bus } from "@/utils";
+import { $tool } from "@/utils";
 import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
 import { LibGrid } from "@/components/common";
 
@@ -17,9 +17,18 @@ defineOptions({
   name: "Skin",
 });
 
-const { getSkin, setScroll, loadMore } = SkinStore();
+const { setScroll, loadMore } = SkinStore();
 const { scroll, finish, show_list, loading } = storeToRefs(SkinStore());
 const $audioStore = AudioStore();
+
+//实时修改一行个数
+const interval_count = [
+  [2400, 5],
+  [2000, 4],
+  [1600, 3],
+  [1400, 2],
+  [720, 1],
+];
 
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
@@ -36,8 +45,19 @@ const back_top = ref(false);
 /** 语音列表 */
 const voices = ref<Hero.Voice[]>([]);
 
-/* 获取皮肤列表 */
-getSkin();
+/* 实时修改一行个数 */
+const changeCount = () => {
+  const v = document.documentElement.clientWidth;
+
+  if (v >= 2400) {
+    count.value = 6;
+  }
+  for (const [a, b] of interval_count) {
+    if (v < a) {
+      count.value = b;
+    }
+  }
+};
 
 const debounceScroll = _debounce((v: number) => {
   setScroll(v);
@@ -82,32 +102,9 @@ onActivated(() => {
   skinListRef.value?.setPosition(scroll.value);
 });
 
-onMounted(async () => {
-  //实时修改一行个数
-  const change = [
-    [2400, 5],
-    [2000, 4],
-    [1600, 3],
-    [1400, 2],
-    [720, 1],
-  ];
-  const changeCount = () => {
-    const v = document.documentElement.clientWidth;
-
-    if (v >= 2400) {
-      count.value = 6;
-    }
-    for (const [a, b] of change) {
-      if (v < a) {
-        count.value = b;
-      }
-    }
-  };
-
+onActivated(async () => {
   changeCount();
-  $bus.on("resize", () => {
-    changeCount();
-  });
+  window.addEventListener("resize", changeCount);
 
   //显示英雄列表
   await $tool.promiseTimeout(() => {
@@ -115,8 +112,8 @@ onMounted(async () => {
   }, 250);
 });
 
-onUnmounted(() => {
-  $bus.off("resize");
+onDeactivated(() => {
+  window.removeEventListener("resize", changeCount);
 });
 </script>
 

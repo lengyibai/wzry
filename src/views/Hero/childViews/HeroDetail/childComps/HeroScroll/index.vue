@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted, onMounted, ref, watch } from "vue";
 
-import { $bus } from "@/utils";
-
 interface Props {
   /** 滚动索引 */
   modelValue?: number;
@@ -41,6 +39,11 @@ const change = async (i: number) => {
   setTimeout(() => {
     $emit("end", index + 1);
   }, $props.duration);
+};
+
+/* 改变宽度时纠正滚动位置 */
+const resetPosition = () => {
+  change($props.modelValue - 1);
 };
 
 const $debounceDelay = (() => {
@@ -136,14 +139,12 @@ onMounted(() => {
       }, $props.duration);
     }, 10);
   });
-
-  $bus.on("resize", () => {
-    change($props.modelValue - 1);
-  });
 });
 
+window.addEventListener("resize", resetPosition);
+
 onUnmounted(() => {
-  $bus.off("resize");
+  window.removeEventListener("resize", resetPosition);
 });
 </script>
 
