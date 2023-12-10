@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { onScopeDispose } from "vue";
 
-import { $bus, $tool } from "@/utils";
+import { $tool } from "@/utils";
 
 /** @description 设备信息 */
 const DeviceStore = defineStore("device", () => {
@@ -35,13 +35,7 @@ const DeviceStore = defineStore("device", () => {
   };
   tip();
 
-  $bus.on("resize", () => {
-    tip();
-  });
-
-  onScopeDispose(() => {
-    $bus.off("resize");
-  });
+  window.addEventListener("resize", tip);
 
   return {
     ...ExposeData,
