@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onActivated } from "vue";
+import { onActivated } from "vue";
 
 import EpigraphCategory from "./childComps/EpigraphCategory/index.vue";
 import EpigraphList from "./childComps/EpigraphList/index.vue";
@@ -13,14 +13,6 @@ defineOptions({
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();
 
-/** 显示铭文顶部分类 */
-const show_epigraph = ref(false);
-
-/* 获取铭文列表 */
-$epigraphStore.getEpigraph().then(() => {
-  show_epigraph.value = true;
-});
-
 onActivated(() => {
   $audioStore.play("h7t9");
 });
@@ -29,8 +21,8 @@ onActivated(() => {
 <template>
   <div class="epigraph">
     <!-- 铭文类型分类 -->
-    <transition name="epigraph">
-      <EpigraphCategory v-show="show_epigraph" />
+    <transition name="epigraph" appear>
+      <EpigraphCategory />
     </transition>
 
     <!-- 铭文列表 -->
