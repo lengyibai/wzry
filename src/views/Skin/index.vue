@@ -84,7 +84,7 @@ const onShowTool = (e: Event, v: { type: string; data: Hero.Skin }) => {
       show_voice.value = true;
     });
   }
-  $audioStore.play();
+  $audioStore.play("u4c5");
 };
 
 /* 悬浮卡片 */
@@ -163,11 +163,9 @@ onDeactivated(() => {
 
     <!-- 语音列表 -->
     <teleport to="body">
-      <transition name="fade">
-        <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
-          <SkinVoice :voices="voices" />
-        </KDialog>
-      </transition>
+      <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
+        <SkinVoice :voices="voices" />
+      </KDialog>
     </teleport>
   </div>
 </template>
