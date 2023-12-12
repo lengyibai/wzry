@@ -18,18 +18,17 @@ onMounted(() => {
     show_update.value = true;
   }, 3000);
 });
-
-/* 控制日志弹窗显示 */
-const handleUpdateLog = (v: boolean) => {
-  $versionStore.setShowLog(v);
-};
 </script>
 
 <template>
   <div class="btn-icon">
     <!-- 按钮 -->
     <i class="iconfont wzry-setting" title="设置" @click="show_setting = true" />
-    <i class="iconfont wzry-gengxinrizhi" title="更新日志" @click="handleUpdateLog(true)" />
+    <i
+      class="iconfont wzry-gengxinrizhi"
+      title="更新日志"
+      @click="$versionStore.setShowLog(true)"
+    />
     <i class="iconfont wzry-todo" title="计划清单" @click="show_todo = true" />
 
     <!-- 设置弹窗 -->
@@ -44,7 +43,7 @@ const handleUpdateLog = (v: boolean) => {
 
     <!-- 更新日志 -->
     <teleport to="body">
-      <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
+      <UpdateLog v-if="$versionStore.show_update && show_update" />
     </teleport>
   </div>
 </template>
