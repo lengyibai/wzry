@@ -61,7 +61,7 @@ const filter_type = computed(() => {
 });
 
 /* 选择类型并筛选显示 */
-const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => {
+const handleSelect = (name: Hero.Profession | Equip.Category) => {
   const obj = {
     hero: () => $heroStore.setProfessional(name as Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Hero.Profession),
@@ -75,7 +75,7 @@ const handleSelect = (name: Hero.Profession | Equip.Category, index: number) => 
   }
 
   $emit("change");
-  $audioStore.play(`默认${index}`);
+  $audioStore.play();
 };
 
 /* 设置滑块位置 */
@@ -92,7 +92,7 @@ const handleCoord = (e: Event) => {
       :key="index"
       class="filter-type"
       :class="{ active: item.name === filter_type }"
-      @click="handleSelect(item.name, index), handleCoord($event)"
+      @click="handleSelect(item.name), handleCoord($event)"
     >
       <i class="iconfont" :class="item.icon" />
       <span class="name">{{ $t(item.name) }}</span>
