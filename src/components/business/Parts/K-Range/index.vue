@@ -83,7 +83,7 @@ const changeValue = (e: Event) => {
   down.value = true;
   $emit("update:modelValue", parseFloat(v));
   $tool.throttleInstant(() => {
-    $audioStore.play("range");
+    $audioStore.play("za86");
   }, 50);
 };
 

@@ -25,7 +25,7 @@ const config = ref<ConfirmTip>({
 $bus.on("confirm", (v) => {
   show.value = true;
   config.value = v;
-  $audioStore.play("45iy");
+  $audioStore.play("cy87");
   config.value.close = v.close === undefined ? true : v.close;
 });
 

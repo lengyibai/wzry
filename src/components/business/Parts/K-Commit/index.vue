@@ -33,7 +33,7 @@ const commit = () => {
     show_up.value = false;
     $emit("commit");
   }, 750);
-  $audioStore.play("36jn");
+  $audioStore.play("pj83");
 };
 
 watch(

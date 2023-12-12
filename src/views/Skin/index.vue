@@ -98,7 +98,7 @@ const onBackTop = () => {
 };
 
 onActivated(() => {
-  $audioStore.play("9u8z");
+  $audioStore.play("gz43");
   skinListRef.value?.setPosition(scroll.value);
 });
 

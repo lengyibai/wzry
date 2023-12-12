@@ -23,7 +23,7 @@ export default () => {
       setTimeout(() => {
         const msgName = {
           info: "n74s",
-          warning: "16vy",
+          warning: "p6q3",
           error: "vw31",
         };
 

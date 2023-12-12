@@ -24,7 +24,7 @@ const form_verify = ref<boolean[]>([false, false, false]);
 
 /* 注册 */
 const handleReg = () => {
-  $audioStore.play("36jn");
+  $audioStore.play("pj83");
 
   if (form_verify.value.some((item) => !item)) {
     $message("请正确填写", "error");

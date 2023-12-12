@@ -7,59 +7,49 @@ const { getAudioLink } = $concise;
 
 /** @description 点击音效 */
 const AudioStore = defineStore("audio", () => {
-  /** 音效名 */
-  let sound_name = "默认";
   /** 音量 */
   let volume = 0.5;
   /** 启用音效 */
   let status = true;
   /* 音效类型 */
-  const sound_type: Record<string, string[]> = {
-    activity: ["bq69"],
-    atlas: ["kj62"],
-    back: ["p60v"],
-    btn: ["3tx6"],
-    cancel: ["45iy"],
-    close: ["6xc6"],
-    confirm_dialog: ["e6b4"],
-    confirm: ["36jn"],
-    default: ["h2w0"],
-    delete: ["3dn3"],
-    detail: ["u4c5"],
-    epigraph: ["h7t9"],
-    equip: ["3k4s"],
-    error: ["vw31"],
-    fold: ["d5e2"],
-    hero: ["4d8m"],
-    into: ["p53r"],
-    key: ["5zv8"],
-    login: ["e84n"],
-    message: ["n74s"],
-    mode: ["le78"],
-    num: ["range"],
-    show: ["0o5c"],
-    skin: ["9u8z"],
-    tab: ["n4r4"],
-    tip: ["rt25"],
-    warning: ["16vy"],
+  const sound_type: Record<string, string> = {
+    gz76: "atlas",
+    bq69: "activity",
+    kj62: "btn",
+    p60v: "back",
+    cy87: "cancel",
+    ba09: "close",
+    e6b4: "confirm_dialog",
+    pj83: "confirm",
+    h2w0: "default",
+    kh79: "delete",
+    u4c5: "detail",
+    h7t9: "epigraph",
+    ph23: "equip",
+    vw31: "error",
+    d5e2: "fold",
+    iv51: "hero",
+    p53r: "into",
+    al41: "key",
+    e84n: "login",
+    n74s: "message",
+    le78: "mode",
+    za86: "num",
+    v6p0: "show",
+    gz43: "skin",
+    n4r4: "tab",
+    rt25: "tip",
+    p6q3: "warning",
   };
 
   /**
    * @description: 播放音效
    * @param name 音效随机标识
    */
-  const playAudio = (name?: string) => {
-    //获取点击触发的音效名
-    sound_name =
-      (typeof name === "string" &&
-        Object.keys(sound_type).find((item) =>
-          sound_type[item].find((item: string) => name.includes(item)),
-        )) ||
-      "default";
-
+  const playAudio = (name: string) => {
     //播放器
     const audio = new Audio();
-    audio.src = getAudioLink(sound_name);
+    audio.src = getAudioLink(sound_type[name]);
     audio.volume = volume;
 
     audio.play().catch(() => {});
@@ -75,7 +65,7 @@ const AudioStore = defineStore("audio", () => {
      * @description: 调用播放
      * @param name 音效名
      */
-    play(name?: string) {
+    play(name = "h2w0") {
       if (!status) return;
 
       //悬浮音效防抖处理

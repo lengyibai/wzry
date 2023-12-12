@@ -45,7 +45,7 @@ const handleEditInfo = () => {
 
 /* 退出登录 */
 const handleLogout = () => {
-  $audioStore.play("36jn");
+  $audioStore.play("pj83");
   $authStore.logout();
 };
 

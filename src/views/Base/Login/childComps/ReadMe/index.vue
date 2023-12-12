@@ -19,7 +19,7 @@ const { getHtmlLink } = $concise;
 /* 关闭 */
 const handleClose = () => {
   $emit("update:modelValue", false);
-  $audioStore.play("6xc6");
+  $audioStore.play("ba09");
 };
 </script>
 

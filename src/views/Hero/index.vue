@@ -141,7 +141,7 @@ onActivated(async () => {
   changeCount();
   window.addEventListener("resize", changeCount);
 
-  $audioStore.play("4d8m");
+  $audioStore.play("iv51");
   heroListRef.value?.setPosition(scroll.value);
 
   //显示英雄列表

@@ -67,7 +67,7 @@ const onBackTop = () => {
 };
 
 onActivated(() => {
-  $audioStore.play("3tx6");
+  $audioStore.play("gz76");
   debounceUpdateSizePosition();
   waterfallRef.value?.setPosition(scroll.value);
   $bus.on("update-waterfall", debounceUpdateSizePosition);

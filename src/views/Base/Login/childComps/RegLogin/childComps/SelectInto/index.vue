@@ -23,9 +23,9 @@ const handleInto = (v: string) => {
   $emit("into", v);
 
   if (v === "注册") {
-    $audioStore.play("0o5c");
+    $audioStore.play("v6p0");
   } else {
-    $audioStore.play("36jn");
+    $audioStore.play("pj83");
   }
 };
 </script>

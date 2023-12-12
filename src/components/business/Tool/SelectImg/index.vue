@@ -34,7 +34,7 @@ const input_link = ref("");
 /* 选择图片 */
 const handleSelect = () => {
   show_AddLink.value = true;
-  $audioStore.play("0o5c");
+  $audioStore.play("v6p0");
 };
 
 /* 获取链接 */

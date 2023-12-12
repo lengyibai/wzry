@@ -16,11 +16,11 @@ const useDialogContorl = (close: () => void) => {
   const ExposeMethods = {
     /** @description 关闭 */
     handleClose() {
-      $audioStore.play("36jn");
+      $audioStore.play("pj83");
       show_dialog.value = false;
       setTimeout(() => {
         show_mask.value = false;
-        $audioStore.play("6xc6");
+        $audioStore.play("ba09");
         setTimeout(close, 350);
       }, 500);
     },

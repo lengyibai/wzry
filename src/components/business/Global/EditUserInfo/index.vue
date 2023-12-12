@@ -40,7 +40,7 @@ const handleContrast = () => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.setUserInfo(user_info.value);
-  $audioStore.play("36jn");
+  $audioStore.play("pj83");
 
   //更新本地当前用户信息
   API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {

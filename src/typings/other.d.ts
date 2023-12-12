@@ -100,6 +100,37 @@ interface Tips<T> {
 /** @description Tips属性名 */
 type TipKeys = keyof Tips<string>;
 
+/** @description 音效类型 */
+interface AudioKeys {
+  gz76: string;
+  bq69: string;
+  kj62: string;
+  p60v: string;
+  cy87: string;
+  ba09: string;
+  e6b4: string;
+  pj83: string;
+  h2w0: string;
+  kh79: string;
+  u4c5: string;
+  h7t9: string;
+  ph23: string;
+  vw31: string;
+  d5e2: string;
+  iv51: string;
+  p53r: string;
+  al41: string;
+  e84n: string;
+  n74s: string;
+  le78: string;
+  range: string;
+  v6p0: string;
+  gz43: string;
+  n4r4: string;
+  rt25: string;
+  p6q3: string;
+}
+
 /** @description 版本更新 */
 interface VersionUpdate {
   /** 数据版本 */

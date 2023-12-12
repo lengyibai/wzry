@@ -56,7 +56,7 @@ const handleClose = () => {
   disable.value = true;
   setShowTip(false);
   noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
-  $audioStore.play("6xc6");
+  $audioStore.play("ba09");
 
   setTimeout(() => {
     btnFn.value();

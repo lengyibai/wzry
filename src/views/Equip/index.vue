@@ -27,7 +27,7 @@ const onChangeFilter = () => {
 };
 
 onActivated(() => {
-  $audioStore.play("3k4s");
+  $audioStore.play("ph23");
 });
 </script>
 

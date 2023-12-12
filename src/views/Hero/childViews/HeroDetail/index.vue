@@ -73,14 +73,14 @@ const handleHide = () => {
   //置空语音（盾山没有语音，可以用于置空）
   $heroDetail.setSkinVoice("盾山");
   $heroDetail.setRelationInfo();
-  $audioStore.play("6xc6");
+  $audioStore.play("ba09");
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
   if (!$heroStore.profession) {
     setTimeout(() => {
       $heroStore.getHeroList();
       setTimeout(() => {
-        $audioStore.play("4d8m");
+        $audioStore.play("iv51");
       }, 250);
     }, 1500);
   }
