@@ -21,7 +21,7 @@ export default () => {
 
       //延迟提醒，避免与点击操作同时播放
       setTimeout(() => {
-        const msgName = {
+        const msgName: Record<string, Partial<keyof AudioKeys>> = {
           info: "n74s",
           warning: "p6q3",
           error: "vw31",
