@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from "vue";
+import { nextTick, ref, watch } from "vue";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { useBarrages } from "./hooks/useBarrages";
@@ -35,13 +35,13 @@ watch(
   },
 );
 
-onMounted(() => {
+setTimeout(() => {
   $barrageStore.getBarrages();
   $tip({
     align: "left-top",
     text: "9ms5",
   });
-});
+}, 3000);
 </script>
 
 <template>
