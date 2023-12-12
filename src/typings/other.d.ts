@@ -58,8 +58,8 @@ declare namespace Control {
   interface Tip {
     /** 左上角标题 */
     title?: string;
-    /** 提示内容 */
-    text: TipKeys | (string & {});
+    /** 提示内容（在拥有key类型提示的情况下，支持字符串） */
+    text: keyof Tips<string> | string;
     /** 在页面上的位置 */
     align?: TipType;
     /** 按钮上的文字 */
@@ -97,37 +97,61 @@ interface Tips<T> {
   "9ms5": T;
 }
 
-/** @description Tips属性名 */
-type TipKeys = keyof Tips<string>;
-
 /** @description 音效类型 */
 interface AudioKeys {
+  /** 进入图集 */
   gz76: string;
+  /** 进入本地数据管理 */
   bq69: string;
+  /** 显示网站计划 */
   kj62: string;
+  /** 返回，如从英雄详情左上角关闭 */
   p60v: string;
+  /** 警示弹窗，如确认重置、确认丢弃 */
   cy87: string;
+  /** 关闭弹窗 */
   ba09: string;
+  /** 从下到上的弹窗 */
   e6b4: string;
+  /** 点击确认按钮 */
   pj83: string;
+  /** 默认点击 */
   h2w0: string;
+  /** 删除（暂未使用） */
   kh79: string;
+  /** 查看详情 */
   u4c5: string;
+  /** 进入铭文列表 */
   h7t9: string;
+  /** 进入装备列表 */
   ph23: string;
+  /** 错误消息提示 */
   vw31: string;
+  /** 折叠、展开侧边栏 */
   d5e2: string;
+  /** 进入英雄列表 */
   iv51: string;
+  /** 登录后的强提示 */
   p53r: string;
+  /** 输入时触发（由于与手机键盘音冲突，取消使用） */
   al41: string;
+  /** 点击登录 */
   e84n: string;
+  /** 普通消息提示 */
   n74s: string;
+  /** 暂未使用（游戏内对战模式选择音效） */
   le78: string;
-  range: string;
+  /** 滑动选择 */
+  za86: string;
+  /** 选择图片 */
   v6p0: string;
+  /** 进入皮肤列表 */
   gz43: string;
+  /** 展开下拉菜单 */
   n4r4: string;
+  /** Tip小贴士弹出 */
   rt25: string;
+  /** 警告提示 */
   p6q3: string;
 }
 

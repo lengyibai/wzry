@@ -12,7 +12,7 @@ const AudioStore = defineStore("audio", () => {
   /** 启用音效 */
   let status = true;
   /* 音效类型 */
-  const sound_type: Record<string, string> = {
+  const sound_type: AudioKeys = {
     gz76: "atlas",
     bq69: "activity",
     kj62: "btn",
@@ -46,7 +46,7 @@ const AudioStore = defineStore("audio", () => {
    * @description: 播放音效
    * @param name 音效随机标识
    */
-  const playAudio = (name: string) => {
+  const playAudio = (name: keyof AudioKeys) => {
     //播放器
     const audio = new Audio();
     audio.src = getAudioLink(sound_type[name]);
@@ -56,7 +56,7 @@ const AudioStore = defineStore("audio", () => {
   };
 
   /** @description 部分场景可能会导致音效累积播放，需要进行防抖处理 */
-  const debouncePlayAudio = _debounce((name: string) => {
+  const debouncePlayAudio = _debounce((name: keyof AudioKeys) => {
     playAudio(name);
   }, 50);
 
@@ -65,7 +65,7 @@ const AudioStore = defineStore("audio", () => {
      * @description: 调用播放
      * @param name 音效名
      */
-    play(name = "h2w0") {
+    play(name: keyof AudioKeys = "h2w0") {
       if (!status) return;
 
       //悬浮音效防抖处理
