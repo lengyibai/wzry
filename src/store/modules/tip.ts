@@ -74,11 +74,11 @@ const TipStore = defineStore("tip", () => {
       }
 
       //判断是否设置了不再提示
-      if (!$settingStore.config.noTips[text as TipKeys]) {
+      if (!$settingStore.config.noTips[text as keyof Tips<string>]) {
         show_tip.value = !show_tip.value;
         $audioStore.play("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = CONFIG.TIP_TEXT[text as TipKeys];
+        content.value = CONFIG.TIP_TEXT[text as keyof Tips<string>];
         align.value = p;
         btnFn.value = fn1;
         setTimeout(() => {
