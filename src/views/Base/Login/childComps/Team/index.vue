@@ -2,18 +2,13 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { KDialog } from "@/components/business";
 import { vBlurLoad } from "@/directives";
 
-const $audioStore = AudioStore();
-
 const teamRef = ref<HTMLElement>();
 
 const imgs = ref<string[][]>([]);
-
-$audioStore.play("u4c5");
 
 API_DATA.Team().then(async (res) => {
   imgs.value = res.data;

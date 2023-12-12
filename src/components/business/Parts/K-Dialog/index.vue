@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-
 import { useDialogContorl } from "./hooks/useDialogContorl";
 
-import { AudioStore } from "@/store";
 import { $concise } from "@/utils";
 import { vMaskGradient } from "@/directives";
+import { AudioStore } from "@/store";
 
 interface Props {
   /** 垂直对齐方式 */
@@ -28,6 +26,8 @@ interface Props {
   width?: string;
   /** 点击右上角关闭后自动关闭 */
   autoClose?: boolean;
+  /** 是否启用弹出音效 */
+  audio?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -36,6 +36,7 @@ const $props = withDefaults(defineProps<Props>(), {
   modelValue: true,
   showClose: true,
   autoClose: true,
+  audio: true,
   width: "45rem",
 });
 const $emit = defineEmits<{
@@ -53,15 +54,20 @@ const { show_dialog, show_mask, handleClose } = useDialogContorl(() => {
 });
 
 const handleCloseDialog = () => {
-  $props.autoClose && handleClose();
+  if ($props.autoClose) {
+    handleClose();
+    return;
+  }
   $emit("close");
 };
 
-onMounted(() => {
+if ($props.audio) {
   if ($props.up) {
     $audioStore.play("e6b4");
+  } else {
+    $audioStore.play("u4c5");
   }
-});
+}
 
 defineExpose({
   close: handleClose,

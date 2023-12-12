@@ -3,12 +3,9 @@ import { computed } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
-import { AudioStore, VersionStore } from "@/store";
+import { VersionStore } from "@/store";
 
-const $audioStore = AudioStore();
 const $versionStore = VersionStore();
-
-$audioStore.play("u4c5");
 
 /** 数据需要更新 */
 const data_status = computed(() => $versionStore.data_status);
@@ -21,6 +18,11 @@ const update_log = computed(() => $versionStore.update_log);
 const handleReset = () => {
   $versionStore.updateAll();
 };
+
+/* 关闭弹窗 */
+const handleClose = () => {
+  $versionStore.setShowLog(false);
+};
 </script>
 
 <template>
@@ -30,6 +32,7 @@ const handleReset = () => {
     width="56.25rem"
     header="更新日志"
     :desc="update_log.time"
+    @close="handleClose"
   >
     <div class="main">
       <!-- 页面更新 -->

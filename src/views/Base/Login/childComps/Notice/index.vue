@@ -2,18 +2,13 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { AudioStore } from "@/store";
 import { KDialog } from "@/components/business";
-
-const $audioStore = AudioStore();
 
 const notice = ref("");
 
 API_DATA.Notice().then((res) => {
   notice.value = res.data;
 });
-
-$audioStore.play("u4c5");
 </script>
 
 <template>
