@@ -20,6 +20,7 @@ const current_index = ref(-1);
 const voices = ref<Hero.Voice[]>([]);
 
 const audioPlayer = new $tool.AudioPlayer({
+  volume: 0.25,
   end() {
     current_index.value = -1;
   },

@@ -8,7 +8,9 @@ import { BarrageStore } from "@/store/modules/barrage";
 const useBarrages = () => {
   const $barrageStore = BarrageStore();
 
-  const audioPlay = new $tool.AudioPlayer({ end() {} });
+  const audioPlay = new $tool.AudioPlayer({
+    volume: 0.35,
+  });
   let barragesMove: $tool.BarragesMove;
 
   const ExposeData = {

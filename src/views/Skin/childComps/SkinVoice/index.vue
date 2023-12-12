@@ -16,6 +16,7 @@ const voiceRef = ref<HTMLElement>();
 const current_index = ref(-1);
 /** 语音播放器 */
 const audioPlayer = new $tool.AudioPlayer({
+  volume: 0.25,
   end() {
     current_index.value = -1;
   },
