@@ -27,8 +27,7 @@ const current_index = ref(0);
 
 /* 点击分类标题 */
 const handleToggle = (index: number, type: Epigraph.Category) => {
-  //由于连续点击同样的音效名会触发重复，所以追加索引号实现唯一性
-  $audioStore.play(`n4r4${index}`);
+  $audioStore.play("n4r4");
   current_index.value = index;
   //每次点击重新筛选数据
   $epigraphStore.setFilter(type);
