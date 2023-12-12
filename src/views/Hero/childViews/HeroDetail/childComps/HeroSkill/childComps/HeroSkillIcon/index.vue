@@ -16,8 +16,6 @@ const { hero_info } = storeToRefs(HeroDetailStore());
 /** 主副技能索引 */
 let deputy_index = 0;
 
-const toggleRef = ref<HTMLElement>();
-
 /** 处于展示的技能索引 */
 const current_index = ref(0);
 /** 显示技能 */
@@ -35,28 +33,6 @@ $heroDetail.setScollFn("skinIcon", (index) => {
   //只有当前页面未加载或者滚动索引为2才会触发
   if (show.value || index !== 2) return;
   show.value = true;
-
-  //存在多套技能执行下列代码
-  const length = hero_info.value.skills.length;
-  if (length > 1) {
-    setTimeout(() => {
-      if (!toggleRef.value) return;
-      const toggleFocus = new $tool.FocusElement(toggleRef.value);
-
-      $tip({
-        align: "right-top",
-        text: `${hero_info.value.name}存在${
-          length == 3 ? "三" : "两"
-        }套技能，页面底部中间有个切换副技能的按钮，点击它吧！由于图片资源条件有限，副技能的被动图标都会带有文字，没有文字的就是主技能。`,
-        createFn: () => {
-          toggleFocus.focus();
-        },
-        btnFn: () => {
-          toggleFocus.blur();
-        },
-      });
-    }, 500);
-  }
 });
 
 active_skills.value = hero_info.value.skills[deputy_index];
@@ -106,7 +82,6 @@ defineExpose({
   <div class="hero-skill-icon">
     <div
       v-for="(item, index) in active_skills"
-      ref="skillImg"
       :key="index"
       class="icon"
       :class="{ active: show }"
