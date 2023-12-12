@@ -1,4 +1,3 @@
-import AddLink from "./Dialog/AddLink/index.vue";
 import FormInput from "./Form/FormInput/index.vue";
 import FormLabel from "./Form/FormLabel/index.vue";
 import FormSelect from "./Form/FormSelect/index.vue";
@@ -25,7 +24,6 @@ import SelectHero from "./Tool/SelectHero/index.vue";
 import SelectImg from "./Tool/SelectImg/index.vue";
 
 export {
-  AddLink,
   FormInput,
   FormLabel,
   FormSelect,
