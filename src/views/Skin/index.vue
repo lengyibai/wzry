@@ -17,7 +17,7 @@ defineOptions({
   name: "Skin",
 });
 
-const { setScroll, loadMore } = SkinStore();
+const { setScroll, loadMore, getSkin } = SkinStore();
 const { scroll, finish, show_list, loading } = storeToRefs(SkinStore());
 const $audioStore = AudioStore();
 
@@ -44,6 +44,8 @@ const show_voice = ref(false);
 const back_top = ref(false);
 /** 语音列表 */
 const voices = ref<Hero.Voice[]>([]);
+
+getSkin();
 
 /* 实时修改一行个数 */
 const changeCount = () => {
