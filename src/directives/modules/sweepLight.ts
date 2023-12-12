@@ -16,7 +16,6 @@ const vSweepLight: Directive<HTMLElement, boolean> = {
       left: 0px;
       width: ${el.offsetWidth / 3}px;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.5);
       transform: skewX(45deg) translateX(${el.offsetWidth * 1.75}px);
       transition: all 2s;
       backdrop-filter: brightness(2);
