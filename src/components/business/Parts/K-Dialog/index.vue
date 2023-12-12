@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
+
+import { useDialogContorl } from "./hooks/useDialogContorl";
 
 import { AudioStore } from "@/store";
 import { $concise } from "@/utils";
@@ -24,6 +26,8 @@ interface Props {
   up?: boolean;
   /** 弹窗宽度 */
   width?: string;
+  /** 点击右上角关闭后自动关闭 */
+  autoClose?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -31,6 +35,7 @@ const $props = withDefaults(defineProps<Props>(), {
   ctxWidth: "80%",
   modelValue: true,
   showClose: true,
+  autoClose: true,
   width: "45rem",
 });
 const $emit = defineEmits<{
@@ -42,68 +47,79 @@ const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
 
-/** 显示弹窗 */
-const show = ref(false);
+const { show_dialog, show_mask, handleClose } = useDialogContorl(() => {
+  $props.autoClose && $emit("close");
+  $emit("update:modelValue", false);
+});
+
+const handleCloseDialog = () => {
+  $props.autoClose && handleClose();
+  $emit("close");
+};
 
 onMounted(() => {
-  show.value = true;
   if ($props.up) {
     $audioStore.play("e6b4");
   }
 });
 
-/* 关闭 */
-const handleClose = () => {
-  $emit("update:modelValue", false);
-  $emit("close");
-  $audioStore.play("6xc6");
-};
+defineExpose({
+  close: handleClose,
+});
 </script>
 
 <template>
-  <div
-    v-maskGradient="{
-      color: 'rgba(40, 100, 195, 0.5)',
-      start: '0%',
-      end: '50%',
-    }"
-    class="mask"
-  >
-    <transition :name="up ? 'confirm' : 'default'">
-      <div
-        v-show="show"
-        class="k-dialog"
-        :style="{
-          width: width,
-          height: 'calc(' + width + ' * 0.5989)',
-          backgroundImage: `url(${getImgLink('dialog')})`,
-        }"
-      >
-        <!-- 左上标题 -->
-        <div v-if="title" class="title">{{ title }}</div>
-
-        <!-- 顶部标题 -->
-        <div v-if="header" class="header">
-          <span>{{ header }}</span>
-          <span>{{ desc }}</span>
-        </div>
-
-        <!-- 关闭 -->
-        <img v-show="showClose" class="close" :src="getImgLink('close')" @click="handleClose" />
-
-        <!-- 内容区 -->
+  <transition name="fade" appear>
+    <div
+      v-show="show_mask"
+      v-maskGradient="{
+        color: 'rgba(40, 100, 195, 0.5)',
+        start: '0%',
+        end: '50%',
+      }"
+      class="mask"
+    >
+      <transition :name="up ? 'confirm' : 'default'" appear>
         <div
-          class="content"
+          v-show="show_dialog"
+          class="k-dialog"
           :style="{
-            width: ctxWidth,
-            justifyContent: align,
+            width: width,
+            height: 'calc(' + width + ' * 0.5989)',
+            backgroundImage: `url(${getImgLink('dialog')})`,
           }"
         >
-          <slot></slot>
+          <!-- 左上标题 -->
+          <div v-if="title" class="title">{{ title }}</div>
+
+          <!-- 顶部标题 -->
+          <div v-if="header" class="header">
+            <span>{{ header }}</span>
+            <span>{{ desc }}</span>
+          </div>
+
+          <!-- 关闭 -->
+          <img
+            v-show="showClose"
+            class="close"
+            :src="getImgLink('close')"
+            @click="handleCloseDialog"
+          />
+
+          <!-- 内容区 -->
+          <div
+            class="content"
+            :style="{
+              width: ctxWidth,
+              justifyContent: align,
+            }"
+          >
+            <slot></slot>
+          </div>
         </div>
-      </div>
-    </transition>
-  </div>
+      </transition>
+    </div>
+  </transition>
 </template>
 
 <style scoped lang="less">

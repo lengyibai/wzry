@@ -10,6 +10,8 @@ import { $bus } from "@/utils";
 
 const $audioStore = AudioStore();
 
+const dialogRef = ref<InstanceType<typeof KDialog>>();
+
 /** 是否显示 */
 const show = ref(false);
 /** 接收的配置 */
@@ -27,43 +29,35 @@ $bus.on("confirm", (v) => {
   config.value.close = v.close === undefined ? true : v.close;
 });
 
-/* 关闭 */
-const close = () => {
-  show.value = false;
-};
-
 /* 取消 */
 const handleCancel = () => {
-  close();
   config.value.cancel && config.value.cancel();
-  $audioStore.play("6xc6");
+  dialogRef.value!.close();
 };
 
 /* 确定 */
 const handleConfirm = () => {
-  close();
   config.value.confirm();
-  $audioStore.play("36jn");
+  dialogRef.value!.close();
 };
 </script>
 
 <template>
   <teleport to="body">
-    <transition name="fade">
-      <KDialog
-        v-if="show"
-        class="k-dialog"
-        align="center"
-        :show-close="config.close"
-        @close="close"
-      >
-        <div class="text">{{ config.text }}</div>
-        <div class="button">
-          <KButton v-if="config.close" type="info" @click="handleCancel">取消</KButton>
-          <KButton class="last" type="warning" @click="handleConfirm">确定</KButton>
-        </div>
-      </KDialog>
-    </transition>
+    <KDialog
+      v-if="show"
+      ref="dialogRef"
+      v-model="show"
+      class="k-dialog"
+      align="center"
+      :show-close="config.close"
+    >
+      <div class="text">{{ config.text }}</div>
+      <div class="button">
+        <KButton v-if="config.close" type="info" @click="handleCancel">取消</KButton>
+        <KButton class="last" type="warning" @click="handleConfirm">确定</KButton>
+      </div>
+    </KDialog>
   </teleport>
 </template>
 

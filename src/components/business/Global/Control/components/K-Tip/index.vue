@@ -21,7 +21,10 @@ const { getImgLink } = $concise;
 
 /** 是否锁定按钮 */
 const disable = ref(true);
+/** 显示tip */
 const show_tip = ref(false);
+/** 显示蒙版 */
+const show_mask = ref(false);
 
 const position = {
   "left-top": {
@@ -51,22 +54,31 @@ const finish = () => {
 const handleClose = () => {
   if (disable.value) return;
   disable.value = true;
-  noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
   setShowTip(false);
+  noTipName.value && $settingStore.setNoTip(noTipName.value as TipKeys);
   $audioStore.play("6xc6");
 
   setTimeout(() => {
     btnFn.value();
     toTip();
-  }, 500);
+  }, 1000);
 };
 
 watch(
   () => show.value,
   (v) => {
-    setTimeout(() => {
+    //解决没有动画的bug
+    if (v) {
+      show_mask.value = true;
+      setTimeout(() => {
+        show_tip.value = v;
+      });
+    } else {
       show_tip.value = v;
-    });
+      setTimeout(() => {
+        show_mask.value = false;
+      }, 500);
+    }
   },
 );
 </script>
@@ -74,7 +86,7 @@ watch(
 <template>
   <teleport to="body">
     <transition name="fade">
-      <div v-if="show" class="mask">
+      <div v-if="show_mask" class="mask">
         <transition :name="align">
           <div v-show="show_tip" class="k-tip" :style="position[align]">
             <div class="top">

@@ -79,24 +79,16 @@ onUnmounted(() => {
     <KVideo :link="getVideoLink('login_bg')" :muted="config.muted" />
 
     <!-- 公告 -->
-    <transition v-if="finish" name="fade">
-      <Notice v-if="show_notice" v-model="show_notice" @close="onCloseNotice" />
-    </transition>
+    <Notice v-if="show_notice && finish" v-model="show_notice" @close="onCloseNotice" />
 
     <!-- README -->
-    <transition name="fade">
-      <ReadMe v-if="show_readme" v-model="show_readme" />
-    </transition>
+    <ReadMe v-if="show_readme" v-model="show_readme" />
 
     <!-- 开黑 -->
-    <transition name="fade">
-      <Team v-if="show_team" v-model="show_team" />
-    </transition>
+    <Team v-if="show_team" v-model="show_team" />
 
     <!-- 下载进度 -->
-    <transition name="fade">
-      <DownLoad v-if="!finish" v-model:finish="finish" />
-    </transition>
+    <DownLoad v-if="!finish" v-model:finish="finish" />
   </div>
 </template>
 

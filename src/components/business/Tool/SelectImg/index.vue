@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import AddLink from "@/components/business/Dialog/AddLink/index.vue";
+import { AudioStore } from "@/store";
+import { vFocus } from "@/directives";
+import KButton from "@/components/business/Parts/K-Button/index.vue";
+import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 
 interface Props {
   /** 图片路径 */
@@ -19,33 +22,52 @@ const $emit = defineEmits<{
   "update:modelValue": [link: string];
 }>();
 
+const $audioStore = AudioStore();
+
+const dialogRef = ref<InstanceType<typeof KDialog>>();
+
 /** 是否显示添加链接弹窗 */
 const show_AddLink = ref(false);
+/** 输入的链接 */
+const input_link = ref("");
+
+/* 选择图片 */
+const handleSelect = () => {
+  show_AddLink.value = true;
+  $audioStore.play("0o5c");
+};
 
 /* 获取链接 */
-const onGetLink = (link: string) => {
-  $emit("update:modelValue", link);
-  show_AddLink.value = false;
+const handleConfirm = () => {
+  $emit("update:modelValue", input_link.value);
+  dialogRef.value!.close();
 };
 </script>
 
 <template>
-  <div class="select-img" :class="[type, { border: !modelValue }]" @click="show_AddLink = true">
+  <div class="select-img" :class="[type, { border: !modelValue }]" @click="handleSelect">
     <img v-show="modelValue" :src="modelValue" alt="" />
     <i v-show="!modelValue" class="iconfont wzry-add" />
   </div>
 
   <!-- 添加图片链接弹窗组件 -->
   <teleport to="body">
-    <transition name="fade">
-      <AddLink
-        v-if="show_AddLink"
-        v-model="show_AddLink"
-        :title="title"
-        :link="modelValue"
-        @get-link="onGetLink"
+    <KDialog
+      v-if="show_AddLink"
+      v-bind="$attrs"
+      ref="dialogRef"
+      v-model="show_AddLink"
+      align="center"
+    >
+      <input
+        v-model="input_link"
+        v-focus
+        type="text"
+        placeholder="请输入"
+        @keyup.enter="handleConfirm"
       />
-    </transition>
+      <KButton type="warning" @click="handleConfirm">确定</KButton>
+    </KDialog>
   </teleport>
 </template>
 

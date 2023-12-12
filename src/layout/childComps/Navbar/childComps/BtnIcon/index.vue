@@ -34,23 +34,17 @@ const handleUpdateLog = (v: boolean) => {
 
     <!-- 设置弹窗 -->
     <teleport to="body">
-      <transition name="fade">
-        <SettingDialog v-if="show_setting" v-model="show_setting" />
-      </transition>
+      <SettingDialog v-if="show_setting" v-model="show_setting" />
     </teleport>
 
     <!-- 任务清单 -->
     <teleport to="body">
-      <transition name="fade">
-        <Todo v-if="show_todo" v-model="show_todo" />
-      </transition>
+      <Todo v-if="show_todo" v-model="show_todo" />
     </teleport>
 
     <!-- 更新日志 -->
     <teleport to="body">
-      <transition name="fade">
-        <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
-      </transition>
+      <UpdateLog v-if="$versionStore.show_update && show_update" @close="handleUpdateLog" />
     </teleport>
   </div>
 </template>

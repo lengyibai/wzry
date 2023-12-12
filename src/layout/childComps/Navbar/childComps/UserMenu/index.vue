@@ -11,6 +11,8 @@ const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
 
+const dialogRef = ref<InstanceType<typeof KDialog>>();
+
 /** 显示用户菜单 */
 const show_menu = ref(false);
 /** 显示编辑个人信息弹窗 */
@@ -66,11 +68,9 @@ const onCloseConfirmEdidInfo = () => {
     $bus.emit("confirm", {
       text: "资料已修改，确定关闭吗？",
       confirm: () => {
-        show_edit.value = false;
+        dialogRef.value!.close();
       },
     });
-  } else {
-    show_edit.value = false;
   }
 };
 </script>
@@ -103,21 +103,23 @@ const onCloseConfirmEdidInfo = () => {
   </div>
 
   <teleport to="body">
-    <transition name="fade">
-      <KDialog
-        v-if="show_edit"
-        title="编辑个人信息"
-        width="57.5rem"
-        up
-        @close="onCloseConfirmEdidInfo"
-      >
-        <EditUserInfo
-          :id="$authStore.userInfo.id"
-          v-model:status="edit_status"
-          @close="show_edit = false"
-        />
-      </KDialog>
-    </transition>
+    <KDialog
+      v-if="show_edit"
+      ref="dialogRef"
+      v-model="show_edit"
+      :auto-close="!edit_status"
+      title="编辑个人信息"
+      width="57.5rem"
+      up
+      @close="onCloseConfirmEdidInfo"
+    >
+      <EditUserInfo
+        v-if="dialogRef"
+        :id="$authStore.userInfo.id"
+        v-model:status="edit_status"
+        @close="dialogRef!.close"
+      />
+    </KDialog>
   </teleport>
 </template>
 
