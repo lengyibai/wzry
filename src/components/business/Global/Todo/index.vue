@@ -13,11 +13,11 @@ API_DATA.Todo().then((res) => {
   todo.value = res.data;
 });
 
-$audioStore.play("u4c5");
+$audioStore.play("kj62");
 </script>
 
 <template>
-  <KDialog v-bind="$attrs" width="56.25rem" header="网站计划清单">
+  <KDialog :audio="false" v-bind="$attrs" width="56.25rem" header="网站计划清单" up>
     <div class="todo">
       <div class="content" v-html="todo"></div>
     </div>
