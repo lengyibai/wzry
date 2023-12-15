@@ -50,6 +50,7 @@ const handleConfirm = () => {
       v-model="show"
       class="k-dialog"
       align="center"
+      :audio="false"
       :show-close="config.close"
     >
       <div class="text">{{ config.text }}</div>
