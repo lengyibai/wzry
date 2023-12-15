@@ -5,8 +5,7 @@ import AddSkillBasic from "./childComps/AddSkillBasic/index.vue";
 
 import { useViewHide } from "@/views/System/hooks/useViewHide";
 import { skillDefault, skillEffectDefault } from "@/default";
-import { API_HERO, API_SKILL } from "@/api";
-import { HeroStore } from "@/store";
+import { API_HERO } from "@/api";
 import { $bus, $loading, $message } from "@/utils";
 import { CONFIG } from "@/config";
 import {
@@ -23,8 +22,6 @@ import { LibRichText } from "@/components/common";
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
 }>();
-
-const $heroStore = HeroStore();
 
 const { show, finish, status, form_data, onConfirmRemove, onConfirmSave } = useViewHide<
   Hero.Skill[][]
@@ -247,17 +244,6 @@ const handleDelConsume = () => {
 const onCommit = async () => {
   const is_Finish = form_data.value![0].every((item) => item.img && item.name && hero_id.value);
   if (is_Finish && form_data.value![0].length >= 3) {
-    await API_SKILL.addHeroSkill({
-      id: hero_id.value,
-      unit: skill_unit.value,
-      skills: form_data.value!,
-    });
-    setTimeout(() => {
-      finish.value = true;
-      onConfirmRemove();
-      $message("发布成功", "info");
-      $heroStore.getHeroList();
-    }, 500);
   } else {
     $message("请完整填写必填项，且主技能个数不低于3个", "error");
     status.value = 0;

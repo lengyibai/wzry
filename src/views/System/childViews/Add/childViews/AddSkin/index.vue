@@ -2,8 +2,7 @@
 import { ref } from "vue";
 
 import { useViewHide } from "@/views/System/hooks/useViewHide";
-import { API_HERO, API_SKIN } from "@/api";
-import { SkinStore } from "@/store";
+import { API_HERO_INFO, API_SKIN, API_SKIN_INFO } from "@/api";
 import { $message, $loading } from "@/utils";
 import {
   FormInput,
@@ -18,8 +17,6 @@ import {
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
 }>();
-
-const $skinStore = SkinStore();
 
 const { hero_id, show, finish, status, form_data, onConfirmSave, onConfirmRemove } = useViewHide<
   Hero.Skin[]
@@ -51,12 +48,12 @@ setTimeout(async () => {
 
 /* 选择英雄后触发 */
 const onSelectHero = (id: number) => {
-  API_SKIN.getHeroSkins(id).then((res) => {
+  API_SKIN_INFO.getHeroSkins(id).then((res) => {
     skin_num.value = res.length;
     skins = res;
   });
 
-  API_HERO.getHeroDetail(id).then((res) => {
+  API_HERO_INFO.getHeroDetail(id).then((res) => {
     hero_info = res;
   });
 };
@@ -113,30 +110,7 @@ const handleDelOne = (i: number) => {
 };
 
 /* 发布 */
-const onCommit = async () => {
-  //设置皮肤id
-  form_data.value!.forEach((item, index) => {
-    item.id = Number(`${hero_info.id}${skin_num.value + index + 1}`);
-    item.num = skin_num.value + 1;
-  });
-
-  if (form_data.value!.every((item) => item.hero !== 0)) {
-    for (let i = 0; i < form_data.value!.length; i++) {
-      const item = form_data.value![i];
-      await API_SKIN.addSkin(item);
-      finish.value = true;
-
-      setTimeout(() => {
-        onConfirmRemove();
-        $message("发布成功", "info");
-        $skinStore.getSkin();
-      }, 500);
-    }
-  } else {
-    $message("请完整填写", "error");
-    status.value = 0;
-  }
-};
+const onCommit = async () => {};
 </script>
 
 <template>

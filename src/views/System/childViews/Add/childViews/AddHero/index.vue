@@ -4,8 +4,7 @@ import { reactive } from "vue";
 import { useViewHide } from "@/views/System/hooks/useViewHide";
 import { heroDefault } from "@/default";
 import { API_HERO } from "@/api";
-import { HeroStore } from "@/store";
-import { $loading, $message } from "@/utils";
+import { $loading } from "@/utils";
 import {
   FormInput,
   FormLabel,
@@ -19,8 +18,6 @@ import {
 const $emit = defineEmits<{
   "update:modelValue": [v: boolean];
 }>();
-
-const $heroStore = HeroStore();
 
 const attr: Partial<Record<keyof Hero.Data, string>> = {
   survival: "生存能力",
@@ -52,7 +49,7 @@ const type_list: Record<string, General[]> = reactive({
 });
 
 //根据英雄总数设置id
-API_HERO.getHeroBasic().then((res) => {
+API_HERO.getHeroName().then((res) => {
   form_data.value!.id = res.length + 1;
 });
 
@@ -72,31 +69,7 @@ setTimeout(async () => {
 }, 1000);
 
 /* 发布 */
-const onCommit = async () => {
-  const { id, mark, name, cover, headImg, poster } = form_data.value as Hero.Data;
-
-  if (id && mark && name && cover && headImg && poster) {
-    await API_HERO.addHeroBasic({
-      id,
-      name,
-    });
-    await API_HERO.addHeroImg({
-      id,
-      name,
-      headImg,
-    });
-    await API_HERO.addHeroData(form_data.value!);
-    finish.value = true;
-    setTimeout(() => {
-      onConfirmRemove();
-      $message("发布成功", "info");
-      $heroStore.getHeroList();
-    }, 500);
-  } else {
-    $message("请完整填写", "error");
-    status.value = 0;
-  }
-};
+const onCommit = async () => {};
 </script>
 
 <template>
