@@ -3,7 +3,6 @@ import { ref, computed, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 
 import { AudioStore, HeroDetailStore } from "@/store";
-import { $tip, $tool } from "@/utils";
 
 const $emit = defineEmits<{
   "select-skill": [skills: Hero.Skill];
