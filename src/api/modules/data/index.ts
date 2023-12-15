@@ -1,4 +1,4 @@
-import { API_HERO } from "@/api";
+import { API_HERO_INFO } from "@/api";
 import { $LocaleHttp, $RemoteHttp } from "@/api/helper";
 
 /** @description 获取版本信息 */
@@ -23,7 +23,13 @@ export const User = () => $RemoteHttp.Get<User[]>("/user.json");
 export const HeroBasic = () => $RemoteHttp.Get<General[]>("/heroBasic.json");
 
 /** @description 获取英雄图片列表 */
-export const HeroImg = () => $RemoteHttp.Get<Hero.HeadImg[]>("/heroImg.json");
+export const HeroImage = () => $RemoteHttp.Get<Hero.Image[]>("/heroImage.json");
+
+/** @description 获取英雄皮肤图片列表 */
+export const SkinImage = () => $RemoteHttp.Get<Hero.SkinImage[]>("/skinImage.json");
+
+/** @description 获取英雄头像列表 */
+export const HeroHead = () => $RemoteHttp.Get<General[]>("/heroHead.json");
 
 /** @description 获取英雄图集列表 */
 export const HeroAtlas = () => $RemoteHttp.Get<Hero.Atlas[]>("/heroAtlas.json");
@@ -31,12 +37,23 @@ export const HeroAtlas = () => $RemoteHttp.Get<Hero.Atlas[]>("/heroAtlas.json");
 /** @description 获取英雄信息列表 */
 export const Herodata = () => $RemoteHttp.Get<Hero.Data[]>("/heroData.json");
 
-/**
- * @description 获取英雄语音列表
- * @param hero_name 英雄名
- */
-export const Voice = async (hero_name: string) => {
-  const pinyin = await API_HERO.getHeroPinyin(hero_name);
+/** @description 获取英雄名列表 */
+export const HeroName = () => $RemoteHttp.Get<General[]>("/heroName.json");
+
+/** @description 获取英雄拼音列表 */
+export const HeroPinyin = () => $RemoteHttp.Get<General[]>("/heroPinyin.json");
+
+/** @description 获取英雄性别列表 */
+export const HeroGender = () => $RemoteHttp.Get<General[]>("/heroGender.json");
+
+/** @description 获取英雄职业列表 */
+export const HeroProfession = () => {
+  return $RemoteHttp.Get<General<Hero.Profession[][]>>("/heroProfession.json");
+};
+
+/** @description 获取英雄语音列表 */
+export const Voice = async (hero_id: number) => {
+  const pinyin = await API_HERO_INFO.getHeroPinyin(hero_id);
   return $RemoteHttp.Get<Hero.Voices[]>(`/voices/${pinyin}.json`);
 };
 

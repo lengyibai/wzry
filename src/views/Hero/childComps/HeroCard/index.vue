@@ -36,8 +36,8 @@ const num = (data: Hero.Data) => {
 
   const obj: Record<string, string> = {
     身高: data.height + "cm",
-    皮肤数量: (data.skins?.length || 0) + "款",
-    关系数量: (data.relationships?.length || 0) + "位",
+    皮肤数量: (data.skinCount || 0) + "款",
+    关系数量: (data.relationCount || 0) + "位",
   };
 
   return obj[numType] || "";

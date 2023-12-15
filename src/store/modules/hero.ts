@@ -3,7 +3,7 @@ import { ref } from "vue";
 import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { API_HERO, API_RELATIONSHIP, API_SKILL, API_SKIN } from "@/api";
+import { API_HERO } from "@/api";
 import { $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
 
@@ -173,8 +173,8 @@ const HeroStore = defineStore("hero", () => {
       const sortingFunctions: Record<string, (a: Hero.Data, b: Hero.Data) => number> = {
         身高: (a, b) => a.height - b.height,
         上手难度: (a, b) => a.difficulty - b.difficulty,
-        皮肤数量: (a, b) => b.skins.length - a.skins.length,
-        关系数量: (a, b) => b.relationships.length - a.relationships.length,
+        皮肤数量: (a, b) => b.skinCount - a.skinCount,
+        关系数量: (a, b) => b.relationCount - a.relationCount,
       };
       if (misc_sort.value && misc_sort.value !== "全部排序") {
         filter_list.value.sort(sortingFunctions[misc_sort.value]);
@@ -212,18 +212,11 @@ const HeroStore = defineStore("hero", () => {
       const poster_blur: string[] = [];
 
       all_data.value = await API_HERO.getHeroData();
-      for (let i = 0; i < all_data.value.length; i++) {
-        all_data.value[i].skills = await API_SKILL.getHeroSkill(all_data.value[i].id);
-        all_data.value[i].skins = await API_SKIN.getHeroSkins(all_data.value[i].id);
-        all_data.value[i].relationships = await API_RELATIONSHIP.getHeroRelationship(
-          all_data.value[i].id,
-        );
-
-        poster_blur.push(all_data.value[i].coverBlur);
-      }
+      all_data.value.forEach((item) => {
+        poster_blur.push(item.coverBlur);
+      });
 
       $tool.preloadImages(poster_blur);
-
       this.setProfessional("全部");
     },
 

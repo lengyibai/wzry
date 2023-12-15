@@ -2,10 +2,10 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { heroDefault } from "@/default";
-import { API_RELATIONSHIP, API_VOICE } from "@/api";
+import { API_RELATIONSHIP_INFO, API_VOICE_INFO } from "@/api";
 import { getImgLink } from "@/utils/modules/concise";
 
-type SkinToggleFn = (hero_name: string, skin_name: string) => void;
+type SkinToggleFn = (hero_id: number, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
 interface RelationInfoType extends Hero.RelationType {
   /** 对应关系英雄的回复 */
@@ -20,7 +20,7 @@ interface RelationInfoType extends Hero.RelationType {
 const HeroDetailStore = defineStore("heroDetail", () => {
   const ExposeData = {
     /** 英雄信息 */
-    hero_info: ref<Hero.Data>(heroDefault()),
+    hero_info: ref<Hero.Detail>(heroDefault()),
     /** 滚动结束后触发函数组 */
     scollFns: ref<ScollFn>([]),
     /** 处于展示的技能索引 */
@@ -58,7 +58,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
 
   const ExposeMethods = {
     /** @description 设置英雄数据 */
-    setHeroInfo(data: Hero.Data) {
+    setHeroInfo(data: Hero.Detail) {
       hero_info.value = data;
     },
 
@@ -117,7 +117,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
         };
         return;
       }
-      API_RELATIONSHIP.getHeroRelationshipDesc(data.id, hero_info.value.id).then((res) => {
+      API_RELATIONSHIP_INFO.getHeroRelationshipDesc(data.id, hero_info.value.id).then((res) => {
         relation_info.value = {
           ...data,
           reply: res.desc || "？",
@@ -128,8 +128,8 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 获取设置皮肤语音 */
-    async setSkinVoice(hero_name: string, skin_name = "盾山") {
-      skin_voice.value = await API_VOICE.getSkinVoice(hero_name, skin_name);
+    async setSkinVoice(hero_id: number, skin_name = "盾山") {
+      skin_voice.value = await API_VOICE_INFO.getSkinVoice(hero_id, skin_name);
     },
 
     /** @description 点击技能后触发 */
@@ -138,9 +138,9 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 切换皮肤时触发 */
-    skinToggle(hero_name: string, skin_name: string) {
+    skinToggle(hero_id: number, skin_name: string) {
       skinToggleFns.value.forEach((item) => {
-        item(hero_name, skin_name);
+        item(hero_id, skin_name);
       });
     },
   };

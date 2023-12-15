@@ -1,7 +1,7 @@
 import { onScopeDispose, ref } from "vue";
 
 import { $tool } from "@/utils";
-import { API_HERO, API_SKIN } from "@/api";
+import { API_HERO_INFO, API_SKIN_INFO } from "@/api";
 import { BarrageStore } from "@/store/modules/barrage";
 
 /** @description 弹幕辅助生成 */
@@ -51,8 +51,8 @@ const useBarrages = () => {
           audioPlay.play(link);
 
           //获取英雄和皮肤信息
-          const hero = await API_HERO.getHeroDetail(heroId);
-          const skin = (await API_SKIN.getHeroSkin(heroId, skinName)) || {};
+          const hero = await API_HERO_INFO.getHeroDetail(heroId);
+          const skin = (await API_SKIN_INFO.getHeroSkin(heroId, skinName)) || {};
           barrage_info.value = {
             voiceText,
             heroName: hero.name,

@@ -228,16 +228,22 @@ const SkinStore = defineStore("skin", () => {
       const poster_blur: string[] = [];
 
       const skinList = await API_SKIN.getSkin();
-      const skinType = await API_SKIN.getSkinType();
+
+      //设置皮肤类型图片
+      const base_data: Record<number, Hero.SkinType> = {};
+      const skinTypes = await API_SKIN.getSkinType();
+      skinTypes.forEach((type) => {
+        base_data[type.id] = type;
+      });
 
       skinList.forEach((skin) => {
-        const type = skinType.find((type) => type.id === skin.type)!;
+        const type = base_data[skin.type as number];
         skin.type = type.link;
         skin.category = type.name;
 
         //设置备用名称，解决高亮问题
-        skin.hero_name = skin.heroName;
         skin.skin_name = skin.name;
+        skin.hero_name = skin.heroName;
 
         poster_blur.push(skin.posterBlur);
       });

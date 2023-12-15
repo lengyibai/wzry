@@ -1,30 +1,77 @@
-import { get, post } from "@/api/helper/transfer";
+import { API_HERO } from "@/api";
+import { get } from "@/api/helper/transfer";
 import { CONFIG } from "@/config";
 
 /** @description 获取皮肤列表 */
-export const getSkin = () => {
-  const skin = get<Hero.Skin[]>({ name: CONFIG.LOCAL_KEY.SKIN });
-  return Promise.resolve(skin);
+export const getSkin = async () => {
+  const skin_list = get<Hero.Skin[]>({ name: CONFIG.LOCAL_KEY.SKIN });
+
+  //创建id作为键的初始数据
+  const base_data: Record<
+    number,
+    Pick<Hero.Skin, "profession" | "gender" | "heroName"> & {
+      skin_images: Record<number, Record<number, Hero.SkinImage>>;
+    }
+  > = {};
+
+  const hero_names = await API_HERO.getHeroName();
+  hero_names.forEach((item) => {
+    base_data[item.id] = {
+      profession: [],
+      gender: "男",
+      heroName: "",
+      skin_images: {},
+    };
+  });
+
+  //获取英雄职业
+  const hero_professions = await API_HERO.getHeroProfession();
+  hero_professions.forEach((item) => {
+    base_data[item.id].profession = item.name;
+  });
+
+  //获取英雄性别
+  const hero_genders = await API_HERO.getHeroGender();
+  hero_genders.forEach((item) => {
+    base_data[item.id].gender = item.name;
+  });
+
+  //获取英雄名称
+  hero_names.forEach((item) => {
+    base_data[item.id].heroName = item.name;
+  });
+
+  //获取英雄皮肤图片
+  const skin_images = await getHeroSkinImage();
+  skin_images.forEach((item) => {
+    item.skins.forEach((skin) => {
+      base_data[item.id].skin_images[skin.id] = skin;
+    });
+  });
+
+  //整合数据
+  for (let i = 0; i < skin_list.length; i++) {
+    const skin = skin_list[i];
+    const skin_info = base_data[skin.hero].skin_images;
+
+    skin.profession = base_data[skin.hero].profession;
+    skin.gender = base_data[skin.hero].gender;
+    skin.heroName = base_data[skin.hero].heroName;
+    skin_list[i] = {
+      ...skin,
+      ...skin_info[skin.id],
+    };
+  }
+
+  return Promise.resolve(skin_list);
 };
 
-/** @description 添加皮肤 */
-export const addSkin = (data: Hero.Skin) => {
-  const skin = post<Hero.Skin>(CONFIG.LOCAL_KEY.SKIN, data);
-  return Promise.resolve(skin);
-};
-
-/** @description 获取指定英雄皮肤列表 */
-export const getHeroSkins = (hero_id: number) => {
-  const params = { name: CONFIG.LOCAL_KEY.SKIN, key: "hero", value: hero_id };
-  const hero_skin = get<Hero.Skin>(params, false);
-  return Promise.resolve(hero_skin);
-};
-
-/** @description 获取指定英雄皮肤 */
-export const getHeroSkin = async (hero_id: number, skin_name: string) => {
-  const skins = await getHeroSkins(hero_id);
-  const skin = skins.find((skin) => skin.name === skin_name)!;
-  return Promise.resolve(skin);
+/** @description 获取英雄皮肤图片列表 */
+export const getHeroSkinImage = () => {
+  const skin_img_list = get<Hero.SkinImage[]>({
+    name: CONFIG.LOCAL_KEY.SKIN_IMAGE,
+  });
+  return Promise.resolve(skin_img_list);
 };
 
 /** @description 获取皮肤类型列表 */
@@ -33,15 +80,4 @@ export const getSkinType = () => {
     name: CONFIG.LOCAL_KEY.SKIN_TYPE,
   });
   return Promise.resolve(skin_type_list);
-};
-
-/** @description 获取指定皮肤类型 */
-export const getAssignSkinType = (skin_id: number) => {
-  const params = {
-    name: CONFIG.LOCAL_KEY.SKIN_TYPE,
-    key: "id",
-    value: skin_id,
-  };
-  const skin_type = get<Hero.SkinType>(params);
-  return Promise.resolve(skin_type);
 };

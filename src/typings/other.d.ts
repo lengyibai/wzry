@@ -182,6 +182,9 @@ interface UpdateLog {
 /** @description 性别 */
 type Gender = 0 | 1 | 2;
 
+/** @description 性别名 */
+type GenderText = "男" | "女";
+
 /** @description 音乐信息 */
 interface Music {
   /** 音乐名称 */
@@ -201,7 +204,7 @@ interface Barrage {
   /** 英雄ID */
   heroId: number;
   /** 性别 */
-  gender: "男" | "女";
+  gender: GenderText;
   /** 语音内容 */
   text: string;
   /** 语音链接 */

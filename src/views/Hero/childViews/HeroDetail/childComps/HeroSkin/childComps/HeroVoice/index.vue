@@ -30,8 +30,8 @@ const audioPlayer = new $tool.AudioPlayer({
 });
 
 /* 切换语音时触发 */
-$heroDetail.setSkinToggleFn(async (hero_name: string, skin_name: string) => {
-  await $heroDetail.setSkinVoice(hero_name, skin_name);
+$heroDetail.setSkinToggleFn(async (hero_id: number, skin_name: string) => {
+  await $heroDetail.setSkinVoice(hero_id, skin_name);
   if (!skin_name) {
     //为了切换关系
     voices.value = [];

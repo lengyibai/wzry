@@ -31,14 +31,18 @@ defineOptions({
 const $audioStore = AudioStore();
 
 const keywords: [string, string][] = [
-  [CONFIG.LOCAL_KEY.HERO_BASIC, "英雄基础"],
-  [CONFIG.LOCAL_KEY.HERO_IMG, "英雄图片"],
+  [CONFIG.LOCAL_KEY.HERO_HEAD, "英雄头像"],
+  [CONFIG.LOCAL_KEY.HERO_IMAGE, "英雄图片"],
   [CONFIG.LOCAL_KEY.HERO_ATLAS, "英雄图集"],
   [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
+  [CONFIG.LOCAL_KEY.HERO_PINYIN, "英雄拼音"],
+  [CONFIG.LOCAL_KEY.HERO_GENDER, "英雄性别"],
+  [CONFIG.LOCAL_KEY.HERO_PROFESSION, "英雄职业"],
   [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
   [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
   [CONFIG.LOCAL_KEY.SKILL_EFFECT, "技能效果"],
   [CONFIG.LOCAL_KEY.SKIN, "皮肤"],
+  [CONFIG.LOCAL_KEY.SKIN_IMAGE, "皮肤图片"],
   [CONFIG.LOCAL_KEY.SKIN_TYPE, "皮肤类型"],
   [CONFIG.LOCAL_KEY.RELATIONSHIP, "关系"],
   [CONFIG.LOCAL_KEY.EQUIP, "装备"],
@@ -56,15 +60,19 @@ const keywords: [string, string][] = [
   [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
 ];
 
-const requests: Record<string, () => Promise<ResultData<unknown[]>>> = {
-  [CONFIG.LOCAL_KEY.HERO_BASIC]: API_DATA.HeroBasic,
-  [CONFIG.LOCAL_KEY.HERO_IMG]: API_DATA.HeroImg,
+const requests: Record<string, () => Promise<ResultData<any>>> = {
+  [CONFIG.LOCAL_KEY.HERO_HEAD]: API_DATA.HeroHead,
+  [CONFIG.LOCAL_KEY.HERO_IMAGE]: API_DATA.HeroImage,
   [CONFIG.LOCAL_KEY.HERO_ATLAS]: API_DATA.HeroAtlas,
+  [CONFIG.LOCAL_KEY.HERO_PINYIN]: API_DATA.HeroPinyin,
+  [CONFIG.LOCAL_KEY.HERO_GENDER]: API_DATA.HeroGender,
+  [CONFIG.LOCAL_KEY.HERO_PROFESSION]: API_DATA.HeroProfession,
   [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
   [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
   [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
   [CONFIG.LOCAL_KEY.SKILL_EFFECT]: API_DATA.Skilleffect,
   [CONFIG.LOCAL_KEY.SKIN]: API_DATA.Skin,
+  [CONFIG.LOCAL_KEY.SKIN_IMAGE]: API_DATA.SkinImage,
   [CONFIG.LOCAL_KEY.SKIN_TYPE]: API_DATA.Skintype,
   [CONFIG.LOCAL_KEY.RELATIONSHIP]: API_DATA.Relationship,
   [CONFIG.LOCAL_KEY.EQUIP]: API_DATA.Equip,
@@ -92,18 +100,22 @@ const table_data = ref<TableData[]>([]);
 
 /* 加载数据 */
 const load = async () => {
-  table_data.value = keywords.map((item) => {
-    const v = JSON.parse(localStorage.getItem(item[0]) as string) || [];
+  table_data.value = keywords
+    .map((item) => {
+      const v = JSON.parse(localStorage.getItem(item[0]) as string) || [];
 
-    return {
-      name: item[1],
-      key: item[0],
-      data: v,
-      status: "正在检查...",
-      length: v.length,
-      size: $tool.getFileSizeInKB(v),
-    };
-  });
+      return {
+        name: item[1],
+        key: item[0],
+        data: v,
+        status: "正在检查...",
+        length: v.length,
+        size: $tool.getFileSizeInKB(v),
+      };
+    })
+    .sort((a, b) => {
+      return b.size - a.size;
+    });
 
   for (let i = 0; i < table_data.value.length; i++) {
     const data = table_data.value[i];

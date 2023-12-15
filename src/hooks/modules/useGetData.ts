@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { API_DATA, API_HERO } from "@/api";
+import { API_DATA, API_HERO, API_HERO_INFO } from "@/api";
 import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
 
@@ -8,10 +8,15 @@ import { ResultData } from "@/api/interface";
 const useGetData = () => {
   const requests: [string, () => Promise<ResultData<unknown>>, string][] = [
     [CONFIG.LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
-    [CONFIG.LOCAL_KEY.HERO_BASIC, API_DATA.HeroBasic, "英雄基础"],
-    [CONFIG.LOCAL_KEY.HERO_IMG, API_DATA.HeroImg, "英雄图片"],
+    [CONFIG.LOCAL_KEY.HERO_PINYIN, API_DATA.HeroPinyin, "英雄拼音"],
+    [CONFIG.LOCAL_KEY.HERO_GENDER, API_DATA.HeroGender, "英雄性别"],
+    [CONFIG.LOCAL_KEY.HERO_NAME, API_DATA.HeroName, "英雄名"],
+    [CONFIG.LOCAL_KEY.HERO_HEAD, API_DATA.HeroHead, "英雄头像"],
+    [CONFIG.LOCAL_KEY.HERO_IMAGE, API_DATA.HeroImage, "英雄图片"],
     [CONFIG.LOCAL_KEY.HERO_ATLAS, API_DATA.HeroAtlas, "英雄图集"],
+    [CONFIG.LOCAL_KEY.SKIN_IMAGE, API_DATA.SkinImage, "皮肤图片"],
     [CONFIG.LOCAL_KEY.HERO_DATA, API_DATA.Herodata, "英雄信息"],
+    [CONFIG.LOCAL_KEY.HERO_PROFESSION, API_DATA.HeroProfession, "英雄职业"],
     [CONFIG.LOCAL_KEY.SKILL, API_DATA.Skill, "技能列表"],
     [CONFIG.LOCAL_KEY.SKILL_TYPE, API_DATA.Skilltype, "技能类型"],
     [CONFIG.LOCAL_KEY.SKILL_EFFECT, API_DATA.Skilleffect, "技能效果"],
@@ -70,7 +75,7 @@ const useGetData = () => {
     });
     await Promise.all(data_requests);
 
-    const hero_list = await API_HERO.getHeroBasic();
+    const hero_list = await API_HERO.getHeroName();
     //减2是为了忽略掉没有语音的盾山和梦奇，否则进度会出现错误
     total.value = hero_list.length - 2;
 
@@ -81,9 +86,12 @@ const useGetData = () => {
     const voice_requests = hero_list.map(async (item) => {
       //如果不是梦奇和盾山，并且本地不存在英雄语音，则请求
       if (!["梦奇", "盾山"].includes(item.name)) {
-        if (!isExist(item.pinyin, "voice_")) {
-          setData(`voice_${item.pinyin}`, {
-            data: (await API_DATA.Voice(item.name)).data,
+        const pinyin = await API_HERO_INFO.getHeroPinyin(item.id);
+        const voices = (await API_DATA.Voice(item.id)).data;
+
+        if (!isExist(pinyin, "voice_")) {
+          setData(`voice_${pinyin}`, {
+            data: voices,
           });
           type.value = `${item.name}语音`;
           index.value++;

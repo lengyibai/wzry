@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { API_HERO, API_VOICE } from "@/api";
+import { API_HERO, API_VOICE_INFO } from "@/api";
 import { $tool } from "@/utils";
 
 /** @description 语音弹幕 */
@@ -27,7 +27,7 @@ const BarrageStore = defineStore("barrage", () => {
 
         for (let i = 0; i < hero.length; i++) {
           if (["梦奇", "盾山"].includes(hero[i].name)) continue;
-          const hero_voices = await API_VOICE.getVoice(hero[i].name);
+          const hero_voices = await API_VOICE_INFO.getVoice(hero[i].id);
 
           const hero_firet_voice = hero_voices.map(async (item, index): Promise<Barrage> => {
             //获取随机位置的语音

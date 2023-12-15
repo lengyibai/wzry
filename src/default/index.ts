@@ -1,5 +1,5 @@
 /** @description 默认英雄信息 */
-export const heroDefault: () => Hero.Data = () => ({
+export const heroDefault: () => Hero.Detail = () => ({
   id: 0,
   attack: 0,
   difficulty: 0,
@@ -27,6 +27,8 @@ export const heroDefault: () => Hero.Data = () => ({
   skills: [],
   skins: [],
   relationships: [],
+  skinCount: 0,
+  relationCount: 0,
 });
 
 /** @description 默认技能信息 */

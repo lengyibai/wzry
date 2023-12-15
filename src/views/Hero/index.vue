@@ -9,7 +9,7 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 
 import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
-import { API_HERO } from "@/api";
+import { API_HERO_INFO } from "@/api";
 import { $tool, $loading } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
@@ -55,7 +55,7 @@ const show_herolist = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 英雄信息 */
-const hero_info = ref<Hero.Data>(heroDefault());
+const hero_info = ref<Hero.Detail>(heroDefault());
 
 /* 实时修改一行个数 */
 const changeCount = () => {
@@ -82,7 +82,7 @@ const handleEnterCard = (data: Hero.Data) => {
 /* 查看详情 */
 const onViewClick = (id: number) => {
   //获取指定英雄数据
-  API_HERO.getHeroDetail(id).then((hero) => {
+  API_HERO_INFO.getHeroDetail(id).then((hero) => {
     $loading.show(`${hero.name}`);
     hero_info.value = hero;
     $heroDetail.setHeroInfo(hero_info.value);

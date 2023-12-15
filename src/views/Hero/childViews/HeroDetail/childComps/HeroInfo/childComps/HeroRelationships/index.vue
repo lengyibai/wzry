@@ -7,7 +7,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { RelationshipCircle } from "./hooks/utils";
 
 import { HeroDetailStore } from "@/store";
-import { API_HERO } from "@/api";
+import { API_HERO_INFO } from "@/api";
 
 const $router = useRouter();
 const { hero_info } = storeToRefs(HeroDetailStore());
@@ -21,7 +21,7 @@ const active_id = ref(0);
 
 /* 切换英雄信息 */
 const toggleHero = (id: number) => {
-  API_HERO.getHeroDetail(id).then((hero) => {
+  API_HERO_INFO.getHeroDetail(id).then((hero) => {
     $heroDetailStore.setHeroInfo(hero);
     $router.replace({
       path: "/hero",

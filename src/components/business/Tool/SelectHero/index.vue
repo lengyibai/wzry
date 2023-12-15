@@ -27,7 +27,7 @@ const id = ref(0);
 const hero_list = ref<General[]>([]);
 
 /* 获取英雄基础列表 */
-API_HERO.getHeroBasic().then((res) => {
+API_HERO.getHeroName().then((res) => {
   hero_list.value = res;
 
   //查找当前id的英雄名

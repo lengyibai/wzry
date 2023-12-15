@@ -1,7 +1,13 @@
 /** 英雄信息  */
 declare namespace Hero {
+  /** @description 英雄图片 */
+  type Image = Pick<Data, "id" | "cover" | "coverBlur" | "poster" | "posterBlur" | "posterBig">;
+
+  /** @description 职业类型 */
+  type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
+
   /** @description 主要数据 */
-  interface Data {
+  interface Data extends Image {
     /** 英雄id */
     id: number;
     /** 攻击 */
@@ -14,12 +20,18 @@ declare namespace Hero {
     survival: number;
     /** 阵营 */
     camp: string;
+    /** 头像 */
+    headImg: string;
     /** 封面 */
     cover: string;
     /** 小图模糊加载 */
     coverBlur: string;
-    /** 头像 */
-    headImg: string;
+    /** 海报 */
+    poster: string;
+    /** 小图模糊加载 */
+    posterBlur: string;
+    /** 海报大图 */
+    posterBig: string;
     /** 身高 */
     height: number;
     /** 身份 */
@@ -32,34 +44,33 @@ declare namespace Hero {
     name: string;
     /** 时期 */
     period: string;
-    /** 海报 */
-    poster: string;
-    /** 小图模糊加载 */
-    posterBlur: string;
-    /** 海报大图 */
-    posterBig: string;
     /** 种族 */
     race: string;
     /** 技能消耗单位 */
     skillUnit: string;
     /** 性别 */
-    gender: "男" | "女";
+    gender: GenderText;
     /** 职业 */
     profession: Profession[];
     /** 特长 */
     specialty: string[];
-    /** 语音 */
-    voices: Voice[];
-    /** 技能 */
+    /** 关系数量 */
+    relationCount: number;
+    /** 皮肤数量 */
+    skinCount: number;
+    /** 技能列表 */
     skills: Skill[][];
+  }
+
+  /** @description 英雄详情数据 */
+  interface Detail extends Data {
+    /** 语音列表 */
+    voices: Voice[];
     /** 皮肤 */
     skins: Skin[];
     /** 关系表 */
     relationships: RelationType[];
   }
-
-  /** @description 职业类型 */
-  type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
 
   /** @description 语音 */
   interface Voice {
@@ -167,12 +178,12 @@ declare namespace Hero {
     num: number;
     /** 价格 */
     price: string;
-    /** 类型 */
+    /** 当获取到类型数据时，会将类型id替换为对应的类型图片链接 */
     type: number | string;
     /** 皮肤类型名 */
     category: string;
     /** 性别 */
-    gender: "男" | "女";
+    gender: GenderText;
     /** 皮肤名称 */
     name: string;
     /** 备用皮肤名称 */
@@ -192,7 +203,22 @@ declare namespace Hero {
     /** 备用英雄名称 */
     hero_name?: string;
     /** 职业 */
-    profession: string[];
+    profession: Hero.Profession[];
+  }
+
+  /*  {
+        "id": 1071,
+        "headImg": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_touxiang_1.jpg",
+        "poster": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1.jpg",
+        "posterBlur": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_blur.jpg",
+        "posterBig": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_big.jpg",
+        "cover": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_small.jpg"
+      }, */
+  /** @description 英雄皮肤图片 */
+  interface SkinImage {
+    /** 英雄id */
+    id: number;
+    skins: Pick<Skin, "id" | "headImg" | "poster" | "cover" | "posterBlur" | "posterBig">[];
   }
 
   /** @description 皮肤类型 */
@@ -203,12 +229,6 @@ declare namespace Hero {
     name: string;
     /** 类型图片 */
     link: string;
-  }
-
-  /** @description 英雄头像列表 */
-  interface HeadImg extends General {
-    /** 头像 */
-    headImg: string;
   }
 
   /** @description 英雄图集列表 */
@@ -248,12 +268,6 @@ declare namespace Hero {
     /** 英雄名 */
     heroName: string;
   }
-
-  /** @description 英雄基础列表 */
-  interface Basic extends General {
-    /** 英雄拼音 */
-    pinyin: string;
-  }
 }
 
 /** @description 用户信息 */
@@ -273,9 +287,9 @@ interface User {
 }
 
 /** @description 基础类型 */
-interface General {
+interface General<T = string> {
   /** 通用id */
   id: number;
   /** 通用name */
-  name: string;
+  name: T;
 }

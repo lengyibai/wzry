@@ -7,11 +7,11 @@ import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinVoice from "./childComps/SkinVoice/index.vue";
 
-import { API_VOICE } from "@/api";
 import { SkinStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
 import { LibGrid } from "@/components/common";
+import { API_VOICE_INFO } from "@/api";
 
 defineOptions({
   name: "Skin",
@@ -81,7 +81,7 @@ const onShowTool = (e: Event, v: { type: string; data: Hero.Skin }) => {
     show_poster.value = true;
     new $tool.ScaleFLIPImage(e, v.data.posterBig, v.data.posterBlur);
   } else if (v.type === "voice") {
-    API_VOICE.getSkinVoice(v.data.heroName, v.data.name).then((res) => {
+    API_VOICE_INFO.getSkinVoice(v.data.hero, v.data.name).then((res) => {
       voices.value = res;
       show_voice.value = true;
     });

@@ -29,7 +29,7 @@ const show_progress = ref(false);
 /** 英雄关系切换时重新加载皮肤页 */
 const hero_toggle = ref(true);
 /** 英雄信息 */
-const hero_data = ref<Hero.Data>(heroDefault());
+const hero_data = ref<Hero.Detail>(heroDefault());
 
 $audioStore.play("u4c5");
 
@@ -39,18 +39,12 @@ watchEffect(() => {
   nextTick(() => {
     hero_toggle.value = true;
     //切换皮肤
-    $heroDetail.skinToggle(hero_data.value.name, "");
+    $heroDetail.skinToggle(hero_data.value.id, "");
   });
 });
 
-//技能数量
-const skill_num = computed(() => {
-  return (hero_data.value.skills && hero_data.value.skills.length) || 0;
-});
 //皮肤数量
-const skin_num = computed(() => {
-  return (hero_data.value.skins && hero_data.value.skins.length) || 0;
-});
+const skin_num = computed(() => hero_data.value.skinCount || 1);
 
 /* 点击滚动索引 */
 const onToggle = (index: number) => {
@@ -71,7 +65,7 @@ const onScrollEnd = (index: number) => {
 const handleHide = () => {
   $router.replace("/hero");
   //置空语音（盾山没有语音，可以用于置空）
-  $heroDetail.setSkinVoice("盾山");
+  $heroDetail.setSkinVoice(509);
   $heroDetail.setRelationInfo();
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
@@ -118,16 +112,15 @@ onMounted($loading.close);
 
       <!--技能-->
       <HeroParallax
-        v-if="skill_num"
         class="scroll-item"
-        :bg="hero_data.skins[skin_num - 1].poster"
+        :bg="hero_data.skins[skin_num - 1]?.poster"
         :blur="hero_data.skins[skin_num - 1].posterBlur"
       >
         <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
 
       <!--皮肤-->
-      <HeroParallax v-if="skin_num" class="scroll-item" :bg="hero_data.poster">
+      <HeroParallax class="scroll-item" :bg="hero_data.poster">
         <HeroSkin v-if="hero_toggle" />
       </HeroParallax>
     </HeroScroll>

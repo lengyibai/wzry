@@ -18,14 +18,22 @@ export default {
   USER_LIST: "data_user",
   /** 记住用户信息 */
   REMEMBER_USER: "remember_user",
-  /** 英雄基础 */
-  HERO_BASIC: "data_herobasic",
+  /** 英雄头像 */
+  HERO_HEAD: "data_hero_head",
   /** 英雄图片 */
-  HERO_IMG: "data_heroimg",
+  HERO_IMAGE: "data_hero_image",
   /** 英雄图集 */
   HERO_ATLAS: "data_hero_atlas",
   /** 英雄信息 */
   HERO_DATA: "data_herodata",
+  /** 英雄名 */
+  HERO_NAME: "data_hero_name",
+  /** 英雄拼音 */
+  HERO_PINYIN: "data_hero_pinyin",
+  /** 英雄性别 */
+  HERO_GENDER: "data_hero_gender",
+  /** 英雄职业 */
+  HERO_PROFESSION: "data_hero_profession",
   /** 技能列表 */
   SKILL: "data_skill",
   /** 技能类型 */
@@ -34,6 +42,8 @@ export default {
   SKILL_EFFECT: "data_skilleffect",
   /** 皮肤 */
   SKIN: "data_skin",
+  /** 英雄皮肤图片 */
+  SKIN_IMAGE: "data_skin_image",
   /** 皮肤类型 */
   SKIN_TYPE: "data_skintype",
   /** 关系 */
