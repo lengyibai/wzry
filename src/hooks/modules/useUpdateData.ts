@@ -1,69 +1,8 @@
-import { API_DATA, API_HERO, API_HERO_INFO } from "@/api";
-import { ResultData } from "@/api/interface";
-import { CONFIG } from "@/config";
+import { LOCAL_HERO, LOCAL_VOICE } from "@/api";
+import { REQUEST } from "@/config";
 
 /** @description 同步更新远程数据 */
 const useUpdateData = () => {
-  /** 用于请求的关键字 */
-  const keywords: [string, string][] = [
-    [CONFIG.LOCAL_KEY.HERO_HEAD, "英雄头像"],
-    [CONFIG.LOCAL_KEY.HERO_IMAGE, "英雄图片"],
-    [CONFIG.LOCAL_KEY.HERO_ATLAS, "英雄图集"],
-    [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
-    [CONFIG.LOCAL_KEY.HERO_PINYIN, "英雄拼音"],
-    [CONFIG.LOCAL_KEY.HERO_GENDER, "英雄性别"],
-    [CONFIG.LOCAL_KEY.HERO_PROFESSION, "英雄职业"],
-    [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
-    [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
-    [CONFIG.LOCAL_KEY.SKILL_EFFECT, "技能效果"],
-    [CONFIG.LOCAL_KEY.SKIN, "皮肤"],
-    [CONFIG.LOCAL_KEY.SKIN_IMAGE, "皮肤图片"],
-    [CONFIG.LOCAL_KEY.SKIN_TYPE, "皮肤类型"],
-    [CONFIG.LOCAL_KEY.RELATIONSHIP, "关系"],
-    [CONFIG.LOCAL_KEY.EQUIP, "装备"],
-    [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC, "装备合成"],
-    [CONFIG.LOCAL_KEY.EQUIP_TYPE, "装备类型"],
-    [CONFIG.LOCAL_KEY.EQUIP_EFFECT, "装备效果"],
-    [CONFIG.LOCAL_KEY.EPIGRAPH, "铭文"],
-    [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE, "铭文类型"],
-    [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT, "铭文效果"],
-    [CONFIG.LOCAL_KEY.PROFESSION_TYPE, "职业"],
-    [CONFIG.LOCAL_KEY.LOCATION_TYPE, "定位"],
-    [CONFIG.LOCAL_KEY.SPECIALTY_TYPE, "特长"],
-    [CONFIG.LOCAL_KEY.PERIOD_TYPE, "时期"],
-    [CONFIG.LOCAL_KEY.CAMP_TYPE, "阵营"],
-    [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
-  ];
-  /** 请求列表 */
-  const requests: Record<string, () => Promise<ResultData<any>>> = {
-    [CONFIG.LOCAL_KEY.HERO_HEAD]: API_DATA.HeroHead,
-    [CONFIG.LOCAL_KEY.HERO_IMAGE]: API_DATA.HeroImage,
-    [CONFIG.LOCAL_KEY.HERO_ATLAS]: API_DATA.HeroAtlas,
-    [CONFIG.LOCAL_KEY.HERO_PINYIN]: API_DATA.HeroPinyin,
-    [CONFIG.LOCAL_KEY.HERO_GENDER]: API_DATA.HeroGender,
-    [CONFIG.LOCAL_KEY.HERO_PROFESSION]: API_DATA.HeroProfession,
-    [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
-    [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
-    [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
-    [CONFIG.LOCAL_KEY.SKILL_EFFECT]: API_DATA.Skilleffect,
-    [CONFIG.LOCAL_KEY.SKIN]: API_DATA.Skin,
-    [CONFIG.LOCAL_KEY.SKIN_IMAGE]: API_DATA.SkinImage,
-    [CONFIG.LOCAL_KEY.SKIN_TYPE]: API_DATA.Skintype,
-    [CONFIG.LOCAL_KEY.RELATIONSHIP]: API_DATA.Relationship,
-    [CONFIG.LOCAL_KEY.EQUIP]: API_DATA.Equip,
-    [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC]: API_DATA.EquipSynthetic,
-    [CONFIG.LOCAL_KEY.EQUIP_TYPE]: API_DATA.Equiptype,
-    [CONFIG.LOCAL_KEY.EQUIP_EFFECT]: API_DATA.Equipeffect,
-    [CONFIG.LOCAL_KEY.EPIGRAPH]: API_DATA.Epigraph,
-    [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE]: API_DATA.Epigraphtype,
-    [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT]: API_DATA.Epigrapheffect,
-    [CONFIG.LOCAL_KEY.PROFESSION_TYPE]: API_DATA.Professiontype,
-    [CONFIG.LOCAL_KEY.LOCATION_TYPE]: API_DATA.Locationtype,
-    [CONFIG.LOCAL_KEY.SPECIALTY_TYPE]: API_DATA.Specialtytype,
-    [CONFIG.LOCAL_KEY.PERIOD_TYPE]: API_DATA.Periodtype,
-    [CONFIG.LOCAL_KEY.CAMP_TYPE]: API_DATA.Camptype,
-    [CONFIG.LOCAL_KEY.RACE_TYPE]: API_DATA.RaceType,
-  };
   /** 需要更新的语音 */
   const need_update_data: Record<string, unknown[]> = {
     names: [],
@@ -85,14 +24,14 @@ const useUpdateData = () => {
   /* 加载数据 */
   const load = async () => {
     //获取英雄基础列表
-    const hero_list = (await API_HERO.getHeroName()).map((hero) => ({
+    const hero_list = LOCAL_HERO.getHeroNameList().map((hero) => ({
       id: hero.id,
-      name: hero.name,
+      name: hero.value,
     }));
 
     //获取远程数据并比对
-    const data_requests = keywords.map(async ([key, name]) => {
-      const v = (await requests[key]()).data;
+    const data_requests = REQUEST.map(async ([key, request]) => {
+      const v = (await request()).data;
       const l = getLocalData(key);
 
       //如果数据不一样，则将该数据名、数据键名、数据值加入
@@ -105,10 +44,10 @@ const useUpdateData = () => {
     await Promise.all(data_requests);
 
     //获取远程语音并比对
-    const voice_requests = hero_list.map(async (hero) => {
+    hero_list.forEach((hero) => {
       if (!["梦奇", "盾山"].includes(hero.name)) {
-        const pinyin = await API_HERO_INFO.getHeroPinyin(hero.id);
-        const v = (await API_DATA.Voice(hero.id)).data;
+        const pinyin = LOCAL_HERO.getHeroPinyinList()[hero.id].value;
+        const v = LOCAL_VOICE.getVoiceList(pinyin);
         const l = getLocalData(pinyin, "voice_");
 
         //如果数据不一样，则将该数据名、数据键名、数据值加入
@@ -119,7 +58,6 @@ const useUpdateData = () => {
         }
       }
     });
-    await Promise.all(voice_requests);
 
     //更新并覆盖本地存储数据
     for (let i = 0; i < need_update_data.keys.length; i++) {
