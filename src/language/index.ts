@@ -5,13 +5,13 @@ import zh from "./modules/zh";
 import tc from "./modules/tc";
 import en from "./modules/en";
 
-import { CONFIG } from "@/config";
+import { LOCAL_KEY } from "@/config/modules/local-key";
 
 type I18nTypeEnum = typeof zh;
 
 const messages: Record<string, I18nTypeEnum> = { zh, tc, en };
 
-const lang = localStorage.getItem(CONFIG.LOCAL_KEY.LANGUAGE);
+const lang = localStorage.getItem(LOCAL_KEY.LANGUAGE);
 
 const i18n = createI18n({
   /** 默认语言 */
@@ -31,7 +31,7 @@ const setLanguage = (index: 0 | 1 | 2) => {
   const lang = langs[index];
   setLocaleMessage(lang, messages[lang]);
   locale.value = lang;
-  localStorage.setItem(CONFIG.LOCAL_KEY.LANGUAGE, lang);
+  localStorage.setItem(LOCAL_KEY.LANGUAGE, lang);
 };
 
 /** @description 挂载 */

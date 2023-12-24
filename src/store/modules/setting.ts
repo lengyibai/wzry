@@ -6,7 +6,7 @@ import { CssVarStore } from "./cssVar";
 import { AudioStore, BarrageStore, MusicStore } from "@/store";
 import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
-import { CONFIG } from "@/config";
+import { LOCAL_KEY } from "@/config/modules/local-key";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
@@ -21,13 +21,13 @@ const SettingStore = defineStore("setting", () => {
   const { config } = ExposeData;
 
   /* 从本地获取配置进行合并 */
-  const data = localStorage.getItem(CONFIG.LOCAL_KEY.CONFIG);
+  const data = localStorage.getItem(LOCAL_KEY.CONFIG);
   if (data) config.value = { ...config.value, ...JSON.parse(data) };
-  localStorage.setItem(CONFIG.LOCAL_KEY.CONFIG, JSON.stringify(config.value));
+  localStorage.setItem(LOCAL_KEY.CONFIG, JSON.stringify(config.value));
 
   /** @description 保存配置到本地 */
   const saveLocal = () => {
-    localStorage.setItem(CONFIG.LOCAL_KEY.CONFIG, JSON.stringify(config.value));
+    localStorage.setItem(LOCAL_KEY.CONFIG, JSON.stringify(config.value));
   };
 
   const ExposeMethods = {

@@ -8,8 +8,8 @@ import RememberPwd from "./childComps/RememberPwd/index.vue";
 import { userDefaultInfo } from "@/default";
 import { AudioStore, AuthStore } from "@/store";
 import { $message, $tool } from "@/utils";
-import { CONFIG } from "@/config";
 import { KInput } from "@/components/business";
+import { LOCAL_KEY } from "@/config";
 
 interface Props {
   /** 注册成功后用于填充 */
@@ -28,7 +28,7 @@ let is_login = false;
 const remember = ref(true);
 const form = ref({ ...userDefaultInfo(), id: "123456", password: "lengyibai" });
 
-const local_user = localStorage.getItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
+const local_user = localStorage.getItem(LOCAL_KEY.REMEMBER_USER);
 
 if ($props.userInfo) {
   form.value = $props.userInfo;
@@ -51,9 +51,9 @@ const handleLogin = () => {
       $audioStore.play("e84n");
       $message("登录成功");
       if (remember.value) {
-        localStorage.setItem(CONFIG.LOCAL_KEY.REMEMBER_USER, JSON.stringify(form.value));
+        localStorage.setItem(LOCAL_KEY.REMEMBER_USER, JSON.stringify(form.value));
       } else {
-        localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
+        localStorage.removeItem(LOCAL_KEY.REMEMBER_USER);
       }
     })
     .catch(() => {

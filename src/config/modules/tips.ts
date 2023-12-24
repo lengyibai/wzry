@@ -1,5 +1,5 @@
-/** @description Tips提示信息 */
-const tips: Tips<string> = {
+/** @description 小贴士配置 */
+const TIP_TEXT: Tips<string> = {
   "3vi5": "",
   "9ms5": "顶部的弹幕可以点击查看语音来源！",
   "2rb7": "我又回来啦！",
@@ -19,4 +19,4 @@ const tips: Tips<string> = {
   "2l5m": "",
 };
 
-export default tips;
+export { TIP_TEXT };

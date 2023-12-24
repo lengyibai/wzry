@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import { useUpdateData } from "@/hooks";
 import { $message } from "@/utils";
-import { CONFIG } from "@/config";
 import { API_DATA } from "@/api";
+import { LOCAL_KEY } from "@/config/modules/local-key";
 
 const VersionStore = defineStore("version", () => {
   /** 版本计时器 */
@@ -45,19 +45,19 @@ const VersionStore = defineStore("version", () => {
   } = ExposeData;
 
   /** 本地版本 */
-  local_version.value = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_MAIN) || "";
+  local_version.value = localStorage.getItem(LOCAL_KEY.VERSION_MAIN) || "";
   /** 文件文件版本 */
-  local_file.value = localStorage.getItem(CONFIG.LOCAL_KEY.VERSION_FILE) || "";
+  local_file.value = localStorage.getItem(LOCAL_KEY.VERSION_FILE) || "";
 
   /** @description 更新本地版本 */
   const updateVersion = (v: string) => {
-    localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_MAIN, v);
+    localStorage.setItem(LOCAL_KEY.VERSION_MAIN, v);
     local_version.value = v;
   };
 
   /** @description 更新文件本地版本 */
   const updateFileVersion = (v: string) => {
-    localStorage.setItem(CONFIG.LOCAL_KEY.VERSION_FILE, v);
+    localStorage.setItem(LOCAL_KEY.VERSION_FILE, v);
     local_file.value = v;
   };
 
@@ -66,7 +66,7 @@ const VersionStore = defineStore("version", () => {
     updateAll() {
       updateVersion(remote_version.value);
       updateFileVersion(file_version.value);
-      localStorage.setItem(CONFIG.LOCAL_KEY.AUTO_UPDATE_STATUS, "0");
+      localStorage.setItem(LOCAL_KEY.AUTO_UPDATE_STATUS, "0");
       location.reload();
     },
 

@@ -6,14 +6,14 @@ import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { AuthStore, DeviceStore } from "@/store";
 import { $loading } from "@/utils";
-import { CONFIG } from "@/config";
+import { BASE_CONFIG } from "@/config/modules/base";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...staticRouter, ...errorRouter],
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
   const $authStore = AuthStore();
   const $deviceStore = DeviceStore();
 
@@ -58,7 +58,7 @@ router.beforeEach(async (to, from, next) => {
 
   //如果本地有用户信息，并且跳转到静态路由
   else if (token && to.meta.noVerify) {
-    next(CONFIG.BASE.HOME_URL);
+    next(BASE_CONFIG.HOME_URL);
     return;
   }
 

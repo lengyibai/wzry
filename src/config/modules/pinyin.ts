@@ -1,4 +1,5 @@
-export default {
+/** 拼音配置 */
+const PINYIN = {
   a: "啊阿锕",
   ai: "埃挨哎唉哀皑癌蔼矮艾碍爱隘诶捱嗳嗌嫒瑷暧砹锿霭",
   an: "鞍氨安俺按暗岸胺案谙埯揞犴庵桉铵鹌顸黯",
@@ -401,3 +402,5 @@ export default {
   fou: "缶",
   bia: "髟",
 } as Record<string, string>;
+
+export { PINYIN };

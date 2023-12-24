@@ -3,11 +3,11 @@ import { ref } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KInput from "@/components/business/Parts/K-Input/index.vue";
-import { API_USER } from "@/api";
+import { LOCAL_USER } from "@/api";
 import { AuthStore, AudioStore } from "@/store";
 import { $message } from "@/utils";
-import { CONFIG } from "@/config";
 import { LibUploadImg } from "@/components/common";
+import { LOCAL_KEY } from "@/config";
 
 interface Props {
   /** 帐号 */
@@ -43,12 +43,12 @@ const handleSave = () => {
   $audioStore.play("pj83");
 
   //更新本地当前用户信息
-  API_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(user_info.value));
+  LOCAL_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
+    localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(user_info.value));
 
     //更新记住密码
     localStorage.setItem(
-      CONFIG.LOCAL_KEY.REMEMBER_USER,
+      LOCAL_KEY.REMEMBER_USER,
       JSON.stringify({
         id: user_info.value.id,
         password: user_info.value.password,
@@ -73,7 +73,7 @@ const handleSave = () => {
     <!-- 头像 -->
     <div class="option">
       <div class="label">头像</div>
-      <LibUploadImg v-model="user_info.headImg" @update:model-value="handleContrast" />
+      <LibUploadImg v-model="user_info.avatar" @update:model-value="handleContrast" />
     </div>
 
     <!-- 用户名 -->

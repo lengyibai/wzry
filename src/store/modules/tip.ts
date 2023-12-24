@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { SettingStore } from "./setting";
 import { AudioStore } from "./audio";
 
-import { CONFIG } from "@/config";
+import { TIP_TEXT } from "@/config/modules/tips";
 
 /** @description 小贴士 */
 const TipStore = defineStore("tip", () => {
@@ -78,7 +78,7 @@ const TipStore = defineStore("tip", () => {
         show_tip.value = !show_tip.value;
         $audioStore.play("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = CONFIG.TIP_TEXT[text as keyof Tips<string>];
+        content.value = TIP_TEXT[text as keyof Tips<string>];
         align.value = p;
         btnFn.value = fn1;
         setTimeout(() => {

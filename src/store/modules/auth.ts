@@ -6,9 +6,9 @@ import { VersionStore } from "./version";
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { router } from "@/router";
-import { API_USER } from "@/api";
+import { LOCAL_USER } from "@/api";
 import { $bus, $message } from "@/utils";
-import { CONFIG } from "@/config";
+import { BASE_CONFIG, LOCAL_KEY } from "@/config";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
@@ -26,7 +26,7 @@ const AuthStore = defineStore("auth", () => {
     timer = undefined;
     userInfo.value = userDefaultInfo();
     $routerStore.removeRoutes();
-    localStorage.removeItem(CONFIG.LOCAL_KEY.USER_INFO);
+    localStorage.removeItem(LOCAL_KEY.USER_INFO);
   };
 
   /** @description 实时检测帐号状态 */
@@ -34,16 +34,16 @@ const AuthStore = defineStore("auth", () => {
     if (timer) return;
     timer = setInterval(() => {
       const token = Number(new Date().getTime().toString().slice(0, 10));
-      const data_token = localStorage.getItem(CONFIG.LOCAL_KEY.TOKEN);
+      const data_token = localStorage.getItem(LOCAL_KEY.TOKEN);
 
-      if (!localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)) {
+      if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
         $message("数据丢失，请重新登录", "error");
         clearToken();
         return;
       }
 
       //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
-      if (token - Number(data_token) > CONFIG.BASE.OVERDUE_DATA_TIME) {
+      if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
         clearInterval(timer);
         $bus.emit("confirm", {
           text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
@@ -79,14 +79,14 @@ const AuthStore = defineStore("auth", () => {
     /** @description 登录 */
     async login(form: User) {
       try {
-        const res = await API_USER.login(form);
+        const res = await LOCAL_USER.login(form);
 
         userInfo.value = res;
         userStatus.value = true;
-        localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
+        localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
         $routerStore.addRoutes(res.role);
         watchStatus();
-        router.push(CONFIG.BASE.HOME_URL);
+        router.push(BASE_CONFIG.HOME_URL);
       } catch (error) {
         $message(error as string, "error");
         return Promise.reject(error);
@@ -95,14 +95,14 @@ const AuthStore = defineStore("auth", () => {
 
     /** @description 自动登录 */
     async autoLogin() {
-      const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO) || "{}");
+      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO) || "{}");
       try {
-        const res = await API_USER.login(user).catch((err) => {
+        const res = await LOCAL_USER.login(user).catch((err) => {
           throw err;
         });
         userInfo.value = res;
         userStatus.value = true;
-        localStorage.setItem(CONFIG.LOCAL_KEY.USER_INFO, JSON.stringify(res));
+        localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
         $message("自动登录成功");
         watchStatus();
       } catch (err) {
@@ -123,9 +123,9 @@ const AuthStore = defineStore("auth", () => {
 
     /** @description 注销账号 */
     async logoff() {
-      const user = JSON.parse(localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO)!) as User;
-      const msg = await API_USER.deleteUser(user.id);
-      localStorage.removeItem(CONFIG.LOCAL_KEY.REMEMBER_USER);
+      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO)!) as User;
+      const msg = await LOCAL_USER.deleteUser(user.id);
+      localStorage.removeItem(LOCAL_KEY.REMEMBER_USER);
       clearToken();
       $message(msg);
     },

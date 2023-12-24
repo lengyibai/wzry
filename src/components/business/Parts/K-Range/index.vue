@@ -3,7 +3,7 @@ import { ref, onMounted, computed } from "vue";
 
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
-import { CONFIG } from "@/config";
+import { BASE_CONFIG } from "@/config";
 
 interface Props {
   /** 值 */
@@ -47,7 +47,7 @@ const $props = withDefaults(defineProps<Props>(), {
   showDot: true,
   trackColor: "var(--theme-el-color-one)",
   showIcon: true,
-  icon: CONFIG.BASE.IMGBED + "/image/range_icon.png",
+  icon: BASE_CONFIG.IMGBED + "/image/range_icon.png",
   showNum: true,
   step: 1,
 });

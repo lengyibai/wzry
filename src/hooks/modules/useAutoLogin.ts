@@ -1,4 +1,4 @@
-import { CONFIG } from "@/config";
+import { LOCAL_KEY } from "@/config/modules/local-key";
 import { AuthStore } from "@/store/modules/auth";
 import { RouterStore } from "@/store/modules/router";
 
@@ -7,7 +7,7 @@ const useAutoLogin = () => {
   const $authStore = AuthStore();
   const $routerStore = RouterStore();
 
-  const user = localStorage.getItem(CONFIG.LOCAL_KEY.USER_INFO);
+  const user = localStorage.getItem(LOCAL_KEY.USER_INFO);
 
   //通过获取本地用户权限，动态添加路由
   if (user) {
