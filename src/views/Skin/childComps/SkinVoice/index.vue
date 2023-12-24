@@ -5,7 +5,7 @@ import { $tool } from "@/utils";
 
 interface Props {
   /** 语音列表 */
-  voices: Hero.Voice[];
+  voices: Hero.Voices["voice"];
 }
 
 defineProps<Props>();

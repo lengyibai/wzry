@@ -7,7 +7,7 @@ declare namespace Hero {
   type Profession = "全部" | "坦克" | "战士" | "刺客" | "法师" | "射手" | "辅助";
 
   /** @description 主要数据 */
-  interface Data extends Image {
+  interface Data {
     /** 英雄id */
     id: number;
     /** 攻击 */
@@ -21,7 +21,7 @@ declare namespace Hero {
     /** 阵营 */
     camp: string;
     /** 头像 */
-    headImg: string;
+    avatar: string;
     /** 封面 */
     cover: string;
     /** 小图模糊加载 */
@@ -40,7 +40,7 @@ declare namespace Hero {
     location: string;
     /** 代号 */
     mark: string;
-    /** 名字 */
+    /** 英雄名称 */
     name: string;
     /** 时期 */
     period: string;
@@ -51,7 +51,7 @@ declare namespace Hero {
     /** 性别 */
     gender: GenderText;
     /** 职业 */
-    profession: Profession[];
+    profession: Hero.Profession[];
     /** 特长 */
     specialty: string[];
     /** 关系数量 */
@@ -59,7 +59,7 @@ declare namespace Hero {
     /** 皮肤数量 */
     skinCount: number;
     /** 技能列表 */
-    skills: Skill[][];
+    skills: Remote.Skill.Info[][];
   }
 
   /** @description 英雄详情数据 */
@@ -72,39 +72,11 @@ declare namespace Hero {
     relationships: RelationType[];
   }
 
-  /** @description 语音 */
-  interface Voice {
-    /** 语音文字 */
-    text: string;
-    /** 语音链接 */
-    link: string;
-  }
-
   /** @description 语音字列表 */
-  interface Voices {
-    /** 皮肤名 */
-    name: string;
-    /** 语音列表 */
-    voice: Voice[];
-  }
+  type Voices = Remote.Voice.Data;
 
   /** @description 技能信息 */
-  interface Skill {
-    /** 技能冷却 */
-    cd: string;
-    /** 消耗 */
-    consume: string;
-    /** 名称 */
-    name: string;
-    /** 简述 */
-    desc: string;
-    /** 图标 */
-    img: string;
-    /** 类型 */
-    type: string[];
-    /** 效果 */
-    effect?: SkillEffect[];
-  }
+  type Skill = Remote.Skill.Info;
 
   /** @description 返回的技能 */
   interface SkillParams {
@@ -114,14 +86,6 @@ declare namespace Hero {
     unit: string;
     /** 技能列表 */
     skills: Skill[][];
-  }
-
-  /** @description 技能效果 */
-  interface SkillEffect {
-    /** 技能类型 */
-    type: string;
-    /** 效果等级数值 */
-    phase: number[];
   }
 
   /** @description 技能类型 */
@@ -165,21 +129,21 @@ declare namespace Hero {
     /** 英雄名 */
     heroName: string;
     /** 英雄头像 */
-    headImage: string;
+    avatar: string;
   }
 
   /** @description 皮肤信息 */
   interface Skin {
-    /** 标识 */
+    /** 皮肤ID */
     id: number;
     /** 所属英雄id */
     hero: number;
-    /** 序号 */
-    num: number;
     /** 价格 */
     price: string;
-    /** 当获取到类型数据时，会将类型id替换为对应的类型图片链接 */
-    type: number | string;
+    /** 皮肤类型链接图 */
+    link: string;
+    /** 皮肤类型ID */
+    type: number;
     /** 皮肤类型名 */
     category: string;
     /** 性别 */
@@ -197,7 +161,7 @@ declare namespace Hero {
     /** 封面 */
     cover: string;
     /** 头像 */
-    headImg: string;
+    avatar: string;
     /** 英雄名称 */
     heroName: string;
     /** 备用英雄名称 */
@@ -206,19 +170,11 @@ declare namespace Hero {
     profession: Hero.Profession[];
   }
 
-  /*  {
-        "id": 1071,
-        "headImg": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_touxiang_1.jpg",
-        "poster": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1.jpg",
-        "posterBlur": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_blur.jpg",
-        "posterBig": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_big.jpg",
-        "cover": "https://lyb.cbb.plus/wzry-material/heros/zhaoyun_haibao_1_small.jpg"
-      }, */
   /** @description 英雄皮肤图片 */
   interface SkinImage {
     /** 英雄id */
     id: number;
-    skins: Pick<Skin, "id" | "headImg" | "poster" | "cover" | "posterBlur" | "posterBig">[];
+    skins: Pick<Skin, "id" | "avatar" | "poster" | "cover" | "posterBlur" | "posterBig">[];
   }
 
   /** @description 皮肤类型 */
@@ -281,7 +237,7 @@ interface User {
   /** 昵称 */
   nickname?: string;
   /** 头像 */
-  headImg?: string;
+  avatar?: string;
   /** token */
   wzryToken?: number;
 }
@@ -291,5 +247,5 @@ interface General<T = string> {
   /** 通用id */
   id: number;
   /** 通用name */
-  name: T;
+  value: T;
 }
