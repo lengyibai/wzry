@@ -3,9 +3,9 @@ import { defineStore } from "pinia";
 import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { API_SKIN } from "@/api";
 import { $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
+import { GAME_SKIN, KVP_TYPE } from "@/api";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
@@ -223,22 +223,17 @@ const SkinStore = defineStore("skin", () => {
     loadMore: $usePagingLoad.loadMore,
 
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
-    async getSkin() {
+    getSkin() {
       /** 用于模糊图片预加载 */
       const poster_blur: string[] = [];
 
-      const skinList = await API_SKIN.getSkin();
+      const skin_list = GAME_SKIN.getSkinList();
 
-      //设置皮肤类型图片
-      const base_data: Record<number, Hero.SkinType> = {};
-      const skinTypes = await API_SKIN.getSkinType();
-      skinTypes.forEach((type) => {
-        base_data[type.id] = type;
-      });
+      const skinTypes = KVP_TYPE.getSkinKvp();
 
-      skinList.forEach((skin) => {
-        const type = base_data[skin.type as number];
-        skin.type = type.link;
+      skin_list.forEach((skin) => {
+        const type = skinTypes[skin.type];
+        skin.link = type.link;
         skin.category = type.name;
 
         //设置备用名称，解决高亮问题
@@ -248,7 +243,7 @@ const SkinStore = defineStore("skin", () => {
         poster_blur.push(skin.posterBlur);
       });
 
-      $usePagingLoad.all_data.value = skinList;
+      $usePagingLoad.all_data.value = skin_list;
 
       $tool.preloadImages(poster_blur);
 

@@ -58,7 +58,7 @@ const handleConfirmLogoff = () => {
 };
 
 /* 注销账号 */
-const handleLogoff = async () => {
+const handleLogoff = () => {
   $authStore.logoff();
 };
 
@@ -86,7 +86,7 @@ const onCloseConfirmEdidInfo = () => {
   >
     <img
       class="head-img"
-      :src="userInfo.headImg || getImgLink('unknown')"
+      :src="userInfo.avatar || getImgLink('unknown')"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />

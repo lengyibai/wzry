@@ -9,7 +9,6 @@ import HeroSkinPrice from "./childComps/HeroSkinPrice/index.vue";
 import HeroSkinHeadImg from "./childComps/HeroSkinHeadImg/index.vue";
 
 import { heroDefault } from "@/default";
-import { API_SKIN_INFO } from "@/api";
 import { HeroDetailStore } from "@/store";
 
 const $heroDetail = HeroDetailStore();
@@ -51,14 +50,14 @@ const onTogglePoster = ([i, index]: number[]) => {
   skin_price_toggle.value = false;
 
   //延迟设置
-  setTimeout(async () => {
+  setTimeout(() => {
     const skins = hero_data.value.skins;
     const skin_type = skins[index].type;
     skin_price.value = "";
 
     //0 为伴生
     if (skin_type !== 0) {
-      active_skin_type.value = (await API_SKIN_INFO.getAssignSkinType(skin_type as number)).link;
+      active_skin_type.value = skins[index].link;
     } else {
       //伴生皮肤没有标签
       active_skin_type.value = "";

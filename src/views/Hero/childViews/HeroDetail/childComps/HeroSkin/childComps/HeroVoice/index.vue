@@ -17,7 +17,7 @@ const time = ref(0);
 /** 当前播放索引 */
 const current_index = ref(-1);
 /** 语音列表 */
-const voices = ref<Hero.Voice[]>([]);
+const voices = ref<Hero.Voices["voice"]>([]);
 
 const audioPlayer = new $tool.AudioPlayer({
   volume: 0.25,
@@ -30,13 +30,14 @@ const audioPlayer = new $tool.AudioPlayer({
 });
 
 /* 切换语音时触发 */
-$heroDetail.setSkinToggleFn(async (hero_id: number, skin_name: string) => {
-  await $heroDetail.setSkinVoice(hero_id, skin_name);
+$heroDetail.setSkinToggleFn((hero_id: number, skin_name: string) => {
+  $heroDetail.setSkinVoice(hero_id, skin_name);
   if (!skin_name) {
     //为了切换关系
     voices.value = [];
     return;
   }
+
   //如果皮肤语音相同，则不需要播放出场动画
   if (voices.value[0]?.link === $heroDetail.skin_voice[0]?.link) return;
 

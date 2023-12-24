@@ -10,7 +10,7 @@ const teamRef = ref<HTMLElement>();
 
 const imgs = ref<string[][]>([]);
 
-API_DATA.Team().then(async (res) => {
+API_DATA.Team().then((res) => {
   imgs.value = res.data;
 });
 

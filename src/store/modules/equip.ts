@@ -79,7 +79,7 @@ const EquipStore = defineStore("equip", () => {
   } = ExposeData;
 
   /* 添加合成组 */
-  const addSynthetic = async (synthetic: Equip.Synthetic) => {
+  const addSynthetic = (synthetic: Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
       //获取第一列id组
@@ -248,7 +248,7 @@ const EquipStore = defineStore("equip", () => {
 
   const ExposeMethods = {
     /** @description 获取装备列表 */
-    async getEquipList() {
+    getEquipList() {
       equip_list.value = GAME_EQUIP.getEquip();
 
       //将装备分类
