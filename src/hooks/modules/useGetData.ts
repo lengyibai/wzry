@@ -29,7 +29,6 @@ const useGetData = () => {
 
   /* 获取数据 */
   (async function getData() {
-    alert("执行下载");
     total.value = REQUEST.length;
 
     /* 下载数据 */
