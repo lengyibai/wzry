@@ -1,4 +1,3 @@
-import "@/styles/index.less";
 import { createApp } from "vue";
 
 import { useAutoLogin } from "./hooks";
@@ -8,14 +7,14 @@ import { setupLanguage } from "@/language";
 import { setupRouter } from "@/router";
 import { setupStore } from "@/store";
 
-const app = createApp(App);
-
-setupStore(app);
-useAutoLogin();
-setupRouter(app);
-setupLanguage(app);
+import "@/styles/index.less";
 
 const body = document.querySelector(".body");
 body!.addEventListener("click", () => {
+  const app = createApp(App);
+  setupStore(app);
+  useAutoLogin();
+  setupRouter(app);
+  setupLanguage(app);
   app.mount("#app");
 });
