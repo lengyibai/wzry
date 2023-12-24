@@ -9,8 +9,6 @@ defineOptions({
   name: "Add",
 });
 
-const AddHero = defineAsyncComponent(() => import("./childViews/AddHero/index.vue"));
-const AddSkin = defineAsyncComponent(() => import("./childViews/AddSkin/index.vue"));
 const AddSkill = defineAsyncComponent(() => import("./childViews/AddSkill/index.vue"));
 
 const $audioStore = AudioStore();
@@ -27,12 +25,10 @@ const box: StyleValue = {
 };
 
 const list: Record<string, string> = {
-  Hero: "英雄",
-  Skin: "皮肤",
   Skill: "技能",
 };
 
-const components = [AddHero, AddSkin, AddSkill];
+const components = [AddSkill];
 
 /* 循环判断打开页面 */
 const options: Record<
