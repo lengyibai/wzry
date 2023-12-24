@@ -5,7 +5,7 @@ import LoginBox from "./childComps/LoginBox/index.vue";
 import RegBox from "./childComps/RegBox/index.vue";
 import SelectInto from "./childComps/SelectInto/index.vue";
 
-import { API_USER } from "@/api";
+import { LOCAL_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
 import { vParticle } from "@/directives";
 import { $concise, $tool } from "@/utils";
@@ -22,7 +22,7 @@ const reg_form = ref<User>();
 
 const { getImgLink } = $concise;
 
-API_USER.userList().then((res) => {
+LOCAL_USER.userList().then((res) => {
   if (res.length) {
     is_reg.value = "登录";
   }
