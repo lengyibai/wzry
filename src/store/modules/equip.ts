@@ -3,8 +3,8 @@ import { ref } from "vue";
 
 import { top, height } from "../helper";
 
-import { API_EQUIP, API_EQUIPSYNTHETIC } from "@/api";
 import { $tool } from "@/utils";
+import { GAME_EQUIP, KVP_EQUIP } from "@/api";
 
 /** 装备Dom元素信息 */
 type EquipElement = {
@@ -87,13 +87,14 @@ const EquipStore = defineStore("equip", () => {
 
       //通过第一列获取第二列
       synthetic_id.value[1] = [];
-      try {
-        for (let i = 0; i < synthetic.to!.length; i++) {
+      //某些装备没有可合成材料，如提神水晶
+      if (synthetic.to) {
+        for (let i = 0; i < synthetic.to.length; i++) {
           const to = synthetic.to![i];
-          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
+          const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
           synthetic_id.value[1].push(res);
         }
-      } catch (error) {}
+      }
 
       //将id组从小到大排序
       synthetic_id.value[1].sort((a, b) => a.id - b.id);
@@ -102,13 +103,15 @@ const EquipStore = defineStore("equip", () => {
       synthetic_id.value[2] = [];
       for (let i = 0; i < synthetic_id.value[1].length; i++) {
         const to = synthetic_id.value[1][i];
-        const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(to.id);
-        res?.to && synthetic_id.value[2].push(...res.to);
+        const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
+        res?.to &&
+          synthetic_id.value[2].push(...res.to.map((item) => ({ id: item.id, name: item.value })));
         synthetic_id.value[2].sort((a, b) => a.id - b.id);
       }
 
       //计算二三列竖线距离顶部及高度
-      try {
+      //某些装备没有可合成第二列装备，如提神水晶
+      if (synthetic_id.value[1][0]) {
         vertical_line.value[1] = {
           top: top(active_id.value, synthetic_id.value[1][0].id),
           height: height(
@@ -117,15 +120,19 @@ const EquipStore = defineStore("equip", () => {
             synthetic_id.value[1].at(-1)!.id,
           ),
         };
+      }
+
+      //某些装备没有可合成第三列装备，如金色圣剑
+      if (synthetic_id.value[2][0]) {
         vertical_line.value[2] = {
-          top: top(synthetic_id.value[1][0]?.id, synthetic_id.value[2][0]?.id),
+          top: top(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
           height: height(
             synthetic_id.value[1][0].id,
             synthetic_id.value[2][0].id,
             synthetic_id.value[2].at(-1)?.id || 0,
           ),
         };
-      } catch (error) {}
+      }
     }
 
     /* 当点击的是第二列 */
@@ -135,23 +142,26 @@ const EquipStore = defineStore("equip", () => {
 
       //通过第二列获取第一列
       synthetic_id.value[0] = [];
-      try {
-        for (let i = 0; i < synthetic.need!.length; i++) {
+      //某些装备没有合成材料，如原初遗珠
+      if (synthetic.need) {
+        for (let i = 0; i < synthetic.need.length; i++) {
           const need = synthetic.need![i];
-          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need.id);
+          const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
           synthetic_id.value[0].push(res);
         }
-      } catch (error) {}
+      }
       synthetic_id.value[0].sort(function (a, b) {
         return a.id - b.id;
       });
 
       //通过第二列获取第三列
       synthetic_id.value[2] = [];
-      synthetic_id.value[2] = synthetic.to || [];
+      synthetic_id.value[2] =
+        synthetic.to?.map((item) => ({ id: item.id, name: item.value })) || [];
 
       //计算二三列竖线距离顶部及高度;
-      try {
+      //某些装备没有合成材料，则没有第一列装备，也就无法获取到合成材料的第一件装备的id，如原初遗珠
+      if (synthetic_id.value[0][0]) {
         vertical_line.value[1] = {
           top: top(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
           height: height(
@@ -160,7 +170,9 @@ const EquipStore = defineStore("equip", () => {
             synthetic_id.value[0].at(-1)!.id,
           ),
         };
-      } catch (error) {}
+      }
+
+      //某些装备没有可合成第三列装备，如金色圣剑
       if (synthetic_id.value[2][0]) {
         vertical_line.value[2] = {
           top: top(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
@@ -180,17 +192,15 @@ const EquipStore = defineStore("equip", () => {
 
       //通过第三列获取第二列
       synthetic_id.value[1] = [];
-      try {
-        for (let i = 0; i < synthetic.need!.length; i++) {
-          const need = synthetic.need![i];
-          const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need.id);
-          synthetic_id.value[1].push(res);
-        }
+      for (let i = 0; i < synthetic.need!.length; i++) {
+        const need = synthetic.need![i];
+        const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
+        synthetic_id.value[1].push(res);
+      }
 
-        synthetic_id.value[1].sort(function (a, b) {
-          return a.id - b.id;
-        });
-      } catch (error) {}
+      synthetic_id.value[1].sort(function (a, b) {
+        return a.id - b.id;
+      });
 
       //通过第二列获取第一列
       synthetic_id.value[0] = [];
@@ -198,7 +208,7 @@ const EquipStore = defineStore("equip", () => {
         const need = synthetic_id.value[1][i].need;
         if (need) {
           for (let i = 0; i < need?.length; i++) {
-            const res = await API_EQUIPSYNTHETIC.getEquipSynthetic(need[i].id);
+            const res = KVP_EQUIP.getEquipSyntheticKvp()[need[i].id];
             synthetic_id.value[0].push(res);
           }
         }
@@ -208,27 +218,25 @@ const EquipStore = defineStore("equip", () => {
       });
 
       //计算二三列竖线距离顶部及高度
-      try {
-        vertical_line.value[1] = {
-          top: top(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
+      vertical_line.value[1] = {
+        top: top(synthetic_id.value[0][0].id, synthetic_id.value[1][0].id),
+        height: height(
+          synthetic_id.value[1].at(-1)!.id,
+          synthetic_id.value[0][0].id,
+          synthetic_id.value[0].at(-1)!.id,
+        ),
+      };
+
+      if (synthetic_id.value[2][0]) {
+        vertical_line.value[2] = {
+          top: top(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
           height: height(
+            synthetic_id.value[2].at(-1)?.id || 0,
+            synthetic_id.value[1][0].id,
             synthetic_id.value[1].at(-1)!.id,
-            synthetic_id.value[0][0].id,
-            synthetic_id.value[0].at(-1)!.id,
           ),
         };
-
-        if (synthetic_id.value[2][0]) {
-          vertical_line.value[2] = {
-            top: top(synthetic_id.value[1][0].id, synthetic_id.value[2][0].id),
-            height: height(
-              synthetic_id.value[2].at(-1)?.id || 0,
-              synthetic_id.value[1][0].id,
-              synthetic_id.value[1].at(-1)!.id,
-            ),
-          };
-        }
-      } catch (error) {}
+      }
     }
   };
 
@@ -241,7 +249,7 @@ const EquipStore = defineStore("equip", () => {
   const ExposeMethods = {
     /** @description 获取装备列表 */
     async getEquipList() {
-      equip_list.value = await API_EQUIP.getEquip();
+      equip_list.value = GAME_EQUIP.getEquip();
 
       //将装备分类
       equip_list.value.forEach((item: Equip.Data) => {
@@ -290,12 +298,11 @@ const EquipStore = defineStore("equip", () => {
       show_details.value = true;
       active_data.value = equip_list.value.find((item) => item.id === id);
 
-      API_EQUIPSYNTHETIC.getEquipSynthetic(id).then((res) => {
-        if (!res) return;
-        active_array = res.id.toString().split("") || [];
-        synthetic.value = res;
-        addSynthetic(res);
-      });
+      const res = KVP_EQUIP.getEquipSyntheticKvp()[id];
+      if (!res) return;
+      active_array = res.id.toString().split("") || [];
+      synthetic.value = res;
+      addSynthetic(res);
     },
   };
 
