@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { API_EPIGRAPH } from "@/api";
+import { GAME_EPIGRAPH } from "@/api";
 
 /** @description 铭文相关 */
 const EpigraphStore = defineStore("epigraph", () => {
@@ -21,8 +21,8 @@ const EpigraphStore = defineStore("epigraph", () => {
 
   const ExposeMethods = {
     /** @description 获取铭文列表 */
-    async getEpigraph() {
-      const res = await API_EPIGRAPH.getEpigraphList();
+    getEpigraph() {
+      const res = GAME_EPIGRAPH.getEpigraph();
       setEpigraphList(res);
     },
     /** @description 筛选显示 */

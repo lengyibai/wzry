@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 
 import FormSelect from "@/components/business/Form/FormSelect/index.vue";
-import { API_HERO } from "@/api";
+import { KVP_HERO, LOCAL_HERO } from "@/api";
 
 interface Props {
   /** 英雄id */
@@ -19,20 +19,13 @@ const $emit = defineEmits<{
   "update:modelValue": [v: number];
 }>();
 
+/** 获取英雄基础列表 */
+const hero_list = LOCAL_HERO.getHeroNameList();
 /** 英雄名称 */
-const hero_name = ref("");
+const hero_name = KVP_HERO.getHeroNameKvp()[$props.modelValue];
+
 /** 英雄id */
 const id = ref(0);
-/** 获取英雄基础列表 */
-const hero_list = ref<General[]>([]);
-
-/* 获取英雄基础列表 */
-API_HERO.getHeroName().then((res) => {
-  hero_list.value = res;
-
-  //查找当前id的英雄名
-  hero_name.value = hero_list.value.find((item) => item.id === $props.modelValue)?.name || "";
-});
 
 /* 选择英雄后触发 */
 const selectHero = (id: string | number | unknown[]) => {

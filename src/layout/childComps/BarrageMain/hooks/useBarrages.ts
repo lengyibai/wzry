@@ -1,8 +1,8 @@
 import { onScopeDispose, ref } from "vue";
 
 import { $tool } from "@/utils";
-import { API_HERO_INFO, API_SKIN_INFO } from "@/api";
 import { BarrageStore } from "@/store/modules/barrage";
+import { GAME_HERO, GAME_SKIN } from "@/api";
 
 /** @description 弹幕辅助生成 */
 const useBarrages = () => {
@@ -23,7 +23,7 @@ const useBarrages = () => {
       /** 英雄名 */
       heroName: string;
       /** 英雄头像 */
-      headImg: string;
+      avatar: string;
       /** 皮肤名 */
       skinName: string;
       /** 皮肤海报 */
@@ -42,8 +42,8 @@ const useBarrages = () => {
       barragesMove?.destruction();
 
       barragesMove = new $tool.BarragesMove(parent, data, {
-        async click(v, e) {
-          const { skinName, heroId, link, text: voiceText } = v;
+        click(v, e) {
+          const { skinName, heroId, link, text: voiceText, id } = v;
           barrage_info.value = undefined;
           show_card.value = true;
 
@@ -51,12 +51,12 @@ const useBarrages = () => {
           audioPlay.play(link);
 
           //获取英雄和皮肤信息
-          const hero = await API_HERO_INFO.getHeroDetail(heroId);
-          const skin = (await API_SKIN_INFO.getHeroSkin(heroId, skinName)) || {};
+          const hero = GAME_HERO.getHeroDetail(heroId);
+          const skin = GAME_SKIN.getSkinKvp()[id] || {};
           barrage_info.value = {
             voiceText,
             heroName: hero.name,
-            headImg: hero.headImg,
+            avatar: hero.avatar,
             skinName,
             skinBlurPoster: skin.posterBlur || hero.posterBlur,
             skinPoster: skin.poster || hero.poster,

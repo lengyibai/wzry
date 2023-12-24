@@ -9,11 +9,11 @@ import HeroToolbar from "./childComps/HeroToolbar/index.vue";
 
 import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
-import { API_HERO_INFO } from "@/api";
 import { $tool, $loading } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { usePagingLoad } from "@/hooks";
+import { GAME_HERO } from "@/api";
 
 defineOptions({
   name: "Hero",
@@ -76,24 +76,23 @@ const changeCount = () => {
 const handleEnterCard = (data: Hero.Data) => {
   $audioStore.play("n4r4");
   //图片预加载
-  new Image().src = data.headImg;
+  new Image().src = data.avatar;
 };
 
 /* 查看详情 */
 const onViewClick = (id: number) => {
   //获取指定英雄数据
-  API_HERO_INFO.getHeroDetail(id).then((hero) => {
-    $loading.show(`${hero.name}`);
-    hero_info.value = hero;
-    $heroDetail.setHeroInfo(hero_info.value);
+  const hero = GAME_HERO.getHeroDetail(id);
+  $loading.show(`${hero.name}`);
+  hero_info.value = hero;
+  $heroDetail.setHeroInfo(hero_info.value);
 
-    //设置路由参数只用于记录，方便刷新时直接打开详情
-    $router.push({
-      path: "/hero",
-      query: {
-        id: hero_info.value.id,
-      },
-    });
+  //设置路由参数只用于记录，方便刷新时直接打开详情
+  $router.push({
+    path: "/hero",
+    query: {
+      id: hero_info.value.id,
+    },
   });
 };
 

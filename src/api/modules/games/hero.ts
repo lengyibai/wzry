@@ -1,283 +1,184 @@
-import { get } from "@/api/helper/transfer";
-import { API_SKILL, API_SKIN, API_RELATIONSHIP, API_HERO } from "@/api";
-import { CONFIG } from "@/config";
+import { GAME_SKIN, KVP_HERO, KVP_SKIN, KVP_TYPE, KVP_VOICE, LOCAL_HERO } from "@/api";
 
 /** @description 获取英雄图集列表 */
-export const getHeroAtlas = async () => {
-  const hero_atlas_list = get<Hero.Atlas[]>({
-    name: CONFIG.LOCAL_KEY.HERO_ATLAS,
-  });
-
-  //创建id作为键的初始数据
-  const base_data: Record<
-    number,
-    Pick<Hero.Data, "name" | "gender" | "profession"> & {
-      images: Hero.Image | {};
-      skinImages: Record<
-        number,
-        Pick<Hero.Skin, "id" | "cover" | "poster" | "posterBlur" | "posterBig" | "headImg">
-      >;
-    }
-  > = {};
-  hero_atlas_list.forEach((hero) => {
-    base_data[hero.id] = {
-      name: "",
-      gender: "男",
-      profession: [],
-      images: {},
-      skinImages: {},
-    };
-  });
-
-  //获取英雄名
-  const hero_names = await API_HERO.getHeroName();
-  hero_names.forEach((item) => {
-    base_data[item.id].name = item.name;
-  });
-
-  //获取英雄性别
-  const hero_genders = await API_HERO.getHeroGender();
-  hero_genders.forEach((item) => {
-    base_data[item.id].gender = item.name;
-  });
-
-  //获取英雄职业
-  const hero_professions = await API_HERO.getHeroProfession();
-  hero_professions.forEach((item) => {
-    base_data[item.id].profession = item.name;
-  });
-
-  //获取英雄海报
-  const hero_images = await API_HERO.getHeroImage();
-  hero_images.forEach((item) => {
-    base_data[item.id].images = item;
-  });
-
-  //获取英雄皮肤图片
-  const hero_skin_images = await API_SKIN.getHeroSkinImage();
-  hero_skin_images.forEach((hero) => {
-    hero.skins.forEach((skin) => {
-      base_data[hero.id].skinImages[skin.id] = skin;
-    });
-  });
+export const getHeroAtlas = () => {
+  const hero_ids = LOCAL_HERO.getHeroList();
+  const hero_name_kvp = KVP_HERO.getHeroNameKvp();
+  const hero_gender_kvp = KVP_HERO.getHeroGenderKvp();
+  const hero_image_kvp = KVP_HERO.getHeroImageKvp();
+  const hero_profession_list_kvp = KVP_HERO.getHeroProfessionListKvp();
+  const hero_skin_list_kvp = KVP_HERO.getHeroSkinListKvp();
+  const skin_image_kvp = KVP_SKIN.getSkinImageKvp();
+  const skin_name_kvp = KVP_SKIN.getSkinNameKvp();
+  const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  for (let i = 0; i < hero_atlas_list.length; i++) {
-    const hero_atla = hero_atlas_list[i];
-    const images = base_data[hero_atla.id].images;
-    hero_atla.profession = base_data[hero_atla.id].profession;
-    hero_atla.gender = base_data[hero_atla.id].gender;
-    hero_atla.name = base_data[hero_atla.id].name;
+  const hero_atlas_list: Hero.Atlas[] = [];
+  for (let i = 0; i < hero_ids.length; i++) {
+    const id = hero_ids[i];
+    const { cover, coverBlur, poster, posterBlur, posterBig } = hero_image_kvp[id];
+
     hero_atlas_list[i] = {
-      ...hero_atla,
-      ...hero_atlas_list[i],
-      ...images,
-      skins: hero_atla.skins.map((atla) => {
+      id: id,
+      name: hero_name_kvp[id],
+      gender: hero_gender_kvp[id],
+      poster,
+      cover,
+      posterBlur,
+      posterBig,
+      coverBlur,
+      profession: hero_profession_list_kvp[id].map((item) => type_profession_kvp[item]),
+      skins: hero_skin_list_kvp[id].map((skinId) => {
+        const { cover, poster, posterBlur, posterBig } = skin_image_kvp[skinId];
         return {
-          ...atla,
-          ...base_data[hero_atla.id].skinImages[atla.id],
+          id: skinId,
+          name: skin_name_kvp[skinId],
+          poster,
+          cover,
+          posterBlur,
+          posterBig,
         };
       }),
     };
   }
 
-  return Promise.resolve(hero_atlas_list);
+  return hero_atlas_list;
 };
 
 /** @description 获取英雄信息列表 */
-export const getHeroData = async () => {
-  const hero_data_list = get<Hero.Data[]>({ name: CONFIG.LOCAL_KEY.HERO_DATA });
-
-  //创建id作为键的初始数据
-  const base_data: Record<
-    number,
-    Pick<
-      Hero.Data,
-      "headImg" | "name" | "profession" | "skills" | "gender" | "skinCount" | "relationCount"
-    > & {
-      images: Hero.Image | {};
-    }
-  > = {};
-  hero_data_list.forEach((hero) => {
-    base_data[hero.id] = {
-      name: "",
-      headImg: "",
-      profession: [],
-      skills: [],
-      gender: "男",
-      skinCount: 0,
-      relationCount: 0,
-      images: {},
-    };
-  });
-
-  //统计英雄皮肤数量
-  const skin_list = await API_SKIN.getSkin();
-  skin_list.forEach((item) => {
-    base_data[item.hero].skinCount += 1;
-  });
-
-  //统计关系数量
-  const relationship_list = await API_RELATIONSHIP.getRelationship();
-  relationship_list.forEach((item) => {
-    base_data[item.id].relationCount += 1;
-  });
-
-  //获取英雄名
-  const hero_names = await API_HERO.getHeroName();
-  hero_names.forEach((item) => {
-    base_data[item.id].name = item.name;
-  });
-
-  //获取英雄头像
-  const hero_heads = await API_HERO.getHeroHead();
-  hero_heads.forEach((item) => {
-    base_data[item.id].headImg = item.name;
-  });
-
-  //获取英雄性别
-  const hero_genders = await API_HERO.getHeroGender();
-  hero_genders.forEach((item) => {
-    base_data[item.id].gender = item.name;
-  });
-
-  //获取英雄职业
-  const hero_professions = await API_HERO.getHeroProfession();
-  hero_professions.forEach((item) => {
-    base_data[item.id].profession = item.name;
-  });
-
-  //获取英雄技能
-  const hero_skills = await API_SKILL.getHeroSkill();
-  hero_skills.forEach((item) => {
-    base_data[item.id].skills = item.skills;
-  });
-
-  //获取英雄海报
-  const hero_images = await API_HERO.getHeroImage();
-  hero_images.forEach((item) => {
-    base_data[item.id].images = item;
-  });
+export const getHeroData = () => {
+  const hero_ids = LOCAL_HERO.getHeroList();
+  const hero_attr_kvp = KVP_HERO.getHeroAttrKvp();
+  const hero_camp_kvp = KVP_HERO.getHeroCampKvp();
+  const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
+  const hero_image_kvp = KVP_HERO.getHeroImageKvp();
+  const hero_height_kvp = KVP_HERO.getHeroHeightKvp();
+  const hero_identity_kvp = KVP_HERO.getHeroIdentityKvp();
+  const hero_location_kvp = KVP_HERO.getHeroLocationKvp();
+  const hero_mark_kvp = KVP_HERO.getHeroMarkKvp();
+  const hero_name_kvp = KVP_HERO.getHeroNameKvp();
+  const hero_period_kvp = KVP_HERO.getHeroPeriodKvp();
+  const hero_race_kvp = KVP_HERO.getHeroRaceKvp();
+  const hero_skill_unit_kvp = KVP_HERO.getHeroSkillUnitKvp();
+  const hero_gender_kvp = KVP_HERO.getHeroGenderKvp();
+  const hero_profession_list_kvp = KVP_HERO.getHeroProfessionListKvp();
+  const hero_specialty_list_kvp = KVP_HERO.getHeroSpecialtyListKvp();
+  const hero_skill_list_kvp = KVP_HERO.getHeroSkillListKvp();
+  const hero_relationship_list_kvp = KVP_HERO.getHeroRelationshipListKvp();
+  const hero_skin_list_kvp = KVP_HERO.getHeroSkinListKvp();
+  const type_camp_kvp = KVP_TYPE.getCampKvp();
+  const type_period_kvp = KVP_TYPE.getPeriodKvp();
+  const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  for (let i = 0; i < hero_data_list.length; i++) {
-    const hero = hero_data_list[i];
-    const images = base_data[hero.id].images;
-    hero.skinCount = base_data[hero.id].skinCount;
-    hero.relationCount = base_data[hero.id].relationCount;
-    hero.profession = base_data[hero.id].profession;
-    hero.gender = base_data[hero.id].gender;
-    hero.headImg = base_data[hero.id].headImg;
-    hero.name = base_data[hero.id].name;
-    hero.skills = base_data[hero.id].skills;
-    hero_data_list[i] = { ...hero, ...images };
+  const hero_data_list: Hero.Data[] = [];
+  for (let i = 0; i < hero_ids.length; i++) {
+    const heroId = hero_ids[i];
+    const { attack, difficulty, effect, survival } = hero_attr_kvp[heroId];
+    const { cover, coverBlur, poster, posterBlur, posterBig } = hero_image_kvp[heroId];
+    hero_data_list[i] = {
+      id: heroId,
+      attack,
+      difficulty,
+      effect,
+      survival,
+      cover,
+      coverBlur,
+      poster,
+      posterBlur,
+      posterBig,
+      camp: type_camp_kvp[hero_camp_kvp[heroId]],
+      avatar: hero_avatar_kvp[heroId],
+      height: hero_height_kvp[heroId],
+      identity: hero_identity_kvp[heroId],
+      location: hero_location_kvp[heroId],
+      mark: hero_mark_kvp[heroId],
+      name: hero_name_kvp[heroId],
+      period: type_period_kvp[hero_period_kvp[heroId]],
+      race: hero_race_kvp[heroId],
+      skillUnit: hero_skill_unit_kvp[heroId],
+      gender: hero_gender_kvp[heroId],
+      profession: hero_profession_list_kvp[heroId].map((item) => type_profession_kvp[item]),
+      specialty: hero_specialty_list_kvp[heroId],
+      skills: hero_skill_list_kvp[heroId],
+      skinCount: hero_skin_list_kvp[heroId].length,
+      relationCount: hero_relationship_list_kvp[heroId].length,
+    };
   }
-
-  return Promise.resolve(hero_data_list);
+  return hero_data_list;
 };
 
-/** @description 获取英雄图片列表 */
-export const getHeroImage = () => {
-  const hero_img_list = get<Hero.Image[]>({
-    name: CONFIG.LOCAL_KEY.HERO_IMAGE,
+/** @description 获取英雄详情 */
+export const getHeroDetail = (hero_id: number) => {
+  const heros = getHeroData();
+  const hero_name_kvp = KVP_HERO.getHeroNameKvp();
+  const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
+  const skin_voice_kvp = KVP_VOICE.getSkinVoiceKvp();
+  const hero_skin_kvp = GAME_SKIN.getHeroSkinsKvp();
+  const hero_skill_kvp = KVP_HERO.getHeroSkillListKvp();
+  const hero_relationship_kvp = KVP_HERO.getHeroRelationshipListKvp();
+  const hero = heros.find((item) => item.id === hero_id)!;
+
+  const hero_detail: Hero.Detail = {
+    ...hero,
+    voices: skin_voice_kvp[hero_id].map((item) => item.voice),
+    skins: hero_skin_kvp[hero_id],
+    skills: hero_skill_kvp[hero_id],
+    relationships: hero_relationship_kvp[hero_id].map((relationship) => {
+      return {
+        ...relationship,
+        avatar: hero_avatar_kvp[relationship.id],
+        heroName: hero_name_kvp[hero_id],
+      };
+    }),
+  };
+
+  const {
+    cover,
+    gender,
+    avatar,
+    id,
+    name: heroName,
+    poster,
+    posterBig,
+    posterBlur,
+    profession,
+  } = hero;
+
+  //皮肤列表第一个为原皮肤
+  hero_detail.skins.unshift({
+    id: 0,
+    category: "",
+    cover,
+    gender,
+    avatar,
+    hero: id,
+    heroName,
+    link: "",
+    name: "原版皮肤",
+    poster,
+    posterBig,
+    posterBlur,
+    price: "",
+    profession,
+    type: 0,
   });
-  return Promise.resolve(hero_img_list);
+
+  return hero_detail;
 };
 
-/** @description 获取英雄头像列表 */
-export const getHeroHead = () => {
-  const hero_head_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.HERO_HEAD,
-  });
-  return Promise.resolve(hero_head_list);
-};
-
-/** @description 获取英雄名称列表  */
-export const getHeroName = () => {
-  const hero_name_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.HERO_NAME,
-  });
-  return Promise.resolve(hero_name_list);
-};
-
-/** @description 获取英雄拼音列表 */
-export const getHeroPinyin = () => {
-  const hero_pinyin_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.HERO_PINYIN,
-  });
-  return Promise.resolve(hero_pinyin_list);
-};
-
-/** @description 获取英雄性别列表 */
-export const getHeroGender = () => {
-  const hero_gender_list = get<General<GenderText>[]>({
-    name: CONFIG.LOCAL_KEY.HERO_GENDER,
-  });
-  return Promise.resolve(hero_gender_list);
-};
-
-/** @description 获取英雄职业列表 */
-export const getHeroProfession = () => {
-  const hero_profession_list = get<General<Hero.Profession[]>[]>({
-    name: CONFIG.LOCAL_KEY.HERO_PROFESSION,
-  });
-  return Promise.resolve(hero_profession_list);
-};
-
-/** @description 获取技能类型列表 */
-export const getSkillType = () => {
-  const skill_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.SKILL_TYPE });
-  return Promise.resolve(skill_type_list);
-};
-
-/** @description 获取技能效果列表 */
-export const getSkillEffect = () => {
-  const skill_effect_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.SKILL_EFFECT,
-  });
-  return Promise.resolve(skill_effect_list);
-};
-
-/** @description 获取种族列表 */
-export const getRaceType = () => {
-  const race_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.RACE_TYPE });
-  return Promise.resolve(race_type_list);
-};
-
-/** @description 获取阵营列表 */
-export const getCampType = () => {
-  const camp_type_list = get<General[]>({ name: CONFIG.LOCAL_KEY.CAMP_TYPE });
-  return Promise.resolve(camp_type_list);
-};
-
-/** @description 获取定位列表 */
-export const getLocationType = () => {
-  const location_type_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.LOCATION_TYPE,
-  });
-  return Promise.resolve(location_type_list);
-};
-
-/** @description 获取时期列表 */
-export const getPeriodType = () => {
-  const period_type_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.PERIOD_TYPE,
-  });
-  return Promise.resolve(period_type_list);
-};
-
-/** @description 获取职业列表 */
-export const getProfessionType = () => {
-  const profession_type_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.PROFESSION_TYPE,
-  });
-  return Promise.resolve(profession_type_list);
-};
-
-/** @description 获取特长列表 */
-export const getSpecialtyType = () => {
-  const specialty_type_list = get<General[]>({
-    name: CONFIG.LOCAL_KEY.SPECIALTY_TYPE,
-  });
-  return Promise.resolve(specialty_type_list);
+/**
+ * @description 获取指定英雄在指定英雄的关系内的关系描述
+ * @param hero_id 查询英雄id
+ * @param child_id 查询到的英雄关系中二次查询关系的
+ */
+export const getHeroRelationshipDesc = (hero_id: number, child_id: number) => {
+  const relationship = KVP_HERO.getHeroRelationshipListKvp()[hero_id];
+  const hero = getHeroDetail(child_id);
+  const target = relationship.find((item) => item.id === child_id);
+  return {
+    relation: target?.relation,
+    desc: target?.desc,
+    gender: hero.gender,
+  };
 };

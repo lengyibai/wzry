@@ -3,9 +3,9 @@ import { ref } from "vue";
 import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { API_HERO } from "@/api";
 import { $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
+import { GAME_HERO } from "@/api";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
@@ -207,11 +207,11 @@ const HeroStore = defineStore("hero", () => {
     resetPage: $usePagingLoad.resetPage,
 
     /** @description 初次获取英雄列表并设置相关信息 */
-    async getHeroList() {
+    getHeroList() {
       /** 用于模糊图片预加载 */
       const poster_blur: string[] = [];
 
-      all_data.value = await API_HERO.getHeroData();
+      all_data.value = GAME_HERO.getHeroData();
       all_data.value.forEach((item) => {
         poster_blur.push(item.coverBlur);
       });

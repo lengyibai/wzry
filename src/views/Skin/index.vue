@@ -11,7 +11,7 @@ import { SkinStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { API_VOICE_INFO } from "@/api";
+import { GAME_VOICE } from "@/api";
 
 defineOptions({
   name: "Skin",
@@ -43,7 +43,7 @@ const show_voice = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 语音列表 */
-const voices = ref<Hero.Voice[]>([]);
+const voices = ref<Remote.Voice.Info[]>([]);
 
 getSkin();
 
@@ -81,10 +81,8 @@ const onShowTool = (e: Event, v: { type: string; data: Hero.Skin }) => {
     show_poster.value = true;
     new $tool.ScaleFLIPImage(e, v.data.posterBig, v.data.posterBlur);
   } else if (v.type === "voice") {
-    API_VOICE_INFO.getSkinVoice(v.data.hero, v.data.name).then((res) => {
-      voices.value = res;
-      show_voice.value = true;
-    });
+    voices.value = GAME_VOICE.getSkinVoice(v.data.hero, v.data.name).voice;
+    show_voice.value = true;
   }
   $audioStore.play("u4c5");
 };

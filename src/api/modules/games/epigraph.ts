@@ -1,26 +1,35 @@
-import { get } from "@/api/helper/transfer";
-import { CONFIG } from "@/config";
+import { KVP_EPIGRAPH, KVP_TYPE, LOCAL_EPIGRAPH } from "@/api";
 
 /** @description 获取铭文列表 */
-export const getEpigraphList = () => {
-  const epigraph_list = get<Epigraph.Data[]>({
-    name: CONFIG.LOCAL_KEY.EPIGRAPH,
-  });
-  return Promise.resolve(epigraph_list);
-};
+export const getEpigraph = () => {
+  const epigraph_ids = LOCAL_EPIGRAPH.getEpigraphList();
+  const epigraph_effect_kvp = KVP_EPIGRAPH.getEpigraphEffectKvp();
+  const epigraph_image_kvp = KVP_EPIGRAPH.getEpigraphImageKvp();
+  const epigraph_name_kvp = KVP_EPIGRAPH.getEpigraphNameKvp();
+  const epigraph_type_kvp = KVP_EPIGRAPH.getEpigraphTypeKvp();
+  const type_epigraph_kvp = KVP_TYPE.getEpigraphKvp();
+  const type_epigraph_effect_kvp = KVP_TYPE.getEpigraphEffectKvp();
 
-/** @description 获取铭文类型列表 */
-export const getEpigraphType = () => {
-  const epigraph_type = get<General[]>({
-    name: CONFIG.LOCAL_KEY.EPIGRAPH_TYPE,
-  });
-  return Promise.resolve(epigraph_type);
-};
+  //整合数据
+  const epigraph_list: Epigraph.Data[] = [];
+  for (let i = 0; i < epigraph_ids.length; i++) {
+    const id = epigraph_ids[i];
+    const { img, imgBlur } = epigraph_image_kvp[id];
 
-/** @description 获取铭文效果列表 */
-export const getEpigraphEffect = () => {
-  const epigraph_effect = get<General[]>({
-    name: CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT,
-  });
-  return Promise.resolve(epigraph_effect);
+    epigraph_list[i] = {
+      effect: epigraph_effect_kvp[id].map((item) => {
+        return {
+          num: item.num,
+          type: type_epigraph_effect_kvp[item.type],
+        };
+      }),
+      id,
+      img,
+      imgBlur,
+      name: epigraph_name_kvp[id],
+      type: epigraph_type_kvp[id].map((item) => type_epigraph_kvp[item]),
+    };
+  }
+
+  return epigraph_list;
 };

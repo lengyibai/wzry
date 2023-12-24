@@ -3,9 +3,9 @@ import { ref } from "vue";
 import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { API_HERO } from "@/api";
 import { $bus, $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
+import { GAME_HERO } from "@/api";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
@@ -111,13 +111,13 @@ const AtlasStore = defineStore("atlas", () => {
     loadMore: $usePagingLoad.loadMore,
 
     /* 获取图集列表 */
-    async getAtlasList() {
+    getAtlasList() {
       //用于模糊图片预加载
       const poster_blur: string[] = [];
 
-      const res = await API_HERO.getHeroAtlas();
+      const hero_atlas = GAME_HERO.getHeroAtlas();
 
-      res.forEach((hero) => {
+      hero_atlas.forEach((hero) => {
         $usePagingLoad.pushAllData({
           id: hero.id,
           cover: hero.cover,

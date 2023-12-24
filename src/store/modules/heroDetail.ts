@@ -2,8 +2,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { heroDefault } from "@/default";
-import { API_RELATIONSHIP_INFO, API_VOICE_INFO } from "@/api";
 import { getImgLink } from "@/utils/modules/concise";
+import { GAME_HERO, GAME_VOICE } from "@/api";
 
 type SkinToggleFn = (hero_id: number, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
@@ -32,7 +32,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 皮肤切换后触发函数组 */
     skinToggleFns: ref<SkinToggleFn[]>([]),
     /** 皮肤语音列表 */
-    skin_voice: ref<Hero.Voice[]>([]),
+    skin_voice: ref<Hero.Voices["voice"]>([]),
     /** 当前悬浮显示的关系信息 */
     relation_info: ref<RelationInfoType>({
       reply: "？",
@@ -42,7 +42,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       relation: "？",
       id: 0,
       heroName: "？",
-      headImage: getImgLink("unknown"),
+      avatar: getImgLink("unknown"),
     }),
   };
   const {
@@ -113,23 +113,22 @@ const HeroDetailStore = defineStore("heroDetail", () => {
           relation: "？",
           id: 0,
           heroName: "？",
-          headImage: getImgLink("unknown"),
+          avatar: getImgLink("unknown"),
         };
         return;
       }
-      API_RELATIONSHIP_INFO.getHeroRelationshipDesc(data.id, hero_info.value.id).then((res) => {
-        relation_info.value = {
-          ...data,
-          reply: res.desc || "？",
-          replyGender: res.gender === "男" ? "nan" : "nv",
-          replyRelation: res.relation || "？",
-        };
-      });
+      const res = GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
+      relation_info.value = {
+        ...data,
+        reply: res.desc || "？",
+        replyGender: res.gender === "男" ? "nan" : "nv",
+        replyRelation: res.relation || "？",
+      };
     },
 
     /** @description 获取设置皮肤语音 */
-    async setSkinVoice(hero_id: number, skin_name = "盾山") {
-      skin_voice.value = await API_VOICE_INFO.getSkinVoice(hero_id, skin_name);
+    setSkinVoice(hero_id: number, skin_name = "盾山") {
+      skin_voice.value = GAME_VOICE.getSkinVoice(hero_id, skin_name).voice || [];
     },
 
     /** @description 点击技能后触发 */

@@ -1,83 +1,66 @@
-import { API_HERO } from "@/api";
-import { get } from "@/api/helper/transfer";
-import { CONFIG } from "@/config";
+import { KVP_HERO, KVP_SKIN, KVP_TYPE, LOCAL_HERO, LOCAL_SKIN } from "@/api";
 
 /** @description 获取皮肤列表 */
-export const getSkin = async () => {
-  const skin_list = get<Hero.Skin[]>({ name: CONFIG.LOCAL_KEY.SKIN });
-
-  //创建id作为键的初始数据
-  const base_data: Record<
-    number,
-    Pick<Hero.Skin, "profession" | "gender" | "heroName"> & {
-      skin_images: Record<number, Record<number, Hero.SkinImage>>;
-    }
-  > = {};
-
-  const hero_names = await API_HERO.getHeroName();
-  hero_names.forEach((item) => {
-    base_data[item.id] = {
-      profession: [],
-      gender: "男",
-      heroName: "",
-      skin_images: {},
-    };
-  });
-
-  //获取英雄职业
-  const hero_professions = await API_HERO.getHeroProfession();
-  hero_professions.forEach((item) => {
-    base_data[item.id].profession = item.name;
-  });
-
-  //获取英雄性别
-  const hero_genders = await API_HERO.getHeroGender();
-  hero_genders.forEach((item) => {
-    base_data[item.id].gender = item.name;
-  });
-
-  //获取英雄名称
-  hero_names.forEach((item) => {
-    base_data[item.id].heroName = item.name;
-  });
-
-  //获取英雄皮肤图片
-  const skin_images = await getHeroSkinImage();
-  skin_images.forEach((item) => {
-    item.skins.forEach((skin) => {
-      base_data[item.id].skin_images[skin.id] = skin;
-    });
-  });
+export const getSkinList = () => {
+  const skin_ids = LOCAL_SKIN.getSkinList();
+  const hero_name_kvp = KVP_HERO.getHeroNameKvp();
+  const hero_gender_kvp = KVP_HERO.getHeroGenderKvp();
+  const hero_profession_kvp = KVP_HERO.getHeroProfessionListKvp();
+  const skin_name_kvp = KVP_SKIN.getSkinNameKvp();
+  const skin_hero_kvp = KVP_SKIN.getSkinHeroKvp();
+  const skin_price_kvp = KVP_SKIN.getSkinPriceKvp();
+  const skin_type_kvp = KVP_SKIN.getSkinTypeKvp();
+  const skin_image_kvp = KVP_SKIN.getSkinImageKvp();
+  const type_skin_kvp = KVP_TYPE.getSkinKvp();
+  const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  for (let i = 0; i < skin_list.length; i++) {
-    const skin = skin_list[i];
-    const skin_info = base_data[skin.hero].skin_images;
+  const hero_skin_list: Hero.Skin[] = [];
+  for (let i = 0; i < skin_ids.length; i++) {
+    const id = skin_ids[i];
+    const { poster, posterBlur, posterBig, cover, avatar } = skin_image_kvp[id];
 
-    skin.profession = base_data[skin.hero].profession;
-    skin.gender = base_data[skin.hero].gender;
-    skin.heroName = base_data[skin.hero].heroName;
-    skin_list[i] = {
-      ...skin,
-      ...skin_info[skin.id],
+    hero_skin_list[i] = {
+      id: id,
+      hero: skin_hero_kvp[id],
+      price: skin_price_kvp[id],
+      type: skin_type_kvp[id],
+      link: type_skin_kvp[skin_type_kvp[id]].link,
+      category: type_skin_kvp[skin_type_kvp[id]].name,
+      gender: hero_gender_kvp[skin_hero_kvp[id]],
+      name: skin_name_kvp[id],
+      skin_name: skin_name_kvp[id],
+      poster,
+      posterBlur,
+      posterBig,
+      cover,
+      avatar,
+      heroName: hero_name_kvp[skin_hero_kvp[id]],
+      hero_name: hero_name_kvp[skin_hero_kvp[id]],
+      profession: hero_profession_kvp[skin_hero_kvp[id]].map((item) => type_profession_kvp[item]),
     };
   }
 
-  return Promise.resolve(skin_list);
+  return hero_skin_list;
 };
 
-/** @description 获取英雄皮肤图片列表 */
-export const getHeroSkinImage = () => {
-  const skin_img_list = get<Hero.SkinImage[]>({
-    name: CONFIG.LOCAL_KEY.SKIN_IMAGE,
+/** @description 获取皮肤信息键值 */
+export const getSkinKvp = () => {
+  const data = getSkinList();
+  const kvp: Record<number, Hero.Skin> = {};
+  data.forEach((item) => {
+    kvp[item.id] = item;
   });
-  return Promise.resolve(skin_img_list);
+  return kvp;
 };
 
-/** @description 获取皮肤类型列表 */
-export const getSkinType = () => {
-  const skin_type_list = get<Hero.SkinType[]>({
-    name: CONFIG.LOCAL_KEY.SKIN_TYPE,
+/** @description 获取英雄的皮肤列表键值 */
+export const getHeroSkinsKvp = () => {
+  const skin_ids = LOCAL_HERO.getHeroSkinList();
+  const data = getSkinKvp();
+  const kvp: Record<number, Hero.Skin[]> = {};
+  skin_ids.forEach((item) => {
+    kvp[item.id] = item.value.map((id) => data[id]);
   });
-  return Promise.resolve(skin_type_list);
+  return kvp;
 };
