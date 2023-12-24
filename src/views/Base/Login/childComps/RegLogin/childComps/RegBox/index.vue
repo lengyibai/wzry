@@ -6,7 +6,7 @@ import IntoBtn from "../IntoBtn/index.vue";
 import RoleSelect from "./childComps/RoleSelect/index.vue";
 
 import { userDefaultInfo } from "@/default";
-import { API_USER } from "@/api";
+import { LOCAL_USER } from "@/api";
 import { AudioStore } from "@/store";
 import { $message } from "@/utils";
 import { KInput } from "@/components/business";
@@ -32,7 +32,7 @@ const handleReg = () => {
   }
 
   //注册
-  API_USER.register(form)
+  LOCAL_USER.register(form)
     .then(() => {
       $message("注册成功！");
       $emit("success", form);

@@ -68,7 +68,7 @@ const handleViewClick = () => {
     <transition name="fade">
       <div v-if="show" class="select-mask">
         <img
-          :src="finish ? data.headImg : getImgLink('unknown')"
+          :src="finish ? data.avatar : getImgLink('unknown')"
           class="head"
           @click="handleViewClick"
           @load="finish = true"

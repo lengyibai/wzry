@@ -183,7 +183,7 @@ onUnmounted(() => {
           : '',
       }"
     >
-      <img :src="item.headImg" alt="" />
+      <img :src="item.avatar" alt="" />
     </button>
   </div>
 </template>

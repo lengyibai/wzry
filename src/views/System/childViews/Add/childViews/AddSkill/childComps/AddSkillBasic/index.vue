@@ -61,7 +61,7 @@ const handleDel = () => $emit("del");
       <!-- 效果 -->
       <div v-if="item.effect" class="effect">
         <div v-for="(effect, index) in item.effect" :key="index" class="box">
-          <div class="type">{{ effect.type }}：</div>
+          <div class="type">{{ effect.name }}：</div>
           <div class="phase">{{ effect.phase?.join(" | ") }}</div>
         </div>
       </div>

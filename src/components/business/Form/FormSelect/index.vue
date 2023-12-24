@@ -57,7 +57,7 @@ const selected_list = ref<General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
 const handleSearch = _debounce(() => {
-  select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, ["name"]);
+  select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, ["value"]);
 }, 250);
 
 /* 获取焦点 */
@@ -125,7 +125,7 @@ watch(
       if (v) {
         //如果为数字id类型，则查找数据赋name
         if (typeof v === "number") {
-          input_value.value = $props.data.find((item) => item.id === v)?.name || "";
+          input_value.value = $props.data.find((item) => item.id === v)?.value || "";
         } else {
           input_value.value = v;
         }
@@ -176,13 +176,13 @@ watch(
               class="box"
               :class="{
                 active:
-                  current_index === index || modelValue === item.name || modelValue === item.id,
+                  current_index === index || modelValue === item.value || modelValue === item.id,
               }"
-              @mousedown="handleSelect(item.id, item.name)"
+              @mousedown="handleSelect(item.id, item.value)"
               @mouseenter="handleEnterItem(index)"
               @mouseleave="current_index = null"
             >
-              <div class="item">{{ item.name }}</div>
+              <div class="item">{{ item.value }}</div>
             </button>
           </transition-group>
         </div>

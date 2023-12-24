@@ -18,7 +18,7 @@ defineProps<Props>();
       </tr>
       <tr v-for="(item, index) in activeSkill.effect" :key="index">
         <td class="effect">
-          {{ item.type }}
+          {{ item.name }}
         </td>
         <td v-for="(_item, index) in item.phase" :key="index" class="num">
           {{ _item }}

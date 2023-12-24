@@ -52,7 +52,7 @@ setTimeout(() => {
           <template v-if="barrage_info">
             <i class="iconfont wzry-guanbi" @click="show_card = false" />
             <div class="hero-info">
-              <img :src="barrage_info?.headImg" alt="" class="head-img" />
+              <img :src="barrage_info?.avatar" alt="" class="head-img" />
               <div class="info">
                 <div class="hero-name">{{ barrage_info.heroName }}</div>
                 <div class="skin-name">{{ barrage_info.skinName }}</div>

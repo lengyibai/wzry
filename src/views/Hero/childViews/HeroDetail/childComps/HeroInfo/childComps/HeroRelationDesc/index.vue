@@ -10,7 +10,7 @@ const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
   <div class="hero-relation-desc">
     <div class="self">
       <div class="info">
-        <img :src="hero_info.headImg" alt="" class="avatar" />
+        <img :src="hero_info.avatar" alt="" class="avatar" />
         <div class="relation">
           <div class="name">{{ hero_info?.name }}</div>
           <div class="desc">{{ relation_info?.heroName }}的{{ relation_info?.replyRelation }}</div>
@@ -26,7 +26,7 @@ const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
     </div>
     <div class="reply">
       <div class="info">
-        <img :src="relation_info?.headImage" alt="" class="avatar" />
+        <img :src="relation_info?.avatar" alt="" class="avatar" />
         <div class="relation">
           <div class="name">{{ relation_info?.heroName }}</div>
           <div class="desc">{{ hero_info.name }}的{{ relation_info?.relation }}</div>

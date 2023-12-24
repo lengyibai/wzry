@@ -8,7 +8,7 @@ export const heroDefault: () => Hero.Detail = () => ({
   camp: "",
   cover: "",
   coverBlur: "",
-  headImg: "",
+  avatar: "",
   height: 0,
   identity: "",
   location: "",
@@ -33,8 +33,8 @@ export const heroDefault: () => Hero.Detail = () => ({
 
 /** @description 默认技能信息 */
 export const skillDefault: () => Hero.Skill = () => ({
-  cd: "0",
-  consume: "0",
+  cd: 0,
+  consume: 0,
   name: "",
   desc: "",
   img: "",
@@ -43,15 +43,15 @@ export const skillDefault: () => Hero.Skill = () => ({
 });
 
 /** @description 默认技能效果信息 */
-export const skillEffectDefault: () => Hero.SkillEffect = () => ({
-  type: "",
+export const skillEffectDefault: () => Remote.Skill.Effect = () => ({
+  name: "",
   phase: [],
 });
 
 /** @description 默认用户信息 */
 export const userDefaultInfo: () => User = () => ({
   id: "",
-  headImg: "",
+  avatar: "",
   nickname: "",
   password: "",
   role: 1,

@@ -2,10 +2,10 @@
 import { ref, reactive, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 
-import { API_HERO } from "@/api";
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
+import { LOCAL_TYPE } from "@/api";
 
 const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } =
   HeroStore();
@@ -47,12 +47,10 @@ const select_status = reactive([false, false, false, false, false]);
 const select_camp = reactive([{ label: "全部阵营", value: "全部阵营" }]);
 
 /* 获取阵营列表 */
-API_HERO.getCampType().then((res) => {
-  res.forEach((item) => {
-    select_camp.push({
-      label: item.name,
-      value: item.name,
-    });
+LOCAL_TYPE.getTypeCampList().forEach((item) => {
+  select_camp.push({
+    label: item.value,
+    value: item.value,
   });
 });
 

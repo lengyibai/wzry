@@ -2,7 +2,7 @@ export interface HeroInfo {
   /** 主英雄的ID */
   heroId: number;
   /** 主英雄头像 */
-  headImage: string;
+  avatar: string;
   /** 主英雄的DOM */
   heroEl?: HTMLElement;
   /** 主英雄的线条DOM */
@@ -23,7 +23,7 @@ export interface RelationshipInfo {
   /** 英雄DOM */
   heroEl: HTMLElement;
   /** 英雄头像 */
-  headImage: string;
+  avatar: string;
   /** 角度用于创建线条时设置线条角度 */
   angle: number;
   /** 关系介绍 */

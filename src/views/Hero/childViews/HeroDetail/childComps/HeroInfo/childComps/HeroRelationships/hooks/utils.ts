@@ -47,7 +47,7 @@ export class RelationshipCircle {
   /** 当前主英雄及关系信息DOM */
   private currentInfo: HeroInfo = {
     heroId: 0,
-    headImage: "",
+    avatar: "",
     heroName: "",
     heroEl: undefined,
     heroLineEl: undefined,
@@ -153,7 +153,7 @@ export class RelationshipCircle {
   private createHeroElement(relationships: Hero.RelationType[]) {
     //生成关系组DOM、坐标、角度、位置
     relationships.forEach((relationship, index) => {
-      const { headImage, heroName, id: heroId, desc } = relationship;
+      const { avatar, heroName, id: heroId, desc } = relationship;
       const { x, y, angle } = this.getPositionInfo(index);
 
       const heroEl = this.getHeroElement(relationship, x, y, index);
@@ -164,7 +164,7 @@ export class RelationshipCircle {
         heroEl,
         angle,
         desc,
-        headImage,
+        avatar,
         heroName,
       });
 
@@ -200,7 +200,7 @@ export class RelationshipCircle {
 
   /** @description 获取英雄关系DOM */
   private getHeroElement(relationship: Hero.RelationType, x: number, y: number, index: number) {
-    const { headImage, heroName, id: heroId } = relationship;
+    const { avatar, heroName, id: heroId } = relationship;
 
     //创建英雄关系DOM
     const heroEl = document.createElement("div");
@@ -212,7 +212,7 @@ export class RelationshipCircle {
     const heroHeadImage = document.createElement("img");
     heroEl.append(heroHeadImage);
     heroHeadImage.className = "head-img";
-    heroHeadImage.src = headImage;
+    heroHeadImage.src = avatar;
 
     //设置坐标，此时有从初始位置到指定位置的动画
     setTimeout(() => {
@@ -232,7 +232,7 @@ export class RelationshipCircle {
     //如果是主英雄则播放主英雄动画
     if (this.currentInfo.heroId === heroId) {
       this.currentInfo.heroEl = heroEl;
-      this.currentInfo.headImage = headImage;
+      this.currentInfo.avatar = avatar;
     }
 
     //如果不是主英雄则给关系英雄注册切换英雄的点击事件
@@ -245,7 +245,7 @@ export class RelationshipCircle {
         const {
           heroId: mainHeroId,
           heroEl: mainHeroEl,
-          headImage: mainHeroImage,
+          avatar: mainHeroImage,
           heroName: mainHeroName,
         } = this.currentInfo;
 
@@ -254,7 +254,7 @@ export class RelationshipCircle {
           heroId,
           heroName,
           heroEl,
-          headImage,
+          avatar,
           mainHeroId,
           mainHeroName,
           mainHeroEl!,
@@ -407,7 +407,7 @@ export class RelationshipCircle {
     mainHeroEl.onclick = () => {
       if (this.isAnimating) return;
       this.isAnimating = true;
-      const { heroId, heroName, heroEl, headImage } = this.currentInfo;
+      const { heroId, heroName, heroEl, avatar } = this.currentInfo;
 
       this.regRemEvent(
         mainHeroId,
@@ -417,7 +417,7 @@ export class RelationshipCircle {
         heroId,
         heroName,
         heroEl!,
-        headImage,
+        avatar,
       );
     };
   };
@@ -487,7 +487,7 @@ export class RelationshipCircle {
       heroId: mainHeroId,
       heroName: mainHeroName,
       heroEl: mainHeroEl,
-      headImage: mainHeroImg,
+      avatar: mainHeroImg,
       desc: "",
       angle: 0,
     };
@@ -495,7 +495,7 @@ export class RelationshipCircle {
     //将被点击的英雄信息替换主英雄信息
     this.currentInfo.heroId = clickHeroId;
     this.currentInfo.heroName = clickHeroName;
-    this.currentInfo.headImage = clickHeroImg;
+    this.currentInfo.avatar = clickHeroImg;
     this.currentInfo.heroEl = clickHeroEl;
     //普通英雄移动到中间后才删除原类名及切换英雄
     setTimeout(() => {
@@ -535,7 +535,7 @@ export class RelationshipCircle {
 
     //筛出所有可复用
     relationships.forEach((relationship) => {
-      const { id: heroId, heroName, headImage, desc, relation } = relationship;
+      const { id: heroId, heroName, avatar, desc, relation } = relationship;
       //筛选可复用的关系DOM
       const currentRelationship = this.currentInfo.relationshipsInfo.find((currentRelation) => {
         return relationship.id === currentRelation.heroId;
@@ -545,7 +545,7 @@ export class RelationshipCircle {
         //生成DOM并移动到中间的过程禁用动画，只有在更新位置时设置动画
         currentRelationship.heroEl.style.transitionDuration = "0s";
         currentRelationship.heroName = heroName;
-        currentRelationship.headImage = headImage;
+        currentRelationship.avatar = avatar;
         currentRelationship.heroId = heroId;
         currentRelationship.desc = desc;
         currentRelations.push(currentRelationship);
@@ -567,7 +567,7 @@ export class RelationshipCircle {
           heroEl,
           angle,
           desc,
-          headImage,
+          avatar,
           heroName,
         });
 

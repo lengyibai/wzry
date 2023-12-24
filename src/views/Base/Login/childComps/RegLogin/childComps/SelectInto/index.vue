@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { API_USER } from "@/api";
+import { LOCAL_USER } from "@/api";
 import { AudioStore } from "@/store";
 import { KButton } from "@/components/business";
 
@@ -14,7 +14,7 @@ const $audioStore = AudioStore();
 /** 本地用户列表 */
 const user_list = ref<User[]>([]);
 
-API_USER.userList().then((res) => {
+LOCAL_USER.userList().then((res) => {
   user_list.value = res;
 });
 

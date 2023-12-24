@@ -28,7 +28,7 @@ const handle = (e: Event, v: string) => {
 <template>
   <div v-maskGradient class="skin-card">
     <img v-blurLoad="data.cover" class="bg blur" :src="data.posterBlur" />
-    <img v-if="data.type" class="type" :src="data.type.toString()" />
+    <img v-if="data.link" class="type" :src="data.link" />
 
     <!-- 价格 -->
     <div class="price">
