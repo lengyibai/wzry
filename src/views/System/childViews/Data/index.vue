@@ -2,12 +2,11 @@
 import { ref, onActivated } from "vue";
 import _debounce from "lodash/debounce";
 
-import { API_DATA } from "@/api";
 import { AudioStore } from "@/store";
 import { $bus, $message, $tool } from "@/utils";
-import { CONFIG } from "@/config";
 import { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
+import { REQUEST } from "@/config";
 
 interface TableData {
   /** 数据名 */
@@ -22,6 +21,8 @@ interface TableData {
   length: number;
   /** 占用大小 */
   size: number;
+  /** 请求 */
+  request: () => Promise<ResultData<any>>;
 }
 
 defineOptions({
@@ -29,66 +30,6 @@ defineOptions({
 });
 
 const $audioStore = AudioStore();
-
-const keywords: [string, string][] = [
-  [CONFIG.LOCAL_KEY.HERO_HEAD, "英雄头像"],
-  [CONFIG.LOCAL_KEY.HERO_IMAGE, "英雄图片"],
-  [CONFIG.LOCAL_KEY.HERO_ATLAS, "英雄图集"],
-  [CONFIG.LOCAL_KEY.HERO_DATA, "英雄信息"],
-  [CONFIG.LOCAL_KEY.HERO_PINYIN, "英雄拼音"],
-  [CONFIG.LOCAL_KEY.HERO_GENDER, "英雄性别"],
-  [CONFIG.LOCAL_KEY.HERO_PROFESSION, "英雄职业"],
-  [CONFIG.LOCAL_KEY.SKILL, "技能列表"],
-  [CONFIG.LOCAL_KEY.SKILL_TYPE, "技能类型"],
-  [CONFIG.LOCAL_KEY.SKILL_EFFECT, "技能效果"],
-  [CONFIG.LOCAL_KEY.SKIN, "皮肤"],
-  [CONFIG.LOCAL_KEY.SKIN_IMAGE, "皮肤图片"],
-  [CONFIG.LOCAL_KEY.SKIN_TYPE, "皮肤类型"],
-  [CONFIG.LOCAL_KEY.RELATIONSHIP, "关系"],
-  [CONFIG.LOCAL_KEY.EQUIP, "装备"],
-  [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC, "装备合成"],
-  [CONFIG.LOCAL_KEY.EQUIP_TYPE, "装备类型"],
-  [CONFIG.LOCAL_KEY.EQUIP_EFFECT, "装备效果"],
-  [CONFIG.LOCAL_KEY.EPIGRAPH, "铭文"],
-  [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE, "铭文类型"],
-  [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT, "铭文效果"],
-  [CONFIG.LOCAL_KEY.PROFESSION_TYPE, "职业"],
-  [CONFIG.LOCAL_KEY.LOCATION_TYPE, "定位"],
-  [CONFIG.LOCAL_KEY.SPECIALTY_TYPE, "特长"],
-  [CONFIG.LOCAL_KEY.PERIOD_TYPE, "时期"],
-  [CONFIG.LOCAL_KEY.CAMP_TYPE, "阵营"],
-  [CONFIG.LOCAL_KEY.RACE_TYPE, "种族"],
-];
-
-const requests: Record<string, () => Promise<ResultData<any>>> = {
-  [CONFIG.LOCAL_KEY.HERO_HEAD]: API_DATA.HeroHead,
-  [CONFIG.LOCAL_KEY.HERO_IMAGE]: API_DATA.HeroImage,
-  [CONFIG.LOCAL_KEY.HERO_ATLAS]: API_DATA.HeroAtlas,
-  [CONFIG.LOCAL_KEY.HERO_PINYIN]: API_DATA.HeroPinyin,
-  [CONFIG.LOCAL_KEY.HERO_GENDER]: API_DATA.HeroGender,
-  [CONFIG.LOCAL_KEY.HERO_PROFESSION]: API_DATA.HeroProfession,
-  [CONFIG.LOCAL_KEY.HERO_DATA]: API_DATA.Herodata,
-  [CONFIG.LOCAL_KEY.SKILL]: API_DATA.Skill,
-  [CONFIG.LOCAL_KEY.SKILL_TYPE]: API_DATA.Skilltype,
-  [CONFIG.LOCAL_KEY.SKILL_EFFECT]: API_DATA.Skilleffect,
-  [CONFIG.LOCAL_KEY.SKIN]: API_DATA.Skin,
-  [CONFIG.LOCAL_KEY.SKIN_IMAGE]: API_DATA.SkinImage,
-  [CONFIG.LOCAL_KEY.SKIN_TYPE]: API_DATA.Skintype,
-  [CONFIG.LOCAL_KEY.RELATIONSHIP]: API_DATA.Relationship,
-  [CONFIG.LOCAL_KEY.EQUIP]: API_DATA.Equip,
-  [CONFIG.LOCAL_KEY.EQUIP_SYNTHETIC]: API_DATA.EquipSynthetic,
-  [CONFIG.LOCAL_KEY.EQUIP_TYPE]: API_DATA.Equiptype,
-  [CONFIG.LOCAL_KEY.EQUIP_EFFECT]: API_DATA.Equipeffect,
-  [CONFIG.LOCAL_KEY.EPIGRAPH]: API_DATA.Epigraph,
-  [CONFIG.LOCAL_KEY.EPIGRAPH_TYPE]: API_DATA.Epigraphtype,
-  [CONFIG.LOCAL_KEY.EPIGRAPH_EFFECT]: API_DATA.Epigrapheffect,
-  [CONFIG.LOCAL_KEY.PROFESSION_TYPE]: API_DATA.Professiontype,
-  [CONFIG.LOCAL_KEY.LOCATION_TYPE]: API_DATA.Locationtype,
-  [CONFIG.LOCAL_KEY.SPECIALTY_TYPE]: API_DATA.Specialtytype,
-  [CONFIG.LOCAL_KEY.PERIOD_TYPE]: API_DATA.Periodtype,
-  [CONFIG.LOCAL_KEY.CAMP_TYPE]: API_DATA.Camptype,
-  [CONFIG.LOCAL_KEY.RACE_TYPE]: API_DATA.RaceType,
-};
 
 /** 更新限制 */
 let update_status = true;
@@ -100,26 +41,25 @@ const table_data = ref<TableData[]>([]);
 
 /* 加载数据 */
 const load = async () => {
-  table_data.value = keywords
-    .map((item) => {
-      const v = JSON.parse(localStorage.getItem(item[0]) as string) || [];
+  table_data.value = REQUEST.map(([key, request, name]) => {
+    const v = JSON.parse(localStorage.getItem(key) as string) || [];
 
-      return {
-        name: item[1],
-        key: item[0],
-        data: v,
-        status: "正在检查...",
-        length: v.length,
-        size: $tool.getFileSizeInKB(v),
-      };
-    })
-    .sort((a, b) => {
-      return b.size - a.size;
-    });
+    return {
+      name: name,
+      key: key,
+      data: v,
+      status: "正在检查...",
+      length: v.length,
+      request,
+      size: $tool.getFileSizeInKB(v),
+    };
+  }).sort((a, b) => {
+    return b.size - a.size;
+  });
 
   for (let i = 0; i < table_data.value.length; i++) {
     const data = table_data.value[i];
-    const v = (await requests[data.key]()).data;
+    const v = (await data.request()).data;
     setStatus(data, v);
   }
 };
@@ -152,7 +92,7 @@ const handleCheck = _debounce(
     if (update_status) {
       update_status = false;
       data.status = "正在检查...";
-      const v = (await requests[data.key]()).data;
+      const v = (await data.request()).data;
       update_status = true;
       setTimeout(() => {
         setStatus(data, v);
@@ -170,7 +110,7 @@ const handleCheck = _debounce(
 
 /* 更新指定 */
 const handleUpdate = async (data: TableData) => {
-  const v = (await requests[data.key]()).data;
+  const v = (await data.request()).data;
   updateData(data.key, v);
   data.data = v;
   handleCheck(data);
@@ -181,7 +121,7 @@ const handleReplace = (data: TableData) => {
   replace_data = data;
   $bus.emit("confirm", {
     text: "即将从远程下载当前数据进行覆盖",
-    confirm: onConfirmReset,
+    confirm: onConfirmReset(data.request),
   });
 };
 
@@ -191,9 +131,11 @@ const handleExport = (data: TableData) => {
 };
 
 /* 确认覆盖 */
-const onConfirmReset = async () => {
-  const v = (await requests[replace_data.key]()).data;
-  updateData(replace_data.key, v);
+const onConfirmReset = (request: () => Promise<ResultData<any>>) => {
+  return async () => {
+    const v = (await request()).data;
+    updateData(replace_data.key, v);
+  };
 };
 
 onActivated(() => {
