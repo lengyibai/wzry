@@ -121,9 +121,7 @@ export const getHeroDetail = (hero_id: number) => {
   const heros = getHeroData();
   const hero_name_kvp = KVP_HERO.getHeroNameKvp();
   const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
-  const skin_voice_kvp = KVP_HERO.getSkinVoiceListKvp();
   const hero_skin_kvp = getHeroSkinListKvp();
-  const hero_skill_kvp = KVP_HERO.getHeroSkillListKvp();
   const hero_relationship_kvp = KVP_HERO.getHeroRelationshipListKvp();
   const hero = heros.find((item) => item.id === hero_id)!;
 
@@ -138,9 +136,7 @@ export const getHeroDetail = (hero_id: number) => {
 
   const hero_detail: Game.Hero.Detail = {
     ...hero,
-    voices: skin_voice_kvp[hero_id].map((item) => item.voice),
     skins: hero_skin_kvp[hero_id],
-    skills: hero_skill_kvp[hero_id],
     relationships,
   };
 

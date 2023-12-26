@@ -66,8 +66,6 @@ declare namespace Game {
 
     /** @description 英雄详情数据 */
     interface Detail extends Data {
-      /** 语音列表 */
-      voices: Remote.Voice.Info[][];
       /** 皮肤 */
       skins: Skin[];
       /** 关系表 */
