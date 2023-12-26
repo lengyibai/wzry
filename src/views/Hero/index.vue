@@ -199,13 +199,7 @@ onDeactivated(() => {
     <!--英雄详情页-->
     <teleport to="body">
       <transition name="clip">
-        <HeroDetail
-          v-if="show_HeroDetail"
-          :data="hero_info"
-          :voices="hero_info.voices"
-          :skins="hero_info.skins"
-          :skills="hero_info.skills"
-        />
+        <HeroDetail v-if="show_HeroDetail" />
       </transition>
     </teleport>
   </div>
