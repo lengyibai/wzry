@@ -1,4 +1,4 @@
-import { GAME_SKIN, KVP_HERO, KVP_SKIN, KVP_TYPE, KVP_VOICE, LOCAL_HERO } from "@/api";
+import { KVP_HERO, KVP_TYPE, LOCAL_HERO } from "@/api";
 
 /** @description 获取英雄图集列表 */
 export const getHeroAtlas = () => {
@@ -8,8 +8,8 @@ export const getHeroAtlas = () => {
   const hero_image_kvp = KVP_HERO.getHeroImageKvp();
   const hero_profession_list_kvp = KVP_HERO.getHeroProfessionListKvp();
   const hero_skin_list_kvp = KVP_HERO.getHeroSkinListKvp();
-  const skin_image_kvp = KVP_SKIN.getSkinImageKvp();
-  const skin_name_kvp = KVP_SKIN.getSkinNameKvp();
+  const skin_image_kvp = KVP_HERO.getSkinImageKvp();
+  const skin_name_kvp = KVP_HERO.getSkinNameKvp();
   const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
@@ -121,8 +121,8 @@ export const getHeroDetail = (hero_id: number) => {
   const heros = getHeroData();
   const hero_name_kvp = KVP_HERO.getHeroNameKvp();
   const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
-  const skin_voice_kvp = KVP_VOICE.getSkinVoiceListKvp();
-  const hero_skin_kvp = GAME_SKIN.getHeroSkinListKvp();
+  const skin_voice_kvp = KVP_HERO.getSkinVoiceListKvp();
+  const hero_skin_kvp = getHeroSkinListKvp();
   const hero_skill_kvp = KVP_HERO.getHeroSkillListKvp();
   const hero_relationship_kvp = KVP_HERO.getHeroRelationshipListKvp();
   const hero = heros.find((item) => item.id === hero_id)!;
@@ -178,6 +178,22 @@ export const getHeroDetail = (hero_id: number) => {
   return hero_detail;
 };
 
+/** @description 获取指定皮肤语音 */
+export const getSkinVoice = (hero_id: number, skin_name: string): Remote.Voice.Data => {
+  const skin_voices = KVP_HERO.getSkinVoiceListKvp();
+  const hero_name = KVP_HERO.getHeroNameKvp();
+
+  if (!["梦奇", "盾山"].includes(hero_name[hero_id])) {
+    const voice_data = skin_voices[hero_id].find((item) => item.name === skin_name);
+
+    //如果没有获取到对应皮肤的语音，则使用原皮肤语音
+    if (voice_data) return voice_data;
+    return skin_voices[hero_id].find((item) => item.name === "原皮")!;
+  } else {
+    return [] as unknown as Remote.Voice.Data;
+  }
+};
+
 /**
  * @description 获取指定英雄在指定英雄的关系内的关系描述
  * @param hero_id 查询英雄id
@@ -192,4 +208,69 @@ export const getHeroRelationshipDesc = (hero_id: number, child_id: number) => {
     desc: target.desc,
     gender: hero.gender,
   };
+};
+
+/** @description 获取皮肤列表 */
+export const getSkinList = () => {
+  const skin_ids = LOCAL_HERO.getSkinList();
+  const hero_name_kvp = KVP_HERO.getHeroNameKvp();
+  const hero_gender_kvp = KVP_HERO.getHeroGenderKvp();
+  const hero_profession_kvp = KVP_HERO.getHeroProfessionListKvp();
+  const skin_name_kvp = KVP_HERO.getSkinNameKvp();
+  const skin_hero_kvp = KVP_HERO.getSkinHeroKvp();
+  const skin_price_kvp = KVP_HERO.getSkinPriceKvp();
+  const skin_type_kvp = KVP_HERO.getSkinTypeKvp();
+  const skin_image_kvp = KVP_HERO.getSkinImageKvp();
+  const type_skin_kvp = KVP_TYPE.getSkinKvp();
+  const type_profession_kvp = KVP_TYPE.getProfessionKvp();
+
+  //整合数据
+  const hero_skin_list: Hero.Skin[] = [];
+  for (let i = 0; i < skin_ids.length; i++) {
+    const id = skin_ids[i];
+    const { poster, posterBlur, posterBig, cover, avatar } = skin_image_kvp[id];
+
+    hero_skin_list[i] = {
+      id: id,
+      hero: skin_hero_kvp[id],
+      price: skin_price_kvp[id],
+      type: skin_type_kvp[id],
+      link: type_skin_kvp[skin_type_kvp[id]].link,
+      category: type_skin_kvp[skin_type_kvp[id]].name,
+      gender: hero_gender_kvp[skin_hero_kvp[id]],
+      name: skin_name_kvp[id],
+      skin_name: skin_name_kvp[id],
+      poster,
+      posterBlur,
+      posterBig,
+      cover,
+      avatar,
+      heroName: hero_name_kvp[skin_hero_kvp[id]],
+      hero_name: hero_name_kvp[skin_hero_kvp[id]],
+      profession: hero_profession_kvp[skin_hero_kvp[id]].map((item) => type_profession_kvp[item]),
+    };
+  }
+
+  return hero_skin_list;
+};
+
+/** @description 获取皮肤信息键值 */
+export const getSkinKvp = () => {
+  const data = getSkinList();
+  const kvp: Record<number, Hero.Skin> = {};
+  data.forEach((item) => {
+    kvp[item.id] = item;
+  });
+  return kvp;
+};
+
+/** @description 获取英雄的皮肤列表键值 */
+export const getHeroSkinListKvp = () => {
+  const skin_ids = LOCAL_HERO.getHeroSkinList();
+  const data = getSkinKvp();
+  const kvp: Record<number, Hero.Skin[]> = {};
+  skin_ids.forEach((item) => {
+    kvp[item.id] = item.value.map((id) => data[id]);
+  });
+  return kvp;
 };

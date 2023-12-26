@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { heroDefault } from "@/default";
 import { getImgLink } from "@/utils/modules/concise";
-import { GAME_HERO, GAME_VOICE } from "@/api";
+import { GAME_HERO } from "@/api";
 
 type SkinToggleFn = (hero_id: number, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
@@ -128,7 +128,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
 
     /** @description 获取设置皮肤语音 */
     setSkinVoice(hero_id: number, skin_name = "盾山") {
-      skin_voice.value = GAME_VOICE.getSkinVoice(hero_id, skin_name).voice || [];
+      skin_voice.value = GAME_HERO.getSkinVoice(hero_id, skin_name).voice || [];
     },
 
     /** @description 点击技能后触发 */

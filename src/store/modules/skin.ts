@@ -5,7 +5,7 @@ import _cloneDeep from "lodash/cloneDeep";
 
 import { $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
-import { GAME_SKIN, KVP_TYPE } from "@/api";
+import { GAME_HERO, KVP_TYPE } from "@/api";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
@@ -227,7 +227,7 @@ const SkinStore = defineStore("skin", () => {
       /** 用于模糊图片预加载 */
       const poster_blur: string[] = [];
 
-      const skin_list = GAME_SKIN.getSkinList();
+      const skin_list = GAME_HERO.getSkinList();
 
       const skinTypes = KVP_TYPE.getSkinKvp();
 

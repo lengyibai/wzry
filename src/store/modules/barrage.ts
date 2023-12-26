@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { $tool } from "@/utils";
-import { KVP_HERO, KVP_VOICE, LOCAL_HERO } from "@/api";
+import { KVP_HERO, LOCAL_HERO } from "@/api";
 
 /** @description 语音弹幕 */
 const BarrageStore = defineStore("barrage", () => {
@@ -24,7 +24,7 @@ const BarrageStore = defineStore("barrage", () => {
     getBarrages() {
       const hero_names = LOCAL_HERO.getHeroNameList();
       const hero_gender = KVP_HERO.getHeroGenderKvp();
-      const hero_voices = KVP_VOICE.getSkinVoiceListKvp();
+      const hero_voices = KVP_HERO.getSkinVoiceListKvp();
       const data: Barrage[] = [];
 
       hero_names.forEach((heroName, index) => {

@@ -2,7 +2,7 @@ import { onScopeDispose, ref } from "vue";
 
 import { $tool } from "@/utils";
 import { BarrageStore } from "@/store/modules/barrage";
-import { GAME_HERO, GAME_SKIN } from "@/api";
+import { GAME_HERO } from "@/api";
 
 /** @description 弹幕辅助生成 */
 const useBarrages = () => {
@@ -52,7 +52,7 @@ const useBarrages = () => {
 
           //获取英雄和皮肤信息
           const hero = GAME_HERO.getHeroDetail(heroId);
-          const skin = GAME_SKIN.getSkinKvp()[id] || {};
+          const skin = GAME_HERO.getSkinKvp()[id] || {};
           barrage_info.value = {
             voiceText,
             heroName: hero.name,

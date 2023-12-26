@@ -1,4 +1,4 @@
-import { LOCAL_HERO, LOCAL_VOICE } from "@/api";
+import { LOCAL_HERO } from "@/api";
 import { REQUEST } from "@/config";
 
 /** @description 同步更新远程数据 */
@@ -47,7 +47,7 @@ const useUpdateData = () => {
     hero_list.forEach((hero) => {
       if (!["梦奇", "盾山"].includes(hero.name)) {
         const pinyin = LOCAL_HERO.getHeroPinyinList()[hero.id].value;
-        const v = LOCAL_VOICE.getVoiceList(pinyin);
+        const v = LOCAL_HERO.getVoiceList(pinyin);
         const l = getLocalData(pinyin, "voice_");
 
         //如果数据不一样，则将该数据名、数据键名、数据值加入
