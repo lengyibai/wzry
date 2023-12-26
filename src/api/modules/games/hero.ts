@@ -18,6 +18,21 @@ export const getHeroAtlas = () => {
     const id = hero_ids[i];
     const { cover, coverBlur, poster, posterBlur, posterBig } = hero_image_kvp[id];
 
+    //获取职业中文名称
+    const profession = hero_profession_list_kvp[id].map((item) => type_profession_kvp[item]);
+    //获取皮肤图片列表
+    const skins = hero_skin_list_kvp[id].map((skinId) => {
+      const { cover, poster, posterBlur, posterBig } = skin_image_kvp[skinId];
+      return {
+        id: skinId,
+        name: skin_name_kvp[skinId],
+        poster,
+        cover,
+        posterBlur,
+        posterBig,
+      };
+    });
+
     hero_atlas_list[i] = {
       id: id,
       name: hero_name_kvp[id],
@@ -27,18 +42,8 @@ export const getHeroAtlas = () => {
       posterBlur,
       posterBig,
       coverBlur,
-      profession: hero_profession_list_kvp[id].map((item) => type_profession_kvp[item]),
-      skins: hero_skin_list_kvp[id].map((skinId) => {
-        const { cover, poster, posterBlur, posterBig } = skin_image_kvp[skinId];
-        return {
-          id: skinId,
-          name: skin_name_kvp[skinId],
-          poster,
-          cover,
-          posterBlur,
-          posterBig,
-        };
-      }),
+      profession,
+      skins,
     };
   }
 
@@ -76,6 +81,9 @@ export const getHeroData = () => {
     const heroId = hero_ids[i];
     const { attack, difficulty, effect, survival } = hero_attr_kvp[heroId];
     const { cover, coverBlur, poster, posterBlur, posterBig } = hero_image_kvp[heroId];
+
+    //获取职业中文名称
+    const profession = hero_profession_list_kvp[heroId].map((item) => type_profession_kvp[item]);
     hero_data_list[i] = {
       id: heroId,
       attack,
@@ -98,7 +106,7 @@ export const getHeroData = () => {
       race: hero_race_kvp[heroId],
       skillUnit: hero_skill_unit_kvp[heroId],
       gender: hero_gender_kvp[heroId],
-      profession: hero_profession_list_kvp[heroId].map((item) => type_profession_kvp[item]),
+      profession,
       specialty: hero_specialty_list_kvp[heroId],
       skills: hero_skill_list_kvp[heroId],
       skinCount: hero_skin_list_kvp[heroId].length,
@@ -113,24 +121,27 @@ export const getHeroDetail = (hero_id: number) => {
   const heros = getHeroData();
   const hero_name_kvp = KVP_HERO.getHeroNameKvp();
   const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
-  const skin_voice_kvp = KVP_VOICE.getSkinVoiceKvp();
-  const hero_skin_kvp = GAME_SKIN.getHeroSkinsKvp();
+  const skin_voice_kvp = KVP_VOICE.getSkinVoiceListKvp();
+  const hero_skin_kvp = GAME_SKIN.getHeroSkinListKvp();
   const hero_skill_kvp = KVP_HERO.getHeroSkillListKvp();
   const hero_relationship_kvp = KVP_HERO.getHeroRelationshipListKvp();
   const hero = heros.find((item) => item.id === hero_id)!;
+
+  //获取关系英雄中文名称和头像
+  const relationships = hero_relationship_kvp[hero_id].map((relationship) => {
+    return {
+      ...relationship,
+      avatar: hero_avatar_kvp[relationship.id],
+      heroName: hero_name_kvp[hero_id],
+    };
+  });
 
   const hero_detail: Hero.Detail = {
     ...hero,
     voices: skin_voice_kvp[hero_id].map((item) => item.voice),
     skins: hero_skin_kvp[hero_id],
     skills: hero_skill_kvp[hero_id],
-    relationships: hero_relationship_kvp[hero_id].map((relationship) => {
-      return {
-        ...relationship,
-        avatar: hero_avatar_kvp[relationship.id],
-        heroName: hero_name_kvp[hero_id],
-      };
-    }),
+    relationships,
   };
 
   const {
@@ -145,23 +156,23 @@ export const getHeroDetail = (hero_id: number) => {
     profession,
   } = hero;
 
-  //皮肤列表第一个为原皮肤
+  //皮肤列表第一个为原皮肤，避免没有皮肤的英雄无法加载皮肤页面
   hero_detail.skins.unshift({
     id: 0,
     category: "",
+    link: "",
+    name: "原版皮肤",
+    price: "",
+    type: 0,
     cover,
     gender,
     avatar,
     hero: id,
     heroName,
-    link: "",
-    name: "原版皮肤",
     poster,
     posterBig,
     posterBlur,
-    price: "",
     profession,
-    type: 0,
   });
 
   return hero_detail;
@@ -175,10 +186,10 @@ export const getHeroDetail = (hero_id: number) => {
 export const getHeroRelationshipDesc = (hero_id: number, child_id: number) => {
   const relationship = KVP_HERO.getHeroRelationshipListKvp()[hero_id];
   const hero = getHeroDetail(child_id);
-  const target = relationship.find((item) => item.id === child_id);
+  const target = relationship.find((item) => item.id === child_id)!;
   return {
-    relation: target?.relation,
-    desc: target?.desc,
+    relation: target.relation,
+    desc: target.desc,
     gender: hero.gender,
   };
 };

@@ -16,7 +16,7 @@ export const getEpigraphEffectList = () => {
 };
 
 /** @description 获取铭文图片列表 */
-export const getEpigraphImage = () => {
+export const getEpigraphImageList = () => {
   return get<Remote.Epigraph.Image[]>({
     name: LOCAL_KEY.EPIGRAPH_IMAGE,
   });

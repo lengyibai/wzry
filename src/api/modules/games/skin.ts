@@ -55,7 +55,7 @@ export const getSkinKvp = () => {
 };
 
 /** @description 获取英雄的皮肤列表键值 */
-export const getHeroSkinsKvp = () => {
+export const getHeroSkinListKvp = () => {
   const skin_ids = LOCAL_HERO.getHeroSkinList();
   const data = getSkinKvp();
   const kvp: Record<number, Hero.Skin[]> = {};

@@ -12,7 +12,7 @@ export const getEpigraphEffectKvp = () => {
 
 /** @description 获取铭文图片键值表 */
 export const getEpigraphImageKvp = () => {
-  const data = LOCAL_EPIGRAPH.getEpigraphImage();
+  const data = LOCAL_EPIGRAPH.getEpigraphImageList();
   const kvp: Record<number, Pick<Remote.Epigraph.Image, "img" | "imgBlur">> = {};
   data.forEach((item) => {
     kvp[item.id] = {

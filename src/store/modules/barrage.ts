@@ -24,7 +24,7 @@ const BarrageStore = defineStore("barrage", () => {
     getBarrages() {
       const hero_names = LOCAL_HERO.getHeroNameList();
       const hero_gender = KVP_HERO.getHeroGenderKvp();
-      const hero_voices = KVP_VOICE.getSkinVoiceKvp();
+      const hero_voices = KVP_VOICE.getSkinVoiceListKvp();
       const data: Barrage[] = [];
 
       hero_names.forEach((heroName, index) => {

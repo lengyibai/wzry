@@ -16,18 +16,23 @@ export const getEpigraph = () => {
     const id = epigraph_ids[i];
     const { img, imgBlur } = epigraph_image_kvp[id];
 
+    //获取类型中文名称
+    const type = epigraph_type_kvp[id].map((item) => type_epigraph_kvp[item]);
+    //获取效果中文名称
+    const effect = epigraph_effect_kvp[id].map((item) => {
+      return {
+        num: item.num,
+        type: type_epigraph_effect_kvp[item.type],
+      };
+    });
+
     epigraph_list[i] = {
-      effect: epigraph_effect_kvp[id].map((item) => {
-        return {
-          num: item.num,
-          type: type_epigraph_effect_kvp[item.type],
-        };
-      }),
       id,
+      type,
+      effect,
       img,
       imgBlur,
       name: epigraph_name_kvp[id],
-      type: epigraph_type_kvp[id].map((item) => type_epigraph_kvp[item]),
     };
   }
 
