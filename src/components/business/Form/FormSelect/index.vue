@@ -12,7 +12,7 @@ interface Props {
   /** 左侧文字 */
   label: string;
   /** 数据 */
-  data: General[];
+  data: Global.General[];
   /** 传递id还是name */
   id?: boolean;
   /** 自适应大小 */
@@ -51,9 +51,9 @@ const is_unfold = ref(false);
 /** 当前点击 */
 const current_index = ref<number | null>(null);
 /** 下拉列表 */
-const select_list = ref<General[]>([]);
+const select_list = ref<Global.General[]>([]);
 /** 选择的列表 */
-const selected_list = ref<General[] | string[] | number[]>([]);
+const selected_list = ref<Global.General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
 const handleSearch = _debounce(() => {

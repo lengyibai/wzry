@@ -13,7 +13,7 @@ import { LOCAL_KEY } from "@/config";
 
 interface Props {
   /** 注册成功后用于填充 */
-  userInfo: User;
+  userInfo: Global.User;
 }
 
 const $props = defineProps<Props>();

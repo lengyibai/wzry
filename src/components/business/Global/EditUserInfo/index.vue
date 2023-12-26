@@ -26,7 +26,7 @@ const $authStore = AuthStore();
 const $audioStore = AudioStore();
 
 /** 用户信息 */
-const user_info = ref<User>({ ...$authStore.userInfo });
+const user_info = ref<Global.User>({ ...$authStore.userInfo });
 
 /* 判断信息是否被修改 */
 const handleContrast = () => {

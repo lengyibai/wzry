@@ -7,7 +7,7 @@ import { LibGrid } from "@/components/common";
 
 interface Props {
   /** 铭文列表 */
-  data: Epigraph.Data[];
+  data: Game.Epigraph.Data[];
 }
 
 const $props = defineProps<Props>();
@@ -28,7 +28,7 @@ const show = ref(false);
 /** 一行的个数 */
 const count = ref(4);
 /** 铭文列表 */
-const epigraph_list = ref<Epigraph.Data[]>([]);
+const epigraph_list = ref<Game.Epigraph.Data[]>([]);
 
 /* 实时修改一行个数 */
 const changeCount = () => {
@@ -46,7 +46,7 @@ const changeCount = () => {
 /* 每次修改更新列表 */
 watch(
   () => $props.data,
-  (v: Epigraph.Data[]) => {
+  (v: Game.Epigraph.Data[]) => {
     show.value = false;
     nextTick(() => {
       epigraph_list.value = v;

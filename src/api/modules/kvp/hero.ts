@@ -145,7 +145,7 @@ export const getHeroSkillUnitKvp = () => {
 /** @description 获取英雄性别键值表 */
 export const getHeroGenderKvp = () => {
   const data = LOCAL_HERO.getHeroGenderList();
-  const kvp: Record<number, GenderText> = {};
+  const kvp: Record<number, Game.GenderText> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
   });
@@ -175,7 +175,7 @@ export const getHeroSpecialtyListKvp = () => {
 /** @description 获取英雄技能列表键值表 */
 export const getHeroSkillListKvp = () => {
   const data = LOCAL_HERO.getSkillList();
-  const kvp: Record<number, Hero.Skill[][]> = {};
+  const kvp: Record<number, Game.Hero.Skill[][]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.skills;
   });

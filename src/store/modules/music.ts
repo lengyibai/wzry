@@ -33,7 +33,7 @@ const MusicStore = defineStore("music", () => {
     /** 显示工具栏 */
     show_tool: ref(true),
     /** 音乐列表 */
-    musics: ref<Music[]>([]),
+    musics: ref<Global.Music[]>([]),
   };
   const { musics, bgmIndex, progress, status, show_list, show_tool } = ExposeData;
 
@@ -45,7 +45,7 @@ const MusicStore = defineStore("music", () => {
     const prior = data.filter((item) => item.sort === 1);
     const lower = data.filter((item) => item.sort === 0);
 
-    musics.value = [...prior, ...$tool.shuffleArray<Music>(lower)];
+    musics.value = [...prior, ...$tool.shuffleArray<Global.Music>(lower)];
 
     //允许音频可视化跨域
     bgm.setAttribute("crossOrigin", "anonymous");

@@ -58,7 +58,7 @@ export class RelationshipCircle {
   /** 点击英雄后触发切换关系回调 */
   private clickFn!: (id: number) => void;
   /** 悬浮英雄后触发显示关系回调 */
-  private hoverFn!: (hero: Hero.RelationType) => void;
+  private hoverFn!: (hero: Game.Hero.RelationType) => void;
 
   constructor(config: Parame) {
     const {
@@ -112,7 +112,11 @@ export class RelationshipCircle {
   }
 
   /** @description 第一次创建 */
-  initCreate(relationships: Hero.RelationType[], currentHeroId: number, currentHeroName: string) {
+  initCreate(
+    relationships: Game.Hero.RelationType[],
+    currentHeroId: number,
+    currentHeroName: string,
+  ) {
     this.currentInfo.relationships = relationships;
 
     //为主英雄创建DOM，仅仅是为了获取精确的圆心位置，确定关系DOM位置，只会创建一次
@@ -150,7 +154,7 @@ export class RelationshipCircle {
   }
 
   /** @description 通过关系循环创建DOM及坐标等信息 */
-  private createHeroElement(relationships: Hero.RelationType[]) {
+  private createHeroElement(relationships: Game.Hero.RelationType[]) {
     //生成关系组DOM、坐标、角度、位置
     relationships.forEach((relationship, index) => {
       const { avatar, heroName, id: heroId, desc } = relationship;
@@ -199,7 +203,12 @@ export class RelationshipCircle {
   }
 
   /** @description 获取英雄关系DOM */
-  private getHeroElement(relationship: Hero.RelationType, x: number, y: number, index: number) {
+  private getHeroElement(
+    relationship: Game.Hero.RelationType,
+    x: number,
+    y: number,
+    index: number,
+  ) {
     const { avatar, heroName, id: heroId } = relationship;
 
     //创建英雄关系DOM
@@ -276,7 +285,7 @@ export class RelationshipCircle {
   }
 
   /** @description 通过关系循环创建线条DOM及坐标等信息 */
-  private createLineElement(relationships: Hero.RelationType[]) {
+  private createLineElement(relationships: Game.Hero.RelationType[]) {
     relationships.forEach((relationship) => {
       const { relation, heroName, id: heroId } = relationship;
 
@@ -523,7 +532,7 @@ export class RelationshipCircle {
   }
 
   /** @description 切换关系 */
-  toggleRelations(relationships: Hero.RelationType[]) {
+  toggleRelations(relationships: Game.Hero.RelationType[]) {
     this.currentInfo.relationships = relationships;
     this.relationLength = relationships.length;
     this.angleIncrement = 360 / this.relationLength;

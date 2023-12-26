@@ -38,7 +38,7 @@ const useBarrages = () => {
 
   const ExposeMethods = {
     /** @description 初始化 */
-    init(data: Barrage[], parent: HTMLElement, card: HTMLElement) {
+    init(data: Global.Barrage[], parent: HTMLElement, card: HTMLElement) {
       barragesMove?.destruction();
 
       barragesMove = new $tool.BarragesMove(parent, data, {

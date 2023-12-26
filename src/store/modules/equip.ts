@@ -22,7 +22,7 @@ const EquipStore = defineStore("equip", () => {
   let active_array: string[] = [];
 
   /** 相关职业列表 */
-  const type_list: Record<Equip.Category, Equip.Data[][]> = {
+  const type_list: Record<Game.Equip.Category, Game.Equip.Data[][]> = {
     攻击: [[], [], []],
     法术: [[], [], []],
     防御: [[], [], []],
@@ -31,7 +31,7 @@ const EquipStore = defineStore("equip", () => {
     游走: [[], [], []],
   };
   /** 相关职业索引 */
-  const type_index: Record<Equip.Category, number> = {
+  const type_index: Record<Game.Equip.Category, number> = {
     攻击: 1,
     法术: 2,
     防御: 3,
@@ -50,15 +50,15 @@ const EquipStore = defineStore("equip", () => {
     /** 显示装备详情 */
     show_details: ref(false),
     /** 当前被点击的装备详情 */
-    active_data: ref<Equip.Data>(),
+    active_data: ref<Game.Equip.Data>(),
     /** 当前点击的装备合成 */
-    synthetic: ref<Equip.Synthetic>({ id: 0, name: "" }),
+    synthetic: ref<Game.Equip.Synthetic>({ id: 0, name: "" }),
     /** 当前点击的装备合成相关id */
-    synthetic_id: ref<Equip.Synthetic[][]>([[], [], []]),
+    synthetic_id: ref<Game.Equip.Synthetic[][]>([[], [], []]),
     /** 装备总列表 */
-    equip_list: ref<Equip.Data[]>([]),
+    equip_list: ref<Game.Equip.Data[]>([]),
     /** 三列装备数据 */
-    equip_list_column: ref<Equip.Data[][]>([[], [], []]),
+    equip_list_column: ref<Game.Equip.Data[][]>([[], [], []]),
     /** 二三列的竖线 */
     vertical_line: ref<{ top?: string; height?: string }[]>([
       {},
@@ -79,7 +79,7 @@ const EquipStore = defineStore("equip", () => {
   } = ExposeData;
 
   /* 添加合成组 */
-  const addSynthetic = (synthetic: Equip.Synthetic) => {
+  const addSynthetic = (synthetic: Game.Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
       //获取第一列id组
@@ -252,7 +252,7 @@ const EquipStore = defineStore("equip", () => {
       equip_list.value = GAME_EQUIP.getEquip();
 
       //将装备分类
-      equip_list.value.forEach((item: Equip.Data) => {
+      equip_list.value.forEach((item: Game.Equip.Data) => {
         type_list[item.type][item.level - 1].push(item);
       });
 
@@ -264,7 +264,7 @@ const EquipStore = defineStore("equip", () => {
     },
 
     /** @description 设置装备类型 */
-    async setType(type: Equip.Category) {
+    async setType(type: Game.Equip.Category) {
       //避免重复点击调用
       if (category.value === type) return;
 

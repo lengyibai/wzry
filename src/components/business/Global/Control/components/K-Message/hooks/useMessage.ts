@@ -8,12 +8,12 @@ export default () => {
 
   const ExposeData = {
     /** 消息队列 */
-    messages: reactive<MsgText[]>([]),
+    messages: reactive<Global.Message.Info[]>([]),
   };
   const { messages } = ExposeData;
 
   const ExposeMethods = {
-    msg(text = "未设置提示", type: MsgType = "info") {
+    msg(text = "未设置提示", type: Global.Message.Status = "info") {
       /** 获取文字长度 */
       const text_length = text.split("").length / 3;
       /** 通过文字长度，设置显示时长 */
@@ -21,7 +21,7 @@ export default () => {
 
       //延迟提醒，避免与点击操作同时播放
       setTimeout(() => {
-        const msgName: Record<string, Partial<keyof AudioKeys>> = {
+        const msgName: Record<string, Partial<keyof Global.Audio.Key>> = {
           info: "n74s",
           warning: "p6q3",
           error: "vw31",
@@ -31,7 +31,7 @@ export default () => {
         $audioStore.play(msgName[type]);
 
         //创建消息内容
-        const msgText: MsgText = {
+        const msgText: Global.Message.Info = {
           id: dayjs().unix(),
           text,
           type,

@@ -4,15 +4,15 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 
 const $emit = defineEmits<{
-  change: [v: Gender];
+  change: [v: Game.GenderId];
 }>();
 
 const $audioStore = AudioStore();
 
-const gender = ref<Gender>(0);
+const gender = ref<Game.GenderId>(0);
 
 /* 选择触发 */
-const handerSetGender = (v: Gender) => {
+const handerSetGender = (v: Game.GenderId) => {
   gender.value = v;
   $emit("change", v);
   $audioStore.play();

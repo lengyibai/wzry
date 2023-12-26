@@ -19,7 +19,7 @@ const toggleRef = ref<HTMLElement>();
 /** 显示技能切换图标 */
 const show = ref(false);
 /** 技能信息 */
-const hero_skill = ref<Hero.Skill>();
+const hero_skill = ref<Game.Hero.Skill>();
 
 /* 当滚动到技能页，播放出场动画 */
 setScollFn("skinIcon", (index) => {
@@ -51,7 +51,7 @@ setScollFn("skinIcon", (index) => {
 });
 
 /* 选择技能 */
-const onSelectSkill = (skill: Hero.Skill) => {
+const onSelectSkill = (skill: Game.Hero.Skill) => {
   setTimeout(() => {
     hero_skill.value = skill;
   }, 375);

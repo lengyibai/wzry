@@ -5,16 +5,16 @@ import { BASE_CONFIG, LOCAL_KEY } from "@/config";
 
 /** @description 获取本地用户列表 */
 export const userList = () => {
-  return Promise.resolve(get<User[]>({ name: LOCAL_KEY.USER_LIST }));
+  return Promise.resolve(get<Global.User[]>({ name: LOCAL_KEY.USER_LIST }));
 };
 
 /**
  * @description: 登录
  * @param form 表单对象
  */
-export const login = (form: User) => {
+export const login = (form: Global.User) => {
   //通过帐号查询用户
-  const data = get<User>({
+  const data = get<Global.User>({
     name: LOCAL_KEY.USER_LIST,
     key: "id",
     value: form.id,
@@ -63,7 +63,7 @@ export const login = (form: User) => {
  */
 export const userInfo = (token: string) => {
   //通过token来查询用户
-  return get<User>({
+  return get<Global.User>({
     name: LOCAL_KEY.USER_LIST,
     key: "wzryToken",
     value: token,
@@ -74,9 +74,9 @@ export const userInfo = (token: string) => {
  * @description: 注册
  * @param form 表单对象
  */
-export const register = (form: User) => {
+export const register = (form: Global.User) => {
   //通过帐号查询用户
-  const data = get<User>({
+  const data = get<Global.User>({
     name: LOCAL_KEY.USER_LIST,
     key: "id",
     value: form.id,
@@ -86,7 +86,7 @@ export const register = (form: User) => {
   if (data) {
     return Promise.reject("用户已存在，请直接登录");
   } else {
-    return Promise.resolve(post<User>(LOCAL_KEY.USER_LIST, form));
+    return Promise.resolve(post<Global.User>(LOCAL_KEY.USER_LIST, form));
   }
 };
 
@@ -95,7 +95,7 @@ export const register = (form: User) => {
  * @param id 用户id
  * @param info 用户信息
  */
-export const updateUser = (id: string, info: Partial<User>) => {
+export const updateUser = (id: string, info: Partial<Global.User>) => {
   patch({ name: LOCAL_KEY.USER_LIST, key: "id", value: id, v: info }, true);
   //返回新信息
   return Promise.resolve(info);

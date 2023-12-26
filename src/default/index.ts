@@ -1,5 +1,5 @@
 /** @description 默认英雄信息 */
-export const heroDefault: () => Hero.Detail = () => ({
+export const heroDefault: () => Game.Hero.Detail = () => ({
   id: 0,
   attack: 0,
   difficulty: 0,
@@ -32,7 +32,7 @@ export const heroDefault: () => Hero.Detail = () => ({
 });
 
 /** @description 默认技能信息 */
-export const skillDefault: () => Hero.Skill = () => ({
+export const skillDefault: () => Game.Hero.Skill = () => ({
   cd: 0,
   consume: 0,
   name: "",
@@ -49,7 +49,7 @@ export const skillEffectDefault: () => Remote.Skill.Effect = () => ({
 });
 
 /** @description 默认用户信息 */
-export const userDefaultInfo: () => User = () => ({
+export const userDefaultInfo: () => Global.User = () => ({
   id: "",
   avatar: "",
   nickname: "",
@@ -58,7 +58,7 @@ export const userDefaultInfo: () => User = () => ({
 });
 
 /** @description 默认配置信息 */
-export const configDefault: () => SettingConfig = () => ({
+export const configDefault: () => Global.SettingConfig = () => ({
   tip: true,
   audio: true,
   audioVolume: 50,

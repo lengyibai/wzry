@@ -7,14 +7,14 @@ import { GAME_EPIGRAPH } from "@/api";
 const EpigraphStore = defineStore("epigraph", () => {
   const ExposeData = {
     /** 铭文列表 */
-    epigraph_list: ref<Epigraph.Data[]>([]),
+    epigraph_list: ref<Game.Epigraph.Data[]>([]),
     /** 筛选后的列表 */
-    filter_list: ref<Epigraph.Data[]>([]),
+    filter_list: ref<Game.Epigraph.Data[]>([]),
   };
   const { epigraph_list, filter_list } = ExposeData;
 
   /* 设置铭文列表 */
-  const setEpigraphList = (data: Epigraph.Data[]) => {
+  const setEpigraphList = (data: Game.Epigraph.Data[]) => {
     epigraph_list.value = data;
     ExposeMethods.setFilter("全部");
   };
@@ -26,7 +26,7 @@ const EpigraphStore = defineStore("epigraph", () => {
       setEpigraphList(res);
     },
     /** @description 筛选显示 */
-    setFilter(type: Epigraph.Category) {
+    setFilter(type: Game.Epigraph.Category) {
       if (type === "全部") {
         filter_list.value = epigraph_list.value;
       } else {

@@ -14,7 +14,7 @@ import { HeroDetailStore } from "@/store";
 const $heroDetail = HeroDetailStore();
 
 /** 英雄数据 */
-const hero_data = ref<Hero.Detail>(heroDefault());
+const hero_data = ref<Game.Hero.Detail>(heroDefault());
 
 hero_data.value = $heroDetail.hero_info;
 

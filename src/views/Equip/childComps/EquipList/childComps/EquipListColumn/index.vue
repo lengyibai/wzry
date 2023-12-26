@@ -8,13 +8,13 @@ import { EquipStore } from "@/store";
 
 interface Props {
   /** 装备列表 */
-  equipList: Equip.Data[];
+  equipList: Game.Equip.Data[];
   /** 线条数据 */
   lineData: {
     /** 装备id */
     id: number;
     /** 可合成的装备 */
-    to?: General[];
+    to?: Remote.Equip.Name[];
   }[];
   /** 列索引 */
   index: number;
@@ -29,7 +29,7 @@ const equipListRef = ref<HTMLElement>();
 /** 淡入显示列表 */
 const show = ref(true);
 /** 装备列表 */
-const equip_list = ref<Equip.Data[]>([]);
+const equip_list = ref<Game.Equip.Data[]>([]);
 
 /* 控制左右线条显示 */
 const showLine = (id: number, line: string) => {

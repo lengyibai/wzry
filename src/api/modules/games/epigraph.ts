@@ -11,7 +11,7 @@ export const getEpigraph = () => {
   const type_epigraph_effect_kvp = KVP_TYPE.getEpigraphEffectKvp();
 
   //整合数据
-  const epigraph_list: Epigraph.Data[] = [];
+  const epigraph_list: Game.Epigraph.Data[] = [];
   for (let i = 0; i < epigraph_ids.length; i++) {
     const id = epigraph_ids[i];
     const { img, imgBlur } = epigraph_image_kvp[id];

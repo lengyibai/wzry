@@ -29,7 +29,7 @@ const show_progress = ref(false);
 /** 英雄关系切换时重新加载皮肤页 */
 const hero_toggle = ref(true);
 /** 英雄信息 */
-const hero_data = ref<Hero.Detail>(heroDefault());
+const hero_data = ref<Game.Hero.Detail>(heroDefault());
 
 $audioStore.play("u4c5");
 

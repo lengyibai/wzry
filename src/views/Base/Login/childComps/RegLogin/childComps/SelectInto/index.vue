@@ -12,7 +12,7 @@ const $emit = defineEmits<{
 const $audioStore = AudioStore();
 
 /** 本地用户列表 */
-const user_list = ref<User[]>([]);
+const user_list = ref<Global.User[]>([]);
 
 LOCAL_USER.userList().then((res) => {
   user_list.value = res;

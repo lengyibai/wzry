@@ -1,5 +1,5 @@
 /** @description 小贴士配置 */
-const TIP_TEXT: Tips<string> = {
+const TIP_TEXT: Global.Tip.Key<string> = {
   "3vi5": "",
   "9ms5": "顶部的弹幕可以点击查看语音来源！",
   "2rb7": "我又回来啦！",

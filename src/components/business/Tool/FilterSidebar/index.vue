@@ -22,7 +22,7 @@ const $collapseStore = CollapseStore();
 const $equipStore = EquipStore();
 const $atlasStore = AtlasStore();
 
-const hero_type: { name: Hero.Profession; icon: string }[] = [
+const hero_type: { name: Game.Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
   { name: "坦克", icon: "wzry-tanke" },
   { name: "战士", icon: "wzry-zhanshi" },
@@ -32,7 +32,7 @@ const hero_type: { name: Hero.Profession; icon: string }[] = [
   { name: "辅助", icon: "wzry-fuzhu" },
 ];
 
-const equip_type: { name: Equip.Category; icon: string }[] = [
+const equip_type: { name: Game.Equip.Category; icon: string }[] = [
   { name: "攻击", icon: "wzry-gongji" },
   { name: "法术", icon: "wzry-fashu" },
   { name: "防御", icon: "wzry-fangyu" },
@@ -61,12 +61,12 @@ const filter_type = computed(() => {
 });
 
 /* 选择类型并筛选显示 */
-const handleSelect = (name: Hero.Profession | Equip.Category) => {
+const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
   const obj = {
-    hero: () => $heroStore.setProfessional(name as Hero.Profession),
-    skin: () => $skinStore.setProfessional(name as Hero.Profession),
-    atlas: () => $atlasStore.setProfessional(name as Hero.Profession),
-    equip: () => $equipStore.setType(name as Equip.Category),
+    hero: () => $heroStore.setProfessional(name as Game.Hero.Profession),
+    skin: () => $skinStore.setProfessional(name as Game.Hero.Profession),
+    atlas: () => $atlasStore.setProfessional(name as Game.Hero.Profession),
+    equip: () => $equipStore.setType(name as Game.Equip.Category),
   };
   obj[$props.type]();
 

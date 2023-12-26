@@ -26,7 +26,7 @@ const VersionStore = defineStore("version", () => {
     /** 文件是否需要更新 */
     file_status: ref(false),
     /** 更新日志汇总 */
-    update_log: ref<UpdateLog>({
+    update_log: ref<Global.Version.UpdateLog>({
       data: "",
       voice: "",
       file: "",

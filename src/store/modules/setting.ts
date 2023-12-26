@@ -16,7 +16,7 @@ const SettingStore = defineStore("setting", () => {
   const $barrageStore = BarrageStore();
 
   const ExposeData = {
-    config: ref<SettingConfig>({ ...configDefault() }),
+    config: ref<Global.SettingConfig>({ ...configDefault() }),
   };
   const { config } = ExposeData;
 
@@ -47,7 +47,7 @@ const SettingStore = defineStore("setting", () => {
      * @description: 设置指定tip禁止再次提示
      * @param name tip唯一属性标识符
      */
-    setNoTip(name: keyof Tips<string>) {
+    setNoTip(name: keyof Global.Tip.Key<string>) {
       config.value.noTips[name] = true;
       saveLocal();
     },
@@ -55,7 +55,7 @@ const SettingStore = defineStore("setting", () => {
     /** @description 恢复所有不再提示 */
     restoreTip() {
       for (const key in config.value.noTips) {
-        config.value.noTips[key as keyof Tips<string>] = false;
+        config.value.noTips[key as keyof Global.Tip.Key<string>] = false;
       }
       saveLocal();
     },
@@ -64,7 +64,7 @@ const SettingStore = defineStore("setting", () => {
      * @description: 保存合并配置
      * @param v 保存的配置项
      */
-    saveConfig(v: Partial<SettingConfig>) {
+    saveConfig(v: Partial<Global.SettingConfig>) {
       config.value = { ...config.value, ...v };
       saveLocal();
     },

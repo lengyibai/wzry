@@ -55,7 +55,7 @@ const show_herolist = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 英雄信息 */
-const hero_info = ref<Hero.Detail>(heroDefault());
+const hero_info = ref<Game.Hero.Detail>(heroDefault());
 
 /* 实时修改一行个数 */
 const changeCount = () => {
@@ -73,7 +73,7 @@ const changeCount = () => {
 };
 
 /* 悬浮卡片 */
-const handleEnterCard = (data: Hero.Data) => {
+const handleEnterCard = (data: Game.Hero.Data) => {
   $audioStore.play("n4r4");
   //图片预加载
   new Image().src = data.avatar;

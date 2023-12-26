@@ -9,7 +9,7 @@ import { GAME_HERO } from "@/api";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
-  const $usePagingLoad = usePagingLoad<Hero.AloneAtlas>();
+  const $usePagingLoad = usePagingLoad<Game.Hero.AloneAtlas>();
 
   /** @description 一键排序 */
   const sortAll = () => {
@@ -22,7 +22,7 @@ const AtlasStore = defineStore("atlas", () => {
         //为了解决排序拷贝问题
         setFilterData([...all_data.value]);
       } else {
-        const data = all_data.value.filter((item: Hero.AloneAtlas) => {
+        const data = all_data.value.filter((item: Game.Hero.AloneAtlas) => {
           return item.profession.includes(profession.value!);
         });
         setFilterData(data);
@@ -33,8 +33,8 @@ const AtlasStore = defineStore("atlas", () => {
     const filterGender = () => {
       const { filter_list, setFilterData } = $usePagingLoad;
 
-      const boy: Hero.AloneAtlas[] = [];
-      const girl: Hero.AloneAtlas[] = [];
+      const boy: Game.Hero.AloneAtlas[] = [];
+      const girl: Game.Hero.AloneAtlas[] = [];
 
       filter_list.value.forEach((item) => {
         if (item.gender === "男") {
@@ -71,7 +71,7 @@ const AtlasStore = defineStore("atlas", () => {
 
     //如果搜索的值不为空，则进行搜索，否则重新排序
     if (name) {
-      const data = $tool.search<Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+      const data = $tool.search<Game.Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
         "name",
         "heroName",
       ]);
@@ -98,9 +98,9 @@ const AtlasStore = defineStore("atlas", () => {
     /** 当前排序类型 */
     sort_type: ref("倒序"),
     /** 职业类型 */
-    profession: ref<Hero.Profession>("全部"),
+    profession: ref<Game.Hero.Profession>("全部"),
     /** 当前性别排序类型 */
-    gender_type: ref<Gender>(0),
+    gender_type: ref<Game.GenderId>(0),
   };
   const { sort_type, profession, gender_type } = ExposeData;
 
@@ -161,7 +161,7 @@ const AtlasStore = defineStore("atlas", () => {
      * @description: 职业筛选
      * @param name 职业名称
      */
-    setProfessional(name: Hero.Profession) {
+    setProfessional(name: Game.Hero.Profession) {
       if (profession.value === name) return;
       profession.value = name;
       sortAll();
@@ -171,7 +171,7 @@ const AtlasStore = defineStore("atlas", () => {
      * @description: 性别筛选
      * @param name 性别标识符
      */
-    filterGender(name: Gender) {
+    filterGender(name: Game.GenderId) {
       if (gender_type.value === name) return;
       gender_type.value = name;
       sortAll();

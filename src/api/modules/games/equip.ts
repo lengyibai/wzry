@@ -15,7 +15,7 @@ export const getEquip = () => {
   const type_equip_kvp = KVP_TYPE.getEquipKvp();
 
   //整合数据
-  const equip_list: Equip.Data[] = [];
+  const equip_list: Game.Equip.Data[] = [];
   for (let i = 0; i < equip_ids.length; i++) {
     const id = equip_ids[i];
     const { icon, iconBlur } = equip_image_kvp[id];

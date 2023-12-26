@@ -7,7 +7,7 @@ import { GAME_HERO } from "@/api";
 
 type SkinToggleFn = (hero_id: number, skin_name: string) => void;
 type ScollFn = { name: string; fn: (index: number) => void }[];
-interface RelationInfoType extends Hero.RelationType {
+interface RelationInfoType extends Game.Hero.RelationType {
   /** 对应关系英雄的回复 */
   reply: string;
   /** 对应关系 */
@@ -20,7 +20,7 @@ interface RelationInfoType extends Hero.RelationType {
 const HeroDetailStore = defineStore("heroDetail", () => {
   const ExposeData = {
     /** 英雄信息 */
-    hero_info: ref<Hero.Detail>(heroDefault()),
+    hero_info: ref<Game.Hero.Detail>(heroDefault()),
     /** 滚动结束后触发函数组 */
     scollFns: ref<ScollFn>([]),
     /** 处于展示的技能索引 */
@@ -32,7 +32,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 皮肤切换后触发函数组 */
     skinToggleFns: ref<SkinToggleFn[]>([]),
     /** 皮肤语音列表 */
-    skin_voice: ref<Hero.Voices["voice"]>([]),
+    skin_voice: ref<Game.Hero.Voices["voice"]>([]),
     /** 当前悬浮显示的关系信息 */
     relation_info: ref<RelationInfoType>({
       reply: "？",
@@ -58,7 +58,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
 
   const ExposeMethods = {
     /** @description 设置英雄数据 */
-    setHeroInfo(data: Hero.Detail) {
+    setHeroInfo(data: Game.Hero.Detail) {
       hero_info.value = data;
     },
 
@@ -103,7 +103,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 设置关系信息 */
-    setRelationInfo(data?: Hero.RelationType) {
+    setRelationInfo(data?: Game.Hero.RelationType) {
       if (!data) {
         relation_info.value = {
           reply: "？",

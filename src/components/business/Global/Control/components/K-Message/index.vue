@@ -8,7 +8,7 @@ const { msg, messages } = useMessage();
 const { getImgLink } = $concise;
 
 /** 字体颜色 */
-const color = {
+const color: Record<Global.Message.Status, string> = {
   info: "#84ade2",
   warning: "#e2c484",
   error: "#e28484",
@@ -16,7 +16,7 @@ const color = {
 const getImg = (src: string) => getImgLink(`msg_${src}`);
 
 /** 消息类型提醒左中右图标 */
-const imgs = {
+const imgs: Record<Global.Message.Status, Record<"left" | "center" | "right", string>> = {
   info: {
     left: getImg("left_default"),
     center: getImg("center_default"),

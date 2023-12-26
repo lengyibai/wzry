@@ -2,7 +2,7 @@ import { $LocaleHttp, $RemoteHttp } from "@/api/helper";
 
 /** @description 获取版本信息 */
 export const Version = () => {
-  return $LocaleHttp.Get<VersionUpdate>("/version.json");
+  return $LocaleHttp.Get<Global.Version.File>("/version.json");
 };
 
 /** @description 获取计划 */
@@ -17,7 +17,7 @@ export const Notice = () => {
 
 /** @description 获取音乐列表 */
 export const Music = () => {
-  return $LocaleHttp.Get<{ data: Music[] }>("/music.json");
+  return $LocaleHttp.Get<{ data: Global.Music[] }>("/music.json");
 };
 
 /** @description 获取用户列表 */

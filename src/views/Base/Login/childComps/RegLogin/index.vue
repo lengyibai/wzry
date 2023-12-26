@@ -18,7 +18,7 @@ const RegLoginRef = ref<HTMLElement>();
 /** 注册及登录状态下要显示的输入框及按钮 */
 const is_reg = ref("");
 /** 用户表单 */
-const reg_form = ref<User>();
+const reg_form = ref<Global.User>();
 
 const { getImgLink } = $concise;
 
@@ -53,7 +53,7 @@ const onIntoType = (v: unknown) => {
  */
 const onRegSuccess = (form: unknown) => {
   is_reg.value = "登录";
-  reg_form.value = form as User;
+  reg_form.value = form as Global.User;
 };
 
 /* 视差动画(如果为移动端或为safari浏览器则取消) */

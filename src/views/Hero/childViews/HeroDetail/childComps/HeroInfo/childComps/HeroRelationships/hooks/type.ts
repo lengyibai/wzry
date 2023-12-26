@@ -10,7 +10,7 @@ export interface HeroInfo {
   /** 主英雄名称 */
   heroName: string;
   /** 基础关系列表 */
-  relationships: Hero.RelationType[];
+  relationships: Game.Hero.RelationType[];
   /** 主英雄的关系信息组，包含主英雄，但是当主英雄移动到中间后会被移除 */
   relationshipsInfo: RelationshipInfo[];
   /** 线条元素 */
@@ -52,11 +52,11 @@ export interface Parame {
   /** 当前英雄名 */
   currentHeroName: string;
   /** 关系数组 */
-  relationships: Hero.RelationType[];
+  relationships: Game.Hero.RelationType[];
   /** 线条宽度 */
   lineWidth: number;
   /** 切换英雄关系回调函数 */
   clickFn: (id: number) => void;
   /** 悬浮英雄关系回调函数 */
-  hoverFn: (hero: Hero.RelationType) => void;
+  hoverFn: (hero: Game.Hero.RelationType) => void;
 }

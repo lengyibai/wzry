@@ -63,7 +63,7 @@ const AuthStore = defineStore("auth", () => {
     /** 用户状态 */
     userStatus: ref(false),
     /** 用户相关信息 */
-    userInfo: ref<User>(userDefaultInfo()),
+    userInfo: ref<Global.User>(userDefaultInfo()),
   };
   const { userStatus, userInfo } = ExposeData;
 
@@ -72,12 +72,12 @@ const AuthStore = defineStore("auth", () => {
      * @description: 设置用户信息
      * @param data 从本地获取设置或编辑个人资料保存设置
      */
-    setUserInfo(data: Partial<User>) {
+    setUserInfo(data: Partial<Global.User>) {
       userInfo.value = { ...userInfo.value, ...data };
     },
 
     /** @description 登录 */
-    async login(form: User) {
+    async login(form: Global.User) {
       try {
         const res = await LOCAL_USER.login(form);
 
@@ -123,7 +123,7 @@ const AuthStore = defineStore("auth", () => {
 
     /** @description 注销账号 */
     async logoff() {
-      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO)!) as User;
+      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO)!) as Global.User;
       const msg = await LOCAL_USER.deleteUser(user.id);
       localStorage.removeItem(LOCAL_KEY.REMEMBER_USER);
       clearToken();

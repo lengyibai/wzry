@@ -1018,9 +1018,9 @@ export class BarragesMove {
   /** 弹幕容器 */
   private parent: HTMLElement;
   /** 弹幕数据 */
-  private data: Barrage[];
+  private data: Global.Barrage[];
   /** 点击回调函数 */
-  private clickCallback: (v: Barrage, e: MouseEvent) => void;
+  private clickCallback: (v: Global.Barrage, e: MouseEvent) => void;
   /** 弹幕结束回调 */
   private endCallback: () => void;
   /** 初始化 */
@@ -1040,10 +1040,10 @@ export class BarragesMove {
 
   constructor(
     parent: HTMLElement,
-    data: Barrage[],
+    data: Global.Barrage[],
     event: {
       /** 点击弹幕回调 */
-      click: (v: Barrage, e: MouseEvent) => void;
+      click: (v: Global.Barrage, e: MouseEvent) => void;
       /** 所有弹幕发射结束回调 */
       finish: () => void;
     },
@@ -1100,7 +1100,7 @@ export class BarragesMove {
     const barrages = this.data.slice(0, count);
 
     //生成弹幕
-    barrages.forEach((item: Barrage) => {
+    barrages.forEach((item: Global.Barrage) => {
       this.createBarrage(item);
     });
 
@@ -1116,7 +1116,7 @@ export class BarragesMove {
   }
 
   /** @description 创建弹幕 */
-  private createBarrage(data: Barrage) {
+  private createBarrage(data: Global.Barrage) {
     const barrage = document.createElement("div") as HTMLElement;
 
     //弹幕运动时长

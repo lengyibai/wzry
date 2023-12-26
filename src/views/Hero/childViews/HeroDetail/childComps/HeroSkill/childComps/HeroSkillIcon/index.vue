@@ -5,7 +5,7 @@ import { storeToRefs } from "pinia";
 import { AudioStore, HeroDetailStore } from "@/store";
 
 const $emit = defineEmits<{
-  "select-skill": [skills: Hero.Skill];
+  "select-skill": [skills: Game.Hero.Skill];
 }>();
 
 const $heroDetail = HeroDetailStore();
@@ -20,7 +20,7 @@ const current_index = ref(0);
 /** 显示技能 */
 const show = ref(false);
 /** 展示的技能组 */
-const active_skills = ref<Hero.Skill[]>([]);
+const active_skills = ref<Game.Hero.Skill[]>([]);
 
 /** 处于展示的技能 */
 const calcActiveSkill = computed(() => {

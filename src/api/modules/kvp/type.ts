@@ -33,7 +33,7 @@ export const getEpigraphEffectKvp = () => {
 /** @description 获取类型装备键值表 */
 export const getEquipKvp = () => {
   const data = LOCAL_TYPE.getTypeEquipList();
-  const kvp: Record<number, Equip.Category> = {};
+  const kvp: Record<number, Game.Equip.Category> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
   });
@@ -73,7 +73,7 @@ export const getPeriodKvp = () => {
 /** @description 获取类型职业键值表 */
 export const getProfessionKvp = () => {
   const data = LOCAL_TYPE.getTypeProfessionList();
-  const kvp: Record<number, Hero.Profession> = {};
+  const kvp: Record<number, Game.Hero.Profession> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
   });

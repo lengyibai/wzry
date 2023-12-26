@@ -12,13 +12,13 @@ import { $message } from "@/utils";
 import { KInput } from "@/components/business";
 
 const $emit = defineEmits<{
-  success: [form: User];
+  success: [form: Global.User];
 }>();
 
 const $audioStore = AudioStore();
 
 /** 表单数据 */
-const form = reactive<User>({ ...userDefaultInfo() });
+const form = reactive<Global.User>({ ...userDefaultInfo() });
 /** 表单验证 */
 const form_verify = ref<boolean[]>([false, false, false]);
 

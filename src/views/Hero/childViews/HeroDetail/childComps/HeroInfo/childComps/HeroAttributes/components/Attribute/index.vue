@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
   /** 属性名 */
-  attr: keyof Hero.SkillKey;
+  attr: keyof Game.Hero.SkillKey;
   /** 长度 */
   length: number;
 }
@@ -25,7 +25,7 @@ const bgc: Record<string, string> = {
 };
 
 /** 描述 */
-const text: Hero.SkillKey = {
+const text: Game.Hero.SkillKey = {
   survival: "生存能力",
   attack: "攻击伤害",
   effect: "技能效果",

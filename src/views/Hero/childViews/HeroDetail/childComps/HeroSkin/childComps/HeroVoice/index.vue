@@ -17,7 +17,7 @@ const time = ref(0);
 /** 当前播放索引 */
 const current_index = ref(-1);
 /** 语音列表 */
-const voices = ref<Hero.Voices["voice"]>([]);
+const voices = ref<Game.Hero.Voices["voice"]>([]);
 
 const audioPlayer = new $tool.AudioPlayer({
   volume: 0.25,

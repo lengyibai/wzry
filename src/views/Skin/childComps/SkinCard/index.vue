@@ -4,12 +4,12 @@ import { vAnimateNumber, vBlurLoad, vMaskGradient } from "@/directives";
 
 interface Props {
   /** 皮肤数据 */
-  data: Hero.Skin;
+  data: Game.Hero.Skin;
 }
 
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
-  showTool: [e: Event, v: { type: string; data: Hero.Skin }];
+  showTool: [e: Event, v: { type: string; data: Game.Hero.Skin }];
 }>();
 
 const { getImgLink } = $concise;

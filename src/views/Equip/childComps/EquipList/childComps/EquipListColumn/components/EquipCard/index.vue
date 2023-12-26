@@ -6,7 +6,7 @@ import { AudioStore, EquipStore } from "@/store";
 
 interface Props {
   /** 装备信息 */
-  equip: Equip.Data;
+  equip: Game.Equip.Data;
   /** 显示左线 */
   leftLine?: boolean;
   /** 显示右线 */

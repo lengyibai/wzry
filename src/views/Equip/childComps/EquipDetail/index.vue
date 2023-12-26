@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
   /** 装备 */
-  equip: Equip.Data | undefined;
+  equip: Game.Equip.Data | undefined;
   /** 是否显示 */
   show: boolean;
 }

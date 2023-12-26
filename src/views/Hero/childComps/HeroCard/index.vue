@@ -7,7 +7,7 @@ import { $concise } from "@/utils";
 
 interface Props {
   /** 英雄数据 */
-  data: Hero.Data;
+  data: Game.Hero.Data;
 }
 
 defineProps<Props>();
@@ -31,7 +31,7 @@ const num_type = computed(() => $heroStore.misc_sort);
 const show_num = computed(() => ["身高", "皮肤数量", "关系数量"].includes(num_type.value));
 
 /** 单位格式化 */
-const num = (data: Hero.Data) => {
+const num = (data: Game.Hero.Data) => {
   const numType = num_type.value;
 
   const obj: Record<string, string> = {

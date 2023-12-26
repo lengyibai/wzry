@@ -39,7 +39,7 @@ declare namespace Remote {
     /** @description 英雄性别列表 */
     interface Gender extends Id {
       /** 英雄性别 */
-      value: GenderText;
+      value: Game.GenderText;
     }
 
     /** @description 英雄头像列表 */
@@ -408,7 +408,7 @@ declare namespace Remote {
       /** 标识 */
       id: number;
       /** 装备类型 */
-      value: Equip.Category;
+      value: Game.Equip.Category;
     }
 
     /** @description 装备效果类型表 */

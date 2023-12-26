@@ -17,7 +17,7 @@ const sort_types = [
 /** 搜索值 */
 const search_value = ref("");
 /** 性别排序 */
-const gender = ref<Gender>(0);
+const gender = ref<Game.GenderId>(0);
 /** 记录展开状态 */
 const select_status = ref(false);
 
@@ -27,7 +27,7 @@ const onSortType = (v: string | number) => {
 };
 
 /* 设置性别 */
-const handerSetGender = (type: Gender) => {
+const handerSetGender = (type: Game.GenderId) => {
   gender.value = type;
   filterGender(type);
 };

@@ -12,7 +12,7 @@ const TipStore = defineStore("tip", () => {
   const $audioStore = AudioStore();
 
   /** 提示队列 */
-  const tip_list: Control.Tip[] = [];
+  const tip_list: Global.Tip.Prompt[] = [];
 
   const ExposeData = {
     /** 显示小贴士 */
@@ -20,9 +20,9 @@ const TipStore = defineStore("tip", () => {
     /** 显示内容 */
     content: ref(""),
     /** 弹窗位置 */
-    align: ref<TipType>("right-bottom"),
+    align: ref<Global.Tip.Position>("right-bottom"),
     /** 不再提示的标识符 */
-    noTipName: ref<Control.Tip["text"]>(),
+    noTipName: ref<Global.Tip.Prompt["text"]>(),
     /** 是否需要按钮 */
     btn: ref(false),
     /** 点击按钮需要触发的函数 */
@@ -37,7 +37,7 @@ const TipStore = defineStore("tip", () => {
     },
 
     /** @description 推送tip */
-    tip(config: Control.Tip) {
+    tip(config: Global.Tip.Prompt) {
       if ($settingStore.config.tip) {
         tip_list.push(config);
 
@@ -74,11 +74,11 @@ const TipStore = defineStore("tip", () => {
       }
 
       //判断是否设置了不再提示
-      if (!$settingStore.config.noTips[text as keyof Tips<string>]) {
+      if (!$settingStore.config.noTips[text as keyof Global.Tip.Key<string>]) {
         show_tip.value = !show_tip.value;
         $audioStore.play("rt25");
         noTipName.value = text === "2rb7" ? undefined : text;
-        content.value = TIP_TEXT[text as keyof Tips<string>];
+        content.value = TIP_TEXT[text as keyof Global.Tip.Key<string>];
         align.value = p;
         btnFn.value = fn1;
         setTimeout(() => {

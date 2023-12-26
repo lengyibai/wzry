@@ -13,7 +13,7 @@ export const getHeroAtlas = () => {
   const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  const hero_atlas_list: Hero.Atlas[] = [];
+  const hero_atlas_list: Game.Hero.Atlas[] = [];
   for (let i = 0; i < hero_ids.length; i++) {
     const id = hero_ids[i];
     const { cover, coverBlur, poster, posterBlur, posterBig } = hero_image_kvp[id];
@@ -76,7 +76,7 @@ export const getHeroData = () => {
   const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  const hero_data_list: Hero.Data[] = [];
+  const hero_data_list: Game.Hero.Data[] = [];
   for (let i = 0; i < hero_ids.length; i++) {
     const heroId = hero_ids[i];
     const { attack, difficulty, effect, survival } = hero_attr_kvp[heroId];
@@ -136,7 +136,7 @@ export const getHeroDetail = (hero_id: number) => {
     };
   });
 
-  const hero_detail: Hero.Detail = {
+  const hero_detail: Game.Hero.Detail = {
     ...hero,
     voices: skin_voice_kvp[hero_id].map((item) => item.voice),
     skins: hero_skin_kvp[hero_id],
@@ -225,7 +225,7 @@ export const getSkinList = () => {
   const type_profession_kvp = KVP_TYPE.getProfessionKvp();
 
   //整合数据
-  const hero_skin_list: Hero.Skin[] = [];
+  const hero_skin_list: Game.Hero.Skin[] = [];
   for (let i = 0; i < skin_ids.length; i++) {
     const id = skin_ids[i];
     const { poster, posterBlur, posterBig, cover, avatar } = skin_image_kvp[id];
@@ -257,7 +257,7 @@ export const getSkinList = () => {
 /** @description 获取皮肤信息键值 */
 export const getSkinKvp = () => {
   const data = getSkinList();
-  const kvp: Record<number, Hero.Skin> = {};
+  const kvp: Record<number, Game.Hero.Skin> = {};
   data.forEach((item) => {
     kvp[item.id] = item;
   });
@@ -268,7 +268,7 @@ export const getSkinKvp = () => {
 export const getHeroSkinListKvp = () => {
   const skin_ids = LOCAL_HERO.getHeroSkinList();
   const data = getSkinKvp();
-  const kvp: Record<number, Hero.Skin[]> = {};
+  const kvp: Record<number, Game.Hero.Skin[]> = {};
   skin_ids.forEach((item) => {
     kvp[item.id] = item.value.map((id) => data[id]);
   });

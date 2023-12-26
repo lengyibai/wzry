@@ -10,7 +10,7 @@ const $epigraphStore = EpigraphStore();
 const { getImgLink } = $concise;
 
 /** 顶部铭文分类标题 */
-const epigraph: Record<string, Epigraph.Category>[] = [
+const epigraph: Record<string, Game.Epigraph.Category>[] = [
   { title: "全部" },
   { title: "攻击" },
   { title: "生命" },
@@ -26,7 +26,7 @@ const epigraph: Record<string, Epigraph.Category>[] = [
 const current_index = ref(0);
 
 /* 点击分类标题 */
-const handleToggle = (index: number, type: Epigraph.Category) => {
+const handleToggle = (index: number, type: Game.Epigraph.Category) => {
   $audioStore.play("n4r4");
   current_index.value = index;
   //每次点击重新筛选数据

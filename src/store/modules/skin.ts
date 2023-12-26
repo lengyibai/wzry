@@ -9,7 +9,7 @@ import { GAME_HERO, KVP_TYPE } from "@/api";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
-  const $usePagingLoad = usePagingLoad<Hero.Skin>();
+  const $usePagingLoad = usePagingLoad<Game.Hero.Skin>();
 
   const ExposeData = {
     /** 是否处于加载中 */
@@ -24,9 +24,9 @@ const SkinStore = defineStore("skin", () => {
     show_list: $usePagingLoad.show_list,
 
     /** 性别筛选类型 */
-    gender_type: ref<Gender>(0),
+    gender_type: ref<Game.GenderId>(0),
     /** 职业类型 */
-    profession: ref<Hero.Profession>("全部"),
+    profession: ref<Game.Hero.Profession>("全部"),
     /** 价格排序类型 */
     price_type: ref("全部价格"),
     /** 皮肤筛选类型 */
@@ -49,7 +49,7 @@ const SkinStore = defineStore("skin", () => {
         //为了解决排序拷贝问题
         filter_list.value = [...all_data.value];
       } else {
-        filter_list.value = all_data.value.filter((item: Hero.Skin) => {
+        filter_list.value = all_data.value.filter((item: Game.Hero.Skin) => {
           return item.profession.includes(profession.value);
         });
       }
@@ -57,8 +57,8 @@ const SkinStore = defineStore("skin", () => {
 
     /** 性别筛选 */
     const filterGender = () => {
-      const boy: Hero.Skin[] = [];
-      const girl: Hero.Skin[] = [];
+      const boy: Game.Hero.Skin[] = [];
+      const girl: Game.Hero.Skin[] = [];
       filter_list.value.forEach((item) => {
         if (item.gender === "男") {
           boy.push(item);
@@ -148,7 +148,7 @@ const SkinStore = defineStore("skin", () => {
 
     /** 价格排序 */
     const sortPrice = () => {
-      const SortStrategy: Record<string, (list: Hero.Skin[]) => Hero.Skin[]> = {
+      const SortStrategy: Record<string, (list: Game.Hero.Skin[]) => Game.Hero.Skin[]> = {
         免费: (list) => {
           const noFree = [
             "积分夺宝",
@@ -254,7 +254,7 @@ const SkinStore = defineStore("skin", () => {
      * @description: 设置职业
      * @param name 职业名称
      */
-    setProfessional(name: Hero.Profession) {
+    setProfessional(name: Game.Hero.Profession) {
       if (profession.value === name) return;
       profession.value = name;
       sortAll();
@@ -264,7 +264,7 @@ const SkinStore = defineStore("skin", () => {
      * @description: 性别筛选
      * @param type 性别标识符
      */
-    filterGender(type: Gender) {
+    filterGender(type: Game.GenderId) {
       if (gender_type.value === type) return;
       gender_type.value = type;
       sortAll();

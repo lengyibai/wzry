@@ -10,7 +10,7 @@ const BarrageStore = defineStore("barrage", () => {
     /** 启用弹幕 */
     status: ref(true),
     /** 弹幕组 */
-    barrages: ref<Barrage[]>([]),
+    barrages: ref<Global.Barrage[]>([]),
   };
   const { status, barrages } = ExposeData;
 
@@ -25,7 +25,7 @@ const BarrageStore = defineStore("barrage", () => {
       const hero_names = LOCAL_HERO.getHeroNameList();
       const hero_gender = KVP_HERO.getHeroGenderKvp();
       const hero_voices = KVP_HERO.getSkinVoiceListKvp();
-      const data: Barrage[] = [];
+      const data: Global.Barrage[] = [];
 
       hero_names.forEach((heroName, index) => {
         if (!["梦奇", "盾山"].includes(heroName.value)) {

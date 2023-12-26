@@ -11,7 +11,7 @@ const useAutoLogin = () => {
 
   //通过获取本地用户权限，动态添加路由
   if (user) {
-    const userInfo = JSON.parse(user) as User;
+    const userInfo = JSON.parse(user) as Global.User;
     $authStore.setUserInfo(userInfo);
     $routerStore.addRoutes(userInfo.role || 0);
   }

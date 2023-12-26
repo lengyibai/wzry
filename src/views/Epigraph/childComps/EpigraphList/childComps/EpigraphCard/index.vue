@@ -2,7 +2,7 @@
 import { vAnimateNumber, vBlurLoad, vMaskGradient } from "@/directives";
 
 interface Props {
-  data: Epigraph.Data;
+  data: Game.Epigraph.Data;
 }
 
 defineProps<Props>();

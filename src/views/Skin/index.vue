@@ -76,7 +76,7 @@ const onLoadMore = () => {
 };
 
 /* 点击工具栏中的选项 */
-const onShowTool = (e: Event, v: { type: string; data: Hero.Skin }) => {
+const onShowTool = (e: Event, v: { type: string; data: Game.Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
     new $tool.ScaleFLIPImage(e, v.data.posterBig, v.data.posterBlur);

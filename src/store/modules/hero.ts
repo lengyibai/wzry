@@ -9,7 +9,7 @@ import { GAME_HERO } from "@/api";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {
-  const $usePagingLoad = usePagingLoad<Hero.Data>();
+  const $usePagingLoad = usePagingLoad<Game.Hero.Data>();
 
   const ExposeData = {
     /** 暂无更多 */
@@ -26,13 +26,13 @@ const HeroStore = defineStore("hero", () => {
     show_list: $usePagingLoad.show_list,
 
     /** 职业类型（直接进入详情页再返回需要判断为空则加载英雄列表） */
-    profession: ref<Hero.Profession>(),
+    profession: ref<Game.Hero.Profession>(),
     /** 当前属性排序类型 */
     attr_type: ref("全部属性"),
     /** 阵营排序类型 */
     camp_type: ref("全部阵营"),
     /** 当前性别排序类型 */
-    gender_type: ref<Gender>(0),
+    gender_type: ref<Game.GenderId>(0),
     /** 杂项排序类型 */
     misc_sort: ref("全部排序"),
     /** 杂项排序类型 */
@@ -57,7 +57,12 @@ const HeroStore = defineStore("hero", () => {
   /* 防抖筛选英雄 */
   const debounceSearchHero = _debounce((name: string) => {
     if (name) {
-      filter_list.value = $tool.search<Hero.Data>(_cloneDeep(all_data.value), name, "name", true);
+      filter_list.value = $tool.search<Game.Hero.Data>(
+        _cloneDeep(all_data.value),
+        name,
+        "name",
+        true,
+      );
     } else {
       sortAll();
     }
@@ -75,7 +80,7 @@ const HeroStore = defineStore("hero", () => {
         //为了解决排序拷贝问题
         filter_list.value = [...all_data.value];
       } else {
-        filter_list.value = all_data.value.filter((item: Hero.Data) => {
+        filter_list.value = all_data.value.filter((item: Game.Hero.Data) => {
           return item.profession.includes(profession.value!);
         });
       }
@@ -83,8 +88,8 @@ const HeroStore = defineStore("hero", () => {
 
     /** 性别筛选 */
     const filterGender = () => {
-      const boy: Hero.Data[] = [];
-      const girl: Hero.Data[] = [];
+      const boy: Game.Hero.Data[] = [];
+      const girl: Game.Hero.Data[] = [];
       filter_list.value.forEach((item) => {
         if (item.gender === "男") {
           boy.push(item);
@@ -157,7 +162,7 @@ const HeroStore = defineStore("hero", () => {
 
     /** 杂项筛选 */
     const filterMisc = () => {
-      const filter_msic: Record<string, (v: Hero.Data) => boolean> = {
+      const filter_msic: Record<string, (v: Game.Hero.Data) => boolean> = {
         团控: (item) => item.specialty.includes("团控"),
         无蓝条: (item) => item.skillUnit !== "法力",
         非人类: (item) => item.race !== "人类",
@@ -170,7 +175,7 @@ const HeroStore = defineStore("hero", () => {
 
     /** 杂项排序 */
     const sortMisc = () => {
-      const sortingFunctions: Record<string, (a: Hero.Data, b: Hero.Data) => number> = {
+      const sortingFunctions: Record<string, (a: Game.Hero.Data, b: Game.Hero.Data) => number> = {
         身高: (a, b) => a.height - b.height,
         上手难度: (a, b) => a.difficulty - b.difficulty,
         皮肤数量: (a, b) => b.skinCount - a.skinCount,
@@ -224,7 +229,7 @@ const HeroStore = defineStore("hero", () => {
      * @description: 职业筛选
      * @param name 职业名称
      */
-    setProfessional(name: Hero.Profession) {
+    setProfessional(name: Game.Hero.Profession) {
       if (profession.value === name) return;
       profession.value = name;
       sortAll();
@@ -254,7 +259,7 @@ const HeroStore = defineStore("hero", () => {
      * @description: 性别筛选
      * @param name 性别标识符
      */
-    filterGender(name: Gender) {
+    filterGender(name: Game.GenderId) {
       if (gender_type.value === name) return;
       gender_type.value = name;
       sortAll();

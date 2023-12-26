@@ -4,9 +4,9 @@ import { ConfirmTip } from "@/components/business/Global/Control/components/K-Co
 
 type EventData = {
   loading: { text?: string; show: boolean };
-  msg: { text: string; type: MsgType };
+  msg: { text: string; type: Global.Message.Status };
   confirm: ConfirmTip;
-  tip: Control.Tip;
+  tip: Global.Tip.Prompt;
   /** 全局手指抬起事件 */
   resize: Event;
   mousemove: Event;

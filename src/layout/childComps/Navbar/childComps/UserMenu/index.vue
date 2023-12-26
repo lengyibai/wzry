@@ -20,7 +20,7 @@ const show_edit = ref(false);
 /** 信息是否修改 */
 const edit_status = ref(false);
 /** 编辑的用户信息 */
-const user_info = ref<Partial<User>>({ ...$authStore.userInfo });
+const user_info = ref<Partial<Global.User>>({ ...$authStore.userInfo });
 
 /** 用户本地信息 */
 const userInfo = computed(() => $authStore.userInfo);

@@ -20,9 +20,9 @@ const $cssVarStore = CssVarStore();
 const $barrageStore = BarrageStore();
 
 /** 默认配置 */
-const default_config: SettingConfig = { ...configDefault() };
+const default_config: Global.SettingConfig = { ...configDefault() };
 
-const config = ref<SettingConfig>({ ...$settingStore.config });
+const config = ref<Global.SettingConfig>({ ...$settingStore.config });
 
 /* 语言 */
 const onLanguage = (v: number) => {
