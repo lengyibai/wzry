@@ -134,8 +134,6 @@ declare namespace Global {
 
   /** @description 弹幕信息 */
   interface Barrage {
-    /** 标识符 */
-    id: number;
     /** 英雄ID */
     heroId: number;
     /** 性别 */
