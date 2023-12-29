@@ -110,7 +110,7 @@ const play = (voice: string, index: number) => {
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
         <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
-        <marquee v-else class="text" scrollamount="8.5"> {{ item.text }}</marquee>
+        <marquee v-else class="text" scrollamount="8.5">{{ item.text }}</marquee>
         <i
           class="iconfont"
           :style="{ 'animation-duration': time + 's' }"
