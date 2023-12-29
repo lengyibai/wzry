@@ -250,6 +250,15 @@ export const getSkinList = () => {
   return hero_skin_list;
 };
 
+/** @description 通过英雄id+皮肤用获取皮肤信息，主要用于弹幕语音 */
+export const getSkinDetail = (hero_id: number, skin_name: string) => {
+  const data = getSkinList();
+  const skin = data.find((item) => {
+    return item.hero === hero_id && item.name === skin_name;
+  });
+  return skin;
+};
+
 /** @description 获取皮肤信息键值 */
 export const getSkinKvp = () => {
   const data = getSkinList();
