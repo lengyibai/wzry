@@ -102,11 +102,11 @@ const JSON_NAME = {
   /** 类型铭文表 */
   TYPE_EPIGRAPH: "typeEpigraph",
   /** 类型铭文效果表 */
-  TYPE_EPIGRAPH_EFFECT: "epigraphEffect",
+  TYPE_EPIGRAPH_EFFECT: "typeEpigraphEffect",
   /** 类型装备表 */
   TYPE_EQUIP: "typeEquip",
   /** 类型装备效果表 */
-  TYPE_EQUIP_EFFECT: "equipEffect",
+  TYPE_EQUIP_EFFECT: "typeEquipEffect",
   /** 类型定位表 */
   TYPE_LOCATION: "typeLocation",
   /** 类型时期表 */
