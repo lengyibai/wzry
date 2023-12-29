@@ -60,8 +60,8 @@ setTimeout(() => {
             </div>
             <div class="voice-text">——{{ barrage_info.voiceText }}</div>
             <img
-              v-blurLoad="barrage_info?.skinPoster"
-              :src="barrage_info?.skinBlurPoster"
+              v-blurLoad="barrage_info.skinPoster"
+              :src="barrage_info.skinBlurPoster"
               alt=""
               class="skin-poster"
               @click="handleView($event, barrage_info.skinBlurPoster, barrage_info.skinBigPoster)"
