@@ -78,7 +78,7 @@ const handleViewClick = () => {
     </transition>
 
     <!-- 背景图 -->
-    <img v-blurLoad="data.cover" class="bg blur" :src="data.coverBlur" />
+    <img v-blurLoad="data.cover" class="bg" :src="data.coverBlur" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">

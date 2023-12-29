@@ -41,7 +41,7 @@ const handleDetail = () => {
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="iconRef" v-blurLoad="equip.icon" class="blur" :src="equip.iconBlur" alt="" />
+    <img ref="iconRef" v-blurLoad="equip.icon" :src="equip.iconBlur" alt="" />
 
     <!-- 左线 -->
     <transition name="left-line">

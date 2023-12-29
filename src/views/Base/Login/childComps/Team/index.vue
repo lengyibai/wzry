@@ -27,7 +27,6 @@ const handleView = (e: Event, v: string[]) => {
         v-for="(item, index) in imgs"
         :key="index"
         v-blurLoad="item[0]"
-        class="blur"
         :src="item[1]"
         alt=""
         @click="handleView($event, item)"

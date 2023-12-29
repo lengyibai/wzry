@@ -15,11 +15,6 @@
 
     max-width: calc(50% - 0.3125rem);
     aspect-ratio: 2.22/1;
-    transition: 0.5s;
-
-    &.active {
-      outline: 0.125rem solid var(--blue);
-    }
 
     &:nth-child(1) {
       min-width: 100%;
@@ -27,10 +22,6 @@
 
     &:nth-last-child(-n + 4) {
       object-fit: contain;
-    }
-
-    &.blur {
-      filter: blur(var(--image-load-blur));
     }
   }
 }

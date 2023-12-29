@@ -114,13 +114,7 @@ onDeactivated(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <img
-            v-blurLoad="item.cover"
-            class="blur"
-            :src="item.coverBlur"
-            alt=""
-            @dragstart.prevent
-          />
+          <img v-blurLoad="item.cover" :src="item.coverBlur" alt="" @dragstart.prevent />
         </div>
       </LibWaterfall>
     </div>
