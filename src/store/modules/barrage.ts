@@ -27,13 +27,13 @@ const BarrageStore = defineStore("barrage", () => {
       const hero_voices = KVP_HERO.getSkinVoiceListKvp();
       const data: Global.Barrage[] = [];
 
-      hero_names.forEach((heroName, index) => {
+      hero_names.forEach((heroName) => {
         if (!["梦奇", "盾山"].includes(heroName.value)) {
           hero_voices[heroName.id].forEach((skins) => {
             //获取随机位置的语音
             const voice_index = $tool.random(0, skins.voice.length - 1);
+
             data.push({
-              id: Number(`${hero_voices[heroName.id]}${index}`),
               heroId: heroName.id,
               skinName: skins.name,
               text: skins.voice[voice_index].text,
@@ -43,6 +43,7 @@ const BarrageStore = defineStore("barrage", () => {
           });
         }
       });
+
       barrages.value = data;
     },
   };

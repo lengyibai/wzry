@@ -43,7 +43,7 @@ const useBarrages = () => {
 
       barragesMove = new $tool.BarragesMove(parent, data, {
         click(v, e) {
-          const { skinName, heroId, link, text: voiceText, id } = v;
+          const { skinName, heroId, link, text: voiceText } = v;
           barrage_info.value = undefined;
           show_card.value = true;
 
@@ -52,15 +52,16 @@ const useBarrages = () => {
 
           //获取英雄和皮肤信息
           const hero = GAME_HERO.getHeroDetail(heroId);
-          const skin = GAME_HERO.getSkinKvp()[id] || {};
+          const skin = GAME_HERO.getSkinDetail(heroId, skinName);
+
           barrage_info.value = {
             voiceText,
             heroName: hero.name,
             avatar: hero.avatar,
             skinName,
-            skinBlurPoster: skin.posterBlur || hero.posterBlur,
-            skinPoster: skin.poster || hero.poster,
-            skinBigPoster: skin.posterBig || hero.posterBig,
+            skinBlurPoster: skin?.posterBlur || hero.posterBlur,
+            skinPoster: skin?.poster || hero.poster,
+            skinBigPoster: skin?.posterBig || hero.posterBig,
           };
 
           new Image().src = barrage_info.value.skinBlurPoster;
