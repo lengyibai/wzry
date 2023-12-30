@@ -15,10 +15,14 @@ interface ElType extends HTMLImageElement {
 
 const vBlurLoad: Directive<ElType, string> = {
   mounted(el, binding) {
-    el._last_image = binding.value;
-    el._transition = el.style.transition;
-
     el._loadImage = (binding) => {
+      //当传递的大图地址与上一张大图地址相同时，则直接使用
+      if (el._last_image === binding.value) {
+        el.src = binding.value;
+        return;
+      }
+      el._last_image = binding.value;
+      el._transition = el.style.transition;
       const coverImg = new Image();
       el.style.transition = "0s";
       el.style.filter = "blur(var(--image-load-blur))";
@@ -49,7 +53,6 @@ const vBlurLoad: Directive<ElType, string> = {
     el._loadImage(binding);
   },
   updated(el, binding) {
-    if (el._last_image === binding.value) return;
     el._loadImage(binding);
   },
 };
