@@ -195,7 +195,7 @@ export const getHeroSkinListKvp = () => {
 /** @description 获取英雄关系列表键值表 */
 export const getHeroRelationshipListKvp = () => {
   const data = LOCAL_HERO.getHeroRelationshipList();
-  const kvp: Record<number, Remote.Hero.Relation[]> = {};
+  const kvp: Record<number, Remote.Hero.Relationship["value"]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
   });

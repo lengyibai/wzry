@@ -43,7 +43,7 @@ export const skillDefault: () => Game.Hero.Skill = () => ({
 });
 
 /** @description 默认技能效果信息 */
-export const skillEffectDefault: () => Remote.Skill.Effect = () => ({
+export const skillEffectDefault: () => Game.Hero.Skill["effect"][0] = () => ({
   name: "",
   phase: [],
 });

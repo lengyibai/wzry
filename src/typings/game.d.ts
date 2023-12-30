@@ -61,7 +61,7 @@ declare namespace Game {
       /** 皮肤数量 */
       skinCount: number;
       /** 技能列表 */
-      skills: Remote.Skill.Info[][];
+      skills: Skill[][];
     }
 
     /** @description 英雄详情数据 */
@@ -256,9 +256,6 @@ declare namespace Game {
 
     /** @description 装备类型 */
     type Category = "攻击" | "法术" | "防御" | "移动" | "打野" | "游走";
-
-    /** @description 被动/主动信息 */
-    type Motivation = Remote.Equip.Motivation;
 
     /** @description 单个装备合成表 */
     type Synthetic = Remote.Equip.Synthetic;

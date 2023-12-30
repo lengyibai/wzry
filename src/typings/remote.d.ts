@@ -8,16 +8,6 @@ declare namespace Remote {
 
   /** @description 英雄相关 */
   namespace Hero {
-    /** @description 关系信息 */
-    interface Relation {
-      /** 关系英雄id */
-      id: number;
-      /** 对应关系名称 */
-      relation: string;
-      /** 对应关系描述 */
-      desc: string;
-    }
-
     /** @description 英雄属性列表 */
     interface Attr extends Id {
       /** 生存能力 */
@@ -119,7 +109,14 @@ declare namespace Remote {
     /** @description 英雄关系列表 */
     interface Relationship extends Id {
       /** 英雄关系 */
-      value: Relation[];
+      value: {
+        /** 关系英雄id */
+        id: number;
+        /** 对应关系名称 */
+        relation: string;
+        /** 对应关系描述 */
+        desc: string;
+      }[];
     }
 
     /** @description 英雄技能单位列表 */
@@ -143,14 +140,6 @@ declare namespace Remote {
 
   /** @description 技能相关 */
   namespace Skill {
-    /** @description 技能效果 */
-    interface Effect {
-      /** 效果名称 */
-      name: string;
-      /** 阶段值，百分比或数字 */
-      phase: string[];
-    }
-
     /** @description 单个技能信息 */
     interface Info {
       /** 冷却时间 */
@@ -166,7 +155,12 @@ declare namespace Remote {
       /** 技能类型 */
       type: string[];
       /** 技能效果 */
-      effect: Effect[];
+      effect: {
+        /** 效果名称 */
+        name: string;
+        /** 阶段值，百分比或数字 */
+        phase: string[];
+      }[];
     }
     /** @description 技能数据 */
     interface Data extends Id {
@@ -360,20 +354,17 @@ declare namespace Remote {
 
   /** @description 语音相关 */
   namespace Voice {
-    /** @description 语音基础信息 */
-    interface Info {
-      /** 语音文字 */
-      text: string;
-      /** 语音链接 */
-      link: string;
-    }
-
     /** @description 语音数据 */
     interface Data {
       /** 语音所属皮肤名称 */
       name: string;
       /** 语音列表 */
-      voice: Info[];
+      voice: {
+        /** 语音文字 */
+        text: string;
+        /** 语音链接 */
+        link: string;
+      }[];
     }
   }
 
