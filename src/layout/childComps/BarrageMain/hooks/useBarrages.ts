@@ -1,5 +1,7 @@
 import { onScopeDispose, ref } from "vue";
 
+import { BarragesGenerate } from "../helper/BarragesGenerate";
+
 import { $tool } from "@/utils";
 import { BarrageStore } from "@/store/modules/barrage";
 import { GAME_HERO } from "@/api";
@@ -11,7 +13,7 @@ const useBarrages = () => {
   const audioPlay = new $tool.AudioPlayer({
     volume: 0.35,
   });
-  let barragesMove: $tool.BarragesMove;
+  let barragesMove: BarragesGenerate;
 
   const ExposeData = {
     /** 是否显示信息卡片 */
@@ -41,28 +43,50 @@ const useBarrages = () => {
     init(data: Global.Barrage[], parent: HTMLElement, card: HTMLElement) {
       barragesMove?.destruction();
 
-      barragesMove = new $tool.BarragesMove(parent, data, {
+      barragesMove = new BarragesGenerate(parent, data, {
         click(v, e) {
-          const { skinName, heroId, link, text: voiceText } = v;
+          const {
+            skinName,
+            heroId,
+            link,
+            text: voiceText,
+            self,
+            name,
+            desc,
+            avatar,
+            link_big,
+            link_small,
+            link_blur,
+          } = v;
           barrage_info.value = undefined;
           show_card.value = true;
 
           //播放语音
           audioPlay.play(link);
 
-          //获取英雄和皮肤信息
-          const hero = GAME_HERO.getHeroDetail(heroId);
-          const skin = GAME_HERO.getSkinDetail(heroId, skinName);
-
-          barrage_info.value = {
-            voiceText,
-            heroName: hero.name,
-            avatar: hero.avatar,
-            skinName,
-            skinBlurPoster: skin?.posterBlur || hero.posterBlur,
-            skinPoster: skin?.poster || hero.poster,
-            skinBigPoster: skin?.posterBig || hero.posterBig,
-          };
+          if (self) {
+            barrage_info.value = {
+              voiceText,
+              heroName: name!,
+              avatar: avatar!,
+              skinName: desc!,
+              skinBlurPoster: link_blur!,
+              skinPoster: link_small!,
+              skinBigPoster: link_big!,
+            };
+          } else {
+            const hero = GAME_HERO.getHeroDetail(heroId);
+            const skin = GAME_HERO.getSkinDetail(heroId, skinName);
+            barrage_info.value = {
+              voiceText,
+              heroName: hero.name,
+              avatar: hero.avatar,
+              skinName,
+              skinBlurPoster: skin?.posterBlur || hero.posterBlur,
+              skinPoster: skin?.cover || hero.poster,
+              skinBigPoster: skin?.posterBig || hero.posterBig,
+            };
+          }
 
           new Image().src = barrage_info.value.skinBlurPoster;
 
@@ -90,7 +114,7 @@ const useBarrages = () => {
   };
 
   onScopeDispose(() => {
-    barragesMove.destruction();
+    barragesMove?.destruction();
   });
 
   return {
