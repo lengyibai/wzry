@@ -6,7 +6,7 @@ import type { Directive, DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
   /** 更新数据 */
-  update: (v: DirectiveBinding<Params>) => void;
+  _update: (v: DirectiveBinding<Params>) => void;
 }
 
 interface Params {
@@ -24,7 +24,7 @@ interface Params {
 
 const vAnimateNumber: Directive<ElType, Params> = {
   mounted(el, binding) {
-    el.update = (binding) => {
+    el._update = (binding) => {
       const { num, duration = 1000, decimalPlaces = 0, format = (v) => v } = binding.value;
 
       if (num === "") {
@@ -62,12 +62,12 @@ const vAnimateNumber: Directive<ElType, Params> = {
         el.innerText = num as string;
       }
     };
-    el.update(binding);
+    el._update(binding);
   },
   updated(el, binding) {
     const { once = true } = binding.value;
     if (once) return;
-    el.update(binding);
+    el._update(binding);
   },
 };
 

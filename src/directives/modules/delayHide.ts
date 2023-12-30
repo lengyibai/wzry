@@ -6,22 +6,22 @@ import type { Directive } from "vue";
 
 interface Params {
   /** 鼠标进入元素时触发 */
-  enter: () => void;
+  _enter: () => void;
   /** 鼠标离开元素时触发 */
-  leave: () => void;
+  _leave: () => void;
 }
 
 const vDelayHide: Directive<HTMLElement, Params> = {
   mounted(el, binding) {
-    const { enter, leave } = binding.value;
+    const { _enter, _leave } = binding.value;
     let timer: NodeJS.Timeout;
     el.addEventListener("mouseleave", () => {
-      timer = setTimeout(leave, 1000);
+      timer = setTimeout(_leave, 1000);
     });
 
     el.addEventListener("mouseenter", () => {
       clearTimeout(timer);
-      enter();
+      _enter();
     });
   },
 };

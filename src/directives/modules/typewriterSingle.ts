@@ -7,10 +7,8 @@
 import type { Directive, DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
-  timer1: NodeJS.Timeout;
-  timer2: NodeJS.Timeout;
   /** 开始输出 */
-  startOutput: (el: ElType, v: DirectiveBinding<Params>) => void;
+  _startOutput: (el: ElType, v: DirectiveBinding<Params>) => void;
 }
 
 interface Params {
@@ -24,7 +22,7 @@ interface Params {
 
 const vTypewriterSingle: Directive<ElType, Params> = {
   mounted(el, binding) {
-    el.startOutput = (el, binding) => {
+    el._startOutput = (el, binding) => {
       const { callback, speed = 150, delay = 750 } = binding.value || {};
 
       const lyb = el;
@@ -51,10 +49,10 @@ const vTypewriterSingle: Directive<ElType, Params> = {
         again();
       }, delay);
     };
-    el.startOutput(el, binding);
+    el._startOutput(el, binding);
   },
   updated(el, binding) {
-    el.startOutput(el, binding);
+    el._startOutput(el, binding);
   },
 };
 
