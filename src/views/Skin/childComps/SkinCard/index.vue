@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { $concise } from "@/utils";
-import { vAnimateNumber, vBlurLoad, vMaskGradient } from "@/directives";
+import { vAnimateNumber, vMaskGradient } from "@/directives";
+import { KImageLoad } from "@/components/business";
 
 interface Props {
   /** 皮肤数据 */
@@ -27,7 +28,7 @@ const handle = (e: Event, v: string) => {
 
 <template>
   <div v-maskGradient class="skin-card">
-    <img v-blurLoad="data.cover" class="bg" :src="data.posterBlur" />
+    <KImageLoad loading-width="25%" :big-img="data.cover" :blur-img="data.posterBlur" class="bg" />
     <img v-if="data.link" class="type" :src="data.link" />
 
     <!-- 价格 -->
@@ -50,10 +51,7 @@ const handle = (e: Event, v: string) => {
     <!-- 悬浮工具 -->
     <div class="tool">
       <span class="global_cursor-pointer" @click="handle($event, 'poster')">
-        <i class="iconfont wzry-fangda" />大图
-      </span>
-      <span class="global_cursor-pointer" @click="handle($event, 'voice')">
-        <i class="iconfont wzry-bofangyuyin" />语音
+        <i class="iconfont wzry-fangda" />查看详情
       </span>
     </div>
   </div>

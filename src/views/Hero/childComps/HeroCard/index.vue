@@ -2,8 +2,9 @@
 import { ref, computed } from "vue";
 
 import { HeroStore } from "@/store";
-import { vBlurLoad, vMaskGradient, vSweepLight, vTextHoverColor } from "@/directives";
+import { vMaskGradient, vSweepLight, vTextHoverColor } from "@/directives";
 import { $concise } from "@/utils";
+import { KImageLoad } from "@/components/business";
 
 interface Props {
   /** 英雄数据 */
@@ -78,7 +79,7 @@ const handleViewClick = () => {
     </transition>
 
     <!-- 背景图 -->
-    <img v-blurLoad="data.cover" class="bg" :src="data.coverBlur" />
+    <KImageLoad loading-width="50%" :big-img="data.cover" :blur-img="data.coverBlur" class="bg" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">
