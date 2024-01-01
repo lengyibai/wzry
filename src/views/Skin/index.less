@@ -17,14 +17,15 @@
 
 .skin-card-enter-from {
   bottom: 0;
-  transform: translateY(100%);
+  transform: translateY(-50%);
+  transform-origin: top center;
   opacity: 0;
 }
 
 .skin-card-enter-active,
 .skin-card-leave-active,
 .skin-card-move {
-  transition: all 0.5s;
+  transition: all 0.5s cubic-bezier(0, -0.01, 0, 1.67);
 }
 
 .skin-card-leave-active {
