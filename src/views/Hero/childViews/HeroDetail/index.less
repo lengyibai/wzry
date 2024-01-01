@@ -7,8 +7,6 @@
   background-color: #000;
 
   &__close {
-    .global_cursor-pointer();
-
     position: absolute;
     top: 0.625rem;
     left: 0.625rem;
@@ -19,6 +17,8 @@
     opacity: 0;
 
     &.show {
+      .global_light-btn();
+
       transform: translateX(0);
       opacity: 1;
     }
