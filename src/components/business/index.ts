@@ -10,6 +10,7 @@ import Todo from "./Global/Todo/index.vue";
 import KBackTop from "./Parts/K-BackTop/index.vue";
 import KButton from "./Parts/K-Button/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
+import KImageLoad from "./Parts/K-ImageLoad/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
 import KSkillTypeTag from "./Parts/K-SkillTypeTag/index.vue";
@@ -34,6 +35,7 @@ export {
   WaterMark,
   KBackTop,
   KButton,
+  KImageLoad,
   KDialog,
   KInput,
   KRange,
