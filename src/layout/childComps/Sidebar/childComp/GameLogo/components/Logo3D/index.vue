@@ -7,15 +7,7 @@ const { getImgLink } = $concise;
 <template>
   <div class="logo-3d">
     <div class="logo-box">
-      <div class="logo-1 logo">
-        <img :src="getImgLink('logo_inside')" alt="" class="inside" />
-        <img :src="getImgLink('logo_outside')" alt="" class="outside" />
-      </div>
-      <div class="logo-2 logo">
-        <img :src="getImgLink('logo_inside')" alt="" class="inside" />
-        <img :src="getImgLink('logo_outside')" alt="" class="outside" />
-      </div>
-      <div class="logo-3 logo">
+      <div v-for="(item, index) in 3" :key="index" class="logo" :class="'logo-' + item">
         <img :src="getImgLink('logo_inside')" alt="" class="inside" />
         <img :src="getImgLink('logo_outside')" alt="" class="outside" />
       </div>
