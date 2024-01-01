@@ -239,10 +239,10 @@ declare namespace Remote {
     /** @description 装备效果 */
     interface Effect extends Id {
       value: {
-        /** 效果名称 */
-        name: string;
+        /** 效果ID */
+        name: number;
         /** 阶段值，百分比或数字 */
-        num: string[];
+        num: string;
       }[];
     }
 

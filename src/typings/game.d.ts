@@ -249,7 +249,12 @@ declare namespace Game {
       /** 简述 */
       desc: string;
       /** 效果 */
-      effect: Remote.Equip.Effect["value"];
+      effect: {
+        /** 效果名称 */
+        name: string;
+        /** 阶段值，百分比或数字 */
+        num: string;
+      }[];
       /** 动机 */
       motivation: Remote.Equip.Motivation["value"];
     }
