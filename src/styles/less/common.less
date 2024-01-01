@@ -102,6 +102,22 @@
   }
 }
 
+/* 可点击高光 */
+.global_light-btn {
+  .global_cursor-pointer();
+
+  &:hover {
+    transition: all 0.1s;
+    filter: contrast(1.1) brightness(1.3);
+  }
+
+  &:active {
+    transform: scale(0.95);
+    transform-origin: center;
+    filter: contrast(1) brightness(0.9);
+  }
+}
+
 /*  条纹背景 */
 .global_stripes-bg {
   --color: rgba(0 0 0 / 10%);
