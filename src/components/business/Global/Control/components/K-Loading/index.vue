@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { $bus, $concise } from "@/utils";
-
-const { getImgLink } = $concise;
+import { $bus } from "@/utils";
+import { getImgLink } from "@/utils/modules/concise";
 
 /** 显示loading */
 const show = ref(false);
@@ -24,15 +23,8 @@ $bus.on("loading", (v) => {
     <transition name="fade">
       <div v-show="show" class="k-loading">
         <div class="logo">
-          <div class="inside">
-            <img :src="getImgLink('into_1')" alt="" class="a" />
-            <img :src="getImgLink('into_2')" alt="" class="b" />
-          </div>
-
-          <div class="outside">
-            <img :src="getImgLink('into_3')" alt="" class="c" />
-            <img :src="getImgLink('into_4')" alt="" class="d" />
-          </div>
+          <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
+          <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
         </div>
         <div class="text">正在加载{{ text }}页面</div>
       </div>
