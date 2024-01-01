@@ -8,10 +8,10 @@ import SkinToolbar from "./childComps/SkinToolbar/index.vue";
 import SkinVoice from "./childComps/SkinVoice/index.vue";
 
 import { SkinStore, AudioStore } from "@/store";
-import { $tool } from "@/utils";
+import { $imageView, $tool } from "@/utils";
 import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { GAME_HERO } from "@/api";
+import { GAME_HERO, KVP_HERO } from "@/api";
 
 defineOptions({
   name: "Skin",
@@ -79,7 +79,18 @@ const onLoadMore = () => {
 const onShowTool = (e: Event, v: { type: string; data: Game.Hero.Skin }) => {
   if (v.type === "poster") {
     show_poster.value = true;
-    new $tool.ScaleFLIPImage(e, v.data.posterBig, v.data.posterBlur);
+    const { posterBig, posterBlur, name, heroName, hero } = v.data;
+    const voices = GAME_HERO.getSkinVoice(hero, name).voice;
+    $imageView({
+      event: e,
+      type: "HERO",
+      bigImage: posterBig,
+      blurImage: posterBlur,
+      heroName,
+      heroAvatar: KVP_HERO.getHeroAvatarKvp()[hero],
+      skinName: name,
+      voices,
+    });
   } else if (v.type === "voice") {
     voices.value = GAME_HERO.getSkinVoice(v.data.hero, v.data.name).voice;
     show_voice.value = true;

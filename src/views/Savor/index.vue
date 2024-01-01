@@ -7,11 +7,11 @@ import { onActivated, onDeactivated } from "vue";
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
-import { vBlurLoad } from "@/directives";
-import { $bus, $tool } from "@/utils";
+import { $bus, $imageView } from "@/utils";
 import { AtlasStore, AudioStore } from "@/store";
-import { FilterSidebar, KBackTop } from "@/components/business";
+import { FilterSidebar, KBackTop, KImageLoad } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
+import { GAME_HERO, KVP_HERO } from "@/api";
 
 defineOptions({
   name: "Savor",
@@ -40,10 +40,44 @@ const debounceWatchImgLoad = _debounce(() => {
 }, 500);
 
 /* 当前高亮的图片id */
-const handleRelated = (e: Event, id: number, poster: string, blur: string) => {
+const handleRelated = (
+  e: Event,
+  type: Game.Hero.AloneAtlas["type"],
+  id: number,
+  name: string,
+  poster: string,
+  blur: string,
+) => {
   hero_id.value = id;
   new Image().src = blur;
-  poster && new $tool.ScaleFLIPImage(e, poster, blur);
+  const heroAvatar = KVP_HERO.getHeroAvatarKvp()[id];
+
+  if (!poster) return;
+  if (type === "HERO") {
+    const voices = GAME_HERO.getSkinVoice(id, "原皮").voice;
+    $imageView({
+      event: e,
+      type: "HERO",
+      bigImage: poster,
+      blurImage: blur,
+      heroName: name,
+      heroAvatar,
+      skinName: "原版皮肤",
+      voices,
+    });
+  } else {
+    const voices = GAME_HERO.getSkinVoice(id, name).voice;
+    $imageView({
+      event: e,
+      type: "HERO",
+      bigImage: poster,
+      blurImage: blur,
+      heroName: KVP_HERO.getHeroNameKvp()[id],
+      heroAvatar,
+      skinName: name,
+      voices,
+    });
+  }
 };
 
 /* 加载更多 */
@@ -103,9 +137,11 @@ onDeactivated(() => {
           :class="{
             active: hero_id === item.id,
           }"
-          @mouseenter="handleRelated($event, item.id, '', item.posterBlur)"
-          @mouseup="handleRelated($event, item.id, item.posterBig, item.posterBlur)"
-          @touchstart="handleRelated($event, item.id, '', item.posterBlur)"
+          @mouseenter="handleRelated($event, item.type, item.id, item.name, '', item.posterBlur)"
+          @mouseup="
+            handleRelated($event, item.type, item.id, item.name, item.posterBig, item.posterBlur)
+          "
+          @touchstart="handleRelated($event, item.type, item.id, item.name, '', item.posterBlur)"
           @mouseleave="hero_id = 0"
         >
           <div v-if="item.type === 'HERO'" class="hero-name">
@@ -114,7 +150,12 @@ onDeactivated(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <img v-blurLoad="item.cover" :src="item.coverBlur" alt="" @dragstart.prevent />
+          <KImageLoad
+            loading-width="25%"
+            :big-img="item.cover"
+            class="bg"
+            :blur-img="item.coverBlur"
+          />
         </div>
       </LibWaterfall>
     </div>
