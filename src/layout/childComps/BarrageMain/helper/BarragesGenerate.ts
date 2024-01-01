@@ -205,7 +205,7 @@ export class BarragesGenerate {
       gender: "男",
       name: "冷弋白",
       desc: "独立开发者",
-      text: "这个弹幕就让你看看我拍的这个项目的代码壁纸，点击下面的图片可以查看大图，这个大图有4MB，等待时间可能会久一点，图中文件：src/views/Hero/childViews/HeroDetail/index.vue",
+      text: "点击下面的图片可以查看大图，图中文件：src/views/Hero/childViews/HeroDetail/index.vue",
       avatar: getImgLink("lyb"),
       link: getAudioLink("ji"),
       link_big: getImgLink("code_bg_big", "jpg"),
