@@ -13,16 +13,25 @@ export const getEquip = () => {
   const equip_price_kvp = KVP_EQUIP.getEquipPriceKvp();
   const equip_type_kvp = KVP_EQUIP.getEquipTypeKvp();
   const type_equip_kvp = KVP_TYPE.getEquipKvp();
+  const type_equip_effect_kvp = KVP_TYPE.getEquipEffectKvp();
 
   //整合数据
   const equip_list: Game.Equip.Data[] = [];
   for (let i = 0; i < equip_ids.length; i++) {
     const id = equip_ids[i];
     const { icon, iconBlur } = equip_image_kvp[id];
+
+    //获取装备效果中文名称
+    const effect = equip_effect_kvp[id].map((item) => {
+      return {
+        name: type_equip_effect_kvp[item.name],
+        num: item.num,
+      };
+    });
     equip_list[i] = {
       id: id,
       desc: equip_desc_kvp[id],
-      effect: equip_effect_kvp[id],
+      effect,
       icon,
       iconBlur,
       level: equip_level_kvp[id].value,
@@ -33,5 +42,6 @@ export const getEquip = () => {
       type: type_equip_kvp[equip_type_kvp[id]],
     };
   }
+
   return equip_list;
 };
