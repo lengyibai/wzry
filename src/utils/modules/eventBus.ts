@@ -1,5 +1,7 @@
 import mitt from "mitt";
 
+import { ImageViewParams } from "./imageView";
+
 import { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/types";
 
 type EventData = {
@@ -15,6 +17,8 @@ type EventData = {
   "watch-waterfall": any;
   /** 瀑布流更新图片大小及坐标 */
   "update-waterfall": any;
+  /** 查看图片 */
+  "img-view": ImageViewParams;
 };
 
 type MittEventMap = {
