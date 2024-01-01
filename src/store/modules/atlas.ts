@@ -112,9 +112,6 @@ const AtlasStore = defineStore("atlas", () => {
 
     /* 获取图集列表 */
     getAtlasList() {
-      //用于模糊图片预加载
-      const poster_blur: string[] = [];
-
       const hero_atlas = GAME_HERO.getHeroAtlas();
 
       hero_atlas.forEach((hero) => {
@@ -132,7 +129,6 @@ const AtlasStore = defineStore("atlas", () => {
           posterBig: hero.posterBig,
         });
 
-        poster_blur.push(hero.posterBlur);
         hero.skins.forEach((skin) => {
           $usePagingLoad.pushAllData({
             id: hero.id,
@@ -147,12 +143,8 @@ const AtlasStore = defineStore("atlas", () => {
             posterBlur: skin.posterBlur,
             posterBig: skin.posterBig,
           });
-
-          poster_blur.push(skin.posterBlur);
         });
       });
-
-      $tool.preloadImages(poster_blur);
 
       sortAll();
     },

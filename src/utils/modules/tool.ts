@@ -257,7 +257,7 @@ export const imageOptimizer = (obj: ImageOptimizerOptions) => {
 };
 
 /** @description Promise定时器 */
-export const promiseTimeout = (fn: () => void, delay: number) => {
+export const promiseTimeout = (fn: () => void, delay = 0) => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       fn();
@@ -484,17 +484,17 @@ export class ScaleFLIPImage {
     });
 
     /* 拖动 */
-    document.addEventListener("mousedown", (event) => {
+    this.overlay.addEventListener("mousedown", (event) => {
       this.startX = event.clientX;
       this.startY = event.clientY;
       this.isDragging = true;
       this.img.style.transition = "all 0s";
     });
-    document.addEventListener("mouseup", () => {
+    this.overlay.addEventListener("mouseup", () => {
       this.isDragging = false;
       this.img.style.transition = "all 0.25s";
     });
-    document.addEventListener("mousemove", (event) => {
+    this.overlay.addEventListener("mousemove", (event) => {
       if (!this.isDragging) return;
       const deltaX = event.clientX - this.startX;
       const deltaY = event.clientY - this.startY;
@@ -506,17 +506,17 @@ export class ScaleFLIPImage {
     });
 
     /* 兼容移动端 */
-    document.addEventListener("touchstart", (event) => {
+    this.overlay.addEventListener("touchstart", (event) => {
       this.startX = event.changedTouches[0].clientX;
       this.startY = event.changedTouches[0].clientY;
       this.isDragging = true;
       this.img.style.transition = "all 0s";
     });
-    document.addEventListener("touchend", () => {
+    this.overlay.addEventListener("touchend", () => {
       this.isDragging = false;
       this.img.style.transition = "all 0.25s";
     });
-    document.addEventListener("touchmove", (event) => {
+    this.overlay.addEventListener("touchmove", (event) => {
       if (!this.isDragging) return;
       const deltaX = event.changedTouches[0].clientX - this.startX;
       const deltaY = event.changedTouches[0].clientY - this.startY;
@@ -824,4 +824,17 @@ export const titleTip = () => {
       document.title = document_title;
     }, 1000);
   });
+};
+
+/** @description 下载图片链接 */
+export const downloadImage = (link: string, name: string) => {
+  fetch(link)
+    .then((res) => res.blob())
+    .then((blob) => {
+      const a = document.createElement("a");
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = name;
+      a.click();
+    });
 };

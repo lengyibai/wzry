@@ -224,9 +224,6 @@ const SkinStore = defineStore("skin", () => {
 
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
     getSkin() {
-      /** 用于模糊图片预加载 */
-      const poster_blur: string[] = [];
-
       const skin_list = GAME_HERO.getSkinList();
 
       const skinTypes = KVP_TYPE.getSkinKvp();
@@ -239,13 +236,9 @@ const SkinStore = defineStore("skin", () => {
         //设置备用名称，解决高亮问题
         skin.skin_name = skin.name;
         skin.hero_name = skin.heroName;
-
-        poster_blur.push(skin.posterBlur);
       });
 
       $usePagingLoad.all_data.value = skin_list;
-
-      $tool.preloadImages(poster_blur);
 
       sortAll();
     },

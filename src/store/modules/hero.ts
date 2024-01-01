@@ -213,15 +213,7 @@ const HeroStore = defineStore("hero", () => {
 
     /** @description 初次获取英雄列表并设置相关信息 */
     getHeroList() {
-      /** 用于模糊图片预加载 */
-      const poster_blur: string[] = [];
-
       all_data.value = GAME_HERO.getHeroData();
-      all_data.value.forEach((item) => {
-        poster_blur.push(item.coverBlur);
-      });
-
-      $tool.preloadImages(poster_blur);
       this.setProfessional("全部");
     },
 
