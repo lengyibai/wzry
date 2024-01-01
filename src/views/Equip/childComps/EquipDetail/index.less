@@ -23,7 +23,119 @@
   }
 
   .info {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1.25rem;
+
+    .effect {
+      display: flex;
+
+      .icon {
+        --size: 0.4;
+
+        margin-bottom: 0.3125rem;
+        background-image: url("@{IMGBED}/image/equip_effect.png");
+        background-size: calc(3.5625rem * var(--size)) calc(46.875rem * var(--size));
+      }
+
+      .num {
+        padding-left: 0.5rem;
+        color: var(--theme-font-color-seven);
+        font-size: 1rem;
+        font-family: var(--font-f);
+        line-height: 1;
+      }
+
+      .bjl {
+        width: calc(3rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 -0;
+      }
+
+      .fsfy {
+        width: calc(3.0625rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-3.125rem * var(--size));
+      }
+
+      .fsgj {
+        width: calc(3.25rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-6.25rem * var(--size));
+      }
+
+      .fsxx {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-9.375rem * var(--size));
+      }
+
+      .gjsd {
+        width: calc(3.1875rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-12.5rem * var(--size));
+      }
+
+      .hl {
+        width: calc(2.9375rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-15.625rem * var(--size));
+      }
+
+      .hx {
+        width: calc(3.5625rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-18.75rem * var(--size));
+      }
+
+      .lq {
+        width: calc(3.1875rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-21.875rem * var(--size));
+      }
+
+      .lqsj {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-25rem * var(--size));
+      }
+
+      .wlfy {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-28.125rem * var(--size));
+      }
+
+      .wlgj {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-31.25rem * var(--size));
+      }
+
+      .wlxx {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-34.375rem * var(--size));
+      }
+
+      .ys {
+        width: calc(3.1875rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-37.5rem * var(--size));
+      }
+
+      .zdfl {
+        width: calc(3.125rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-40.625rem * var(--size));
+      }
+
+      .zdsm {
+        width: calc(3.5625rem * var(--size));
+        height: calc(3.125rem * var(--size));
+        background-position: -0 calc(-43.75rem * var(--size));
+      }
+    }
   }
 
   .details {
@@ -61,108 +173,4 @@
     background-color: var(--black-25);
     backdrop-filter: blur(0.3125rem);
   }
-}
-
-.common,
-.zdsm,
-.hx,
-.ys,
-.gjsd,
-.lqsj,
-.wlxx,
-.wlgj,
-.bjl,
-.wlfy,
-.fsxx,
-.zdfl,
-.hl,
-.fsfy,
-.fsgj,
-.lq {
-  @size: 1rem;
-
-  height: @size;
-  margin-bottom: 0.3125rem;
-  padding-left: 1.375rem;
-  color: var(--theme-font-color-seven);
-  font-size: 1rem;
-  font-family: var(--font-f);
-  line-height: 1;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.zdsm {
-  //最大生命
-  background-image: url("@{IMGBED}/image/equip_zdsm.png");
-}
-
-.hx {
-  //每5秒回血
-  background-image: url("@{IMGBED}/image/equip_hx.png");
-}
-
-.ys {
-  //移速
-  background-image: url("@{IMGBED}/image/equip_ys.png");
-}
-
-.gjsd {
-  //攻击速度
-  background-image: url("@{IMGBED}/image/equip_gjsd.png");
-}
-
-.lqsj {
-  //冷却缩减
-  background-image: url("@{IMGBED}/image/equip_lqsj.png");
-}
-
-.wlxx {
-  //物理吸血
-  background-image: url("@{IMGBED}/image/equip_wlxx.png");
-}
-
-.wlgj {
-  //物理攻击
-  background-image: url("@{IMGBED}/image/equip_wlgj.png");
-}
-
-.bjl {
-  //暴击率
-  background-image: url("@{IMGBED}/image/equip_bjl.png");
-}
-
-.wlfy {
-  //物理防御
-  background-image: url("@{IMGBED}/image/equip_wlfy.png");
-}
-
-.fsxx {
-  //法术吸血
-  background-image: url("@{IMGBED}/image/equip_fsxx.png");
-}
-
-.zdfl {
-  //最大法力
-  background-image: url("@{IMGBED}/image/equip_zdfl.png");
-}
-
-.hl {
-  //每5秒回蓝
-  background-image: url("@{IMGBED}/image/equip_hl.png");
-}
-
-.fsfy {
-  //法术防御
-  background-image: url("@{IMGBED}/image/equip_fsfy.png");
-}
-
-.fsgj {
-  //法术攻击
-  background-image: url("@{IMGBED}/image/equip_fsgj.png");
-}
-
-.lq {
-  //冷却时间
-  background-image: url("@{IMGBED}/image/equip_lq.png");
 }

@@ -2,11 +2,8 @@
 import { computed } from "vue";
 
 import { HeroDetailStore } from "@/store";
-import { $concise } from "@/utils";
 
 const $heroDetail = HeroDetailStore();
-
-const { getImgLink } = $concise;
 
 const hero = computed(() => $heroDetail.hero_info);
 </script>
@@ -15,9 +12,9 @@ const hero = computed(() => $heroDetail.hero_info);
   <div class="hero-title">
     <div class="title-name">{{ hero.name }}</div>
     <div class="title-mark">
-      <img class="left" :src="getImgLink('mark')" alt="" />
+      <div class="left"></div>
       <span class="text">{{ hero.mark }}</span>
-      <img class="right" :src="getImgLink('mark')" alt="" />
+      <div class="right"></div>
     </div>
   </div>
 </template>

@@ -2,7 +2,6 @@
 import { computed } from "vue";
 
 import { AudioStore } from "@/store";
-import { $concise } from "@/utils";
 
 interface Props {
   /** 是否选中 */
@@ -16,12 +15,10 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-const { getImgLink } = $concise;
-
 /** 是否选中图标 */
-const checkIcon = computed(() =>
-  getImgLink(`${$props.modelValue ? "check_true_yellow" : "check_false_yellow"}`),
-);
+const checkIcon = computed(() => {
+  return $props.modelValue ? "spirit_msic-check_true_yellow" : "spirit_msic-check_false_yellow";
+});
 
 /* 选中按钮 */
 const handleToggle = () => {
@@ -32,7 +29,7 @@ const handleToggle = () => {
 
 <template>
   <div class="remember-pwd" @click="handleToggle">
-    <img class="icon" :src="checkIcon" />
+    <div class="icon" :class="checkIcon"></div>
     <span class="text">记住密码</span>
   </div>
 </template>

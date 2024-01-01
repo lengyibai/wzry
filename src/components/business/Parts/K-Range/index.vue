@@ -104,7 +104,7 @@ const hide = () => {
       </div>
       <div class="field">
         <div class="bar" :style="{ width: barWidth }">
-          <img v-show="showIcon && showDot" :src="icon" :style="{ width: size, height: size }" />
+          <div v-show="showIcon && showDot" class="dot"></div>
           <span
             v-show="showDot && !showIcon"
             :style="{

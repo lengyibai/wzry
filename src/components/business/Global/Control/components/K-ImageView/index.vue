@@ -83,13 +83,7 @@ const handleDownload = () => {
         </div>
 
         <transition name="close" appear>
-          <img
-            v-show="show"
-            class="close"
-            :src="getImgLink('back')"
-            alt="返回"
-            @click="handleHide"
-          />
+          <div v-show="show" class="close" @click="handleHide"></div>
         </transition>
 
         <transition v-if="info?.type === 'HERO'" name="sidebar">

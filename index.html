@@ -1,97 +1,92 @@
 <!doctype html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="keywords" content="王者图鉴,王者荣耀图鉴,王者荣耀,冷弋白,lengyibai" />
-    <meta
-      name="description"
-      content="由冷弋白独立开发，收集王者荣耀游戏的英雄、皮肤、技能、语音、装备、铭文等资料，支持对数据筛选、排序获得相关信息。精致的UI设计、炫酷视觉效果、丰富的功能。网站开源，欢迎开发者交流学习！"
-    />
-    <meta name="baidu-site-verification" content="codeva-L1DIn6LkUn" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>王者图鉴 - 冷弋白</title>
-    <link
-      rel="preload"
-      crossorigin="anonymous"
-      href="https://lyb.cbb.plus/wzry-material/font/wzry.ttf"
-      as="font"
-    />
-    <link rel="icon" type="image/png" href="/wzry.svg" />
-    <link rel="stylesheet" href="/font/iconfont.css" />
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?2c84cd61316a5ce978ca513745ec7eaa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-    <script>
-      let is_error = false;
-      window.addEventListener(
-        "error",
-        function (e) {
-          if (e.target.localName === "script" && e.target.href?.includes("index") && !is_error) {
-            is_error = true;
-            const status = confirm(
-              "js文件丢失，网站可能因更新移除了旧的js文件，可能会影响网站正常运行，点击确定后刷新浏览器获取最新文件",
-            );
-            status && location.reload();
-          }
-        },
-        true,
-      );
-    </script>
-  </head>
-  <body>
-    <script src="/js/flexible.js" type="text/javascript" defer></script>
-    <div id="app">
-      <link rel="stylesheet" href="/css/into_animate.css" />
-      <div class="body">
-        <div class="loading">
-          <div class="box">
-            <div class="logo">
-              <div class="inside-box">
-                <div class="inside">
-                  <img src="https://lyb.cbb.plus/wzry-material/image/into_1.png" alt="" class="a" />
-                  <img src="https://lyb.cbb.plus/wzry-material/image/into_2.png" alt="" class="b" />
-                </div>
-              </div>
 
-              <div class="outside-box">
-                <div class="outside">
-                  <img src="https://lyb.cbb.plus/wzry-material/image/into_3.png" alt="" class="c" />
-                  <img src="https://lyb.cbb.plus/wzry-material/image/into_4.png" alt="" class="d" />
-                </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="keywords" content="王者图鉴,王者荣耀图鉴,王者荣耀,冷弋白,lengyibai" />
+  <meta name="description" content="由冷弋白独立开发，收集王者荣耀游戏的英雄、皮肤、技能、语音、装备、铭文等资料，支持对数据筛选、排序获得相关信息。精致的UI设计、炫酷视觉效果、丰富的功能。网站开源，欢迎开发者交流学习！" />
+  <meta name="baidu-site-verification" content="codeva-L1DIn6LkUn" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>王者图鉴 - 冷弋白</title>
+  <link rel="preload" crossorigin="anonymous" href="https://lyb.cbb.plus/wzry-material/font/wzry.ttf" as="font" />
+  <link rel="icon" type="image/png" href="/wzry.svg" />
+  <link rel="stylesheet" href="/font/iconfont.css" />
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2c84cd61316a5ce978ca513745ec7eaa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script>
+    let is_error = false;
+    window.addEventListener(
+      "error",
+      function (e) {
+        if (e.target.localName === "script" && e.target.href?.includes("index") && !is_error) {
+          is_error = true;
+          const status = confirm(
+            "js文件丢失，网站可能因更新移除了旧的js文件，可能会影响网站正常运行，点击确定后刷新浏览器获取最新文件",
+          );
+          status && location.reload();
+        }
+      },
+      true,
+    );
+  </script>
+</head>
+
+<body>
+  <script src="/js/flexible.js" type="text/javascript" defer></script>
+  <div id="app">
+    <link rel="stylesheet" href="/css/into_animate.css" />
+    <div class="body">
+      <div class="loading">
+        <div class="box">
+          <div class="logo">
+            <div class="inside-box">
+              <div class="inside">
+                <div class="a spirit_into-1"></div>
+                <div class="b spirit_into-2"></div>
+              </div>
+            </div>
+
+            <div class="outside-box">
+              <div class="outside">
+                <div class="c spirit_into-3"></div>
+                <div class="d spirit_into-4"></div>
               </div>
             </div>
           </div>
-
-          <div class="text-box">
-            <img src="https://lyb.cbb.plus/wzry-material/image/into_5.png" alt="" class="text" />
-          </div>
         </div>
 
-        <div class="into">
-          <div class="text">点击屏幕任意处进入</div>
-          <i class="iconfont wzry-fanhui"></i>
+        <div class="text-box">
+          <img src="https://lyb.cbb.plus/wzry-material/image/into_5.png" alt="" class="text" />
         </div>
       </div>
-    </div>
-    <script type="module" src="/src/main.ts"></script>
-    <script>
-      const body = document.querySelector(".body");
-      setTimeout(() => {
-        body.style.display = "flex";
-      }, 100);
 
-      document.ondragstart = () => false;
-      document.onkeydown = (e) => {
-        if (e.keyCode === 9) {
-          e.preventDefault();
-        }
-      };
-    </script>
-  </body>
+      <div class="into">
+        <div class="text">点击屏幕任意处进入</div>
+        <i class="iconfont wzry-fanhui"></i>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+  <script>
+    const body = document.querySelector(".body");
+    setTimeout(() => {
+      body.style.display = "flex";
+    }, 100);
+
+    document.ondragstart = () => false;
+    document.onkeydown = (e) => {
+      if (e.keyCode === 9) {
+        e.preventDefault();
+      }
+    };
+  </script>
+</body>
+
 </html>

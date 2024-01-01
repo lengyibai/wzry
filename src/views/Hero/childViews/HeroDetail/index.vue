@@ -11,14 +11,12 @@ import HeroSkill from "./childComps/HeroSkill/index.vue";
 
 import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
-import { $concise, $loading } from "@/utils";
+import { $loading } from "@/utils";
 
 const $router = useRouter();
 const $heroDetail = HeroDetailStore();
 const $heroStore = HeroStore();
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 /** 滚动索引 */
 const scroll_index = ref(1);
@@ -97,13 +95,7 @@ onMounted($loading.close);
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <img
-      class="hero-detail__close"
-      :class="{ show: show_close }"
-      :src="getImgLink('back')"
-      alt="返回"
-      @click="handleHide"
-    />
+    <div class="hero-detail__close" :class="{ show: show_close }" @click="handleHide"></div>
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax v-if="hero_data.posterBlur" class="scroll-item" :bg="hero_data.poster">

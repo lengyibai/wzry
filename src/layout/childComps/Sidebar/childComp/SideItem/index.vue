@@ -5,7 +5,6 @@ import { useRouter, useRoute } from "vue-router";
 import SideItem from "./index.vue";
 
 import { CollapseStore, AudioStore } from "@/store";
-import { $concise } from "@/utils";
 
 interface RouteFormat {
   /** 路由路径 */
@@ -34,8 +33,6 @@ const $router = useRouter();
 const $route = useRoute();
 const $collapseStore = CollapseStore();
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 /** 设置子菜单与上级菜单水平间隔 */
 const textStyle = `padding-left: ${0.5 * $props.route.zIndex}em !important;`;
@@ -133,13 +130,7 @@ const handleChildCoord = (v: number) => {
       <span class="name">{{ $t(route.title) }}</span>
 
       <!-- 下拉箭头 -->
-      <img
-        v-if="route.children"
-        class="arrow"
-        :class="{ 'arrow-active': show }"
-        :src="getImgLink('arrow')"
-        alt=""
-      />
+      <div v-if="route.children" class="arrow" :class="{ 'arrow-active': show }"></div>
     </div>
 
     <!-- 二级菜单 -->

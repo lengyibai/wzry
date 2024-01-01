@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { vParticle } from "@/directives";
 import { SettingStore } from "@/store";
-import { $concise } from "@/utils";
 
 interface Props {
   /** 类型 */
@@ -16,13 +15,18 @@ withDefaults(defineProps<Props>(), {
 
 const $settingStore = SettingStore();
 
-const { getImgLink } = $concise;
-
 /** 粒子颜色 */
 const particle_color = {
   info: "#3f9ed3",
   error: "#d83e41",
   warning: "#e1c673",
+};
+
+/** 类名 */
+const class_name = {
+  info: "spirit_btn-info",
+  error: "spirit_btn-error",
+  warning: "spirit_btn-warning",
 };
 </script>
 
@@ -34,11 +38,8 @@ const particle_color = {
       enable: $settingStore.config.particle,
     }"
     :disabled="disabled"
-    :class="[type, { disable: disabled }]"
+    :class="[type, { disable: disabled }, class_name[type]]"
     class="k-button"
-    :style="{
-      backgroundImage: `url(${getImgLink(`btn_${type}`)})`,
-    }"
   >
     <span class="text">
       <slot>按钮</slot>

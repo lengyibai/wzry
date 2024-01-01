@@ -24,10 +24,16 @@
 
     .left,
     .right {
-      width: 6.25rem;
+      --msic-rate: 0.83;
+    }
+
+    .left {
+      .spirit_msic-mark();
     }
 
     .right {
+      .spirit_msic-mark();
+
       transform: rotate(180deg);
     }
   }

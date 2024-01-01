@@ -6,7 +6,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import FormLabel from "@/components/business/Form/FormLabel/index.vue";
 import KInput from "@/components/business/Parts/K-Input/index.vue";
 import { AudioStore } from "@/store";
-import { $concise, $tool } from "@/utils";
+import { $tool } from "@/utils";
 
 interface Props {
   /** 左侧文字 */
@@ -39,8 +39,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 /** 输入框的值 */
 const input_value = ref("");
@@ -164,7 +162,7 @@ watch(
             @focus="handleFocus"
             @blur="handleBlur"
           />
-          <img class="arrow" :class="{ rotate: is_unfold }" :src="getImgLink('arrow')" alt="" />
+          <div class="arrow" :class="{ rotate: is_unfold }"></div>
         </div>
 
         <!-- 展开列表 -->

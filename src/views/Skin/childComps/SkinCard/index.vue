@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { $concise } from "@/utils";
 import { vAnimateNumber, vMaskGradient } from "@/directives";
 import { KImageLoad } from "@/components/business";
 
@@ -12,8 +11,6 @@ const $props = defineProps<Props>();
 const $emit = defineEmits<{
   showTool: [e: Event, v: { type: string; data: Game.Hero.Skin }];
 }>();
-
-const { getImgLink } = $concise;
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
@@ -28,12 +25,12 @@ const handle = (e: Event, v: string) => {
 
 <template>
   <div v-maskGradient class="skin-card">
-    <KImageLoad loading-width="25%" :big-img="data.cover" :blur-img="data.posterBlur" class="bg" />
+    <KImageLoad loading-width="20%" :big-img="data.cover" :blur-img="data.posterBlur" class="bg" />
     <img v-if="data.link" class="type" :src="data.link" />
 
     <!-- 价格 -->
     <div class="price">
-      <img v-if="priceShow(data.price)" :src="getImgLink('coupon')" alt="" />
+      <div v-if="priceShow(data.price)" class="coupon"></div>
       <span
         v-animate-number="{
           num: data.price,

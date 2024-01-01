@@ -35,13 +35,9 @@ const abbreviations: Record<string, string> = {
 
       <!-- 数值信息 -->
       <div class="info">
-        <div
-          v-for="(item, index) in equip.effect"
-          :key="index"
-          class="effect"
-          :class="abbreviations[item.name]"
-        >
-          +{{ item.num }} {{ item.name }}
+        <div v-for="(item, index) in equip.effect" :key="index" class="effect">
+          <div class="icon" :class="abbreviations[item.name]"></div>
+          <span class="num">+{{ item.num }} {{ item.name }}</span>
         </div>
       </div>
 

@@ -2,7 +2,6 @@
 import { computed } from "vue";
 
 import { AudioStore } from "@/store";
-import { $concise } from "@/utils";
 
 interface Props {
   /** 选中状态 */
@@ -16,10 +15,8 @@ const $emit = defineEmits<{
 
 const $audioStore = AudioStore();
 
-const { getImgLink } = $concise;
-
 const icon = computed(() => {
-  return getImgLink($props.modelValue ? "select_true" : "select_false");
+  return $props.modelValue ? "spirit_msic-select_true" : "spirit_msic-select_false";
 });
 
 const toggle = () => {
@@ -30,7 +27,7 @@ const toggle = () => {
 
 <template>
   <div class="k-check" @click="toggle">
-    <img :class="{ checked: modelValue }" :src="icon" />
+    <div class="select" :class="[icon, { checked: modelValue }]"></div>
     <span :class="{ active: modelValue }">{{ $t("开启") }}</span>
   </div>
 </template>

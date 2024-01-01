@@ -105,12 +105,7 @@ defineExpose({
           </div>
 
           <!-- 关闭 -->
-          <img
-            v-show="showClose"
-            class="close"
-            :src="getImgLink('close')"
-            @click="handleCloseDialog"
-          />
+          <div v-show="showClose" class="close" @click="handleCloseDialog"></div>
 
           <!-- 内容区 -->
           <div

@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 
-import { $bus, $concise } from "@/utils";
+import { $bus } from "@/utils";
 import { SettingStore, AudioStore, TipStore } from "@/store";
 import { KButton } from "@/components/business";
 import { vTypewriterMultiple } from "@/directives";
@@ -16,8 +16,6 @@ $bus.on("tip", (data) => {
 
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 /** 是否锁定按钮 */
 const disable = ref(true);
@@ -94,7 +92,7 @@ watch(
               <div class="title">小贴士</div>
 
               <!-- 小兵 -->
-              <img class="soldier" :src="getImgLink('warn')" alt="小兵" />
+              <div class="soldier"></div>
             </div>
 
             <!-- 内容 -->

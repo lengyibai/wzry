@@ -48,21 +48,24 @@
 
   .price {
     position: absolute;
-    right: 0;
+    top: 0.3125rem;
+    right: 0.625rem;
     display: flex;
     align-items: center;
     transition: all 0.25s;
-    transform: translate(-0.3125rem, 0.3125rem);
 
-    img {
-      width: 1.375rem;
+    .coupon {
+      --msic-rate: 0.34;
+      .spirit_msic-coupon();
+
       filter: var(--d-shadow-b);
     }
 
     span {
-      margin: 0.3125rem;
+      margin-left: 0.3125rem;
       font-size: 1.25rem;
       text-shadow: var(--t-shadow-e);
+      line-height: 1.5;
     }
   }
 

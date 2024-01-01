@@ -9,11 +9,7 @@
   box-shadow: var(--b-shadow-c);
   font-size: 1rem;
   text-shadow: var(--t-shadow-d);
-  background-image: linear-gradient(
-    180deg,
-    var(--theme-el-color-seven) 0%,
-    #263657 100%
-  );
+  background-image: linear-gradient(180deg, var(--theme-el-color-seven) 0%, #263657 100%);
 
   .title {
     color: var(--theme-font-color-four);
@@ -21,8 +17,9 @@
   }
 
   .arrow {
-    width: 0.9375rem;
-    height: 0.5625rem;
+    --msic-rate: 0.25;
+    .spirit_msic-arrow();
+
     margin-left: 0.9375rem;
     transition: all 0.25s;
     pointer-events: none;

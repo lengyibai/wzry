@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { $concise } from "@/utils";
 import { vAnimateNumber } from "@/directives";
 
 interface Props {
@@ -15,15 +14,13 @@ const $props = defineProps<Props>();
 
 const priceRef = ref<HTMLElement>();
 
-const { getImgLink } = $concise;
-
 /** 通过判断价格是否为数字来显示点券图标及获取途径 */
 const show = computed(() => $props.price && !isNaN(Number($props.price)));
 </script>
 
 <template>
   <div class="hero-skin-price" :class="{ show: toggle }">
-    <img v-show="show" :src="getImgLink('coupon')" alt="点券" />
+    <div v-show="show" class="coupon"></div>
     <span v-show="!show && show !== ''">获取途径：</span>
     <span
       v-if="price"

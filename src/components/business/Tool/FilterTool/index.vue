@@ -2,7 +2,6 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
-import { $concise } from "@/utils";
 
 type Data = { label: string; value: string | number };
 
@@ -26,8 +25,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 /** 选择的值 */
 const current_value = ref("");
@@ -55,7 +52,7 @@ const handleSelect = (v: Data) => {
     <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->
-    <img :class="{ 'arrow-active': status }" :src="getImgLink('arrow')" alt="arrow" class="arrow" />
+    <div :class="{ 'arrow-active': status }" class="arrow" />
 
     <!-- 展开列表 -->
     <div
