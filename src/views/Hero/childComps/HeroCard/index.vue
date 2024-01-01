@@ -79,7 +79,7 @@ const handleViewClick = () => {
     </transition>
 
     <!-- 背景图 -->
-    <KImageLoad loading-width="50%" :big-img="data.cover" :blur-img="data.coverBlur" class="bg" />
+    <KImageLoad loading-width="35%" :big-img="data.cover" :blur-img="data.coverBlur" class="bg" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">
