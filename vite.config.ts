@@ -49,13 +49,6 @@ export default defineConfig(({ mode }) => {
     server: {
       host: "0.0.0.0",
       port: 9527,
-      proxy: {
-        "/api": {
-          target: "https://lyb.cbb.plus/wzry",
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""),
-        },
-      },
     },
     resolve: {
       alias: {
