@@ -3,6 +3,7 @@ import KLoading from "./components/K-Loading/index.vue";
 import KMessage from "./components/K-Message/index.vue";
 import KTip from "./components/K-Tip/index.vue";
 import KConfirm from "./components/K-Confirm/index.vue";
+import KImageView from "./components/K-ImageView/index.vue";
 
 import { $bus } from "@/utils";
 
@@ -27,4 +28,7 @@ window.addEventListener("mouseup", (e) => {
 
   <!-- 确认弹窗 -->
   <KConfirm />
+
+  <!-- 查看图片 -->
+  <KImageView />
 </template>
