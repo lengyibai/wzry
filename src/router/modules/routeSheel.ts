@@ -96,13 +96,6 @@ export const admin: RouterSheel[] = [
     icon: "wzry-xitongguanli",
     children: [
       {
-        title: "添加",
-        icon: "wzry-addcircle",
-        path: "/system/add",
-        name: "add",
-        component: "@/views/System/childViews/Add",
-      },
-      {
         title: "本地数据管理",
         icon: "wzry-database",
         path: "/system/data",
