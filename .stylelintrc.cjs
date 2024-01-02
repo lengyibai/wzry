@@ -16,6 +16,10 @@ module.exports = {
     },
   ],
   rules: {
+    "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
+    "media-feature-range-notation": null, //将媒体查询max-width转换为width<=的形式
+    "no-extra-semicolons": null, //禁止不必要的分号
+    "media-query-no-invalid": null, //禁止在媒体查询中使用不合法的表达式
     "font-family-no-missing-generic-family-keyword": null,
     "selector-class-pattern": null, //禁止在类名中使用下划线
     "declaration-block-trailing-semicolon": null, //禁止在声明块的结尾使用分号
