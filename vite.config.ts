@@ -21,14 +21,15 @@ export default defineConfig(({ mode }) => {
       //   targets: [">0.1%", "last 2 version", "not dead"],
       // }),
       VitePWA({
+        selfDestroying: true,
         registerType: "autoUpdate",
         manifest: {
+          background_color: "#000",
+          display: "standalone",
           name: "王者荣耀图鉴",
           short_name: "王者图鉴",
-          theme_color: "#000",
           start_url: "/king-honor",
-          display: "standalone",
-          background_color: "#000",
+          theme_color: "#000",
           icons: [
             {
               src: "wzry.png",
@@ -36,6 +37,11 @@ export default defineConfig(({ mode }) => {
               type: "image/png",
             },
           ],
+        },
+        workbox: {
+          globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+          ignoreURLParametersMatching: [/.*/],
+          runtimeCaching: [],
         },
       }),
     ],
