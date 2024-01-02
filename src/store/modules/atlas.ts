@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { $bus, $tool } from "@/utils";
@@ -64,26 +63,6 @@ const AtlasStore = defineStore("atlas", () => {
     $usePagingLoad.resetPage();
     $bus.emit("watch-waterfall");
   };
-
-  /** @description 搜索图集 */
-  const debounceSearchAtlas = _debounce((name: string) => {
-    const { all_data, setFilterData } = $usePagingLoad;
-
-    //如果搜索的值不为空，则进行搜索，否则重新排序
-    if (name) {
-      const data = $tool.search<Game.Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
-        "name",
-        "heroName",
-      ]);
-      setFilterData(data);
-
-      $bus.emit("watch-waterfall");
-    } else {
-      sortAll();
-    }
-
-    $usePagingLoad.resetPage();
-  }, 500);
 
   const ExposeData = {
     /** 滚动坐标 */
@@ -181,7 +160,22 @@ const AtlasStore = defineStore("atlas", () => {
 
     /** @description 搜索图集 */
     searchAtlas(name: string) {
-      debounceSearchAtlas(name);
+      const { all_data, setFilterData } = $usePagingLoad;
+
+      //如果搜索的值不为空，则进行搜索，否则重新排序
+      if (name) {
+        const data = $tool.search<Game.Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+          "name",
+          "heroName",
+        ]);
+        setFilterData(data);
+
+        $bus.emit("watch-waterfall");
+      } else {
+        sortAll();
+      }
+
+      $usePagingLoad.resetPage();
     },
   };
 

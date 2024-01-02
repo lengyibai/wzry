@@ -1,6 +1,5 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { $tool } from "@/utils";
@@ -198,22 +197,6 @@ const SkinStore = defineStore("skin", () => {
     ExposeMethods.resetPage();
   };
 
-  /* 防抖筛选皮肤 */
-  const debounceSearchSkin = _debounce((name: string) => {
-    if (name) {
-      filter_list.value = $tool.search(
-        _cloneDeep($usePagingLoad.all_data.value),
-        name,
-        ["skin_name", "hero_name", "category"],
-        true,
-      );
-    } else {
-      sortAll();
-    }
-
-    ExposeMethods.resetPage();
-  }, 500);
-
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
     setScroll: $usePagingLoad.setScroll,
@@ -295,7 +278,18 @@ const SkinStore = defineStore("skin", () => {
 
     /** @description 搜索皮肤 */
     searchSkin(name: string) {
-      debounceSearchSkin(name);
+      if (name) {
+        filter_list.value = $tool.search(
+          _cloneDeep($usePagingLoad.all_data.value),
+          name,
+          ["skin_name", "hero_name", "category"],
+          true,
+        );
+      } else {
+        sortAll();
+      }
+
+      ExposeMethods.resetPage();
     },
   };
 

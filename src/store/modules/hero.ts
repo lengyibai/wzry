@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { $tool } from "@/utils";
@@ -53,22 +52,6 @@ const HeroStore = defineStore("hero", () => {
     misc_type,
     sort_type,
   } = ExposeData;
-
-  /* 防抖筛选英雄 */
-  const debounceSearchHero = _debounce((name: string) => {
-    if (name) {
-      filter_list.value = $tool.search<Game.Hero.Data>(
-        _cloneDeep(all_data.value),
-        name,
-        "name",
-        true,
-      );
-    } else {
-      sortAll();
-    }
-
-    ExposeMethods.resetPage();
-  }, 500);
 
   /* 一键排序 */
   const sortAll = () => {
@@ -289,7 +272,18 @@ const HeroStore = defineStore("hero", () => {
 
     /** @description 搜索英雄 */
     searchHero(name: string) {
-      debounceSearchHero(name);
+      if (name) {
+        filter_list.value = $tool.search<Game.Hero.Data>(
+          _cloneDeep(all_data.value),
+          name,
+          "name",
+          true,
+        );
+      } else {
+        sortAll();
+      }
+
+      ExposeMethods.resetPage();
     },
   };
 

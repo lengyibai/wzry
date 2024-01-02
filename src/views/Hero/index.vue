@@ -105,14 +105,11 @@ if (all_data.value.length === 0) {
   }
 }
 
-const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
-}, 250);
 /* 滚动触发 */
-const onScroll = (v: number) => {
+const onScroll = _debounce((v: number) => {
+  setScroll(v);
   back_top.value = v > 250;
-  debounceScroll(v);
-};
+}, 250);
 
 /* 返回顶部 */
 const onBackTop = () => {
@@ -158,7 +155,7 @@ onDeactivated(() => {
   <div class="hero">
     <div class="hero__main">
       <transition name="fade" appear>
-        <HeroToolbar />
+        <HeroToolbar @seach="onScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
@@ -193,7 +190,7 @@ onDeactivated(() => {
 
     <!--右侧英雄职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="hero" />
+      <FilterSidebar type="hero" @change="onScroll(0)" />
     </transition>
 
     <!--英雄详情页-->

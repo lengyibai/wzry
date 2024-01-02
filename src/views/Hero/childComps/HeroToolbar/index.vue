@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref, reactive, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
+import _debounce from "lodash/debounce";
 
 import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { LOCAL_TYPE } from "@/api";
+
+const $emit = defineEmits<{
+  seach: [];
+}>();
 
 const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } =
   HeroStore();
@@ -80,9 +85,10 @@ const onSortType = (v: string | number) => {
 };
 
 /** 搜索英雄 */
-const handSearch = () => {
+const handSearch = _debounce(() => {
   searchHero(search_value.value);
-};
+  $emit("seach");
+}, 500);
 
 /** 设置下拉状态 */
 const handleSelectStatus = (i: number) => {

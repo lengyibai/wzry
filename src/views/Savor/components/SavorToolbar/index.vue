@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
+import _debounce from "lodash/debounce";
 
 import { AtlasStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
+
+const $emit = defineEmits<{
+  seach: [];
+}>();
 
 const { sortType, filterGender, searchAtlas } = AtlasStore();
 const { sort_type } = storeToRefs(AtlasStore());
@@ -33,9 +38,10 @@ const handerSetGender = (type: Game.GenderId) => {
 };
 
 /** 搜索皮肤 */
-const handSearch = () => {
+const handSearch = _debounce(() => {
   searchAtlas(search_value.value);
-};
+  $emit("seach");
+}, 500);
 
 /** 设置下拉状态 */
 const handleSelectStatus = () => {

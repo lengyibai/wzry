@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { ref, reactive, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
+import _debounce from "lodash/debounce";
 
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
+
+const $emit = defineEmits<{
+  seach: [];
+}>();
 
 const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
 const { price_type, sort_type, skin_type } = storeToRefs(SkinStore());
@@ -79,9 +84,10 @@ const handerSetGender = (type: Game.GenderId) => {
 };
 
 /** 搜索皮肤 */
-const handSearch = () => {
+const handSearch = _debounce(() => {
   searchSkin(search_value.value);
-};
+  $emit("seach");
+}, 500);
 
 /** 设置下拉状态 */
 const handleSelectStatus = (i: number) => {

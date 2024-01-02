@@ -86,14 +86,11 @@ const onLoadMore = () => {
   debounceWatchImgLoad();
 };
 
-const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
-}, 250);
 /* 滚动触发 */
-const onScroll = (v: number) => {
+const onScroll = _debounce((v: number) => {
+  setScroll(v);
   back_top.value = v > 250;
-  debounceScroll(v);
-};
+}, 250);
 
 /* 返回顶部 */
 const onBackTop = () => {
@@ -117,7 +114,7 @@ onDeactivated(() => {
 <template>
   <div class="savor">
     <div class="savor-main">
-      <SavorToolbar />
+      <SavorToolbar @seach="onScroll(0)" />
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <LibWaterfall
@@ -162,7 +159,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="atlas" />
+      <FilterSidebar type="atlas" @change="onScroll(0)" />
     </transition>
   </div>
 </template>

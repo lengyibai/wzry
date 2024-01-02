@@ -61,14 +61,11 @@ const changeCount = () => {
   }
 };
 
-const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
-}, 250);
 /* 滚动触发 */
-const onScroll = (v: number) => {
+const onScroll = _debounce((v: number) => {
+  setScroll(v);
   back_top.value = v > 250;
-  debounceScroll(v);
-};
+}, 250);
 
 /* 加载更多 */
 const onLoadMore = () => {
@@ -132,7 +129,7 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar />
+        <SkinToolbar @seach="onScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
@@ -169,7 +166,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="skin" />
+      <FilterSidebar type="skin" @change="onScroll(0)" />
     </transition>
 
     <!-- 语音列表 -->
