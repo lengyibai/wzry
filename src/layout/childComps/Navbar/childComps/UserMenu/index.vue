@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
+import EditUserInfo from "./components/EditUserInfo/index.vue";
+
 import { AuthStore, AudioStore } from "@/store";
 import { $bus, $concise } from "@/utils";
-import { EditUserInfo, KButton, KDialog } from "@/components/business";
+import { KButton, KDialog } from "@/components/business";
 import { vDelayHide } from "@/directives";
 
 const $authStore = AuthStore();

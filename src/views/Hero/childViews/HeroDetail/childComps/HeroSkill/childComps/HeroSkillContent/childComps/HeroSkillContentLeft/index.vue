@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { KSkillTypeTag } from "@/components/business";
+import SkillTypeTag from "./components/SkillTypeTag/index.vue";
+
 import { HeroDetailStore } from "@/store";
 
 interface Props {
@@ -19,7 +20,7 @@ const $heroDetail = HeroDetailStore();
     <!--名称及类型-->
     <div class="name-type">
       <div class="name">{{ activeSkill.name }}</div>
-      <KSkillTypeTag v-for="item in activeSkill.type" :key="item" :type="item" />
+      <SkillTypeTag v-for="item in activeSkill.type" :key="item" :type="item" />
     </div>
 
     <!--数字相关-->

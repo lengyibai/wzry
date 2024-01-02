@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 
+import SettingDialog from "./components/SettingDialog/index.vue";
+import UpdateLog from "./components/UpdateLog/index.vue";
+import Todo from "./components/Todo/index.vue";
+
 import { VersionStore } from "@/store";
-import { SettingDialog, UpdateLog, Todo } from "@/components/business";
 
 const $versionStore = VersionStore();
 
