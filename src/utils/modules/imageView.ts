@@ -1,4 +1,4 @@
-import $bus from "@/utils/modules/eventBus";
+import { $bus } from "./eventBus";
 
 interface ImageViewParams {
   type: "DEFAULT" | "HERO";
@@ -19,9 +19,9 @@ interface ImageViewParams {
 }
 
 /** @description 查看图片 */
-const imageView = (v: ImageViewParams) => {
+const $imageView = (v: ImageViewParams) => {
   $bus.emit("img-view", v);
 };
 
-export default imageView;
+export { $imageView };
 export type { ImageViewParams };

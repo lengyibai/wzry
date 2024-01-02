@@ -1,8 +1,10 @@
-import $bus from "@/utils/modules/eventBus";
+import { $bus } from "./eventBus";
 
-export default (text: string, type: Global.Message.Status = "info") => {
+const $message = (text: string, type: Global.Message.Status = "info") => {
   $bus.emit("msg", {
     text,
     type,
   });
 };
+
+export { $message };

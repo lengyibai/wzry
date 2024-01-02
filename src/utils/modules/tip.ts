@@ -1,5 +1,7 @@
-import $bus from "@/utils/modules/eventBus";
+import { $bus } from "./eventBus";
 
-export default (data: Global.Tip.Prompt) => {
+const $tip = (data: Global.Tip.Prompt) => {
   $bus.emit("tip", data);
 };
+
+export { $tip };

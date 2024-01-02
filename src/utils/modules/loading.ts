@@ -1,4 +1,4 @@
-import $bus from "@/utils/modules/eventBus";
+import { $bus } from "./eventBus";
 
 let loadingTimeout: NodeJS.Timeout | undefined;
 let needLoadingRequestCount = 0;
@@ -36,4 +36,9 @@ const close = async () => {
   }
 };
 
-export default { show, close };
+const $loading = {
+  show,
+  close,
+};
+
+export { $loading };
