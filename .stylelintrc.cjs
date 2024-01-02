@@ -16,17 +16,12 @@ module.exports = {
     },
   ],
   rules: {
-    "declaration-block-no-duplicate-properties": true,
-    "media-feature-range-notation": null, //禁用将媒体查询max-width转换为width<=的形式
-    "no-extra-semicolons": null, //检测代码中多余的分号
-    "media-query-no-invalid": null, //允许无效的媒体查询
-    "no-eol-whitespace": null, //允许行尾空白
-    "selector-class-pattern": null, //必须中划线命名
-    "property-no-vendor-prefix": null, // 禁止使用浏览器前缀
-    "custom-property-empty-line-before": null, //禁止内联css变量
-    "no-descending-specificity": null, //禁止在具有较高优先级的选择器后出现被其覆盖的较低优先级的选择器
-    "font-family-no-missing-generic-family-keyword": null, //字体名称问题
-    "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
+    "font-family-no-missing-generic-family-keyword": null,
+    "selector-class-pattern": null, //禁止在类名中使用下划线
+    "declaration-block-trailing-semicolon": null, //禁止在声明块的结尾使用分号
+    "declaration-colon-newline-after": null, //禁止在声明后使用空格或换行符
+    "no-descending-specificity": null, //禁止在特定的选择器和规则集中使用降序的选择器和规则集
+    "property-no-vendor-prefix": null, //禁止使用浏览器前缀
     //选择器伪元素未知时进行检查
     "selector-pseudo-element-no-unknown": [
       true,
