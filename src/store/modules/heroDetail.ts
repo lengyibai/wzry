@@ -102,21 +102,15 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       skinToggleFns.value.push(fn);
     },
 
+    /** @description 切换皮肤时触发 */
+    skinToggle(hero_id: number, skin_name: string) {
+      skinToggleFns.value.forEach((item) => {
+        item(hero_id, skin_name);
+      });
+    },
+
     /** @description 设置关系信息 */
-    setRelationInfo(data?: Game.Hero.RelationType) {
-      if (!data) {
-        relation_info.value = {
-          reply: "？",
-          replyRelation: "？",
-          desc: "？",
-          replyGender: "",
-          relation: "？",
-          id: 0,
-          heroName: "？",
-          avatar: getImgLink("unknown"),
-        };
-        return;
-      }
+    setRelationInfo(data: Game.Hero.RelationType) {
       const res = GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
       relation_info.value = {
         ...data,
@@ -127,7 +121,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 获取设置皮肤语音 */
-    setSkinVoice(hero_id: number, skin_name = "盾山") {
+    setSkinVoice(hero_id: number, skin_name: string) {
       skin_voice.value = GAME_HERO.getSkinVoice(hero_id, skin_name).voice || [];
     },
 
@@ -136,11 +130,20 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       skillSelectFn.value(index);
     },
 
-    /** @description 切换皮肤时触发 */
-    skinToggle(hero_id: number, skin_name: string) {
-      skinToggleFns.value.forEach((item) => {
-        item(hero_id, skin_name);
-      });
+    /** @description 重置关系信息、切换皮肤触发函数、语音列表 */
+    resetStatus() {
+      skin_voice.value = [];
+      skinToggleFns.value = [];
+      relation_info.value = {
+        reply: "？",
+        replyRelation: "？",
+        desc: "？",
+        replyGender: "",
+        relation: "？",
+        id: 0,
+        heroName: "？",
+        avatar: getImgLink("unknown"),
+      };
     },
   };
 

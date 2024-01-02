@@ -32,7 +32,7 @@ const toggleHero = (id: number) => {
   const { relationships } = hero_info.value;
 
   relationshipCircle.toggleRelations(relationships);
-  $heroDetailStore.setRelationInfo();
+  $heroDetailStore.resetStatus();
 };
 onMounted(() => {
   const { id, name: heroName, avatar: avatar, relationships: _relationships } = hero_info.value;

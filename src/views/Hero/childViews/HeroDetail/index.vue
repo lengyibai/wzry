@@ -14,7 +14,7 @@ import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
 import { $loading } from "@/utils";
 
 const $router = useRouter();
-const $heroDetail = HeroDetailStore();
+const $heroDetailStore = HeroDetailStore();
 const $heroStore = HeroStore();
 const $audioStore = AudioStore();
 
@@ -32,12 +32,12 @@ const hero_data = ref<Game.Hero.Detail>(heroDefault());
 $audioStore.play("u4c5");
 
 watchEffect(() => {
-  hero_data.value = $heroDetail.hero_info;
+  hero_data.value = $heroDetailStore.hero_info;
   hero_toggle.value = false;
   nextTick(() => {
     hero_toggle.value = true;
     //切换皮肤
-    $heroDetail.skinToggle(hero_data.value.id, "");
+    $heroDetailStore.skinToggle(hero_data.value.id, "");
   });
 });
 
@@ -56,15 +56,14 @@ const onScollStart = () => {
 
 /* 滚动结束触发 */
 const onScrollEnd = (index: number) => {
-  $heroDetail.setIndex(index);
+  $heroDetailStore.setIndex(index);
 };
 
 /* 隐藏自身 */
 const handleHide = () => {
   $router.replace("/hero");
   //置空语音（盾山没有语音，可以用于置空）
-  $heroDetail.setSkinVoice(509);
-  $heroDetail.setRelationInfo();
+  $heroDetailStore.resetStatus();
 
   /* 如果英雄列表职业为空，1.5秒后获取英雄列表 */
   if (!$heroStore.profession) {
