@@ -43,7 +43,7 @@ const show_voice = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 语音列表 */
-const voices = ref<Game.Hero.Voices["voice"]>([]);
+const voices = ref<Remote.Voice.Data["voice"]>([]);
 
 getSkin();
 

@@ -175,7 +175,7 @@ export const getHeroSpecialtyListKvp = () => {
 /** @description 获取英雄技能列表键值表 */
 export const getHeroSkillListKvp = () => {
   const data = LOCAL_HERO.getSkillList();
-  const kvp: Record<number, Game.Hero.Skill[][]> = {};
+  const kvp: Record<number, Remote.Skill.Info[][]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.skills;
   });

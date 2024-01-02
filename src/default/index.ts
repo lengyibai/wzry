@@ -32,7 +32,7 @@ export const heroDefault: () => Game.Hero.Detail = () => ({
 });
 
 /** @description 默认技能信息 */
-export const skillDefault: () => Game.Hero.Skill = () => ({
+export const skillDefault: () => Remote.Skill.Info = () => ({
   cd: 0,
   consume: 0,
   name: "",
@@ -43,7 +43,7 @@ export const skillDefault: () => Game.Hero.Skill = () => ({
 });
 
 /** @description 默认技能效果信息 */
-export const skillEffectDefault: () => Game.Hero.Skill["effect"][0] = () => ({
+export const skillEffectDefault: () => Remote.Skill.Info["effect"][0] = () => ({
   name: "",
   phase: [],
 });

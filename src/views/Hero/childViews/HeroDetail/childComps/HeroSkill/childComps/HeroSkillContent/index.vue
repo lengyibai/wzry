@@ -8,7 +8,7 @@ import { HeroDetailStore } from "@/store";
 
 interface Props {
   /** 技能信息 */
-  skill: Game.Hero.Skill;
+  skill: Remote.Skill.Info;
 }
 
 const $props = defineProps<Props>();

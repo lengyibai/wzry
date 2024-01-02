@@ -5,7 +5,7 @@ import { $tool } from "@/utils";
 
 interface Props {
   /** 语音列表 */
-  voices: Game.Hero.Voices["voice"];
+  voices: Remote.Voice.Data["voice"];
 }
 
 defineProps<Props>();

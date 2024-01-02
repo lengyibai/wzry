@@ -4,7 +4,7 @@ import { HeroDetailStore } from "@/store";
 
 interface Props {
   /** 选中的技能 */
-  activeSkill: Game.Hero.Skill;
+  activeSkill: Remote.Skill.Info;
   /** 是否为被动技能 */
   isPassive: boolean;
 }

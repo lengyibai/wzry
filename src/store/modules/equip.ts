@@ -52,9 +52,9 @@ const EquipStore = defineStore("equip", () => {
     /** 当前被点击的装备详情 */
     active_data: ref<Game.Equip.Data>(),
     /** 当前点击的装备合成 */
-    synthetic: ref<Game.Equip.Synthetic>({ id: 0, name: "" }),
+    synthetic: ref<Remote.Equip.Synthetic>({ id: 0, name: "" }),
     /** 当前点击的装备合成相关id */
-    synthetic_id: ref<Game.Equip.Synthetic[][]>([[], [], []]),
+    synthetic_id: ref<Remote.Equip.Synthetic[][]>([[], [], []]),
     /** 装备总列表 */
     equip_list: ref<Game.Equip.Data[]>([]),
     /** 三列装备数据 */
@@ -79,7 +79,7 @@ const EquipStore = defineStore("equip", () => {
   } = ExposeData;
 
   /* 添加合成组 */
-  const addSynthetic = (synthetic: Game.Equip.Synthetic) => {
+  const addSynthetic = (synthetic: Remote.Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
       //获取第一列id组

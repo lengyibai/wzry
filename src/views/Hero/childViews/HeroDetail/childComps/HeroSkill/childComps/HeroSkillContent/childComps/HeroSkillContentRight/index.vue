@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface Props {
   /** 选中的技能 */
-  activeSkill: Game.Hero.Skill;
+  activeSkill: Remote.Skill.Info;
 }
 
 defineProps<Props>();

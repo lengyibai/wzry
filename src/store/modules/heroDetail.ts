@@ -32,7 +32,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 皮肤切换后触发函数组 */
     skinToggleFns: ref<SkinToggleFn[]>([]),
     /** 皮肤语音列表 */
-    skin_voice: ref<Game.Hero.Voices["voice"]>([]),
+    skin_voice: ref<Remote.Voice.Data["voice"]>([]),
     /** 当前悬浮显示的关系信息 */
     relation_info: ref<RelationInfoType>({
       reply: "？",

@@ -61,7 +61,7 @@ declare namespace Game {
       /** 皮肤数量 */
       skinCount: number;
       /** 技能列表 */
-      skills: Skill[][];
+      skills: Remote.Skill.Info[][];
     }
 
     /** @description 英雄详情数据 */
@@ -72,12 +72,6 @@ declare namespace Game {
       relationships: RelationType[];
     }
 
-    /** @description 语音字列表 */
-    type Voices = Remote.Voice.Data;
-
-    /** @description 技能信息 */
-    type Skill = Remote.Skill.Info;
-
     /** @description 返回的技能 */
     interface SkillParams {
       /** 技能id */
@@ -85,7 +79,7 @@ declare namespace Game {
       /** 消耗单位 */
       unit: string;
       /** 技能列表 */
-      skills: Skill[][];
+      skills: Remote.Skill.Info[][];
     }
 
     /** @description 技能类型 */
