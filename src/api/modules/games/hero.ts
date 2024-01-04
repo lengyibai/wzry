@@ -130,7 +130,7 @@ export const getHeroDetail = (hero_id: number) => {
     return {
       ...relationship,
       avatar: hero_avatar_kvp[relationship.id],
-      heroName: hero_name_kvp[hero_id],
+      heroName: hero_name_kvp[relationship.id],
     };
   });
 
