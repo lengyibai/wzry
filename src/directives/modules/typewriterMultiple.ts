@@ -6,10 +6,10 @@
 import type { Directive, DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
-  timer1: NodeJS.Timeout;
-  timer2: NodeJS.Timeout;
+  _timer1: NodeJS.Timeout;
+  _timer2: NodeJS.Timeout;
   /** 开始输出 */
-  startOutput: (el: ElType, v: DirectiveBinding<Params>) => void;
+  _startOutput: (el: ElType, v: DirectiveBinding<Params>) => void;
 }
 
 interface Params {
@@ -23,12 +23,13 @@ interface Params {
 
 const vTypewriterMultiple: Directive<ElType, Params> = {
   mounted(el, binding) {
-    el.startOutput = (el, binding) => {
+    el._startOutput = (el, binding) => {
       const { callback, speed = 100, delay } = binding.value || {};
       const say = el.innerHTML;
+
       el.innerHTML = "";
-      clearTimeout(el.timer2);
-      el.timer2 = setTimeout(
+      clearTimeout(el._timer2);
+      el._timer2 = setTimeout(
         () => {
           /** 用于累加遍历字符串 */
           let num = 0,
@@ -36,10 +37,10 @@ const vTypewriterMultiple: Directive<ElType, Params> = {
             text = "";
           fn();
           function fn() {
-            clearInterval(el.timer1);
-            el.timer1 = setInterval(() => {
+            clearInterval(el._timer1);
+            el._timer1 = setInterval(() => {
               if (num >= say.length) {
-                clearInterval(el.timer1);
+                clearInterval(el._timer1);
                 callback && callback();
                 return;
               }
@@ -52,7 +53,7 @@ const vTypewriterMultiple: Directive<ElType, Params> = {
         delay === undefined ? 750 : 0,
       );
     };
-    el.startOutput(el, binding);
+    el._startOutput(el, binding);
   },
 };
 
