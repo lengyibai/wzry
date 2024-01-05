@@ -50,7 +50,7 @@ const vTypewriterMultiple: Directive<ElType, Params> = {
             }, speed);
           }
         },
-        delay === undefined ? 750 : 0,
+        delay === undefined ? 750 : delay,
       );
     };
     el._startOutput(el, binding);
