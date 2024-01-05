@@ -1,4 +1,4 @@
-import { LOCAL_HERO } from "@/api";
+import { KVP_HERO, LOCAL_HERO } from "@/api";
 import { REQUEST } from "@/config";
 
 /** @description 同步更新远程数据 */
@@ -46,7 +46,7 @@ const useUpdateData = () => {
     //获取远程语音并比对
     hero_list.forEach((hero) => {
       if (!["梦奇", "盾山"].includes(hero.name)) {
-        const pinyin = LOCAL_HERO.getHeroPinyinList()[hero.id].value;
+        const pinyin = KVP_HERO.getHeroPinyinKvp()[hero.id];
         const v = LOCAL_HERO.getVoiceList(pinyin);
         const l = getLocalData(pinyin, "voice_");
 
