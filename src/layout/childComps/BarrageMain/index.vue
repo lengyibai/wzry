@@ -30,6 +30,7 @@ const handleView = (e: Event, blur: string, big: string) => {
 watch(
   () => $barrageStore.barrages,
   (v) => {
+    //监听弹幕数量，重新装填弹幕时会重新初始化弹幕
     if (v.length > 0) {
       nextTick(() => {
         if (!barragesRef.value || !barrageInfoRef.value) return;
