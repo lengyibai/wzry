@@ -11,7 +11,7 @@ import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $bus, $message, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP, SCENE_TIP } from "@/config";
+import { MOUSE_TIP } from "@/config";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
