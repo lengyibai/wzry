@@ -141,9 +141,9 @@ export class BarragesGenerate {
     this.usedGaps.push(gap);
 
     const speed = move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time;
-
+    const brightness = 7.5 / speed / 2 + 0.6;
     barrage.style.top = gap;
-    barrage.style.filter = `brightness(${7.5 / speed / 2 + 0.75})`;
+    barrage.style.filter = `brightness(${brightness >= 1 ? 1 : brightness})`;
     barrage.style.transform = `translateX(100%) scale(${7.5 / speed})`;
     barrage.style.animationDuration = speed + "s";
     barrage.classList.add("barrage-animate");
