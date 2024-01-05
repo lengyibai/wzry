@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { RelationshipCircle } from "./hooks/utils";
+import { RelationshipCircle } from "./helper/RelationshipCircle";
 
 import { HeroDetailStore } from "@/store";
 import { GAME_HERO } from "@/api";

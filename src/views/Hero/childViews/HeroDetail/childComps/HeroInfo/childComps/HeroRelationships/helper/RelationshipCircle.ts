@@ -1,4 +1,4 @@
-import type { Parame, RelationshipInfo, HeroInfo, LineInfo } from "./type";
+import type { HeroInfo, Parame, RelationshipInfo, LineInfo } from "../interface";
 
 import { KVP_HERO } from "@/api";
 import { $bus } from "@/utils/modules/eventBus";
