@@ -96,17 +96,27 @@ const onParticle = () => {
 
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
+  !v &&
+    $tip({
+      text: "我一定会回来的！",
+    });
   saveConfig();
   v &&
     $tip({
-      text: SCENE_TIP.f1y0,
+      text: "我又回来啦！",
     });
 };
 
 /* 恢复所有小贴士 */
 const handleResetTip = () => {
   $settingStore.restoreTip();
-  $message("已恢复所有小贴士");
+  $tip({
+    btnText: "立刻刷新",
+    text: "已恢复所有小贴士，由于当前页面存在两个小贴士，所以需要刷新浏览器才会生效。",
+    btnFn: () => {
+      location.reload();
+    },
+  });
 };
 
 /* 保存配置 */
@@ -264,7 +274,15 @@ const onResetConfig = () => {
       <!-- 恢复所有不再提示 -->
       <div class="option">
         <div class="label">{{ $t("恢复所有小贴士") }}</div>
-        <KButton v-mouse-tip class="k-button" @click="handleResetTip">
+        <KButton
+          v-mouse-tip="{
+            text: config.tip ? MOUSE_TIP.k5j1 : MOUSE_TIP.jb12,
+            disabled: !config.tip,
+          }"
+          :disabled="!config.tip"
+          class="k-button"
+          @click="handleResetTip"
+        >
           {{ $t("恢复") }}
         </KButton>
       </div>
