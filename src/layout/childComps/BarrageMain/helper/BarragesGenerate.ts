@@ -78,7 +78,7 @@ export class BarragesGenerate {
 
       this.customTimer = setInterval(() => {
         this.createLybBarrage(`冷弋白：还剩${this.data.length}条弹幕`);
-      }, 10000);
+      }, 20000);
     };
     window.addEventListener("visibilitychange", this.init);
     this.init();
