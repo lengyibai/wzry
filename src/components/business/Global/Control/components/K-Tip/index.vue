@@ -1,29 +1,20 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
-import { storeToRefs } from "pinia";
+import { useTip } from "./hooks/useTip";
 
-import { $bus } from "@/utils";
-import { SettingStore, AudioStore, TipStore } from "@/store";
 import { KButton } from "@/components/business";
 import { vMouseTip, vTypewriterMultiple } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
-const { show_tip: show, content, align, noTipName, btnFn } = storeToRefs(TipStore());
-const { tip, toTip, setShowTip } = TipStore();
-
-$bus.on("tip", (data) => {
-  tip(data);
-});
-
-const $settingStore = SettingStore();
-const $audioStore = AudioStore();
-
-/** 是否锁定按钮 */
-const disabled = ref(true);
-/** 显示tip */
-const show_tip = ref(false);
-/** 显示蒙版 */
-const show_mask = ref(false);
+const {
+  show_tip,
+  show_mask,
+  content,
+  align,
+  disabled,
+  is_once,
+  handleSetAllowClick,
+  handleConfirm,
+} = useTip();
 
 const position = {
   "left-top": {
@@ -43,43 +34,6 @@ const position = {
     bottom: 0,
   },
 };
-
-/* 打字机结束后触发 */
-const finish = () => {
-  disabled.value = false;
-};
-
-/* 不再提示 */
-const handleClose = () => {
-  if (disabled.value) return;
-  setShowTip(false);
-  noTipName.value && $settingStore.setNoTip(noTipName.value as keyof Global.Tip.Key);
-  $audioStore.play("ba09");
-
-  setTimeout(() => {
-    disabled.value = true;
-    btnFn.value();
-    toTip();
-  }, 1000);
-};
-
-watch(
-  () => show.value,
-  (v) => {
-    //解决没有动画的bug
-    if (v) {
-      show_mask.value = true;
-      setTimeout(() => {
-        show_tip.value = v;
-      });
-    } else {
-      show_tip.value = v;
-      setTimeout(() => {
-        show_mask.value = false;
-      }, 500);
-    }
-  },
-);
 </script>
 
 <template>
@@ -99,7 +53,7 @@ watch(
             <!-- 内容 -->
             <div
               v-typewriterMultiple="{
-                callback: finish,
+                callback: handleSetAllowClick,
               }"
               class="content"
             >
@@ -115,9 +69,9 @@ watch(
                 }"
                 class="k-button"
                 :disabled="disabled"
-                @click="handleClose"
+                @click="handleConfirm"
               >
-                确定
+                {{ is_once ? "不再提示" : "确定" }}
               </KButton>
             </div>
           </div>

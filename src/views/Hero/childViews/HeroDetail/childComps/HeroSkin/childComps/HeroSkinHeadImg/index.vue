@@ -4,7 +4,7 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 import { vDrag, vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   "bg-imgs": [data: number[]];
@@ -133,14 +133,14 @@ $heroDetail.setScollFn("skin", (index) => {
             };
             if ($tool.isPhone) {
               $tip({
-                text: "lp57",
+                text: SCENE_TIP.lp57,
                 align: "right-top",
                 createFn: a,
                 btnFn: b,
               });
             } else {
               $tip({
-                text: "v44s",
+                text: SCENE_TIP.v44s,
                 align: "right-top",
                 createFn: a,
                 btnFn: b,

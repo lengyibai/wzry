@@ -6,7 +6,7 @@ import MuiscList from "../MuiscList/index.vue";
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   toggle: [v: string];
@@ -22,7 +22,7 @@ nextTick(() => {
   if ($tool.isPhone || !$settingStore.config.music || !musicToolRef.value) return;
   const musicToolFocus = new $tool.FocusElement(musicToolRef.value);
   $tip({
-    text: "d7o5",
+    text: SCENE_TIP.d7o5,
     align: "right-top",
     createFn: () => {
       musicToolFocus.focus();

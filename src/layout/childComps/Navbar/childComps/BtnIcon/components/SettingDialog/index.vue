@@ -11,7 +11,7 @@ import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $bus, $message, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
@@ -97,7 +97,10 @@ const onParticle = () => {
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
   saveConfig();
-  v && $tip({ text: "f1y0" });
+  v &&
+    $tip({
+      text: SCENE_TIP.f1y0,
+    });
 };
 
 /* 恢复所有小贴士 */

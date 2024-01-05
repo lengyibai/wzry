@@ -12,6 +12,7 @@ import DownLoad from "./childComps/DownLoad/index.vue";
 import { SettingStore } from "@/store";
 import { $bus, $concise, $tip, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
+import { SCENE_TIP } from "@/config";
 
 const { config } = storeToRefs(SettingStore());
 
@@ -47,7 +48,7 @@ const onCloseNotice = () => {
   const toolbarFocus = new $tool.FocusElement(toolbarRef.value.el);
 
   $tip({
-    text: "mu63",
+    text: SCENE_TIP.mu63,
     align: "right-bottom",
     createFn: () => {
       toolbarFocus.focus();

@@ -17,7 +17,6 @@ export * from "./modules/skin";
 export * from "./modules/version";
 export * from "./modules/atlas";
 export * from "./modules/barrage";
-export * from "./modules/tip";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();

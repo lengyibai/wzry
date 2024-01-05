@@ -1,4 +1,4 @@
-export * from "./modules/tips";
+export * from "./modules/scene-tip";
 export * from "./modules/local-key";
 export * from "./modules/base";
 export * from "./modules/pinyin";

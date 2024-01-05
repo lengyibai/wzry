@@ -7,7 +7,7 @@ import { useBarrages } from "./hooks/useBarrages";
 import { BarrageStore } from "@/store";
 import { $imageView, $tip, $tool } from "@/utils";
 import { vBlurLoad, vDownDrag, vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
 const $barrageStore = BarrageStore();
 
@@ -47,7 +47,7 @@ setTimeout(() => {
   $barrageStore.getBarrages();
   $tip({
     align: "left-top",
-    text: "kr53",
+    text: SCENE_TIP.kr53,
   });
 }, 3000);
 </script>

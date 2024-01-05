@@ -1,5 +1,5 @@
 /** @description 小贴士配置 */
-const TIP_TEXT: Global.Tip.Key = {
+const SCENE_TIP = {
   d7o5: "底部工具栏可切换音乐！",
   f1y0: "我又回来啦！",
   kr53: "顶部的弹幕可以点击查看语音来源！",
@@ -15,6 +15,6 @@ const TIP_TEXT: Global.Tip.Key = {
    * 移动端专属
    */
   lp57: "手指按住边缘头像，拖动到中心位置并松开(点击头像也可以)。",
-};
+} as const;
 
-export { TIP_TEXT };
+export { SCENE_TIP };
