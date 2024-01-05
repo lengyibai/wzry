@@ -47,7 +47,7 @@ const SettingStore = defineStore("setting", () => {
      * @description: 设置指定tip禁止再次提示
      * @param name tip唯一属性标识符
      */
-    setNoTip(name: keyof Global.Tip.Key<string>) {
+    setNoTip(name: keyof Global.Tip.Key) {
       config.value.noTips[name] = true;
       saveLocal();
     },
@@ -55,7 +55,7 @@ const SettingStore = defineStore("setting", () => {
     /** @description 恢复所有不再提示 */
     restoreTip() {
       for (const key in config.value.noTips) {
-        config.value.noTips[key as keyof Global.Tip.Key<string>] = false;
+        config.value.noTips[key as keyof Global.Tip.Key] = false;
       }
       saveLocal();
     },
