@@ -30,7 +30,7 @@ const downing = ref(false);
 /** 是否显示tip */
 const show_tip = ref(false);
 /** 是否处于禁用状态 */
-const disable = ref(false);
+const disabled = ref(false);
 /** 是否已经点击过了 */
 const is_click = ref(false);
 /** tip类型 */
@@ -52,7 +52,7 @@ const debounceMouseTip = _debounce((v: MouseTip) => {
     show_tip.value = v.show;
     tip.value = v.text || "";
     type.value = v.type || "NORMAL";
-    disable.value = !!v.disable;
+    disabled.value = !!v.disabled;
   }, 100);
 }, 100);
 $bus.on("mouse-tip", debounceMouseTip);
@@ -141,7 +141,7 @@ onMounted(() => {
           class="dot"
           :class="{
             downing: downing,
-            clickable: show_tip && !is_click && !disable,
+            clickable: show_tip && !is_click && !disabled,
             input: type === 'INPUT',
           }"
         >
@@ -156,7 +156,7 @@ onMounted(() => {
             tip_position,
             {
               show: show_tip,
-              disable: disable,
+              disabled: disabled,
               clickable: !is_click,
             },
           ]"
@@ -190,8 +190,8 @@ onMounted(() => {
         ref="roundBoxRef"
         class="round-box"
         :class="{
-          clickable: show_tip && !disable && !is_click,
-          disable: disable,
+          clickable: show_tip && !disabled && !is_click,
+          disabled: disabled,
           moving: moving,
           downing: downing,
         }"

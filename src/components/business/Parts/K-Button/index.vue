@@ -38,7 +38,7 @@ const class_name = {
       enable: $settingStore.config.particle,
     }"
     :disabled="disabled"
-    :class="[type, { disable: disabled }, class_name[type]]"
+    :class="[type, { disabled: disabled }, class_name[type]]"
     class="k-button"
   >
     <span class="text">

@@ -36,7 +36,7 @@ const vMouseTip: Directive<ElType, Params> = {
       $bus.emit("mouse-tip", {
         show: true,
         text: el._text,
-        disable: el._disabled,
+        disabled: el._disabled,
         type,
       });
     });
@@ -58,7 +58,7 @@ const vMouseTip: Directive<ElType, Params> = {
     $bus.emit("mouse-tip", {
       show: true,
       text: el._text,
-      disable: disabled,
+      disabled: disabled,
       type,
     });
   },

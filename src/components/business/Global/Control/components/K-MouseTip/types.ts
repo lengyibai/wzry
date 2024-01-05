@@ -4,7 +4,7 @@ export interface MouseTip {
   /** 悬浮提示的文字 */
   text?: string;
   /** 是否处于禁用状态 */
-  disable?: boolean;
+  disabled?: boolean;
   /** 当前悬浮类型 */
   type?: "NORMAL" | "INPUT";
 }

@@ -19,7 +19,7 @@ const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
 /** 是否锁定按钮 */
-const disable = ref(true);
+const disabled = ref(true);
 /** 显示tip */
 const show_tip = ref(false);
 /** 显示蒙版 */
@@ -46,13 +46,13 @@ const position = {
 
 /* 打字机结束后触发 */
 const finish = () => {
-  disable.value = false;
+  disabled.value = false;
 };
 
 /* 不再提示 */
 const handleClose = () => {
-  if (disable.value) return;
-  disable.value = true;
+  if (disabled.value) return;
+  disabled.value = true;
   setShowTip(false);
   noTipName.value && $settingStore.setNoTip(noTipName.value as keyof Global.Tip.Key<string>);
   $audioStore.play("ba09");
@@ -107,14 +107,14 @@ watch(
             </div>
 
             <!-- 按钮 -->
-            <div class="btns" :class="{ disable }">
+            <div class="btns" :class="{ disabled }">
               <KButton
                 v-mouse-tip="{
-                  text: disable ? MOUSE_TIP.zx48 : MOUSE_TIP.x5a6,
-                  disabled: disable,
+                  text: disabled ? MOUSE_TIP.zx48 : MOUSE_TIP.x5a6,
+                  disabled: disabled,
                 }"
                 class="k-button"
-                :disabled="disable"
+                :disabled="disabled"
                 @click="handleClose"
               >
                 确定
