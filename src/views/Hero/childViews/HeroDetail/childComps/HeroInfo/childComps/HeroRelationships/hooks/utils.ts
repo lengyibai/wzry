@@ -1,5 +1,8 @@
 import type { Parame, RelationshipInfo, HeroInfo, LineInfo } from "./type";
 
+import { KVP_HERO } from "@/api";
+import { $bus } from "@/utils/modules/eventBus";
+
 /* 监听 */
 const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: HTMLElement) => {
   //计算两个圆的中心坐标
@@ -197,6 +200,17 @@ export class RelationshipCircle {
         heroEl.onmouseenter = () => {
           if (this.isAnimating) return;
           this.hoverHero(relationship.id);
+          $bus.emit("mouse-tip", {
+            show: true,
+            text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
+              KVP_HERO.getHeroNameKvp()[relationship.id]
+            }的谁？`,
+          });
+        };
+        heroEl.onmouseleave = () => {
+          $bus.emit("mouse-tip", {
+            show: false,
+          });
         };
       }
     });
@@ -562,6 +576,17 @@ export class RelationshipCircle {
         currentRelationship.heroEl.onmouseenter = () => {
           if (this.isAnimating) return;
           this.hoverHero(relationship.id);
+          $bus.emit("mouse-tip", {
+            show: true,
+            text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
+              KVP_HERO.getHeroNameKvp()[relationship.id]
+            }的谁？`,
+          });
+        };
+        currentRelationship.heroEl.onmouseleave = () => {
+          $bus.emit("mouse-tip", {
+            show: false,
+          });
         };
       } else {
         //创建新的英雄关系DOM添加到页面并存储
@@ -589,6 +614,17 @@ export class RelationshipCircle {
           heroEl.onmouseenter = () => {
             if (this.isAnimating) return;
             this.hoverHero(relationship.id);
+            $bus.emit("mouse-tip", {
+              show: true,
+              text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
+                KVP_HERO.getHeroNameKvp()[relationship.id]
+              }的谁？`,
+            });
+          };
+          heroEl.onmouseleave = () => {
+            $bus.emit("mouse-tip", {
+              show: false,
+            });
           };
         }
         currentLines.push({
