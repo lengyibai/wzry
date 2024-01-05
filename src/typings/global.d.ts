@@ -6,18 +6,14 @@ declare namespace Global {
     type Position = "left-top" | "right-top" | "left-bottom" | "right-bottom";
 
     /** @description 提示文字Key */
-    interface Key<T> {
-      "2rb7": T;
-      "9f5m": T;
-      "05su": T;
-      "9oy5": T;
-      "58mz": T;
-      "1w7o": T;
-      "0vk2": T;
-      "1zs6": T;
-      "3vi5": T;
-      "2l5m": T;
-      "9ms5": T;
+    interface Key<T = string> {
+      d7o5: T;
+      f1y0: T;
+      kr53: T;
+      lp57: T;
+      ma67: T;
+      mu63: T;
+      v44s: T;
     }
 
     /** @description 小贴士触发 */

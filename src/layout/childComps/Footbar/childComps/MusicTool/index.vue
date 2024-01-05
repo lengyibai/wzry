@@ -22,7 +22,7 @@ nextTick(() => {
   if ($tool.isPhone || !$settingStore.config.music || !musicToolRef.value) return;
   const musicToolFocus = new $tool.FocusElement(musicToolRef.value);
   $tip({
-    text: "58mz",
+    text: "d7o5",
     align: "right-top",
     createFn: () => {
       musicToolFocus.focus();

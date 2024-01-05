@@ -47,7 +47,7 @@ setTimeout(() => {
   $barrageStore.getBarrages();
   $tip({
     align: "left-top",
-    text: "9ms5",
+    text: "kr53",
   });
 }, 3000);
 </script>

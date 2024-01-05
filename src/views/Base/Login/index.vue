@@ -47,7 +47,7 @@ const onCloseNotice = () => {
   const toolbarFocus = new $tool.FocusElement(toolbarRef.value.el);
 
   $tip({
-    text: "9f5m",
+    text: "mu63",
     align: "right-bottom",
     createFn: () => {
       toolbarFocus.focus();

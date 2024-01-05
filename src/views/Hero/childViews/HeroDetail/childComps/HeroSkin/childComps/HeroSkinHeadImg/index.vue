@@ -133,14 +133,14 @@ $heroDetail.setScollFn("skin", (index) => {
             };
             if ($tool.isPhone) {
               $tip({
-                text: "1w7o",
+                text: "lp57",
                 align: "right-top",
                 createFn: a,
                 btnFn: b,
               });
             } else {
               $tip({
-                text: "9oy5",
+                text: "v44s",
                 align: "right-top",
                 createFn: a,
                 btnFn: b,

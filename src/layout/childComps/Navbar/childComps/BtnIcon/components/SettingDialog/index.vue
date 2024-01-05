@@ -97,7 +97,7 @@ const onParticle = () => {
 /* 启用/禁用Tip */
 const onTip = (v: boolean) => {
   saveConfig();
-  v && $tip({ text: "2rb7" });
+  v && $tip({ text: "f1y0" });
 };
 
 /* 恢复所有小贴士 */
