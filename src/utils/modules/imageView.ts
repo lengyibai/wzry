@@ -5,11 +5,11 @@ interface ImageViewParams {
   /** 点击的事件对象 */
   event: Event;
   /** 英雄名 */
-  heroName: string;
+  heroName?: string;
   /** 英雄头像 */
-  heroAvatar: string;
+  heroAvatar?: string;
   /** 皮肤名称 */
-  skinName: string;
+  skinName?: string;
   /** 模糊图片 */
   blurImage: string;
   /** 大图 */
