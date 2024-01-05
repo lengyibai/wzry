@@ -41,8 +41,11 @@ const useBarrages = () => {
   const ExposeMethods = {
     /** @description 初始化 */
     init(data: Global.Barrage[], parent: HTMLElement, card: HTMLElement) {
-      barragesMove?.destruction();
-
+      //由于弹幕消耗完毕后，会重新填充并调用当前方法，所以如果存在实例，直接重启弹幕即可
+      if (barragesMove) {
+        barragesMove.restart(data);
+        return;
+      }
       barragesMove = new BarragesGenerate(parent, data, {
         click(v, e) {
           const {

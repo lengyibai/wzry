@@ -32,7 +32,7 @@ export class BarragesGenerate {
   private endCallback: () => void;
   /** 初始化 */
   private init: () => void;
-  /** 弹幕间隔的位置 */
+  /** 弹幕上下间隔的位置 */
   private gaps = ["0.25em", "1.5em", "3em", "4.5em", "6em", "7.5em", "9em"];
   /** 已经使用过的弹幕间隔位置数组 */
   private usedGaps: string[] = [];
@@ -61,16 +61,14 @@ export class BarragesGenerate {
     this.endCallback = event.finish;
 
     this.init = () => {
-      clearTimeout(this.generateTimer);
-      clearTimeout(this.readyTimer);
       clearInterval(this.customTimer);
+      clearTimeout(this.readyTimer);
 
       //离开当前窗口停止生成
       if (document.visibilityState == "hidden") {
         this.enable = false;
         return;
       }
-
       this.createLybBarrage(`冷弋白：弹幕已装填完毕，剩余${this.data.length}条`);
 
       this.readyTimer = setTimeout(() => {
@@ -80,7 +78,7 @@ export class BarragesGenerate {
 
       this.customTimer = setInterval(() => {
         this.createLybBarrage(`冷弋白：还剩${this.data.length}条弹幕`);
-      }, 20000);
+      }, 10000);
     };
     window.addEventListener("visibilitychange", this.init);
     this.init();
@@ -92,12 +90,10 @@ export class BarragesGenerate {
 
     //如果原数组为空，停止递归调用
     if (this.data.length === 0) {
+      clearTimeout(this.generateTimer);
+      clearInterval(this.customTimer);
       this.endCallback();
       return;
-    }
-
-    if (this.data.length < 5) {
-      this.createLybBarrage("冷弋白：弹幕即将耗尽，准备装填弹幕");
     }
 
     //一次生成的弹幕数量
@@ -246,6 +242,15 @@ export class BarragesGenerate {
     barrage.addEventListener("animationend", function () {
       this.remove();
     });
+  }
+
+  /** @description 填充完毕后，重新启用弹幕 */
+  restart(data: Global.Barrage[]) {
+    this.data = data;
+    this.createLybBarrage(`冷弋白：弹幕已重新装填完毕，剩余${this.data.length}条`);
+    setTimeout(() => {
+      this.generateBarrage();
+    }, 5000);
   }
 
   /** @description 销毁方法 */
