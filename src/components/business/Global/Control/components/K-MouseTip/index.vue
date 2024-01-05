@@ -3,8 +3,8 @@ import { ref } from "vue";
 import _debounce from "lodash/debounce";
 import { onMounted } from "vue";
 
-import { connectCircle } from "./utils";
-import { MouseTip } from "./types";
+import { connectCircle } from "./helper/connectCircle";
+import type { MouseTip } from "./interface";
 
 import { $bus } from "@/utils";
 import { vTypewriterMultiple } from "@/directives";

@@ -2,8 +2,8 @@ import mitt from "mitt";
 
 import { ImageViewParams } from "./imageView";
 
-import { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/types";
-import { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/types";
+import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
+import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";
 
 type EventData = {
   loading: { text?: string; show: boolean };
@@ -11,8 +11,6 @@ type EventData = {
   confirm: ConfirmTip;
   tip: Global.Tip.Prompt;
   /** 全局手指抬起事件 */
-  resize: Event;
-  mousemove: Event;
   mouseup: Event;
   /** 瀑布流监听图片加载 */
   "watch-waterfall": any;
