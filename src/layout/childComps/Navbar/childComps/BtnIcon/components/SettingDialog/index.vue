@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import DescSet from "./components/DescSet/index.vue";
-
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KCheck from "@/components/business/Parts/K-Check/index.vue";
@@ -12,6 +10,8 @@ import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $bus, $message, $tip } from "@/utils";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
@@ -143,6 +143,9 @@ const onResetConfig = () => {
         <div class="label">{{ $t("语言") }}</div>
         <KSelect
           v-model="config.language"
+          v-mouse-tip="{
+            text: MOUSE_TIP.v41b,
+          }"
           width="7rem"
           :option="['中文', '繁体', 'English']"
           @update:model-value="onLanguage"
@@ -158,7 +161,7 @@ const onResetConfig = () => {
           :disabled="!config.audio"
           @update:model-value="onAudioVolume"
         />
-        <KCheck v-model="config.audio" @update:model-value="onAudio" />
+        <KCheck v-model="config.audio" v-mouse-tip @update:model-value="onAudio" />
       </div>
 
       <!-- 音乐 -->
@@ -170,7 +173,7 @@ const onResetConfig = () => {
           :disabled="!config.music"
           @update:model-value="onMusicVolume"
         />
-        <KCheck v-model="config.music" @update:model-value="onMusic" />
+        <KCheck v-model="config.music" v-mouse-tip @update:model-value="onMusic" />
       </div>
 
       <!-- 音乐进度控制 -->
@@ -178,72 +181,94 @@ const onResetConfig = () => {
         <div class="label">
           {{ $t("弹幕语音") }}
         </div>
-        <KCheck v-model="config.barrage" @update:model-value="onBarrage" />
+        <KCheck v-model="config.barrage" v-mouse-tip @update:model-value="onBarrage" />
       </div>
 
       <!-- 音乐进度控制 -->
       <div class="option">
         <div class="label">
           {{ $t("音乐进度控制") }}
-          <DescSet desc="开启后，点击底部导航栏就可以调整播放进度" />
         </div>
-        <KCheck v-model="config.musicProgress" @update:model-value="onMusicProgress" />
+        <KCheck
+          v-model="config.musicProgress"
+          v-mouse-tip="{
+            text: MOUSE_TIP.pd85,
+          }"
+          @update:model-value="onMusicProgress"
+        />
       </div>
 
       <!-- 线条 -->
       <div class="option">
         <div class="label">{{ $t("元素线条") }}</div>
-        <KCheck v-model="config.border" @update:model-value="onBorder" />
+        <KCheck
+          v-model="config.border"
+          v-mouse-tip="{
+            text: MOUSE_TIP.q1s7,
+          }"
+          @update:model-value="onBorder"
+        />
       </div>
 
       <!-- 阴影 -->
       <div class="option">
         <div class="label">{{ $t("元素阴影") }}</div>
-        <KCheck v-model="config.shadow" @update:model-value="onShadow" />
+        <KCheck v-model="config.shadow" v-mouse-tip @update:model-value="onShadow" />
       </div>
 
       <!-- 柔光 -->
       <div class="option">
         <div class="label">
           {{ $t("元素发光") }}
-          <DescSet desc="开启后，在一些地方悬浮、选中元素会有发光效果" />
         </div>
-        <KCheck v-model="config.shine" @update:model-value="onShine" />
+        <KCheck
+          v-model="config.shine"
+          v-mouse-tip="{
+            text: MOUSE_TIP.ph01,
+          }"
+          @update:model-value="onShine"
+        />
       </div>
 
       <!-- 粒子特效 -->
       <div class="option">
         <div class="label">
           {{ $t("粒子特效") }}
-          <DescSet
-            desc="开启后，对性能有一点影响，主要是对登录页logo、登录注册按钮、蓝黄红按钮、底部音乐播放器添加粒子效果"
-          />
         </div>
-        <KCheck v-model="config.particle" @update:model-value="onParticle" />
+        <KCheck
+          v-model="config.particle"
+          v-mouse-tip="{
+            text: MOUSE_TIP.ph48,
+          }"
+          @update:model-value="onParticle"
+        />
       </div>
 
       <!-- 小贴士 -->
       <div class="option">
         <div class="label">
           {{ $t("小贴士") }}
-          <DescSet
-            desc="在某些场景会触发小贴士，在左上、右上、左下、右下角弹出，介绍一些功能信息"
-          />
         </div>
-        <KCheck v-model="config.tip" @update:model-value="onTip" />
+        <KCheck
+          v-model="config.tip"
+          v-mouse-tip="{
+            text: MOUSE_TIP.po14,
+          }"
+          @update:model-value="onTip"
+        />
       </div>
 
       <!-- 恢复所有不再提示 -->
       <div class="option">
         <div class="label">{{ $t("恢复所有小贴士") }}</div>
-        <KButton class="k-button" @click="handleResetTip">
+        <KButton v-mouse-tip class="k-button" @click="handleResetTip">
           {{ $t("恢复") }}
         </KButton>
       </div>
     </div>
 
     <!-- 重置配置 -->
-    <KButton type="error" @click="handleResetConfig">{{ $t("重置配置") }}</KButton>
+    <KButton v-mouse-tip type="error" @click="handleResetConfig">{{ $t("重置配置") }}</KButton>
   </KDialog>
 </template>
 

@@ -8,6 +8,8 @@ import type { ImageViewParams } from "@/utils/modules/imageView";
 import { KButton } from "@/components/business";
 import { getImgLink } from "@/utils/modules/concise";
 import { AudioStore } from "@/store";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $audioStore = AudioStore();
 
@@ -59,7 +61,7 @@ const handleHide = () => {
 
 /* 下载图片 */
 const handleDownload = () => {
-  $tool.downloadImage(info.value!.bigImage, info.value!.skinName);
+  $tool.downloadImage(info.value!.bigImage, info.value!.skinName!);
 };
 </script>
 
@@ -83,7 +85,14 @@ const handleDownload = () => {
         </div>
 
         <transition name="close" appear>
-          <div v-show="show" class="close" @click="handleHide"></div>
+          <div
+            v-show="show"
+            v-mouse-tip="{
+              text: MOUSE_TIP.mk66,
+            }"
+            class="close"
+            @click="handleHide"
+          ></div>
         </transition>
 
         <transition v-if="info?.type === 'HERO'" name="sidebar">
@@ -98,7 +107,15 @@ const handleDownload = () => {
                   </div>
                 </div>
                 <div class="btn">
-                  <KButton type="warning" @click="handleDownload">下载原图</KButton>
+                  <KButton
+                    v-mouse-tip="{
+                      text: MOUSE_TIP.vs71,
+                    }"
+                    type="warning"
+                    @click="handleDownload"
+                  >
+                    下载原图
+                  </KButton>
                 </div>
               </div>
             </transition>
@@ -112,6 +129,9 @@ const handleDownload = () => {
                 <div
                   v-for="(item, index) in info?.voices"
                   :key="index"
+                  v-mouse-tip="{
+                    text: MOUSE_TIP.lq42,
+                  }"
                   :class="{
                     active: current_index === index,
                   }"
@@ -127,8 +147,20 @@ const handleDownload = () => {
 
         <transition name="tool">
           <div v-show="show" class="tool">
-            <i class="iconfont wzry-fangda" @click="scaleFLIPImage.zoomIn"></i>
-            <i class="iconfont wzry-suoxiao" @click="scaleFLIPImage.zoomOut"></i>
+            <i
+              v-mouse-tip="{
+                text: MOUSE_TIP.n1w6,
+              }"
+              class="iconfont wzry-fangda"
+              @click="scaleFLIPImage.zoomIn"
+            ></i>
+            <i
+              v-mouse-tip="{
+                text: MOUSE_TIP.nz58,
+              }"
+              class="iconfont wzry-suoxiao"
+              @click="scaleFLIPImage.zoomOut"
+            ></i>
           </div>
         </transition>
       </div>

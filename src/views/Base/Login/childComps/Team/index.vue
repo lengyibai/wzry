@@ -2,9 +2,10 @@
 import { ref } from "vue";
 
 import { API_DATA } from "@/api";
-import { $concise, $imageView } from "@/utils";
+import { $imageView } from "@/utils";
 import { KDialog } from "@/components/business";
-import { vBlurLoad } from "@/directives";
+import { vBlurLoad, vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const teamRef = ref<HTMLElement>();
 
@@ -21,9 +22,6 @@ const handleView = (e: Event, v: string[]) => {
     type: "DEFAULT",
     bigImage: v[0],
     blurImage: v[1],
-    heroName: "冷弋白",
-    heroAvatar: $concise.getImgLink("lyb"),
-    skinName: "王者战绩",
   });
 };
 </script>
@@ -35,6 +33,9 @@ const handleView = (e: Event, v: string[]) => {
         v-for="(item, index) in imgs"
         :key="index"
         v-blurLoad="item[0]"
+        v-mouse-tip="{
+          text: MOUSE_TIP.zq77,
+        }"
         :src="item[1]"
         alt=""
         @click="handleView($event, item)"

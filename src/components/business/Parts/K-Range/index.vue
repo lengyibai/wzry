@@ -4,6 +4,7 @@ import { ref, onMounted, computed } from "vue";
 import { AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { BASE_CONFIG } from "@/config";
+import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 值 */
@@ -114,6 +115,7 @@ const hide = () => {
           ></span>
         </div>
         <input
+          v-mouse-tip
           :value="modelValue"
           :disabled="disabled"
           type="range"

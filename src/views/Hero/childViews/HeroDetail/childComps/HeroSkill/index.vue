@@ -8,6 +8,8 @@ import HeroSkillContent from "./childComps/HeroSkillContent/index.vue";
 import { KScrollTip } from "@/components/business";
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const { hero_info } = storeToRefs(HeroDetailStore());
 const { setScollFn } = HeroDetailStore();
@@ -75,9 +77,11 @@ const onSelectSkill = (skill: Remote.Skill.Info) => {
     <i
       v-if="hero_info.skills!.length > 1"
       ref="toggleRef"
+      v-mouse-tip="{
+        text: MOUSE_TIP.wk12,
+      }"
       class="toggle iconfont wzry-qiehuan"
       :class="{ 'hide-bottom': !show }"
-      title="切换技能"
       @click="heroSkillIconRef?.toggleSkill"
     />
   </div>

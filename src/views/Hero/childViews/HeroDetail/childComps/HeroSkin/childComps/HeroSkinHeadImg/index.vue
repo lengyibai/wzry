@@ -3,7 +3,8 @@ import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
-import { vDrag } from "@/directives";
+import { vDrag, vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   "bg-imgs": [data: number[]];
@@ -174,6 +175,9 @@ onUnmounted(() => {
       ref="skinRef"
       :key="index"
       v-drag="{ handleDrag, index }"
+      v-mouse-tip="{
+        text: MOUSE_TIP.lq48,
+      }"
       class="skin"
       :style="{
         transform: show_skin_head

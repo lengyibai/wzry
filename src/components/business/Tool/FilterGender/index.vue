@@ -2,6 +2,8 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   change: [v: Game.GenderId];
@@ -24,21 +26,27 @@ const handerSetGender = (v: Game.GenderId) => {
   <div class="filter-gender">
     <span class="label">只看：</span>
     <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.ix29,
+      }"
       class="iconfont wzry-nan"
       :class="{ 'nan-active': gender === 1 }"
-      title="男"
       @click="handerSetGender(1)"
     />
     <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.iv65,
+      }"
       class="iconfont wzry-nv"
       :class="{ 'nv-active': gender === 2 }"
-      title="女"
       @click="handerSetGender(2)"
     />
     <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.jx58,
+      }"
       class="iconfont wzry-xingbie"
       :class="{ 'all-active': gender === 0 }"
-      title="全部"
       @click="handerSetGender(0)"
     />
   </div>

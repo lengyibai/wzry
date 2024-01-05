@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 
 import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
+import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
@@ -90,6 +91,9 @@ const handleCoord = (e: Event) => {
     <div
       v-for="(item, index) in list"
       :key="index"
+      v-mouse-tip="{
+        text: '分类：' + item.name,
+      }"
       class="filter-type"
       :class="{ active: item.name === filter_type }"
       @click="handleSelect(item.name), handleCoord($event)"

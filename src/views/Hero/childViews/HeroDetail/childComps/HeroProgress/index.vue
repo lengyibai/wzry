@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 
 interface Props {
@@ -29,6 +31,9 @@ const handleToggle = (index: number) => {
     <div
       v-for="(item, i) in page_name"
       :key="i"
+      v-mouse-tip="{
+        text: MOUSE_TIP.mi32,
+      }"
       class="page-index"
       :class="{ active: index === i + 1 }"
       @click="handleToggle(i + 1)"

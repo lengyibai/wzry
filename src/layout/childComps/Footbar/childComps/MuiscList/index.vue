@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 import { MusicStore } from "@/store";
 
 const $musicStore = MusicStore();
@@ -21,14 +23,17 @@ const handleToggleMusic = (index: number) => {
       <!-- 顶部标题 -->
       <div class="top">
         <div class="title">播放列表</div>
-        <i class="iconfont wzry-guanbi" @click="handleClose" />
+        <i v-mouse-tip class="iconfont wzry-guanbi" @click="handleClose" />
       </div>
 
       <!-- 播放列表 -->
-      <div class="list" title="点击播放">
+      <div class="list">
         <div
           v-for="(item, index) in $musicStore.musics"
           :key="index"
+          v-mouse-tip="{
+            text: MOUSE_TIP.sg22,
+          }"
           class="card"
           :class="{ active: index === $musicStore.bgmIndex }"
           @click="handleToggleMusic(index)"

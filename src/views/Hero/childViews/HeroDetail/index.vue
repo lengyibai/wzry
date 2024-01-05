@@ -12,6 +12,8 @@ import HeroSkill from "./childComps/HeroSkill/index.vue";
 import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
 import { $loading } from "@/utils";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $router = useRouter();
 const $heroDetailStore = HeroDetailStore();
@@ -94,7 +96,14 @@ onMounted($loading.close);
 <template>
   <div class="hero-detail">
     <!-- 顶部关闭 -->
-    <div class="hero-detail__close" :class="{ show: show_close }" @click="handleHide"></div>
+    <div
+      v-mouse-tip="{
+        text: MOUSE_TIP.mk66,
+      }"
+      class="hero-detail__close"
+      :class="{ show: show_close }"
+      @click="handleHide"
+    ></div>
     <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax v-if="hero_data.posterBlur" class="scroll-item" :bg="hero_data.poster">

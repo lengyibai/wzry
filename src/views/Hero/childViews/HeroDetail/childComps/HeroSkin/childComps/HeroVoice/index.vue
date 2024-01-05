@@ -3,6 +3,8 @@ import { ref, nextTick } from "vue";
 
 import { HeroDetailStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
@@ -103,6 +105,9 @@ const play = (voice: string, index: number) => {
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"
       :key="index"
+      v-mouse-tip="{
+        text: MOUSE_TIP.lq42,
+      }"
       class="voice"
       :class="{ 'active-width': current_index === index }"
       @click="play(item.link, index)"

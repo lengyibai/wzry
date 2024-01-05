@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
+
 interface Props {
   active: boolean;
 }
@@ -27,7 +30,13 @@ const handleBackTop = () => {
     }"
   >
     <div class="line"></div>
-    <i class="iconfont wzry-spider" @click="handleBackTop" />
+    <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.yf23,
+      }"
+      class="iconfont wzry-spider"
+      @click="handleBackTop"
+    />
   </div>
 </template>
 

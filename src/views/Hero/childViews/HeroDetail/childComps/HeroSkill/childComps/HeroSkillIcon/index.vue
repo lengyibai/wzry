@@ -3,6 +3,8 @@ import { ref, computed, onUnmounted } from "vue";
 import { storeToRefs } from "pinia";
 
 import { AudioStore, HeroDetailStore } from "@/store";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   "select-skill": [skills: Remote.Skill.Info];
@@ -82,6 +84,9 @@ defineExpose({
     <div
       v-for="(item, index) in active_skills"
       :key="index"
+      v-mouse-tip="{
+        text: MOUSE_TIP.kz53,
+      }"
       class="icon"
       :class="{ active: show }"
       :style="{

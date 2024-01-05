@@ -3,6 +3,7 @@ import mitt from "mitt";
 import { ImageViewParams } from "./imageView";
 
 import { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/types";
+import { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/types";
 
 type EventData = {
   loading: { text?: string; show: boolean };
@@ -19,6 +20,8 @@ type EventData = {
   "update-waterfall": any;
   /** 查看图片 */
   "img-view": ImageViewParams;
+  /** 鼠标悬浮提示 */
+  "mouse-tip": MouseTip;
 };
 
 type MittEventMap = {

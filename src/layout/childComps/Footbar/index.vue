@@ -100,7 +100,6 @@ onUnmounted(() => {
       enable: $settingStore.config.particle,
     }"
     class="footbar"
-    :class="{ 'global_cursor-pointer': music_progress }"
     @click="handleSetProgress"
     @mouseenter="handleShowTool(true)"
     @mousemove="handleMoveLineRef"

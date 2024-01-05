@@ -2,9 +2,10 @@
 import { ref, computed } from "vue";
 
 import { HeroStore } from "@/store";
-import { vMaskGradient, vSweepLight, vTextHoverColor } from "@/directives";
+import { vMaskGradient, vMouseTip, vSweepLight, vTextHoverColor } from "@/directives";
 import { $concise } from "@/utils";
 import { KImageLoad } from "@/components/business";
+import { MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 英雄数据 */
@@ -54,6 +55,9 @@ const handleViewClick = () => {
   <div
     v-maskGradient
     v-sweepLight
+    v-mouse-tip="{
+      text: MOUSE_TIP.kr17,
+    }"
     class="hero-card"
     :class="{ hide: show }"
     @mouseenter="show = true"

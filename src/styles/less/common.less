@@ -1,21 +1,3 @@
-/* 鼠标样式 */
-.global_cursor-default {
-  cursor: url("@{IMGBED}/cursor/default.png"), auto;
-}
-
-.global_cursor-pointer {
-  cursor: url("@{IMGBED}/cursor/pointer.png"), auto;
-}
-
-.global_cursor-not-allowed {
-  opacity: 0.5;
-  cursor: url("@{IMGBED}/cursor/not-allowed.png"), auto;
-}
-
-.global_cursor-text {
-  cursor: url("@{IMGBED}/cursor/text.png"), auto;
-}
-
 /* 文字渐变 */
 .global_text-gradient {
   color: transparent;
@@ -90,8 +72,6 @@
 
 /* 可点击按钮 */
 .global_click-btn {
-  .global_cursor-pointer();
-
   &:hover {
     opacity: 0.75;
   }
@@ -104,8 +84,6 @@
 
 /* 可点击高光 */
 .global_light-btn {
-  .global_cursor-pointer();
-
   &:hover {
     transition: all 0.1s;
     filter: contrast(1.1) brightness(1.3);

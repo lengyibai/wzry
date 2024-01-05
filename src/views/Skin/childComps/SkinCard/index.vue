@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { vAnimateNumber, vMaskGradient } from "@/directives";
+import { vAnimateNumber, vMaskGradient, vMouseTip } from "@/directives";
 import { KImageLoad } from "@/components/business";
+import { MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 皮肤数据 */
@@ -24,7 +25,13 @@ const handle = (e: Event, v: string) => {
 </script>
 
 <template>
-  <div v-maskGradient class="skin-card">
+  <div
+    v-maskGradient
+    v-mouse-tip="{
+      text: MOUSE_TIP.mv02,
+    }"
+    class="skin-card"
+  >
     <KImageLoad loading-width="20%" :big-img="data.cover" :blur-img="data.posterBlur" class="bg" />
     <img v-if="data.link" class="type" :src="data.link" />
 
@@ -47,8 +54,9 @@ const handle = (e: Event, v: string) => {
 
     <!-- 悬浮工具 -->
     <div class="tool">
-      <span class="global_cursor-pointer" @click="handle($event, 'poster')">
-        <i class="iconfont wzry-fangda" />查看详情
+      <span @click="handle($event, 'poster')">
+        <i class="iconfont wzry-fangda" />
+        查看详情
       </span>
     </div>
   </div>

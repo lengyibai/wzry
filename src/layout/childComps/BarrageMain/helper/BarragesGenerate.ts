@@ -1,3 +1,5 @@
+import { KVP_HERO } from "@/api";
+import { $bus } from "@/utils";
 import { getAudioLink, getImgLink } from "@/utils/modules/concise";
 import { random } from "@/utils/modules/tool";
 
@@ -226,6 +228,17 @@ export class BarragesGenerate {
 
   /** @description 给弹幕绑定事件 */
   private bindEvent(barrage: HTMLElement, data: BarrageType) {
+    barrage.addEventListener("mouseenter", () => {
+      $bus.emit("mouse-tip", {
+        show: true,
+        text: `点击查看${KVP_HERO.getHeroNameKvp()[data.heroId] || data.name}的弹幕卡片`,
+      });
+    });
+    barrage.addEventListener("mouseleave", () => {
+      $bus.emit("mouse-tip", {
+        show: false,
+      });
+    });
     barrage.addEventListener("click", (e: MouseEvent) => {
       this.clickCallback(data, e);
     });

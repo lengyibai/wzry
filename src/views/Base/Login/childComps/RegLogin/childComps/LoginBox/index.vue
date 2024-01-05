@@ -9,7 +9,8 @@ import { userDefaultInfo } from "@/default";
 import { AudioStore, AuthStore } from "@/store";
 import { $message, $tool } from "@/utils";
 import { KInput } from "@/components/business";
-import { LOCAL_KEY } from "@/config";
+import { LOCAL_KEY, MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 注册成功后用于填充 */
@@ -95,7 +96,14 @@ const handleLogin = () => {
 
     <!-- 登录 -->
     <div class="log-box__btns">
-      <IntoBtn text="登录" desc="LOGIN" @click="handleLogin" />
+      <IntoBtn
+        v-mouse-tip="{
+          text: MOUSE_TIP.a20t,
+        }"
+        text="登录"
+        desc="LOGIN"
+        @click="handleLogin"
+      />
     </div>
   </div>
 </template>

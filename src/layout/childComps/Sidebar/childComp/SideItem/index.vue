@@ -5,6 +5,7 @@ import { useRouter, useRoute } from "vue-router";
 import SideItem from "./index.vue";
 
 import { CollapseStore, AudioStore } from "@/store";
+import { vMouseTip } from "@/directives";
 
 interface RouteFormat {
   /** 路由路径 */
@@ -116,6 +117,9 @@ const handleChildCoord = (v: number) => {
   <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
     <div
       ref="menuItemRef"
+      v-mouse-tip="{
+        text: '菜单：' + route.title,
+      }"
       class="menu-item"
       :style="textStyle"
       :class="{

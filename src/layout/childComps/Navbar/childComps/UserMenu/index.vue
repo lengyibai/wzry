@@ -6,7 +6,8 @@ import EditUserInfo from "./components/EditUserInfo/index.vue";
 import { AuthStore, AudioStore } from "@/store";
 import { $bus, $concise } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
-import { vDelayHide } from "@/directives";
+import { vDelayHide, vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -87,6 +88,9 @@ const onCloseConfirmEdidInfo = () => {
     :class="{ hover: show_menu }"
   >
     <img
+      v-mouse-tip="{
+        text: MOUSE_TIP.c2y9,
+      }"
       class="head-img"
       :src="userInfo.avatar || getImgLink('unknown')"
       alt="头像"
@@ -97,9 +101,35 @@ const onCloseConfirmEdidInfo = () => {
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">
-        <KButton class="k-button" @click="handleEditInfo">编辑个人信息</KButton>
-        <KButton class="k-button" type="warning" @click="handleLogout">退出登录</KButton>
-        <KButton class="k-button" type="error" @click="handleConfirmLogoff">注销帐号</KButton>
+        <KButton
+          v-mouse-tip="{
+            text: MOUSE_TIP.c3x1,
+          }"
+          class="k-button"
+          @click="handleEditInfo"
+        >
+          编辑个人信息
+        </KButton>
+        <KButton
+          v-mouse-tip="{
+            text: MOUSE_TIP.cl81,
+          }"
+          class="k-button"
+          type="warning"
+          @click="handleLogout"
+        >
+          退出登录
+        </KButton>
+        <KButton
+          v-mouse-tip="{
+            text: MOUSE_TIP.dz56,
+          }"
+          class="k-button"
+          type="error"
+          @click="handleConfirmLogoff"
+        >
+          注销帐号
+        </KButton>
       </div>
     </div>
   </div>

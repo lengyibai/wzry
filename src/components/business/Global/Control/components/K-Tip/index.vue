@@ -5,7 +5,8 @@ import { storeToRefs } from "pinia";
 import { $bus } from "@/utils";
 import { SettingStore, AudioStore, TipStore } from "@/store";
 import { KButton } from "@/components/business";
-import { vTypewriterMultiple } from "@/directives";
+import { vMouseTip, vTypewriterMultiple } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const { show_tip: show, content, align, noTipName, btnFn } = storeToRefs(TipStore());
 const { tip, toTip, setShowTip } = TipStore();
@@ -107,7 +108,17 @@ watch(
 
             <!-- 按钮 -->
             <div class="btns" :class="{ disable }">
-              <KButton class="k-button" :disabled="disable" @click="handleClose">确定</KButton>
+              <KButton
+                v-mouse-tip="{
+                  text: disable ? MOUSE_TIP.zx48 : MOUSE_TIP.x5a6,
+                  disabled: disable,
+                }"
+                class="k-button"
+                :disabled="disable"
+                @click="handleClose"
+              >
+                确定
+              </KButton>
             </div>
           </div>
         </transition>

@@ -2,8 +2,9 @@
 import { useDialogContorl } from "./hooks/useDialogContorl";
 
 import { $concise } from "@/utils";
-import { vMaskGradient } from "@/directives";
+import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
+import { MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 垂直对齐方式 */
@@ -105,7 +106,14 @@ defineExpose({
           </div>
 
           <!-- 关闭 -->
-          <div v-show="showClose" class="close" @click="handleCloseDialog"></div>
+          <div
+            v-show="showClose"
+            v-mouse-tip="{
+              text: MOUSE_TIP.sj91,
+            }"
+            class="close"
+            @click="handleCloseDialog"
+          ></div>
 
           <!-- 内容区 -->
           <div

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 import { CollapseStore, AudioStore } from "@/store";
 
 const $collapseStore = CollapseStore();
@@ -13,6 +15,9 @@ const handleToggle = () => {
 
 <template>
   <i
+    v-mouse-tip="{
+      text: MOUSE_TIP.i6u1,
+    }"
     class="iconfont wzry-packup"
     :class="{ 'is-active': !$collapseStore.collapse }"
     @click="handleToggle"

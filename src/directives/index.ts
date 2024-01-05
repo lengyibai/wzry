@@ -10,3 +10,4 @@ export * from "./modules/sweepLight";
 export * from "./modules/textHoverColor";
 export * from "./modules/typewriterMultiple";
 export * from "./modules/typewriterSingle";
+export * from "./modules/mouseTip";

@@ -6,6 +6,8 @@ import UpdateLog from "./components/UpdateLog/index.vue";
 import Todo from "./components/Todo/index.vue";
 
 import { VersionStore } from "@/store";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $versionStore = VersionStore();
 
@@ -26,13 +28,27 @@ onMounted(() => {
 <template>
   <div class="btn-icon">
     <!-- 按钮 -->
-    <i class="iconfont wzry-setting" title="设置" @click="show_setting = true" />
     <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.er37,
+      }"
+      class="iconfont wzry-setting"
+      @click="show_setting = true"
+    />
+    <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.g9u9,
+      }"
       class="iconfont wzry-gengxinrizhi"
-      title="更新日志"
       @click="$versionStore.setShowLog(true)"
     />
-    <i class="iconfont wzry-todo" title="计划清单" @click="show_todo = true" />
+    <i
+      v-mouse-tip="{
+        text: MOUSE_TIP.g9x6,
+      }"
+      class="iconfont wzry-todo"
+      @click="show_todo = true"
+    />
 
     <!-- 设置弹窗 -->
     <teleport to="body">

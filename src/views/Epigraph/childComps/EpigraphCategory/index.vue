@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { AudioStore, EpigraphStore } from "@/store";
 import { $concise } from "@/utils";
+import { vMouseTip } from "@/directives";
 
 const $audioStore = AudioStore();
 const $epigraphStore = EpigraphStore();
@@ -48,6 +49,7 @@ const handleToggle = (index: number, type: Game.Epigraph.Category) => {
       <button
         v-for="(item, index) in epigraph"
         :key="index"
+        v-mouse-tip
         class="title"
         :class="{ active: current_index === index }"
         @click="handleToggle(index, item.title)"

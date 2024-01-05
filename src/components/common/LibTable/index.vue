@@ -59,7 +59,6 @@ const sortChange = ({
       <th
         v-for="(item, index) in head"
         :key="index"
-        :class="{ 'global_cursor-pointer': sort?.includes(item) }"
         @click="
           sortChange({
             key: head_key[index],

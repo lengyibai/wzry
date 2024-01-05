@@ -7,6 +7,7 @@ import { $bus, $message, $tool } from "@/utils";
 import { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
 import { REQUEST } from "@/config";
+import { vMouseTip } from "@/directives";
 
 interface TableData {
   /** 数据名 */
@@ -155,14 +156,16 @@ onActivated(() => {
         <TableColumn min-width="20.5rem">
           <button
             v-if="data.status !== '本地已更改'"
+            v-mouse-tip
             class="check"
             @click="handleCheck(data), play()"
           >
             检查更新
           </button>
-          <button class="export" @click="handleExport(data), play()">导出</button>
+          <button v-mouse-tip class="export" @click="handleExport(data), play()">导出</button>
           <button
             v-if="data.status === '待更新'"
+            v-mouse-tip
             class="update"
             @click="handleUpdate(data), play()"
           >
@@ -170,6 +173,7 @@ onActivated(() => {
           </button>
           <button
             v-if="!['最新', '待更新', '正在检查...'].includes(data.status)"
+            v-mouse-tip
             class="replace"
             @click="handleReplace(data), play()"
           >

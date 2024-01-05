@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
+import { vMouseTip } from "@/directives";
 
 type Data = { label: string; value: string | number };
 
@@ -48,7 +49,7 @@ const handleSelect = (v: Data) => {
 </script>
 
 <template>
-  <div class="select-filter" @click="handleShowList">
+  <div v-mouse-tip class="select-filter" @click="handleShowList">
     <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->

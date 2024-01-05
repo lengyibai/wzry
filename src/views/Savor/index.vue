@@ -12,6 +12,8 @@ import { AtlasStore, AudioStore } from "@/store";
 import { FilterSidebar, KBackTop, KImageLoad } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
 import { GAME_HERO, KVP_HERO } from "@/api";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 defineOptions({
   name: "Savor",
@@ -130,6 +132,9 @@ onDeactivated(() => {
         <div
           v-for="item in show_list"
           :key="item.poster"
+          v-mouse-tip="{
+            text: MOUSE_TIP.o12u,
+          }"
           class="atlas-card"
           :class="{
             active: hero_id === item.id,

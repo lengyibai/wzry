@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KInput from "@/components/business/Parts/K-Input/index.vue";
@@ -7,7 +7,8 @@ import { LOCAL_USER } from "@/api";
 import { AuthStore, AudioStore } from "@/store";
 import { $message } from "@/utils";
 import { LibUploadImg } from "@/components/common";
-import { LOCAL_KEY } from "@/config";
+import { LOCAL_KEY, MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 帐号 */
@@ -28,13 +29,14 @@ const $audioStore = AudioStore();
 /** 用户信息 */
 const user_info = ref<Global.User>({ ...$authStore.userInfo });
 
+/** 是否修改了资料 */
+const edit_status = computed(() => {
+  return JSON.stringify(user_info.value) !== JSON.stringify($authStore.userInfo);
+});
+
 /* 判断信息是否被修改 */
 const handleContrast = () => {
-  if (JSON.stringify(user_info.value) !== JSON.stringify($authStore.userInfo)) {
-    $emit("update:status", true);
-  } else {
-    $emit("update:status", false);
-  }
+  $emit("update:status", edit_status.value);
 };
 
 /* 保存个人信息 */
@@ -67,30 +69,62 @@ const handleSave = () => {
     <!-- 帐号 -->
     <div class="option">
       <div class="label">帐号</div>
-      <span class="id">{{ id }}</span>
+      <span
+        v-mouse-tip="{
+          text: MOUSE_TIP.d7i9,
+          disabled: true,
+        }"
+        class="id"
+      >
+        {{ id }}
+      </span>
     </div>
 
     <!-- 头像 -->
     <div class="option">
       <div class="label">头像</div>
-      <LibUploadImg v-model="user_info.avatar" @update:model-value="handleContrast" />
+      <LibUploadImg
+        v-model="user_info.avatar"
+        v-mouse-tip="{
+          text: MOUSE_TIP.uc74,
+        }"
+        @update:model-value="handleContrast"
+      />
     </div>
 
     <!-- 用户名 -->
     <div class="option">
       <div class="label">用户名</div>
-      <KInput v-model="user_info.nickname" class="k-input" @update:model-value="handleContrast" />
+      <KInput
+        v-model="user_info.nickname"
+        v-mouse-tip
+        class="k-input"
+        @update:model-value="handleContrast"
+      />
     </div>
 
     <!-- 密码 -->
     <div class="option">
       <div class="label">密码</div>
-      <KInput v-model="user_info.password" class="k-input" @update:model-value="handleContrast" />
+      <KInput
+        v-model="user_info.password"
+        v-mouse-tip
+        class="k-input"
+        @update:model-value="handleContrast"
+      />
     </div>
   </div>
 
   <!-- 保存 -->
-  <KButton type="warning" @click="handleSave">保存</KButton>
+  <KButton
+    v-mouse-tip="{
+      text: edit_status ? MOUSE_TIP.ty38 : MOUSE_TIP.sq28,
+    }"
+    type="warning"
+    @click="handleSave"
+  >
+    保存
+  </KButton>
 </template>
 
 <style scoped lang="less">

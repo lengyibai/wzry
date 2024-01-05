@@ -3,6 +3,8 @@ import { computed, ref } from "vue";
 
 import { SettingStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 显示公告按钮 */
@@ -50,9 +52,12 @@ defineExpose({
 <template>
   <div ref="toolbarRef" class="tool-bar">
     <!-- 静音 -->
-    <div v-if="!$tool.isPhone" class="tool" title="静音">
+    <div v-if="!$tool.isPhone" class="tool">
       <div class="line"></div>
       <div
+        v-mouse-tip="{
+          text: MOUSE_TIP.ak79,
+        }"
         class="box jingyin"
         :class="{ active: muted }"
         :style="{ opacity: muted ? 0.75 : 1 }"
@@ -65,9 +70,15 @@ defineExpose({
     </div>
 
     <!-- README -->
-    <div v-if="notice" class="tool" title="README">
+    <div v-if="notice" class="tool">
       <div class="line"></div>
-      <div class="box elastic" @click="handleTool('readme')">
+      <div
+        v-mouse-tip="{
+          text: MOUSE_TIP.b6v2,
+        }"
+        class="box elastic"
+        @click="handleTool('readme')"
+      >
         <i class="iconfont wzry-readme" />
         <span class="text">介绍</span>
       </div>
@@ -75,9 +86,15 @@ defineExpose({
     </div>
 
     <!-- 公告 -->
-    <div v-if="notice" class="tool" title="公告">
+    <div v-if="notice" class="tool">
       <div class="line"></div>
-      <div class="box elastic" @click="handleTool('notice')">
+      <div
+        v-mouse-tip="{
+          text: MOUSE_TIP.br37,
+        }"
+        class="box elastic"
+        @click="handleTool('notice')"
+      >
         <i class="iconfont wzry-gonggao" />
         <span class="text">公告</span>
       </div>
@@ -85,9 +102,15 @@ defineExpose({
     </div>
 
     <!-- 开黑 -->
-    <div v-if="notice" class="tool" title="开黑">
+    <div v-if="notice" class="tool">
       <div class="line"></div>
-      <div class="box elastic" @click="handleTool('team')">
+      <div
+        v-mouse-tip="{
+          text: MOUSE_TIP.c1g6,
+        }"
+        class="box elastic"
+        @click="handleTool('team')"
+      >
         <i class="iconfont wzry-youxi" />
         <span class="text">开黑</span>
       </div>

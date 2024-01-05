@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { vBlurLoad, vAnimateNumber } from "@/directives";
+import { vBlurLoad, vAnimateNumber, vMouseTip } from "@/directives";
 import { AudioStore, EquipStore } from "@/store";
+import { MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 装备信息 */
@@ -34,7 +35,13 @@ const handleDetail = () => {
 </script>
 
 <template>
-  <div class="equip-card" @click="handleDetail">
+  <div
+    v-mouse-tip="{
+      text: MOUSE_TIP.kq36,
+    }"
+    class="equip-card"
+    @click="handleDetail"
+  >
     <!-- 选中圆圈 -->
     <transition name="border-fade">
       <div v-show="active_id === equip.id" class="border"></div>

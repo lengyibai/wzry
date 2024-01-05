@@ -5,6 +5,8 @@ import MuiscList from "../MuiscList/index.vue";
 
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 import { $tip, $tool } from "@/utils";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   toggle: [v: string];
@@ -45,15 +47,35 @@ const handleTool = (type: string) => {
       :class="{ center: $deviceStore.vertical }"
       @click.stop
     >
-      <i class="iconfont wzry-last" title="上一首" @click="handleTool('last')" />
       <i
+        v-mouse-tip="{
+          text: MOUSE_TIP.q3k7,
+        }"
+        class="iconfont wzry-last"
+        @click="handleTool('last')"
+      />
+      <i
+        v-mouse-tip="{
+          text: MOUSE_TIP.qf48,
+        }"
         class="iconfont"
         :class="$musicStore.status ? 'wzry-play' : 'wzry-pause'"
-        title="播放/暂停"
         @click="handleTool(!$musicStore.status ? 'play' : 'pause')"
       />
-      <i class="iconfont wzry-next" title="下一首" @click="handleTool('next')" />
-      <i class="iconfont wzry-musiclist" title="播放列表" @click="handleTool('list')" />
+      <i
+        v-mouse-tip="{
+          text: MOUSE_TIP.q7a3,
+        }"
+        class="iconfont wzry-next"
+        @click="handleTool('next')"
+      />
+      <i
+        v-mouse-tip="{
+          text: MOUSE_TIP.r4r3,
+        }"
+        class="iconfont wzry-musiclist"
+        @click="handleTool('list')"
+      />
 
       <MuiscList class="muisc-list" />
     </div>

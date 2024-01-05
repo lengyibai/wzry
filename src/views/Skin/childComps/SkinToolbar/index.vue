@@ -6,6 +6,8 @@ import _debounce from "lodash/debounce";
 import { SkinStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
+import { MOUSE_TIP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $emit = defineEmits<{
   seach: [];
@@ -155,7 +157,15 @@ onUnmounted(() => {
     <FilterGender @change="handerSetGender" />
 
     <!-- 搜索 -->
-    <KInput v-model="search_value" placeholder="皮肤/英雄" @input="handSearch" />
+    <KInput
+      v-model="search_value"
+      v-mouse-tip="{
+        text: MOUSE_TIP.kb43,
+        type: 'INPUT',
+      }"
+      placeholder="皮肤/英雄"
+      @input="handSearch"
+    />
   </div>
 </template>
 

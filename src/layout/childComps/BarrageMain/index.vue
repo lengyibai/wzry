@@ -5,8 +5,9 @@ import _cloneDeep from "lodash/cloneDeep";
 import { useBarrages } from "./hooks/useBarrages";
 
 import { BarrageStore } from "@/store";
-import { $tip, $tool } from "@/utils";
-import { vBlurLoad, vDownDrag } from "@/directives";
+import { $imageView, $tip, $tool } from "@/utils";
+import { vBlurLoad, vDownDrag, vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $barrageStore = BarrageStore();
 
@@ -17,7 +18,13 @@ const { barrage_info, init, show_card } = useBarrages();
 
 /* 查看图片 */
 const handleView = (e: Event, blur: string, big: string) => {
-  new $tool.ScaleFLIPImage(e, big, blur);
+  $imageView({
+    event: e,
+    type: "DEFAULT",
+    bigImage: big,
+    blurImage: blur,
+  });
+  show_card.value = false;
 };
 
 watch(
@@ -50,7 +57,13 @@ setTimeout(() => {
       <transition name="fade">
         <div v-show="show_card" ref="barrageInfoRef" v-down-drag class="barrage-info">
           <template v-if="barrage_info">
-            <i class="iconfont wzry-guanbi" @click="show_card = false" />
+            <i
+              v-mouse-tip="{
+                text: MOUSE_TIP.sj91,
+              }"
+              class="iconfont wzry-guanbi"
+              @click="show_card = false"
+            />
             <div class="hero-info">
               <img :src="barrage_info?.avatar" alt="" class="head-img" />
               <div class="info">
@@ -61,6 +74,9 @@ setTimeout(() => {
             <div class="voice-text">——{{ barrage_info.voiceText }}</div>
             <img
               v-blurLoad="barrage_info.skinPoster"
+              v-mouse-tip="{
+                text: MOUSE_TIP.o12u,
+              }"
               :src="barrage_info.skinBlurPoster"
               alt=""
               class="skin-poster"

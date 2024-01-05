@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
-import { vFocus } from "@/directives";
+import { vFocus, vMouseTip } from "@/directives";
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 
@@ -66,7 +66,7 @@ const handleConfirm = () => {
         placeholder="请输入"
         @keyup.enter="handleConfirm"
       />
-      <KButton type="warning" @click="handleConfirm">确定</KButton>
+      <KButton v-mouse-tip type="warning" @click="handleConfirm">确定</KButton>
     </KDialog>
   </teleport>
 </template>

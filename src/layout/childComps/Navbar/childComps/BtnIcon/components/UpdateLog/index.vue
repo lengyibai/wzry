@@ -55,7 +55,7 @@ const handleClose = () => {
     </div>
 
     <!-- 重启 -->
-    <KButton v-if="data_status || file_status" type="warning" @click="handleReset">
+    <KButton v-if="data_status || file_status" v-mouse-tip type="warning" @click="handleReset">
       更新并重启
     </KButton>
   </KDialog>

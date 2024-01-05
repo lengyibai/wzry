@@ -7,6 +7,8 @@ import { HeroStore } from "@/store";
 import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { LOCAL_TYPE } from "@/api";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   seach: [];
@@ -175,6 +177,10 @@ onUnmounted(() => {
     <!-- 搜索 -->
     <KInput
       v-model="search_value"
+      v-mouse-tip="{
+        text: MOUSE_TIP.kb43,
+        type: 'INPUT',
+      }"
       class="k-input"
       placeholder="英雄/字母"
       :no-special="false"
