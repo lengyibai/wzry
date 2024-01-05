@@ -28,7 +28,7 @@ const useBarrages = () => {
       avatar: string;
       /** 皮肤名 */
       skinName: string;
-      /** 皮肤海报 */
+      /** 皮肤模糊海报 */
       skinBlurPoster: string;
       /** 皮肤海报 */
       skinPoster: string;
