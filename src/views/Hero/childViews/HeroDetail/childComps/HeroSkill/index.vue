@@ -40,7 +40,7 @@ setScollFn("skinIcon", (index) => {
         align: "right-top",
         text: `${hero_info.value.name}存在${
           length == 3 ? "三" : "两"
-        }套技能，页面底部中间有个切换副技能的按钮，点击它吧！由于图片资源条件有限，副技能的被动图标都会带有文字，没有文字的就是主技能。`,
+        }套技能，页面底部中间有个切换副技能的按钮，点击它吧！`,
         createFn: () => {
           toggleFocus.focus();
         },
