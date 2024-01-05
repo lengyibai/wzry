@@ -52,12 +52,12 @@ const finish = () => {
 /* 不再提示 */
 const handleClose = () => {
   if (disabled.value) return;
-  disabled.value = true;
   setShowTip(false);
   noTipName.value && $settingStore.setNoTip(noTipName.value as keyof Global.Tip.Key<string>);
   $audioStore.play("ba09");
 
   setTimeout(() => {
+    disabled.value = true;
     btnFn.value();
     toTip();
   }, 1000);
