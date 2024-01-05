@@ -12,6 +12,7 @@ const {
   align,
   disabled,
   is_once,
+  btn_text,
   handleSetAllowClick,
   handleConfirm,
 } = useTip();
@@ -71,7 +72,7 @@ const position = {
                 :disabled="disabled"
                 @click="handleConfirm"
               >
-                {{ is_once ? "不再提示" : "确定" }}
+                {{ is_once ? "不再提示" : btn_text }}
               </KButton>
             </div>
           </div>

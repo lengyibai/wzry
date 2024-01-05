@@ -14,6 +14,7 @@ let btnFn: () => void;
 const list: Global.Tip.Prompt[] = [];
 
 const is_once = ref(true);
+const btn_text = ref("");
 const content = ref("");
 const disabled = ref(true);
 const show_tip = ref(false);
@@ -38,6 +39,8 @@ const useTip = () => {
     content,
     /** 弹窗位置 */
     align,
+    /** 自定义按钮文字 */
+    btn_text,
   };
 
   /** @description 设置是否显示tip */
@@ -65,12 +68,19 @@ const useTip = () => {
           next = resove;
         });
       }
-      const { text, createFn, align: _align = "right-bottom", btnFn: _btnFn = () => {} } = config;
+      const {
+        text,
+        btnText = "确定",
+        createFn,
+        align: _align = "right-bottom",
+        btnFn: _btnFn = () => {},
+      } = config;
       const tip_key = Object.entries(SCENE_TIP).find((item) => item[1] === text)?.[0];
 
       const fn = () => {
         btnFn = _btnFn;
         align.value = _align;
+        btn_text.value = btnText;
         content.value = text;
         setShowTip(true);
         $audioStore.play("rt25");
