@@ -140,9 +140,12 @@ export class BarragesGenerate {
     //将选中的弹幕间隔位置添加到已使用的数组中
     this.usedGaps.push(gap);
 
+    const speed = move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time;
+
     barrage.style.top = gap;
-    barrage.style.animationDuration =
-      (move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time) + "s";
+    barrage.style.filter = `brightness(${7.5 / speed / 2 + 0.75})`;
+    barrage.style.transform = `translateX(100%) scale(${7.5 / speed})`;
+    barrage.style.animationDuration = speed + "s";
     barrage.classList.add("barrage-animate");
     barrage.innerHTML = data.text;
     barrage.setAttribute("data-text", data.text);
@@ -189,6 +192,7 @@ export class BarragesGenerate {
     this.usedGaps.push(gap);
 
     barrage.style.top = gap;
+    barrage.style.transform = `translateX(100%)`;
     barrage.style.animationDuration =
       (move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time) + "s";
     barrage.classList.add("barrage-animate");
