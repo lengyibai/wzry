@@ -38,7 +38,7 @@ const type = ref<"NORMAL" | "INPUT">("NORMAL");
 /** 提示框位置 */
 const tip_position = ref<"left-bottom" | "right-bottom" | "left-top" | "right-top">("left-top");
 
-const _debounceMouseTip = _debounce((v: MouseTip) => {
+const debounceMouseTip = _debounce((v: MouseTip) => {
   if (downing.value) return;
   //解决某些元素销毁时会直接隐藏掉正常显示的Tip
 
@@ -55,7 +55,7 @@ const _debounceMouseTip = _debounce((v: MouseTip) => {
     disable.value = !!v.disable;
   }, 100);
 }, 100);
-$bus.on("mouse-tip", _debounceMouseTip);
+$bus.on("mouse-tip", debounceMouseTip);
 
 document.documentElement.addEventListener("mouseenter", () => {
   clearTimeout(timer2);
@@ -68,11 +68,11 @@ document.documentElement.addEventListener("mouseleave", () => {
   }, 250);
 });
 
-const _debounceStillness = _debounce(() => {
+const debounceStillness = _debounce(() => {
   moving.value = false;
 }, 250);
 window.addEventListener("mousemove", (e: MouseEvent) => {
-  _debounceStillness();
+  debounceStillness();
   x.value = e.pageX;
   y.value = e.pageY;
   moving.value = true;

@@ -62,7 +62,7 @@ const changeCount = () => {
 };
 
 /* 滚动触发 */
-const onScroll = _debounce((v: number) => {
+const debounceScroll = _debounce((v: number) => {
   setScroll(v);
   back_top.value = v > 250;
 }, 250);
@@ -129,7 +129,7 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar @seach="onScroll(0)" />
+        <SkinToolbar @seach="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
@@ -145,7 +145,7 @@ onDeactivated(() => {
           :count="count"
           :scroll-top="scroll"
           @load-more="onLoadMore"
-          @scroll="onScroll"
+          @scroll="debounceScroll"
         >
           <transition-group name="skin-card" appear>
             <div
@@ -166,7 +166,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="skin" @change="onScroll(0)" />
+      <FilterSidebar type="skin" @change="debounceScroll(0)" />
     </transition>
 
     <!-- 语音列表 -->

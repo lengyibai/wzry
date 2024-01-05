@@ -88,7 +88,7 @@ const updateData = (key: string, data: unknown) => {
 };
 
 /* 检查更新 */
-const handleCheck = _debounce(
+const debounceCheck = _debounce(
   async (data: TableData) => {
     if (update_status) {
       update_status = false;
@@ -114,7 +114,7 @@ const handleUpdate = async (data: TableData) => {
   const v = (await data.request()).data;
   updateData(data.key, v);
   data.data = v;
-  handleCheck(data);
+  debounceCheck(data);
 };
 
 /* 强制覆盖 */
@@ -158,7 +158,7 @@ onActivated(() => {
             v-if="data.status !== '本地已更改'"
             v-mouse-tip
             class="check"
-            @click="handleCheck(data), play()"
+            @click="debounceCheck(data), play()"
           >
             检查更新
           </button>

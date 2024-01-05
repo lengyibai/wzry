@@ -40,7 +40,7 @@ const handerSetGender = (type: Game.GenderId) => {
 };
 
 /** 搜索皮肤 */
-const handSearch = _debounce(() => {
+const debounceSearch = _debounce(() => {
   searchAtlas(search_value.value);
   $emit("seach");
 }, 500);
@@ -88,7 +88,7 @@ onUnmounted(() => {
         type: 'INPUT',
       }"
       placeholder="英雄/皮肤"
-      @input="handSearch"
+      @input="debounceSearch"
     />
   </div>
 </template>

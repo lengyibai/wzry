@@ -54,7 +54,7 @@ const select_list = ref<Global.General[]>([]);
 const selected_list = ref<Global.General[] | string[] | number[]>([]);
 
 /* 实时搜索 */
-const handleSearch = _debounce(() => {
+const debounceSearch = _debounce(() => {
   select_list.value = $tool.search(_cloneDeep($props.data), input_value.value, ["value"]);
 }, 250);
 
@@ -158,7 +158,7 @@ watch(
             :required:="required"
             :placeholder="active_value || '搜索'"
             line
-            @input="handleSearch"
+            @input="debounceSearch"
             @focus="handleFocus"
             @blur="handleBlur"
           />

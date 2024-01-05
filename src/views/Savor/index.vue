@@ -89,7 +89,7 @@ const onLoadMore = () => {
 };
 
 /* 滚动触发 */
-const onScroll = _debounce((v: number) => {
+const debounceScroll = _debounce((v: number) => {
   setScroll(v);
   back_top.value = v > 250;
 }, 250);
@@ -116,7 +116,7 @@ onDeactivated(() => {
 <template>
   <div class="savor">
     <div class="savor-main">
-      <SavorToolbar @seach="onScroll(0)" />
+      <SavorToolbar @seach="debounceScroll(0)" />
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <LibWaterfall
@@ -127,7 +127,7 @@ onDeactivated(() => {
         :finish="finish"
         :scroll-top="scroll"
         @load-more="onLoadMore"
-        @scroll="onScroll"
+        @scroll="debounceScroll"
       >
         <div
           v-for="item in show_list"
@@ -164,7 +164,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="atlas" @change="onScroll(0)" />
+      <FilterSidebar type="atlas" @change="debounceScroll(0)" />
     </transition>
   </div>
 </template>

@@ -87,7 +87,7 @@ const onSortType = (v: string | number) => {
 };
 
 /** 搜索英雄 */
-const handSearch = _debounce(() => {
+const debounceSearch = _debounce(() => {
   searchHero(search_value.value);
   $emit("seach");
 }, 500);
@@ -184,7 +184,7 @@ onUnmounted(() => {
       class="k-input"
       placeholder="英雄/字母"
       :no-special="false"
-      @input="handSearch"
+      @input="debounceSearch"
     />
   </div>
 </template>
