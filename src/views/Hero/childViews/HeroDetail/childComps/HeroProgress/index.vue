@@ -6,6 +6,8 @@ import { AudioStore } from "@/store";
 interface Props {
   /** 滚动索引 */
   index: number;
+  /** 滚动索引标题 */
+  option: string[];
 }
 
 defineProps<Props>();
@@ -14,9 +16,6 @@ const $emit = defineEmits<{
 }>();
 
 const $audioStore = AudioStore();
-
-/** 滚动索引标题 */
-const page_name = ["英雄资料", "技能信息", "皮肤语音"];
 
 /* 设置进度 */
 const handleToggle = (index: number) => {
@@ -29,7 +28,7 @@ const handleToggle = (index: number) => {
   <!-- 滚动进度 -->
   <div class="hero-progress">
     <div
-      v-for="(item, i) in page_name"
+      v-for="(item, i) in option"
       :key="i"
       v-mouse-tip="{
         text: MOUSE_TIP.mi32,
