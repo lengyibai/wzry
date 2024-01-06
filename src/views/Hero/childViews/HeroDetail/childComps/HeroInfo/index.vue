@@ -44,12 +44,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="basic-info">
+  <div class="hero-info">
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" />
 
     <!-- 中间 -->
-    <div class="basic-info__center">
+    <div class="hero-info__center">
       <div class="center-left">
         <!-- 左侧基础数据 -->
         <HeroBasic />
@@ -66,7 +66,7 @@ onMounted(() => {
     </div>
 
     <!-- 底部 -->
-    <div class="basic-info__bottom"></div>
+    <div class="hero-info__bottom"></div>
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />
