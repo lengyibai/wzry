@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from "vue";
+import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import RegLogin from "./childComps/RegLogin/index.vue";
@@ -10,7 +10,7 @@ import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
-import { $bus, $concise, $tip, $tool } from "@/utils";
+import { $concise, $tip, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
 import { SCENE_TIP } from "@/config";
 
@@ -58,10 +58,6 @@ const onCloseNotice = () => {
     },
   });
 };
-
-onUnmounted(() => {
-  $bus.off("resize");
-});
 </script>
 
 <template>

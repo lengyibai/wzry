@@ -9,10 +9,6 @@ import KPhone from "./components/K-Phone/index.vue";
 
 import { $bus } from "@/utils";
 
-/* 全局监听事件 */
-window.addEventListener("mousemove", (e) => {
-  $bus.emit("mousemove", e);
-});
 window.addEventListener("mouseup", (e) => {
   $bus.emit("mouseup", e);
 });
