@@ -34,7 +34,7 @@ const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
       </div>
       <div
         class="say"
-        :class="relation_info?.replyGender"
+        :class="relation_info?.replyGender === '女' && 'nv'"
         :data-text="`${relation_info?.heroName}：${relation_info?.reply!}`"
       >
         {{ relation_info?.heroName }}：{{ relation_info?.reply }}
