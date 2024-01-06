@@ -33,7 +33,19 @@ export class BarragesGenerate {
   /** 初始化 */
   private init: () => void;
   /** 弹幕上下间隔的位置 */
-  private gaps = ["0.25em", "1.5em", "3em", "4.5em", "6em", "7.5em", "9em"];
+  private gaps = [
+    "0em",
+    "1.5em",
+    "3em",
+    "4.5em",
+    "6em",
+    "7.5em",
+    "9em",
+    "10.5em",
+    "12em",
+    "13.5em",
+    "15em",
+  ];
   /** 已经使用过的弹幕间隔位置数组 */
   private usedGaps: string[] = [];
   /** 是否启用生成弹幕 */
@@ -121,11 +133,10 @@ export class BarragesGenerate {
   private createBarrage(data: Global.Barrage) {
     const barrage = document.createElement("div") as HTMLElement;
 
-    //弹幕运动时长
-    const move_time = 10 * (data.text.length / 10);
-
     //获取未使用的弹幕间隔位置
     let availableGaps = this.gaps.filter((gap) => !this.usedGaps.includes(gap));
+    //弹幕运动时长
+    const move_time = 10 * (data.text.length / 10);
 
     if (availableGaps.length === 0) {
       //如果没有可用的弹幕间隔位置了，重新清空usedGaps数组
@@ -140,11 +151,13 @@ export class BarragesGenerate {
     //将选中的弹幕间隔位置添加到已使用的数组中
     this.usedGaps.push(gap);
 
-    const speed = move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time;
-    const brightness = 7.5 / speed / 2 + 0.6;
+    const speed = move_time > 20 ? 20 : move_time < 15 ? 15 : move_time;
+    const brightness = 15 / speed / 2 + 0.5;
+
     barrage.style.top = gap;
+    barrage.style.zIndex = (brightness * 100).toFixed(0);
     barrage.style.filter = `brightness(${brightness >= 1 ? 1 : brightness})`;
-    barrage.style.transform = `translateX(100%) scale(${7.5 / speed})`;
+    barrage.style.transform = `translateX(100%) scale(${15 / speed})`;
     barrage.style.animationDuration = speed + "s";
     barrage.classList.add("barrage-animate");
     barrage.innerHTML = data.text;
@@ -157,26 +170,23 @@ export class BarragesGenerate {
     this.parent.appendChild(barrage);
     this.bindEvent(barrage, data);
 
-    //计算延迟移除间隔的时间
-    const removeTime = (data.text.length / 7.5) * 1000;
     setTimeout(() => {
       //移除已使用的弹幕间隔位置
       const index = this.usedGaps.indexOf(gap);
       if (index !== -1) {
         this.usedGaps.splice(index, 1);
       }
-    }, removeTime);
+    }, move_time * 1000);
   }
 
   /** @description 创建私有字幕 */
   private createLybBarrage(text: string) {
     const barrage = document.createElement("div") as HTMLElement;
 
-    //弹幕运动时长
-    const move_time = 10 * (text.length / 10);
-
     //获取未使用的弹幕间隔位置
     let availableGaps = this.gaps.filter((gap) => !this.usedGaps.includes(gap));
+    //弹幕运动时长
+    const move_time = 10 * (text.length / 10);
 
     if (availableGaps.length === 0) {
       //如果没有可用的弹幕间隔位置了，重新清空usedGaps数组
@@ -192,9 +202,9 @@ export class BarragesGenerate {
     this.usedGaps.push(gap);
 
     barrage.style.top = gap;
+    barrage.style.zIndex = "101";
     barrage.style.transform = `translateX(100%)`;
-    barrage.style.animationDuration =
-      (move_time > 15 ? 15 : move_time < 7.5 ? 7.5 : move_time) + "s";
+    barrage.style.animationDuration = (move_time > 20 ? 20 : move_time < 15 ? 15 : move_time) + "s";
     barrage.classList.add("barrage-animate");
     barrage.innerHTML = text;
     barrage.setAttribute("data-text", text);
@@ -215,15 +225,13 @@ export class BarragesGenerate {
       link_blur: getImgLink("code_bg_blur", "jpg"),
     });
 
-    //计算延迟移除间隔的时间
-    const removeTime = (text.length / 7.5) * 1000;
     setTimeout(() => {
       //移除已使用的弹幕间隔位置
       const index = this.usedGaps.indexOf(gap);
       if (index !== -1) {
         this.usedGaps.splice(index, 1);
       }
-    }, removeTime);
+    }, move_time * 1000);
   }
 
   /** @description 给弹幕绑定事件 */
