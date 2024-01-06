@@ -30,9 +30,9 @@ const calcActiveSkill = computed(() => {
 });
 
 /* 当滚动到技能页，播放出场动画 */
-$heroDetail.setScollFn("skinIcon", (index) => {
-  //只有当前页面未加载或者滚动索引为2才会触发
-  if (show.value || index !== 2) return;
+$heroDetail.setScollFn("skinIcon", (pageName) => {
+  //只有当前页面未加载或者滚动到技能信息才会触发
+  if (show.value || pageName !== "技能信息") return;
   show.value = true;
 });
 

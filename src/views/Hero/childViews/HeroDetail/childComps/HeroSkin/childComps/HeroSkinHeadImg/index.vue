@@ -108,8 +108,8 @@ const handleDrag = (
 };
 
 /* 当滚动到皮肤页，播放出场动画 */
-$heroDetail.setScollFn("skin", (index) => {
-  if (index === 3 && !show_skin_head.value) {
+$heroDetail.setScollFn("skin", (pageName) => {
+  if (pageName === "皮肤语音" && !show_skin_head.value) {
     show_skin_box.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
     setTimeout(() => {

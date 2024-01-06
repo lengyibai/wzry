@@ -24,9 +24,9 @@ const show = ref(false);
 const hero_skill = ref<Remote.Skill.Info>();
 
 /* 当滚动到技能页，播放出场动画 */
-setScollFn("skinIcon", (index) => {
-  //只有当前页面未加载或者滚动索引为2才会触发
-  if (show.value || index !== 2) return;
+setScollFn("skinIcon", (pageName) => {
+  //只有当前页面未加载或者滚动索引为3才会触发
+  if (show.value || pageName !== "技能信息") return;
   show.value = true;
 
   //存在多套技能执行下列代码

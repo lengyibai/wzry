@@ -6,7 +6,7 @@ import { getImgLink } from "@/utils/modules/concise";
 import { GAME_HERO } from "@/api";
 
 type SkinToggleFn = (hero_id: number, skin_name: string) => void;
-type ScollFn = { name: string; fn: (index: number) => void }[];
+type ScollFn = { name: string; fn: (pageName: string) => void }[];
 interface RelationInfoType extends Game.Hero.RelationType {
   /** 对应关系英雄的回复 */
   reply: string;
@@ -26,7 +26,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 处于展示的技能索引 */
     skill_index: ref(0),
     /** 滚动索引 */
-    scroll_index: ref(1),
+    page_name: ref("英雄资料"),
     /** 技能选择触发的函数 */
     skillSelectFn: ref<(index: number) => void>(() => {}),
     /** 皮肤切换后触发函数组 */
@@ -49,7 +49,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     hero_info,
     scollFns,
     skill_index,
-    scroll_index,
+    page_name,
     skillSelectFn,
     skinToggleFns,
     skin_voice,
@@ -62,11 +62,11 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       hero_info.value = data;
     },
 
-    /** @description 设置滚动索引 */
-    setIndex(index: number) {
-      scroll_index.value = index;
+    /** @description 设置滚动页名 */
+    setPageName(name: string) {
+      page_name.value = name;
       scollFns.value.forEach((item) => {
-        item.fn(index);
+        item.fn(name);
       });
     },
 
@@ -75,7 +75,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
      * @param name 标识符
      * @param fn 触发函数
      */
-    setScollFn(name: string, fn: (index: number) => void) {
+    setScollFn(name: string, fn: (pageName: string) => void) {
       scollFns.value.push({ name: name, fn: fn });
     },
 
