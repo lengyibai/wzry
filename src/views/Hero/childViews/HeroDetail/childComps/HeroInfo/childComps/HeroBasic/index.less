@@ -1,6 +1,5 @@
 .hero-basic {
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
   min-width: 25rem;
   margin-bottom: 1rem;
@@ -32,6 +31,19 @@
 
     .name {
       color: var(--white);
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 4rem;
+  }
+
+  @media screen and (max-width: 540px) {
+    width: 100%;
+    min-width: initial;
+
+    .info {
+      font-size: 1.5rem;
     }
   }
 }

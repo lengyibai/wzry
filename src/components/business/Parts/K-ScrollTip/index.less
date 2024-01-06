@@ -2,6 +2,7 @@
   position: absolute;
   left: 50%;
   bottom: 0;
+  z-index: 2;
   display: flex;
   align-items: center;
   color: var(--white-75);
@@ -20,11 +21,22 @@
 
   .wzry-down {
     margin-right: 1.5rem;
-    font-size: 4.25rem;
+    font-size: 3.5rem;
   }
 
   .text {
     font-size: 2.75rem;
     white-space: nowrap;
+  }
+
+  @media screen and (max-width: 540px) {
+    .wzry-down {
+      margin-right: 1.25rem;
+      font-size: 2.5rem;
+    }
+
+    .text {
+      font-size: 2rem;
+    }
   }
 }

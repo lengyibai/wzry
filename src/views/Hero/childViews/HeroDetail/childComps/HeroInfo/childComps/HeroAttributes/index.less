@@ -1,4 +1,13 @@
 .hero-attributes {
   display: flex;
+  justify-content: flex-end;
   min-width: 25rem;
+
+  @media screen and (max-width: 640px) {
+    min-width: 17rem;
+  }
+
+  @media screen and (max-width: 540px) {
+    min-width: 15rem;
+  }
 }

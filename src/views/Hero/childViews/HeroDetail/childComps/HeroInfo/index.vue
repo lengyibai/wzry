@@ -16,6 +16,10 @@ const downRef = ref<InstanceType<typeof KScrollTip>>();
 
 /** 控制页面元素显示 */
 const into = ref(true);
+/** 响应式1200px */
+const responsive_1200 = ref(false);
+/** 响应式640px */
+const responsive_640 = ref(false);
 
 onMounted(() => {
   //设置按顺序出场的动画
@@ -39,6 +43,13 @@ onMounted(() => {
   //   }, 1000);
   // }, 1000);
 });
+
+const fn = () => {
+  responsive_1200.value = innerWidth < 1200;
+  responsive_640.value = innerWidth < 640;
+};
+fn();
+window.addEventListener("resize", fn);
 </script>
 
 <template>
@@ -47,8 +58,15 @@ onMounted(() => {
     <HeroTitle :class="{ show: !into }" />
 
     <div class="content">
-      <HeroBasic />
-      <HeroResume />
+      <div v-if="responsive_1200" class="left">
+        <HeroBasic />
+        <HeroResume />
+      </div>
+
+      <template v-else>
+        <HeroBasic />
+        <HeroResume />
+      </template>
       <HeroAttributes />
     </div>
 

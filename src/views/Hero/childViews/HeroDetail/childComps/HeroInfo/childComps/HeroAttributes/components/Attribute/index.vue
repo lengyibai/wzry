@@ -8,14 +8,6 @@ interface Props {
 
 defineProps<Props>();
 
-/** 精灵图坐标 */
-const y: Record<string, string> = {
-  survival: "0 0px",
-  attack: "-3.75rem 0rem",
-  effect: "-7.5rem 0rem",
-  difficulty: "-11.25rem 0rem",
-};
-
 /** 背景色 */
 const bgc: Record<string, string> = {
   survival: "#1081d2",
@@ -45,7 +37,7 @@ const text: Game.Hero.SkillKey = {
         }"
       ></div>
     </div>
-    <div class="ico" :style="{ backgroundPosition: y[attr] }"></div>
+    <div class="ico" :class="attr"></div>
   </div>
 </template>
 

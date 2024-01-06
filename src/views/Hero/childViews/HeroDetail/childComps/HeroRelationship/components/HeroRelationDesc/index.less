@@ -14,7 +14,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 720px;
+    width: 45rem;
 
     .info {
       display: flex;
@@ -55,11 +55,14 @@
         --border-color: #d58692;
       }
     }
+
+    @media screen and (max-width: 720px) {
+      width: 100%;
+    }
   }
 
   .reply {
     bottom: 0;
-    width: 720px;
     margin-bottom: 1.25rem;
 
     .avatar {
