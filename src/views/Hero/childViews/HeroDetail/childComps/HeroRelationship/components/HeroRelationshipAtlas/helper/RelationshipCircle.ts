@@ -202,9 +202,7 @@ export class RelationshipCircle {
           this.hoverHero(relationship.id);
           $bus.emit("mouse-tip", {
             show: true,
-            text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
-              KVP_HERO.getHeroNameKvp()[relationship.id]
-            }的谁？`,
+            text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料`,
           });
         };
         heroEl.onmouseleave = () => {
@@ -578,9 +576,7 @@ export class RelationshipCircle {
           this.hoverHero(relationship.id);
           $bus.emit("mouse-tip", {
             show: true,
-            text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
-              KVP_HERO.getHeroNameKvp()[relationship.id]
-            }的谁？`,
+            text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料！`,
           });
         };
         currentRelationship.heroEl.onmouseleave = () => {
@@ -616,9 +612,7 @@ export class RelationshipCircle {
             this.hoverHero(relationship.id);
             $bus.emit("mouse-tip", {
               show: true,
-              text: `点击查看${KVP_HERO.getHeroNameKvp()[this.currentInfo.heroId]}是${
-                KVP_HERO.getHeroNameKvp()[relationship.id]
-              }的谁？`,
+              text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料`,
             });
           };
           heroEl.onmouseleave = () => {

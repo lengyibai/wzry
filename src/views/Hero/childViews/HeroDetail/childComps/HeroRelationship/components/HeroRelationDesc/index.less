@@ -1,18 +1,20 @@
 .hero-relation-desc {
   position: relative;
   display: flex;
-  justify-content: flex-end;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
+  height: 100%;
 
   .self,
   .reply {
     --border-color: var(--theme-color-four);
     --color: var(--white);
 
+    position: absolute;
     display: flex;
     flex-direction: column;
+    width: 720px;
 
     .info {
       display: flex;
@@ -55,7 +57,9 @@
     }
   }
 
-  .self {
+  .reply {
+    bottom: 0;
+    width: 720px;
     margin-bottom: 1.25rem;
 
     .avatar {
@@ -63,7 +67,8 @@
     }
   }
 
-  .reply {
+  .self {
+    right: 0;
     align-items: flex-end;
 
     .info {

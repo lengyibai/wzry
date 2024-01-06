@@ -5,15 +5,13 @@ import { storeToRefs } from "pinia";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue";
 import HeroBasic from "./childComps/HeroBasic/index.vue";
-import HeroRelationships from "./childComps/HeroRelationships/index.vue";
 import HeroAttributes from "./childComps/HeroAttributes/index.vue";
-import HeroRelationDesc from "./childComps/HeroRelationDesc/index.vue";
+import HeroResume from "./childComps/HeroResume/index.vue";
 
 import { HeroDetailStore } from "@/store";
 import { $tip, $tool } from "@/utils";
 import { KScrollTip } from "@/components/business";
 
-const relationshipRef = ref<InstanceType<typeof HeroRelationships>>();
 const downRef = ref<InstanceType<typeof KScrollTip>>();
 
 /** 控制页面元素显示 */
@@ -48,25 +46,11 @@ onMounted(() => {
     <!-- 英雄标题 -->
     <HeroTitle :class="{ show: !into }" />
 
-    <!-- 中间 -->
-    <div class="hero-info__center">
-      <div class="center-left">
-        <!-- 左侧基础数据 -->
-        <HeroBasic />
-
-        <!-- 关系信息 -->
-        <HeroRelationDesc />
-      </div>
-
-      <!-- 关系图谱 -->
-      <HeroRelationships ref="relationshipRef" />
-
-      <!-- 属性列表 -->
+    <div class="content">
+      <HeroBasic />
+      <HeroResume />
       <HeroAttributes />
     </div>
-
-    <!-- 底部 -->
-    <div class="hero-info__bottom"></div>
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />

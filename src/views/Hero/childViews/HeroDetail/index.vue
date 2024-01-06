@@ -6,6 +6,7 @@ import HeroScroll from "./childComps/HeroScroll/index.vue";
 import HeroParallax from "./childComps/HeroParallax/index.vue";
 import HeroProgress from "./childComps/HeroProgress/index.vue";
 import HeroInfo from "./childComps/HeroInfo/index.vue";
+import HeroRelationship from "./childComps/HeroRelationship/index.vue";
 import HeroSkin from "./childComps/HeroSkin/index.vue";
 import HeroSkill from "./childComps/HeroSkill/index.vue";
 
@@ -19,6 +20,9 @@ const $router = useRouter();
 const $heroDetailStore = HeroDetailStore();
 const $heroStore = HeroStore();
 const $audioStore = AudioStore();
+
+/** 滚动索引标题 */
+const scroll_option = ["英雄资料", "英雄关系", "技能信息", "皮肤语音"];
 
 /** 滚动索引 */
 const scroll_index = ref(1);
@@ -44,7 +48,7 @@ watchEffect(() => {
 });
 
 //皮肤数量
-const skin_num = computed(() => hero_data.value.skinCount || 1);
+const skin_num = computed(() => hero_data.value.skinCount);
 
 /* 点击滚动索引 */
 const onToggle = (index: number) => {
@@ -58,7 +62,7 @@ const onScollStart = () => {
 
 /* 滚动结束触发 */
 const onScrollEnd = (index: number) => {
-  $heroDetailStore.setIndex(index);
+  $heroDetailStore.setPageName(scroll_option[index - 1]);
 };
 
 /* 隐藏自身 */
@@ -110,11 +114,15 @@ onMounted($loading.close);
         <HeroInfo />
       </HeroParallax>
 
+      <!--关系-->
+      <HeroParallax class="scroll-item" :bg="hero_data.skins[skin_num].poster">
+        <HeroRelationship />
+      </HeroParallax>
+
       <!--技能-->
       <HeroParallax
         class="scroll-item"
-        :bg="hero_data.skins[skin_num - 1]?.poster"
-        :blur="hero_data.skins[skin_num - 1].posterBlur"
+        :bg="hero_data.skins[skin_num - 1]?.poster || hero_data.poster"
       >
         <HeroSkill v-if="hero_toggle" />
       </HeroParallax>
@@ -127,7 +135,12 @@ onMounted($loading.close);
 
     <!-- 滚动进度 -->
     <transition name="progress">
-      <HeroProgress v-show="show_progress" :index="scroll_index" @toggle="onToggle" />
+      <HeroProgress
+        v-show="show_progress"
+        :option="scroll_option"
+        :index="scroll_index"
+        @toggle="onToggle"
+      />
     </transition>
   </div>
 </template>
