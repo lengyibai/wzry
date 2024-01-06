@@ -9,18 +9,13 @@ const generateRandomStrings = (length, count, excludedStrings) => {
     let numbersCount = length - lettersCount; // 数字数量为生成长度减去字母数量
 
     while (randomString.length < length) {
-      const randomChar =
-        characters[Math.floor(Math.random() * characters.length)];
+      const randomChar = characters[Math.floor(Math.random() * characters.length)];
 
       if (!excludedSet.has(randomChar)) {
         if (/[a-z]/.test(randomChar) && lettersCount > 0) {
           randomString += randomChar;
           lettersCount--;
-        } else if (
-          /[0-9]/.test(randomChar) &&
-          numbersCount > 0 &&
-          randomString.length > 0
-        ) {
+        } else if (/[0-9]/.test(randomChar) && numbersCount > 0 && randomString.length > 0) {
           // 确保生成的字符串以字母开头
           randomString += randomChar;
           numbersCount--;

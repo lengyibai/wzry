@@ -1,9 +1,10 @@
-<script>// 计算抽中新英雄的概率
+<script>
+  // 计算抽中新英雄的概率
   // 计算抽中新英雄的概率
   function calculateProbability(obtainedHeroesSize) {
     // 使用平方根函数调整概率增长曲线
     const factor = Math.sqrt(obtainedHeroesSize) / Math.sqrt(50);
-    const probability = 0.01 + (0.49 * factor);
+    const probability = 0.01 + 0.49 * factor;
     return probability > 0.5 ? 0.5 : probability;
   }
 
@@ -24,7 +25,7 @@
 
     if (randomNumber <= probability) {
       // 成功抽中新英雄的情况
-      let newHeroPool = allHeroes.filter(heroId => !obtainedHeroesSet.has(heroId));
+      let newHeroPool = allHeroes.filter((heroId) => !obtainedHeroesSet.has(heroId));
       let randomIndex = Math.floor(Math.random() * newHeroPool.length);
       drawnHeroId = newHeroPool[randomIndex];
     } else {
@@ -41,31 +42,32 @@
   }
   // 示例
   const allHeroes = [
-    107, 109, 115, 120, 136, 146, 105, 110, 116, 127, 139, 148, 106, 112, 117,
-    133, 156, 108, 113, 118, 129, 134, 150, 166, 111, 114, 119, 130, 135, 144,
-    152, 142, 128, 124, 168, 167, 121, 141, 123, 154, 169, 171, 170, 153, 162,
-    131, 175, 173, 149, 157, 174, 140, 184, 126, 183, 132, 163, 177, 178, 186,
-    180, 190, 192, 191, 187, 182, 189, 193, 196, 195, 194, 198, 179, 501, 199,
-    176, 502, 197, 503, 504, 125, 510, 137, 509, 508, 312, 507, 513, 515, 511,
-    529, 505, 506, 522, 518, 523, 525, 524, 531, 527, 533, 536, 528, 537, 155,
-    538, 540, 542, 534, 548, 521, 544, 545, 564, 514, 159
-  ]
+    107, 109, 115, 120, 136, 146, 105, 110, 116, 127, 139, 148, 106, 112, 117, 133, 156, 108, 113,
+    118, 129, 134, 150, 166, 111, 114, 119, 130, 135, 144, 152, 142, 128, 124, 168, 167, 121, 141,
+    123, 154, 169, 171, 170, 153, 162, 131, 175, 173, 149, 157, 174, 140, 184, 126, 183, 132, 163,
+    177, 178, 186, 180, 190, 192, 191, 187, 182, 189, 193, 196, 195, 194, 198, 179, 501, 199, 176,
+    502, 197, 503, 504, 125, 510, 137, 509, 508, 312, 507, 513, 515, 511, 529, 505, 506, 522, 518,
+    523, 525, 524, 531, 527, 533, 536, 528, 537, 155, 538, 540, 542, 534, 548, 521, 544, 545, 564,
+    514, 159,
+  ];
   //额外道具
-  const obtainedHeroes = localStorage.getItem('obtainedHeroes') ? JSON.parse(localStorage.getItem('obtainedHeroes')) : [];
+  const obtainedHeroes = localStorage.getItem("obtainedHeroes")
+    ? JSON.parse(localStorage.getItem("obtainedHeroes"))
+    : [];
 
   // 抽奖操作
   const newHeroId = drawHero(allHeroes, obtainedHeroes);
   if (newHeroId !== null) {
     if (obtainedHeroes.includes(newHeroId)) {
-      console.warn('抽到相同的');
+      console.warn("抽到相同的");
     } else {
-      console.log('抽到了：', newHeroId);
+      console.log("抽到了：", newHeroId);
     }
     obtainedHeroes.push(newHeroId); // 更新已抽中英雄列表
-    localStorage.setItem('obtainedHeroes', JSON.stringify(obtainedHeroes));
+    localStorage.setItem("obtainedHeroes", JSON.stringify(obtainedHeroes));
   } else {
-    console.error('抽完了');
+    console.error("抽完了");
   }
 
-  console.log(JSON.parse(JSON.stringify(obtainedHeroes, null, 2)))
+  console.log(JSON.parse(JSON.stringify(obtainedHeroes, null, 2)));
 </script>
