@@ -31,6 +31,11 @@ export const getHeroHeightList = () => {
   return get<Remote.Hero.Height[]>({ name: LOCAL_KEY.HERO_HEIGHT });
 };
 
+/** @description 获取英雄简述列表 */
+export const getHeroResumeList = () => {
+  return get<Remote.Hero.Resume[]>({ name: LOCAL_KEY.HERO_RESUME });
+};
+
 /** @description 获取英雄身份列表 */
 export const getHeroIdentityList = () => {
   return get<Remote.Hero.Identity[]>({ name: LOCAL_KEY.HERO_IDENTITY });

@@ -65,6 +65,8 @@ const LOCAL_KEY = {
   HERO_AVATAR: "wzry_hero_avatar",
   /** 英雄身高列表 */
   HERO_HEIGHT: "wzry_hero_height",
+  /** 英雄简述列表 */
+  HERO_RESUME: "wzry_hero_resume",
   /** 英雄身份列表 */
   HERO_IDENTITY: "wzry_hero_identity",
   /** 英雄图片列表 */

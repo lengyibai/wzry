@@ -72,6 +72,16 @@ export const getHeroHeightKvp = () => {
   return kvp;
 };
 
+/** @description 获取英雄简述键值表 */
+export const getHeroResumeKvp = () => {
+  const data = LOCAL_HERO.getHeroResumeList();
+  const kvp: Record<number, string> = {};
+  data.forEach((item) => {
+    kvp[item.id] = item.value;
+  });
+  return kvp;
+};
+
 /** @description 获取英雄身份键值表 */
 export const getHeroIdentityKvp = () => {
   const data = LOCAL_HERO.getHeroIdentityList();

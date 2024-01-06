@@ -58,6 +58,7 @@ export const getHeroData = () => {
   const hero_avatar_kvp = KVP_HERO.getHeroAvatarKvp();
   const hero_image_kvp = KVP_HERO.getHeroImageKvp();
   const hero_height_kvp = KVP_HERO.getHeroHeightKvp();
+  const hero_resume_kvp = KVP_HERO.getHeroResumeKvp();
   const hero_identity_kvp = KVP_HERO.getHeroIdentityKvp();
   const hero_location_kvp = KVP_HERO.getHeroLocationKvp();
   const hero_mark_kvp = KVP_HERO.getHeroMarkKvp();
@@ -98,6 +99,7 @@ export const getHeroData = () => {
       camp: type_camp_kvp[hero_camp_kvp[heroId]],
       avatar: hero_avatar_kvp[heroId],
       height: hero_height_kvp[heroId],
+      resume: hero_resume_kvp[heroId],
       identity: hero_identity_kvp[heroId],
       location: hero_location_kvp[heroId],
       mark: hero_mark_kvp[heroId],

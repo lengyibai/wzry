@@ -36,6 +36,8 @@ declare namespace Game {
       posterBig: string;
       /** 身高 */
       height: number;
+      /** 简述 */
+      resume: string;
       /** 身份 */
       identity: string;
       /** 区域 */

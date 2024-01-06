@@ -44,6 +44,12 @@ declare namespace Remote {
       value: number;
     }
 
+    /** @description 英雄简述列表 */
+    interface Resume extends Id {
+      /** 英雄简述 */
+      value: string;
+    }
+
     /** @description 英雄身份列表 */
     interface Identity extends Id {
       /** 英雄身份 */

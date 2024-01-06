@@ -141,6 +141,11 @@ export const HeroHeight = () => {
   return $RemoteHttp.Get<Remote.Hero.Height[]>(`/${JSON_NAME.HERO_HEIGHT}.json`);
 };
 
+/** @description 获取英雄简述列表 */
+export const HeroResume = () => {
+  return $RemoteHttp.Get<Remote.Hero.Resume[]>(`/${JSON_NAME.HERO_RESUME}.json`);
+};
+
 /** @description 获取英雄身份列表 */
 export const HeroIdentity = () => {
   return $RemoteHttp.Get<Remote.Hero.Identity[]>(`/${JSON_NAME.HERO_IDENTITY}.json`);

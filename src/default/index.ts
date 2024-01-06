@@ -19,6 +19,7 @@ export const heroDefault: () => Game.Hero.Detail = () => ({
   posterBig: "",
   posterBlur: "",
   race: "",
+  resume: "",
   gender: "男",
   skillUnit: "",
   profession: [],
