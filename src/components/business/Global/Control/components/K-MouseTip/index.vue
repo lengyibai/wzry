@@ -177,9 +177,9 @@ onMounted(() => {
               v-typewriterMultiple="{
                 delay: 250,
                 speed: 50,
+                content: tip,
               }"
             >
-              {{ tip }}
             </span>
           </div>
         </div>

@@ -53,13 +53,12 @@ const position = {
 
             <!-- 内容 -->
             <div
-              v-typewriterMultiple="{
+              v-typewriter-multiple="{
                 callback: handleSetAllowClick,
+                content,
               }"
               class="content"
-            >
-              {{ content }}
-            </div>
+            ></div>
 
             <!-- 按钮 -->
             <div class="btns" :class="{ disabled }">
