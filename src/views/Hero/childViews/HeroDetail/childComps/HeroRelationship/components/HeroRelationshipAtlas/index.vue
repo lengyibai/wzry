@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import _cloneDeep from "lodash/cloneDeep";
+import { onUnmounted } from "vue";
 
 import { RelationshipCircle } from "./helper/RelationshipCircle";
 
@@ -57,6 +58,10 @@ onMounted(() => {
       $heroDetailStore.setRelationInfo(data);
     },
   });
+});
+
+onUnmounted(() => {
+  relationshipCircle.destruction();
 });
 </script>
 

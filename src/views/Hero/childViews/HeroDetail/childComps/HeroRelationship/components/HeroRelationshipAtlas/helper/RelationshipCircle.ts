@@ -45,6 +45,8 @@ export class RelationshipCircle {
   private mainHeroHeight: number = 0;
   /** 平均分配角度，主英雄也参与分配，但主英雄移入中间后会重新分配 */
   private angleIncrement: number = 0;
+  /** 实例是否销毁 */
+  private isDestroyed: boolean = false;
   /** 动画时长顺序配置 */
   private durations: Record<string, number> = {};
   /** 当前主英雄及关系信息DOM */
@@ -699,7 +701,7 @@ export class RelationshipCircle {
 
   /** @description 悬浮某个英雄设置样式 */
   private hoverHero(heroId: number) {
-    if (this.isAnimating) return;
+    if (this.isAnimating || this.isDestroyed) return;
 
     const hero = this.currentInfo.relationships.find((item) => {
       return item.id === heroId;
@@ -735,5 +737,10 @@ export class RelationshipCircle {
       requestAnimationFrame(updateLine);
     };
     updateLine();
+  }
+
+  /** @description 销毁 */
+  destruction() {
+    this.isDestroyed = true;
   }
 }
