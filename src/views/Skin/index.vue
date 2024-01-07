@@ -5,11 +5,10 @@ import { storeToRefs } from "pinia";
 
 import SkinCard from "./childComps/SkinCard/index.vue";
 import SkinToolbar from "./childComps/SkinToolbar/index.vue";
-import SkinVoice from "./childComps/SkinVoice/index.vue";
 
 import { SkinStore, AudioStore } from "@/store";
 import { $imageView, $tool } from "@/utils";
-import { FilterSidebar, KBackTop, KDialog } from "@/components/business";
+import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { GAME_HERO, KVP_HERO } from "@/api";
 
@@ -38,12 +37,8 @@ const count = ref(0);
 const show_skinlist = ref(false);
 /** 查看海报 */
 const show_poster = ref(false);
-/** 查看语音 */
-const show_voice = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
-/** 语音列表 */
-const voices = ref<Remote.Voice.Data["voice"]>([]);
 
 getSkin();
 
@@ -88,9 +83,6 @@ const onShowTool = (e: Event, v: { type: string; data: Game.Hero.Skin }) => {
       skinName: name,
       voices,
     });
-  } else if (v.type === "voice") {
-    voices.value = GAME_HERO.getSkinVoice(v.data.hero, v.data.name).voice;
-    show_voice.value = true;
   }
   $audioStore.play("u4c5");
 };
@@ -168,13 +160,6 @@ onDeactivated(() => {
     <transition name="sidebar" appear>
       <FilterSidebar type="skin" @change="debounceScroll(0)" />
     </transition>
-
-    <!-- 语音列表 -->
-    <teleport to="body">
-      <KDialog v-if="show_voice" v-model="show_voice" width="45rem" title="皮肤语音列表">
-        <SkinVoice :voices="voices" />
-      </KDialog>
-    </teleport>
   </div>
 </template>
 
