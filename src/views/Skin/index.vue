@@ -148,6 +148,7 @@ onDeactivated(() => {
                 'transition-delay': (index % (count * 2)) * 0.1 + 's',
               }"
               @mouseenter="handleEnterCard"
+              @touchstart="handleEnterCard"
             >
               <SkinCard :data="item" @showTool="onShowTool" />
             </div>

@@ -181,6 +181,7 @@ onDeactivated(() => {
               'transition-delay': (index % page_count) * 0.025 + 's',
             }"
             @mouseenter="handleEnterCard(item)"
+            @@touchstart="handleEnterCard(item)"
           >
             <HeroCard :data="item" @view="onViewClick(item.id!)" />
           </div>

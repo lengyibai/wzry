@@ -112,6 +112,7 @@ const play = (voice: string, index: number) => {
       :class="{ 'active-width': current_index === index }"
       @click="play(item.link, index)"
       @mouseenter="handleEnter"
+      @touchstart="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
         <KMarquee class="k-marquee" :duration="duration" :playing="current_index === index">{{

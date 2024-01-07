@@ -62,6 +62,8 @@ const handleViewClick = () => {
     :class="{ hide: show }"
     @mouseenter="show = true"
     @mouseleave="show = false"
+    @touchstart="show = true"
+    @touchend="show = false"
   >
     <!-- 编号 -->
     <span class="id">No.{{ data.id }}</span>

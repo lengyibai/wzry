@@ -176,7 +176,7 @@ watch(
                 active:
                   current_index === index || modelValue === item.value || modelValue === item.id,
               }"
-              @mousedown="handleSelect(item.id, item.value)"
+              @click="handleSelect(item.id, item.value)"
               @mouseenter="handleEnterItem(index)"
               @mouseleave="current_index = null"
             >

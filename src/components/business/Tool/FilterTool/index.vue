@@ -70,7 +70,7 @@ const handleSelect = (v: Data) => {
           :class="{
             active: current_value === item.label || sortText === item.label,
           }"
-          @mousedown="handleSelect(item)"
+          @click="handleSelect(item)"
           @mouseenter="handleEnterItem(item)"
           @mouseleave="current_value = ''"
         >
