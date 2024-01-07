@@ -537,31 +537,26 @@ export const shuffleArray = <T>(arr: T[]): T[] => {
 /** @description 音频播放器 */
 export class AudioPlayer {
   private audio: HTMLAudioElement = new Audio();
-  private info?: (v: HTMLMediaElement) => void;
   private volume: number = 1;
 
-  constructor(v?: { end?: () => void; info?: (v: HTMLMediaElement) => void; volume?: number }) {
-    const { end, info, volume = 1 } = v || {};
+  constructor(v?: { end?: () => void; volume?: number }) {
+    const { end, volume = 1 } = v || {};
     if (end) {
       this.audio.addEventListener("pause", end);
       this.audio.addEventListener("ended", end);
     }
-    this.info = info;
     this.volume = volume;
 
     //允许音频可视化跨域
     this.audio.setAttribute("crossOrigin", "anonymous");
   }
 
-  play(link: string) {
+  async play(link: string) {
     this.stop();
     this.audio.volume = this.volume;
     this.audio.src = link;
-    this.audio.play().then(() => {
-      if (this.info) {
-        this.info(this.audio);
-      }
-    });
+    await this.audio.play();
+    return this.audio;
   }
 
   stop() {
