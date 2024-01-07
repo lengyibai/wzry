@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="hero-skin-type">
-    <transition-group name="updown">
+    <transition-group name="up-down">
       <img v-if="skinTypeImg && toggle" key="a" :src="skinTypeImg" alt="" />
       <img v-if="skinTypeImg && !toggle" key="b" :src="skinTypeImg" alt="" />
     </transition-group>

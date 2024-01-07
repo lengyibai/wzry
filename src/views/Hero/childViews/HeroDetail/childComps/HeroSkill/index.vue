@@ -12,7 +12,7 @@ import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 const { hero_info } = storeToRefs(HeroDetailStore());
-const { setScollFn } = HeroDetailStore();
+const { setScrollFn } = HeroDetailStore();
 
 const heroSkillIconRef = ref<InstanceType<typeof HeroSkillIcon>>();
 
@@ -24,7 +24,7 @@ const show = ref(false);
 const hero_skill = ref<Remote.Skill.Info>();
 
 /* 当滚动到技能页，播放出场动画 */
-setScollFn("skinIcon", (pageName) => {
+setScrollFn("skinIcon", (pageName) => {
   //只有当前页面未加载或者滚动索引为3才会触发
   if (show.value || pageName !== "技能信息") return;
   show.value = true;

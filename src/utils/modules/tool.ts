@@ -165,7 +165,7 @@ export const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
 };
 
 /** @description 保存为文件 */
-export const savefiles = (data: any, name: string): void => {
+export const saveFiles = (data: any, name: string): void => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
   const save_link = document.createElementNS(
@@ -182,7 +182,7 @@ type ImageOptimizerOptions = {
   file?: File;
   width?: number;
   ratio?: number;
-  maxsize?: number;
+  maxSize?: number;
   success: (data: FormData, file: File, url: string) => void;
   fail?: (error: ErrorEvent) => void;
 };
@@ -197,7 +197,7 @@ export const imageOptimizer = (obj: ImageOptimizerOptions) => {
 
   const name = files.name;
   const ratio = obj.ratio || 1;
-  const maxsize = obj.maxsize || 1024;
+  const maxSize = obj.maxSize || 1024;
   const width = obj.width || 10000;
 
   function dataURLtoFile(dataURL: string, filename: string) {
@@ -224,7 +224,7 @@ export const imageOptimizer = (obj: ImageOptimizerOptions) => {
   reader.onload = (e: any) => {
     const result = e.target.result as string;
 
-    if (e.total / 1024 > maxsize) {
+    if (e.total / 1024 > maxSize) {
       const image = new Image();
       image.src = result;
       image.onload = () => {

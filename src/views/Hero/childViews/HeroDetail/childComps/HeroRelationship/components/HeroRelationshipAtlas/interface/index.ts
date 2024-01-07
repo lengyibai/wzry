@@ -44,7 +44,7 @@ export interface LineInfo {
   relation: string;
 }
 
-export interface Parame {
+export interface Params {
   /** 父元素 */
   parentElement: HTMLElement;
   /** 当前英雄ID */

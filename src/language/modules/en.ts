@@ -35,7 +35,7 @@ const en = {
   吸血: "Bloodsucking",
   音效: "Sound",
   音乐: "Music",
-  弹幕语音: "Narrage Voice",
+  弹幕语音: "Barrage Voice",
   音乐进度控制: "Music Schedule",
   元素线条: "Element Line",
   元素阴影: "Element Shadow",

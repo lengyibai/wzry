@@ -22,7 +22,7 @@ const fn = (e: Event) => {
     /** 压缩率 */
     ratio: 0.75,
     /** 超过多大进行压缩 */
-    maxsize: 300,
+    maxSize: 300,
     /* 成功回调 */
     success: (...data) => {
       $loading.close();

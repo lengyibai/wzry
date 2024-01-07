@@ -26,7 +26,7 @@ const toolbarRef = ref<HTMLElement>();
 /** 静音 */
 const muted = computed(() => $settingStore.config.muted);
 /** 静音图标 */
-const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
+const icon = computed(() => (muted.value ? "wzry-muted-mianxing" : "wzry-laba-mianxing"));
 
 /**
  * 点击某个按钮
@@ -58,7 +58,7 @@ defineExpose({
         v-mouse-tip="{
           text: MOUSE_TIP.ak79,
         }"
-        class="box jingyin"
+        class="box muted"
         :class="{ active: muted }"
         :style="{ opacity: muted ? 0.75 : 1 }"
         @click="handleTool('sound')"

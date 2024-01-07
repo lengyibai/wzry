@@ -8,7 +8,7 @@ const $router = useRouter();
 </script>
 
 <template>
-  <div class="error notfound">
+  <div class="error not-found">
     <div class="error__content">
       <div class="title">404</div>
       <div class="text">页面未找到</div>

@@ -6,7 +6,7 @@ import BarrageMain from "@/layout/childComps/BarrageMain/index.vue";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue";
 import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
-import Footbar from "@/layout/childComps/Footbar/index.vue";
+import FootBar from "@/layout/childComps/FootBar/index.vue";
 import { AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
@@ -25,9 +25,9 @@ const show_sidebar = ref(false);
 /** 显示导航栏 */
 const show_navbar = ref(false);
 /** 显示底部栏 */
-const show_footbar = ref(false);
+const show_foot_bar = ref(false);
 /** 显示主体页面 */
-const show_appmain = ref(false);
+const show_app_main = ref(false);
 
 onMounted(async () => {
   $audioStore.play("p53r");
@@ -39,10 +39,10 @@ onMounted(async () => {
     show_navbar.value = true;
   }, 500);
   await $tool.promiseTimeout(() => {
-    show_appmain.value = true;
+    show_app_main.value = true;
   }, 500);
   await $tool.promiseTimeout(() => {
-    show_footbar.value = true;
+    show_foot_bar.value = true;
   }, 500);
 });
 </script>
@@ -68,12 +68,12 @@ onMounted(async () => {
 
       <!-- 主页面 -->
       <transition name="app-main">
-        <AppMain v-if="show_appmain" />
+        <AppMain v-if="show_app_main" />
       </transition>
 
       <!-- 底部导航栏 -->
-      <transition name="footbar">
-        <Footbar v-if="show_footbar" />
+      <transition name="foot-bar">
+        <FootBar v-if="show_foot_bar" />
       </transition>
     </div>
     <KVideo :link="getVideoLink('bg')" />

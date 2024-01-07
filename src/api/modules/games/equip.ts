@@ -8,8 +8,8 @@ export const getEquip = () => {
   const equip_image_kvp = KVP_EQUIP.getEquipImageKvp();
   const equip_level_kvp = KVP_EQUIP.getEquipLevelKvp();
   const equip_motivation_kvp = KVP_EQUIP.getEquipMotivationKvp();
-  const equip_name_kvp = KVP_EQUIP.getEquipNamelKvp();
-  const equip_note_kvp = KVP_EQUIP.getEquipNotelKvp();
+  const equip_name_kvp = KVP_EQUIP.getEquipNameKvp();
+  const equip_note_kvp = KVP_EQUIP.getEquipNoteKvp();
   const equip_price_kvp = KVP_EQUIP.getEquipPriceKvp();
   const equip_type_kvp = KVP_EQUIP.getEquipTypeKvp();
   const type_equip_kvp = KVP_TYPE.getEquipKvp();

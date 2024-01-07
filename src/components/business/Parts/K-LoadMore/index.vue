@@ -12,7 +12,7 @@ defineProps<Props>();
 
 <template>
   <div
-    class="k-loadmore"
+    class="k-load-more"
     :class="{
       hide: !(loading || finish),
     }"

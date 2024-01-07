@@ -29,7 +29,7 @@ interface Emits {
 }
 const $emit = defineEmits<Emits>();
 
-const childs = ref<HTMLElement[]>([]);
+const children_list = ref<HTMLElement[]>([]);
 
 const waterfallRef = ref<HTMLElement>();
 const waterfallContentRef = ref<HTMLElement>();
@@ -41,16 +41,16 @@ const updateSizePosition = () => {
   const children = Array.from(waterfallContentRef.value.children) as HTMLElement[];
 
   if (!children) return;
-  childs.value = children;
+  children_list.value = children;
 
   waterFullLayout({
     count: $props.count,
     gap: $props.gap,
-    childs: childs.value,
+    children_list: children_list.value,
   });
 };
 
-/** @description 通过给图片设置监听事件，图片加载自动调用updateChilds，适用于生成了新的图片时调用 */
+/** @description 通过给图片设置监听事件，图片加载自动调用updateSizePosition，适用于生成了新的图片时调用 */
 const watchImgLoad = () => {
   //监听所有图片加载，有一个加载完成则调用回调函数
   const onAllImgLoaded = (root: HTMLElement, callback: () => void) => {

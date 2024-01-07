@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 import { AudioStore } from "@/store/modules/audio";
 
-const useDialogContorl = (close: () => void) => {
+const useDialogControl = (close: () => void) => {
   const $audioStore = AudioStore();
 
   const ExposeData = {
@@ -32,4 +32,4 @@ const useDialogContorl = (close: () => void) => {
   };
 };
 
-export { useDialogContorl };
+export { useDialogControl as useDialogControl };

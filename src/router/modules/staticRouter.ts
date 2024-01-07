@@ -31,7 +31,7 @@ export const errorRouter = [
   {
     path: "/404",
     name: "404",
-    component: () => import("@/views/Base/Error/NotFind.vue"),
+    component: () => import("@/views/Base/Error/NotFound.vue"),
     meta: {
       title: "404",
       noVerify: true,

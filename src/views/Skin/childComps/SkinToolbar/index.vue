@@ -10,7 +10,7 @@ import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $emit = defineEmits<{
-  seach: [];
+  search: [];
 }>();
 
 const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
@@ -80,7 +80,7 @@ const onSortType = (v: string | number) => {
 };
 
 /* 设置性别 */
-const handerSetGender = (type: Game.GenderId) => {
+const handleSetGender = (type: Game.GenderId) => {
   gender.value = type;
   filterGender(type);
 };
@@ -88,7 +88,7 @@ const handerSetGender = (type: Game.GenderId) => {
 /** 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   searchSkin(search_value.value);
-  $emit("seach");
+  $emit("search");
 }, 500);
 
 /** 设置下拉状态 */
@@ -154,7 +154,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="handerSetGender" />
+    <FilterGender @change="handleSetGender" />
 
     <!-- 搜索 -->
     <KInput

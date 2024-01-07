@@ -24,7 +24,7 @@ const toggle = ref(false);
 const exist_effect = computed(() => $props.skill.effect?.length);
 
 /* 当滚动到技能页则显示技能 */
-$heroDetail.setScollFn("skillContent", (pageName) => {
+$heroDetail.setScrollFn("skillContent", (pageName) => {
   if (pageName === "技能信息") {
     show.value = true;
   }
@@ -39,7 +39,7 @@ $heroDetail.setSkillSelectFn(() => {
 });
 
 onUnmounted(() => {
-  $heroDetail.removeScollFn("skillContent");
+  $heroDetail.removeScrollFn("skillContent");
 });
 </script>
 

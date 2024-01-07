@@ -64,8 +64,8 @@ const useTip = () => {
       if (!$settingStore.config.tip) return Promise.resolve();
       if (show_tip.value) {
         list.push(config);
-        return new Promise((resove) => {
-          next = resove;
+        return new Promise((resolve) => {
+          next = resolve;
         });
       }
       const {
@@ -100,8 +100,8 @@ const useTip = () => {
         fn();
       }
 
-      return new Promise((resove) => {
-        next = resove;
+      return new Promise((resolve) => {
+        next = resolve;
       });
     },
 

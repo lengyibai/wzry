@@ -107,7 +107,7 @@ export const EquipSynthetic = () => {
 };
 
 /** @description 获取装备类型列表 */
-export const Equiptype = () => {
+export const EquipType = () => {
   return $RemoteHttp.Get<Remote.Equip.Type[]>(`/${JSON_NAME.EQUIP_TYPE}.json`);
 };
 
@@ -198,7 +198,7 @@ export const HeroRelationship = () => {
 
 /** @description 获取英雄技能单位列表 */
 export const HeroSkillUnit = () => {
-  return $RemoteHttp.Get<Remote.Hero.SkillUnit[]>(`/${JSON_NAME.HERO_SKILLUNIT}.json`);
+  return $RemoteHttp.Get<Remote.Hero.SkillUnit[]>(`/${JSON_NAME.HERO_SKILL_UNIT}.json`);
 };
 
 /** @description 获取英雄皮肤列表 */

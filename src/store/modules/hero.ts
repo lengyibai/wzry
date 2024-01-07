@@ -145,14 +145,14 @@ const HeroStore = defineStore("hero", () => {
 
     /** 杂项筛选 */
     const filterMisc = () => {
-      const filter_msic: Record<string, (v: Game.Hero.Data) => boolean> = {
+      const filter_misc: Record<string, (v: Game.Hero.Data) => boolean> = {
         团控: (item) => item.specialty.includes("团控"),
         无蓝条: (item) => item.skillUnit !== "法力",
         非人类: (item) => item.race !== "人类",
         多套技能: (item) => item.skills.length > 1,
       };
       if (misc_type.value && misc_type.value !== "全部筛选") {
-        filter_list.value = filter_list.value.filter(filter_msic[misc_type.value]);
+        filter_list.value = filter_list.value.filter(filter_misc[misc_type.value]);
       }
     };
 

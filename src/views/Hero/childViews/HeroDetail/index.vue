@@ -56,7 +56,7 @@ const onToggle = (index: number) => {
 };
 
 /* 滚动立即触发 */
-const onScollStart = () => {
+const onScrollStart = () => {
   $audioStore.play("n4r4");
 };
 
@@ -108,7 +108,7 @@ onMounted($loading.close);
       :class="{ show: show_close }"
       @click="handleHide"
     ></div>
-    <HeroScroll v-model="scroll_index" @start="onScollStart" @end="onScrollEnd">
+    <HeroScroll v-model="scroll_index" @start="onScrollStart" @end="onScrollEnd">
       <!--资料皮肤-->
       <HeroParallax v-if="hero_data.posterBlur" class="scroll-item" :bg="hero_data.poster">
         <HeroInfo />

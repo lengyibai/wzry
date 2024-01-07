@@ -88,7 +88,7 @@ window.addEventListener("mouseup", () => {
 });
 
 onMounted(() => {
-  const getTipPostion = () => {
+  const getTipPosition = () => {
     const w = window.innerWidth;
     const h = window.innerHeight;
     const {
@@ -119,9 +119,9 @@ onMounted(() => {
     }
 
     connectCircle(dotRef.value!, roundBoxRef.value!, roundLineRef.value!);
-    requestAnimationFrame(getTipPostion);
+    requestAnimationFrame(getTipPosition);
   };
-  getTipPostion();
+  getTipPosition();
 });
 </script>
 
@@ -131,7 +131,7 @@ onMounted(() => {
       :class="{
         show: show,
       }"
-      class="k-mouseline"
+      class="k-mouse-line"
     >
       <!-- 移动点 -->
       <div class="dot-box" :style="{ left: x + 'px', top: y + 'px' }">

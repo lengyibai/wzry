@@ -11,7 +11,7 @@ import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
-  seach: [];
+  search: [];
 }>();
 
 const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } =
@@ -94,7 +94,7 @@ const onSortType = (v: string | number) => {
 /** 搜索英雄 */
 const debounceSearch = _debounce(() => {
   searchHero(search_value.value);
-  $emit("seach");
+  $emit("search");
 }, 500);
 
 /** 设置下拉状态 */

@@ -21,7 +21,7 @@ const REQUEST: [string, () => Promise<ResultData<unknown>>, string][] = [
   [LOCAL_KEY.EQUIP_NOTE, API_DATA.EquipNote, "装备备注"],
   [LOCAL_KEY.EQUIP_PRICE, API_DATA.EquipPrice, "装备价格"],
   [LOCAL_KEY.EQUIP_SYNTHETIC, API_DATA.EquipSynthetic, "装备合成"],
-  [LOCAL_KEY.EQUIP_TYPE, API_DATA.Equiptype, "装备类型"],
+  [LOCAL_KEY.EQUIP_TYPE, API_DATA.EquipType, "装备类型"],
   [LOCAL_KEY.HERO, API_DATA.Hero, "英雄"],
   [LOCAL_KEY.HERO_ATTR, API_DATA.HeroAttr, "英雄属性"],
   [LOCAL_KEY.HERO_CAMP, API_DATA.HeroCamp, "英雄阵营"],

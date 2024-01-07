@@ -17,7 +17,7 @@ const $audioStore = AudioStore();
 
 /** 是否选中图标 */
 const checkIcon = computed(() => {
-  return $props.modelValue ? "spirit_msic-check_true_yellow" : "spirit_msic-check_false_yellow";
+  return $props.modelValue ? "spirit_misc-check_true_yellow" : "spirit_misc-check_false_yellow";
 });
 
 /* 选中按钮 */

@@ -128,7 +128,7 @@ const handleReplace = (data: TableData) => {
 
 /* 导出 */
 const handleExport = (data: TableData) => {
-  $tool.savefiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+  $tool.saveFiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
 /* 确认覆盖 */

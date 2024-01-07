@@ -14,7 +14,7 @@ const name = $tool.pinyin($props.type)[0];
 </script>
 
 <template>
-  <div class="k-skilltypetag">
+  <div class="k-skill-type-tag">
     <div class="skill-type" :class="name">{{ type }}</div>
   </div>
 </template>

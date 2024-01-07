@@ -25,7 +25,7 @@ const active_skin: { el: HTMLElement | null; transform: string } = {
 };
 
 /** 拖动头像进入头像框范围 */
-const is_into_drap = ref(false);
+const is_into_drag = ref(false);
 /** 用于头像容器初次加载显示 */
 const show_skin_box = ref(false);
 /** 用于头像初次加载显示 */
@@ -73,12 +73,12 @@ const handleDrag = (
     initPosition();
     //判断头像是否进入头像框可吸附范围
     const d = skinHeadRef.value.getBoundingClientRect();
-    is_into_drap.value =
+    is_into_drag.value =
       d.left < o.x &&
       d.top < o.y &&
       d.left + skinHeadRef.value.offsetWidth > o.x &&
       d.top + skinHeadRef.value.offsetHeight > o.y;
-  } else if (is_into_drap.value) {
+  } else if (is_into_drag.value) {
     //松手触发，并且头像已进入头像框吸附范围
     initPosition();
     //记录正在展示的皮肤头像DOM元素及坐标
@@ -108,14 +108,14 @@ const handleDrag = (
 };
 
 /* 当滚动到皮肤页，播放出场动画 */
-$heroDetail.setScollFn("skin", (pageName) => {
+$heroDetail.setScrollFn("skin", (pageName) => {
   if (pageName === "皮肤语音" && !show_skin_head.value) {
     show_skin_box.value = true;
     /* 动画播放完毕后，将原皮设置展示 */
     setTimeout(() => {
       show_skin_head.value = true;
       setTimeout(() => {
-        is_into_drap.value = true;
+        is_into_drag.value = true;
         nextTick(() => {
           if (!skinRef.value) return;
           handleDrag(skinRef.value[0], false, 0);
@@ -154,7 +154,7 @@ $heroDetail.setScollFn("skin", (pageName) => {
 });
 
 onUnmounted(() => {
-  $heroDetail.removeScollFn("skin");
+  $heroDetail.removeScrollFn("skin");
 });
 </script>
 
@@ -162,11 +162,11 @@ onUnmounted(() => {
   <div ref="skinBoxRef" class="hero-skin-head-img" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
     <div ref="skinHeadRef" class="show-skin">
-      {{ is_into_drap ? "松开" : "拖过来" }}
+      {{ is_into_drag ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
     <transition name="fade">
-      <div v-show="is_into_drap" class="show-skin clone"></div>
+      <div v-show="is_into_drag" class="show-skin clone"></div>
     </transition>
 
     <!--皮肤头像-->

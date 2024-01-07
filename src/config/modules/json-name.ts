@@ -80,7 +80,7 @@ const JSON_NAME = {
   /** 英雄关系列表 */
   HERO_RELATIONSHIP: "heroRelationship",
   /** 英雄技能单位列表 */
-  HERO_SKILLUNIT: "heroSkillUnit",
+  HERO_SKILL_UNIT: "heroSkillUnit",
   /** 英雄皮肤列表 */
   HERO_SKIN: "heroSkin",
   /** 英雄特长列表 */

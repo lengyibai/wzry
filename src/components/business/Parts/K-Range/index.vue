@@ -63,8 +63,8 @@ const down = ref(false);
 
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {
-  const maxs = $props.max - $props.min;
-  const value = (Number($props.modelValue) - $props.min) / (maxs / 100);
+  const max = $props.max - $props.min;
+  const value = (Number($props.modelValue) - $props.min) / (max / 100);
   const width = `calc(${value}% + ${20 / 2}px - ${(value / 100) * 20}px)`;
 
   return width;

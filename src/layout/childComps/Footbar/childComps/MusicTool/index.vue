@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, ref } from "vue";
 
-import MuiscList from "../MuiscList/index.vue";
+import MusicList from "../MusicList/index.vue";
 
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 import { $tip, $tool } from "@/utils";
@@ -77,7 +77,7 @@ const handleTool = (type: string) => {
         @click="handleTool('list')"
       />
 
-      <MuiscList class="muisc-list" />
+      <MusicList class="music-list" />
     </div>
   </transition>
 </template>

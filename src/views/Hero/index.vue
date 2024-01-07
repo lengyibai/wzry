@@ -51,7 +51,7 @@ const count = ref(0);
 /** 显示英雄详情 */
 const show_HeroDetail = ref(false);
 /** 显示列表 */
-const show_herolist = ref(false);
+const show_hero_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 英雄信息 */
@@ -142,7 +142,7 @@ onActivated(async () => {
 
   //显示英雄列表
   await $tool.promiseTimeout(() => {
-    show_herolist.value = true;
+    show_hero_list.value = true;
   }, 250);
 });
 
@@ -155,14 +155,14 @@ onDeactivated(() => {
   <div class="hero">
     <div class="hero__main">
       <transition name="fade" appear>
-        <HeroToolbar @seach="debounceScroll(0)" />
+        <HeroToolbar @search="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <!-- 列表 -->
       <LibGrid
-        v-if="show_list.length && show_herolist"
+        v-if="show_list.length && show_hero_list"
         ref="heroListRef"
         :finish="finish"
         :loading="loading"

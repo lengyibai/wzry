@@ -30,7 +30,7 @@ const calcActiveSkill = computed(() => {
 });
 
 /* 当滚动到技能页，播放出场动画 */
-$heroDetail.setScollFn("skinIcon", (pageName) => {
+$heroDetail.setScrollFn("skinIcon", (pageName) => {
   //只有当前页面未加载或者滚动到技能信息才会触发
   if (show.value || pageName !== "技能信息") return;
   show.value = true;
@@ -71,7 +71,7 @@ const handleToggleSkill = () => {
 };
 
 onUnmounted(() => {
-  $heroDetail.removeScollFn("skinIcon");
+  $heroDetail.removeScrollFn("skinIcon");
 });
 
 defineExpose({

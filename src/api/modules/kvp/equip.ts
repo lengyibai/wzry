@@ -54,7 +54,7 @@ export const getEquipMotivationKvp = () => {
 };
 
 /** @description 获取装备名称键值表 */
-export const getEquipNamelKvp = () => {
+export const getEquipNameKvp = () => {
   const data = LOCAL_EQUIP.getEquipNameList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
@@ -64,7 +64,7 @@ export const getEquipNamelKvp = () => {
 };
 
 /** @description 获取装备备注键值表 */
-export const getEquipNotelKvp = () => {
+export const getEquipNoteKvp = () => {
   const data = LOCAL_EQUIP.getEquipNOteList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {

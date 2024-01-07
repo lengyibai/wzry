@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDialogContorl } from "./hooks/useDialogContorl";
+import { useDialogControl } from "./hooks/useDialogControl";
 
 import { $concise } from "@/utils";
 import { vMaskGradient, vMouseTip } from "@/directives";
@@ -49,7 +49,7 @@ const $audioStore = AudioStore();
 
 const { getImgLink } = $concise;
 
-const { show_dialog, show_mask, handleClose } = useDialogContorl(() => {
+const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
   $props.autoClose && $emit("close");
   $emit("update:modelValue", false);
 });

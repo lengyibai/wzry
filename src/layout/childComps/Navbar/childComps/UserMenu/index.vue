@@ -66,7 +66,7 @@ const handleLogoff = () => {
 };
 
 /* 显示确认关闭弹窗 */
-const onCloseConfirmEdidInfo = () => {
+const onCloseConfirmEditInfo = () => {
   if (edit_status.value) {
     $bus.emit("confirm", {
       text: "资料已修改，确定关闭吗？",
@@ -143,7 +143,7 @@ const onCloseConfirmEdidInfo = () => {
       title="编辑个人信息"
       width="57.5rem"
       up
-      @close="onCloseConfirmEdidInfo"
+      @close="onCloseConfirmEditInfo"
     >
       <EditUserInfo
         v-if="dialogRef"

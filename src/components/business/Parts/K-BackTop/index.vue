@@ -24,7 +24,7 @@ const handleBackTop = () => {
 <template>
   <div
     ref="backTopRef"
-    class="k-backtop"
+    class="k-back-top"
     :class="{
       active: active,
     }"

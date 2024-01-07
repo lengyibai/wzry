@@ -14,7 +14,7 @@ const $audioStore = AudioStore();
 const gender = ref<Game.GenderId>(0);
 
 /* 选择触发 */
-const handerSetGender = (v: Game.GenderId) => {
+const handleSetGender = (v: Game.GenderId) => {
   gender.value = v;
   $emit("change", v);
   $audioStore.play();
@@ -31,7 +31,7 @@ const handerSetGender = (v: Game.GenderId) => {
       }"
       class="iconfont wzry-nan"
       :class="{ 'nan-active': gender === 1 }"
-      @click="handerSetGender(1)"
+      @click="handleSetGender(1)"
     />
     <i
       v-mouse-tip="{
@@ -39,7 +39,7 @@ const handerSetGender = (v: Game.GenderId) => {
       }"
       class="iconfont wzry-nv"
       :class="{ 'nv-active': gender === 2 }"
-      @click="handerSetGender(2)"
+      @click="handleSetGender(2)"
     />
     <i
       v-mouse-tip="{
@@ -47,7 +47,7 @@ const handerSetGender = (v: Game.GenderId) => {
       }"
       class="iconfont wzry-xingbie"
       :class="{ 'all-active': gender === 0 }"
-      @click="handerSetGender(0)"
+      @click="handleSetGender(0)"
     />
   </div>
 </template>

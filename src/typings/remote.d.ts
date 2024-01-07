@@ -224,7 +224,7 @@ declare namespace Remote {
       /** 皮肤id */
       id: number;
       /** 皮肤类型 */
-      value: numebr;
+      value: number;
     }
   }
 

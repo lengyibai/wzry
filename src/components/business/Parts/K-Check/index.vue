@@ -16,7 +16,7 @@ const $emit = defineEmits<{
 const $audioStore = AudioStore();
 
 const icon = computed(() => {
-  return $props.modelValue ? "spirit_msic-select_true" : "spirit_msic-select_false";
+  return $props.modelValue ? "spirit_misc-select_true" : "spirit_misc-select_false";
 });
 
 const toggle = () => {

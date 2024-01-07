@@ -34,7 +34,7 @@ const skinListRef = ref<InstanceType<typeof LibGrid>>();
 /** 一行显示的数目 */
 const count = ref(0);
 /** 显示列表 */
-const show_skinlist = ref(false);
+const show_skin_list = ref(false);
 /** 查看海报 */
 const show_poster = ref(false);
 /** 是否显示返回顶部 */
@@ -108,7 +108,7 @@ onActivated(async () => {
 
   //显示英雄列表
   await $tool.promiseTimeout(() => {
-    show_skinlist.value = true;
+    show_skin_list.value = true;
   }, 250);
 });
 
@@ -121,14 +121,14 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar @seach="debounceScroll(0)" />
+        <SkinToolbar @search="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <transition name="card-list">
         <LibGrid
-          v-if="show_list.length && show_skinlist"
+          v-if="show_list.length && show_skin_list"
           ref="skinListRef"
           :finish="finish"
           scroll-id="skin_list"

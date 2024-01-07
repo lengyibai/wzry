@@ -1,19 +1,19 @@
-var flexible_min_font_size = 10;
-var flexible_max_font_size = 18;
-var flexible_min_device_width = 320;
-var flexible_max_device_width = 2560;
-var flexible_html = document.documentElement;
+const flexible_min_font_size = 10;
+const flexible_max_font_size = 18;
+const flexible_min_device_width = 320;
+const flexible_max_device_width = 2560;
+const flexible_html = document.documentElement;
 
 function flexible_onResizeFn() {
-  var font_size;
-  var width = flexible_html.clientWidth;
+  let font_size;
+  const width = flexible_html.clientWidth;
 
   if (width < flexible_min_device_width) {
     font_size = flexible_min_font_size;
   } else if (width > flexible_max_device_width) {
     font_size = flexible_max_font_size;
   } else {
-    var progress =
+    const progress =
       (width - flexible_min_device_width) / (flexible_max_device_width - flexible_min_device_width);
     font_size =
       flexible_min_font_size + progress * (flexible_max_font_size - flexible_min_font_size);

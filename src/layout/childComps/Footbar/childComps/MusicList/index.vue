@@ -18,8 +18,8 @@ const handleToggleMusic = (index: number) => {
 </script>
 
 <template>
-  <transition name="muisc-list">
-    <div v-show="$musicStore.show_list" class="muisc-list">
+  <transition name="music-list">
+    <div v-show="$musicStore.show_list" class="music-list">
       <!-- 顶部标题 -->
       <div class="top">
         <div class="title">播放列表</div>

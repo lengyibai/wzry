@@ -1,4 +1,4 @@
-import type { HeroInfo, Parame, RelationshipInfo, LineInfo } from "../interface";
+import type { HeroInfo, Params, RelationshipInfo, LineInfo } from "../interface";
 
 import { KVP_HERO } from "@/api";
 import { $bus } from "@/utils/modules/eventBus";
@@ -33,7 +33,7 @@ export class RelationshipCircle {
   /** 初次加载的出场动画是否已经结束 */
   private isFinishEnter: boolean = false;
   /** 监听函数组 */
-  private watchs: { id: number; fn: () => void }[] = [];
+  private watches: { id: number; fn: () => void }[] = [];
   /** 当前关系数量，包含主英雄，但主英雄移入中间后会-1 */
   private relationLength: number = 0;
   /** 父DOM */
@@ -65,7 +65,7 @@ export class RelationshipCircle {
   /** 悬浮英雄后触发显示关系回调 */
   private hoverFn!: (hero: Game.Hero.RelationType) => void;
 
-  constructor(config: Parame) {
+  constructor(config: Params) {
     const {
       parentElement,
       currentHeroId,
@@ -150,7 +150,7 @@ export class RelationshipCircle {
 
         //存储实时监听位置并更新连线的函数
         const clickHeroEl = this.currentInfo.relationshipsInfo[index].heroEl;
-        this.watchs.push({
+        this.watches.push({
           id,
           fn: () => connectCircle(this.currentInfo.heroEl!, clickHeroEl, lineEl),
         });
@@ -370,7 +370,7 @@ export class RelationshipCircle {
     const heros = this.currentInfo.relationshipsInfo.map((item) => item.heroId);
     heros.push(this.currentInfo.heroId);
 
-    this.watchs = this.watchs.filter((item) => {
+    this.watches = this.watches.filter((item) => {
       return heros.includes(item.id);
     });
 
@@ -635,7 +635,7 @@ export class RelationshipCircle {
           this.currentInfo.heroEl!.appendChild(lineEl);
           //存储实时监听位置并更新连线的函数
           const _this = this;
-          this.watchs.push({
+          this.watches.push({
             id: heroId,
             fn() {
               connectCircle(_this.currentInfo.heroEl!, heroEl, lineEl);
@@ -731,7 +731,7 @@ export class RelationshipCircle {
   /** @description 开启追踪 */
   private startTracking() {
     const updateLine = () => {
-      this.watchs.forEach((watch) => {
+      this.watches.forEach((watch) => {
         watch.fn();
       });
       requestAnimationFrame(updateLine);
