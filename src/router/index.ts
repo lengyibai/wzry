@@ -41,7 +41,10 @@ router.beforeEach((to, from, next) => {
 
   //如果路径不在路由表
   if (!is_exist) {
-    next("/404");
+    next({
+      path: "/404",
+      replace: true,
+    });
     return;
   }
   //如果当前路由在路由表，但不在侧边栏
@@ -57,7 +60,7 @@ router.beforeEach((to, from, next) => {
   }
 
   //如果本地有用户信息，并且跳转到静态路由
-  else if (token && to.meta.noVerify) {
+  else if (token && to.meta.noVerify && to.path !== "/404") {
     next(BASE_CONFIG.HOME_URL);
     return;
   }
