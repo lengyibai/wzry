@@ -49,7 +49,7 @@ const handle = (e: Event, v: string) => {
     <!-- 名字、代号 -->
     <div class="bottom">
       <div class="name" v-html="data.skin_name"></div>
-      <div class="mark" v-html="'——' + data.hero_name"></div>
+      <div class="mark" v-html="`——${data.hero_name}`"></div>
     </div>
 
     <!-- 悬浮工具 -->

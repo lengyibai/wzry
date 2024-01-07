@@ -111,7 +111,7 @@ const onTogglePoster = ([i, index]: number[]) => {
       <!-- 底部 -->
       <div class="bottom">
         <!-- 皮肤名 -->
-        <HeroSkinName v-if="active_skin_name" :name="active_skin_name + '-' + hero_data.name" />
+        <HeroSkinName v-if="active_skin_name" :name="`${active_skin_name}-${hero_data.name}`" />
       </div>
     </div>
 

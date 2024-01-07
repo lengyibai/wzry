@@ -40,7 +40,7 @@ onMounted(() => {
 <template>
   <div class="hero-basic">
     <span v-for="(item, index) in hero_data" ref="infoRef" :key="index" class="info">
-      <i class="iconfont" :class="'wzry-' + item[1]" />
+      <i class="iconfont" :class="`wzry-${item[1]}`" />
       <span class="label">{{ item[2] }}：</span>
       <span
         v-animate-number="{

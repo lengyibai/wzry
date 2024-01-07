@@ -42,7 +42,7 @@ const handleSelect = (index: number) => {
       class="active-bg"
       :style="{
         width: width,
-        transform: 'translateX(calc(' + modelValue + ' * 100%))',
+        transform: `translateX(calc(${modelValue} * 100%))`,
       }"
     ></div>
   </div>

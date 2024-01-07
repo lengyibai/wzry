@@ -11,7 +11,7 @@ defineProps<Props>();
   <div
     class="hero-parallax"
     :style="{
-      backgroundImage: 'url(' + bg + ')',
+      backgroundImage: `url(${bg})`,
     }"
   >
     <slot></slot>

@@ -50,7 +50,7 @@ $bus.on("msg", (data) => {
             class="message"
             :class="item.type"
             :style="{
-              transform: 'translateX(-50%) translateY(' + (index * 100 + index * 25) + '%)',
+              transform: `translateX(-50%) translateY(${index * 100 + index * 25}%)`,
             }"
           >
             <span :style="{ color: color[item.type] }" v-html="item.text"></span>

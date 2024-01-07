@@ -66,7 +66,7 @@ defineExpose({
     <div
       class="lib-grid_content"
       :style="{
-        gridTemplateColumns: 'repeat(' + count + ', 1fr)',
+        gridTemplateColumns: `repeat(${count}, 1fr)`,
         gridGap: gap,
       }"
     >
