@@ -8,6 +8,7 @@ import KButton from "./Parts/K-Button/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
 import KImageLoad from "./Parts/K-ImageLoad/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
+import KMarquee from "./Parts/K-Marquee/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
 import KVideo from "./Parts/K-Video/index.vue";
 import KScrollTip from "./Parts/K-ScrollTip/index.vue";
@@ -28,6 +29,7 @@ export {
   KImageLoad,
   KDialog,
   KInput,
+  KMarquee,
   KRange,
   KVideo,
   KScrollTip,

@@ -1,0 +1,32 @@
+.k-marquee {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  .move-box {
+    position: relative;
+    white-space: nowrap;
+
+    &.static {
+      .global_one-line();
+    }
+
+    &.playing {
+      animation-name: move;
+      animation-timing-function: linear;
+
+      @keyframes move {
+        0% {
+          left: 100%;
+          transform: translateX(0);
+        }
+
+        100% {
+          left: 0;
+          transform: translateX(-100%);
+        }
+      }
+    }
+  }
+}

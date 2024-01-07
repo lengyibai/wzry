@@ -5,7 +5,7 @@ import { ScaleFLIPImage } from "./helper/ImageView";
 
 import { $bus, $tool } from "@/utils";
 import type { ImageViewParams } from "@/utils/modules/imageView";
-import { KButton } from "@/components/business";
+import { KButton, KMarquee } from "@/components/business";
 import { getImgLink } from "@/utils/modules/concise";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
@@ -18,8 +18,14 @@ let scaleFLIPImage: ScaleFLIPImage;
 const mainRef = ref<HTMLElement>();
 const info = ref<ImageViewParams>();
 
+/** 是否显示主页面 */
 const show = ref(false);
+/** 图片加载状态 */
 const status = ref<"loading" | "finish" | "error">("loading");
+/** 是否处于播放中 */
+const playing = ref(false);
+/** 语音时长 */
+const duration = ref(0);
 
 $bus.on("img-view", (v) => {
   status.value = "loading";
@@ -45,11 +51,14 @@ const handlePlay = (voice: string, index: number) => {
   //如果再次点击，则停止播放
   if (current_index.value === index) {
     audioPlayer.stop();
+    playing.value = false;
     return;
   }
 
-  current_index.value = index;
-  audioPlayer.play(voice);
+  audioPlayer.play(voice).then((res) => {
+    duration.value = res.duration;
+    current_index.value = index;
+  });
 };
 
 /* 关闭页面 */
@@ -138,7 +147,13 @@ const handleDownload = () => {
                   class="voice"
                   @click="handlePlay(item.link, index)"
                 >
-                  {{ item.text }}
+                  <KMarquee
+                    height="3.125rem"
+                    :playing="current_index === index"
+                    :duration="duration"
+                  >
+                    {{ item.text }}
+                  </KMarquee>
                 </div>
               </div>
             </transition>

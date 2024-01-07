@@ -5,6 +5,7 @@ import { HeroDetailStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
+import { KMarquee } from "@/components/business";
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
@@ -15,7 +16,7 @@ const voiceListRef = ref<HTMLElement>();
 /** 播放链接 */
 const play_link = ref("");
 /** 当前播放时长 */
-const time = ref(0);
+const duration = ref(0);
 /** 当前播放索引 */
 const current_index = ref(-1);
 /** 语音列表 */
@@ -25,9 +26,6 @@ const audioPlayer = new $tool.AudioPlayer({
   volume: 0.25,
   end() {
     current_index.value = -1;
-  },
-  info(v: HTMLMediaElement) {
-    time.value = v.duration + 0.35;
   },
 });
 
@@ -95,7 +93,9 @@ const play = (voice: string, index: number) => {
   }
 
   current_index.value = index;
-  audioPlayer.play(voice);
+  audioPlayer.play(voice).then((res) => {
+    duration.value = res.duration;
+  });
 };
 </script>
 
@@ -114,11 +114,12 @@ const play = (voice: string, index: number) => {
       @mouseenter="handleEnter"
     >
       <div class="content" :class="{ 'active-color': current_index === index }">
-        <span v-if="current_index !== index" class="text global_one-line"> {{ item.text }}</span>
-        <marquee v-else class="text" scrollamount="8.5">{{ item.text }}</marquee>
+        <KMarquee class="k-marquee" :duration="duration" :playing="current_index === index">{{
+          item.text
+        }}</KMarquee>
         <i
           class="iconfont"
-          :style="{ 'animation-duration': time + 's' }"
+          :style="{ 'animation-duration': duration + 's' }"
           :class="[
             current_index === index ? 'wzry-playing' : 'wzry-playactive',
             { 'active-rotate': current_index === index },
