@@ -63,13 +63,11 @@ const down = ref(false);
 
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {
-  const value = Number($props.modelValue) - $props.min;
   const maxs = $props.max - $props.min;
-  const size = Number($props.size.replace(/\b\d+(rem|px)\b/g, ""));
+  const value = (Number($props.modelValue) - $props.min) / (maxs / 100);
+  const width = `calc(${value}% + ${20 / 2}px - ${(value / 100) * 20}px)`;
 
-  return `calc(${value / (maxs / 100)}% + ${
-    ((size - ($props.showDot ? 0 : 25)) * (maxs / 2 - value)) / maxs
-  }px)`;
+  return width;
 });
 
 /* 设置按钮大小 */
