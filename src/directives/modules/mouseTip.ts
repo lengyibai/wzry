@@ -31,7 +31,7 @@ const vMouseTip: Directive<ElType, Params> = {
 
     el._text = text;
     el._disabled = !!disabled;
-    el.addEventListener("mouseenter", () => {
+    const enterFn = () => {
       el._show = true;
       $bus.emit("mouse-tip", {
         show: true,
@@ -39,14 +39,18 @@ const vMouseTip: Directive<ElType, Params> = {
         disabled: el._disabled,
         type,
       });
-    });
+    };
+    el.addEventListener("mouseenter", enterFn);
+    el.addEventListener("touchstart", enterFn);
 
-    el.addEventListener("mouseleave", () => {
+    const leaveFn = () => {
       el._show = false;
       $bus.emit("mouse-tip", {
         show: false,
       });
-    });
+    };
+    el.addEventListener("mouseleave", leaveFn);
+    el.addEventListener("touchend", leaveFn);
   },
   updated(el, binding) {
     const { text, disabled, type } = binding.value || {};

@@ -71,21 +71,33 @@ document.documentElement.addEventListener("mouseleave", () => {
 const debounceStillness = _debounce(() => {
   moving.value = false;
 }, 250);
-window.addEventListener("mousemove", (e: MouseEvent) => {
+const moveFn = (e: MouseEvent | TouchEvent) => {
   debounceStillness();
-  x.value = e.pageX;
-  y.value = e.pageY;
+
+  if (e instanceof MouseEvent) {
+    x.value = e.pageX;
+    y.value = e.pageY;
+  } else if (e instanceof TouchEvent) {
+    x.value = e.touches[0].pageX;
+    y.value = e.touches[0].pageY;
+  }
   moving.value = true;
-});
+};
+window.addEventListener("mousemove", moveFn);
+window.addEventListener("touchmove", moveFn);
 
-window.addEventListener("mousedown", () => {
+const downFn = () => {
   downing.value = true;
-});
+};
+window.addEventListener("mousedown", downFn);
+window.addEventListener("touchstart", downFn);
 
-window.addEventListener("mouseup", () => {
+const upFn = () => {
   downing.value = false;
   is_click.value = true;
-});
+};
+window.addEventListener("mouseup", upFn);
+window.addEventListener("touchend", upFn);
 
 onMounted(() => {
   const getTipPosition = () => {
