@@ -10,6 +10,7 @@ import KImageLoad from "./Parts/K-ImageLoad/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
 import KMarquee from "./Parts/K-Marquee/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
+import KText from "./Parts/K-Text/index.vue";
 import KVideo from "./Parts/K-Video/index.vue";
 import KScrollTip from "./Parts/K-ScrollTip/index.vue";
 import FilterGender from "./Tool/FilterGender/index.vue";
@@ -31,6 +32,7 @@ export {
   KInput,
   KMarquee,
   KRange,
+  KText,
   KVideo,
   KScrollTip,
   FilterGender,
