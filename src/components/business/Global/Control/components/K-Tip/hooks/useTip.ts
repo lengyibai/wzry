@@ -4,6 +4,8 @@ import { SCENE_TIP } from "@/config/modules/scene-tip";
 import { SettingStore } from "@/store/modules/setting";
 import { AudioStore } from "@/store/modules/audio";
 
+/** 是否已开启队列状态 */
+let queue = false;
 /** 用于触发下一个tip */
 let next: any;
 /** 不再提示的标识符 */
@@ -44,7 +46,7 @@ const useTip = () => {
   };
 
   /** @description 设置是否显示tip */
-  const setShowTip = (v: boolean) => {
+  const setShowTip = async (v: boolean) => {
     //处理显示和隐藏蒙版和tip的入场顺序
     if (v) {
       show_mask.value = v;
@@ -60,14 +62,9 @@ const useTip = () => {
   };
   const ExposeMethods = {
     /** @description 推送tip */
-    tip(config: Global.Tip.Prompt): Promise<void> {
-      if (!$settingStore.config.tip) return Promise.resolve();
-      if (show_tip.value) {
-        list.push(config);
-        return new Promise((resolve) => {
-          next = resolve;
-        });
-      }
+    async tip(config: Global.Tip.Prompt): Promise<boolean | void> {
+      if (!$settingStore.config.tip) return Promise.resolve(false);
+
       const {
         text,
         btnText = "确定",
@@ -76,29 +73,35 @@ const useTip = () => {
         btnFn: _btnFn = () => {},
       } = config;
       const tip_key = Object.entries(SCENE_TIP).find((item) => item[1] === text)?.[0];
-
-      const fn = () => {
-        btnFn = _btnFn;
-        align.value = _align;
-        btn_text.value = btnText;
-        content.value = text;
-        setShowTip(true);
-        $audioStore.play("rt25");
-        setTimeout(() => {
-          createFn && createFn();
-        });
-      };
-
+      const is_no_tip = $settingStore.config.noTips[tip_key as keyof Global.Tip.Key];
       is_once.value = !!tip_key;
 
-      //如果tip_key有值，表示是系统Tip，并判断是否设置了不再提示
-      if (tip_key && !$settingStore.config.noTips[tip_key as keyof Global.Tip.Key]) {
+      //如果是不再提示的Tip，则直接返回
+      if (is_no_tip) return Promise.resolve(false);
+
+      //如果是处于队列模式，则加入队列
+      if (queue) {
+        list.push(config);
+        return;
+      }
+
+      //如果tip_key有值，表示是系统Tip，设置不再提示
+      if (tip_key) {
         //如果是点击tip开关触发的则为空
         noTipName = tip_key === "f1y0" ? "" : tip_key;
-        fn();
-      } else if (!tip_key) {
-        fn();
       }
+
+      /* 推送Tip */
+      queue = true;
+      btnFn = _btnFn;
+      align.value = _align;
+      btn_text.value = btnText;
+      content.value = text;
+      setShowTip(true);
+      $audioStore.play("rt25");
+      setTimeout(() => {
+        createFn && createFn();
+      });
 
       return new Promise((resolve) => {
         next = resolve;
@@ -113,6 +116,8 @@ const useTip = () => {
     /** @description 点击确定后触发 */
     handleConfirm() {
       if (disabled.value) return;
+
+      queue = false;
       setShowTip(false);
       $audioStore.play("ba09");
       noTipName && $settingStore.setNoTip(noTipName as keyof Global.Tip.Key);
@@ -121,8 +126,8 @@ const useTip = () => {
         disabled.value = true;
         next && next();
         btnFn && btnFn();
-        const config = list.shift();
 
+        const config = list.shift();
         config && ExposeMethods.tip(config);
       }, 500);
     },
