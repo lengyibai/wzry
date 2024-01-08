@@ -15,7 +15,6 @@ const en = {
   内核: " Kernel",
   数据: "Data Version",
   网页: "Web Version",
-  正在更新数据: "Updating Data",
   登录后更新: "After Logging In To Update",
   全部: "All",
   坦克: "Tank",
