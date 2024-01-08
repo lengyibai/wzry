@@ -2,8 +2,9 @@ import { ref } from "vue";
 
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
 import { LOCAL_KEY, REQUEST } from "@/config";
+import { $tip } from "@/utils";
 
-/** @description 初次进入网站下载数据 */
+/** @description 下载数据 */
 const useGetData = () => {
   const ExposeData = {
     /** 请求总数 */
@@ -27,52 +28,82 @@ const useGetData = () => {
     return !!localStorage.getItem(prefix + name);
   };
 
-  /* 获取数据 */
-  (async function getData() {
-    total.value = REQUEST.length;
+  const ExposeMethods = {
+    /**
+     * @description 获取数据
+     * @param silent 是否是静默更新
+     */
+    async getData(silent: boolean = false) {
+      total.value = REQUEST.length;
+      /** 缺失的数据 */
+      const data_lacks: string[] = [];
+      /** 丢失的语音 */
+      const voice_lacks: string[] = [];
 
-    /* 下载数据 */
-    //收集处理请求
-    const data_requests = REQUEST.map(async (item) => {
-      const [key, request] = item;
-      //如果本地存储不存在，则下载数据并存储
-      if (!isExist(key)) {
-        setData(key, await request());
-        index.value++;
-      }
-    });
-    await Promise.all(data_requests);
-
-    const hero_names = LOCAL_HERO.getHeroNameList();
-    //减2是为了忽略掉没有语音的盾山和梦奇，否则进度会出现错误
-    total.value = hero_names.length - 2;
-
-    /* 下载语音数据 */
-    type.value = "语音包";
-    index.value = 0;
-    //收集处理请求
-    const voice_requests = hero_names.map(async (item) => {
-      //如果不是梦奇和盾山，并且本地不存在英雄语音，则请求
-      if (!["梦奇", "盾山"].includes(item.value)) {
-        const pinyin = KVP_HERO.getHeroPinyinKvp()[item.id];
-
-        //检测本地是否存在语音丢失
-        if (!isExist(pinyin, LOCAL_KEY.VOICE)) {
-          const voices = (await API_DATA.Voice(pinyin)).data;
-          setData(`voice_${pinyin}`, {
-            data: voices,
-          });
-          type.value = `${item.value}语音`;
+      /* 下载数据 */
+      //收集处理请求
+      const data_requests = REQUEST.map(async (item) => {
+        const [key, request] = item;
+        //如果本地存储不存在，则下载数据并存储
+        if (!isExist(key)) {
+          data_lacks.push(item[2]);
+          setData(key, await request());
           index.value++;
         }
+      });
+      await Promise.all(data_requests);
+
+      const hero_names = LOCAL_HERO.getHeroNameList();
+      //减2是为了忽略掉没有语音的盾山和梦奇，否则进度会出现错误
+      total.value = hero_names.length - 2;
+
+      /* 下载语音数据 */
+      type.value = "语音包";
+      index.value = 0;
+      //收集处理请求
+      const voice_requests = hero_names.map(async (item) => {
+        //如果不是梦奇和盾山，并且本地不存在英雄语音，则请求
+        if (!["梦奇", "盾山"].includes(item.value)) {
+          const pinyin = KVP_HERO.getHeroPinyinKvp()[item.id];
+
+          //检测本地是否存在语音丢失
+          if (!isExist(pinyin, LOCAL_KEY.VOICE)) {
+            voice_lacks.push(item.value);
+            const voices = (await API_DATA.Voice(pinyin)).data;
+            setData(`voice_${pinyin}`, {
+              data: voices,
+            });
+            type.value = `${item.value}语音`;
+            index.value++;
+          }
+        }
+      });
+      await Promise.all(voice_requests);
+
+      finish.value = true;
+
+      if (silent && (data_lacks.length || voice_lacks.length)) {
+        if (data_lacks.length) {
+          const data_text = data_lacks.join("、");
+          $tip({
+            text: `检测到本地缺失数据：[${data_text}]，已为你自动恢复（说！是不是偷偷删数据了！）。`,
+          });
+        }
+
+        if (voice_lacks.length) {
+          const voice_text = voice_lacks.join("、");
+          $tip({
+            text: `检测到本地缺失语音：[${voice_text}]，已为你自动恢复（说！是不是偷偷删语音了！）。`,
+          });
+        }
       }
-    });
-    await Promise.all(voice_requests);
+    },
+  };
 
-    finish.value = true;
-  })();
-
-  return ExposeData;
+  return {
+    ...ExposeData,
+    ...ExposeMethods,
+  };
 };
 
 export { useGetData };
