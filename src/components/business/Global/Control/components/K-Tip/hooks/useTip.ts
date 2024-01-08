@@ -65,6 +65,12 @@ const useTip = () => {
     async tip(config: Global.Tip.Prompt): Promise<void> {
       if (!$settingStore.config.tip) return Promise.resolve();
 
+      //如果是处于队列模式，则加入队列
+      if (queue) {
+        list.push(config);
+        return;
+      }
+
       const {
         text,
         btnText = "确定",
@@ -77,12 +83,6 @@ const useTip = () => {
 
       //如果是不再提示的Tip，则直接返回
       if (is_no_tip) return Promise.resolve();
-
-      //如果是处于队列模式，则加入队列
-      if (queue) {
-        list.push(config);
-        return;
-      }
 
       is_once.value = !!tip_key;
 
