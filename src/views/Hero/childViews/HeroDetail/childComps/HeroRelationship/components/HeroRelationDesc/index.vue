@@ -1,14 +1,30 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 import { HeroDetailStore } from "@/store";
 
 const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
+
+const { setScrollFn } = HeroDetailStore();
+
+const show = ref(false);
+
+/* 当滚动到英雄关系页，播放出场动画 */
+setScrollFn("skinIcon", (pageName) => {
+  if (show.value || pageName !== "英雄关系") return;
+  show.value = true;
+});
 </script>
 
 <template>
   <div class="hero-relation-desc">
-    <div class="self">
+    <div
+      class="self"
+      :class="{
+        hide: !show,
+      }"
+    >
       <div class="info">
         <img :src="hero_info.avatar" alt="" class="avatar" />
         <div class="relation">
@@ -24,7 +40,12 @@ const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
         {{ hero_info.name }}：{{ relation_info?.desc }}
       </div>
     </div>
-    <div class="reply">
+    <div
+      class="reply"
+      :class="{
+        hide: !show,
+      }"
+    >
       <div class="info">
         <img :src="relation_info?.avatar" alt="" class="avatar" />
         <div class="relation">

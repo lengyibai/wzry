@@ -5,8 +5,17 @@ import HeroRelationDesc from "./components/HeroRelationDesc/index.vue";
 import HeroRelationshipAtlas from "./components/HeroRelationshipAtlas/index.vue";
 
 import { KScrollTip } from "@/components/business";
+import { HeroDetailStore } from "@/store";
 
-const relationshipRef = ref<InstanceType<typeof HeroRelationshipAtlas>>();
+const { setScrollFn } = HeroDetailStore();
+
+const show = ref(false);
+
+/* 当滚动到英雄关系页，播放出场动画 */
+setScrollFn("skinIcon", (pageName) => {
+  if (show.value || pageName !== "英雄关系") return;
+  show.value = true;
+});
 </script>
 
 <template>
@@ -15,7 +24,7 @@ const relationshipRef = ref<InstanceType<typeof HeroRelationshipAtlas>>();
     <HeroRelationDesc />
 
     <!-- 关系图谱 -->
-    <HeroRelationshipAtlas ref="relationshipRef" />
+    <HeroRelationshipAtlas v-if="show" />
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />

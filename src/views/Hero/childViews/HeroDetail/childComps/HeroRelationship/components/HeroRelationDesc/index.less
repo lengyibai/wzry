@@ -15,6 +15,8 @@
     display: flex;
     flex-direction: column;
     width: 45rem;
+    transition: 1s;
+    opacity: 1;
 
     .info {
       display: flex;
@@ -61,18 +63,14 @@
     }
   }
 
-  .reply {
-    bottom: 0;
-    margin-bottom: 1.25rem;
-
-    .avatar {
-      margin-right: 1rem;
-    }
-  }
-
   .self {
     right: 0;
     align-items: flex-end;
+
+    &.hide {
+      transform: translateX(100%);
+      opacity: 0;
+    }
 
     .info {
       flex-direction: row-reverse;
@@ -88,6 +86,20 @@
 
     .say {
       writing-mode: sideways-rl;
+    }
+  }
+
+  .reply {
+    bottom: 0;
+    margin-bottom: 1.25rem;
+
+    &.hide {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .avatar {
+      margin-right: 1rem;
     }
   }
 }

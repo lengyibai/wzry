@@ -97,9 +97,6 @@ export class RelationshipCircle {
     const gap_duration = this.isFinishEnter ? alone : this.relationLength * 100 + alone;
     this.durations.gapDuration = gap_duration;
 
-    //出场动画
-    this.durations.into = 1000;
-
     //主英雄回归圆心动画，这个动画在播放关系归位动画时延迟执行
     this.durations.backCenter = gap_duration;
 
@@ -136,26 +133,24 @@ export class RelationshipCircle {
     this.mainHeroHeight = currentHeroElement.offsetHeight / 2;
     currentHeroElement.remove();
 
-    setTimeout(() => {
-      //设置关系列表
-      this.createHeroElement(relationships);
-      //设置线条列表
-      this.createLineElement(relationships);
-      //重新分配位置
-      setTimeout(this.updatePositionInfo.bind(this), this.durations.redistribution);
+    //设置关系列表
+    this.createHeroElement(relationships);
+    //设置线条列表
+    this.createLineElement(relationships);
+    //重新分配位置
+    setTimeout(this.updatePositionInfo.bind(this), this.durations.redistribution);
 
-      //循环线条监听位置
-      this.currentInfo.linesInfo.forEach((lineInfo, index) => {
-        const { heroId: id, lineEl } = lineInfo;
+    //循环线条监听位置
+    this.currentInfo.linesInfo.forEach((lineInfo, index) => {
+      const { heroId: id, lineEl } = lineInfo;
 
-        //存储实时监听位置并更新连线的函数
-        const clickHeroEl = this.currentInfo.relationshipsInfo[index].heroEl;
-        this.watches.push({
-          id,
-          fn: () => connectCircle(this.currentInfo.heroEl!, clickHeroEl, lineEl),
-        });
+      //存储实时监听位置并更新连线的函数
+      const clickHeroEl = this.currentInfo.relationshipsInfo[index].heroEl;
+      this.watches.push({
+        id,
+        fn: () => connectCircle(this.currentInfo.heroEl!, clickHeroEl, lineEl),
       });
-    }, this.durations.into);
+    });
   }
 
   /** @description 通过关系循环创建DOM及坐标等信息 */
