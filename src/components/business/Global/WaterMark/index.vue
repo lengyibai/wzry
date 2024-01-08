@@ -30,7 +30,13 @@ const version = `${$tool.browserV.version} ${
       }"
       class="water-mark"
     >
-      <p>{{ $t("帧率") }}：{{ fps }}</p>
+      <p
+        :class="{
+          low: fps < 20,
+        }"
+      >
+        {{ $t("帧率") }}：{{ fps }}
+      </p>
       <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
       <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
       <p :class="{ old: data_status }">{{ $t("数据") }}：{{ $versionStore.local_data_version }}</p>
