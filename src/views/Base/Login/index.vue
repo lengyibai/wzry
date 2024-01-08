@@ -43,8 +43,8 @@ const onToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const onCloseNotice = () => {
-  if (!(toolbarRef.value && toolbarRef.value.el)) return;
-  const toolbarFocus = new $tool.FocusElement(toolbarRef.value.el);
+  if (!(toolbarRef.value && toolbarRef.value._el)) return;
+  const toolbarFocus = new $tool.FocusElement(toolbarRef.value._el);
 
   $tip({
     text: SCENE_TIP.mu63,

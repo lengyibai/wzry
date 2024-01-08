@@ -8,7 +8,7 @@ const kScrollTipRef = ref<HTMLElement>();
 const text = $tool.isPhone ? "滑动下一页" : "滚动下一页";
 
 defineExpose({
-  el: kScrollTipRef,
+  _el: kScrollTipRef,
 });
 </script>
 

@@ -64,7 +64,7 @@ const debounceScroll = _debounce((v: number) => {
 /* 点击侧边栏触发 */
 const onSidebarChange = () => {
   debounceScroll(0);
-  skinToolbarRef.value?.clearName();
+  skinToolbarRef.value?._clearName();
 };
 
 /* 点击工具栏中的选项 */
@@ -91,12 +91,12 @@ const handleEnterCard = () => {
 
 /* 返回顶部 */
 const onBackTop = () => {
-  skinListRef.value?.setPosition(0, true);
+  skinListRef.value?._setPosition(0, true);
 };
 
 onActivated(() => {
   $audioStore.play("gz43");
-  skinListRef.value?.setPosition(scroll.value);
+  skinListRef.value?._setPosition(scroll.value);
 });
 
 onActivated(async () => {

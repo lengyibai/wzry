@@ -75,7 +75,7 @@ onUnmounted(() => {
 });
 
 defineExpose({
-  toggleSkill: handleToggleSkill,
+  _toggleSkill: handleToggleSkill,
 });
 </script>
 

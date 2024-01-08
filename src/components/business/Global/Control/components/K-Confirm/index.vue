@@ -33,13 +33,13 @@ $bus.on("confirm", (v) => {
 /* 取消 */
 const handleCancel = () => {
   config.value.cancel && config.value.cancel();
-  dialogRef.value!.close();
+  dialogRef.value!._close();
 };
 
 /* 确定 */
 const handleConfirm = () => {
   config.value.confirm();
-  dialogRef.value!.close();
+  dialogRef.value!._close();
 };
 </script>
 

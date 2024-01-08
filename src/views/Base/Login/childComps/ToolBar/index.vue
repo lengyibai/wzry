@@ -45,7 +45,7 @@ const handleTool = (v: string) => {
 };
 
 defineExpose({
-  el: toolbarRef,
+  _el: toolbarRef,
 });
 </script>
 

@@ -71,7 +71,7 @@ const onCloseConfirmEditInfo = () => {
     $bus.emit("confirm", {
       text: "资料已修改，确定关闭吗？",
       confirm: () => {
-        dialogRef.value!.close();
+        dialogRef.value!._close();
       },
     });
   }
@@ -149,7 +149,7 @@ const onCloseConfirmEditInfo = () => {
         v-if="dialogRef"
         :id="$authStore.userInfo.id"
         v-model:status="edit_status"
-        @close="dialogRef!.close"
+        @close="dialogRef!._close"
       />
     </KDialog>
   </teleport>

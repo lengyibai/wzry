@@ -40,7 +40,7 @@ const handleSelect = () => {
 /* 获取链接 */
 const handleConfirm = () => {
   $emit("update:modelValue", input_link.value);
-  dialogRef.value!.close();
+  dialogRef.value!._close();
 };
 </script>
 

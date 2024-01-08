@@ -34,7 +34,7 @@ const onSelectSkill = (skill: Remote.Skill.Info) => {
     </transition>
 
     <!-- 切换副技能 -->
-    <HeroSkillToggle v-if="hero_info.skills.length > 1" @toggle="heroSkillIconRef?.toggleSkill" />
+    <HeroSkillToggle v-if="hero_info.skills.length > 1" @toggle="heroSkillIconRef?._toggleSkill" />
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />

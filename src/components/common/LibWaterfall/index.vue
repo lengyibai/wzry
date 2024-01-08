@@ -95,10 +95,10 @@ onMounted(() => {
 });
 
 defineExpose({
-  el: waterfallContentRef,
-  watchImgLoad,
-  updateSizePosition,
-  setPosition,
+  _el: waterfallContentRef,
+  _watchImgLoad: watchImgLoad,
+  _updateSizePosition: updateSizePosition,
+  _setPosition: setPosition,
 });
 </script>
 

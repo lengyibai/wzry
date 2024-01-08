@@ -37,10 +37,10 @@ const back_top = ref(false);
 getAtlasList();
 
 const debounceUpdateSizePosition = _debounce(() => {
-  waterfallRef.value?.updateSizePosition();
+  waterfallRef.value?._updateSizePosition();
 }, 500);
 const debounceWatchImgLoad = _debounce(() => {
-  waterfallRef.value?.watchImgLoad();
+  waterfallRef.value?._watchImgLoad();
 }, 500);
 
 /* 当前高亮的图片id */
@@ -98,19 +98,19 @@ const debounceScroll = _debounce((v: number) => {
 
 /* 返回顶部 */
 const onBackTop = () => {
-  waterfallRef.value?.setPosition(0, true);
+  waterfallRef.value?._setPosition(0, true);
 };
 
 /* 点击侧边栏触发 */
 const onSidebarChange = () => {
   debounceScroll(0);
-  savorToolbarRef.value?.clearName();
+  savorToolbarRef.value?._clearName();
 };
 
 onActivated(() => {
   $audioStore.play("gz76");
   debounceUpdateSizePosition();
-  waterfallRef.value?.setPosition(scroll.value);
+  waterfallRef.value?._setPosition(scroll.value);
   $bus.on("update-waterfall", debounceUpdateSizePosition);
   $bus.on("watch-waterfall", debounceWatchImgLoad);
 });

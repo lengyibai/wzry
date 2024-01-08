@@ -71,7 +71,7 @@ if ($props.audio) {
 }
 
 defineExpose({
-  close: handleClose,
+  _close: handleClose,
 });
 </script>
 

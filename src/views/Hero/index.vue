@@ -114,13 +114,13 @@ const debounceScroll = _debounce((v: number) => {
 
 /* 返回顶部 */
 const onBackTop = () => {
-  heroListRef.value?.setPosition(0, true);
+  heroListRef.value?._setPosition(0, true);
 };
 
 /* 点击侧边栏触发 */
 const onSidebarChange = () => {
   debounceScroll(0);
-  heroToolbarRef.value?.clearName();
+  heroToolbarRef.value?._clearName();
 };
 
 watch(
@@ -145,7 +145,7 @@ onActivated(async () => {
   window.addEventListener("resize", changeCount);
 
   $audioStore.play("iv51");
-  heroListRef.value?.setPosition(scroll.value);
+  heroListRef.value?._setPosition(scroll.value);
 
   //显示英雄列表
   await $tool.promiseTimeout(() => {

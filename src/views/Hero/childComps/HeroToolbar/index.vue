@@ -138,7 +138,7 @@ onUnmounted(() => {
 
 defineExpose({
   /** 清空输入框 */
-  clearName,
+  _clearName: clearName,
 });
 </script>
 
