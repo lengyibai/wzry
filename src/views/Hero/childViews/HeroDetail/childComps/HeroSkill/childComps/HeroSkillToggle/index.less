@@ -1,0 +1,36 @@
+.hero-skill-toggle {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  transition: 0.25s 0.25s;
+
+  &.hide-bottom {
+    bottom: 0;
+    transform: translateY(100%);
+  }
+
+  .status {
+    margin-right: 1rem;
+    color: var(--white-50);
+    font-size: 2.5rem;
+  }
+
+  .toggle {
+    .global_flex-center();
+
+    color: var(--white-50);
+    font-size: 3.125rem;
+    transition: 0.25s;
+
+    &:hover {
+      color: var(--white);
+    }
+
+    &:active {
+      color: var(--white-25);
+      transition: color 0.1s;
+    }
+  }
+}
