@@ -15,7 +15,7 @@ let btnFn: () => void;
 /** 有时候可能不会在同一个页面使用两个tip，就无法使用then，此时需要加入执行队列，点击确定后执行下一个 */
 const list: Global.Tip.Prompt[] = [];
 
-const is_once = ref(true);
+const is_once = ref(false);
 const btn_text = ref("");
 const content = ref("");
 const disabled = ref(true);
@@ -62,8 +62,8 @@ const useTip = () => {
   };
   const ExposeMethods = {
     /** @description 推送tip */
-    async tip(config: Global.Tip.Prompt): Promise<boolean | void> {
-      if (!$settingStore.config.tip) return Promise.resolve(false);
+    async tip(config: Global.Tip.Prompt): Promise<void> {
+      if (!$settingStore.config.tip) return Promise.resolve();
 
       const {
         text,
@@ -74,16 +74,17 @@ const useTip = () => {
       } = config;
       const tip_key = Object.entries(SCENE_TIP).find((item) => item[1] === text)?.[0];
       const is_no_tip = $settingStore.config.noTips[tip_key as keyof Global.Tip.Key];
-      is_once.value = !!tip_key;
 
       //如果是不再提示的Tip，则直接返回
-      if (is_no_tip) return Promise.resolve(false);
+      if (is_no_tip) return Promise.resolve();
 
       //如果是处于队列模式，则加入队列
       if (queue) {
         list.push(config);
         return;
       }
+
+      is_once.value = !!tip_key;
 
       //如果tip_key有值，表示是系统Tip，设置不再提示
       if (tip_key) {
