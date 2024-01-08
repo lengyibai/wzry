@@ -1,19 +1,16 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { VersionStore } from "./version";
-
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
-import { router } from "@/router";
 import { LOCAL_USER } from "@/api";
-import { $bus, $message } from "@/utils";
+import { $message, $tip } from "@/utils";
 import { BASE_CONFIG, LOCAL_KEY } from "@/config";
+import { router } from "@/router";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
-  const $versionStore = VersionStore();
 
   /** 实时检测帐号状态 */
   let timer: NodeJS.Timeout | undefined;
@@ -31,32 +28,29 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
-    if (timer) return;
-    timer = setInterval(() => {
-      const token = Number(new Date().getTime().toString().slice(0, 10));
-      const data_token = localStorage.getItem(LOCAL_KEY.TOKEN);
+    const token = Number(new Date().getTime().toString().slice(0, 10));
+    const data_token = localStorage.getItem(LOCAL_KEY.TOKEN);
 
-      if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
-        $message("数据丢失，请重新登录", "error");
-        clearToken();
-        return;
-      }
+    if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
+      $tip({
+        text: "数据丢失，请重新登录",
+      }).then(clearToken);
+      return;
+    }
 
-      //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
-      if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
-        clearInterval(timer);
-        $bus.emit("confirm", {
-          text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
-          close: false,
-          confirm: () => {
-            localStorage.clear();
-            clearToken();
-            $versionStore.watchVersion();
-          },
-        });
-        return;
-      }
-    }, 1000 * 10);
+    //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
+    if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
+      clearInterval(timer);
+      $tip({
+        text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
+      }).then(() => {
+        localStorage.clear();
+        location.reload();
+      });
+      return;
+    }
+
+    setTimeout(watchStatus, 1000 * 5);
   };
 
   const ExposeData = {
