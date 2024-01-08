@@ -23,7 +23,7 @@ const VersionStore = defineStore("version", () => {
     /** 数据是否需要更新 */
     data_status: ref(false),
     /** 文件是否需要更新 */
-    file_status: ref(false),
+    dist_status: ref(false),
     /** 更新日志汇总 */
     update_log: ref<Global.Version.UpdateLog>({
       time: "",
@@ -47,7 +47,7 @@ const VersionStore = defineStore("version", () => {
     remote_dist_version,
     show_update,
     data_status,
-    file_status,
+    dist_status,
     update_log,
   } = ExposeData;
 
@@ -133,7 +133,7 @@ const VersionStore = defineStore("version", () => {
           if (compare > 0 && !data_status.value) {
             clearTimeout(version_timer);
             show_update.value = true;
-            file_status.value = true;
+            dist_status.value = true;
           }
         }
       });

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { storeToRefs } from "pinia";
 
 import { CollapseStore, VersionStore, DeviceStore, AuthStore } from "@/store";
 import { $tool } from "@/utils";
@@ -10,11 +11,8 @@ const $versionStore = VersionStore();
 const $deviceStore = DeviceStore();
 const $authStore = AuthStore();
 
+const { data_status, dist_status } = storeToRefs($versionStore);
 const { fps } = useGetFps();
-
-/* 是否为旧版 */
-const old = computed(() => $versionStore.local_version !== $versionStore.remote_version);
-const old_file = computed(() => $versionStore.local_file !== $versionStore.file_version);
 
 /* 浏览器版本提示 */
 const browser_status = computed(() => $deviceStore.browser_status);
@@ -35,13 +33,13 @@ const version = `${$tool.browserV.version} ${
       <p>{{ $t("帧率") }}：{{ fps }}</p>
       <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
       <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
-      <p :class="{ old: old }">{{ $t("数据") }}：{{ $versionStore.local_version }}</p>
-      <p v-if="old" :class="{ new: old }">
-        {{ $t("正在更新数据") }}：{{ $versionStore.remote_version }}
+      <p :class="{ old: data_status }">{{ $t("数据") }}：{{ $versionStore.local_data_version }}</p>
+      <p v-if="data_status" :class="{ new: data_status }">
+        {{ $t("正在更新数据") }}：{{ $versionStore.remote_data_version }}
       </p>
-      <p :class="{ old: old_file }">{{ $t("网页") }}：{{ $versionStore.local_file }}</p>
-      <p v-if="old_file" :class="{ new: old_file }">
-        {{ $t("登录后更新") }}：{{ $versionStore.file_version }}
+      <p :class="{ old: dist_status }">{{ $t("网页") }}：{{ $versionStore.local_dist_version }}</p>
+      <p v-if="dist_status" :class="{ new: dist_status }">
+        {{ $t("登录后更新") }}：{{ $versionStore.remote_dist_version }}
       </p>
     </div>
   </teleport>

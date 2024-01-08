@@ -11,7 +11,7 @@ const $versionStore = VersionStore();
 /** 数据需要更新 */
 const data_status = computed(() => $versionStore.data_status);
 /** 文件需要更新 */
-const file_status = computed(() => $versionStore.file_status);
+const dist_status = computed(() => $versionStore.dist_status);
 /** 日志 */
 const update_log = computed(() => $versionStore.update_log);
 
@@ -28,7 +28,7 @@ const handleClose = () => {
 
 <template>
   <KDialog
-    :show-close="!data_status && !file_status"
+    :show-close="!data_status && !dist_status"
     v-bind="$attrs"
     width="56.25rem"
     header="更新日志"
@@ -104,7 +104,7 @@ const handleClose = () => {
     </div>
 
     <!-- 重启 -->
-    <KButton v-if="data_status || file_status" v-mouse-tip type="warning" @click="handleReset">
+    <KButton v-if="data_status || dist_status" v-mouse-tip type="warning" @click="handleReset">
       更新并重启
     </KButton>
   </KDialog>
