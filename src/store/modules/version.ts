@@ -130,7 +130,7 @@ const VersionStore = defineStore("version", () => {
           const compare = remote - local;
 
           //如果为旧版，则自动更新并更新本地版本
-          if (compare > 0 && !data_status.value) {
+          if (compare > 0) {
             clearTimeout(version_timer);
             show_update.value = true;
             dist_status.value = true;
