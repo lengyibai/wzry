@@ -29,9 +29,12 @@ const moveBoxRef = ref<HTMLElement>();
 
 /** 内容是否大于父元素宽度 */
 const is_over = ref(true);
+/** 延迟设置溢出省略号 */
+const can_set = ref(false);
 
 nextTick(() => {
   is_over.value = moveBoxRef.value!.offsetWidth > marqueeRef.value!.offsetWidth;
+  can_set.value = true;
 });
 </script>
 
@@ -52,7 +55,7 @@ nextTick(() => {
       class="move-box"
       :class="{
         playing: playing,
-        static: !playing,
+        static: !playing && can_set,
       }"
       :style="{
         width: is_over ? 'fit-content' : '100%',
