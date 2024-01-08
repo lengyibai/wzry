@@ -41,7 +41,7 @@ const version = `${$tool.browserV.version} ${
       <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
       <p :class="{ old: data_status }">{{ $t("数据") }}：{{ $versionStore.local_data_version }}</p>
       <p v-if="data_status" :class="{ new: data_status }">
-        {{ $t("正在更新数据") }}：{{ $versionStore.remote_data_version }}
+        {{ $t("登录后更新") }}：{{ $versionStore.remote_data_version }}
       </p>
       <p :class="{ old: dist_status }">{{ $t("网页") }}：{{ $versionStore.local_dist_version }}</p>
       <p v-if="dist_status" :class="{ new: dist_status }">
