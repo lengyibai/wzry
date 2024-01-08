@@ -39,6 +39,9 @@ nextTick(() => {
   <div
     ref="marqueeRef"
     class="k-marquee"
+    :class="{
+      playing: playing,
+    }"
     :style="{
       width,
       height,
