@@ -51,12 +51,7 @@ const current_index = ref(-1);
 /** 记录展开状态 */
 const select_status = reactive([false, false, false, false, false]);
 /** 阵营列表 */
-const select_camp = reactive<
-  {
-    label: string;
-    value: string;
-  }[]
->([]);
+const select_camp = reactive<Global.General[]>([]);
 
 /* 获取阵营列表 */
 LOCAL_TYPE.getTypeCampList().forEach((item) => {
