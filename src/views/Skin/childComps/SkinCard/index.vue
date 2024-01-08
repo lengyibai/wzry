@@ -10,7 +10,7 @@ interface Props {
 
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
-  showTool: [e: Event, v: { type: string; data: Game.Hero.Skin }];
+  showTool: [e: Event, v: Game.Hero.Skin];
 }>();
 
 /* 根据价格是否为数字决定显示点券 */
@@ -19,8 +19,8 @@ const priceShow = (price: number | string) => {
 };
 
 /* 点击工具选项 */
-const handle = (e: Event, v: string) => {
-  $emit("showTool", e, { type: v, data: $props.data });
+const handleView = (e: Event) => {
+  $emit("showTool", e, $props.data);
 };
 </script>
 
@@ -52,9 +52,8 @@ const handle = (e: Event, v: string) => {
       <div class="mark" v-html="`——${data.hero_name}`"></div>
     </div>
 
-    <!-- 悬浮工具 -->
     <div class="tool">
-      <span @click="handle($event, 'poster')">
+      <span @click="handleView">
         <i class="iconfont wzry-fangda" />
         查看详情
       </span>
