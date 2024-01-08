@@ -5,7 +5,7 @@ import KTip from "./components/K-Tip/index.vue";
 import KConfirm from "./components/K-Confirm/index.vue";
 import KImageView from "./components/K-ImageView/index.vue";
 import KMouseTip from "./components/K-MouseTip/index.vue";
-import KPhone from "./components/K-Phone/index.vue";
+// import KPhone from "./components/K-Phone/index.vue";
 
 import { $bus } from "@/utils";
 
@@ -34,5 +34,5 @@ window.addEventListener("mouseup", (e) => {
   <KMouseTip />
 
   <!-- 禁止手机查看 -->
-  <KPhone />
+  <!-- <KPhone /> -->
 </template>
