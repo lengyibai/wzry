@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { KText } from "@/components/business";
+
 interface Props {
   /** 装备 */
   equip: Game.Equip.Data | undefined;
@@ -37,7 +39,7 @@ const abbreviations: Record<string, string> = {
       <div class="info">
         <div v-for="(item, index) in equip.effect" :key="index" class="effect">
           <div class="icon" :class="abbreviations[item.name]"></div>
-          <span class="num">+{{ item.num }} {{ item.name }}</span>
+          <span class="num">+{{ item.num }} <KText :text="item.name" /></span>
         </div>
       </div>
 
@@ -45,12 +47,14 @@ const abbreviations: Record<string, string> = {
       <div class="details">
         <div v-for="(item, index) in equip.motivation" :key="index" class="motivation">
           <div class="title">{{ item.type }}-{{ item.name }}</div>
-          <div class="desc" v-html="item.desc"></div>
+          <div class="desc">{{ item.desc }}</div>
           <div v-if="item.time" class="time lq">{{ item.time }}秒</div>
           <div v-if="item.note" class="note" v-html="item.note"></div>
         </div>
       </div>
-      <div v-if="equip.note" class="note" v-html="equip.note"></div>
+      <div v-if="equip.note" class="note">
+        {{ equip.note }}
+      </div>
     </template>
   </div>
 </template>
