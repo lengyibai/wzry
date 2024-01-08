@@ -13,14 +13,13 @@ const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
 
   /** 实时检测帐号状态 */
-  let timer: NodeJS.Timeout | undefined;
+  let watching = false;
 
   /** @description 清除token */
   const clearToken = () => {
-    clearInterval(timer);
     router.replace("/login");
     userStatus.value = false;
-    timer = undefined;
+    watching = false;
     userInfo.value = userDefaultInfo();
     $routerStore.removeRoutes();
     localStorage.removeItem(LOCAL_KEY.USER_INFO);
@@ -28,19 +27,24 @@ const AuthStore = defineStore("auth", () => {
 
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
+    if (!watching) return;
+
     const token = Number(new Date().getTime().toString().slice(0, 10));
     const data_token = localStorage.getItem(LOCAL_KEY.TOKEN);
 
     if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
       $tip({
-        text: "数据丢失，请重新登录",
-      }).then(clearToken);
+        text: "数据丢失，请刷新页面",
+        btnText: "立刻刷新",
+      }).then(() => {
+        location.reload();
+      });
       return;
     }
 
     //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
     if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
-      clearInterval(timer);
+      watching = false;
       $tip({
         text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
       }).then(() => {
@@ -76,11 +80,12 @@ const AuthStore = defineStore("auth", () => {
         const res = await LOCAL_USER.login(form);
 
         userInfo.value = res;
+        watching = true;
         userStatus.value = true;
         localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
         $routerStore.addRoutes(res.role);
-        watchStatus();
         router.push(BASE_CONFIG.HOME_URL);
+        watchStatus();
       } catch (error) {
         $message(error as string, "error");
         return Promise.reject(error);
@@ -96,6 +101,7 @@ const AuthStore = defineStore("auth", () => {
         });
         userInfo.value = res;
         userStatus.value = true;
+        watching = true;
         localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
         $message("自动登录成功");
         watchStatus();
