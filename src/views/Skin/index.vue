@@ -29,14 +29,13 @@ const interval_count = [
   [720, 1],
 ];
 
+const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
 /** 显示列表 */
 const show_skin_list = ref(false);
-/** 查看海报 */
-const show_poster = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
@@ -62,28 +61,26 @@ const debounceScroll = _debounce((v: number) => {
   back_top.value = v > 250;
 }, 250);
 
-/* 加载更多 */
-const onLoadMore = () => {
-  loadMore();
+/* 点击侧边栏触发 */
+const onSidebarChange = () => {
+  debounceScroll(0);
+  skinToolbarRef.value?.clearName();
 };
 
 /* 点击工具栏中的选项 */
-const onShowTool = (e: Event, v: { type: string; data: Game.Hero.Skin }) => {
-  if (v.type === "poster") {
-    show_poster.value = true;
-    const { posterBig, posterBlur, name, heroName, hero } = v.data;
-    const voices = GAME_HERO.getSkinVoice(hero, name).voice;
-    $imageView({
-      event: e,
-      type: "HERO",
-      bigImage: posterBig,
-      blurImage: posterBlur,
-      heroName,
-      heroAvatar: KVP_HERO.getHeroAvatarKvp()[hero],
-      skinName: name,
-      voices,
-    });
-  }
+const onShowTool = (e: Event, v: Game.Hero.Skin) => {
+  const { posterBig, posterBlur, name, heroName, hero } = v;
+  const voices = GAME_HERO.getSkinVoice(hero, name).voice;
+  $imageView({
+    event: e,
+    type: "HERO",
+    bigImage: posterBig,
+    blurImage: posterBlur,
+    heroName,
+    heroAvatar: KVP_HERO.getHeroAvatarKvp()[hero],
+    skinName: name,
+    voices,
+  });
   $audioStore.play("u4c5");
 };
 
@@ -121,7 +118,7 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar @search="debounceScroll(0)" />
+        <SkinToolbar ref="skinToolbarRef" @search="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
@@ -136,7 +133,7 @@ onDeactivated(() => {
           :loading="loading"
           :count="count"
           :scroll-top="scroll"
-          @load-more="onLoadMore"
+          @load-more="loadMore"
           @scroll="debounceScroll"
         >
           <transition-group name="skin-card" appear>
@@ -159,7 +156,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="skin" @change="debounceScroll(0)" />
+      <FilterSidebar type="skin" @change="onSidebarChange" />
     </transition>
   </div>
 </template>

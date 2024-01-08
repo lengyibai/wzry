@@ -30,14 +30,14 @@ const HeroStore = defineStore("hero", () => {
     attr_type: ref("全部属性"),
     /** 阵营排序类型 */
     camp_type: ref("全部阵营"),
-    /** 当前性别排序类型 */
-    gender_type: ref<Game.GenderId>(0),
     /** 杂项排序类型 */
     misc_sort: ref("全部排序"),
     /** 杂项排序类型 */
     misc_type: ref("全部筛选"),
     /** 当前排序类型：正序|倒序 */
     sort_type: ref("倒序"),
+    /** 当前性别排序类型 */
+    gender_type: ref<Game.GenderId>(0),
   };
   const {
     scroll,
@@ -272,6 +272,15 @@ const HeroStore = defineStore("hero", () => {
 
     /** @description 搜索英雄 */
     searchHero(name: string) {
+      /* 搜索英雄时重置下拉菜单 */
+      profession.value = "全部";
+      attr_type.value = "全部属性";
+      camp_type.value = "全部阵营";
+      misc_sort.value = "全部排序";
+      misc_type.value = "全部筛选";
+      sort_type.value = "倒序";
+      gender_type.value = 0;
+
       if (name) {
         filter_list.value = $tool.search<Game.Hero.Data>(
           _cloneDeep(all_data.value),

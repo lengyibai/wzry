@@ -27,6 +27,8 @@ const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
 const { count } = useWaterfallResponsive();
 
+const savorToolbarRef = ref<InstanceType<typeof SavorToolbar>>();
+
 /** 当前悬浮的英雄id */
 const hero_id = ref(0);
 /** 是否显示返回顶部 */
@@ -99,6 +101,12 @@ const onBackTop = () => {
   waterfallRef.value?.setPosition(0, true);
 };
 
+/* 点击侧边栏触发 */
+const onSidebarChange = () => {
+  debounceScroll(0);
+  savorToolbarRef.value?.clearName();
+};
+
 onActivated(() => {
   $audioStore.play("gz76");
   debounceUpdateSizePosition();
@@ -116,7 +124,7 @@ onDeactivated(() => {
 <template>
   <div class="savor">
     <div class="savor-main">
-      <SavorToolbar @search="debounceScroll(0)" />
+      <SavorToolbar ref="savorToolbarRef" @search="debounceScroll(0)" />
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <LibWaterfall
@@ -164,7 +172,7 @@ onDeactivated(() => {
 
     <!--右侧职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="atlas" @change="debounceScroll(0)" />
+      <FilterSidebar type="atlas" @change="onSidebarChange" />
     </transition>
   </div>
 </template>

@@ -23,29 +23,33 @@ const sort_types = [
 
 /** 搜索值 */
 const search_value = ref("");
-/** 性别排序 */
-const gender = ref<Game.GenderId>(0);
 /** 记录展开状态 */
 const select_status = ref(false);
+
+/* 清空输入框 */
+const clearName = () => {
+  search_value.value = "";
+};
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
   sortType(v as string);
+  clearName();
 };
 
 /* 设置性别 */
-const handleSetGender = (type: Game.GenderId) => {
-  gender.value = type;
+const onFilterGender = (type: Game.GenderId) => {
   filterGender(type);
+  clearName();
 };
 
-/** 搜索皮肤 */
+/* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   searchAtlas(search_value.value);
   $emit("search");
 }, 500);
 
-/** 设置下拉状态 */
+/* 设置下拉状态 */
 const handleSelectStatus = () => {
   select_status.value = !select_status.value;
 };
@@ -61,6 +65,11 @@ $bus.on("mouseup", (e) => {
 
 onUnmounted(() => {
   $bus.off("mouseup");
+});
+
+defineExpose({
+  /** 清空输入框 */
+  clearName,
 });
 </script>
 
@@ -78,7 +87,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="handleSetGender" />
+    <FilterGender @change="onFilterGender" />
 
     <!-- 搜索 -->
     <KInput

@@ -44,6 +44,7 @@ const interval_count = [
   [480, 2],
 ];
 
+const heroToolbarRef = ref<InstanceType<typeof HeroToolbar>>();
 const heroListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
@@ -116,6 +117,12 @@ const onBackTop = () => {
   heroListRef.value?.setPosition(0, true);
 };
 
+/* 点击侧边栏触发 */
+const onSidebarChange = () => {
+  debounceScroll(0);
+  heroToolbarRef.value?.clearName();
+};
+
 watch(
   () => $route.query,
   (v) => {
@@ -155,7 +162,7 @@ onDeactivated(() => {
   <div class="hero">
     <div class="hero__main">
       <transition name="fade" appear>
-        <HeroToolbar @search="debounceScroll(0)" />
+        <HeroToolbar ref="heroToolbarRef" @search="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
@@ -191,7 +198,7 @@ onDeactivated(() => {
 
     <!--右侧英雄职业分类侧边栏-->
     <transition name="sidebar" appear>
-      <FilterSidebar type="hero" @change="debounceScroll(0)" />
+      <FilterSidebar type="hero" @change="onSidebarChange" />
     </transition>
 
     <!--英雄详情页-->

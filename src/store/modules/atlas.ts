@@ -10,6 +10,25 @@ import { GAME_HERO } from "@/api";
 const AtlasStore = defineStore("atlas", () => {
   const $usePagingLoad = usePagingLoad<Game.Hero.AloneAtlas>();
 
+  const ExposeData = {
+    /** 滚动坐标 */
+    scroll: $usePagingLoad.scroll,
+    /** 是否处于加载中 */
+    loading: $usePagingLoad.loading,
+    /** 暂无更多 */
+    finish: $usePagingLoad.finish,
+    /** 展示的数据列表 */
+    show_list: $usePagingLoad.show_list,
+
+    /** 当前排序类型 */
+    sort_type: ref("倒序"),
+    /** 职业类型 */
+    profession: ref<Game.Hero.Profession>("全部"),
+    /** 当前性别排序类型 */
+    gender_type: ref<Game.GenderId>(0),
+  };
+  const { sort_type, profession, gender_type } = ExposeData;
+
   /** @description 一键排序 */
   const sortAll = () => {
     $usePagingLoad.setScroll(0);
@@ -63,26 +82,6 @@ const AtlasStore = defineStore("atlas", () => {
     $usePagingLoad.resetPage();
     $bus.emit("watch-waterfall");
   };
-
-  const ExposeData = {
-    /** 滚动坐标 */
-    scroll: $usePagingLoad.scroll,
-    /** 是否处于加载中 */
-    loading: $usePagingLoad.loading,
-    /** 暂无更多 */
-    finish: $usePagingLoad.finish,
-    /** 展示的数据列表 */
-    show_list: $usePagingLoad.show_list,
-
-    /** 当前排序类型 */
-    sort_type: ref("倒序"),
-    /** 职业类型 */
-    profession: ref<Game.Hero.Profession>("全部"),
-    /** 当前性别排序类型 */
-    gender_type: ref<Game.GenderId>(0),
-  };
-  const { sort_type, profession, gender_type } = ExposeData;
-
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
     setScroll: $usePagingLoad.setScroll,
@@ -160,6 +159,11 @@ const AtlasStore = defineStore("atlas", () => {
 
     /** @description 搜索图集 */
     searchAtlas(name: string) {
+      /* 搜索英雄时重置下拉菜单 */
+      sort_type.value = "倒序";
+      profession.value = "全部";
+      gender_type.value = 0;
+
       const { all_data, setFilterData } = $usePagingLoad;
 
       //如果搜索的值不为空，则进行搜索，否则重新排序

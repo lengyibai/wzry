@@ -22,8 +22,6 @@ const SkinStore = defineStore("skin", () => {
     /** 展示的数据列表 */
     show_list: $usePagingLoad.show_list,
 
-    /** 性别筛选类型 */
-    gender_type: ref<Game.GenderId>(0),
     /** 职业类型 */
     profession: ref<Game.Hero.Profession>("全部"),
     /** 价格排序类型 */
@@ -32,6 +30,8 @@ const SkinStore = defineStore("skin", () => {
     skin_type: ref("全部皮肤"),
     /** 排序类型 */
     sort_type: ref("倒序"),
+    /** 性别筛选类型 */
+    gender_type: ref<Game.GenderId>(0),
   };
   const { scroll, filter_list, gender_type, profession, price_type, skin_type, sort_type } =
     ExposeData;
@@ -278,6 +278,13 @@ const SkinStore = defineStore("skin", () => {
 
     /** @description 搜索皮肤 */
     searchSkin(name: string) {
+      /* 搜索英雄时重置下拉菜单 */
+      profession.value = "全部";
+      price_type.value = "全部价格";
+      skin_type.value = "全部皮肤";
+      sort_type.value = "倒序";
+      gender_type.value = 0;
+
       if (name) {
         filter_list.value = $tool.search(
           _cloneDeep($usePagingLoad.all_data.value),

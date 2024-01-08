@@ -61,32 +61,48 @@ LOCAL_TYPE.getTypeCampList().forEach((item) => {
   });
 });
 
+/* 清空输入框 */
+const clearName = () => {
+  search_value.value = "";
+};
+
 /* 阵营筛选 */
 const onSelectCamp = (v: string | number) => {
   filterCamp(v as string);
+  clearName();
 };
 
 /* 属性筛选 */
 const onSelectAttr = (v: string | number) => {
   filterAttr(v as string);
+  clearName();
 };
 
 /* 杂项筛选 */
 const onSelectMisc = (v: string | number) => {
   filterMisc(v as string);
+  clearName();
 };
 
 /* 杂项排序 */
 const onSelectSort = (v: string | number) => {
   sortMisc(v as string);
+  clearName();
 };
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
   sortType(v as string);
+  clearName();
 };
 
-/** 搜索英雄 */
+/* 性别切换 */
+const onFilterGender = (name: Game.GenderId) => {
+  filterGender(name);
+  clearName();
+};
+
+/* 搜索英雄 */
 const debounceSearch = _debounce(() => {
   searchHero(search_value.value);
   $emit("search");
@@ -118,6 +134,11 @@ $bus.on("mouseup", (e) => {
 
 onUnmounted(() => {
   $bus.off("mouseup");
+});
+
+defineExpose({
+  /** 清空输入框 */
+  clearName,
 });
 </script>
 
@@ -172,7 +193,7 @@ onUnmounted(() => {
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="filterGender" />
+    <FilterGender @change="onFilterGender" />
 
     <!-- 搜索 -->
     <KInput

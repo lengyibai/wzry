@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
 import { vMouseTip } from "@/directives";
@@ -84,6 +84,12 @@ const handleCoord = (e: Event) => {
   const el = e.target as HTMLElement;
   top.value = el.getBoundingClientRect().top - 75;
 };
+
+watch(filter_type, (v) => {
+  if (v === "全部") {
+    top.value = 0;
+  }
+});
 </script>
 
 <template>
