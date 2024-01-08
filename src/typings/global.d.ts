@@ -18,8 +18,6 @@ declare namespace Global {
 
     /** @description 小贴士触发 */
     interface Prompt {
-      /** 左上角标题 */
-      title?: string;
       /** 提示内容（在拥有key类型提示的情况下，支持字符串） */
       text: keyof Key<string> | string;
       /** 在页面上的位置 */
