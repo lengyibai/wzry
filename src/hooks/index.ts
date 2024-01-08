@@ -1,5 +1,4 @@
-export { useAutoLogin } from "./modules/useAutoLogin";
-export { useGetData } from "./modules/useGetData";
-export { useUpdateData } from "./modules/useUpdateData";
-export { useGetFps } from "./modules/useGetFps";
-export { usePagingLoad } from "./modules/usePagingLoad";
+export * from "./modules/useAutoLogin";
+export * from "./modules/useGetData";
+export * from "./modules/useGetFps";
+export * from "./modules/usePagingLoad";
