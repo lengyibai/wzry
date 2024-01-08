@@ -10,10 +10,40 @@ const { hero_info } = storeToRefs(HeroDetailStore());
 
 <template>
   <div class="hero-attributes">
-    <Attribute attr="survival" :length="hero_info.survival" />
-    <Attribute attr="attack" :length="hero_info.attack" />
-    <Attribute attr="effect" :length="hero_info.effect" />
-    <Attribute attr="difficulty" :length="hero_info.difficulty" />
+    <transition-group name="into" appear>
+      <Attribute
+        key="a"
+        attr="survival"
+        :style="{
+          transitionDelay: '1s',
+        }"
+        :length="hero_info.survival"
+      />
+      <Attribute
+        key="b"
+        attr="attack"
+        :style="{
+          transitionDelay: '1.1s',
+        }"
+        :length="hero_info.attack"
+      />
+      <Attribute
+        key="c"
+        attr="effect"
+        :style="{
+          transitionDelay: '1.2s',
+        }"
+        :length="hero_info.effect"
+      />
+      <Attribute
+        key="d"
+        attr="difficulty"
+        :style="{
+          transitionDelay: '1.3s',
+        }"
+        :length="hero_info.difficulty"
+      />
+    </transition-group>
   </div>
 </template>
 

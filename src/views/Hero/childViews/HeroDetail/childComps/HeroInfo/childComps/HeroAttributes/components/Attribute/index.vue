@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 interface Props {
   /** 属性名 */
   attr: keyof Game.Hero.SkillKey;
@@ -6,7 +8,9 @@ interface Props {
   length: number;
 }
 
-defineProps<Props>();
+const $props = defineProps<Props>();
+
+const len = ref(0);
 
 /** 背景色 */
 const bgc: Record<string, string> = {
@@ -23,6 +27,10 @@ const text: Game.Hero.SkillKey = {
   effect: "技能效果",
   difficulty: "上手难度",
 };
+
+setTimeout(() => {
+  len.value = $props.length;
+}, 2000);
 </script>
 
 <template>
@@ -33,7 +41,7 @@ const text: Game.Hero.SkillKey = {
         class="bar-inner"
         :style="{
           backgroundColor: bgc[attr],
-          height: length + '%',
+          height: len + '%',
         }"
       ></div>
     </div>
