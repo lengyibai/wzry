@@ -15,7 +15,7 @@ const $deviceStore = DeviceStore();
 
 const lineRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
-const footBarRef = ref<HTMLElement>();
+const footbarRef = ref<HTMLElement>();
 
 /** 隐藏工具栏定时器 */
 let timer: NodeJS.Timeout;
@@ -34,11 +34,11 @@ nextTick(() => {
 
 /* 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {
-  if (!enable_music.value || !footBarRef.value) return;
+  if (!enable_music.value || !footbarRef.value) return;
 
   //计算出小数
   progress.value = parseFloat(
-    ((e.pageX - footBarRef.value.offsetLeft) / footBarRef.value.offsetWidth).toFixed(2),
+    ((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2),
   );
   //设置播放进度
   music_progress.value && $musicStore.setCurrentTime(progress.value);
@@ -46,12 +46,12 @@ const handleSetProgress = (e: MouseEvent) => {
 
 /* 悬浮移动竖线 */
 const handleMoveLineRef = (e: MouseEvent) => {
-  if (!enable_music.value || !music_progress.value || !footBarRef.value || !lineRef.value) return;
+  if (!enable_music.value || !music_progress.value || !footbarRef.value || !lineRef.value) return;
 
   //设置底部刻度线x坐标
   lineRef.value.style.left =
     parseFloat(
-      ((e.pageX - footBarRef.value.offsetLeft) / footBarRef.value.offsetWidth).toFixed(2),
+      ((e.pageX - footbarRef.value.offsetLeft) / footbarRef.value.offsetWidth).toFixed(2),
     ) *
       100 +
     "%";
@@ -93,7 +93,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    ref="footBarRef"
+    ref="footbarRef"
     v-particle="{
       color: '#2e5283',
       size: 10,

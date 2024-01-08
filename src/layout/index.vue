@@ -6,7 +6,7 @@ import BarrageMain from "@/layout/childComps/BarrageMain/index.vue";
 import Sidebar from "@/layout/childComps/Sidebar/index.vue";
 import Navbar from "@/layout/childComps/Navbar/index.vue";
 import AppMain from "@/layout/childComps/AppMain/index.vue";
-import FootBar from "@/layout/childComps/FootBar/index.vue";
+import Footbar from "@/layout/childComps/Footbar/index.vue";
 import { AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
@@ -73,7 +73,7 @@ onMounted(async () => {
 
       <!-- 底部导航栏 -->
       <transition name="foot-bar">
-        <FootBar v-if="show_foot_bar" />
+        <Footbar v-if="show_foot_bar" />
       </transition>
     </div>
     <KVideo :link="getVideoLink('bg')" />
