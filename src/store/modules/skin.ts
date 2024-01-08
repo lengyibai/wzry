@@ -28,13 +28,10 @@ const SkinStore = defineStore("skin", () => {
     price_type: ref("全部价格"),
     /** 皮肤筛选类型 */
     skin_type: ref("全部皮肤"),
-    /** 排序类型 */
-    sort_type: ref("倒序"),
     /** 性别筛选类型 */
     gender_type: ref<Game.GenderId>(0),
   };
-  const { scroll, filter_list, gender_type, profession, price_type, skin_type, sort_type } =
-    ExposeData;
+  const { scroll, filter_list, gender_type, profession, price_type, skin_type } = ExposeData;
 
   /* 一键排序 */
   const sortAll = () => {
@@ -177,15 +174,7 @@ const SkinStore = defineStore("skin", () => {
       if (price_type.value && price_type.value !== "全部价格") {
         if (SortStrategy.hasOwnProperty(price_type.value)) {
           filter_list.value = SortStrategy[price_type.value](filter_list.value);
-          sort_type.value = "正序";
         }
-      }
-    };
-
-    /** 正/倒排序 */
-    const sortType = () => {
-      if (sort_type.value === "倒序") {
-        filter_list.value.reverse();
       }
     };
 
@@ -193,7 +182,6 @@ const SkinStore = defineStore("skin", () => {
     filterGender();
     filterSkinType();
     sortPrice();
-    sortType();
     ExposeMethods.resetPage();
   };
 
@@ -266,23 +254,12 @@ const SkinStore = defineStore("skin", () => {
       sortAll();
     },
 
-    /**
-     * @description: 正序|倒序
-     * @param type 排序名称
-     */
-    sortType(type: string) {
-      if (sort_type.value === type) return;
-      sort_type.value = type;
-      sortAll();
-    },
-
     /** @description 搜索皮肤 */
     searchSkin(name: string) {
       /* 搜索英雄时重置下拉菜单 */
       profession.value = "全部";
       price_type.value = "全部价格";
       skin_type.value = "全部皮肤";
-      sort_type.value = "倒序";
       gender_type.value = 0;
 
       if (name) {

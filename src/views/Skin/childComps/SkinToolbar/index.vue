@@ -13,8 +13,8 @@ const $emit = defineEmits<{
   search: [];
 }>();
 
-const { sortPrice, filterSkinType, sortType, filterGender, searchSkin } = SkinStore();
-const { price_type, sort_type, skin_type } = storeToRefs(SkinStore());
+const { sortPrice, filterSkinType, filterGender, searchSkin } = SkinStore();
+const { price_type, skin_type } = storeToRefs(SkinStore());
 
 const select_price = [
   { label: "全部价格", value: "全部价格" },
@@ -49,11 +49,6 @@ const select_type = [
   { label: "特殊标志", value: "特殊标志" },
 ];
 
-const sort_types = [
-  { label: "正序", value: "正序" },
-  { label: "倒序", value: "倒序" },
-];
-
 /** 当前展开的菜单 */
 let current_index = -1;
 
@@ -76,12 +71,6 @@ const onPriceSort = (v: string | number) => {
 /* 皮肤类型筛选 */
 const onTypeFilter = (v: string | number) => {
   filterSkinType(v as string);
-  clearName();
-};
-
-/* 正序/倒序 */
-const onSortType = (v: string | number) => {
-  sortType(v as string);
   clearName();
 };
 
@@ -152,15 +141,6 @@ defineExpose({
         list-height="31.25rem"
         @click="handleSelectStatus(1)"
         @select="onTypeFilter"
-      />
-
-      <!-- 正序/倒序 -->
-      <FilterTool
-        :status="select_status[2]"
-        :sort-text="sort_type"
-        :data="sort_types"
-        @click="handleSelectStatus(2)"
-        @select="onSortType"
       />
     </div>
 
