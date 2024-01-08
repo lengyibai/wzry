@@ -107,50 +107,50 @@ const handleDrag = (
   }
 };
 
-/* 当滚动到皮肤页，播放出场动画 */
+/* 当滚动到皮肤页，播放入场动画 */
 $heroDetail.setScrollFn("skin", (pageName) => {
-  if (pageName === "皮肤语音" && !show_skin_head.value) {
-    show_skin_box.value = true;
-    /* 动画播放完毕后，将原皮设置展示 */
+  if (show_skin_head.value || pageName !== "皮肤语音") return;
+  show_skin_box.value = true;
+
+  /* 动画播放完毕后，将原皮设置展示 */
+  setTimeout(() => {
+    show_skin_head.value = true;
     setTimeout(() => {
-      show_skin_head.value = true;
-      setTimeout(() => {
-        is_into_drag.value = true;
-        nextTick(() => {
-          if (!skinRef.value) return;
-          handleDrag(skinRef.value[0], false, 0);
-          setPosition(skinRef.value[0]);
+      is_into_drag.value = true;
+      nextTick(() => {
+        if (!skinRef.value) return;
+        handleDrag(skinRef.value[0], false, 0);
+        setPosition(skinRef.value[0]);
 
-          setTimeout(() => {
-            if (!skinBoxRef.value) return;
-            const skinHeadFocus = new $tool.FocusElement(skinBoxRef.value);
+        setTimeout(() => {
+          if (!skinBoxRef.value) return;
+          const skinHeadFocus = new $tool.FocusElement(skinBoxRef.value);
 
-            const a = () => {
-              skinHeadFocus.focus();
-            };
-            const b = () => {
-              skinHeadFocus.blur();
-            };
-            if ($tool.isPhone) {
-              $tip({
-                text: SCENE_TIP.lp57,
-                align: "right-top",
-                createFn: a,
-                btnFn: b,
-              });
-            } else {
-              $tip({
-                text: SCENE_TIP.v44s,
-                align: "right-top",
-                createFn: a,
-                btnFn: b,
-              });
-            }
-          }, 3000);
-        });
-      }, 1000);
+          const a = () => {
+            skinHeadFocus.focus();
+          };
+          const b = () => {
+            skinHeadFocus.blur();
+          };
+          if ($tool.isPhone) {
+            $tip({
+              text: SCENE_TIP.lp57,
+              align: "right-top",
+              createFn: a,
+              btnFn: b,
+            });
+          } else {
+            $tip({
+              text: SCENE_TIP.v44s,
+              align: "right-top",
+              createFn: a,
+              btnFn: b,
+            });
+          }
+        }, 3000);
+      });
     }, 1000);
-  }
+  }, 1000);
 });
 
 onUnmounted(() => {

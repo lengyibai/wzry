@@ -21,9 +21,8 @@ const show = ref(false);
 /** 主副技能索引 */
 const deputy_index = ref(0);
 
-/* 当滚动到技能页，播放出场动画 */
+/* 当滚动到技能页，播放入场动画 */
 setScrollFn("skinIcon", (pageName) => {
-  //只有当前页面未加载或者滚动索引为3才会触发
   if (show.value || pageName !== "技能信息") return;
   show.value = true;
 

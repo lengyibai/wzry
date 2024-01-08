@@ -23,11 +23,10 @@ const toggle = ref(false);
 /** 存在技能效果 */
 const exist_effect = computed(() => $props.skill.effect?.length);
 
-/* 当滚动到技能页则显示技能 */
+/* 当滚动到技能页，播放入场动画 */
 $heroDetail.setScrollFn("skillContent", (pageName) => {
-  if (pageName === "技能信息") {
-    show.value = true;
-  }
+  if (show.value || pageName !== "技能信息") return;
+  show.value = true;
 });
 
 /* 选择技能触发 */

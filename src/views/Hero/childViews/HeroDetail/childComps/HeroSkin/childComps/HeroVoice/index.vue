@@ -38,7 +38,7 @@ $heroDetail.setSkinToggleFn((hero_id: number, skin_name: string) => {
     return;
   }
 
-  //如果皮肤语音相同，则不需要播放出场动画
+  //如果皮肤语音相同，则不需要播放入场动画
   if (voices.value[0]?.link === $heroDetail.skin_voice[0]?.link) return;
 
   nextTick(() => {

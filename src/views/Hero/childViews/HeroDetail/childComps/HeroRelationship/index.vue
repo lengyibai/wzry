@@ -11,7 +11,7 @@ const { setScrollFn } = HeroDetailStore();
 
 const show = ref(false);
 
-/* 当滚动到英雄关系页，播放出场动画 */
+/* 当滚动到英雄关系页，播放入场动画 */
 setScrollFn("skinIcon", (pageName) => {
   if (show.value || pageName !== "英雄关系") return;
   show.value = true;

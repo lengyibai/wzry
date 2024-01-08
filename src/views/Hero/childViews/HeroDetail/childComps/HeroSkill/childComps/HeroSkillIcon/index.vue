@@ -29,7 +29,7 @@ const calcActiveSkill = computed(() => {
   return active_skills.value[current_index.value];
 });
 
-/* 当滚动到技能页，播放出场动画 */
+/* 当滚动到技能页，播放入场动画 */
 $heroDetail.setScrollFn("skinIcon", (pageName) => {
   //只有当前页面未加载或者滚动到技能信息才会触发
   if (show.value || pageName !== "技能信息") return;
