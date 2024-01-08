@@ -3,12 +3,12 @@ import { JSON_NAME } from "@/config/modules/json-name";
 
 /** @description 获取版本信息 */
 export const Version = () => {
-  return $LocaleHttp.Get<Global.Version.File>(`/${JSON_NAME.VERSION}.json`);
+  return $LocaleHttp.Get<{ data: Global.Version.File }>(`/${JSON_NAME.VERSION}.json`);
 };
 
 /** @description 获取计划 */
 export const Todo = () => {
-  return $LocaleHttp.Get<{ data: string }>(`/${JSON_NAME.TODO}.json`);
+  return $LocaleHttp.Get<{ data: Global.Todo }>(`/${JSON_NAME.TODO}.json`);
 };
 
 /** @description 获取公告 */

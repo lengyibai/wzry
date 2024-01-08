@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, watch } from "vue";
+import { computed } from "vue";
 
 import { useGetData } from "@/hooks";
 
@@ -7,14 +7,13 @@ const $emit = defineEmits<{
   "update:finish": [v: boolean];
 }>();
 
-const { total, index, type, finish } = useGetData();
+const { total, index, type, getData } = useGetData();
 
 /** 下载进度 */
 const progress = computed(() => ((index.value / total.value) * 100).toFixed(0) + "%");
 
-/* 监听是否完成 */
-watch(finish, (v) => {
-  $emit("update:finish", v);
+getData().then(() => {
+  $emit("update:finish", true);
 });
 </script>
 

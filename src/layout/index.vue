@@ -16,7 +16,7 @@ const $audioStore = AudioStore();
 
 const { status } = storeToRefs(BarrageStore());
 
-useGetData();
+useGetData().getData(true);
 
 const { getVideoLink } = $concise;
 

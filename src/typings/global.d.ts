@@ -145,28 +145,59 @@ declare namespace Global {
   /** @description 版本相关 */
   namespace Version {
     /** @description 更新日志 */
-    interface UpdateLog {
-      /** 基础数据更新 */
-      data: string;
-      /** 语音数据更新 */
-      voice: string;
-      /** 文件更新 */
-      file: string;
-      /** 更新时间 */
-      time: string;
-    }
+    type UpdateLog = Omit<File, "dataVersion" | "distVersion" | "dataKey" | "voiceKey">;
 
     /** @description 更新文件结构 */
     interface File {
-      /** 数据版本 */
-      main: string;
-      /** 文件版本 */
-      file: string;
-      /** 文件更新日志 */
-      log: string;
-      /** 更新时间 */
+      /** 远程数据版本 */
+      dataVersion: string;
+      /** 远程文件版本 */
+      distVersion: string;
+      /** 数据要更新的key */
+      dataKey: string[];
+      /** 语音要更新的key */
+      voiceKey: string[];
+      /** 远程更新时间 */
       time: string;
+      /** 远程数据更新日志 */
+      dataLog: string[];
+      /** 远程语音更新日志 */
+      voiceLog: string[];
+      /** 远程文件更新日志 */
+      distLog: {
+        /** 页面层 */
+        surface: {
+          /** 新增特性 */
+          new: string[];
+          /** 功能优化 */
+          function: string[];
+          /** 样式优化 */
+          style: string[];
+          /** BUG修复 */
+          bug: string[];
+        };
+        /** 代码层 */
+        substrate: string[];
+      };
     }
+  }
+
+  /** @description 网站计划 */
+  interface Todo {
+    /** 页面层 */
+    surface: {
+      /** 大类列表 */
+      label: string;
+      /** 分类列表 */
+      value: {
+        /** 小标题 */
+        title: string;
+        /** 计划 */
+        todo: string;
+      }[];
+    }[];
+    /** 代码层 */
+    substrate: string[];
   }
 
   /** @description 设置配置项 */
@@ -229,9 +260,17 @@ declare namespace Global {
   }
 
   /** @description 基础类型 */
-  interface General<T = string> {
+  interface Basic<T = string> {
     /** 通用id */
     id: number;
+    /** 通用值 */
+    value: T;
+  }
+
+  /** @description 通用类型 */
+  interface General<T = string> {
+    /** 通用名 */
+    label: string;
     /** 通用name */
     value: T;
   }

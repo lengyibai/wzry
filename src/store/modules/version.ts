@@ -1,24 +1,23 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { useUpdateData } from "@/hooks";
-import { $message } from "@/utils";
 import { API_DATA } from "@/api";
 import { LOCAL_KEY } from "@/config/modules/local-key";
+import { useGetData } from "@/hooks/modules/useGetData";
 
 const VersionStore = defineStore("version", () => {
   /** 版本计时器 */
   let version_timer: NodeJS.Timeout;
 
   const ExposeData = {
-    /** 本地版本 */
-    local_version: ref(""),
-    /** 远程版本 */
-    remote_version: ref(""),
+    /** 本地数据版本 */
+    local_data_version: ref(""),
+    /** 远程数据版本 */
+    remote_data_version: ref(""),
     /** 本地文件版本 */
-    local_file: ref(""),
+    local_dist_version: ref(""),
     /** 文件版本 */
-    file_version: ref(""),
+    remote_dist_version: ref(""),
     /** 显示更新公告 */
     show_update: ref(false),
     /** 数据是否需要更新 */
@@ -27,17 +26,25 @@ const VersionStore = defineStore("version", () => {
     file_status: ref(false),
     /** 更新日志汇总 */
     update_log: ref<Global.Version.UpdateLog>({
-      data: "",
-      voice: "",
-      file: "",
       time: "",
+      dataLog: [],
+      voiceLog: [],
+      distLog: {
+        surface: {
+          new: [],
+          function: [],
+          style: [],
+          bug: [],
+        },
+        substrate: [],
+      },
     }),
   };
   const {
-    local_version,
-    remote_version,
-    local_file,
-    file_version,
+    local_data_version,
+    remote_data_version,
+    local_dist_version,
+    remote_dist_version,
     show_update,
     data_status,
     file_status,
@@ -45,37 +52,35 @@ const VersionStore = defineStore("version", () => {
   } = ExposeData;
 
   /** 本地版本 */
-  local_version.value = localStorage.getItem(LOCAL_KEY.VERSION_MAIN) || "";
+  local_data_version.value = localStorage.getItem(LOCAL_KEY.VERSION_DATA) || "";
   /** 文件文件版本 */
-  local_file.value = localStorage.getItem(LOCAL_KEY.VERSION_FILE) || "";
+  local_dist_version.value = localStorage.getItem(LOCAL_KEY.VERSION_DIST) || "";
 
-  /** @description 更新本地版本 */
-  const updateVersion = (v: string) => {
-    localStorage.setItem(LOCAL_KEY.VERSION_MAIN, v);
-    local_version.value = v;
+  /** @description 更新本地数据/文件版本 */
+  const updateVersion = (v: string, type: "DATA" | "DIST") => {
+    if (type === "DATA") {
+      localStorage.setItem(LOCAL_KEY.VERSION_DATA, v);
+      local_data_version.value = v;
+    } else {
+      localStorage.setItem(LOCAL_KEY.VERSION_DIST, v);
+      local_dist_version.value = v;
+    }
   };
 
-  /** @description 更新文件本地版本 */
-  const updateFileVersion = (v: string) => {
-    localStorage.setItem(LOCAL_KEY.VERSION_FILE, v);
-    local_file.value = v;
+  /** @description 用于删除本地存储要更新的key */
+  const removeUpdateKey = (keys: string[]) => {
+    keys.forEach((key) => {
+      localStorage.removeItem(key);
+    });
   };
 
   const ExposeMethods = {
-    /** @description 一键更新所有 */
-    updateAll() {
-      updateVersion(remote_version.value);
-      updateFileVersion(file_version.value);
-      localStorage.setItem(LOCAL_KEY.AUTO_UPDATE_STATUS, "0");
-      location.reload();
-    },
-
     /** @description 控制弹窗显示 */
     setShowLog(v: boolean) {
       show_update.value = v;
     },
 
-    /** @description 实时获取数据版本、文件版本、文件更新日志 */
+    /** @description 实时获取数据版本、文件版本、更新日志 */
     watchVersion() {
       clearTimeout(version_timer);
       version_timer = setTimeout(() => {
@@ -83,49 +88,63 @@ const VersionStore = defineStore("version", () => {
       }, 1000 * 60);
 
       API_DATA.Version().then((res) => {
-        const { main, file, log, time } = res;
-        remote_version.value = main;
-        file_version.value = file;
-        update_log.value.file = log;
-        update_log.value.time = time;
+        const { dataVersion, distVersion, dataKey, voiceKey, dataLog, distLog, time, voiceLog } =
+          res.data;
+        remote_data_version.value = dataVersion;
+        remote_dist_version.value = distVersion;
+        update_log.value = {
+          time,
+          dataLog,
+          voiceLog,
+          distLog,
+        };
 
-        //如果无本地版本，则直接更新，否则比对
-        if (!local_version.value) {
-          updateVersion(main);
+        /* 数据更新 */
+        if (!local_data_version.value) {
+          updateVersion(dataVersion, "DATA");
         } else {
-          const local = Number(local_version.value.replaceAll(".", ""));
-          const remote = Number(main.replaceAll(".", ""));
-          const test = remote - local;
+          const local = Number(local_data_version.value.replaceAll(".", ""));
+          const remote = Number(dataVersion.replaceAll(".", ""));
+          const compare = remote - local;
 
           //如果为旧版，则自动更新并更新本地版本并返回更新改动
-          if (test > 0) {
+          if (compare > 0) {
             clearTimeout(version_timer);
             data_status.value = true;
-            $message("检测到资源更新，正在为您自动更新资源，稍后可查看数据改动，请稍等...");
-            useUpdateData().then((res) => {
-              update_log.value = { ...update_log.value, ...res };
-              show_update.value = true;
-              updateVersion(remote_version.value);
-            });
+            removeUpdateKey([...dataKey, ...voiceKey]);
+
+            useGetData()
+              .getData()
+              .then(() => {
+                show_update.value = true;
+              });
           }
         }
 
-        //如果无本地文件版本，则直接更新，否则比对
-        if (!local_file.value) {
-          updateFileVersion(file);
+        /* 文件更新 */
+        if (!local_dist_version.value) {
+          updateVersion(distVersion, "DIST");
         } else {
-          const local = Number(local_file.value.replaceAll(".", ""));
-          const remote = Number(file.replaceAll(".", ""));
-          const test = remote - local;
+          const local = Number(local_dist_version.value.replaceAll(".", ""));
+          const remote = Number(distVersion.replaceAll(".", ""));
+          const compare = remote - local;
 
           //如果为旧版，则自动更新并更新本地版本
-          if (test > 0 && !data_status.value) {
+          if (compare > 0 && !data_status.value) {
             clearTimeout(version_timer);
             show_update.value = true;
             file_status.value = true;
           }
         }
       });
+    },
+
+    /** @description 更新并重启 */
+    updateAll() {
+      updateVersion(remote_data_version.value, "DATA");
+      updateVersion(remote_dist_version.value, "DIST");
+      localStorage.setItem(LOCAL_KEY.AUTO_UPDATE_STATUS, "0");
+      location.reload();
     },
   };
   const { watchVersion } = ExposeMethods;

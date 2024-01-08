@@ -4,6 +4,7 @@ import { computed } from "vue";
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { VersionStore } from "@/store";
+import { vMouseTip } from "@/directives";
 
 const $versionStore = VersionStore();
 
@@ -36,20 +37,68 @@ const handleClose = () => {
   >
     <div class="main">
       <!-- 页面更新 -->
-      <div v-if="update_log.file" class="content" v-html="update_log.file"></div>
-      <div v-else class="content"><p>暂无</p></div>
-
-      <!-- 基础数据更新 -->
-      <h1>基础数据更新</h1>
+      <h1>页面层</h1>
       <div class="content">
-        <p v-if="update_log.data" v-html="update_log.data"></p>
+        <h2>一、新增特性</h2>
+        <template v-if="update_log.distLog.surface.new.length">
+          <p v-for="(item, index) in update_log.distLog.surface.new" :key="index">
+            {{ index + 1 }}、{{ item }}
+          </p>
+        </template>
+        <p v-else>暂无</p>
+
+        <h2>二、功能优化</h2>
+        <template v-if="update_log.distLog.surface.function.length">
+          <p v-for="(item, index) in update_log.distLog.surface.function" :key="index">
+            {{ index + 1 }}、{{ item }}
+          </p>
+        </template>
+        <p v-else>暂无</p>
+
+        <h2>三、样式优化</h2>
+        <template v-if="update_log.distLog.surface.style.length">
+          <p v-for="(item, index) in update_log.distLog.surface.style" :key="index">
+            {{ index + 1 }}、{{ item }}
+          </p>
+        </template>
+        <p v-else>暂无</p>
+
+        <h2>四、BUG修复</h2>
+        <template v-if="update_log.distLog.surface.bug.length">
+          <p v-for="(item, index) in update_log.distLog.surface.bug" :key="index">
+            {{ index + 1 }}、{{ item }}
+          </p>
+        </template>
+        <p v-else>暂无</p>
+      </div>
+
+      <!-- 页面更新 -->
+      <h1>代码层</h1>
+
+      <div class="content">
+        <template v-if="update_log.distLog.substrate.length">
+          <p v-for="(item, index) in update_log.distLog.substrate" :key="index">
+            {{ index + 1 }}、{{ item }}
+          </p>
+        </template>
+        <p v-else>暂无</p>
+      </div>
+
+      <!-- 数据更新 -->
+      <h1>数据更新</h1>
+      <div class="content">
+        <template v-if="update_log.dataLog.length">
+          <p v-for="(item, index) in update_log.dataLog" :key="index">《{{ item }}》</p>
+        </template>
         <p v-else>暂无</p>
       </div>
 
       <!-- 语音更新 -->
       <h1>语音更新</h1>
       <div class="content">
-        <p v-if="update_log.voice" v-html="update_log.voice"></p>
+        <template v-if="update_log.voiceLog.length">
+          <p v-for="(item, index) in update_log.voiceLog" :key="index">《{{ item }}》</p>
+        </template>
         <p v-else>暂无</p>
       </div>
     </div>

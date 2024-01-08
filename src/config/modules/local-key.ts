@@ -3,9 +3,9 @@ const LOCAL_KEY = {
   /** 版本自动更新状态，为0则下次版本更新时自动刷新浏览器 */
   AUTO_UPDATE_STATUS: "auto_update_status",
   /** 文件版本 */
-  VERSION_FILE: "version_file",
+  VERSION_DIST: "version_dist",
   /** 数据版本 */
-  VERSION_MAIN: "version_main",
+  VERSION_DATA: "version_data",
   /** 设置内的配置 */
   CONFIG: "config",
   /** 多语言 */
