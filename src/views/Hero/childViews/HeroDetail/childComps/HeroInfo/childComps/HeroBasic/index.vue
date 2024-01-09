@@ -24,7 +24,7 @@ watchEffect(() => {
 });
 
 onMounted(() => {
-  //设置按顺序出场的动画
+  //设置按顺序入场的动画
   setTimeout(() => {
     infoRef.value?.forEach((item: HTMLElement, index: number) => {
       item.style.transitionDelay = `${index / 14}s`;

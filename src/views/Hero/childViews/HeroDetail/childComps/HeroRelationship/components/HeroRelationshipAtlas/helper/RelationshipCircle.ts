@@ -30,7 +30,7 @@ const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: HTMLEle
 export class RelationshipCircle {
   /** 在动画过度时禁止点击 */
   private isAnimating: boolean = true;
-  /** 初次加载的出场动画是否已经结束 */
+  /** 初次加载的入场动画是否已经结束 */
   private isFinishEnter: boolean = false;
   /** 监听函数组 */
   private watches: { id: number; fn: () => void }[] = [];
