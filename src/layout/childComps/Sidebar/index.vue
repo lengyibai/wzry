@@ -44,12 +44,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="side-bar" :class="{ collapse: $collapseStore.collapse }">
-    <!-- 游戏logo -->
-    <GameLogo />
+  <transition name="sidebar" appear>
+    <div class="side-bar" :class="{ collapse: $collapseStore.collapse }">
+      <!-- 游戏logo -->
+      <GameLogo />
 
-    <!-- 侧边栏列表 -->
-    <div class="side-item">
+      <!-- 侧边栏列表 -->
       <sideItem
         v-for="route in routes"
         :key="route.path"
@@ -57,17 +57,17 @@ onUnmounted(() => {
         :coord="top"
         @coord="onCoord"
       />
-    </div>
 
-    <!-- 滑块 -->
-    <div
-      class="slider"
-      :style="{
-        top: top + 'px',
-        opacity: show_slider ? 1 : 0,
-      }"
-    ></div>
-  </div>
+      <!-- 滑块 -->
+      <div
+        class="slider"
+        :style="{
+          top: top + 'px',
+          opacity: show_slider ? 1 : 0,
+        }"
+      ></div>
+    </div>
+  </transition>
 </template>
 
 <style scoped lang="less">

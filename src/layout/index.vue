@@ -55,27 +55,21 @@ onMounted(async () => {
     </teleport>
 
     <!-- 侧边栏 -->
-    <transition name="sidebar">
-      <Sidebar v-if="show_sidebar" />
-    </transition>
+    <Sidebar v-if="show_sidebar" />
 
     <!-- 右侧主体 -->
-    <div class="layout__container">
+    <div class="layout-container">
       <!-- 导航栏 -->
-      <transition name="navbar">
-        <Navbar v-if="show_navbar" />
-      </transition>
+      <Navbar v-if="show_navbar" />
 
       <!-- 主页面 -->
-      <transition name="app-main">
-        <AppMain v-if="show_app_main" />
-      </transition>
+      <AppMain v-if="show_app_main" />
 
       <!-- 底部导航栏 -->
-      <transition name="foot-bar">
-        <Footbar v-if="show_foot_bar" />
-      </transition>
+      <Footbar v-if="show_foot_bar" />
     </div>
+
+    <!-- 视频背景 -->
     <KVideo :link="getVideoLink('bg')" />
   </div>
 </template>

@@ -155,9 +155,7 @@ onDeactivated(() => {
     </div>
 
     <!--右侧职业分类侧边栏-->
-    <transition name="sidebar" appear>
-      <FilterSidebar type="skin" @change="onSidebarChange" />
-    </transition>
+    <FilterSidebar type="skin" @change="onSidebarChange" />
   </div>
 </template>
 

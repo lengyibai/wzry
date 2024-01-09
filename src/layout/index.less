@@ -5,62 +5,11 @@
   width: 100%;
   height: 100%;
 
-  &__container {
+  &-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     min-width: 0;
     height: 100%;
   }
-
-  &__bg {
-    .global_fill-container();
-
-    z-index: -1;
-    object-fit: cover;
-  }
-}
-
-.navbar-leave-active,
-.navbar-enter-active,
-.foot-bar-leave-active,
-.foot-bar-enter-active,
-.app-main-leave-active,
-.app-main-enter-active {
-  transition: all 0.5s;
-}
-
-/* 侧边栏动画 */
-.sidebar-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-/* 顶部栏动画 */
-.navbar-enter-from {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-.navbar-leave-to {
-  opacity: 0;
-}
-
-/* 底部栏动画 */
-.foot-bar-enter-from {
-  transform: translateY(100%);
-  opacity: 0;
-}
-
-.foot-bar-leave-to {
-  opacity: 0;
-}
-
-/* 路由视图动画 */
-.app-main-enter-from {
-  opacity: 0;
-}
-
-.app-main-leave-to {
-  opacity: 0;
 }

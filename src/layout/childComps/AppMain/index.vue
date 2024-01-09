@@ -7,13 +7,15 @@ const onComponentMounted = () => {
 </script>
 
 <template>
-  <div class="app-main">
-    <router-view v-slot="{ Component }">
-      <KeepAlive include="Hero,Skin,Savor,Equip,Epigraph,Add,Database">
-        <component :is="Component" @vue:mounted="onComponentMounted" />
-      </KeepAlive>
-    </router-view>
-  </div>
+  <transition name="app-main" appear>
+    <div class="app-main">
+      <router-view v-slot="{ Component }">
+        <KeepAlive include="Hero,Skin,Savor,Equip,Epigraph,Add,Database">
+          <component :is="Component" @vue:mounted="onComponentMounted" />
+        </KeepAlive>
+      </router-view>
+    </div>
+  </transition>
 </template>
 
 <style scoped>

@@ -8,19 +8,21 @@ import { $tool } from "@/utils";
 
 <template>
   <!-- 导航栏 -->
-  <div class="navbar border-1">
-    <!-- 折叠按钮 -->
-    <PackUp />
+  <transition name="navbar" appear>
+    <div class="navbar border-1">
+      <!-- 折叠按钮 -->
+      <PackUp />
 
-    <div class="navbar__right">
-      <span class="timeGreet">{{ $t($tool.timeGreet()) }}</span>
-      <!-- 用户菜单 -->
-      <UserMenu />
+      <div class="navbar__right">
+        <span class="timeGreet">{{ $t($tool.timeGreet()) }}</span>
+        <!-- 用户菜单 -->
+        <UserMenu />
 
-      <!-- 图标按钮 -->
-      <BtnIcon />
+        <!-- 图标按钮 -->
+        <BtnIcon />
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <style lang="less" scoped>

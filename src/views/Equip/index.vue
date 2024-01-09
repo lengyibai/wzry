@@ -44,9 +44,7 @@ onActivated(() => {
     </transition>
 
     <!-- 装备侧边栏 -->
-    <transition name="sidebar" appear>
-      <FilterSidebar type="equip" @change="onChangeFilter" />
-    </transition>
+    <FilterSidebar type="equip" @change="onChangeFilter" />
   </div>
 </template>
 

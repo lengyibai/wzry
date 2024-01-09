@@ -197,9 +197,7 @@ onDeactivated(() => {
     </div>
 
     <!--右侧英雄职业分类侧边栏-->
-    <transition name="sidebar" appear>
-      <FilterSidebar type="hero" @change="onSidebarChange" />
-    </transition>
+    <FilterSidebar type="hero" @change="onSidebarChange" />
 
     <!--英雄详情页-->
     <teleport to="body">

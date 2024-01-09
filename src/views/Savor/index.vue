@@ -171,9 +171,7 @@ onDeactivated(() => {
     </div>
 
     <!--右侧职业分类侧边栏-->
-    <transition name="sidebar" appear>
-      <FilterSidebar type="atlas" @change="onSidebarChange" />
-    </transition>
+    <FilterSidebar type="atlas" @change="onSidebarChange" />
   </div>
 </template>
 

@@ -93,30 +93,32 @@ watch(filter_type, (v) => {
 </script>
 
 <template>
-  <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
-    <div
-      v-for="(item, index) in list"
-      :key="index"
-      v-mouse-tip="{
-        text: '分类：' + item.name,
-      }"
-      class="filter-type"
-      :class="{ active: item.name === filter_type }"
-      @click="handleSelect(item.name), handleCoord($event)"
-    >
-      <i class="iconfont" :class="item.icon" />
-      <span class="name">{{ $t(item.name) }}</span>
-    </div>
+  <transition name="sidebar" appear>
+    <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        v-mouse-tip="{
+          text: '分类：' + item.name,
+        }"
+        class="filter-type"
+        :class="{ active: item.name === filter_type }"
+        @click="handleSelect(item.name), handleCoord($event)"
+      >
+        <i class="iconfont" :class="item.icon" />
+        <span class="name">{{ $t(item.name) }}</span>
+      </div>
 
-    <!-- 滑块 -->
-    <div
-      v-show="!$collapseStore.collapse"
-      class="slider"
-      :style="{
-        top: top + 'px',
-      }"
-    ></div>
-  </div>
+      <!-- 滑块 -->
+      <div
+        v-show="!$collapseStore.collapse"
+        class="slider"
+        :style="{
+          top: top + 'px',
+        }"
+      ></div>
+    </div>
+  </transition>
 </template>
 
 <style scoped lang="less">

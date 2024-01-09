@@ -92,37 +92,39 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    ref="footbarRef"
-    v-particle="{
-      color: '#2e5283',
-      size: 10,
-      enable: $settingStore.config.particle,
-    }"
-    class="foot-bar"
-    @click="handleSetProgress"
-    @mouseenter="handleShowTool(true)"
-    @mousemove="handleMoveLineRef"
-    @mouseleave="handleShowTool(false)"
-  >
-    <!-- 底部竖线 -->
-    <div v-if="enable_music && music_progress" ref="lineRef" class="line"></div>
+  <transition name="foot-bar" appear>
+    <div
+      ref="footbarRef"
+      v-particle="{
+        color: '#2e5283',
+        size: 10,
+        enable: $settingStore.config.particle,
+      }"
+      class="foot-bar"
+      @click="handleSetProgress"
+      @mouseenter="handleShowTool(true)"
+      @mousemove="handleMoveLineRef"
+      @mouseleave="handleShowTool(false)"
+    >
+      <!-- 底部竖线 -->
+      <div v-if="enable_music && music_progress" ref="lineRef" class="line"></div>
 
-    <!-- 音乐播放器 -->
-    <MusicPlay v-if="enable_music" />
+      <!-- 音乐播放器 -->
+      <MusicPlay v-if="enable_music" />
 
-    <!-- 左侧时间 -->
-    <Time v-show="!$deviceStore.vertical" />
+      <!-- 左侧时间 -->
+      <Time v-show="!$deviceStore.vertical" />
 
-    <!-- 音乐工具栏 -->
-    <MusicTool v-show="enable_music" @toggle="onMusicTool" />
+      <!-- 音乐工具栏 -->
+      <MusicTool v-show="enable_music" @toggle="onMusicTool" />
 
-    <!-- 右侧作者 -->
-    <Copyright v-show="!$deviceStore.vertical" />
+      <!-- 右侧作者 -->
+      <Copyright v-show="!$deviceStore.vertical" />
 
-    <!-- 音频可视化 -->
-    <canvas ref="canvasRef"></canvas>
-  </div>
+      <!-- 音频可视化 -->
+      <canvas ref="canvasRef"></canvas>
+    </div>
+  </transition>
 </template>
 
 <style lang="less" scoped>
