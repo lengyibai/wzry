@@ -1,55 +1,20 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from "vue";
-import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 import HeroTitle from "./childComps/HeroTitle/index.vue";
 import HeroBasic from "./childComps/HeroBasic/index.vue";
 import HeroAttributes from "./childComps/HeroAttributes/index.vue";
 import HeroResume from "./childComps/HeroResume/index.vue";
 
-import { HeroDetailStore } from "@/store";
-import { $tip, $tool } from "@/utils";
 import { KScrollTip } from "@/components/business";
+import { useResponsive } from "@/hooks";
+
+const { under_1200 } = useResponsive();
 
 const downRef = ref<InstanceType<typeof KScrollTip>>();
 
 /** 控制页面元素显示 */
 const into = ref(true);
-/** 响应式1200px */
-const responsive_1200 = ref(false);
-/** 响应式640px */
-const responsive_640 = ref(false);
-
-onMounted(() => {
-  //设置按顺序出场的动画
-  // setTimeout(async () => {
-  //   into.value = true;
-  //   await nextTick();
-  //   setTimeout(() => {
-  //     if (!relationshipRef.value?.el) return;
-  //     const focusRelationship = new $tool.FocusElement(relationshipRef.value.el);
-  //     //显示完滚动提示后显示关系提示
-  //     $tip({
-  //       text: "05su",
-  //       align: "right-bottom",
-  //       createFn: () => {
-  //         focusRelationship.focus();
-  //       },
-  //       btnFn: () => {
-  //         focusRelationship.blur();
-  //       },
-  //     });
-  //   }, 1000);
-  // }, 1000);
-});
-
-const fn = () => {
-  responsive_1200.value = innerWidth < 1200;
-  responsive_640.value = innerWidth < 640;
-};
-fn();
-window.addEventListener("resize", fn);
 </script>
 
 <template>
@@ -58,7 +23,7 @@ window.addEventListener("resize", fn);
     <HeroTitle :class="{ show: !into }" />
 
     <div class="content">
-      <div v-if="responsive_1200" class="left">
+      <div v-if="under_1200" class="left">
         <HeroBasic />
         <HeroResume />
       </div>
