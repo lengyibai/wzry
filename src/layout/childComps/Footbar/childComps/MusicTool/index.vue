@@ -19,7 +19,7 @@ const $deviceStore = DeviceStore();
 const musicToolRef = ref<HTMLElement>();
 
 nextTick(() => {
-  if ($tool.isPhone || !$settingStore.config.music || !musicToolRef.value) return;
+  if (!$settingStore.config.music || !musicToolRef.value) return;
   const musicToolFocus = new $tool.FocusElement(musicToolRef.value);
   $tip({
     text: SCENE_TIP.d7o5,
