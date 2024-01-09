@@ -70,6 +70,7 @@ const useTip = () => {
         list.push(config);
         return;
       }
+      queue = true;
 
       const {
         text,
@@ -93,7 +94,6 @@ const useTip = () => {
       }
 
       /* 推送Tip */
-      queue = true;
       btnFn = _btnFn;
       align.value = _align;
       btn_text.value = btnText;
