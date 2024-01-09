@@ -1,5 +1,5 @@
 /**
- * v-delayHide
+ * v-delay-hide
  * 鼠标离开元素延迟隐藏
  */
 import type { Directive } from "vue";

@@ -53,8 +53,8 @@ const handleViewClick = () => {
 
 <template>
   <div
-    v-maskGradient
-    v-sweepLight
+    v-mask-gradient
+    v-sweep-light
     v-mouse-tip="{
       text: MOUSE_TIP.kr17,
     }"
@@ -80,7 +80,7 @@ const handleViewClick = () => {
           @click="handleViewClick"
           @load="finish = true"
         />
-        <button v-textHoverColor class="view" @click="handleViewClick">点击此处</button>
+        <button v-text-hover-color class="view" @click="handleViewClick">点击此处</button>
       </div>
     </transition>
 

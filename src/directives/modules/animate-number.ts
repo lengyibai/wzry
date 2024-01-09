@@ -1,5 +1,5 @@
 /**
- * v-animateNumber
+ * v-animate-number
  * 数字滚动
  */
 import type { Directive, DirectiveBinding } from "vue";

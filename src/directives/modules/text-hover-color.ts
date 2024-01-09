@@ -1,5 +1,5 @@
 /**
- * v-textHoverColor
+ * v-text-hover-color
  * 底部渐变
  */
 import type { Directive } from "vue";

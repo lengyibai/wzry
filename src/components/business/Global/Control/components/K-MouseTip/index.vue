@@ -186,7 +186,7 @@ onMounted(() => {
           >
             <span
               v-if="tip && show_tip"
-              v-typewriterMultiple="{
+              v-typewriter-multiple="{
                 delay: 250,
                 speed: 50,
                 content: tip,

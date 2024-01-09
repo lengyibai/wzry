@@ -10,7 +10,7 @@ defineProps<Props>();
 
 <template>
   <div
-    v-maskGradient="{
+    v-mask-gradient="{
       color: 'rgb(62 123 194)',
       start: '-50%',
       end: '50%',
@@ -18,7 +18,7 @@ defineProps<Props>();
     }"
     class="epigraph-card"
   >
-    <img v-blurLoad="data.img" :src="data.imgBlur" alt="" />
+    <img v-blur-load="data.img" :src="data.imgBlur" alt="" />
     <div class="box">
       <div class="name">5级铭文:{{ data.name }}</div>
       <div class="attr">

@@ -48,7 +48,7 @@ const handleDetail = () => {
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="iconRef" v-blurLoad="equip.icon" :src="equip.iconBlur" alt="" />
+    <img ref="iconRef" v-blur-load="equip.icon" :src="equip.iconBlur" alt="" />
 
     <!-- 左线 -->
     <transition name="left-line">
@@ -69,7 +69,7 @@ const handleDetail = () => {
         </div>
         <div
           ref="priceRef"
-          v-animateNumber="{
+          v-animate-number="{
             num: equip.price,
           }"
           class="price"

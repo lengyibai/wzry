@@ -26,7 +26,7 @@ const handleView = (e: Event) => {
 
 <template>
   <div
-    v-maskGradient
+    v-mask-gradient
     v-mouse-tip="{
       text: MOUSE_TIP.mv02,
     }"

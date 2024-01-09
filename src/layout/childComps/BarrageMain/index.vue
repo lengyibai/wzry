@@ -83,7 +83,7 @@ setTimeout(() => {
             </div>
             <div class="voice-text">——{{ barrage_info.voiceText }}</div>
             <img
-              v-blurLoad="barrage_info.skinPoster"
+              v-blur-load="barrage_info.skinPoster"
               v-mouse-tip="{
                 text: MOUSE_TIP.o12u,
               }"

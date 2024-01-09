@@ -80,7 +80,7 @@ const onCloseConfirmEditInfo = () => {
 
 <template>
   <div
-    v-delayHide="{
+    v-delay-hide="{
       enter: handleEnter,
       leave: handleLeave,
     }"

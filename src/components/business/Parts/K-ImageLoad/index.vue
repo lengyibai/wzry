@@ -34,7 +34,7 @@ const onImageError = () => {
 <template>
   <div class="k-image-load">
     <img
-      v-blurLoad="{
+      v-blur-load="{
         link: bigImg,
         finish: onImageLoad,
         error: onImageError,

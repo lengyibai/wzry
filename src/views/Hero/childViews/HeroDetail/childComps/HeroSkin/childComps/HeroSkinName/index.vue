@@ -11,7 +11,7 @@ defineProps<Props>();
 <template>
   <div class="hero-skin-name">
     <!-- 用于触发打字机 -->
-    <div v-typewriterSingle class="skin-name" v-html="name"></div>
+    <div v-typewriter-single class="skin-name" v-html="name"></div>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 /**
- * v-sweepLight
+ * v-sweep-light
  * 卡片扫光
  */
 import type { Directive } from "vue";

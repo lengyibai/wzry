@@ -1,5 +1,5 @@
 /**
- * v-blurLoad
+ * v-blur-load
  * 模糊加载图片
  */
 import type { Directive, DirectiveBinding } from "vue";

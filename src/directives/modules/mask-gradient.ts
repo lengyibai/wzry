@@ -1,5 +1,5 @@
 /**
- * v-maskGradient
+ * v-mask-gradient
  * 底部渐变
  */
 import type { Directive } from "vue";

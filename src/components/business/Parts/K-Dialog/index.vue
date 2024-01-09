@@ -79,7 +79,7 @@ defineExpose({
   <transition name="fade" appear>
     <div
       v-show="show_mask"
-      v-maskGradient="{
+      v-mask-gradient="{
         color: 'rgba(40, 100, 195, 0.5)',
         start: '0%',
         end: '50%',

@@ -32,7 +32,7 @@ const handleView = (e: Event, v: string[]) => {
       <img
         v-for="(item, index) in imgs"
         :key="index"
-        v-blurLoad="item[0]"
+        v-blur-load="item[0]"
         v-mouse-tip="{
           text: MOUSE_TIP.zq77,
         }"
