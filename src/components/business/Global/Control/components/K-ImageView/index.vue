@@ -2,6 +2,8 @@
 import { ref } from "vue";
 
 import { ScaleFLIPImage } from "./helper/ImageView";
+import VerticalScreen from "./components/VerticalScreen/index.vue";
+import LandscapeScreen from "./components/LandscapeScreen/index.vue";
 
 import { $bus, $tool } from "@/utils";
 import type { ImageViewParams } from "@/utils/modules/imageView";
@@ -10,8 +12,11 @@ import { getImgLink } from "@/utils/modules/concise";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
+import { useResponsive } from "@/hooks";
 
 const $audioStore = AudioStore();
+
+const { under_960 } = useResponsive();
 
 let scaleFLIPImage: ScaleFLIPImage;
 
@@ -104,62 +109,27 @@ const handleDownload = () => {
           ></div>
         </transition>
 
-        <transition v-if="info?.type === 'HERO'" name="sidebar">
-          <div v-if="show" class="sidebar">
-            <transition name="card" appear>
-              <div class="img-info">
-                <div class="head-card">
-                  <img :src="info?.heroAvatar" alt="" class="avatar" />
-                  <div class="info">
-                    <div class="hero-name">{{ info?.heroName }}</div>
-                    <div class="skin-name">{{ info?.skinName }}</div>
-                  </div>
-                </div>
-                <div class="btn">
-                  <KButton
-                    v-mouse-tip="{
-                      text: MOUSE_TIP.vs71,
-                    }"
-                    type="warning"
-                    @click="handleDownload"
-                  >
-                    下载原图
-                  </KButton>
-                </div>
-              </div>
-            </transition>
+        <!-- 下载图片或查看语音 -->
+        <template v-if="show && info?.type === 'HERO'">
+          <VerticalScreen
+            v-if="under_960"
+            :current-index="current_index"
+            :data="info"
+            :duration="duration"
+            @play="handlePlay"
+            @download="handleDownload"
+          />
+          <LandscapeScreen
+            v-else
+            :current-index="current_index"
+            :data="info"
+            :duration="duration"
+            @play="handlePlay"
+            @download="handleDownload"
+          />
+        </template>
 
-            <transition name="fade" appear>
-              <div class="title">语音列表</div>
-            </transition>
-
-            <transition name="voice" appear>
-              <div class="voice-list">
-                <div
-                  v-for="(item, index) in info?.voices"
-                  :key="index"
-                  v-mouse-tip="{
-                    text: MOUSE_TIP.lq42,
-                  }"
-                  :class="{
-                    active: current_index === index,
-                  }"
-                  class="voice"
-                  @click="handlePlay(item.link, index)"
-                >
-                  <KMarquee
-                    height="3.125rem"
-                    :playing="current_index === index"
-                    :duration="duration"
-                  >
-                    {{ item.text }}
-                  </KMarquee>
-                </div>
-              </div>
-            </transition>
-          </div>
-        </transition>
-
+        <!-- 底部工具栏 -->
         <transition name="tool">
           <div v-show="show" class="tool">
             <i

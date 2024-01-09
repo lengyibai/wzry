@@ -1,6 +1,7 @@
 .k-image-view {
   .global_fill-container();
 
+  z-index: var(--z-index-view-img);
   display: flex;
   flex-direction: column;
   background-color: var(--black-75);
@@ -71,102 +72,6 @@
     left: 0.625rem;
   }
 
-  .sidebar {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1rem 0 0 1rem;
-    background-color: var(--black-75);
-    backdrop-filter: blur(0.625rem);
-    border-left: 1px solid var(--white-10);
-
-    .img-info {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 2rem;
-
-      .head-card {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1.5rem;
-
-        .avatar {
-          width: 6.25rem;
-          height: 6.25rem;
-          margin-right: 1rem;
-          border-radius: 50%;
-        }
-
-        .info {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-
-          .hero-name {
-            margin-bottom: 0.5rem;
-            font-size: 2.25rem;
-            text-shadow: var(--t-shadow-f);
-          }
-
-          .skin-name {
-            color: var(--white-50);
-            font-size: 1.5rem;
-            text-shadow: var(--t-shadow-f);
-          }
-        }
-      }
-
-      .btn {
-        display: flex;
-        justify-content: center;
-      }
-    }
-
-    .title {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-      transition: 0.5s 0.5s;
-    }
-
-    .voice-list {
-      .global_scroll-white();
-
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      overflow: auto;
-      width: 21.875rem;
-      padding-right: 1rem;
-
-      .voice {
-        flex-shrink: 0;
-        width: 100%;
-        padding: 0 1rem;
-        border-radius: 0.3125rem;
-        font-size: 1.25rem;
-        text-align: center;
-
-        &.active {
-          color: var(--blue);
-          text-shadow: var(--shine-10), var(--shine-20);
-        }
-
-        &:hover {
-          color: var(--blue);
-          background-color: var(--white-25);
-        }
-
-        &:active {
-          background-color: var(--white-10);
-        }
-      }
-    }
-  }
-
   .tool {
     position: absolute;
     left: 50%;
@@ -190,36 +95,28 @@
         margin-right: 2rem;
       }
     }
+
+    @media screen and (max-width: 960px) {
+      left: 100%;
+      transform: translateX(calc(-100% - 1rem));
+    }
   }
 }
 
-.sidebar-enter-active,
-.tool-enter-active,
-.close-enter-active {
-  transition: 0.5s 0.5s !important;
-}
-
-.sidebar-enter-from {
-  transform: translateX(100%);
-}
-
-.tool-enter-from {
-  transform: translateX(-50%) translateY(calc(100% + 1rem)) !important;
-}
-
+/* 左上角关闭 */
 .close-enter-from {
   transform: translateX(calc(-100% - 0.625rem));
 }
 
-.voice-enter-active,
-.card-enter-active {
-  transition: 0.5s 0.75s;
+.close-enter-active {
+  transition: all 0.5s 0.5s;
 }
 
-.voice-enter-from {
-  transform: translateX(100%);
+/* 底部工具栏 */
+.tool-enter-from {
+  transform: translateX(-50%) translateY(calc(100% + 1rem)) !important;
 }
 
-.card-enter-from {
-  transform: translateY(-100%);
+.tool-enter-active {
+  transition: all 0.5s 0.5s;
 }

@@ -1,0 +1,125 @@
+.phone_voice-sidebar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 18.75rem;
+  padding: 1.5rem 1rem;
+  background-color: var(--black-75);
+  border-top-right-radius: 0.9375rem;
+  backdrop-filter: blur(0.625rem);
+  border-top: 1px solid var(--white-10);
+  border-right: 1px solid var(--white-10);
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    transition: 0.5s 0.5s;
+  }
+
+  .voice-list {
+    .global_scroll-white();
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: auto;
+    width: 100%;
+    padding-right: 1rem;
+
+    .voice {
+      flex-shrink: 0;
+      width: 100%;
+      padding: 0 1rem;
+      border-radius: 0.3125rem;
+      font-size: 1.25rem;
+      text-align: center;
+
+      &.active {
+        color: var(--blue);
+        text-shadow: var(--shine-10), var(--shine-20);
+      }
+
+      &:hover {
+        color: var(--blue);
+        background-color: var(--white-25);
+      }
+
+      &:active {
+        background-color: var(--white-10);
+      }
+    }
+  }
+}
+
+.phone_img-info {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  border-bottom-left-radius: 0.9375rem;
+  background-color: var(--black-75);
+  backdrop-filter: blur(0.625rem);
+  border-left: 1px solid var(--white-10);
+  border-bottom: 1px solid var(--white-10);
+
+  .head-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .avatar {
+      width: 6.25rem;
+      height: 6.25rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+    }
+
+    .info {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      .hero-name {
+        margin-bottom: 0.5rem;
+        font-size: 2.25rem;
+        text-shadow: var(--t-shadow-f);
+      }
+
+      .skin-name {
+        color: var(--white-50);
+        font-size: 1.5rem;
+        text-shadow: var(--t-shadow-f);
+      }
+    }
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* 右上角卡片 */
+.phone-card-enter-from {
+  transform: translate(100%, -100%);
+}
+
+.phone-card-enter-active {
+  transition: all 0.5s 0.75s;
+}
+
+/* 左下角语音列表 */
+.phone-voice-enter-from {
+  transform: translateY(100%);
+}
+
+.phone-voice-enter-active {
+  transition: all 0.5s 1s;
+}
