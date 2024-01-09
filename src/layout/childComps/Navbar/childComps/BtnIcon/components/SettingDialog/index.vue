@@ -109,11 +109,11 @@ const onTip = (v: boolean) => {
 
 /* 恢复所有小贴士 */
 const handleResetTip = () => {
-  $settingStore.restoreTip();
   $tip({
     btnText: "立刻刷新",
-    text: "已恢复所有小贴士，由于当前页面存在两个小贴士，所以需要刷新浏览器才会生效。",
+    text: "恢复小贴士需要刷新浏览器才会生效。",
     btnFn: () => {
+      $settingStore.restoreTip();
       location.reload();
     },
   });
