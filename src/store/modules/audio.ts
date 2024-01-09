@@ -61,6 +61,12 @@ const AudioStore = defineStore("audio", () => {
   }, 50);
 
   const ExposeMethods = {
+    /** @description 预加载所有音效 */
+    preload() {
+      Object.values(sound_type).forEach((v) => {
+        new Audio(getAudioLink(v)).preload = "auto";
+      });
+    },
     /**
      * @description: 调用播放
      * @param name 音效名
