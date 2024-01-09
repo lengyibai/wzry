@@ -3,10 +3,11 @@ import { nextTick, ref, watch } from "vue";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { useBarrages } from "./hooks/useBarrages";
+import { vDrag } from "./directives/drag";
 
 import { BarrageStore } from "@/store";
 import { $imageView, $tip, $tool } from "@/utils";
-import { vBlurLoad, vDownDrag, vMouseTip } from "@/directives";
+import { vBlurLoad, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
 const $barrageStore = BarrageStore();
@@ -56,7 +57,15 @@ setTimeout(() => {
   <div ref="barragesRef" class="barrage-main">
     <teleport to="body">
       <transition name="fade">
-        <div v-show="show_card" ref="barrageInfoRef" v-down-drag class="barrage-info">
+        <div
+          v-show="show_card"
+          ref="barrageInfoRef"
+          v-drag
+          v-mouse-tip="{
+            text: MOUSE_TIP.wj32,
+          }"
+          class="barrage-info"
+        >
           <template v-if="barrage_info">
             <i
               v-mouse-tip="{

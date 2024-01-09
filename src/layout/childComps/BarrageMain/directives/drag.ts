@@ -14,7 +14,7 @@ interface ElType extends HTMLElement {
   _mouseUp: (e: MouseEvent | TouchEvent) => void;
 }
 
-const vDownDrag: Directive<ElType> = {
+const vDrag: Directive<ElType> = {
   mounted(el) {
     const dragData = {
       isDragging: false,
@@ -63,8 +63,8 @@ const vDownDrag: Directive<ElType> = {
       const top = dragData.top + offsetY;
 
       // 获取屏幕尺寸
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
+      const screenWidth = innerWidth;
+      const screenHeight = innerHeight;
 
       // 计算元素最大可移动范围
       const maxLeft = screenWidth - el.offsetWidth;
@@ -90,26 +90,26 @@ const vDownDrag: Directive<ElType> = {
     el._mouseUp = handleMouseUp;
 
     // 监听鼠标事件
-    window.addEventListener("mousedown", el._mouseDown);
-    window.addEventListener("mousemove", el._mouseMove);
-    window.addEventListener("mouseup", el._mouseUp);
+    el.addEventListener("mousedown", el._mouseDown);
+    el.addEventListener("mousemove", el._mouseMove);
+    el.addEventListener("mouseup", el._mouseUp);
 
     // 监听触摸事件
-    window.addEventListener("touchstart", el._mouseDown);
-    window.addEventListener("touchmove", el._mouseMove);
-    window.addEventListener("touchend", el._mouseUp);
+    el.addEventListener("touchstart", el._mouseDown);
+    el.addEventListener("touchmove", el._mouseMove);
+    el.addEventListener("touchend", el._mouseUp);
   },
   unmounted(el) {
     // 移除鼠标事件
-    window.removeEventListener("mousedown", el._mouseDown);
-    window.removeEventListener("mousemove", el._mouseMove);
-    window.removeEventListener("mouseup", el._mouseUp);
+    el.removeEventListener("mousedown", el._mouseDown);
+    el.removeEventListener("mousemove", el._mouseMove);
+    el.removeEventListener("mouseup", el._mouseUp);
 
     // 移除触摸事件
-    window.removeEventListener("touchstart", el._mouseDown);
-    window.removeEventListener("touchmove", el._mouseMove);
-    window.removeEventListener("touchend", el._mouseUp);
+    el.removeEventListener("touchstart", el._mouseDown);
+    el.removeEventListener("touchmove", el._mouseMove);
+    el.removeEventListener("touchend", el._mouseUp);
   },
 };
 
-export { vDownDrag };
+export { vDrag };

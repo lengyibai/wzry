@@ -1,7 +1,6 @@
 export * from "./modules/animateNumber";
 export * from "./modules/blurLoad";
 export * from "./modules/delayHide";
-export * from "./modules/downDrag";
 export * from "./modules/drag";
 export * from "./modules/focus";
 export * from "./modules/maskGradient";
