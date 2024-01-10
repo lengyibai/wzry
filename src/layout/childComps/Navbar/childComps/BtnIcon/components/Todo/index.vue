@@ -7,20 +7,33 @@ import { API_DATA } from "@/api";
 
 const $audioStore = AudioStore();
 
+const loading = ref(true);
 const todo = ref<Global.Todo>({
   surface: [],
   substrate: [],
 });
 
-API_DATA.Todo().then((res) => {
-  todo.value = res.data;
-});
+API_DATA.Todo()
+  .then((res) => {
+    todo.value = res.data;
+  })
+  .finally(() => {
+    loading.value = false;
+  });
 
 $audioStore.play("kj62");
 </script>
 
 <template>
-  <KDialog :audio="false" v-bind="$attrs" width="56.25rem" header="网站计划清单" up>
+  <KDialog
+    :audio="false"
+    :loading="loading"
+    v-bind="$attrs"
+    width="56.25rem"
+    header="网站计划清单"
+    up
+    @close="loading = true"
+  >
     <div class="todo">
       <div class="content">
         <h1>页面层</h1>

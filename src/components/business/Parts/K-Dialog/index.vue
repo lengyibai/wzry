@@ -5,6 +5,7 @@ import { $concise } from "@/utils";
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
+import { KLoadingIcon } from "@/components/business";
 
 interface Props {
   /** 垂直对齐方式 */
@@ -29,6 +30,8 @@ interface Props {
   autoClose?: boolean;
   /** 是否启用弹出音效 */
   audio?: boolean;
+  /** 是否处于loading状态 */
+  loading?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -39,6 +42,7 @@ const $props = withDefaults(defineProps<Props>(), {
   autoClose: true,
   audio: true,
   width: "45rem",
+  loading: false,
 });
 const $emit = defineEmits<{
   close: [];
@@ -123,7 +127,10 @@ defineExpose({
               justifyContent: align,
             }"
           >
-            <slot></slot>
+            <transition-group name="fade">
+              <KLoadingIcon v-if="loading" key="a" width="6.25rem" />
+              <slot v-else key="b"></slot>
+            </transition-group>
           </div>
         </div>
       </transition>
