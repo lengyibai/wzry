@@ -4,8 +4,6 @@
  */
 import type { Directive } from "vue";
 
-import { $tool } from "@/utils";
-
 interface ElType extends HTMLElement {
   /** 上一次的状态 */
   _last_status: boolean;
