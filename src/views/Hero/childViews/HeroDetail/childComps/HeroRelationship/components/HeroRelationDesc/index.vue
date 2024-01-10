@@ -4,14 +4,14 @@ import { ref } from "vue";
 
 import { HeroDetailStore } from "@/store";
 
-const { hero_info, relation_info } = storeToRefs(HeroDetailStore());
+const $heroDetailStore = HeroDetailStore();
 
-const { setScrollFn } = HeroDetailStore();
+const { hero_info, relation_info } = storeToRefs($heroDetailStore);
 
 const show = ref(false);
 
 /* 当滚动到英雄关系页，播放入场动画 */
-setScrollFn("skinIcon", (pageName) => {
+$heroDetailStore.setScrollFn("skinIcon", (pageName) => {
   if (show.value || pageName !== "英雄关系") return;
   show.value = true;
 });

@@ -25,8 +25,9 @@ const $route = useRoute();
 const $router = useRouter();
 const $audioStore = AudioStore();
 const $heroDetail = HeroDetailStore();
-const { getHeroList, setScroll, loadMore } = HeroStore();
-const { all_data, scroll, show_list, finish, loading } = storeToRefs(HeroStore());
+const $heroStore = HeroStore();
+
+const { all_data, scroll, show_list, finish, loading } = storeToRefs($heroStore);
 
 const { page_count } = usePagingLoad();
 
@@ -102,13 +103,13 @@ if (all_data.value.length === 0) {
   if (id) {
     onViewClick(Number(id));
   } else {
-    getHeroList();
+    $heroStore.getHeroList();
   }
 }
 
 /* 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
+  $heroStore.setScroll(v);
   back_top.value = v > 250;
 }, 250);
 
@@ -177,7 +178,7 @@ onDeactivated(() => {
         gap="1.5625rem"
         :count="count"
         @scroll="debounceScroll"
-        @load-more="loadMore"
+        @load-more="$heroStore.loadMore"
       >
         <transition-group name="card" appear>
           <div

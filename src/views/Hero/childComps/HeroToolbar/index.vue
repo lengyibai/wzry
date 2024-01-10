@@ -13,9 +13,9 @@ const $emit = defineEmits<{
   search: [];
 }>();
 
-const { filterGender, filterCamp, filterAttr, filterMisc, sortMisc, sortType, searchHero } =
-  HeroStore();
-const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs(HeroStore());
+const $heroStore = HeroStore();
+
+const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs($heroStore);
 
 const select_attr = [
   { label: "全部属性", value: "全部属性" },
@@ -63,43 +63,43 @@ const clearName = () => {
 
 /* 阵营筛选 */
 const onSelectCamp = (v: string | number) => {
-  filterCamp(v as string);
+  $heroStore.filterCamp(v as string);
   clearName();
 };
 
 /* 属性筛选 */
 const onSelectAttr = (v: string | number) => {
-  filterAttr(v as string);
+  $heroStore.filterAttr(v as string);
   clearName();
 };
 
 /* 杂项筛选 */
 const onSelectMisc = (v: string | number) => {
-  filterMisc(v as string);
+  $heroStore.filterMisc(v as string);
   clearName();
 };
 
 /* 杂项排序 */
 const onSelectSort = (v: string | number) => {
-  sortMisc(v as string);
+  $heroStore.sortMisc(v as string);
   clearName();
 };
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
-  sortType(v as string);
+  $heroStore.sortType(v as string);
   clearName();
 };
 
 /* 性别切换 */
 const onFilterGender = (name: Game.GenderId) => {
-  filterGender(name);
+  $heroStore.filterGender(name);
   clearName();
 };
 
 /* 搜索英雄 */
 const debounceSearch = _debounce(() => {
-  searchHero(search_value.value);
+  $heroStore.searchHero(search_value.value);
   $emit("search");
 }, 500);
 

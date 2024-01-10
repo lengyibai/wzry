@@ -9,7 +9,10 @@ import HeroSkillToggle from "./childComps/HeroSkillToggle/index.vue";
 import { KScrollTip } from "@/components/business";
 import { HeroDetailStore } from "@/store";
 
-const { hero_info } = storeToRefs(HeroDetailStore());
+const $heroDetailStore = HeroDetailStore();
+
+const { hero_info } = storeToRefs($heroDetailStore);
+
 const heroSkillIconRef = ref<InstanceType<typeof HeroSkillIcon>>();
 
 /** 技能信息 */

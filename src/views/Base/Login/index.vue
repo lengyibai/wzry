@@ -13,7 +13,9 @@ import { $concise, $tip, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
 import { SCENE_TIP } from "@/config";
 
-const { config } = storeToRefs(SettingStore());
+const $settingStore = SettingStore();
+
+const { config } = storeToRefs($settingStore);
 
 const { getImgLink, getVideoLink, getHtmlLink } = $concise;
 

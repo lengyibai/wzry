@@ -12,8 +12,9 @@ const $emit = defineEmits<{
   search: [];
 }>();
 
-const { sortType, filterGender, searchAtlas } = AtlasStore();
-const { sort_type } = storeToRefs(AtlasStore());
+const $atlasStore = AtlasStore();
+
+const { sort_type } = storeToRefs($atlasStore);
 
 const sort_types = [
   { label: "正序", value: "正序" },
@@ -30,19 +31,19 @@ const clearName = () => {
 
 /* 正序/倒序 */
 const onSortType = (v: string | number) => {
-  sortType(v as string);
+  $atlasStore.sortType(v as string);
   clearName();
 };
 
 /* 设置性别 */
 const onFilterGender = (type: Game.GenderId) => {
-  filterGender(type);
+  $atlasStore.filterGender(type);
   clearName();
 };
 
 /* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
-  searchAtlas(search_value.value);
+  $atlasStore.searchAtlas(search_value.value);
   $emit("search");
 }, 500);
 

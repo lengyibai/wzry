@@ -20,8 +20,9 @@ defineOptions({
 });
 
 const $audioStore = AudioStore();
-const { setScroll, loadMore, getAtlasList } = AtlasStore();
-const { show_list, scroll, finish, loading } = storeToRefs(AtlasStore());
+const $atlasStore = AtlasStore();
+
+const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
 
 const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
@@ -34,7 +35,7 @@ const hero_id = ref(0);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
-getAtlasList();
+$atlasStore.getAtlasList();
 
 const debounceUpdateSizePosition = _debounce(() => {
   waterfallRef.value?._updateSizePosition();
@@ -86,13 +87,13 @@ const handleRelated = (
 
 /* 加载更多 */
 const onLoadMore = () => {
-  loadMore();
+  $atlasStore.loadMore();
   debounceWatchImgLoad();
 };
 
 /* 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
+  $atlasStore.setScroll(v);
   back_top.value = v > 250;
 }, 250);
 

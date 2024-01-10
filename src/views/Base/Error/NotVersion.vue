@@ -3,7 +3,9 @@ import { storeToRefs } from "pinia";
 
 import { DeviceStore } from "@/store";
 
-const { browser_version, browser_name } = storeToRefs(DeviceStore());
+const $deviceStore = DeviceStore();
+
+const { browser_version, browser_name } = storeToRefs($deviceStore);
 </script>
 
 <template>

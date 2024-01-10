@@ -11,8 +11,10 @@ import { HeroDetailStore } from "@/store";
 import { GAME_HERO } from "@/api";
 
 const $router = useRouter();
-const { hero_info } = storeToRefs(HeroDetailStore());
+
 const $heroDetailStore = HeroDetailStore();
+
+const { hero_info } = storeToRefs($heroDetailStore);
 
 let relationshipCircle: RelationshipCircle;
 

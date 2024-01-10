@@ -12,8 +12,9 @@ const $emit = defineEmits<{
   search: [];
 }>();
 
-const { sortPrice, filterSkinType, filterGender, searchSkin } = SkinStore();
-const { price_type, skin_type } = storeToRefs(SkinStore());
+const $skinStore = SkinStore();
+
+const { price_type, skin_type } = storeToRefs($skinStore);
 
 const select_price = [
   { label: "全部价格", value: "全部价格" },
@@ -58,25 +59,25 @@ const clearName = () => {
 
 /* 价格排序 */
 const onPriceSort = (v: string | number) => {
-  sortPrice(v as string);
+  $skinStore.sortPrice(v as string);
   clearName();
 };
 
 /* 皮肤类型筛选 */
 const onTypeFilter = (v: string | number) => {
-  filterSkinType(v as string);
+  $skinStore.filterSkinType(v as string);
   clearName();
 };
 
 /* 设置性别 */
 const onFilterGender = (type: Game.GenderId) => {
-  filterGender(type);
+  $skinStore.filterGender(type);
   clearName();
 };
 
 /* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
-  searchSkin(search_value.value);
+  $skinStore.searchSkin(search_value.value);
   $emit("search");
 }, 500);
 

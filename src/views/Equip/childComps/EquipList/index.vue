@@ -5,7 +5,9 @@ import EquipListColumn from "./childComps/EquipListColumn/index.vue";
 
 import { EquipStore } from "@/store";
 
-const { synthetic_id, equip_list_column } = storeToRefs(EquipStore());
+const $equipStore = EquipStore();
+
+const { synthetic_id, equip_list_column } = storeToRefs($equipStore);
 </script>
 
 <template>

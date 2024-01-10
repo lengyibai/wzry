@@ -5,7 +5,9 @@ import Attribute from "./components/Attribute/index.vue";
 
 import { HeroDetailStore } from "@/store";
 
-const { hero_info } = storeToRefs(HeroDetailStore());
+const $heroDetailStore = HeroDetailStore();
+
+const { hero_info } = storeToRefs($heroDetailStore);
 </script>
 
 <template>

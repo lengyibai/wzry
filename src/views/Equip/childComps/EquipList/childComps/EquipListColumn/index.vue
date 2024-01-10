@@ -22,7 +22,9 @@ interface Props {
 
 const $props = defineProps<Props>();
 
-const { category, vertical_line } = storeToRefs(EquipStore());
+const $equipStore = EquipStore();
+
+const { category, vertical_line } = storeToRefs($equipStore);
 
 const equipListRef = ref<HTMLElement>();
 

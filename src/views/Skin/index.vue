@@ -16,9 +16,10 @@ defineOptions({
   name: "Skin",
 });
 
-const { setScroll, loadMore, getSkin } = SkinStore();
-const { scroll, finish, show_list, loading } = storeToRefs(SkinStore());
 const $audioStore = AudioStore();
+const $skinStore = SkinStore();
+
+const { scroll, finish, show_list, loading } = storeToRefs($skinStore);
 
 //实时修改一行个数
 const interval_count = [
@@ -39,7 +40,7 @@ const show_skin_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
-getSkin();
+$skinStore.getSkin();
 
 /* 实时修改一行个数 */
 const changeCount = () => {
@@ -57,7 +58,7 @@ const changeCount = () => {
 
 /* 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
-  setScroll(v);
+  $skinStore.setScroll(v);
   back_top.value = v > 250;
 }, 250);
 
@@ -133,7 +134,7 @@ onDeactivated(() => {
           :loading="loading"
           :count="count"
           :scroll-top="scroll"
-          @load-more="loadMore"
+          @load-more="$skinStore.loadMore"
           @scroll="debounceScroll"
         >
           <transition-group name="skin-card" appear>

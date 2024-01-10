@@ -12,7 +12,8 @@ const $emit = defineEmits<{
 
 const $heroDetail = HeroDetailStore();
 const $audioStore = AudioStore();
-const { hero_info } = storeToRefs(HeroDetailStore());
+
+const { hero_info } = storeToRefs($heroDetail);
 
 /** 主副技能索引 */
 let deputy_index = 0;

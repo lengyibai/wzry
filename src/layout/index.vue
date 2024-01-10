@@ -13,8 +13,9 @@ import { KVideo } from "@/components/business";
 import { useGetData } from "@/hooks";
 
 const $audioStore = AudioStore();
+const $barrageStore = BarrageStore();
 
-const { status } = storeToRefs(BarrageStore());
+const { status } = storeToRefs($barrageStore);
 
 useGetData().getData(true);
 

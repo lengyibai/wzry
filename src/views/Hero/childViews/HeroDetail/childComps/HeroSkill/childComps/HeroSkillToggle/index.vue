@@ -11,8 +11,9 @@ const $emit = defineEmits<{
   toggle: [];
 }>();
 
-const { hero_info } = storeToRefs(HeroDetailStore());
-const { setScrollFn } = HeroDetailStore();
+const $heroDetailStore = HeroDetailStore();
+
+const { hero_info } = storeToRefs($heroDetailStore);
 
 const toggleRef = ref<HTMLElement>();
 
@@ -22,7 +23,7 @@ const show = ref(false);
 const deputy_index = ref(0);
 
 /* 当滚动到技能页，播放入场动画 */
-setScrollFn("skinIcon", (pageName) => {
+$heroDetailStore.setScrollFn("skinIcon", (pageName) => {
   if (show.value || pageName !== "技能信息") return;
   show.value = true;
 
