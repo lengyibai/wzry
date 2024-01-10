@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref, onUnmounted } from "vue";
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
 
 import { AtlasStore } from "@/store";
-import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
@@ -23,8 +22,6 @@ const sort_types = [
 
 /** 搜索值 */
 const search_value = ref("");
-/** 记录展开状态 */
-const select_status = ref(false);
 
 /* 清空输入框 */
 const clearName = () => {
@@ -49,24 +46,6 @@ const debounceSearch = _debounce(() => {
   $emit("search");
 }, 500);
 
-/* 设置下拉状态 */
-const handleSelectStatus = () => {
-  select_status.value = !select_status.value;
-};
-
-$bus.on("mouseup", (e) => {
-  const el = (e as MouseEvent).target as HTMLElement;
-
-  //如果点击的不是下拉菜单，则隐藏
-  if (!el.className.includes("select-filter")) {
-    select_status.value = false;
-  }
-});
-
-onUnmounted(() => {
-  $bus.off("mouseup");
-});
-
 defineExpose({
   /** 清空输入框 */
   _clearName: clearName,
@@ -77,13 +56,7 @@ defineExpose({
   <div class="savor-toolbar">
     <div class="filter-select">
       <!-- 正序/倒序 -->
-      <FilterTool
-        :status="select_status"
-        :sort-text="sort_type"
-        :data="sort_types"
-        @click="handleSelectStatus"
-        @select="onSortType"
-      />
+      <FilterTool :sort-text="sort_type" :data="sort_types" @select="onSortType" />
     </div>
 
     <!-- 只看性别 -->

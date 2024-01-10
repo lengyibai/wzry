@@ -2,7 +2,7 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store";
-import { vMouseTip } from "@/directives";
+import { vClickOutside, vMouseTip } from "@/directives";
 
 type Data = { label: string; value: string | number };
 
@@ -11,8 +11,6 @@ interface Props {
   data: Data[];
   /** 列表高度 */
   listHeight?: string;
-  /** 下拉状态 */
-  status: boolean;
   /** 选中的名称 */
   sortText: string;
 }
@@ -29,10 +27,15 @@ const $audioStore = AudioStore();
 
 /** 选择的值 */
 const current_value = ref("");
+/** 下拉状态 */
+const status = ref(false);
 
 /* 显示列表 */
-const handleShowList = () => {
-  $audioStore.play("n4r4");
+const handleDownUp = (v: boolean) => {
+  return () => {
+    $audioStore.play("n4r4");
+    status.value = v;
+  };
 };
 
 /* 悬浮触发 */
@@ -49,7 +52,14 @@ const handleSelect = (v: Data) => {
 </script>
 
 <template>
-  <div v-mouse-tip class="select-filter" @click="handleShowList">
+  <div
+    v-mouse-tip
+    v-click-outside="{
+      inset: handleDownUp(true),
+      outside: handleDownUp(false),
+    }"
+    class="select-filter"
+  >
     <div class="title">{{ sortText }}</div>
 
     <!-- 下拉图标 -->

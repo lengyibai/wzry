@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, onUnmounted } from "vue";
+import { ref, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
 
 import { HeroStore } from "@/store";
-import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { LOCAL_TYPE } from "@/api";
 import { vMouseTip } from "@/directives";
@@ -46,10 +45,6 @@ const sort_types = [
 
 /** 搜索值 */
 const search_value = ref("");
-/** 当前展开的菜单 */
-const current_index = ref(-1);
-/** 记录展开状态 */
-const select_status = reactive([false, false, false, false, false]);
 /** 阵营列表 */
 const select_camp = reactive<Global.General[]>([]);
 
@@ -108,34 +103,6 @@ const debounceSearch = _debounce(() => {
   $emit("search");
 }, 500);
 
-/** 设置下拉状态 */
-const handleSelectStatus = (i: number) => {
-  //点击下拉菜单，先隐藏所有，再展开被点击的
-  select_status.fill(false);
-
-  //如果重复点击一个，则不做处理
-  if (current_index.value === i) {
-    current_index.value = -1;
-    return;
-  }
-  select_status[i] = true;
-  current_index.value = i;
-};
-
-$bus.on("mouseup", (e) => {
-  const el = (e as MouseEvent).target as HTMLElement;
-
-  //如果点击的不是下拉菜单，则隐藏
-  if (!el.className.includes("select-filter")) {
-    select_status.fill(false);
-    current_index.value = -1;
-  }
-});
-
-onUnmounted(() => {
-  $bus.off("mouseup");
-});
-
 defineExpose({
   /** 清空输入框 */
   _clearName: clearName,
@@ -148,48 +115,22 @@ defineExpose({
       <!-- 阵营筛选按钮 -->
       <FilterTool
         :sort-text="camp_type"
-        :status="select_status[0]"
         :data="select_camp"
         list-height="26.5625rem"
-        @click="handleSelectStatus(0)"
         @select="onSelectCamp"
       />
 
       <!-- 自带属性筛选按钮 -->
-      <FilterTool
-        :sort-text="attr_type"
-        :status="select_status[1]"
-        :data="select_attr"
-        @click="handleSelectStatus(1)"
-        @select="onSelectAttr"
-      />
+      <FilterTool :sort-text="attr_type" :data="select_attr" @select="onSelectAttr" />
 
       <!-- 杂项筛选按钮 -->
-      <FilterTool
-        :sort-text="misc_type"
-        :status="select_status[2]"
-        :data="select_misc"
-        @click="handleSelectStatus(2)"
-        @select="onSelectMisc"
-      />
+      <FilterTool :sort-text="misc_type" :data="select_misc" @select="onSelectMisc" />
 
       <!-- 杂项排序按钮 -->
-      <FilterTool
-        :sort-text="misc_sort"
-        :status="select_status[3]"
-        :data="select_sort"
-        @click="handleSelectStatus(3)"
-        @select="onSelectSort"
-      />
+      <FilterTool :sort-text="misc_sort" :data="select_sort" @select="onSelectSort" />
 
       <!-- 正序/倒序 -->
-      <FilterTool
-        :sort-text="sort_type"
-        :status="select_status[4]"
-        :data="sort_types"
-        @click="handleSelectStatus(4)"
-        @select="onSortType"
-      />
+      <FilterTool :sort-text="sort_type" :data="sort_types" @select="onSortType" />
     </div>
 
     <!-- 只看性别 -->

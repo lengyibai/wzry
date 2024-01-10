@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, onUnmounted } from "vue";
+import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
 
 import { SkinStore } from "@/store";
-import { $bus } from "@/utils";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
@@ -49,13 +48,8 @@ const select_type = [
   { label: "特殊标志", value: "特殊标志" },
 ];
 
-/** 当前展开的菜单 */
-let current_index = -1;
-
 /** 搜索值 */
 const search_value = ref("");
-/** 记录展开状态 */
-const select_status = reactive([false, false, false, false, false]);
 
 /* 清空输入框 */
 const clearName = () => {
@@ -86,35 +80,6 @@ const debounceSearch = _debounce(() => {
   $emit("search");
 }, 500);
 
-/** 设置下拉状态 */
-const handleSelectStatus = (i: number) => {
-  //点击下拉菜单，先隐藏所有，再展开被点击的
-  select_status.fill(false);
-
-  //如果重复点击一个，则不做处理
-  if (current_index === i) {
-    current_index = -1;
-    return;
-  }
-
-  select_status[i] = true;
-  current_index = i;
-};
-
-$bus.on("mouseup", (e) => {
-  const el = (e as MouseEvent).target as HTMLElement;
-
-  //如果点击的不是下拉菜单，则隐藏
-  if (!el.className.includes("select-filter")) {
-    select_status.fill(false);
-    current_index = -1;
-  }
-});
-
-onUnmounted(() => {
-  $bus.off("mouseup");
-});
-
 defineExpose({
   /** 清空输入框 */
   _clearName: clearName,
@@ -125,21 +90,13 @@ defineExpose({
   <div class="skin-toolbar">
     <div class="filter-select">
       <!-- 价格排序 -->
-      <FilterTool
-        :status="select_status[0]"
-        :data="select_price"
-        :sort-text="price_type"
-        @click="handleSelectStatus(0)"
-        @select="onPriceSort"
-      />
+      <FilterTool :data="select_price" :sort-text="price_type" @select="onPriceSort" />
 
       <!-- 皮肤类型筛选 -->
       <FilterTool
-        :status="select_status[1]"
         :data="select_type"
         :sort-text="skin_type"
         list-height="31.25rem"
-        @click="handleSelectStatus(1)"
         @select="onTypeFilter"
       />
     </div>
