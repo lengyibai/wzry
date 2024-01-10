@@ -23,11 +23,10 @@ const $props = withDefaults(defineProps<Props>(), {
   loading: false,
 });
 
-interface Emits {
-  (e: "scroll", v: number): void;
-  (e: "load-more"): void;
-}
-const $emit = defineEmits<Emits>();
+const $emit = defineEmits<{
+  scroll: [v: number];
+  "load-more": [];
+}>();
 
 const children_list = ref<HTMLElement[]>([]);
 
