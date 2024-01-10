@@ -8,6 +8,7 @@ import KButton from "./Parts/K-Button/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
 import KImageLoad from "./Parts/K-ImageLoad/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
+import KLoadingIcon from "./Parts/K-LoadingIcon/index.vue";
 import KMarquee from "./Parts/K-Marquee/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
 import KText from "./Parts/K-Text/index.vue";
@@ -30,6 +31,7 @@ export {
   KImageLoad,
   KDialog,
   KInput,
+  KLoadingIcon,
   KMarquee,
   KRange,
   KText,
