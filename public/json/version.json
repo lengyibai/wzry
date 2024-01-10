@@ -1,12 +1,12 @@
 {
   "data": {
-    "dataVersion": "24.01.09.00.00",
+    "dataVersion": "24.01.09.00.01",
     "distVersion": "24.01.09.00.00",
-    "time": "2024-01-09 00:00",
-    "dataKey": [],
-    "voiceKey": [],
-    "dataLog": [],
-    "voiceLog": [],
+    "time": "2024-01-09 00:01",
+    "dataKey": ["wzry_equip_motivation", "wzry_equip_note"],
+    "voiceKey": ["voice_jialuo"],
+    "dataLog": ["装备动机", "装备备注"],
+    "voiceLog": ["伽罗"],
     "distLog": {
       "surface": {
         "new": ["增加跟随鼠标的光圈", "英雄详情技能页右下角增加副技能切换状态"],
