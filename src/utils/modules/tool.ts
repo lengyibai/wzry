@@ -1,3 +1,5 @@
+import { ImageOptimizerOptions } from "../interface";
+
 import { PINYIN } from "@/config/modules/pinyin";
 
 /** @description 随机数 */
@@ -177,15 +179,6 @@ export const saveFiles = (data: any, name: string): void => {
   save_link.click();
 };
 
-type ImageOptimizerOptions = {
-  el?: HTMLInputElement;
-  file?: File;
-  width?: number;
-  ratio?: number;
-  maxSize?: number;
-  success: (data: FormData, file: File, url: string) => void;
-  fail?: (error: ErrorEvent) => void;
-};
 /** @description 图片压缩 */
 export const imageOptimizer = (obj: ImageOptimizerOptions) => {
   const canvas = document.createElement("canvas");

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import type { ImageViewParams } from "@/utils/modules/imageView";
 import { KButton, KMarquee } from "@/components/business";
+import { ImageViewParams } from "@/utils/interface";
 
 interface Props {
   data: ImageViewParams;

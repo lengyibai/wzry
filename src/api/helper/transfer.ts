@@ -1,27 +1,4 @@
-interface Get {
-  /** 用于获取本地存储的键名 */
-  name: string;
-  /** 从本地存储获取的数据的键名 */
-  key?: string;
-  /** 匹配的值 */
-  value?: any;
-  /** 全字匹配 */
-  full?: boolean;
-}
-
-interface Patch extends Get {
-  /** 需要被修改的键名 */
-  k?: string;
-  /** 需要修改成什么 */
-  v: any;
-}
-
-interface Del {
-  /** 用于获取本地存储的键名 */
-  name: string;
-  /** 数据id */
-  id: string;
-}
+import { Get, Patch, Del } from "../interface";
 
 /**
  * @description 查询

@@ -2,29 +2,14 @@
 import { ref, onActivated } from "vue";
 import _debounce from "lodash/debounce";
 
+import { TableData } from "./interface";
+
 import { AudioStore } from "@/store";
 import { $bus, $message, $tool } from "@/utils";
 import { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
 import { REQUEST } from "@/config";
 import { vMouseTip } from "@/directives";
-
-interface TableData {
-  /** 数据名 */
-  name: string;
-  /** 数据键名 */
-  key: string;
-  /** 数据 */
-  data: unknown[];
-  /** 检查状态 */
-  status: string;
-  /** 数据量 */
-  length: number;
-  /** 占用大小 */
-  size: number;
-  /** 请求 */
-  request: () => Promise<ResultData<any>>;
-}
 
 defineOptions({
   name: "Database",

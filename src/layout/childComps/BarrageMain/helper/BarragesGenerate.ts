@@ -1,24 +1,9 @@
+import { BarrageType } from "../interface";
+
 import { KVP_HERO } from "@/api";
 import { $bus } from "@/utils";
 import { getAudioLink, getImgLink } from "@/utils/modules/concise";
 import { random } from "@/utils/modules/tool";
-
-interface BarrageType extends Global.Barrage {
-  /** 作者 */
-  name?: string;
-  /** 描述 */
-  desc?: string;
-  /** 是否为私有弹幕 */
-  self?: boolean;
-  /** 头像 */
-  avatar?: string;
-  /** 壁纸大图 */
-  link_big?: string;
-  /** 壁纸小图 */
-  link_small?: string;
-  /** 壁纸模糊图 */
-  link_blur?: string;
-}
 
 /** @description 弹幕生成器 */
 export class BarragesGenerate {

@@ -2,19 +2,10 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { top, height } from "../helper";
+import { EquipElement } from "../interface";
 
 import { $tool } from "@/utils";
 import { GAME_EQUIP, KVP_EQUIP } from "@/api";
-
-/** 装备Dom元素信息 */
-type EquipElement = {
-  /** 装备名称 */
-  name: string;
-  /** 装备Dom元素 */
-  el: HTMLElement | undefined;
-  /** 装备id */
-  id: number;
-};
 
 /** @description 装备相关 */
 const EquipStore = defineStore("equip", () => {

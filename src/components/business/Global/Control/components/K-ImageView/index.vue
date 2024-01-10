@@ -6,12 +6,12 @@ import VerticalScreen from "./components/VerticalScreen/index.vue";
 import LandscapeScreen from "./components/LandscapeScreen/index.vue";
 
 import { $bus, $tool } from "@/utils";
-import type { ImageViewParams } from "@/utils/modules/imageView";
 import { KLoadingIcon } from "@/components/business";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { useResponsive } from "@/hooks";
+import { ImageViewParams } from "@/utils/interface";
 
 const $audioStore = AudioStore();
 

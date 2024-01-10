@@ -1,22 +1,6 @@
-import { $bus } from "./eventBus";
+import { ImageViewParams } from "../interface";
 
-interface ImageViewParams {
-  type: "DEFAULT" | "HERO";
-  /** 点击的事件对象 */
-  event: Event;
-  /** 英雄名 */
-  heroName?: string;
-  /** 英雄头像 */
-  heroAvatar?: string;
-  /** 皮肤名称 */
-  skinName?: string;
-  /** 模糊图片 */
-  blurImage: string;
-  /** 大图 */
-  bigImage: string;
-  /** 语音列表 */
-  voices?: Remote.Voice.Data["voice"];
-}
+import { $bus } from "./eventBus";
 
 /** @description 查看图片 */
 const $imageView = (v: ImageViewParams) => {
@@ -24,4 +8,3 @@ const $imageView = (v: ImageViewParams) => {
 };
 
 export { $imageView };
-export type { ImageViewParams };

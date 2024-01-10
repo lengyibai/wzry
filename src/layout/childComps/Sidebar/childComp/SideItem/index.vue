@@ -3,22 +3,10 @@ import { reactive, ref, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue";
+import { RouteFormat } from "./interface";
 
 import { CollapseStore, AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
-
-interface RouteFormat {
-  /** 路由路径 */
-  path: string;
-  /** 路由标题 */
-  title: string;
-  /** 路由元素 */
-  meta: { title: string };
-  /** 子路由 */
-  children: RouteFormat[] | null;
-  /** 层级 */
-  zIndex: number;
-}
 
 interface Props {
   route: any;

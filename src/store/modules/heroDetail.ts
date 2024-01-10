@@ -1,20 +1,11 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
+import { ScrollFn, SkinToggleFn, RelationInfoType } from "../interface";
+
 import { heroDefault } from "@/default";
 import { getImgLink } from "@/utils/modules/concise";
 import { GAME_HERO } from "@/api";
-
-type SkinToggleFn = (hero_id: number, skin_name: string) => void;
-type ScrollFn = { name: string; fn: (pageName: string) => void }[];
-interface RelationInfoType extends Game.Hero.RelationType {
-  /** 对应关系英雄的回复 */
-  reply: string;
-  /** 对应关系 */
-  replyRelation: string;
-  /** 对应关系的性别 */
-  replyGender: string;
-}
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
