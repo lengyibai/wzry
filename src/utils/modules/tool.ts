@@ -599,10 +599,3 @@ export const downloadImage = (link: string, name: string) => {
       a.click();
     });
 };
-
-/** @description 递归判断父元素的类名是否包含指定类名 */
-export const classNameInclude = (el: HTMLElement, className: string): boolean => {
-  if (el.className.indexOf(className) !== -1) return true;
-  if (el.parentElement) return classNameInclude(el.parentElement, className);
-  return false;
-};
