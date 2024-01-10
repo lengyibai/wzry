@@ -13,7 +13,7 @@ refactor: 代码重构，改变逻辑，不涉及代码功能
 remove: 移除代码
 rename: 文件或文件夹重命名
 revert: 还原某些功能或样式
-style: 不影响代码含义的改动，例如格式化、
+style: 不影响代码含义的改动，例如格式化、移除未使用的代码
 test: 测试代码变动
 type: ts类型调整
 update: 文件更新
