@@ -4,11 +4,9 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 import { vClickOutside, vMouseTip } from "@/directives";
 
-type Data = { label: string; value: string | number };
-
 interface Props {
   /** 下拉列表 */
-  data: Data[];
+  data: Global.General<string | number>[];
   /** 列表高度 */
   listHeight?: string;
   /** 选中的名称 */
@@ -39,12 +37,12 @@ const handleDownUp = (v: boolean) => {
 };
 
 /* 悬浮触发 */
-const handleEnterItem = (v: Data) => {
+const handleEnterItem = (v: Global.General<string | number>) => {
   current_value.value = v.label;
 };
 
 /* 选择的值 */
-const handleSelect = (v: Data) => {
+const handleSelect = (v: Global.General<string | number>) => {
   current_value.value = v.label;
   $emit("select", v.value);
   $audioStore.play();
