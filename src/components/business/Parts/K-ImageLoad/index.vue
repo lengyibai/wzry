@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { vBlurLoad } from "./helper/blurLoad";
+import { vBlurLoad } from "./directives/blurLoad";
 
 import KLoadingIcon from "@/components/business/Parts/K-LoadingIcon/index.vue";
 
