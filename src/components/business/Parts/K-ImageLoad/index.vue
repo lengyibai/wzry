@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { vBlurLoad } from "./helper/blurLoad";
 
-import { getImgLink } from "@/utils/modules/concise";
+import KLoadingIcon from "@/components/business/Parts/K-LoadingIcon/index.vue";
 
 interface Props {
   /** 模糊图链接 */
@@ -45,16 +45,7 @@ const onImageError = () => {
     />
 
     <transition name="fade" appear>
-      <div
-        v-if="status === 'loading'"
-        class="loading"
-        :style="{
-          width: loadingWidth,
-        }"
-      >
-        <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
-        <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
-      </div>
+      <KLoadingIcon v-if="status === 'loading'" :width="loadingWidth" white />
     </transition>
   </div>
 </template>

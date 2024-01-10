@@ -7,8 +7,7 @@ import LandscapeScreen from "./components/LandscapeScreen/index.vue";
 
 import { $bus, $tool } from "@/utils";
 import type { ImageViewParams } from "@/utils/modules/imageView";
-import { KButton, KMarquee } from "@/components/business";
-import { getImgLink } from "@/utils/modules/concise";
+import { KLoadingIcon } from "@/components/business";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
@@ -91,10 +90,7 @@ const handleDownload = () => {
           }"
         >
           <transition name="fade" appear>
-            <div v-if="status === 'loading'" class="loading">
-              <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
-              <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
-            </div>
+            <KLoadingIcon v-if="status === 'loading'" width="7.5%" white />
           </transition>
         </div>
 
