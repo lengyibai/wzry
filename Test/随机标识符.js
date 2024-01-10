@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const generateRandomStrings = (length, count, excludedStrings) => {
   const result = [];
   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
