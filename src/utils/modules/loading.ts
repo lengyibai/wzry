@@ -42,9 +42,7 @@ const close = () => {
   }
 };
 
-const $loading = {
+export const $loading = {
   show,
   close,
 };
-
-export { $loading };
