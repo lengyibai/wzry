@@ -129,7 +129,9 @@ defineExpose({
           >
             <transition-group name="fade">
               <KLoadingIcon v-if="loading" key="a" width="6.25rem" />
-              <slot v-else key="b"></slot>
+              <div v-else key="b" class="slot">
+                <slot></slot>
+              </div>
             </transition-group>
           </div>
         </div>
