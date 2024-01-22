@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import _debounce from "lodash/debounce";
 
 import FilterColor from "./components/FilterColor/index.vue";
 
 import { EpigraphStore } from "@/store";
 import { KButton, KInput } from "@/components/business";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
+import { $focus, $tip } from "@/utils";
 
 const $emit = defineEmits<{
   /** 搜索皮肤 */
@@ -17,6 +18,8 @@ const $emit = defineEmits<{
 }>();
 
 const $epigraphStore = EpigraphStore();
+
+const collocationBtnRef = ref<InstanceType<typeof KButton>>();
 
 /** 搜索值 */
 const search_value = ref("");
@@ -43,6 +46,18 @@ const debounceSearch = _debounce(() => {
   $emit("search");
 }, 500);
 
+onMounted(() => {
+  $tip({
+    text: SCENE_TIP.f1y0,
+    align: "right-top",
+    color: false,
+    createFn() {
+      $focus.show(collocationBtnRef.value!.$el);
+    },
+    btnFn: $focus.close,
+  });
+});
+
 defineExpose({
   /** 清空输入框 */
   _clearName: clearName,
@@ -52,7 +67,9 @@ defineExpose({
 <template>
   <div class="epigraph-toolbar">
     <!-- 铭文搭配 -->
-    <KButton v-mouse-tip class="k-button" @click="handleCollocation">进入铭文搭配</KButton>
+    <KButton ref="collocationBtnRef" v-mouse-tip class="k-button" @click="handleCollocation">
+      进入铭文搭配
+    </KButton>
     <!-- 筛选铭文颜色 -->
     <FilterColor @change="onFilterColor" />
 
