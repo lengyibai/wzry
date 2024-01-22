@@ -28,10 +28,9 @@ const $emit = defineEmits<{
   "load-more": [];
 }>();
 
-const children_list = ref<HTMLElement[]>([]);
-
 const waterfallRef = ref<HTMLElement>();
 const waterfallContentRef = ref<HTMLElement>();
+const children_list = ref<HTMLElement[]>([]);
 
 /** @description 更新元素的坐标及尺寸 */
 const updateSizePosition = () => {
