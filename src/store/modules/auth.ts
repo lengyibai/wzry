@@ -34,7 +34,7 @@ const AuthStore = defineStore("auth", () => {
 
     if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
       $tip({
-        text: "数据丢失，请刷新页面",
+        text: "数据丢失，请刷新页面。",
         btnText: "立刻刷新",
       }).then(() => {
         location.reload();

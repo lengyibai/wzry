@@ -94,7 +94,7 @@ const onParticle = () => {
 const onTip = (v: boolean) => {
   !v &&
     $tip({
-      text: "我一定会回来的！",
+      text: "我~~一~~定~~会~~回~~来~~的~~",
     });
   saveConfig();
   v &&
