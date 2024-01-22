@@ -2,7 +2,7 @@
 import { nextTick, ref, computed, onUnmounted } from "vue";
 
 import { HeroDetailStore } from "@/store";
-import { $tip, $tool } from "@/utils";
+import { $focus, $tip, $tool } from "@/utils";
 import { vDrag, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
@@ -123,28 +123,25 @@ $heroDetail.setScrollFn("skin", (pageName) => {
         setPosition(skinRef.value[0]);
 
         setTimeout(() => {
-          if (!skinBoxRef.value) return;
-          const skinHeadFocus = new $tool.FocusElement(skinBoxRef.value);
-
-          const a = () => {
-            skinHeadFocus.focus();
-          };
-          const b = () => {
-            skinHeadFocus.blur();
-          };
           if ($tool.isPhone) {
             $tip({
               text: SCENE_TIP.lp57,
               align: "right-top",
-              createFn: a,
-              btnFn: b,
+              color: false,
+              createFn() {
+                $focus.show(skinBoxRef.value!);
+              },
+              btnFn: $focus.close,
             });
           } else {
             $tip({
               text: SCENE_TIP.v44s,
               align: "right-top",
-              createFn: a,
-              btnFn: b,
+              color: false,
+              createFn() {
+                $focus.show(skinBoxRef.value!);
+              },
+              btnFn: $focus.close,
             });
           }
         }, 3000);

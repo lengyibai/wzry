@@ -9,7 +9,7 @@ import ToolBar from "./childComps/ToolBar/index.vue";
 import DownLoad from "./childComps/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
-import { $concise, $tip, $tool } from "@/utils";
+import { $concise, $focus, $tip } from "@/utils";
 import { KVideo } from "@/components/business";
 import { SCENE_TIP } from "@/config";
 
@@ -45,18 +45,14 @@ const onToolType = (v: string) => {
 
 /* 关闭公告触发 */
 const onCloseNotice = () => {
-  if (!(toolbarRef.value && toolbarRef.value._el)) return;
-  const toolbarFocus = new $tool.FocusElement(toolbarRef.value._el);
-
   $tip({
     text: SCENE_TIP.mu63,
     align: "right-bottom",
-    createFn: () => {
-      toolbarFocus.focus();
+    color: false,
+    createFn() {
+      $focus.show(toolbarRef.value!._el!);
     },
-    btnFn: () => {
-      toolbarFocus.blur();
-    },
+    btnFn: $focus.close,
   });
 };
 </script>

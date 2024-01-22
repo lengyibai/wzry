@@ -6,6 +6,7 @@ import KConfirm from "./components/K-Confirm/index.vue";
 import KImageView from "./components/K-ImageView/index.vue";
 import KMouseTip from "./components/K-MouseTip/index.vue";
 import KInputDialog from "./components/K-InputDialog/index.vue";
+import KFoucs from "./components/K-Foucs/index.vue";
 // import KPhone from "./components/K-Phone/index.vue";
 
 import { $bus } from "@/utils";
@@ -36,6 +37,9 @@ window.addEventListener("mouseup", (e) => {
 
   <!-- 弹窗输入内容 -->
   <KInputDialog />
+
+  <!-- 聚焦 -->
+  <KFoucs />
 
   <!-- 禁止手机查看 -->
   <!-- <KPhone /> -->

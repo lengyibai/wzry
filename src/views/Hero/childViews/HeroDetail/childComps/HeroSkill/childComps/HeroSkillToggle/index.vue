@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import { HeroDetailStore } from "@/store";
-import { $tool, $tip } from "@/utils";
+import { $tip, $focus } from "@/utils";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
@@ -32,19 +32,17 @@ $heroDetailStore.setScrollFn("skinIcon", (pageName) => {
   if (length > 1) {
     setTimeout(() => {
       if (!toggleRef.value) return;
-      const toggleFocus = new $tool.FocusElement(toggleRef.value);
 
       $tip({
         align: "right-top",
+        color: false,
         text: `${hero_info.value.name}存在${
           length == 3 ? "三" : "两"
         }套技能，页面右下角有个切换副技能的按钮，点击它吧！`,
-        createFn: () => {
-          toggleFocus.focus();
+        createFn() {
+          $focus.show(toggleRef.value!);
         },
-        btnFn: () => {
-          toggleFocus.blur();
-        },
+        btnFn: $focus.close,
       });
     }, 500);
   }

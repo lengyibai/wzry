@@ -4,7 +4,7 @@ import { nextTick, ref } from "vue";
 import MusicList from "../MusicList/index.vue";
 
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
-import { $tip, $tool } from "@/utils";
+import { $focus, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 
@@ -19,17 +19,16 @@ const $deviceStore = DeviceStore();
 const musicToolRef = ref<HTMLElement>();
 
 nextTick(() => {
-  if (!$settingStore.config.music || !musicToolRef.value) return;
-  const musicToolFocus = new $tool.FocusElement(musicToolRef.value);
+  if (!$settingStore.config.music) return;
+
   $tip({
     text: SCENE_TIP.d7o5,
     align: "right-top",
-    createFn: () => {
-      musicToolFocus.focus();
+    color: false,
+    createFn() {
+      $focus.show(musicToolRef.value!);
     },
-    btnFn: () => {
-      musicToolFocus.blur();
-    },
+    btnFn: $focus.close,
   });
 });
 /* 点击按钮 */

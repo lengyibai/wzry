@@ -1,0 +1,18 @@
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-focus);
+  pointer-events: none;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+  transform: scale(2);
+  opacity: 0;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.5s;
+}
