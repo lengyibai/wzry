@@ -72,16 +72,18 @@ const debounceStillness = _debounce(() => {
   moving.value = false;
 }, 250);
 const moveFn = (e: MouseEvent | TouchEvent) => {
-  debounceStillness();
+  requestAnimationFrame(() => {
+    debounceStillness();
 
-  if (e instanceof MouseEvent) {
-    x.value = e.pageX;
-    y.value = e.pageY;
-  } else if (e instanceof TouchEvent) {
-    x.value = e.touches[0].pageX;
-    y.value = e.touches[0].pageY;
-  }
-  moving.value = true;
+    if (e instanceof MouseEvent) {
+      x.value = e.pageX;
+      y.value = e.pageY;
+    } else if (e instanceof TouchEvent) {
+      x.value = e.touches[0].pageX;
+      y.value = e.touches[0].pageY;
+    }
+    moving.value = true;
+  });
 };
 window.addEventListener("mousemove", moveFn);
 window.addEventListener("touchmove", moveFn);
