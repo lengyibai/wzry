@@ -96,6 +96,23 @@
   }
 }
 
+/* 文字描边 */
+.global_text-outline(@thickness, @color, @border) {
+  position: relative;
+  z-index: 1;
+  color: @color;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    z-index: -1;
+    font-size: inherit;
+    font-family: inherit;
+    inset: 0;
+    -webkit-text-stroke: @thickness @border;
+  }
+}
+
 /*  条纹背景 */
 .global_stripes-bg {
   --color: rgba(0 0 0 / 10%);
@@ -114,19 +131,7 @@
   background-size: 0.25rem 0.25rem;
 }
 
-/* 文字描边 */
-.global_text-outline(@thickness, @color, @border) {
-  position: relative;
-  z-index: 1;
-  color: @color;
-
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    z-index: -1;
-    font-size: inherit;
-    font-family: inherit;
-    inset: 0;
-    -webkit-text-stroke: @thickness @border;
-  }
+/* 列表底部虚化 */
+.global_bottom-Virtualization {
+  -webkit-mask: linear-gradient(180deg, #000 95%, transparent 100%);
 }

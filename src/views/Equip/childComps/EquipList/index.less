@@ -1,13 +1,13 @@
 .equip-list {
   position: relative;
   display: flex;
-  flex-grow: 1;
+  align-items: flex-start;
   width: 100%;
-  margin-right: 0;
+  height: fit-content;
   padding-top: 1.125rem;
   padding-left: 1.125rem;
 
-  @media screen and (width <= 1120px) {
+  @media screen and (max-width: 1120px) {
     width: 100%;
     padding: 1.125rem;
   }

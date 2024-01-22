@@ -5,6 +5,8 @@
   height: 100%;
 
   &__main {
+    .global_bottom-Virtualization();
+
     position: relative;
     display: flex;
     flex-direction: row-reverse;
@@ -12,8 +14,9 @@
     overflow: auto;
     width: 100%;
     padding: 1.25rem;
+    padding-bottom: 1rem;
 
-    @media screen and (width <= 1120px) {
+    @media screen and (max-width: 1120px) {
       flex-direction: column;
       padding: 0;
     }
