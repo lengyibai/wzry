@@ -7,6 +7,7 @@ export * from "./modules/collapse";
 export * from "./modules/cssVar";
 export * from "./modules/device";
 export * from "./modules/epigraph";
+export * from "./modules/epigraphCollocation";
 export * from "./modules/equip";
 export * from "./modules/hero";
 export * from "./modules/heroDetail";
