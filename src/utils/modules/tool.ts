@@ -399,45 +399,6 @@ export class AudioVisual {
   }
 }
 
-/**
- * @description: 元素聚焦
- * @param el 需要进行聚焦的元素
- * @param status 聚焦状态
- */
-export class FocusElement {
-  el: HTMLElement;
-  zIndex: string;
-  outline: string;
-  transition: string;
-  size: number;
-
-  constructor(el: HTMLElement) {
-    this.el = el;
-    this.zIndex = el.style.zIndex;
-    this.outline = el.style.outline;
-    this.transition = el.style.transition;
-    this.size = window.innerHeight > window.innerWidth ? window.innerHeight : window.innerWidth;
-  }
-
-  focus() {
-    this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0)`;
-    this.el.style.zIndex = "9";
-    setTimeout(() => {
-      this.el.style.transition = "outline 0.5s";
-      this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0.8)`;
-    }, 10);
-  }
-
-  blur() {
-    this.el.style.outline = `${this.size}px solid rgba(0, 0, 0, 0)`;
-    this.el.style.zIndex = this.zIndex;
-    setTimeout(() => {
-      this.el.style.outline = this.outline;
-      this.el.style.transition = this.transition;
-    }, 500);
-  }
-}
-
 /** @description 计算文件大小 */
 export const getFileSizeInKB = (file: any) => {
   const str = JSON.stringify(file, null, 2);
