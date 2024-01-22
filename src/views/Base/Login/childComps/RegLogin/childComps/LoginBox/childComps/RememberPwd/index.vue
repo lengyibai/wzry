@@ -3,26 +3,19 @@ import { computed } from "vue";
 
 import { AudioStore } from "@/store";
 
-interface Props {
-  /** 是否选中 */
-  modelValue: boolean | string;
-}
-
-const $props = defineProps<Props>();
-const $emit = defineEmits<{
-  "update:modelValue": [v: boolean];
-}>();
+/** 是否选中 */
+const modelValue = defineModel({ required: true });
 
 const $audioStore = AudioStore();
 
 /** 是否选中图标 */
 const checkIcon = computed(() => {
-  return $props.modelValue ? "spirit_misc-check_true_yellow" : "spirit_misc-check_false_yellow";
+  return modelValue.value ? "spirit_misc-check_true_yellow" : "spirit_misc-check_false_yellow";
 });
 
 /* 选中按钮 */
 const handleToggle = () => {
-  $emit("update:modelValue", !$props.modelValue);
+  modelValue.value = !modelValue.value;
   $audioStore.play();
 };
 </script>

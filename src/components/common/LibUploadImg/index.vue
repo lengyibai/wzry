@@ -1,16 +1,8 @@
 <script setup lang="ts">
 import { $loading, $message, $tool } from "@/utils";
 
-interface Props {
-  /** 图片链接 */
-  modelValue?: string;
-}
-
-defineProps<Props>();
-
-const $emit = defineEmits<{
-  "update:modelValue": [v: string];
-}>();
+/** 图片链接 */
+const modelValue = defineModel({ default: "", required: true });
 
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
@@ -26,7 +18,7 @@ const fn = (e: Event) => {
     /* 成功回调 */
     success: (...data) => {
       $loading.close();
-      $emit("update:modelValue", data[2]);
+      modelValue.value = data[2];
     },
     fail() {
       $loading.close();

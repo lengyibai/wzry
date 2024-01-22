@@ -2,8 +2,6 @@
 import { nextTick, onUnmounted, onMounted, ref, watch } from "vue";
 
 interface Props {
-  /** 滚动索引 */
-  modelValue?: number;
   /** 滚动时长 */
   duration?: number;
   /** 纵向或横向 */
@@ -11,15 +9,16 @@ interface Props {
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  modelValue: 0,
   duration: 750,
   direction: "y",
 });
 const $emit = defineEmits<{
-  "update:modelValue": [v: number];
   start: [v: number];
   end: [v: number];
 }>();
+
+/** 滚动索引 */
+const modelValue = defineModel({ default: 0 });
 
 let index = 0;
 
@@ -43,7 +42,7 @@ const change = async (i: number) => {
 
 /* 改变宽度时纠正滚动位置 */
 const resetPosition = () => {
-  change($props.modelValue - 1);
+  change(modelValue.value - 1);
 };
 
 const $debounceDelay = (() => {
@@ -55,7 +54,7 @@ const $debounceDelay = (() => {
 })();
 
 watch(
-  () => $props.modelValue,
+  modelValue,
   (v) => {
     change(v - 1);
   },
@@ -96,7 +95,7 @@ onMounted(() => {
         heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
       }
 
-      $emit("update:modelValue", index + 1);
+      modelValue.value = index + 1;
       setTimeout(() => {
         scroll = true;
       }, $props.duration);
@@ -133,7 +132,7 @@ onMounted(() => {
         heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
       }
 
-      $emit("update:modelValue", index + 1);
+      modelValue.value = index + 1;
       setTimeout(() => {
         scroll = true;
       }, $props.duration);

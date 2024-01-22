@@ -16,8 +16,6 @@ interface Props {
   header?: string;
   /** 中间标题下描述 */
   desc?: string;
-  /** 是否显示 */
-  modelValue?: boolean;
   /** 是否显示右上角关闭按钮 */
   showClose?: boolean;
   /** 左上角描述文字 */
@@ -37,7 +35,6 @@ interface Props {
 const $props = withDefaults(defineProps<Props>(), {
   align: "flex-start",
   ctxWidth: "80%",
-  modelValue: true,
   showClose: true,
   autoClose: true,
   audio: true,
@@ -46,8 +43,10 @@ const $props = withDefaults(defineProps<Props>(), {
 });
 const $emit = defineEmits<{
   close: [];
-  "update:modelValue": [v: boolean];
 }>();
+
+/** 是否显示弹窗 */
+const modelValue = defineModel<boolean>();
 
 const $audioStore = AudioStore();
 
@@ -55,7 +54,7 @@ const { getImgLink } = $concise;
 
 const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
   $props.autoClose && $emit("close");
-  $emit("update:modelValue", false);
+  modelValue.value = false;
 });
 
 const handleCloseDialog = () => {

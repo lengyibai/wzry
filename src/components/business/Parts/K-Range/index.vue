@@ -7,8 +7,6 @@ import { BASE_CONFIG } from "@/config";
 import { vMouseTip } from "@/directives";
 
 interface Props {
-  /** 值 */
-  modelValue: any;
   /** 禁用 */
   disabled?: boolean;
   /** 输入框宽度 */
@@ -36,7 +34,6 @@ interface Props {
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  modelValue: 0,
   width: "12.5rem",
   disabled: false,
   label: "标题",
@@ -52,9 +49,9 @@ const $props = withDefaults(defineProps<Props>(), {
   showNum: true,
   step: 1,
 });
-const $emit = defineEmits<{
-  "update:modelValue": [v: number];
-}>();
+
+/** 滑动值 */
+const modelValue = defineModel({ default: 0, required: true });
 
 const $audioStore = AudioStore();
 
@@ -64,7 +61,7 @@ const down = ref(false);
 /* 设置可拖动宽度 */
 const barWidth = computed(() => {
   const max = $props.max - $props.min;
-  const value = (Number($props.modelValue) - $props.min) / (max / 100);
+  const value = (Number(modelValue.value) - $props.min) / (max / 100);
   const width = `calc(${value}% + ${20 / 2}px - ${(value / 100) * 20}px)`;
 
   return width;
@@ -80,7 +77,7 @@ onMounted(() => {
 const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   down.value = true;
-  $emit("update:modelValue", parseFloat(v));
+  modelValue.value = parseFloat(v);
   $tool.throttleInstant(() => {
     $audioStore.play("za86");
   }, 50);

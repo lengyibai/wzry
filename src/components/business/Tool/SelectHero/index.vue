@@ -5,8 +5,6 @@ import FormSelect from "@/components/business/Form/FormSelect/index.vue";
 import { KVP_HERO, LOCAL_HERO } from "@/api";
 
 interface Props {
-  /** 英雄id */
-  modelValue: number;
   /** 禁用 */
   disabled?: boolean;
 }
@@ -15,9 +13,9 @@ const $props = withDefaults(defineProps<Props>(), {
   modelValue: 0,
   disabled: false,
 });
-const $emit = defineEmits<{
-  "update:modelValue": [v: number];
-}>();
+
+/** 英雄id */
+const modelValue = defineModel({ required: true });
 
 /** 获取英雄基础列表 */
 const hero_list = LOCAL_HERO.getHeroNameList();
@@ -30,7 +28,7 @@ const id = ref(0);
 /* 选择英雄后触发 */
 const selectHero = (id: string | number | unknown[]) => {
   if (typeof id !== "number") return;
-  $emit("update:modelValue", id);
+  modelValue.value = id;
 };
 
 watch(

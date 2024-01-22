@@ -4,8 +4,6 @@ import { AudioStore } from "@/store";
 interface Props {
   /** 整体宽度 */
   width: string;
-  /** 索引号 */
-  modelValue: number;
   /** 选项文字 */
   option: string[];
 }
@@ -13,15 +11,15 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   width: "6.25rem",
 });
-const $emit = defineEmits<{
-  "update:modelValue": [v: number];
-}>();
+
+/** 索引号 */
+const modelValue = defineModel({ default: 0, required: true });
 
 const $audioStore = AudioStore();
 
 /* 选择 */
 const handleSelect = (index: number) => {
-  $emit("update:modelValue", index);
+  modelValue.value = index;
   $audioStore.play("n4r4");
 };
 </script>

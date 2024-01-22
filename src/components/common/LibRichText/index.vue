@@ -1,49 +1,44 @@
-<script setup>
-//https://www.wangeditor.com/
+<script lang="ts" setup>
 import "@wangeditor/editor/dist/css/style.css";
 import { onUnmounted, ref, shallowRef, watch } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 
-const $props = defineProps({
-  modelValue: {
-    type: String,
-    default: "<p>Hello World!</p>",
-  },
-  width: {
-    type: String,
-    default: "100%",
-  },
-  placeholder: {
-    type: String,
-    default: "请输入内容...",
-  },
+interface Props {
+  width: string;
+  placeholder: string;
+}
+const $props = withDefaults(defineProps<Props>(), {
+  modelValue: "<p>Hello World!</p>",
+  width: "100%",
+  placeholder: "请输入内容...",
 });
+
+/** 输入的内容 */
+const modelValue = defineModel({ default: "", required: true });
 
 const editorRef = shallowRef();
 
 const valueHtml = ref("");
-valueHtml.value = $props.modelValue;
+valueHtml.value = modelValue.value;
 
-const $emit = defineEmits(["update:modelValue"]);
 watch(valueHtml, (v) => {
-  $emit("update:modelValue", v);
+  modelValue.value = v;
 });
 
 const toolbarConfig = {
   toolbarKeys: ["color", "clearStyle"],
 };
 const editorConfig = { placeholder: $props.placeholder };
-const mode = "simple";
+
+const handleCreated = (editor: any) => {
+  editorRef.value = editor;
+};
 
 onUnmounted(() => {
   const editor = editorRef.value;
   if (editor == null) return;
   editor.destroy();
 });
-
-const handleCreated = (editor) => {
-  editorRef.value = editor;
-};
 </script>
 
 <template>
@@ -55,13 +50,13 @@ const handleCreated = (editor) => {
       style="border-bottom: 1px solid var(--theme-color-eight)"
       :editor="editorRef"
       :default-config="toolbarConfig"
-      :mode="mode"
+      mode="simple"
     />
     <Editor
       v-model="valueHtml"
       style="overflow-y: hidden; height: 18.75rem"
       :default-config="editorConfig"
-      :mode="mode"
+      mode="simple"
       @onCreated="handleCreated"
     />
   </div>

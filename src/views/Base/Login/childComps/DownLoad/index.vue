@@ -3,9 +3,8 @@ import { computed } from "vue";
 
 import { useGetData } from "@/hooks";
 
-const $emit = defineEmits<{
-  "update:finish": [v: boolean];
-}>();
+/** 是否下载完成 */
+const finish = defineModel("finish");
 
 const { total, index, type, getData } = useGetData();
 
@@ -13,7 +12,7 @@ const { total, index, type, getData } = useGetData();
 const progress = computed(() => ((index.value / total.value) * 100).toFixed(0) + "%");
 
 getData().then(() => {
-  $emit("update:finish", true);
+  finish.value = true;
 });
 </script>
 

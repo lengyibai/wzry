@@ -34,8 +34,6 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 
 interface Props {
-  /** 值 */
-  modelValue: number | string;
   /** 禁用 */
   disabled?: boolean;
   /** 输入框描述 */
@@ -59,18 +57,20 @@ interface Props {
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  modelValue: "",
   placeholder: "请输入",
   validate: () => "",
   type: "text",
   noSpecial: false,
 });
 const $emit = defineEmits<{
-  "update:modelValue": [v: string | number];
   blur: [v: string | number];
   focus: [];
-  "update:empty": [v: boolean];
 }>();
+
+/** 输入的值 */
+const modelValue = defineModel<number | string>({ default: "" });
+/** 是否为空 */
+const empty = defineModel("empty", { default: false });
 
 const $audioStore = AudioStore();
 
@@ -92,7 +92,7 @@ const focus = () => {
 const blur = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   is_focus.value = false;
-  $emit("update:empty", false);
+  empty.value = false;
   setTimeout(() => {
     if ($props.required && v === "") {
       tip.value = "必填项";
@@ -124,7 +124,7 @@ const blur = (e: Event) => {
     }
 
     legal.value = true;
-    $emit("update:empty", true);
+    empty.value = true;
   });
 
   $emit("blur", v);
@@ -132,7 +132,7 @@ const blur = (e: Event) => {
 
 const input = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
-  $emit("update:modelValue", v && ($props.number ? Number(v) : v));
+  modelValue.value = v && ($props.number ? Number(v) : v);
 };
 </script>
 <style scoped lang="less">

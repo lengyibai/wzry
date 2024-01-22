@@ -19,8 +19,6 @@ interface Props {
   autoSize?: boolean;
   /** 禁用 */
   disabled?: boolean;
-  /** 选择的值 */
-  modelValue?: string | number | unknown[];
   /** 多选 */
   multi?: boolean;
   /** 必填 */
@@ -31,12 +29,11 @@ interface Props {
 
 const $props = withDefaults(defineProps<Props>(), {
   data: () => [],
-  modelValue: "",
   value: "",
 });
-const $emit = defineEmits<{
-  "update:modelValue": [v: string | number | unknown[]];
-}>();
+
+/** 选择的值 */
+const modelValue = defineModel<string | number | unknown[]>({ default: "" });
 
 const $audioStore = AudioStore();
 
@@ -86,11 +83,11 @@ const handleSelect = (id: number, name: string) => {
   if ($props.multi) {
     (selected_list.value as string[]).push(name);
     selected_list.value = [...new Set(selected_list.value as string[])];
-    $emit("update:modelValue", selected_list.value);
+    modelValue.value = selected_list.value;
     input_value.value = "请选择";
   } else {
     //是否要求传递id
-    $emit("update:modelValue", $props.id ? Number(id) : name);
+    modelValue.value = $props.id ? Number(id) : name;
     select_list.value = $props.data;
     active_value.value = name;
     input_value.value = name;
@@ -102,7 +99,7 @@ const handleSelect = (id: number, name: string) => {
 /* 删除选择的数据 */
 const handleDel = (index: number) => {
   selected_list.value.splice(index, 1);
-  $emit("update:modelValue", selected_list.value);
+  modelValue.value = selected_list.value;
 };
 
 /* 在created会赋空值，只能通过侦听器 */

@@ -2,22 +2,20 @@
 import { AudioStore } from "@/store";
 
 interface Props {
-  /** 选择的索引号 */
-  modelValue: number;
   /** 选项 */
   option: string[];
 }
 
 defineProps<Props>();
-const $emit = defineEmits<{
-  "update:modelValue": [v: number];
-}>();
+
+/** 选择的索引号 */
+const modelValue = defineModel({ required: true });
 
 const $audioStore = AudioStore();
 
 /* 选择 */
 const handleSelect = (index: number) => {
-  $emit("update:modelValue", index);
+  modelValue.value = index;
   $audioStore.play("n4r4");
 };
 </script>

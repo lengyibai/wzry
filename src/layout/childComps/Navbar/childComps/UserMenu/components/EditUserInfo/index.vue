@@ -13,15 +13,15 @@ import { vMouseTip } from "@/directives";
 interface Props {
   /** 帐号 */
   id: string;
-  /** 信息是否修改 */
-  status: boolean;
 }
 
 defineProps<Props>();
 const $emit = defineEmits<{
   close: [];
-  "update:status": [v: boolean];
 }>();
+
+/** 信息是否修改 */
+const status = defineModel("status", { required: true });
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -36,7 +36,7 @@ const edit_status = computed(() => {
 
 /* 判断信息是否被修改 */
 const handleContrast = () => {
-  $emit("update:status", edit_status.value);
+  status.value = edit_status.value;
 };
 
 /* 保存个人信息 */

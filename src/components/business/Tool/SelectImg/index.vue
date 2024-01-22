@@ -7,8 +7,6 @@ import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 
 interface Props {
-  /** 图片路径 */
-  modelValue: string;
   /** 添加链接弹窗标题 */
   title: string;
   /** 图片比例 */
@@ -18,9 +16,9 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   type: "square",
 });
-const $emit = defineEmits<{
-  "update:modelValue": [link: string];
-}>();
+
+/** 图片路径 */
+const modelValue = defineModel({ default: "" });
 
 const $audioStore = AudioStore();
 
@@ -39,7 +37,7 @@ const handleSelect = () => {
 
 /* 获取链接 */
 const handleConfirm = () => {
-  $emit("update:modelValue", input_link.value);
+  modelValue.value = input_link.value;
   dialogRef.value!._close();
 };
 </script>
