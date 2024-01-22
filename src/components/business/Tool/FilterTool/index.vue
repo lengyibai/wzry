@@ -18,7 +18,6 @@ withDefaults(defineProps<Props>(), {
 });
 const $emit = defineEmits<{
   select: [v: string | number];
-  "update:modelValue": [v: string];
 }>();
 
 const $audioStore = AudioStore();
