@@ -2,7 +2,6 @@
 import { computed, ref } from "vue";
 
 import { SettingStore, AudioStore } from "@/store";
-import { $tool } from "@/utils";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
@@ -26,7 +25,7 @@ const toolbarRef = ref<HTMLElement>();
 /** 静音 */
 const muted = computed(() => $settingStore.config.muted);
 /** 静音图标 */
-const icon = computed(() => (muted.value ? "wzry-muted-mianxing" : "wzry-laba-mianxing"));
+const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 
 /**
  * 点击某个按钮
@@ -52,7 +51,7 @@ defineExpose({
 <template>
   <div ref="toolbarRef" class="tool-bar">
     <!-- 静音 -->
-    <div v-if="!$tool.isPhone" class="tool">
+    <div class="tool">
       <div class="line"></div>
       <div
         v-mouse-tip="{

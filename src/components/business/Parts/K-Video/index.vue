@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-
-import { $tool } from "@/utils";
+import { watch } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 
 interface Props {
   /** 视频链接 */
@@ -9,7 +8,7 @@ interface Props {
   /** 静音 */
   muted?: boolean;
 }
-withDefaults(defineProps<Props>(), {
+const $props = withDefaults(defineProps<Props>(), {
   muted: false,
 });
 
@@ -20,6 +19,7 @@ const play = async () => {
     if (!videoPlayer.value) return;
     await videoPlayer.value.play();
     videoPlayer.value.volume = 0.25;
+    videoPlayer.value.muted = $props.muted;
   } catch (error) {
     setTimeout(() => {
       play();
@@ -27,18 +27,18 @@ const play = async () => {
   }
 };
 
+watch(
+  () => $props.muted,
+  (v) => {
+    videoPlayer.value && (videoPlayer.value.muted = v);
+  },
+);
+
 onMounted(play);
 </script>
 
 <template>
-  <video
-    ref="videoPlayer"
-    autoplay
-    :muted="muted || $tool.isPhone"
-    :src="link"
-    class="k-video"
-    loop
-  ></video>
+  <video ref="videoPlayer" autoplay muted :src="link" class="k-video" loop></video>
 </template>
 
 <style scoped lang="less">
