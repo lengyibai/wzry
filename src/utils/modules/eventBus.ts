@@ -4,6 +4,7 @@ import { ImageViewParams } from "../interface";
 
 import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
 import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";
+import type { InputConfig } from "@/components/business/Global/Control/components/K-InputDialog/interface";
 
 type EventData = {
   loading: { text?: string; show: boolean };
@@ -20,6 +21,8 @@ type EventData = {
   "img-view": ImageViewParams;
   /** 鼠标悬浮提示 */
   "mouse-tip": MouseTip;
+  /** 弹窗输入 */
+  input: InputConfig;
 };
 
 type MittEventMap = {
