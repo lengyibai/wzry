@@ -1,132 +1,24 @@
-/* 文字渐变 */
-.global_text-gradient {
-  color: transparent;
-  background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
-  background-clip: text;
-}
-
-/* 溢出省略号显示单行 */
-.global_one-line {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-break: break-all;
-}
-
-/* 超级居中 */
-.global_flex-center {
+.epigraph-sidebar_title {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-}
+  flex-shrink: 0;
+  height: 4rem;
+  padding: 0 1rem;
+  box-shadow: var(--b-shadow-a);
+  font-size: 2rem;
+  line-height: 1.75;
+  background-image: linear-gradient(90deg, var(--theme-font-color-three) 0%, transparent 100%);
 
-/* 自身居中 */
-.global_self-center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* 超级填充 */
-.global_fill-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* 白色滚动条 */
-.global_scroll-white {
-  &::-webkit-scrollbar {
-    width: 0.3125rem;
-    background: transparent;
+  .label {
+    text-shadow: var(--t-shadow-e);
   }
 
-  /* 滚动条里面可以拖动的那部分 */
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0.3125rem;
-    background-color: var(--white-50);
-    background-image: linear-gradient(
-      45deg,
-      rgb(0 0 0 / 25%) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgb(0 0 0 / 25%) 50%,
-      rgb(0 0 0 / 25%) 75%,
-      transparent 75%,
-      transparent
-    );
+  .iconfont {
+    .global_light-btn();
 
-    &:hover {
-      background-color: rgb(255 255 255 / 35%);
-    }
-
-    &:active {
-      background-color: var(--white-25);
-    }
-  }
-}
-
-/* 可点击按钮 */
-.global_click-btn {
-  &:hover {
-    opacity: 0.75;
-  }
-
-  &:active {
-    transform-origin: bottom center;
-    opacity: 0.5;
-  }
-}
-
-/* 可点击高光 */
-.global_light-btn {
-  &:hover {
-    transition: all 0.1s;
-    filter: contrast(1.1) brightness(1.3);
-  }
-
-  &:active {
-    transform: scale(0.95);
-    transform-origin: center;
-    filter: contrast(1) brightness(0.9);
-  }
-}
-
-/*  条纹背景 */
-.global_stripes-bg {
-  --color: rgba(0 0 0 / 10%);
-  .global_fill-container();
-
-  background-image: linear-gradient(
-    -45deg,
-    var(--color) 25%,
-    transparent 25%,
-    transparent 50%,
-    var(--color) 50%,
-    var(--color) 75%,
-    transparent 75%,
-    transparent
-  );
-  background-size: 0.25rem 0.25rem;
-}
-
-/* 文字描边 */
-.global_text-outline(@thickness, @color, @border) {
-  position: relative;
-  z-index: 1;
-  color: @color;
-
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    z-index: -1;
-    font-size: inherit;
-    font-family: inherit;
-    inset: 0;
-    -webkit-text-stroke: @thickness @border;
+    display: inline-block;
+    color: var(--theme-font-color-six);
+    font-size: 1.5rem;
   }
 }
