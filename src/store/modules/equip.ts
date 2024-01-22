@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 import { top, height } from "../helper";
 import { EquipStoreType } from "../interface";
@@ -31,7 +31,7 @@ const EquipStore = defineStore("equip", () => {
     游走: 6,
   };
   /** 装备列表的所有元素 */
-  const equip_element = ref<EquipStoreType.Element[]>([]);
+  const equip_element = reactive<EquipStoreType.Element[]>([]);
 
   const ExposeData = {
     /** 列表装备类型 */
@@ -251,7 +251,7 @@ const EquipStore = defineStore("equip", () => {
     },
     /** @description 存储列表所有装备Dom元素及相关信息 */
     setEquipElement(data: EquipStoreType.Element) {
-      equip_element.value.push(data);
+      equip_element.push(data);
     },
 
     /** @description 设置装备类型 */

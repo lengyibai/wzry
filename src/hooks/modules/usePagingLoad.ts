@@ -1,4 +1,4 @@
-import { nextTick, ref } from "vue";
+import { nextTick, reactive, ref } from "vue";
 
 /** @description 分页加载 */
 const usePagingLoad = <T>() => {
@@ -18,7 +18,7 @@ const usePagingLoad = <T>() => {
     /** 暂无更多 */
     finish: ref(false),
     /** 完整数据列表 */
-    all_data: ref<T[]>([]),
+    all_data: reactive<T[]>([]),
     /** 筛选后的数据列表 */
     filter_list: ref<T[]>([]),
     /** 展示的数据列表 */
@@ -34,7 +34,7 @@ const usePagingLoad = <T>() => {
 
     /** @description 设置全部数据 */
     pushAllData(v: T) {
-      (all_data.value as T[]).push(v);
+      (all_data as T[]).push(v);
     },
 
     /** @description 设置筛选后的数据 */

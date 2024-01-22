@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 import { HeroDetailStoreType } from "../interface";
 
@@ -13,7 +13,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 英雄信息 */
     hero_info: ref<Game.Hero.Detail>(heroDefault()),
     /** 滚动结束后触发函数组 */
-    scrollFns: ref<HeroDetailStoreType.ScrollFn>([]),
+    scrollFns: reactive<HeroDetailStoreType.ScrollFn>([]),
     /** 处于展示的技能索引 */
     skill_index: ref(0),
     /** 滚动索引 */
@@ -56,7 +56,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** @description 设置滚动页名 */
     setPageName(name: string) {
       page_name.value = name;
-      scrollFns.value.forEach((item) => {
+      scrollFns.forEach((item) => {
         item.fn(name);
       });
     },
@@ -67,13 +67,13 @@ const HeroDetailStore = defineStore("heroDetail", () => {
      * @param fn 触发函数
      */
     setScrollFn(name: string, fn: (pageName: string) => void) {
-      scrollFns.value.push({ name: name, fn: fn });
+      scrollFns.push({ name: name, fn: fn });
     },
 
     /** @description 移除需要滚动触发的函数 */
     removeScrollFn(name: string) {
-      const index = scrollFns.value.findIndex((item) => item.name === name);
-      scrollFns.value.splice(index, 1);
+      const index = scrollFns.findIndex((item) => item.name === name);
+      scrollFns.splice(index, 1);
     },
 
     /** @description 设置技能索引 */

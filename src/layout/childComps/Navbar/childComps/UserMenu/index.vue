@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, reactive } from "vue";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
@@ -23,13 +23,13 @@ const show_edit = ref(false);
 /** 信息是否修改 */
 const edit_status = ref(false);
 /** 编辑的用户信息 */
-const user_info = ref<Partial<Global.User>>({ ...$authStore.userInfo });
+const user_info = reactive<Partial<Global.User>>({ ...$authStore.userInfo });
 
 /** 用户本地信息 */
 const userInfo = computed(() => $authStore.userInfo);
 /** 用户权限 */
 const role = computed(() => {
-  return user_info.value.role === 0 ? "管理员" : "普通用户";
+  return user_info.role === 0 ? "管理员" : "普通用户";
 });
 /* 悬浮显示 */
 const handleEnter = () => {

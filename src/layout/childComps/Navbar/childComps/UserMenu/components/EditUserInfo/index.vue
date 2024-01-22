@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, reactive } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KInput from "@/components/business/Parts/K-Input/index.vue";
@@ -27,11 +27,11 @@ const $authStore = AuthStore();
 const $audioStore = AudioStore();
 
 /** 用户信息 */
-const user_info = ref<Global.User>({ ...$authStore.userInfo });
+const user_info = reactive<Global.User>({ ...$authStore.userInfo });
 
 /** 是否修改了资料 */
 const edit_status = computed(() => {
-  return JSON.stringify(user_info.value) !== JSON.stringify($authStore.userInfo);
+  return JSON.stringify(user_info) !== JSON.stringify($authStore.userInfo);
 });
 
 /* 判断信息是否被修改 */
@@ -41,19 +41,19 @@ const handleContrast = () => {
 
 /* 保存个人信息 */
 const handleSave = () => {
-  $authStore.setUserInfo(user_info.value);
+  $authStore.setUserInfo(user_info);
   $audioStore.play("pj83");
 
   //更新本地当前用户信息
-  LOCAL_USER.updateUser($authStore.userInfo.id, user_info.value).then(() => {
-    localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(user_info.value));
+  LOCAL_USER.updateUser($authStore.userInfo.id, user_info).then(() => {
+    localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(user_info));
 
     //更新记住密码
     localStorage.setItem(
       LOCAL_KEY.REMEMBER_USER,
       JSON.stringify({
-        id: user_info.value.id,
-        password: user_info.value.password,
+        id: user_info.id,
+        password: user_info.password,
       }),
     );
 
