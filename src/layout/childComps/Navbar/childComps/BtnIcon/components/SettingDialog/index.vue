@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
-import KButton from "@/components/business/Parts/K-Button/index.vue";
-import KCheck from "@/components/business/Parts/K-Check/index.vue";
-import KRange from "@/components/business/Parts/K-Range/index.vue";
-import KSelect from "@/components/business/Parts/K-Select/index.vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $bus, $message, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 
 const $audioStore = AudioStore();
 const $musicStore = MusicStore();
