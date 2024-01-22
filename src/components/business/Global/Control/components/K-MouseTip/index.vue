@@ -149,87 +149,89 @@ onMounted(getTipPosition);
 
 <template>
   <teleport to="body">
-    <div
-      :class="{
-        show: show,
-      }"
-      class="k-mouse-line"
-    >
-      <!-- 移动点 -->
-      <div class="dot-box" :style="{ left: x + 'px', top: y + 'px' }">
-        <!-- 小圆点 -->
-        <div
-          ref="dotRef"
-          class="dot"
-          :class="{
-            downing: downing,
-            clickable: show_tip && !is_click && !disabled,
-            input: type === 'INPUT',
-          }"
-        >
-          <!-- 连接光圈的线条 -->
-          <div ref="roundLineRef" class="round-line"></div>
-        </div>
-
-        <!-- 连接tip的线条 -->
-        <div
-          class="line"
-          :class="[
-            tip_position,
-            {
-              show: show_tip,
-              disabled: disabled,
-              clickable: !is_click,
-            },
-          ]"
-          :style="{
-            visibility: tip ? 'visible' : 'hidden',
-          }"
-        >
-          <!-- tip框 -->
+    <transition name="fade">
+      <div v-show="show" class="k-mouse-line">
+        <!-- 移动点 -->
+        <div class="dot-box" :style="{ left: x + 'px', top: y + 'px' }">
+          <!-- 小圆点 -->
           <div
-            ref="tipRef"
-            class="tip"
+            ref="dotRef"
+            class="dot"
             :class="{
-              show: show_tip,
+              downing: downing,
+              clickable: show_tip && !is_click && !disabled,
+              input: type === 'INPUT',
             }"
           >
-            <span
-              v-if="tip && show_tip"
-              v-typewriter-multiple="{
-                delay: 250,
-                speed: 50,
-                content: tip,
+            <!-- 连接光圈的线条 -->
+            <div ref="roundLineRef" class="round-line"></div>
+          </div>
+
+          <!-- 连接tip的线条 -->
+          <div
+            class="line"
+            :class="[
+              tip_position,
+              {
+                show: show_tip,
+                disabled: disabled,
+                clickable: !is_click,
+              },
+            ]"
+            :style="{
+              visibility: tip ? 'visible' : 'hidden',
+            }"
+          >
+            <!-- tip框 -->
+            <div
+              ref="tipRef"
+              class="tip"
+              :class="{
+                show: show_tip,
               }"
             >
-            </span>
+              <span
+                v-if="tip && show_tip"
+                v-typewriter-multiple="{
+                  delay: 250,
+                  speed: 50,
+                  content: tip,
+                }"
+              >
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 跟随的光圈 -->
+        <div
+          ref="roundBoxRef"
+          class="round-box"
+          :class="{
+            clickable: show_tip && !disabled && !is_click,
+            disabled: disabled,
+            moving: moving,
+            downing: downing,
+          }"
+          :style="{ left: x + 2.5 + 'px', top: y + 2.5 + 'px' }"
+        >
+          <!-- 光圈动画 -->
+          <div
+            class="box"
+            :style="{
+              opacity: moving && !show_tip ? '0' : '1',
+            }"
+          >
+            <div
+              v-for="(item, index) in 3"
+              :key="index"
+              class="round"
+              :style="`--i:${index}`"
+            ></div>
           </div>
         </div>
       </div>
-
-      <!-- 跟随的光圈 -->
-      <div
-        ref="roundBoxRef"
-        class="round-box"
-        :class="{
-          clickable: show_tip && !disabled && !is_click,
-          disabled: disabled,
-          moving: moving,
-          downing: downing,
-        }"
-        :style="{ left: x + 2.5 + 'px', top: y + 2.5 + 'px' }"
-      >
-        <!-- 光圈动画 -->
-        <div
-          class="box"
-          :style="{
-            opacity: moving && !show_tip ? '0' : '1',
-          }"
-        >
-          <div v-for="(item, index) in 3" :key="index" class="round" :style="`--i:${index}`"></div>
-        </div>
-      </div>
-    </div>
+    </transition>
   </teleport>
 </template>
 
