@@ -1,9 +1,7 @@
 import { BarrageType } from "../interface";
 
 import { KVP_HERO } from "@/api";
-import { $bus } from "@/utils";
-import { getAudioLink, getImgLink } from "@/utils/modules/concise";
-import { random } from "@/utils/modules/tool";
+import { $mouseTip, $tool, $concise } from "@/utils";
 
 /** @description 弹幕生成器 */
 export class BarragesGenerate {
@@ -94,7 +92,7 @@ export class BarragesGenerate {
     }
 
     //一次生成的弹幕数量
-    const count = random(1, 3);
+    const count = $tool.random(1, 3);
 
     //从原数组中截取随机个数的元素作为要生成的弹幕数据
     const barrages = this.data.slice(0, count);
@@ -108,7 +106,7 @@ export class BarragesGenerate {
     this.data = this.data.slice(count);
 
     //生成下次发送弹幕的时间间隔
-    const time = random(2, 4, 1) * 1000;
+    const time = $tool.random(2, 4, 1) * 1000;
     this.generateTimer = setTimeout(() => {
       this.generateBarrage();
     }, time);
@@ -130,7 +128,7 @@ export class BarragesGenerate {
     }
 
     //随机选择一个弹幕间隔位置的索引
-    const gapIndex = random(0, availableGaps.length - 1);
+    const gapIndex = $tool.random(0, availableGaps.length - 1);
     //获取选中的弹幕间隔位置
     const gap = availableGaps[gapIndex];
     //将选中的弹幕间隔位置添加到已使用的数组中
@@ -180,7 +178,7 @@ export class BarragesGenerate {
     }
 
     //随机选择一个弹幕间隔位置的索引
-    const gapIndex = random(0, availableGaps.length - 1);
+    const gapIndex = $tool.random(0, availableGaps.length - 1);
     //获取选中的弹幕间隔位置
     const gap = availableGaps[gapIndex];
     //将选中的弹幕间隔位置添加到已使用的数组中
@@ -203,11 +201,11 @@ export class BarragesGenerate {
       name: "冷弋白",
       desc: "独立开发者",
       text: "点击下面的图片可以查看大图，图中文件：src/views/Hero/childViews/HeroDetail/index.vue",
-      avatar: getImgLink("lyb"),
-      link: getAudioLink("ji"),
-      link_big: getImgLink("code_bg_big", "jpg"),
-      link_small: getImgLink("code_bg_small", "jpg"),
-      link_blur: getImgLink("code_bg_blur", "jpg"),
+      avatar: $concise.getImgLink("lyb"),
+      link: $concise.getAudioLink("ji"),
+      link_big: $concise.getImgLink("code_bg_big", "jpg"),
+      link_small: $concise.getImgLink("code_bg_small", "jpg"),
+      link_blur: $concise.getImgLink("code_bg_blur", "jpg"),
     });
 
     setTimeout(() => {
@@ -222,16 +220,11 @@ export class BarragesGenerate {
   /** @description 给弹幕绑定事件 */
   private bindEvent(barrage: HTMLElement, data: BarrageType) {
     barrage.addEventListener("mouseenter", () => {
-      $bus.emit("mouse-tip", {
-        show: true,
+      $mouseTip.show({
         text: `点击查看${KVP_HERO.getHeroNameKvp()[data.heroId] || data.name}的弹幕卡片`,
       });
     });
-    barrage.addEventListener("mouseleave", () => {
-      $bus.emit("mouse-tip", {
-        show: false,
-      });
-    });
+    barrage.addEventListener("mouseleave", $mouseTip.close);
     barrage.addEventListener("click", (e: MouseEvent) => {
       this.clickCallback(data, e);
     });

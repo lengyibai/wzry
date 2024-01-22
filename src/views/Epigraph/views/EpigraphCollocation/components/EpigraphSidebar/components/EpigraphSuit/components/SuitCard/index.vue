@@ -3,7 +3,7 @@ import { computed } from "vue";
 
 import { KButton } from "@/components/business";
 import { EpigraphCollocationStoreType } from "@/store/interface";
-import { $bus } from "@/utils";
+import { $confirm, $input } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
@@ -48,7 +48,7 @@ const handleUse = (id: string) => {
 
 /* 改名 */
 const handleRename = (id: string) => {
-  $bus.emit("input", {
+  $input({
     value: $props.data.label,
     title: "更改方案名称",
     placeholder: "请输入新的方案名称",
@@ -60,7 +60,7 @@ const handleRename = (id: string) => {
 
 /* 删除方案 */
 const handleDelete = (id: string, name: string) => {
-  $bus.emit("confirm", {
+  $confirm({
     text: `确定删除[${name}]这个方案吗？`,
     confirm: () => {
       $epigraphCollocationStore.deleteSuit(id);

@@ -5,7 +5,7 @@ import _debounce from "lodash/debounce";
 import { TableData } from "./interface";
 
 import { AudioStore } from "@/store";
-import { $bus, $message, $tool } from "@/utils";
+import { $confirm, $message, $tool } from "@/utils";
 import { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
 import { REQUEST } from "@/config";
@@ -105,7 +105,7 @@ const handleUpdate = async (data: TableData) => {
 /* 强制覆盖 */
 const handleReplace = (data: TableData) => {
   replace_data = data;
-  $bus.emit("confirm", {
+  $confirm({
     text: "即将从远程下载当前数据进行覆盖",
     confirm: onConfirmReset(data.request),
   });

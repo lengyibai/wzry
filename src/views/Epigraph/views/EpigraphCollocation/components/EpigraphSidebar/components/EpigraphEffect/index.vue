@@ -9,7 +9,7 @@ import { CompKey } from "./interface";
 import { EpigraphCollocationStore } from "@/store";
 import { KButton, KSelect } from "@/components/business";
 import { vMouseTip } from "@/directives";
-import { $bus, $message } from "@/utils";
+import { $confirm, $message } from "@/utils";
 import { MOUSE_TIP } from "@/config";
 
 const comps = {
@@ -25,7 +25,7 @@ const $epigraphCollocationStore = EpigraphCollocationStore();
 
 /* 一键拆卸 */
 const handleClear = () => {
-  $bus.emit("confirm", {
+  $confirm({
     text: "确定拆卸铭文吗？",
     confirm: $epigraphCollocationStore.clearColors,
   });

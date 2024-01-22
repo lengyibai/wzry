@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
-import { $bus, $message, $tip } from "@/utils";
+import { $confirm, $message, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
@@ -122,7 +122,7 @@ const saveConfig = () => {
 
 /* 显示确认重置弹窗 */
 const handleResetConfig = () => {
-  $bus.emit("confirm", {
+  $confirm({
     text: "确定重置所有配置项？",
     confirm: onResetConfig,
   });

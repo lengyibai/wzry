@@ -4,7 +4,7 @@ import { ref, computed } from "vue";
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
 import { AuthStore, AudioStore } from "@/store";
-import { $bus, $concise } from "@/utils";
+import { $concise, $confirm } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
@@ -54,7 +54,7 @@ const handleLogout = () => {
 
 /* 注销账号确认 */
 const handleConfirmLogoff = () => {
-  $bus.emit("confirm", {
+  $confirm({
     text: "注销后，当前帐号需重新注册才能登录，确定注销吗？",
     confirm: handleLogoff,
   });
@@ -68,7 +68,7 @@ const handleLogoff = () => {
 /* 显示确认关闭弹窗 */
 const onCloseConfirmEditInfo = () => {
   if (edit_status.value) {
-    $bus.emit("confirm", {
+    $confirm({
       text: "资料已修改，确定关闭吗？",
       confirm: () => {
         dialogRef.value!._close();

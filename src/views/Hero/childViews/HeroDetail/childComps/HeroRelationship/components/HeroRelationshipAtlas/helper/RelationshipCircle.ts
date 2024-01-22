@@ -1,7 +1,7 @@
 import type { HeroInfo, Params, RelationshipInfo, LineInfo } from "../interface";
 
 import { KVP_HERO } from "@/api";
-import { $bus } from "@/utils/modules/eventBus";
+import { $mouseTip } from "@/utils";
 
 /* 监听 */
 const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: HTMLElement) => {
@@ -197,16 +197,11 @@ export class RelationshipCircle {
         heroEl.onmouseenter = () => {
           if (this.isAnimating) return;
           this.hoverHero(relationship.id);
-          $bus.emit("mouse-tip", {
-            show: true,
+          $mouseTip.show({
             text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料`,
           });
         };
-        heroEl.onmouseleave = () => {
-          $bus.emit("mouse-tip", {
-            show: false,
-          });
-        };
+        heroEl.onmouseleave = $mouseTip.close;
       }
     });
   }
@@ -571,16 +566,11 @@ export class RelationshipCircle {
         currentRelationship.heroEl.onmouseenter = () => {
           if (this.isAnimating) return;
           this.hoverHero(relationship.id);
-          $bus.emit("mouse-tip", {
-            show: true,
+          $mouseTip.show({
             text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料！`,
           });
         };
-        currentRelationship.heroEl.onmouseleave = () => {
-          $bus.emit("mouse-tip", {
-            show: false,
-          });
-        };
+        currentRelationship.heroEl.onmouseleave = $mouseTip.close;
       } else {
         //创建新的英雄关系DOM添加到页面并存储
         const { x, y, angle } = this.getPositionInfo(0);
@@ -607,16 +597,11 @@ export class RelationshipCircle {
           heroEl.onmouseenter = () => {
             if (this.isAnimating) return;
             this.hoverHero(relationship.id);
-            $bus.emit("mouse-tip", {
-              show: true,
+            $mouseTip.show({
               text: `点击查看${KVP_HERO.getHeroNameKvp()[relationship.id]}的关系资料`,
             });
           };
-          heroEl.onmouseleave = () => {
-            $bus.emit("mouse-tip", {
-              show: false,
-            });
-          };
+          heroEl.onmouseleave = $mouseTip.close;
         }
         currentLines.push({
           lineEl,
