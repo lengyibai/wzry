@@ -90,10 +90,7 @@ const useTip = () => {
       is_once.value = !!tip_key;
 
       //如果tip_key有值，表示是系统Tip，设置不再提示
-      if (tip_key) {
-        //如果是点击tip开关触发的则为空
-        noTipName = tip_key === "f1y0" ? "" : tip_key;
-      }
+      noTipName = tip_key || "";
 
       /* 推送Tip */
       btnFn = _btnFn;
