@@ -86,14 +86,14 @@ const useGetData = () => {
         if (data_lacks.length) {
           const data_text = data_lacks.join("、");
           $tip({
-            text: `检测到本地缺失数据：[${data_text}]，已为你自动恢复（说！是不是偷偷删数据了！）。`,
+            text: `检测到本地缺失数据：[${data_text}]，已为你自动恢复。`,
           });
         }
 
         if (voice_lacks.length) {
           const voice_text = voice_lacks.join("、");
           $tip({
-            text: `检测到本地缺失语音：[${voice_text}]，已为你自动恢复（说！是不是偷偷删语音了！）。`,
+            text: `检测到本地缺失语音：[${voice_text}]，已为你自动恢复。`,
           });
         }
       }
