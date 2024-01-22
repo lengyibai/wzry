@@ -1,0 +1,288 @@
+.epigraph-suit {
+  --rate: 3;
+
+  position: relative;
+  flex-shrink: 0;
+  min-width: calc(18.875rem * var(--rate));
+  height: calc(15.75rem * var(--rate));
+  margin-right: 1.875rem;
+  margin-bottom: 1.5625rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("@{IMGBED}/image/epigraph_bg.png");
+    background-size: calc(2.375rem * var(--rate)) calc(4.0625rem * var(--rate));
+    -webkit-mask: radial-gradient(#000 60%, transparent 70%);
+  }
+
+  .epigraph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(2rem * var(--rate));
+    height: calc(2.3125rem * var(--rate));
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    filter: var(--d-shadow-b);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .shine-round {
+    --rate: 3.7;
+
+    position: absolute;
+    z-index: 1;
+    width: calc(2rem * var(--rate));
+    height: calc(2.3125rem * var(--rate));
+    background-image: url("@{IMGBED}/image/epigraph_slot_shine.png");
+    background-size: 100% 100%;
+    transition: 0.5s;
+    animation: shine 1.25s infinite ease-in-out;
+    filter: brightness(1.1);
+    pointer-events: none;
+
+    @keyframes shine {
+      50% {
+        filter: brightness(0.5);
+      }
+    }
+  }
+
+  .blue-epigraph {
+    .epigraph {
+      background-image: url("@{IMGBED}/image/epigraph_blue_slot.png");
+
+      &.active {
+        --color: #256794;
+      }
+
+      &-1 {
+        top: 4.1%;
+        left: 25.9%;
+      }
+
+      &-2 {
+        top: 16.9%;
+        left: 19.5%;
+      }
+
+      &-3 {
+        top: 4.1%;
+        left: 13.3%;
+      }
+
+      &-4 {
+        top: 16.9%;
+        left: 6.9%;
+      }
+
+      &-5 {
+        top: 29.8%;
+        left: 0.7%;
+      }
+
+      &-6 {
+        top: 42.7%;
+        left: 6.9%;
+      }
+
+      &-7 {
+        top: 55.6%;
+        left: 0.7%;
+      }
+
+      &-8 {
+        top: 68.5%;
+        left: 6.9%;
+      }
+
+      &-9 {
+        top: 81.5%;
+        left: 13.3%;
+      }
+
+      &-10 {
+        top: 81.5%;
+        left: 25.9%;
+      }
+    }
+  }
+
+  .green-epigraph {
+    .epigraph {
+      background-image: url("@{IMGBED}/image/epigraph_green_slot.png");
+
+      &.active {
+        --color: #13a76a;
+      }
+
+      &-1 {
+        top: 29.8%;
+        left: 38.5%;
+      }
+
+      &-2 {
+        top: 29.8%;
+        left: 51.1%;
+      }
+
+      &-3 {
+        top: 42.7%;
+        left: 32.1%;
+      }
+
+      &-4 {
+        top: 42.7%;
+        left: 44.7%;
+      }
+
+      &-5 {
+        top: 42.7%;
+        left: 57.3%;
+      }
+
+      &-6 {
+        top: 55.6%;
+        left: 25.9%;
+      }
+
+      &-7 {
+        top: 55.6%;
+        left: 38.5%;
+      }
+
+      &-8 {
+        top: 55.6%;
+        left: 51.1%;
+      }
+
+      &-9 {
+        top: 55.6%;
+        left: 63.6%;
+      }
+
+      &-10 {
+        top: 68.5%;
+        left: 44.6%;
+      }
+    }
+  }
+
+  .red-epigraph {
+    .epigraph {
+      left: initial;
+      right: 0;
+      background-image: url("@{IMGBED}/image/epigraph_red_slot.png");
+
+      &-1 {
+        top: 4.1%;
+        right: 25.7%;
+      }
+
+      &-2 {
+        top: 16.9%;
+        right: 19.5%;
+      }
+
+      &-3 {
+        top: 4.1%;
+        right: 13.2%;
+      }
+
+      &-4 {
+        top: 16.9%;
+        right: 6.9%;
+      }
+
+      &-5 {
+        top: 29.8%;
+        right: 0.6%;
+      }
+
+      &-6 {
+        top: 42.7%;
+        right: 6.9%;
+      }
+
+      &-7 {
+        top: 55.6%;
+        right: 0.6%;
+      }
+
+      &-8 {
+        top: 68.5%;
+        right: 6.9%;
+      }
+
+      &-9 {
+        top: 81.5%;
+        right: 13.2%;
+      }
+
+      &-10 {
+        top: 81.5%;
+        right: 25.8%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1920px) {
+    min-width: calc(15.7292vw * var(--rate));
+    height: calc(13.125vw * var(--rate));
+    margin-right: 1.5625vw;
+    margin-bottom: 1.3021vw;
+
+    &::before {
+      background-size: calc(1.9792vw * var(--rate)) calc(3.3854vw * var(--rate));
+    }
+
+    .epigraph {
+      width: calc(1.6667vw * var(--rate));
+      height: calc(1.9271vw * var(--rate));
+    }
+
+    .shine-round {
+      width: calc(1.6667vw * var(--rate));
+      height: calc(1.9271vw * var(--rate));
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    --rate: 3.5;
+
+    .shine-round {
+      --rate: 4.25;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    --rate: 5;
+
+    .shine-round {
+      --rate: 6.25;
+    }
+  }
+}
+
+.move-enter-from,
+.move-leave-to {
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.move-enter-active,
+.move-leave-active,
+.move-move {
+  transition: all 0.5s;
+}
+
+.move-leave-active {
+  position: absolute;
+}

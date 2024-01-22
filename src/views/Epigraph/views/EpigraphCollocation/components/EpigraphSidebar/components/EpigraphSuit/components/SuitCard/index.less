@@ -1,0 +1,98 @@
+.suit-card {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 1rem;
+
+  &:hover {
+    background-color: var(--white-10);
+  }
+
+  &.active {
+    background-image: linear-gradient(
+      -45deg,
+      var(--color) 0%,
+      var(--color) 15%,
+      var(--theme-el-color-two) 50%,
+      var(--color) 85%,
+      var(--color) 100%
+    );
+    background-size: 200% 200%;
+    transform-origin: top center;
+    animation: energy 2s linear infinite;
+
+    @keyframes energy {
+      0% {
+        background-position: 210% 0;
+      }
+
+      100% {
+        background-position: 0;
+      }
+    }
+  }
+
+  .name {
+    min-width: 4em;
+    font-size: 1.5rem;
+    text-align: center;
+    text-shadow: var(--t-shadow-e);
+  }
+
+  .epigraph-list {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 5.5rem;
+    margin: 0 2rem;
+    padding-right: 0.5rem;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    -webkit-mask: linear-gradient(90deg, #000 80%, var(--white-50) 100%);
+
+    .epigraph {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .icon {
+        width: 3.25rem;
+        margin-bottom: 0.5rem;
+        filter: var(--d-shadow-b);
+      }
+
+      .epigraph-name {
+        color: var(--theme-font-color-four);
+        text-shadow: var(--t-shadow-d);
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .tool {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 14.5rem;
+
+    .iconfont {
+      font-size: 1.75rem;
+
+      &.wzry-rename {
+        color: var(--blue);
+      }
+
+      &.wzry-delbig {
+        color: var(--red);
+      }
+    }
+
+    .k-button {
+      --btn-rate: 0.75;
+      --font-size: 1.25rem;
+    }
+  }
+}

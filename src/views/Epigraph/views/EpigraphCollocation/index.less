@@ -1,0 +1,21 @@
+.epigraph-collocation {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  .back {
+    --misc-rate: 1;
+    .spirit_misc-back();
+    .global_light-btn();
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    padding: 2rem;
+  }
+}

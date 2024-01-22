@@ -1,0 +1,43 @@
+.epigraph-effect {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 1rem;
+  background-color: var(--black-50);
+
+  .title {
+    .epigraph-sidebar_title();
+  }
+
+  .effect-list {
+    flex-grow: 1;
+    overflow: auto;
+    margin: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .btn {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding: 0 1rem;
+    gap: 1rem;
+
+    .k-button {
+      --btn-rate: 0.75;
+      --font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .effect-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      flex-direction: row;
+      gap: 1.25rem;
+      align-content: flex-start;
+    }
+  }
+}

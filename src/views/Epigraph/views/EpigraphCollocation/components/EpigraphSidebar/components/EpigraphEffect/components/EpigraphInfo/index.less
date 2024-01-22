@@ -1,0 +1,35 @@
+.epigraph-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  .epigraph-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .icon {
+      flex-shrink: 0;
+      width: 5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .count {
+      color: var(--theme-font-color-four);
+      font-size: 1.25rem;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .epigraph-box {
+      .icon {
+        width: 3.5rem;
+      }
+
+      .count {
+        font-size: 1rem;
+      }
+    }
+  }
+}

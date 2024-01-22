@@ -1,0 +1,62 @@
+.epigraph-toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: var(--subline);
+
+  .k-button {
+    --btn-rate: 0.75;
+    --font-size: 1.25rem;
+
+    margin-right: 0.625rem;
+  }
+
+  .filter-select {
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    max-width: 8.3rem;
+    padding: 0.625rem;
+    border-right: var(--subline);
+    gap: 0.625rem;
+  }
+
+  &:deep(.form-input) {
+    --border-color: var(--theme-border-color-two);
+    --color: var(--theme-font-color-four);
+    --align: center;
+    --width: 15em;
+    --font-size: 1.5rem;
+
+    margin-left: auto;
+    padding: 0.625rem;
+
+    & > input::placeholder {
+      color: var(--theme-font-color-two);
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+
+    .k-button {
+      margin-right: 0;
+      margin-bottom: 1.5625rem;
+    }
+
+    .filter-select {
+      justify-content: center;
+      margin-bottom: 1.5625rem;
+    }
+
+    &:deep(.form-input) {
+      margin-top: 1.5625rem;
+      margin-left: 0;
+    }
+  }
+}
+
+.active {
+  color: var(--white) !important;
+  background-color: #347cb6 !important;
+}

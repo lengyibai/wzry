@@ -1,0 +1,31 @@
+.epigraph-sidebar {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  overflow: hidden;
+  height: 100%;
+
+  @media screen and (max-width: 960px) {
+    justify-content: initial;
+    overflow: hidden;
+    width: 100%;
+    height: initial;
+  }
+}
+
+.move-enter-from,
+.move-leave-to {
+  transform: translateX(50%);
+  opacity: 0;
+}
+
+.move-enter-active,
+.move-leave-active,
+.move-move {
+  transition: all 0.5s;
+}
+
+.move-leave-active {
+  position: absolute;
+}

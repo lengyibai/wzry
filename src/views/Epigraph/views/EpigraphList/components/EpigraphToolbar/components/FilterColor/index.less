@@ -1,0 +1,50 @@
+.filter-gender {
+  display: flex;
+  align-items: center;
+  padding: 0 0.625rem;
+  color: var(--theme-font-color-four);
+  font-size: 1.375rem;
+  text-shadow: var(--t-shadow-e);
+
+  .label {
+    white-space: nowrap;
+  }
+
+  .box {
+    --color: #000;
+
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--color);
+    transition: 1s;
+    opacity: 0.25;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0% 50%);
+
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+
+    &.blue {
+      --color: var(--blue);
+    }
+
+    &.green {
+      --color: var(--green);
+    }
+
+    &.red {
+      --color: var(--red);
+    }
+
+    &.all {
+      --color: transparent;
+
+      background-image: linear-gradient(90deg, #3498db 15%, #2ecc71 50%, #e74c3c 85%);
+    }
+
+    &.active {
+      opacity: 0.75;
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    }
+  }
+}
