@@ -18,7 +18,7 @@ interface ElType extends HTMLElement {
 
 interface Params {
   /** tip内容 */
-  text: string;
+  text?: string;
   /** 是否处于禁用状态 */
   disabled?: boolean;
   /** 当前悬浮类型 */
@@ -29,7 +29,7 @@ const vMouseTip: Directive<ElType, Params> = {
   mounted(el, binding) {
     const { text, disabled, type } = binding.value || {};
 
-    el._text = text;
+    el._text = text || "";
     el._disabled = !!disabled;
     const enterFn = () => {
       el._show = true;
@@ -55,7 +55,7 @@ const vMouseTip: Directive<ElType, Params> = {
   updated(el, binding) {
     const { text, disabled, type } = binding.value || {};
     if (el._text === text) return;
-    el._text = text;
+    el._text = text || "";
     el._disabled = !!disabled;
     if (!(el._text && el._show)) return;
 
