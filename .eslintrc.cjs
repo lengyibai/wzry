@@ -37,6 +37,7 @@ module.exports = {
     "vue/require-default-prop": "off", //强制要求默认值
     "vue/no-template-shadow": "off", //禁止模板中的变量覆盖保留字
     "vue/v-on-event-hyphenation": "off", //强制事件名称驼峰命名
+    "@typescript-eslint/no-namespace": "off", //不允许在ts文件中使用命名空间
 
     //import排序
     "import/order": [
