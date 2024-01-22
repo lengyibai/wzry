@@ -1,9 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3767305 */
-  src:
-    url("iconfont.woff2?t=1701096414283") format("woff2"),
-    url("iconfont.woff?t=1701096414283") format("woff"),
-    url("iconfont.ttf?t=1701096414283") format("truetype");
+  src: url('iconfont.woff2?t=1705923352047') format('woff2'),
+       url('iconfont.woff?t=1705923352047') format('woff'),
+       url('iconfont.ttf?t=1705923352047') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wzry-rename:before {
+  content: "\e654";
+}
+
+.wzry-close:before {
+  content: "\e631";
 }
 
 .wzry-todo:before {
@@ -34,7 +41,7 @@
   content: "\e69c";
 }
 
-.wzry-muted-mianxing:before {
+.wzry-jingyin-mianxing:before {
   content: "\e668";
 }
 
@@ -313,3 +320,4 @@
 .wzry-nickname:before {
   content: "\e633";
 }
+
