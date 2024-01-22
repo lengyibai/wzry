@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from "vue";
-import { onMounted, ref, watchEffect } from "vue";
+import { ref } from "vue";
 
 interface Props {
   /** 视频链接 */
@@ -33,12 +33,18 @@ watch(
     videoPlayer.value && (videoPlayer.value.muted = v);
   },
 );
-
-onMounted(play);
 </script>
 
 <template>
-  <video ref="videoPlayer" autoplay muted :src="link" class="k-video" loop></video>
+  <video
+    ref="videoPlayer"
+    autoplay
+    muted
+    :src="link"
+    class="k-video"
+    @canplay="play"
+    @ended="play"
+  ></video>
 </template>
 
 <style scoped lang="less">
