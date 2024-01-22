@@ -15,6 +15,7 @@ const {
   btn_text,
   handleSetAllowClick,
   handleConfirm,
+  need_mask_color,
 } = useTip();
 
 const position = {
@@ -40,7 +41,13 @@ const position = {
 <template>
   <teleport to="body">
     <transition name="fade">
-      <div v-if="show_mask" class="mask">
+      <div
+        v-if="show_mask"
+        class="tip-mask"
+        :class="{
+          mask: need_mask_color,
+        }"
+      >
         <transition :name="align">
           <div v-show="show_tip" class="k-tip" :style="position[align]">
             <div class="top">

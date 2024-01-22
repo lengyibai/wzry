@@ -15,35 +15,31 @@ let btnFn: () => void;
 /** 有时候可能不会在同一个页面使用两个tip，就无法使用then，此时需要加入执行队列，点击确定后执行下一个 */
 const list: Global.Tip.Prompt[] = [];
 
-const is_once = ref(false);
-const btn_text = ref("");
-const content = ref("");
-const disabled = ref(true);
-const show_tip = ref(false);
-const show_mask = ref(false);
-const align = ref<Global.Tip.Position>("right-bottom");
+const ExposeData = {
+  /** 是否为只会提醒一次的 */
+  is_once: ref(false),
+  /** 是否锁定按钮 */
+  disabled: ref(true),
+  /** 显示小贴士 */
+  show_tip: ref(false),
+  /** 显示蒙版 */
+  show_mask: ref(false),
+  /** 显示内容 */
+  content: ref(""),
+  /** 弹窗位置 */
+  align: ref<Global.Tip.Position>("right-bottom"),
+  /** 自定义按钮文字 */
+  btn_text: ref(""),
+  /** 蒙版是否需要颜色，在元素聚焦的时候蒙版为透明 */
+  need_mask_color: ref(false),
+};
+const { is_once, btn_text, content, disabled, show_tip, show_mask, align, need_mask_color } =
+  ExposeData;
 
 /** @description 小贴士 */
 const useTip = () => {
   const $settingStore = SettingStore();
   const $audioStore = AudioStore();
-
-  const ExposeData = {
-    /** 是否为只会提醒一次的 */
-    is_once,
-    /** 是否锁定按钮 */
-    disabled,
-    /** 显示小贴士 */
-    show_tip,
-    /** 显示蒙版 */
-    show_mask,
-    /** 显示内容 */
-    content,
-    /** 弹窗位置 */
-    align,
-    /** 自定义按钮文字 */
-    btn_text,
-  };
 
   /** @description 设置是否显示tip */
   const setShowTip = async (v: boolean) => {
@@ -78,13 +74,19 @@ const useTip = () => {
         createFn,
         align: _align = "right-bottom",
         btnFn: _btnFn = () => {},
+        color = true,
       } = config;
+
       const tip_key = Object.entries(SCENE_TIP).find((item) => item[1] === text)?.[0];
       const is_no_tip = $settingStore.config.noTips[tip_key as keyof Global.Tip.Key];
 
       //如果是不再提示的Tip，则直接返回
-      if (is_no_tip) return Promise.resolve();
+      if (is_no_tip) {
+        queue = false;
+        return Promise.resolve();
+      }
 
+      need_mask_color.value = color;
       is_once.value = !!tip_key;
 
       //如果tip_key有值，表示是系统Tip，设置不再提示

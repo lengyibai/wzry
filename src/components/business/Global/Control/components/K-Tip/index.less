@@ -1,8 +1,11 @@
-.mask {
+.tip-mask {
   .global_fill-container();
 
   z-index: var(--z-index-tip);
-  background-color: var(--black-25);
+
+  &.mask {
+    background-color: var(--black-50);
+  }
 
   .k-tip {
     position: absolute;
