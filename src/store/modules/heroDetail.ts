@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { ScrollFn, SkinToggleFn, RelationInfoType } from "../interface";
+import { HeroDetailStoreType } from "../interface";
 
 import { heroDefault } from "@/default";
 import { getImgLink } from "@/utils/modules/concise";
@@ -13,7 +13,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 英雄信息 */
     hero_info: ref<Game.Hero.Detail>(heroDefault()),
     /** 滚动结束后触发函数组 */
-    scrollFns: ref<ScrollFn>([]),
+    scrollFns: ref<HeroDetailStoreType.ScrollFn>([]),
     /** 处于展示的技能索引 */
     skill_index: ref(0),
     /** 滚动索引 */
@@ -21,11 +21,11 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     /** 技能选择触发的函数 */
     skillSelectFn: ref<(index: number) => void>(() => {}),
     /** 皮肤切换后触发函数组 */
-    skinToggleFns: ref<SkinToggleFn[]>([]),
+    skinToggleFns: ref<HeroDetailStoreType.SkinToggleFn[]>([]),
     /** 皮肤语音列表 */
     skin_voice: ref<Remote.Voice.Data["voice"]>([]),
     /** 当前悬浮显示的关系信息 */
-    relation_info: ref<RelationInfoType>({
+    relation_info: ref<HeroDetailStoreType.RelationInfoType>({
       reply: "？",
       replyRelation: "？",
       desc: "？",
@@ -89,7 +89,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 设置需要切换皮肤触发的函数 */
-    setSkinToggleFn(fn: SkinToggleFn) {
+    setSkinToggleFn(fn: HeroDetailStoreType.SkinToggleFn) {
       skinToggleFns.value.push(fn);
     },
 

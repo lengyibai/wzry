@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { top, height } from "../helper";
-import { EquipElement } from "../interface";
+import { EquipStoreType } from "../interface";
 
 import { $tool } from "@/utils";
 import { GAME_EQUIP, KVP_EQUIP } from "@/api";
@@ -31,7 +31,7 @@ const EquipStore = defineStore("equip", () => {
     游走: 6,
   };
   /** 装备列表的所有元素 */
-  const equip_element = ref<EquipElement[]>([]);
+  const equip_element = ref<EquipStoreType.Element[]>([]);
 
   const ExposeData = {
     /** 列表装备类型 */
@@ -250,7 +250,7 @@ const EquipStore = defineStore("equip", () => {
       ExposeMethods.setType("攻击");
     },
     /** @description 存储列表所有装备Dom元素及相关信息 */
-    setEquipElement(data: EquipElement) {
+    setEquipElement(data: EquipStoreType.Element) {
       equip_element.value.push(data);
     },
 
