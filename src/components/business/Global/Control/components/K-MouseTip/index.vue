@@ -38,6 +38,7 @@ const type = ref<"NORMAL" | "INPUT">("NORMAL");
 /** 提示框位置 */
 const tip_position = ref<"left-bottom" | "right-bottom" | "left-top" | "right-top">("left-top");
 
+/* 鼠标悬浮时触发 */
 const debounceMouseTip = _debounce((v: MouseTip) => {
   if (downing.value) return;
   //解决某些元素销毁时会直接隐藏掉正常显示的Tip
@@ -57,23 +58,26 @@ const debounceMouseTip = _debounce((v: MouseTip) => {
 }, 100);
 $bus.on("mouse-tip", debounceMouseTip);
 
+/* 鼠标进入浏览器时显示 */
 document.documentElement.addEventListener("mouseenter", () => {
   clearTimeout(timer2);
   show.value = true;
 });
 
+/* 鼠标离开浏览器时隐藏 */
 document.documentElement.addEventListener("mouseleave", () => {
   timer2 = setTimeout(() => {
     show.value = false;
   }, 250);
 });
 
+/* 鼠标在250毫秒没有移动，则改变状态 */
 const debounceStillness = _debounce(() => {
   moving.value = false;
 }, 250);
 const moveFn = (e: MouseEvent | TouchEvent) => {
   requestAnimationFrame(() => {
-    debounceStillness();
+    moving.value = true;
 
     if (e instanceof MouseEvent) {
       x.value = e.pageX;
@@ -82,18 +86,21 @@ const moveFn = (e: MouseEvent | TouchEvent) => {
       x.value = e.touches[0].pageX;
       y.value = e.touches[0].pageY;
     }
-    moving.value = true;
+
+    debounceStillness();
   });
 };
 window.addEventListener("mousemove", moveFn);
 window.addEventListener("touchmove", moveFn);
 
+/* 鼠标按下 */
 const downFn = () => {
   downing.value = true;
 };
 window.addEventListener("mousedown", downFn);
 window.addEventListener("touchstart", downFn);
 
+/* 鼠标抬起 */
 const upFn = () => {
   downing.value = false;
   is_click.value = true;
@@ -101,42 +108,43 @@ const upFn = () => {
 window.addEventListener("mouseup", upFn);
 window.addEventListener("touchend", upFn);
 
-onMounted(() => {
-  const getTipPosition = () => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const {
-      left: dot_left,
-      right: dot_right,
-      top: dot_top,
-      bottom: dot_bottom,
-    } = dotRef.value!.getBoundingClientRect();
+/* 获取Tip的位置 */
+const getTipPosition = () => {
+  if (!dotRef.value) return;
 
-    //小圆点处于左上角区域
-    if (dot_right < w / 2 && dot_bottom < h / 2) {
-      tip_position.value = "right-bottom";
-    }
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const {
+    left: dot_left,
+    right: dot_right,
+    top: dot_top,
+    bottom: dot_bottom,
+  } = dotRef.value.getBoundingClientRect();
 
-    //小圆点处于右上角区域
-    if (dot_left > w / 2 && dot_bottom < h / 2) {
-      tip_position.value = "left-bottom";
-    }
+  //小圆点处于左上角区域
+  if (dot_right < w / 2 && dot_bottom < h / 2) {
+    tip_position.value = "right-bottom";
+  }
 
-    //小圆点处于右下角区域
-    if (dot_left > w / 2 && dot_top > h / 2) {
-      tip_position.value = "left-top";
-    }
+  //小圆点处于右上角区域
+  if (dot_left > w / 2 && dot_bottom < h / 2) {
+    tip_position.value = "left-bottom";
+  }
 
-    //小圆点处于左下角区域
-    if (dot_right < w / 2 && dot_top > h / 2) {
-      tip_position.value = "right-top";
-    }
+  //小圆点处于右下角区域
+  if (dot_left > w / 2 && dot_top > h / 2) {
+    tip_position.value = "left-top";
+  }
+  //小圆点处于左下角区域
+  if (dot_right < w / 2 && dot_top > h / 2) {
+    tip_position.value = "right-top";
+  }
 
-    connectCircle(dotRef.value!, roundBoxRef.value!, roundLineRef.value!);
-    requestAnimationFrame(getTipPosition);
-  };
-  getTipPosition();
-});
+  connectCircle(dotRef.value!, roundBoxRef.value!, roundLineRef.value!);
+  requestAnimationFrame(getTipPosition);
+};
+
+onMounted(getTipPosition);
 </script>
 
 <template>
