@@ -270,6 +270,8 @@ declare namespace Game {
       id: number;
       /** 名称 */
       name: string;
+      /** 颜色 */
+      color: Remote.Epigraph.Color["value"];
       /** 类型 */
       type: Remote.DataType.Epigraph["value"][];
       /** 图标 */

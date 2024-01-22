@@ -36,6 +36,11 @@ export const Epigraph = () => {
   return $RemoteHttp.Get<number[]>(`/${JSON_NAME.EPIGRAPH}.json`);
 };
 
+/** @description 获取铭文颜色 */
+export const EpigraphColor = () => {
+  return $RemoteHttp.Get<Remote.Epigraph.Color[]>(`/${JSON_NAME.EPIGRAPH_COLOR}.json`);
+};
+
 /** @description 获取铭文效果列表 */
 export const EpigraphEffect = () => {
   return $RemoteHttp.Get<Remote.Epigraph.Effect[]>(`/${JSON_NAME.EPIGRAPH_EFFECT}.json`);

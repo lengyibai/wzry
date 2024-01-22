@@ -7,6 +7,7 @@ import { ResultData } from "@/api/interface";
 const REQUEST: [string, () => Promise<ResultData<unknown>>, string][] = [
   [LOCAL_KEY.USER_LIST, API_DATA.User, "用户"],
   [LOCAL_KEY.EPIGRAPH, API_DATA.Epigraph, "铭文"],
+  [LOCAL_KEY.EPIGRAPH_COLOR, API_DATA.EpigraphColor, "铭文颜色"],
   [LOCAL_KEY.EPIGRAPH_EFFECT, API_DATA.EpigraphEffect, "铭文效果"],
   [LOCAL_KEY.EPIGRAPH_IMAGE, API_DATA.EpigraphImage, "铭文图片"],
   [LOCAL_KEY.EPIGRAPH_NAME, API_DATA.EpigraphName, "铭文名称"],

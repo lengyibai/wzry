@@ -3,6 +3,7 @@ import { KVP_EPIGRAPH, KVP_TYPE, LOCAL_EPIGRAPH } from "@/api";
 /** @description 获取铭文列表 */
 export const getEpigraph = () => {
   const epigraph_ids = LOCAL_EPIGRAPH.getEpigraphList();
+  const epigraph_color_kvp = KVP_EPIGRAPH.getEpigraphColorKvp();
   const epigraph_effect_kvp = KVP_EPIGRAPH.getEpigraphEffectKvp();
   const epigraph_image_kvp = KVP_EPIGRAPH.getEpigraphImageKvp();
   const epigraph_name_kvp = KVP_EPIGRAPH.getEpigraphNameKvp();
@@ -28,6 +29,7 @@ export const getEpigraph = () => {
 
     epigraph_list[i] = {
       id,
+      color: epigraph_color_kvp[id],
       type,
       effect,
       img,

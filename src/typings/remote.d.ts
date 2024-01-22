@@ -337,6 +337,12 @@ declare namespace Remote {
       }[];
     }
 
+    /** @description 铭文颜色 */
+    interface Color extends Id {
+      /** 铭文颜色 */
+      value: "BLUE" | "GREEN" | "RED";
+    }
+
     /** @description 铭文图片 */
     interface Image extends Id {
       /** 铭文图标 */

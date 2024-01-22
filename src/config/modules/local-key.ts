@@ -18,9 +18,13 @@ const LOCAL_KEY = {
   USER_LIST: "data_user",
   /** 记住用户信息 */
   REMEMBER_USER: "remember_user",
+  /** 铭文套装列表 */
+  EPIGRAPH_SUIT_LIST: "epigraph_suit_list",
 
   /** 铭文列表 */
   EPIGRAPH: "wzry_epigraph",
+  /** 铭文颜色 */
+  EPIGRAPH_COLOR: "wzry_epigraph_color",
   /** 铭文效果列表 */
   EPIGRAPH_EFFECT: "wzry_epigraph_effect",
   /** 铭文图片列表 */

@@ -1,5 +1,15 @@
 import { LOCAL_EPIGRAPH } from "@/api";
 
+/** @description 获取铭文颜色键值表 */
+export const getEpigraphColorKvp = () => {
+  const data = LOCAL_EPIGRAPH.getEpigraphColorList();
+  const kvp: Record<number, Remote.Epigraph.Color["value"]> = {};
+  data.forEach((item) => {
+    kvp[item.id] = item.value;
+  });
+  return kvp;
+};
+
 /** @description 获取铭文效果键值表 */
 export const getEpigraphEffectKvp = () => {
   const data = LOCAL_EPIGRAPH.getEpigraphEffectList();

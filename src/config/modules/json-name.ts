@@ -15,6 +15,8 @@ const JSON_NAME = {
   TEAM: "team",
   /** 铭文列表 */
   EPIGRAPH: "epigraph",
+  /** 铭文颜色 */
+  EPIGRAPH_COLOR: "epigraphColor",
   /** 铭文效果列表 */
   EPIGRAPH_EFFECT: "epigraphEffect",
   /** 铭文图片列表 */

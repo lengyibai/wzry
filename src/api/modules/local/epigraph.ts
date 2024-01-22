@@ -9,6 +9,13 @@ export const getEpigraphList = () => {
 };
 
 /** @description 获取铭文效果列表 */
+export const getEpigraphColorList = () => {
+  return get<Remote.Epigraph.Color[]>({
+    name: LOCAL_KEY.EPIGRAPH_COLOR,
+  });
+};
+
+/** @description 获取铭文效果列表 */
 export const getEpigraphEffectList = () => {
   return get<Remote.Epigraph.Effect[]>({
     name: LOCAL_KEY.EPIGRAPH_EFFECT,
