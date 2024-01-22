@@ -23,6 +23,8 @@ type EventData = {
   "mouse-tip": MouseTip;
   /** 弹窗输入 */
   input: InputConfig;
+  /** 元素聚焦 */
+  focus: HTMLElement | undefined;
 };
 
 type MittEventMap = {
