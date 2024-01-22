@@ -2,7 +2,7 @@ import { BASE_CONFIG } from "@/config/modules/base";
 
 /** @description 获取远程图片链接 */
 export const getImgLink = (name: string, suffix = "png") =>
-  `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}`;
+  `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}?temp=${import.meta.env.VITE_IMAGE_VERSION}`;
 
 /** @description 获取远程音效链接 */
 export const getAudioLink = (name: string) => `${BASE_CONFIG.IMGBED}/audio/${name}.mp3`;
