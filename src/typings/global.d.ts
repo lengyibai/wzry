@@ -20,6 +20,8 @@ declare namespace Global {
     interface Prompt {
       /** 提示内容（在拥有key类型提示的情况下，支持字符串） */
       text: keyof Key<string> | string;
+      /** 蒙版是否需要颜色，在元素聚焦的时候蒙版为透明 */
+      color?: boolean;
       /** 在页面上的位置 */
       align?: Position;
       /** 按钮上的文字 */
