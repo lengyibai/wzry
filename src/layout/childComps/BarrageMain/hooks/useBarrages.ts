@@ -109,7 +109,7 @@ const useBarrages = () => {
             }
           }, 250);
         },
-        finish: () => {
+        finish() {
           $barrageStore.getBarrages();
         },
       });

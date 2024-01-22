@@ -17,7 +17,7 @@ const config = ref<InputConfig>({
   value: "",
   title: "",
   placeholder: "",
-  confirm: () => {},
+  confirm() {},
 });
 
 $bus.on("input", (v) => {

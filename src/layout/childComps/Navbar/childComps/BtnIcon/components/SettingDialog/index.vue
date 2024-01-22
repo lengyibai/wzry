@@ -108,7 +108,7 @@ const handleResetTip = () => {
   $tip({
     btnText: "立刻刷新",
     text: "恢复小贴士需要刷新浏览器才会生效。",
-    btnFn: () => {
+    btnFn() {
       $settingStore.restoreTip();
       location.reload();
     },

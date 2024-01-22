@@ -19,8 +19,8 @@ const show = ref(false);
 const config = ref<ConfirmTip>({
   text: "",
   close: true,
-  confirm: () => {},
-  cancel: () => {},
+  confirm() {},
+  cancel() {},
 });
 
 $bus.on("confirm", (v) => {

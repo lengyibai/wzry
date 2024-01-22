@@ -70,7 +70,7 @@ const onCloseConfirmEditInfo = () => {
   if (edit_status.value) {
     $confirm({
       text: "资料已修改，确定关闭吗？",
-      confirm: () => {
+      confirm() {
         dialogRef.value!._close();
       },
     });

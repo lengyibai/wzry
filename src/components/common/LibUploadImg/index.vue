@@ -28,7 +28,7 @@ const fn = (e: Event) => {
       $loading.close();
       $emit("update:modelValue", data[2]);
     },
-    fail: () => {
+    fail() {
       $loading.close();
       $message("请上传图片文件", "error");
     },

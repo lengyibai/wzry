@@ -62,7 +62,7 @@ const handleRename = (id: string) => {
 const handleDelete = (id: string, name: string) => {
   $confirm({
     text: `确定删除[${name}]这个方案吗？`,
-    confirm: () => {
+    confirm() {
       $epigraphCollocationStore.deleteSuit(id);
     },
   });

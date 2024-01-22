@@ -81,7 +81,7 @@ onMounted(() => {
       loadHeight: 10,
     },
     {
-      load: () => {
+      load() {
         //处于加载中或全部加载完毕禁止再次触发
         if ($props.loading || $props.finish) return;
         $emit("load-more");
