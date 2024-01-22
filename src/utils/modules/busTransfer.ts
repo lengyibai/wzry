@@ -14,7 +14,7 @@ export const $imageView = (v: ImageViewParams) => $bus.emit("img-view", v);
 export const $tip = (data: Global.Tip.Prompt) => useTip().tip(data);
 
 /** @description 确认提示 */
-export const $confirm = (data: ConfirmTip) => () => $bus.emit("confirm", data);
+export const $confirm = (data: ConfirmTip) => $bus.emit("confirm", data);
 
 /** @description 弹窗提供输入 */
 export const $input = (data: InputConfig) => () => $bus.emit("input", data);
