@@ -24,7 +24,6 @@ const $emit = defineEmits<{
 const status = defineModel("status", { required: true });
 
 const $authStore = AuthStore();
-const $audioStore = AudioStore();
 
 /** 用户信息 */
 const user_info = reactive<Global.User>({ ...$authStore.userInfo });
@@ -42,7 +41,6 @@ const handleContrast = () => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.setUserInfo(user_info);
-  $audioStore.play("pj83");
 
   //更新本地当前用户信息
   LOCAL_USER.updateUser($authStore.userInfo.id, user_info).then(() => {
