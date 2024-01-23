@@ -12,13 +12,6 @@ const CollapseStore = defineStore("collapse", () => {
   };
   const { collapse } = ExposeData;
 
-  /* 如果浏览器宽度低于高度，则自动折叠 */
-  collapse.value = window.innerWidth < 960;
-
-  watch(collapse, () => {
-    $bus.emit("update-waterfall");
-  });
-
   const ExposeMethods = {
     /** @description 切换折叠 */
     toggleCollapse() {
@@ -30,6 +23,13 @@ const CollapseStore = defineStore("collapse", () => {
       collapse.value = v;
     },
   };
+
+  /* 如果浏览器宽度低于高度，则自动折叠 */
+  collapse.value = window.innerWidth < 960;
+
+  watch(collapse, () => {
+    $bus.emit("update-waterfall");
+  });
 
   return {
     ...ExposeData,

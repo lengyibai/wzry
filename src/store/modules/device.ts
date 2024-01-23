@@ -36,9 +36,7 @@ const DeviceStore = defineStore("device", () => {
 
   window.addEventListener("resize", tip);
 
-  return {
-    ...ExposeData,
-  };
+  return ExposeData;
 });
 
 export { DeviceStore };
