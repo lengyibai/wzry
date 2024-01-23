@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { $bus } from "@/utils";
-import { getImgLink } from "@/utils/modules/concise";
+import { $bus, $concise } from "@/utils";
+
+const { getImgLink } = $concise;
 
 /** 显示loading */
 const show = ref(false);

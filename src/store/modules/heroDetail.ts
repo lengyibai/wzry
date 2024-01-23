@@ -4,11 +4,13 @@ import { reactive, ref } from "vue";
 import { HeroDetailStoreType } from "../interface";
 
 import { heroDefault } from "@/default";
-import { getImgLink } from "@/utils/modules/concise";
 import { GAME_HERO } from "@/api";
+import { $concise } from "@/utils";
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
+  const { getImgLink } = $concise;
+
   const ExposeData = {
     /** 英雄信息 */
     hero_info: ref<Game.Hero.Detail>(heroDefault()),

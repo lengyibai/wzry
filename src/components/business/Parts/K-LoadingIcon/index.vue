@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getImgLink } from "@/utils/modules/concise";
+import { $concise } from "@/utils";
 
 interface Props {
   width: string;
@@ -8,6 +8,8 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   white: false,
 });
+
+const { getImgLink } = $concise;
 </script>
 
 <template>
