@@ -20,9 +20,7 @@
 
   &:hover {
     --rotate: 90deg;
-  }
 
-  &.hide {
     box-shadow: var(--b-shadow-b);
     transform: translateY(-0.625rem) scale(1.05);
 
@@ -46,6 +44,20 @@
 
     .bg {
       transform: scale(1.25);
+    }
+
+    .select-mask {
+      opacity: 1;
+
+      .head {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+      }
+
+      .view {
+        transform: translateY(0%) scale(1);
+        opacity: 1;
+      }
     }
   }
 
@@ -71,32 +83,26 @@
     flex-direction: column;
     background-color: rgb(0 0 0 / 73.7%);
     transition: all 0.25s;
+    opacity: 0;
+
+    .head,
+    .view {
+      transition: all 0.25s 0.1s;
+      opacity: 0;
+    }
 
     .head {
       width: 50%;
       margin-bottom: 0.9375rem;
       border-radius: 50%;
       box-shadow: var(--b-shadow-a);
-      transition: all 0.25s;
       transform: translateY(-3.125rem) scale(1.5);
-      animation: scale 0.25s 0.1s forwards;
-      opacity: 0;
     }
 
     .view {
       color: var(--blue);
       font-size: 1.5rem;
-      transition: all 0.25s;
       transform: translateY(3.125rem) scale(0.75);
-      animation: scale 0.25s 0.1s forwards;
-      opacity: 0;
-
-      @keyframes scale {
-        100% {
-          transform: translateY(0%) scale(1);
-          opacity: 1;
-        }
-      }
     }
   }
 

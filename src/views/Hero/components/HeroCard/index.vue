@@ -22,8 +22,6 @@ const $heroStore = HeroStore();
 
 const { getImgLink } = $concise;
 
-/** 显示查看详情选项 */
-const show = ref(false);
 /** 头像是否加载完成 */
 const finish = ref(false);
 
@@ -59,11 +57,6 @@ const handleViewClick = () => {
       text: MOUSE_TIP.kr17,
     }"
     class="hero-card"
-    :class="{ hide: show }"
-    @mouseenter="show = true"
-    @mouseleave="show = false"
-    @touchstart="show = true"
-    @touchend="show = false"
   >
     <!-- 编号 -->
     <span class="id">No.{{ data.id }}</span>
@@ -72,17 +65,15 @@ const handleViewClick = () => {
     <span v-if="show_num" class="num">{{ num(data) }}</span>
 
     <!-- 悬浮蒙版 -->
-    <transition name="fade">
-      <div v-if="show" class="select-mask">
-        <img
-          :src="finish ? data.avatar : getImgLink('unknown')"
-          class="head"
-          @click="handleViewClick"
-          @load="finish = true"
-        />
-        <button v-text-hover-color class="view" @click="handleViewClick">点击此处</button>
-      </div>
-    </transition>
+    <div class="select-mask">
+      <img
+        :src="finish ? data.avatar : getImgLink('unknown')"
+        class="head"
+        @click="handleViewClick"
+        @load="finish = true"
+      />
+      <button v-text-hover-color class="view" @click="handleViewClick">点击此处</button>
+    </div>
 
     <!-- 背景图 -->
     <KImageLoad loading-width="35%" :big-img="data.cover" :blur-img="data.coverBlur" class="bg" />
