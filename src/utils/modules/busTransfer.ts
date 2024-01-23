@@ -17,7 +17,7 @@ export const $tip = (data: Global.Tip.Prompt) => useTip().tip(data);
 export const $confirm = (data: ConfirmTip) => $bus.emit("confirm", data);
 
 /** @description 弹窗提供输入 */
-export const $input = (data: InputConfig) => () => $bus.emit("input", data);
+export const $input = (data: InputConfig) => $bus.emit("input", data);
 
 /** @description 消息提醒 */
 export const $message = (text: string, type: Global.Message.Status = "info") => {
