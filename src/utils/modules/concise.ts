@@ -7,12 +7,14 @@ export const getAudioLink = (name: string) => `${BASE_CONFIG.IMGBED}/audio/${nam
 export const getMusicLink = (name: string) => `${BASE_CONFIG.IMGBED}/music/${name}.mp3`;
 
 /** @description 获取远程视频链接 */
-export const getVideoLink = (name: string) => `${BASE_CONFIG.IMGBED}/video/${name}.mp4`;
+export const getVideoLink = (name: string, version = "0") => {
+  return `${BASE_CONFIG.IMGBED}/video/${name}.mp4?temp=${version}`;
+};
 
 /** @description 获取远程HTML链接 */
 export const getHtmlLink = (name: string) => `${BASE_CONFIG.IMGBED}/html/${name}.html`;
 
 /** @description 获取远程图片链接 */
-export const getImgLink = (name: string, suffix = "png") => {
-  return `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}?temp=${import.meta.env.VITE_IMAGE_VERSION}`;
+export const getImgLink = (name: string, suffix = "png", version = "0") => {
+  return `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}?temp=${version}`;
 };
