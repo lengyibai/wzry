@@ -32,9 +32,10 @@ export default () => {
 
         //创建消息内容
         const msgText: Global.Message.Info = {
-          id: dayjs().unix(),
+          id: dayjs().valueOf(),
           text,
           type,
+          duration: time,
         };
 
         //将消息内容添加进消息队列

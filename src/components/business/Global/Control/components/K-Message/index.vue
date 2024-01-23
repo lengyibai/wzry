@@ -54,6 +54,12 @@ $bus.on("msg", (data) => {
             }"
           >
             <span :style="{ color: color[item.type] }" v-html="item.text"></span>
+            <div
+              class="line"
+              :style="{
+                animationDuration: item.duration + 's',
+              }"
+            ></div>
             <div class="bg">
               <img :src="imgs[item.type].left" />
               <img :src="imgs[item.type].center" />

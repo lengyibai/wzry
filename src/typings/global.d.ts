@@ -46,6 +46,8 @@ declare namespace Global {
       text: string;
       /** 提示类型 */
       type: Status;
+      /** 消失倒计时 */
+      duration: number;
     }
 
     /** @description 触发消息提示 */
