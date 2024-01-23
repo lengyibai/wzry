@@ -1,0 +1,18 @@
+{
+  "data": {
+    "time": "2024-01-11 00:00",
+    "dataKey": [],
+    "voiceKey": [],
+    "dataLog": [],
+    "voiceLog": [],
+    "distLog": {
+      "surface": {
+        "new": ["增加铭文套装搭配", "手机端支持登录页静音"],
+        "function": [],
+        "style": ["增加列表底部虚化"],
+        "bug": []
+      },
+      "substrate": ["使用defineModel替代", "事件总线使用中转", "使用canvas实现元素聚焦"]
+    }
+  }
+}
