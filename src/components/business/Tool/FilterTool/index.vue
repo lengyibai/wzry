@@ -7,14 +7,17 @@ import { vClickOutside, vMouseTip } from "@/directives";
 interface Props {
   /** 下拉列表 */
   data: Global.General<string | number>[];
-  /** 列表高度 */
-  listHeight?: string;
   /** 选中的名称 */
   sortText: string;
+  /** 列表高度 */
+  listHeight?: string;
+  /** 最小宽度 */
+  minWidth?: string;
 }
 
 withDefaults(defineProps<Props>(), {
   listHeight: "initial",
+  minWidth: "6.25rem",
 });
 const $emit = defineEmits<{
   select: [v: string | number];
@@ -42,6 +45,7 @@ const handleEnterItem = (v: Global.General<string | number>) => {
 
 /* 选择的值 */
 const handleSelect = (v: Global.General<string | number>) => {
+  status.value = false;
   current_value.value = v.label;
   $emit("select", v.value);
   $audioStore.play();
@@ -66,7 +70,7 @@ const handleSelect = (v: Global.General<string | number>) => {
     <div
       class="select-list"
       :class="{ unfold: !status }"
-      :style="{ height: listHeight }"
+      :style="{ minWidth: minWidth, height: listHeight }"
       @click.stop
     >
       <transition-group name="select-list">

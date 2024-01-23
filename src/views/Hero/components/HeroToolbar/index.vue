@@ -114,6 +114,7 @@ defineExpose({
     <div class="filter-select">
       <!-- 阵营筛选按钮 -->
       <FilterTool
+        min-width="9.6106rem"
         :sort-text="camp_type"
         :data="select_camp"
         list-height="26.5625rem"
