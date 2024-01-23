@@ -56,8 +56,10 @@ const handleConfirm = () => {
     >
       <div class="text">{{ config.text }}</div>
       <div class="button">
-        <KButton v-if="config.close" v-mouse-tip type="info" @click="handleCancel">取消</KButton>
-        <KButton v-mouse-tip class="last" type="warning" @click="handleConfirm">确定</KButton>
+        <KButton v-if="config.close" v-mouse-tip class="k-button" type="info" @click="handleCancel">
+          取消
+        </KButton>
+        <KButton v-mouse-tip class="k-button" type="warning" @click="handleConfirm"> 确定 </KButton>
       </div>
     </KDialog>
   </teleport>
