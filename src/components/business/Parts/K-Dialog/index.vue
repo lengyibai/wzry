@@ -95,7 +95,7 @@ defineExpose({
           class="k-dialog"
           :style="{
             width: width,
-            height: `calc(${width} * 0.5989)`,
+            height: `calc(${width} * 0.55)`,
             backgroundImage: `url(${getImgLink('dialog')})`,
           }"
         >
