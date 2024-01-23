@@ -12,12 +12,15 @@ import { SettingStore } from "@/store";
 import { $concise, $focus, $tip } from "@/utils";
 import { KVideo } from "@/components/business";
 import { SCENE_TIP } from "@/config";
+import { useStaticResourceVersion } from "@/hooks";
 
 const $settingStore = SettingStore();
 
 const { config } = storeToRefs($settingStore);
 
 const { getImgLink, getVideoLink, getHtmlLink } = $concise;
+
+const { login_video_bg_version, login_video_cover_version } = useStaticResourceVersion();
 
 const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
@@ -69,9 +72,6 @@ const onCloseNotice = () => {
     <!-- 工具栏 -->
     <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
 
-    <!-- PC端视频背景 -->
-    <KVideo :link="getVideoLink('login_bg')" :muted="config.muted" />
-
     <!-- 公告 -->
     <Notice v-if="show_notice && finish" v-model="show_notice" @close="onCloseNotice" />
 
@@ -80,6 +80,20 @@ const onCloseNotice = () => {
 
     <!-- 下载进度 -->
     <DownLoad v-if="!finish" v-model:finish="finish" />
+
+    <!-- 图片背景 -->
+    <img
+      class="bg"
+      :src="$concise.getImgLink('/login_bg', 'jpg', login_video_cover_version)"
+      alt=""
+    />
+
+    <!-- 视频背景 -->
+    <KVideo
+      v-if="finish && login_video_bg_version"
+      :link="getVideoLink('login_bg', login_video_bg_version)"
+      :muted="config.muted"
+    />
   </div>
 </template>
 
