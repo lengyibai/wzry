@@ -49,7 +49,7 @@ const debounceSearch = _debounce(() => {
 onMounted(() => {
   $tip({
     text: SCENE_TIP.f1y0,
-    align: "right-top",
+    align: "left-bottom",
     color: false,
     createFn() {
       $focus.show(collocationBtnRef.value!.$el);
