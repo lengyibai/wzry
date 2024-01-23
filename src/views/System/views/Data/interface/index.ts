@@ -1,4 +1,4 @@
-import { ResultData } from "@/api/interface";
+import type { ResultData } from "@/api/interface";
 
 /** @description 表格数据 */
 export interface TableData {

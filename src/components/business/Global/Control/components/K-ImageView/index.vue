@@ -11,7 +11,7 @@ import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { useResponsive } from "@/hooks";
-import { ImageViewParams } from "@/utils/interface";
+import type { ImageViewParams } from "@/utils/interface";
 
 const $audioStore = AudioStore();
 

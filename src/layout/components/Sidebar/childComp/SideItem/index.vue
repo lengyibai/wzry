@@ -3,7 +3,7 @@ import { reactive, ref, nextTick } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
 import SideItem from "./index.vue";
-import { RouteFormat } from "./interface";
+import type { RouteFormat } from "./interface";
 
 import { CollapseStore, AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";

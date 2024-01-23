@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 
-import { Route } from "../interface";
+import type { Route } from "../interface";
 
 /** @description 将Vue路由格式化，用于生成侧边栏 */
 const formatSidebarRoutes = (rawRoutes: RouteRecordRaw[]) => {

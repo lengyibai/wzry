@@ -1,7 +1,7 @@
 import { LOCAL_KEY } from "./local-key";
 
 import { API_DATA } from "@/api";
-import { ResultData } from "@/api/interface";
+import type { ResultData } from "@/api/interface";
 
 /** @description 请求、key配置 */
 const REQUEST: [string, () => Promise<ResultData<unknown>>, string][] = [

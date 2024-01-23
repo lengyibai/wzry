@@ -1,4 +1,4 @@
-import { ImageOptimizerOptions } from "../interface";
+import type { ImageOptimizerOptions } from "../interface";
 
 import { PINYIN } from "@/config/modules/pinyin";
 

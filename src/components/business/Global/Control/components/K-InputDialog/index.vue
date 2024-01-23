@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { InputConfig } from "./interface";
+import type { InputConfig } from "./interface";
 
 import { $bus, $message } from "@/utils";
 import { KButton, KDialog } from "@/components/business";

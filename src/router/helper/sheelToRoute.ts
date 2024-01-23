@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 
-import { RouterSheel } from "@/router/interface";
+import type { RouterSheel } from "@/router/interface";
 
 /** @description 路由组件 */
 const routePath: Record<string, any> = {

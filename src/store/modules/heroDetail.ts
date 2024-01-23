@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive, ref } from "vue";
 
-import { HeroDetailStoreType } from "../interface";
+import type { HeroDetailStoreType } from "../interface";
 
 import { heroDefault } from "@/default";
 import { GAME_HERO } from "@/api";

@@ -1,4 +1,4 @@
-import { RouterSheel } from "../interface";
+import type { RouterSheel } from "../interface";
 import { getPathsNames } from "../helper/getSheelPath";
 
 import { static_paths } from "./staticRouter";

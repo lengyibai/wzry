@@ -2,11 +2,11 @@
 import { ref, onActivated } from "vue";
 import _debounce from "lodash/debounce";
 
-import { TableData } from "./interface";
+import type { TableData } from "./interface";
 
 import { AudioStore } from "@/store";
 import { $confirm, $message, $tool } from "@/utils";
-import { ResultData } from "@/api/interface";
+import type { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
 import { REQUEST } from "@/config";
 import { vMouseTip } from "@/directives";

@@ -1,4 +1,4 @@
-import { Get, Patch, Del } from "../interface";
+import type { Get, Patch, Del } from "../interface";
 
 /**
  * @description 查询

@@ -2,7 +2,7 @@
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { KButton, KMarquee } from "@/components/business";
-import { ImageViewParams } from "@/utils/interface";
+import type { ImageViewParams } from "@/utils/interface";
 
 interface Props {
   data: ImageViewParams;

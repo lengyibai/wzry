@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { reactive, ref } from "vue";
 
 import { top, height } from "../helper";
-import { EquipStoreType } from "../interface";
+import type { EquipStoreType } from "../interface";
 
 import { $tool } from "@/utils";
 import { GAME_EQUIP, KVP_EQUIP } from "@/api";

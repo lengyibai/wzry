@@ -1,4 +1,4 @@
-import { BarrageType } from "../interface";
+import type { BarrageType } from "../interface";
 
 import { KVP_HERO } from "@/api";
 import { $mouseTip, $tool, $concise } from "@/utils";

@@ -4,7 +4,7 @@ import { RouteRecordName, RouteRecordRaw } from "vue-router";
 
 import { router } from "@/router";
 import { admin, user } from "@/router/modules/routeSheel";
-import { RouterSheel } from "@/router/interface";
+import type { RouterSheel } from "@/router/interface";
 import { sheelToRoute } from "@/router/helper/sheelToRoute";
 
 /** @description 路由相关 */

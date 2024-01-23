@@ -1,6 +1,6 @@
 import mitt from "mitt";
 
-import { ImageViewParams } from "../interface";
+import type { ImageViewParams } from "../interface";
 
 import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
 import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";

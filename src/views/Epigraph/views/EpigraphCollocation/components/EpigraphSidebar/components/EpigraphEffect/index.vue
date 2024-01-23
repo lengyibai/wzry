@@ -4,7 +4,7 @@ import _debounce from "lodash/debounce";
 
 import EpigraphGain from "./components/EpigraphGain/index.vue";
 import EpigraphInfo from "./components/EpigraphInfo/index.vue";
-import { CompKey } from "./interface";
+import type { CompKey } from "./interface";
 
 import { EpigraphCollocationStore } from "@/store";
 import { KButton, KSelect } from "@/components/business";

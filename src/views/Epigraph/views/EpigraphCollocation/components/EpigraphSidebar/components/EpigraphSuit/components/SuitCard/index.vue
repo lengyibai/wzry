@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 import { KButton } from "@/components/business";
-import { EpigraphCollocationStoreType } from "@/store/interface";
+import type { EpigraphCollocationStoreType } from "@/store/interface";
 import { $confirm, $input } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";

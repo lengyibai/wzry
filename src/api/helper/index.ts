@@ -7,7 +7,7 @@ import axios, {
 } from "axios";
 import dayjs from "dayjs";
 
-import { ResultData } from "@/api/interface";
+import type { ResultData } from "@/api/interface";
 
 const local = {
   baseURL: `${location.origin}/json`,

@@ -4,8 +4,8 @@ import { $bus } from "./eventBus";
 
 import type { InputConfig } from "@/components/business/Global/Control/components/K-InputDialog/interface";
 import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";
+import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
 import { useTip } from "@/components/business/Global/Control/components/K-Tip/hooks/useTip";
-import { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
 
 /** @description 查看图片 */
 export const $imageView = (v: ImageViewParams) => $bus.emit("img-view", v);
