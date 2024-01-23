@@ -146,15 +146,16 @@ declare namespace Global {
 
   /** @description 版本相关 */
   namespace Version {
-    /** @description 更新日志 */
-    type UpdateLog = Omit<File, "dataVersion" | "distVersion" | "dataKey" | "voiceKey">;
-
-    /** @description 更新文件结构 */
+    /** @description 版本文件 */
     interface File {
       /** 远程数据版本 */
       dataVersion: string;
       /** 远程文件版本 */
       distVersion: string;
+    }
+
+    /** @description 更新日志 */
+    interface UpdateLog {
       /** 数据要更新的key */
       dataKey: string[];
       /** 语音要更新的key */
@@ -181,6 +182,14 @@ declare namespace Global {
         /** 代码层 */
         substrate: string[];
       };
+    }
+
+    /** @description 静态资源版本 */
+    interface Static {
+      /** 登录页视频版本 */
+      loginVideoBgVersion: string;
+      /** 登录页视频封面版本 */
+      loginVideoCoverVersion: string;
     }
   }
 

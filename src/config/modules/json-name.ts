@@ -3,6 +3,10 @@
 const JSON_NAME = {
   /** 版本信息 */
   VERSION: "version",
+  /** 更新日志 */
+  UPDATE_LOG: "updatelog",
+  /** 静态资源版本 */
+  STATIC_VERSION: "staticVersion",
   /** 计划 */
   TODO: "todo",
   /** 公告 */

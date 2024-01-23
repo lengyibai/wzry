@@ -6,6 +6,16 @@ export const Version = () => {
   return $LocaleHttp.Get<{ data: Global.Version.File }>(`/${JSON_NAME.VERSION}.json`);
 };
 
+/** @description 获取更新日志 */
+export const UpdateLog = () => {
+  return $LocaleHttp.Get<{ data: Global.Version.UpdateLog }>(`/${JSON_NAME.UPDATE_LOG}.json`);
+};
+
+/** @description 获取静态资源版本信息 */
+export const StaticVersion = () => {
+  return $LocaleHttp.Get<{ data: Global.Version.Static }>(`/${JSON_NAME.STATIC_VERSION}.json`);
+};
+
 /** @description 获取计划 */
 export const Todo = () => {
   return $LocaleHttp.Get<{ data: Global.Todo }>(`/${JSON_NAME.TODO}.json`);
