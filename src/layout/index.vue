@@ -2,11 +2,11 @@
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
 
-import BarrageMain from "@/layout/childComps/BarrageMain/index.vue";
-import Sidebar from "@/layout/childComps/Sidebar/index.vue";
-import Navbar from "@/layout/childComps/Navbar/index.vue";
-import AppMain from "@/layout/childComps/AppMain/index.vue";
-import Footbar from "@/layout/childComps/Footbar/index.vue";
+import BarrageMain from "@/layout/components/BarrageMain/index.vue";
+import Sidebar from "@/layout/components/Sidebar/index.vue";
+import Navbar from "@/layout/components/Navbar/index.vue";
+import AppMain from "@/layout/components/AppMain/index.vue";
+import Footbar from "@/layout/components/Footbar/index.vue";
 import { AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";

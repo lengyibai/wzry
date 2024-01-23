@@ -4,8 +4,8 @@ import { onDeactivated, onActivated, ref, watch, defineAsyncComponent } from "vu
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 
-import HeroCard from "./childComps/HeroCard/index.vue";
-import HeroToolbar from "./childComps/HeroToolbar/index.vue";
+import HeroCard from "./components/HeroCard/index.vue";
+import HeroToolbar from "./components/HeroToolbar/index.vue";
 
 import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
@@ -19,7 +19,7 @@ defineOptions({
   name: "Hero",
 });
 
-const HeroDetail = defineAsyncComponent(() => import("./childViews/HeroDetail/index.vue"));
+const HeroDetail = defineAsyncComponent(() => import("./views/HeroDetail/index.vue"));
 
 const $route = useRoute();
 const $router = useRouter();

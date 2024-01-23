@@ -100,7 +100,7 @@ export const admin: RouterSheel[] = [
         icon: "wzry-database",
         path: "/system/data",
         name: "data",
-        component: "@/views/System/childViews/Data",
+        component: "@/views/System/views/Data",
       },
     ],
   },

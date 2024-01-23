@@ -10,7 +10,7 @@ const routePath: Record<string, any> = {
   "@/views/Savor": () => import("@/views/Savor/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
-  "@/views/System/childViews/Data": () => import("@/views/System/childViews/Data/index.vue"),
+  "@/views/System/views/Data": () => import("@/views/System/views/Data/index.vue"),
 };
 
 /** @description 将路由表转换成真实路由 */

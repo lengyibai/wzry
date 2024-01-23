@@ -3,8 +3,8 @@ import { onActivated, ref, onDeactivated } from "vue";
 import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
 
-import SkinCard from "./childComps/SkinCard/index.vue";
-import SkinToolbar from "./childComps/SkinToolbar/index.vue";
+import SkinCard from "./components/SkinCard/index.vue";
+import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { SkinStore, AudioStore } from "@/store";
 import { $imageView, $tool } from "@/utils";

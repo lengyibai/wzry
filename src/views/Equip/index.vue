@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onActivated } from "vue";
 
-import EquipList from "./childComps/EquipList/index.vue";
-import EquipDetail from "./childComps/EquipDetail/index.vue";
+import EquipList from "./components/EquipList/index.vue";
+import EquipDetail from "./components/EquipDetail/index.vue";
 
 import { EquipStore, AudioStore } from "@/store";
 import { FilterSidebar } from "@/components/business";

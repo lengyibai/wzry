@@ -2,7 +2,7 @@
 import { ref, watch, nextTick, onActivated, onDeactivated, onMounted } from "vue";
 import { onUnmounted } from "vue";
 
-import EpigraphCard from "./childComps/EpigraphCard/index.vue";
+import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { LibGrid } from "@/components/common";
 import { EpigraphStore } from "@/store";

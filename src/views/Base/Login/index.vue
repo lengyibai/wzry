@@ -2,11 +2,11 @@
 import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
 
-import RegLogin from "./childComps/RegLogin/index.vue";
-import Notice from "./childComps/Notice/index.vue";
-import Team from "./childComps/Team/index.vue";
-import ToolBar from "./childComps/ToolBar/index.vue";
-import DownLoad from "./childComps/DownLoad/index.vue";
+import RegLogin from "./components/RegLogin/index.vue";
+import Notice from "./components/Notice/index.vue";
+import Team from "./components/Team/index.vue";
+import ToolBar from "./components/ToolBar/index.vue";
+import DownLoad from "./components/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
 import { $concise, $focus, $tip } from "@/utils";
