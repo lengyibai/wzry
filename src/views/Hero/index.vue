@@ -75,11 +75,9 @@ const changeCount = () => {
 };
 
 /* 悬浮卡片 */
-const handleEnterCard = (data: Game.Hero.Data) => {
+const debounceEnterCard = _debounce(() => {
   $audioStore.play("n4r4");
-  //图片预加载
-  new Image().src = data.avatar;
-};
+}, 100);
 
 /* 查看详情 */
 const onViewClick = (id: number) => {
@@ -188,8 +186,8 @@ onDeactivated(() => {
             :style="{
               'transition-delay': (index % page_count) * 0.025 + 's',
             }"
-            @mouseenter="handleEnterCard(item)"
-            @@touchstart="handleEnterCard(item)"
+            @mouseenter="debounceEnterCard"
+            @@touchstart="debounceEnterCard"
           >
             <HeroCard :data="item" @view="onViewClick(item.id!)" />
           </div>
