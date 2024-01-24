@@ -9,12 +9,13 @@ import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $emit = defineEmits<{
-  search: [];
+  /** 用于筛选后返回顶部 */
+  change: [];
 }>();
 
 const $skinStore = SkinStore();
 
-const { price_type, skin_type } = storeToRefs($skinStore);
+const { price_type, skin_type, same_name, same_name_list } = storeToRefs($skinStore);
 
 const select_price = [
   { label: "全部价格", value: "全部价格" },
@@ -55,6 +56,7 @@ const search_value = ref("");
 /* 清空输入框 */
 const clearName = () => {
   search_value.value = "";
+  $emit("change");
 };
 
 /* 价格排序 */
@@ -69,6 +71,12 @@ const onTypeFilter = (v: string | number) => {
   clearName();
 };
 
+/* 同名皮肤筛选 */
+const onNameFilter = (v: string | number) => {
+  $skinStore.filterSameName(v as string);
+  clearName();
+};
+
 /* 设置性别 */
 const onFilterGender = (type: Game.GenderId) => {
   $skinStore.filterGender(type);
@@ -78,7 +86,7 @@ const onFilterGender = (type: Game.GenderId) => {
 /* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   $skinStore.searchSkin(search_value.value);
-  $emit("search");
+  $emit("change");
 }, 500);
 
 defineExpose({
@@ -100,6 +108,9 @@ defineExpose({
         list-height="31.25rem"
         @select="onTypeFilter"
       />
+
+      <!-- 大于3个的同名皮肤 -->
+      <FilterTool :data="same_name_list" :sort-text="same_name" @select="onNameFilter" />
     </div>
 
     <!-- 只看性别 -->

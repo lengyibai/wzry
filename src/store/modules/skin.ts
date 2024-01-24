@@ -28,10 +28,51 @@ const SkinStore = defineStore("skin", () => {
     price_type: ref("全部价格"),
     /** 皮肤筛选类型 */
     skin_type: ref("全部皮肤"),
+    /** 同名皮肤筛选类型 */
+    same_name: ref("全部同名"),
     /** 性别筛选类型 */
     gender_type: ref<Game.GenderId>(0),
+    /** 统计大于3个同名的皮肤名 */
+    same_name_list: ref<Global.General[]>([]),
   };
-  const { scroll, filter_list, gender_type, profession, price_type, skin_type } = ExposeData;
+  const {
+    scroll,
+    filter_list,
+    gender_type,
+    profession,
+    price_type,
+    skin_type,
+    same_name,
+    same_name_list,
+  } = ExposeData;
+
+  /* 统计相同皮肤名 */
+  const getSameName = (skin_list: Game.Hero.Skin[]) => {
+    const count: Record<string, number> = {};
+    skin_list.forEach((item) => {
+      count[item.name] ??= 0;
+      count[item.name]++;
+    });
+
+    //收集相同数大于3的皮肤名
+    for (const key in count) {
+      if (count[key] < 3) {
+        delete count[key];
+      }
+    }
+
+    same_name_list.value = Object.keys(count).map((item) => {
+      return {
+        label: item,
+        value: item,
+      };
+    });
+
+    same_name_list.value.unshift({
+      label: "全部同名",
+      value: "全部同名",
+    });
+  };
 
   /* 一键排序 */
   const sortAll = () => {
@@ -72,7 +113,9 @@ const SkinStore = defineStore("skin", () => {
 
     /** 皮肤类型筛选 */
     const filterSkinType = () => {
-      //皮肤类型筛选
+      if (skin_type.value === "全部皮肤") return;
+
+      //一对一筛选
       const alone = [
         "勇者",
         "史诗",
@@ -92,6 +135,8 @@ const SkinStore = defineStore("skin", () => {
         "FMVP",
         "年限定",
       ];
+
+      //一对多筛选
       const multiple = [
         {
           label: "情侣",
@@ -122,29 +167,42 @@ const SkinStore = defineStore("skin", () => {
         },
         { label: "团战精神", value: ["沉稳", "敏锐", "掌控", "守护", "坚韧"] },
       ];
-      if (skin_type.value && skin_type.value !== "全部皮肤") {
-        if (alone.includes(skin_type.value)) {
-          filter_list.value = filter_list.value.filter((item) => {
-            return item.category.includes(skin_type.value);
-          });
-        } else {
-          multiple.forEach((type) => {
-            if (skin_type.value === type.label) {
-              filter_list.value = filter_list.value.filter((skin) => {
-                return type.value.some((item) => {
-                  return skin.category.includes(item);
-                });
+
+      //一对一筛选
+      if (alone.includes(skin_type.value)) {
+        filter_list.value = filter_list.value.filter((item) => {
+          return item.category.includes(skin_type.value);
+        });
+      } else {
+        //一对多筛选
+        multiple.forEach((type) => {
+          if (skin_type.value === type.label) {
+            filter_list.value = filter_list.value.filter((skin) => {
+              return type.value.some((item) => {
+                return skin.category.includes(item);
               });
-            }
-          });
-        }
-        filter_list.value = $tool.typeSort(filter_list.value, "category");
+            });
+          }
+        });
       }
+
+      filter_list.value = $tool.typeSort(filter_list.value, "category");
+    };
+
+    /** 同名皮肤筛选 */
+    const filterSameName = () => {
+      if (same_name.value === "全部同名") return;
+
+      filter_list.value = filter_list.value.filter((item) => {
+        return item.name === same_name.value;
+      });
     };
 
     /** 价格排序 */
     const sortPrice = () => {
-      const SortStrategy: Record<string, (list: Game.Hero.Skin[]) => Game.Hero.Skin[]> = {
+      if (price_type.value === "全部价格") return;
+
+      const sort_strategy: Record<string, (list: Game.Hero.Skin[]) => Game.Hero.Skin[]> = {
         免费: (list) => {
           const noFree = [
             "积分夺宝",
@@ -165,22 +223,20 @@ const SkinStore = defineStore("skin", () => {
         },
         由高到低: (list) => {
           const isNum = list.filter((item) => !isNaN(Number(item.price)));
+
           //筛选出荣耀典藏
           const strange = list.filter((item) => item.type.toString().indexOf("26.png") !== -1);
           return [...strange, ...isNum].sort((a, b) => Number(b.price) - Number(a.price));
         },
       };
 
-      if (price_type.value && price_type.value !== "全部价格") {
-        if (SortStrategy.hasOwnProperty(price_type.value)) {
-          filter_list.value = SortStrategy[price_type.value](filter_list.value);
-        }
-      }
+      filter_list.value = sort_strategy[price_type.value](filter_list.value);
     };
 
     filterProfession();
     filterGender();
     filterSkinType();
+    filterSameName();
     sortPrice();
     ExposeMethods.resetPage();
   };
@@ -212,6 +268,7 @@ const SkinStore = defineStore("skin", () => {
       $usePagingLoad.all_data.value = skin_list;
 
       sortAll();
+      getSameName(skin_list);
     },
 
     /**
@@ -241,6 +298,23 @@ const SkinStore = defineStore("skin", () => {
     filterSkinType(type: string) {
       if (skin_type.value === type) return;
       skin_type.value = type;
+
+      //筛选皮肤类型时要重置同名皮肤
+      same_name.value = "全部同名";
+      sortAll();
+    },
+
+    /**
+     * @description: 同名皮肤名称筛选
+     * @param type 皮肤名称
+     */
+    filterSameName(name: string) {
+      if (same_name.value === name) return;
+      same_name.value = name;
+
+      //筛选同名皮肤时要重置其他
+      skin_type.value = "全部皮肤";
+      price_type.value = "全部价格";
       sortAll();
     },
 
@@ -251,6 +325,9 @@ const SkinStore = defineStore("skin", () => {
     sortPrice(type: string) {
       if (price_type.value === type) return;
       price_type.value = type;
+
+      //价格排序时要重置同名皮肤
+      same_name.value = "全部同名";
       sortAll();
     },
 
@@ -260,6 +337,7 @@ const SkinStore = defineStore("skin", () => {
       profession.value = "全部";
       price_type.value = "全部价格";
       skin_type.value = "全部皮肤";
+      same_name.value = "全部同名";
       gender_type.value = 0;
 
       if (name) {
