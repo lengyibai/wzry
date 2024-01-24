@@ -107,6 +107,7 @@ const upFn = () => {
 };
 window.addEventListener("mouseup", upFn);
 window.addEventListener("touchend", upFn);
+window.addEventListener("dragend", upFn);
 
 /* 获取Tip的位置 */
 const getTipPosition = () => {
