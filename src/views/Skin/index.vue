@@ -119,7 +119,7 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="fade" appear>
-        <SkinToolbar ref="skinToolbarRef" @search="debounceScroll(0)" />
+        <SkinToolbar ref="skinToolbarRef" @change="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />

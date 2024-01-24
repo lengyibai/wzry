@@ -10,7 +10,8 @@ import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
-  search: [];
+  /** 用于筛选后返回顶部 */
+  change: [];
 }>();
 
 const $heroStore = HeroStore();
@@ -59,6 +60,7 @@ LOCAL_TYPE.getTypeCampList().forEach((item) => {
 /* 清空输入框 */
 const clearName = () => {
   search_value.value = "";
+  $emit("change");
 };
 
 /* 阵营筛选 */
@@ -100,7 +102,7 @@ const onFilterGender = (name: Game.GenderId) => {
 /* 搜索英雄 */
 const debounceSearch = _debounce(() => {
   $heroStore.searchHero(search_value.value);
-  $emit("search");
+  $emit("change");
 }, 500);
 
 defineExpose({

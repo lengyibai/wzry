@@ -161,7 +161,7 @@ onDeactivated(() => {
   <div class="hero">
     <div class="hero__main">
       <transition name="fade" appear>
-        <HeroToolbar ref="heroToolbarRef" @search="debounceScroll(0)" />
+        <HeroToolbar ref="heroToolbarRef" @change="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />

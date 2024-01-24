@@ -125,7 +125,7 @@ onDeactivated(() => {
 <template>
   <div class="savor">
     <div class="savor-main">
-      <SavorToolbar ref="savorToolbarRef" @search="debounceScroll(0)" />
+      <SavorToolbar ref="savorToolbarRef" @change="debounceScroll(0)" />
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <LibWaterfall

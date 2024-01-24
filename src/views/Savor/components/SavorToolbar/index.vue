@@ -9,7 +9,8 @@ import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $emit = defineEmits<{
-  search: [];
+  /** 用于筛选后返回顶部 */
+  change: [];
 }>();
 
 const $atlasStore = AtlasStore();
@@ -27,6 +28,7 @@ const search_value = ref("");
 /* 清空输入框 */
 const clearName = () => {
   search_value.value = "";
+  $emit("change");
 };
 
 /* 正序/倒序 */
@@ -44,7 +46,7 @@ const onFilterGender = (type: Game.GenderId) => {
 /* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   $atlasStore.searchAtlas(search_value.value);
-  $emit("search");
+  $emit("change");
 }, 500);
 
 defineExpose({
