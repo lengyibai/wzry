@@ -1,18 +1,18 @@
 {
   "data": {
-    "time": "2024-01-11 00:00",
+    "time": "2024-01-25 00:00",
     "dataKey": [],
     "voiceKey": [],
     "dataLog": [],
     "voiceLog": [],
     "distLog": {
       "surface": {
-        "new": ["增加铭文套装搭配", "手机端支持登录页静音"],
+        "new": ["皮肤列表增加三个以上的同名皮肤筛选", "铭文套装支持拖拽排序"],
         "function": [],
-        "style": ["增加列表底部虚化"],
+        "style": ["增加列表底部虚化", "铭文效果页的按钮调整到铭文库存"],
         "bug": []
       },
-      "substrate": ["使用defineModel替代", "事件总线使用中转", "使用canvas实现元素聚焦"]
+      "substrate": ["使用defineModel替代", "使用canvas实现元素聚焦"]
     }
   }
 }
