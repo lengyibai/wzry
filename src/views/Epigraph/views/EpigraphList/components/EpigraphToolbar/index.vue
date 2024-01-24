@@ -10,13 +10,6 @@ import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { $focus, $tip } from "@/utils";
 
-const $emit = defineEmits<{
-  /** 搜索皮肤 */
-  search: [];
-  /** 进入铭文搭配 */
-  collocation: [];
-}>();
-
 const $epigraphStore = EpigraphStore();
 
 const collocationBtnRef = ref<InstanceType<typeof KButton>>();
@@ -43,7 +36,6 @@ const onFilterColor = (type?: Game.Epigraph.Data["color"]) => {
 /* 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   $epigraphStore.searchEpigraph(search_value.value);
-  $emit("search");
 }, 500);
 
 onMounted(() => {
