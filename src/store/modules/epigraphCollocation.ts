@@ -199,6 +199,12 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       }
     },
 
+    /** @description 更新列表 */
+    updateSuitList(data: EpigraphCollocationStoreType.Suit[]) {
+      suit_list.value = data;
+      saveSuit();
+    },
+
     /** @description 解锁方案 */
     unlockSuit() {
       this.clearColors();

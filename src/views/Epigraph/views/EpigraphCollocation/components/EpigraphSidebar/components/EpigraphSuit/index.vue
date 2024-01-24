@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import SuitCard from "./components/SuitCard/index.vue";
 
 import { KButton } from "@/components/business";
-import { MOUSE_TIP } from "@/config";
+import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { EpigraphCollocationStore } from "@/store";
+import { LibDragSort } from "@/components/common";
+import { $tip, $focus, $tool } from "@/utils";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
+
+const suitListRef = ref<HTMLElement>();
 
 /** 鼠标悬浮在方案上的文字 */
 const mouse_tip = computed(() => {
@@ -25,6 +29,21 @@ const handleClose = () => {
 const handleUnlock = () => {
   $epigraphCollocationStore.unlockSuit();
 };
+
+onMounted(() => {
+  //当套装量大于2时，提示可以拖拽排序
+  if ($epigraphCollocationStore.suit_list.length < 2 || $tool.isPhone) return;
+
+  $tip({
+    text: SCENE_TIP.cl60,
+    align: "left-top",
+    color: false,
+    createFn() {
+      $focus.show(suitListRef.value!);
+    },
+    btnFn: $focus.close,
+  });
+});
 </script>
 
 <template>
@@ -34,15 +53,19 @@ const handleUnlock = () => {
       <i v-mouse-tip class="iconfont wzry-close" @click="handleClose" />
     </div>
 
-    <div class="suit-list">
-      <SuitCard
-        v-for="(item, index) in $epigraphCollocationStore.suit_list"
-        :key="index"
-        v-mouse-tip="{
-          text: mouse_tip(item.id),
-        }"
-        :data="item"
-      />
+    <div ref="suitListRef" class="suit-list">
+      <LibDragSort
+        v-slot="{ item }"
+        :data="$epigraphCollocationStore.suit_list"
+        @sort-data="$epigraphCollocationStore.updateSuitList"
+      >
+        <SuitCard
+          v-mouse-tip="{
+            text: mouse_tip(item.id),
+          }"
+          :data="item"
+        />
+      </LibDragSort>
       <div class="add-suit">
         <div class="name">铭文方案</div>
         <KButton class="k-button" @click="handleUnlock">解锁</KButton>
