@@ -82,5 +82,6 @@ export const configDefault: () => Global.SettingConfig = () => ({
     d7o5: false,
     lp57: false,
     kr53: false,
+    cl60: false,
   },
 });

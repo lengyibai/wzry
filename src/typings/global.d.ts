@@ -14,6 +14,7 @@ declare namespace Global {
       ma67: T;
       mu63: T;
       v44s: T;
+      cl60: T;
     }
 
     /** @description 小贴士触发 */

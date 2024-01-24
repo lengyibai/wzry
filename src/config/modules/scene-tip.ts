@@ -15,6 +15,7 @@ const SCENE_TIP: Record<keyof Global.Tip.Key, string> = {
    * 移动端专属
    */
   lp57: "手指按住边缘头像，拖动到中心位置并松开(点击头像也可以)。",
+  cl60: "按住方案卡片拖拽可排序",
 };
 
 export { SCENE_TIP };
