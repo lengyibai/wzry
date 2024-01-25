@@ -92,7 +92,7 @@ export class BarragesGenerate {
     }
 
     //一次生成的弹幕数量
-    const count = $tool.random(1, 3);
+    const count = $tool.random(1, 2);
 
     //从原数组中截取随机个数的元素作为要生成的弹幕数据
     const barrages = this.data.slice(0, count);
@@ -106,7 +106,7 @@ export class BarragesGenerate {
     this.data = this.data.slice(count);
 
     //生成下次发送弹幕的时间间隔
-    const time = $tool.random(2, 4, 1) * 1000;
+    const time = $tool.random(4, 6, 1) * 1000;
     this.generateTimer = setTimeout(() => {
       this.generateBarrage();
     }, time);
