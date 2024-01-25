@@ -15,8 +15,6 @@ export const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: 
 
   if (length > 5) {
     circle2.style.borderColor = "var(--red)";
-    circle2.style.boxShadow =
-      "0 0 0.625rem var(--red), 0 0 0.625rem var(--red) inset, 0 0 0.9375rem var(--red)";
     line.style.display = "block";
   } else {
     circle2.style.borderColor = "var(--white-50)";
