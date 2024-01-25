@@ -72,7 +72,7 @@ export const configDefault: () => Global.SettingConfig = () => ({
   border: false,
   shadow: true,
   shine: true,
-  particle: false,
+  particle: true,
   language: 0,
   noTips: {
     f1y0: false,
