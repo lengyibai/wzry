@@ -24,12 +24,28 @@
   position: absolute;
 }
 
+/* 放大隐藏 */
+.enlarge-close-enter-from,
+.enlarge-close-leave-to {
+  opacity: 0;
+}
+
+.enlarge-close-leave-to {
+  transform: scale(1.5);
+}
+
+.enlarge-close-enter-active,
+.enlarge-close-leave-active {
+  transition: all 0.5s;
+}
+
+
+/* 输入框线条 */
 .border-leave-active,
 .border-enter-active {
   transition: all 0.5s;
 }
 
-/* 输入框线条 */
 .border-enter-from,
 .border-leave-active {
   width: 0% !important;
