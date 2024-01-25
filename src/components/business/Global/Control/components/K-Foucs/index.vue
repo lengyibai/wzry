@@ -43,7 +43,7 @@ const focus = _debounce(() => {
 
   // 设置蓝色边框的样式并绘制虚线边框
   ctx.strokeStyle = "white";
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 1;
   ctx.setLineDash([10, 5]); // 设置宽度10、间隔5的虚线
   ctx.lineDashOffset = 0;
   ctx.strokeRect(left - 10, top - 10, width + 20, height + 20);
