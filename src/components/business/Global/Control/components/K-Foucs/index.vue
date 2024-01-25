@@ -37,8 +37,16 @@ const focus = _debounce(() => {
   // 填充整个画布为半透明黑色
   ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   // 在指定的矩形区域内清除颜色
-  ctx?.clearRect(left - 10, top - 10, width + 20, height + 20);
+  ctx.clearRect(left - 10, top - 10, width + 20, height + 20);
+
+  // 设置蓝色边框的样式并绘制虚线边框
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 3;
+  ctx.setLineDash([10, 5]); // 设置宽度10、间隔5的虚线
+  ctx.lineDashOffset = 0;
+  ctx.strokeRect(left - 10, top - 10, width + 20, height + 20);
 
   show.value = true;
 }, 500);
