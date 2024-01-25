@@ -6,7 +6,7 @@ import MusicTool from "./components/MusicTool/index.vue";
 import Copyright from "./components/Copyright/index.vue";
 import MusicPlay from "./components/MusicPlay/index.vue";
 
-import { vParticle } from "@/directives";
+import { vParticleEffect } from "@/directives";
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
 
 const $musicStore = MusicStore();
@@ -95,9 +95,7 @@ onUnmounted(() => {
   <transition name="foot-bar" appear>
     <div
       ref="footbarRef"
-      v-particle="{
-        color: '#2e5283',
-        size: 10,
+      v-particle-effect="{
         enable: $settingStore.config.particle,
       }"
       class="foot-bar"

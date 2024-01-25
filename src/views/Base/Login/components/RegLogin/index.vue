@@ -7,7 +7,7 @@ import SelectInto from "./components/SelectInto/index.vue";
 
 import { LOCAL_USER } from "@/api";
 import { SettingStore, AudioStore, DeviceStore } from "@/store";
-import { vParticle } from "@/directives";
+import { vParticleEffect } from "@/directives";
 import { $concise, $tool } from "@/utils";
 
 const $settingStore = SettingStore();
@@ -86,10 +86,9 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
 
     <!-- logo -->
     <div
-      v-particle="{
+      v-particle-effect="{
         down: true,
         color: '#e8cc7d',
-        lock: true,
         enable: $settingStore.config.particle,
       }"
       class="reg-login__logo"

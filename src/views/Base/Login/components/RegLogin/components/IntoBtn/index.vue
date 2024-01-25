@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SettingStore } from "@/store";
-import { vParticle } from "@/directives";
+import { vParticleEffect } from "@/directives";
 import { $concise } from "@/utils";
 
 interface Props {
@@ -19,7 +19,8 @@ const $settingStore = SettingStore();
 
 <template>
   <button
-    v-particle="{
+    v-particle-effect="{
+      color: '#948250',
       enable: $settingStore.config.particle,
     }"
     class="into-btn"
