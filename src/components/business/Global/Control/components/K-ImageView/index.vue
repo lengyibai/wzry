@@ -24,6 +24,8 @@ const info = ref<ImageViewParams>();
 
 /** 是否显示主页面 */
 const show = ref(false);
+/** 用于关闭 */
+const close = ref(true);
 /** 图片加载状态 */
 const status = ref<"loading" | "finish" | "error">("loading");
 /** 是否处于播放中 */
@@ -34,6 +36,7 @@ const duration = ref(0);
 $bus.on("img-view", (v) => {
   status.value = "loading";
   show.value = true;
+  close.value = false;
   info.value = v;
   scaleFLIPImage = new ScaleFLIPImage(v.event, mainRef.value!, v.bigImage, v.blurImage, () => {
     status.value = "finish";
@@ -68,8 +71,12 @@ const handlePlay = (voice: string, index: number) => {
 /* 关闭页面 */
 const handleHide = () => {
   $audioStore.play("ba09");
-  show.value = false;
-  scaleFLIPImage.destruction();
+  close.value = true;
+
+  setTimeout(() => {
+    show.value = false;
+    scaleFLIPImage.destruction();
+  }, 750);
 };
 
 /* 下载图片 */
@@ -80,8 +87,8 @@ const handleDownload = () => {
 
 <template>
   <teleport to="body">
-    <transition name="fade">
-      <div v-show="show" class="k-image-view">
+    <transition name="enlarge-close">
+      <div v-show="show && !close" class="k-image-view">
         <div
           ref="mainRef"
           class="main"
