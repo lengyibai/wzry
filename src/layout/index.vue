@@ -71,7 +71,7 @@ onMounted(async () => {
     </div>
 
     <!-- 视频背景 -->
-    <KVideo class="k-video" :link="getVideoLink('bg')" muted />
+    <KVideo :link="getVideoLink('bg')" muted />
   </div>
 </template>
 
