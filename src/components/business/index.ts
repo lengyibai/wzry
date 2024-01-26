@@ -1,6 +1,3 @@
-import FormInput from "./Form/FormInput/index.vue";
-import FormLabel from "./Form/FormLabel/index.vue";
-import FormSelect from "./Form/FormSelect/index.vue";
 import Control from "./Global/Control/index.vue";
 import WaterMark from "./Global/WaterMark/index.vue";
 import KBackTop from "./Parts/K-BackTop/index.vue";
@@ -19,13 +16,9 @@ import KScrollTip from "./Parts/K-ScrollTip/index.vue";
 import FilterGender from "./Tool/FilterGender/index.vue";
 import FilterSidebar from "./Tool/FilterSidebar/index.vue";
 import FilterTool from "./Tool/FilterTool/index.vue";
-import SelectHero from "./Tool/SelectHero/index.vue";
-import SelectImg from "./Tool/SelectImg/index.vue";
+import SelectHeroAndSkin from "./Tool/SelectHeroAndSkin/index.vue";
 
 export {
-  FormInput,
-  FormLabel,
-  FormSelect,
   Control,
   WaterMark,
   KBackTop,
@@ -44,6 +37,5 @@ export {
   FilterGender,
   FilterSidebar,
   FilterTool,
-  SelectHero,
-  SelectImg,
+  SelectHeroAndSkin,
 };
