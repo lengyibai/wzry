@@ -20,12 +20,6 @@
       transition: 0.5s;
       transform: translateX(-50%) scale(0.1);
       opacity: 0;
-      filter: grayscale(75%) brightness(35%) drop-shadow(0 0.1875rem 0.3125rem #000);
-
-      &.active {
-        transition: 0.1s;
-        filter: grayscale(0%) brightness(100%) drop-shadow(0 0.1875rem 0.3125rem #000);
-      }
 
       .hero-name,
       .skin-name {
@@ -52,9 +46,15 @@
 
       .bg {
         transition: 0.25s;
+        filter: grayscale(75%) brightness(35%) drop-shadow(0 0.1875rem 0.3125rem #000);
 
         &:hover {
           transform: scale(1.25);
+        }
+
+        &.active {
+          transition: 0.1s;
+          filter: grayscale(0%) brightness(100%) drop-shadow(0 0.1875rem 0.3125rem #000);
         }
       }
 

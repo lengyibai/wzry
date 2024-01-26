@@ -145,9 +145,6 @@ onDeactivated(() => {
             text: MOUSE_TIP.o12u,
           }"
           class="atlas-card"
-          :class="{
-            active: hero_id === item.id,
-          }"
           @mouseenter="handleRelated($event, item.type, item.id, item.name, '', item.posterBlur)"
           @mouseup="
             handleRelated($event, item.type, item.id, item.name, item.posterBig, item.posterBlur)
@@ -162,6 +159,9 @@ onDeactivated(() => {
             {{ item.name }}
           </div>
           <KImageLoad
+            :class="{
+              active: hero_id === item.id,
+            }"
             loading-width="25%"
             :big-img="item.cover"
             class="bg"
