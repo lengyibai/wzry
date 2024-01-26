@@ -36,7 +36,6 @@ const en = {
   音乐: "Music",
   弹幕语音: "Barrage Voice",
   音乐进度控制: "Music Schedule",
-  元素线条: "Element Line",
   元素阴影: "Element Shadow",
   元素发光: "Element Shine",
   粒子特效: "Particle Effects",

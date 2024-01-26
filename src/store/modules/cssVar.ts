@@ -5,22 +5,6 @@ const CssVarStore = defineStore("cssVariable", () => {
   const html = document.documentElement.classList;
 
   const ExposeMethods = {
-    /** @description 设置线条 */
-    setBorder(v: boolean) {
-      this.resetBorder();
-
-      if (v) {
-        html.add("border-line");
-      } else {
-        this.resetBorder();
-      }
-    },
-
-    /** @description 重置线条 */
-    resetBorder() {
-      html.remove("border-line");
-    },
-
     /** @description 设置阴影 */
     setShadow(v: boolean) {
       this.resetShadow();

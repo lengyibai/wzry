@@ -38,7 +38,6 @@ const SettingStore = defineStore("setting", () => {
       $barrageStore.setBarrage(config.value.barrage);
       $audioStore.setVolume(config.value.audioVolume);
       $musicStore.setVolume(config.value.musicVolume);
-      $cssVarStore.setBorder(config.value.border);
       $cssVarStore.setShadow(config.value.shadow);
       $cssVarStore.setShine(config.value.shine);
     },

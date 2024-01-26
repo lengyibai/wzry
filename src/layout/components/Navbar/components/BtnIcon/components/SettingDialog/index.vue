@@ -67,12 +67,6 @@ const onAudioVolume = (v: number) => {
   saveConfig();
 };
 
-/* 线条 */
-const onBorder = (v: boolean) => {
-  $cssVarStore.setBorder(v);
-  saveConfig();
-};
-
 /* 阴影 */
 const onShadow = (v: boolean) => {
   $cssVarStore.setShadow(v);
@@ -132,14 +126,13 @@ const handleResetConfig = () => {
 const onResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-  const { audio, audioVolume, musicVolume, shine, shadow, border, barrage } = config.value;
+  const { audio, audioVolume, musicVolume, shine, shadow, barrage } = config.value;
   $audioStore.setAudio(audio);
   $audioStore.setVolume(audioVolume);
   $musicStore.setVolume(musicVolume);
   $barrageStore.setBarrage(barrage);
   $cssVarStore.setShine(shine);
   $cssVarStore.setShadow(shadow);
-  $cssVarStore.setBorder(border);
   $message("已重置所有配置项");
 };
 </script>
@@ -204,18 +197,6 @@ const onResetConfig = () => {
             text: MOUSE_TIP.pd85,
           }"
           @update:model-value="onMusicProgress"
-        />
-      </div>
-
-      <!-- 线条 -->
-      <div class="option">
-        <div class="label">{{ $t("元素线条") }}</div>
-        <KCheck
-          v-model="config.border"
-          v-mouse-tip="{
-            text: MOUSE_TIP.q1s7,
-          }"
-          @update:model-value="onBorder"
         />
       </div>
 
