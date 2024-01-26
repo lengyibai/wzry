@@ -115,12 +115,14 @@ export class AnimateMove {
     circle.style.width = size / 16 + "rem";
     circle.style.height = size / 16 + "rem";
     circle.style.bottom = "0";
-    circle.style.opacity = "1";
     circle.style.left = x + "%";
     circle.style.transform = `scale(1)`;
 
     if (this.down) {
+      circle.style.opacity = "0";
       circle.style.bottom = "50%";
+    } else {
+      circle.style.opacity = "1";
     }
 
     //移出到父元素可视区外
@@ -128,17 +130,22 @@ export class AnimateMove {
       const end = $tool.random(35, 100);
 
       if (this.down) {
+        circle.style.opacity = "1";
         circle.style.bottom = -end + "%";
       } else {
         circle.style.bottom = end + "%";
       }
-      circle.style.opacity = "0";
+
       circle.style.left = $tool.random(x - 5, x + 5) + "%";
-      circle.style.transform = "scale(0.25)";
       circle.style.transition = `
         all ${duration}ms linear,
-        opacity ${duration * 0.5}ms ${duration * 0.5}ms linear,
-        transform ${duration * 0.5}ms ${duration * 0.5}ms ease-out`;
+        opacity ${duration * 0.5}ms linear,
+        transform ${duration * 0.5}ms ease-out`;
+
+      setTimeout(() => {
+        circle.style.opacity = "0";
+        circle.style.transform = "scale(0.25)";
+      }, duration * 0.5);
     }, 100);
   }
 
