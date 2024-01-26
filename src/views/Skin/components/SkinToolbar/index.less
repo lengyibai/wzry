@@ -12,19 +12,8 @@
     gap: 0.625rem;
   }
 
-  &:deep(.form-input) {
-    --width: 15em;
-    --font-size: 1.5rem;
-    --align: center;
-    --border-color: var(--theme-border-color-two);
-    --color: var(--theme-font-color-four);
-
+  .select-hero-and-skin {
     margin-left: auto;
-    padding: 0.625rem;
-
-    & > input::placeholder {
-      color: var(--theme-font-color-two);
-    }
   }
 
   @media screen and (max-width: 960px) {
@@ -35,14 +24,9 @@
       margin-bottom: 1.5625rem;
     }
 
-    &:deep(.form-input) {
+    .select-hero-and-skin {
       margin-top: 1.5625rem;
       margin-left: 0;
     }
   }
-}
-
-.active {
-  color: var(--white) !important;
-  background-color: #347cb6 !important;
 }

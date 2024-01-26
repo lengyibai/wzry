@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import _debounce from "lodash/debounce";
 
 import { AtlasStore } from "@/store";
-import { FilterGender, FilterTool, KInput } from "@/components/business";
-import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { FilterGender, FilterTool, SelectHeroAndSkin } from "@/components/business";
 
 const $emit = defineEmits<{
   /** 用于筛选后返回顶部 */
@@ -44,10 +41,10 @@ const onFilterGender = (type: Game.GenderId) => {
 };
 
 /* 搜索皮肤 */
-const debounceSearch = _debounce(() => {
+const onSearch = () => {
   $atlasStore.searchAtlas(search_value.value);
   $emit("change");
-}, 500);
+};
 
 defineExpose({
   /** 清空输入框 */
@@ -66,15 +63,7 @@ defineExpose({
     <FilterGender @change="onFilterGender" />
 
     <!-- 搜索 -->
-    <KInput
-      v-model="search_value"
-      v-mouse-tip="{
-        text: MOUSE_TIP.kb43,
-        type: 'INPUT',
-      }"
-      placeholder="英雄/皮肤"
-      @input="debounceSearch"
-    />
+    <SelectHeroAndSkin v-model="search_value" @change="onSearch" />
   </div>
 </template>
 
