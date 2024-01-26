@@ -268,36 +268,6 @@ export const existEmpty = (obj: Record<string, any>, arr: string[] = []) =>
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
 
-/** @description 节流(立即执行) */
-export const throttleInstant = (() => {
-  let last = 0;
-  return (callback: () => void, wait = 800) => {
-    const now = +new Date();
-    if (now - last > wait) {
-      callback();
-      last = now;
-    }
-  };
-})();
-
-/** @description 防抖立即执行 */
-export const debounceInstant = (() => {
-  let timer: NodeJS.Timeout | undefined;
-  return <T extends (...args: any[]) => any>(
-    fn: T,
-    delay: number,
-    ...args: Parameters<T>
-  ): void => {
-    if (timer) clearTimeout(timer);
-    const callNow = !timer;
-    timer = setTimeout(() => {
-      timer = undefined;
-    }, delay);
-    //eslint-disable-next-line prefer-spread
-    if (callNow) fn.apply(undefined, args);
-  };
-})();
-
 /** @description 视差动画 */
 export class Parallax {
   fn: (x: number, y: number) => void = () => {};
