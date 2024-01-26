@@ -3,7 +3,9 @@ import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import { SkinStore } from "@/store";
-import { FilterGender, FilterTool, SelectHeroAndSkin } from "@/components/business";
+import FilterGender from "@/components/business/Tool/FilterGender/index.vue";
+import FilterTool from "@/components/business/Tool/FilterTool/index.vue";
+import SelectHeroAndSkin from "@/components/business/Tool/SelectHeroAndSkin/index.vue";
 
 const $emit = defineEmits<{
   /** 用于筛选后返回顶部 */

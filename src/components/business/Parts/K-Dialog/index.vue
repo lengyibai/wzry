@@ -5,7 +5,7 @@ import { $concise } from "@/utils";
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
-import { KLoadingIcon } from "@/components/business";
+import KLoadingIcon from "@/components/business/Parts/K-LoadingIcon/index.vue";
 
 interface Props {
   /** 垂直对齐方式 */

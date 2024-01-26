@@ -3,13 +3,12 @@ import { ref } from "vue";
 import _cloneDeep from "lodash/cloneDeep";
 import { watch } from "vue";
 
-import { KInput } from "../..";
-
 import { LOCAL_HERO } from "@/api";
 import { $tool } from "@/utils";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
+import KInput from "@/components/business/Parts/K-Input/index.vue";
 
 interface Props {
   /** 禁用 */
