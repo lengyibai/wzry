@@ -230,8 +230,6 @@ declare namespace Global {
     musicProgress: boolean;
     /** 语言 */
     language: 0 | 1 | 2;
-    /** 阴影 */
-    shadow: boolean;
     /** 柔光 */
     shine: boolean;
     /** 粒子特效 */

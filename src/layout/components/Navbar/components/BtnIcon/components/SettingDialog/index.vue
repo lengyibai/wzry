@@ -67,12 +67,6 @@ const onAudioVolume = (v: number) => {
   saveConfig();
 };
 
-/* 阴影 */
-const onShadow = (v: boolean) => {
-  $cssVarStore.setShadow(v);
-  saveConfig();
-};
-
 /* 柔光 */
 const onShine = (v: boolean) => {
   $cssVarStore.setShine(v);
@@ -126,13 +120,12 @@ const handleResetConfig = () => {
 const onResetConfig = () => {
   $settingStore.saveConfig(default_config);
   config.value = { ...default_config };
-  const { audio, audioVolume, musicVolume, shine, shadow, barrage } = config.value;
+  const { audio, audioVolume, musicVolume, shine, barrage } = config.value;
   $audioStore.setAudio(audio);
   $audioStore.setVolume(audioVolume);
   $musicStore.setVolume(musicVolume);
   $barrageStore.setBarrage(barrage);
   $cssVarStore.setShine(shine);
-  $cssVarStore.setShadow(shadow);
   $message("已重置所有配置项");
 };
 </script>
@@ -198,12 +191,6 @@ const onResetConfig = () => {
           }"
           @update:model-value="onMusicProgress"
         />
-      </div>
-
-      <!-- 阴影 -->
-      <div class="option">
-        <div class="label">{{ $t("元素阴影") }}</div>
-        <KCheck v-model="config.shadow" v-mouse-tip @update:model-value="onShadow" />
       </div>
 
       <!-- 柔光 -->
