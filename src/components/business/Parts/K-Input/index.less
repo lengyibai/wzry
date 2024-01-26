@@ -5,6 +5,7 @@
   --font-size: 1.625rem;
   --width: initial;
   --align: left;
+  --placeholder-color: initial;
 
   position: relative;
   display: flex;
@@ -18,7 +19,7 @@
     border-color: var(--border-color);
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    outline: none;
+    outline: ini;
     color: var(--color);
     font-size: var(--font-size);
     text-align: var(--align);
@@ -26,6 +27,7 @@
     background-color: transparent;
 
     &::placeholder {
+      color: var(--placeholder-color);
       text-shadow: var(--t-shadow-d);
     }
   }
