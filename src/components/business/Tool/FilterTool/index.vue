@@ -73,21 +73,19 @@ const handleSelect = (v: Global.General<string | number>) => {
       :style="{ minWidth: minWidth, height: listHeight }"
       @click.stop
     >
-      <transition-group name="select-list">
-        <div
-          v-for="item in data"
-          :key="item.value"
-          class="box"
-          :class="{
-            active: current_value === item.label || sortText === item.label,
-          }"
-          @click="handleSelect(item)"
-          @mouseenter="handleEnterItem(item)"
-          @mouseleave="current_value = ''"
-        >
-          <div class="item">{{ item.label }}</div>
-        </div>
-      </transition-group>
+      <div
+        v-for="item in data"
+        :key="item.value"
+        class="box"
+        :class="{
+          active: current_value === item.label || sortText === item.label,
+        }"
+        @click="handleSelect(item)"
+        @mouseenter="handleEnterItem(item)"
+        @mouseleave="current_value = ''"
+      >
+        <div class="item">{{ item.label }}</div>
+      </div>
     </div>
   </div>
 </template>
