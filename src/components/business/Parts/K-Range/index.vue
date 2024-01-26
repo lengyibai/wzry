@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
+import { nextTick } from "vue";
+import _throttle from "lodash/throttle";
 
 import { AudioStore } from "@/store";
-import { $tool } from "@/utils";
-import { BASE_CONFIG } from "@/config";
 import { vMouseTip } from "@/directives";
 
 interface Props {
@@ -11,43 +11,14 @@ interface Props {
   disabled?: boolean;
   /** 输入框宽度 */
   width?: string;
-  /** 最小值 */
-  min?: number;
-  /** 最大值 */
-  max?: number;
   /** 进度条自定义悬浮文本 */
   text?: string;
-  /** 圆点和图标大小，实际上可点击的范围依然是20px * 20px */
-  size?: string;
-  /** 轨道背景色 */
-  trackColor?: string;
-  /** 显示圆点，也决定显示图标 */
-  showDot?: boolean;
-  /** 显示图标 */
-  showIcon?: boolean;
-  /** 自定义图标1:1 */
-  icon?: string;
-  /** 在滑动的时候显示数字 */
-  showNum?: boolean;
-  /** 步长 */
-  step?: number;
 }
 
-const $props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   width: "12.5rem",
   disabled: false,
-  label: "标题",
-  labelWidth: "9.375rem",
-  min: 0,
-  max: 100,
   text: "",
-  size: "2.1875rem",
-  showDot: true,
-  trackColor: "var(--theme-el-color-one)",
-  showIcon: true,
-  icon: BASE_CONFIG.IMGBED + "/image/range_icon.png",
-  showNum: true,
-  step: 1,
 });
 
 /** 滑动值 */
@@ -55,75 +26,97 @@ const modelValue = defineModel({ default: 0, required: true });
 
 const $audioStore = AudioStore();
 
+/** 存储鼠标按下时的 X 坐标 */
+let startX = 0;
+/** 存储鼠标按下时元素的 left 样式值 */
+let startLeft = 0;
+//步长
+const step = 1;
+
+const rangeRef = ref<HTMLElement>();
+const dotRef = ref<HTMLElement>();
+
+/** 当前点位置 */
+const progress = ref(0);
 /** 是否处于按下状态 */
 const down = ref(false);
 
-/* 设置可拖动宽度 */
-const barWidth = computed(() => {
-  const max = $props.max - $props.min;
-  const value = (Number(modelValue.value) - $props.min) / (max / 100);
-  const width = `calc(${value}% + ${20 / 2}px - ${(value / 100) * 20}px)`;
-
-  return width;
+nextTick(() => {
+  progress.value = modelValue.value;
+  dotRef.value!.style.left = `calc(${modelValue.value}% - ${
+    dotRef.value!.offsetWidth * (modelValue.value / 100)
+  }px)`;
 });
 
-/* 设置按钮大小 */
+const throttlePlayAudio = _throttle(() => {
+  $audioStore.play("za86");
+}, 50);
+
 onMounted(() => {
-  const root = document.querySelector(":root") as HTMLElement;
-  root.style.setProperty("--size", `${$props.size}`);
+  const dot = dotRef.value!;
+
+  dot.addEventListener("mousedown", (e) => {
+    down.value = true;
+    startX = e.clientX;
+    startLeft = dot.offsetLeft;
+
+    const mousemove = (e: MouseEvent) => {
+      const dot = dotRef.value!;
+      const range = rangeRef.value!;
+
+      // 计算鼠标移动的距离（当前 X 坐标 - 开始时的 X 坐标）
+      const distX = e.clientX - startX;
+      // 根据鼠标移动的距离计算元素的新的 left 值（百分比）
+      let newLeftPercent = ((startLeft + distX) / (range.offsetWidth - dot.offsetWidth)) * 100;
+      // 将新的 left 值调整为最接近的步长
+      newLeftPercent = Math.round(newLeftPercent / step) * step;
+
+      // 限制新的 left 值在 0% 到 100% 之间
+      if (newLeftPercent < 0) newLeftPercent = 0;
+      if (newLeftPercent > 100) newLeftPercent = 100;
+
+      dot.style.left = `calc(${newLeftPercent}% - ${dot.offsetWidth * (newLeftPercent / 100)}px)`;
+      progress.value = Math.abs(newLeftPercent);
+      modelValue.value = progress.value;
+      throttlePlayAudio();
+    };
+    window.addEventListener("mousemove", mousemove);
+    window.addEventListener(
+      "mouseup",
+      () => {
+        down.value = false;
+        window.removeEventListener("mousemove", mousemove);
+      },
+      {
+        once: true,
+      },
+    );
+  });
 });
-
-/* 拖动时触发 */
-const changeValue = (e: Event) => {
-  const v = (e.target as HTMLInputElement).value;
-  down.value = true;
-  modelValue.value = parseFloat(v);
-  $tool.throttleInstant(() => {
-    $audioStore.play("za86");
-  }, 50);
-};
-
-/* 隐藏数字 */
-const hide = () => {
-  down.value = false;
-};
 </script>
 
 <template>
-  <div class="k-range" :class="{ disabled: disabled }">
-    <!-- 输入框 -->
-    <div class="input" :style="{ width: width }">
-      <div v-if="showNum" class="slider-value">
-        <span class="value" :class="{ 'show-num': down }" :style="{ left: barWidth }">
+  <div
+    ref="rangeRef"
+    class="k-range"
+    :class="{ disabled: disabled }"
+    :style="{
+      width: width,
+    }"
+  >
+    <div class="bar">
+      <div
+        class="line"
+        :style="{
+          width: progress + '%',
+        }"
+      ></div>
+    </div>
+    <div ref="dotRef" v-mouse-tip class="dot">
+      <div class="slider-value">
+        <span class="value" :class="{ 'show-num': down }" :style="{ left: progress + '%' }">
           {{ text || modelValue }}
         </span>
-      </div>
-      <div class="field">
-        <div class="bar" :style="{ width: barWidth }">
-          <div v-show="showIcon && showDot" class="dot"></div>
-          <span
-            v-show="showDot && !showIcon"
-            :style="{
-              width: size,
-              height: size,
-            }"
-          ></span>
-        </div>
-        <input
-          v-mouse-tip
-          :value="modelValue"
-          :disabled="disabled"
-          type="range"
-          :min="min"
-          :max="max"
-          :style="{
-            backgroundColor: trackColor,
-          }"
-          :step="step"
-          @input="changeValue"
-          @mouseup="hide"
-          @touchend="hide"
-        />
       </div>
     </div>
   </div>
