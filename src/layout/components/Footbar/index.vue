@@ -17,8 +17,6 @@ const lineRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
 const footbarRef = ref<HTMLElement>();
 
-/** 隐藏工具栏定时器 */
-let timer: NodeJS.Timeout;
 /** 播放进度 */
 const progress = ref(0);
 
@@ -72,19 +70,6 @@ const onMusicTool = (type: string) => {
   strategy[type]();
 };
 
-/* 显示工具栏 */
-const handleShowTool = (v: boolean) => {
-  if (!enable_music.value) return;
-  if (!v) {
-    timer = setTimeout(() => {
-      $musicStore.showTool(v);
-    }, 250);
-  } else {
-    clearTimeout(timer);
-    $musicStore.showTool(v);
-  }
-};
-
 onUnmounted(() => {
   $musicStore.stop();
   $musicStore.resetAudio();
@@ -100,9 +85,7 @@ onUnmounted(() => {
       }"
       class="foot-bar"
       @click="handleSetProgress"
-      @mouseenter="handleShowTool(true)"
       @mousemove="handleMoveLineRef"
-      @mouseleave="handleShowTool(false)"
     >
       <!-- 底部竖线 -->
       <div v-if="enable_music && music_progress" ref="lineRef" class="line"></div>

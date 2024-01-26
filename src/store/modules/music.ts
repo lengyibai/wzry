@@ -14,8 +14,6 @@ const MusicStore = defineStore("music", () => {
   let volume = 0;
   /** 音乐可视化 */
   let audio_visual: AudioVisual;
-  /** 工具显示设置 */
-  let tool_timer: NodeJS.Timeout;
   /** 进度条宽度设置 */
   let progress_timer: NodeJS.Timeout;
   /** 播放器 */
@@ -30,12 +28,10 @@ const MusicStore = defineStore("music", () => {
     status: ref(false),
     /** 显示播放列表 */
     show_list: ref(false),
-    /** 显示工具栏 */
-    show_tool: ref(true),
     /** 音乐列表 */
     musics: ref<Global.Music[]>([]),
   };
-  const { musics, bgmIndex, progress, status, show_list, show_tool } = ExposeData;
+  const { musics, bgmIndex, progress, status, show_list } = ExposeData;
 
   //初始化音乐
   (async function initMusic() {
@@ -136,19 +132,6 @@ const MusicStore = defineStore("music", () => {
       progress.value = 0;
       bgmIndex.value = index;
       this.play();
-    },
-
-    /** @description 显示工具栏 */
-    showTool(v: boolean) {
-      clearTimeout(tool_timer);
-      if (v) {
-        show_tool.value = v;
-      } else {
-        show_list.value = v;
-        tool_timer = setTimeout(() => {
-          show_tool.value = v;
-        }, 250);
-      }
     },
 
     /**
