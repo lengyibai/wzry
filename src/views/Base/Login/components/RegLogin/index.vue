@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
+import _throttle from "lodash/throttle";
 
 import LoginBox from "./components/LoginBox/index.vue";
 import RegBox from "./components/RegBox/index.vue";
@@ -65,13 +66,13 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     }deg)`;
   });
 
-  const fn = (e: MouseEvent) => {
-    $tool.throttleInstant(() => parallax.move(e), 50);
-  };
+  const _throttleMove = _throttle((e: MouseEvent) => {
+    parallax.move(e);
+  }, 50);
 
-  window.addEventListener("mousemove", fn);
+  window.addEventListener("mousemove", _throttleMove);
   onUnmounted(() => {
-    window.removeEventListener("mousemove", fn);
+    window.removeEventListener("mousemove", _throttleMove);
   });
 }
 </script>
