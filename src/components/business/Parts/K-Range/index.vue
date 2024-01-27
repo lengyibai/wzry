@@ -26,13 +26,6 @@ const modelValue = defineModel({ default: 0, required: true });
 
 const $audioStore = AudioStore();
 
-/** 存储鼠标按下时的 X 坐标 */
-let startX = 0;
-/** 存储鼠标按下时元素的 left 样式值 */
-let startLeft = 0;
-//步长
-const step = 1;
-
 const rangeRef = ref<HTMLElement>();
 const dotRef = ref<HTMLElement>();
 
@@ -53,45 +46,65 @@ const throttlePlayAudio = _throttle(() => {
 }, 50);
 
 onMounted(() => {
+  /** 存储鼠标按下时的 X 坐标 */
+  let startX = 0;
+  /** 存储鼠标按下时元素的 left 样式值 */
+  let startLeft = 0;
+  //步长
+  const step = 1;
   const dot = dotRef.value!;
 
-  dot.addEventListener("mousedown", (e) => {
+  const handleDown = (event: MouseEvent | TouchEvent) => {
     down.value = true;
-    startX = e.clientX;
     startLeft = dot.offsetLeft;
 
-    const mousemove = (e: MouseEvent) => {
-      const dot = dotRef.value!;
-      const range = rangeRef.value!;
+    if (event instanceof MouseEvent) {
+      startX = event.clientX;
+    } else if (event instanceof TouchEvent) {
+      startX = event.touches[0].clientX;
+    }
 
-      // 计算鼠标移动的距离（当前 X 坐标 - 开始时的 X 坐标）
-      const distX = e.clientX - startX;
-      // 根据鼠标移动的距离计算元素的新的 left 值（百分比）
-      let newLeftPercent = ((startLeft + distX) / (range.offsetWidth - dot.offsetWidth)) * 100;
-      // 将新的 left 值调整为最接近的步长
-      newLeftPercent = Math.round(newLeftPercent / step) * step;
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("touchmove", handleMove);
+    window.addEventListener("mouseup", handleUp, { once: true });
+    window.addEventListener("touchend", handleUp, { once: true });
+  };
 
-      // 限制新的 left 值在 0% 到 100% 之间
-      if (newLeftPercent < 0) newLeftPercent = 0;
-      if (newLeftPercent > 100) newLeftPercent = 100;
+  const handleMove = (event: MouseEvent | TouchEvent) => {
+    const dot = dotRef.value!;
+    const range = rangeRef.value!;
 
-      dot.style.left = `calc(${newLeftPercent}% - ${dot.offsetWidth * (newLeftPercent / 100)}px)`;
-      progress.value = Math.abs(newLeftPercent);
-      modelValue.value = progress.value;
-      throttlePlayAudio();
-    };
-    window.addEventListener("mousemove", mousemove);
-    window.addEventListener(
-      "mouseup",
-      () => {
-        down.value = false;
-        window.removeEventListener("mousemove", mousemove);
-      },
-      {
-        once: true,
-      },
-    );
-  });
+    // 计算鼠标移动的距离（当前 X 坐标 - 开始时的 X 坐标）
+    let distX = 0;
+    if (event instanceof MouseEvent) {
+      distX = event.clientX - startX;
+    } else if (event instanceof TouchEvent) {
+      distX = event.touches[0].clientX - startX;
+    }
+
+    // 根据鼠标移动的距离计算元素的新的 left 值（百分比）
+    let newLeftPercent = ((startLeft + distX) / (range.offsetWidth - dot.offsetWidth)) * 100;
+    // 将新的 left 值调整为最接近的步长
+    newLeftPercent = Math.round(newLeftPercent / step) * step;
+
+    // 限制新的 left 值在 0% 到 100% 之间
+    if (newLeftPercent < 0) newLeftPercent = 0;
+    if (newLeftPercent > 100) newLeftPercent = 100;
+
+    dot.style.left = `calc(${newLeftPercent}% - ${dot.offsetWidth * (newLeftPercent / 100)}px)`;
+    progress.value = Math.abs(newLeftPercent);
+    modelValue.value = progress.value;
+    throttlePlayAudio();
+  };
+
+  const handleUp = () => {
+    down.value = false;
+    window.removeEventListener("mousemove", handleMove);
+    window.removeEventListener("touchmove", handleMove);
+  };
+
+  dot.addEventListener("mousedown", handleDown);
+  dot.addEventListener("touchstart", handleDown);
 });
 </script>
 
