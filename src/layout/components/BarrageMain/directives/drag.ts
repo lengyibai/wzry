@@ -26,10 +26,11 @@ const vDrag: Directive<ElType> = {
 
     const time = el.style.transitionDuration;
 
-    const handleMouseDown = (event: MouseEvent | TouchEvent) => {
+    const handleDown = (event: MouseEvent | TouchEvent) => {
       el.style.transitionDuration = "0s";
       dragData.isDragging = true;
 
+      //记录按下时的位置和元素初始位置
       if (event instanceof MouseEvent) {
         dragData.startX = event.pageX;
         dragData.startY = event.pageY;
@@ -38,16 +39,26 @@ const vDrag: Directive<ElType> = {
         dragData.startY = event.touches[0].pageY;
       }
 
+      //获取元素初始位置
       dragData.left = el.offsetLeft;
       dragData.top = el.offsetTop;
+
+      //监听移动事件
+      el.addEventListener("touchmove", el._mouseMove);
+      el.addEventListener("mousemove", el._mouseMove);
+
+      //监听松开事件
+      el.addEventListener("mouseup", el._mouseUp);
+      el.addEventListener("touchend", el._mouseUp);
     };
 
-    const handleMouseMove = (event: MouseEvent | TouchEvent) => {
+    const handleMove = (event: MouseEvent | TouchEvent) => {
       if (!dragData.isDragging) return;
 
       let offsetX: number;
       let offsetY: number;
 
+      //计算移动的距离
       if (event instanceof MouseEvent) {
         offsetX = event.pageX - dragData.startX;
         offsetY = event.pageY - dragData.startY;
@@ -59,6 +70,7 @@ const vDrag: Directive<ElType> = {
         offsetY = 0;
       }
 
+      //计算元素位置
       const left = dragData.left + offsetX;
       const top = dragData.top + offsetY;
 
@@ -79,25 +91,19 @@ const vDrag: Directive<ElType> = {
       el.style.top = `${newTop}px`;
     };
 
-    const handleMouseUp = () => {
+    const handleUp = () => {
       el.style.transitionDuration = time;
       dragData.isDragging = false;
     };
 
     // 将事件挂载到DOM上
-    el._mouseDown = handleMouseDown;
-    el._mouseMove = handleMouseMove;
-    el._mouseUp = handleMouseUp;
+    el._mouseDown = handleDown;
+    el._mouseMove = handleMove;
+    el._mouseUp = handleUp;
 
     // 监听鼠标事件
     el.addEventListener("mousedown", el._mouseDown);
-    el.addEventListener("mousemove", el._mouseMove);
-    el.addEventListener("mouseup", el._mouseUp);
-
-    // 监听触摸事件
     el.addEventListener("touchstart", el._mouseDown);
-    el.addEventListener("touchmove", el._mouseMove);
-    el.addEventListener("touchend", el._mouseUp);
   },
   unmounted(el) {
     // 移除鼠标事件
