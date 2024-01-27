@@ -82,7 +82,6 @@ export default defineConfig(({ mode }) => {
             _util: ["dayjs", "lodash"],
             _axios: ["axios"],
             _i18n: ["vue-i18n"],
-            _wangeditor: ["@wangeditor/editor"],
           },
           chunkFileNames: "assets/js/[name]-[hash].js",
           entryFileNames: "assets/js/[name]-[hash].js",
