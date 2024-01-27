@@ -116,7 +116,7 @@ export class AnimateMove {
     circle.style.height = size / 16 + "rem";
     circle.style.bottom = "0";
     circle.style.left = x + "%";
-    circle.style.transform = `scale(1)`;
+    circle.style.transform = `translateZ(0) scale(1)`;
 
     if (this.down) {
       circle.style.opacity = "0";
@@ -144,7 +144,7 @@ export class AnimateMove {
 
       setTimeout(() => {
         circle.style.opacity = "0";
-        circle.style.transform = "scale(0.25)";
+        circle.style.transform = "translateZ(0) scale(0.25)";
       }, duration * 0.5);
     }, 100);
   }
