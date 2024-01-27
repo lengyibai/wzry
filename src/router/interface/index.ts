@@ -18,7 +18,6 @@ export interface Routes {
     hidden?: boolean;
     noVerify?: boolean;
   };
-  leftHidden?: boolean;
   component?: any;
   children?: Routes[];
   [propName: string]: any;
@@ -31,7 +30,6 @@ export interface RouterSheel {
   path?: string;
   name?: string;
   redirect?: string;
-  leftHidden?: boolean;
   component?: string;
   children?: RouterSheel[];
 }
