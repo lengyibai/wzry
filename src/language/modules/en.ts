@@ -7,6 +7,7 @@ const en = {
   图集: "Atlas",
   装备: "Equip",
   铭文: " Epigraph",
+  夺宝: " SeizeTreasures",
   系统管理: "System",
   添加: "Add",
   本地数据管理: "Local Data",
