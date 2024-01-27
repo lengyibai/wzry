@@ -43,12 +43,6 @@ export const skillDefault: () => Remote.Skill.Info = () => ({
   effect: [],
 });
 
-/** @description 默认技能效果信息 */
-export const skillEffectDefault: () => Remote.Skill.Info["effect"][0] = () => ({
-  name: "",
-  phase: [],
-});
-
 /** @description 默认用户信息 */
 export const userDefaultInfo: () => Global.User = () => ({
   id: "",
@@ -69,8 +63,6 @@ export const configDefault: () => Global.SettingConfig = () => ({
   musicProgress: false,
   speed: 1,
   muted: false,
-  border: false,
-  shadow: true,
   shine: true,
   particle: true,
   language: 0,
