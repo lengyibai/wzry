@@ -85,6 +85,7 @@ export const getHeroData = () => {
 
     //获取职业中文名称
     const profession = hero_profession_list_kvp[heroId].map((item) => type_profession_kvp[item]);
+
     hero_data_list[i] = {
       id: heroId,
       attack,
@@ -112,7 +113,7 @@ export const getHeroData = () => {
       specialty: hero_specialty_list_kvp[heroId],
       skills: hero_skill_list_kvp[heroId],
       skinCount: hero_skin_list_kvp[heroId].length,
-      relationCount: hero_relationship_list_kvp[heroId].length,
+      relationCount: hero_relationship_list_kvp[heroId]?.length || 0,
     };
   }
   return hero_data_list;
@@ -128,7 +129,7 @@ export const getHeroDetail = (hero_id: number) => {
   const hero = heros.find((item) => item.id === hero_id)!;
 
   //获取关系英雄中文名称和头像
-  const relationships = hero_relationship_kvp[hero_id].map((relationship) => {
+  const relationships = hero_relationship_kvp[hero_id]?.map((relationship) => {
     return {
       ...relationship,
       avatar: hero_avatar_kvp[relationship.id],
@@ -139,7 +140,7 @@ export const getHeroDetail = (hero_id: number) => {
   const hero_detail: Game.Hero.Detail = {
     ...hero,
     skins: hero_skin_kvp[hero_id],
-    relationships,
+    relationships: relationships || [],
   };
 
   const {

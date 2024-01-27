@@ -7,7 +7,7 @@ import HeroRelationshipAtlas from "./components/HeroRelationshipAtlas/index.vue"
 import { KScrollTip } from "@/components/business";
 import { HeroDetailStore } from "@/store";
 
-const { setScrollFn } = HeroDetailStore();
+const { setScrollFn, hero_info } = HeroDetailStore();
 
 const show = ref(false);
 
@@ -24,7 +24,8 @@ setScrollFn("skinIcon", (pageName) => {
     <HeroRelationDesc />
 
     <!-- 关系图谱 -->
-    <HeroRelationshipAtlas v-if="show" />
+    <HeroRelationshipAtlas v-if="show && hero_info.relationCount > 0" />
+    <div class="empty">暂无关系网</div>
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />
