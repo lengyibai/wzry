@@ -14,7 +14,7 @@
 
 ## 第三方依赖
 
-> 事件总线[mitt](https://github.com/developit/mitt)、富文本编辑器[wangeditor](https://www.wangeditor.com)、时间库[day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)、工具库[lodash.js](https://www.lodashjs.com)
+> 事件总线[mitt](https://github.com/developit/mitt)、时间库[day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)、工具库[lodash.js](https://www.lodashjs.com)
 
 ## 项目内截图
 
