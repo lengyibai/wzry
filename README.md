@@ -16,10 +16,6 @@
 
 > 事件总线[mitt](https://github.com/developit/mitt)、时间库[day.js](https://dayjs.fenxianglu.cn)、多语言[vue-i18n](https://vue-i18n.intlify.dev)、工具库[lodash.js](https://www.lodashjs.com)
 
-## 项目内截图
-
-![0](https://lyb.cbb.plus//wzry-material/html/0.png)![0](https://lyb.cbb.plus//wzry-material/html/1.png)![0](https://lyb.cbb.plus//wzry-material/html/2.png)![0](https://lyb.cbb.plus//wzry-material/html/3.png)![0](https://lyb.cbb.plus//wzry-material/html/4.png)![0](https://lyb.cbb.plus//wzry-material/html/5.png)![0](https://lyb.cbb.plus//wzry-material/html/6.png)![0](https://lyb.cbb.plus//wzry-material/html/7.png)![0](https://lyb.cbb.plus//wzry-material/html/8.png)
-
 ## 素材来源
 
 英雄头像、技能图标、图片素材——[王者荣耀官网](https://pvp.qq.com)
