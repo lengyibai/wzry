@@ -34,7 +34,7 @@ const select_type = [
   { label: "FMVP", value: "FMVP" },
   { label: "五五节", value: "五五" },
   { label: "星传说", value: "星传说" },
-  { label: "KPL限定", value: "KPL" },
+  { label: "KPL限定", value: "KPL限定" },
   { label: "周年限定", value: "周年限定" },
   { label: "生肖限定", value: "年限定" },
   { label: "战令限定", value: "战令限定" },

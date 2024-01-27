@@ -122,7 +122,7 @@ const SkinStore = defineStore("skin", () => {
         "传说",
         "唯一限定",
         "荣耀典藏",
-        "KPL",
+        "KPL限定",
         "星传说",
         "五虎上将",
         "战令限定",
@@ -140,7 +140,7 @@ const SkinStore = defineStore("skin", () => {
       const multiple = [
         {
           label: "情侣",
-          value: ["情人节限定", "520限定"],
+          value: ["情人节限定", "520限定", "七夕限定"],
         },
         {
           label: "其他限定",
@@ -155,6 +155,7 @@ const SkinStore = defineStore("skin", () => {
             "圣诞限定",
             "航天限定",
             "仙剑限定",
+            "无双限定",
           ],
         },
         {
@@ -237,6 +238,7 @@ const SkinStore = defineStore("skin", () => {
     filterGender();
     filterSkinType();
     filterSameName();
+    filter_list.value.reverse();
     sortPrice();
     ExposeMethods.resetPage();
   };
