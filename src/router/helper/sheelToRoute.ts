@@ -10,6 +10,7 @@ const routePath: Record<string, any> = {
   "@/views/Savor": () => import("@/views/Savor/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
+  "@/views/SeizeTreasures": () => import("@/views/SeizeTreasures/index.vue"),
   "@/views/System/views/Data": () => import("@/views/System/views/Data/index.vue"),
 };
 

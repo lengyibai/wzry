@@ -71,13 +71,27 @@ export const user: RouterSheel[] = [
     path: "/epigraph",
     name: "epigraph",
     redirect: "",
-    leftHidden: true,
     component: "@/layout",
     children: [
       {
         path: "",
         name: "epigraphChild",
         component: "@/views/Epigraph",
+      },
+    ],
+  },
+  {
+    title: "夺宝",
+    icon: "wzry-liwu",
+    path: "/seize-treasures",
+    name: "seizeTreasures",
+    redirect: "",
+    component: "@/layout",
+    children: [
+      {
+        path: "",
+        name: "seizeTreasuresChild",
+        component: "@/views/SeizeTreasures",
       },
     ],
   },
@@ -91,7 +105,6 @@ export const admin: RouterSheel[] = [
     path: "/system",
     name: "system",
     redirect: "/system/add",
-    leftHidden: true,
     component: "@/layout",
     icon: "wzry-xitongguanli",
     children: [
