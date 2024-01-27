@@ -174,7 +174,7 @@ onMounted(getTipPosition);
             :class="[
               tip_position,
               {
-                show: show_tip,
+                show: show_tip && !is_click,
                 disabled: disabled,
                 clickable: !is_click,
               },
@@ -188,7 +188,7 @@ onMounted(getTipPosition);
               ref="tipRef"
               class="tip"
               :class="{
-                show: show_tip,
+                show: show_tip && !is_click,
               }"
             >
               <span
