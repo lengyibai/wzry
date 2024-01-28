@@ -313,11 +313,6 @@ export const TypeSkin = () => {
   return $RemoteHttp.Get<Remote.DataType.Skin[]>(`/${JSON_NAME.TYPE_SKIN}.json`);
 };
 
-/** @description 获取类型技能表 */
-export const TypeSkill = () => {
-  return $RemoteHttp.Get<Remote.DataType.Skin[]>(`/${JSON_NAME.TYPE_SKILL}.json`);
-};
-
 /** @description 获取类型特长表 */
 export const TypeSpecialty = () => {
   return $RemoteHttp.Get<Remote.DataType.Specialty[]>(`/${JSON_NAME.TYPE_SPECIALTY}.json`);

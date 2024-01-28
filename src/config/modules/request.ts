@@ -60,7 +60,6 @@ const REQUEST: [string, () => Promise<ResultData<unknown>>, string][] = [
   [LOCAL_KEY.TYPE_PROFESSION, API_DATA.TypeProfession, "类型职业"],
   [LOCAL_KEY.TYPE_RACE, API_DATA.TypeRace, "类型种族"],
   [LOCAL_KEY.TYPE_SKIN, API_DATA.TypeSkin, "类型皮肤"],
-  [LOCAL_KEY.TYPE_SKILL, API_DATA.TypeSkill, "类型技能"],
   [LOCAL_KEY.TYPE_SPECIALTY, API_DATA.TypeSpecialty, "类型特长"],
 ];
 

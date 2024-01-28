@@ -125,8 +125,6 @@ const JSON_NAME = {
   TYPE_RACE: "typeRace",
   /** 类型皮肤表 */
   TYPE_SKIN: "typeSkin",
-  /** 类型技能表 */
-  TYPE_SKILL: "typeSkill",
   /** 类型特长表 */
   TYPE_SPECIALTY: "typeSpecialty",
   /** 英雄语音列表 */

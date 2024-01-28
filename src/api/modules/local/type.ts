@@ -51,11 +51,6 @@ export const getTypeSkinList = () => {
   return get<Remote.DataType.Skin[]>({ name: LOCAL_KEY.TYPE_SKIN });
 };
 
-/** @description 获取类型技能列表 */
-export const getTypeSkillList = () => {
-  return get<Remote.DataType.Skill[]>({ name: LOCAL_KEY.TYPE_SKILL });
-};
-
 /** @description 获取类型特长列表 */
 export const getTypeSpecialtyList = () => {
   return get<Remote.DataType.Specialty[]>({ name: LOCAL_KEY.TYPE_SPECIALTY });

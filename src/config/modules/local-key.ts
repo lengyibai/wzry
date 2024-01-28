@@ -136,8 +136,6 @@ const LOCAL_KEY = {
   TYPE_RACE: "wzry_type_race",
   /** 类型皮肤表 */
   TYPE_SKIN: "wzry_type_skin",
-  /** 类型皮肤表 */
-  TYPE_SKILL: "wzry_type_skill",
   /** 类型特长表 */
   TYPE_SPECIALTY: "wzry_type_specialty",
 };
