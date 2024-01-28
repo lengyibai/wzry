@@ -1,4 +1,6 @@
 .skin-card {
+  --rotate: 0deg;
+
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -7,10 +9,19 @@
   width: 100%;
   border: 1px solid var(--white-25);
   background-color: var(--black-25);
+  background-image: linear-gradient(
+    var(--rotate),
+    transparent 0%,
+    var(--white-75) 40%,
+    var(--white-75) 60%,
+    transparent 100%
+  );
   transition: all 0.25s;
   opacity: 1;
 
   &:hover {
+    --rotate: 90deg;
+
     border: 1px solid var(--white-50);
 
     .bg {
