@@ -70,7 +70,6 @@ export default defineConfig(({ mode }) => {
           : [],
     },
     build: {
-      minify: false, //不压缩代码
       chunkSizeWarningLimit: 2000, //超过2000kb警告
       reportCompressedSize: false, //禁用 gzip 压缩大小报告，可略微减少打包时间
       cssTarget: "chrome61",
