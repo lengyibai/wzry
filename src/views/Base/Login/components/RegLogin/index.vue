@@ -89,7 +89,7 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
     <div
       v-particle-effect="{
         down: true,
-        color: '#e8cc7d',
+        colors: ['#EFD68F', '#E0B34E'],
         enable: $settingStore.config.particle,
       }"
       class="reg-login__logo"

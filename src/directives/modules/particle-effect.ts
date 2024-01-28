@@ -17,8 +17,8 @@ interface ElType extends HTMLElement {
 interface Params {
   /** 生成的数量 */
   count: number;
-  /** 粒子颜色 */
-  color: string;
+  /** 粒子颜色组 */
+  colors: string[];
   /** 粒子最大尺寸大小 */
   size: number;
   /** 是否启用 */
@@ -36,31 +36,21 @@ export class AnimateMove {
   /** 粒子数量 */
   private count!: number;
   /** 粒子颜色 */
-  private color!: string;
+  private colors!: string[];
   /** 粒子尺寸 */
   private size!: number;
   /** 是否从上到下 */
   private down = false;
-  /** 浏览器是否处于后台状态 */
-  private is_hide = false;
 
   constructor(parent: HTMLElement, config: Params) {
-    const { count, color, size, down } = config;
+    const { count, colors, size, down } = config;
     this.parent = parent;
     this.count = count;
     this.size = size;
-    this.color = color;
+    this.colors = colors;
     this.down = down;
 
     this.init();
-
-    window.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "hidden") {
-        this.is_hide = true;
-      } else {
-        this.is_hide = false;
-      }
-    });
   }
 
   private init() {
@@ -68,16 +58,19 @@ export class AnimateMove {
       /* 创建粒子 */
       for (let index = 0; index < this.count; index++) {
         const box = document.createElement("div");
+        const index = $tool.random(0, this.colors.length - 1);
+        const colors = this.colors[index];
+        const status = $tool.random(0, 1);
 
         box.style.cssText = `
           position: absolute;
-          background-color: ${this.color};
+          background-color: ${colors};
           pointer-events: none;
-          box-shadow: 0 0 0.3125rem 0 ${this.color},
-          0 0 0.625rem 0 ${this.color},
-          0 0 1.25rem 0 ${this.color},
-          0 0 1.875rem 0 ${this.color};
-          filter: brightness(250%);
+          box-shadow: 0 0 0.3125rem 0 ${colors},
+          0 0 0.625rem 0 ${colors},
+          0 0 1.25rem 0 ${colors},
+          0 0 1.875rem 0 ${colors};
+          filter: brightness(${status === 0 ? 150 : 250}%);
         `;
 
         this.childElements.push(box);
@@ -93,11 +86,10 @@ export class AnimateMove {
         this.playAnimate(el);
         index++;
 
-        const debouncePlayAnimate = _debounce(this.playAnimate.bind(this), 100);
-        el.addEventListener("transitionend", () => {
-          if (this.is_hide) return;
+        const debouncePlayAnimate = _debounce(this.playAnimate.bind(this), 1000);
+        el.ontransitionend = () => {
           debouncePlayAnimate(el);
-        });
+        };
       } else {
         clearInterval(interval_id);
       }
@@ -116,7 +108,7 @@ export class AnimateMove {
     circle.style.height = size / 16 + "rem";
     circle.style.bottom = "0";
     circle.style.left = x + "%";
-    circle.style.transform = `translateZ(0) scale(1)`;
+    circle.style.transform = `translateY(100%) translateZ(0) rotate(${540 - size * 60}deg)`;
 
     if (this.down) {
       circle.style.opacity = "0";
@@ -127,8 +119,12 @@ export class AnimateMove {
 
     //移出到父元素可视区外
     setTimeout(() => {
-      const end = $tool.random(35, 100);
+      circle.style.transition = `
+        all ${duration}ms linear,
+        opacity ${duration * 0.5}ms linear,
+        transform ${duration * 0.5}ms ease-out`;
 
+      const end = $tool.random(35, 100);
       if (this.down) {
         circle.style.opacity = "1";
         circle.style.bottom = -end + "%";
@@ -136,22 +132,22 @@ export class AnimateMove {
         circle.style.bottom = end + "%";
       }
 
+      circle.style.transform = "translateZ(0)";
       circle.style.left = $tool.random(x - 5, x + 5) + "%";
-      circle.style.transition = `
-        all ${duration}ms linear,
-        opacity ${duration * 0.5}ms linear,
-        transform ${duration * 0.5}ms ease-out`;
 
       setTimeout(() => {
         circle.style.opacity = "0";
-        circle.style.transform = "translateZ(0) scale(0.25)";
+        circle.style.transform = `translateZ(0) rotate(${720 - size * 60}deg) scale(0.25)`;
       }, duration * 0.5);
     }, 100);
   }
 
   /** @description 关闭 */
-  close() {
-    this.childElements.forEach((el) => el.remove());
+  destroy() {
+    this.childElements.forEach((el) => {
+      el.remove();
+    });
+    this.childElements = [];
   }
 }
 
@@ -160,8 +156,8 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
     el._fn = function (binding: DirectiveBinding<Partial<Params>>) {
       const {
         count = 30,
-        color = "#2e5283",
-        size = 6,
+        colors = ["#227093", "#b33939"],
+        size = 8,
         enable = true,
         down = false,
       } = binding.value || {};
@@ -169,7 +165,7 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
       if (!enable) return;
       this._particle = new AnimateMove(el, {
         count,
-        color,
+        colors,
         size,
         enable,
         down,
@@ -179,14 +175,14 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
   },
   updated(el, binding) {
     if (binding?.value?.enable === false) {
-      el._particle?.close();
+      el._particle?.destroy();
     } else if (binding?.value?.enable === true) {
-      el._particle?.close();
+      el._particle?.destroy();
       el._fn(binding);
     }
   },
   unmounted(el) {
-    el._particle?.close();
+    el._particle?.destroy();
   },
 };
 

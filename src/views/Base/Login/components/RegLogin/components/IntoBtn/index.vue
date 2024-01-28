@@ -20,7 +20,7 @@ const $settingStore = SettingStore();
 <template>
   <button
     v-particle-effect="{
-      color: '#948250',
+      colors: ['#986B33', '#CEA64E'],
       enable: $settingStore.config.particle,
     }"
     class="into-btn"
