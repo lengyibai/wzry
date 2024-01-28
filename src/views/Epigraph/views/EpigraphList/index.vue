@@ -2,6 +2,8 @@
 import EpigraphToolbar from "./components/EpigraphToolbar/index.vue";
 import EpigraphCategory from "./components/EpigraphCategory/index.vue";
 import EpigraphList from "./components/EpigraphList/index.vue";
+
+import { vScrollVirtualization } from "@/directives";
 </script>
 
 <template>
@@ -14,7 +16,7 @@ import EpigraphList from "./components/EpigraphList/index.vue";
   </transition>
 
   <!-- 铭文列表 -->
-  <div class="epigraph-main">
+  <div v-scroll-virtualization class="epigraph-main">
     <EpigraphList />
   </div>
 </template>

@@ -6,6 +6,7 @@ import EquipDetail from "./components/EquipDetail/index.vue";
 
 import { EquipStore, AudioStore } from "@/store";
 import { FilterSidebar } from "@/components/business";
+import { vScrollVirtualization } from "@/directives";
 
 defineOptions({
   name: "Equip",
@@ -34,7 +35,7 @@ onActivated(() => {
 <template>
   <div class="equip">
     <transition name="fade" appear>
-      <div ref="equipMainRef" class="equip__main">
+      <div ref="equipMainRef" v-scroll-virtualization class="equip__main">
         <!-- 装备详情 -->
         <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { KButton, KMarquee } from "@/components/business";
 import type { ImageViewParams } from "@/utils/interface";
 
@@ -44,9 +44,9 @@ const $emit = defineEmits<{
       </transition>
 
       <transition name="voice" appear>
-        <div>
+        <div class="voice-content">
           <div class="title">语音列表</div>
-          <div class="voice-list">
+          <div v-scroll-virtualization class="voice-list">
             <div
               v-for="(item, index) in data.voices"
               :key="index"

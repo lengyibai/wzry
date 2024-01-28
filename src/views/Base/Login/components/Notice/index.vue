@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { KDialog } from "@/components/business";
+import { vScrollVirtualization } from "@/directives";
 
 const notice = ref("");
 const loading = ref(true);
@@ -24,7 +25,7 @@ API_DATA.Notice()
     header="系统公告"
     @close="loading = true"
   >
-    <div class="notice" v-html="notice"></div>
+    <div v-scroll-virtualization class="notice" v-html="notice"></div>
   </KDialog>
 </template>
 

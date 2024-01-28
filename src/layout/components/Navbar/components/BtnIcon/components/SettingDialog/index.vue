@@ -5,7 +5,7 @@ import { setLanguage } from "@/language";
 import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $confirm, $message, $tip } from "@/utils";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 
@@ -132,7 +132,7 @@ const onResetConfig = () => {
 
 <template>
   <KDialog v-bind="$attrs" title="设置" width="57.5rem" ctx-width="90%" up>
-    <div class="options">
+    <div v-scroll-virtualization class="options">
       <!-- 语言 -->
       <div class="option">
         <div class="label">{{ $t("语言") }}</div>

@@ -5,6 +5,7 @@ import waterFullLayout from "./Waterfall";
 
 import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
 import { $tool } from "@/utils";
+import { vScrollVirtualization } from "@/directives";
 interface Props {
   count?: number;
   gap?: number;
@@ -101,7 +102,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="waterfallRef" class="waterfall">
+  <div ref="waterfallRef" v-scroll-virtualization class="waterfall">
     <div ref="waterfallContentRef" class="waterfall-content">
       <slot></slot>
     </div>

@@ -4,7 +4,7 @@ import { ref, nextTick } from "vue";
 import { HeroDetailStore, AudioStore } from "@/store";
 import { $tool } from "@/utils";
 import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { KMarquee } from "@/components/business";
 
 const $heroDetail = HeroDetailStore();
@@ -100,7 +100,7 @@ const play = (voice: string, index: number) => {
 </script>
 
 <template>
-  <div ref="voiceListRef" class="hero-voice" @mousewheel.stop>
+  <div ref="voiceListRef" v-scroll-virtualization class="hero-voice" @mousewheel.stop>
     <button
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"

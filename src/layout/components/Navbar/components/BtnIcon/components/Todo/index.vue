@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { AudioStore } from "@/store";
 import { KDialog } from "@/components/business";
 import { API_DATA } from "@/api";
+import { vScrollVirtualization } from "@/directives";
 
 const $audioStore = AudioStore();
 
@@ -34,7 +35,7 @@ $audioStore.play("kj62");
     up
     @close="loading = true"
   >
-    <div class="todo">
+    <div v-scroll-virtualization class="todo">
       <div class="content">
         <h1>页面层</h1>
         <template v-if="todo.surface.length">

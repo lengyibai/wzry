@@ -4,7 +4,7 @@ import { computed } from "vue";
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import KDialog from "@/components/business/Parts/K-Dialog/index.vue";
 import { VersionStore } from "@/store";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 
 const $versionStore = VersionStore();
 
@@ -35,7 +35,7 @@ const handleClose = () => {
     :desc="update_log.time"
     @close="handleClose"
   >
-    <div class="main">
+    <div v-scroll-virtualization class="main">
       <!-- 页面更新 -->
       <h1>页面层</h1>
       <div class="content">
