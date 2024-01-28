@@ -41,6 +41,8 @@ export class AnimateMove {
   private size!: number;
   /** 是否从上到下 */
   private down = false;
+  /** 生成粒子计时器 */
+  private timer!: NodeJS.Timeout;
 
   constructor(parent: HTMLElement, config: Params) {
     const { count, colors, size, down } = config;
@@ -80,7 +82,7 @@ export class AnimateMove {
 
     /* 生成粒子 */
     let index = 0;
-    const interval_id = setInterval(() => {
+    this.timer = setInterval(() => {
       if (index !== this.childElements.length) {
         const el = this.childElements[index];
         this.playAnimate(el);
@@ -91,7 +93,7 @@ export class AnimateMove {
           debouncePlayAnimate(el);
         };
       } else {
-        clearInterval(interval_id);
+        clearInterval(this.timer);
       }
     }, 10000 / this.count);
   }
@@ -144,7 +146,9 @@ export class AnimateMove {
 
   /** @description 关闭 */
   destroy() {
+    clearInterval(this.timer);
     this.childElements.forEach((el) => {
+      el.ontransitionend = null;
       el.remove();
     });
     this.childElements = [];
