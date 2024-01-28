@@ -11,8 +11,14 @@ const vScrollVirtualization: Directive<HTMLElement> = {
       if (el.scrollTop > 10) {
         el.style.mask =
           "linear-gradient(180deg, transparent 0%, #000 5%, #000 95%, transparent 100%)";
-      } else {
+      }
+
+      if (el.scrollTop < 10) {
         el.style.mask = "linear-gradient(180deg, #000 95%, transparent 100%)";
+      }
+
+      if (el.scrollTop > el.scrollHeight - el.clientHeight - 10) {
+        el.style.mask = "linear-gradient(180deg, transparent 0%, #000 5%, #000 95%)";
       }
     });
   },
