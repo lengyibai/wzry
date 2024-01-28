@@ -15,6 +15,7 @@ const interval_count = [
   [2000, 4],
   [1600, 3],
   [1110, 2],
+  [550, 1],
 ];
 
 const epigraphListRef = ref<InstanceType<typeof LibGrid>>();
