@@ -11,3 +11,4 @@ export * from "./modules/text-hover-color";
 export * from "./modules/typewriter-multiple";
 export * from "./modules/typewriter-single";
 export * from "./modules/particle-effect";
+export * from "./modules/scroll-virtualization";
