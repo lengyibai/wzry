@@ -5,7 +5,7 @@ import SuitCard from "./components/SuitCard/index.vue";
 
 import { KButton } from "@/components/business";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { EpigraphCollocationStore } from "@/store";
 import { LibDragSort } from "@/components/common";
 import { $tip, $focus, $tool } from "@/utils";
@@ -53,7 +53,7 @@ onMounted(() => {
       <i v-mouse-tip class="iconfont wzry-close" @click="handleClose" />
     </div>
 
-    <div ref="suitListRef" class="suit-list">
+    <div ref="suitListRef" v-scroll-virtualization class="suit-list">
       <LibDragSort
         v-slot="{ item }"
         :data="$epigraphCollocationStore.suit_list"

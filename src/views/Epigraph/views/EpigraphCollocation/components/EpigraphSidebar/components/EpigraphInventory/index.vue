@@ -9,7 +9,7 @@ import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { $confirm, $message } from "@/utils";
 import { KButton } from "@/components/business";
 
@@ -83,7 +83,7 @@ watch(fill_color, () => {
           @click="handleClose"
         />
       </div>
-      <div ref="epigraphListRef" class="epigraph-list">
+      <div ref="epigraphListRef" v-scroll-virtualization class="epigraph-list">
         <template v-for="(item, index) in $epigraphCollocationStore.current_inventory" :key="index">
           <EpigraphCard
             v-mouse-tip="{

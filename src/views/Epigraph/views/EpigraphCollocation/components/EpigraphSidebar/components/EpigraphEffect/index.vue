@@ -7,7 +7,7 @@ import type { CompKey } from "./interface";
 
 import { EpigraphCollocationStore } from "@/store";
 import { KButton, KSelect } from "@/components/business";
-import { vMouseTip } from "@/directives";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 const comps = {
@@ -46,7 +46,7 @@ const handleSuit = () => {
         @update:model-value="onSelect"
       />
     </div>
-    <div class="effect-list">
+    <div v-scroll-virtualization class="effect-list">
       <component :is="comps[comp_name]"></component>
     </div>
 
