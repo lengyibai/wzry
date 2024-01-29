@@ -22,7 +22,7 @@ $bus.on("loading", (v) => {
 <template>
   <teleport to="body">
     <transition name="fade">
-      <div v-show="show" class="k-loading">
+      <div v-if="show" class="k-loading">
         <div class="logo">
           <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
           <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
