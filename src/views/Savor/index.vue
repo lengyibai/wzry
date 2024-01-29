@@ -9,11 +9,11 @@ import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
 import { $bus, $imageView } from "@/utils";
 import { AtlasStore, AudioStore } from "@/store";
-import { FilterSidebar, KBackTop, KImageLoad } from "@/components/business";
+import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
 import { GAME_HERO, KVP_HERO } from "@/api";
 import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vBlurLoad, vMouseTip } from "@/directives";
 
 defineOptions({
   name: "Savor",
@@ -158,14 +158,13 @@ onDeactivated(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <KImageLoad
+          <img
+            v-blurLoad="item.cover"
             :class="{
               active: hero_id === item.id,
             }"
-            loading-width="25%"
-            :big-img="item.cover"
             class="bg"
-            :blur-img="item.coverBlur"
+            :src="item.coverBlur"
           />
         </div>
       </LibWaterfall>

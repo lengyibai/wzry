@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { vAnimateNumber, vMaskGradient, vMouseTip } from "@/directives";
-import { KImageLoad } from "@/components/business";
+import { vAnimateNumber, vBlurLoad, vMaskGradient, vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 interface Props {
@@ -32,7 +31,7 @@ const handleView = (e: Event) => {
     }"
     class="skin-card"
   >
-    <KImageLoad loading-width="20%" :big-img="data.cover" :blur-img="data.posterBlur" class="bg" />
+    <img v-blurLoad="data.cover" class="bg" :src="data.posterBlur" />
     <img v-if="data.link" class="type" :src="data.link" />
 
     <!-- 价格 -->

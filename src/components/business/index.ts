@@ -4,7 +4,6 @@ import KBackTop from "./Parts/K-BackTop/index.vue";
 import KButton from "./Parts/K-Button/index.vue";
 import KCheck from "./Parts/K-Check/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
-import KImageLoad from "./Parts/K-ImageLoad/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
 import KLoadingIcon from "./Parts/K-LoadingIcon/index.vue";
 import KMarquee from "./Parts/K-Marquee/index.vue";
@@ -23,7 +22,6 @@ export {
   WaterMark,
   KBackTop,
   KButton,
-  KImageLoad,
   KCheck,
   KDialog,
   KInput,

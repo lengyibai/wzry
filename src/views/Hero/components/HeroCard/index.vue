@@ -2,9 +2,8 @@
 import { ref, computed } from "vue";
 
 import { HeroStore } from "@/store";
-import { vMaskGradient, vMouseTip, vSweepLight, vTextHoverColor } from "@/directives";
+import { vBlurLoad, vMaskGradient, vMouseTip, vSweepLight, vTextHoverColor } from "@/directives";
 import { $concise } from "@/utils";
-import { KImageLoad } from "@/components/business";
 import { MOUSE_TIP } from "@/config";
 
 interface Props {
@@ -76,7 +75,7 @@ const handleViewClick = () => {
     </div>
 
     <!-- 背景图 -->
-    <KImageLoad loading-width="35%" :big-img="data.cover" :blur-img="data.coverBlur" class="bg" />
+    <img v-blurLoad="data.cover" class="bg" :src="data.coverBlur" />
 
     <!-- 底部名字、代号 -->
     <div class="bottom">
