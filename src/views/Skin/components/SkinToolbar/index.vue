@@ -23,32 +23,6 @@ const select_price = [
   { label: "由高到低", value: "由高到低" },
 ];
 
-const select_type = [
-  { label: "全部皮肤", value: "全部皮肤" },
-  { label: "勇者", value: "勇者" },
-  { label: "史诗", value: "史诗" },
-  { label: "传说", value: "传说" },
-  { label: "情侣", value: "情侣" },
-  { label: "限定", value: "唯一限定" },
-  { label: "世冠", value: "世冠" },
-  { label: "FMVP", value: "FMVP" },
-  { label: "五五节", value: "五五" },
-  { label: "星传说", value: "星传说" },
-  { label: "KPL限定", value: "KPL限定" },
-  { label: "周年限定", value: "周年限定" },
-  { label: "生肖限定", value: "年限定" },
-  { label: "战令限定", value: "战令限定" },
-  { label: "其他限定", value: "其他限定" },
-  { label: "赛季专属", value: "赛季专属" },
-  { label: "其他专属", value: "其他专属" },
-  { label: "荣耀典藏", value: "荣耀典藏" },
-  { label: "王者之证", value: "王者之证" },
-  { label: "团战精神", value: "团战精神" },
-  { label: "五虎上将", value: "五虎上将" },
-  { label: "正版授权", value: "正版授权" },
-  { label: "特殊标志", value: "特殊标志" },
-];
-
 /** 搜索值 */
 const search_value = ref("");
 
@@ -102,7 +76,7 @@ defineExpose({
 
       <!-- 皮肤类型筛选 -->
       <FilterTool
-        :data="select_type"
+        :data="$skinStore.skin_type_list"
         :sort-text="skin_type"
         list-height="31.25rem"
         @select="onTypeFilter"

@@ -462,6 +462,10 @@ declare namespace Remote {
       name: string;
       /** 类型图标链接 */
       link: string;
+      /** 皮肤别名，用于筛选 */
+      alias: string;
+      /** 皮肤类型排序，用于筛选列表排序 */
+      sort: number;
     }
 
     /** @description 英雄技能类型表 */

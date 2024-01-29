@@ -27,13 +27,15 @@ const SkinStore = defineStore("skin", () => {
     /** 价格排序类型 */
     price_type: ref("全部价格"),
     /** 皮肤筛选类型 */
-    skin_type: ref("全部皮肤"),
+    skin_type: ref("全部类型"),
     /** 同名皮肤筛选类型 */
     same_name: ref("全部同名"),
     /** 性别筛选类型 */
     gender_type: ref<Game.GenderId>(0),
     /** 统计大于3个同名的皮肤名 */
     same_name_list: ref<Global.General[]>([]),
+    /** 统计皮肤类型列表 */
+    skin_type_list: ref<Global.General[]>([]),
   };
   const {
     scroll,
@@ -44,6 +46,7 @@ const SkinStore = defineStore("skin", () => {
     skin_type,
     same_name,
     same_name_list,
+    skin_type_list,
   } = ExposeData;
 
   /* 统计相同皮肤名 */
@@ -71,6 +74,25 @@ const SkinStore = defineStore("skin", () => {
     same_name_list.value.unshift({
       label: "全部同名",
       value: "全部同名",
+    });
+  };
+
+  /* 统计皮肤类型列表 */
+  const getSkinType = (skin_list: Game.Hero.Skin[]) => {
+    const options = [
+      ...new Set(skin_list.sort((a, b) => a.typeSort - b.typeSort).map((item) => item.alias)),
+    ];
+
+    skin_type_list.value = options.map((item) => {
+      return {
+        label: item,
+        value: item,
+      };
+    });
+
+    skin_type_list.value.unshift({
+      label: "全部类型",
+      value: "全部类型",
     });
   };
 
@@ -113,81 +135,8 @@ const SkinStore = defineStore("skin", () => {
 
     /** 皮肤类型筛选 */
     const filterSkinType = () => {
-      if (skin_type.value === "全部皮肤") return;
-
-      //一对一筛选
-      const alone = [
-        "勇者",
-        "史诗",
-        "传说",
-        "唯一限定",
-        "荣耀典藏",
-        "KPL限定",
-        "星传说",
-        "五虎上将",
-        "战令限定",
-        "赛季专属",
-        "周年限定",
-        "五五",
-        "正版授权",
-        "世冠",
-        "王者之证",
-        "FMVP",
-        "年限定",
-      ];
-
-      //一对多筛选
-      const multiple = [
-        {
-          label: "情侣",
-          value: ["情人节限定", "520限定", "七夕限定"],
-        },
-        {
-          label: "其他限定",
-          value: [
-            "成就限定",
-            "圣诞限定",
-            "贵族限定",
-            "会员限定",
-            "赏金赛限定",
-            "战队赛限定",
-            "浪一夏限定",
-            "圣诞限定",
-            "航天限定",
-            "仙剑限定",
-            "无双限定",
-          ],
-        },
-        {
-          label: "其他专属",
-          value: ["必胜客专属", "新春专属", "信誉专属", "源梦", "活动专属", "星会员专属"],
-        },
-        {
-          label: "特殊标志",
-          value: ["御龙在天", "国家宝藏", "敦煌研究院", "永宁纪"],
-        },
-        { label: "团战精神", value: ["沉稳", "敏锐", "掌控", "守护", "坚韧"] },
-      ];
-
-      //一对一筛选
-      if (alone.includes(skin_type.value)) {
-        filter_list.value = filter_list.value.filter((item) => {
-          return item.category.includes(skin_type.value);
-        });
-      } else {
-        //一对多筛选
-        multiple.forEach((type) => {
-          if (skin_type.value === type.label) {
-            filter_list.value = filter_list.value.filter((skin) => {
-              return type.value.some((item) => {
-                return skin.category.includes(item);
-              });
-            });
-          }
-        });
-      }
-
-      filter_list.value = $tool.typeSort(filter_list.value, "category");
+      if (skin_type.value === "全部类型") return;
+      filter_list.value = filter_list.value.filter((item) => item.alias === skin_type.value);
     };
 
     /** 同名皮肤筛选 */
@@ -254,7 +203,6 @@ const SkinStore = defineStore("skin", () => {
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
     getSkin() {
       const skin_list = GAME_HERO.getSkinList();
-
       const skinTypes = KVP_TYPE.getSkinKvp();
 
       skin_list.forEach((skin) => {
@@ -271,6 +219,7 @@ const SkinStore = defineStore("skin", () => {
 
       sortAll();
       getSameName(skin_list);
+      getSkinType(skin_list);
     },
 
     /**
@@ -315,7 +264,7 @@ const SkinStore = defineStore("skin", () => {
       same_name.value = name;
 
       //筛选同名皮肤时要重置其他
-      skin_type.value = "全部皮肤";
+      skin_type.value = "全部类型";
       price_type.value = "全部价格";
       sortAll();
     },
@@ -338,7 +287,7 @@ const SkinStore = defineStore("skin", () => {
       /* 搜索英雄时重置下拉菜单 */
       profession.value = "全部";
       price_type.value = "全部价格";
-      skin_type.value = "全部皮肤";
+      skin_type.value = "全部类型";
       same_name.value = "全部同名";
       gender_type.value = 0;
 
