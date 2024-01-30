@@ -200,7 +200,7 @@ onDeactivated(() => {
 
     <!--英雄详情页-->
     <teleport to="body">
-      <transition name="clip">
+      <transition :name="$tool.isPhone ? 'fade' : 'clip'">
         <HeroDetail v-if="show_HeroDetail" />
       </transition>
     </teleport>
