@@ -92,7 +92,7 @@ const onCloseConfirmEditInfo = () => {
         text: MOUSE_TIP.c2y9,
       }"
       class="head-img"
-      :src="userInfo.avatar || getImgLink('unknown')"
+      :src="userInfo.avatar ? getImgLink(userInfo.avatar, 'jpg') : getImgLink('unknown')"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />

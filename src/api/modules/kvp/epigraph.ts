@@ -1,4 +1,5 @@
 import { LOCAL_EPIGRAPH } from "@/api";
+import { BASE_CONFIG } from "@/config";
 
 /** @description 获取铭文颜色键值表 */
 export const getEpigraphColorKvp = () => {
@@ -26,8 +27,8 @@ export const getEpigraphImageKvp = () => {
   const kvp: Record<number, Pick<Remote.Epigraph.Image, "img" | "imgBlur">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
-      img: item.img,
-      imgBlur: item.imgBlur,
+      img: BASE_CONFIG.IMGBED + item.img,
+      imgBlur: BASE_CONFIG.IMGBED + item.imgBlur,
     };
   });
   return kvp;

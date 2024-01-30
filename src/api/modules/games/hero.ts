@@ -1,4 +1,5 @@
 import { KVP_HERO, KVP_TYPE, LOCAL_HERO } from "@/api";
+import { BASE_CONFIG } from "@/config";
 
 /** @description 获取英雄图集列表 */
 export const getHeroAtlas = () => {
@@ -236,7 +237,7 @@ export const getSkinList = () => {
       hero: skin_hero_kvp[id],
       price: skin_price_kvp[id],
       type: skin_type_kvp[id],
-      link: type_skin_kvp[skin_type_kvp[id]].link,
+      link: BASE_CONFIG.IMGBED + type_skin_kvp[skin_type_kvp[id]].link,
       category: type_skin_kvp[skin_type_kvp[id]].name,
       alias: type_skin_kvp[skin_type_kvp[id]].alias,
       typeSort: type_skin_kvp[skin_type_kvp[id]].sort,

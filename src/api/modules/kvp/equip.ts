@@ -1,4 +1,5 @@
 import { LOCAL_EQUIP } from "@/api";
+import { BASE_CONFIG } from "@/config";
 
 /** @description 获取装备级别键值表 */
 export const getEquipDescKvp = () => {
@@ -26,8 +27,8 @@ export const getEquipImageKvp = () => {
   const kvp: Record<number, Pick<Remote.Equip.Image, "icon" | "iconBlur">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
-      icon: item.icon,
-      iconBlur: item.iconBlur,
+      icon: BASE_CONFIG.IMGBED + item.icon,
+      iconBlur: BASE_CONFIG.IMGBED + item.iconBlur,
     };
   });
   return kvp;

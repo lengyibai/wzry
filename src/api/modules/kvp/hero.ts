@@ -1,4 +1,5 @@
 import { LOCAL_HERO } from "@/api";
+import { BASE_CONFIG } from "@/config";
 
 /** @description 获取英雄属性键值表 */
 export const getHeroAttrKvp = () => {
@@ -41,7 +42,7 @@ export const getHeroAvatarKvp = () => {
   const data = LOCAL_HERO.getHeroAvatarList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
-    kvp[item.id] = item.value;
+    kvp[item.id] = BASE_CONFIG.IMGBED + item.value;
   });
   return kvp;
 };
@@ -52,11 +53,11 @@ export const getHeroImageKvp = () => {
   const kvp: Record<number, Omit<Remote.Hero.Image, "id">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
-      cover: item.cover,
-      coverBlur: item.coverBlur,
-      poster: item.poster,
-      posterBlur: item.posterBlur,
-      posterBig: item.posterBig,
+      cover: BASE_CONFIG.IMGBED + item.cover,
+      coverBlur: BASE_CONFIG.IMGBED + item.coverBlur,
+      poster: BASE_CONFIG.IMGBED + item.poster,
+      posterBlur: BASE_CONFIG.IMGBED + item.posterBlur,
+      posterBig: BASE_CONFIG.IMGBED + item.posterBig,
     };
   });
   return kvp;
@@ -187,7 +188,14 @@ export const getHeroSkillListKvp = () => {
   const data = LOCAL_HERO.getSkillList();
   const kvp: Record<number, Remote.Skill.Info[][]> = {};
   data.forEach((item) => {
-    kvp[item.id] = item.skills;
+    kvp[item.id] = item.skills.map((item) => {
+      return item.map((item) => {
+        return {
+          ...item,
+          img: BASE_CONFIG.IMGBED + item.img,
+        };
+      });
+    });
   });
   return kvp;
 };
@@ -228,11 +236,11 @@ export const getSkinImageKvp = () => {
   const kvp: Record<number, Omit<Remote.Skin.Image, "id">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
-      avatar: item.avatar,
-      cover: item.cover,
-      poster: item.poster,
-      posterBig: item.posterBig,
-      posterBlur: item.posterBlur,
+      avatar: BASE_CONFIG.IMGBED + item.avatar,
+      cover: BASE_CONFIG.IMGBED + item.cover,
+      poster: BASE_CONFIG.IMGBED + item.poster,
+      posterBig: BASE_CONFIG.IMGBED + item.posterBig,
+      posterBlur: BASE_CONFIG.IMGBED + item.posterBlur,
     };
   });
   return kvp;
