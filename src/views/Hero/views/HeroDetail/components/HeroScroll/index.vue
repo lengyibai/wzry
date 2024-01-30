@@ -65,12 +65,12 @@ watch(
 
 onMounted(() => {
   if (!heroScrollRef.value) return;
-  //是否为纵向滚动
   const direction = $props.direction === "y";
-  //是否滚动
   let scroll = true;
-  //页面数量
   const sonCount = heroScrollRef.value.querySelectorAll(".scroll-item").length;
+
+  let start = 0;
+  let startTime = 0;
 
   heroScrollRef.value.addEventListener("wheel", (e: WheelEvent) => {
     $debounceDelay(() => {
@@ -102,42 +102,51 @@ onMounted(() => {
     }, 10);
   });
 
-  /* 兼容移动端 */
-  let start = 0;
-  heroScrollRef.value.addEventListener("touchstart", (e: TouchEvent) => {
-    start = e.changedTouches[0].pageY;
-  });
-  heroScrollRef.value.addEventListener("touchmove", (e: TouchEvent) => {
-    const status = start - e.changedTouches[0].pageY;
-    if (Math.abs(status) < window.innerHeight / 3) return;
-    $debounceDelay(() => {
-      if (!heroScrollRef.value) return;
-      heroScrollRef.value.style.transition = `all ${$props.duration}ms`;
+  heroScrollRef.value.ontouchstart = function (e) {
+    start = direction ? e.changedTouches[0].pageY : e.changedTouches[0].pageX;
+    startTime = e.timeStamp; // 触摸开始的时间
 
-      if (!scroll) return;
-      $emit("start", index + 1);
-      scroll = false;
+    heroScrollRef.value!.ontouchmove = function (e) {
+      const current = direction ? e.changedTouches[0].pageY : e.changedTouches[0].pageX;
+      const status = start - current;
+      const elapsedTime = e.timeStamp - startTime; // 计算时间差
+      const speed = Math.abs(status) / elapsedTime; // 计算速度（单位 px/ms）
 
-      //判断触摸滑动方向，并更新索引
-      if (-status < 0 && index < sonCount - 1) {
-        index++;
-      } else if (-status > 0 && index > 0) {
-        index--;
-      }
+      if (Math.abs(status) < window.innerHeight / 3 && speed < 0.3) return; // 增加速度条件
 
-      //根据滑动方向更新滚动位置
-      if (direction) {
-        heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
-      } else {
-        heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
-      }
+      $debounceDelay(() => {
+        if (!heroScrollRef.value) return;
+        heroScrollRef.value.style.transition = `all ${$props.duration}ms`;
 
-      modelValue.value = index + 1;
-      setTimeout(() => {
-        scroll = true;
-      }, $props.duration);
-    }, 10);
-  });
+        if (!scroll) return;
+        $emit("start", index + 1);
+        scroll = false;
+
+        // 判断触摸滑动方向，并更新索引
+        if (-status < 0 && index < sonCount - 1) {
+          index++;
+        } else if (-status > 0 && index > 0) {
+          index--;
+        }
+
+        // 根据滑动方向更新滚动位置
+        if (direction) {
+          heroScrollRef.value.style.top = -index * heroScrollRef.value.offsetHeight + "px";
+        } else {
+          heroScrollRef.value.style.left = -index * heroScrollRef.value.offsetWidth + "px";
+        }
+
+        modelValue.value = index + 1;
+        setTimeout(() => {
+          scroll = true;
+        }, $props.duration);
+      }, 10);
+    };
+  };
+
+  heroScrollRef.value!.ontouchend = () => {
+    heroScrollRef.value!.ontouchmove = null;
+  };
 });
 
 window.addEventListener("resize", resetPosition);

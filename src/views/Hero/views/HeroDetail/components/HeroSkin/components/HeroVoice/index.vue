@@ -100,7 +100,13 @@ const play = (voice: string, index: number) => {
 </script>
 
 <template>
-  <div ref="voiceListRef" v-scroll-virtualization class="hero-voice" @mousewheel.stop>
+  <div
+    ref="voiceListRef"
+    v-scroll-virtualization
+    class="hero-voice"
+    @mousewheel.stop
+    @touchstart.stop
+  >
     <button
       v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
       ref="voiceRef"
