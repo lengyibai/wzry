@@ -9,7 +9,7 @@ import KInputDialog from "./components/K-InputDialog/index.vue";
 import KFoucs from "./components/K-Foucs/index.vue";
 // import KPhone from "./components/K-Phone/index.vue";
 
-import { $bus } from "@/utils";
+import { $bus, $tool } from "@/utils";
 
 window.addEventListener("mouseup", (e) => {
   $bus.emit("mouseup", e);
@@ -33,7 +33,7 @@ window.addEventListener("mouseup", (e) => {
   <KImageView />
 
   <!-- 跟随鼠标点、圆、线 -->
-  <KMouseTip />
+  <KMouseTip v-if="!$tool.isPhone" />
 
   <!-- 弹窗输入内容 -->
   <KInputDialog />
