@@ -5,14 +5,14 @@ import { API_DATA } from "@/api";
 import { $imageView } from "@/utils";
 import { KDialog } from "@/components/business";
 import { vBlurLoad, vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { BASE_CONFIG, MOUSE_TIP } from "@/config";
 
 const teamRef = ref<HTMLElement>();
 
 const imgs = ref<string[][]>([]);
 
 API_DATA.Team().then((res) => {
-  imgs.value = res.data;
+  imgs.value = res.data.map((item) => item.map((item) => BASE_CONFIG.IMGBED + item));
 });
 
 /* 查看图片 */
