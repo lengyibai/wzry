@@ -10,8 +10,8 @@
       "wzry_type_skin",
       "user"
     ],
-    "voiceKey": ["铭文图片", "装备图片", "英雄头像", "英雄图片", "英雄技能", "类型皮肤"],
-    "dataLog": [],
+    "voiceKey": [],
+    "dataLog": ["铭文图片", "装备图片", "英雄头像", "英雄图片", "英雄技能", "类型皮肤"],
     "voiceLog": [],
     "distLog": {
       "surface": {
