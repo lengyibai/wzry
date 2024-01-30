@@ -38,7 +38,6 @@ const SkinStore = defineStore("skin", () => {
     skin_type_list: ref<Global.General[]>([]),
   };
   const {
-    scroll,
     filter_list,
     gender_type,
     profession,
@@ -98,7 +97,7 @@ const SkinStore = defineStore("skin", () => {
 
   /* 一键排序 */
   const sortAll = () => {
-    scroll.value = 0;
+    $usePagingLoad.setScroll(0);
 
     /** 职业筛选 */
     const filterProfession = () => {
@@ -106,11 +105,12 @@ const SkinStore = defineStore("skin", () => {
 
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...all_data.value];
+        $usePagingLoad.setFilterData([...all_data.value]);
       } else {
-        filter_list.value = all_data.value.filter((item: Game.Hero.Skin) => {
+        const data = all_data.value.filter((item: Game.Hero.Skin) => {
           return item.profession.includes(profession.value);
         });
+        $usePagingLoad.setFilterData([...data]);
       }
     };
 
@@ -127,25 +127,24 @@ const SkinStore = defineStore("skin", () => {
       });
 
       if (gender_type.value === 1) {
-        filter_list.value = boy;
+        $usePagingLoad.setFilterData(boy);
       } else if (gender_type.value === 2) {
-        filter_list.value = girl;
+        $usePagingLoad.setFilterData(girl);
       }
     };
 
     /** 皮肤类型筛选 */
     const filterSkinType = () => {
       if (skin_type.value === "全部类型") return;
-      filter_list.value = filter_list.value.filter((item) => item.alias === skin_type.value);
+      const data = filter_list.value.filter((item) => item.alias === skin_type.value);
+      $usePagingLoad.setFilterData(data);
     };
 
     /** 同名皮肤筛选 */
     const filterSameName = () => {
       if (same_name.value === "全部同名") return;
-
-      filter_list.value = filter_list.value.filter((item) => {
-        return item.name === same_name.value;
-      });
+      const data = filter_list.value.filter((item) => item.name === same_name.value);
+      $usePagingLoad.setFilterData(data);
     };
 
     /** 价格排序 */
@@ -180,14 +179,14 @@ const SkinStore = defineStore("skin", () => {
         },
       };
 
-      filter_list.value = sort_strategy[price_type.value](filter_list.value);
+      $usePagingLoad.setFilterData(sort_strategy[price_type.value](filter_list.value));
     };
 
     filterProfession();
     filterGender();
     filterSkinType();
     filterSameName();
-    filter_list.value.reverse();
+    $usePagingLoad.reverseFilterData();
     sortPrice();
     ExposeMethods.resetPage();
   };
@@ -203,17 +202,6 @@ const SkinStore = defineStore("skin", () => {
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
     getSkin() {
       const skin_list = GAME_HERO.getSkinList();
-      const skinTypes = KVP_TYPE.getSkinKvp();
-
-      skin_list.forEach((skin) => {
-        const type = skinTypes[skin.type];
-        skin.link = type.link;
-        skin.category = type.name;
-
-        //设置备用名称，解决高亮问题
-        skin.skin_name = skin.name;
-        skin.hero_name = skin.heroName;
-      });
 
       $usePagingLoad.all_data.value = skin_list;
 
@@ -292,12 +280,14 @@ const SkinStore = defineStore("skin", () => {
       gender_type.value = 0;
 
       if (name) {
-        filter_list.value = $tool.search(
+        const data = $tool.search(
           _cloneDeep($usePagingLoad.all_data.value),
           name,
           ["skin_name", "hero_name", "category"],
           true,
         );
+
+        $usePagingLoad.setFilterData(data);
       } else {
         sortAll();
       }

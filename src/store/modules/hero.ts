@@ -40,7 +40,6 @@ const HeroStore = defineStore("hero", () => {
     gender_type: ref<Game.GenderId>(0),
   };
   const {
-    scroll,
     filter_list,
     all_data,
 
@@ -55,17 +54,18 @@ const HeroStore = defineStore("hero", () => {
 
   /* 一键排序 */
   const sortAll = () => {
-    scroll.value = 0;
+    $usePagingLoad.setScroll(0);
 
     /** 职业筛选 */
     const filterProfession = () => {
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        filter_list.value = [...all_data.value];
+        $usePagingLoad.setFilterData([...all_data.value]);
       } else {
-        filter_list.value = all_data.value.filter((item: Game.Hero.Data) => {
+        const data = all_data.value.filter((item: Game.Hero.Data) => {
           return item.profession.includes(profession.value!);
         });
+        $usePagingLoad.setFilterData(data);
       }
     };
 
@@ -82,18 +82,20 @@ const HeroStore = defineStore("hero", () => {
       });
 
       if (gender_type.value === 1) {
-        filter_list.value = boy;
+        $usePagingLoad.setFilterData(boy);
       } else if (gender_type.value === 2) {
-        filter_list.value = girl;
+        $usePagingLoad.setFilterData(girl);
       }
     };
 
     /** 阵营筛选 */
     const filterCamp = () => {
       if (camp_type.value && camp_type.value !== "全部阵营") {
-        filter_list.value = filter_list.value.filter((item) => {
+        const data = filter_list.value.filter((item) => {
           return item.camp === camp_type.value;
         });
+
+        $usePagingLoad.setFilterData(data);
       }
     };
 
@@ -117,7 +119,7 @@ const HeroStore = defineStore("hero", () => {
       if (attr_type.value && attr_type.value !== "全部属性") {
         multiple.forEach((effect) => {
           if (attr_type.value === effect.label) {
-            filter_list.value = filter_list.value.filter((item) => {
+            const data = filter_list.value.filter((item) => {
               return item.skills.some((item) => {
                 return item.some((item) => {
                   return item.type.some((item) => {
@@ -126,11 +128,13 @@ const HeroStore = defineStore("hero", () => {
                 });
               });
             });
+
+            $usePagingLoad.setFilterData(data);
           }
         });
 
         if (attr_type.value === "非硬控") {
-          filter_list.value = filter_list.value.filter((item) => {
+          const data = filter_list.value.filter((item) => {
             return !item.skills.some((item) => {
               return item.some((item) => {
                 return item.type.some((item) => {
@@ -139,6 +143,8 @@ const HeroStore = defineStore("hero", () => {
               });
             });
           });
+
+          $usePagingLoad.setFilterData(data);
         }
       }
     };
@@ -152,7 +158,8 @@ const HeroStore = defineStore("hero", () => {
         多套技能: (item) => item.skills.length > 1,
       };
       if (misc_type.value && misc_type.value !== "全部筛选") {
-        filter_list.value = filter_list.value.filter(filter_misc[misc_type.value]);
+        const data = filter_list.value.filter(filter_misc[misc_type.value]);
+        $usePagingLoad.setFilterData(data);
       }
     };
 
@@ -282,12 +289,8 @@ const HeroStore = defineStore("hero", () => {
       gender_type.value = 0;
 
       if (name) {
-        filter_list.value = $tool.search<Game.Hero.Data>(
-          _cloneDeep(all_data.value),
-          name,
-          "name",
-          true,
-        );
+        const data = $tool.search<Game.Hero.Data>(_cloneDeep(all_data.value), name, "name", true);
+        $usePagingLoad.setFilterData(data);
       } else {
         sortAll();
       }
