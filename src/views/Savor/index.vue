@@ -37,12 +37,11 @@ const back_top = ref(false);
 
 $atlasStore.getAtlasList();
 
-const debounceUpdateSizePosition = _debounce(() => {
-  waterfallRef.value?._updateSizePosition();
-}, 500);
-const debounceWatchImgLoad = _debounce(() => {
-  waterfallRef.value?._watchImgLoad();
-}, 500);
+/* 高亮图片 */
+const handleLight = (id: number, blur: string) => {
+  hero_id.value = id;
+  new Image().src = blur;
+};
 
 /* 当前高亮的图片id */
 const handleRelated = (
@@ -53,11 +52,7 @@ const handleRelated = (
   poster: string,
   blur: string,
 ) => {
-  hero_id.value = id;
-  new Image().src = blur;
   const heroAvatar = KVP_HERO.getHeroAvatarKvp()[id];
-
-  if (!poster) return;
   if (type === "HERO") {
     const voices = GAME_HERO.getSkinVoice(id, "原皮").voice;
     $imageView({
@@ -85,6 +80,10 @@ const handleRelated = (
   }
 };
 
+const debounceWatchImgLoad = _debounce(() => {
+  waterfallRef.value?._watchImgLoad();
+}, 500);
+
 /* 加载更多 */
 const onLoadMore = () => {
   $atlasStore.loadMore();
@@ -107,6 +106,10 @@ const onSidebarChange = () => {
   debounceScroll(0);
   savorToolbarRef.value?._clearName();
 };
+
+const debounceUpdateSizePosition = _debounce(() => {
+  waterfallRef.value?._updateSizePosition();
+}, 500);
 
 onActivated(() => {
   $audioStore.play("gz76");
@@ -144,12 +147,15 @@ onDeactivated(() => {
           v-mouse-tip="{
             text: MOUSE_TIP.o12u,
           }"
+          :class="{
+            active: hero_id === item.id,
+          }"
           class="atlas-card"
-          @mouseenter="handleRelated($event, item.type, item.id, item.name, '', item.posterBlur)"
+          @mouseenter="handleLight(item.id, item.posterBlur)"
           @mouseup="
             handleRelated($event, item.type, item.id, item.name, item.posterBig, item.posterBlur)
           "
-          @touchstart="handleRelated($event, item.type, item.id, item.name, '', item.posterBlur)"
+          @touchstart="handleLight(item.id, item.posterBlur)"
           @mouseleave="hero_id = 0"
         >
           <div v-if="item.type === 'HERO'" class="hero-name">
@@ -158,14 +164,7 @@ onDeactivated(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <img
-            v-blurLoad="item.cover"
-            :class="{
-              active: hero_id === item.id,
-            }"
-            class="bg"
-            :src="item.coverBlur"
-          />
+          <img v-blurLoad="item.cover" class="bg" :src="item.coverBlur" />
         </div>
       </LibWaterfall>
     </div>
