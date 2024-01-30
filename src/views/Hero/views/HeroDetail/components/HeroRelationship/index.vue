@@ -24,8 +24,10 @@ setScrollFn("skinIcon", (pageName) => {
     <HeroRelationDesc />
 
     <!-- 关系图谱 -->
-    <HeroRelationshipAtlas v-if="show && hero_info.relationCount > 0" />
-    <div v-else class="empty">暂无关系网</div>
+    <template v-if="show">
+      <HeroRelationshipAtlas v-if="hero_info.relationCount > 0" />
+      <div v-else class="empty">暂无关系网</div>
+    </template>
 
     <!-- 可滚动提示 -->
     <KScrollTip ref="downRef" />
