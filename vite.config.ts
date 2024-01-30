@@ -76,15 +76,15 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         output: {
           manualChunks: {
-            _vue: ["vue"],
-            _vuePlugin: ["vue-router", "pinia", "mitt"],
-            _util: ["dayjs", "lodash"],
-            _axios: ["axios"],
-            _i18n: ["vue-i18n"],
+            wzry_vue: ["vue"],
+            wzry_vuePlugin: ["vue-router", "pinia", "mitt"],
+            wzry_util: ["dayjs", "lodash"],
+            wzry_axios: ["axios"],
+            wzry_i18n: ["vue-i18n"],
           },
-          chunkFileNames: "assets/js/[name]-[hash].js",
-          entryFileNames: "assets/js/[name]-[hash].js",
-          assetFileNames: "assets/[ext]/[name]-[hash].[ext]",
+          chunkFileNames: "assets/js/wzry-[name]-[hash].js",
+          entryFileNames: "assets/js/wzry-[name]-[hash].js",
+          assetFileNames: "assets/[ext]/wzry-[name]-[hash].[ext]",
         },
       },
     },
