@@ -103,7 +103,7 @@ declare namespace Global {
       le78: string;
       /** 滑动选择 */
       za86: string;
-      /** 选择图片 */
+      /** 切换注册登录 */
       v6p0: string;
       /** 进入皮肤列表 */
       gz43: string;
@@ -251,20 +251,16 @@ declare namespace Global {
     close: () => void;
   }
 
-  /** @description 用户信息 */
-  interface User {
-    /** 用户id */
-    id: string;
+  /** @description 用户数据 */
+  interface UserData {
+    /** 昵称 */
+    username: string;
     /** 密码 */
     password: string;
-    /** 权限 */
+    /** 权限 0-管理员 1-用户 */
     role: 0 | 1;
-    /** 昵称 */
-    nickname?: string;
     /** 头像 */
-    avatar?: string;
-    /** token */
-    wzryToken?: number;
+    avatar: string;
   }
 
   /** @description 基础类型 */
