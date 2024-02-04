@@ -76,9 +76,6 @@ const onCloseConfirmEditInfo = () => {
     :class="{ hover: show_menu }"
   >
     <img
-      v-mouse-tip="{
-        text: MOUSE_TIP.c2y9,
-      }"
       class="head-img"
       :src="user_data.avatar || getImgLink('unknown')"
       alt="头像"
