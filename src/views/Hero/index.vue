@@ -83,7 +83,7 @@ const debounceEnterCard = _debounce(() => {
 const onViewClick = (id: number) => {
   //获取指定英雄数据
   const hero = GAME_HERO.getHeroDetail(id);
-  $loading.show(`${hero.name}`);
+  $loading.show(`正在加载${hero.name}详情页`);
   hero_info.value = hero;
   $heroDetail.setHeroInfo(hero_info.value);
 
