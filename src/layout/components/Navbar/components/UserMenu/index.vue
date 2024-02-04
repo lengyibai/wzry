@@ -8,6 +8,7 @@ import { $confirm, $privateTool } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { getImgLink } from "@/utils/modules/concise";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
@@ -79,7 +80,7 @@ const onCloseConfirmEditInfo = () => {
         text: MOUSE_TIP.c2y9,
       }"
       class="head-img"
-      :src="user_data.avatar"
+      :src="user_data.avatar || getImgLink('unknown')"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />
