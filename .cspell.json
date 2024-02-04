@@ -1,5 +1,7 @@
 {
-  "cSpell.words": [
+  "version": "0.2",
+  "language": "en",
+  "words": [
     "bati",
     "beici",
     "bianshen",
@@ -8,6 +10,7 @@
     "btns",
     "callout",
     "caocong",
+    "chaka",
     "chaunsong",
     "chongfeng",
     "chongzhu",
@@ -17,6 +20,7 @@
     "codesnap",
     "codeva",
     "daye",
+    "delbig",
     "dengchuan",
     "dixing",
     "fangda",
@@ -29,6 +33,7 @@
     "feiyan",
     "FMVP",
     "Footbar",
+    "Foucs",
     "fsfy",
     "fsgj",
     "fsxx",
@@ -47,6 +52,7 @@
     "hudun",
     "huicheng",
     "huifu",
+    "huisu",
     "iconfont",
     "IMGBED",
     "jianshang",
@@ -58,12 +64,14 @@
     "jinbi",
     "jinghua",
     "jingyan",
+    "jingyin",
     "kongzhi",
     "kuilei",
     "laba",
     "lengque",
     "lengyibai",
     "lianshe",
+    "liwu",
     "lqsj",
     "mianxing",
     "mianyi",
@@ -75,6 +83,7 @@
     "pinia",
     "playactive",
     "podun",
+    "preselection",
     "qianghua",
     "qianyin",
     "qiehuan",
@@ -137,5 +146,6 @@
     "zhongzhu",
     "zhuangbei",
     "zhuanhuan"
-  ]
+  ],
+  "ignorePaths": ["node_modules/**", "dist/**", "src/config/modules/pinyin.ts"]
 }
