@@ -1,5 +1,4 @@
 export * as API_DATA from "./modules/remote";
-export * as LOCAL_USER from "./modules/user";
 export * as LOCAL_EPIGRAPH from "./modules/local/epigraph";
 export * as LOCAL_EQUIP from "./modules/local/equip";
 export * as LOCAL_HERO from "./modules/local/hero";
