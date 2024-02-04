@@ -27,7 +27,7 @@ $bus.on("loading", (v) => {
           <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
           <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
         </div>
-        <div class="text">正在加载{{ text }}页面</div>
+        <div class="text">{{ text }}</div>
       </div>
     </transition>
   </teleport>
