@@ -19,7 +19,7 @@ const class_name = {
 </script>
 
 <template>
-  <button
+  <div
     :disabled="disabled"
     :class="[type, { disabled: disabled }, class_name[type]]"
     class="k-button"
@@ -27,7 +27,7 @@ const class_name = {
     <span class="text">
       <slot>按钮</slot>
     </span>
-  </button>
+  </div>
 </template>
 
 <style scoped lang="less">
