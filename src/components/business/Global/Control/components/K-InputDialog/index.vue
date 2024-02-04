@@ -18,12 +18,13 @@ const config = ref<InputConfig>({
   title: "",
   placeholder: "",
   confirm() {},
+  close() {},
 });
 
 $bus.on("input", (v) => {
   show.value = true;
   config.value = v;
-  content.value = v.value;
+  content.value = v.value || "";
 });
 
 /* 确定 */
@@ -33,8 +34,13 @@ const handleConfirm = () => {
     return;
   }
   config.value.confirm(content.value);
-  content.value = "";
   dialogRef.value?._close();
+};
+
+/* 关闭 */
+const onClose = () => {
+  content.value = "";
+  config.value.close?.();
 };
 </script>
 
@@ -44,11 +50,13 @@ const handleConfirm = () => {
       v-if="show"
       ref="dialogRef"
       v-model="show"
+      z-index="var(--z-index-input-dialog)"
       class="k-dialog"
       align="center"
       audio
       show-close
       :title="config.title"
+      @before-close="onClose"
     >
       <input
         v-model="content"
