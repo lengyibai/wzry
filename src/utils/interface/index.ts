@@ -21,9 +21,14 @@ export interface ImageViewParams {
 export type ImageOptimizerOptions = {
   el?: HTMLInputElement;
   file?: File;
+  /** 压缩尺寸 */
   width?: number;
+  /** 压缩率 */
   ratio?: number;
+  /** 超过多大进行压缩 */
   maxSize?: number;
+  /** 成功回调 */
   success: (data: FormData, file: File, url: string) => void;
+  /** 失败回调 */
   fail?: (error: ErrorEvent) => void;
 };
