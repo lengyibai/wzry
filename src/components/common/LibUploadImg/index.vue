@@ -2,7 +2,7 @@
 import { $loading, $message, $tool } from "@/utils";
 
 /** 图片链接 */
-const modelValue = defineModel({ default: "", required: true });
+const modelValue = defineModel<string>({ required: true });
 
 const fn = (e: Event) => {
   const file = (e.target as HTMLInputElement).files?.[0];
@@ -22,7 +22,7 @@ const fn = (e: Event) => {
     },
     fail() {
       $loading.close();
-      $message("请上传图片文件", "error");
+      $message("请选择图片文件", "error");
     },
   });
 };

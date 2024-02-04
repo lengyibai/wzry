@@ -9,7 +9,7 @@ interface Props {
 defineProps<Props>();
 
 /** 选择的索引号 */
-const modelValue = defineModel({ required: true });
+const modelValue = defineModel<number>({ required: true });
 
 const $audioStore = AudioStore();
 

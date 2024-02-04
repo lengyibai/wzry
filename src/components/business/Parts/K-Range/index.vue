@@ -22,7 +22,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 /** 滑动值 */
-const modelValue = defineModel({ default: 0, required: true });
+const modelValue = defineModel<number>({ required: true });
 
 const $audioStore = AudioStore();
 

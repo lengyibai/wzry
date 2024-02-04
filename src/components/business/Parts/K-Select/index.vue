@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 /** 索引号 */
-const modelValue = defineModel({ default: 0, required: true });
+const modelValue = defineModel<number>({ required: true });
 
 const $audioStore = AudioStore();
 

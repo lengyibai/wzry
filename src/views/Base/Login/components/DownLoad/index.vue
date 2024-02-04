@@ -4,7 +4,7 @@ import { computed } from "vue";
 import { useGetData } from "@/hooks";
 
 /** 是否下载完成 */
-const finish = defineModel("finish");
+const finish = defineModel<boolean>("finish", { required: true });
 
 const { total, index, type, getData } = useGetData();
 
