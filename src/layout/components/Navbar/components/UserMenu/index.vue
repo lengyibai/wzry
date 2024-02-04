@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, reactive } from "vue";
+import { ref, computed } from "vue";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
