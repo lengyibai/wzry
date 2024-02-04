@@ -29,15 +29,16 @@ module.exports = {
 
     "@typescript-eslint/ban-types": "off", //禁止使用指定的类型
     "@typescript-eslint/no-explicit-any": "off", //禁止使用any类型
+    "@typescript-eslint/no-namespace": "off", //不允许在ts文件中使用命名空间
     "@typescript-eslint/no-this-alias": "off", //禁止使用this别名
     "typescript-eslint/no-this-alias": "off", //禁止使用this别名
-    "vue/multi-word-component-names": "off", //组件名称必须包含多个单词
-    "vue/no-v-html": "off", //禁止使用v-html
     "vue/custom-event-name-casing": "off", //为自定义事件名称强制使用特定大小写
-    "vue/require-default-prop": "off", //强制要求默认值
+    "vue/multi-word-component-names": "off", //组件名称必须包含多个单词
     "vue/no-template-shadow": "off", //禁止模板中的变量覆盖保留字
+    "vue/no-v-html": "off", //禁止使用v-html
+    "vue/require-default-prop": "off", //强制要求默认值
     "vue/v-on-event-hyphenation": "off", //强制事件名称驼峰命名
-    "@typescript-eslint/no-namespace": "off", //不允许在ts文件中使用命名空间
+    "vue/require-prop-types": "off", //强制要求传入Prop的类型，实际上支持类型推导不需要传入
 
     //import排序
     "import/order": [
