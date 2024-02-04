@@ -84,20 +84,24 @@ watchEffect(() => {
         <img v-if="user_data.avatar" :src="user_data.avatar" alt="" class="avatar" />
       </div>
       <label for="file" class="label">
-        <KButton type="warning" class="k-button">点击选择头像</KButton>
+        <KButton v-mouse-tip type="warning" class="k-button">点击选择头像</KButton>
       </label>
     </div>
 
     <!-- 用户名 -->
     <div class="option">
       <div class="label">{{ user_data.username }}</div>
-      <KButton type="warning" class="k-button" @click="handleRename">点击修改昵称</KButton>
+      <KButton v-mouse-tip type="warning" class="k-button" @click="handleRename">
+        点击修改昵称
+      </KButton>
     </div>
 
     <!-- 密码 -->
     <div class="option">
       <div class="label">{{ user_data.password.replace(/./g, "*") }}</div>
-      <KButton type="warning" class="k-button" @click="handleResetPwd">点击修改密码</KButton>
+      <KButton v-mouse-tip type="warning" class="k-button" @click="handleResetPwd">
+        点击修改密码
+      </KButton>
     </div>
   </div>
 

@@ -7,7 +7,6 @@ import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
 import { $confirm, $input, $loading, $message, $tool } from "@/utils";
-import { MOUSE_TIP } from "@/config";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
 
@@ -66,10 +65,10 @@ const readFile = (e: Event | File) => {
 
         const handleInput = () => {
           $input({
-            title: "激活召唤师卡",
+            title: "读取召唤师卡",
             placeholder: "请输入密码",
             confirm(v) {
-              $loading.show("正在激活...");
+              $loading.show("正在读取...");
               setTimeout(async () => {
                 await $loading.close();
                 if (v === user_data.value!.password) {
@@ -127,7 +126,7 @@ const handleLogin = () => {
     <!-- 选择卡片 -->
     <template v-if="is_reading">
       <input v-show="false" id="file" type="file" accept=".wzry" @change="readFile" />
-      <label for="file" class="label">
+      <label v-mouse-tip for="file" class="label">
         <i class="iconfont wzry-chaka" />
         <div class="text">点击选择卡片文件</div>
       </label>
@@ -149,19 +148,12 @@ const handleLogin = () => {
         <img :src="user_data?.avatar" alt="" class="avatar" />
         <div class="username">{{ user_data?.username }}</div>
       </template>
-      <div v-else class="text">换卡</div>
+      <div v-else v-mouse-tip class="text">换卡</div>
     </div>
 
     <!-- 登录 -->
     <div v-if="!is_reading" class="log-box__btns">
-      <IntoBtn
-        v-mouse-tip="{
-          text: MOUSE_TIP.a20t,
-        }"
-        text="登录"
-        desc="LOGIN"
-        @click="handleLogin"
-      />
+      <IntoBtn v-mouse-tip text="登录" desc="LOGIN" @click="handleLogin" />
     </div>
   </div>
 </template>

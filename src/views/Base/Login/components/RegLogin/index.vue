@@ -7,6 +7,7 @@ import RegBox from "./components/RegBox/index.vue";
 
 import { AudioStore, DeviceStore } from "@/store";
 import { $tool } from "@/utils";
+import { vMouseTip } from "@/directives";
 
 const $deviceStore = DeviceStore();
 const $audioStore = AudioStore();
@@ -49,12 +50,12 @@ if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
 
 <template>
   <div ref="RegLoginRef" class="reg-login">
-    <div v-if="is_reg" class="reg-login__login" @click="handleToReg(false)">
+    <div v-if="is_reg" v-mouse-tip class="reg-login__login" @click="handleToReg(false)">
       <span class="text">前往登录</span>
       <i class="iconfont wzry-fanhui" />
     </div>
 
-    <div v-else class="reg-login__reg" @click="handleToReg(true)">
+    <div v-else v-mouse-tip class="reg-login__reg" @click="handleToReg(true)">
       <i class="iconfont wzry-fanhui" />
       <span class="text">返回注册</span>
     </div>

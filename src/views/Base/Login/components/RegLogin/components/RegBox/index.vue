@@ -10,6 +10,8 @@ import { userDefaultInfo } from "@/default";
 import { AudioStore } from "@/store";
 import { $input, $message, $privateTool, $tool } from "@/utils";
 import { KButton, KInput } from "@/components/business";
+import { vMouseTip } from "@/directives";
+import { MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   success: [];
@@ -81,7 +83,7 @@ const handleReg = () => {
         <img v-if="form.avatar" :src="form.avatar" alt="" class="avatar" />
       </div>
       <label for="file" class="label">
-        <KButton type="warning" class="k-button">点击选择头像</KButton>
+        <KButton v-mouse-tip type="warning" class="k-button">点击选择头像</KButton>
       </label>
     </div>
 
@@ -90,6 +92,9 @@ const handleReg = () => {
       <i class="iconfont wzry-user" />
       <KInput
         v-model="form.username"
+        v-mouse-tip="{
+          type: 'INPUT',
+        }"
         class="k-input"
         :max="6"
         :min="2"
@@ -103,6 +108,9 @@ const handleReg = () => {
       <i class="iconfont wzry-password" />
       <KInput
         v-model="form.password"
+        v-mouse-tip="{
+          type: 'INPUT',
+        }"
         class="k-input"
         :max="6"
         :min="4"
@@ -115,6 +123,9 @@ const handleReg = () => {
     <!-- 权限选择 -->
     <RoleSelect
       v-model="form.role"
+      v-mouse-tip="{
+        text: MOUSE_TIP.wk98,
+      }"
       class="reg-box__role-select"
       :option="['开发者', '用户']"
       @update:model-value="onSelectRole"
@@ -122,7 +133,14 @@ const handleReg = () => {
 
     <!-- 注册 -->
     <div class="reg-box__btns">
-      <IntoBtn text="注册" desc="REGISTER" @click="handleReg" />
+      <IntoBtn
+        v-mouse-tip="{
+          text: MOUSE_TIP.cl81,
+        }"
+        text="注册"
+        desc="REGISTER"
+        @click="handleReg"
+      />
     </div>
   </div>
 </template>
