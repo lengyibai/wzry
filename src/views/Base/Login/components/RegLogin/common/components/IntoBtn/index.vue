@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SettingStore } from "@/store";
+import { AudioStore, SettingStore } from "@/store";
 import { vParticleEffect } from "@/directives";
 import { $concise } from "@/utils";
 
@@ -15,6 +15,12 @@ defineProps<Props>();
 const { getImgLink } = $concise;
 
 const $settingStore = SettingStore();
+const $audioStore = AudioStore();
+
+/* 播放音效 */
+const handlePlayAudio = () => {
+  $audioStore.play("e84n");
+};
 </script>
 
 <template>
@@ -24,6 +30,7 @@ const $settingStore = SettingStore();
       enable: $settingStore.config.particle,
     }"
     class="into-btn"
+    @click="handlePlayAudio"
   >
     <span class="text">{{ text }}</span>
     <span class="desc">{{ desc }}</span>
