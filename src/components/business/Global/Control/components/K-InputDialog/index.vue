@@ -68,6 +68,7 @@ const onClose = () => {
         maxlength="6"
         type="text"
         :placeholder="config.placeholder"
+        @keydown.enter="handleConfirm"
       />
       <K-Button v-mouse-tip class="k-button" type="warning" @click="handleConfirm">确定</K-Button>
     </KDialog>
