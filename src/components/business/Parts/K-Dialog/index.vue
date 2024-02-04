@@ -50,7 +50,7 @@ const $emit = defineEmits<{
 }>();
 
 /** 是否显示弹窗 */
-const modelValue = defineModel<boolean>({ required: true });
+const modelValue = defineModel<boolean>();
 
 const $audioStore = AudioStore();
 
