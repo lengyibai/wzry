@@ -4,7 +4,7 @@ import _cloneDeep from "lodash/cloneDeep";
 
 import { $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
-import { GAME_HERO, KVP_TYPE } from "@/api";
+import { GAME_HERO } from "@/api";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
