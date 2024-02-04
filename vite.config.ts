@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { visualizer } from "rollup-plugin-visualizer";
 import { VitePWA } from "vite-plugin-pwa";
+import basicSSL from "@vitejs/plugin-basic-ssl";
 // import legacy from "@vitejs/plugin-legacy";
 
 export default defineConfig(({ mode }) => {
@@ -14,6 +15,7 @@ export default defineConfig(({ mode }) => {
     base: "./",
     plugins: [
       vue(),
+      basicSSL(), //手机端可能需要注释掉才能下载召唤师卡
       visualizer({
         filename: "visualizer.html",
       }),
