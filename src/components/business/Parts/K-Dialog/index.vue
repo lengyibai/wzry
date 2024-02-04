@@ -30,6 +30,8 @@ interface Props {
   audio?: boolean;
   /** 是否处于loading状态 */
   loading?: boolean;
+  /** 弹窗层级 */
+  zIndex?: string;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -40,13 +42,15 @@ const $props = withDefaults(defineProps<Props>(), {
   audio: true,
   width: "45rem",
   loading: false,
+  zIndex: "var(--z-index-dialog)",
 });
 const $emit = defineEmits<{
   close: [];
+  "before-close": [];
 }>();
 
 /** 是否显示弹窗 */
-const modelValue = defineModel<boolean>();
+const modelValue = defineModel<boolean>({ required: true });
 
 const $audioStore = AudioStore();
 
@@ -59,6 +63,7 @@ const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
 
 const handleCloseDialog = () => {
   if ($props.autoClose) {
+    $emit("before-close");
     handleClose();
     return;
   }
@@ -86,6 +91,9 @@ defineExpose({
         color: 'rgba(40, 100, 195, 0.5)',
         start: '0%',
         end: '50%',
+      }"
+      :style="{
+        zIndex: zIndex,
       }"
       class="mask"
     >

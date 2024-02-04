@@ -49,7 +49,7 @@ const handleConfirm = () => {
       v-if="show"
       ref="dialogRef"
       v-model="show"
-      class="k-dialog"
+      z-index="var(--z-index-close-dialog)"
       align="center"
       :audio="false"
       :show-close="config.close"
