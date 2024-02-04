@@ -1,62 +1,72 @@
 .log-box {
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
   transform-style: preserve-3d;
 
-  &__box {
+  .label {
+    .global_flex-center();
+
     position: relative;
-    display: flex;
-    align-items: center;
-    width: 85%;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--theme-border-color-six);
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    color: var(--white-75);
+    background-color: var(--black-50);
+    transform: translateZ(5rem);
 
-    .iconfont {
-      position: absolute;
-      color: var(--theme-font-color-ten);
-      font-size: 2.1875rem;
-      text-shadow: var(--t-shadow-d);
-      transform: translateY(-0.3125rem);
+    .wzry-chaka {
+      margin-right: 1rem;
+      font-size: 2.5rem;
     }
 
-    :deep(.form-input) {
-      --width: 100%;
-      --algin: left;
-      --padding-left: 2.8125rem;
-      --font-size: 1.625rem;
-      --color: var(--theme-font-color-ten);
-
-      transform: translateY(1px);
-
-      input {
-        border: none;
-        background-color: transparent;
-
-        &::placeholder {
-          color: var(--theme-font-color-eleven);
-        }
-      }
+    .text {
+      font-size: 1.5rem;
     }
   }
 
-  &__box:nth-child(1) {
-    transform: translateZ(7.8125rem);
-  }
+  .card-info {
+    .global_flex-center();
 
-  &__box:nth-child(2) {
-    transform: translateZ(7.8125rem);
-  }
+    width: 100%;
+    height: 6.25rem;
+    margin: 0 3rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    background-image: linear-gradient(90deg, transparent 0%, var(--white-10) 50%, transparent 100%);
+    transform: translateZ(10rem);
 
-  &__remember {
-    transform: translateZ(6.25rem);
+    &.del {
+      background-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgb(231 77 60 / 50%) 50%,
+        transparent 100%
+      );
+    }
+
+    .avatar {
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 1.75rem;
+    }
+
+    .text {
+      font-size: 2rem;
+    }
   }
 
   &__btns {
-    margin: 1.875rem 0;
+    margin: 1.5rem 0;
     -webkit-box-reflect: below 0.625rem
       linear-gradient(transparent, transparent 0%, var(--black-25));
-    transform: translateZ(4.6875rem);
+    transform: translateZ(5rem);
   }
 }

@@ -1,73 +1,99 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 
-import IntoBtn from "../IntoBtn/index.vue";
+import IntoBtn from "../../common/components/IntoBtn/index.vue";
+import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
 import RoleSelect from "./components/RoleSelect/index.vue";
 
 import { userDefaultInfo } from "@/default";
-import { LOCAL_USER } from "@/api";
 import { AudioStore } from "@/store";
-import { $message } from "@/utils";
-import { KInput } from "@/components/business";
+import { $input, $message, $privateTool, $tool } from "@/utils";
+import { KButton, KInput } from "@/components/business";
 
 const $emit = defineEmits<{
-  success: [form: Global.User];
+  success: [];
 }>();
 
 const $audioStore = AudioStore();
 
 /** 表单数据 */
-const form = reactive<Global.User>({ ...userDefaultInfo() });
-/** 表单验证 */
-const form_verify = ref<boolean[]>([false, false, false]);
+const form = reactive<Global.UserData>({ ...userDefaultInfo() });
+
+/* 选择图片 */
+const handleSelectAvatar = (e: Event) => {
+  $privateTool.selectAvatarCompress(e, (v) => {
+    form.avatar = v;
+  });
+};
+
+/* 设置角色 */
+const onSelectRole = (role: number) => {
+  if (role === 0) {
+    $input({
+      title: "开发者身份确认",
+      placeholder: "请输入开发者密钥",
+      close() {
+        form.role = 1;
+      },
+      confirm(v) {
+        if (v !== "200012") {
+          form.role = 1;
+          $message("密码错误", "error");
+          return;
+        }
+        $message("开发者身份已确认");
+      },
+    });
+  }
+};
 
 /* 注册 */
 const handleReg = () => {
-  $audioStore.play("pj83");
-
-  if (form_verify.value.some((item) => !item)) {
-    $message("请正确填写", "error");
+  if ($tool.existEmpty(form, ["avatar", "password", "username"])) {
+    $message("请输入完整", "error");
     return;
   }
 
-  //注册
-  LOCAL_USER.register(form)
-    .then(() => {
-      $message("注册成功！");
-      $emit("success", form);
-    })
-    .catch((err) => {
-      $message(err, "warning");
-    });
+  $audioStore.play("pj83");
+  $message("注册成功！请保管好你的召唤师卡！");
+  $emit("success");
+
+  $privateTool.exportCard(form);
 };
 </script>
 
 <template>
   <div class="reg-box">
-    <!-- 昵称 -->
-    <div class="reg-box__box">
-      <i class="iconfont wzry-nickname" />
-      <KInput
-        v-model:empty="form_verify[0]"
-        v-model="form.nickname"
-        :max="6"
-        :min="2"
-        placeholder="请输入昵称"
-        required
+    <RegLogTop title="注册召唤师卡" />
+
+    <!-- 选择头像 -->
+    <div class="avatar-select">
+      <input
+        v-show="false"
+        id="file"
+        type="file"
+        accept="png,jpg,jpeg"
+        @change="handleSelectAvatar"
       />
+
+      <div class="avatar-box">
+        <img v-if="form.avatar" :src="form.avatar" alt="" class="avatar" />
+      </div>
+      <label for="file" class="label">
+        <KButton type="warning" class="k-button">点击选择头像</KButton>
+      </label>
     </div>
 
     <!-- 帐号 -->
     <div class="reg-box__box">
       <i class="iconfont wzry-user" />
       <KInput
-        v-model:empty="form_verify[1]"
-        v-model.number="form.id"
-        :max="12"
-        :min="6"
-        number
-        placeholder="请输入帐号"
+        v-model="form.username"
+        class="k-input"
+        :max="6"
+        :min="2"
+        placeholder="请输入昵称"
         required
       />
     </div>
@@ -76,19 +102,23 @@ const handleReg = () => {
     <div class="reg-box__box">
       <i class="iconfont wzry-password" />
       <KInput
-        v-model:empty="form_verify[2]"
         v-model="form.password"
-        :max="18"
-        :min="6"
-        padding-left="2.8125rem"
+        class="k-input"
+        :max="6"
+        :min="4"
+        type="number"
         placeholder="请输入密码"
         required
-        width="100%"
       />
     </div>
 
     <!-- 权限选择 -->
-    <RoleSelect v-model="form.role" class="reg-box__role-select" :option="['管理员', '用户']" />
+    <RoleSelect
+      v-model="form.role"
+      class="reg-box__role-select"
+      :option="['开发者', '用户']"
+      @update:model-value="onSelectRole"
+    />
 
     <!-- 注册 -->
     <div class="reg-box__btns">

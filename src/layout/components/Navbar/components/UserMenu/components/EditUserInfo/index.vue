@@ -1,115 +1,103 @@
 <script setup lang="ts">
 import { computed, reactive } from "vue";
+import { watchEffect } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
-import KInput from "@/components/business/Parts/K-Input/index.vue";
-import { LOCAL_USER } from "@/api";
 import { AuthStore } from "@/store";
-import { $message } from "@/utils";
-import { LibUploadImg } from "@/components/common";
-import { LOCAL_KEY, MOUSE_TIP } from "@/config";
+import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
+import { $input, $message, $privateTool } from "@/utils";
 
-interface Props {
-  /** 帐号 */
-  id: string;
-}
-
-defineProps<Props>();
 const $emit = defineEmits<{
   close: [];
 }>();
 
 /** 信息是否修改 */
-const status = defineModel("status", { required: true });
+const status = defineModel<boolean>("status", { required: true });
 
 const $authStore = AuthStore();
 
 /** 用户信息 */
-const user_info = reactive<Global.User>({ ...$authStore.userInfo });
+const user_data = reactive({ ...$authStore.user_data });
+
+/* 选择图片 */
+const handleSelectAvatar = (e: Event) => {
+  $privateTool.selectAvatarCompress(e, (v) => {
+    user_data.avatar = v;
+  });
+};
+
+/** 用户名 */
+const handleRename = () => {
+  $input({
+    title: "修改昵称",
+    placeholder: "请输入新昵称",
+    value: user_data.username,
+    confirm: (v) => {
+      user_data.username = v;
+    },
+  });
+};
+
+/** 修改密码 */
+const handleResetPwd = () => {
+  $input({
+    title: "修改密码",
+    placeholder: "请输入新密码",
+    value: user_data.password,
+    confirm: (v) => {
+      user_data.password = v;
+    },
+  });
+};
 
 /** 是否修改了资料 */
 const edit_status = computed(() => {
-  return JSON.stringify(user_info) !== JSON.stringify($authStore.userInfo);
+  return JSON.stringify(user_data) !== JSON.stringify($authStore.user_data);
 });
-
-/* 判断信息是否被修改 */
-const handleContrast = () => {
-  status.value = edit_status.value;
-};
 
 /* 保存个人信息 */
 const handleSave = () => {
-  $authStore.setUserInfo(user_info);
-
-  //更新本地当前用户信息
-  LOCAL_USER.updateUser($authStore.userInfo.id, user_info).then(() => {
-    localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(user_info));
-
-    //更新记住密码
-    localStorage.setItem(
-      LOCAL_KEY.REMEMBER_USER,
-      JSON.stringify({
-        id: user_info.id,
-        password: user_info.password,
-      }),
-    );
-
-    $message("保存成功");
-  });
-
+  $authStore.updateUserData(user_data);
+  $message("保存成功");
   $emit("close");
 };
+
+watchEffect(() => {
+  status.value = edit_status.value;
+});
 </script>
 
 <template>
   <div class="edit-user-info">
-    <!-- 帐号 -->
-    <div class="option">
-      <div class="label">帐号</div>
-      <span
-        v-mouse-tip="{
-          text: MOUSE_TIP.d7i9,
-          disabled: true,
-        }"
-        class="id"
-      >
-        {{ id }}
-      </span>
-    </div>
-
     <!-- 头像 -->
-    <div class="option">
-      <div class="label">头像</div>
-      <LibUploadImg
-        v-model="user_info.avatar"
-        v-mouse-tip="{
-          text: MOUSE_TIP.uc74,
-        }"
-        @update:model-value="handleContrast"
+    <div class="option avatar-select">
+      <input
+        v-show="false"
+        id="file"
+        type="file"
+        accept="png,jpg,jpeg"
+        @change="handleSelectAvatar"
       />
+
+      <div class="avatar-box">
+        <img v-if="user_data.avatar" :src="user_data.avatar" alt="" class="avatar" />
+      </div>
+      <label for="file" class="label">
+        <KButton type="warning" class="k-button">点击选择头像</KButton>
+      </label>
     </div>
 
     <!-- 用户名 -->
     <div class="option">
-      <div class="label">用户名</div>
-      <KInput
-        v-model="user_info.nickname"
-        v-mouse-tip
-        class="k-input"
-        @update:model-value="handleContrast"
-      />
+      <div class="label">{{ user_data.username }}</div>
+      <KButton type="warning" class="k-button" @click="handleRename">点击修改昵称</KButton>
     </div>
 
     <!-- 密码 -->
     <div class="option">
-      <div class="label">密码</div>
-      <KInput
-        v-model="user_info.password"
-        v-mouse-tip
-        class="k-input"
-        @update:model-value="handleContrast"
-      />
+      <div class="label">{{ user_data.password.replace(/./g, "*") }}</div>
+      <KButton type="warning" class="k-button" @click="handleResetPwd">点击修改密码</KButton>
     </div>
   </div>
 

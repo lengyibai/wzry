@@ -3,8 +3,7 @@ import { ref } from "vue";
 
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
-import { LOCAL_USER } from "@/api";
-import { $message, $tip } from "@/utils";
+import { $message, $tip, $tool } from "@/utils";
 import { BASE_CONFIG, LOCAL_KEY } from "@/config";
 import { router } from "@/router";
 
@@ -15,24 +14,11 @@ const AuthStore = defineStore("auth", () => {
   /** 实时检测帐号状态 */
   let watching = false;
 
-  /** @description 清除token */
-  const clearToken = () => {
-    router.replace("/login");
-    userStatus.value = false;
-    watching = false;
-    userInfo.value = userDefaultInfo();
-    $routerStore.removeRoutes();
-    localStorage.removeItem(LOCAL_KEY.USER_INFO);
-  };
-
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
     if (!watching) return;
 
-    const token = Number(new Date().getTime().toString().slice(0, 10));
-    const data_token = localStorage.getItem(LOCAL_KEY.TOKEN);
-
-    if (!localStorage.getItem(LOCAL_KEY.USER_INFO)) {
+    if (!localStorage.getItem(LOCAL_KEY.USER_DATA)) {
       $tip({
         text: "数据丢失，请刷新页面。",
         btnText: "立刻刷新",
@@ -42,92 +28,58 @@ const AuthStore = defineStore("auth", () => {
       return;
     }
 
-    //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
-    if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
-      watching = false;
-      $tip({
-        text: "您已经超过三天没有访问本站了，为保证数据实时性，请点击确定清除本地数据重新下载资源。",
-      }).then(() => {
-        localStorage.clear();
-        location.reload();
-      });
-      return;
-    }
-
     setTimeout(watchStatus, 1000 * 5);
   };
 
   const ExposeData = {
-    /** 用户状态 */
+    /** 用户登录状态 */
     userStatus: ref(false),
     /** 用户相关信息 */
-    userInfo: ref<Global.User>(userDefaultInfo()),
+    user_data: ref<Global.UserData>(userDefaultInfo()),
   };
-  const { userStatus, userInfo } = ExposeData;
+  const { userStatus, user_data } = ExposeData;
 
   const ExposeMethods = {
-    /**
-     * @description: 设置用户信息
-     * @param data 从本地获取设置或编辑个人资料保存设置
-     */
-    setUserInfo(data: Partial<Global.User>) {
-      userInfo.value = { ...userInfo.value, ...data };
-    },
-
     /** @description 登录 */
-    async login(form: Global.User) {
-      try {
-        const res = await LOCAL_USER.login(form);
-
-        userInfo.value = res;
-        watching = true;
-        userStatus.value = true;
-        localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
-        $routerStore.addRoutes(res.role);
-        router.push(BASE_CONFIG.HOME_URL);
-        watchStatus();
-      } catch (error) {
-        $message(error as string, "error");
-        return Promise.reject(error);
-      }
+    login(form: Global.UserData) {
+      watching = true;
+      userStatus.value = true;
+      user_data.value = form;
+      $routerStore.addRoutes(form.role);
+      router.push(BASE_CONFIG.HOME_URL);
+      localStorage.setItem(LOCAL_KEY.USER_DATA, JSON.stringify(form));
+      watchStatus();
     },
 
     /** @description 自动登录 */
-    async autoLogin() {
-      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO) || "{}");
-      try {
-        const res = await LOCAL_USER.login(user).catch((err) => {
-          throw err;
-        });
-        userInfo.value = res;
-        userStatus.value = true;
-        watching = true;
-        localStorage.setItem(LOCAL_KEY.USER_INFO, JSON.stringify(res));
-        $message("自动登录成功");
-        watchStatus();
-      } catch (err) {
-        const error = err as Record<string, string>;
-
-        $message(error.msg, "error");
-        if (error.type === "WZRY_TOKEN") {
-          clearToken();
-        }
-      }
+    autoLogin() {
+      const local_user = localStorage.getItem(LOCAL_KEY.USER_DATA)!;
+      watching = true;
+      userStatus.value = true;
+      user_data.value = JSON.parse(local_user);
+      $message(`${$tool.timeGreet()}，${user_data.value.username}`);
+      watchStatus();
     },
 
-    /** @description 退出登录 */
-    logout() {
-      clearToken();
-      $message("退出成功");
+    /** @description 修改用户数据 */
+    updateUserData(v: Partial<Global.UserData>) {
+      user_data.value = {
+        ...user_data.value,
+        ...v,
+      };
+
+      localStorage.setItem(LOCAL_KEY.USER_DATA, JSON.stringify(user_data.value));
     },
 
-    /** @description 注销账号 */
-    async logoff() {
-      const user = JSON.parse(localStorage.getItem(LOCAL_KEY.USER_INFO)!) as Global.User;
-      const msg = await LOCAL_USER.deleteUser(user.id);
-      localStorage.removeItem(LOCAL_KEY.REMEMBER_USER);
-      clearToken();
-      $message(msg);
+    /** @description 退卡 */
+    exitCard() {
+      watching = false;
+      userStatus.value = false;
+      user_data.value = userDefaultInfo();
+      $routerStore.removeRoutes();
+      localStorage.removeItem(LOCAL_KEY.USER_DATA);
+      router.replace("/login");
+      $message("退卡成功");
     },
   };
 

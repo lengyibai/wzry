@@ -6,12 +6,40 @@
   width: 100%;
   transform-style: preserve-3d;
 
+  .avatar-select {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    transform: translateZ(2.5rem);
+
+    .avatar-box {
+      overflow: hidden;
+      width: 4.6875rem;
+      height: 4.6875rem;
+      margin-right: 1rem;
+      border: 0.1875rem solid var(--white-50);
+      border-radius: 50%;
+
+      .avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .k-button {
+      --btn-rate: 0.8;
+      --font-size: 1.25rem;
+    }
+  }
+
   &__box {
     position: relative;
     display: flex;
     align-items: center;
-    width: 85%;
-    margin-bottom: 1.25rem;
+    width: 75%;
+    margin-bottom: 2rem;
+    transform: translateZ(5rem);
     border-bottom: 1px solid var(--theme-border-color-six);
 
     .iconfont {
@@ -22,16 +50,15 @@
       transform: translateY(-0.3125rem);
     }
 
-    :deep(.form-input) {
-      --width: 100%;
+    .k-input {
       --algin: left;
       --padding-left: 2.8125rem;
       --font-size: 1.625rem;
       --color: var(--theme-font-color-ten);
 
-      transform: translateY(1px);
+      transform: translateZ(7.8125rem);
 
-      input {
+      &:deep(input) {
         border: none;
         background-color: transparent;
 
@@ -42,18 +69,15 @@
     }
   }
 
-  &__box:nth-child(1),
-  &__box:nth-child(2),
-  &__box:nth-child(3),
   &__role-select {
-    transform: translateZ(7.8125rem);
+    transform: translateZ(2.5rem);
   }
 
   &__btns {
     margin-bottom: 1.5625rem;
     -webkit-box-reflect: below 0.625rem
       linear-gradient(transparent, transparent 0%, var(--black-25));
-    transform: translateZ(4.6875rem);
+    transform: translateZ(5rem);
 
     .reg {
       .global_flex-center();

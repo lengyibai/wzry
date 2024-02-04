@@ -44,10 +44,9 @@ export const skillDefault: () => Remote.Skill.Info = () => ({
 });
 
 /** @description 默认用户信息 */
-export const userDefaultInfo: () => Global.User = () => ({
-  id: "",
+export const userDefaultInfo: () => Global.UserData = () => ({
   avatar: "",
-  nickname: "",
+  username: "",
   password: "",
   role: 1,
 });

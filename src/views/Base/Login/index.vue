@@ -20,12 +20,12 @@ const { config } = storeToRefs($settingStore);
 
 const { getImgLink, getVideoLink, getHtmlLink } = $concise;
 
-const { login_video_bg_version, login_video_cover_version } = useStaticResourceVersion();
+const { login_video_bg_version } = useStaticResourceVersion();
 
 const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
 /** 显示公告 */
-const show_notice = ref(true);
+const show_notice = ref(false);
 /** 显示开黑 */
 const show_team = ref(false);
 /** 数据下载完成 */
@@ -58,6 +58,10 @@ const onCloseNotice = () => {
     btnFn: $focus.close,
   });
 };
+
+setTimeout(() => {
+  show_notice.value = true;
+}, 1500);
 </script>
 
 <template>
@@ -83,8 +87,9 @@ const onCloseNotice = () => {
 
     <!-- 图片背景 -->
     <img
+      v-if="login_video_bg_version"
       class="bg"
-      :src="$concise.getImgLink('/login_bg', 'jpg', login_video_cover_version)"
+      :src="$concise.getImgLink('/login_bg', 'jpg', login_video_bg_version)"
       alt=""
     />
 

@@ -1,0 +1,33 @@
+.reg-log-top__logo {
+  z-index: 1;
+  width: 6.25rem;
+  height: 6.25rem;
+  margin-bottom: 0.9375rem;
+  animation: light 1.5s infinite alternate-reverse ease-out;
+
+  .logo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+
+    @keyframes light {
+      100% {
+        transform: translate3d(0, -1.25rem, 15rem);
+        filter: drop-shadow(0 0 0.9375rem var(--theme-el-color-five));
+      }
+    }
+  }
+}
+
+.reg-log-top__title {
+  margin-bottom: 1.5rem;
+  color: transparent;
+  font-size: 3.125rem;
+  font-weight: bold;
+  text-shadow: var(--shine-35) #ffd363;
+  line-height: 1.25;
+  white-space: nowrap;
+  background: linear-gradient(155deg, #f6dda5 25%, #ffb700);
+  background-clip: text;
+  transform: translateZ(6.25rem);
+}

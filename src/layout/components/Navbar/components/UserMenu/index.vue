@@ -4,15 +4,13 @@ import { ref, computed, reactive } from "vue";
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
 import { AuthStore, AudioStore } from "@/store";
-import { $concise, $confirm } from "@/utils";
+import { $confirm, $privateTool } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
 const $authStore = AuthStore();
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 const dialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -22,15 +20,12 @@ const show_menu = ref(false);
 const show_edit = ref(false);
 /** 信息是否修改 */
 const edit_status = ref(false);
-/** 编辑的用户信息 */
-const user_info = reactive<Partial<Global.User>>({ ...$authStore.userInfo });
 
 /** 用户本地信息 */
-const userInfo = computed(() => $authStore.userInfo);
+const user_data = computed(() => $authStore.user_data);
 /** 用户权限 */
-const role = computed(() => {
-  return user_info.role === 0 ? "管理员" : "普通用户";
-});
+const role = computed(() => (user_data.value.role === 0 ? "管理员" : "普通用户"));
+
 /* 悬浮显示 */
 const handleEnter = () => {
   show_menu.value = true;
@@ -46,23 +41,15 @@ const handleEditInfo = () => {
   show_edit.value = true;
 };
 
-/* 退出登录 */
-const handleLogout = () => {
+/* 退卡 */
+const handleExitCard = () => {
   $audioStore.play("pj83");
-  $authStore.logout();
-};
+  $privateTool.exportCard(user_data.value);
 
-/* 注销账号确认 */
-const handleConfirmLogoff = () => {
   $confirm({
-    text: "注销后，当前帐号需重新注册才能登录，确定注销吗？",
-    confirm: handleLogoff,
+    text: "退卡会销毁当前卡片数据，请确保你已经下载了卡片，确定退卡吗？",
+    confirm: $authStore.exitCard,
   });
-};
-
-/* 注销账号 */
-const handleLogoff = () => {
-  $authStore.logoff();
 };
 
 /* 显示确认关闭弹窗 */
@@ -92,12 +79,12 @@ const onCloseConfirmEditInfo = () => {
         text: MOUSE_TIP.c2y9,
       }"
       class="head-img"
-      :src="userInfo.avatar ? getImgLink(userInfo.avatar, 'jpg') : getImgLink('unknown')"
+      :src="user_data.avatar"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />
     <div class="user-card">
-      <div class="name">{{ userInfo.nickname }}</div>
+      <div class="name">{{ user_data.username }}</div>
       <div class="role">身份：{{ role }}</div>
 
       <div class="btns">
@@ -108,17 +95,7 @@ const onCloseConfirmEditInfo = () => {
           class="k-button"
           @click="handleEditInfo"
         >
-          编辑个人信息
-        </KButton>
-        <KButton
-          v-mouse-tip="{
-            text: MOUSE_TIP.cl81,
-          }"
-          class="k-button"
-          type="warning"
-          @click="handleLogout"
-        >
-          退出登录
+          修改个人资料
         </KButton>
         <KButton
           v-mouse-tip="{
@@ -126,9 +103,9 @@ const onCloseConfirmEditInfo = () => {
           }"
           class="k-button"
           type="error"
-          @click="handleConfirmLogoff"
+          @click="handleExitCard"
         >
-          注销帐号
+          退卡
         </KButton>
       </div>
     </div>
@@ -145,12 +122,7 @@ const onCloseConfirmEditInfo = () => {
       up
       @close="onCloseConfirmEditInfo"
     >
-      <EditUserInfo
-        v-if="dialogRef"
-        :id="$authStore.userInfo.id"
-        v-model:status="edit_status"
-        @close="dialogRef!._close"
-      />
+      <EditUserInfo v-if="dialogRef" v-model:status="edit_status" @close="dialogRef!._close" />
     </KDialog>
   </teleport>
 </template>
