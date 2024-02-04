@@ -10,10 +10,10 @@ const LOCAL_KEY = {
   CONFIG: "config",
   /** 多语言 */
   LANGUAGE: "language",
-  /** token */
-  TOKEN: "data_token",
+  /** 数据时间，用于在固定时间强制更新本地所有数据 */
+  DATA_TIME: "data_time",
   /** 当前用户信息 */
-  USER_INFO: "user",
+  USER_DATA: "user_data",
   /** 用户列表 */
   USER_LIST: "data_user",
   /** 记住用户信息 */
