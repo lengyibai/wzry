@@ -12,3 +12,4 @@ export * from "./modules/typewriter-multiple";
 export * from "./modules/typewriter-single";
 export * from "./modules/particle-effect";
 export * from "./modules/scroll-virtualization";
+export * from "./modules/drag-analysis";
