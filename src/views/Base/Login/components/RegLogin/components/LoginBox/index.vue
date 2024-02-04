@@ -8,26 +8,51 @@ import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
 import { $confirm, $input, $loading, $message, $tool } from "@/utils";
 import { MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
+import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
 
 const $authStore = AuthStore();
 
 /** 是否处于读取状态*/
 const is_reading = ref(true);
+/** 拖拽文件进入状态 */
+const drag_enter = ref(false);
 /** 是否显示删除按钮 */
 const show_del = ref(false);
 /** 用户数据 */
 const user_data = ref<Global.UserData>();
 
 /** 当前标题 */
-const title = computed(() => (is_reading.value ? "请插入召唤师卡" : "欢迎登录"));
+const title = computed(() => {
+  return is_reading.value ? (drag_enter.value ? "松开解析卡片" : "请放置召唤师卡") : "欢迎登录";
+});
+
+/* 拖拽进入 */
+const onDragEnter = () => {
+  drag_enter.value = true;
+};
+
+/* 拖拽离开 */
+const onDragLeave = () => {
+  drag_enter.value = false;
+};
+
+/* 解析文件 */
+const onDragEnd = (file: File) => {
+  readFile(file);
+  onDragLeave();
+};
 
 /* 读取文件 */
-const readFile = (e: Event) => {
-  const el = e.target as HTMLInputElement;
-  const file = el.files?.[0];
-  if (!file) return;
+const readFile = (e: Event | File) => {
+  let file: File;
+  let el: HTMLInputElement;
+  if (e instanceof Event) {
+    el = e.target as HTMLInputElement;
+    file = el.files![0];
+  } else {
+    file = e;
+  }
 
   if (file.name.endsWith(".wzry")) {
     const reader = new FileReader();
@@ -45,16 +70,15 @@ const readFile = (e: Event) => {
             placeholder: "请输入密码",
             confirm(v) {
               $loading.show("正在激活...");
-              setTimeout(() => {
-                $loading.close().then(() => {
-                  if (v === user_data.value!.password) {
-                    is_reading.value = false;
-                    $message(`${$tool.timeGreet()}，${user_data.value?.username}`);
-                  } else {
-                    $message("密码错误，请重新输入", "error");
-                    handleInput();
-                  }
-                });
+              setTimeout(async () => {
+                await $loading.close();
+                if (v === user_data.value!.password) {
+                  is_reading.value = false;
+                  $message(`${$tool.timeGreet()}，${user_data.value?.username}`);
+                } else {
+                  $message("密码错误，请重新输入", "error");
+                  handleInput();
+                }
               }, 1000);
             },
           });
@@ -64,7 +88,7 @@ const readFile = (e: Event) => {
         $message("文件已损坏！！！！！", "error");
       }
 
-      el.value = "";
+      el && (el.value = "");
     };
 
     reader.readAsText(file);
@@ -90,7 +114,14 @@ const handleLogin = () => {
 </script>
 
 <template>
-  <div class="log-box">
+  <div
+    v-drag-analysis="{
+      getFile: onDragEnd,
+      enter: onDragEnter,
+      leave: onDragLeave,
+    }"
+    class="log-box"
+  >
     <RegLogTop :title="title" />
 
     <!-- 选择卡片 -->
@@ -100,6 +131,7 @@ const handleLogin = () => {
         <i class="iconfont wzry-chaka" />
         <div class="text">点击选择卡片文件</div>
       </label>
+      <div class="tip">支持拖拽文件到此处</div>
     </template>
 
     <!-- 卡片信息 -->
