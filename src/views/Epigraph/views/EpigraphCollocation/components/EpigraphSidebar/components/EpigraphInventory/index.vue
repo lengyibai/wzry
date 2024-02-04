@@ -20,7 +20,7 @@ const { fill_color, is_all_empty } = storeToRefs($epigraphCollocationStore);
 const epigraphListRef = ref<HTMLElement>();
 
 /** 鼠标悬浮在库存铭文上的文字 */
-const moust_tip = computed(() => {
+const mouse_tip = computed(() => {
   const _id = $epigraphCollocationStore.color_id_selected;
   return (id: number) => {
     if (_id === 0) {
@@ -87,7 +87,7 @@ watch(fill_color, () => {
         <template v-for="(item, index) in $epigraphCollocationStore.current_inventory" :key="index">
           <EpigraphCard
             v-mouse-tip="{
-              text: moust_tip(item.epigraph.id),
+              text: mouse_tip(item.epigraph.id),
             }"
             :data="item.epigraph"
             :count="item.count"
