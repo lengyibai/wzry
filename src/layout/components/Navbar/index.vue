@@ -2,8 +2,6 @@
 import PackUp from "./components/PackUp/index.vue";
 import UserMenu from "./components/UserMenu/index.vue";
 import BtnIcon from "./components/BtnIcon/index.vue";
-
-import { $tool } from "@/utils";
 </script>
 
 <template>
@@ -14,7 +12,6 @@ import { $tool } from "@/utils";
       <PackUp />
 
       <div class="navbar__right">
-        <span class="timeGreet">{{ $t($tool.timeGreet()) }}</span>
         <!-- 用户菜单 -->
         <UserMenu />
 
