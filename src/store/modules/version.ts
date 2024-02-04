@@ -1,9 +1,12 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import dayjs from "dayjs";
 
 import { API_DATA } from "@/api";
 import { LOCAL_KEY } from "@/config/modules/local-key";
 import { useGetData } from "@/hooks/modules/useGetData";
+import { BASE_CONFIG } from "@/config/modules/base";
+import { $tip } from "@/utils/modules/busTransfer";
 
 const VersionStore = defineStore("version", () => {
   /** 版本计时器 */
@@ -67,6 +70,27 @@ const VersionStore = defineStore("version", () => {
     keys.forEach((key) => {
       localStorage.removeItem(key);
     });
+  };
+
+  /** @description 数据过期时间检测 */
+  const checkDataTime = () => {
+    const data_token = localStorage.getItem(LOCAL_KEY.DATA_TIME);
+
+    if (!data_token) {
+      localStorage.setItem(LOCAL_KEY.DATA_TIME, dayjs().unix().toString());
+      return;
+    }
+
+    //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
+    const token = Number(dayjs().unix().toString().slice(0, 10));
+    if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
+      $tip({
+        text: "您已经超过三天没有访问本站了，为保证数据准确性，请点击确定清除本地数据重新下载资源。",
+      }).then(() => {
+        localStorage.clear();
+        location.reload();
+      });
+    }
   };
 
   const ExposeMethods = {
@@ -153,6 +177,7 @@ const VersionStore = defineStore("version", () => {
   local_dist_version.value = localStorage.getItem(LOCAL_KEY.VERSION_DIST) || "";
 
   watchVersion();
+  checkDataTime();
 
   API_DATA.UpdateLog().then((res) => {
     update_log.value = res.data;
