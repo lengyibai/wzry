@@ -24,22 +24,25 @@ const show = (text: string) => {
 
 /** @description 关闭loading */
 const close = () => {
-  //解决loading加载速度太快loading一闪而过
-  clearTimeout(openTimer);
+  return new Promise<void>((resolve) => {
+    //解决loading加载速度太快loading一闪而过
+    clearTimeout(openTimer);
 
-  //只有在大于0的时候减少，避免出现负数
-  if (loadingCount > 0) {
-    loadingCount--;
-  }
+    //只有在大于0的时候减少，避免出现负数
+    if (loadingCount > 0) {
+      loadingCount--;
+    }
 
-  //只有当所有loading结束后才能隐藏loading
-  if (loadingCount === 0) {
-    //延迟关闭loading，避免出现请求结束后立即执行下一个请求出现闪现
-    closeTimer = setTimeout(() => {
-      $bus.emit("loading", { show: false });
-      closeTimer = undefined;
-    }, 500);
-  }
+    //只有当所有loading结束后才能隐藏loading
+    if (loadingCount === 0) {
+      //延迟关闭loading，避免出现请求结束后立即执行下一个请求出现闪现
+      closeTimer = setTimeout(() => {
+        $bus.emit("loading", { show: false });
+        closeTimer = undefined;
+        resolve();
+      }, 500);
+    }
+  });
 };
 
 export const $loading = {
