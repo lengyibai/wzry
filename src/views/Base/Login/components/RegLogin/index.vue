@@ -14,7 +14,7 @@ const $audioStore = AudioStore();
 const RegLoginRef = ref<HTMLElement>();
 
 /** 注册及登录状态下要显示的输入框及按钮 */
-const is_reg = ref(true);
+const is_reg = ref(false);
 
 /* 是否前往注册 */
 const handleToReg = (status: boolean) => {
