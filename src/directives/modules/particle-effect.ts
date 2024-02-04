@@ -12,6 +12,8 @@ interface ElType extends HTMLElement {
   _fn: (binding: DirectiveBinding<Partial<Params>>) => void;
   /** 粒子特效构造方法 */
   _particle?: AnimateMove;
+  /** 是否启用 */
+  _enable: boolean;
 }
 
 interface Params {
@@ -167,6 +169,7 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
       } = binding.value || {};
 
       if (!enable) return;
+      el._enable = true;
       this._particle = new AnimateMove(el, {
         count,
         colors,
@@ -180,9 +183,11 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
   updated(el, binding) {
     if (binding?.value?.enable === false) {
       el._particle?.destroy();
-    } else if (binding?.value?.enable === true) {
+      el._enable = false;
+    } else if (binding?.value?.enable === true && !el._enable) {
       el._particle?.destroy();
       el._fn(binding);
+      el._enable = true;
     }
   },
   unmounted(el) {
