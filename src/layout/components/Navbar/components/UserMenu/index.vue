@@ -39,7 +39,9 @@ const handleLeave = () => {
 
 /* 编辑个人信息 */
 const handleEditInfo = () => {
-  show_edit.value = true;
+  $authStore.setSecondaryPassword().then(() => {
+    show_edit.value = true;
+  });
 };
 
 /* 退卡 */

@@ -48,6 +48,7 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   avatar: "",
   username: "",
   password: "",
+  secondaryPassword: "",
   role: 1,
 });
 

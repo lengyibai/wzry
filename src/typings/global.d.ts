@@ -257,6 +257,8 @@ declare namespace Global {
     username: string;
     /** 密码 */
     password: string;
+    /** 修改资料的二级密码 */
+    secondaryPassword: string;
     /** 权限 0-管理员 1-用户 */
     role: 0 | 1;
     /** 头像 */
