@@ -484,18 +484,4 @@ declare namespace Remote {
       value: string;
     }
   }
-
-  /** @description 用户 */
-  interface User {
-    /** 用户id */
-    id: string;
-    /** 用户头像 */
-    avatar: string;
-    /** 用户昵称 */
-    nickname: string;
-    /** 用户密码 */
-    password: string;
-    /** 用户权限 0-管理员 1-普通用户 */
-    role: 0 | 1;
-  }
 }

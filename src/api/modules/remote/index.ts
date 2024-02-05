@@ -31,11 +31,6 @@ export const Music = () => {
   return $LocaleHttp.Get<{ data: Global.Music[] }>(`/${JSON_NAME.MUSIC}.json`);
 };
 
-/** @description 获取用户列表 */
-export const User = () => {
-  return $RemoteHttp.Get<Remote.User[]>(`/${JSON_NAME.USER}.json`);
-};
-
 /** @description 获取战绩 */
 export const Team = () => {
   return $RemoteHttp.Get<string[][]>(`/${JSON_NAME.TEAM}.json`);

@@ -13,8 +13,6 @@ const JSON_NAME = {
   NOTICE: "notice",
   /** 音乐列表 */
   MUSIC: "music",
-  /** 用户列表 */
-  USER: "user",
   /** 战绩 */
   TEAM: "team",
   /** 铭文列表 */

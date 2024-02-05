@@ -14,8 +14,6 @@ const LOCAL_KEY = {
   DATA_TIME: "data_time",
   /** 当前用户信息 */
   USER_DATA: "user_data",
-  /** 用户列表 */
-  USER_LIST: "data_user",
   /** 记住用户信息 */
   REMEMBER_USER: "remember_user",
   /** 铭文套装列表 */
