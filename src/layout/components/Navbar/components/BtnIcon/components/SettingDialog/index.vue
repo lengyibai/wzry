@@ -6,7 +6,7 @@ import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $confirm, $message, $tip } from "@/utils";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 
 const $audioStore = AudioStore();
@@ -126,7 +126,7 @@ const onResetConfig = () => {
   $musicStore.setVolume(musicVolume);
   $barrageStore.setBarrage(barrage);
   $cssVarStore.setShine(shine);
-  $message("已重置所有配置项");
+  $message(MESSAGE_TIP.j5l7);
 };
 </script>
 

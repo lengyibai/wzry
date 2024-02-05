@@ -4,7 +4,7 @@ import { watchEffect } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import { AuthStore } from "@/store";
-import { MOUSE_TIP } from "@/config";
+import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { $input, $message, $privateTool } from "@/utils";
 
@@ -61,7 +61,7 @@ const edit_status = computed(() => {
 /* 保存个人信息 */
 const handleSave = () => {
   $authStore.updateUserData(user_data);
-  $message("保存成功");
+  $message(MESSAGE_TIP.l23d);
   $emit("close");
 };
 

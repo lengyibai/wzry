@@ -8,6 +8,7 @@ import RegLogTop from "../../common/components/RegLogTop/index.vue";
 import { $confirm, $input, $message, $privateTool, $tool } from "@/utils";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
+import { MESSAGE_TIP } from "@/config";
 
 const $authStore = AuthStore();
 
@@ -71,7 +72,7 @@ const readFile = (e: Event | File) => {
                 close();
                 $message(`${$tool.timeGreet}，${user_data.value?.username}`);
               } else {
-                $message("密码错误，请重新输入", "error");
+                $message(MESSAGE_TIP.rh43, "error");
                 handleInput();
               }
             },
@@ -79,7 +80,7 @@ const readFile = (e: Event | File) => {
         };
         handleInput();
       } catch (error) {
-        $message("卡片已损坏！！！！！", "error");
+        $message(MESSAGE_TIP.by88, "error");
       }
 
       el && (el.value = "");

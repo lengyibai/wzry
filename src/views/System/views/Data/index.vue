@@ -8,7 +8,7 @@ import { AudioStore } from "@/store";
 import { $confirm, $message, $tool } from "@/utils";
 import type { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
-import { REQUEST } from "@/config";
+import { MESSAGE_TIP, REQUEST } from "@/config";
 import { vMouseTip } from "@/directives";
 
 defineOptions({
@@ -84,7 +84,7 @@ const debounceCheck = _debounce(
         setStatus(data, v);
       }, 1000);
     } else {
-      $message("正在检查更新", "warning");
+      $message(MESSAGE_TIP.iy70, "warning");
     }
   },
   1000,

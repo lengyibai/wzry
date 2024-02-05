@@ -4,6 +4,8 @@ import dayjs from "dayjs";
 import { $message } from "./busTransfer";
 import { imageOptimizer, saveFiles } from "./tool";
 
+import { MESSAGE_TIP } from "@/config";
+
 /** @description 选择并压缩头像 */
 export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
   const file = (e.target as HTMLInputElement).files?.[0];
@@ -11,7 +13,7 @@ export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
   if (!file) return;
 
   if (![".png", ".jpg", ".jpeg"].some((item) => file.name.endsWith(item))) {
-    $message("请选择png、jpg、jpeg格式的图片文件！", "error");
+    $message(MESSAGE_TIP.a2k3, "error");
     return;
   }
 
@@ -24,7 +26,7 @@ export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
       cb(data[2]);
     },
     fail() {
-      $message("请选择png、jpg、jpeg格式的图片文件！", "error");
+      $message(MESSAGE_TIP.a2k3, "error");
     },
   });
 };

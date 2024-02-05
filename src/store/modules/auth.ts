@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
-import { BASE_CONFIG, LOCAL_KEY } from "@/config";
+import { BASE_CONFIG, LOCAL_KEY, MESSAGE_TIP } from "@/config";
 import { router } from "@/router";
 
 /** @description 用户相关 */
@@ -82,21 +82,21 @@ const AuthStore = defineStore("auth", () => {
             if (user_data.value.secondaryPassword === v) {
               resolve();
               close();
-              $message("验证成功！");
+              $message(MESSAGE_TIP.s24z);
             } else {
-              $message("密码错误", "error");
+              $message(MESSAGE_TIP.rh43, "error");
             }
           },
         });
         if (user_data.value.secondaryPassword) {
         } else {
-          $message("你还没有设置二级密码，设置一下吧！");
+          $message(MESSAGE_TIP.n32v);
           $input({
             title: "设置二级密码",
             placeholder: "请设置二级密码",
             confirm(v, close) {
               if (user_data.value.password === v) {
-                $message("二级密码不能与卡片密码一样哦！重新输入一下吧！", "error");
+                $message(MESSAGE_TIP.w89h, "error");
                 return;
               }
 
@@ -105,7 +105,7 @@ const AuthStore = defineStore("auth", () => {
               });
               resolve();
               close();
-              $message("设置成功！");
+              $message(MESSAGE_TIP.km30);
             },
           });
         }
@@ -120,7 +120,7 @@ const AuthStore = defineStore("auth", () => {
       $routerStore.removeRoutes();
       localStorage.removeItem(LOCAL_KEY.USER_DATA);
       router.replace("/login");
-      $message("退卡成功");
+      $message(MESSAGE_TIP.y2l2);
     },
   };
 

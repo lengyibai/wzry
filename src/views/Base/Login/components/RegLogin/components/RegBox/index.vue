@@ -11,7 +11,7 @@ import { AudioStore } from "@/store";
 import { $input, $message, $privateTool, $tool } from "@/utils";
 import { KButton, KInput } from "@/components/business";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   success: [];
@@ -41,11 +41,11 @@ const onSelectRole = (role: number) => {
       confirm(v, close) {
         if (v !== "200012") {
           form.role = 1;
-          $message("密码错误", "error");
+          $message(MESSAGE_TIP.rh43, "error");
           return;
         }
         close();
-        $message("开发者身份已确认");
+        $message(MESSAGE_TIP.kq89);
       },
     });
   }
@@ -54,12 +54,12 @@ const onSelectRole = (role: number) => {
 /* 注册 */
 const handleReg = () => {
   if ($tool.existEmpty(form, ["avatar", "password", "username"])) {
-    $message("请输入完整", "error");
+    $message(MESSAGE_TIP.mj67, "error");
     return;
   }
 
   $audioStore.play("pj83");
-  $message("注册成功！请保管好你的召唤师卡！");
+  $message(MESSAGE_TIP.fh97);
   $emit("success");
 
   $privateTool.exportCard(form);

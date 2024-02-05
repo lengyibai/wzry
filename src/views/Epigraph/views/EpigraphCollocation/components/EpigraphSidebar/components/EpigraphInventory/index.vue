@@ -8,7 +8,7 @@ import _debounce from "lodash/debounce";
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
-import { MOUSE_TIP } from "@/config";
+import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { $confirm, $message } from "@/utils";
 import { KButton } from "@/components/business";
@@ -56,7 +56,7 @@ const handleSuit = () => {
 const debounceSaveSuit = _debounce(
   () => {
     $epigraphCollocationStore.syncSuit();
-    $message("保存成功");
+    $message(MESSAGE_TIP.l23d);
     handleSuit();
   },
   1000,

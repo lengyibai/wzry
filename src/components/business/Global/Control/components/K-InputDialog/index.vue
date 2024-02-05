@@ -6,6 +6,7 @@ import type { InputConfig } from "./interface";
 import { $bus, $message } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vFocus, vMouseTip } from "@/directives";
+import { MESSAGE_TIP } from "@/config";
 
 const dialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -30,7 +31,7 @@ $bus.on("input", (v) => {
 /* 确定 */
 const handleConfirm = () => {
   if (content.value === "") {
-    $message("内容不能为空", "error");
+    $message(MESSAGE_TIP.cg09, "error");
     return;
   }
   config.value.confirm(content.value, () => {

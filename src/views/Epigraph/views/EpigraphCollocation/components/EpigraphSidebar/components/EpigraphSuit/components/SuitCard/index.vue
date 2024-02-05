@@ -7,7 +7,7 @@ import { $confirm, $input, $message } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 套装信息 */
@@ -54,7 +54,7 @@ const handleRename = (id: string) => {
     placeholder: "请输入新的方案名称",
     confirm(v, close) {
       $epigraphCollocationStore.renameSuit(id, v);
-      $message("修改成功！");
+      $message(MESSAGE_TIP.kc58);
       close();
     },
   });
