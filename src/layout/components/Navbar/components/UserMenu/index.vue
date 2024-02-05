@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
-import { AuthStore, AudioStore } from "@/store";
+import { AuthStore } from "@/store";
 import { $confirm, $privateTool, $tool } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
@@ -12,7 +12,6 @@ import { MOUSE_TIP } from "@/config";
 import { getImgLink } from "@/utils/modules/concise";
 
 const $authStore = AuthStore();
-const $audioStore = AudioStore();
 
 const dialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -25,8 +24,6 @@ const edit_status = ref(false);
 
 /** 用户本地信息 */
 const user_data = computed(() => $authStore.user_data);
-/** 用户权限 */
-const role = computed(() => (user_data.value.role === 0 ? "管理员" : "普通用户"));
 
 /* 悬浮显示 */
 const handleEnter = () => {
@@ -47,8 +44,6 @@ const handleEditInfo = () => {
 
 /* 退卡 */
 const handleExitCard = () => {
-  $audioStore.play("pj83");
-
   if ($tool.isPhone) {
     $privateTool.exportCard(user_data.value);
   }
