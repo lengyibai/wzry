@@ -31,6 +31,8 @@ declare namespace Global {
       btnFn?: () => void;
       /** tip创建后执行的函数 */
       createFn?: () => void;
+      /** 打字结束后调用 */
+      done?: () => void;
     }
   }
 
@@ -263,6 +265,8 @@ declare namespace Global {
     role: 0 | 1;
     /** 头像 */
     avatar: string;
+    /** 创建时间 */
+    createTime: string;
   }
 
   /** @description 基础类型 */

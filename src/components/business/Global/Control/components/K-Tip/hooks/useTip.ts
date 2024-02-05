@@ -12,6 +12,9 @@ let next: any;
 let noTipName: Global.Tip.Prompt["text"];
 /** 点击按钮需要触发的函数 */
 let btnFn: () => void;
+/** 打字结束调用 */
+let done: () => void;
+
 /** 有时候可能不会在同一个页面使用两个tip，就无法使用then，此时需要加入执行队列，点击确定后执行下一个 */
 const list: Global.Tip.Prompt[] = [];
 
@@ -74,6 +77,7 @@ const useTip = () => {
         createFn,
         align: _align = "right-bottom",
         btnFn: _btnFn = () => {},
+        done: _done = () => {},
         color = true,
       } = config;
 
@@ -94,6 +98,7 @@ const useTip = () => {
 
       /* 推送Tip */
       btnFn = _btnFn;
+      done = _done;
       align.value = _align;
       btn_text.value = btnText;
       content.value = text;
@@ -111,6 +116,7 @@ const useTip = () => {
     /** @description 设置允许点击按钮 */
     handleSetAllowClick() {
       disabled.value = false;
+      done();
     },
 
     /** @description 点击确定后触发 */
