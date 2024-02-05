@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Base64 } from "js-base64";
 import { computed } from "vue";
 
 import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
-import { $confirm, $input, $loading, $message, $tool } from "@/utils";
+import { $confirm, $input, $loading, $message, $privateTool, $tool } from "@/utils";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
 
@@ -60,9 +59,7 @@ const readFile = (e: Event | File) => {
       const content = e.target!.result!.toString();
 
       try {
-        const reversed_data = content.split("").reverse().join("");
-        const decodePwd = Base64.decode(reversed_data);
-        user_data.value = JSON.parse(decodePwd);
+        user_data.value = $privateTool.decryption(content);
 
         const handleInput = () => {
           $input({

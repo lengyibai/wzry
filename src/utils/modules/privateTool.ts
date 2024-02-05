@@ -29,9 +29,21 @@ export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
   });
 };
 
-/** @description 导出卡片 */
-export const exportCard = (data: Global.UserData) => {
+/** @description 加密数据 */
+export const encryption = (data: any) => {
   const encode_data = Base64.encode(JSON.stringify(data));
   const reversed_data = encode_data.split("").reverse().join("");
-  saveFiles(reversed_data, `召唤师卡-${dayjs().format("YYYY年MM月DD日hh时mm分ss秒")}.wzry`);
+  return reversed_data;
+};
+
+/** @description 解密数据 */
+export const decryption = (data: string) => {
+  const reversed_data = data.split("").reverse().join("");
+  const decode_data = Base64.decode(reversed_data);
+  return JSON.parse(decode_data);
+};
+
+/** @description 导出卡片 */
+export const exportCard = (data: Global.UserData) => {
+  saveFiles(encryption(data), `召唤师卡-${dayjs().format("YYYY年MM月DD日hh时mm分ss秒")}.wzry`);
 };

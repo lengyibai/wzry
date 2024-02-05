@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
-import { $message, $tip, $tool } from "@/utils";
+import { $message, $privateTool, $tip, $tool } from "@/utils";
 import { BASE_CONFIG, LOCAL_KEY } from "@/config";
 import { router } from "@/router";
 
@@ -47,7 +47,7 @@ const AuthStore = defineStore("auth", () => {
       user_data.value = form;
       $routerStore.addRoutes(form.role);
       router.push(BASE_CONFIG.HOME_URL);
-      localStorage.setItem(LOCAL_KEY.USER_DATA, JSON.stringify(form));
+      localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(form));
       watchStatus();
     },
 
@@ -56,7 +56,7 @@ const AuthStore = defineStore("auth", () => {
       const local_user = localStorage.getItem(LOCAL_KEY.USER_DATA)!;
       watching = true;
       userStatus.value = true;
-      user_data.value = JSON.parse(local_user);
+      user_data.value = $privateTool.decryption(local_user);
       $message(`${$tool.timeGreet}，${user_data.value.username}`);
       watchStatus();
     },
