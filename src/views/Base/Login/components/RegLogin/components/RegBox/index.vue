@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue";
+import dayjs from "dayjs";
 
 import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
@@ -58,11 +59,13 @@ const handleReg = () => {
     return;
   }
 
-  $audioStore.play("pj83");
-  $message(MESSAGE_TIP.fh97);
-  $emit("success");
-
+  form.createTime = dayjs().valueOf();
+  form.updateTime = dayjs().valueOf();
   $privateTool.exportCard(form);
+
+  $emit("success");
+  $message(MESSAGE_TIP.fh97);
+  $audioStore.play("pj83");
 };
 </script>
 

@@ -265,8 +265,10 @@ declare namespace Global {
     role: 0 | 1;
     /** 头像 */
     avatar: string;
-    /** 创建时间 */
-    createTime: string;
+    /** 注册时间 */
+    createTime: number;
+    /** 更新时间 */
+    updateTime: number;
   }
 
   /** @description 基础类型 */

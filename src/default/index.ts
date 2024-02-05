@@ -39,8 +39,8 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   password: "",
   secondaryPassword: "",
   role: 1,
-  createTime: "",
-  updateTime: "",
+  createTime: 0,
+  updateTime: 0,
 });
 
 /** @description 默认配置信息 */
