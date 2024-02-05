@@ -57,7 +57,7 @@ const AuthStore = defineStore("auth", () => {
       watching = true;
       userStatus.value = true;
       user_data.value = JSON.parse(local_user);
-      $message(`${$tool.timeGreet()}，${user_data.value.username}`);
+      $message(`${$tool.timeGreet}，${user_data.value.username}`);
       watchStatus();
     },
 

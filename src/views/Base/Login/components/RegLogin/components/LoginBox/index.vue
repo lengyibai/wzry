@@ -73,7 +73,7 @@ const readFile = (e: Event | File) => {
                 await $loading.close();
                 if (v === user_data.value!.password) {
                   is_reading.value = false;
-                  $message(`${$tool.timeGreet()}，${user_data.value?.username}`);
+                  $message(`${$tool.timeGreet}，${user_data.value?.username}`);
                 } else {
                   $message("密码错误，请重新输入", "error");
                   handleInput();

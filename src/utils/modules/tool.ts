@@ -2,6 +2,55 @@ import type { ImageOptimizerOptions } from "../interface";
 
 import { PINYIN } from "@/config/modules/pinyin";
 
+/** @description 判断是否为移动端 */
+export const isPhone = (() => /mobile/i.test(navigator.userAgent))();
+
+/** @description 获取浏览器版本 */
+export const browserV = (() => {
+  const ua = navigator.userAgent;
+  let browser = "";
+  let version = 0;
+  if (ua.indexOf("Chrome") > -1) {
+    browser = "chrome";
+    version = Number(
+      ua
+        .match(/Chrome\/[\d.]+/)![0]
+        .split("/")[1]
+        .split(".")[0],
+    );
+  } else if (ua.indexOf("Safari") > -1) {
+    browser = "safari";
+    version = Number(
+      ua
+        .match(/Version\/[\d.]+/)![0]
+        .split("/")[1]
+        .split(".")[0],
+    );
+  } else if (ua.indexOf("Firefox") > -1) {
+    browser = "firefox";
+    version = Number(
+      ua
+        .match(/Firefox\/[\d.]+/)![0]
+        .split("/")[1]
+        .split(".")[0],
+    );
+  }
+  return { browser, version };
+})();
+
+/** @description 根据时间段问候 */
+export const timeGreet = (() => {
+  const a = "午夜好",
+    b = "早上好",
+    c = "上午好",
+    d = "中午好",
+    e = "下午好",
+    f = "晚上好";
+
+  const now = new Date().getHours();
+  return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
+})();
+
 /** @description 随机数 */
 export const random = (min: number, max: number, num = 0) => {
   return parseFloat((Math.random() * (max - min) + min).toFixed(num));
@@ -13,20 +62,6 @@ export const potEoPct = (str: string | number, ret = 4) => {
     return Number(str.replace("%", "")) / 100;
   }
   return Number((str * 100).toFixed(ret));
-};
-
-/** @description 根据时间段问候 */
-export const timeGreet = (greet: Record<string, string> = {}) => {
-  const {
-    a = "午夜好",
-    b = "早上好",
-    c = "上午好",
-    d = "中午好",
-    e = "下午好",
-    f = "晚上好",
-  } = greet;
-  const now = new Date().getHours();
-  return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 };
 
 /** @description requestAnimationFrame计时器 */
@@ -109,39 +144,6 @@ export const search = <T>(
 
   return arr;
 };
-
-/** @description 获取浏览器版本 */
-export const browserV = (() => {
-  const ua = navigator.userAgent;
-  let browser = "";
-  let version = 0;
-  if (ua.indexOf("Chrome") > -1) {
-    browser = "chrome";
-    version = Number(
-      ua
-        .match(/Chrome\/[\d.]+/)![0]
-        .split("/")[1]
-        .split(".")[0],
-    );
-  } else if (ua.indexOf("Safari") > -1) {
-    browser = "safari";
-    version = Number(
-      ua
-        .match(/Version\/[\d.]+/)![0]
-        .split("/")[1]
-        .split(".")[0],
-    );
-  } else if (ua.indexOf("Firefox") > -1) {
-    browser = "firefox";
-    version = Number(
-      ua
-        .match(/Firefox\/[\d.]+/)![0]
-        .split("/")[1]
-        .split(".")[0],
-    );
-  }
-  return { browser, version };
-})();
 
 /** @description 排序 */
 export const typeSort = <T>(data: any[], key: string, rev = true): T[] => {
@@ -259,14 +261,81 @@ export const promiseTimeout = (fn: () => void, delay = 0) => {
   });
 };
 
-/** @description 判断是否为移动端 */
-export const isPhone = (() => /mobile/i.test(navigator.userAgent))();
-
 /** @description 判断表单指定属性名是否为空 */
 export const existEmpty = <T extends Record<string, any>>(obj: T, arr: (keyof T)[] = []) =>
   (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "").length > 0
     ? (arr.length > 0 ? arr : Object.keys(obj)).filter((key) => obj[key] === "")
     : false;
+
+/** @description 计算文件大小 */
+export const getFileSizeInKB = (file: any) => {
+  const str = JSON.stringify(file, null, 2);
+  const blob = new Blob([str]);
+  const fileSizeInBytes = blob.size;
+  const fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
+  return Number(fileSizeInKB);
+};
+
+/** @description 同步加载图片 */
+export const preloadImages = async (images: string[]) => {
+  for (let i = 0; i < images.length; i++) {
+    await new Promise<void>((resolve) => {
+      const img = new Image();
+      img.src = images[i];
+      img.onload = () => {
+        resolve();
+      };
+      img.onerror = () => {
+        resolve();
+      };
+    });
+  }
+};
+
+/** @description 数组乱序 */
+export const shuffleArray = <T>(arr: T[]): T[] => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+};
+
+/** @description 网站标题小提示 */
+export const titleTip = () => {
+  let document_title = "";
+  let timer: NodeJS.Timeout;
+  window.addEventListener("visibilitychange", () => {
+    clearTimeout(timer);
+
+    if (document.hidden) {
+      if (document.title !== "o(*≧▽≦)ツ欢迎回来！") {
+        document_title = document.title;
+      }
+      document.title = "ヽ(≧∀≦)ﾉ来和妲己玩耍吧！";
+      return;
+    }
+
+    document.title = "o(*≧▽≦)ツ欢迎回来！";
+
+    timer = setTimeout(() => {
+      document.title = document_title;
+    }, 1000);
+  });
+};
+
+/** @description 下载图片链接 */
+export const downloadImage = (link: string, name: string) => {
+  fetch(link)
+    .then((res) => res.blob())
+    .then((blob) => {
+      const a = document.createElement("a");
+      const url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = name;
+      a.click();
+    });
+};
 
 /** @description 视差动画 */
 export class Parallax {
@@ -369,14 +438,35 @@ export class AudioVisual {
   }
 }
 
-/** @description 计算文件大小 */
-export const getFileSizeInKB = (file: any) => {
-  const str = JSON.stringify(file, null, 2);
-  const blob = new Blob([str]);
-  const fileSizeInBytes = blob.size;
-  const fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
-  return Number(fileSizeInKB);
-};
+/** @description 音频播放器 */
+export class AudioPlayer {
+  private audio: HTMLAudioElement = new Audio();
+  private volume: number = 1;
+
+  constructor(v?: { end?: () => void; volume?: number }) {
+    const { end, volume = 1 } = v || {};
+    if (end) {
+      this.audio.addEventListener("pause", end);
+      this.audio.addEventListener("ended", end);
+    }
+    this.volume = volume;
+
+    //允许音频可视化跨域
+    this.audio.setAttribute("crossOrigin", "anonymous");
+  }
+
+  async play(link: string) {
+    this.stop();
+    this.audio.volume = this.volume;
+    this.audio.src = link;
+    await this.audio.play();
+    return this.audio;
+  }
+
+  stop() {
+    this.audio.pause();
+  }
+}
 
 /** @description 触底加载 */
 export class LoadMore {
@@ -432,94 +522,3 @@ export class LoadMore {
     }
   }
 }
-
-/** @description 同步加载图片 */
-export const preloadImages = async (images: string[]) => {
-  for (let i = 0; i < images.length; i++) {
-    await new Promise<void>((resolve) => {
-      const img = new Image();
-      img.src = images[i];
-      img.onload = () => {
-        resolve();
-      };
-      img.onerror = () => {
-        resolve();
-      };
-    });
-  }
-};
-
-/** @description 数组乱序 */
-export const shuffleArray = <T>(arr: T[]): T[] => {
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-};
-
-/** @description 音频播放器 */
-export class AudioPlayer {
-  private audio: HTMLAudioElement = new Audio();
-  private volume: number = 1;
-
-  constructor(v?: { end?: () => void; volume?: number }) {
-    const { end, volume = 1 } = v || {};
-    if (end) {
-      this.audio.addEventListener("pause", end);
-      this.audio.addEventListener("ended", end);
-    }
-    this.volume = volume;
-
-    //允许音频可视化跨域
-    this.audio.setAttribute("crossOrigin", "anonymous");
-  }
-
-  async play(link: string) {
-    this.stop();
-    this.audio.volume = this.volume;
-    this.audio.src = link;
-    await this.audio.play();
-    return this.audio;
-  }
-
-  stop() {
-    this.audio.pause();
-  }
-}
-
-/** @description 网站标题小提示 */
-export const titleTip = () => {
-  let document_title = "";
-  let timer: NodeJS.Timeout;
-  window.addEventListener("visibilitychange", () => {
-    clearTimeout(timer);
-
-    if (document.hidden) {
-      if (document.title !== "o(*≧▽≦)ツ欢迎回来！") {
-        document_title = document.title;
-      }
-      document.title = "ヽ(≧∀≦)ﾉ来和妲己玩耍吧！";
-      return;
-    }
-
-    document.title = "o(*≧▽≦)ツ欢迎回来！";
-
-    timer = setTimeout(() => {
-      document.title = document_title;
-    }, 1000);
-  });
-};
-
-/** @description 下载图片链接 */
-export const downloadImage = (link: string, name: string) => {
-  fetch(link)
-    .then((res) => res.blob())
-    .then((blob) => {
-      const a = document.createElement("a");
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = name;
-      a.click();
-    });
-};
