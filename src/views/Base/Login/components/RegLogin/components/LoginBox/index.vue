@@ -60,7 +60,8 @@ const readFile = (e: Event | File) => {
       const content = e.target!.result!.toString();
 
       try {
-        const decodePwd = Base64.decode(content);
+        const reversed_data = content.split("").reverse().join("");
+        const decodePwd = Base64.decode(reversed_data);
         user_data.value = JSON.parse(decodePwd);
 
         const handleInput = () => {
@@ -84,7 +85,7 @@ const readFile = (e: Event | File) => {
         };
         handleInput();
       } catch (error) {
-        $message("文件已损坏！！！！！", "error");
+        $message("卡片已损坏！！！！！", "error");
       }
 
       el && (el.value = "");

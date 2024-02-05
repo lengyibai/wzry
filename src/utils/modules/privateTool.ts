@@ -32,5 +32,6 @@ export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
 /** @description 导出卡片 */
 export const exportCard = (data: Global.UserData) => {
   const encode_data = Base64.encode(JSON.stringify(data));
-  saveFiles(encode_data, `召唤师卡-${dayjs().format("YYYY年MM月DD日hh时mm分ss秒")}.wzry`);
+  const reversed_data = encode_data.split("").reverse().join("");
+  saveFiles(reversed_data, `召唤师卡-${dayjs().format("YYYY年MM月DD日hh时mm分ss秒")}.wzry`);
 };
