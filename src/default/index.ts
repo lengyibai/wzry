@@ -32,17 +32,6 @@ export const heroDefault: () => Game.Hero.Detail = () => ({
   relationCount: 0,
 });
 
-/** @description 默认技能信息 */
-export const skillDefault: () => Remote.Skill.Info = () => ({
-  cd: 0,
-  consume: 0,
-  name: "",
-  desc: "",
-  img: "",
-  type: [],
-  effect: [],
-});
-
 /** @description 默认用户信息 */
 export const userDefaultInfo: () => Global.UserData = () => ({
   avatar: "",
@@ -50,6 +39,8 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   password: "",
   secondaryPassword: "",
   role: 1,
+  createTime: "",
+  updateTime: "",
 });
 
 /** @description 默认配置信息 */
