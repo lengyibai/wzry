@@ -4,7 +4,7 @@ import { ref, computed } from "vue";
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
 import { AuthStore, AudioStore } from "@/store";
-import { $confirm, $privateTool } from "@/utils";
+import { $confirm, $privateTool, $tool } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
@@ -45,11 +45,21 @@ const handleEditInfo = () => {
 /* 退卡 */
 const handleExitCard = () => {
   $audioStore.play("pj83");
-  $privateTool.exportCard(user_data.value);
+
+  if ($tool.isPhone) {
+    $privateTool.exportCard(user_data.value);
+  }
 
   $confirm({
-    text: "退卡会销毁当前卡片数据，请确保你已经下载了卡片，确定退卡吗？",
-    confirm: $authStore.exitCard,
+    text: $tool.isPhone
+      ? "退卡会销毁当前卡片数据，请确保你已经下载了卡片，确定退卡吗？"
+      : "退卡会下载最新卡片，确定退卡吗？",
+    confirm() {
+      if (!$tool.isPhone) {
+        $privateTool.exportCard(user_data.value);
+      }
+      $authStore.exitCard();
+    },
   });
 };
 
