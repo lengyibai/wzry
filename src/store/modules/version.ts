@@ -2,13 +2,19 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import dayjs from "dayjs";
 
+import { AuthStore } from "./auth";
+
 import { API_DATA } from "@/api";
 import { LOCAL_KEY } from "@/config/modules/local-key";
 import { useGetData } from "@/hooks/modules/useGetData";
 import { BASE_CONFIG } from "@/config/modules/base";
-import { $tip } from "@/utils/modules/busTransfer";
+import { $message, $tip } from "@/utils/modules/busTransfer";
+import { $privateTool } from "@/utils";
+import { MESSAGE_TIP } from "@/config";
 
 const VersionStore = defineStore("version", () => {
+  const $authStore = AuthStore();
+
   /** 版本计时器 */
   let version_timer: NodeJS.Timeout;
 
@@ -83,9 +89,18 @@ const VersionStore = defineStore("version", () => {
 
     //将当前实时通过时间生成的token进行和本地token相减，大于过期时间则更新数据
     const token = Number(dayjs().unix().toString().slice(0, 10));
-    if (token - Number(data_token) > BASE_CONFIG.OVERDUE_DATA_TIME) {
+    const difference = token - Number(data_token);
+    if (difference > BASE_CONFIG.OVERDUE_DATA_TIME) {
       $tip({
-        text: "您已经超过三天没有访问本站了，为保证数据准确性，请点击确定清除本地数据重新下载资源。",
+        text: `你已经${Math.trunc(
+          difference / 86400,
+        )}天没有访问本站了，为保证数据准确性，请点击确定清除本地数据重新下载资源。`,
+        done() {
+          if ($authStore.user_data) {
+            $message(MESSAGE_TIP.r12t);
+            $privateTool.exportCard($authStore.user_data);
+          }
+        },
       }).then(() => {
         localStorage.clear();
         location.reload();
