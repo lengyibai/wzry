@@ -38,12 +38,13 @@ const onSelectRole = (role: number) => {
       close() {
         form.role = 1;
       },
-      confirm(v) {
+      confirm(v, close) {
         if (v !== "200012") {
           form.role = 1;
           $message("密码错误", "error");
           return;
         }
+        close();
         $message("开发者身份已确认");
       },
     });

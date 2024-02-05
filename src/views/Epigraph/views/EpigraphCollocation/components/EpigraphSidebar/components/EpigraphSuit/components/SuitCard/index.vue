@@ -3,7 +3,7 @@ import { computed } from "vue";
 
 import { KButton } from "@/components/business";
 import type { EpigraphCollocationStoreType } from "@/store/interface";
-import { $confirm, $input } from "@/utils";
+import { $confirm, $input, $message } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
@@ -50,10 +50,12 @@ const handleUse = (id: string) => {
 const handleRename = (id: string) => {
   $input({
     value: $props.data.label,
-    title: "更改方案名称",
+    title: "修改方案名称",
     placeholder: "请输入新的方案名称",
-    confirm(v) {
+    confirm(v, close) {
       $epigraphCollocationStore.renameSuit(id, v);
+      $message("修改成功！");
+      close();
     },
   });
 };

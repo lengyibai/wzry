@@ -9,5 +9,5 @@ export interface InputConfig {
   /** 关闭回调 */
   close?: () => void;
   /** 确定回调 */
-  confirm: (value: string) => void;
+  confirm: (value: string, close: () => void) => void;
 }

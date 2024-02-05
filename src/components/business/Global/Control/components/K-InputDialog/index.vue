@@ -33,8 +33,9 @@ const handleConfirm = () => {
     $message("内容不能为空", "error");
     return;
   }
-  config.value.confirm(content.value);
-  dialogRef.value?._close();
+  config.value.confirm(content.value, () => {
+    dialogRef.value?._close();
+  });
 };
 
 /* 关闭 */

@@ -5,7 +5,7 @@ import { computed } from "vue";
 import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
-import { $confirm, $input, $loading, $message, $privateTool, $tool } from "@/utils";
+import { $confirm, $input, $message, $privateTool, $tool } from "@/utils";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
 
@@ -65,18 +65,15 @@ const readFile = (e: Event | File) => {
           $input({
             title: "读取召唤师卡",
             placeholder: "请输入密码",
-            confirm(v) {
-              $loading.show("正在读取...");
-              setTimeout(async () => {
-                await $loading.close();
-                if (v === user_data.value!.password) {
-                  is_reading.value = false;
-                  $message(`${$tool.timeGreet}，${user_data.value?.username}`);
-                } else {
-                  $message("密码错误，请重新输入", "error");
-                  handleInput();
-                }
-              }, 1000);
+            confirm(v, close) {
+              if (v === user_data.value!.password) {
+                is_reading.value = false;
+                close();
+                $message(`${$tool.timeGreet}，${user_data.value?.username}`);
+              } else {
+                $message("密码错误，请重新输入", "error");
+                handleInput();
+              }
             },
           });
         };

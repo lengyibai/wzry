@@ -33,8 +33,9 @@ const handleRename = () => {
     title: "修改昵称",
     placeholder: "请输入新昵称",
     value: user_data.username,
-    confirm: (v) => {
+    confirm: (v, close) => {
       user_data.username = v;
+      close();
     },
   });
 };
@@ -45,8 +46,9 @@ const handleResetPwd = () => {
     title: "修改密码",
     placeholder: "请输入新密码",
     value: user_data.password,
-    confirm: (v) => {
+    confirm: (v, close) => {
       user_data.password = v;
+      close();
     },
   });
 };
