@@ -30,7 +30,7 @@ const generateRandomStrings = (length, count, excludedStrings) => {
 };
 
 console.log(
-  generateRandomStrings(4, 1, [
+  generateRandomStrings(4, 20, [
     //tip
     "kr53",
     "f1y0",
@@ -159,5 +159,27 @@ console.log(
     "fc15",
     "l1c4",
     "xo74",
+
+    //message-tip
+    "cg09",
+    "j5l7",
+    "l23d",
+    "s24z",
+    "rh43",
+    "n32v",
+    "w89h",
+    "km30",
+    "y2l2",
+    "a2k3",
+    "by88",
+    "kq89",
+    "mj67",
+    "fh97",
+    "kc58",
+    "iy70",
+    "r12t",
+    "y9k8",
+    "vf38",
+    "uf04",
   ]),
 );
