@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import dayjs from "dayjs";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
@@ -95,7 +96,12 @@ const onCloseConfirmEditInfo = () => {
     />
     <div class="user-card">
       <div class="name">{{ user_data.username }}</div>
-      <div class="role">身份：{{ role }}</div>
+      <div class="update-time">
+        <div class="time">
+          {{ dayjs(user_data.updateTime).format("YYYY-MM-DD HH:mm:ss") }}
+        </div>
+        <div class="desc">个人数据更新时间</div>
+      </div>
 
       <div class="btns">
         <KButton
