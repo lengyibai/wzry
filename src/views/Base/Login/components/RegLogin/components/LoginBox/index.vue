@@ -130,7 +130,7 @@ const handleLogin = () => {
         <i class="iconfont wzry-chaka" />
         <div class="text">点击选择卡片文件</div>
       </label>
-      <div class="tip">支持拖拽文件到此处</div>
+      <div v-if="!$tool.isPhone" class="tip">支持拖拽文件到此处</div>
     </template>
 
     <!-- 卡片信息 -->
