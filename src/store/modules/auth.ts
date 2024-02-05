@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import dayjs from "dayjs";
 
 import { RouterStore } from "@/store";
 import { userDefaultInfo } from "@/default";
@@ -68,6 +69,7 @@ const AuthStore = defineStore("auth", () => {
         ...v,
       };
 
+      user_data.value.updateTime = dayjs().valueOf();
       localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(user_data.value));
     },
 
