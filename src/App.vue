@@ -38,39 +38,31 @@ onMounted($tool.titleTip);
 <style scoped lang="less">
 .round-clip-enter-active {
   transform-origin: center center;
-  animation: round-clip-in 1.5s cubic-bezier(1, -0.67, 0, 1.5);
+  animation: round-clip-in 1s cubic-bezier(0.85, 0, 0.16, 1);
 }
 
 .round-clip-leave-active {
   transform-origin: center center;
-  animation: round-clip-out 1.5s cubic-bezier(1, -0.67, 0, 2.5);
+  animation: round-clip-out 1s cubic-bezier(0.85, 0, 0.16, 1);
 }
 
 @keyframes round-clip-in {
   0% {
-    transform: translateY(-125%) scale(0.75);
-  }
-
-  50% {
-    transform: translateY(0%) scale(0.75);
+    transform: translateY(-100vh);
   }
 
   100% {
-    transform: translateX(0%) scale(1);
+    transform: translateY(0);
   }
 }
 
 @keyframes round-clip-out {
   0% {
-    transform: translateX(0%) scale(1);
-  }
-
-  50% {
-    transform: translateX(0%) scale(0.75);
+    transform: translateY(0);
   }
 
   100% {
-    transform: translateX(-125%) scale(0.75);
+    transform: translateY(100vh);
   }
 }
 </style>

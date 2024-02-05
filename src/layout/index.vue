@@ -35,7 +35,7 @@ onMounted(async () => {
 
   await $tool.promiseTimeout(() => {
     show_sidebar.value = true;
-  }, 500);
+  }, 1000);
   await $tool.promiseTimeout(() => {
     show_navbar.value = true;
   }, 500);

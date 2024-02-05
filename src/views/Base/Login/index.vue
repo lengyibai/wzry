@@ -61,7 +61,7 @@ const onCloseNotice = () => {
 
 setTimeout(() => {
   show_notice.value = true;
-}, 1500);
+}, 1000);
 </script>
 
 <template>
