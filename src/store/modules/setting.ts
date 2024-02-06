@@ -16,7 +16,7 @@ const SettingStore = defineStore("setting", () => {
   const $barrageStore = BarrageStore();
 
   const ExposeData = {
-    config: ref<Global.SettingConfig>({ ...configDefault() }),
+    config: ref<Global.SettingConfig>(configDefault()),
   };
   const { config } = ExposeData;
 
@@ -59,6 +59,15 @@ const SettingStore = defineStore("setting", () => {
         config.value.noTips[key as keyof Global.Tip.Key] = false;
       }
       saveLocal();
+    },
+
+    /** @description 重置配置 */
+    resetConfig() {
+      config.value = {
+        ...configDefault(),
+        noTips: config.value.noTips,
+      };
+      takeEffect();
     },
 
     /**

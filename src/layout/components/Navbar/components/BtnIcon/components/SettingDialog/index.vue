@@ -2,7 +2,6 @@
 import { ref } from "vue";
 
 import { setLanguage } from "@/language";
-import { configDefault } from "@/default";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $confirm, $message, $tip } from "@/utils";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
@@ -14,9 +13,6 @@ const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $cssVarStore = CssVarStore();
 const $barrageStore = BarrageStore();
-
-/** 默认配置 */
-const default_config: Global.SettingConfig = { ...configDefault() };
 
 const config = ref<Global.SettingConfig>({ ...$settingStore.config });
 
@@ -112,21 +108,12 @@ const saveConfig = () => {
 const handleResetConfig = () => {
   $confirm({
     text: "确定重置所有配置项？",
-    confirm: onResetConfig,
+    confirm() {
+      $settingStore.resetConfig();
+      $message(MESSAGE_TIP.j5l7);
+      config.value = $settingStore.config;
+    },
   });
-};
-
-/* 重置配置 */
-const onResetConfig = () => {
-  $settingStore.saveConfig(default_config);
-  config.value = { ...default_config };
-  const { audio, audioVolume, musicVolume, shine, barrage } = config.value;
-  $audioStore.setAudio(audio);
-  $audioStore.setVolume(audioVolume);
-  $musicStore.setVolume(musicVolume);
-  $barrageStore.setBarrage(barrage);
-  $cssVarStore.setShine(shine);
-  $message(MESSAGE_TIP.j5l7);
 };
 </script>
 
