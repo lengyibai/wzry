@@ -21,7 +21,7 @@ const $emit = defineEmits<{
 const $audioStore = AudioStore();
 
 /** 表单数据 */
-const form = reactive<Global.UserData>({ ...userDefaultInfo() });
+const form = reactive<Global.UserData>(userDefaultInfo());
 
 /* 选择图片 */
 const handleSelectAvatar = (e: Event) => {
