@@ -9,9 +9,8 @@ import ToolBar from "./components/ToolBar/index.vue";
 import DownLoad from "./components/DownLoad/index.vue";
 
 import { SettingStore } from "@/store";
-import { $concise, $focus, $tip } from "@/utils";
+import { $concise } from "@/utils";
 import { KVideo } from "@/components/business";
-import { SCENE_TIP } from "@/config";
 import { useStaticResourceVersion } from "@/hooks";
 
 const $settingStore = SettingStore();
@@ -21,8 +20,6 @@ const { config } = storeToRefs($settingStore);
 const { getImgLink, getVideoLink, getHtmlLink } = $concise;
 
 const { login_video_bg_version } = useStaticResourceVersion();
-
-const toolbarRef = ref<InstanceType<typeof ToolBar>>();
 
 /** 显示公告 */
 const show_notice = ref(false);
@@ -46,19 +43,6 @@ const onToolType = (v: string) => {
   show_team.value = v === "team";
 };
 
-/* 关闭公告触发 */
-const onCloseNotice = () => {
-  $tip({
-    text: SCENE_TIP.mu63,
-    align: "right-bottom",
-    color: false,
-    createFn() {
-      $focus.show(toolbarRef.value!._el!);
-    },
-    btnFn: $focus.close,
-  });
-};
-
 setTimeout(() => {
   show_notice.value = true;
 }, 1000);
@@ -74,10 +58,10 @@ setTimeout(() => {
     <RegLogin v-if="finish" :class="{ 'hide-reg-login': hideRegLogin }" />
 
     <!-- 工具栏 -->
-    <ToolBar ref="toolbarRef" :notice="finish" @clicks="onToolType" />
+    <ToolBar :notice="finish" @clicks="onToolType" />
 
     <!-- 公告 -->
-    <Notice v-if="show_notice && finish" v-model="show_notice" @close="onCloseNotice" />
+    <Notice v-if="show_notice && finish" v-model="show_notice" />
 
     <!-- 开黑 -->
     <Team v-if="show_team" v-model="show_team" />
