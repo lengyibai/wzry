@@ -36,12 +36,7 @@ const MusicStore = defineStore("music", () => {
   //初始化音乐
   (async function initMusic() {
     const data = (await API_DATA.Music()).data;
-
-    //筛选优先级
-    const prior = data.filter((item) => item.sort === 1);
-    const lower = data.filter((item) => item.sort === 0);
-
-    musics.value = [...prior, ...$tool.shuffleArray<Global.Music>(lower)];
+    musics.value = $tool.shuffleArray<Global.Music>(data);
 
     //允许音频可视化跨域
     bgm.setAttribute("crossOrigin", "anonymous");

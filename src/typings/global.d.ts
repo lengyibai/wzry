@@ -129,8 +129,6 @@ declare namespace Global {
     url: string;
     /** 音乐时长 */
     time: string;
-    /** 权重 */
-    sort: 0 | 1;
   }
 
   /** @description 弹幕信息 */
