@@ -147,5 +147,5 @@
     "zhuangbei",
     "zhuanhuan"
   ],
-  "ignorePaths": ["node_modules/**", "dist/**", "src/config/modules/pinyin.ts"]
+  "ignorePaths": ["node_modules/**", "dist/**", "src/config/modules/pinyin.ts", "*.json"]
 }
