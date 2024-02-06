@@ -522,3 +522,28 @@ export class LoadMore {
     }
   }
 }
+
+/** @description 配置合并，如果当前配置有但初始配置没有的属性，则会删除该属性，反之添加 */
+export const mergeConfig = <T>(config: T, initialConfig: T) => {
+  for (const key in initialConfig) {
+    if (initialConfig[key] !== undefined) {
+      if (config[key] !== undefined) {
+        if (typeof initialConfig[key] === "object") {
+          mergeConfig(config[key], initialConfig[key]);
+        }
+      } else {
+        config[key] = initialConfig[key];
+      }
+    }
+  }
+  for (const key in config) {
+    if (config[key] !== undefined) {
+      if (initialConfig[key] === undefined) {
+        delete config[key];
+      } else if (typeof config[key] === "object") {
+        mergeConfig(config[key], initialConfig[key]);
+      }
+    }
+  }
+  return config;
+};

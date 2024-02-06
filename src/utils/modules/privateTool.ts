@@ -2,9 +2,10 @@ import { Base64 } from "js-base64";
 import dayjs from "dayjs";
 
 import { $message } from "./busTransfer";
-import { imageOptimizer, saveFiles } from "./tool";
+import { imageOptimizer, mergeConfig, saveFiles } from "./tool";
 
 import { MESSAGE_TIP } from "@/config";
+import { userDefaultInfo } from "@/default";
 
 /** @description 选择并压缩头像 */
 export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
@@ -39,10 +40,11 @@ export const encryption = (data: any) => {
 };
 
 /** @description 解密数据 */
-export const decryption = (data: string) => {
-  const reversed_data = data.split("").reverse().join("");
+export const decryption = (v: string) => {
+  const reversed_data = v.split("").reverse().join("");
   const decode_data = Base64.decode(reversed_data);
-  return JSON.parse(decode_data);
+  const config = mergeConfig<Global.UserData>(JSON.parse(decode_data), userDefaultInfo());
+  return config;
 };
 
 /** @description 导出卡片 */
