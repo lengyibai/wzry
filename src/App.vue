@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
-import { AudioStore, SettingStore } from "@/store";
+import { AudioStore } from "@/store";
 import { $loading, $tool } from "@/utils";
 import { Control, WaterMark } from "@/components/business";
 
 const $audioStore = AudioStore();
-const $settingStore = SettingStore();
 
 $audioStore.preload();
-$settingStore.takeEffect();
 
 /* 路由组件加载结束后触发 */
 const onComponentMounted = () => {

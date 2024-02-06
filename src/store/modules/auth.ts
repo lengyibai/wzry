@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import dayjs from "dayjs";
 
-import { RouterStore } from "@/store";
+import { RouterStore, SettingStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
 import { BASE_CONFIG, LOCAL_KEY, MESSAGE_TIP } from "@/config";
@@ -11,6 +11,7 @@ import { router } from "@/router";
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
+  const $settingStore = SettingStore();
 
   /** 实时检测帐号状态 */
   let watching = false;
@@ -22,6 +23,11 @@ const AuthStore = defineStore("auth", () => {
     user_data: ref<Global.UserData>(userDefaultInfo()),
   };
   const { userStatus, user_data } = ExposeData;
+
+  /** @description 登录进入网页 */
+  const loginInto = () => {
+    $settingStore.useUserSetting(user_data.value.settingConfig);
+  };
 
   /** @description 实时检测帐号状态 */
   const watchStatus = () => {
@@ -50,6 +56,7 @@ const AuthStore = defineStore("auth", () => {
       router.push(BASE_CONFIG.HOME_URL);
       localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(form));
       watchStatus();
+      loginInto();
     },
 
     /** @description 自动登录 */
@@ -60,6 +67,7 @@ const AuthStore = defineStore("auth", () => {
       user_data.value = $privateTool.decryption(local_user);
       $message(`${$tool.timeGreet}，${user_data.value.username}`);
       watchStatus();
+      loginInto();
     },
 
     /** @description 修改用户数据 */
@@ -90,6 +98,7 @@ const AuthStore = defineStore("auth", () => {
             }
           },
         });
+
         if (user_data.value.secondaryPassword) {
         } else {
           $message(MESSAGE_TIP.n32v);

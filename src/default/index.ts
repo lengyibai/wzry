@@ -41,6 +41,7 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   role: 1,
   createTime: 0,
   updateTime: 0,
+  settingConfig: configDefault(),
 });
 
 /** @description 默认配置信息 */

@@ -3,13 +3,13 @@ import { ref } from "vue";
 
 import { CssVarStore } from "./cssVar";
 
-import { AudioStore, BarrageStore, MusicStore } from "@/store";
+import { AudioStore, AuthStore, BarrageStore, MusicStore } from "@/store";
 import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
-import { LOCAL_KEY } from "@/config/modules/local-key";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
+  const $authStore = AuthStore();
   const $audioStore = AudioStore();
   const $musicStore = MusicStore();
   const $cssVarStore = CssVarStore();
@@ -20,25 +20,28 @@ const SettingStore = defineStore("setting", () => {
   };
   const { config } = ExposeData;
 
-  /* 从本地获取配置进行合并 */
-  const data = localStorage.getItem(LOCAL_KEY.CONFIG);
-  if (data) config.value = { ...config.value, ...JSON.parse(data) };
-  localStorage.setItem(LOCAL_KEY.CONFIG, JSON.stringify(config.value));
+  /** @description 部分配置需手动生效 */
+  const takeEffect = () => {
+    setLanguage(config.value.language);
+    $audioStore.setAudio(config.value.audio);
+    $barrageStore.setBarrage(config.value.barrage);
+    $audioStore.setVolume(config.value.audioVolume);
+    $musicStore.setVolume(config.value.musicVolume);
+    $cssVarStore.setShine(config.value.shine);
+  };
 
   /** @description 保存配置到本地 */
   const saveLocal = () => {
-    localStorage.setItem(LOCAL_KEY.CONFIG, JSON.stringify(config.value));
+    $authStore.updateUserData({
+      settingConfig: config.value,
+    });
   };
 
   const ExposeMethods = {
-    /** @description 部分配置需手动生效 */
-    takeEffect() {
-      setLanguage(config.value.language);
-      $audioStore.setAudio(config.value.audio);
-      $barrageStore.setBarrage(config.value.barrage);
-      $audioStore.setVolume(config.value.audioVolume);
-      $musicStore.setVolume(config.value.musicVolume);
-      $cssVarStore.setShine(config.value.shine);
+    /** @description 使用用户配置 */
+    useUserSetting(v: Global.SettingConfig) {
+      config.value = v;
+      takeEffect();
     },
 
     /**

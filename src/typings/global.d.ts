@@ -267,6 +267,8 @@ declare namespace Global {
     createTime: number;
     /** 更新时间 */
     updateTime: number;
+    /** 设置配置项 */
+    settingConfig: SettingConfig;
   }
 
   /** @description 基础类型 */
