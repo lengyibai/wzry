@@ -6,8 +6,6 @@ const LOCAL_KEY = {
   VERSION_DIST: "version_dist",
   /** 数据版本 */
   VERSION_DATA: "version_data",
-  /** 设置内的配置 */
-  CONFIG: "config",
   /** 多语言 */
   LANGUAGE: "language",
   /** 数据时间，用于在固定时间强制更新本地所有数据 */
