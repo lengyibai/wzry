@@ -5,7 +5,7 @@ import { setLanguage } from "@/language";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $confirm, $message, $tip } from "@/utils";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
-import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { CUSTOM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 
 const $audioStore = AudioStore();
@@ -78,12 +78,12 @@ const onParticle = () => {
 const onTip = (v: boolean) => {
   !v &&
     $tip({
-      text: "我~~一~~定~~会~~回~~来~~的~~",
+      text: CUSTOM_TIP.qk36,
     });
   saveConfig();
   v &&
     $tip({
-      text: "我又回来啦！",
+      text: CUSTOM_TIP.hg86,
     });
 };
 
@@ -91,7 +91,7 @@ const onTip = (v: boolean) => {
 const handleResetTip = () => {
   $tip({
     btnText: "立刻刷新",
-    text: "恢复小贴士需要刷新浏览器才会生效。",
+    text: CUSTOM_TIP.sm04,
     btnFn() {
       $settingStore.restoreTip();
       location.reload();

@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 
 import { HeroDetailStore } from "@/store";
 import { $tip, $focus } from "@/utils";
-import { MOUSE_TIP } from "@/config";
+import { $tipText, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $emit = defineEmits<{
@@ -36,9 +36,7 @@ $heroDetailStore.setScrollFn("skinIcon", (pageName) => {
       $tip({
         align: "right-top",
         color: false,
-        text: `${hero_info.value.name}存在${
-          length == 3 ? "三" : "两"
-        }套技能，页面右下角有个切换副技能的按钮，点击它吧！`,
+        text: $tipText("le13", { h: hero_info.value.name, c: length == 3 ? "三" : "两" }),
         createFn() {
           $focus.show(toggleRef.value!);
         },

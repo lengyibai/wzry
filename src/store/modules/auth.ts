@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { RouterStore, SettingStore } from "@/store";
 import { userDefaultInfo } from "@/default";
 import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
-import { BASE_CONFIG, LOCAL_KEY, MESSAGE_TIP } from "@/config";
+import { BASE_CONFIG, CUSTOM_TIP, LOCAL_KEY, MESSAGE_TIP } from "@/config";
 import { router } from "@/router";
 
 /** @description 用户相关 */
@@ -35,7 +35,7 @@ const AuthStore = defineStore("auth", () => {
 
     if (!localStorage.getItem(LOCAL_KEY.USER_DATA)) {
       $tip({
-        text: "数据丢失，请刷新页面。",
+        text: CUSTOM_TIP.vu90,
         btnText: "立刻刷新",
       }).then(() => {
         location.reload();

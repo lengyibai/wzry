@@ -10,7 +10,7 @@ import { useGetData } from "@/hooks/modules/useGetData";
 import { BASE_CONFIG } from "@/config/modules/base";
 import { $message, $tip } from "@/utils/modules/busTransfer";
 import { $privateTool } from "@/utils";
-import { MESSAGE_TIP } from "@/config";
+import { $tipText, MESSAGE_TIP } from "@/config";
 
 const VersionStore = defineStore("version", () => {
   const $authStore = AuthStore();
@@ -92,9 +92,7 @@ const VersionStore = defineStore("version", () => {
     const difference = token - Number(data_token);
     if (difference > BASE_CONFIG.OVERDUE_DATA_TIME) {
       $tip({
-        text: `你已经${Math.trunc(
-          difference / 86400,
-        )}天没有访问本站了，为保证数据准确性，请点击确定清除本地数据重新下载资源。`,
+        text: $tipText("cw90", { d: Math.trunc(difference / 86400) }),
         done() {
           if ($authStore.user_data) {
             $message(MESSAGE_TIP.r12t);

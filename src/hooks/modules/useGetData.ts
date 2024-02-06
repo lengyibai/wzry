@@ -1,7 +1,7 @@
 import { ref } from "vue";
 
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
-import { LOCAL_KEY, REQUEST } from "@/config";
+import { $tipText, LOCAL_KEY, REQUEST } from "@/config";
 import { $tip } from "@/utils";
 
 /** @description 下载数据 */
@@ -86,14 +86,14 @@ const useGetData = () => {
         if (data_lacks.length) {
           const data_text = data_lacks.join("、");
           $tip({
-            text: `检测到本地缺失数据：[${data_text}]，已为你自动恢复。`,
+            text: $tipText("zd98", { t: "数据", v: data_text }),
           });
         }
 
         if (voice_lacks.length) {
           const voice_text = voice_lacks.join("、");
           $tip({
-            text: `检测到本地缺失语音：[${voice_text}]，已为你自动恢复。`,
+            text: $tipText("zd98", { t: "语音", v: voice_text }),
           });
         }
       }
