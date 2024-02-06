@@ -8,7 +8,7 @@ import { AuthStore } from "@/store";
 import { $confirm, $privateTool, $tool } from "@/utils";
 import { KButton, KDialog } from "@/components/business";
 import { vDelayHide, vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
 import { getImgLink } from "@/utils/modules/concise";
 
 const $authStore = AuthStore();
@@ -49,9 +49,7 @@ const handleExitCard = () => {
   }
 
   $confirm({
-    text: $tool.isPhone
-      ? "退卡会销毁当前卡片数据，请确保你已经下载了卡片，确定退卡吗？"
-      : "退卡会下载最新卡片，确定退卡吗？",
+    text: $tool.isPhone ? CONFIRM_TIP.wd31 : CONFIRM_TIP.nh44,
     confirm() {
       if (!$tool.isPhone) {
         $privateTool.exportCard(user_data.value);

@@ -8,7 +8,7 @@ import RegLogTop from "../../common/components/RegLogTop/index.vue";
 import { $confirm, $input, $message, $privateTool, $tool } from "@/utils";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
-import { MESSAGE_TIP } from "@/config";
+import { CONFIRM_TIP, MESSAGE_TIP } from "@/config";
 
 const $authStore = AuthStore();
 
@@ -93,7 +93,7 @@ const readFile = (e: Event | File) => {
 /* 退卡 */
 const handleExit = () => {
   $confirm({
-    text: "确认换卡登录吗？",
+    text: CONFIRM_TIP.wi59,
     confirm() {
       is_reading.value = true;
       user_data.value = undefined;

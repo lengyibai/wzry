@@ -8,7 +8,7 @@ import _debounce from "lodash/debounce";
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
-import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { CONFIRM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { $confirm, $message } from "@/utils";
 import { KButton } from "@/components/business";
@@ -39,7 +39,7 @@ const handleClose = () => {
 /* 一键拆卸 */
 const handleClear = () => {
   $confirm({
-    text: "确定拆卸铭文吗？",
+    text: CONFIRM_TIP.q7h5,
     confirm: $epigraphCollocationStore.clearColors,
   });
 };

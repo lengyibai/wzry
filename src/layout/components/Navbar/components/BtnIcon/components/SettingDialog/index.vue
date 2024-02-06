@@ -5,7 +5,7 @@ import { setLanguage } from "@/language";
 import { AudioStore, MusicStore, SettingStore, CssVarStore, BarrageStore } from "@/store";
 import { $confirm, $message, $tip } from "@/utils";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
-import { CUSTOM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { CONFIRM_TIP, CUSTOM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 
 const $audioStore = AudioStore();
@@ -107,7 +107,7 @@ const saveConfig = () => {
 /* 显示确认重置弹窗 */
 const handleResetConfig = () => {
   $confirm({
-    text: "确定重置所有配置项？",
+    text: CONFIRM_TIP.i8p8,
     confirm() {
       $settingStore.resetConfig();
       $message(MESSAGE_TIP.j5l7);

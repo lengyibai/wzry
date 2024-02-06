@@ -7,7 +7,7 @@ import { $confirm, $input, $message } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
-import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { $confirmText, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 套装信息 */
@@ -63,7 +63,7 @@ const handleRename = (id: string) => {
 /* 删除方案 */
 const handleDelete = (id: string, name: string) => {
   $confirm({
-    text: `确定删除[${name}]这个方案吗？`,
+    text: $confirmText("va64", { name }),
     confirm() {
       $epigraphCollocationStore.deleteSuit(id);
     },

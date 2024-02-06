@@ -8,7 +8,7 @@ import { AudioStore } from "@/store";
 import { $confirm, $message, $tool } from "@/utils";
 import type { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
-import { MESSAGE_TIP, REQUEST } from "@/config";
+import { CONFIRM_TIP, MESSAGE_TIP, REQUEST } from "@/config";
 import { vMouseTip } from "@/directives";
 
 defineOptions({
@@ -106,7 +106,7 @@ const handleUpdate = async (data: TableData) => {
 const handleReplace = (data: TableData) => {
   replace_data = data;
   $confirm({
-    text: "即将从远程下载当前数据进行覆盖",
+    text: CONFIRM_TIP.ao63,
     confirm: onConfirmReset(data.request),
   });
 };
