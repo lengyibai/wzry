@@ -3,9 +3,8 @@ import { ref } from "vue";
 import dayjs from "dayjs";
 
 import { RouterStore, SettingStore } from "@/store";
-import { userDefaultInfo } from "@/default";
 import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
-import { BASE_CONFIG, CUSTOM_TIP, LOCAL_KEY, MESSAGE_TIP } from "@/config";
+import { BASE_CONFIG, CUSTOM_TIP, DEFAULT, LOCAL_KEY, MESSAGE_TIP } from "@/config";
 import { router } from "@/router";
 
 /** @description 用户相关 */
@@ -20,7 +19,7 @@ const AuthStore = defineStore("auth", () => {
     /** 用户登录状态 */
     userStatus: ref(false),
     /** 用户相关信息 */
-    user_data: ref<Global.UserData>(userDefaultInfo()),
+    user_data: ref<Global.UserData>(DEFAULT.userDefaultInfo()),
   };
   const { userStatus, user_data } = ExposeData;
 
@@ -127,7 +126,7 @@ const AuthStore = defineStore("auth", () => {
     exitCard() {
       watching = false;
       userStatus.value = false;
-      user_data.value = userDefaultInfo();
+      user_data.value = DEFAULT.userDefaultInfo();
       $routerStore.removeRoutes();
       localStorage.removeItem(LOCAL_KEY.USER_DATA);
       router.replace("/login");

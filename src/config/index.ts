@@ -6,3 +6,4 @@ export * from "./modules/request";
 export * from "./modules/json-name";
 export * from "./modules/mouse-tip";
 export * from "./modules/message-tip";
+export * as DEFAULT from "./modules/default";

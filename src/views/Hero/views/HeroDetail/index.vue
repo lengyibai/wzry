@@ -10,10 +10,9 @@ import HeroRelationship from "./components/HeroRelationship/index.vue";
 import HeroSkin from "./components/HeroSkin/index.vue";
 import HeroSkill from "./components/HeroSkill/index.vue";
 
-import { heroDefault } from "@/default";
 import { HeroDetailStore, HeroStore, AudioStore } from "@/store";
 import { $loading } from "@/utils";
-import { MOUSE_TIP } from "@/config";
+import { DEFAULT, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $router = useRouter();
@@ -33,7 +32,7 @@ const show_progress = ref(false);
 /** 英雄关系切换时重新加载皮肤页 */
 const hero_toggle = ref(true);
 /** 英雄信息 */
-const hero_data = ref<Game.Hero.Detail>(heroDefault());
+const hero_data = ref<Game.Hero.Detail>(DEFAULT.heroDefault());
 
 $audioStore.play("u4c5");
 

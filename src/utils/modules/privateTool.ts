@@ -4,8 +4,7 @@ import dayjs from "dayjs";
 import { $message } from "./busTransfer";
 import { imageOptimizer, mergeConfig, saveFiles } from "./tool";
 
-import { MESSAGE_TIP } from "@/config";
-import { userDefaultInfo } from "@/default";
+import { DEFAULT, MESSAGE_TIP } from "@/config";
 
 /** @description 选择并压缩头像 */
 export const selectAvatarCompress = (e: Event, cb: (v: string) => void) => {
@@ -43,7 +42,7 @@ export const encryption = (data: any) => {
 export const decryption = (v: string) => {
   const reversed_data = v.split("").reverse().join("");
   const decode_data = Base64.decode(reversed_data);
-  const config = mergeConfig<Global.UserData>(JSON.parse(decode_data), userDefaultInfo());
+  const config = mergeConfig<Global.UserData>(JSON.parse(decode_data), DEFAULT.userDefaultInfo());
   return config;
 };
 

@@ -4,8 +4,8 @@ import { ref } from "vue";
 import { CssVarStore } from "./cssVar";
 
 import { AudioStore, AuthStore, BarrageStore, MusicStore } from "@/store";
-import { configDefault } from "@/default";
 import { setLanguage } from "@/language";
+import { DEFAULT } from "@/config";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
@@ -16,7 +16,7 @@ const SettingStore = defineStore("setting", () => {
   const $barrageStore = BarrageStore();
 
   const ExposeData = {
-    config: ref<Global.SettingConfig>(configDefault()),
+    config: ref<Global.SettingConfig>(DEFAULT.configDefault()),
   };
   const { config } = ExposeData;
 
@@ -64,7 +64,7 @@ const SettingStore = defineStore("setting", () => {
     /** @description 重置配置 */
     resetConfig() {
       config.value = {
-        ...configDefault(),
+        ...DEFAULT.configDefault(),
         noTips: config.value.noTips,
       };
       takeEffect();

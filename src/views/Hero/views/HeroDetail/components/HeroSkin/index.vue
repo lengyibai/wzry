@@ -8,13 +8,13 @@ import HeroSkinType from "./components/HeroSkinType/index.vue";
 import HeroSkinPrice from "./components/HeroSkinPrice/index.vue";
 import HeroSkinHeadImg from "./components/HeroSkinHeadImg/index.vue";
 
-import { heroDefault } from "@/default";
 import { HeroDetailStore } from "@/store";
+import { DEFAULT } from "@/config";
 
 const $heroDetail = HeroDetailStore();
 
 /** 英雄数据 */
-const hero_data = ref<Game.Hero.Detail>(heroDefault());
+const hero_data = ref<Game.Hero.Detail>(DEFAULT.heroDefault());
 
 hero_data.value = $heroDetail.hero_info;
 

@@ -7,13 +7,13 @@ import { useRoute, useRouter } from "vue-router";
 import HeroCard from "./components/HeroCard/index.vue";
 import HeroToolbar from "./components/HeroToolbar/index.vue";
 
-import { heroDefault } from "@/default";
 import { AudioStore, HeroStore, HeroDetailStore } from "@/store";
 import { $tool, $loading } from "@/utils";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
+import { DEFAULT } from "@/config";
 
 defineOptions({
   name: "Hero",
@@ -57,7 +57,7 @@ const show_hero_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 /** 英雄信息 */
-const hero_info = ref<Game.Hero.Detail>(heroDefault());
+const hero_info = ref<Game.Hero.Detail>(DEFAULT.heroDefault());
 
 /* 实时修改一行个数 */
 const changeCount = () => {

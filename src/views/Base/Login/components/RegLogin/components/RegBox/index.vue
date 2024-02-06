@@ -7,12 +7,11 @@ import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
 import RoleSelect from "./components/RoleSelect/index.vue";
 
-import { userDefaultInfo } from "@/default";
 import { AudioStore } from "@/store";
 import { $input, $message, $privateTool, $tool } from "@/utils";
 import { KButton, KInput } from "@/components/business";
 import { vMouseTip } from "@/directives";
-import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { DEFAULT, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   success: [];
@@ -21,7 +20,7 @@ const $emit = defineEmits<{
 const $audioStore = AudioStore();
 
 /** 表单数据 */
-const form = reactive<Global.UserData>(userDefaultInfo());
+const form = reactive<Global.UserData>(DEFAULT.userDefaultInfo());
 
 /* 选择图片 */
 const handleSelectAvatar = (e: Event) => {

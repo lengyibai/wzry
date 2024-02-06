@@ -3,9 +3,9 @@ import { reactive, ref } from "vue";
 
 import type { HeroDetailStoreType } from "../interface";
 
-import { heroDefault } from "@/default";
 import { GAME_HERO } from "@/api";
 import { $concise } from "@/utils";
+import { DEFAULT } from "@/config";
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
@@ -13,7 +13,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
 
   const ExposeData = {
     /** 英雄信息 */
-    hero_info: ref<Game.Hero.Detail>(heroDefault()),
+    hero_info: ref<Game.Hero.Detail>(DEFAULT.heroDefault()),
     /** 滚动结束后触发函数组 */
     scrollFns: reactive<HeroDetailStoreType.ScrollFn>([]),
     /** 处于展示的技能索引 */
