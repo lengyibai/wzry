@@ -528,7 +528,7 @@ export const mergeConfig = <T>(config: T, initialConfig: T) => {
   for (const key in initialConfig) {
     if (initialConfig[key] !== undefined) {
       if (config[key] !== undefined) {
-        if (typeof initialConfig[key] === "object") {
+        if (Object.prototype.toString.call(initialConfig[key]) === "[object Object]") {
           mergeConfig(config[key], initialConfig[key]);
         }
       } else {
@@ -540,7 +540,7 @@ export const mergeConfig = <T>(config: T, initialConfig: T) => {
     if (config[key] !== undefined) {
       if (initialConfig[key] === undefined) {
         delete config[key];
-      } else if (typeof config[key] === "object") {
+      } else if (Object.prototype.toString.call(config[key]) === "[object Object]") {
         mergeConfig(config[key], initialConfig[key]);
       }
     }
