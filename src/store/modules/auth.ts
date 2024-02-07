@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import dayjs from "dayjs";
 
-import { RouterStore, SettingStore } from "@/store";
+import { EpigraphCollocationStore, RouterStore, SettingStore } from "@/store";
 import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
 import { BASE_CONFIG, CUSTOM_TIP, DEFAULT, LOCAL_KEY, MESSAGE_TIP } from "@/config";
 import { router } from "@/router";
@@ -11,6 +11,7 @@ import { router } from "@/router";
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
   const $settingStore = SettingStore();
+  const $epigraphCollocationStore = EpigraphCollocationStore();
 
   /** 实时检测帐号状态 */
   let watching = false;
@@ -26,6 +27,7 @@ const AuthStore = defineStore("auth", () => {
   /** @description 登录进入网页 */
   const loginInto = () => {
     $settingStore.useUserSetting(user_data.value.settingConfig);
+    $epigraphCollocationStore.useUserEpigraphSuit(user_data.value.epigraphSuit);
   };
 
   /** @description 实时检测帐号状态 */

@@ -42,6 +42,7 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   createTime: 0,
   updateTime: 0,
   settingConfig: configDefault(),
+  epigraphSuit: [],
 });
 
 /** @description 默认配置信息 */

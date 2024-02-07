@@ -11,7 +11,7 @@ import { $confirmText, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 
 interface Props {
   /** 套装信息 */
-  data: EpigraphCollocationStoreType.Suit;
+  data: Game.Epigraph.Suit;
 }
 
 const $props = defineProps<Props>();

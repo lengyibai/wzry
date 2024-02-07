@@ -269,6 +269,8 @@ declare namespace Global {
     updateTime: number;
     /** 设置配置项 */
     settingConfig: SettingConfig;
+    /** 铭文套装 */
+    epigraphSuit: Game.Epigraph.Suit[];
   }
 
   /** @description 基础类型 */

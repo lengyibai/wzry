@@ -32,18 +32,6 @@ export namespace EquipStoreType {
 
 /** @description 铭文相关 */
 export namespace EpigraphCollocationStoreType {
-  /** @description 三色铭文列表 */
-  export type Colors = Record<Remote.Epigraph.Color["value"], Game.Epigraph.Data[] | undefined[]>;
-
-  /** @description 铭文库存 */
-  export type Inventory = Record<
-    Remote.Epigraph.Color["value"],
-    {
-      epigraph: Game.Epigraph.Data;
-      count: number;
-    }[]
-  >;
-
   /** @description 铭文数量信息 */
   export type Info = Record<
     number,
@@ -52,18 +40,6 @@ export namespace EpigraphCollocationStoreType {
       count: number;
     }
   >;
-
-  /** @description 铭文套装 */
-  export interface Suit {
-    /** 标识符 */
-    id: string;
-    /** 套装名称 */
-    label: string;
-    /** 三色列表 */
-    colors: Colors;
-    /** 库存 */
-    inventory: Inventory;
-  }
 
   /** @description 当前侧边栏显示状态 */
   export type SidebarStatus = "EFFECT" | "INVENTORY" | "SUIT";

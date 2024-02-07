@@ -13,8 +13,6 @@ const comps: Record<EpigraphCollocationStoreType.SidebarStatus, any> = {
   INVENTORY: EpigraphInventory,
   SUIT: EpigraphSuit,
 };
-
-$epigraphCollocationStore.getEpigraphSuitList();
 </script>
 
 <template>

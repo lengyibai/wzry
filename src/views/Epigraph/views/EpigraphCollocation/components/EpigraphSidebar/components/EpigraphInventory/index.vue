@@ -3,14 +3,13 @@ import { ref } from "vue";
 import { watch } from "vue";
 import { storeToRefs } from "pinia";
 import { computed, nextTick } from "vue";
-import _debounce from "lodash/debounce";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
-import { CONFIRM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
-import { $confirm, $message } from "@/utils";
+import { $confirm } from "@/utils";
 import { KButton } from "@/components/business";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
@@ -52,17 +51,6 @@ const handleSuit = () => {
   });
 };
 
-/* 保存方案 */
-const debounceSaveSuit = _debounce(
-  () => {
-    $epigraphCollocationStore.syncSuit();
-    $message(MESSAGE_TIP.l23d);
-    handleSuit();
-  },
-  1000,
-  { leading: true, trailing: false },
-);
-
 /* 切换颜色时回调顶部 */
 watch(fill_color, () => {
   epigraphListRef.value!.scrollTop = 0;
@@ -98,18 +86,6 @@ watch(fill_color, () => {
 
     <div class="btn">
       <KButton v-mouse-tip class="k-button" @click="handleSuit">套装方案</KButton>
-      <KButton
-        v-mouse-tip="{
-          text: $epigraphCollocationStore.is_all_empty ? MOUSE_TIP.g5l7 : MOUSE_TIP.zk84,
-          disabled: $epigraphCollocationStore.is_all_empty,
-        }"
-        type="warning"
-        class="k-button"
-        :disabled="$epigraphCollocationStore.is_all_empty"
-        @click="debounceSaveSuit"
-      >
-        保存
-      </KButton>
       <KButton
         v-mouse-tip="{
           text: $epigraphCollocationStore.is_all_empty ? MOUSE_TIP.g5l7 : '',

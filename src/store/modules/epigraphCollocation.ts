@@ -5,16 +5,19 @@ import _cloneDeep from "lodash/cloneDeep";
 
 import type { EpigraphCollocationStoreType } from "../interface";
 
+import { AuthStore } from "./auth";
+
 import { $tool } from "@/utils";
-import { LOCAL_KEY } from "@/config";
 
 /** @description 铭文搭配 */
 const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
+  const $authStore = AuthStore();
+
   const ExposeData = {
     /** 侧边栏状态 */
     sidebar_status: ref<EpigraphCollocationStoreType.SidebarStatus>("INVENTORY"),
     /** 当前展示的铭文方案 */
-    current_suit: ref<EpigraphCollocationStoreType.Suit>(),
+    current_suit: ref<Game.Epigraph.Suit>(),
     /** 正在填充的铭文颜色 */
     fill_color: ref<Remote.Epigraph.Color["value"]>(),
     /** 正在填充槽位的索引号 */
@@ -22,9 +25,9 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
     /** 当前在三色铭文列表中选中的铭文id */
     color_id_selected: ref(0),
     /** 搭配套装列表 */
-    suit_list: ref<EpigraphCollocationStoreType.Suit[]>([]),
+    suit_list: ref<Game.Epigraph.Suit[]>([]),
     /** 当前三色铭文列表 */
-    epigraph_colors: ref<EpigraphCollocationStoreType.Colors>({
+    epigraph_colors: ref<Game.Epigraph.Colors>({
       BLUE: [
         undefined,
         undefined,
@@ -63,7 +66,7 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       ],
     }),
     /** 剩余可填充库存 */
-    epigraph_inventory: ref<EpigraphCollocationStoreType.Inventory>({
+    epigraph_inventory: ref<Game.Epigraph.Inventory>({
       BLUE: [],
       GREEN: [],
       RED: [],
@@ -110,7 +113,7 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       return !colors.some((color) => epigraph_colors.value[color].some((item) => item));
     }),
 
-    /** 铭文方案信息 */
+    /** 铭文方案铭文数量统计 */
     epigraph_info: computed(() => {
       const epigraph_colors_flat = Object.values(epigraph_colors.value).flat(1);
 
@@ -134,11 +137,13 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
 
   /* 保存方案至本地 */
   const saveSuit = () => {
-    localStorage.setItem(LOCAL_KEY.EPIGRAPH_SUIT_LIST, JSON.stringify(suit_list.value));
+    $authStore.updateUserData({
+      epigraphSuit: suit_list.value,
+    });
   };
 
   /* 将某个槽位置空，并恢复库存 */
-  const emptySlot = (index: number) => {
+  const emptySlot = (index: number, clear = false) => {
     const epigraph = epigraph_colors.value[fill_color.value!][index];
     if (!epigraph) return;
 
@@ -148,6 +153,10 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
         item.count++;
       }
     });
+
+    //如果是清空时调用，则不同步
+    if (clear) return;
+    syncSuit();
   };
 
   /* 将铭文效果的属性值进行计算 */
@@ -182,15 +191,31 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
     return arr;
   };
 
-  const ExposeMethods = {
-    /** @description 获取本地铭文方案列表 */
-    getEpigraphSuitList() {
-      const data = localStorage.getItem(LOCAL_KEY.EPIGRAPH_SUIT_LIST);
+  /** @description 同步方案 */
+  const syncSuit = () => {
+    if (!current_suit.value) return;
 
-      if (data) {
-        const v = JSON.parse(data) as EpigraphCollocationStoreType.Suit[];
-        suit_list.value = _cloneDeep(v);
-        const last_index = suit_list.value.length - 1;
+    current_suit.value = {
+      ...current_suit.value,
+      colors: _cloneDeep(epigraph_colors.value),
+      inventory: _cloneDeep(epigraph_inventory.value),
+    };
+
+    //如果方案列表中没有该方案，则自动添加
+    const index = suit_list.value.findIndex((item) => item.id === current_suit.value!.id);
+    suit_list.value[index === -1 ? 0 : index] = _cloneDeep(current_suit.value!);
+
+    saveSuit();
+  };
+
+  const ExposeMethods = {
+    /** @description 使用用户铭文套装 */
+    useUserEpigraphSuit(data: Game.Epigraph.Suit[]) {
+      const v = _cloneDeep(data);
+      suit_list.value = _cloneDeep(data);
+
+      if (data.length > 0) {
+        const last_index = v.length - 1;
         epigraph_colors.value = v[last_index].colors;
         epigraph_inventory.value = v[last_index].inventory;
         current_suit.value = v[last_index];
@@ -199,15 +224,9 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       }
     },
 
-    /** @description 更新列表 */
-    updateSuitList(data: EpigraphCollocationStoreType.Suit[]) {
-      suit_list.value = data;
-      saveSuit();
-    },
-
     /** @description 解锁方案 */
     unlockSuit() {
-      this.clearColors();
+      this.clearColors(true);
 
       current_suit.value = {
         label: "铭文方案",
@@ -216,15 +235,15 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
         id: dayjs().unix().toString(),
       };
 
-      suit_list.value.push(current_suit.value);
+      suit_list.value.push(_cloneDeep(current_suit.value));
     },
 
     /** @description 使用方案 */
     useSuit(id: string) {
       const index = suit_list.value.findIndex((item) => item.id === id);
       current_suit.value = _cloneDeep(suit_list.value[index]);
-      epigraph_colors.value = current_suit.value.colors;
-      epigraph_inventory.value = current_suit.value.inventory;
+      epigraph_colors.value = _cloneDeep(current_suit.value.colors);
+      epigraph_inventory.value = _cloneDeep(current_suit.value.inventory);
     },
 
     /** @description 修改铭文方案名称 */
@@ -253,24 +272,15 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       //如果删除的方案是正在编辑的方案，则自动切换到第一个方案
       if (current_suit.value?.id === id) {
         current_suit.value = _cloneDeep(suit_list.value[0]);
+        this.useSuit(current_suit.value.id);
       }
 
       saveSuit();
     },
 
-    /** @description 同步方案至方案列表并保存 */
-    syncSuit() {
-      if (!current_suit.value) return;
-
-      current_suit.value = {
-        ...current_suit.value!,
-        colors: _cloneDeep(epigraph_colors.value),
-        inventory: _cloneDeep(epigraph_inventory.value),
-      };
-
-      const index = suit_list.value.findIndex((item) => item.id === current_suit.value!.id);
-      suit_list.value[index === -1 ? 0 : index] = current_suit.value!;
-
+    /** @description 更新列表 */
+    updateSuitList(data: Game.Epigraph.Suit[]) {
+      suit_list.value = data;
       saveSuit();
     },
 
@@ -341,6 +351,8 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
 
           color_id_selected.value = 0;
         }
+
+        syncSuit();
       };
 
       /** 查找其他颜色的可用槽位 */
@@ -371,16 +383,6 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       fill_index.value = -1;
     },
 
-    /** @description 将某个槽位置空，并恢复库存 */
-    emptySlot(index: number) {
-      const epigraph = epigraph_colors.value[fill_color.value!].splice(index, 1);
-      epigraph_inventory.value[fill_color.value!].forEach((item) => {
-        if (epigraph[0]?.id === item.epigraph.id) {
-          item.count++;
-        }
-      });
-    },
-
     /** @description 关闭库存，显示属性 */
     closeInventory() {
       sidebar_status.value = "EFFECT";
@@ -389,13 +391,12 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
     },
 
     /** @description 清空所有槽位并恢复库存 */
-    clearColors() {
+    clearColors(del = false) {
       const colors: Game.Epigraph.Data["color"][] = ["BLUE", "GREEN", "RED"];
       colors.forEach((color) => {
         fill_color.value = color;
         for (let index = 0; index < epigraph_colors.value[color].length; index++) {
-          fill_index.value = index;
-          emptySlot(index);
+          emptySlot(index, true);
           epigraph_colors.value[color][index] = undefined;
         }
       });
@@ -403,6 +404,10 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       color_id_selected.value = 0;
       fill_color.value = "BLUE";
       sidebar_status.value = "INVENTORY";
+
+      //如果是删除铭文套装时调用的，则不同步
+      if (del) return;
+      syncSuit();
     },
   };
 

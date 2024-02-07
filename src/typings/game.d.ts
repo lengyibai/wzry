@@ -293,6 +293,30 @@ declare namespace Game {
 
     /** @description 铭文类型 */
     type Category = "全部" | "攻击" | "生命" | "防御" | "功能" | "吸血" | "攻速" | "暴击" | "穿透";
+
+    /** @description 三色铭文列表 */
+    type Colors = Record<Remote.Epigraph.Color["value"], Game.Epigraph.Data[] | undefined[]>;
+
+    /** @description 铭文库存 */
+    type Inventory = Record<
+      Remote.Epigraph.Color["value"],
+      {
+        epigraph: Game.Epigraph.Data;
+        count: number;
+      }[]
+    >;
+
+    /** @description 铭文套装 */
+    interface Suit {
+      /** 标识符 */
+      id: string;
+      /** 套装名称 */
+      label: string;
+      /** 三色列表 */
+      colors: Colors;
+      /** 库存 */
+      inventory: Inventory;
+    }
   }
 
   /** @description 性别 */
