@@ -1,5 +1,4 @@
 import { Base64 } from "js-base64";
-import dayjs from "dayjs";
 
 import { $message } from "./busTransfer";
 import { imageOptimizer, mergeConfig, saveFiles } from "./tool";
@@ -48,5 +47,5 @@ export const decryption = (v: string) => {
 
 /** @description 导出卡片 */
 export const exportCard = (data: Global.UserData) => {
-  saveFiles(encryption(data), `召唤师卡-${dayjs().format("YYYY年MM月DD日hh时mm分ss秒")}.wzry`);
+  saveFiles(encryption(data), `召唤师卡-${data.username}.wzry`);
 };
