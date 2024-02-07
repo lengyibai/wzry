@@ -20,16 +20,6 @@ const SettingStore = defineStore("setting", () => {
   };
   const { config } = ExposeData;
 
-  /** @description 部分配置需手动生效 */
-  const takeEffect = () => {
-    setLanguage(config.value.language);
-    $audioStore.setAudio(config.value.audio);
-    $barrageStore.setBarrage(config.value.barrage);
-    $audioStore.setVolume(config.value.audioVolume);
-    $musicStore.setVolume(config.value.musicVolume);
-    $cssVarStore.setShine(config.value.shine);
-  };
-
   /** @description 保存配置到本地 */
   const saveLocal = () => {
     $authStore.updateUserData({
@@ -41,7 +31,17 @@ const SettingStore = defineStore("setting", () => {
     /** @description 使用用户配置 */
     useUserSetting(v: Global.SettingConfig) {
       config.value = v;
-      takeEffect();
+      this.takeEffect();
+    },
+
+    /** @description 部分配置需手动生效 */
+    takeEffect() {
+      setLanguage(config.value.language);
+      $audioStore.setAudio(config.value.audio);
+      $barrageStore.setBarrage(config.value.barrage);
+      $audioStore.setVolume(config.value.audioVolume);
+      $musicStore.setVolume(config.value.musicVolume);
+      $cssVarStore.setShine(config.value.shine);
     },
 
     /**
@@ -67,7 +67,7 @@ const SettingStore = defineStore("setting", () => {
         ...DEFAULT.configDefault(),
         noTips: config.value.noTips,
       };
-      takeEffect();
+      this.takeEffect();
     },
 
     /**
