@@ -68,6 +68,9 @@ const SettingStore = defineStore("setting", () => {
         noTips: config.value.noTips,
       };
       this.takeEffect();
+      setTimeout(() => {
+        $musicStore.play(false);
+      }, 1000);
     },
 
     /**
