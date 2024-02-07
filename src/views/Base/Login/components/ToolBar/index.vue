@@ -5,14 +5,6 @@ import { SettingStore, AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
-interface Props {
-  /** 显示公告按钮 */
-  notice?: boolean;
-}
-
-withDefaults(defineProps<Props>(), {
-  notice: true,
-});
 const $emit = defineEmits<{
   clicks: [v: string];
 }>();
@@ -69,7 +61,7 @@ defineExpose({
     </div>
 
     <!-- README -->
-    <div v-if="notice" class="tool">
+    <div class="tool">
       <div class="line"></div>
       <div
         v-mouse-tip="{
@@ -85,7 +77,7 @@ defineExpose({
     </div>
 
     <!-- 公告 -->
-    <div v-if="notice" class="tool">
+    <div class="tool">
       <div class="line"></div>
       <div
         v-mouse-tip="{
@@ -101,7 +93,7 @@ defineExpose({
     </div>
 
     <!-- 开黑 -->
-    <div v-if="notice" class="tool">
+    <div class="tool">
       <div class="line"></div>
       <div
         v-mouse-tip="{

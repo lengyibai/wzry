@@ -58,7 +58,7 @@ setTimeout(() => {
     <RegLogin v-if="finish" :class="{ 'hide-reg-login': hideRegLogin }" />
 
     <!-- 工具栏 -->
-    <ToolBar :notice="finish" @clicks="onToolType" />
+    <ToolBar v-if="finish" @clicks="onToolType" />
 
     <!-- 公告 -->
     <Notice v-if="show_notice && finish" v-model="show_notice" />
