@@ -18,11 +18,13 @@ const AuthStore = defineStore("auth", () => {
 
   const ExposeData = {
     /** 用户登录状态 */
-    userStatus: ref(false),
+    user_status: ref(false),
     /** 用户相关信息 */
     user_data: ref<Global.UserData>(DEFAULT.userDefaultInfo()),
+    /** 是否已经验证过二级密码 */
+    is_check_sec_pwd: ref(false),
   };
-  const { userStatus, user_data } = ExposeData;
+  const { user_status, user_data, is_check_sec_pwd } = ExposeData;
 
   /** @description 登录进入网页 */
   const loginInto = () => {
@@ -51,7 +53,7 @@ const AuthStore = defineStore("auth", () => {
     /** @description 登录 */
     login(form: Global.UserData) {
       watching = true;
-      userStatus.value = true;
+      user_status.value = true;
       user_data.value = form;
       $routerStore.addRoutes(form.role);
       router.push(BASE_CONFIG.HOME_URL);
@@ -64,7 +66,7 @@ const AuthStore = defineStore("auth", () => {
     autoLogin() {
       const local_user = localStorage.getItem(LOCAL_KEY.USER_DATA)!;
       watching = true;
-      userStatus.value = true;
+      user_status.value = true;
       user_data.value = $privateTool.decryption(local_user);
       $message(`${$tool.timeGreet}，${user_data.value.username}`);
       watchStatus();
@@ -86,6 +88,12 @@ const AuthStore = defineStore("auth", () => {
     setSecondaryPassword() {
       const _this = this;
       return new Promise<void>((resolve) => {
+        //如果已经验证过，下次免验证
+        if (is_check_sec_pwd.value) {
+          resolve();
+          return;
+        }
+
         $input({
           title: "二级密码验证",
           placeholder: "请输入二级密码",
@@ -94,6 +102,7 @@ const AuthStore = defineStore("auth", () => {
               resolve();
               close();
               $message(MESSAGE_TIP.s24z);
+              is_check_sec_pwd.value = true;
             } else {
               $message(MESSAGE_TIP.rh43, "error");
             }
@@ -127,7 +136,8 @@ const AuthStore = defineStore("auth", () => {
     /** @description 退卡 */
     exitCard() {
       watching = false;
-      userStatus.value = false;
+      user_status.value = false;
+      is_check_sec_pwd.value = false;
       user_data.value = DEFAULT.userDefaultInfo();
       $routerStore.removeRoutes();
       localStorage.removeItem(LOCAL_KEY.USER_DATA);
