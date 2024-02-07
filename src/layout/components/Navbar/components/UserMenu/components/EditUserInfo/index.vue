@@ -53,6 +53,19 @@ const handleResetPwd = () => {
   });
 };
 
+/** 修改二级密码 */
+const handleResetSecPwd = () => {
+  $input({
+    title: "修改二级密码",
+    placeholder: "请输入新二级密码",
+    value: user_data.secondaryPassword,
+    confirm: (v, close) => {
+      user_data.secondaryPassword = v;
+      close();
+    },
+  });
+};
+
 /** 是否修改了资料 */
 const edit_status = computed(() => {
   return JSON.stringify(user_data) !== JSON.stringify($authStore.user_data);
@@ -93,13 +106,19 @@ watchEffect(() => {
     <!-- 用户名 -->
     <div class="option">
       <div class="label">{{ user_data.username }}</div>
-      <KButton v-mouse-tip class="k-button" @click="handleRename"> 点击修改昵称 </KButton>
+      <KButton v-mouse-tip class="k-button" @click="handleRename">修改昵称</KButton>
     </div>
 
     <!-- 密码 -->
     <div class="option">
       <div class="label">{{ user_data.password.replace(/./g, "*") }}</div>
-      <KButton v-mouse-tip class="k-button" @click="handleResetPwd"> 点击修改密码 </KButton>
+      <KButton v-mouse-tip class="k-button" @click="handleResetPwd">修改密码</KButton>
+    </div>
+
+    <!-- 二级密码 -->
+    <div class="option">
+      <div class="label">{{ user_data.secondaryPassword.replace(/./g, "*") }}</div>
+      <KButton v-mouse-tip class="k-button" @click="handleResetSecPwd">修改二级密码</KButton>
     </div>
   </div>
 
