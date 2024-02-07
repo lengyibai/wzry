@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
   }
 
   //如果未登录，但是本地存在用户信息，且能匹配权限，则直接放行
-  if (user_info && !$authStore.userStatus) {
+  if (user_info && !$authStore.user_status) {
     $authStore.autoLogin();
   }
 

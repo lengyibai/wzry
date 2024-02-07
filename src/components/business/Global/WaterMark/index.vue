@@ -26,7 +26,7 @@ const version = `${$tool.browserV.version} ${
   <teleport to="body">
     <div
       :style="{
-        opacity: !$collapseStore.collapse || !$authStore.userStatus ? 1 : 0,
+        opacity: !$collapseStore.collapse || !$authStore.user_status ? 1 : 0,
       }"
       class="water-mark"
     >
