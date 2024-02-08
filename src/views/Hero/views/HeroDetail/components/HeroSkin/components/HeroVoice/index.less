@@ -22,15 +22,15 @@
     margin-bottom: 0.625rem;
     padding: 0 3.125rem;
     border-radius: 0.625rem;
-    color: var(--white);
     white-space: nowrap;
     background-color: var(--black-50);
-    transition: all 0.5s ease-in-out;
+    transition: 0.5s 0s ease-in-out !important;
 
     &:hover {
-      height: 4.375rem;
-      color: var(--blue);
-      transition: all 0s;
+      .k-marquee {
+        color: var(--blue) !important;
+        transition: 0s !important;
+      }
 
       .content {
         .iconfont {
@@ -40,8 +40,13 @@
     }
 
     &.active-width {
-      text-shadow: var(--shine-10), var(--shine-20);
       transform: rotateX(25deg) scaleX(0.9) !important;
+
+      .k-marquee {
+        color: var(--blue) !important;
+        text-shadow: var(--shine-10), var(--shine-20);
+        transition: 0s !important;
+      }
     }
 
     .content {
@@ -51,9 +56,12 @@
       width: 100%;
       height: 100%;
       font-size: 1.375rem;
+      transition: 0.5s;
 
       .k-marquee {
         margin-right: 1rem;
+        color: var(--white);
+        transition: 0.5s;
       }
 
       &.active-color {
@@ -81,4 +89,20 @@
       }
     }
   }
+}
+
+.voice-list-enter-from {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.voice-list-enter-active {
+  transition: all 0.5s;
+}
+
+.voice-list-leave-active {
+  position: absolute;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+  opacity: 0;
 }

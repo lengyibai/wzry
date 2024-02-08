@@ -41,32 +41,15 @@ $heroDetail.setSkinToggleFn((hero_id: number, skin_name: string) => {
   //如果皮肤语音相同，则不需要播放入场动画
   if (voices.value[0]?.link === $heroDetail.skin_voice[0]?.link) return;
 
-  nextTick(() => {
+  nextTick(async () => {
     if (!voiceRef.value) return;
-    voiceRef.value.forEach((item: HTMLElement, index: number) => {
-      /* 决定是从左还是从右入场 */
-      if (index % 2) {
-        item.style.transform = "translateX(-100%) translateY(500%) scale(0)";
-      } else {
-        item.style.transform = "translateX(100%) translateY(500%) scale(0)";
-      }
-      //设置语音列表，并播放入场动画
-      setTimeout(() => {
-        voices.value = $heroDetail.skin_voice;
-        //入场间隔
-        item.style.transitionDelay = `${index / 15}s`;
-        item.style.transform = "translateX(0%) translateY(0%) scale(1)";
 
-        //动画结束后初始化
-        setTimeout(() => {
-          item.style.transitionDelay = "0s";
-        }, 500);
-      }, 500);
-    });
+    await $tool.promiseTimeout(() => {
+      voices.value = $heroDetail.skin_voice;
+    }, 750);
 
-    //播放第一个语音
     setTimeout(() => {
-      voiceListRef.value?.scroll({ top: 0 });
+      //如果上一次正在播放皮肤语音的索引与当前即将播放皮肤语音的索引相同，则重置索引
       if (
         current_index.value !== -1 &&
         voices.value[current_index.value].link !== play_link.value
@@ -107,34 +90,39 @@ const play = (voice: string, index: number) => {
     @mousewheel.stop
     @touchstart.stop
   >
-    <button
-      v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
-      ref="voiceRef"
-      :key="index"
-      v-mouse-tip="{
-        text: MOUSE_TIP.lq42,
-      }"
-      class="voice"
-      :class="{ 'active-width': current_index === index }"
-      @click="play(item.link, index)"
-      @mouseenter="handleEnter"
-      @touchstart="handleEnter"
-    >
-      <div class="content" :class="{ 'active-color': current_index === index }">
-        <KMarquee class="k-marquee" :duration="duration" :playing="current_index === index">{{
-          item.text
-        }}</KMarquee>
-        <i
-          class="iconfont"
-          :style="{ 'animation-duration': duration + 's' }"
-          :class="[
-            current_index === index ? 'wzry-playing' : 'wzry-playactive',
-            { 'active-rotate': current_index === index },
-            { 'active-color': current_index === index },
-          ]"
-        />
+    <transition-group name="voice-list">
+      <div
+        v-for="(item, index) in voices.length ? voices : $heroDetail.skin_voice"
+        ref="voiceRef"
+        :key="item.link"
+        v-mouse-tip="{
+          text: MOUSE_TIP.lq42,
+        }"
+        class="voice"
+        :style="{
+          transitionDelay: `${index * 0.1}s`,
+        }"
+        :class="{ 'active-width': current_index === index }"
+        @click="play(item.link, index)"
+        @mouseenter="handleEnter"
+        @touchstart="handleEnter"
+      >
+        <div class="content" :class="{ 'active-color': current_index === index }">
+          <KMarquee class="k-marquee" :duration="duration" :playing="current_index === index">{{
+            item.text
+          }}</KMarquee>
+          <i
+            class="iconfont"
+            :style="{ 'animation-duration': duration + 's' }"
+            :class="[
+              current_index === index ? 'wzry-playing' : 'wzry-playactive',
+              { 'active-rotate': current_index === index },
+              { 'active-color': current_index === index },
+            ]"
+          />
+        </div>
       </div>
-    </button>
+    </transition-group>
   </div>
 </template>
 
