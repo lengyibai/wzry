@@ -146,6 +146,7 @@ defineExpose({
         text: MOUSE_TIP.kb43,
         type: 'INPUT',
       }"
+      :required="false"
       class="k-input"
       placeholder="英雄/字母"
       :no-special="false"

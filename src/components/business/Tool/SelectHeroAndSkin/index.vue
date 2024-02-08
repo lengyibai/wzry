@@ -111,6 +111,7 @@ watch(modelValue, () => {
         v-model="input_value"
         class="k-input"
         :placeholder="modelValue || '皮肤/英雄'"
+        :required="false"
         @input="onInput"
         @focus="onFocus"
         @blur="onBlur"

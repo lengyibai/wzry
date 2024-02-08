@@ -73,6 +73,7 @@ defineExpose({
         type: 'INPUT',
       }"
       placeholder="英雄/皮肤"
+      :required="false"
       @input="debounceSearch"
     />
   </div>
