@@ -10,14 +10,11 @@ import Footbar from "@/layout/components/Footbar/index.vue";
 import { AudioStore, BarrageStore } from "@/store";
 import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
-import { useGetData } from "@/hooks";
 
 const $audioStore = AudioStore();
 const $barrageStore = BarrageStore();
 
 const { status } = storeToRefs($barrageStore);
-
-useGetData().getData(true);
 
 const { getVideoLink } = $concise;
 
