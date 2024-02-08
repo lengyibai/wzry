@@ -1,18 +1,53 @@
 {
   "data": {
-    "time": "2024-02-06 00:00",
-    "dataKey": [],
-    "voiceKey": [],
-    "dataLog": [],
-    "voiceLog": [],
+    "time": "2024-02-09 00:00",
+    "dataKey": [
+      "wzry_skin",
+      "wzry_skin_hero",
+      "wzry_skin_image",
+      "wzry_skin_name",
+      "wzry_skin_price",
+      "wzry_skin_type",
+      "wzry_type_skin",
+      "wzry_hero_skin",
+      "wzry_hero_skill",
+      "wzry_hero_relationship",
+      "wzry_hero_specialty",
+      "wzry_hero_skin",
+      "wzry_hero_skill_unit",
+      "wzry_hero_resume",
+      "wzry_hero_race",
+      "wzry_hero_profession",
+      "wzry_hero_pinyin",
+      "wzry_hero_period",
+      "wzry_hero_name",
+      "wzry_hero_mark",
+      "wzry_hero_location",
+      "wzry_hero_image",
+      "wzry_hero_identity",
+      "wzry_hero_height",
+      "wzry_hero_avatar",
+      "wzry_hero_gender",
+      "wzry_hero_camp",
+      "wzry_hero_attr",
+      "wzry_hero"
+    ],
+    "voiceKey": ["jialuo", "jixiaoman", "kai", "libai", "machao"],
+    "dataLog": ["英雄相关", "英雄皮肤相关"],
+    "voiceLog": ["伽罗", "姬小满", "铠", "李白", "马超"],
     "distLog": {
       "surface": {
-        "new": ["将登录调整为卡片文件登录", "修改资料需要验证二级密码"],
-        "function": [],
+        "new": [
+          "将登录调整为卡片文件登录",
+          "修改资料需要验证二级密码",
+          "支持修改二级密码",
+          "设置配置项及铭文套装数据存在卡片"
+        ],
+        "function": ["二级密码验证过一次不再需要，除非刷新浏览器"],
         "style": [],
         "bug": []
       },
-      "substrate": ["移除用户列表json相关"]
+      "substrate": []
     }
   }
 }
