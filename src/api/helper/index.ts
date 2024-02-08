@@ -74,7 +74,7 @@ class RemoteHttp {
         if (error.code === "ERR_NETWORK" && !err_status) {
           err_status = true;
           const reset = confirm(
-            "检测到数据请求失败，请点击【取消】自动刷新浏览器解决，刷新后依旧显示此弹窗，请点击【确定】清除数据重新下载，如果仍未解决，请反馈给作者。",
+            "检测到数据请求失败，请尝试刷新浏览器，如果仍未解决，请点击【确定】清除本地数据，如果还未解决，请联系作者。",
           );
           if (reset) {
             localStorage.clear();
