@@ -8,13 +8,14 @@ import { AuthStore, DeviceStore } from "@/store";
 import { $loading } from "@/utils";
 import { BASE_CONFIG } from "@/config/modules/base";
 import { LOCAL_KEY } from "@/config";
+import { useDataFinish } from "@/hooks";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...staticRouter, ...errorRouter],
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const $authStore = AuthStore();
   const $deviceStore = DeviceStore();
 
@@ -50,12 +51,14 @@ router.beforeEach((to, from, next) => {
   //如果本地有用户信息，且目标路由为免验证路由，则跳转首页
   if (user_info && to.meta.noVerify) {
     next(BASE_CONFIG.HOME_URL);
+    await useDataFinish.readPromise;
     return;
   }
 
   //如果未登录，但是本地存在用户信息，且能匹配权限，则直接放行
   if (user_info && !$authStore.user_status) {
     $authStore.autoLogin();
+    await useDataFinish.readPromise;
   }
 
   /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */

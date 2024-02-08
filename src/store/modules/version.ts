@@ -11,6 +11,7 @@ import { BASE_CONFIG } from "@/config/modules/base";
 import { $message, $tip } from "@/utils/modules/busTransfer";
 import { $privateTool } from "@/utils";
 import { $tipText, MESSAGE_TIP } from "@/config";
+import { useDataFinish } from "@/hooks";
 
 const VersionStore = defineStore("version", () => {
   const $authStore = AuthStore();
@@ -153,7 +154,11 @@ const VersionStore = defineStore("version", () => {
             .getData()
             .then(() => {
               show_update.value = true;
+              useDataFinish.readyDataResolve();
             });
+        } else {
+          setTimeout(useDataFinish.readyDataResolve, 5000);
+          useDataFinish.readyDataResolve();
         }
       }
 
