@@ -222,10 +222,10 @@ export class RelationshipCircle {
     heroEl.style.opacity = "0";
 
     //创建英雄关系头像
-    const heroHeadImage = document.createElement("img");
-    heroEl.append(heroHeadImage);
-    heroHeadImage.className = "head-img";
-    heroHeadImage.src = avatar;
+    const heroAvatarImage = document.createElement("img");
+    heroEl.append(heroAvatarImage);
+    heroAvatarImage.className = "head-img";
+    heroAvatarImage.src = avatar;
 
     //设置坐标，此时有从初始位置到指定位置的动画
     setTimeout(() => {

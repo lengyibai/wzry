@@ -58,7 +58,7 @@ const JSON_NAME = {
   /** 英雄性别列表 */
   HERO_GENDER: "heroGender",
   /** 英雄头像列表 */
-  HERO_HEAD: "heroHead",
+  HERO_HEAD: "heroAvatar",
   /** 英雄身高列表 */
   HERO_HEIGHT: "heroHeight",
   /** 英雄简述列表 */

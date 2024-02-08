@@ -142,7 +142,7 @@ export const HeroGender = () => {
 };
 
 /** @description 获取英雄头像列表 */
-export const HeroHead = () => {
+export const HeroAvatar = () => {
   return $RemoteHttp.Get<Remote.Hero.Avatar[]>(`/${JSON_NAME.HERO_HEAD}.json`);
 };
 

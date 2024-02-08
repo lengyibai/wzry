@@ -26,7 +26,7 @@ const REQUEST: [string, () => Promise<ResultData<unknown>>, string][] = [
   [LOCAL_KEY.HERO_ATTR, API_DATA.HeroAttr, "英雄属性"],
   [LOCAL_KEY.HERO_CAMP, API_DATA.HeroCamp, "英雄阵营"],
   [LOCAL_KEY.HERO_GENDER, API_DATA.HeroGender, "英雄性别"],
-  [LOCAL_KEY.HERO_AVATAR, API_DATA.HeroHead, "英雄头像"],
+  [LOCAL_KEY.HERO_AVATAR, API_DATA.HeroAvatar, "英雄头像"],
   [LOCAL_KEY.HERO_HEIGHT, API_DATA.HeroHeight, "英雄身高"],
   [LOCAL_KEY.HERO_RESUME, API_DATA.HeroResume, "英雄简述"],
   [LOCAL_KEY.HERO_IDENTITY, API_DATA.HeroIdentity, "英雄身份"],
