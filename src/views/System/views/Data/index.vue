@@ -125,7 +125,7 @@ const onConfirmReset = (request: () => Promise<ResultData<any>>) => {
 };
 
 onActivated(() => {
-  $audioStore.play("bq69");
+  $audioStore.play("le78");
 });
 </script>
 
