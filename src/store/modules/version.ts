@@ -11,7 +11,6 @@ import { BASE_CONFIG } from "@/config/modules/base";
 import { $message, $tip } from "@/utils/modules/busTransfer";
 import { $privateTool } from "@/utils";
 import { $tipText, MESSAGE_TIP } from "@/config";
-import { useDataFinish } from "@/hooks";
 
 const VersionStore = defineStore("version", () => {
   const $authStore = AuthStore();
@@ -34,6 +33,8 @@ const VersionStore = defineStore("version", () => {
     data_status: ref(false),
     /** 文件是否需要更新 */
     dist_status: ref(false),
+    /** 是否检测过数据完整性 */
+    data_check: ref(false),
     /** 更新日志汇总 */
     update_log: ref<Omit<Global.Version.UpdateLog, "voiceKey" | "dataKey">>({
       time: "",
@@ -57,6 +58,7 @@ const VersionStore = defineStore("version", () => {
     remote_dist_version,
     show_update,
     data_status,
+    data_check,
     dist_status,
     update_log,
   } = ExposeData;
@@ -154,11 +156,11 @@ const VersionStore = defineStore("version", () => {
             .getData()
             .then(() => {
               show_update.value = true;
-              useDataFinish.readyDataResolve();
             });
         } else {
-          setTimeout(useDataFinish.readyDataResolve, 5000);
-          useDataFinish.readyDataResolve();
+          if (data_check.value) return;
+          useGetData().getData(true);
+          data_check.value = true;
         }
       }
 

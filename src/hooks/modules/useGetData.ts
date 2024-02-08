@@ -1,5 +1,7 @@
 import { ref } from "vue";
 
+import { useDataFinish } from "./useDataFinish";
+
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
 import { $tipText, LOCAL_KEY, REQUEST } from "@/config";
 import { $tip } from "@/utils";
@@ -31,7 +33,7 @@ const useGetData = () => {
   const ExposeMethods = {
     /**
      * @description 获取数据
-     * @param silent 是否是静默更新
+     * @param silent 是否显示数据缺失提示
      */
     async getData(silent: boolean = false) {
       total.value = REQUEST.length;
@@ -97,6 +99,8 @@ const useGetData = () => {
           });
         }
       }
+
+      useDataFinish.readyDataResolve();
     },
   };
 
