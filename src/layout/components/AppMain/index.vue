@@ -10,7 +10,7 @@ const onComponentMounted = () => {
   <transition name="app-main" appear>
     <div class="app-main">
       <router-view v-slot="{ Component }">
-        <KeepAlive include="Hero,Skin,Savor,Equip,Epigraph,Add,Database">
+        <KeepAlive include="Hero,Skin,Savor,Equip,Epigraph,SeizeTreasures,Database">
           <component :is="Component" @vue:mounted="onComponentMounted" />
         </KeepAlive>
       </router-view>
