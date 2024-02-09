@@ -79,6 +79,7 @@ defineExpose({
         :data="$skinStore.skin_type_list"
         :sort-text="skin_type"
         list-height="31.25rem"
+        min-width="8.5rem"
         @select="onTypeFilter"
       />
 
