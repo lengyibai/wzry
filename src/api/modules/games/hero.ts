@@ -236,7 +236,9 @@ export const getSkinList = () => {
       hero: skin_hero_kvp[id],
       price: skin_price_kvp[id],
       type: skin_type_kvp[id],
-      link: BASE_CONFIG.IMGBED + type_skin_kvp[skin_type_kvp[id]].link,
+      link:
+        type_skin_kvp[skin_type_kvp[id]].link &&
+        BASE_CONFIG.IMGBED + type_skin_kvp[skin_type_kvp[id]].link,
       category: type_skin_kvp[skin_type_kvp[id]].name,
       alias: type_skin_kvp[skin_type_kvp[id]].alias,
       gender: hero_gender_kvp[skin_hero_kvp[id]],
