@@ -144,8 +144,6 @@ declare namespace Game {
       category: string;
       /** 皮肤类型别名 */
       alias: string;
-      /** 皮肤类型排序 */
-      typeSort: number;
       /** 性别 */
       gender: GenderText;
       /** 皮肤名称 */

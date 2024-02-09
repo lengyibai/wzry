@@ -78,9 +78,7 @@ const SkinStore = defineStore("skin", () => {
 
   /* 统计皮肤类型列表 */
   const getSkinType = (skin_list: Game.Hero.Skin[]) => {
-    const options = [
-      ...new Set(skin_list.sort((a, b) => a.typeSort - b.typeSort).map((item) => item.alias)),
-    ];
+    const options = [...new Set(skin_list.map((item) => item.alias))];
 
     skin_type_list.value = options.map((item) => {
       return {
@@ -88,6 +86,8 @@ const SkinStore = defineStore("skin", () => {
         value: item,
       };
     });
+
+    $tool.typeSort(skin_type_list.value, "label");
 
     skin_type_list.value.unshift({
       label: "全部类型",
