@@ -84,7 +84,7 @@ const handleSelect = (
 /* 光圈适配 */
 const shineRoundAdapter = () => {
   nextTick(() => {
-    const v = $epigraphCollocationStore.fill_index;
+    const v = fill_index.value;
     if (v === -1) {
       shineRoundRef.value!.style.opacity = "0";
       return;
@@ -102,13 +102,9 @@ const shineRoundAdapter = () => {
   });
 };
 
-watch(
-  [() => $epigraphCollocationStore.fill_index, () => $epigraphCollocationStore.fill_color],
-  shineRoundAdapter,
-  {
-    immediate: true,
-  },
-);
+watch([fill_index, fill_color], shineRoundAdapter, {
+  immediate: true,
+});
 
 onMounted(() => {
   doms["BLUE"] = blueRef.value!;
@@ -131,7 +127,6 @@ onBeforeUnmount(() => {
   <transition name="move" appear>
     <div ref="epigraphSuitRef" class="epigraph-suit">
       <div
-        v-show="fill_color"
         ref="shineRoundRef"
         class="shine-round"
         :style="{
