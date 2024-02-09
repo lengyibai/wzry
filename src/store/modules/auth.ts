@@ -15,21 +15,24 @@ const AuthStore = defineStore("auth", () => {
 
   /** 实时检测帐号状态 */
   let watching = false;
+  /** 是否已经验证过二级密码 */
+  let is_check_sec_pwd = false;
 
   const ExposeData = {
     /** 用户登录状态 */
     user_status: ref(false),
     /** 用户相关信息 */
     user_data: ref<Global.UserData>(DEFAULT.userDefaultInfo()),
-    /** 是否已经验证过二级密码 */
-    is_check_sec_pwd: ref(false),
   };
-  const { user_status, user_data, is_check_sec_pwd } = ExposeData;
+  const { user_status, user_data } = ExposeData;
 
   /** @description 登录进入网页 */
   const loginInto = () => {
+    watching = true;
+    user_status.value = true;
     $settingStore.useUserSetting(user_data.value.settingConfig);
     $epigraphCollocationStore.useUserEpigraphSuit(user_data.value.epigraphSuit);
+    watchStatus();
   };
 
   /** @description 实时检测帐号状态 */
@@ -52,24 +55,18 @@ const AuthStore = defineStore("auth", () => {
   const ExposeMethods = {
     /** @description 登录 */
     login(form: Global.UserData) {
-      watching = true;
-      user_status.value = true;
       user_data.value = form;
       $routerStore.addRoutes(form.role);
       router.push(BASE_CONFIG.HOME_URL);
       localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(form));
-      watchStatus();
       loginInto();
     },
 
     /** @description 自动登录 */
     autoLogin() {
       const local_user = localStorage.getItem(LOCAL_KEY.USER_DATA)!;
-      watching = true;
-      user_status.value = true;
       user_data.value = $privateTool.decryption(local_user);
       $message(`${$tool.timeGreet}，${user_data.value.username}`);
-      watchStatus();
       loginInto();
     },
 
@@ -89,7 +86,7 @@ const AuthStore = defineStore("auth", () => {
       const _this = this;
       return new Promise<void>((resolve) => {
         //如果已经验证过，下次免验证
-        if (is_check_sec_pwd.value) {
+        if (is_check_sec_pwd) {
           resolve();
           return;
         }
@@ -102,7 +99,7 @@ const AuthStore = defineStore("auth", () => {
               resolve();
               close();
               $message(MESSAGE_TIP.s24z);
-              is_check_sec_pwd.value = true;
+              is_check_sec_pwd = true;
             } else {
               $message(MESSAGE_TIP.rh43, "error");
             }
@@ -137,7 +134,7 @@ const AuthStore = defineStore("auth", () => {
     exitCard() {
       watching = false;
       user_status.value = false;
-      is_check_sec_pwd.value = false;
+      is_check_sec_pwd = false;
       user_data.value = DEFAULT.userDefaultInfo();
       $routerStore.removeRoutes();
       localStorage.removeItem(LOCAL_KEY.USER_DATA);
