@@ -2,14 +2,13 @@ import { createI18n } from "vue-i18n";
 import { App } from "vue";
 
 import zh from "./modules/zh";
-import tc from "./modules/tc";
 import en from "./modules/en";
 
 import { LOCAL_KEY } from "@/config/modules/local-key";
 
 type I18nTypeEnum = typeof zh;
 
-const messages: Record<string, I18nTypeEnum> = { zh, tc, en };
+const messages: Record<string, I18nTypeEnum> = { zh, en };
 
 const lang = localStorage.getItem(LOCAL_KEY.LANGUAGE);
 
@@ -27,7 +26,7 @@ const { setLocaleMessage, locale, t } = i18n.global;
 
 /** @description 设置语言 */
 const setLanguage = (index: 0 | 1 | 2) => {
-  const langs = ["zh", "tc", "en"];
+  const langs = ["zh", "en"];
   const lang = langs[index];
   setLocaleMessage(lang, messages[lang]);
   locale.value = lang;
@@ -43,9 +42,8 @@ const setupLanguage = (app: App) => {
 if (import.meta.env.DEV) {
   document.addEventListener("keydown", function (event) {
     if (event.ctrlKey && event.key === "q") {
-      const obj: Record<string, 0 | 1 | 2> = {
+      const obj: Record<string, 0 | 1> = {
         zh: 1,
-        tc: 2,
         en: 0,
       };
       setLanguage(obj[locale.value]);

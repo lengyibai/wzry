@@ -129,7 +129,7 @@ const handleResetConfig = () => {
             text: MOUSE_TIP.v41b,
           }"
           width="7rem"
-          :option="['中文', '繁体', 'English']"
+          :option="['中文', 'English']"
           @update:model-value="onLanguage"
         />
       </div>
