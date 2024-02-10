@@ -158,7 +158,7 @@ const VersionStore = defineStore("version", () => {
               show_update.value = true;
             });
         } else {
-          if (data_check.value) return;
+          if (data_check.value || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
           useGetData().getData(true);
           data_check.value = true;
         }
