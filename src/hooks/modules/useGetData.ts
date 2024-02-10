@@ -36,7 +36,6 @@ const useGetData = () => {
      * @param silent 是否显示数据缺失提示
      */
     async getData(silent: boolean = false) {
-      total.value = REQUEST.length;
       /** 缺失的数据 */
       const data_lacks: string[] = [];
       /** 丢失的语音 */
@@ -53,11 +52,10 @@ const useGetData = () => {
           index.value++;
         }
       });
+      total.value = data_lacks.length;
       await Promise.all(data_requests);
 
       const hero_names = LOCAL_HERO.getHeroNameList();
-      //减2是为了忽略掉没有语音的盾山和梦奇，否则进度会出现错误
-      total.value = hero_names.length - 2;
 
       /* 下载语音数据 */
       type.value = "语音包";
@@ -80,10 +78,11 @@ const useGetData = () => {
           }
         }
       });
+      total.value = voice_lacks.length;
       await Promise.all(voice_requests);
-
       finish.value = true;
 
+      //整理缺失文件日志
       if (silent && (data_lacks.length || voice_lacks.length)) {
         if (data_lacks.length) {
           const data_text = data_lacks.join("、");
