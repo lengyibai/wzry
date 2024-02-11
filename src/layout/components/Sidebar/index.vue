@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onUnmounted } from "vue";
 
-import sideItem from "./childComp/SideItem/index.vue";
-import GameLogo from "./childComp/GameLogo/index.vue";
+import sideItem from "./components/SideItem/index.vue";
+import GameLogo from "./components/GameLogo/index.vue";
 
 import { formatSidebarRoutes } from "@/router/helper/formatSidebarRoutes";
 import { CollapseStore, RouterStore } from "@/store";
