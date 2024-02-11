@@ -1,6 +1,6 @@
 {
   "data": {
-    "time": "2024-02-10 00:00",
+    "time": "2024-02-11 20:00",
     "dataKey": [
       "wzry_skin",
       "wzry_skin_hero",
@@ -9,10 +9,21 @@
       "wzry_skin_price",
       "wzry_skin_type",
       "wzry_type_skin",
-      "wzry_hero_skin"
+      "wzry_hero_skin",
+      "wzry_equip",
+      "wzry_equip_desc",
+      "wzry_equip_effect",
+      "wzry_equip_image",
+      "wzry_equip_level",
+      "wzry_equip_motivation",
+      "wzry_equip_name",
+      "wzry_equip_note",
+      "wzry_equip_price",
+      "wzry_equip_synthetic",
+      "wzry_equip_type"
     ],
     "voiceKey": ["anqila", "daqiao", "sunce", "sunshangxiang", "zhaoyun", "aobin"],
-    "dataLog": ["英雄相关", "英雄皮肤相关"],
+    "dataLog": ["英雄相关", "英雄皮肤相关", "装备相关"],
     "voiceLog": [],
     "distLog": {
       "surface": {
