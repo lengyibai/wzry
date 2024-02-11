@@ -11,6 +11,8 @@ import { GAME_EQUIP, KVP_EQUIP } from "@/api";
 const EquipStore = defineStore("equip", () => {
   /** 当前被点击装备排列位置，通过分解id获得 */
   let active_array: string[] = [];
+  /** 装备总列表 */
+  let equip_list: Game.Equip.Data[] = [];
 
   /** 相关职业列表 */
   const type_list: Record<Game.Equip.Category, Game.Equip.Data[][]> = {
@@ -46,8 +48,6 @@ const EquipStore = defineStore("equip", () => {
     synthetic: ref<Remote.Equip.Synthetic>({ id: 0, name: "" }),
     /** 当前点击的装备合成相关id */
     synthetic_id: ref<Remote.Equip.Synthetic[][]>([[], [], []]),
-    /** 装备总列表 */
-    equip_list: ref<Game.Equip.Data[]>([]),
     /** 三列装备数据 */
     equip_list_column: ref<Game.Equip.Data[][]>([[], [], []]),
     /** 二三列的竖线 */
@@ -64,7 +64,6 @@ const EquipStore = defineStore("equip", () => {
     active_data,
     synthetic,
     synthetic_id,
-    equip_list,
     equip_list_column,
     vertical_line,
   } = ExposeData;
@@ -240,10 +239,10 @@ const EquipStore = defineStore("equip", () => {
   const ExposeMethods = {
     /** @description 获取装备列表 */
     getEquipList() {
-      equip_list.value = GAME_EQUIP.getEquip();
+      equip_list = GAME_EQUIP.getEquip();
 
       //将装备分类
-      equip_list.value.forEach((item: Game.Equip.Data) => {
+      equip_list.forEach((item: Game.Equip.Data) => {
         type_list[item.type][item.level - 1].push(item);
       });
 
@@ -287,7 +286,7 @@ const EquipStore = defineStore("equip", () => {
       //隐藏详情，延迟延迟设置装备信息并显示详情
       active_id.value = id;
       show_details.value = true;
-      active_data.value = equip_list.value.find((item) => item.id === id);
+      active_data.value = equip_list.find((item) => item.id === id);
 
       const res = KVP_EQUIP.getEquipSyntheticKvp()[id];
       if (!res) return;
