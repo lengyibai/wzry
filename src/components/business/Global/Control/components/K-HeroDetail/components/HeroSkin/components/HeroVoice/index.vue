@@ -21,7 +21,7 @@ const duration = ref(0);
 const current_index = ref(-1);
 /** 语音列表 */
 const voices = ref<Remote.Voice.Data["voice"]>([]);
-
+/** 音频播放器 */
 const audioPlayer = new _AudioPlayer({
   volume: 0.25,
   end() {
@@ -30,8 +30,8 @@ const audioPlayer = new _AudioPlayer({
 });
 
 /* 切换语音时触发 */
-$heroDetail.setSkinToggleFn((hero_id: number, skin_name: string) => {
-  $heroDetail.setSkinVoice(hero_id, skin_name);
+$heroDetail.setSkinToggleFn(async (hero_id: number, skin_name: string) => {
+  await $heroDetail.setSkinVoice(hero_id, skin_name);
   if (!skin_name) {
     //为了切换关系
     voices.value = [];
@@ -56,8 +56,6 @@ $heroDetail.setSkinToggleFn((hero_id: number, skin_name: string) => {
       ) {
         current_index.value = -1;
       }
-
-      voices.value[0] && play(voices.value[0].link, 0);
     }, 500);
   });
 });

@@ -14,7 +14,7 @@ import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { GAME_HERO } from "@/api";
 import { $bus } from "@/utils/eventBus";
-import { _isPhone } from "@/utils/tool";
+import { _AudioPlayer, _isPhone } from "@/utils/tool";
 
 const $audioStore = AudioStore();
 const $heroDetailStore = HeroDetailStore();
@@ -35,6 +35,11 @@ const hero_toggle = ref(true);
 /** 英雄信息 */
 const hero_data = ref<Game.Hero.Detail>();
 
+/** 音频播放器 */
+const audioPlayer = new _AudioPlayer({
+  volume: 0.25,
+});
+
 $bus.on("hero-detail", async (id?: number) => {
   //如果不传值则关闭
   if (!id) {
@@ -42,12 +47,14 @@ $bus.on("hero-detail", async (id?: number) => {
     return;
   }
 
+  const voice = (await GAME_HERO.getSkinVoice(id, "原版皮肤")).voice;
+  audioPlayer.play(voice[0].link);
+
   const hero = await GAME_HERO.getHeroDetail(id);
   $heroDetailStore.setHeroInfo(hero);
   hero_data.value = hero;
   show.value = true;
   $audioStore.play("u4c5");
-
   //延迟显示滚动索引
   setTimeout(() => {
     show_progress.value = true;
