@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { _getImgLink } from "@/utils/concise";
-
 interface Props {
   /** 提示文字 */
   tip: string;
@@ -19,12 +17,7 @@ withDefaults(defineProps<Props>(), {
       top: `calc(50% + ${y})`,
     }"
   >
-    <div
-      class="icon"
-      :style="{
-        backgroundImage: `url(${_getImgLink('warning')})`,
-      }"
-    ></div>
+    <div class="icon"></div>
     <div class="text">{{ tip }}</div>
   </div>
 </template>

@@ -6,7 +6,6 @@ import { useDialogControl } from "./hooks/useDialogControl";
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
-import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 弹窗比例 */
@@ -109,7 +108,6 @@ defineExpose({
           :style="{
             width: width,
             height: `calc(${width} * ${ratio})`,
-            backgroundImage: `url(${_getImgLink('dialog')})`,
           }"
         >
           <!-- 左上标题 -->
