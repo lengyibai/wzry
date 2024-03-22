@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
-import { AudioStore, SettingStore } from "@/store";
-import { $loading, $tool } from "@/utils";
+import { $loading } from "./utils/loading";
+import { _titleTip } from "./utils/tool";
+
+import { AudioStore, SettingStore, VersionStore } from "@/store";
 import { Control, WaterMark } from "@/components/business";
 
 const $audioStore = AudioStore();
@@ -10,6 +12,7 @@ const $settingStore = SettingStore();
 
 $audioStore.preload();
 $settingStore.takeEffect();
+VersionStore();
 
 /* 路由组件加载结束后触发 */
 const onComponentMounted = () => {
@@ -17,7 +20,7 @@ const onComponentMounted = () => {
 };
 
 /* 浏览器标题交互 */
-onMounted($tool.titleTip);
+onMounted(_titleTip);
 </script>
 
 <template>

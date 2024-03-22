@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { vAnimateNumber, vBlurLoad, vMaskGradient, vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { $mouseTipText, MOUSE_TIP } from "@/config";
+import { KnapsackStore } from "@/store";
+import { useHaveHeroSkin } from "@/hooks";
 
 interface Props {
   /** 皮肤数据 */
@@ -9,8 +11,10 @@ interface Props {
 
 const $props = defineProps<Props>();
 const $emit = defineEmits<{
-  showTool: [e: Event, v: Game.Hero.Skin];
+  view: [e: Event, id: number];
 }>();
+
+const $knapsackStore = KnapsackStore();
 
 /* 根据价格是否为数字决定显示点券 */
 const priceShow = (price: number | string) => {
@@ -19,7 +23,10 @@ const priceShow = (price: number | string) => {
 
 /* 点击工具选项 */
 const handleView = (e: Event) => {
-  $emit("showTool", e, $props.data);
+  const id = $props.data.id;
+  if (useHaveHeroSkin(id, "SKIN")) {
+    $emit("view", e, id);
+  }
 };
 </script>
 
@@ -27,11 +34,22 @@ const handleView = (e: Event) => {
   <div
     v-mask-gradient
     v-mouse-tip="{
-      text: MOUSE_TIP.mv02,
+      disabled: !$knapsackStore.skin_list.includes(data.id),
+      text: $knapsackStore.skin_list.includes(data.id)
+        ? MOUSE_TIP.mv02
+        : $mouseTipText('a20t', { v: '皮肤' }),
     }"
     class="skin-card"
   >
-    <img v-blurLoad="data.cover" class="bg" :src="data.posterBlur" />
+    <!-- 背景图 -->
+    <div
+      class="bg-box"
+      :class="{
+        have: $knapsackStore.skin_list.includes(data.id),
+      }"
+    >
+      <img v-blur-load="data.cover" class="bg" :src="data.posterBlur" />
+    </div>
     <img v-if="data.link" class="type" :src="data.link" />
 
     <!-- 价格 -->
@@ -47,8 +65,8 @@ const handleView = (e: Event) => {
 
     <!-- 名字、代号 -->
     <div class="bottom">
-      <div class="name" v-html="data.skin_name"></div>
-      <div class="mark" v-html="`——${data.hero_name}`"></div>
+      <div class="name" v-html="data.name"></div>
+      <div class="mark" v-html="`——${data.heroName}`"></div>
     </div>
 
     <div class="tool">

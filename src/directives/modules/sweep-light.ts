@@ -4,10 +4,18 @@
  */
 import type { Directive } from "vue";
 
-const vSweepLight: Directive<HTMLElement, boolean> = {
+interface Params {
+  /** 是否自动扫光 */
+  auto?: boolean;
+  /** 是否启用 */
+  enable?: boolean;
+}
+
+const vSweepLight: Directive<HTMLElement, Params> = {
   mounted(el, binding) {
+    const { enable = true, auto = true } = binding.value || {};
+    if (!enable) return;
     setTimeout(() => {
-      const auto = binding.value !== false;
       const light = document.createElement("div");
       el.style.position = "relative";
       light.style.cssText = `

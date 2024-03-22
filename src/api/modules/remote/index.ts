@@ -3,37 +3,47 @@ import { JSON_NAME } from "@/config/modules/json-name";
 
 /** @description 获取版本信息 */
 export const Version = () => {
-  return $LocaleHttp.Get<{ data: Global.Version.File }>(`/${JSON_NAME.VERSION}.json`);
+  return $LocaleHttp.Get<Global.Version.File>(`/${JSON_NAME.VERSION}.json`);
 };
 
 /** @description 获取更新日志 */
 export const UpdateLog = () => {
-  return $LocaleHttp.Get<{ data: Global.Version.UpdateLog }>(`/${JSON_NAME.UPDATE_LOG}.json`);
+  return $LocaleHttp.Get<Global.Version.UpdateLog>(`/${JSON_NAME.UPDATE_LOG}.json`);
 };
 
 /** @description 获取静态资源版本信息 */
 export const StaticVersion = () => {
-  return $LocaleHttp.Get<{ data: Global.Version.Static }>(`/${JSON_NAME.STATIC_VERSION}.json`);
+  return $LocaleHttp.Get<Global.Version.Static>(`/${JSON_NAME.STATIC_VERSION}.json`);
 };
 
 /** @description 获取计划 */
 export const Todo = () => {
-  return $LocaleHttp.Get<{ data: Global.Todo }>(`/${JSON_NAME.TODO}.json`);
+  return $LocaleHttp.Get<Global.Todo>(`/${JSON_NAME.TODO}.json`);
 };
 
 /** @description 获取公告 */
 export const Notice = () => {
-  return $LocaleHttp.Get<{ data: string }>(`/${JSON_NAME.NOTICE}.json`);
+  return $LocaleHttp.Get<string>(`/${JSON_NAME.NOTICE}.json`);
 };
 
 /** @description 获取音乐列表 */
 export const Music = () => {
-  return $LocaleHttp.Get<{ data: Global.Music[] }>(`/${JSON_NAME.MUSIC}.json`);
+  return $LocaleHttp.Get<Global.Music[]>(`/${JSON_NAME.MUSIC}.json`);
 };
 
 /** @description 获取战绩 */
 export const Team = () => {
   return $RemoteHttp.Get<string[][]>(`/${JSON_NAME.TEAM}.json`);
+};
+
+/** @description 获取邮箱列表 */
+export const Mail = () => {
+  return $LocaleHttp.Get<Global.Mail[]>(`/${JSON_NAME.MAIL}.json`);
+};
+
+/** @description 用户获取属于自己的邮件列表 */
+export const UserMail = (userId: string) => {
+  return $RemoteHttp.Get<Global.Mail[]>(`/userMail/${userId}.json`);
 };
 
 /** @description 获取铭文列表 */
@@ -124,6 +134,11 @@ export const EquipType = () => {
 /** @description 获取英雄列表 */
 export const Hero = () => {
   return $RemoteHttp.Get<number[]>(`/${JSON_NAME.HERO}.json`);
+};
+
+/** @description 获取英雄价格列表 */
+export const HeroPrice = () => {
+  return $RemoteHttp.Get<number[]>(`/${JSON_NAME.HERO_PRICE}.json`);
 };
 
 /** @description 获取英雄属性列表 */
@@ -316,4 +331,9 @@ export const TypeSpecialty = () => {
 /** @description 获取英雄语音列表 */
 export const Voice = (pinyin: string) => {
   return $RemoteHttp.Get<Remote.Voice.Data[]>(`/${JSON_NAME.VOICE}/${pinyin}.json`);
+};
+
+/** @description 获取音效资源Zip */
+export const AudioResources = () => {
+  return $RemoteHttp.Get<Remote.Voice.Data[]>(`/${JSON_NAME.VOICE}`);
 };

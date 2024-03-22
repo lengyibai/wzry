@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import _debounce from "lodash/debounce";
+
 import { AudioStore, SettingStore } from "@/store";
 import { vParticleEffect } from "@/directives";
-import { $concise } from "@/utils";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 文字 */
@@ -12,15 +14,20 @@ interface Props {
 
 defineProps<Props>();
 
-const { getImgLink } = $concise;
-
 const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
 /* 播放音效 */
-const handlePlayAudio = () => {
-  $audioStore.play("e84n");
-};
+const debouncePlayAudio = _debounce(
+  () => {
+    $audioStore.play("e84n");
+  },
+  1000,
+  {
+    leading: true,
+    trailing: false,
+  },
+);
 </script>
 
 <template>
@@ -30,11 +37,11 @@ const handlePlayAudio = () => {
       enable: $settingStore.config.particle,
     }"
     class="into-btn"
-    @click="handlePlayAudio"
+    @click="debouncePlayAudio"
   >
     <span class="text">{{ text }}</span>
     <span class="desc">{{ desc }}</span>
-    <img class="bg" :src="getImgLink('login_btn')" alt="" />
+    <img class="bg" :src="_getImgLink('login_btn')" alt="" />
   </button>
 </template>
 

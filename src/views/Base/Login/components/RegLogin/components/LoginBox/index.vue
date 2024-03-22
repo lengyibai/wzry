@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
 
-import { $confirm, $input, $message, $privateTool, $tool } from "@/utils";
 import { vDragAnalysis, vMouseTip } from "@/directives";
 import { AuthStore } from "@/store";
-import { CONFIRM_TIP, MESSAGE_TIP } from "@/config";
+import { $msgTipText, CONFIRM_TIP, MESSAGE_TIP } from "@/config";
+import { $input, $message, $confirm } from "@/utils/busTransfer";
+import { _decryption } from "@/utils/privateTool";
+import { _isPhone, _timeGreet } from "@/utils/tool";
 
 const $authStore = AuthStore();
 
@@ -60,7 +61,7 @@ const readFile = (e: Event | File) => {
       const content = e.target!.result!.toString();
 
       try {
-        user_data.value = $privateTool.decryption(content);
+        user_data.value = _decryption(content);
 
         const handleInput = () => {
           $input({
@@ -70,7 +71,7 @@ const readFile = (e: Event | File) => {
               if (v === user_data.value!.password) {
                 is_reading.value = false;
                 close();
-                $message(`${$tool.timeGreet}，${user_data.value?.username}`);
+                $message(`${_timeGreet}，${user_data.value?.username}`);
               } else {
                 $message(MESSAGE_TIP.rh43, "error");
                 handleInput();
@@ -104,7 +105,21 @@ const handleExit = () => {
 /* 登录 */
 const handleLogin = () => {
   if (!user_data.value) return;
-  $authStore.login(user_data.value!);
+  if (user_data.value.isInvalid) {
+    $message(MESSAGE_TIP.uf04, "error");
+    return;
+  }
+
+  if (import.meta.env.DEV && !user_data.value.isDev) {
+    $message($msgTipText("mg14", { v: "生产" }), "error");
+    return;
+  }
+
+  if (!import.meta.env.DEV && user_data.value.isDev) {
+    $message($msgTipText("mg14", { v: "开发" }), "error");
+    return;
+  }
+  $authStore.login(user_data.value);
 };
 </script>
 
@@ -121,12 +136,12 @@ const handleLogin = () => {
 
     <!-- 选择卡片 -->
     <template v-if="is_reading">
-      <input v-show="false" id="file" type="file" accept=".wzry" @change="readFile" />
+      <input v-show="false" id="file" type="file" @change="readFile" />
       <label v-mouse-tip for="file" class="label">
         <i class="iconfont wzry-chaka" />
         <div class="text">点击选择卡片文件</div>
       </label>
-      <div v-if="!$tool.isPhone" class="tip">支持拖拽文件到此处</div>
+      <div v-if="!_isPhone" class="tip">支持拖拽文件到此处</div>
     </template>
 
     <!-- 卡片信息 -->

@@ -2,6 +2,7 @@
   "version": "0.2",
   "language": "en",
   "words": [
+    "baoxiang",
     "bati",
     "beici",
     "bianshen",
@@ -38,6 +39,7 @@
     "fsgj",
     "fsxx",
     "fuhuo",
+    "fuzhi",
     "fuzhu",
     "ganrao",
     "gedang",
@@ -53,6 +55,7 @@
     "huicheng",
     "huifu",
     "huisu",
+    "huodong",
     "iconfont",
     "IMGBED",
     "jianshang",
@@ -65,6 +68,7 @@
     "jinghua",
     "jingyan",
     "jingyin",
+    "kaiguan",
     "kongzhi",
     "kuilei",
     "laba",
@@ -72,6 +76,7 @@
     "lengyibai",
     "lianshe",
     "liwu",
+    "localforage",
     "lqsj",
     "mianxing",
     "mianyi",
@@ -89,6 +94,7 @@
     "qiehuan",
     "qishe",
     "quanbu",
+    "renwu",
     "renxing",
     "ruohua",
     "rushstack",
@@ -105,6 +111,7 @@
     "subline",
     "suoxiao",
     "tanke",
+    "tingzhi",
     "tlzg",
     "wangeditor",
     "weixiu",
@@ -132,6 +139,7 @@
     "yinni",
     "yinshen",
     "youxi",
+    "youxiang",
     "youzou",
     "zdfl",
     "zdsm",
@@ -147,5 +155,10 @@
     "zhuangbei",
     "zhuanhuan"
   ],
-  "ignorePaths": ["node_modules/**", "dist/**", "src/config/modules/pinyin.ts", "*.json"]
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "src/config/modules/pinyin.ts",
+    "*.json"
+  ]
 }

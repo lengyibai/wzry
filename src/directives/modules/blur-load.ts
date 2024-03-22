@@ -4,56 +4,74 @@
  */
 import type { Directive, DirectiveBinding } from "vue";
 
+import { _getImgLink } from "@/utils/concise";
+
 interface ElType extends HTMLImageElement {
   /** 原始动画 */
   _transition: string;
-  /** 上一张图片 */
-  _last_image: string;
   /** 更新数据 */
   _loadImage: (v: DirectiveBinding<string>) => void;
 }
 
 const vBlurLoad: Directive<ElType, string> = {
   mounted(el, binding) {
-    el._loadImage = (binding) => {
-      //当传递的大图地址与上一张大图地址相同时，则直接使用
-      if (el._last_image === binding.value) {
-        el.src = binding.value;
-        return;
-      }
-      el._last_image = binding.value;
-      el._transition = el.style.transition;
-      const coverImg = new Image();
-      el.style.transition = "0s";
-      el.style.filter = "blur(var(--image-load-blur))";
+    let retryCount = 0;
+    let readyDataResolve: any;
+    const readPromise = new Promise((resolve) => (readyDataResolve = resolve));
 
-      const finishLoadBlur = () => {
-        coverImg.src = binding.value;
+    //当模糊图片完成加载，则可加载大图
+    el.onload = readyDataResolve;
+    el.onerror = readyDataResolve;
 
-        //当大图加载完毕后将模糊图片替换成大图，并设置过度动画
-        coverImg.onload = () => {
-          el.src = binding.value;
-          el.style.transition = "0.5s";
+    el._transition = el.style.transition;
+    el.style.transition = "0s";
+    el.style.filter = "blur(var(--blur-image-load))";
 
-          //当大图替换完毕后去掉模糊滤镜
-          el.onload = () => {
+    const coverImg = new Image();
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(async (entry) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(el);
+          await readPromise;
+
+          /* 移除模糊 */
+          const removeBlur = () => {
             el.style.filter = "blur(0)";
             setTimeout(() => {
+              el.style.filter = "";
               el.style.transition = el._transition;
             }, 500);
           };
-        };
-      };
 
-      //当模糊图片加载完成后加载大图
-      el.onload = finishLoadBlur;
-      //当模糊图片加载失败后直接加载大图
-      el.onerror = finishLoadBlur;
-    };
-    el._loadImage(binding);
-  },
-  updated(el, binding) {
-    el._loadImage(binding);
+          /* 用于加载失败重试 */
+          const loadImg = () => {
+            //当大图加载完毕后将模糊图片替换成大图，并设置过度动画
+            coverImg.src = binding.value;
+            coverImg.onload = () => {
+              el.src = binding.value;
+              el.style.transition = "0.5s";
+
+              //当大图替换完毕后去掉模糊滤镜
+              el.onload = removeBlur;
+            };
+
+            coverImg.onerror = () => {
+              retryCount++;
+              if (retryCount < 3) {
+                setTimeout(loadImg, 1000);
+              } else {
+                el.src = _getImgLink("unknown", "2");
+                removeBlur();
+              }
+            };
+          };
+          loadImg();
+        }
+      });
+    });
+
+    observer.observe(el);
   },
 };
 

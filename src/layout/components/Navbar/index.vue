@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import PackUp from "./components/PackUp/index.vue";
+import PropNum from "./components/PropNum/index.vue";
 import UserMenu from "./components/UserMenu/index.vue";
 import BtnIcon from "./components/BtnIcon/index.vue";
 </script>
@@ -12,6 +13,9 @@ import BtnIcon from "./components/BtnIcon/index.vue";
       <PackUp />
 
       <div class="navbar__right">
+        <!-- 道具数量 -->
+        <PropNum />
+
         <!-- 用户菜单 -->
         <UserMenu />
 

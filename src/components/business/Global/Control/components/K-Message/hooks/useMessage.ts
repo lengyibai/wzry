@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 
 import { AudioStore } from "@/store";
 
-export default () => {
+export const useMessage = () => {
   const $audioStore = AudioStore();
 
   const ExposeData = {

@@ -5,6 +5,8 @@
 import type { Directive, DirectiveBinding } from "vue";
 
 interface ElType extends HTMLElement {
+  /** 上一次的数字，用于递增 */
+  _last_num: number;
   /** 更新数据 */
   _update: (v: DirectiveBinding<Params>) => void;
 }
@@ -33,7 +35,7 @@ const vAnimateNumber: Directive<ElType, Params> = {
       }
 
       if (!isNaN(Number(num))) {
-        const startNumber = 0;
+        const startNumber = el._last_num || 0;
         const startTime = performance.now();
         const targetNumber = Number(num);
 
@@ -43,14 +45,14 @@ const vAnimateNumber: Directive<ElType, Params> = {
 
           if (progress >= 1) {
             el.innerText = format(targetNumber.toFixed(decimalPlaces));
+            el._last_num = targetNumber;
             return;
           }
 
-          const currentNumber = startNumber + (targetNumber - startNumber) * progress;
+          // 修改这里，确保无论数字增加还是减少，都能平滑过渡
+          const currentNumber = startNumber + (targetNumber - startNumber) * Math.min(progress, 1);
 
-          const num = Math.max(startNumber, Math.min(targetNumber, currentNumber)).toFixed(
-            decimalPlaces,
-          );
+          const num = currentNumber.toFixed(decimalPlaces);
 
           el.innerText = format(num);
 

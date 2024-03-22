@@ -7,10 +7,10 @@ import SkinCard from "./components/SkinCard/index.vue";
 import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { SkinStore, AudioStore } from "@/store";
-import { $imageView, $tool } from "@/utils";
-import { FilterSidebar, KBackTop } from "@/components/business";
+import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { GAME_HERO, KVP_HERO } from "@/api";
+import { $imageView } from "@/utils/busTransfer";
+import { _promiseTimeout } from "@/utils/tool";
 
 defineOptions({
   name: "Skin",
@@ -69,18 +69,11 @@ const onSidebarChange = () => {
 };
 
 /* 点击工具栏中的选项 */
-const onShowTool = (e: Event, v: Game.Hero.Skin) => {
-  const { posterBig, posterBlur, name, heroName, hero } = v;
-  const voices = GAME_HERO.getSkinVoice(hero, name).voice;
+const onViewDetail = (e: Event, id: number) => {
   $imageView({
-    event: e,
-    type: "HERO",
-    bigImage: posterBig,
-    blurImage: posterBlur,
-    heroName,
-    heroAvatar: KVP_HERO.getHeroAvatarKvp()[hero],
-    skinName: name,
-    voices,
+    id,
+    parent: e.target as HTMLElement,
+    type: "SKIN",
   });
   $audioStore.play("u4c5");
 };
@@ -105,7 +98,7 @@ onActivated(async () => {
   window.addEventListener("resize", changeCount);
 
   //显示英雄列表
-  await $tool.promiseTimeout(() => {
+  await _promiseTimeout(() => {
     show_skin_list.value = true;
   }, 250);
 });
@@ -129,7 +122,6 @@ onDeactivated(() => {
           v-if="show_list.length && show_skin_list"
           ref="skinListRef"
           :finish="finish"
-          scroll-id="skin_list"
           gap="1.5625rem"
           :loading="loading"
           :count="count"
@@ -148,11 +140,13 @@ onDeactivated(() => {
               @mouseenter="handleEnterCard"
               @touchstart="handleEnterCard"
             >
-              <SkinCard :data="item" @showTool="onShowTool" />
+              <SkinCard :data="item" @view="onViewDetail" />
             </div>
           </transition-group>
         </LibGrid>
       </transition>
+
+      <KEmpty v-if="show_list.length === 0" tip="你还没有拥有皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->

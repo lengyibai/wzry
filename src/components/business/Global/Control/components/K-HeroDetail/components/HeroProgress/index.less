@@ -1,0 +1,79 @@
+.hero-progress {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 2rem;
+  transform: translateY(-50%);
+
+  .page-index {
+    @height: 6.25rem;
+
+    position: relative;
+    width: 35%;
+    height: @height;
+    margin-bottom: 0.3125rem;
+    background-color: var(--white-50);
+    transition: all 0.25s;
+    transform-origin: right center;
+    backdrop-filter: blur(0.3125rem);
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 2rem;
+      height: 100%;
+      transform: translateX(-100%);
+    }
+
+    .tab {
+      .global_flex-center();
+
+      position: absolute;
+      z-index: 1;
+      width: 18.75rem;
+      height: 100%;
+      border-radius: 0.9375rem 0 0 0.9375rem;
+      color: var(--white);
+      font-size: 2.25rem;
+      background-color: var(--black-75);
+      transition: all 0.25s;
+      transform: translateX(-125%);
+      opacity: 0;
+      pointer-events: none;
+
+      &:hover {
+        color: var(--blue);
+        text-decoration: underline;
+        text-shadow: var(--shine-25), var(--shine-50), var(--t-shadow-e);
+      }
+    }
+
+    &:hover {
+      width: 50%;
+      background-color: var(--white);
+
+      .tab {
+        transform: translateX(-100%);
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &:active {
+      background-color: var(--blue);
+    }
+
+    &.active {
+      width: 75%;
+      box-shadow:
+        var(--shine-10) var(--blue),
+        var(--shine-25) var(--blue),
+        var(--shine-50) var(--blue);
+      background-color: var(--blue);
+    }
+  }
+}

@@ -44,3 +44,16 @@ export namespace EpigraphCollocationStoreType {
   /** @description 当前侧边栏显示状态 */
   export type SidebarStatus = "EFFECT" | "INVENTORY" | "SUIT";
 }
+
+/** @description 邮件相关 */
+export namespace MailStoreType {
+  export interface SendMail {
+    /** 邮件标题 */
+    title: string;
+    /** 邮件内容 */
+    desc: string;
+    /** 道具 */
+    props: Game.Mail["props"];
+  }
+}
+1;

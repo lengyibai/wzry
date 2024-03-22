@@ -68,7 +68,7 @@ export default defineConfig(({ mode }) => {
     esbuild: {
       pure:
         getViteEnv("VITE_CLEAR_LOG") === "1"
-          ? ["console.log", "console.warn", "console.error", "debugger"]
+          ? ["alert", "console.log", "console.warn", "debugger"]
           : [],
     },
     build: {

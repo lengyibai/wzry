@@ -15,6 +15,8 @@ const JSON_NAME = {
   MUSIC: "music",
   /** 战绩 */
   TEAM: "team",
+  /** 邮箱列表 */
+  MAIL: "mail",
   /** 铭文列表 */
   EPIGRAPH: "epigraph",
   /** 铭文颜色 */
@@ -51,6 +53,8 @@ const JSON_NAME = {
   EQUIP_TYPE: "equipType",
   /** 英雄列表 */
   HERO: "hero",
+  /** 英雄价格列表 */
+  HERO_PRICE: "heroPrice",
   /** 英雄属性列表 */
   HERO_ATTR: "heroAttr",
   /** 英雄阵营列表 */

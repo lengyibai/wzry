@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "mark": "1710666218001",
+      "key": "GROUP",
+      "type": "GIFT",
+      "title": "加群福利",
+      "desc": "欢迎加群，如果访问的时候遇到BUG或有什么好的建议，以及玩法存在不合理的地方，记得在群里反馈哦！",
+      "userIds": ["MTcxMDY3MDEyODA2Mw=="],
+      "sendTime": 1710583062000,
+      "expiredTimeFormat": "",
+      "props": [
+        {
+          "key": "GIFT_BOX",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "key": "SIGN",
+      "title": "每日福袋",
+      "desc": "别忘了明天也来领取哦！",
+      "props": [
+        {
+          "key": "BLESSING_BAG",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "key": "SIGN",
+      "title": "每日夺宝币",
+      "desc": "当日领取的夺宝币，次日归零，请尽快使用！",
+      "props": [
+        {
+          "key": "HERO_LOTTERY_COIN",
+          "num": 25
+        },
+        {
+          "key": "SKIN_LOTTERY_COIN",
+          "num": 25
+        }
+      ]
+    }
+  ]
+}

@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import _cloneDeep from "lodash/cloneDeep";
-import { watch } from "vue";
+
+import KInput from "../../Parts/K-Input/index.vue";
 
 import { LOCAL_HERO } from "@/api";
-import { $tool } from "@/utils";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import KInput from "@/components/business/Parts/K-Input/index.vue";
+import { _search, _shuffleArray } from "@/utils/tool";
 
 interface Props {
   /** 禁用 */
@@ -38,23 +38,6 @@ const is_unfold = ref(false);
 /** 下拉列表 */
 const select_list = ref<Global.General[]>([]);
 
-/* 获取英雄名、皮肤名列表 */
-const hero_name_list = LOCAL_HERO.getHeroNameList().map((item) => item.value);
-const skin_name_list = LOCAL_HERO.getSkinNameList().map((item) => item.value);
-search_preselection = $tool.shuffleArray(
-  [...new Set([...hero_name_list, ...skin_name_list])].map((item) => {
-    return {
-      label: item,
-      value: item,
-    };
-  }),
-);
-search_preselection.unshift({
-  label: "全部",
-  value: "全部",
-});
-select_list.value = search_preselection;
-
 /* 获取焦点 */
 const onFocus = () => {
   is_unfold.value = true;
@@ -74,7 +57,7 @@ const onBlur = () => {
 
 /* 实时搜索 */
 const onInput = () => {
-  select_list.value = $tool.search(_cloneDeep(search_preselection), input_value.value, "value");
+  select_list.value = _search(_cloneDeep(search_preselection), input_value.value, "value");
 };
 
 /* 选择数据 */
@@ -93,6 +76,25 @@ const handleSelect = async (v: string) => {
 
 watch(modelValue, () => {
   input_value.value = modelValue.value;
+});
+
+onMounted(async () => {
+  /* 获取英雄名、皮肤名列表 */
+  const hero_name_list = (await LOCAL_HERO.getHeroNameList()).map((item) => item.value);
+  const skin_name_list = (await LOCAL_HERO.getSkinNameList()).map((item) => item.value);
+  search_preselection = _shuffleArray(
+    [...new Set([...hero_name_list, ...skin_name_list])].map((item) => {
+      return {
+        label: item,
+        value: item,
+      };
+    }),
+  );
+  search_preselection.unshift({
+    label: "全部",
+    value: "全部",
+  });
+  select_list.value = search_preselection;
 });
 </script>
 
@@ -125,7 +127,7 @@ watch(modelValue, () => {
         v-for="item in select_list"
         :key="item.label"
         class="box"
-        @click="handleSelect(item.value)"
+        @mousedown="handleSelect(item.value)"
       >
         <div class="item">{{ item.value }}</div>
       </div>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { $bus, $concise } from "@/utils";
-
-const { getImgLink } = $concise;
+import { _getImgLink } from "@/utils/concise";
+import { $bus } from "@/utils/eventBus";
 
 /** 显示loading */
 const show = ref(false);
@@ -24,8 +23,8 @@ $bus.on("loading", (v) => {
     <transition name="fade">
       <div v-if="show" class="k-loading">
         <div class="logo">
-          <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
-          <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
+          <img :src="_getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
+          <img :src="_getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
         </div>
         <div class="text">{{ text }}</div>
       </div>

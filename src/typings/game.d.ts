@@ -12,6 +12,8 @@ declare namespace Game {
     interface Data {
       /** 英雄id */
       id: number;
+      /** 价格 */
+      price: string;
       /** 攻击 */
       attack: number;
       /** 难度 */
@@ -136,6 +138,8 @@ declare namespace Game {
       hero: number;
       /** 价格 */
       price: string;
+      /** 兑换所需皮肤碎片 */
+      debris: string;
       /** 皮肤类型链接图 */
       link: string;
       /** 皮肤类型ID */
@@ -148,8 +152,6 @@ declare namespace Game {
       gender: GenderText;
       /** 皮肤名称 */
       name: string;
-      /** 备用皮肤名称 */
-      skin_name?: string;
       /** 海报 */
       poster: string;
       /** 海报小图 */
@@ -162,8 +164,6 @@ declare namespace Game {
       avatar: string;
       /** 英雄名称 */
       heroName: string;
-      /** 备用英雄名称 */
-      hero_name?: string;
       /** 职业 */
       profession: Profession[];
     }
@@ -316,6 +316,84 @@ declare namespace Game {
       inventory: Inventory;
     }
   }
+
+  /** @description 夺宝补给相关 */
+  namespace LotterySupply {
+    /** @description 补给模式 */
+    interface Mode {
+      /** 模式描述 */
+      label: string;
+      /** 倒计时秒数 */
+      seconds: number;
+      /** 每次领取数量 */
+      count: number;
+    }
+
+    /** @description 补给状态 IDLE-空闲 SELECT-选择模式 READY-准备开始 RUNNING-运行中 RECEIVE-可领取 */
+    type Status = "IDLE" | "SELECT" | "READY" | "RUNNING" | "RECEIVE";
+  }
+
+  /** @description 邮件 */
+  interface Mail {
+    /** 邮件ID，请求的文件里没有id */
+    id: string;
+    /** 由于ID是请求成功之后生成的，所以只能通过标记来作为唯一性 */
+    mark?: string;
+    /** 邮件唯一Key */
+    key: Global.Mail["key"];
+    /** 邮件类型 GIFT-可领取的 */
+    type: "GIFT";
+    /** 标题 */
+    title: string;
+    /** 内容，只有Key不为ISSUE的时候有值 */
+    desc?: string;
+    /** BUG和建议列表，只有Key为ISSUE的时候有值 */
+    issue?: Global.BugIdea[];
+    /** 发送时间 */
+    time: number;
+    /** 已读状态 */
+    read: boolean;
+    /** 道具列表 */
+    props: {
+      /** 键名 */
+      key: PropKey;
+      /** 数量 */
+      num: number;
+    }[];
+  }
+
+  /** @description 道具Key */
+  type PropKey =
+    | "DIAMOND"
+    | "GOLD"
+    | "BLESSING_BAG"
+    | "GIFT_BOX"
+    | "TASK_REWARDS_OPTIONAL"
+    | "HONOR_CRYSTAL"
+    | "KING_CRYSTAL"
+    | "HERO_CHEST_OPTIONAL"
+    | "HERO_DEBRIS"
+    | "HERO_EXP_ONE"
+    | "HERO_EXP_TWO"
+    | "DOUBLE_GOLD"
+    | "DOUBLE_EXP"
+    | "HERO_LOTTERY_COIN"
+    | "SKIN_LOTTERY_COIN"
+    | "HERO_LOTTERY_STONE"
+    | "HERO_LOTTERY_WEEK"
+    | "SKIN_LOTTERY_WEEK"
+    | "HERO_TREASURE"
+    | "SKIN_DEBRIS"
+    | "SKIN_CARD_INITIAL"
+    | "SKIN_CHEST_BRAVE_OPTIONAL"
+    | "SKIN_CHEST_EPIC_OPTIONAL"
+    | "SKIN_CHEST_LEGEND_OPTIONAL"
+    | "SKIN_CHEST_LIMIT_OPTIONAL"
+    | "SKIN_EPIC_TREASURE"
+    | "SKIN_LEGEND_TREASURE"
+    | "SKIN_BRAVE_TREASURE"
+    | "SKIN_LIMIT_TREASURE"
+    | "SKIN_LOTTERY_STONE";
 
   /** @description 性别 */
   type GenderId = 0 | 1 | 2;

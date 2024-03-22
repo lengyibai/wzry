@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, reactive } from "vue";
-import { watchEffect } from "vue";
+import { computed, reactive, watchEffect } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import { AuthStore } from "@/store";
 import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { $input, $message, $privateTool } from "@/utils";
+import { $input, $message } from "@/utils/busTransfer";
+import { _selectAvatarCompress } from "@/utils/privateTool";
 
 const $emit = defineEmits<{
   close: [];
@@ -22,7 +22,7 @@ const user_data = reactive({ ...$authStore.user_data });
 
 /* 选择图片 */
 const handleSelectAvatar = (e: Event) => {
-  $privateTool.selectAvatarCompress(e, (v) => {
+  _selectAvatarCompress(e, (v) => {
     user_data.avatar = v;
   });
 };

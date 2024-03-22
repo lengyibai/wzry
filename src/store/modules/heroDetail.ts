@@ -4,13 +4,11 @@ import { reactive, ref } from "vue";
 import type { HeroDetailStoreType } from "../interface";
 
 import { GAME_HERO } from "@/api";
-import { $concise } from "@/utils";
 import { DEFAULT } from "@/config";
+import { _getImgLink } from "@/utils/concise";
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
-  const { getImgLink } = $concise;
-
   const ExposeData = {
     /** 英雄信息 */
     hero_info: ref<Game.Hero.Detail>(DEFAULT.heroDefault()),
@@ -35,7 +33,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       relation: "？",
       id: 0,
       heroName: "？",
-      avatar: getImgLink("unknown"),
+      avatar: _getImgLink("unknown", "2"),
     }),
   };
   const {
@@ -103,8 +101,8 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 设置关系信息 */
-    setRelationInfo(data: Game.Hero.RelationType) {
-      const res = GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
+    async setRelationInfo(data: Game.Hero.RelationType) {
+      const res = await GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
       relation_info.value = {
         ...data,
         reply: res.desc || "？",
@@ -114,8 +112,8 @@ const HeroDetailStore = defineStore("heroDetail", () => {
     },
 
     /** @description 获取设置皮肤语音 */
-    setSkinVoice(hero_id: number, skin_name: string) {
-      skin_voice.value = GAME_HERO.getSkinVoice(hero_id, skin_name).voice || [];
+    async setSkinVoice(hero_id: number, skin_name: string) {
+      skin_voice.value = (await GAME_HERO.getSkinVoice(hero_id, skin_name)).voice || [];
     },
 
     /** @description 点击技能后触发 */
@@ -135,7 +133,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
         relation: "？",
         id: 0,
         heroName: "？",
-        avatar: getImgLink("unknown"),
+        avatar: _getImgLink("unknown", "2"),
       };
     },
   };

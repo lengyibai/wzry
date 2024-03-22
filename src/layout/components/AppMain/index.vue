@@ -1,5 +1,22 @@
 <script lang="ts" setup>
-import { $loading } from "@/utils";
+import { $loading } from "@/utils/loading";
+
+const keep_alive = [
+  "Hero",
+  "Skin",
+  "Savor",
+  "Equip",
+  "Epigraph",
+  "LotteryHero",
+  "LotterySkin",
+  "ShopCrystal",
+  "KingCrystal",
+  "HonorCrystal",
+  "ShopDebris",
+  "HeroDebrisShop",
+  "SkinDebrisShop",
+  "PropShop",
+];
 
 const onComponentMounted = () => {
   $loading.close();
@@ -10,7 +27,7 @@ const onComponentMounted = () => {
   <transition name="app-main" appear>
     <div class="app-main">
       <router-view v-slot="{ Component }">
-        <KeepAlive include="Hero,Skin,Savor,Equip,Epigraph,SeizeTreasures,Database">
+        <KeepAlive :include="keep_alive">
           <component :is="Component" @vue:mounted="onComponentMounted" />
         </KeepAlive>
       </router-view>

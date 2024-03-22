@@ -6,8 +6,8 @@ import LoginBox from "./components/LoginBox/index.vue";
 import RegBox from "./components/RegBox/index.vue";
 
 import { AudioStore, DeviceStore } from "@/store";
-import { $tool } from "@/utils";
 import { vMouseTip } from "@/directives";
+import { _isPhone, _Parallax } from "@/utils/tool";
 
 const $deviceStore = DeviceStore();
 const $audioStore = AudioStore();
@@ -29,8 +29,8 @@ const onRegSuccess = () => {
 };
 
 /* 视差动画(如果为移动端或为safari浏览器则取消) */
-if (!$tool.isPhone || $deviceStore.browser_name === "safari") {
-  const parallax = new $tool.Parallax((x: number, y: number) => {
+if (!_isPhone || $deviceStore.browser_name === "safari") {
+  const parallax = new _Parallax((x: number, y: number) => {
     if (!RegLoginRef.value) return;
     RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${
       -x * 10

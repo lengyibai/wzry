@@ -1,9 +1,19 @@
 import { LOCAL_HERO } from "@/api";
 import { BASE_CONFIG } from "@/config";
 
+/** @description 获取英雄价格键值表 */
+export const getHeroPriceKvp = async () => {
+  const data = await LOCAL_HERO.getHeroPriceList();
+  const kvp: Record<number, string> = {};
+  data.forEach((item) => {
+    kvp[item.id] = item.value;
+  });
+  return kvp;
+};
+
 /** @description 获取英雄属性键值表 */
-export const getHeroAttrKvp = () => {
-  const data = LOCAL_HERO.getHeroAttrList();
+export const getHeroAttrKvp = async () => {
+  const data = await LOCAL_HERO.getHeroAttrList();
   const kvp: Record<number, Remote.Hero.Attr> = {};
   data.forEach((item) => {
     kvp[item.id] = {
@@ -18,8 +28,8 @@ export const getHeroAttrKvp = () => {
 };
 
 /** @description 获取英雄拼音键值表 */
-export const getHeroPinyinKvp = () => {
-  const data = LOCAL_HERO.getHeroPinyinList();
+export const getHeroPinyinKvp = async () => {
+  const data = await LOCAL_HERO.getHeroPinyinList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -28,8 +38,8 @@ export const getHeroPinyinKvp = () => {
 };
 
 /** @description 获取英雄阵营键值表 */
-export const getHeroCampKvp = () => {
-  const data = LOCAL_HERO.getHeroCampList();
+export const getHeroCampKvp = async () => {
+  const data = await LOCAL_HERO.getHeroCampList();
   const kvp: Record<number, number> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -38,8 +48,8 @@ export const getHeroCampKvp = () => {
 };
 
 /** @description 获取英雄头像键值表 */
-export const getHeroAvatarKvp = () => {
-  const data = LOCAL_HERO.getHeroAvatarList();
+export const getHeroAvatarKvp = async () => {
+  const data = await LOCAL_HERO.getHeroAvatarList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = BASE_CONFIG.IMGBED + item.value;
@@ -48,8 +58,8 @@ export const getHeroAvatarKvp = () => {
 };
 
 /** @description 获取英雄图片键值表 */
-export const getHeroImageKvp = () => {
-  const data = LOCAL_HERO.getHeroImageList();
+export const getHeroImageKvp = async () => {
+  const data = await LOCAL_HERO.getHeroImageList();
   const kvp: Record<number, Omit<Remote.Hero.Image, "id">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
@@ -64,8 +74,8 @@ export const getHeroImageKvp = () => {
 };
 
 /** @description 获取英雄身高键值表 */
-export const getHeroHeightKvp = () => {
-  const data = LOCAL_HERO.getHeroHeightList();
+export const getHeroHeightKvp = async () => {
+  const data = await LOCAL_HERO.getHeroHeightList();
   const kvp: Record<number, number> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -74,8 +84,8 @@ export const getHeroHeightKvp = () => {
 };
 
 /** @description 获取英雄简述键值表 */
-export const getHeroResumeKvp = () => {
-  const data = LOCAL_HERO.getHeroResumeList();
+export const getHeroResumeKvp = async () => {
+  const data = await LOCAL_HERO.getHeroResumeList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -84,8 +94,8 @@ export const getHeroResumeKvp = () => {
 };
 
 /** @description 获取英雄身份键值表 */
-export const getHeroIdentityKvp = () => {
-  const data = LOCAL_HERO.getHeroIdentityList();
+export const getHeroIdentityKvp = async () => {
+  const data = await LOCAL_HERO.getHeroIdentityList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -94,8 +104,8 @@ export const getHeroIdentityKvp = () => {
 };
 
 /** @description 获取英雄定位键值表 */
-export const getHeroLocationKvp = () => {
-  const data = LOCAL_HERO.getHeroLocationList();
+export const getHeroLocationKvp = async () => {
+  const data = await LOCAL_HERO.getHeroLocationList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -104,8 +114,8 @@ export const getHeroLocationKvp = () => {
 };
 
 /** @description 获取英雄代号键值表 */
-export const getHeroMarkKvp = () => {
-  const data = LOCAL_HERO.getHeroMarkList();
+export const getHeroMarkKvp = async () => {
+  const data = await LOCAL_HERO.getHeroMarkList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -114,8 +124,8 @@ export const getHeroMarkKvp = () => {
 };
 
 /** @description 获取英雄名称键值表 */
-export const getHeroNameKvp = () => {
-  const data = LOCAL_HERO.getHeroNameList();
+export const getHeroNameKvp = async () => {
+  const data = await LOCAL_HERO.getHeroNameList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -124,8 +134,8 @@ export const getHeroNameKvp = () => {
 };
 
 /** @description 获取英雄时期键值表 */
-export const getHeroPeriodKvp = () => {
-  const data = LOCAL_HERO.getHeroPeriodList();
+export const getHeroPeriodKvp = async () => {
+  const data = await LOCAL_HERO.getHeroPeriodList();
   const kvp: Record<number, number> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -134,8 +144,8 @@ export const getHeroPeriodKvp = () => {
 };
 
 /** @description 获取英雄种族键值表 */
-export const getHeroRaceKvp = () => {
-  const data = LOCAL_HERO.getHeroRaceList();
+export const getHeroRaceKvp = async () => {
+  const data = await LOCAL_HERO.getHeroRaceList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -144,8 +154,8 @@ export const getHeroRaceKvp = () => {
 };
 
 /** @description 获取英雄技能单位键值表 */
-export const getHeroSkillUnitKvp = () => {
-  const data = LOCAL_HERO.getHeroSkillUnitList();
+export const getHeroSkillUnitKvp = async () => {
+  const data = await LOCAL_HERO.getHeroSkillUnitList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -154,8 +164,8 @@ export const getHeroSkillUnitKvp = () => {
 };
 
 /** @description 获取英雄性别键值表 */
-export const getHeroGenderKvp = () => {
-  const data = LOCAL_HERO.getHeroGenderList();
+export const getHeroGenderKvp = async () => {
+  const data = await LOCAL_HERO.getHeroGenderList();
   const kvp: Record<number, Game.GenderText> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -164,8 +174,8 @@ export const getHeroGenderKvp = () => {
 };
 
 /** @description 获取英雄职业列表键值表 */
-export const getHeroProfessionListKvp = () => {
-  const data = LOCAL_HERO.getHeroProfessionList();
+export const getHeroProfessionListKvp = async () => {
+  const data = await LOCAL_HERO.getHeroProfessionList();
   const kvp: Record<number, number[]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -174,8 +184,8 @@ export const getHeroProfessionListKvp = () => {
 };
 
 /** @description 获取英雄特长列表键值表 */
-export const getHeroSpecialtyListKvp = () => {
-  const data = LOCAL_HERO.getHeroSpecialtyList();
+export const getHeroSpecialtyListKvp = async () => {
+  const data = await LOCAL_HERO.getHeroSpecialtyList();
   const kvp: Record<number, string[]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -184,8 +194,8 @@ export const getHeroSpecialtyListKvp = () => {
 };
 
 /** @description 获取英雄技能列表键值表 */
-export const getHeroSkillListKvp = () => {
-  const data = LOCAL_HERO.getSkillList();
+export const getHeroSkillListKvp = async () => {
+  const data = await LOCAL_HERO.getSkillList();
   const kvp: Record<number, Remote.Skill.Info[][]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.skills.map((item) => {
@@ -201,8 +211,8 @@ export const getHeroSkillListKvp = () => {
 };
 
 /** @description 获取英雄皮肤列表键值表 */
-export const getHeroSkinListKvp = () => {
-  const data = LOCAL_HERO.getHeroSkinList();
+export const getHeroSkinListKvp = async () => {
+  const data = await LOCAL_HERO.getHeroSkinList();
   const kvp: Record<number, number[]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -211,8 +221,8 @@ export const getHeroSkinListKvp = () => {
 };
 
 /** @description 获取英雄关系列表键值表 */
-export const getHeroRelationshipListKvp = () => {
-  const data = LOCAL_HERO.getHeroRelationshipList();
+export const getHeroRelationshipListKvp = async () => {
+  const data = await LOCAL_HERO.getHeroRelationshipList();
   const kvp: Record<number, Remote.Hero.Relationship["value"]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -221,8 +231,8 @@ export const getHeroRelationshipListKvp = () => {
 };
 
 /** @description 获取皮肤所属英雄键值表 */
-export const getSkinHeroKvp = () => {
-  const data = LOCAL_HERO.getSkinHeroList();
+export const getSkinHeroKvp = async () => {
+  const data = await LOCAL_HERO.getSkinHeroList();
   const kvp: Record<number, number> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -231,8 +241,8 @@ export const getSkinHeroKvp = () => {
 };
 
 /** @description 获取皮肤图片键值表 */
-export const getSkinImageKvp = () => {
-  const data = LOCAL_HERO.getSkinImageList();
+export const getSkinImageKvp = async () => {
+  const data = await LOCAL_HERO.getSkinImageList();
   const kvp: Record<number, Omit<Remote.Skin.Image, "id">> = {};
   data.forEach((item) => {
     kvp[item.id] = {
@@ -247,8 +257,8 @@ export const getSkinImageKvp = () => {
 };
 
 /** @description 获取皮肤名称键值表 */
-export const getSkinNameKvp = () => {
-  const data = LOCAL_HERO.getSkinNameList();
+export const getSkinNameKvp = async () => {
+  const data = await LOCAL_HERO.getSkinNameList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -257,18 +267,27 @@ export const getSkinNameKvp = () => {
 };
 
 /** @description 获取皮肤价格键值表 */
-export const getSkinPriceKvp = () => {
-  const data = LOCAL_HERO.getSkinPriceList();
-  const kvp: Record<number, string> = {};
+export const getSkinPriceKvp = async () => {
+  const data = await LOCAL_HERO.getSkinPriceList();
+  const kvp: Record<
+    number,
+    {
+      price: string;
+      debris: string;
+    }
+  > = {};
   data.forEach((item) => {
-    kvp[item.id] = item.value;
+    kvp[item.id] = {
+      price: item.value,
+      debris: item.debris || "",
+    };
   });
   return kvp;
 };
 
 /** @description 获取皮肤类型键值表 */
-export const getSkinTypeKvp = () => {
-  const data = LOCAL_HERO.getSkinTypeList();
+export const getSkinTypeKvp = async () => {
+  const data = await LOCAL_HERO.getSkinTypeList();
   const kvp: Record<number, number> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -277,11 +296,12 @@ export const getSkinTypeKvp = () => {
 };
 
 /** @description 获取皮肤语音列表键值表 */
-export const getSkinVoiceListKvp = () => {
-  const hero_ids = LOCAL_HERO.getHeroPinyinList();
+export const getSkinVoiceListKvp = async () => {
+  const data = await LOCAL_HERO.getHeroNameList();
   const kvp: Record<number, Remote.Voice.Data[]> = {};
-  hero_ids.forEach((item) => {
-    kvp[item.id] = LOCAL_HERO.getVoiceList(item.value);
-  });
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i];
+    kvp[item.id] = await LOCAL_HERO.getVoiceList(item.value);
+  }
   return kvp;
 };

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onActivated, onDeactivated, onMounted } from "vue";
-import { onUnmounted } from "vue";
+import { ref, watch, nextTick, onActivated, onDeactivated, onMounted, onUnmounted } from "vue";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 

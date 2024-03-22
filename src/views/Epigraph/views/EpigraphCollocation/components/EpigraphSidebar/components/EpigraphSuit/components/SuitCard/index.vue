@@ -3,11 +3,11 @@ import { computed } from "vue";
 
 import { KButton } from "@/components/business";
 import type { EpigraphCollocationStoreType } from "@/store/interface";
-import { $confirm, $input, $message } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
 import { $confirmText, MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { $input, $message, $confirm } from "@/utils/busTransfer";
 
 interface Props {
   /** 套装信息 */

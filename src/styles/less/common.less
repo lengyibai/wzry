@@ -1,3 +1,4 @@
+/* 铭文搭配页右侧边栏 */
 .epigraph-sidebar_title {
   display: flex;
   justify-content: space-between;
@@ -23,9 +24,49 @@
   }
 }
 
+/* 主页面结构 */
 .app-main_child {
   position: relative;
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+/* 主体居中的弹窗 */
+.k-dialog_content-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 补给模式颜色 */
+.lottery_supply-mode-color {
+  &.green {
+    --color: var(--green);
+    --color1: #3bc922;
+    --color2: #2af598;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.blue {
+    --color: var(--blue);
+    --color1: #0093e9;
+    --color2: #00c6fb;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.orange {
+    --color: var(--orange);
+    --color1: #f76b1c;
+    --color2: #ff9500;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.red {
+    --color: var(--red);
+    --color1: #ff2525;
+    --color2: #f76b1c;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
 }

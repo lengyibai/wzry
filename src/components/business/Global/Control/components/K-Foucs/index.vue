@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import _debounce from "lodash/debounce";
 
-import { $bus } from "@/utils";
+import { $bus } from "@/utils/eventBus";
 
 let focus_el: HTMLElement | undefined;
 let ctx: CanvasRenderingContext2D | null;

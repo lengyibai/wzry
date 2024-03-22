@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 interface Props {
   /** 视频链接 */

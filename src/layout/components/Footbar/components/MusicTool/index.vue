@@ -4,9 +4,9 @@ import { nextTick, ref } from "vue";
 import MusicList from "../MusicList/index.vue";
 
 import { MusicStore, SettingStore, DeviceStore } from "@/store";
-import { $focus, $tip } from "@/utils";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
+import { $tip, $focus } from "@/utils/busTransfer";
 
 const $emit = defineEmits<{
   toggle: [v: string];

@@ -8,6 +8,12 @@ declare namespace Remote {
 
   /** @description 英雄相关 */
   namespace Hero {
+    /** @description 英雄价格列表 */
+    interface Price extends Id {
+      /** 英雄价格 */
+      value: string;
+    }
+
     /** @description 英雄属性列表 */
     interface Attr extends Id {
       /** 生存能力 */
@@ -217,6 +223,8 @@ declare namespace Remote {
       id: number;
       /** 皮肤价格 */
       value: string;
+      /** 兑换所需皮肤碎片 */
+      debris?: string;
     }
 
     /** @description 皮肤类型 */

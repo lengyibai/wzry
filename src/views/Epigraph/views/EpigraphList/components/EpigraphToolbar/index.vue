@@ -8,7 +8,7 @@ import { AudioStore, EpigraphStore } from "@/store";
 import { KButton, KInput } from "@/components/business";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { $focus, $tip } from "@/utils";
+import { $tip, $focus } from "@/utils/busTransfer";
 
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();
@@ -74,6 +74,7 @@ defineExpose({
         text: MOUSE_TIP.kb43,
         type: 'INPUT',
       }"
+      class="k-input"
       placeholder="英雄/皮肤"
       :required="false"
       @input="debounceSearch"

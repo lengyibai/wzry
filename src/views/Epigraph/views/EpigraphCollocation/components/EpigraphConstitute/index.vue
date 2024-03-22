@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { onBeforeUnmount, ref } from "vue";
-import { onMounted } from "vue";
-import { watch } from "vue";
-import { nextTick } from "vue";
-import { computed } from "vue";
+import { ref, computed, nextTick, watch, onMounted, onBeforeUnmount } from "vue";
 
 import { EpigraphCollocationStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { _classNameInclude } from "@/utils/tool";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
@@ -48,16 +45,8 @@ const mouse_tip = computed(() => {
   };
 });
 
-/* 递归判断父元素的类名是否包含指定类名 */
-const classNameInclude = (el: HTMLElement, className: string): HTMLElement | undefined => {
-  if (el.className.indexOf(className) !== -1) return el;
-  if (el.parentElement) return classNameInclude(el.parentElement, className);
-  return undefined;
-};
-
 /* 选择铭文槽位 */
 const handleSelect = (
-  e: Event,
   item: Game.Epigraph.Data | undefined,
   color: Remote.Epigraph.Color["value"],
   index: number,
@@ -65,15 +54,6 @@ const handleSelect = (
   $epigraphCollocationStore.setFillEpigraph(item, color, index);
   shineRoundRef.value!.style.transform = "scale(2)";
   shineRoundRef.value!.style.opacity = "0.5";
-
-  const el = e.target as HTMLElement;
-  const find = classNameInclude(el, "epigraph")!;
-  const width = epigraphSuitRef.value?.offsetWidth || 0;
-
-  shine_position.value = {
-    left: find.offsetLeft - width * 0.013,
-    top: find.offsetTop - width * 0.014,
-  };
 
   setTimeout(() => {
     shineRoundRef.value!.style.transform = `scale(1)`;
@@ -91,7 +71,7 @@ const shineRoundAdapter = () => {
     }
 
     const el = doms[fill_color.value!][v];
-    const find = classNameInclude(el, "epigraph")!;
+    const find = _classNameInclude(el, "epigraph")!;
     const width = epigraphSuitRef.value?.offsetWidth || 0;
     shineRoundRef.value!.style.opacity = "1";
 
@@ -151,7 +131,7 @@ onBeforeUnmount(() => {
             },
           ]"
           class="epigraph"
-          @click="handleSelect($event, item, 'BLUE', index)"
+          @click="handleSelect(item, 'BLUE', index)"
         >
           <img :src="item?.img" alt="" />
         </div>
@@ -173,7 +153,7 @@ onBeforeUnmount(() => {
             },
           ]"
           class="epigraph"
-          @click="handleSelect($event, item, 'GREEN', index)"
+          @click="handleSelect(item, 'GREEN', index)"
         >
           <img :src="item?.img" alt="" />
         </div>
@@ -195,7 +175,7 @@ onBeforeUnmount(() => {
             },
           ]"
           class="epigraph"
-          @click="handleSelect($event, item, 'RED', index)"
+          @click="handleSelect(item, 'RED', index)"
         >
           <img :src="item?.img" alt="" />
         </div>

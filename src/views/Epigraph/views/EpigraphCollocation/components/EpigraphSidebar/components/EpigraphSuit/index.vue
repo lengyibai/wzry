@@ -8,7 +8,8 @@ import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { EpigraphCollocationStore } from "@/store";
 import { LibDragSort } from "@/components/common";
-import { $tip, $focus, $tool } from "@/utils";
+import { $tip, $focus } from "@/utils/busTransfer";
+import { _isPhone } from "@/utils/tool";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
@@ -32,7 +33,7 @@ const handleUnlock = () => {
 
 onMounted(() => {
   //当套装量大于2时，提示可以拖拽排序
-  if ($epigraphCollocationStore.suit_list.length < 2 || $tool.isPhone) return;
+  if ($epigraphCollocationStore.suit_list.length < 2 || _isPhone) return;
 
   $tip({
     text: SCENE_TIP.cl60,

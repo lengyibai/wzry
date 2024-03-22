@@ -1,0 +1,40 @@
+.k-loading-radiate {
+  --line-size: 0.625rem;
+  .global_flex-center();
+
+  position: relative;
+  overflow: hidden;
+
+  &.border {
+    border-radius: 50%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lines {
+    .global_flex-center();
+
+    position: absolute;
+    animation: rotate 1s steps(12) infinite;
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .line {
+      position: absolute;
+      width: calc(var(--line-size) / 4);
+      height: var(--line-size);
+      background-color: #fff;
+      transform: rotate(calc(var(--i) * 30deg)) translateY(calc(var(--line-size) * 1.75));
+      transform-origin: center center;
+      opacity: calc(var(--i) * 0.09);
+    }
+  }
+}

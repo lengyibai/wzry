@@ -1,17 +1,22 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import dayjs from "dayjs";
+import { storeToRefs } from "pinia";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 
-import { AuthStore } from "@/store";
-import { $confirm, $privateTool, $tool } from "@/utils";
+import { AuthStore, KnapsackStore } from "@/store";
 import { KButton, KDialog } from "@/components/business";
-import { vDelayHide, vMouseTip } from "@/directives";
+import { vCopy, vDelayHide, vIdEncipher, vMouseTip } from "@/directives";
 import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
-import { getImgLink } from "@/utils/modules/concise";
+import { $confirm } from "@/utils/busTransfer";
+import { _exportCard } from "@/utils/privateTool";
+import { _formatKilobitNumber, _isPhone } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 const $authStore = AuthStore();
+const $knapsackStore = KnapsackStore();
+
+const { articles } = storeToRefs($knapsackStore);
 
 const dialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -44,15 +49,15 @@ const handleEditInfo = () => {
 
 /* 退卡 */
 const handleExitCard = () => {
-  if ($tool.isPhone) {
-    $privateTool.exportCard(user_data.value);
+  if (_isPhone) {
+    _exportCard(user_data.value);
   }
 
   $confirm({
-    text: $tool.isPhone ? CONFIRM_TIP.wd31 : CONFIRM_TIP.nh44,
+    text: _isPhone ? CONFIRM_TIP.wd31 : CONFIRM_TIP.nh44,
     confirm() {
-      if (!$tool.isPhone) {
-        $privateTool.exportCard(user_data.value);
+      if (!_isPhone) {
+        _exportCard(user_data.value);
       }
       $authStore.exitCard();
     },
@@ -63,7 +68,7 @@ const handleExitCard = () => {
 const onCloseConfirmEditInfo = () => {
   if (edit_status.value) {
     $confirm({
-      text: "资料已修改，确定关闭吗？",
+      text: CONFIRM_TIP.ah95,
       confirm() {
         dialogRef.value!._close();
       },
@@ -83,17 +88,26 @@ const onCloseConfirmEditInfo = () => {
   >
     <img
       class="head-img"
-      :src="user_data.avatar || getImgLink('unknown')"
+      :src="user_data.avatar || _getImgLink('unknown')"
       alt="头像"
       @touchend="show_menu = !show_menu"
     />
     <div class="user-card">
       <div class="name">{{ user_data.username }}</div>
-      <div class="update-time">
-        <div class="time">
-          {{ dayjs(user_data.updateTime).format("YYYY-MM-DD HH:mm:ss") }}
+      <!-- <div class="user-id">
+        <div v-id-encipher="user_data.id" class="id"></div>
+        <i v-copy="user_data.id" class="iconfont wzry-fuzhi" />
+      </div> -->
+
+      <div class="prop-num">
+        <div class="prop-item">
+          <img class="icon" :src="_getImgLink('gold')" alt="" />
+          <div class="num">{{ _formatKilobitNumber(articles.GOLD) }}</div>
         </div>
-        <div class="desc">个人数据更新时间</div>
+        <div class="prop-item">
+          <img class="icon" :src="_getImgLink('diamond')" alt="" />
+          <div class="num">{{ _formatKilobitNumber(articles.DIAMOND) }}</div>
+        </div>
       </div>
 
       <div class="btns">
@@ -131,7 +145,9 @@ const onCloseConfirmEditInfo = () => {
       up
       @close="onCloseConfirmEditInfo"
     >
-      <EditUserInfo v-if="dialogRef" v-model:status="edit_status" @close="dialogRef!._close" />
+      <div class="edit-user-info-dialog">
+        <EditUserInfo v-if="dialogRef" v-model:status="edit_status" @close="dialogRef!._close" />
+      </div>
     </KDialog>
   </teleport>
 </template>

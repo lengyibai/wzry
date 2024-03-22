@@ -10,7 +10,7 @@
   width: calc(26.0417vw / 2);
   height: calc(24.2188vw / 2);
   background-size: calc(52.0833vw / 2) calc(48.4375vw / 2);
-  background-image: url("https://lyb.cbb.plus/wzry-material/image/white_logo.png");
+  background-image: url("https://files.lyb.im/wzry-material/image/white_logo.png");
 }
 
 .spirit_into-1 {
@@ -223,7 +223,7 @@
   .into {
     position: absolute;
     bottom: 1em;
-    right: 1em;
+    right: 3em;
     color: #fff;
     display: flex;
     align-items: center;
@@ -245,20 +245,34 @@
       font-weight: bold;
     }
 
-    .iconfont {
-      color: #fff;
-      font-size: inherit;
-      transform: rotate(180deg);
-      animation: breath 0.75s infinite ease alternate-reverse;
+    .arrows {
+      position: relative;
+      display: flex;
+      align-items: center;
 
-      @keyframes breath {
-        100% {
-          transform: rotate(180deg) translateX(50%);
-        }
+      .arrow {
+        position: absolute;
+        font-size: inherit;
+        color: #fff;
+        left: calc(var(--i) * -1vw);
+        animation: move 1.75s calc(var(--i) * 0.3s) linear infinite;
       }
     }
-    @media screen and (max-width: 960px) {
-      font-size: 5vw;
+
+    @keyframes move {
+      0% {
+        opacity: 0;
+        transform: translateX(0);
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(3vw);
+        opacity: 0;
+      }
     }
   }
 }

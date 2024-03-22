@@ -24,9 +24,9 @@ const class_name = {
     :class="[type, { disabled: disabled }, class_name[type]]"
     class="k-button"
   >
-    <span class="text">
+    <div class="content">
       <slot>按钮</slot>
-    </span>
+    </div>
   </div>
 </template>
 

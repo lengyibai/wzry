@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import _debounce from "lodash/debounce";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 import { connectCircle } from "./helper/connectCircle";
 import type { MouseTip } from "./interface";
 
-import { $bus } from "@/utils";
 import { vTypewriterMultiple } from "@/directives";
+import { $bus } from "@/utils/eventBus";
 
 let timer1: NodeJS.Timeout;
 let timer2: NodeJS.Timeout;

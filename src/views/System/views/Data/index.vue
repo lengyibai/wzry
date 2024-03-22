@@ -5,11 +5,12 @@ import _debounce from "lodash/debounce";
 import type { TableData } from "./interface";
 
 import { AudioStore } from "@/store";
-import { $confirm, $message, $tool } from "@/utils";
 import type { ResultData } from "@/api/interface";
 import { LibTable, TableColumn } from "@/components/common";
 import { CONFIRM_TIP, MESSAGE_TIP, REQUEST } from "@/config";
 import { vMouseTip } from "@/directives";
+import { $message, $confirm } from "@/utils/busTransfer";
+import { _getFileSizeInKB, _saveFiles } from "@/utils/tool";
 
 defineOptions({
   name: "Database",
@@ -27,17 +28,17 @@ const table_data = ref<TableData[]>([]);
 
 /* 加载数据 */
 const load = async () => {
-  table_data.value = REQUEST.map(([key, request, name]) => {
+  table_data.value = REQUEST.map(([key, request]) => {
     const v = JSON.parse(localStorage.getItem(key) as string) || [];
 
     return {
-      name: name,
+      name: key,
       key: key,
       data: v,
       status: "正在检查...",
       length: v.length,
       request,
-      size: $tool.getFileSizeInKB(v),
+      size: _getFileSizeInKB(v),
     };
   }).sort((a, b) => {
     return b.size - a.size;
@@ -113,7 +114,7 @@ const handleReplace = (data: TableData) => {
 
 /* 导出 */
 const handleExport = (data: TableData) => {
-  $tool.saveFiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
+  _saveFiles(JSON.stringify({ data: data.data }, null, 2), data.key + ".json");
 };
 
 /* 确认覆盖 */

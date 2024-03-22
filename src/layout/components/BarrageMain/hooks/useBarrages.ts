@@ -2,15 +2,15 @@ import { onScopeDispose, ref } from "vue";
 
 import { BarragesGenerate } from "../helper/BarragesGenerate";
 
-import { $tool } from "@/utils";
 import { BarrageStore } from "@/store/modules/barrage";
 import { GAME_HERO } from "@/api";
+import { _AudioPlayer } from "@/utils/tool";
 
 /** @description 弹幕辅助生成 */
 const useBarrages = () => {
   const $barrageStore = BarrageStore();
 
-  const audioPlay = new $tool.AudioPlayer({
+  const audioPlay = new _AudioPlayer({
     volume: 0.35,
   });
   let barragesMove: BarragesGenerate;
@@ -47,7 +47,7 @@ const useBarrages = () => {
         return;
       }
       barragesMove = new BarragesGenerate(parent, data, {
-        click(v, e) {
+        async click(v, e) {
           const {
             skinName,
             heroId,
@@ -78,8 +78,8 @@ const useBarrages = () => {
               skinBigPoster: link_big!,
             };
           } else {
-            const hero = GAME_HERO.getHeroDetail(heroId);
-            const skin = GAME_HERO.getSkinDetail(heroId, skinName);
+            const hero = await GAME_HERO.getHeroDetail(heroId);
+            const skin = await GAME_HERO.getSkinDetail(heroId, skinName);
             barrage_info.value = {
               voiceText,
               heroName: hero.name,

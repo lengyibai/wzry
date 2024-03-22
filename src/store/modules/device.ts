@@ -1,15 +1,15 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $tool } from "@/utils";
+import { _browserV } from "@/utils/tool";
 
 /** @description 设备信息 */
 const DeviceStore = defineStore("device", () => {
   const ExposeData = {
     /** 浏览器名称 */
-    browser_name: $tool.browserV.browser,
+    browser_name: _browserV.browser,
     /** 浏览器版本 */
-    browser_version: $tool.browserV.version,
+    browser_version: _browserV.version,
     /** 满足浏览器访问条件 */
     browser_status: false,
 

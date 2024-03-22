@@ -4,13 +4,21 @@ import { ref } from "vue";
 import { API_DATA } from "@/api";
 import { KDialog } from "@/components/business";
 import { vScrollVirtualization } from "@/directives";
+import { _retryRequest } from "@/utils/tool";
+import { $msgTipText } from "@/config";
+import { $message } from "@/utils/busTransfer";
 
 const notice = ref("");
 const loading = ref(true);
 
-API_DATA.Notice()
+_retryRequest({
+  promiseFn: API_DATA.Notice,
+})
   .then((res) => {
     notice.value = res.data;
+  })
+  .catch(() => {
+    $message($msgTipText("rc53", { v: "系统公告" }));
   })
   .finally(() => {
     loading.value = false;

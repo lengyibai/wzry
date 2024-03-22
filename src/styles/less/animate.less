@@ -108,3 +108,18 @@
     clip-path: inset(50% 50% 50% 50%);
   }
 }
+
+/* 奖励抖动动画 */
+@keyframes global-jitter {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
+  }
+}

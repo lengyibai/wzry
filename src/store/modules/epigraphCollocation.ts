@@ -7,7 +7,7 @@ import type { EpigraphCollocationStoreType } from "../interface";
 
 import { AuthStore } from "./auth";
 
-import { $tool } from "@/utils";
+import { _typeSort } from "@/utils/tool";
 
 /** @description 铭文搭配 */
 const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
@@ -104,7 +104,7 @@ const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {
       });
 
       const v = calcAttrValue(data);
-      return $tool.typeSort<(typeof v)[0]>(v, "label");
+      return _typeSort<(typeof v)[0]>(v, "label");
     }),
 
     /** 所有插槽处于空状态 */

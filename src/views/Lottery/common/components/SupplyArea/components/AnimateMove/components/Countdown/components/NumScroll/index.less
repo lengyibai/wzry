@@ -1,0 +1,40 @@
+.num-scroll {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 5.375rem;
+  height: 8rem;
+  text-align: center;
+
+  .num-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transition-duration: 0.25s;
+
+    .num {
+      .global_flex-center();
+
+      height: 8rem;
+      font-family: digit;
+    }
+  }
+
+  @media screen and (max-width: 1920px) {
+    --rate: 1;
+
+    width: calc(4.4792vw * var(--rate));
+    height: calc(6.6667vw * var(--rate));
+
+    .num-list {
+      .num {
+        height: calc(6.6667vw * var(--rate));
+      }
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    --rate: 2;
+  }
+}

@@ -1,4 +1,4 @@
-import { $tool } from "@/utils";
+import { _promiseTimeout } from "@/utils/tool";
 
 /** @description FLIP查看图片 */
 export class ScaleFLIPImage {
@@ -15,8 +15,14 @@ export class ScaleFLIPImage {
   private startY!: number;
   private imgLoadCallback;
 
-  constructor(e: Event, main: HTMLElement, src: string, blur: string, imgLoadCallback: () => void) {
-    this.parent = e.target as HTMLElement;
+  constructor(
+    parent: HTMLElement | undefined,
+    main: HTMLElement,
+    src: string,
+    blur: string,
+    imgLoadCallback: () => void,
+  ) {
+    this.parent = parent || document.body;
     this.overlay = main;
     this.src = src;
     this.blur = blur;
@@ -30,14 +36,14 @@ export class ScaleFLIPImage {
 
   /* 创建图片 */
   private async createImage() {
-    await $tool.promiseTimeout(() => {
+    await _promiseTimeout(() => {
       this.img = document.createElement("img");
       this.img.style.width = "75%";
       this.img.style.maxWidth = this.parent.offsetWidth + "px";
       this.img.style.position = "absolute";
       this.img.style.transition = "0.5s";
       this.img.style.opacity = "0";
-      this.img.style.filter = "blur(var(--image-load-blur))";
+      this.img.style.filter = "blur(var(--blur-image-load))";
       this.img.style.transformOrigin = "left top";
       this.img.style.left = this.parent.getBoundingClientRect().left + "px";
       this.img.style.top = this.parent.getBoundingClientRect().top + "px";
@@ -45,7 +51,7 @@ export class ScaleFLIPImage {
       this.overlay.appendChild(this.img);
     });
 
-    await $tool.promiseTimeout(() => {
+    await _promiseTimeout(() => {
       this.img.style.maxWidth = "75%";
       this.img.style.left = `50%`;
       this.img.style.top = `50%`;
@@ -55,18 +61,18 @@ export class ScaleFLIPImage {
       this.img.style.backgroundColor = "#1a1a1a";
     }, 16.7);
 
-    await $tool.promiseTimeout(() => {
+    await _promiseTimeout(() => {
       this.img.style.transition = "initial";
       this.img.style.top = "initial";
       this.img.style.left = "initial";
       this.img.style.transform = `scale(${this.scale})`;
     }, 750);
 
-    await $tool.promiseTimeout(() => {
+    await _promiseTimeout(() => {
       this.img.style.transition = "0.5s";
     }, 16.7);
 
-    await $tool.promiseTimeout(() => {
+    await _promiseTimeout(() => {
       const coverImg = new Image();
       coverImg.src = this.src;
 

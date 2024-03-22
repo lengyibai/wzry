@@ -45,13 +45,23 @@
     }
   }
 
-  .bg {
+  .bg-box {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: 0.25s;
-    pointer-events: none;
+    filter: grayscale(75%) brightness(35%);
+
+    &.have {
+      filter: initial;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      transition: 0.25s;
+      pointer-events: none;
+      object-fit: cover;
+    }
   }
 
   .type {

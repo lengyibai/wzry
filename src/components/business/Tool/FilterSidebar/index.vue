@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
+import {
+  AudioStore,
+  HeroStore,
+  CollapseStore,
+  SkinStore,
+  EquipStore,
+  AtlasStore,
+  HeroDebrisStore,
+  SkinDebrisStore,
+} from "@/store";
 import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
-  type: "hero" | "skin" | "equip" | "atlas";
+  type: "hero" | "heroDebris" | "skin" | "skinDebris" | "equip" | "atlas";
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -16,12 +25,14 @@ const $emit = defineEmits<{
   change: [];
 }>();
 
+const $atlasStore = AtlasStore();
 const $audioStore = AudioStore();
-const $skinStore = SkinStore();
-const $heroStore = HeroStore();
 const $collapseStore = CollapseStore();
 const $equipStore = EquipStore();
-const $atlasStore = AtlasStore();
+const $heroStore = HeroStore();
+const $heroDebrisStore = HeroDebrisStore();
+const $skinStore = SkinStore();
+const $skinDebrisStore = SkinDebrisStore();
 
 const hero_type: { name: Game.Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -47,14 +58,18 @@ const top = ref(0);
 
 /** 动态list */
 const list = computed(() =>
-  ["hero", "skin", "atlas"].includes($props.type) ? hero_type : equip_type,
+  ["hero", "heroDebris", "skin", "skinDebris", "atlas"].includes($props.type)
+    ? hero_type
+    : equip_type,
 );
 
 /** 用于比较的筛选类型 */
 const filter_type = computed(() => {
   const obj = {
     hero: $heroStore.profession,
+    heroDebris: $heroDebrisStore.profession,
     skin: $skinStore.profession,
+    skinDebris: $skinDebrisStore.profession,
     atlas: $atlasStore.profession,
     equip: $equipStore.category,
   };
@@ -65,7 +80,9 @@ const filter_type = computed(() => {
 const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
   const obj = {
     hero: () => $heroStore.setProfessional(name as Game.Hero.Profession),
+    heroDebris: () => $heroDebrisStore.setProfessional(name as Game.Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Game.Hero.Profession),
+    skinDebris: () => $skinDebrisStore.setProfessional(name as Game.Hero.Profession),
     atlas: () => $atlasStore.setProfessional(name as Game.Hero.Profession),
     equip: () => $equipStore.setType(name as Game.Equip.Category),
   };

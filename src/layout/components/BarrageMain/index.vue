@@ -6,9 +6,10 @@ import { useBarrages } from "./hooks/useBarrages";
 import { vDrag } from "./directives/drag";
 
 import { BarrageStore } from "@/store";
-import { $imageView, $tip, $tool } from "@/utils";
 import { vBlurLoad, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
+import { $imageView, $tip } from "@/utils/busTransfer";
+import { _shuffleArray } from "@/utils/tool";
 
 const $barrageStore = BarrageStore();
 
@@ -20,7 +21,7 @@ const { barrage_info, init, show_card } = useBarrages();
 /* 查看图片 */
 const handleView = (e: Event, blur: string, big: string) => {
   $imageView({
-    event: e,
+    parent: e.target as HTMLElement,
     type: "DEFAULT",
     bigImage: big,
     blurImage: blur,
@@ -35,7 +36,7 @@ watch(
     if (v.length > 0) {
       nextTick(() => {
         if (!barragesRef.value || !barrageInfoRef.value) return;
-        init($tool.shuffleArray(_cloneDeep(v)), barragesRef.value, barrageInfoRef.value);
+        init(_shuffleArray(_cloneDeep(v)), barragesRef.value, barrageInfoRef.value);
       });
     }
   },

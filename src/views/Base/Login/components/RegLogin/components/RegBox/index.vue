@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import dayjs from "dayjs";
+import { Base64 } from "js-base64";
 
 import IntoBtn from "../../common/components/IntoBtn/index.vue";
 import RegLogTop from "../../common/components/RegLogTop/index.vue";
@@ -8,10 +9,12 @@ import RegLogTop from "../../common/components/RegLogTop/index.vue";
 import RoleSelect from "./components/RoleSelect/index.vue";
 
 import { AudioStore } from "@/store";
-import { $input, $message, $privateTool, $tool } from "@/utils";
 import { KButton, KInput } from "@/components/business";
 import { vMouseTip } from "@/directives";
 import { DEFAULT, MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { $input, $message } from "@/utils/busTransfer";
+import { _exportCard, _selectAvatarCompress } from "@/utils/privateTool";
+import { _existEmpty } from "@/utils/tool";
 
 const $emit = defineEmits<{
   success: [];
@@ -24,7 +27,7 @@ const form = reactive<Global.UserData>(DEFAULT.userDefaultInfo());
 
 /* 选择图片 */
 const handleSelectAvatar = (e: Event) => {
-  $privateTool.selectAvatarCompress(e, (v) => {
+  _selectAvatarCompress(e, (v) => {
     form.avatar = v;
   });
 };
@@ -53,14 +56,15 @@ const onSelectRole = (role: number) => {
 
 /* 注册 */
 const handleReg = () => {
-  if ($tool.existEmpty(form, ["avatar", "password", "username"])) {
+  if (_existEmpty(form, ["avatar", "password", "username"])) {
     $message(MESSAGE_TIP.mj67, "error");
     return;
   }
 
+  form.id = Base64.encode(dayjs().valueOf().toString());
   form.createTime = dayjs().valueOf();
-  form.updateTime = dayjs().valueOf();
-  $privateTool.exportCard(form);
+  form.isDev = import.meta.env.DEV;
+  _exportCard(form);
 
   $emit("success");
   $message(MESSAGE_TIP.fh97);

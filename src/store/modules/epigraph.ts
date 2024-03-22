@@ -5,7 +5,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { EpigraphCollocationStore } from "./epigraphCollocation";
 
 import { GAME_EPIGRAPH } from "@/api";
-import { $tool } from "@/utils";
+import { _search } from "@/utils/tool";
 
 /** @description 铭文相关 */
 const EpigraphStore = defineStore("epigraph", () => {
@@ -69,8 +69,8 @@ const EpigraphStore = defineStore("epigraph", () => {
       status.value = v;
     },
     /** @description 获取铭文列表 */
-    getEpigraph() {
-      const res = GAME_EPIGRAPH.getEpigraph();
+    async getEpigraph() {
+      const res = await GAME_EPIGRAPH.getEpigraph();
       setEpigraphList(res);
       $epigraphCollocationStore.setEpigraphListInventory(res);
     },
@@ -96,7 +96,7 @@ const EpigraphStore = defineStore("epigraph", () => {
 
       //如果搜索的值不为空，则进行搜索，否则重新排序
       if (v) {
-        filter_list.value = $tool.search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, [
+        filter_list.value = _search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, [
           "name",
         ]);
       }

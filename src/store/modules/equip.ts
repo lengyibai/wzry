@@ -4,8 +4,8 @@ import { reactive, ref } from "vue";
 import { top, height } from "../helper";
 import type { EquipStoreType } from "../interface";
 
-import { $tool } from "@/utils";
 import { GAME_EQUIP, KVP_EQUIP } from "@/api";
+import { _promiseTimeout } from "@/utils/tool";
 
 /** @description 装备相关 */
 const EquipStore = defineStore("equip", () => {
@@ -69,7 +69,7 @@ const EquipStore = defineStore("equip", () => {
   } = ExposeData;
 
   /* 添加合成组 */
-  const addSynthetic = (synthetic: Remote.Equip.Synthetic) => {
+  const addSynthetic = async (synthetic: Remote.Equip.Synthetic) => {
     /* 当点击的是第一列 */
     if (active_array[1] === "1") {
       //获取第一列id组
@@ -81,7 +81,7 @@ const EquipStore = defineStore("equip", () => {
       if (synthetic.to) {
         for (let i = 0; i < synthetic.to.length; i++) {
           const to = synthetic.to![i];
-          const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
+          const res = (await KVP_EQUIP.getEquipSyntheticKvp())[to.id];
           synthetic_id.value[1].push(res);
         }
       }
@@ -93,7 +93,7 @@ const EquipStore = defineStore("equip", () => {
       synthetic_id.value[2] = [];
       for (let i = 0; i < synthetic_id.value[1].length; i++) {
         const to = synthetic_id.value[1][i];
-        const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
+        const res = (await KVP_EQUIP.getEquipSyntheticKvp())[to.id];
         res?.to &&
           synthetic_id.value[2].push(...res.to.map((item) => ({ id: item.id, name: item.value })));
         synthetic_id.value[2].sort((a, b) => a.id - b.id);
@@ -136,7 +136,7 @@ const EquipStore = defineStore("equip", () => {
       if (synthetic.need) {
         for (let i = 0; i < synthetic.need.length; i++) {
           const need = synthetic.need![i];
-          const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
+          const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need.id];
           synthetic_id.value[0].push(res);
         }
       }
@@ -184,7 +184,7 @@ const EquipStore = defineStore("equip", () => {
       synthetic_id.value[1] = [];
       for (let i = 0; i < synthetic.need!.length; i++) {
         const need = synthetic.need![i];
-        const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
+        const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need.id];
         synthetic_id.value[1].push(res);
       }
 
@@ -198,7 +198,7 @@ const EquipStore = defineStore("equip", () => {
         const need = synthetic_id.value[1][i].need;
         if (need) {
           for (let i = 0; i < need?.length; i++) {
-            const res = KVP_EQUIP.getEquipSyntheticKvp()[need[i].id];
+            const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need[i].id];
             synthetic_id.value[0].push(res);
           }
         }
@@ -238,8 +238,8 @@ const EquipStore = defineStore("equip", () => {
 
   const ExposeMethods = {
     /** @description 获取装备列表 */
-    getEquipList() {
-      equip_list = GAME_EQUIP.getEquip();
+    async getEquipList() {
+      equip_list = await GAME_EQUIP.getEquip();
 
       //将装备分类
       equip_list.forEach((item: Game.Equip.Data) => {
@@ -263,18 +263,18 @@ const EquipStore = defineStore("equip", () => {
       equip_list_column.value = type_list[type];
 
       //每次切换装备类型，延迟显示列表及详情
-      await $tool.promiseTimeout(() => {
+      await _promiseTimeout(() => {
         category.value = type;
         show_details.value = false;
       }, 200);
 
-      await $tool.promiseTimeout(() => {
+      await _promiseTimeout(() => {
         this.setEquipActive(Number(type_index[type] + "11"));
       }, 500);
     },
 
     /** @description 点击的装备id */
-    setEquipActive(id = 0) {
+    async setEquipActive(id = 0) {
       clearSynthetic();
 
       //如果再次点击了装备，则重置
@@ -288,7 +288,7 @@ const EquipStore = defineStore("equip", () => {
       show_details.value = true;
       active_data.value = equip_list.find((item) => item.id === id);
 
-      const res = KVP_EQUIP.getEquipSyntheticKvp()[id];
+      const res = (await KVP_EQUIP.getEquipSyntheticKvp())[id];
       if (!res) return;
       active_array = res.id.toString().split("") || [];
       synthetic.value = res;

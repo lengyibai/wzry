@@ -5,7 +5,7 @@
 
 import type { Directive } from "vue";
 
-import { $mouseTip } from "@/utils";
+import { $mouseTip } from "@/utils/busTransfer";
 
 interface ElType extends HTMLElement {
   /** tip内容 */

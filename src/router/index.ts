@@ -5,10 +5,10 @@ import { isExist, isLogin } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
 import { AuthStore, DeviceStore } from "@/store";
-import { $loading } from "@/utils";
 import { BASE_CONFIG } from "@/config/modules/base";
 import { LOCAL_KEY } from "@/config";
 import { useDataFinish } from "@/hooks";
+import { $loading } from "@/utils/loading";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -61,8 +61,8 @@ router.beforeEach(async (to, from, next) => {
     await useDataFinish.readPromise;
   }
 
-  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
-  if (!to.query.id && !from.query.id && to.path !== from.path) {
+  /* 避免地址栏增加参数 */
+  if (to.path !== from.path) {
     $loading.show(`正在加载${to.meta.title}页`);
   }
 
@@ -70,8 +70,8 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
-  if (!to.query.id && !from.query.id && to.path !== from.path) {
+  /* 避免地址栏增加参数 */
+  if (to.path !== from.path) {
     $loading.close();
   }
 

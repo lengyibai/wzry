@@ -16,13 +16,18 @@ const useDialogControl = (close: () => void) => {
   const ExposeMethods = {
     /** @description 关闭 */
     handleClose() {
-      $audioStore.play("pj83");
-      show_dialog.value = false;
-      setTimeout(() => {
-        show_mask.value = false;
-        $audioStore.play("ba09");
-        setTimeout(close, 350);
-      }, 500);
+      return new Promise<void>((resolve) => {
+        $audioStore.play("pj83");
+        show_dialog.value = false;
+        setTimeout(() => {
+          show_mask.value = false;
+          $audioStore.play("ba09");
+          setTimeout(() => {
+            close();
+            resolve();
+          }, 350);
+        }, 500);
+      });
     },
   };
 

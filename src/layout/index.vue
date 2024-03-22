@@ -8,15 +8,14 @@ import Navbar from "@/layout/components/Navbar/index.vue";
 import AppMain from "@/layout/components/AppMain/index.vue";
 import Footbar from "@/layout/components/Footbar/index.vue";
 import { AudioStore, BarrageStore } from "@/store";
-import { $concise, $tool } from "@/utils";
 import { KVideo } from "@/components/business";
+import { _promiseTimeout } from "@/utils/tool";
+import { _getVideoLink } from "@/utils/concise";
 
 const $audioStore = AudioStore();
 const $barrageStore = BarrageStore();
 
 const { status } = storeToRefs($barrageStore);
-
-const { getVideoLink } = $concise;
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);
@@ -30,16 +29,16 @@ const show_app_main = ref(false);
 onMounted(async () => {
   $audioStore.play("p53r");
 
-  await $tool.promiseTimeout(() => {
+  await _promiseTimeout(() => {
     show_sidebar.value = true;
   }, 1000);
-  await $tool.promiseTimeout(() => {
+  await _promiseTimeout(() => {
     show_navbar.value = true;
   }, 500);
-  await $tool.promiseTimeout(() => {
+  await _promiseTimeout(() => {
     show_app_main.value = true;
   }, 500);
-  await $tool.promiseTimeout(() => {
+  await _promiseTimeout(() => {
     show_foot_bar.value = true;
   }, 500);
 });
@@ -68,7 +67,7 @@ onMounted(async () => {
     </div>
 
     <!-- 视频背景 -->
-    <KVideo :link="getVideoLink('bg')" muted />
+    <KVideo :link="_getVideoLink('bg')" muted />
   </div>
 </template>
 

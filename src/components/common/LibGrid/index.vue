@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
-import { $tool } from "@/utils";
 import { vScrollVirtualization } from "@/directives";
+import { _LoadMore } from "@/utils/tool";
 
 interface Props {
   /** 一行显示的个数 */
@@ -33,7 +32,7 @@ const $emit = defineEmits<{
 const LibGridRef = ref<HTMLElement>();
 
 onMounted(() => {
-  new $tool.LoadMore(
+  new _LoadMore(
     {
       parent: LibGridRef.value!,
       loadHeight: 10,

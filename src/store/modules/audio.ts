@@ -1,9 +1,7 @@
 import { defineStore } from "pinia";
 import _debounce from "lodash/debounce";
 
-import { $concise } from "@/utils";
-
-const { getAudioLink } = $concise;
+import { _getAudioLink } from "@/utils/concise";
 
 /** @description 点击音效 */
 const AudioStore = defineStore("audio", () => {
@@ -40,16 +38,31 @@ const AudioStore = defineStore("audio", () => {
     n4r4: "tab",
     rt25: "tip",
     p6q3: "warning",
+    o7r6: "raffle",
+    jo36: "raffle_obtain",
+    fz02: "knapsack",
+    h3w0: "store",
+    bg51: "receipt",
+    o3l2: "shop",
+    wm14: "activate",
+    // jy55: "",
+    // hy43: "",
+    // pk92: "",
+    // au63: "",
+    // gk90: "",
+    // e90x: "",
+    // kj35: "",
+    // zm31: "",
+    // dh38: "",
   };
 
   /**
    * @description: 播放音效
    * @param name 音效随机标识
    */
-  const playAudio = (name: keyof Global.Audio.Key) => {
-    //播放器
+  const playAudio = (name: keyof Global.Audio.Key, version?: string) => {
     const audio = new Audio();
-    audio.src = getAudioLink(sound_type[name]);
+    audio.src = _getAudioLink(sound_type[name], version);
     audio.volume = volume;
 
     audio.play().catch(() => {});
@@ -62,23 +75,37 @@ const AudioStore = defineStore("audio", () => {
 
   const ExposeMethods = {
     /** @description 预加载所有音效 */
-    preload() {
-      Object.values(sound_type).forEach((v) => {
-        new Audio(getAudioLink(v)).preload = "auto";
+    async preload() {
+      const data = Object.values(sound_type).map((item) => {
+        return () => {
+          return new Promise<void>((resolve) => {
+            const a = new Audio(_getAudioLink(item));
+            a.oncanplay = () => {
+              resolve();
+            };
+          });
+        };
       });
+
+      for (let index = 0; index < data.length; index++) {
+        await data[index]();
+      }
     },
     /**
      * @description: 调用播放
      * @param name 音效名
      */
-    play(name: keyof Global.Audio.Key = "h2w0") {
+    play(name: keyof Global.Audio.Key = "h2w0", version?: string) {
       if (!status) return;
 
-      //悬浮音效防抖处理
-      if (name === "n4r4") {
+      /**
+       * fz02：背包页面在保存的时候会出现栈溢出，导致音量频繁出发
+       * n4r4：悬浮音效防抖处理
+       */
+      if (["fz02", "n4r4"].includes(name)) {
         debouncePlayAudio(name);
       } else {
-        playAudio(name);
+        playAudio(name, version);
       }
     },
 
@@ -90,10 +117,7 @@ const AudioStore = defineStore("audio", () => {
       volume = (v / 100) * 0.75;
     },
 
-    /**
-     * @description: 关闭音效功能
-     * @param v false关闭
-     */
+    /** @description 设置音效功能开关 */
     setAudio(v: boolean) {
       status = v;
     },

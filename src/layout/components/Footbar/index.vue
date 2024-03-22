@@ -27,6 +27,7 @@ const music_progress = computed(() => $settingStore.config.musicProgress);
 
 nextTick(() => {
   $musicStore.initAudioVisual(canvasRef.value!);
+  if (!$settingStore.config.music) return;
   $musicStore.play();
 });
 

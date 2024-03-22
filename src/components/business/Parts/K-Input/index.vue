@@ -108,7 +108,7 @@ const input = (e: Event) => {
 </script>
 
 <template>
-  <div class="form-input" :class="{ disabled: disabled }">
+  <div class="k-input" :class="{ disabled: disabled }">
     <input
       :type="type"
       :value="modelValue"

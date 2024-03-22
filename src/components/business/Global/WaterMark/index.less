@@ -8,7 +8,7 @@
   transition: all 0.5s;
 
   p {
-    text-shadow: none;
+    text-shadow: var(--shine-10);
   }
 }
 
@@ -22,4 +22,29 @@
 
 .low {
   color: var(--red);
+}
+
+
+.markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  padding-top: 1rem;
+  background-color: var(--black-50);
+  align-content: flex-start;
+  backdrop-filter: blur(10px);
+  gap: 1rem;
+
+  .marker {
+    width: 30em;
+    font-size: 1.25rem;
+    opacity: 0.75;
+  }
 }

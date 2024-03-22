@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { vParticleEffect } from "@/directives";
 import { SettingStore } from "@/store";
-import { getImgLink } from "@/utils/modules/concise";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 标题 */
@@ -22,7 +22,7 @@ const $settingStore = SettingStore();
     }"
     class="reg-log-top__logo"
   >
-    <img class="logo" :src="getImgLink('login_logo')" alt="logo" />
+    <img class="logo" :src="_getImgLink('login_logo')" alt="logo" />
   </div>
 
   <!-- 标题 -->

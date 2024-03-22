@@ -13,6 +13,59 @@
     text-shadow: var(--t-shadow-e);
   }
 
+  .wzry-youxiang {
+    position: relative;
+
+    &.unread {
+      animation: unread 1.25s ease-in-out infinite;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 0.625rem;
+        height: 0.625rem;
+        border-radius: 50%;
+        background-color: var(--red);
+        transform: translateX(50%);
+      }
+
+      @keyframes unread {
+        0% {
+          transform: scale(1);
+        }
+
+        15% {
+          transform: scale(1.1);
+        }
+
+        30% {
+          transform: scale(1.1) rotate(10deg);
+        }
+
+        45% {
+          transform: scale(1.1) rotate(-10deg);
+        }
+
+        60% {
+          transform: scale(1.1) rotate(10deg);
+        }
+
+        75% {
+          transform: scale(1.1) rotate(-10deg);
+        }
+
+        85% {
+          transform: scale(1.1) rotate(0deg);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+
   .wzry-setting {
     display: inline-block;
     transition: all 0.5s;

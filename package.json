@@ -17,12 +17,14 @@
     "axios": "^1.6.3",
     "dayjs": "^1.11.10",
     "js-base64": "^3.7.6",
+    "jszip": "^3.10.1",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.0",
     "vue-i18n": "^9.8.0",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.6.1",

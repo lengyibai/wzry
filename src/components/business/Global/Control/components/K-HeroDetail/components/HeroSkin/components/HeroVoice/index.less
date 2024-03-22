@@ -1,0 +1,106 @@
+.hero-voice {
+  .global_scroll-white();
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 0.625rem;
+  perspective: 62.5rem;
+
+  .voice {
+    .global_flex-center();
+
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 4.0625rem;
+    margin-bottom: 0.625rem;
+    padding: 0 3.125rem;
+    border-radius: 0.625rem;
+    text-shadow: var(--t-shadow-e);
+    white-space: nowrap;
+    background-color: var(--black-50);
+
+    &:hover {
+      .k-marquee {
+        color: var(--blue) !important;
+        transition: 0s !important;
+      }
+
+      .content {
+        .iconfont {
+          color: var(--blue);
+        }
+      }
+    }
+
+    &.active-width {
+      .k-marquee {
+        color: var(--blue) !important;
+        text-shadow: var(--shine-10), var(--shine-20);
+        transition: 0s !important;
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      font-size: 1.375rem;
+      transition: 0.5s;
+
+      .k-marquee {
+        margin-right: 1rem;
+        color: var(--white);
+        transition: 0.5s;
+      }
+
+      &.active-color {
+        color: var(--blue);
+      }
+
+      .iconfont {
+        color: var(--white);
+        font-size: 1.625rem;
+
+        &.active-rotate {
+          color: var(--blue);
+          animation: rotate 0s linear;
+
+          @keyframes rotate {
+            0% {
+              transform: rotate(0deg);
+            }
+
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.voice-list-enter-from {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.voice-list-enter-active {
+  transition: all 0.5s;
+}
+
+.voice-list-leave-active {
+  position: absolute;
+  transition-delay: 0s !important;
+  transition-duration: 0s !important;
+  opacity: 0;
+}

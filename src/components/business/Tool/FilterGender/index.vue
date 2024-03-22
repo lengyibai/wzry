@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP } from "@/config";
+import { $mouseTipText, MOUSE_TIP } from "@/config";
 
 const $emit = defineEmits<{
   change: [v: Game.GenderId];
@@ -27,7 +27,7 @@ const handleSetGender = (v: Game.GenderId) => {
     <span class="label">只看：</span>
     <i
       v-mouse-tip="{
-        text: MOUSE_TIP.ix29,
+        text: $mouseTipText('iv65', { gender: '男' }),
       }"
       class="iconfont wzry-nan"
       :class="{ 'nan-active': gender === 1 }"
@@ -35,7 +35,7 @@ const handleSetGender = (v: Game.GenderId) => {
     />
     <i
       v-mouse-tip="{
-        text: MOUSE_TIP.iv65,
+        text: $mouseTipText('iv65', { gender: '女' }),
       }"
       class="iconfont wzry-nv"
       :class="{ 'nv-active': gender === 2 }"

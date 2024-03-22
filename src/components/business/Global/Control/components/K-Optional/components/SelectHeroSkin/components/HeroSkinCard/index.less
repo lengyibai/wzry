@@ -1,0 +1,35 @@
+.hero-skin-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .round {
+    .global_selected-shine-circle(5.5rem);
+  }
+
+  .head-box {
+    position: relative;
+    overflow: hidden;
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    filter: var(--d-shadow-b);
+
+    .hero-name {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: var(--white-75);
+      text-align: center;
+      line-height: 2em;
+      background-color: var(--black-50);
+    }
+  }
+
+  .skin-name {
+    font-size: 1.25rem;
+    text-shadow: var(--t-shadow-e);
+  }
+}

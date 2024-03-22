@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { $tool } from "@/utils";
 import { KVP_HERO, LOCAL_HERO } from "@/api";
+import { _random } from "@/utils/tool";
 
 /** @description 语音弹幕 */
 const BarrageStore = defineStore("barrage", () => {
@@ -21,17 +21,17 @@ const BarrageStore = defineStore("barrage", () => {
     },
 
     /** @description 获取/刷新弹幕 */
-    getBarrages() {
-      const hero_names = LOCAL_HERO.getHeroNameList();
-      const hero_gender = KVP_HERO.getHeroGenderKvp();
-      const hero_voices = KVP_HERO.getSkinVoiceListKvp();
+    async getBarrages() {
+      const hero_names = await LOCAL_HERO.getHeroNameList();
+      const hero_gender = await KVP_HERO.getHeroGenderKvp();
+      const hero_voices = await KVP_HERO.getSkinVoiceListKvp();
       const data: Global.Barrage[] = [];
 
       hero_names.forEach((heroName) => {
         if (!["梦奇", "盾山"].includes(heroName.value)) {
           hero_voices[heroName.id].forEach((skins) => {
             //获取随机位置的语音
-            const voice_index = $tool.random(0, skins.voice.length - 1);
+            const voice_index = _random(0, skins.voice.length - 1);
 
             data.push({
               heroId: heroName.id,

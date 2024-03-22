@@ -33,8 +33,8 @@ const usePagingLoad = <T>() => {
     },
 
     /** @description 设置全部数据 */
-    pushAllData(v: T) {
-      (all_data.value as T[]).push(v);
+    pushAllData(v: T[]) {
+      (all_data.value as T[]) = v;
     },
 
     /** @description 设置筛选后的数据 */

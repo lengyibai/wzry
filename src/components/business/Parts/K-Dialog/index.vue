@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import KLoadingIcon from "../K-LoadingIcon/index.vue";
+
 import { useDialogControl } from "./hooks/useDialogControl";
 
-import { $concise } from "@/utils";
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
-import KLoadingIcon from "@/components/business/Parts/K-LoadingIcon/index.vue";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
-  /** 垂直对齐方式 */
-  align?: "flex-start" | "center" | "flex-end";
-  /** 内容宽度 */
-  ctxWidth?: string;
+  /** 弹窗比例 */
+  ratio?: number;
+  /** 内容相对弹窗主体的百分比宽度 */
+  ctWidth?: string;
+  /** 内容相对弹窗主体的百分比高度 */
+  ctHeight?: string;
+  /** 内容距离弹窗顶部百分比 */
+  ctTop?: string;
   /** 中间标题文字 */
   header?: string;
   /** 中间标题下描述 */
@@ -35,14 +40,16 @@ interface Props {
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  align: "flex-start",
-  ctxWidth: "80%",
+  ctWidth: "80%",
+  ctHeight: "70%",
+  ctTop: "58%",
   showClose: true,
   autoClose: true,
   audio: true,
   width: "45rem",
   loading: false,
   zIndex: "var(--z-index-dialog)",
+  ratio: 0.55,
 });
 const $emit = defineEmits<{
   close: [];
@@ -53,8 +60,6 @@ const $emit = defineEmits<{
 const modelValue = defineModel<boolean>();
 
 const $audioStore = AudioStore();
-
-const { getImgLink } = $concise;
 
 const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
   $props.autoClose && $emit("close");
@@ -103,8 +108,8 @@ defineExpose({
           class="k-dialog"
           :style="{
             width: width,
-            height: `calc(${width} * 0.55)`,
-            backgroundImage: `url(${getImgLink('dialog')})`,
+            height: `calc(${width} * ${ratio})`,
+            backgroundImage: `url(${_getImgLink('dialog')})`,
           }"
         >
           <!-- 左上标题 -->
@@ -130,8 +135,9 @@ defineExpose({
           <div
             class="content"
             :style="{
-              width: ctxWidth,
-              justifyContent: align,
+              width: ctWidth,
+              height: ctHeight,
+              top: ctTop,
             }"
           >
             <transition-group name="fade">

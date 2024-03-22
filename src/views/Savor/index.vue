@@ -1,25 +1,26 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { storeToRefs } from "pinia";
 import _debounce from "lodash/debounce";
-import { onActivated, onDeactivated } from "vue";
+import { computed, onActivated, onDeactivated, ref } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
-import { $bus, $imageView } from "@/utils";
-import { AtlasStore, AudioStore } from "@/store";
+import { AtlasStore, AudioStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
-import { GAME_HERO, KVP_HERO } from "@/api";
-import { MOUSE_TIP } from "@/config";
+import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vBlurLoad, vMouseTip } from "@/directives";
+import { useHaveHeroSkin } from "@/hooks";
+import { $imageView } from "@/utils/busTransfer";
+import { $bus } from "@/utils/eventBus";
 
 defineOptions({
   name: "Savor",
 });
 
 const $audioStore = AudioStore();
+const $knapsackStore = KnapsackStore();
 const $atlasStore = AtlasStore();
 
 const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
@@ -37,6 +38,28 @@ const back_top = ref(false);
 
 $atlasStore.getAtlasList();
 
+/* 悬浮卡片描述 */
+const hoverDesc = computed(() => {
+  return (type: "HERO" | "SKIN", id: number) => {
+    if (type === "HERO" && !$knapsackStore.hero_list[id]) {
+      return {
+        text: $mouseTipText("a20t", { v: "英雄" }),
+        disabled: true,
+      };
+    } else if (type === "SKIN" && !$knapsackStore.skin_list.includes(id)) {
+      return {
+        text: $mouseTipText("a20t", { v: "皮肤" }),
+        disabled: true,
+      };
+    }
+
+    return {
+      text: MOUSE_TIP.o12u,
+      disabled: false,
+    };
+  };
+});
+
 /* 高亮图片 */
 const handleLight = (id: number, blur: string) => {
   hero_id.value = id;
@@ -44,38 +67,20 @@ const handleLight = (id: number, blur: string) => {
 };
 
 /* 当前高亮的图片id */
-const handleRelated = (
-  e: Event,
-  type: Game.Hero.AloneAtlas["type"],
-  id: number,
-  name: string,
-  poster: string,
-  blur: string,
-) => {
-  const heroAvatar = KVP_HERO.getHeroAvatarKvp()[id];
+const handleRelated = (e: Event, type: Game.Hero.AloneAtlas["type"], id: number) => {
   if (type === "HERO") {
-    const voices = GAME_HERO.getSkinVoice(id, "原皮").voice;
+    if (!useHaveHeroSkin(id)) return;
     $imageView({
-      event: e,
-      type: "HERO",
-      bigImage: poster,
-      blurImage: blur,
-      heroName: name,
-      heroAvatar,
-      skinName: "原版皮肤",
-      voices,
+      id,
+      parent: e.target as HTMLElement,
+      type: "SKIN",
     });
   } else {
-    const voices = GAME_HERO.getSkinVoice(id, name).voice;
+    if (!useHaveHeroSkin(id, "SKIN")) return;
     $imageView({
-      event: e,
-      type: "HERO",
-      bigImage: poster,
-      blurImage: blur,
-      heroName: KVP_HERO.getHeroNameKvp()[id],
-      heroAvatar,
-      skinName: name,
-      voices,
+      id,
+      parent: e.target as HTMLElement,
+      type: "SKIN",
     });
   }
 };
@@ -145,16 +150,15 @@ onDeactivated(() => {
           v-for="item in show_list"
           :key="item.poster"
           v-mouse-tip="{
-            text: MOUSE_TIP.o12u,
+            disabled: hoverDesc(item.type, item.id).disabled,
+            text: hoverDesc(item.type, item.id).text,
           }"
           :class="{
             active: hero_id === item.id,
           }"
           class="atlas-card"
           @mouseenter="handleLight(item.id, item.posterBlur)"
-          @mouseup="
-            handleRelated($event, item.type, item.id, item.name, item.posterBig, item.posterBlur)
-          "
+          @mouseup="handleRelated($event, item.type, item.id)"
           @touchstart="handleLight(item.id, item.posterBlur)"
           @mouseleave="hero_id = 0"
         >
@@ -164,7 +168,7 @@ onDeactivated(() => {
           <div v-if="item.type === 'SKIN'" class="skin-name">
             {{ item.name }}
           </div>
-          <img v-blurLoad="item.cover" class="bg" :src="item.coverBlur" />
+          <img v-blur-load="item.cover" class="bg" :src="item.coverBlur" />
         </div>
       </LibWaterfall>
     </div>

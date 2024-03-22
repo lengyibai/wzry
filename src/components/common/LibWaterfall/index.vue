@@ -4,8 +4,8 @@ import { onMounted, ref, watch } from "vue";
 import waterFullLayout from "./Waterfall";
 
 import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
-import { $tool } from "@/utils";
 import { vScrollVirtualization } from "@/directives";
+import { _LoadMore } from "@/utils/tool";
 interface Props {
   count?: number;
   gap?: number;
@@ -75,7 +75,7 @@ watch(() => $props.count, updateSizePosition);
 onMounted(() => {
   watchImgLoad();
 
-  new $tool.LoadMore(
+  new _LoadMore(
     {
       parent: waterfallContentRef.value!.parentElement!,
       loadHeight: 10,

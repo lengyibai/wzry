@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3767305 */
-  src: url('iconfont.woff2?t=1706385827118') format('woff2'),
-       url('iconfont.woff?t=1706385827118') format('woff'),
-       url('iconfont.ttf?t=1706385827118') format('truetype');
+  src: url('iconfont.woff2?t=1709374774928') format('woff2'),
+       url('iconfont.woff?t=1709374774928') format('woff'),
+       url('iconfont.ttf?t=1709374774928') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,42 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.wzry-luck:before {
+  content: "\e7e1";
+}
+
+.wzry-honor:before {
+  content: "\e639";
+}
+
+.wzry-king:before {
+  content: "\e6f6";
+}
+
+.wzry-shop:before {
+  content: "\e7a8";
+}
+
+.wzry-prop:before {
+  content: "\e636";
+}
+
+.wzry-debris:before {
+  content: "\e6b9";
+}
+
+.wzry-crystal:before {
+  content: "\e638";
+}
+
+.wzry-knapsack:before {
+  content: "\e671";
+}
+
+.wzry-chaka:before {
+  content: "\e637";
 }
 
 .wzry-liwu:before {

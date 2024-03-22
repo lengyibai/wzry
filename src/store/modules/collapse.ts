@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { watch } from "vue";
 import { ref } from "vue";
 
-import { $bus } from "@/utils";
+import { $bus } from "@/utils/eventBus";
 
 /** @description 折叠侧边栏 */
 const CollapseStore = defineStore("collapse", () => {

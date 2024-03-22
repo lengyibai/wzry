@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 
-import { vAnimateNumber, vBlurLoad } from "@/directives";
+import { vBlurLoad } from "@/directives";
 import { EpigraphCollocationStore } from "@/store";
 
 interface Props {
@@ -53,13 +53,7 @@ watch(
         <div v-for="(item, index) in data.effect" :key="index" class="type">
           <div class="label">{{ item.type }}</div>
           <div class="value">
-            +<span
-              v-animate-number="{
-                num: item.num,
-                decimalPlaces: 1,
-              }"
-              class="value"
-            ></span>
+            +<span class="value">{{ item.num }}</span>
           </div>
         </div>
       </div>
