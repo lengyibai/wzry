@@ -76,7 +76,7 @@ const download_info = computed(() => {
 
     //数据最后下载
     a = data_progress.value;
-    b = data_type.value;
+    b = "正在下载" + data_type.value;
     c = data_progress.value;
 
     if (status === "进度条") return a;

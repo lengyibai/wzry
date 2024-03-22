@@ -28,7 +28,7 @@ const useGetData = () => {
   const ExposeComputed = {
     /** 下载进度百分比 */
     progress: computed(() => {
-      return ((index.value / total.value || 1) * 100).toFixed(0) + "%";
+      return ((index.value / total.value || 0) * 100).toFixed(0) + "%";
     }),
   };
 
