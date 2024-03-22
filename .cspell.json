@@ -155,10 +155,5 @@
     "zhuangbei",
     "zhuanhuan"
   ],
-  "ignorePaths": [
-    "node_modules/**",
-    "dist/**",
-    "src/config/modules/pinyin.ts",
-    "*.json"
-  ]
+  "ignorePaths": ["node_modules/**", "dist/**", "src/config/modules/pinyin.ts", "*.json"]
 }

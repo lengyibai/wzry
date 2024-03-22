@@ -1,8 +1,10 @@
 import { BASE_CONFIG } from "@/config/modules/base";
+import { useGetAudioZip } from "@/hooks";
 
 /** @description 获取远程音效链接 */
-export const _getAudioLink = (name: string, version = "0") =>
-  `${BASE_CONFIG.IMGBED}/audio/${name}.mp3?temp=${version}`;
+export const _getAudioLink = (name: string) => {
+  return useGetAudioZip().audio_links.value[name];
+};
 
 /** @description 获取远程音乐链接 */
 export const _getMusicLink = (name: string) => `${BASE_CONFIG.IMGBED}/music/${name}.mp3`;

@@ -60,11 +60,10 @@ const AudioStore = defineStore("audio", () => {
    * @description: 播放音效
    * @param name 音效随机标识
    */
-  const playAudio = (name: keyof Global.Audio.Key, version?: string) => {
+  const playAudio = (name: keyof Global.Audio.Key) => {
     const audio = new Audio();
-    audio.src = _getAudioLink(sound_type[name], version);
+    audio.src = _getAudioLink(sound_type[name]);
     audio.volume = volume;
-
     audio.play().catch(() => {});
   };
 
@@ -74,38 +73,22 @@ const AudioStore = defineStore("audio", () => {
   }, 50);
 
   const ExposeMethods = {
-    /** @description 预加载所有音效 */
-    async preload() {
-      const data = Object.values(sound_type).map((item) => {
-        return () => {
-          return new Promise<void>((resolve) => {
-            const a = new Audio(_getAudioLink(item));
-            a.oncanplay = () => {
-              resolve();
-            };
-          });
-        };
-      });
-
-      for (let index = 0; index < data.length; index++) {
-        await data[index]();
-      }
-    },
     /**
      * @description: 调用播放
      * @param name 音效名
      */
-    play(name: keyof Global.Audio.Key = "h2w0", version?: string) {
+    play(name: keyof Global.Audio.Key = "h2w0") {
       if (!status) return;
 
       /**
-       * fz02：背包页面在保存的时候会出现栈溢出，导致音量频繁出发
+       * fz02：背包页面在保存的时候会出现栈溢出，导致音量频繁触发
        * n4r4：悬浮音效防抖处理
+       * n74s、p6q3、vw31 消息提醒防抖处理
        */
-      if (["fz02", "n4r4"].includes(name)) {
+      if (["fz02", "n4r4", "n74s", "p6q3", "vw31"].includes(name)) {
         debouncePlayAudio(name);
       } else {
-        playAudio(name, version);
+        playAudio(name);
       }
     },
 

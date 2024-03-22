@@ -12,8 +12,8 @@
     "noEmit": true,
     "types": ["node", "vite/client"],
     "paths": {
-      "@/*": ["./src/*"],
-    },
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "*.d.ts",
@@ -21,7 +21,7 @@
     "./src/**/*.d.ts",
     "./src/**/*.tsx",
     "./src/**/*.vue",
-    "vite.config.ts",
+    "vite.config.ts"
   ],
-  "exclude": ["node_modules", "dist", "**/*.js", "./src/utils/index.ts"],
+  "exclude": ["node_modules", "dist", "**/*.js", "./src/utils/index.ts"]
 }

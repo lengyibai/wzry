@@ -216,7 +216,7 @@ const SupplyStore = defineStore("supply", () => {
           if (seconds.value === 0) {
             clearInterval(timer);
             supplyStatus.value = "RECEIVE";
-            $audioStore.play("bg51", "1");
+            $audioStore.play("bg51");
           } else {
             seconds.value--;
           }

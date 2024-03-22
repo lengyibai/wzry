@@ -6,14 +6,18 @@ import { LOCAL_KEY } from "@/config/modules/local-key";
 import { useGetData } from "@/hooks/modules/useGetData";
 import { $msgTipText } from "@/config";
 import { $message } from "@/utils/busTransfer";
-import { useIndexedDB } from "@/hooks";
 import { _retryRequest } from "@/utils/tool";
+import { useGetAudioZip } from "@/hooks/modules/useGetAudioZip";
+import { useDataFinish } from "@/hooks/modules/useDataFinish";
+import { useIndexedDB } from "@/hooks/modules/useIndexedDB";
 
 const VersionStore = defineStore("version", () => {
   const { BaseData, VoiceData } = useIndexedDB();
 
   /** 版本计时器 */
   let version_timer: NodeJS.Timeout;
+  /** 是否检测过数据完整性 */
+  let data_check = false;
 
   const ExposeData = {
     /** 本地数据版本 */
@@ -30,8 +34,6 @@ const VersionStore = defineStore("version", () => {
     data_status: ref(false),
     /** 文件是否需要更新 */
     dist_status: ref(false),
-    /** 是否检测过数据完整性 */
-    data_check: ref(false),
     /** 更新日志汇总 */
     update_log: ref<Omit<Global.Version.UpdateLog, "voiceKey" | "dataKey">>({
       time: "",
@@ -55,7 +57,6 @@ const VersionStore = defineStore("version", () => {
     remote_dist_version,
     show_update,
     data_status,
-    data_check,
     dist_status,
     update_log,
   } = ExposeData;
@@ -107,7 +108,7 @@ const VersionStore = defineStore("version", () => {
           remote_data_version.value = dataVersion;
           remote_dist_version.value = distVersion;
 
-          //如果本地没有版本，则直接更新数据版本
+          //如果本地没有版本，则直接写入数据版本
           if (!local_data_version.value) {
             updateVersion(dataVersion, "DATA");
           } else {
@@ -142,9 +143,12 @@ const VersionStore = defineStore("version", () => {
                   });
               });
             } else {
-              if (data_check.value || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
+              //当本地有用户信息，意味着用户已经登录，不会跳转到登录页重复下载
+              if (data_check || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
               await useGetData().getData(true);
-              data_check.value = true;
+              await useGetAudioZip().getAudio();
+              useDataFinish.readyDataResolve();
+              data_check = true;
             }
           }
 
@@ -184,8 +188,6 @@ const VersionStore = defineStore("version", () => {
   /** 文件文件版本 */
   local_dist_version.value = localStorage.getItem(LOCAL_KEY.VERSION_DIST) || "";
 
-  watchVersion();
-
   _retryRequest({
     promiseFn: API_DATA.UpdateLog,
   })
@@ -195,6 +197,8 @@ const VersionStore = defineStore("version", () => {
     .catch(() => {
       $message($msgTipText("rc53", { v: "更新日志" }));
     });
+
+  watchVersion();
 
   return {
     ...ExposeData,

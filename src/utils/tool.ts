@@ -774,6 +774,7 @@ export const _formatKilobitNumber = (num: number) => {
   }
 };
 
+/** @description 请求失败重连 */
 export const _retryRequest = <T>({
   promiseFn,
   maxRetries = 3,

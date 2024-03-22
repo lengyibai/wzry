@@ -15,14 +15,15 @@ const local = {
 };
 
 const remote = {
-  baseURL: import.meta.env.VITE_REMOTE_API_URL as string,
+  baseURL: import.meta.env.VITE_REMOTE_API_URL,
   timeout: 1000 * 600,
 };
 
 const resource = {
-  baseURL: import.meta.env.VITE_RESOURCE_URL as string,
+  baseURL: import.meta.env.VITE_RESOURCE_URL,
   timeout: 1000 * 600,
-};
+  responseType: "blob",
+} as const;
 
 /* 本地JSON请求 */
 class LocaleHttp {
@@ -33,7 +34,7 @@ class LocaleHttp {
     /* 请求拦截器 */
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        config.url += `?temp=${dayjs().valueOf()}`;
+        // config.url += `?temp=${dayjs().valueOf()}`;
         return config;
       },
       (error: AxiosError) => {
@@ -71,7 +72,7 @@ class RemoteHttp {
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         //禁止请求的数据设置缓存
-        config.url += `?temp=${dayjs().valueOf()}`;
+        // config.url += `?temp=${dayjs().valueOf()}`;
         return config;
       },
       (error: AxiosError) => {
@@ -130,7 +131,7 @@ class ResourceHttp {
     this.service = axios.create(config);
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        config.url += `?temp=${dayjs().valueOf()}`;
+        // config.url += `?temp=${dayjs().valueOf()}`;
         return config;
       },
       (error: AxiosError) => {

@@ -73,24 +73,12 @@ const handleClose = () => {
             }"
           >
             <div v-for="(item, index) in prop_list" :key="index" class="box">
+              <!-- 散射元素 -->
               <div v-if="show_bg && prop_list.length === 1" class="shine">
-                <span style="--i: 1"></span>
-                <span style="--i: 2"></span>
-                <span style="--i: 3"></span>
-                <span style="--i: 4"></span>
-                <span style="--i: 5"></span>
-                <span style="--i: 6"></span>
-                <span style="--i: 7"></span>
-                <span style="--i: 8"></span>
-                <span style="--i: 9"></span>
-                <span style="--i: 10"></span>
-                <span style="--i: 11"></span>
-                <span style="--i: 12"></span>
-                <span style="--i: 13"></span>
-                <span style="--i: 14"></span>
-                <span style="--i: 15"></span>
-                <span style="--i: 16"></span>
+                <span v-for="(item, index) in 16" :key="index" :style="'--i: ' + item"></span>
               </div>
+
+              <!-- 图标元素 -->
               <div class="icon-box">
                 <img :src="item.icon" alt="" class="icon" />
                 <div v-if="item.num" class="num" :data-text="item.num">

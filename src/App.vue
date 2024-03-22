@@ -4,13 +4,11 @@ import { onMounted } from "vue";
 import { $loading } from "./utils/loading";
 import { _titleTip } from "./utils/tool";
 
-import { AudioStore, SettingStore, VersionStore } from "@/store";
+import { SettingStore, VersionStore } from "@/store";
 import { Control, WaterMark } from "@/components/business";
 
-const $audioStore = AudioStore();
 const $settingStore = SettingStore();
 
-$audioStore.preload();
 $settingStore.takeEffect();
 VersionStore();
 

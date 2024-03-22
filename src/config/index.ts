@@ -2,7 +2,7 @@ export * from "./modules/base";
 export * from "./modules/confirm-tip";
 export * from "./modules/game-prop";
 export * from "./modules/help-tip";
-export * from "./modules/json-name";
+export * from "./modules/resource-name";
 export * from "./modules/local-key";
 export * from "./modules/message-tip";
 export * from "./modules/mouse-tip";

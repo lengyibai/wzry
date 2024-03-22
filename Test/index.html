@@ -1,43 +1,86 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  // 创建一个空对象来存储音频链接
-  const audioLinks = {};
-
-  // 创建一个 Axios 实例用于发送请求
-  const axiosInstance = axios.create({
-    responseType: 'blob' // 设置响应类型为 blob
-  });
-
-  // 发送 GET 请求获取 ZIP 文件
-  axiosInstance.get('https://files.lyb.im/wzry-material/audio/audio.zip', {
-    // 监听下载进度
-    onDownloadProgress: (progressEvent) => {
-      // 计算下载进度百分比
-      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-      console.log(percentCompleted + '%'); // 打印下载进度
-      if (percentCompleted === 100) {
-        console.warn('解压中..'); // 下载完成后提示正在解压
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>冷弋白的网页</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
       }
-    }
-  }).then(async (res) => { // 成功获取 ZIP 文件后执行以下代码
-    const zip = await JSZip.loadAsync(res.data); // 使用 JSZip 加载 ZIP 文件
-    const fileNames = Object.keys(zip.files); // 获取 ZIP 文件中的文件名列表
 
-    // 遍历文件名列表
-    for (const fileName of fileNames) {
-      const zipEntry = zip.files[fileName]; // 获取 ZIP 文件中的文件对象
-
-      // 如果文件不是文件夹且文件名以 .mp3 结尾
-      if (!zipEntry.dir && fileName.match(/\.mp3$/i)) {
-        const originalFileName = fileName.replace(/\.mp3$/i, ''); // 去掉 .mp3 后缀
-        const mp3Blob = await zip.files[fileName].async("blob"); // 将 ZIP 文件中的 MP3 文件转换为 Blob 对象
-        const mp3Url = URL.createObjectURL(mp3Blob); // 生成 MP3 文件的 URL
-        audioLinks[originalFileName] = mp3Url; // 将文件名和 URL 存储到 audioLinks 对象中
+      html {
+        width: 100vw;
+        height: 100vh;
+        background-color: #1a1a1a;
+        animation: color 1s infinite linear;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-    }
 
-    console.log(Object.keys(audioLinks).length); // 打印生成的音频链接对象
-  });
+      .box {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background: #000;
+        clip-path: polygon(
+          92% 11%,
+          0 10%,
+          0 0,
+          100% 1%,
+          100% 100%,
+          0 100%,
+          0 10%,
+          10% 9%,
+          11% 91%,
+          91% 91%
+        );
+      }
 
-</script>
+      .line {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        animation: rotate 1s infinite linear;
+        transform-origin: left center;
+      }
+
+      @keyframes rotate {
+        100% {
+          transform: rotate(360deg);
+          transform-origin: left center;
+        }
+      }
+
+      @keyframes color {
+        0% {
+          background-color: #1a1a1a;
+        }
+
+        50% {
+          background-color: #fff;
+        }
+
+        100% {
+          background-color: #000;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="box">
+        <div class="line"></div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script type="text/javascript"></script>
+  </body>
+</html>

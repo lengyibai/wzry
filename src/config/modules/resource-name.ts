@@ -1,6 +1,6 @@
 /** @description 请求的JSON文件key */
 
-const JSON_NAME = {
+const RESOURCE_NAME = {
   /** 版本信息 */
   VERSION: "version",
   /** 更新日志 */
@@ -131,6 +131,8 @@ const JSON_NAME = {
   TYPE_SPECIALTY: "typeSpecialty",
   /** 英雄语音列表 */
   VOICE: "voices",
+  /** 音效ZIP */
+  AUDIO_ZIP: "audio/audio.zip",
 };
 
-export { JSON_NAME };
+export { RESOURCE_NAME };

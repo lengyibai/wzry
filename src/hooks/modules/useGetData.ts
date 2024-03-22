@@ -1,7 +1,6 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import { useIndexedDB } from "./useIndexedDB";
-import { useDataFinish } from "./useDataFinish";
 
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
 import { $msgTipText, $tipText, REQUEST } from "@/config";
@@ -13,17 +12,23 @@ import { _retryRequest } from "@/utils/tool";
 const useGetData = () => {
   const { BaseData, VoiceData } = useIndexedDB();
 
+  /** 请求总数 */
+  const total = ref(0);
+  /** 用于计算下载进度 */
+  const index = ref(0);
+
   const ExposeData = {
-    /** 请求总数 */
-    total: ref(0),
-    /** 用于计算下载进度 */
-    index: ref(0),
     /** 正在下载的数据类型 */
     type: ref(""),
     /** 请求结束 */
     finish: ref(false),
   };
-  const { total, index, type, finish } = ExposeData;
+  const { type, finish } = ExposeData;
+
+  const ExposeComputed = {
+    /** 下载进度百分比 */
+    progress: computed(() => ((index.value / total.value) * 100).toFixed(0) + "%"),
+  };
 
   /* 将数据写入本地存储 */
   const setData = async (name: string, data: any, type: "BASE" | "VOICE") => {
@@ -160,13 +165,12 @@ const useGetData = () => {
       const data_lacks_text = data.data_lacks.map((item) => item[0]);
       const voice_lacks_text = voice.voice_lacks.map((item) => item[0]);
       getLogTip(silent, data_lacks_text, voice_lacks_text);
-
-      useDataFinish.readyDataResolve();
     },
   };
 
   return {
     ...ExposeData,
+    ...ExposeComputed,
     ...ExposeMethods,
   };
 };
