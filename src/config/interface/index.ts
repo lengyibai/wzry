@@ -3,8 +3,8 @@ export interface GamePropValue {
   label: string;
   /** 道具键名 */
   key: Game.PropKey;
-  /** 道具图标 */
-  icon: string;
+  /** 道具图标名 */
+  iconName: string;
   /** 道具描述 */
   desc: string;
 }

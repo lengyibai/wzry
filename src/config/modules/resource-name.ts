@@ -133,6 +133,8 @@ const RESOURCE_NAME = {
   VOICE: "voices",
   /** 音效ZIP */
   AUDIO_ZIP: "audio/audio.zip",
+  /** 贴图ZIP */
+  IMAGE_ZIP: "image/image.zip",
 };
 
 export { RESOURCE_NAME };

@@ -337,11 +337,14 @@ export const Voice = (pinyin: string) => {
 
 /** @description 获取音效资源Zip */
 export const AudioResource = (onDownloadProgress: (progressEvent: AxiosProgressEvent) => void) => {
-  return $ResourceHttp.Get<any>(
-    `/${RESOURCE_NAME.AUDIO_ZIP}`,
-    {},
-    {
-      onDownloadProgress,
-    },
-  );
+  return $ResourceHttp.Get<any>(`/${RESOURCE_NAME.AUDIO_ZIP}`, {
+    onDownloadProgress,
+  });
+};
+
+/** @description 获取a贴图资源Zip */
+export const ImageResource = (onDownloadProgress: (progressEvent: AxiosProgressEvent) => void) => {
+  return $ResourceHttp.Get<any>(`/${RESOURCE_NAME.IMAGE_ZIP}`, {
+    onDownloadProgress,
+  });
 };

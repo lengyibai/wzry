@@ -13,25 +13,25 @@ const useGetAudioZip = () => {
     audio_links,
 
     /** zip总大小KB */
-    zip_size: ref("正在计算..."),
+    audio_zip_size: ref("正在计算..."),
     /** zip已下载大小KB */
-    zip_downloaded_size: ref("0KB"),
+    audio_zip_downloaded_size: ref("0KB"),
     /** zip下载进度百分比 */
-    zip_download_progress: ref("0%"),
+    audio_zip_download_progress: ref("0%"),
     /** 是否下载完成 */
-    zip_download_complete: ref(false),
+    audio_zip_download_finish: ref(false),
     /** zip解压进度百分比 */
-    zip_decompression_progress: ref("0%"),
+    audio_zip_decompression_progress: ref("0%"),
     /** 是否解压完成 */
-    zip_decompression_complete: ref(false),
+    audio_zip_decompression_finish: ref(false),
   };
   const {
-    zip_size,
-    zip_downloaded_size,
-    zip_download_progress,
-    zip_download_complete,
-    zip_decompression_progress,
-    zip_decompression_complete,
+    audio_zip_size,
+    audio_zip_downloaded_size,
+    audio_zip_download_progress,
+    audio_zip_download_finish,
+    audio_zip_decompression_progress,
+    audio_zip_decompression_finish,
   } = ExposeData;
 
   const ExposeMethods = {
@@ -50,14 +50,14 @@ const useGetAudioZip = () => {
           /** 总大小 */
           const total_size = e.total! / BYTES_IN_KB;
 
-          zip_size.value = total_size.toFixed(0) + "KB";
-          zip_downloaded_size.value = downloaded_size.toFixed(0) + "KB";
-          zip_download_progress.value = Math.round((e.loaded * 100) / e.total!) + "%";
+          audio_zip_size.value = total_size.toFixed(0) + "KB";
+          audio_zip_downloaded_size.value = downloaded_size.toFixed(0) + "KB";
+          audio_zip_download_progress.value = Math.round((e.loaded * 100) / e.total!) + "%";
         }).then(async (res) => {
-          zip_download_complete.value = true;
+          audio_zip_download_finish.value = true;
 
           /** 用于计算解压进度 */
-          let completed_files = 0;
+          let finish_files = 0;
           /** 本地是否存在用户信息 */
           const exist_user = !!localStorage.getItem("user_data");
           const zip = await JSZip.loadAsync(res.data);
@@ -76,16 +76,16 @@ const useGetAudioZip = () => {
                   const mp3Blob = await zip.files[fileName].async("blob");
                   const mp3Url = URL.createObjectURL(mp3Blob);
                   audio_links.value[originalFileName] = mp3Url;
-                  completed_files++;
-                  zip_decompression_progress.value =
-                    Math.round((completed_files / file_names.length) * 100) + "%";
+                  finish_files++;
+                  audio_zip_decompression_progress.value =
+                    Math.round((finish_files / file_names.length) * 100) + "%";
                 }
               },
               exist_user ? 0 : 50,
             );
           }
 
-          zip_decompression_complete.value = true;
+          audio_zip_decompression_finish.value = true;
           resolve();
         });
       });

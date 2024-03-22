@@ -140,12 +140,8 @@ class ResourceHttp {
     );
   }
 
-  Get<T = unknown>(
-    url: string,
-    params?: object,
-    config?: AxiosRequestConfig,
-  ): Promise<ResultData<T>> {
-    return this.service.get(url, { params, ...config });
+  Get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.get(url, { ...config });
   }
 }
 

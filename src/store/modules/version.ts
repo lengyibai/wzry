@@ -10,6 +10,7 @@ import { _retryRequest } from "@/utils/tool";
 import { useGetAudioZip } from "@/hooks/modules/useGetAudioZip";
 import { useDataFinish } from "@/hooks/modules/useDataFinish";
 import { useIndexedDB } from "@/hooks/modules/useIndexedDB";
+import { useGetImageZip } from "@/hooks";
 
 const VersionStore = defineStore("version", () => {
   const { BaseData, VoiceData } = useIndexedDB();
@@ -145,8 +146,9 @@ const VersionStore = defineStore("version", () => {
             } else {
               //当本地有用户信息，意味着用户已经登录，不会跳转到登录页重复下载
               if (data_check || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
-              await useGetData().getData(true);
+              await useGetImageZip().getImage();
               await useGetAudioZip().getAudio();
+              await useGetData().getData(true);
               useDataFinish.readyDataResolve();
               data_check = true;
             }
