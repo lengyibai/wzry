@@ -9,6 +9,7 @@ import { vMouseTip } from "@/directives";
 import { _promiseTimeout } from "@/utils/tool";
 import { useLotteryPlay } from "@/views/Lottery/common/hooks/useLotteryPlay";
 import { LOTTERY_AWARD } from "@/config/modules/game-config";
+import { _getImgLink } from "@/utils/concise";
 
 const $audioStore = AudioStore();
 const $markerStore = MarkerStore();
@@ -140,7 +141,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
       class="area-box"
     >
       <div v-if="item.num" class="tag">{{ item.num }}</div>
-      <img :src="GAME_PROP[item.type].icon" alt="" class="icon" />
+      <img :src="_getImgLink(GAME_PROP[item.type].iconName)" alt="" class="icon" />
       <div class="text">{{ GAME_PROP[item.type].label }}</div>
     </div>
 
@@ -157,7 +158,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
           <!-- 抵扣石夺宝 -->
           <template v-if="have_alone_discount">
             <KButton v-mouse-tip class="k-button" type="warning" @click="handlePlay">
-              <img :src="GAME_PROP.SKIN_LOTTERY_STONE.icon" alt="" class="icon" />
+              <img :src="_getImgLink(GAME_PROP.SKIN_LOTTERY_STONE.iconName)" alt="" class="icon" />
               <span class="num">×1</span>
               <div class="text">夺宝一次</div>
             </KButton>
@@ -171,7 +172,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
               type="warning"
               @click="handlePlayFive('DEDUCTION')"
             >
-              <img :src="GAME_PROP.SKIN_LOTTERY_STONE.icon" alt="" class="icon" />
+              <img :src="_getImgLink(GAME_PROP.SKIN_LOTTERY_STONE.iconName)" alt="" class="icon" />
               <span class="num">×5</span>
               <div class="text">夺宝五次</div>
             </KButton>
@@ -189,7 +190,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
               type="warning"
               @click="handlePlay"
             >
-              <img :src="GAME_PROP.SKIN_LOTTERY_COIN.icon" alt="" class="icon" />
+              <img :src="_getImgLink(GAME_PROP.SKIN_LOTTERY_COIN.iconName)" alt="" class="icon" />
               <span class="num">×1</span>
               <div class="text">夺宝一次</div>
             </KButton>
@@ -203,7 +204,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
               type="warning"
               @click="handlePlayFive('FREE')"
             >
-              <img :src="GAME_PROP.SKIN_LOTTERY_COIN.icon" alt="" class="icon" />
+              <img :src="_getImgLink(GAME_PROP.SKIN_LOTTERY_COIN.iconName)" alt="" class="icon" />
               <span class="num">×5</span>
               <div class="text">夺宝五次</div>
             </KButton>

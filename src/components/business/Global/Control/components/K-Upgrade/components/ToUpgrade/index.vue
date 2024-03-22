@@ -12,6 +12,7 @@ import { KnapsackStore } from "@/store";
 import { useSetMarker } from "@/hooks";
 import { $obtain, $message } from "@/utils/busTransfer";
 import { _calcLevelPercentage } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 英雄升级信息 */
@@ -61,7 +62,7 @@ const handleUpgrade = () => {
       $useSetMarker.add(prop.key, item.count, "UPGRADE");
 
       return {
-        icon: prop.icon,
+        icon: _getImgLink(prop.iconName),
         name: prop.label,
         num: item.count,
       };
@@ -145,7 +146,7 @@ const handleUpgrade = () => {
             blur: hero.exp < k && target_exp >= k,
           }"
           :style="{
-            backgroundImage: `url(${GAME_PROP[v.key].icon})`,
+            backgroundImage: `url(${_getImgLink(GAME_PROP[v.key].iconName)})`,
           }"
         ></div>
         <div class="num" :data-text="v.count">{{ v.count }}</div>

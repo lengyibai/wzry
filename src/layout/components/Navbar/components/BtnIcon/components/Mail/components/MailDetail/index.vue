@@ -5,6 +5,7 @@ import { KButton, KDialog } from "@/components/business";
 import { GAME_PROP } from "@/config";
 import { KnapsackStore, MailStore } from "@/store";
 import { $obtain } from "@/utils/busTransfer";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 邮件信息 */
@@ -25,7 +26,7 @@ const handleReceive = (main: Game.Mail) => {
     $knapsack.setGamePropNum(item.key, item.num, "ADD");
     return {
       /** 图标 */
-      icon: prop.icon,
+      icon: _getImgLink(prop.iconName),
       /** 名称 */
       name: prop.label,
       /** 数量 */
@@ -77,7 +78,7 @@ const handleReceive = (main: Game.Mail) => {
         <div class="prop-list">
           <div v-for="(item, index) in mail.props" :key="index" class="prop-item">
             <div class="icon-box">
-              <img :src="GAME_PROP[item.key].icon" alt="" class="icon" />
+              <img :src="_getImgLink(GAME_PROP[item.key].iconName)" alt="" class="icon" />
               <div class="num" :data-text="item.num">{{ item.num }}</div>
             </div>
 

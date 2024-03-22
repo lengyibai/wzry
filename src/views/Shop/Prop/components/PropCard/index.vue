@@ -5,6 +5,7 @@ import { GAME_PROP } from "@/config";
 import { BuyProp } from "@/components/business/Global/Control/components/K-BuyProp/interface";
 import { GoodsInfo } from "@/config/interface";
 import { $buyProp } from "@/utils/busTransfer";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 皮肤数据 */
@@ -21,8 +22,8 @@ const handlePay = (data: BuyProp) => {
 
 <template>
   <div v-mask-gradient class="prop-card">
-    <img class="blur" :src="data.data.icon" />
-    <img class="icon" :src="data.data.icon" />
+    <img class="blur" :src="_getImgLink(data.data.iconName)" />
+    <img class="icon" :src="_getImgLink(data.data.iconName)" />
     <div class="name">{{ data.data.label }}×{{ data.num }}</div>
     <KButton
       v-mouse-tip
@@ -37,7 +38,7 @@ const handlePay = (data: BuyProp) => {
         })
       "
     >
-      <img :src="GAME_PROP[data.way].icon" alt="" class="type" />
+      <img :src="_getImgLink(GAME_PROP[data.way].iconName)" alt="" class="type" />
       <div class="price">{{ data.price }}</div>
     </KButton>
   </div>

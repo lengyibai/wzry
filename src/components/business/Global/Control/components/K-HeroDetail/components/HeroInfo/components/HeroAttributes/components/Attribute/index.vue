@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { _getImgLink } from "@/utils/concise";
+
 interface Props {
   /** 属性名 */
   attr: keyof Game.Hero.SkillKey;
@@ -45,7 +47,13 @@ setTimeout(() => {
         }"
       ></div>
     </div>
-    <div class="ico" :class="attr"></div>
+    <div
+      class="ico"
+      :class="attr"
+      :style="{
+        backgroundImage: `url(${_getImgLink('attribute')})`,
+      }"
+    ></div>
   </div>
 </template>
 

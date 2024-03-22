@@ -27,7 +27,9 @@ const useGetData = () => {
 
   const ExposeComputed = {
     /** 下载进度百分比 */
-    progress: computed(() => ((index.value / total.value) * 100).toFixed(0) + "%"),
+    progress: computed(() => {
+      return ((index.value / total.value || 1) * 100).toFixed(0) + "%";
+    }),
   };
 
   /* 将数据写入本地存储 */
@@ -161,6 +163,7 @@ const useGetData = () => {
       total.value = voice.voice_lacks.length;
       await Promise.all(voice.voice_requests);
       finish.value = true;
+      type.value = "所有资源下载完毕！";
 
       const data_lacks_text = data.data_lacks.map((item) => item[0]);
       const voice_lacks_text = voice.voice_lacks.map((item) => item[0]);

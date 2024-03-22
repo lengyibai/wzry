@@ -9,6 +9,7 @@ import { $mouseTipText, SCENE_TIP } from "@/config";
 import { useHaveHeroSkin } from "@/hooks";
 import { $tip, $focus } from "@/utils/busTransfer";
 import { _isPhone } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 const $emit = defineEmits<{
   "bg-imgs": [data: number[]];
@@ -175,12 +176,24 @@ onUnmounted(() => {
 <template>
   <div ref="skinBoxRef" class="hero-skin-head-img" :class="{ into: show_skin_box }">
     <!--中心头衔框-->
-    <div ref="skinHeadRef" class="show-skin">
+    <div
+      ref="skinHeadRef"
+      class="show-skin"
+      :style="{
+        backgroundImage: `url(${_getImgLink('head_bg')})`,
+      }"
+    >
       {{ is_into_drag ? "松开" : "拖过来" }}
     </div>
     <!--光晕-->
     <transition name="fade">
-      <div v-show="is_into_drag" class="show-skin clone"></div>
+      <div
+        v-show="is_into_drag"
+        class="show-skin clone"
+        :style="{
+          backgroundImage: `url(${_getImgLink('head_bg_clone')})`,
+        }"
+      ></div>
     </transition>
 
     <!--皮肤头像-->

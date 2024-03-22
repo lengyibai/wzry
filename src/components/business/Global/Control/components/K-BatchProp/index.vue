@@ -13,6 +13,7 @@ import { useSetMarker } from "@/hooks";
 import { $message, $obtain } from "@/utils/busTransfer";
 import { $bus } from "@/utils/eventBus";
 import { _shuffleArray, _random } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
@@ -140,7 +141,7 @@ const handleReceive = async () => {
     const k = key as Game.PropKey;
     const prop = GAME_PROP[k];
     obtain.push({
-      icon: prop.icon,
+      icon: _getImgLink(prop.iconName),
       name: prop.label,
       num: rewards[k],
     });
@@ -174,7 +175,7 @@ const handleReceive = async () => {
         <div v-if="prop_config" class="prop-data">
           <div class="prop-info">
             <div class="icon-box">
-              <img :src="prop_config.icon" alt="" class="icon" />
+              <img :src="_getImgLink(prop_config.iconName)" alt="" class="icon" />
               <div class="count" :data-text="prop_num">{{ prop_num }}</div>
             </div>
 

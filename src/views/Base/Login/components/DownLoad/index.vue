@@ -39,6 +39,9 @@ const download_info = computed(() => {
       a = image_zip_download_progress.value;
       b = "正在下载贴图包";
       c = `${image_zip_downloaded_size.value} / ${image_zip_size.value}`;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
     }
 
     //如果图片未解压完毕，则显示图片解压进度
@@ -46,6 +49,9 @@ const download_info = computed(() => {
       a = image_zip_decompression_progress.value;
       b = "正在解压贴图";
       c = image_zip_decompression_progress.value;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
     }
 
     //如果音效未下载完毕，则显示音效下载进度
@@ -53,6 +59,9 @@ const download_info = computed(() => {
       a = audio_zip_download_progress.value;
       b = "正在下载网站音效包";
       c = `${audio_zip_downloaded_size.value} / ${audio_zip_size.value}`;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
     }
 
     //如果音效解压下载完毕，则显示音效解压下载进度
@@ -60,11 +69,14 @@ const download_info = computed(() => {
       a = audio_zip_decompression_progress.value;
       b = "正在解压音效";
       c = audio_zip_decompression_progress.value;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
     }
 
     //数据最后下载
     a = data_progress.value;
-    b = "正在下载" + data_type;
+    b = data_type.value;
     c = data_progress.value;
 
     if (status === "进度条") return a;

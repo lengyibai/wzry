@@ -6,6 +6,7 @@ import { GAME_PROP, HELP_TIP } from "@/config";
 import { vAnimateNumber } from "@/directives";
 import { KnapsackStore } from "@/store";
 import { $help } from "@/utils/busTransfer";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 工具栏是英雄夺宝还是皮肤夺宝 */
@@ -48,7 +49,7 @@ const handleHelp = () => {
     <div class="prop-num">
       <!-- 剩余夺宝币 -->
       <div class="coin">
-        <img :src="GAME_PROP[coin_key[type]].icon" alt="" class="icon" />
+        <img :src="_getImgLink(GAME_PROP[coin_key[type]].iconName)" alt="" class="icon" />
         <div
           v-animate-number="{
             num: articles[coin_key[type]],
@@ -61,7 +62,7 @@ const handleHelp = () => {
 
       <!-- 剩余抵扣石 -->
       <div class="rock">
-        <img :src="GAME_PROP[stone_key[type]].icon" alt="" class="icon" />
+        <img :src="_getImgLink(GAME_PROP[stone_key[type]].iconName)" alt="" class="icon" />
         <div
           v-animate-number="{
             num: articles[stone_key[type]],

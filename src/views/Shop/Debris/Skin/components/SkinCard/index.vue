@@ -2,6 +2,7 @@
 import { vAnimateNumber, vBlurLoad, vMaskGradient, vMouseTip } from "@/directives";
 import { GAME_PROP } from "@/config";
 import { KButton } from "@/components/business";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 皮肤数据 */
@@ -27,7 +28,7 @@ const handleExchange = (e: Event, data: Game.Hero.Skin) => {
 
     <!-- 价格 -->
     <div class="price">
-      <img :src="GAME_PROP.SKIN_DEBRIS.icon" alt="" class="icon" />
+      <img :src="_getImgLink(GAME_PROP.SKIN_DEBRIS.iconName)" alt="" class="icon" />
       <span
         v-animate-number="{
           num: data.debris,

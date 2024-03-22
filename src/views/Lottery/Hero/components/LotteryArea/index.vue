@@ -140,7 +140,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
             :style="`--i:${index}`"
           >
             <div v-if="item.num" class="tag">{{ item.num }}</div>
-            <img :src="GAME_PROP[item.type].icon" alt="" class="icon" />
+            <img :src="_getImgLink(GAME_PROP[item.type].iconName)" alt="" class="icon" />
             <div class="text">{{ GAME_PROP[item.type].label }}</div>
           </div>
         </div>
@@ -172,7 +172,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
     <div class="base">
       <template v-if="have_alone_discount">
         <KButton class="k-button" type="warning" @click="handlePlay">
-          <img :src="GAME_PROP.HERO_LOTTERY_STONE.icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP.HERO_LOTTERY_STONE.iconName)" alt="" class="icon" />
           <span class="num">×1</span>
           <div class="text">夺宝一次</div>
         </KButton>
@@ -187,7 +187,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
           type="warning"
           @click="handlePlayFive('DEDUCTION')"
         >
-          <img :src="GAME_PROP.HERO_LOTTERY_STONE.icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP.HERO_LOTTERY_STONE.iconName)" alt="" class="icon" />
           <span class="num">×5</span>
           <div class="text">夺宝五次</div>
         </KButton>
@@ -203,7 +203,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
           type="warning"
           @click="handlePlay"
         >
-          <img :src="GAME_PROP.HERO_LOTTERY_COIN.icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP.HERO_LOTTERY_COIN.iconName)" alt="" class="icon" />
           <span class="num">×1</span>
           <div class="text">夺宝一次</div>
         </KButton>
@@ -218,7 +218,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
           type="warning"
           @click="handlePlayFive('FREE')"
         >
-          <img :src="GAME_PROP.HERO_LOTTERY_COIN.icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP.HERO_LOTTERY_COIN.iconName)" alt="" class="icon" />
           <span class="num">×5</span>
           <div class="text">夺宝五次</div>
         </KButton>

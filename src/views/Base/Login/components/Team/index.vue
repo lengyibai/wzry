@@ -36,6 +36,8 @@ const handleView = (e: Event, v: string[]) => {
     blurImage: v[1],
   });
 };
+
+alert(555);
 </script>
 
 <template>

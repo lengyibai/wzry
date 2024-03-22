@@ -6,6 +6,7 @@ import { EpigraphCollocationStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { _classNameInclude } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
@@ -105,13 +106,20 @@ onBeforeUnmount(() => {
 
 <template>
   <transition name="move" appear>
-    <div ref="epigraphSuitRef" class="epigraph-suit">
+    <div
+      ref="epigraphSuitRef"
+      class="epigraph-suit"
+      :style="{
+        backgroundImage: `url(${_getImgLink('epigraph_bg')})`,
+      }"
+    >
       <div
         ref="shineRoundRef"
         class="shine-round"
         :style="{
           left: shine_position.left + 'px',
           top: shine_position.top + 'px',
+          backgroundImage: `url(${_getImgLink('epigraph_slot_shine')})`,
         }"
       ></div>
 
@@ -131,6 +139,9 @@ onBeforeUnmount(() => {
             },
           ]"
           class="epigraph"
+          :style="{
+            backgroundImage: `url(${_getImgLink('epigraph_blue_slot')})`,
+          }"
           @click="handleSelect(item, 'BLUE', index)"
         >
           <img :src="item?.img" alt="" />
@@ -152,6 +163,9 @@ onBeforeUnmount(() => {
               active: fill_index === index && fill_color === 'GREEN',
             },
           ]"
+          :style="{
+            backgroundImage: `url(${_getImgLink('epigraph_green_slot')})`,
+          }"
           class="epigraph"
           @click="handleSelect(item, 'GREEN', index)"
         >
@@ -174,6 +188,9 @@ onBeforeUnmount(() => {
               active: fill_index === index && fill_color === 'RED',
             },
           ]"
+          :style="{
+            backgroundImage: `url(${_getImgLink('epigraph_red_slot')})`,
+          }"
           class="epigraph"
           @click="handleSelect(item, 'RED', index)"
         >

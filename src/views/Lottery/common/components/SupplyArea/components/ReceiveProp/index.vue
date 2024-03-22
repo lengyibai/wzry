@@ -6,6 +6,7 @@ import { KnapsackStore, SupplyStore } from "@/store";
 import { KButton } from "@/components/business";
 import { $obtain } from "@/utils/busTransfer";
 import { _formatSecondsToChinese } from "@/utils/tool";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 补给站是英雄夺宝还是皮肤夺宝 */
@@ -25,11 +26,11 @@ const stone = $props.type === "HERO" ? "HERO_LOTTERY_STONE" : "SKIN_LOTTERY_STON
 
 /* 领取 */
 const handleReceive = () => {
-  const { key, icon, label: name } = GAME_PROP[stone];
+  const { key, iconName, label: name } = GAME_PROP[stone];
   $knapsackStore.setGamePropNum(key, mode.value!.count, "ADD");
 
   $obtain({
-    icon: icon,
+    icon: _getImgLink(iconName),
     name,
     num: mode.value!.count,
   });
@@ -52,7 +53,7 @@ const handleReceiveAgain = () => {
       <div
         class="icon"
         :style="{
-          backgroundImage: `url(${GAME_PROP[stone].icon})`,
+          backgroundImage: `url(${_getImgLink(GAME_PROP[stone].iconName)})`,
         }"
       ></div>
       <div class="count">×{{ mode?.count }}</div>

@@ -10,6 +10,7 @@ import { KButton, KDialog, KRange } from "@/components/business";
 import { useSetMarker } from "@/hooks";
 import { $obtain, $message } from "@/utils/busTransfer";
 import { $bus } from "@/utils/eventBus";
+import { _getImgLink } from "@/utils/concise";
 
 const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
@@ -46,7 +47,7 @@ const handleConfirm = () => {
       $knapsackStore.setGamePropNum(config.value.prop.key, config.value.num * count.value, "ADD");
       $useSetMarker.add(config.value.prop.key, config.value.num * count.value, "SHOP");
       $obtain({
-        icon: config.value.prop.icon,
+        icon: _getImgLink(config.value.prop.iconName),
         name: config.value.prop.label,
         num: config.value.num * count.value,
       });
@@ -76,7 +77,7 @@ const handleConfirm = () => {
         <div v-if="config" class="prop-data">
           <div class="prop-info">
             <div class="icon-box">
-              <img :src="config.prop.icon" alt="" class="icon" />
+              <img :src="_getImgLink(config.prop.iconName)" alt="" class="icon" />
             </div>
 
             <div class="base">
@@ -97,7 +98,7 @@ const handleConfirm = () => {
           <KRange v-model="count" :min="1" :show-num="false" />
         </div>
         <KButton v-mouse-tip class="k-button" type="warning" @click="handleConfirm">
-          <img :src="GAME_PROP[config.type].icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP[config.type].iconName)" alt="" class="icon" />
           <div class="price">{{ config.price * count }}</div>
         </KButton>
       </div>

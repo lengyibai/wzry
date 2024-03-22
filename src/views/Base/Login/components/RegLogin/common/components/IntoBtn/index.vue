@@ -37,6 +37,9 @@ const debouncePlayAudio = _debounce(
       enable: $settingStore.config.particle,
     }"
     class="into-btn"
+    :style="{
+      backgroundImage: `url(${_getImgLink('login_btn')})`,
+    }"
     @click="debouncePlayAudio"
   >
     <span class="text">{{ text }}</span>

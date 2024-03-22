@@ -13,6 +13,7 @@ import { $optional, $upgrade, $batchProp, $confirm, $message } from "@/utils/bus
 import { _classNameInclude, _getNewDayTimestamp } from "@/utils/tool";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
 import { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
+import { _getImgLink } from "@/utils/concise";
 
 const $router = useRouter();
 
@@ -306,7 +307,7 @@ onBeforeUnmount(() => {
         }"
         @click="handleSelect(item[0], index)"
       >
-        <img :src="GAME_PROP[item[0]].icon" alt="" />
+        <img :src="_getImgLink(GAME_PROP[item[0]].iconName)" alt="" />
         <div class="num">{{ item[1] }}</div>
       </div>
     </div>
@@ -317,7 +318,7 @@ onBeforeUnmount(() => {
           v-show="_article_info.key === article_info.key"
           class="icon"
           :style="{
-            backgroundImage: `url(${_article_info.icon})`,
+            backgroundImage: `url(${_getImgLink(_article_info.iconName)})`,
           }"
         ></div>
       </transition>

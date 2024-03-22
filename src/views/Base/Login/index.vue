@@ -72,7 +72,7 @@ setTimeout(() => {
     <img
       v-if="login_video_bg_version"
       class="bg"
-      :src="_getImgLink('/login_bg', login_video_bg_version, 'jpg')"
+      :src="_getImgLink('login_bg', login_video_bg_version, 'jpg')"
       alt=""
     />
 

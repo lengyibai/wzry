@@ -4,6 +4,7 @@ import { useTip } from "./hooks/useTip";
 import { KButton } from "@/components/business";
 import { vMouseTip, vTypewriterMultiple } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { _getImgLink } from "@/utils/concise";
 
 const {
   show_tip,
@@ -49,7 +50,16 @@ const position = {
         }"
       >
         <transition :name="align">
-          <div v-show="show_tip" class="k-tip" :style="position[align]">
+          <div
+            v-show="show_tip"
+            class="k-tip"
+            :style="[
+              position[align],
+              {
+                backgroundImage: `url(${_getImgLink('dialog')})`,
+              },
+            ]"
+          >
             <div class="top">
               <!-- 左上角标题 -->
               <div class="title">小贴士</div>

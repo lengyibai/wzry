@@ -6,6 +6,7 @@ import { GAME_CONFIG, GAME_PROP } from "@/config";
 import { SupplyStore } from "@/store";
 import { KButton } from "@/components/business";
 import { _getSupplyColor } from "@/utils/privateTool";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 补给站是英雄夺宝还是皮肤夺宝 */
@@ -71,7 +72,7 @@ const handleSelect = (index: number) => {
       <div class="tip">
         <div class="text">倒计时结束后可领取</div>
         <div class="prop">
-          <img :src="GAME_PROP[stone].icon" alt="" class="icon" />
+          <img :src="_getImgLink(GAME_PROP[stone].iconName)" alt="" class="icon" />
           <span>×{{ mode.count }}</span>
         </div>
       </div>

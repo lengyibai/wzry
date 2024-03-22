@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { API_DATA } from "@/api";
 import { _promiseTimeout } from "@/utils/tool";
+import { $msgTipText } from "@/config/modules/message-tip";
 
 const audio_links = ref<Record<string, string>>({});
 
@@ -53,41 +54,45 @@ const useGetAudioZip = () => {
           audio_zip_size.value = total_size.toFixed(0) + "KB";
           audio_zip_downloaded_size.value = downloaded_size.toFixed(0) + "KB";
           audio_zip_download_progress.value = Math.round((e.loaded * 100) / e.total!) + "%";
-        }).then(async (res) => {
-          audio_zip_download_finish.value = true;
+        })
+          .then(async (res) => {
+            audio_zip_download_finish.value = true;
 
-          /** 用于计算解压进度 */
-          let finish_files = 0;
-          /** 本地是否存在用户信息 */
-          const exist_user = !!localStorage.getItem("user_data");
-          const zip = await JSZip.loadAsync(res.data);
-          const file_names = Object.keys(zip.files);
+            /** 用于计算解压进度 */
+            let finish_files = 0;
+            /** 本地是否存在用户信息 */
+            const exist_user = !!localStorage.getItem("user_data");
+            const zip = await JSZip.loadAsync(res.data);
+            const file_names = Object.keys(zip.files);
 
-          // 遍历文件名列表
-          for (const fileName of file_names) {
-            //节流处理
-            await _promiseTimeout(
-              async () => {
-                const zipEntry = zip.files[fileName];
+            // 遍历文件名列表
+            for (const fileName of file_names) {
+              //节流处理
+              await _promiseTimeout(
+                async () => {
+                  const zipEntry = zip.files[fileName];
 
-                // 如果文件不是文件夹且文件名以 .mp3 结尾
-                if (!zipEntry.dir && fileName.match(/\.mp3$/i)) {
-                  const originalFileName = fileName.replace(/\.mp3$/i, "");
-                  const mp3Blob = await zip.files[fileName].async("blob");
-                  const mp3Url = URL.createObjectURL(mp3Blob);
-                  audio_links.value[originalFileName] = mp3Url;
-                  finish_files++;
-                  audio_zip_decompression_progress.value =
-                    Math.round((finish_files / file_names.length) * 100) + "%";
-                }
-              },
-              exist_user ? 0 : 50,
-            );
-          }
+                  // 如果文件不是文件夹且文件名以 .mp3 结尾
+                  if (!zipEntry.dir && fileName.match(/\.mp3$/i)) {
+                    const originalFileName = fileName.replace(/\.mp3$/i, "");
+                    const mp3Blob = await zip.files[fileName].async("blob");
+                    const mp3Url = URL.createObjectURL(mp3Blob);
+                    audio_links.value[originalFileName] = mp3Url;
+                    finish_files++;
+                    audio_zip_decompression_progress.value =
+                      Math.round((finish_files / file_names.length) * 100) + "%";
+                  }
+                },
+                exist_user ? 0 : 50,
+              );
+            }
 
-          audio_zip_decompression_finish.value = true;
-          resolve();
-        });
+            audio_zip_decompression_finish.value = true;
+            resolve();
+          })
+          .catch(() => {
+            alert($msgTipText("rc53", { v: "贴图包" }));
+          });
       });
     },
   };

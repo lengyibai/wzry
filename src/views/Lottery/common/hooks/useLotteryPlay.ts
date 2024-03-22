@@ -10,6 +10,7 @@ import { useSetMarker } from "@/hooks/modules/useSetMarker";
 import { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
 import { AuthStore, SupplyStore } from "@/store";
 import { LOTTERY_AWARD } from "@/config/modules/game-config";
+import { _getImgLink } from "@/utils/concise";
 
 /** @description 夺宝相关*/
 const useLotteryPlay = (type: "HERO" | "SKIN") => {
@@ -190,7 +191,7 @@ const useLotteryPlay = (type: "HERO" | "SKIN") => {
       const prop = GAME_PROP[prop_key];
       $obtain({
         name: prop.label,
-        icon: prop.icon,
+        icon: _getImgLink(prop.iconName),
         num: prop_num,
       });
 
@@ -231,7 +232,7 @@ const useLotteryPlay = (type: "HERO" | "SKIN") => {
         if (["HERO_EXP_ONE", "HERO_EXP_TWO"].includes(key) && double_exp.value) num! *= 2;
 
         obtain.push({
-          icon: prop.icon,
+          icon: _getImgLink(prop.iconName),
           name: prop.label,
           num,
         });

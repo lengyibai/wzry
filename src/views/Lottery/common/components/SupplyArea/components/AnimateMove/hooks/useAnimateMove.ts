@@ -1,6 +1,7 @@
 import { ref, Ref, computed } from "vue";
 
 import { GAME_PROP } from "@/config";
+import { _getImgLink } from "@/utils/concise";
 
 /** @description loading动画 */
 const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
@@ -15,7 +16,7 @@ const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
     GAME_PROP.SKIN_LEGEND_TREASURE,
     GAME_PROP.SKIN_LIMIT_TREASURE,
     GAME_PROP.SKIN_LOTTERY_STONE,
-  ].map((item) => item.icon);
+  ].map((item) => _getImgLink(item.iconName));
   /** 图片展示索引 */
   const index = ref(0);
   /** 动画定时器 */

@@ -2,6 +2,7 @@
 import { vBlurLoad, vMaskGradient, vMouseTip, vSweepLight } from "@/directives";
 import { GAME_PROP } from "@/config";
 import { KButton } from "@/components/business";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
   /** 英雄数据 */
@@ -45,7 +46,7 @@ const handleExchange = (data: Game.Hero.Data) => {
     <div class="bottom">
       <div class="name" v-html="data.name"></div>
       <div class="price">
-        <img :src="GAME_PROP.HERO_DEBRIS.icon" alt="" class="icon" />
+        <img :src="_getImgLink(GAME_PROP.HERO_DEBRIS.iconName)" alt="" class="icon" />
         <div class="count">{{ data.price }}</div>
       </div>
     </div>
