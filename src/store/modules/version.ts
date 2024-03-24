@@ -10,7 +10,8 @@ import { _retryRequest } from "@/utils/tool";
 import { useGetAudioZip } from "@/hooks/modules/useGetAudioZip";
 import { useDataFinish } from "@/hooks/modules/useDataFinish";
 import { useIndexedDB } from "@/hooks/modules/useIndexedDB";
-import { useGetImageZip } from "@/hooks";
+import { useGetImageZip } from "@/hooks/modules/useGetImageZip";
+import { useGetBlurZip } from "@/hooks/modules/useGetBlurZip";
 
 const VersionStore = defineStore("version", () => {
   const { BaseData, VoiceData } = useIndexedDB();
@@ -148,6 +149,7 @@ const VersionStore = defineStore("version", () => {
               if (data_check || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
               await useGetImageZip().getImage();
               await useGetAudioZip().getAudio();
+              await useGetBlurZip().getBlur();
               await useGetData().getData(true);
               useDataFinish.readyDataResolve();
               data_check = true;

@@ -8,6 +8,7 @@ export const staticRouter = [
   },
   {
     path: "/login",
+    name: "login",
     meta: {
       title: "登录",
       noVerify: true,

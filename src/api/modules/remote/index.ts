@@ -342,9 +342,18 @@ export const AudioResource = (onDownloadProgress: (progressEvent: AxiosProgressE
   });
 };
 
-/** @description 获取a贴图资源Zip */
+/** @description 获取贴图资源Zip */
 export const ImageResource = (onDownloadProgress: (progressEvent: AxiosProgressEvent) => void) => {
   return $ResourceHttp.Get<any>(`/${RESOURCE_NAME.IMAGE_ZIP}`, {
+    onDownloadProgress,
+  });
+};
+
+/** @description 获取模糊图片资源Zip */
+export const BlurImageResource = (
+  onDownloadProgress: (progressEvent: AxiosProgressEvent) => void,
+) => {
+  return $ResourceHttp.Get<any>(`/${RESOURCE_NAME.BLUR_ZIP}`, {
     onDownloadProgress,
   });
 };

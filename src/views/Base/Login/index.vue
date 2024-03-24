@@ -10,6 +10,7 @@ import DownLoad from "./components/DownLoad/index.vue";
 import { KVideo } from "@/components/business";
 import { useStaticResourceVersion } from "@/hooks";
 import { _getHtmlLink, _getImgLink, _getVideoLink } from "@/utils/concise";
+import { LOCAL_KEY } from "@/config";
 
 const { login_video_bg_version } = useStaticResourceVersion();
 
@@ -21,6 +22,8 @@ const show_notice = ref(false);
 const show_team = ref(false);
 /** 数据下载完成 */
 const finish = ref(false);
+//如果存在用户信息，则可以直接播放视频背景
+const exist_user = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
 
 /* 隐藏注册登录盒子 */
 const hideRegLogin = computed(() => !finish.value || show_notice.value || show_team.value);
@@ -78,7 +81,7 @@ setTimeout(() => {
 
     <!-- 视频背景 -->
     <KVideo
-      v-if="finish && login_video_bg_version"
+      v-if="exist_user || (finish && login_video_bg_version)"
       :link="_getVideoLink('login_bg', login_video_bg_version)"
       :muted="muted"
     />

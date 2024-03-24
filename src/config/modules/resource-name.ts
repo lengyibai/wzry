@@ -135,6 +135,8 @@ const RESOURCE_NAME = {
   AUDIO_ZIP: "audio/audio.zip",
   /** 贴图ZIP */
   IMAGE_ZIP: "image/image.zip",
+  /** 模糊图片ZIP */
+  BLUR_ZIP: "heros/heros_blur.zip",
 };
 
 export { RESOURCE_NAME };

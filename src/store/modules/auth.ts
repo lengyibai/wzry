@@ -68,6 +68,7 @@ const AuthStore = defineStore("auth", () => {
 
     watchStatus();
     useUserConfigFinish.readyDataResolve();
+    router.push(BASE_CONFIG.HOME_URL);
   };
 
   /** @description 实时检测帐号状态 */
@@ -92,7 +93,6 @@ const AuthStore = defineStore("auth", () => {
     login(form: Global.UserData) {
       user_data.value = form;
       $routerStore.addRoutes(form.role);
-      router.push(BASE_CONFIG.HOME_URL);
       localStorage.setItem(LOCAL_KEY.USER_DATA, _encryption(form));
       loginInto();
     },

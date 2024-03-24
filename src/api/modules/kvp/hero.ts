@@ -1,5 +1,6 @@
 import { LOCAL_HERO } from "@/api";
 import { BASE_CONFIG } from "@/config";
+import { _getBlurImgLink } from "@/utils/concise";
 
 /** @description 获取英雄价格键值表 */
 export const getHeroPriceKvp = async () => {
@@ -64,9 +65,9 @@ export const getHeroImageKvp = async () => {
   data.forEach((item) => {
     kvp[item.id] = {
       cover: BASE_CONFIG.IMGBED + item.cover,
-      coverBlur: BASE_CONFIG.IMGBED + item.coverBlur,
+      coverBlur: _getBlurImgLink(item.coverBlur),
       poster: BASE_CONFIG.IMGBED + item.poster,
-      posterBlur: BASE_CONFIG.IMGBED + item.posterBlur,
+      posterBlur: _getBlurImgLink(item.posterBlur),
       posterBig: BASE_CONFIG.IMGBED + item.posterBig,
     };
   });
@@ -250,7 +251,7 @@ export const getSkinImageKvp = async () => {
       cover: BASE_CONFIG.IMGBED + item.cover,
       poster: BASE_CONFIG.IMGBED + item.poster,
       posterBig: BASE_CONFIG.IMGBED + item.posterBig,
-      posterBlur: BASE_CONFIG.IMGBED + item.posterBlur,
+      posterBlur: _getBlurImgLink(item.posterBlur),
     };
   });
   return kvp;

@@ -67,7 +67,7 @@ const useGetData = () => {
         promiseFn: item[1],
       })
         .then(async (res) => {
-          type.value = `${item[0]}`;
+          type.value = `正在下载${item[0]}`;
           await setData(item[0], res.data, "BASE");
         })
         .catch(() => {
@@ -109,7 +109,7 @@ const useGetData = () => {
         promiseFn: item[1],
       })
         .then(async (res) => {
-          type.value = `${item[0]}语音`;
+          type.value = `正在下载${item[0]}语音`;
           await setData(item[0], res.data, "VOICE");
         })
         .catch(() => {
@@ -152,18 +152,21 @@ const useGetData = () => {
      */
     async getData(silent: boolean = false) {
       index.value = 0;
-      type.value = "基础数据";
+      type.value = "准备下载基础数据";
       const data = await getLacksData();
       total.value = data.data_lacks.length;
       await Promise.all(data.data_requests);
 
-      type.value = "语音包";
+      type.value = "准备下载语音包";
       index.value = 0;
       const voice = await getLacksVoice();
       total.value = voice.voice_lacks.length;
       await Promise.all(voice.voice_requests);
       finish.value = true;
       type.value = "所有资源下载完毕！";
+      //将索引和总数设为1是为了避免没有缺失数据时，再0%的时候显示所有资源下载完毕，不美观
+      index.value = 1;
+      total.value = 1;
 
       const data_lacks_text = data.data_lacks.map((item) => item[0]);
       const voice_lacks_text = voice.voice_lacks.map((item) => item[0]);

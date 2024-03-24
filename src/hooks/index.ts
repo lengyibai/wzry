@@ -12,3 +12,4 @@ export * from "./modules/useWeekCard";
 export * from "./modules/useIndexedDB";
 export * from "./modules/useGetAudioZip";
 export * from "./modules/useGetImageZip";
+export * from "./modules/useGetBlurZip";

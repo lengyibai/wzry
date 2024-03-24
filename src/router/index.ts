@@ -1,13 +1,10 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { App } from "vue";
 
-import { isExist, isLogin } from "./modules/routeSheel";
+import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
-import { AuthStore, DeviceStore } from "@/store";
-import { BASE_CONFIG } from "@/config/modules/base";
-import { LOCAL_KEY } from "@/config";
-import { useDataFinish } from "@/hooks";
+import { DeviceStore } from "@/store";
 import { $loading } from "@/utils/loading";
 
 const router = createRouter({
@@ -15,11 +12,9 @@ const router = createRouter({
   routes: [...staticRouter, ...errorRouter],
 });
 
+let downloading = true;
 router.beforeEach(async (to, from, next) => {
-  const $authStore = AuthStore();
   const $deviceStore = DeviceStore();
-
-  const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
 
   //浏览器版本过低，则跳转400，400较为特殊，如果跳转400则直接放行
   if (!$deviceStore.browser_status && to.path !== "/400") {
@@ -42,23 +37,15 @@ router.beforeEach(async (to, from, next) => {
     return;
   }
 
-  //如果需要登录，但是没有用户信息，则跳转登录
-  if (isLogin(to.path) && !user_info) {
+  //如果来自登录页，则说明资源已经下载完毕
+  if (from.path === "/login") {
+    downloading = false;
+  }
+
+  //如果刷新页面，则去往登录页处理数据
+  if (to.path !== "/login" && downloading) {
     next("/login");
     return;
-  }
-
-  //如果本地有用户信息，且目标路由为免验证路由，则跳转首页
-  if (user_info && to.meta.noVerify) {
-    next(BASE_CONFIG.HOME_URL);
-    await useDataFinish.readPromise;
-    return;
-  }
-
-  //如果未登录，但是本地存在用户信息，且能匹配权限，则直接放行
-  if (user_info && !$authStore.user_status) {
-    await useDataFinish.readPromise;
-    $authStore.autoLogin();
   }
 
   /* 避免地址栏增加参数 */
@@ -70,11 +57,7 @@ router.beforeEach(async (to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  /* 避免地址栏增加参数 */
-  if (to.path !== from.path) {
-    $loading.close();
-  }
-
+  $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 

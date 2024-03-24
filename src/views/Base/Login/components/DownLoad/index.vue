@@ -1,13 +1,26 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useDataFinish, useGetAudioZip, useGetData, useGetImageZip } from "@/hooks";
+import { useDataFinish, useGetAudioZip, useGetData, useGetBlurZip, useGetImageZip } from "@/hooks";
 import { _promiseTimeout } from "@/utils/tool";
+import { AuthStore } from "@/store";
+import { LOCAL_KEY } from "@/config";
 
 /** 是否下载完成 */
 const finish = defineModel<boolean>("finish", { required: true });
 
+const $authStore = AuthStore();
+
 const { type: data_type, getData, progress: data_progress } = useGetData();
+const {
+  image_zip_size,
+  image_zip_downloaded_size,
+  image_zip_download_progress,
+  image_zip_download_finish,
+  image_zip_decompression_progress,
+  image_zip_decompression_finish,
+  getImage,
+} = useGetImageZip();
 const {
   audio_zip_size,
   audio_zip_downloaded_size,
@@ -18,14 +31,14 @@ const {
   getAudio,
 } = useGetAudioZip();
 const {
-  image_zip_size,
-  image_zip_downloaded_size,
-  image_zip_download_progress,
-  image_zip_download_finish,
-  image_zip_decompression_progress,
-  image_zip_decompression_finish,
-  getImage,
-} = useGetImageZip();
+  blur_zip_size,
+  blur_zip_downloaded_size,
+  blur_zip_download_progress,
+  blur_zip_download_finish,
+  blur_zip_decompression_progress,
+  blur_zip_decompression_finish,
+  getBlur,
+} = useGetBlurZip();
 
 /** 进度条百分比 */
 const download_info = computed(() => {
@@ -74,9 +87,29 @@ const download_info = computed(() => {
       if (status === "进度信息") return c;
     }
 
+    //如果模糊图包未下载完毕，则显示模糊图包下载进度
+    if (!blur_zip_download_finish.value) {
+      a = blur_zip_download_progress.value;
+      b = "正在下载网站模糊图包";
+      c = `${blur_zip_downloaded_size.value} / ${blur_zip_size.value}`;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
+    }
+
+    //如果模糊图包解压下载完毕，则显示模糊图包解压下载进度
+    if (!blur_zip_decompression_finish.value) {
+      a = blur_zip_decompression_progress.value;
+      b = "正在解压模糊图包";
+      c = blur_zip_decompression_progress.value;
+      if (status === "进度条") return a;
+      if (status === "下载内容") return b;
+      if (status === "进度信息") return c;
+    }
+
     //数据最后下载
     a = data_progress.value;
-    b = "正在下载" + data_type.value;
+    b = data_type.value;
     c = data_progress.value;
 
     if (status === "进度条") return a;
@@ -89,10 +122,18 @@ const download_info = computed(() => {
 const load = async () => {
   await getImage();
   await getAudio();
+  await getBlur();
   await getData();
-  await _promiseTimeout(() => {}, 500);
-  finish.value = true;
-  useDataFinish.readyDataResolve();
+  await _promiseTimeout(() => {
+    finish.value = true;
+    useDataFinish.readyDataResolve();
+
+    //当存在用户信息，资源下载完成后自动登录
+    const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
+    if (user_info) {
+      $authStore.autoLogin();
+    }
+  }, 1000);
 };
 load();
 </script>

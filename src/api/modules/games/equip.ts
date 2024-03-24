@@ -1,4 +1,5 @@
 import { KVP_EQUIP, KVP_TYPE, LOCAL_EQUIP } from "@/api";
+import { _getBlurImgLink } from "@/utils/concise";
 
 /** @description 获取装备列表 */
 export const getEquip = async () => {
@@ -33,7 +34,7 @@ export const getEquip = async () => {
       desc: equip_desc_kvp[id],
       effect,
       icon,
-      iconBlur,
+      iconBlur: _getBlurImgLink(iconBlur),
       level: equip_level_kvp[id].value,
       motivation: equip_motivation_kvp[id],
       name: equip_name_kvp[id],
