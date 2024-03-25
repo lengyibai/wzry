@@ -24,7 +24,7 @@ _retryRequest({
     todo.value = res.data;
   })
   .catch(() => {
-    $message($msgTipText("rc53", { v: "网站计划清单" }));
+    $message($msgTipText("rc53", { v: "网站计划清单" }), "error");
   })
   .finally(() => {
     loading.value = false;

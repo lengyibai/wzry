@@ -96,7 +96,7 @@ const MailStore = defineStore("mail", () => {
           saveMailList();
         })
         .catch(() => {
-          $message($msgTipText("rc53", { v: "公共邮件" }));
+          $message($msgTipText("rc53", { v: "公共邮件" }), "error");
         });
 
       /* 请求私人邮件 */
@@ -145,7 +145,7 @@ const MailStore = defineStore("mail", () => {
           })
           .catch((err) => {
             if (err?.response?.status !== 404) {
-              $message($msgTipText("rc53", { v: "私人邮件" }));
+              $message($msgTipText("rc53", { v: "私人邮件" }), "error");
               return;
             }
             // eslint-disable-next-line no-console

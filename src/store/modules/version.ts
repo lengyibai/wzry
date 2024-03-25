@@ -158,7 +158,7 @@ const VersionStore = defineStore("version", () => {
           }
         })
         .catch(() => {
-          $message($msgTipText("rc53", { v: "版本文件" }));
+          $message($msgTipText("rc53", { v: "版本文件" }), "error");
         });
     },
 
@@ -184,7 +184,7 @@ const VersionStore = defineStore("version", () => {
       update_log.value = res.data;
     })
     .catch(() => {
-      $message($msgTipText("rc53", { v: "更新日志" }));
+      $message($msgTipText("rc53", { v: "更新日志" }), "error");
     });
 
   watchVersion();

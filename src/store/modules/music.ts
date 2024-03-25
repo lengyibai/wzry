@@ -50,7 +50,7 @@ const MusicStore = defineStore("music", () => {
       bgm.setAttribute("crossOrigin", "anonymous");
     })
     .catch(() => {
-      $message($msgTipText("rc53", { v: "音乐列表" }));
+      $message($msgTipText("rc53", { v: "音乐列表" }), "error");
     });
 
   const ExposeMethods = {

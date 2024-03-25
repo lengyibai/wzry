@@ -21,7 +21,7 @@ _retryRequest({
     imgs.value = res.data.map((item) => item.map((item) => BASE_CONFIG.IMGBED + item));
   })
   .catch(() => {
-    $message($msgTipText("rc53", { v: "系统公告" }));
+    $message($msgTipText("rc53", { v: "系统公告" }), "error");
   })
   .finally(() => {
     loading.value = false;

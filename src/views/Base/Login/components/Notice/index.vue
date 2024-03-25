@@ -18,7 +18,7 @@ _retryRequest({
     notice.value = res.data;
   })
   .catch(() => {
-    $message($msgTipText("rc53", { v: "系统公告" }));
+    $message($msgTipText("rc53", { v: "系统公告" }), "error");
   })
   .finally(() => {
     loading.value = false;
