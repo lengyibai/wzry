@@ -7,19 +7,13 @@ import { useGetData } from "@/hooks/modules/useGetData";
 import { $msgTipText } from "@/config";
 import { $message } from "@/utils/busTransfer";
 import { _retryRequest } from "@/utils/tool";
-import { useGetAudioZip } from "@/hooks/modules/useGetAudioZip";
-import { useDataFinish } from "@/hooks/modules/useDataFinish";
 import { useIndexedDB } from "@/hooks/modules/useIndexedDB";
-import { useGetImageZip } from "@/hooks/modules/useGetImageZip";
-import { useGetBlurZip } from "@/hooks/modules/useGetBlurZip";
 
 const VersionStore = defineStore("version", () => {
   const { BaseData, VoiceData } = useIndexedDB();
 
   /** 版本计时器 */
   let version_timer: NodeJS.Timeout;
-  /** 是否检测过数据完整性 */
-  let data_check = false;
 
   const ExposeData = {
     /** 本地数据版本 */
@@ -144,15 +138,6 @@ const VersionStore = defineStore("version", () => {
                     show_update.value = true;
                   });
               });
-            } else {
-              //当本地有用户信息，意味着用户已经登录，不会跳转到登录页重复下载
-              if (data_check || !localStorage.getItem(LOCAL_KEY.USER_DATA)) return;
-              await useGetImageZip().getImage();
-              await useGetAudioZip().getAudio();
-              await useGetBlurZip().getBlur();
-              await useGetData().getData(true);
-              useDataFinish.readyDataResolve();
-              data_check = true;
             }
           }
 

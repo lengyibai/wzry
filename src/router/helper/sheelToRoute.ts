@@ -11,6 +11,7 @@ const routePath: Record<string, any> = {
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
   "@/views/Knapsack": () => import("@/views/Knapsack/index.vue"),
+  "@/views/Task": () => import("@/views/Task/index.vue"),
   "@/views/Lottery/Hero": () => import("@/views/Lottery/Hero/index.vue"),
   "@/views/Lottery/Skin": () => import("@/views/Lottery/Skin/index.vue"),
   "@/views/Shop/Crystal/King": () => import("@/views/Shop/Crystal/King/index.vue"),

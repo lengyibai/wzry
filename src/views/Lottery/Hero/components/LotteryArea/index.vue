@@ -115,11 +115,11 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
   <div class="play-area">
     <div class="double-status">
       <div v-if="user_data.doubleGoldCardExpireTime !== 0" class="status">
-        <img :src="_getImgLink('double_gold')" alt="" class="icon" />
+        <img :src="_getImgLink('double_gold_status')" alt="" class="icon" />
         <span class="text">×2倍</span>
       </div>
       <div v-if="user_data.doubleExpCardExpireTime !== 0" class="status">
-        <img :src="_getImgLink('double_exp')" alt="" class="icon" />
+        <img :src="_getImgLink('double_exp_status')" alt="" class="icon" />
         <span class="text">×2倍</span>
       </div>
     </div>

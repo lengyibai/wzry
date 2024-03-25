@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useDataFinish, useGetAudioZip, useGetData, useGetBlurZip, useGetImageZip } from "@/hooks";
+import { useGetAudioZip, useGetData, useGetBlurZip, useGetImageZip } from "@/hooks";
 import { _promiseTimeout } from "@/utils/tool";
 import { AuthStore } from "@/store";
 import { LOCAL_KEY } from "@/config";
@@ -51,7 +51,7 @@ const download_info = computed(() => {
     if (!image_zip_download_finish.value) {
       a = image_zip_download_progress.value;
       b = "正在下载贴图包";
-      c = `${image_zip_downloaded_size.value} / ${image_zip_size.value}`;
+      c = `${image_zip_downloaded_size.value}/${image_zip_size.value}`;
       if (status === "进度条") return a;
       if (status === "下载内容") return b;
       if (status === "进度信息") return c;
@@ -71,7 +71,7 @@ const download_info = computed(() => {
     if (!audio_zip_download_finish.value) {
       a = audio_zip_download_progress.value;
       b = "正在下载网站音效包";
-      c = `${audio_zip_downloaded_size.value} / ${audio_zip_size.value}`;
+      c = `${audio_zip_downloaded_size.value}/${audio_zip_size.value}`;
       if (status === "进度条") return a;
       if (status === "下载内容") return b;
       if (status === "进度信息") return c;
@@ -90,8 +90,8 @@ const download_info = computed(() => {
     //如果模糊图包未下载完毕，则显示模糊图包下载进度
     if (!blur_zip_download_finish.value) {
       a = blur_zip_download_progress.value;
-      b = "正在下载网站模糊图包";
-      c = `${blur_zip_downloaded_size.value} / ${blur_zip_size.value}`;
+      b = "正在下载模糊图包";
+      c = `${blur_zip_downloaded_size.value}/${blur_zip_size.value}`;
       if (status === "进度条") return a;
       if (status === "下载内容") return b;
       if (status === "进度信息") return c;
@@ -126,7 +126,6 @@ const load = async () => {
   await getData();
   await _promiseTimeout(() => {
     finish.value = true;
-    useDataFinish.readyDataResolve();
 
     //当存在用户信息，资源下载完成后自动登录
     const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);

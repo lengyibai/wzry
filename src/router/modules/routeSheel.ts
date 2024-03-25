@@ -96,6 +96,21 @@ export const user: RouterSheel[] = [
     ],
   },
   {
+    title: "任务",
+    icon: "wzry-task",
+    path: "/task",
+    name: "task",
+    redirect: "",
+    component: "@/layout",
+    children: [
+      {
+        path: "",
+        name: "taskChild",
+        component: "@/views/Task",
+      },
+    ],
+  },
+  {
     title: "夺宝",
     icon: "wzry-baoxiang",
     path: "/lottery",

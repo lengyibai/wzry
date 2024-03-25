@@ -9,9 +9,16 @@ interface Props {
   options: T[];
   /** 是否显示线条 */
   line?: boolean;
+  /** 标题宽度，在auto为false时使用 */
+  titleWidth?: string;
+  /** 是否启用标题宽度自适应 */
+  auto?: boolean;
 }
 withDefaults(defineProps<Props>(), {
   line: false,
+  titleWidth: "initial",
+  gap: "initial",
+  auto: true,
 });
 
 const $emit = defineEmits<{
@@ -56,32 +63,33 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="epigraph-tool">
-    <div
-      ref="categoryRef"
-      class="epigraph-category"
-      :class="{
-        line: line,
-      }"
-    >
-      <!-- 滑动的图标 -->
-      <img
-        :style="{ left: left + 'px', width: width + 'px' }"
-        :src="_getImgLink('epigraph_active')"
-        alt=""
-      />
+  <div
+    ref="categoryRef"
+    class="k-category"
+    :class="{
+      line: line,
+    }"
+  >
+    <!-- 滑动的图标 -->
+    <img
+      :style="{ left: left + 'px', width: width + 'px' }"
+      :src="_getImgLink('epigraph_active')"
+      alt=""
+    />
 
-      <!-- 文字 -->
-      <div
-        v-for="(item, index) in options"
-        :key="index"
-        v-mouse-tip
-        class="title"
-        :class="{ active: current_index === index }"
-        @click="handleToggle(index)"
-      >
-        <span>{{ item }}</span>
-      </div>
+    <!-- 文字 -->
+    <div
+      v-for="(item, index) in options"
+      :key="index"
+      v-mouse-tip
+      class="title"
+      :style="{
+        width: titleWidth,
+      }"
+      :class="{ active: current_index === index, auto: auto }"
+      @click="handleToggle(index)"
+    >
+      <span>{{ item }}</span>
     </div>
   </div>
 </template>
