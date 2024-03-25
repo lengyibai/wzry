@@ -4,7 +4,7 @@ import TaskCard from "./components/TaskCard/index.vue";
 
 <template>
   <div class="task-list">
-    <TaskCard v-for="(item, index) in 20" :key="index" />
+    <TaskCard v-for="(item, index) in 14" :key="index" :index="item" />
   </div>
 </template>
 

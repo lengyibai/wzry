@@ -70,7 +70,7 @@ const download_info = computed(() => {
     //如果音效未下载完毕，则显示音效下载进度
     if (!audio_zip_download_finish.value) {
       a = audio_zip_download_progress.value;
-      b = "正在下载网站音效包";
+      b = "正在下载音效包";
       c = `${audio_zip_downloaded_size.value}/${audio_zip_size.value}`;
       if (status === "进度条") return a;
       if (status === "下载内容") return b;

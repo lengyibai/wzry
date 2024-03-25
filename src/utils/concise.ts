@@ -19,7 +19,10 @@ export const _getHtmlLink = (name: string) => `${BASE_CONFIG.IMGBED}/html/${name
 
 /** @description 获取远程图片链接 */
 export const _getImgLink = (name: string, version = "0", suffix = "png") => {
-  const url = useGetImageZip().image_links.value[name];
+  const links = useGetImageZip().image_links;
+  console.log(name, links.value);
+
+  const url = links.value[name];
 
   //先获取本地，如果本地有，直接返回
   if (url) return url;
