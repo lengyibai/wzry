@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { GAME_PROP } from "@/config";
+import { TaskType } from "@/config/interface";
+import { _getImgLink } from "@/utils/concise";
+
 interface Props {
+  /** 任务信息 */
+  data: TaskType;
+  /** 任务封面索引 */
   index: number;
 }
 defineProps<Props>();
@@ -11,21 +18,26 @@ defineProps<Props>();
       <div
         class="icon"
         :style="{
-          backgroundImage: `url(/img/${index}.png)`,
+          backgroundImage: `url(${_getImgLink('task_' + index)})`,
         }"
       ></div>
       <div class="info">
-        <div class="title">英雄夺宝</div>
-        <div class="desc">完成25次英雄夺宝</div>
+        <div class="title">{{ data.label }}</div>
+        <div class="desc">{{ data.desc }}</div>
       </div>
     </div>
     <div class="right">
-      <div class="props"></div>
+      <div class="props">
+        <div v-for="(item, index) in data.props" :key="index" class="prop">
+          <img :src="_getImgLink(GAME_PROP[item.type].iconName)" alt="" class="icon" />
+          <div class="num" :data-text="item.num">{{ item.num }}</div>
+        </div>
+      </div>
       <div class="btn-box">
-        <div class="schedule">
-          <span>今日英雄夺宝次数：</span>
-          <span class="index">0</span>
-          <span>/25</span>
+        <div v-if="data.total" class="schedule">
+          <span>完成进度：</span>
+          <span class="index">{{ data.schedule }}</span>
+          <span>/{{ data.total }}</span>
         </div>
         <div class="btn">前往</div>
       </div>

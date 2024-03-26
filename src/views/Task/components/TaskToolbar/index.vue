@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { KCategory } from "@/components/business";
 
-const task_options = ["今日任务", "本周任务", "新手任务"];
+const $emit = defineEmits<{
+  change: [index: number];
+}>();
+
+const task_options = ["今日任务", "本周任务"];
 
 /* 点击tab栏触发 */
-const onTab = (v: any) => {
-  console.log(v);
+const onTab = (index: number) => {
+  $emit("change", index);
 };
 </script>
 

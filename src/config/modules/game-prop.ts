@@ -84,13 +84,13 @@ export const GAME_PROP: GameProp = {
     label: "双倍金币卡",
     key: "DOUBLE_GOLD",
     iconName: "double_gold",
-    desc: "在夺宝获得的金币数量翻倍",
+    desc: "在夺宝获得的金币数量翻倍，24小时后失效",
   },
   DOUBLE_EXP: {
     label: "双倍经验卡",
     key: "DOUBLE_EXP",
     iconName: "double_exp",
-    desc: "在夺宝获得的经验宝箱数量翻倍",
+    desc: "在夺宝获得的经验宝箱数量翻倍，24小时后失效",
   },
   HERO_LOTTERY_COIN: {
     label: "英雄夺宝币",

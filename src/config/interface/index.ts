@@ -43,3 +43,24 @@ export type TreasureChance = Partial<
 export type PropRelateMarker = Partial<
   Record<Game.PropKey, keyof Global.UserData["behaviorMarker"]>
 >;
+
+/** @description 任务类型 */
+export interface TaskType {
+  /** 任务ID */
+  id: number;
+  /** 任务标题 */
+  label: string;
+  /** 任务描述 */
+  desc: string;
+  /** 任务进度数量 */
+  schedule?: number;
+  /** 任务相关数量总数 */
+  total?: number;
+  /** 奖励道具 */
+  props: {
+    /** 道具键名 */
+    type: Game.PropKey;
+    /** 道具数量 */
+    num: number;
+  }[];
+}

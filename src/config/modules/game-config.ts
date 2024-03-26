@@ -1,3 +1,5 @@
+import { TaskType } from "../interface";
+
 /** @description 熟练度名称 */
 export const EXP_NAME: Record<string, string[]> = {
   坦克: ["见习坦克", "资深坦克", "精英坦克", "宗师坦克", "不灭的霸者"],
@@ -147,3 +149,275 @@ export const LOTTERY_STONE_WEEK_CARD_GRANT = {
     COIN: 25,
   },
 } as const;
+
+/** @description 今日任务列表 */
+export const TODAY_TASK_LIST: TaskType[] = [
+  {
+    id: 1,
+    label: "每日夺宝",
+    desc: "完成一次英雄夺宝和皮肤夺宝",
+    schedule: 0,
+    total: 2,
+    props: [
+      {
+        type: "HERO_LOTTERY_COIN",
+        num: 1,
+      },
+      {
+        type: "SKIN_LOTTERY_COIN",
+        num: 1,
+      },
+    ],
+  },
+  {
+    id: 2,
+    label: "每日补给",
+    desc: "领取一次英雄夺宝补给和皮肤夺宝补给",
+    schedule: 0,
+    total: 2,
+    props: [
+      {
+        type: "HERO_LOTTERY_STONE",
+        num: 1,
+      },
+      {
+        type: "SKIN_LOTTERY_STONE",
+        num: 1,
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: "英雄夺宝补给站",
+    desc: "今日通过英雄夺宝补给站获取25个英雄夺宝抵扣石",
+    schedule: 0,
+    total: 25,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 3,
+    label: "皮肤夺宝补给站",
+    desc: "今日通过皮肤夺宝补给站获取25个皮肤夺宝抵扣石",
+    schedule: 0,
+    total: 25,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 4,
+    label: "英雄夺宝赠送",
+    desc: "消耗完今日赠送的英雄夺宝币和抵扣石",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 5,
+    label: "皮肤夺宝",
+    desc: "消耗完今日赠送的皮肤夺宝币和抵扣石",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 6,
+    label: "在线奖励",
+    desc: "在线时间超过30分钟",
+    schedule: 0,
+    total: 30,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 7,
+    label: "消耗钻石",
+    desc: "去商城使用钻石购买一次道具",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 8,
+    label: "消耗金币",
+    desc: "去商城使用金币购买一次道具",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 9,
+    label: "双倍的诱惑",
+    desc: "使用一次双倍金币卡或双倍经验卡",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+];
+
+/** @description 本周任务列表 */
+export const WEEK_TASK_LIST: TaskType[] = [
+  {
+    id: 10,
+    label: "枯竭的补给站",
+    desc: "消耗某日的所有英雄抵扣石补给站和皮肤夺宝补给站的额度",
+    schedule: 0,
+    total: 200,
+    props: [
+      {
+        type: "HERO_LOTTERY_STONE",
+        num: 200,
+      },
+      {
+        type: "SKIN_LOTTERY_STONE",
+        num: 200,
+      },
+    ],
+  },
+  {
+    id: 11,
+    label: "常往之客",
+    desc: "连续七天登录",
+    schedule: 0,
+    total: 7,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 12,
+    label: "夺宝狂人",
+    desc: "连续一周消耗完所有夺宝币、抵扣石、补给站额度",
+    props: [
+      {
+        type: "HERO_LOTTERY_COIN",
+        num: 25,
+      },
+      {
+        type: "HERO_LOTTERY_STONE",
+        num: 25,
+      },
+      {
+        type: "SKIN_LOTTERY_COIN",
+        num: 225,
+      },
+      {
+        type: "SKIN_LOTTERY_STONE",
+        num: 225,
+      },
+    ],
+  },
+  {
+    id: 13,
+    label: "闲暇时光",
+    desc: "在线时长累计两小时",
+    schedule: 0,
+    total: 120,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 14,
+    label: "英雄抵扣石周卡",
+    desc: "购买一次英雄抵扣石周卡",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+  {
+    id: 15,
+    label: "皮肤抵扣石周卡",
+    desc: "购买一次英雄抵扣石周卡",
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+  },
+];

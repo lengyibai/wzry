@@ -11,6 +11,7 @@ const en = {
   英雄夺宝: "HeroLottery",
   皮肤夺宝: "SkinLottery",
   背包: "Knapsack",
+  任务: "Task",
   商城: "Shop",
   碎片商店: "DebrisShop",
   道具商店: "PropShop",

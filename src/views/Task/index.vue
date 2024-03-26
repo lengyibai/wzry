@@ -1,22 +1,31 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import TaskToolbar from "./components/TaskToolbar/index.vue";
 import TaskList from "./components/TaskList/index.vue";
 
 import { vScrollVirtualization } from "@/directives";
+
+const taskMainRef = ref<HTMLElement>();
+
+/** 当前选择的任务类型 */
+const category_index = ref(0);
+
+/* 点击栏目 */
+const onCategory = (index: number) => {
+  category_index.value = index;
+  taskMainRef.value!.scrollTop = 0;
+};
 </script>
 
 <template>
   <div class="task">
-    <!-- 铭文类型分类 -->
-    <transition name="epigraph" appear>
-      <div class="tool">
-        <TaskToolbar />
-      </div>
-    </transition>
+    <div class="tool">
+      <TaskToolbar @change="onCategory" />
+    </div>
 
-    <!-- 铭文列表 -->
-    <div v-scroll-virtualization class="task-main">
-      <TaskList />
+    <div ref="taskMainRef" v-scroll-virtualization class="task-main">
+      <TaskList :tab-index="category_index" />
     </div>
   </div>
 </template>
