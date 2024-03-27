@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { computed } from "vue";
 
 import TaskCard from "./components/TaskCard/index.vue";
 
 import { _shuffleArray } from "@/utils/tool";
 import { TODAY_TASK_LIST, WEEK_TASK_LIST } from "@/config/modules/game-config";
 import { TaskType } from "@/config/interface";
+import { TaskStore } from "@/store";
 
 interface Props {
   /** tab索引 */
@@ -13,16 +15,18 @@ interface Props {
 }
 const $props = defineProps<Props>();
 
+const $taskStore = TaskStore();
+
 /** 封面列表 */
 const task_cover = ref<number[]>([]);
+
 /** 当前任务列表 */
-const task_list = ref<TaskType[]>([]);
+const task_list = computed(() => [$taskStore.today_task_list, $taskStore.week_task_list]);
 
 watch(
   () => $props.tabIndex,
-  (index) => {
+  () => {
     task_cover.value = _shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
-    task_list.value = [TODAY_TASK_LIST, WEEK_TASK_LIST][index];
   },
   {
     immediate: true,
@@ -33,7 +37,7 @@ watch(
 <template>
   <div class="task-list">
     <TaskCard
-      v-for="(item, index) in task_list"
+      v-for="(item, index) in task_list[tabIndex]"
       :key="item.id"
       :data="item"
       :index="task_cover[index]"

@@ -35,7 +35,25 @@ const generateRandomStrings = (length, count, excludedStrings) => {
 };
 
 console.log(
-  generateRandomStrings(4, 10, [
+  generateRandomStrings(4, 20, [
+    //任务ID
+    "mx25",
+    "sp37",
+    "o1u8",
+    "vk13",
+    "d1b7",
+    "q35i",
+    "de89",
+    "bg43",
+    "qw27",
+    "r88v",
+    "pc22",
+    "a21l",
+    "om70",
+    "q20y",
+    "a6b9",
+    "t46d",
+
     //埋点字段
     "pm59",
     "nx46",

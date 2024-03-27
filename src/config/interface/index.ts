@@ -47,15 +47,19 @@ export type PropRelateMarker = Partial<
 /** @description 任务类型 */
 export interface TaskType {
   /** 任务ID */
-  id: number;
+  id: string;
   /** 任务标题 */
   label: string;
   /** 任务描述 */
   desc: string;
   /** 任务进度数量 */
-  schedule?: number;
+  schedule: number;
   /** 任务相关数量总数 */
-  total?: number;
+  total: number;
+  /** 是否已领取奖励 */
+  receive: boolean;
+  /** 点击前往时跳转的路由地址，如果没有则隐藏前往按钮 */
+  path?: string;
   /** 奖励道具 */
   props: {
     /** 道具键名 */

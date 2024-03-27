@@ -27,6 +27,7 @@ export * from "./modules/marker";
 export * from "./modules/supply";
 export * from "./modules/time";
 export * from "./modules/mail";
+export * from "./modules/task";
 
 const setupStore = (app: App) => {
   const pinia = createPinia();

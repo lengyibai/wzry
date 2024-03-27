@@ -53,6 +53,7 @@ export const userDefaultInfo: () => Global.UserData = () => ({
   settingConfig: configDefault(),
   mail: [],
   mallMark: [],
+  task: [],
   bugIdea: [],
   behaviorMarker: {
     nx46: 0,

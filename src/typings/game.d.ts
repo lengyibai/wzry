@@ -362,6 +362,16 @@ declare namespace Game {
     }[];
   }
 
+  /** @description 任务 */
+  interface Task {
+    /** 任务ID */
+    id: string;
+    /** 任务进度 */
+    schedule: number;
+    /** 是否已领取奖励 */
+    receive: boolean;
+  }
+
   /** @description 道具Key */
   type PropKey =
     | "DIAMOND"

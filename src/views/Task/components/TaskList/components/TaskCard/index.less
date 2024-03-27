@@ -17,6 +17,7 @@
   .left {
     display: flex;
     height: 100%;
+    margin-right: 2rem;
 
     .icon {
       .global_img-shine(1.5625rem);
@@ -43,7 +44,7 @@
 
       .desc {
         color: var(--theme-font-color-twelve);
-        font-size: 1.75rem;
+        font-size: 1.5rem;
         font-family: var(--font-f);
         text-shadow: var(--t-shadow-e);
       }
@@ -56,7 +57,7 @@
     .props {
       display: flex;
       gap: 1rem;
-      margin-right: 4rem;
+      margin-right: 2rem;
 
       .prop {
         .global_flex-center();
@@ -89,6 +90,7 @@
       justify-content: center;
       align-items: flex-end;
       flex-direction: column;
+      width: 13rem;
 
       .schedule {
         display: flex;
@@ -113,6 +115,21 @@
         font-size: 1.75rem;
         text-shadow: var(--t-shadow-e);
         background-image: linear-gradient(180deg, #1a4983 0%, #3785b5 100%);
+      }
+    }
+
+    .finish-status {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 13rem;
+      color: #4d6b8f;
+      font-size: 1.75rem;
+
+      .wzry-finish {
+        margin-right: 0.5rem;
+        color: var(--green);
+        font-size: 1.5rem;
       }
     }
   }

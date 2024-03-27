@@ -39,31 +39,31 @@ onMounted(_titleTip);
 <style scoped lang="less">
 .round-clip-enter-active {
   transform-origin: center center;
-  animation: round-clip-in 1s cubic-bezier(0.85, 0, 0.16, 1);
+  animation: fade 1s cubic-bezier(0.85, 0, 0.16, 1);
 }
 
 .round-clip-leave-active {
   transform-origin: center center;
-  animation: round-clip-out 1s cubic-bezier(0.85, 0, 0.16, 1);
+  animation: round-out 1s ease-out;
 }
 
-@keyframes round-clip-in {
+@keyframes fade {
   0% {
-    transform: translateY(-100vh);
+    opacity: 0;
   }
 
   100% {
-    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@keyframes round-clip-out {
+@keyframes round-out {
   0% {
-    transform: translateY(0);
+    clip-path: circle(100% at 50% 50%);
   }
 
   100% {
-    transform: translateY(100vh);
+    clip-path: circle(0% at 50% 50%);
   }
 }
 </style>

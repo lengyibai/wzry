@@ -1,3 +1,4 @@
+import { ROUTE_PATH } from "..";
 import { TaskType } from "../interface";
 
 /** @description 熟练度名称 */
@@ -153,11 +154,13 @@ export const LOTTERY_STONE_WEEK_CARD_GRANT = {
 /** @description 今日任务列表 */
 export const TODAY_TASK_LIST: TaskType[] = [
   {
-    id: 1,
+    id: "mx25",
     label: "每日夺宝",
     desc: "完成一次英雄夺宝和皮肤夺宝",
     schedule: 0,
     total: 2,
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
     props: [
       {
         type: "HERO_LOTTERY_COIN",
@@ -170,11 +173,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 2,
+    id: "sp37",
     label: "每日补给",
     desc: "领取一次英雄夺宝补给和皮肤夺宝补给",
     schedule: 0,
     total: 2,
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
     props: [
       {
         type: "HERO_LOTTERY_STONE",
@@ -187,11 +192,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 3,
+    id: "o1u8",
     label: "英雄夺宝补给站",
     desc: "今日通过英雄夺宝补给站获取25个英雄夺宝抵扣石",
     schedule: 0,
     total: 25,
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
     props: [
       {
         type: "GOLD",
@@ -204,11 +211,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 3,
+    id: "vk13",
     label: "皮肤夺宝补给站",
     desc: "今日通过皮肤夺宝补给站获取25个皮肤夺宝抵扣石",
     schedule: 0,
     total: 25,
+    receive: false,
+    path: ROUTE_PATH.SKIN_LOTTERY,
     props: [
       {
         type: "GOLD",
@@ -221,9 +230,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 4,
+    id: "d1b7",
     label: "英雄夺宝赠送",
     desc: "消耗完今日赠送的英雄夺宝币和抵扣石",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
     props: [
       {
         type: "GOLD",
@@ -236,9 +249,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 5,
+    id: "q35i",
     label: "皮肤夺宝",
     desc: "消耗完今日赠送的皮肤夺宝币和抵扣石",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.SKIN_LOTTERY,
     props: [
       {
         type: "GOLD",
@@ -251,11 +268,12 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 6,
+    id: "de89",
     label: "在线奖励",
     desc: "在线时间超过30分钟",
     schedule: 0,
     total: 30,
+    receive: false,
     props: [
       {
         type: "GOLD",
@@ -268,9 +286,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 7,
+    id: "bg43",
     label: "消耗钻石",
     desc: "去商城使用钻石购买一次道具",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.PROP_SHOP,
     props: [
       {
         type: "GOLD",
@@ -283,9 +305,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 8,
+    id: "qw27",
     label: "消耗金币",
     desc: "去商城使用金币购买一次道具",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.PROP_SHOP,
     props: [
       {
         type: "GOLD",
@@ -298,9 +324,13 @@ export const TODAY_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 9,
+    id: "r88v",
     label: "双倍的诱惑",
     desc: "使用一次双倍金币卡或双倍经验卡",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.KNAPSACK,
     props: [
       {
         type: "GOLD",
@@ -317,11 +347,12 @@ export const TODAY_TASK_LIST: TaskType[] = [
 /** @description 本周任务列表 */
 export const WEEK_TASK_LIST: TaskType[] = [
   {
-    id: 10,
+    id: "pc22",
     label: "枯竭的补给站",
     desc: "消耗某日的所有英雄抵扣石补给站和皮肤夺宝补给站的额度",
     schedule: 0,
     total: 200,
+    receive: false,
     props: [
       {
         type: "HERO_LOTTERY_STONE",
@@ -334,11 +365,12 @@ export const WEEK_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 11,
+    id: "a21l",
     label: "常往之客",
     desc: "连续七天登录",
     schedule: 0,
     total: 7,
+    receive: false,
     props: [
       {
         type: "GOLD",
@@ -351,9 +383,12 @@ export const WEEK_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 12,
+    id: "om70",
     label: "夺宝狂人",
     desc: "连续一周消耗完所有夺宝币、抵扣石、补给站额度",
+    schedule: 0,
+    total: 1,
+    receive: false,
     props: [
       {
         type: "HERO_LOTTERY_COIN",
@@ -374,11 +409,12 @@ export const WEEK_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 13,
+    id: "q20y",
     label: "闲暇时光",
     desc: "在线时长累计两小时",
     schedule: 0,
     total: 120,
+    receive: false,
     props: [
       {
         type: "GOLD",
@@ -391,9 +427,13 @@ export const WEEK_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 14,
+    id: "a6b9",
     label: "英雄抵扣石周卡",
     desc: "购买一次英雄抵扣石周卡",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.PROP_SHOP,
     props: [
       {
         type: "GOLD",
@@ -406,9 +446,13 @@ export const WEEK_TASK_LIST: TaskType[] = [
     ],
   },
   {
-    id: 15,
+    id: "t46d",
     label: "皮肤抵扣石周卡",
-    desc: "购买一次英雄抵扣石周卡",
+    desc: "购买一次皮肤抵扣石周卡",
+    schedule: 0,
+    total: 1,
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
     props: [
       {
         type: "GOLD",

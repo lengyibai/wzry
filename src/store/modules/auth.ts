@@ -11,6 +11,7 @@ import { SupplyStore } from "./supply";
 import { TimeStore } from "./time";
 import { MailStore } from "./mail";
 import { EpigraphCollocationStore } from "./epigraphCollocation";
+import { TaskStore } from "./task";
 
 import { _timeGreet, _mergeConfig } from "@/utils/tool";
 import { _decryption, _encryption } from "@/utils/privateTool";
@@ -29,6 +30,7 @@ const AuthStore = defineStore("auth", () => {
   const $supplyStore = SupplyStore();
   const $timeStore = TimeStore();
   const $mailStore = MailStore();
+  const $taskStore = TaskStore();
   const $epigraphCollocationStore = EpigraphCollocationStore();
 
   /** 实时检测帐号状态 */
@@ -49,6 +51,7 @@ const AuthStore = defineStore("auth", () => {
     watching = true;
     user_status.value = true;
     $mailStore.useUserMail(user_data.value.mail);
+    $taskStore.useUserTask(user_data.value.task);
     $supplyStore.useUserSupply(user_data.value.supply);
     $lotteryStore.useUserLottery(user_data.value.lottery);
     $knapsackStore.useUserKnapsack(user_data.value.knapsack);

@@ -10,6 +10,9 @@ interface Props {
   index: number;
 }
 defineProps<Props>();
+
+/* 点击任务按钮 */
+const handleClickTask = (id: string) => {};
 </script>
 
 <template>
@@ -33,13 +36,25 @@ defineProps<Props>();
           <div class="num" :data-text="item.num">{{ item.num }}</div>
         </div>
       </div>
-      <div class="btn-box">
-        <div v-if="data.total" class="schedule">
+      <div v-if="!data.receive" class="btn-box">
+        <div class="schedule">
           <span>完成进度：</span>
           <span class="index">{{ data.schedule }}</span>
           <span>/{{ data.total }}</span>
         </div>
-        <div class="btn">前往</div>
+        <div
+          class="btn"
+          :class="{
+            receive: data.total < data.total,
+          }"
+          @click="handleClickTask(data.id)"
+        >
+          {{ data.schedule < data.total ? "前往" : "领取" }}
+        </div>
+      </div>
+      <div v-else class="finish-status">
+        <i class="iconfont wzry-finish"></i>
+        <span>已领取</span>
       </div>
     </div>
   </div>
