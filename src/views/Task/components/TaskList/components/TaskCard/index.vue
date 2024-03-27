@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+
 import { GAME_PROP } from "@/config";
 import { TaskType } from "@/config/interface";
+import { TaskStore } from "@/store";
 import { _getImgLink } from "@/utils/concise";
 
 interface Props {
@@ -11,8 +14,18 @@ interface Props {
 }
 defineProps<Props>();
 
+const $router = useRouter();
+
+const $taskStore = TaskStore();
+
 /* 点击任务按钮 */
-const handleClickTask = (id: string) => {};
+const handleClickTask = (data: TaskType) => {
+  if (data.schedule >= data.total) {
+    $taskStore.receiveTaskReward(data.id);
+  } else {
+    $router.push(data.path!);
+  }
+};
 </script>
 
 <template>
@@ -43,11 +56,12 @@ const handleClickTask = (id: string) => {};
           <span>/{{ data.total }}</span>
         </div>
         <div
+          v-if="data.path"
           class="btn"
           :class="{
-            receive: data.total < data.total,
+            receive: data.schedule >= data.total,
           }"
-          @click="handleClickTask(data.id)"
+          @click="handleClickTask(data)"
         >
           {{ data.schedule < data.total ? "前往" : "领取" }}
         </div>

@@ -11,6 +11,7 @@ const keep_alive = [
   "LotterySkin",
   "ShopCrystal",
   "KingCrystal",
+  "Task",
   "HonorCrystal",
   "ShopDebris",
   "HeroDebrisShop",

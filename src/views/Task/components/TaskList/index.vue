@@ -5,8 +5,6 @@ import { computed } from "vue";
 import TaskCard from "./components/TaskCard/index.vue";
 
 import { _shuffleArray } from "@/utils/tool";
-import { TODAY_TASK_LIST, WEEK_TASK_LIST } from "@/config/modules/game-config";
-import { TaskType } from "@/config/interface";
 import { TaskStore } from "@/store";
 
 interface Props {

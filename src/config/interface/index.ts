@@ -48,6 +48,8 @@ export type PropRelateMarker = Partial<
 export interface TaskType {
   /** 任务ID */
   id: string;
+  /** 任务类型 */
+  type: "DAILY" | "WEEKLY";
   /** 任务标题 */
   label: string;
   /** 任务描述 */

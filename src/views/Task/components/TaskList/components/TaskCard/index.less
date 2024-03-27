@@ -94,7 +94,6 @@
 
       .schedule {
         display: flex;
-        margin-bottom: 1rem;
         color: var(--theme-font-color-twelve);
         font-size: 1.5rem;
         white-space: nowrap;
@@ -105,16 +104,23 @@
       }
 
       .btn {
+        .global_light-btn();
+
         display: flex;
         justify-content: center;
         align-items: center;
         width: 10.9375rem;
         height: 3.5rem;
+        margin-top: 1rem;
         border-radius: 0.5rem;
         box-shadow: var(--b-shadow-a);
         font-size: 1.75rem;
         text-shadow: var(--t-shadow-e);
         background-image: linear-gradient(180deg, #1a4983 0%, #3785b5 100%);
+
+        &.receive {
+          background-image: linear-gradient(180deg, #946e39 0%, #ddbc5e 100%);
+        }
       }
     }
 
@@ -124,12 +130,12 @@
       align-items: center;
       width: 13rem;
       color: #4d6b8f;
-      font-size: 1.75rem;
+      font-size: 2rem;
 
       .wzry-finish {
         margin-right: 0.5rem;
         color: var(--green);
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
     }
   }

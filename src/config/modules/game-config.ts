@@ -1,5 +1,6 @@
-import { ROUTE_PATH } from "..";
 import { TaskType } from "../interface";
+
+import { ROUTE_PATH } from "./route-path";
 
 /** @description 熟练度名称 */
 export const EXP_NAME: Record<string, string[]> = {
@@ -151,10 +152,11 @@ export const LOTTERY_STONE_WEEK_CARD_GRANT = {
   },
 } as const;
 
-/** @description 今日任务列表 */
-export const TODAY_TASK_LIST: TaskType[] = [
+/** @description 今日及本周任务列表 */
+export const TASK_LIST: TaskType[] = [
   {
     id: "mx25",
+    type: "DAILY",
     label: "每日夺宝",
     desc: "完成一次英雄夺宝和皮肤夺宝",
     schedule: 0,
@@ -174,6 +176,7 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "sp37",
+    type: "DAILY",
     label: "每日补给",
     desc: "领取一次英雄夺宝补给和皮肤夺宝补给",
     schedule: 0,
@@ -193,7 +196,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "o1u8",
-    label: "英雄夺宝补给站",
+    type: "DAILY",
+    label: "免费的英雄夺宝夺宝抵扣石",
     desc: "今日通过英雄夺宝补给站获取25个英雄夺宝抵扣石",
     schedule: 0,
     total: 25,
@@ -212,7 +216,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "vk13",
-    label: "皮肤夺宝补给站",
+    type: "DAILY",
+    label: "免费的皮肤夺宝抵扣石",
     desc: "今日通过皮肤夺宝补给站获取25个皮肤夺宝抵扣石",
     schedule: 0,
     total: 25,
@@ -231,7 +236,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "d1b7",
-    label: "英雄夺宝赠送",
+    type: "DAILY",
+    label: "英雄夺宝达人",
     desc: "消耗完今日赠送的英雄夺宝币和抵扣石",
     schedule: 0,
     total: 1,
@@ -250,7 +256,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "q35i",
-    label: "皮肤夺宝",
+    type: "DAILY",
+    label: "皮肤夺宝达人",
     desc: "消耗完今日赠送的皮肤夺宝币和抵扣石",
     schedule: 0,
     total: 1,
@@ -269,6 +276,7 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "de89",
+    type: "DAILY",
     label: "在线奖励",
     desc: "在线时间超过30分钟",
     schedule: 0,
@@ -287,7 +295,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "bg43",
-    label: "消耗钻石",
+    type: "DAILY",
+    label: "钻石消费",
     desc: "去商城使用钻石购买一次道具",
     schedule: 0,
     total: 1,
@@ -306,7 +315,8 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "qw27",
-    label: "消耗金币",
+    type: "DAILY",
+    label: "金币消费",
     desc: "去商城使用金币购买一次道具",
     schedule: 0,
     total: 1,
@@ -325,6 +335,7 @@ export const TODAY_TASK_LIST: TaskType[] = [
   },
   {
     id: "r88v",
+    type: "DAILY",
     label: "双倍的诱惑",
     desc: "使用一次双倍金币卡或双倍经验卡",
     schedule: 0,
@@ -342,13 +353,10 @@ export const TODAY_TASK_LIST: TaskType[] = [
       },
     ],
   },
-];
-
-/** @description 本周任务列表 */
-export const WEEK_TASK_LIST: TaskType[] = [
   {
     id: "pc22",
-    label: "枯竭的补给站",
+    type: "WEEKLY",
+    label: "一块都没有了",
     desc: "消耗某日的所有英雄抵扣石补给站和皮肤夺宝补给站的额度",
     schedule: 0,
     total: 200,
@@ -366,7 +374,8 @@ export const WEEK_TASK_LIST: TaskType[] = [
   },
   {
     id: "a21l",
-    label: "常往之客",
+    type: "WEEKLY",
+    label: "常往の客",
     desc: "连续七天登录",
     schedule: 0,
     total: 7,
@@ -384,7 +393,8 @@ export const WEEK_TASK_LIST: TaskType[] = [
   },
   {
     id: "om70",
-    label: "夺宝狂人",
+    type: "WEEKLY",
+    label: "夺宝狂魔",
     desc: "连续一周消耗完所有夺宝币、抵扣石、补给站额度",
     schedule: 0,
     total: 1,
@@ -410,6 +420,7 @@ export const WEEK_TASK_LIST: TaskType[] = [
   },
   {
     id: "q20y",
+    type: "WEEKLY",
     label: "闲暇时光",
     desc: "在线时长累计两小时",
     schedule: 0,
@@ -428,8 +439,9 @@ export const WEEK_TASK_LIST: TaskType[] = [
   },
   {
     id: "a6b9",
-    label: "英雄抵扣石周卡",
-    desc: "购买一次英雄抵扣石周卡",
+    type: "WEEKLY",
+    label: "天天领英雄抵扣石",
+    desc: "使用一次英雄抵扣石周卡",
     schedule: 0,
     total: 1,
     receive: false,
@@ -447,8 +459,9 @@ export const WEEK_TASK_LIST: TaskType[] = [
   },
   {
     id: "t46d",
-    label: "皮肤抵扣石周卡",
-    desc: "购买一次皮肤抵扣石周卡",
+    type: "WEEKLY",
+    label: "天天领皮肤抵扣石",
+    desc: "使用一次皮肤抵扣石周卡",
     schedule: 0,
     total: 1,
     receive: false,

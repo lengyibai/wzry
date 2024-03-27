@@ -6,6 +6,10 @@ import TaskList from "./components/TaskList/index.vue";
 
 import { vScrollVirtualization } from "@/directives";
 
+defineOptions({
+  name: "Task",
+});
+
 const taskMainRef = ref<HTMLElement>();
 
 /** 当前选择的任务类型 */
