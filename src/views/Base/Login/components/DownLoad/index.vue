@@ -124,15 +124,13 @@ const load = async () => {
   await getAudio();
   await getBlur();
   await getData();
-  await _promiseTimeout(() => {
-    finish.value = true;
+  finish.value = true;
 
-    //当存在用户信息，资源下载完成后自动登录
-    const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
-    if (user_info) {
-      $authStore.autoLogin();
-    }
-  }, 1000);
+  //当存在用户信息，资源下载完成后自动登录
+  const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
+  if (user_info) {
+    $authStore.autoLogin();
+  }
 };
 load();
 </script>

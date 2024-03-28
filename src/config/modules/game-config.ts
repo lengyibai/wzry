@@ -155,12 +155,64 @@ export const LOTTERY_STONE_WEEK_CARD_GRANT = {
 /** @description 今日及本周任务列表 */
 export const TASK_LIST: TaskType[] = [
   {
+    id: "de89",
+    type: "DAILY",
+    label: "在线奖励",
+    desc: "在线时间超过30分钟",
+    receive: false,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已在线",
+        value: 0,
+        total: 30,
+      },
+    ],
+  },
+  {
+    id: "qw27",
+    type: "DAILY",
+    label: "每日消费",
+    desc: "去商城使用金币和钻石购买一次道具",
+    receive: false,
+    path: ROUTE_PATH.PROP_SHOP,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已消费金币",
+        value: 0,
+        total: 1,
+      },
+      {
+        label: "今日已消费钻石",
+        value: 0,
+        total: 1,
+      },
+    ],
+  },
+  {
     id: "mx25",
     type: "DAILY",
     label: "每日夺宝",
     desc: "完成一次英雄夺宝和皮肤夺宝",
-    schedule: 0,
-    total: 2,
     receive: false,
     path: ROUTE_PATH.HERO_LOTTERY,
     props: [
@@ -173,163 +225,16 @@ export const TASK_LIST: TaskType[] = [
         num: 1,
       },
     ],
-  },
-  {
-    id: "sp37",
-    type: "DAILY",
-    label: "每日补给",
-    desc: "领取一次英雄夺宝补给和皮肤夺宝补给",
-    schedule: 0,
-    total: 2,
-    receive: false,
-    path: ROUTE_PATH.HERO_LOTTERY,
-    props: [
+    schedule: [
       {
-        type: "HERO_LOTTERY_STONE",
-        num: 1,
+        label: "今日英雄夺宝",
+        value: 0,
+        total: 1,
       },
       {
-        type: "SKIN_LOTTERY_STONE",
-        num: 1,
-      },
-    ],
-  },
-  {
-    id: "o1u8",
-    type: "DAILY",
-    label: "免费的英雄夺宝夺宝抵扣石",
-    desc: "今日通过英雄夺宝补给站获取25个英雄夺宝抵扣石",
-    schedule: 0,
-    total: 25,
-    receive: false,
-    path: ROUTE_PATH.HERO_LOTTERY,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "vk13",
-    type: "DAILY",
-    label: "免费的皮肤夺宝抵扣石",
-    desc: "今日通过皮肤夺宝补给站获取25个皮肤夺宝抵扣石",
-    schedule: 0,
-    total: 25,
-    receive: false,
-    path: ROUTE_PATH.SKIN_LOTTERY,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "d1b7",
-    type: "DAILY",
-    label: "英雄夺宝达人",
-    desc: "消耗完今日赠送的英雄夺宝币和抵扣石",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.HERO_LOTTERY,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "q35i",
-    type: "DAILY",
-    label: "皮肤夺宝达人",
-    desc: "消耗完今日赠送的皮肤夺宝币和抵扣石",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.SKIN_LOTTERY,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "de89",
-    type: "DAILY",
-    label: "在线奖励",
-    desc: "在线时间超过30分钟",
-    schedule: 0,
-    total: 30,
-    receive: false,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "bg43",
-    type: "DAILY",
-    label: "钻石消费",
-    desc: "去商城使用钻石购买一次道具",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.PROP_SHOP,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "qw27",
-    type: "DAILY",
-    label: "金币消费",
-    desc: "去商城使用金币购买一次道具",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.PROP_SHOP,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
-      },
-      {
-        type: "DIAMOND",
-        num: 100,
+        label: "今日皮肤夺宝",
+        value: 0,
+        total: 1,
       },
     ],
   },
@@ -338,8 +243,6 @@ export const TASK_LIST: TaskType[] = [
     type: "DAILY",
     label: "双倍的诱惑",
     desc: "使用一次双倍金币卡或双倍经验卡",
-    schedule: 0,
-    total: 1,
     receive: false,
     path: ROUTE_PATH.KNAPSACK,
     props: [
@@ -352,33 +255,159 @@ export const TASK_LIST: TaskType[] = [
         num: 100,
       },
     ],
-  },
-  {
-    id: "pc22",
-    type: "WEEKLY",
-    label: "一块都没有了",
-    desc: "消耗某日的所有英雄抵扣石补给站和皮肤夺宝补给站的额度",
-    schedule: 0,
-    total: 200,
-    receive: false,
-    props: [
+    schedule: [
       {
-        type: "HERO_LOTTERY_STONE",
-        num: 200,
-      },
-      {
-        type: "SKIN_LOTTERY_STONE",
-        num: 200,
+        label: "今日已使用",
+        value: 0,
+        total: 1,
       },
     ],
   },
   {
-    id: "a21l",
+    id: "sp37",
+    type: "DAILY",
+    label: "每日补给",
+    desc: "领取一次英雄夺宝补给和皮肤夺宝补给",
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
+    props: [
+      {
+        type: "HERO_LOTTERY_STONE",
+        num: 1,
+      },
+      {
+        type: "SKIN_LOTTERY_STONE",
+        num: 1,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日英雄夺宝补给领取",
+        value: 0,
+        total: 1,
+      },
+      {
+        label: "今日皮肤夺宝补给领取",
+        value: 0,
+        total: 1,
+      },
+    ],
+  },
+  {
+    id: "d1b7",
+    type: "DAILY",
+    label: "英雄夺宝达人",
+    desc: "消耗完今日赠送的英雄夺宝币和抵扣石",
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已消耗夺宝币",
+        value: 0,
+        total: 25,
+      },
+      {
+        label: "今日已消耗抵扣石",
+        value: 0,
+        total: 25,
+      },
+    ],
+  },
+  {
+    id: "q35i",
+    type: "DAILY",
+    label: "皮肤夺宝达人",
+    desc: "消耗完今日赠送的皮肤夺宝币和抵扣石",
+    receive: false,
+    path: ROUTE_PATH.SKIN_LOTTERY,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已消耗夺宝币",
+        value: 0,
+        total: 25,
+      },
+      {
+        label: "今日已消耗抵扣石",
+        value: 0,
+        total: 25,
+      },
+    ],
+  },
+  {
+    id: "o1u8",
+    type: "DAILY",
+    label: "免费英雄夺宝抵扣石",
+    desc: "今日通过英雄夺宝补给站获取25个英雄夺宝抵扣石",
+    receive: false,
+    path: ROUTE_PATH.HERO_LOTTERY,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已获取抵扣石",
+        value: 0,
+        total: 25,
+      },
+    ],
+  },
+  {
+    id: "vk13",
+    type: "DAILY",
+    label: "免费皮肤夺宝抵扣石",
+    desc: "今日通过皮肤夺宝补给站获取25个皮肤夺宝抵扣石",
+    receive: false,
+    path: ROUTE_PATH.SKIN_LOTTERY,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "今日已获取抵扣石",
+        value: 0,
+        total: 25,
+      },
+    ],
+  },
+  {
+    id: "q20y",
     type: "WEEKLY",
-    label: "常往の客",
-    desc: "连续七天登录",
-    schedule: 0,
-    total: 7,
+    label: "闲暇时光",
+    desc: "在线时长累计两小时",
     receive: false,
     props: [
       {
@@ -390,14 +419,102 @@ export const TASK_LIST: TaskType[] = [
         num: 100,
       },
     ],
+    schedule: [
+      {
+        label: "本周已在线",
+        value: 0,
+        total: 120,
+      },
+    ],
+  },
+  {
+    id: "a21l",
+    type: "WEEKLY",
+    label: "常往の客",
+    desc: "连续七天登录",
+    receive: false,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "本周已登录",
+        value: 0,
+        total: 7,
+      },
+    ],
+  },
+  {
+    id: "a6b9",
+    type: "WEEKLY",
+    label: "天天领取抵扣石",
+    desc: "使用一次英雄抵扣石周卡和皮肤抵扣石周卡",
+    receive: false,
+    path: ROUTE_PATH.PROP_SHOP,
+    props: [
+      {
+        type: "GOLD",
+        num: 200,
+      },
+      {
+        type: "DIAMOND",
+        num: 100,
+      },
+    ],
+    schedule: [
+      {
+        label: "本周英雄抵扣石周卡",
+        value: 0,
+        total: 1,
+      },
+      {
+        label: "本周皮肤抵扣石周卡",
+        value: 0,
+        total: 1,
+      },
+    ],
+  },
+  {
+    id: "pc22",
+    type: "WEEKLY",
+    label: "一块都没有了",
+    desc: "消耗某日的所有英雄抵扣石补给站和皮肤夺宝补给站的额度",
+    receive: false,
+    props: [
+      {
+        type: "HERO_LOTTERY_STONE",
+        num: 200,
+      },
+      {
+        type: "SKIN_LOTTERY_STONE",
+        num: 200,
+      },
+    ],
+    schedule: [
+      {
+        label: "本周英雄抵扣石补给站额度",
+        value: 0,
+        total: 200,
+      },
+      {
+        label: "本周皮肤抵扣石补给站额度",
+        value: 0,
+        total: 200,
+      },
+    ],
   },
   {
     id: "om70",
     type: "WEEKLY",
     label: "夺宝狂魔",
-    desc: "连续一周消耗完所有夺宝币、抵扣石、补给站额度",
-    schedule: 0,
-    total: 1,
+    desc: "连续一周消耗完所有赠送的夺宝币、抵扣石，补给站除外",
     receive: false,
     props: [
       {
@@ -417,63 +534,26 @@ export const TASK_LIST: TaskType[] = [
         num: 225,
       },
     ],
-  },
-  {
-    id: "q20y",
-    type: "WEEKLY",
-    label: "闲暇时光",
-    desc: "在线时长累计两小时",
-    schedule: 0,
-    total: 120,
-    receive: false,
-    props: [
+    schedule: [
       {
-        type: "GOLD",
-        num: 200,
+        label: "本周消耗英雄夺宝币",
+        value: 0,
+        total: 25 * 7,
       },
       {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "a6b9",
-    type: "WEEKLY",
-    label: "天天领英雄抵扣石",
-    desc: "使用一次英雄抵扣石周卡",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.PROP_SHOP,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
+        label: "本周消耗皮肤夺宝币",
+        value: 0,
+        total: 25 * 7,
       },
       {
-        type: "DIAMOND",
-        num: 100,
-      },
-    ],
-  },
-  {
-    id: "t46d",
-    type: "WEEKLY",
-    label: "天天领皮肤抵扣石",
-    desc: "使用一次皮肤抵扣石周卡",
-    schedule: 0,
-    total: 1,
-    receive: false,
-    path: ROUTE_PATH.HERO_LOTTERY,
-    props: [
-      {
-        type: "GOLD",
-        num: 200,
+        label: "本周消耗英雄抵扣石",
+        value: 0,
+        total: 25 * 7,
       },
       {
-        type: "DIAMOND",
-        num: 100,
+        label: "本周消耗皮肤抵扣石",
+        value: 0,
+        total: 25 * 7,
       },
     ],
   },

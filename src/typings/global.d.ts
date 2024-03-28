@@ -347,8 +347,10 @@ declare namespace Global {
     mail: Game.Mail[];
     /** 邮件标记，避免用户重复收到推送 */
     mallMark: string[];
-    /** 任务列表 */
-    task: Game.Task[];
+    /** 任务完成列表ID */
+    taskFinish: string[];
+    /** 任务数据状态 */
+    taskStatus: Game.Task;
     /** 提出的BUG与建议 */
     bugIdea: BugIdea[];
     /** 埋点 */

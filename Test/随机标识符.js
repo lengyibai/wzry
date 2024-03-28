@@ -44,7 +44,6 @@ console.log(
     "d1b7",
     "q35i",
     "de89",
-    "bg43",
     "qw27",
     "r88v",
     "pc22",
@@ -52,7 +51,6 @@ console.log(
     "om70",
     "q20y",
     "a6b9",
-    "t46d",
 
     //埋点字段
     "pm59",

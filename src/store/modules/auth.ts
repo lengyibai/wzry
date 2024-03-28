@@ -51,7 +51,7 @@ const AuthStore = defineStore("auth", () => {
     watching = true;
     user_status.value = true;
     $mailStore.useUserMail(user_data.value.mail);
-    $taskStore.useUserTask(user_data.value.task);
+    $taskStore.useUserTask(user_data.value.taskFinish, user_data.value.taskStatus);
     $supplyStore.useUserSupply(user_data.value.supply);
     $lotteryStore.useUserLottery(user_data.value.lottery);
     $knapsackStore.useUserKnapsack(user_data.value.knapsack);
@@ -177,6 +177,7 @@ const AuthStore = defineStore("auth", () => {
       $supplyStore.interruptCountdown();
       $timeStore.interrupt();
       $mailStore.clearMail();
+      $taskStore.resetTask();
     },
   };
 

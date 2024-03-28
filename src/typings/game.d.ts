@@ -362,14 +362,51 @@ declare namespace Game {
     }[];
   }
 
-  /** @description 任务 */
+  /** @description 任务今日和本周数据状态 */
   interface Task {
-    /** 任务ID */
-    id: string;
-    /** 任务进度 */
-    schedule: number;
-    /** 是否已领取奖励 */
-    receive: boolean;
+    /** 今日在线时长 */
+    today_online_duration: number;
+    /** 今日是否金币消费 */
+    today_gold_consume: boolean;
+    /** 今日是否钻石消费 */
+    today_diamond_consume: boolean;
+    /** 今日是否参与了英雄夺宝 */
+    today_hero_lottery: boolean;
+    /** 今日是否参与了皮肤夺宝 */
+    today_skin_lottery: boolean;
+    /** 今日是否使用了双倍卡 */
+    today_double_card: boolean;
+    /** 今日消耗的英雄夺宝币 */
+    today_hero_coin: number;
+    /** 今日消耗的皮肤夺宝币 */
+    today_skin_coin: number;
+    /** 今日消耗的英雄抵扣石 */
+    today_hero_stone: number;
+    /** 今日消耗的皮肤抵扣石 */
+    today_skin_stone: number;
+    /** 今日是否领取英雄夺宝补给 */
+    today_hero_supply: boolean;
+    /** 今日是否领取皮肤夺宝补给 */
+    today_skin_supply: boolean;
+
+    /** 本周在线时长 */
+    week_online_duration: number;
+    /** 本周本周登录天数 */
+    week_login_day: number;
+    /** 本周是否使用了英雄抵扣石周卡 */
+    week_hero_stone_card: boolean;
+    /** 本周是否使用了皮肤抵扣石周卡 */
+    week_skin_stone_card: boolean;
+    /** 本周是否触发了英雄及皮肤抵扣石补给站0额度 */
+    week_zero_supply: boolean;
+    /** 本周消耗的英雄夺宝币 */
+    week_hero_coin: number;
+    /** 本周消耗的皮肤夺宝币 */
+    week_skin_coin: number;
+    /** 本周消耗的英雄抵扣石 */
+    week_hero_stone: number;
+    /** 本周消耗的皮肤抵扣石 */
+    week_skin_stone: number;
   }
 
   /** @description 道具Key */

@@ -55,9 +55,14 @@ export interface TaskType {
   /** 任务描述 */
   desc: string;
   /** 任务进度数量 */
-  schedule: number;
-  /** 任务相关数量总数 */
-  total: number;
+  schedule: {
+    /** 进度描述 */
+    label: string;
+    /** 当前完成 */
+    value: number;
+    /** 任务目标 */
+    total: number;
+  }[];
   /** 是否已领取奖励 */
   receive: boolean;
   /** 点击前往时跳转的路由地址，如果没有则隐藏前往按钮 */
