@@ -4,8 +4,8 @@ import type { App } from "vue";
 import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
-import { DeviceStore } from "@/store";
 import { $loading } from "@/utils/loading";
+import { useDevice } from "@/hooks/modules/useDevice";
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -14,10 +14,10 @@ const router = createRouter({
 
 let downloading = true;
 router.beforeEach(async (to, from, next) => {
-  const $deviceStore = DeviceStore();
+  const { browser_status } = useDevice();
 
   //浏览器版本过低，则跳转400，400较为特殊，如果跳转400则直接放行
-  if (!$deviceStore.browser_status && to.path !== "/400") {
+  if (!browser_status && to.path !== "/400") {
     next("/400");
     return;
   }
@@ -56,7 +56,7 @@ router.beforeEach(async (to, from, next) => {
   next();
 });
 
-router.afterEach((to, from) => {
+router.afterEach((to) => {
   $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });

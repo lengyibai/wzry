@@ -3,10 +3,11 @@ import { nextTick, ref } from "vue";
 
 import MusicList from "../MusicList/index.vue";
 
-import { MusicStore, SettingStore, DeviceStore } from "@/store";
+import { MusicStore, SettingStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { $tip, $focus } from "@/utils/busTransfer";
+import { useDevice } from "@/hooks";
 
 const $emit = defineEmits<{
   toggle: [v: string];
@@ -14,7 +15,8 @@ const $emit = defineEmits<{
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
-const $deviceStore = DeviceStore();
+
+const { vertical } = useDevice();
 
 const musicToolRef = ref<HTMLElement>();
 
@@ -38,7 +40,7 @@ const handleTool = (type: string) => {
 </script>
 
 <template>
-  <div ref="musicToolRef" class="music-tool" :class="{ center: $deviceStore.vertical }" @click.stop>
+  <div ref="musicToolRef" class="music-tool" :class="{ center: vertical }" @click.stop>
     <i
       v-mouse-tip="{
         text: MOUSE_TIP.q3k7,

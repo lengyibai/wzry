@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { storeToRefs } from "pinia";
+
+import { useBarrages } from "./components/BarrageMain/hooks/useBarrages";
 
 import BarrageMain from "@/layout/components/BarrageMain/index.vue";
 import Sidebar from "@/layout/components/Sidebar/index.vue";
 import Navbar from "@/layout/components/Navbar/index.vue";
 import AppMain from "@/layout/components/AppMain/index.vue";
 import Footbar from "@/layout/components/Footbar/index.vue";
-import { AudioStore, BarrageStore } from "@/store";
+import { AudioStore } from "@/store";
 import { KVideo } from "@/components/business";
 import { _promiseTimeout } from "@/utils/tool";
 import { _getVideoLink } from "@/utils/concise";
 
 const $audioStore = AudioStore();
-const $barrageStore = BarrageStore();
 
-const { status } = storeToRefs($barrageStore);
+const { status } = useBarrages();
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);

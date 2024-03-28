@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
-import { CollapseStore, DeviceStore, AuthStore, MarkerStore } from "@/store";
-import { useGetFps } from "@/hooks";
+import { AuthStore, MarkerStore } from "@/store";
+import { useGetFps, useDevice, useCollapse } from "@/hooks";
 import { _browserV } from "@/utils/tool";
 
-const $collapseStore = CollapseStore();
-const $deviceStore = DeviceStore();
 const $authStore = AuthStore();
 const $markerStore = MarkerStore();
 
 const { fps } = useGetFps();
+const { collapse } = useCollapse();
+const { width, height, browser_status, browser_name } = useDevice();
 
 /* 浏览器版本提示 */
-const browser_status = computed(() => $deviceStore.browser_status);
-const browser_name = computed(() => $deviceStore.browser_name);
 const version = `${_browserV.version} ${
-  !browser_status.value ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""
+  !browser_status ? "(版本较低，部分效果可能无法显示，建议更换浏览器)" : ""
 }`;
 
 const show_markers = ref(false);
@@ -39,7 +37,7 @@ if (import.meta.env.DEV) {
     </div>
     <div
       :style="{
-        opacity: !$collapseStore.collapse || !$authStore.user_status ? 1 : 0,
+        opacity: !collapse || !$authStore.user_status ? 1 : 0,
       }"
       class="water-mark"
     >
@@ -51,7 +49,7 @@ if (import.meta.env.DEV) {
         {{ $t("帧率") }}：{{ fps }}
       </p>
       <p :class="{ low: !browser_status }">{{ browser_name }}{{ $t("内核") }}：{{ version }}</p>
-      <p>{{ $t("屏幕尺寸") }}：{{ $deviceStore.width }}*{{ $deviceStore.height }}</p>
+      <p>{{ $t("屏幕尺寸") }}：{{ width }}*{{ height }}</p>
     </div>
   </teleport>
 </template>

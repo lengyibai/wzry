@@ -5,18 +5,15 @@ import _cloneDeep from "lodash/cloneDeep";
 import { useBarrages } from "./hooks/useBarrages";
 import { vDrag } from "./directives/drag";
 
-import { BarrageStore } from "@/store";
 import { vBlurLoad, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { $imageView, $tip } from "@/utils/busTransfer";
 import { _shuffleArray } from "@/utils/tool";
 
-const $barrageStore = BarrageStore();
-
 const barragesRef = ref<HTMLElement>();
 const barrageInfoRef = ref<HTMLElement>();
 
-const { barrage_info, init, show_card } = useBarrages();
+const { barrages, getBarrages, barrage_info, init, show_card } = useBarrages();
 
 /* 查看图片 */
 const handleView = (e: Event, blur: string, big: string) => {
@@ -30,7 +27,7 @@ const handleView = (e: Event, blur: string, big: string) => {
 };
 
 watch(
-  () => $barrageStore.barrages,
+  () => barrages.value,
   (v) => {
     //监听弹幕数量，重新装填弹幕时会重新初始化弹幕
     if (v.length > 0) {
@@ -46,7 +43,7 @@ watch(
 );
 
 setTimeout(() => {
-  $barrageStore.getBarrages();
+  getBarrages();
   $tip({
     align: "left-top",
     text: SCENE_TIP.kr53,

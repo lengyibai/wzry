@@ -4,7 +4,6 @@ import { computed, ref, watch } from "vue";
 import {
   AudioStore,
   HeroStore,
-  CollapseStore,
   SkinStore,
   EquipStore,
   AtlasStore,
@@ -12,6 +11,7 @@ import {
   SkinDebrisStore,
 } from "@/store";
 import { vMouseTip } from "@/directives";
+import { useCollapse } from "@/hooks";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
@@ -27,12 +27,13 @@ const $emit = defineEmits<{
 
 const $atlasStore = AtlasStore();
 const $audioStore = AudioStore();
-const $collapseStore = CollapseStore();
 const $equipStore = EquipStore();
 const $heroStore = HeroStore();
 const $heroDebrisStore = HeroDebrisStore();
 const $skinStore = SkinStore();
 const $skinDebrisStore = SkinDebrisStore();
+
+const { collapse, setCollapse } = useCollapse();
 
 const hero_type: { name: Game.Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -89,7 +90,7 @@ const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
   obj[$props.type]();
 
   if (window.innerWidth < 960) {
-    $collapseStore.setCollapse(true);
+    setCollapse(true);
   }
 
   $emit("change");
@@ -111,7 +112,7 @@ watch(filter_type, (v) => {
 
 <template>
   <transition name="sidebar" appear>
-    <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
+    <div class="filter-sidebar" :class="{ collapse: collapse }">
       <div
         v-for="(item, index) in list"
         :key="index"
@@ -128,7 +129,7 @@ watch(filter_type, (v) => {
 
       <!-- 滑块 -->
       <div
-        v-show="!$collapseStore.collapse"
+        v-show="!collapse"
         class="slider"
         :style="{
           top: top + 'px',

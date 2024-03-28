@@ -5,8 +5,9 @@ import { useRouter, useRoute } from "vue-router";
 import SideItem from "./index.vue";
 import type { RouteFormat } from "./interface";
 
-import { CollapseStore, AudioStore } from "@/store";
+import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
+import { useCollapse } from "@/hooks";
 
 interface Props {
   route: any;
@@ -16,8 +17,9 @@ const $props = defineProps<Props>();
 
 const $router = useRouter();
 const $route = useRoute();
-const $collapseStore = CollapseStore();
 const $audioStore = AudioStore();
+
+const { collapse, setCollapse } = useCollapse();
 
 const menuItemRef = ref<HTMLElement>();
 
@@ -42,7 +44,7 @@ const handleClickSide = () => {
 
   //如果低于960px，则折叠侧边栏
   if (window.innerWidth < 960) {
-    $collapseStore.setCollapse(true);
+    setCollapse(true);
   }
 
   //如果当前组件没有子路由，则直接跳转
@@ -60,7 +62,7 @@ const handleClickSide = () => {
 </script>
 
 <template>
-  <div v-if="route" class="menu" :class="{ collapse: $collapseStore.collapse }">
+  <div v-if="route" class="menu" :class="{ collapse: collapse }">
     <div
       ref="menuItemRef"
       v-mouse-tip="{

@@ -7,11 +7,13 @@ import Copyright from "./components/Copyright/index.vue";
 import MusicPlay from "./components/MusicPlay/index.vue";
 
 import { vParticleEffect } from "@/directives";
-import { MusicStore, SettingStore, DeviceStore } from "@/store";
+import { MusicStore, SettingStore } from "@/store";
+import { useDevice } from "@/hooks";
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
-const $deviceStore = DeviceStore();
+
+const { vertical } = useDevice();
 
 const lineRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
@@ -95,13 +97,13 @@ onUnmounted(() => {
       <MusicPlay v-if="enable_music" />
 
       <!-- 左侧时间 -->
-      <Time v-show="!$deviceStore.vertical" />
+      <Time v-show="!vertical" />
 
       <!-- 音乐工具栏 -->
       <MusicTool v-show="enable_music" @toggle="onMusicTool" />
 
       <!-- 右侧作者 -->
-      <Copyright v-show="!$deviceStore.vertical" />
+      <Copyright />
 
       <!-- 音频可视化 -->
       <canvas ref="canvasRef"></canvas>

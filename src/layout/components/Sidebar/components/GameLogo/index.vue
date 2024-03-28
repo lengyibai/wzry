@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Logo3D from "./components/Logo3D/index.vue";
 
-import { CollapseStore } from "@/store";
+import { useCollapse } from "@/hooks";
 
-const $collapseStore = CollapseStore();
+const { collapse } = useCollapse();
 
 /* 开始确认刷新计时 */
 const handleStartTime = () => {
@@ -28,7 +28,7 @@ const handleEndTime = () => {
       <div key="logo">
         <!-- <Logo3D key="logo" /> -->
       </div>
-      <span v-show="!$collapseStore.collapse" key="text">{{ $t("王者图鉴") }}</span>
+      <span v-show="!collapse" key="text">{{ $t("王者图鉴") }}</span>
     </transition-group>
   </div>
 </template>

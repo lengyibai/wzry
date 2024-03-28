@@ -12,3 +12,6 @@ export * from "./modules/useIndexedDB";
 export * from "./modules/useGetAudioZip";
 export * from "./modules/useGetImageZip";
 export * from "./modules/useGetBlurZip";
+export * from "./modules/useCssClassToggle";
+export * from "./modules/useDevice";
+export * from "./modules/useCollapse";

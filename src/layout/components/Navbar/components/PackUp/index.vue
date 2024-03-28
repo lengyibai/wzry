@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { CollapseStore, AudioStore } from "@/store";
+import { useCollapse } from "@/hooks";
+import { AudioStore } from "@/store";
 
-const $collapseStore = CollapseStore();
 const $audioStore = AudioStore();
+
+const { collapse, toggleCollapse } = useCollapse();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {
   $audioStore.play("d5e2");
-  $collapseStore.toggleCollapse();
+  toggleCollapse();
 };
 </script>
 
@@ -19,7 +21,7 @@ const handleToggle = () => {
       text: MOUSE_TIP.i6u1,
     }"
     class="iconfont wzry-packup"
-    :class="{ 'is-active': !$collapseStore.collapse }"
+    :class="{ 'is-active': !collapse }"
     @click="handleToggle"
   />
 </template>

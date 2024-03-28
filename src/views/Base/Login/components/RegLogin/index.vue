@@ -5,12 +5,14 @@ import _throttle from "lodash/throttle";
 import LoginBox from "./components/LoginBox/index.vue";
 import RegBox from "./components/RegBox/index.vue";
 
-import { AudioStore, DeviceStore } from "@/store";
+import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { _isPhone, _Parallax } from "@/utils/tool";
+import { useDevice } from "@/hooks";
 
-const $deviceStore = DeviceStore();
 const $audioStore = AudioStore();
+
+const { browser_name } = useDevice();
 
 const RegLoginRef = ref<HTMLElement>();
 
@@ -29,7 +31,7 @@ const onRegSuccess = () => {
 };
 
 /* 视差动画(如果为移动端或为safari浏览器则取消) */
-if (!_isPhone || $deviceStore.browser_name === "safari") {
+if (!_isPhone || browser_name === "safari") {
   const parallax = new _Parallax((x: number, y: number) => {
     if (!RegLoginRef.value) return;
     RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${

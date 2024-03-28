@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onActivated, ref } from "vue";
 
 import TaskToolbar from "./components/TaskToolbar/index.vue";
 import TaskList from "./components/TaskList/index.vue";
 
 import { vScrollVirtualization } from "@/directives";
+import { AudioStore } from "@/store";
 
 defineOptions({
   name: "Task",
 });
+
+const $audioStore = AudioStore();
 
 const taskMainRef = ref<HTMLElement>();
 
@@ -20,6 +23,10 @@ const onCategory = (index: number) => {
   category_index.value = index;
   taskMainRef.value!.scrollTop = 0;
 };
+
+onActivated(() => {
+  $audioStore.play("kj62");
+});
 </script>
 
 <template>
