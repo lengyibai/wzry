@@ -1,0 +1,29 @@
+.k-hover-desc {
+  position: relative;
+
+  .hover {
+    position: relative;
+  }
+
+  .tip {
+    position: absolute;
+    z-index: 1;
+    transition: 0.25s;
+
+    &.hide {
+      opacity: 0;
+    }
+
+    &.left-top {
+      top: 0;
+      left: 0;
+      transform: translate(calc(-100% - 0.5rem), calc(-100% - 0.5rem));
+    }
+
+    &.left-bottom {
+      left: 0;
+      bottom: 0;
+      transform: translate(calc(-100% - 0.5rem), calc(100% + 0.5rem));
+    }
+  }
+}

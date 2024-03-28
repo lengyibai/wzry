@@ -10,6 +10,7 @@ import KLoadingIcon from "./Parts/K-LoadingIcon/index.vue";
 import KMarquee from "./Parts/K-Marquee/index.vue";
 import KLoadMore from "./Parts/K-LoadMore/index.vue";
 import KRange from "./Parts/K-Range/index.vue";
+import KHoverDesc from "./Parts/K-HoverDesc/index.vue";
 import KHelp from "./Parts/K-Help/index.vue";
 import KEmpty from "./Parts/K-Empty/index.vue";
 import KSelect from "./Parts/K-Select/index.vue";
@@ -33,6 +34,7 @@ export {
   KDialog,
   KHelp,
   KInput,
+  KHoverDesc,
   KLoadMore,
   KLoadingIcon,
   KMarquee,
