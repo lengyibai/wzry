@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^1.6.3",
     "dayjs": "^1.11.10",
+    "decimal.js": "^10.4.3",
     "js-base64": "^3.7.6",
     "jszip": "^3.10.1",
     "localforage": "^1.10.0",

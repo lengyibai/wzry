@@ -172,8 +172,8 @@ export const TASK_LIST: TaskType[] = [
     ],
     schedule: [
       {
-        label: "今日已在线",
-        value: 0,
+        label: "今日已在线(分钟)",
+        value: 30,
         total: 30,
       },
     ],
@@ -421,7 +421,7 @@ export const TASK_LIST: TaskType[] = [
     ],
     schedule: [
       {
-        label: "本周已在线",
+        label: "本周已在线(分钟)",
         value: 0,
         total: 120,
       },
@@ -445,7 +445,7 @@ export const TASK_LIST: TaskType[] = [
     ],
     schedule: [
       {
-        label: "本周已登录",
+        label: "本周已登录(天)",
         value: 0,
         total: 7,
       },

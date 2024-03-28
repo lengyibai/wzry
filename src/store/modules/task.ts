@@ -7,6 +7,7 @@ import { TaskType } from "@/config/interface";
 import { DEFAULT, GAME_CONFIG, GAME_PROP } from "@/config";
 import { $obtain } from "@/utils/busTransfer";
 import { _getImgLink } from "@/utils/concise";
+import { _accumulate } from "@/utils/tool";
 
 /** @description 任务相关 */
 const TaskStore = defineStore("task", () => {
@@ -26,7 +27,7 @@ const TaskStore = defineStore("task", () => {
       //可领取置顶，已领取置底
       data.sort((a) => {
         if (a.receive) return 1;
-        if (a.schedule < a.total) return 0;
+        if (_accumulate(a.schedule, "value") < _accumulate(a.schedule, "total")) return 0;
         return -1;
       });
 
@@ -37,7 +38,7 @@ const TaskStore = defineStore("task", () => {
       //可领取置顶，已领取置底
       data.sort((a) => {
         if (a.receive) return 1;
-        if (a.schedule < a.total) return 0;
+        if (_accumulate(a.schedule, "value") < _accumulate(a.schedule, "total")) return 0;
         return -1;
       });
 
@@ -45,7 +46,7 @@ const TaskStore = defineStore("task", () => {
     }),
   };
 
-  /* 保存已领取奖励的任务ID组 */
+  /* 保存已领取奖励的任务ID组及任务数据状态 */
   const saveTaskStatus = () => {
     const taskFinish: string[] = task_list.value
       .filter((item) => item.receive)
@@ -97,12 +98,39 @@ const TaskStore = defineStore("task", () => {
     },
 
     /** @description 新的一天，重置昨日任务 */
-    resetYesterdayTask() {
-      task_list.value.forEach((item) => {
-        if (item.type === "DAILY") {
-          item.receive = false;
+    resetDayWeekTask(type: "DAY" | "WEEK") {
+      if (type === "DAY") {
+        //将初始任务列表转化为对象
+        const TASK_LIST: Record<string, TaskType> = {};
+        GAME_CONFIG.TASK_LIST.forEach((item) => {
+          TASK_LIST[item.id] = item;
+        });
+
+        //重置昨日任务
+        for (let i = 0; i < task_list.value.length; i++) {
+          const item = task_list.value[i];
+          if (item.type === "DAILY") {
+            task_list.value[i] = TASK_LIST[item.id];
+          }
         }
-      });
+
+        //重置昨日状态
+        const initial_status: Record<string, any> = {};
+        for (const key in DEFAULT.userDefaultInfo().taskStatus) {
+          if (key.includes("today")) {
+            initial_status[key as keyof Game.Task] =
+              DEFAULT.userDefaultInfo().taskStatus[key as keyof Game.Task];
+          }
+        }
+        task_status.value = {
+          ...task_status.value,
+          ...initial_status,
+        };
+      } else {
+        this.resetTask();
+      }
+
+      saveTaskStatus();
     },
 
     /** @description 退出登录重置任务 */

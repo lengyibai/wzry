@@ -8,6 +8,7 @@ import { TaskStore } from "@/store";
 import { _getImgLink } from "@/utils/concise";
 import { KHelp, KHoverDesc } from "@/components/business";
 import { vMouseTip } from "@/directives";
+import { _accumulate, _decimal } from "@/utils/tool";
 
 interface Props {
   /** 任务信息 */
@@ -25,11 +26,10 @@ const $taskStore = TaskStore();
 const percent = computed(() => {
   return (data: TaskType) => {
     // 使用 reduce 计算 total 和 value 的总和
-    const totalSum = data.schedule.reduce((acc, item) => acc + item.total, 0);
-    const valueSum = data.schedule.reduce((acc, item) => acc + item.value, 0);
-
+    const total_sum = _accumulate(data.schedule, "total");
+    const value_sum = _accumulate(data.schedule, "value");
     // 计算百分比
-    return valueSum === 0 ? "0" : `${(valueSum / totalSum) * 100}`;
+    return value_sum === 0 ? 0 : _decimal(value_sum, total_sum, "/") * 100;
   };
 });
 
@@ -69,50 +69,53 @@ const handleClickTask = (data: TaskType) => {
         </div>
       </div>
 
-      <!-- 按钮 -->
-      <div v-if="!data.receive" class="schedule-btn">
-        <div class="schedule-box">
-          <div class="label">进度：</div>
-          <div class="content">
-            <div class="percentage">
-              <span class="value">{{ percent(data) }}</span>
-              <span>%</span>
-            </div>
+      <div class="schedule-status">
+        <!-- 按钮 -->
+        <div v-if="data.receive" class="received">
+          <i class="iconfont wzry-finish" />
+          <span>已领取</span>
+        </div>
 
-            <!-- 进度详情 -->
-            <KHoverDesc>
-              <template #btn>
-                <KHelp v-mouse-tip top="-0.2rem" size="1.25rem" margin-left="1rem">!</KHelp>
-              </template>
+        <div v-else class="schedule-btn">
+          <div class="schedule-box">
+            <div class="label">进度：</div>
+            <div class="content">
+              <div class="percentage">
+                <span class="value">{{ percent(data) }}</span>
+                <span>%</span>
+              </div>
 
-              <template #tip>
-                <div class="schedule-list">
-                  <div v-for="(item, index) in data.schedule" :key="index" class="box">
-                    <span>{{ item.label }}：</span>
-                    <span class="index">{{ item.value }}</span>
-                    <span>/{{ item.total }}</span>
+              <!-- 进度详情 -->
+              <KHoverDesc>
+                <template #btn>
+                  <KHelp v-mouse-tip top="-0.2rem" size="1.25rem" margin-left="1rem">!</KHelp>
+                </template>
+
+                <template #tip>
+                  <div class="schedule-list">
+                    <div v-for="(item, index) in data.schedule" :key="index" class="box">
+                      <span>{{ item.label }}：</span>
+                      <span class="index">{{ item.value }}</span>
+                      <span>/{{ item.total }}</span>
+                    </div>
                   </div>
-                </div>
-              </template>
-            </KHoverDesc>
+                </template>
+              </KHoverDesc>
+            </div>
+          </div>
+
+          <!-- 前往及领取按钮 -->
+          <div
+            v-if="data.path || percent(data) === 100"
+            class="btn"
+            :class="{
+              receive: data.schedule.every((item) => item.value >= item.total),
+            }"
+            @click="handleClickTask(data)"
+          >
+            {{ data.schedule.every((item) => item.value < item.total) ? "前往" : "领取" }}
           </div>
         </div>
-
-        <!-- 前往及领取按钮 -->
-        <div
-          v-if="data.path"
-          class="btn"
-          :class="{
-            receive: data.schedule.every((item) => item.value >= item.total),
-          }"
-          @click="handleClickTask(data)"
-        >
-          {{ data.schedule.every((item) => item.value < item.total) ? "前往" : "领取" }}
-        </div>
-      </div>
-      <div v-else class="finish-status">
-        <i class="iconfont wzry-finish" />
-        <span>已领取</span>
       </div>
     </div>
   </div>

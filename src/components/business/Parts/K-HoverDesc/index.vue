@@ -51,17 +51,11 @@ onMounted(getTipPosition);
     <div ref="hoverRef" class="hover" @mouseenter="show_tip = true" @mouseleave="show_tip = false">
       <slot name="btn">悬浮我</slot>
     </div>
-    <div
-      class="tip"
-      :class="[
-        tip_position,
-        {
-          hide: !show_tip,
-        },
-      ]"
-    >
-      <slot name="tip">Hello World!</slot>
-    </div>
+    <transition name="fade">
+      <div v-if="show_tip" class="tip" :class="tip_position">
+        <slot name="tip">Hello World!</slot>
+      </div>
+    </transition>
   </div>
 </template>
 

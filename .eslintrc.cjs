@@ -25,7 +25,7 @@ module.exports = {
     "vue/v-slot-style": "warn", //强制使用 v-slot 指令的“name”属性值风格
     "vue/attribute-hyphenation": "warn", //对模板中的自定义组件强制执行属性命名样式：my-prop="prop"
     "vue/html-closing-bracket-newline": "warn", //禁止html闭标签>内换行
-    "no-console": "warn", //不允许使用 console
+    // "no-console": "warn", //不允许使用 console
 
     "@typescript-eslint/ban-types": "off", //禁止使用指定的类型
     "@typescript-eslint/no-explicit-any": "off", //禁止使用any类型

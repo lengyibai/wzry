@@ -74,7 +74,7 @@
 
 ## 第三方依赖
 
-> 事件总线[mitt](https://github.com/developit/mitt)、时间库[dayjs](https://github.com/iamkun/dayjs)、多语言[vue-i18n](https://github.com/intlify/vue-i18n-next)、工具库[lodash](https://github.com/lodash/lodash)、加密库[js-base64](https://github.com/dankogai/js-base64)、IndexedDB库[localforage](https://github.com/localForage/localForage)、ZIP解压：[jszip](https://github.com/Stuk/jszip)
+> 事件总线[mitt](https://github.com/developit/mitt)、时间库[dayjs](https://github.com/iamkun/dayjs)、多语言[vue-i18n](https://github.com/intlify/vue-i18n-next)、工具库[lodash](https://github.com/lodash/lodash)、加密库[js-base64](https://github.com/dankogai/js-base64)、IndexedDB库[localforage](https://github.com/localForage/localForage)、Zip解压[jszip](https://github.com/Stuk/jszip)、运算库[decimal.js](https://github.com/MikeMcl/decimal.js)
 
 ## 素材来源
 

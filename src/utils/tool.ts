@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import Decimal from "decimal.js";
 
 import type { ImageOptimizerOptions } from "./interface";
 
@@ -6,11 +7,6 @@ import { PINYIN } from "@/config/modules/pinyin";
 
 /** @description 判断是否为移动端 */
 export const _isPhone = (() => /mobile/i.test(navigator.userAgent))();
-
-/** @description 是否为对象 */
-export const _isObject = (obj: any) => {
-  return Object.prototype.toString.call(obj) === "[object Object]";
-};
 
 /** @description 获取浏览器版本 */
 export const _browserV = (() => {
@@ -57,6 +53,29 @@ export const _timeGreet = (() => {
   const now = new Date().getHours();
   return now < 4 ? a : now < 10 ? b : now < 12 ? c : now < 14 ? d : now < 18 ? e : f;
 })();
+
+/** @description 是否为对象 */
+export const _isObject = (obj: any) => {
+  return Object.prototype.toString.call(obj) === "[object Object]";
+};
+
+/** @description 累加计算 */
+export const _accumulate = <T extends Record<string, any>>(data: T[], key: keyof T) => {
+  return data.reduce((acc, item) => acc + item[key], 0);
+};
+
+/** @description 精确的十进制计算 */
+export const _decimal = (num1: number, num2: number, type: "+" | "-" | "*" | "/", point = 2) => {
+  const a = new Decimal(num1);
+  const b = new Decimal(num2);
+  const calc = {
+    "+": () => a.add(b),
+    "-": () => a.sub(b),
+    "*": () => a.mul(b),
+    "/": () => a.div(b),
+  } as const;
+  return Number(calc[type]().toFixed(point));
+};
 
 /** @description 随机数 */
 export const _random = (min: number, max: number, num = 0) => {
@@ -344,192 +363,6 @@ export const _downloadImage = (link: string, name: string) => {
     });
 };
 
-/** @description 视差动画 */
-export class _Parallax {
-  fn: (x: number, y: number) => void = () => {};
-
-  constructor(fn: (x: number, y: number) => void) {
-    this.fn = fn;
-  }
-
-  move(e: MouseEvent | Touch): void {
-    const { innerWidth: w, innerHeight: h } = window;
-    const x = Number(((e.pageX - w / 2) / (w / 2)).toFixed(2));
-    const y = Number(((e.pageY - h / 2) / (h / 2)).toFixed(2));
-
-    this.fn(x, y);
-  }
-}
-
-/** @description 音频可视化 */
-export class _AudioVisual {
-  audio: HTMLMediaElement;
-  cvs: HTMLCanvasElement;
-  ctx: CanvasRenderingContext2D;
-  animationFrameId!: number;
-  isInit = false;
-  dataArray: string | any[] | Uint8Array = [];
-  analyser!: AnalyserNode;
-  constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
-    this.audio = audio;
-    this.cvs = canvas;
-    this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-
-    this.init();
-  }
-
-  /** 初始化画布 */
-  init() {
-    this.cvs.width = this.cvs.offsetWidth * devicePixelRatio;
-    this.cvs.height = this.cvs.offsetHeight * devicePixelRatio;
-    this.draw();
-  }
-  /** 播放音频 */
-  play() {
-    //判断是否初始化
-    if (this.isInit) {
-      return;
-    }
-
-    //开始初始化
-    //创建音频上下文
-    const audioCtx = new AudioContext();
-    //创建音频源节点
-    const source = audioCtx.createMediaElementSource(this.audio);
-    //创建分析器节点
-    this.analyser = audioCtx.createAnalyser();
-    this.analyser.fftSize = 512;
-    //接收分析器节点的分析数据
-    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-    source.connect(this.analyser);
-    this.analyser.connect(audioCtx.destination);
-    //已初始化
-    this.isInit = true;
-  }
-
-  /** 把分析出来的波形绘制到canvas上 */
-  draw() {
-    const draw = () => {
-      //逐帧绘制
-      this.animationFrameId = requestAnimationFrame(draw);
-
-      //接下来清空画布
-      const { width, height } = this.cvs;
-      this.ctx.clearRect(0, 0, width, height);
-      if (!this.isInit) {
-        return;
-      }
-      //让分析器节点分析出数据到数组中
-      this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
-      /** 条的数量 */
-      const len = this.dataArray.length;
-      const barWidth = width / len; //条的宽度
-      this.ctx.fillStyle = "#72b0d540";
-      //循环绘制
-      for (let i = 0; i < len; i++) {
-        const data = this.dataArray[i];
-        const barHeight = (data / 255) * height; //条的高度
-        const x1 = i * barWidth + width / 2; //右边区域中条的x坐标
-        const x2 = width / 2 - (i + 1) * barWidth; //左边区域中条的x坐标 镜像
-        const y = height - barHeight; //条的y坐标
-        this.ctx.fillRect(x1, y, barWidth - 2, barHeight); //填充右边区域
-        this.ctx.fillRect(x2, y, barWidth - 2, barHeight); //填充左边区域
-      }
-    };
-    draw();
-  }
-
-  /** 销毁 */
-  destroy() {
-    cancelAnimationFrame(this.animationFrameId);
-  }
-}
-
-/** @description 音频播放器 */
-export class _AudioPlayer {
-  private audio: HTMLAudioElement = new Audio();
-  private volume: number = 1;
-
-  constructor(v?: { end?: () => void; volume?: number }) {
-    const { end, volume = 1 } = v || {};
-    if (end) {
-      this.audio.addEventListener("pause", end);
-      this.audio.addEventListener("ended", end);
-    }
-    this.volume = volume;
-
-    //允许音频可视化跨域
-    this.audio.setAttribute("crossOrigin", "anonymous");
-  }
-
-  async play(link: string) {
-    this.stop();
-    this.audio.volume = this.volume;
-    this.audio.src = link;
-    await this.audio.play();
-    return this.audio;
-  }
-
-  stop() {
-    this.audio.pause();
-  }
-}
-
-/** @description 触底加载 */
-export class _LoadMore {
-  /** 是否允许加载 */
-  private allowLoad = true;
-  /** 元素 */
-  private readonly el: HTMLElement;
-  /** 元素 */
-  private readonly loadHeight: number;
-  /** 回调函数 */
-  private readonly load: () => void;
-  /** 滚动回调 */
-  private readonly scroll!: (v: number) => void;
-
-  constructor(
-    config: {
-      parent: HTMLElement;
-      loadHeight?: number;
-    },
-    callback: {
-      load: () => void;
-      scroll?: (v: number) => void;
-    },
-  ) {
-    const { parent, loadHeight = 1 } = config;
-    const { load, scroll } = callback;
-
-    this.el = parent;
-    this.loadHeight = loadHeight;
-    this.load = load;
-    scroll && (this.scroll = scroll);
-    this.el.addEventListener("scroll", this.handleScroll.bind(this));
-
-    //如果滚动高度小于等于容器高度，意味着无法滚动，则自动加载一页
-    if (parent.scrollHeight <= parent.clientHeight) {
-      this.load();
-    }
-  }
-
-  private handleScroll() {
-    const y = this.el.scrollTop;
-    this.scroll && this.scroll(y);
-
-    //就算距离底部的距离
-    const d = this.el.scrollHeight - this.el.clientHeight - y;
-
-    //注意：当所有数据加载完成，在进入加载高度时会持续触发，需要在加载更多方法里通过总页数>当前页数来进行限制触发
-    if (d <= this.loadHeight && this.allowLoad) {
-      this.load();
-      this.allowLoad = false;
-    } else {
-      this.allowLoad = true;
-    }
-  }
-}
-
 /** @description 配置合并，如果当前配置有但初始配置没有的属性，则会删除该属性，反之添加 */
 export const _mergeConfig = <T>(config: T, initialConfig: T) => {
   //第一次循环是为了补充缺少的配置项
@@ -807,3 +640,189 @@ export const _retryRequest = <T>({
     makeRequest();
   });
 };
+
+/** @description 视差动画 */
+export class _Parallax {
+  fn: (x: number, y: number) => void = () => {};
+
+  constructor(fn: (x: number, y: number) => void) {
+    this.fn = fn;
+  }
+
+  move(e: MouseEvent | Touch): void {
+    const { innerWidth: w, innerHeight: h } = window;
+    const x = Number(((e.pageX - w / 2) / (w / 2)).toFixed(2));
+    const y = Number(((e.pageY - h / 2) / (h / 2)).toFixed(2));
+
+    this.fn(x, y);
+  }
+}
+
+/** @description 音频可视化 */
+export class _AudioVisual {
+  audio: HTMLMediaElement;
+  cvs: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  animationFrameId!: number;
+  isInit = false;
+  dataArray: string | any[] | Uint8Array = [];
+  analyser!: AnalyserNode;
+  constructor(audio: HTMLAudioElement, canvas: HTMLCanvasElement) {
+    this.audio = audio;
+    this.cvs = canvas;
+    this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+
+    this.init();
+  }
+
+  /** 初始化画布 */
+  init() {
+    this.cvs.width = this.cvs.offsetWidth * devicePixelRatio;
+    this.cvs.height = this.cvs.offsetHeight * devicePixelRatio;
+    this.draw();
+  }
+  /** 播放音频 */
+  play() {
+    //判断是否初始化
+    if (this.isInit) {
+      return;
+    }
+
+    //开始初始化
+    //创建音频上下文
+    const audioCtx = new AudioContext();
+    //创建音频源节点
+    const source = audioCtx.createMediaElementSource(this.audio);
+    //创建分析器节点
+    this.analyser = audioCtx.createAnalyser();
+    this.analyser.fftSize = 512;
+    //接收分析器节点的分析数据
+    this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+    source.connect(this.analyser);
+    this.analyser.connect(audioCtx.destination);
+    //已初始化
+    this.isInit = true;
+  }
+
+  /** 把分析出来的波形绘制到canvas上 */
+  draw() {
+    const draw = () => {
+      //逐帧绘制
+      this.animationFrameId = requestAnimationFrame(draw);
+
+      //接下来清空画布
+      const { width, height } = this.cvs;
+      this.ctx.clearRect(0, 0, width, height);
+      if (!this.isInit) {
+        return;
+      }
+      //让分析器节点分析出数据到数组中
+      this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
+      /** 条的数量 */
+      const len = this.dataArray.length;
+      const barWidth = width / len; //条的宽度
+      this.ctx.fillStyle = "#72b0d540";
+      //循环绘制
+      for (let i = 0; i < len; i++) {
+        const data = this.dataArray[i];
+        const barHeight = (data / 255) * height; //条的高度
+        const x1 = i * barWidth + width / 2; //右边区域中条的x坐标
+        const x2 = width / 2 - (i + 1) * barWidth; //左边区域中条的x坐标 镜像
+        const y = height - barHeight; //条的y坐标
+        this.ctx.fillRect(x1, y, barWidth - 2, barHeight); //填充右边区域
+        this.ctx.fillRect(x2, y, barWidth - 2, barHeight); //填充左边区域
+      }
+    };
+    draw();
+  }
+
+  /** 销毁 */
+  destroy() {
+    cancelAnimationFrame(this.animationFrameId);
+  }
+}
+
+/** @description 音频播放器 */
+export class _AudioPlayer {
+  private audio: HTMLAudioElement = new Audio();
+  private volume: number = 1;
+
+  constructor(v?: { end?: () => void; volume?: number }) {
+    const { end, volume = 1 } = v || {};
+    if (end) {
+      this.audio.addEventListener("pause", end);
+      this.audio.addEventListener("ended", end);
+    }
+    this.volume = volume;
+
+    //允许音频可视化跨域
+    this.audio.setAttribute("crossOrigin", "anonymous");
+  }
+
+  async play(link: string) {
+    this.stop();
+    this.audio.volume = this.volume;
+    this.audio.src = link;
+    await this.audio.play();
+    return this.audio;
+  }
+
+  stop() {
+    this.audio.pause();
+  }
+}
+
+/** @description 触底加载 */
+export class _LoadMore {
+  /** 是否允许加载 */
+  private allowLoad = true;
+  /** 元素 */
+  private readonly el: HTMLElement;
+  /** 元素 */
+  private readonly loadHeight: number;
+  /** 回调函数 */
+  private readonly load: () => void;
+  /** 滚动回调 */
+  private readonly scroll!: (v: number) => void;
+
+  constructor(
+    config: {
+      parent: HTMLElement;
+      loadHeight?: number;
+    },
+    callback: {
+      load: () => void;
+      scroll?: (v: number) => void;
+    },
+  ) {
+    const { parent, loadHeight = 1 } = config;
+    const { load, scroll } = callback;
+
+    this.el = parent;
+    this.loadHeight = loadHeight;
+    this.load = load;
+    scroll && (this.scroll = scroll);
+    this.el.addEventListener("scroll", this.handleScroll.bind(this));
+
+    //如果滚动高度小于等于容器高度，意味着无法滚动，则自动加载一页
+    if (parent.scrollHeight <= parent.clientHeight) {
+      this.load();
+    }
+  }
+
+  private handleScroll() {
+    const y = this.el.scrollTop;
+    this.scroll && this.scroll(y);
+
+    //就算距离底部的距离
+    const d = this.el.scrollHeight - this.el.clientHeight - y;
+
+    //注意：当所有数据加载完成，在进入加载高度时会持续触发，需要在加载更多方法里通过总页数>当前页数来进行限制触发
+    if (d <= this.loadHeight && this.allowLoad) {
+      this.load();
+      this.allowLoad = false;
+    } else {
+      this.allowLoad = true;
+    }
+  }
+}
