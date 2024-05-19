@@ -97,7 +97,7 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
     $confirm({
       text: $confirmText("p89n", { prop: GAME_PROP.NAME["SKIN_DEBRIS"] }),
       confirm() {
-        $router.push(ROUTE_PATH.PROP_SHOP);
+        $router.push(ROUTE_PATH.SKIN_LOTTERY);
       },
     });
   }

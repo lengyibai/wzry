@@ -111,7 +111,7 @@ const onExchange = (data: Game.Hero.Data) => {
     $confirm({
       text: $confirmText("p89n", { prop: GAME_PROP.NAME["HERO_DEBRIS"] }),
       confirm() {
-        $router.push(ROUTE_PATH.PROP_SHOP);
+        $router.push(ROUTE_PATH.HERO_LOTTERY);
       },
     });
   }
