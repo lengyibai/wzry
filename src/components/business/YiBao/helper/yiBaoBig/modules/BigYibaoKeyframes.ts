@@ -56,13 +56,13 @@ export const leftJumpRightJumpCenterRotateDown = (el: HTMLElement) => {
           transformOrigin,
         },
         {
-          transform: "translateY(-150px) rotateY(-90deg)",
+          transform: "translateY(-9.375rem) rotateY(-90deg)",
         },
         {
-          transform: "translateY(-100px) rotateY(-180deg)",
+          transform: "translateY(-6.25rem) rotateY(-180deg)",
         },
         {
-          transform: "translateY(-50px) rotateY(-270deg)",
+          transform: "translateY(-3.125rem) rotateY(-270deg)",
         },
         {
           transform: "rotateY(-360deg)",
@@ -261,52 +261,52 @@ export const jumpLeftJumpRightJumpBackRotateFront = (el: HTMLElement) => {
           transform: "translateY(-100%) scaleY(1.15)",
         },
         {
-          transform: "translateZ(-1000px) rotateX(-45deg)",
+          transform: "translateZ(-62.5rem) rotateX(-45deg)",
         },
         {
-          transform: "translateZ(-1000px) rotateX(-45deg) scaleY(0.75)",
+          transform: "translateZ(-62.5rem) rotateX(-45deg) scaleY(0.75)",
         },
         {
-          transform: "translateZ(-1000px) rotateX(-45deg) scaleY(0.5)",
+          transform: "translateZ(-62.5rem) rotateX(-45deg) scaleY(0.5)",
         },
         {
-          transform: "translateZ(-1000px) rotateX(-45deg) scaleY(0.25)",
+          transform: "translateZ(-62.5rem) rotateX(-45deg) scaleY(0.25)",
         },
         {
-          transform: "translateZ(-1000px) rotateX(-45deg)",
+          transform: "translateZ(-62.5rem) rotateX(-45deg)",
         },
         {
-          transform: "translateZ(-900px) translateY(-50%) rotateX(-135deg)",
+          transform: "translateZ(-56.25rem) translateY(-50%) rotateX(-135deg)",
         },
         {
-          transform: "translateZ(-800px) translateY(-100%) rotateX(-225deg)",
+          transform: "translateZ(-50rem) translateY(-100%) rotateX(-225deg)",
         },
         {
-          transform: "translateZ(-700px) translateY(-150%) rotateX(-315deg)",
+          transform: "translateZ(-43.75rem) translateY(-150%) rotateX(-315deg)",
         },
         {
-          transform: "translateZ(-600px) translateY(-200%) rotateX(-405deg)",
+          transform: "translateZ(-37.5rem) translateY(-200%) rotateX(-405deg)",
         },
         {
-          transform: "translateZ(-500px) translateY(-250%) rotateX(-495deg)",
+          transform: "translateZ(-31.25rem) translateY(-250%) rotateX(-495deg)",
         },
         {
-          transform: "translateZ(-400px) translateY(-200%) rotateX(-585deg)",
+          transform: "translateZ(-25rem) translateY(-200%) rotateX(-585deg)",
         },
         {
-          transform: "translateZ(-300px) translateY(-150%) rotateX(-675deg)",
+          transform: "translateZ(-18.75rem) translateY(-150%) rotateX(-675deg)",
         },
         {
           transform: "rotateX(-695deg) translateY(-100%)",
         },
         {
-          transform: "translateZ(300px) rotateX(-695deg)",
+          transform: "translateZ(18.75rem) rotateX(-695deg)",
         },
         {
-          transform: "translateZ(300px) rotateX(-695deg) scaleY(0.5)",
+          transform: "translateZ(18.75rem) rotateX(-695deg) scaleY(0.5)",
         },
         {
-          transform: "translateZ(300px) rotateX(-695deg)",
+          transform: "translateZ(18.75rem) rotateX(-695deg)",
         },
         {
           transform: "rotateX(-720deg)",

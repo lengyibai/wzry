@@ -114,7 +114,7 @@ class SmallYiBaoBody {
         {},
         { transformOrigin: "bottom center", transform: "scaleY(0.5)" },
         { transformOrigin: "bottom center", transform: "scaleY(0.75)" },
-        { transformOrigin: "bottom center", transform: "translateY(-50px) scaleY(1.15)" },
+        { transformOrigin: "bottom center", transform: "translateY(-3.125rem) scaleY(1.15)" },
         { transformOrigin: "bottom center" },
       ],
       {

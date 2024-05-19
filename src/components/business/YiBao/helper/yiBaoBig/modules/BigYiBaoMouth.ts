@@ -35,7 +35,7 @@ class BigYiBaoMouth {
   startBreathAnimation() {
     this.breathAnimation?.cancel();
     this.breathAnimation = this.inner_mouth_dom.animate(
-      [{ width: "80%", height: "40px", offset: 0.5 }],
+      [{ width: "80%", height: "2.5rem", offset: 0.5 }],
       {
         duration: 3000,
         iterations: Infinity,
@@ -61,16 +61,16 @@ class BigYiBaoMouth {
     await this.toggleBreathAnimation(false);
 
     let style = this.outer_mouth_dom.style;
-    style.height = "75px";
+    style.height = "4.6875rem";
     style.transform = "translateY(0)";
 
     style = this.inner_mouth_dom.style;
-    style.top = "-25px";
-    style.height = "100px";
+    style.top = "-1.5625rem";
+    style.height = "6.25rem";
 
     style = this.tooth_dom.style;
-    style.top = "25px";
-    style.height = "50px";
+    style.top = "1.5625rem";
+    style.height = "3.125rem";
   }
 
   /** @description 重置样式 */

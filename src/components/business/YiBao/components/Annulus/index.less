@@ -3,8 +3,8 @@
   .global_flex-center();
 
   position: absolute;
-  width: calc(200px * var(--rate));
-  height: calc(200px * var(--rate));
+  width: calc(12.5rem * var(--rate));
+  height: calc(12.5rem * var(--rate));
   transform-style: preserve-3d;
 
   &.small {
@@ -26,7 +26,7 @@
       100% {
         width: 0;
         height: 0;
-        transform: translateZ(calc(200px * var(--rate)));
+        transform: translateZ(calc(12.5rem * var(--rate)));
         opacity: 0;
       }
     }
@@ -41,7 +41,7 @@
 
   &.color {
     .circle {
-      border: calc(10px * var(--rate)) solid var(--annulus-border-color);
+      border: calc(0.625rem * var(--rate)) solid var(--annulus-border-color);
       border-radius: 50%;
     }
   }
