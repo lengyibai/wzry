@@ -3,8 +3,8 @@
   .global_flex-center();
 
   position: absolute;
-  width: calc(75px * var(--rate));
-  height: calc(75px * var(--rate));
+  width: calc(4.6875rem * var(--rate));
+  height: calc(4.6875rem * var(--rate));
   transform-style: preserve-3d;
   transform: rotate3d(1, 1, 1, 45deg);
 
@@ -20,7 +20,7 @@
       100% {
         width: 0;
         height: 0;
-        transform: translateZ(calc(75px * var(--rate)));
+        transform: translateZ(calc(4.6875rem * var(--rate)));
       }
     }
   }
@@ -34,7 +34,7 @@
 
   &.COLOR {
     .circle {
-      border: calc(3px * var(--rate)) solid var(--border-color);
+      border: calc(0.1875rem * var(--rate)) solid var(--border-color);
       border-radius: 50%;
     }
   }

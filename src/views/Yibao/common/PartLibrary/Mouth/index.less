@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: calc(75px * var(--rate));
-  height: calc(50px * var(--rate));
+  width: calc(4.6875rem * var(--rate));
+  height: calc(3.125rem * var(--rate));
   transition: all 0.25s ease-out;
-  transform: translateY(calc(10px * var(--rate)));
+  transform: translateY(calc(0.625rem * var(--rate)));
 
   .hole {
     position: absolute;
@@ -17,7 +17,7 @@
     justify-content: center;
     overflow: hidden;
     width: 100%;
-    height: calc(45px * var(--rate));
+    height: calc(2.8125rem * var(--rate));
     border-radius: 50%;
     box-shadow: 0 -0.125rem 0.1875rem 0 #000 inset;
     background-color: var(--inner-color);
@@ -27,10 +27,10 @@
       position: absolute;
       top: 0;
       z-index: 1;
-      width: calc(40px * var(--rate));
-      height: calc(40px * var(--rate));
+      width: calc(2.5rem * var(--rate));
+      height: calc(2.5rem * var(--rate));
       border-radius: 50% 50% 47% 53% / 65% 65% 35% 35%;
-      box-shadow: 0 2px 3px 0 #000;
+      box-shadow: 0 0.125rem 0.1875rem 0 #000;
       background-color: var(--white);
       transform: translateY(-50%);
     }
@@ -38,8 +38,8 @@
     .tongue {
       position: absolute;
       bottom: 0;
-      width: calc(70px * var(--rate));
-      height: calc(25px * var(--rate));
+      width: calc(4.375rem * var(--rate));
+      height: calc(1.5625rem * var(--rate));
       border-radius: 50% 50% 47% 53% / 65% 65% 35% 35%;
       background-color: var(--tongue-color);
       transition: all 0.25s ease-out;
@@ -48,17 +48,17 @@
   }
 
   &.smile {
-    height: calc(65px * var(--rate));
+    height: calc(4.0625rem * var(--rate));
     transform: translateY(0);
 
     .hole {
-      top: calc(-25px * var(--rate));
-      height: calc(90px * var(--rate));
+      top: calc(-1.5625rem * var(--rate));
+      height: calc(5.625rem * var(--rate));
     }
 
     .teeth {
-      top: calc(25px * var(--rate));
-      height: calc(50px * var(--rate));
+      top: calc(1.5625rem * var(--rate));
+      height: calc(3.125rem * var(--rate));
     }
   }
 }
