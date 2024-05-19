@@ -5,49 +5,28 @@
     <meta name="keywords" content="王者图鉴,王者荣耀图鉴,王者荣耀,冷弋白,lengyibai" />
     <meta
       name="description"
-      content="由冷弋白独立开发，收集王者荣耀游戏的英雄、皮肤、技能、语音、装备、铭文等资料，支持对数据筛选、排序获得相关信息。精致的UI设计、炫酷视觉效果、丰富的功能。网站开源，欢迎开发者交流学习！"
+      content="由冷弋白独立开发，收集王者荣耀游戏的英雄、皮肤、技能、语音、装备、铭文等资料，支持对数据筛选、排序来获得相关信息，还支持铭文套装搭配。并且加入了夺宝、背包、商城、邮箱功能供大家娱乐。网站开源，欢迎开发者交流学习！"
     />
     <meta name="baidu-site-verification" content="codeva-L1DIn6LkUn" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>王者图鉴 - 冷弋白</title>
     <link
       rel="preload"
-      href="https://lyb.cbb.plus/wzry-material/font/wzry.ttf"
+      href="https://files.lyb.im/wzry-material/font/wzry.ttf?temp=1"
       as="font"
       type="font/ttf"
       crossorigin="anonymous"
     />
     <link rel="icon" type="image/png" href="/wzry.svg" />
-    <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3767305_hqd1bevrft8.css" />
-    <script>
-      var _hmt = _hmt || [];
-      (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?2c84cd61316a5ce978ca513745ec7eaa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-    <script>
-      let is_error = false;
-      window.addEventListener(
-        "error",
-        function (e) {
-          if (e.target.localName === "script" && e.target.href?.includes("wzry") && !is_error) {
-            is_error = true;
-            const status = confirm(
-              "js文件丢失，网站可能因更新移除了旧的js文件，可能会影响网站正常运行，点击确定后刷新浏览器获取最新文件",
-            );
-            status && location.reload();
-          }
-        },
-        true,
-      );
-    </script>
+    <link rel="stylesheet" href="/font/iconfont.css" />
+
+    <script src="/js/file-error.js" type="text/javascript"></script>
+    <script src="/js/baidu-hmt.js" type="text/javascript"></script>
+    <script src="/js/pwa.js" type="text/javascript" async></script>
+    <script src="/js/flexible.js" type="text/javascript" defer></script>
   </head>
 
   <body>
-    <script src="/js/flexible.js" type="text/javascript" defer></script>
     <div id="app">
       <link rel="stylesheet" href="/css/into_animate.css" />
       <div class="body">
@@ -71,37 +50,24 @@
           </div>
 
           <div class="text-box">
-            <img src="https://lyb.cbb.plus/wzry-material/image/into_5.png" alt="" class="text" />
+            <img src="https://files.lyb.im/wzry-material/image/into_5.png" alt="" class="text" />
           </div>
         </div>
 
         <div class="into">
           <div class="text">点击屏幕任意处进入</div>
-          <i class="iconfont wzry-fanhui"></i>
+
+          <div class="arrows">
+            <i class="iconfont arrow wzry-you" style="--i: 0"></i>
+            <i class="iconfont arrow wzry-you" style="--i: 1"></i>
+            <i class="iconfont arrow wzry-you" style="--i: 2"></i>
+            <i class="iconfont arrow wzry-you" style="--i: 3"></i>
+          </div>
         </div>
       </div>
     </div>
     <script type="module" src="/src/version.ts"></script>
     <script type="module" src="/src/main.ts"></script>
-    <script>
-      const body = document.querySelector(".body");
-      setTimeout(() => {
-        body.style.display = "flex";
-      }, 100);
-
-      document.addEventListener("dragstart", function (event) {
-        // 检查事件目标是否为 img 元素
-        if (event.target.tagName.toUpperCase() === "IMG") {
-          // 如果是，阻止拖拽
-          event.preventDefault();
-        }
-      });
-
-      document.onkeydown = (e) => {
-        if (e.keyCode === 9) {
-          e.preventDefault();
-        }
-      };
-    </script>
+    <script src="/js/clear-default-event.js"></script>
   </body>
 </html>
