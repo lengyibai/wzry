@@ -30,7 +30,7 @@ const epigraph_list = ref<Game.Epigraph.Data[]>([]);
 const changeCount = () => {
   const v = document.documentElement.clientWidth;
   if (v > 2300) {
-    count.value = 6;
+    count.value = 5;
   }
   for (const [a, b] of interval_count) {
     if (v < a) {

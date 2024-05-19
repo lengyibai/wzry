@@ -16,7 +16,13 @@ const useWaterfallResponsive = () => {
   const setCount = () => {
     const w = window.innerWidth;
 
-    if (w >= 1500) {
+    if (w >= 3000) {
+      count.value = 8;
+    } else if (w >= 2500) {
+      count.value = 7;
+    } else if (w >= 2000) {
+      count.value = 6;
+    } else if (w >= 1500) {
       count.value = 5;
     } else if (w >= 1000) {
       count.value = 4;

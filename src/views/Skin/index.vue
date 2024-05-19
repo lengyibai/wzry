@@ -23,7 +23,6 @@ const { scroll, finish, show_list, loading } = storeToRefs($skinStore);
 
 //实时修改一行个数
 const interval_count = [
-  [2400, 5],
   [2000, 4],
   [1600, 3],
   [1400, 2],
@@ -46,8 +45,8 @@ $skinStore.getSkin();
 const changeCount = () => {
   const v = document.documentElement.clientWidth;
 
-  if (v >= 2400) {
-    count.value = 6;
+  if (v >= 2000) {
+    count.value = 4;
   }
   for (const [a, b] of interval_count) {
     if (v < a) {

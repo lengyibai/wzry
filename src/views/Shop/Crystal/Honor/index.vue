@@ -57,7 +57,7 @@ const changeCount = () => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2400) {
-    count.value = 6;
+    count.value = 5;
   }
   for (const [a, b] of interval_count) {
     if (v < a) {
