@@ -2,29 +2,37 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --rate: 1;
+}
+@media screen and (max-width: 960px) {
+  :root {
+    --rate: 2;
+  }
+}
 .spirit_into-1,
 .spirit_into-2,
 .spirit_into-3,
 .spirit_into-4 {
-  width: calc(26.0417vw / 2);
-  height: calc(24.2188vw / 2);
-  background-size: calc(52.0833vw / 2) calc(48.4375vw / 2);
-  background-image: url("https://lyb.cbb.plus/wzry-material/image/white_logo.png");
+  width: calc(26.0417vw / 2 * var(--rate));
+  height: calc(24.2188vw / 2 * var(--rate));
+  background-size: calc(52.0833vw / 2 * var(--rate)) calc(48.4375vw / 2 * var(--rate));
+  background-image: url("https://files.lyb.im/wzry-material/image/white_logo.png");
 }
 .spirit_into-1 {
   background-position: 0 0;
 }
 .spirit_into-2 {
-  background-position: calc(-26.0417vw / 2) 0;
+  background-position: calc(-26.0417vw / 2 * var(--rate)) 0;
 }
 .spirit_into-3 {
-  background-position: 0 calc(-24.2188vw / 2);
+  background-position: 0 calc(-24.2188vw / 2 * var(--rate));
 }
 .spirit_into-4 {
-  background-position: calc(-26.0417vw / 2) calc(-24.2188vw / 2);
+  background-position: calc(-26.0417vw / 2 * var(--rate)) calc(-24.2188vw / 2 * var(--rate));
 }
 .body {
-  display: none;
+  display: flex;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -37,10 +45,13 @@
   display: flex;
   align-items: center;
 }
+@media screen and (max-width: 960px) {
+  .body .loading {
+    flex-direction: column;
+  }
+}
 .body .loading .box {
-  animation:
-    into-scale 3s forwards ease-out,
-    into-opacity 2s forwards;
+  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
 }
 @keyframes into-opacity {
   0% {
@@ -61,8 +72,13 @@
   }
 }
 .body .loading .box .logo {
-  width: calc(26.0417vw / 2);
-  height: calc(24.2188vw / 2);
+  width: calc(26.0417vw / 2 * var(--rate));
+  height: calc(24.2188vw / 2 * var(--rate));
+}
+@media screen and (max-width: 960px) {
+  .body .loading .box .logo {
+    --rate: 2.5;
+  }
 }
 .body .loading .box .logo .a,
 .body .loading .box .logo .b,
@@ -160,13 +176,13 @@
   position: relative;
   overflow: hidden;
   width: 0;
-  height: 13.8021vw;
+  height: calc(13.8021vw * var(--rate));
   animation: into-move 0.5s 2.9s forwards;
 }
 @keyframes into-move {
   100% {
     margin-left: 2.6042vw;
-    width: 37.0833vw;
+    width: calc(37.0833vw * var(--rate));
   }
 }
 .body .loading .text-box .text {
@@ -180,14 +196,27 @@
     background-size: 0 100%;
   }
 }
+@media screen and (max-width: 960px) {
+  .body .loading .text-box {
+    height: 0;
+  }
+  @keyframes into-move {
+    100% {
+      margin-left: 0;
+      margin-top: 5vw;
+      width: calc(37.0833vw * var(--rate));
+      height: calc(13.8021vw * var(--rate));
+    }
+  }
+}
 .body .into {
   position: absolute;
   bottom: 1em;
-  right: 1em;
+  right: 3em;
   color: #fff;
   display: flex;
   align-items: center;
-  font-size: 2.5vw;
+  font-size: calc(2.5vw * var(--rate));
   transform: translateX(-50%);
   opacity: 0;
   animation: into 0.75s 3s forwards;
@@ -203,19 +232,28 @@
   font-size: inherit;
   font-weight: bold;
 }
-.body .into .iconfont {
-  color: #fff;
+.body .into .arrows {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.body .into .arrows .arrow {
+  position: absolute;
   font-size: inherit;
-  transform: rotate(180deg);
-  animation: breath 0.75s infinite ease alternate-reverse;
+  color: #fff;
+  left: calc(var(--i) * -1vw * var(--rate));
+  animation: move 1.75s calc(var(--i) * 0.3s) linear infinite;
 }
-@keyframes breath {
-  100% {
-    transform: rotate(180deg) translateX(50%);
+@keyframes move {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
   }
-}
-@media screen and (max-width: 960px) {
-  .body .into {
-    font-size: 5vw;
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(calc(3vw * var(--rate)));
+    opacity: 0;
   }
 }
