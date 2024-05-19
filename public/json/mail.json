@@ -1,0 +1,155 @@
+{
+  "data": [
+    {
+      "mark": "1715756742001",
+      "type": "GIFT",
+      "key": "NEW",
+      "title": "新手大礼包",
+      "desc": "欢迎你注册王者图鉴，开发者为你精心准备了一份新手大礼包，让你更快地体验网站里的一些玩法，祝你体验愉快！",
+      "userIds": [],
+      "sendTime": 1715756745000,
+      "props": [
+        {
+          "key": "GOLD",
+          "num": 1000
+        },
+        {
+          "key": "DIAMOND",
+          "num": 500
+        },
+        {
+          "key": "HERO_DEBRIS",
+          "num": 100
+        },
+        {
+          "key": "SKIN_DEBRIS",
+          "num": 100
+        },
+        {
+          "key": "HERO_EXP_ONE",
+          "num": 10
+        },
+        {
+          "key": "HERO_EXP_TWO",
+          "num": 10
+        },
+        {
+          "key": "DOUBLE_GOLD",
+          "num": 1
+        },
+        {
+          "key": "DOUBLE_EXP",
+          "num": 1
+        },
+        {
+          "key": "HERO_LOTTERY_COIN",
+          "num": 25
+        },
+        {
+          "key": "HERO_LOTTERY_STONE",
+          "num": 25
+        },
+        {
+          "key": "SKIN_LOTTERY_COIN",
+          "num": 25
+        },
+        {
+          "key": "SKIN_LOTTERY_STONE",
+          "num": 25
+        },
+        {
+          "key": "HERO_LOTTERY_WEEK",
+          "num": 1
+        },
+        {
+          "key": "SKIN_LOTTERY_WEEK",
+          "num": 1
+        },
+        {
+          "key": "SKIN_CARD_INITIAL",
+          "num": 1
+        },
+        {
+          "key": "HERO_TREASURE",
+          "num": 1
+        },
+        {
+          "key": "SKIN_BRAVE_TREASURE",
+          "num": 1
+        },
+        {
+          "key": "SKIN_EPIC_TREASURE",
+          "num": 1
+        },
+        {
+          "key": "SKIN_LEGEND_TREASURE",
+          "num": 1
+        },
+        {
+          "key": "SKIN_LIMIT_TREASURE",
+          "num": 1
+        },
+        {
+          "key": "HERO_CHEST_OPTIONAL",
+          "num": 1
+        },
+        {
+          "key": "SKIN_CHEST_BRAVE_OPTIONAL",
+          "num": 1
+        },
+        {
+          "key": "SKIN_CHEST_EPIC_OPTIONAL",
+          "num": 1
+        },
+        {
+          "key": "SKIN_CHEST_LEGEND_OPTIONAL",
+          "num": 1
+        },
+        {
+          "key": "SKIN_CHEST_LIMIT_OPTIONAL",
+          "num": 1
+        },
+        {
+          "key": "GUESS_CARD",
+          "num": 5
+        },
+        {
+          "key": "GUESS_COIN",
+          "num": 100
+        },
+        {
+          "key": "JUMP_COIN",
+          "num": 100
+        }
+      ]
+    },
+    {
+      "type": "GIFT",
+      "key": "SIGN",
+      "title": "每日福袋",
+      "desc": "别忘了明天也来领取哦！",
+      "props": [
+        {
+          "key": "BLESSING_BAG",
+          "num": 1
+        }
+      ]
+    },
+    {
+      "type": "GIFT",
+      "key": "SIGN",
+      "title": "每日夺宝币",
+      "desc": "当日领取的夺宝币，次日归零，请尽快使用！",
+      "props": [
+        {
+          "key": "HERO_LOTTERY_COIN",
+          "num": 25
+        },
+        {
+          "key": "SKIN_LOTTERY_COIN",
+          "num": 25
+        }
+      ]
+    }
+  ]
+}
