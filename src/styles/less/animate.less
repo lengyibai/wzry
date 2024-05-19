@@ -1,16 +1,16 @@
 /* 淡入淡出 */
 .fade-enter-from,
-.fade-leave-active {
-  opacity: 0;
+.fade-leave-to {
+  opacity: 0 !important;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.25s;
+  transition: all 0.5s;
 }
 
 .fade-a-enter-from,
-.fade-a-leave-active {
+.fade-a-leave-to {
   opacity: 0;
 }
 
@@ -24,6 +24,78 @@
   position: absolute;
 }
 
+/* 从左向右移动 */
+.to-right-enter-from,
+.to-right-leave-to {
+  transform: translateX(-100%) !important;
+  opacity: 0;
+}
+
+.to-right-opacity-enter-from,
+.to-right-opacity-leave-to {
+  transform: translateX(-6.25rem) !important;
+  opacity: 0;
+}
+
+/* 从右向左移动 */
+.to-left-enter-from,
+.to-left-leave-to {
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
+}
+
+.to-left-opacity-enter-from,
+.to-left-opacity-leave-to {
+  transform: translateX(6.25rem) !important;
+  opacity: 0 !important;
+}
+
+/* 从上向下移动 */
+.to-bottom-enter-from,
+.to-bottom-leave-to {
+  transform: translateY(-100%) !important;
+  opacity: 0;
+}
+
+.to-bottom-opacity-enter-from,
+.to-bottom-opacity-leave-to {
+  transform: translateY(-6.25rem) !important;
+  opacity: 0;
+}
+
+/* 从下向上移动 */
+.to-top-enter-from,
+.to-top-leave-to {
+  transform: translateY(100%) !important;
+  opacity: 0;
+}
+
+.to-top-opacity-enter-from,
+.to-top-opacity-leave-to {
+  transform: translateY(6.25rem) !important;
+  opacity: 0;
+}
+
+/* 方向动画时长统一 */
+.to-bottom-opacity-enter-active,
+.to-bottom-opacity-leave-active,
+.to-bottom-enter-active,
+.to-bottom-leave-active,
+.to-left-opacity-enter-active,
+.to-left-opacity-leave-active,
+.to-right-opacity-enter-active,
+.to-right-opacity-leave-active,
+.to-right-enter-active,
+.to-right-leave-active,
+.to-left-enter-active,
+.to-left-leave-active,
+.to-top-enter-active,
+.to-top-leave-active,
+.to-top-opacity-enter-active,
+.to-top-opacity-leave-active {
+  transition: all 0.5s;
+}
+
 /* 放大隐藏 */
 .enlarge-close-enter-from,
 .enlarge-close-leave-to {
@@ -31,23 +103,12 @@
 }
 
 .enlarge-close-leave-to {
-  transform: scale(1.5);
+  transform: scale(1.25);
 }
 
 .enlarge-close-enter-active,
 .enlarge-close-leave-active {
   transition: all 0.5s;
-}
-
-/* 输入框线条 */
-.border-leave-active,
-.border-enter-active {
-  transition: all 0.5s;
-}
-
-.border-enter-from,
-.border-leave-active {
-  width: 0% !important;
 }
 
 /* 卡片列表及卡片入场 */
@@ -66,6 +127,15 @@
 
 .card-enter-active {
   transition: all 0.25s;
+}
+
+/* 左上角关闭 */
+.right-top-close-enter-from {
+  transform: translateX(calc(-100% - 0.625rem));
+}
+
+.right-top-close-enter-active {
+  transition: all 0.5s 0.5s;
 }
 
 /* 电视开关动画 */
@@ -106,5 +176,20 @@
 
   100% {
     clip-path: inset(50% 50% 50% 50%);
+  }
+}
+
+/* 奖励抖动动画 */
+@keyframes global-jitter {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg);
   }
 }

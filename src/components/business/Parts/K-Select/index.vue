@@ -17,7 +17,9 @@ const modelValue = defineModel<number>({ required: true });
 
 const $audioStore = AudioStore();
 
-/* 选择 */
+/** @description 选择
+ * @param index 选项索引
+ */
 const handleSelect = (index: number) => {
   modelValue.value = index;
   $audioStore.play("n4r4");

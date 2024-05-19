@@ -23,6 +23,13 @@
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 
+    &:hover {
+      z-index: 102 !important;
+      background-position-x: left;
+      background-size: 100% 0.25rem;
+      animation-play-state: paused !important;
+    }
+
     &.lyb {
       --border-color: var(--black);
       --color: var(--white);
@@ -50,13 +57,6 @@
       &:hover {
         --color: #c9564b;
       }
-    }
-
-    &:hover {
-      z-index: 102 !important;
-      background-position-x: left;
-      background-size: 100% 0.25rem;
-      animation-play-state: paused !important;
     }
 
     @keyframes move {
@@ -118,7 +118,6 @@
     margin-bottom: 0.5rem;
     color: var(--white-75);
     font-size: 1rem;
-    line-height: 1.25;
     word-break: break-all;
   }
 

@@ -7,11 +7,15 @@ import Copyright from "./components/Copyright/index.vue";
 import MusicPlay from "./components/MusicPlay/index.vue";
 
 import { vParticleEffect } from "@/directives";
-import { MusicStore, SettingStore, DeviceStore } from "@/store";
+import { MusicStore, SettingStore } from "@/store";
+import { useDevice } from "@/hooks";
+import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
-const $deviceStore = DeviceStore();
+
+const { vertical } = useDevice();
+const { hide_all } = useHideLayout();
 
 const lineRef = ref<HTMLElement>();
 const canvasRef = ref<HTMLCanvasElement>();
@@ -27,10 +31,11 @@ const music_progress = computed(() => $settingStore.config.musicProgress);
 
 nextTick(() => {
   $musicStore.initAudioVisual(canvasRef.value!);
+  if (!$settingStore.config.music) return;
   $musicStore.play();
 });
 
-/* 通过获取点击的坐标，计算出播放进度 */
+/** @description 通过获取点击的坐标，计算出播放进度 */
 const handleSetProgress = (e: MouseEvent) => {
   if (!enable_music.value || !footbarRef.value) return;
 
@@ -42,7 +47,7 @@ const handleSetProgress = (e: MouseEvent) => {
   music_progress.value && $musicStore.setCurrentTime(progress.value);
 };
 
-/* 悬浮移动竖线 */
+/** @description 悬浮移动竖线 */
 const handleMoveLineRef = (e: MouseEvent) => {
   if (!enable_music.value || !music_progress.value || !footbarRef.value || !lineRef.value) return;
 
@@ -55,7 +60,9 @@ const handleMoveLineRef = (e: MouseEvent) => {
     "%";
 };
 
-/* 点击音乐工具栏 */
+/** @description 点击音乐工具栏
+ * @param type 工具类型
+ */
 const onMusicTool = (type: string) => {
   if (type === "play") {
     $musicStore.play(false);
@@ -77,8 +84,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <transition name="foot-bar" appear>
+  <transition name="to-top" appear>
     <div
+      v-show="!hide_all"
       ref="footbarRef"
       v-particle-effect="{
         enable: $settingStore.config.particle,
@@ -94,13 +102,13 @@ onUnmounted(() => {
       <MusicPlay v-if="enable_music" />
 
       <!-- 左侧时间 -->
-      <Time v-show="!$deviceStore.vertical" />
+      <Time v-show="!vertical" />
 
       <!-- 音乐工具栏 -->
       <MusicTool v-show="enable_music" @toggle="onMusicTool" />
 
       <!-- 右侧作者 -->
-      <Copyright v-show="!$deviceStore.vertical" />
+      <Copyright />
 
       <!-- 音频可视化 -->
       <canvas ref="canvasRef"></canvas>

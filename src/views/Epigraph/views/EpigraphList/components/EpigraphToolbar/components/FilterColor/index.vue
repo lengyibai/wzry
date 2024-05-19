@@ -15,7 +15,9 @@ const colors: Game.Epigraph.Data["color"][] = ["BLUE", "GREEN", "RED"];
 
 const gender = ref<Game.Epigraph.Data["color"]>();
 
-/* 选择触发 */
+/** @description 选择触发
+ * @param v 颜色
+ */
 const handleSetGender = (v?: Game.Epigraph.Data["color"]) => {
   gender.value = v;
   $emit("change", v);

@@ -33,7 +33,10 @@ const show = ref(true);
 /** 装备列表 */
 const equip_list = ref<Game.Equip.Data[]>([]);
 
-/* 控制左右线条显示 */
+/** @description 控制左右线条显示
+ * @param id 装备id
+ * @param line 装备图标左右两边连接线条
+ */
 const showLine = (id: number, line: string) => {
   return $props.lineData.some((item) => {
     if (line === "left") {
@@ -44,7 +47,7 @@ const showLine = (id: number, line: string) => {
   });
 };
 
-/* 监听列表，实时更新列表 */
+//监听列表，实时更新列表
 watch(
   () => category.value,
   () => {

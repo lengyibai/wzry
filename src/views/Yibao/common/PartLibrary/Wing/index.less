@@ -1,0 +1,53 @@
+.wing {
+  --rate: 1;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+
+  .left-wing {
+    position: absolute;
+    width: 45%;
+    clip-path: polygon(100% 50%, 0 100%, 0 0);
+    height: 80%;
+    transform-origin: left bottom;
+  }
+
+  &.animate {
+    .left-wing {
+      left: 50%;
+      animation: rotate 0.5s infinite linear alternate-reverse;
+
+      @keyframes rotate {
+        100% {
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+
+  &.COLOR {
+    .left-wing {
+      background-color: var(--bg-color);
+    }
+  }
+
+  &.IMG {
+    .left-wing {
+      &::before {
+        .global_fill-container();
+
+        content: "";
+        background-image: var(--bg-img);
+        background-position: bottom right;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated } from "vue";
+import { onActivated, ref, onDeactivated, onMounted } from "vue";
 import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
 
@@ -7,10 +7,10 @@ import SkinCard from "./components/SkinCard/index.vue";
 import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { SkinStore, AudioStore } from "@/store";
-import { $imageView, $tool } from "@/utils";
-import { FilterSidebar, KBackTop } from "@/components/business";
+import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { GAME_HERO, KVP_HERO } from "@/api";
+import { $imageView } from "@/utils/busTransfer";
+import { _promiseTimeout } from "@/utils/tool";
 
 defineOptions({
   name: "Skin",
@@ -42,7 +42,7 @@ const back_top = ref(false);
 
 $skinStore.getSkin();
 
-/* 实时修改一行个数 */
+/** @description 实时修改一行个数 */
 const changeCount = () => {
   const v = document.documentElement.clientWidth;
 
@@ -56,58 +56,52 @@ const changeCount = () => {
   }
 };
 
-/* 滚动触发 */
+/** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
   $skinStore.setScroll(v);
   back_top.value = v > 250;
 }, 250);
 
-/* 点击侧边栏触发 */
+/** @description 点击侧边栏触发 */
 const onSidebarChange = () => {
   debounceScroll(0);
   skinToolbarRef.value?._clearName();
 };
 
-/* 点击工具栏中的选项 */
-const onShowTool = (e: Event, v: Game.Hero.Skin) => {
-  const { posterBig, posterBlur, name, heroName, hero } = v;
-  const voices = GAME_HERO.getSkinVoice(hero, name).voice;
+/** @description 点击工具栏中的选项
+ * @param id 皮肤id
+ */
+const onViewDetail = (e: Event, id: number) => {
   $imageView({
-    event: e,
-    type: "HERO",
-    bigImage: posterBig,
-    blurImage: posterBlur,
-    heroName,
-    heroAvatar: KVP_HERO.getHeroAvatarKvp()[hero],
-    skinName: name,
-    voices,
+    id,
+    parent: e.target as HTMLElement,
+    type: "SKIN",
   });
   $audioStore.play("u4c5");
 };
 
-/* 悬浮卡片 */
+/** @description 悬浮卡片 */
 const handleEnterCard = () => {
   $audioStore.play("n4r4");
 };
 
-/* 返回顶部 */
+/** @description 返回顶部 */
 const onBackTop = () => {
   skinListRef.value?._setPosition(0, true);
 };
 
-onActivated(() => {
-  $audioStore.play("gz43");
-  skinListRef.value?._setPosition(scroll.value);
+onMounted(async () => {
+  //显示皮肤列表
+  await _promiseTimeout(250);
+  show_skin_list.value = true;
 });
 
-onActivated(async () => {
+onActivated(() => {
   changeCount();
   window.addEventListener("resize", changeCount);
 
-  //显示英雄列表
-  await $tool.promiseTimeout(() => {
-    show_skin_list.value = true;
-  }, 250);
+  $audioStore.play("gz43");
+  skinListRef.value?._setPosition(scroll.value);
 });
 
 onDeactivated(() => {
@@ -118,41 +112,39 @@ onDeactivated(() => {
 <template>
   <div class="skin">
     <div class="skin-main">
-      <transition name="fade" appear>
+      <transition name="to-bottom" appear>
         <SkinToolbar ref="skinToolbarRef" @change="debounceScroll(0)" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <transition name="card-list">
-        <LibGrid
-          v-if="show_list.length && show_skin_list"
-          ref="skinListRef"
-          :finish="finish"
-          scroll-id="skin_list"
-          gap="1.5625rem"
-          :loading="loading"
-          :count="count"
-          :scroll-top="scroll"
-          @load-more="$skinStore.loadMore"
-          @scroll="debounceScroll"
-        >
-          <transition-group name="skin-card" appear>
-            <div
-              v-for="(item, index) in show_list"
-              :key="item.id"
-              class="skin-card"
-              :style="{
-                'transition-delay': (index % (count * 2)) * 0.1 + 's',
-              }"
-              @mouseenter="handleEnterCard"
-              @touchstart="handleEnterCard"
-            >
-              <SkinCard :data="item" @showTool="onShowTool" />
-            </div>
-          </transition-group>
-        </LibGrid>
-      </transition>
+      <LibGrid
+        v-if="show_list.length && show_skin_list"
+        ref="skinListRef"
+        :finish="finish"
+        gap="1rem"
+        :loading="loading"
+        :count="count"
+        :scroll-top="scroll"
+        @load-more="$skinStore.loadMore"
+        @scroll="debounceScroll"
+      >
+        <transition-group name="skin-card" appear>
+          <div
+            v-for="(item, index) in show_list"
+            :key="item.id"
+            :style="{
+              'transition-delay': (index % (count * 2)) * 0.1 + 's',
+            }"
+            @mouseenter="handleEnterCard"
+            @touchstart="handleEnterCard"
+          >
+            <skinCard :data="item" @view="onViewDetail" />
+          </div>
+        </transition-group>
+      </LibGrid>
+
+      <KEmpty v-if="show_list.length === 0" tip="你还没有拥有皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->

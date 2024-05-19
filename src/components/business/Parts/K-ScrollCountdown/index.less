@@ -1,0 +1,30 @@
+.k-scroll-countdown {
+  --font-size-rate: 1;
+
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  color: var(--white-25);
+  font-size: calc(9.375rem * var(--font-size-rate));
+
+  .dot {
+    display: flex;
+    align-items: center;
+    height: calc(8rem * var(--font-size-rate));
+    font-family: digit;
+
+    &.running {
+      animation: fade 1s infinite;
+
+      @keyframes fade {
+        0% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0.25;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.lottery-toolbar {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 4rem;
+  margin-bottom: 1rem;
+
+  .title {
+    .global_text-blue-gradient();
+
+    font-size: 1.75rem;
+  }
+
+  .prop-num {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 2rem;
+
+    .coin,
+    .rock {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        height: 2.5rem;
+        margin-right: 0.75rem;
+        filter: var(--d-shadow-d);
+      }
+
+      .num {
+        font-size: 2rem;
+        text-shadow: var(--t-shadow-f);
+        transform: translateY(0.1875rem);
+      }
+    }
+  }
+}

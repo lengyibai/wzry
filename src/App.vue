@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 
-import { AudioStore, SettingStore } from "@/store";
-import { $loading, $tool } from "@/utils";
+import { $loading } from "./utils/loading";
+import { _titleTip } from "./utils/tool";
+
+import { SettingStore, VersionStore } from "@/store";
 import { Control, WaterMark } from "@/components/business";
 
-const $audioStore = AudioStore();
 const $settingStore = SettingStore();
 
-$audioStore.preload();
 $settingStore.takeEffect();
+VersionStore();
 
 /* 路由组件加载结束后触发 */
 const onComponentMounted = () => {
@@ -17,7 +18,7 @@ const onComponentMounted = () => {
 };
 
 /* 浏览器标题交互 */
-onMounted($tool.titleTip);
+onMounted(_titleTip);
 </script>
 
 <template>
@@ -38,31 +39,31 @@ onMounted($tool.titleTip);
 <style scoped lang="less">
 .round-clip-enter-active {
   transform-origin: center center;
-  animation: round-clip-in 1s cubic-bezier(0.85, 0, 0.16, 1);
+  animation: fade 1s cubic-bezier(0.85, 0, 0.16, 1);
 }
 
 .round-clip-leave-active {
   transform-origin: center center;
-  animation: round-clip-out 1s cubic-bezier(0.85, 0, 0.16, 1);
+  animation: round-out 1s ease-out;
 }
 
-@keyframes round-clip-in {
+@keyframes fade {
   0% {
-    transform: translateY(-100vh);
+    opacity: 0;
   }
 
   100% {
-    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-@keyframes round-clip-out {
+@keyframes round-out {
   0% {
-    transform: translateY(0);
+    clip-path: circle(100% at 50% 50%);
   }
 
   100% {
-    transform: translateY(100vh);
+    clip-path: circle(0% at 50% 50%);
   }
 }
 </style>

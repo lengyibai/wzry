@@ -8,6 +8,10 @@ export interface InputConfig {
   placeholder: string;
   /** 关闭回调 */
   close?: () => void;
-  /** 确定回调 */
+  /**
+   * @description 确定回调
+   * @param value 输入的值
+   * @param close 弹窗完全关闭后调用
+   */
   confirm: (value: string, close: () => void) => void;
 }

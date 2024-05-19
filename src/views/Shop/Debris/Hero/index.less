@@ -1,0 +1,42 @@
+.hero {
+  .common_app-main-child();
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+/* 蒙版裁剪 */
+.clip-enter-active {
+  animation: clip-in 1s;
+}
+
+.clip-leave-active {
+  animation: clip-out 0.75s;
+}
+
+@keyframes clip-in {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 50%, 0 100%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 0 50%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes clip-out {
+  0% {
+    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+  }
+}

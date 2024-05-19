@@ -1,33 +1,157 @@
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
-import { useDataFinish } from "./useDataFinish";
+import { useIndexedDB } from "./useIndexedDB";
 
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
-import { $tipText, LOCAL_KEY, REQUEST } from "@/config";
-import { $tip } from "@/utils";
+import { $msgTipText, $tipText, REQUEST } from "@/config";
+import { $message, $tip } from "@/utils/busTransfer";
+import { ResultData } from "@/api/interface";
+import { _retryRequest } from "@/utils/tool";
 
 /** @description 下载数据 */
 const useGetData = () => {
+  const { BaseData, VoiceData } = useIndexedDB();
+
+  /** 请求总数 */
+  const total = ref(0);
+  /** 用于计算下载进度 */
+  const index = ref(0);
+
   const ExposeData = {
-    /** 请求总数 */
-    total: ref(0),
-    /** 用于计算下载进度 */
-    index: ref(1),
     /** 正在下载的数据类型 */
-    type: ref("基础数据"),
+    type: ref(""),
     /** 请求结束 */
     finish: ref(false),
   };
-  const { total, index, type, finish } = ExposeData;
+  const { type, finish } = ExposeData;
 
-  /* 将数据写入本地存储 */
-  const setData = <T extends { data: unknown }>(name: string, data: T) => {
-    localStorage.setItem(name, JSON.stringify(data.data));
+  const ExposeComputed = {
+    /** 下载进度百分比 */
+    progress: computed(() => {
+      return ((index.value / total.value || 0) * 100).toFixed(0) + "%";
+    }),
   };
 
-  /* 判断本地是否存在数据 */
-  const isExist = (name: string, prefix = "") => {
-    return !!localStorage.getItem(prefix + name);
+  /**
+   * @description 将数据写入数据库
+   * @param name 数据名称
+   * @param data 数据
+   * @param type 数据类型
+   */
+  const setData = async (name: string, data: any, type: "BASE" | "VOICE") => {
+    const setItem = type === "BASE" ? BaseData.setItem : VoiceData.setItem;
+    await setItem(name, data);
+  };
+
+  /**
+   * @description 判断本地是否存在数据
+   * @param name数据名称
+   * @param type 数据类型
+   */
+  const isExist = async (name: string, type: "BASE" | "VOICE") => {
+    const getItem = type === "BASE" ? BaseData.getItem : VoiceData.getItem;
+    return !!(await getItem(name));
+  };
+
+  /* 收集缺失的数据 */
+  const getLacksData = async () => {
+    /** 缺失的数据 */
+    const data_lacks: [string, () => Promise<ResultData<unknown>>][] = [];
+
+    //循环判断收集
+    for (let i = 0; i < REQUEST.length; i++) {
+      const item = REQUEST[i];
+
+      //判断本地是否存在，不存在则收集
+      const is_exist = await isExist(item[0], "BASE");
+      if (!is_exist) {
+        data_lacks.push([item[0], item[1]]);
+      }
+    }
+
+    //整合请求，请求成功后存入本地，并追加索引
+    const data_requests = data_lacks.map(async (item) => {
+      //请求错误重连
+      await _retryRequest({
+        promiseFn: item[1],
+      })
+        .then(async (res) => {
+          type.value = `正在下载${item[0]}`;
+          await setData(item[0], res.data, "BASE");
+        })
+        .catch(() => {
+          $message($msgTipText("rc53", { v: item[0] }), "error");
+        })
+        .finally(() => {
+          index.value++;
+        });
+    });
+
+    return {
+      data_lacks,
+      data_requests,
+    };
+  };
+
+  /* 收集缺少的语音 */
+  const getLacksVoice = async () => {
+    /** 丢失的语音 */
+    const voice_lacks: [string, () => Promise<ResultData<Remote.Voice.Data[]>>][] = [];
+
+    const hero_names = await LOCAL_HERO.getHeroNameList();
+
+    for (let i = 0; i < hero_names.length; i++) {
+      const item = hero_names[i];
+
+      //判断本地是否存在，不存在则收集
+      const is_exist = await isExist(item.value, "VOICE");
+      if (!is_exist && !["梦奇", "盾山"].includes(item.value)) {
+        const pinyin = (await KVP_HERO.getHeroPinyinKvp())[item.id];
+        voice_lacks.push([item.value, () => API_DATA.Voice(pinyin)]);
+      }
+    }
+
+    //整合请求，请求成功后存入本地，并追加索引
+    const voice_requests = voice_lacks.map(async (item) => {
+      //请求错误重连
+      await _retryRequest({
+        promiseFn: item[1],
+      })
+        .then(async (res) => {
+          type.value = `正在下载${item[0]}语音`;
+          await setData(item[0], res.data, "VOICE");
+        })
+        .catch(() => {
+          $message($msgTipText("rc53", { v: item[0] + "语音" }), "error");
+        })
+        .finally(() => {
+          index.value++;
+        });
+    });
+
+    return {
+      voice_lacks,
+      voice_requests,
+    };
+  };
+
+  /* 生成日志Tip */
+  const getLogTip = (silent: boolean, data_lacks: string[], voice_lacks: string[]) => {
+    if (silent && (data_lacks.length || voice_lacks.length)) {
+      if (data_lacks.length) {
+        const data_text = data_lacks.join("、");
+        $tip({
+          text: $tipText("zd98", { t: "数据", v: data_text }),
+        });
+      }
+
+      if (voice_lacks.length) {
+        const voice_text = voice_lacks.join("、");
+        $tip({
+          text: $tipText("zd98", { t: "语音", v: voice_text }),
+        });
+      }
+    }
   };
 
   const ExposeMethods = {
@@ -36,75 +160,32 @@ const useGetData = () => {
      * @param silent 是否显示数据缺失提示
      */
     async getData(silent: boolean = false) {
-      /** 缺失的数据 */
-      const data_lacks: string[] = [];
-      /** 丢失的语音 */
-      const voice_lacks: string[] = [];
-
-      /* 下载数据 */
-      //收集处理请求
-      const data_requests = REQUEST.map(async (item) => {
-        const [key, request] = item;
-        //如果本地存储不存在，则下载数据并存储
-        if (!isExist(key)) {
-          data_lacks.push(item[2]);
-          setData(key, await request());
-          index.value++;
-        }
-      });
-      total.value = data_lacks.length;
-      await Promise.all(data_requests);
-
-      const hero_names = LOCAL_HERO.getHeroNameList();
-
-      /* 下载语音数据 */
-      type.value = "语音包";
       index.value = 0;
-      //收集处理请求
-      const voice_requests = hero_names.map(async (item) => {
-        //如果不是梦奇和盾山，并且本地不存在英雄语音，则请求
-        if (!["梦奇", "盾山"].includes(item.value)) {
-          const pinyin = KVP_HERO.getHeroPinyinKvp()[item.id];
+      type.value = "准备下载基础数据";
+      const data = await getLacksData();
+      total.value = data.data_lacks.length;
+      await Promise.all(data.data_requests);
 
-          //检测本地是否存在语音丢失
-          if (!isExist(pinyin, LOCAL_KEY.VOICE)) {
-            voice_lacks.push(item.value);
-            const voices = (await API_DATA.Voice(pinyin)).data;
-            setData(`voice_${pinyin}`, {
-              data: voices,
-            });
-            type.value = `${item.value}语音`;
-            index.value++;
-          }
-        }
-      });
-      total.value = voice_lacks.length;
-      await Promise.all(voice_requests);
+      type.value = "准备下载语音包";
+      index.value = 0;
+      const voice = await getLacksVoice();
+      total.value = voice.voice_lacks.length;
+      await Promise.all(voice.voice_requests);
       finish.value = true;
+      type.value = "加载完毕，祝你体验愉快。";
+      //将索引和总数设为1是为了避免没有缺失数据时，再0%的时候显示所有资源下载完毕，不美观
+      index.value = 1;
+      total.value = 1;
 
-      //整理缺失文件日志
-      if (silent && (data_lacks.length || voice_lacks.length)) {
-        if (data_lacks.length) {
-          const data_text = data_lacks.join("、");
-          $tip({
-            text: $tipText("zd98", { t: "数据", v: data_text }),
-          });
-        }
-
-        if (voice_lacks.length) {
-          const voice_text = voice_lacks.join("、");
-          $tip({
-            text: $tipText("zd98", { t: "语音", v: voice_text }),
-          });
-        }
-      }
-
-      useDataFinish.readyDataResolve();
+      const data_lacks_text = data.data_lacks.map((item) => item[0]);
+      const voice_lacks_text = voice.voice_lacks.map((item) => item[0]);
+      getLogTip(silent, data_lacks_text, voice_lacks_text);
     },
   };
 
   return {
     ...ExposeData,
+    ...ExposeComputed,
     ...ExposeMethods,
   };
 };

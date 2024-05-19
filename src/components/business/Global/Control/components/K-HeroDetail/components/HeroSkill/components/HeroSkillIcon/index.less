@@ -1,0 +1,89 @@
+.hero-skill-icon {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 3.125rem;
+
+  .icon {
+    @size: 6.25rem;
+    .global_flex-center();
+
+    position: relative;
+    overflow: hidden;
+    width: @size;
+    height: @size;
+    border-radius: 50%;
+    transition: all 0.5s;
+    transform: translateY(-100%);
+    opacity: 0;
+    filter: var(--d-shadow-a);
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .border {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      width: @size;
+      height: @size;
+      border: 0.3125rem solid #f9ca24;
+      border-radius: 50%;
+      box-shadow: 0 0 0.625rem 0.3125rem #000 inset;
+      pointer-events: none;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 1.25rem;
+        border-style: solid;
+        border-width: 0.625rem;
+        transform: translateX(-50%);
+      }
+
+      &::before {
+        top: -1px;
+        border-color: #f9ca24 transparent transparent;
+      }
+
+      &::after {
+        bottom: -1px;
+        border-color: transparent transparent #f9ca24;
+      }
+    }
+
+    img {
+      width: 90%;
+      height: 90%;
+
+      &:nth-of-type(1) {
+        position: absolute;
+        filter: grayscale(100%) brightness(25%);
+      }
+
+      &:nth-of-type(2) {
+        transition: all 0.5s;
+        transform: translateY(-100%);
+        opacity: 0;
+
+        &.active {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.border-fade-enter-from {
+  transform: scaleY(2);
+  opacity: 0;
+}
+
+.border-fade-enter-active {
+  transition: all 0.5s 0.35s;
+}

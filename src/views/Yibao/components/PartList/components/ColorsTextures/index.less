@@ -1,0 +1,19 @@
+.colors-textures {
+  display: grid;
+  overflow: auto;
+  gap: 1rem;
+  align-content: flex-start;
+  height: 100%;
+  grid-template-columns: repeat(4, 1fr);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tip {
+    color: var(--white-25);
+    font-size: 1.25rem;
+    text-align: center;
+    grid-column: span 4;
+  }
+}

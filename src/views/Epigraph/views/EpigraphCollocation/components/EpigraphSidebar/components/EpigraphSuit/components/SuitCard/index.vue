@@ -3,11 +3,11 @@ import { computed } from "vue";
 
 import { KButton } from "@/components/business";
 import type { EpigraphCollocationStoreType } from "@/store/interface";
-import { $confirm, $input, $message } from "@/utils";
 import { EpigraphCollocationStore } from "@/store";
 import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
 import { $confirmText, MESSAGE_TIP, MOUSE_TIP } from "@/config";
+import { $input, $message, $confirm } from "@/utils/busTransfer";
 
 interface Props {
   /** 套装信息 */
@@ -41,12 +41,16 @@ const epigraph_list = computed(() => {
   return Object.values(epigraph_info);
 });
 
-/* 使用方案 */
+/** @description 使用方案
+ * @param id 铭文方案id
+ */
 const handleUse = (id: string) => {
   $epigraphCollocationStore.useSuit(id);
 };
 
-/* 改名 */
+/** @description 改名
+ * @param id 铭文方案id
+ */
 const handleRename = (id: string) => {
   $input({
     value: $props.data.label,
@@ -60,7 +64,10 @@ const handleRename = (id: string) => {
   });
 };
 
-/* 删除方案 */
+/** @description 删除方案
+ * @param id 铭文方案id
+ * @param name 方案名称
+ */
 const handleDelete = (id: string, name: string) => {
   $confirm({
     text: $confirmText("va64", { name }),

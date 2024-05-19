@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { HeroStore } from "@/store";
+import { HeroStore, KnapsackStore } from "@/store";
 import { vBlurLoad, vMaskGradient, vMouseTip, vSweepLight, vTextHoverColor } from "@/directives";
-import { $concise } from "@/utils";
-import { MOUSE_TIP } from "@/config";
+import { $mouseTipText, MOUSE_TIP } from "@/config";
+import { useHaveHeroSkin } from "@/hooks";
+import { KHeroExp } from "@/components/business";
+import { _getMiscLink } from "@/utils/concise";
+
+const $knapsackStore = KnapsackStore();
 
 interface Props {
   /** 英雄数据 */
@@ -14,12 +18,10 @@ interface Props {
 defineProps<Props>();
 
 const $emit = defineEmits<{
-  view: [];
+  view: [hero_id: number];
 }>();
 
 const $heroStore = HeroStore();
-
-const { getImgLink } = $concise;
 
 /** 头像是否加载完成 */
 const finish = ref(false);
@@ -42,18 +44,29 @@ const num = (data: Game.Hero.Data) => {
   return obj[numType] || "";
 };
 
-/* 查看详情 */
-const handleViewClick = () => {
-  $emit("view");
+/** @description 查看详情
+ * @param hero_id 英雄id
+ */
+const handleViewClick = (hero_id: number) => {
+  if (useHaveHeroSkin(hero_id)) {
+    $emit("view", hero_id);
+  }
 };
 </script>
 
 <template>
   <div
-    v-mask-gradient
-    v-sweep-light
+    v-mask-gradient="{
+      color: '#000',
+    }"
+    v-sweep-light="{
+      enable: !!$knapsackStore.hero_list[data.id],
+    }"
     v-mouse-tip="{
-      text: MOUSE_TIP.kr17,
+      disabled: !$knapsackStore.hero_list[data.id],
+      text: $knapsackStore.hero_list[data.id]
+        ? MOUSE_TIP.kr17
+        : $mouseTipText('a20t', { v: '英雄' }),
     }"
     class="hero-card"
   >
@@ -66,21 +79,34 @@ const handleViewClick = () => {
     <!-- 悬浮蒙版 -->
     <div class="select-mask">
       <img
-        :src="finish ? data.avatar : getImgLink('unknown')"
+        :src="finish ? data.avatar : _getMiscLink('unknown')"
         class="head"
-        @click="handleViewClick"
+        @click="handleViewClick(data.id)"
         @load="finish = true"
       />
-      <button v-text-hover-color class="view" @click="handleViewClick">点击此处</button>
+      <button v-text-hover-color class="view" @click="handleViewClick(data.id)">点击此处</button>
     </div>
 
     <!-- 背景图 -->
-    <img v-blurLoad="data.cover" class="bg" :src="data.coverBlur" />
+    <div
+      class="bg-box"
+      :class="{
+        have: $knapsackStore.hero_list[data.id],
+      }"
+    >
+      <img
+        v-blur-load="{
+          img: data.cover,
+        }"
+        class="bg"
+        :src="data.coverBlur"
+      />
+    </div>
 
-    <!-- 底部名字、代号 -->
+    <!-- 底部名字、熟练度 -->
     <div class="bottom">
       <div class="name" v-html="data.name"></div>
-      <div class="mark">{{ data.mark }}</div>
+      <KHeroExp class="hero-exp" :exp="$knapsackStore.hero_list[data.id]?.exp" />
     </div>
   </div>
 </template>

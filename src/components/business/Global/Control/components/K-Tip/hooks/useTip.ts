@@ -61,7 +61,7 @@ const useTip = () => {
   };
   const ExposeMethods = {
     /** @description 推送tip */
-    async tip(config: Global.Tip.Prompt): Promise<void> {
+    async openTip(config: Global.Tip.Prompt): Promise<void> {
       if (!$settingStore.config.tip) return Promise.resolve();
 
       //如果是处于队列模式，则加入队列
@@ -134,7 +134,7 @@ const useTip = () => {
         btnFn && btnFn();
 
         const config = list.shift();
-        config && ExposeMethods.tip(config);
+        config && ExposeMethods.openTip(config);
       }, 500);
     },
   };

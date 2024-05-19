@@ -6,7 +6,7 @@
   flex-direction: column;
   width: 18.75rem;
   max-height: 31.25rem;
-  border: 0.125rem solid var(--theme-border-color-five);
+  border: 0.125rem solid var(--theme-border-color-four);
   background-color: var(--theme-el-color-one);
   transform: translateY(-100%);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
@@ -60,13 +60,10 @@
         }
 
         &::after {
+          .global_fill-container();
+
           content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
           z-index: -1;
-          width: 100%;
-          height: 100%;
           background-color: #347cb6;
           filter: blur(0.9375rem);
         }

@@ -1,0 +1,23 @@
+.num-scroll {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: calc(5.375rem * var(--font-size-rate));
+  height: calc(8rem * var(--font-size-rate));
+  text-align: center;
+
+  .num-list {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transition-duration: 0.25s;
+
+    .num {
+      .global_flex-center();
+
+      height: calc(8rem * var(--font-size-rate));
+      font-family: digit;
+    }
+  }
+}

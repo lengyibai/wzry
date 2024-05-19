@@ -1,6 +1,9 @@
 /** @description 英雄详情相关 */
 export namespace HeroDetailStoreType {
-  /** @description 滚动结束后触发函数组 */
+  /** @description 滚动结束后触发函数组
+   * @param hero_id 英雄id
+   * @param skin_name 皮肤名称
+   */
   export type SkinToggleFn = (hero_id: number, skin_name: string) => void;
 
   /** @description 皮肤切换后触发函数组 */
@@ -43,4 +46,110 @@ export namespace EpigraphCollocationStoreType {
 
   /** @description 当前侧边栏显示状态 */
   export type SidebarStatus = "EFFECT" | "INVENTORY" | "SUIT";
+}
+
+/** @description 邮件相关 */
+export namespace MailStoreType {
+  export interface GiftMail {
+    /** 邮件标题 */
+    title: string;
+    /** 邮件内容 */
+    desc: string;
+    /** 道具 */
+    props: Game.Mail["props"];
+  }
+  export interface MsgMail {
+    /** 邮件标题 */
+    title: string;
+    /** 邮件内容 */
+    desc: string;
+  }
+}
+
+/** @description 任务相关 */
+export namespace TaskStoreType {
+  export interface TaskSchedule {
+    /** 任务列表单个任务ID */
+    taskId: string;
+    /** 是否为单次任务 */
+    once: boolean;
+    data: {
+      /** 任务列表单个任务下的子任务需要匹配的任务状态Key，来获取任务状态数据 */
+      key: keyof Game.Task;
+      /** 任务列表单个任务下的子任务的标题 */
+      label: string;
+    }[];
+  }
+}
+
+/** @description 乂宝相关 */
+export namespace YiBaoStoreType {
+  /** @description 部件类型ID对应详情 */
+  export type SuitDetail = Record<
+    Game.YiBao.PartType,
+    {
+      /** 背景类型 COLOR-颜色背景 IMG-图片背景 */
+      type: Game.YiBao.StyleType;
+      /** 配置ID */
+      id: string;
+    }
+  >;
+
+  /** @description 部件颜色 */
+  export interface PartColor {
+    /** 圆环 */
+    annulus: string;
+    /** 天线 */
+    antenna: string[];
+    /** 腮红 */
+    blush: string;
+    /** 眼睛 */
+    eye: string[];
+    /** 嘴巴 */
+    mouth: string[];
+    /** 六面 */
+    side: string[];
+    /** 羽翅 */
+    wing: string;
+  }
+
+  /** @description 部件贴图 */
+  export interface PartTexture extends Partial<Record<Game.YiBao.PartType, any>> {
+    /** 圆环 */
+    annulus: string;
+    /** 天线 */
+    antenna: string;
+    /** 羽翅 */
+    wing: string;
+    /** 六面 */
+    side: {
+      front: string;
+      back: string;
+      top: string;
+      bottom: string;
+      left: string;
+      right: string;
+    };
+  }
+
+  /** @description 选中的付费部件列表信息 */
+  export type PayPartInfoList = Record<
+    Game.YiBao.PartType,
+    {
+      /** ID */
+      id: string;
+      /** 价格 */
+      price: string;
+      /** 风格类型 */
+      type: Game.YiBao.StyleType;
+      /** 部件风格名称 */
+      name: string;
+    }
+  >;
+}
+
+/** @description 埋点相关 */
+export namespace MarkerStoreType {
+  /** @description 埋点Key */
+  export type MarkerKey = keyof User.Data["behaviorMarker"];
 }

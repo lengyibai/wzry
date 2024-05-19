@@ -74,19 +74,19 @@ const vDrag: Directive<ElType> = {
       const left = dragData.left + offsetX;
       const top = dragData.top + offsetY;
 
-      // 获取屏幕尺寸
+      //获取屏幕尺寸
       const screenWidth = innerWidth;
       const screenHeight = innerHeight;
 
-      // 计算元素最大可移动范围
+      //计算元素最大可移动范围
       const maxLeft = screenWidth - el.offsetWidth;
       const maxTop = screenHeight - el.offsetHeight;
 
-      // 限制元素不超出屏幕
+      //限制元素不超出屏幕
       const newLeft = Math.max(0, Math.min(maxLeft, left));
       const newTop = Math.max(0, Math.min(maxTop, top));
 
-      // 更新元素位置
+      //更新元素位置
       el.style.left = `${newLeft}px`;
       el.style.top = `${newTop}px`;
     };
@@ -96,22 +96,22 @@ const vDrag: Directive<ElType> = {
       dragData.isDragging = false;
     };
 
-    // 将事件挂载到DOM上
+    //将事件挂载到DOM上
     el._mouseDown = handleDown;
     el._mouseMove = handleMove;
     el._mouseUp = handleUp;
 
-    // 监听鼠标事件
+    //监听鼠标事件
     el.addEventListener("mousedown", el._mouseDown);
     el.addEventListener("touchstart", el._mouseDown);
   },
   unmounted(el) {
-    // 移除鼠标事件
+    //移除鼠标事件
     el.removeEventListener("mousedown", el._mouseDown);
     el.removeEventListener("mousemove", el._mouseMove);
     el.removeEventListener("mouseup", el._mouseUp);
 
-    // 移除触摸事件
+    //移除触摸事件
     el.removeEventListener("touchstart", el._mouseDown);
     el.removeEventListener("touchmove", el._mouseMove);
     el.removeEventListener("touchend", el._mouseUp);

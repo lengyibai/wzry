@@ -1,0 +1,251 @@
+.k-obtain {
+  .global_fill-container();
+  .global_flex-center();
+
+  z-index: var(--z-index-obtain);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black-75);
+
+  .title {
+    .global_text-gradient(#73b2ff,var(--white),-180deg);
+
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: var(--t-shadow-e);
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      width: 40rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-image: radial-gradient(rgb(15 49 84 / 75%) 50%, transparent 100%);
+      transform: translate(-50%, -50%);
+      filter: blur(1.25rem);
+    }
+  }
+
+  .content {
+    .global_flex-center();
+
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 31.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    background-image: linear-gradient(180deg, #26456c 50%, #306ca7 100%);
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.27);
+    transform: scale(1);
+    opacity: 1;
+
+    &.hide {
+      transform: scale(0.25);
+      opacity: 0;
+    }
+
+    .article-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 75%;
+      min-height: 9rem;
+      max-height: 75%;
+      gap: 1.5rem 3rem;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &.alone {
+        overflow-x: initial;
+        overflow-y: initial;
+      }
+
+      .box {
+        .global_flex-center();
+
+        position: relative;
+        flex-direction: column;
+        flex-shrink: 0;
+
+        .shine {
+          .global_flex-center();
+          .global_self-center();
+          --color: #5bb2e5;
+          --size: 2;
+
+          position: absolute;
+          z-index: 2;
+          pointer-events: none;
+
+          &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: round 0.5s ease-out forwards;
+            filter: blur(0.125rem);
+
+            @keyframes round {
+              0% {
+                width: 0;
+                height: 0;
+                border: 0 solid var(--color);
+                opacity: 0.75;
+              }
+
+              35% {
+                width: calc(6.25rem * var(--size));
+                height: calc(6.25rem * var(--size));
+                border: calc(3.125rem * var(--size)) solid var(--color);
+                opacity: 0.75;
+              }
+
+              100% {
+                width: calc(12.5rem * var(--size));
+                height: calc(12.5rem * var(--size));
+                border: 0 solid var(--color);
+                opacity: 0.75;
+              }
+            }
+          }
+
+          span {
+            position: absolute;
+            display: block;
+            width: calc(0.125rem * var(--size));
+            border-radius: 50%;
+            background-color: var(--color);
+          }
+
+          span:nth-child(even) {
+            height: calc(1.875rem * var(--size));
+            animation: ray 0.75s ease forwards;
+
+            @keyframes ray {
+              0% {
+                transform: rotate(calc(22.5deg * var(--i))) translateY(0);
+                opacity: 1;
+              }
+
+              60% {
+                height: calc(1.875rem * var(--size));
+                opacity: 0.8;
+              }
+
+              100% {
+                height: calc(0.625rem * var(--size));
+                transform: rotate(calc(22.5deg * var(--i))) translateY(calc(7.5rem * var(--size)));
+                opacity: 0;
+              }
+            }
+          }
+
+          span:nth-child(odd) {
+            height: calc(0.9375rem * var(--size));
+            animation: ray-odd 0.75s ease forwards;
+
+            @keyframes ray-odd {
+              0% {
+                transform: rotate(calc(22.5deg * var(--i))) translateY(0);
+                opacity: 1;
+              }
+
+              60% {
+                height: calc(0.9375rem * var(--size));
+                opacity: 1;
+              }
+
+              100% {
+                height: calc(0.625rem * var(--size));
+                transform: rotate(calc(22.5deg * var(--i)))
+                  translateY(calc(7.8125rem * var(--size)));
+                opacity: 0;
+              }
+            }
+          }
+        }
+
+        .icon-box {
+          --gap: 0.55rem;
+          .global_flex-center();
+
+          position: relative;
+          overflow: hidden;
+          width: calc(7rem + var(--gap));
+          height: calc(7rem + var(--gap));
+          margin-bottom: 0.5rem;
+          padding: 0.75rem;
+          background-color: rgb(77 107 143 / 50%);
+
+          &::before {
+            content: " ";
+            position: absolute;
+            z-index: 1;
+            width: calc(100% - var(--gap));
+            height: calc(100% - var(--gap));
+            background-color: #1b3352;
+          }
+
+          &::after {
+            --color: var(--theme-el-color-three);
+
+            content: " ";
+            position: absolute;
+            width: 6rem;
+            height: 200%;
+            background-image: linear-gradient(90deg, transparent, var(--color), transparent);
+            animation: rotate 1s infinite linear;
+
+            @keyframes rotate {
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+          }
+
+          .icon {
+            z-index: 1;
+            max-width: 100%;
+            max-height: 100%;
+          }
+
+          .num {
+            .global_text-outline(0.25rem,var(--white),var(--black));
+
+            position: absolute;
+            right: var(--gap);
+            bottom: 0;
+            font-size: 1.5rem;
+          }
+        }
+
+        .name {
+          color: var(--theme-font-color-four);
+          font-size: 1.5rem;
+          font-family: var(--font-f);
+          text-shadow: var(--t-shadow-d);
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .k-button {
+    --btn-rate: 1.25;
+    --font-size: 2rem;
+
+    z-index: 1;
+  }
+}

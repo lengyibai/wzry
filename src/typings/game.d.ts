@@ -12,6 +12,8 @@ declare namespace Game {
     interface Data {
       /** 英雄id */
       id: number;
+      /** 价格 */
+      price: string;
       /** 攻击 */
       attack: number;
       /** 难度 */
@@ -74,16 +76,6 @@ declare namespace Game {
       relationships: RelationType[];
     }
 
-    /** @description 返回的技能 */
-    interface SkillParams {
-      /** 技能id */
-      id: number;
-      /** 消耗单位 */
-      unit: string;
-      /** 技能列表 */
-      skills: Remote.Skill.Info[][];
-    }
-
     /** @description 技能类型 */
     interface SkillType {
       /** 类型id */
@@ -136,6 +128,8 @@ declare namespace Game {
       hero: number;
       /** 价格 */
       price: string;
+      /** 兑换所需皮肤碎片 */
+      debris: string;
       /** 皮肤类型链接图 */
       link: string;
       /** 皮肤类型ID */
@@ -148,8 +142,6 @@ declare namespace Game {
       gender: GenderText;
       /** 皮肤名称 */
       name: string;
-      /** 备用皮肤名称 */
-      skin_name?: string;
       /** 海报 */
       poster: string;
       /** 海报小图 */
@@ -162,8 +154,6 @@ declare namespace Game {
       avatar: string;
       /** 英雄名称 */
       heroName: string;
-      /** 备用英雄名称 */
-      hero_name?: string;
       /** 职业 */
       profession: Profession[];
     }
@@ -317,9 +307,140 @@ declare namespace Game {
     }
   }
 
+  /** @description 夺宝补给相关 */
+  namespace LotterySupply {
+    /** @description 补给模式 */
+    interface Mode {
+      /** 模式描述 */
+      label: string;
+      /** 倒计时秒数 */
+      seconds: number;
+      /** 每次领取数量 */
+      count: number;
+    }
+
+    /** @description 补给状态 IDLE-空闲 SELECT-选择模式 READY-准备开始 RUNNING-运行中 RECEIVE-可领取 */
+    type Status = "IDLE" | "SELECT" | "READY" | "RUNNING" | "RECEIVE";
+  }
+
+  /** @description 邮件 */
+  interface Mail {
+    /** 邮件ID，请求的文件里没有id */
+    id: string;
+    /** 由于ID是请求成功之后生成的，所以只能通过标记来作为唯一性 */
+    mark?: string;
+    /** 邮件唯一Key */
+    key: Global.Mail["key"];
+    /** 邮件类型 */
+    type: Global.Mail["type"];
+    /** 标题 */
+    title: string;
+    /** 内容 */
+    desc: string;
+    /** 发送时间 */
+    time: number;
+    /** 已读状态 */
+    read: boolean;
+    /** 道具列表 */
+    props?: {
+      /** 键名 */
+      key: PropKey;
+      /** 数量 */
+      num: number;
+    }[];
+  }
+
+  /** @description 任务今日和本周数据状态 */
+  interface Task {
+    /** 今日在线时长 */
+    today_online_duration: number;
+    /** 今日金币消费数量 */
+    today_gold_consume: number;
+    /** 今日钻石消费数量 */
+    today_diamond_consume: number;
+    /** 今日参与英雄夺宝次数 */
+    today_hero_lottery: number;
+    /** 今日参与皮肤夺宝次数 */
+    today_skin_lottery: number;
+    /** 今日使用双倍金币卡次数 */
+    today_double_gold_card: number;
+    /** 今日使用双倍经验卡次数 */
+    today_double_exp_card: number;
+    /** 今日消耗英雄夺宝币数量 */
+    today_hero_coin: number;
+    /** 今日消耗皮肤夺宝币数量 */
+    today_skin_coin: number;
+    /** 今日消耗英雄夺宝石数量 */
+    today_hero_stone: number;
+    /** 今日消耗皮肤夺宝石数量 */
+    today_skin_stone: number;
+    /** 今日领取英雄夺宝石补给数量 */
+    today_hero_supply: number;
+    /** 今日领取皮肤夺宝石补给数量 */
+    today_skin_supply: number;
+
+    /** 本周在线时长 */
+    week_online_duration: number;
+    /** 本周本周登录天数 */
+    week_login_day: number;
+    /** 本周使用了英雄夺宝石周卡次数 */
+    week_hero_stone_card: number;
+    /** 本周使用了皮肤夺宝石周卡次数 */
+    week_skin_stone_card: number;
+    /** 本周触发英雄或皮肤夺宝石补给站0额度次数 */
+    week_zero_supply: number;
+    /** 本周消耗英雄夺宝币数量 */
+    week_hero_coin: number;
+    /** 本周消耗皮肤夺宝币数量 */
+    week_skin_coin: number;
+  }
+
+  /** @description 道具Key */
+  type PropKey =
+    | "DIAMOND"
+    | "GOLD"
+    | "BLESSING_BAG"
+    | "HONOR_CRYSTAL"
+    | "KING_CRYSTAL"
+    | "HERO_CHEST_OPTIONAL"
+    | "HERO_DEBRIS"
+    | "HERO_EXP_ONE"
+    | "HERO_EXP_TWO"
+    | "DOUBLE_GOLD"
+    | "DOUBLE_EXP"
+    | "HERO_LOTTERY_COIN"
+    | "SKIN_LOTTERY_COIN"
+    | "HERO_LOTTERY_STONE"
+    | "HERO_LOTTERY_WEEK"
+    | "SKIN_LOTTERY_WEEK"
+    | "HERO_TREASURE"
+    | "HERO_CHEST_RANDOM"
+    | "SKIN_DEBRIS"
+    | "SKIN_CARD_INITIAL"
+    | "SKIN_CHEST_BRAVE_OPTIONAL"
+    | "SKIN_CHEST_EPIC_OPTIONAL"
+    | "SKIN_CHEST_LEGEND_OPTIONAL"
+    | "SKIN_CHEST_LIMIT_OPTIONAL"
+    | "SKIN_EPIC_TREASURE"
+    | "SKIN_LEGEND_TREASURE"
+    | "SKIN_BRAVE_TREASURE"
+    | "SKIN_LIMIT_TREASURE"
+    | "SKIN_LOTTERY_STONE"
+    | "GUESS_CARD"
+    | "GUESS_COIN"
+    | "JUMP_COIN";
+
   /** @description 性别 */
   type GenderId = 0 | 1 | 2;
 
   /** @description 性别名 */
   type GenderText = "男" | "女";
+
+  /** @description 乂宝相关 */
+  namespace YiBao {
+    /** @description 风格类型 */
+    type StyleType = "COLOR" | "IMG";
+    /** @description 部件类型  antenna-天线 annulus-眼圈 blush-腮红 eye-眼睛 mouth-嘴巴 side-六面 wing-翅膀  */
+    type PartType = "antenna" | "annulus" | "blush" | "eye" | "mouth" | "side" | "wing";
+  }
 }

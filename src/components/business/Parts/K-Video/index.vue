@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 interface Props {
   /** 视频链接 */
@@ -8,12 +7,14 @@ interface Props {
   /** 静音 */
   muted?: boolean;
 }
+
 const $props = withDefaults(defineProps<Props>(), {
   muted: false,
 });
 
 const videoPlayer = ref<HTMLVideoElement>();
 
+/** @description 播放视频 */
 const play = async () => {
   try {
     if (!videoPlayer.value) return;

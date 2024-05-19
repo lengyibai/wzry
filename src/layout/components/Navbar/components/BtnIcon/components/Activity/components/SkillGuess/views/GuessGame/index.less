@@ -1,0 +1,267 @@
+.guess-game {
+  .global_fill-container();
+
+  z-index: var(--z-index-guess);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--black-75);
+
+  .guess-skill {
+    --size: 7.5rem;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: var(--size);
+    gap: var(--size);
+    margin: 1rem;
+    margin-bottom: 3rem;
+
+    .skill {
+      position: relative;
+      overflow: hidden;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background-color: #1a1a1a;
+
+      .icon-box {
+        width: 100%;
+        height: 100%;
+
+        &.effective {
+          animation: global-jitter 0.35s 0.25s infinite linear;
+        }
+
+        &.guessing {
+          animation: none;
+        }
+
+        .unknown {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          transition: 1.5s cubic-bezier(0.77, 0, 0.18, 1);
+
+          &.disabled {
+            filter: grayscale(1) brightness(0.75);
+          }
+
+          &.move-bottom {
+            transform: translateY(-100%);
+          }
+        }
+
+        .icon {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .answer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    height: 0;
+    margin: 0 2rem 2rem;
+    transition: 1s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--white);
+      animation: height 1s 1s forwards cubic-bezier(0.77, 0, 0.18, 1);
+
+      @keyframes height {
+        100% {
+          height: 0;
+        }
+      }
+    }
+
+    .hero-name {
+      margin-bottom: 0.5rem;
+      font-size: 3rem;
+    }
+
+    .skill-name {
+      margin-bottom: 2rem;
+      color: var(--white-50);
+      font-size: 2rem;
+    }
+
+    .desc {
+      font-size: 2rem;
+    }
+  }
+
+  .submit {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+
+    .commit {
+      .global_flex-center();
+      .global_bg-gradient-animate(linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4));
+
+      z-index: 1;
+      width: 14rem;
+      height: 4rem;
+      border-radius: 3.125rem;
+      font-size: 1.5rem;
+      text-shadow: var(--t-shadow-d);
+    }
+  }
+
+  .receive-guess-coin {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .prop {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 75%;
+      margin-bottom: 2rem;
+      padding: 1rem 0;
+
+      .icon {
+        .global_img-shine(1.5625rem);
+
+        width: 4.6875rem;
+        height: 4.6875rem;
+        animation: global-jitter 0.35s 0.25s infinite linear;
+
+        &::after {
+          filter: brightness(1.15);
+        }
+      }
+
+      .count {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .answer-status {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .btns {
+    display: flex;
+    gap: 2rem;
+
+    .next,
+    .close {
+      .global_flex-center();
+
+      width: 3.125rem;
+      height: 3.125rem;
+      border-radius: 50%;
+      color: #fff;
+      transition:
+        background-color 0.25s,
+        color 0.25s;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    .close {
+      color: var(--red);
+
+      &:hover {
+        color: var(--white-75);
+        background-color: rgb(231 77 60 / 75%);
+      }
+    }
+
+    .next {
+      color: var(--green);
+
+      &:hover {
+        color: var(--white-75);
+        background-color: rgb(46 204 112 / 75%);
+      }
+    }
+  }
+
+  .countdown {
+    position: absolute;
+    bottom: 3rem;
+    display: flex;
+    align-items: flex-end;
+
+    .text {
+      color: var(--blue);
+      font-size: 3rem;
+      transform: translateY(0.3125rem);
+    }
+  }
+
+  .guess-prop {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+
+    .prop {
+      display: flex;
+      align-items: center;
+
+      &:first-child {
+        margin-right: 2rem;
+      }
+
+      .icon {
+        height: 3.5rem;
+        margin-right: 1rem;
+      }
+
+      .num,
+      .k-long-num {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .tip {
+    position: absolute;
+    bottom: 0.5rem;
+    color: var(--white-50);
+    font-size: 1.5rem;
+  }
+}
+
+.fade-a-leave-active,
+.fade-a-move {
+  transition: all 0.5s;
+}
+
+.fade-a-leave-active {
+  position: absolute !important;
+}
+
+/* 隐藏答案动画 */
+.hide-answer-leave-to {
+  height: 0 !important;
+  margin: 0 !important;
+  opacity: 0;
+}
+
+.hide-answer-enter-active,
+.hide-answer-leave-active {
+  transition: all 1s;
+}

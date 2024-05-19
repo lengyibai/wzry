@@ -2,12 +2,16 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { $tool } from "@/utils";
+import { KnapsackStore } from "./knapsack";
+
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
+import { _typeSort, _search } from "@/utils/tool";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {
+  const $knapsackStore = KnapsackStore();
+
   const $usePagingLoad = usePagingLoad<Game.Hero.Skin>();
 
   const ExposeData = {
@@ -30,12 +34,14 @@ const SkinStore = defineStore("skin", () => {
     skin_type: ref("全部类型"),
     /** 同名皮肤筛选类型 */
     same_name: ref("全部同名"),
+    /** 拥有排序类型 */
+    have_type: ref("全部皮肤"),
     /** 性别筛选类型 */
     gender_type: ref<Game.GenderId>(0),
     /** 统计大于3个同名的皮肤名 */
-    same_name_list: ref<Global.General[]>([]),
+    same_name_list: ref<string[]>([]),
     /** 统计皮肤类型列表 */
-    skin_type_list: ref<Global.General[]>([]),
+    skin_type_list: ref<string[]>([]),
   };
   const {
     filter_list,
@@ -46,9 +52,12 @@ const SkinStore = defineStore("skin", () => {
     same_name,
     same_name_list,
     skin_type_list,
+    have_type,
   } = ExposeData;
 
-  /* 统计相同皮肤名 */
+  /** @description 统计相同皮肤名
+   * @param skin_list 皮肤列表
+   */
   const getSameName = (skin_list: Game.Hero.Skin[]) => {
     const count: Record<string, number> = {};
     skin_list.forEach((item) => {
@@ -63,39 +72,21 @@ const SkinStore = defineStore("skin", () => {
       }
     }
 
-    same_name_list.value = Object.keys(count).map((item) => {
-      return {
-        label: item,
-        value: item,
-      };
-    });
-
-    same_name_list.value.unshift({
-      label: "全部同名",
-      value: "全部同名",
-    });
+    same_name_list.value = Object.keys(count);
+    same_name_list.value.unshift("全部同名");
   };
 
-  /* 统计皮肤类型列表 */
+  /**
+   * @description 统计皮肤类型列表
+   * @param skin_list 皮肤列表
+   */
   const getSkinType = (skin_list: Game.Hero.Skin[]) => {
-    const options = [...new Set(skin_list.map((item) => item.alias))];
-
-    skin_type_list.value = options.map((item) => {
-      return {
-        label: item,
-        value: item,
-      };
-    });
-
-    $tool.typeSort(skin_type_list.value, "label");
-
-    skin_type_list.value.unshift({
-      label: "全部类型",
-      value: "全部类型",
-    });
+    skin_type_list.value = [...new Set(skin_list.map((item) => item.alias))];
+    _typeSort(skin_type_list.value, "label");
+    skin_type_list.value.unshift("全部类型");
   };
 
-  /* 一键排序 */
+  /** @description 一键排序 */
   const sortAll = () => {
     $usePagingLoad.setScroll(0);
 
@@ -164,7 +155,7 @@ const SkinStore = defineStore("skin", () => {
           const noNum = list.filter(
             (item) => !noFree.includes(item.price.toString()) && isNaN(Number(item.price)),
           );
-          return $tool.typeSort(noNum, "price");
+          return _typeSort(noNum, "price");
         },
         由低到高: (list) => {
           const isNum = list.filter((item) => !isNaN(Number(item.price)));
@@ -182,12 +173,33 @@ const SkinStore = defineStore("skin", () => {
       $usePagingLoad.setFilterData(sort_strategy[price_type.value](filter_list.value));
     };
 
+    /** 拥有排序 */
+    const haveType = () => {
+      let data: Game.Hero.Skin[] = [];
+      if (have_type.value === "全部皮肤") return;
+
+      if (have_type.value === "未拥有") {
+        data = filter_list.value.filter((item) => {
+          return !$knapsackStore.skin_list.includes(item.id);
+        });
+      }
+
+      if (have_type.value === "已拥有") {
+        data = filter_list.value.filter((item) => {
+          return $knapsackStore.skin_list.includes(item.id);
+        });
+      }
+
+      $usePagingLoad.setFilterData(data);
+    };
+
     filterProfession();
     filterGender();
     filterSkinType();
     filterSameName();
     $usePagingLoad.reverseFilterData();
     sortPrice();
+    haveType();
     ExposeMethods.resetPage();
   };
 
@@ -200,8 +212,8 @@ const SkinStore = defineStore("skin", () => {
     loadMore: $usePagingLoad.loadMore,
 
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
-    getSkin() {
-      const skin_list = GAME_HERO.getSkinList();
+    async getSkin() {
+      const skin_list = await GAME_HERO.getSkinList();
 
       $usePagingLoad.all_data.value = skin_list;
 
@@ -270,20 +282,30 @@ const SkinStore = defineStore("skin", () => {
       sortAll();
     },
 
-    /** @description 搜索皮肤 */
+    /** @description 拥有排序 */
+    haveType(name: string) {
+      if (have_type.value === name) return;
+      have_type.value = name;
+      sortAll();
+    },
+
+    /** @description 搜索皮肤
+     * @param name 皮肤名称
+     */
     searchSkin(name: string) {
-      /* 搜索英雄时重置下拉菜单 */
+      //搜索英雄时重置下拉菜单
       profession.value = "全部";
       price_type.value = "全部价格";
       skin_type.value = "全部类型";
       same_name.value = "全部同名";
+      have_type.value = "全部皮肤";
       gender_type.value = 0;
 
       if (name) {
-        const data = $tool.search(
+        const data = _search(
           _cloneDeep($usePagingLoad.all_data.value),
           name,
-          ["skin_name", "hero_name", "category"],
+          ["name", "heroName", "category"],
           true,
         );
 

@@ -115,6 +115,29 @@ declare namespace Global {
       rt25: string;
       /** 警告提示 */
       p6q3: string;
+      /** 夺宝 */
+      o7r6: string;
+      /** 夺宝获得奖品 */
+      jo36: string;
+      /** 背包 */
+      fz02: string;
+      /** 商城 */
+      h3w0: string;
+      /** 夺宝石到账 */
+      bg51: string;
+      /** 道具商店 */
+      o3l2: string;
+      /** 生效 */
+      wm14: string;
+      //jy55: string;
+      //hy43: string;
+      //pk92: string;
+      //au63: string;
+      //gk90: string;
+      //e90x: string;
+      //kj35: string;
+      //zm31: string;
+      //dh38: string;
     }
 
     /** @description 点击音效 */
@@ -187,10 +210,24 @@ declare namespace Global {
 
     /** @description 静态资源版本 */
     interface Static {
-      /** 登录页视频版本 */
-      loginVideoBgVersion: string;
-      /** 登录页视频封面版本 */
-      loginVideoCoverVersion: string;
+      /** 音效包列表 */
+      audioVersion: string;
+      /** 活动Banner图包列表 */
+      imageActivityBannerVersion: string;
+      /** 模糊海报图包列表 */
+      imageBlurVersion: string;
+      /** 英雄大头贴列表 */
+      imageHeroAvatarVersion: string;
+      /** Minecraft贴图包列表 */
+      imageMinecraftVersion: string;
+      /** 杂图包列表 */
+      imageMiscVersion: string;
+      /** 道具图包列表 */
+      imagePropsVersion: string;
+      /** 迷你英雄图包列表 */
+      imageMiniHeroVersion: string;
+      /** 主页视频列表 */
+      videoHomeVersion: string;
     }
   }
 
@@ -210,6 +247,41 @@ declare namespace Global {
     }[];
     /** 代码层 */
     substrate: string[];
+  }
+
+  /** @description 邮箱 */
+  interface Mail {
+    /** 由于ID是请求成功之后生成的，所以只能通过标记来作为唯一性 */
+    mark: string;
+    /** 邮件独有类型 SIGN-签到 NEW-新手大礼包  SIGN-每日签到 COIN-每日夺宝币 DEFAULT-站内手动推送  */
+    key: "SIGN" | "NEW" | "COIN" | "DEFAULT";
+    /** 邮件类型 GIFT-可领取的 MSG-通知 */
+    type: "GIFT" | "MSG";
+    /** 标题 */
+    title: string;
+    /** 内容 */
+    desc: string;
+    /** 用户ID */
+    userIds: string[];
+    /** 推送时间 */
+    sendTime: number;
+    /** 赠送的道具列表 */
+    props: {
+      /** 道具Key */
+      key: Game.PropKey;
+      /** 道具数量 */
+      num: number;
+    }[];
+  }
+
+  /** @description BUG与建议 */
+  interface BugIdea {
+    /** BUG或建议 */
+    type: "BUG" | "IDEA";
+    /** 描述 */
+    desc: string;
+    /** 提出时间 */
+    time: number;
   }
 
   /** @description 设置配置项 */
@@ -234,8 +306,6 @@ declare namespace Global {
     shine: boolean;
     /** 粒子特效 */
     particle: boolean;
-    /** 登录页视频静音 */
-    muted: boolean;
     /** 不再提示列表 */
     noTips: Global.Tip.Key<boolean>;
   }
@@ -253,6 +323,8 @@ declare namespace Global {
 
   /** @description 用户数据 */
   interface UserData {
+    /** 可用于奖励发放 */
+    id: string;
     /** 昵称 */
     username: string;
     /** 密码 */
@@ -261,16 +333,259 @@ declare namespace Global {
     secondaryPassword: string;
     /** 权限 0-管理员 1-用户 */
     role: 0 | 1;
+    /** 是否为开发环境专属卡片 */
+    isDev: boolean;
     /** 头像 */
     avatar: string;
     /** 注册时间 */
     createTime: number;
-    /** 更新时间 */
-    updateTime: number;
+    /** 上次登录时间 */
+    lastLoginTime: number;
+    /** 卡片是否作废 */
+    isInvalid: boolean;
+    /** 英雄夺宝石周卡到期时间戳 */
+    heroLotteryStoneWeekCardExpireTime: 0;
+    /** 皮肤夺宝石周卡到期时间戳 */
+    skinLotteryStoneWeekCardExpireTime: 0;
+    /** 双倍金币卡到期时间戳 */
+    doubleGoldCardExpireTime: 0;
+    /** 双倍经验卡到期时间戳 */
+    doubleExpCardExpireTime: 0;
+    /** 正在竞猜的活动 */
+    guess: {
+      /** 海报竞猜 */
+      poster: {
+        /** 是否处于竞猜中 */
+        guessing: boolean;
+        /** 回答正确的皮肤ID */
+        skinIds: number[];
+      };
+      /** 技能竞猜 */
+      skill: {
+        /** 是否处于竞猜中 */
+        guessing: boolean;
+        /** 以英雄ID为key的技能索引数组对象 */
+        skillIds: Record<number, number[]>;
+      };
+    };
     /** 设置配置项 */
     settingConfig: SettingConfig;
     /** 铭文套装 */
     epigraphSuit: Game.Epigraph.Suit[];
+    /** 邮箱列表 */
+    mail: Game.Mail[];
+    /** 邮件标记，避免用户重复收到推送 */
+    mallMark: string[];
+    /** 任务完成列表ID */
+    taskFinish: string[];
+    /** 任务数据状态 */
+    taskStatus: Game.Task;
+    /** 提出的BUG与建议 */
+    bugIdea: BugIdea[];
+    /** 埋点 */
+    behaviorMarker: {
+      /** 累计在线时长-秒 */
+      nx46: number;
+      /** 累计访问天数 */
+      mm27: number;
+
+      /** 累计英雄夺宝次数 */
+      d1f9: number;
+      /** 累计皮肤夺宝次数 */
+      i71y: number;
+
+      /** 累计获取伴生皮肤卡数量 */
+      cs91: number;
+      /** 累计消耗伴生皮肤卡数量 */
+      rm08: number;
+
+      /** 累计获取金币数量 */
+      lw77: number;
+      /** 累计消耗金币数量 */
+      b3q5: number;
+      /** 累计通过夺宝获取的金币数量 */
+      vi12: number;
+      /** 累计通过开宝箱获取的金币数量 */
+      vg41: number;
+
+      /** 累计获取钻石数量 */
+      oa04: number;
+      /** 累计消耗钻石数量 */
+      kt48: number;
+      /** 累计通过购买获取的钻石数量 */
+      jw74: number;
+      /** 累计通过夺宝获取的钻石数量 */
+      b61i: number;
+      /** 累计通过开宝箱获取的钻石数量 */
+      bd02: number;
+
+      /** 累计获取英雄碎片数量 */
+      bf56: number;
+      /** 累计消耗英雄碎片数量 */
+      ul23: number;
+      /** 累计通过购买获取的英雄碎片数量 */
+      ek44: number;
+      /** 累计通过夺宝获取的英雄碎片数量 */
+      rn28: number;
+      /** 累计通过开宝箱获取的英雄碎片数量 */
+      p3d7: number;
+
+      /** 累计获取皮肤碎片数量 */
+      tc01: number;
+      /** 累计消耗皮肤碎片数量 */
+      rj65: number;
+      /** 累计通过购买获取的皮肤碎片数量 */
+      e8g6: number;
+      /** 累计通过夺宝获取的皮肤碎片数量 */
+      zf36: number;
+      /** 累计通过开宝箱获取的皮肤碎片数量 */
+      h1v0: number;
+      /** 通过英雄升级赠送的皮肤碎片数量 */
+      nk61: number;
+
+      /** 累计获取英雄一级经验宝箱数量 */
+      xm99: number;
+      /** 累计消耗英雄一级经验宝箱数量 */
+      p26a: number;
+      /** 累计通过购买获取的英雄一级经验数量 */
+      wj24: number;
+      /** 累计通过夺宝获取的英雄一级经验数量 */
+      v1l1: number;
+      /** 累计通过开宝箱获取的英雄一级经验数量 */
+      xu73: number;
+
+      /** 累计获取英雄二级经验宝箱数量 */
+      tp67: number;
+      /** 累计消耗英雄二级经验宝箱数量 */
+      wx77: number;
+      /** 累计通过购买获取的英雄二级经验数量 */
+      b9u6: number;
+      /** 累计通过夺宝获取的英雄二级经验数量 */
+      t22a: number;
+      /** 累计通过开宝箱获取的英雄二级数量 */
+      a2w5: number;
+
+      /** 累计获取英雄夺宝石数量 */
+      dw22: number;
+      /** 累计消耗英雄夺宝石数量 */
+      vq84: number;
+      /** 累计通过购买获取的英雄夺宝石数量 */
+      rf21: number;
+      /** 累计通过开宝箱获取的英雄夺宝石数量 */
+      tk65: number;
+
+      /** 累计获取皮肤夺宝石数量 */
+      wm57: number;
+      /** 累计消耗皮肤夺宝石数量 */
+      z88m: number;
+      /** 累计通过购买获取的皮肤夺宝石数量 */
+      dm42: number;
+      /** 累计通过开宝箱获取的皮肤夺宝石数量 */
+      m7g3: number;
+
+      /** 累计通过夺宝获取王者水晶数量 */
+      p2i5: number;
+      /** 累计消耗王者水晶数量 */
+      z4l8: number;
+      /** 累计通过夺宝获取荣耀水晶数量 */
+      i7k8: number;
+      /** 累计消耗荣耀水晶数量 */
+      le99: number;
+
+      /** 累计通过夺宝获取英雄秘宝数量 */
+      j1p0: number;
+      /** 累计消耗英雄秘宝数量 */
+      fh87: number;
+      /** 累计通过夺宝获取勇者皮肤秘宝数量 */
+      j9t8: number;
+      /** 累计消耗勇者皮肤秘宝数量 */
+      qg40: number;
+      /** 累计通过夺宝获取史诗皮肤秘宝数量 */
+      vp92: number;
+      /** 累计消耗史诗皮肤秘宝数量 */
+      bj32: number;
+      /** 累计通过夺宝获取传说皮肤秘宝数量 */
+      hk57: number;
+      /** 累计消耗传说皮肤秘宝数量 */
+      zx89: number;
+      /** 累计通过夺宝获取限定皮肤秘宝数量 */
+      pv44: number;
+      /** 累计消耗限定皮肤秘宝数量 */
+      pe35: number;
+
+      /** 累计通过开宝箱获取自选英雄宝箱数量 */
+      kv13: number;
+      /** 累计消耗自选英雄宝箱数量 */
+      ip47: number;
+      /** 累计通过开宝箱获取自选勇者皮肤宝箱数量 */
+      mq70: number;
+      /** 累计消耗自选勇者皮肤宝箱数量 */
+      gq13: number;
+      /** 累计通过开宝箱获取自选史诗皮肤宝箱数量 */
+      j7a9: number;
+      /** 累计消耗自选史诗皮肤宝箱数量 */
+      r6u2: number;
+      /** 累计通过开宝箱获取自选传说皮肤宝箱数量 */
+      b66u: number;
+      /** 累计消耗自选传说皮肤宝箱数量 */
+      ua59: number;
+      /** 累计通过开宝箱获取自选限定皮肤宝箱数量 */
+      t84m: number;
+      /** 累计消耗自选限定皮肤宝箱数量 */
+      pm59: number;
+      //sj63: number;
+      //xc54: number;
+      //sm97: number;
+      //tx06: number;
+      //oy14: number;
+      //b6x0: number;
+      //st34: number;
+      //zx83: number;
+      //ql45: number;
+      //ko87: number;
+      //d9w5: number;
+    };
+    /** 夺宝信息 */
+    lottery: {
+      /** 英雄夺宝幸运值 */
+      hero_lucky: number;
+      /** 皮肤夺宝幸运值 */
+      skin_lucky: number;
+    };
+    /** 背包 */
+    knapsack: {
+      /** 已拥有的英雄 */
+      hero_list: Record<number, { exp: number }>;
+      /** 已拥有的英雄 */
+      skin_list: number[];
+      /** 物品列表 */
+      articles: Record<Game.PropKey, number>;
+    };
+    /** 补给信息 */
+    supply: {
+      /** 英雄夺宝补给信息 */
+      hero: {
+        /** 今日剩余补给数量 */
+        supply_remain_num: number;
+        /** 模式信息 */
+        mode?: Game.LotterySupply.Mode;
+        /** 补给开始时间戳 */
+        startTime: number;
+        /** 当前状态 */
+        status: Game.LotterySupply.Status;
+      };
+      /** 皮肤夺宝补给信息 */
+      skin: {
+        /** 今日剩余补给数量 */
+        supply_remain_num: number;
+        /** 模式信息 */
+        mode?: Game.LotterySupply.Mode;
+        /** 补给开始时间戳 */
+        startTime: number;
+        /** 当前状态 */
+        status: Game.LotterySupply.Status;
+      };
+    };
   }
 
   /** @description 基础类型 */

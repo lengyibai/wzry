@@ -8,7 +8,7 @@ import { MOUSE_TIP } from "@/config";
 
 const $epigraphStore = EpigraphStore();
 
-/* 返回铭文列表 */
+/** @description 返回铭文列表 */
 const handleList = () => {
   $epigraphStore.setStatus("LIST");
 };

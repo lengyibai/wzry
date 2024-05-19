@@ -1,12 +1,21 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { AudioStore, HeroStore, CollapseStore, SkinStore, EquipStore, AtlasStore } from "@/store";
+import {
+  AudioStore,
+  HeroStore,
+  SkinStore,
+  EquipStore,
+  AtlasStore,
+  HeroDebrisStore,
+  SkinDebrisStore,
+} from "@/store";
 import { vMouseTip } from "@/directives";
+import { useCollapse } from "@/hooks";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
-  type: "hero" | "skin" | "equip" | "atlas";
+  type: "hero" | "heroDebris" | "skin" | "skinDebris" | "equip" | "atlas";
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -16,12 +25,15 @@ const $emit = defineEmits<{
   change: [];
 }>();
 
-const $audioStore = AudioStore();
-const $skinStore = SkinStore();
 const $heroStore = HeroStore();
-const $collapseStore = CollapseStore();
-const $equipStore = EquipStore();
+const $skinStore = SkinStore();
 const $atlasStore = AtlasStore();
+const $audioStore = AudioStore();
+const $equipStore = EquipStore();
+const $skinDebrisStore = SkinDebrisStore();
+const $heroDebrisStore = HeroDebrisStore();
+
+const { collapse, setCollapse } = useCollapse();
 
 const hero_type: { name: Game.Hero.Profession; icon: string }[] = [
   { name: "全部", icon: "wzry-quanbu" },
@@ -47,39 +59,45 @@ const top = ref(0);
 
 /** 动态list */
 const list = computed(() =>
-  ["hero", "skin", "atlas"].includes($props.type) ? hero_type : equip_type,
+  ["hero", "heroDebris", "skin", "skinDebris", "atlas"].includes($props.type)
+    ? hero_type
+    : equip_type,
 );
 
 /** 用于比较的筛选类型 */
 const filter_type = computed(() => {
   const obj = {
     hero: $heroStore.profession,
+    heroDebris: $heroDebrisStore.profession,
     skin: $skinStore.profession,
+    skinDebris: $skinDebrisStore.profession,
     atlas: $atlasStore.profession,
     equip: $equipStore.category,
   };
   return obj[$props.type];
 });
 
-/* 选择类型并筛选显示 */
+/** @description 选择类型并筛选显示 */
 const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
   const obj = {
     hero: () => $heroStore.setProfessional(name as Game.Hero.Profession),
+    heroDebris: () => $heroDebrisStore.setProfessional(name as Game.Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Game.Hero.Profession),
+    skinDebris: () => $skinDebrisStore.setProfessional(name as Game.Hero.Profession),
     atlas: () => $atlasStore.setProfessional(name as Game.Hero.Profession),
     equip: () => $equipStore.setType(name as Game.Equip.Category),
   };
   obj[$props.type]();
 
   if (window.innerWidth < 960) {
-    $collapseStore.setCollapse(true);
+    setCollapse(true);
   }
 
   $emit("change");
   $audioStore.play();
 };
 
-/* 设置滑块位置 */
+/** @description 设置滑块位置 */
 const handleCoord = (e: Event) => {
   const el = e.target as HTMLElement;
   top.value = el.getBoundingClientRect().top - 75;
@@ -93,8 +111,8 @@ watch(filter_type, (v) => {
 </script>
 
 <template>
-  <transition name="sidebar" appear>
-    <div class="filter-sidebar" :class="{ collapse: $collapseStore.collapse }">
+  <transition name="to-left" appear>
+    <div class="filter-sidebar" :class="{ collapse: collapse }">
       <div
         v-for="(item, index) in list"
         :key="index"
@@ -111,7 +129,7 @@ watch(filter_type, (v) => {
 
       <!-- 滑块 -->
       <div
-        v-show="!$collapseStore.collapse"
+        v-show="!collapse"
         class="slider"
         :style="{
           top: top + 'px',

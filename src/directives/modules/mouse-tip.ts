@@ -5,7 +5,7 @@
 
 import type { Directive } from "vue";
 
-import { $mouseTip } from "@/utils";
+import { $mouseTip } from "@/utils/busTransfer";
 
 interface ElType extends HTMLElement {
   /** tip内容 */
@@ -49,6 +49,7 @@ const vMouseTip: Directive<ElType, Params> = {
     el.addEventListener("mouseleave", leaveFn);
     el.addEventListener("touchend", leaveFn);
   },
+
   updated(el, binding) {
     const { text, disabled, type } = binding.value || {};
     if (el._text === text) return;
@@ -62,6 +63,7 @@ const vMouseTip: Directive<ElType, Params> = {
       type,
     });
   },
+
   unmounted(el) {
     if (!el._show) return;
     $mouseTip.close();

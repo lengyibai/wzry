@@ -1,4 +1,4 @@
-import { $tool } from "@/utils";
+import { _promiseTimeout } from "@/utils/tool";
 
 /** @description FLIP查看图片 */
 export class ScaleFLIPImage {
@@ -15,8 +15,14 @@ export class ScaleFLIPImage {
   private startY!: number;
   private imgLoadCallback;
 
-  constructor(e: Event, main: HTMLElement, src: string, blur: string, imgLoadCallback: () => void) {
-    this.parent = e.target as HTMLElement;
+  constructor(
+    parent: HTMLElement | undefined,
+    main: HTMLElement,
+    src: string,
+    blur: string,
+    imgLoadCallback: () => void,
+  ) {
+    this.parent = parent || document.body;
     this.overlay = main;
     this.src = src;
     this.blur = blur;
@@ -30,59 +36,55 @@ export class ScaleFLIPImage {
 
   /* 创建图片 */
   private async createImage() {
-    await $tool.promiseTimeout(() => {
-      this.img = document.createElement("img");
-      this.img.style.width = "75%";
-      this.img.style.maxWidth = this.parent.offsetWidth + "px";
-      this.img.style.position = "absolute";
-      this.img.style.transition = "0.5s";
-      this.img.style.opacity = "0";
-      this.img.style.filter = "blur(var(--image-load-blur))";
-      this.img.style.transformOrigin = "left top";
-      this.img.style.left = this.parent.getBoundingClientRect().left + "px";
-      this.img.style.top = this.parent.getBoundingClientRect().top + "px";
-      this.img.src = this.blur;
-      this.overlay.appendChild(this.img);
-    });
+    await _promiseTimeout();
+    this.img = document.createElement("img");
+    this.img.style.width = "75%";
+    this.img.style.maxWidth = this.parent.offsetWidth + "px";
+    this.img.style.position = "absolute";
+    this.img.style.transition = "0.5s";
+    this.img.style.opacity = "0";
+    this.img.style.filter = "blur(var(--blur-image-load))";
+    this.img.style.transformOrigin = "left top";
+    this.img.style.left = this.parent.getBoundingClientRect().left + "px";
+    this.img.style.top = this.parent.getBoundingClientRect().top + "px";
+    this.img.src = this.blur;
+    this.overlay.appendChild(this.img);
 
-    await $tool.promiseTimeout(() => {
-      this.img.style.maxWidth = "75%";
-      this.img.style.left = `50%`;
-      this.img.style.top = `50%`;
-      this.img.style.opacity = "1";
-      this.img.style.transformOrigin = "center center";
-      this.img.style.transform = `translate(-50%,-50%) scale(${this.scale})`;
-      this.img.style.backgroundColor = "#1a1a1a";
-    }, 16.7);
+    await _promiseTimeout(16.7);
+    this.img.style.maxWidth = "75%";
+    this.img.style.left = `50%`;
+    this.img.style.top = `50%`;
+    this.img.style.opacity = "1";
+    this.img.style.transformOrigin = "center center";
+    this.img.style.transform = `translate(-50%,-50%) scale(${this.scale})`;
+    this.img.style.backgroundColor = "#1a1a1a";
 
-    await $tool.promiseTimeout(() => {
-      this.img.style.transition = "initial";
-      this.img.style.top = "initial";
-      this.img.style.left = "initial";
-      this.img.style.transform = `scale(${this.scale})`;
-    }, 750);
+    await _promiseTimeout(750);
+    this.img.style.transition = "initial";
+    this.img.style.top = "initial";
+    this.img.style.left = "initial";
+    this.img.style.transform = `scale(${this.scale})`;
 
-    await $tool.promiseTimeout(() => {
-      this.img.style.transition = "0.5s";
-    }, 16.7);
+    await _promiseTimeout(16.7);
+    this.img.style.transition = "0.5s";
 
-    await $tool.promiseTimeout(() => {
-      const coverImg = new Image();
-      coverImg.src = this.src;
+    await _promiseTimeout();
+    const coverImg = new Image();
+    coverImg.src = this.src;
 
-      coverImg.onload = () => {
-        this.img.src = this.src;
-        this.img.onload = () => {
-          this.img.style.filter = "blur(0)";
-          this.imgLoadCallback();
+    coverImg.onload = () => {
+      this.img.src = this.src;
+      this.img.onload = () => {
+        this.img.style.filter = "blur(0)";
+        this.imgLoadCallback();
 
-          setTimeout(() => {
-            this.img.style.transition = "0.25s";
-          }, 500);
-        };
+        setTimeout(() => {
+          this.img.style.transition = "0.25s";
+        }, 500);
       };
-      this.bindEvents();
-    });
+    };
+
+    this.bindEvents();
   }
 
   /* 绑定事件 */

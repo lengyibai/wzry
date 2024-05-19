@@ -15,14 +15,23 @@ const local = {
 };
 
 const remote = {
-  baseURL: import.meta.env.VITE_REMOTE_API_URL as string,
+  baseURL: import.meta.env.VITE_REMOTE_API_URL,
   timeout: 1000 * 600,
 };
 
+const resource = {
+  baseURL: import.meta.env.VITE_RESOURCE_URL,
+  timeout: 1000 * 600,
+  responseType: "blob",
+} as const;
+
+/* 本地JSON请求 */
 class LocaleHttp {
   private service: AxiosInstance;
   constructor(config: AxiosRequestConfig) {
     this.service = axios.create(config);
+
+    /* 请求拦截器 */
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
         config.url += `?temp=${dayjs().valueOf()}`;
@@ -33,7 +42,7 @@ class LocaleHttp {
       },
     );
 
-    /** @description 响应拦截器 */
+    /* 响应拦截器 */
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         return response.data;
@@ -44,17 +53,26 @@ class LocaleHttp {
     );
   }
 
-  Get<T = unknown>(url: string, params?: object, config?: AxiosRequestConfig): Promise<T> {
+  Get<T = unknown>(
+    url: string,
+    params?: object,
+    config?: AxiosRequestConfig,
+  ): Promise<ResultData<T>> {
     return this.service.get(url, { params, ...config });
   }
 }
+
+/* 远程JSON请求 */
 class RemoteHttp {
   private service: AxiosInstance;
   constructor(config: AxiosRequestConfig) {
     this.service = axios.create(config);
+
+    /** @description 请求拦截器 */
     this.service.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        config.url += `?temp=${dayjs().valueOf()}`;
+        //禁止请求的数据设置缓存
+        //config.url += `?temp=${dayjs().valueOf()}`;
         return config;
       },
       (error: AxiosError) => {
@@ -62,26 +80,12 @@ class RemoteHttp {
       },
     );
 
-    let err_status = false;
     /** @description 响应拦截器 */
     this.service.interceptors.response.use(
       (response: AxiosResponse) => {
         return response.data;
       },
       (error: AxiosError) => {
-        //如果是获取版本信息造成的报错，则不提醒
-        if (error.config?.url?.includes("version")) return;
-        if (error.code === "ERR_NETWORK" && !err_status) {
-          err_status = true;
-          const reset = confirm(
-            "检测到数据请求失败，如果你开启了VPN，请关闭，或尝试刷新浏览器，如果仍未解决，请点击【确定】清除本地数据，如果还未解决，请联系作者。",
-          );
-          if (reset) {
-            localStorage.clear();
-            location.reload();
-          }
-        }
-
         return Promise.reject(error);
       },
     );
@@ -120,7 +124,29 @@ class RemoteHttp {
   }
 }
 
+/* 远程静态资源 */
+class ResourceHttp {
+  private service: AxiosInstance;
+  constructor(config: AxiosRequestConfig) {
+    this.service = axios.create(config);
+    this.service.interceptors.request.use(
+      (config: InternalAxiosRequestConfig) => {
+        //config.url += `?temp=${dayjs().valueOf()}`;
+        return config;
+      },
+      (error: AxiosError) => {
+        return Promise.reject(error);
+      },
+    );
+  }
+
+  Get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<ResultData<T>> {
+    return this.service.get(url, { ...config });
+  }
+}
+
 const $LocaleHttp = new LocaleHttp(local);
 const $RemoteHttp = new RemoteHttp(remote);
+const $ResourceHttp = new ResourceHttp(resource);
 
-export { $LocaleHttp, $RemoteHttp };
+export { $LocaleHttp, $RemoteHttp, $ResourceHttp };

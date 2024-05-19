@@ -5,12 +5,14 @@ import { MusicStore } from "@/store";
 
 const $musicStore = MusicStore();
 
-/* 关闭播放列表 */
+/** @description 关闭播放列表 */
 const handleClose = () => {
   $musicStore.list();
 };
 
-/* 切换音乐 */
+/** @description 切换音乐
+ * @param index 音乐索引
+ */
 const handleToggleMusic = (index: number) => {
   if ($musicStore.bgmIndex === index) return;
   $musicStore.playIndex(index);

@@ -10,8 +10,15 @@ const routePath: Record<string, any> = {
   "@/views/Savor": () => import("@/views/Savor/index.vue"),
   "@/views/Equip": () => import("@/views/Equip/index.vue"),
   "@/views/Epigraph": () => import("@/views/Epigraph/index.vue"),
-  "@/views/SeizeTreasures": () => import("@/views/SeizeTreasures/index.vue"),
-  "@/views/System/views/Data": () => import("@/views/System/views/Data/index.vue"),
+  "@/views/Knapsack": () => import("@/views/Knapsack/index.vue"),
+  "@/views/Yibao": () => import("@/views/Yibao/index.vue"),
+  "@/views/Lottery/Hero": () => import("@/views/Lottery/Hero/index.vue"),
+  "@/views/Lottery/Skin": () => import("@/views/Lottery/Skin/index.vue"),
+  "@/views/Shop/Crystal/King": () => import("@/views/Shop/Crystal/King/index.vue"),
+  "@/views/Shop/Crystal/Honor": () => import("@/views/Shop/Crystal/Honor/index.vue"),
+  "@/views/Shop/Debris/Hero": () => import("@/views/Shop/Debris/Hero/index.vue"),
+  "@/views/Shop/Debris/Skin": () => import("@/views/Shop/Debris/Skin/index.vue"),
+  "@/views/Shop/Prop": () => import("@/views/Shop/Prop/index.vue"),
 };
 
 /** @description 将路由表转换成真实路由 */

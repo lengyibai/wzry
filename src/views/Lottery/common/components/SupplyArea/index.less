@@ -1,0 +1,92 @@
+.supply-area {
+  position: relative;
+  overflow: hidden;
+  width: 50%;
+  max-height: 100%;
+  border: 0.4375rem ridge var(--white-50);
+  aspect-ratio: 1/1;
+  background-color: #000;
+
+  .wzry-kaiguan,
+  .wzry-tingzhi {
+    position: absolute;
+    right: 50%;
+    bottom: 50%;
+    z-index: 4;
+    color: var(--white);
+    font-size: 3rem;
+    text-shadow: var(--t-shadow-c), var(--shine-10), var(--shine-50);
+    transition: 0.5s;
+    transform: translate(50%, 30%);
+
+    &:hover {
+      text-shadow: var(--t-shadow-c), var(--shine-10), var(--shine-20), var(--shine-35),
+        var(--shine-50);
+    }
+
+    &.active {
+      right: 0;
+      bottom: 0;
+      color: var(--red);
+      transform: translate(-30%, -20%);
+
+      &:hover {
+        text-shadow: var(--t-shadow-c), var(--shine-10), var(--shine-20), var(--shine-35),
+          var(--shine-50);
+      }
+    }
+  }
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: transparent;
+    font-size: 2rem;
+    background: linear-gradient(
+      -45deg,
+      var(--black) 0,
+      var(--black) 25%,
+      var(--white) 50%,
+      var(--black) 75%,
+      var(--black) 100%
+    );
+    background-clip: text;
+    background-size: 200%;
+    transform: translate(-50%, 50%);
+    animation: shine 2s linear infinite;
+
+    @keyframes shine {
+      0% {
+        background-position: 100%;
+      }
+
+      100% {
+        background-position: -100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1920px) {
+    --rate: 1;
+
+    border-width: calc(0.3646vw * var(--rate));
+
+    .wzry-kaiguan,
+    .wzry-tingzhi {
+      font-size: calc(2.5vw * var(--rate));
+    }
+
+    .text {
+      font-size: calc(1.6667vw * var(--rate));
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    --rate: 2;
+
+    flex-shrink: 0;
+    width: 100%;
+    max-height: 75%;
+  }
+}

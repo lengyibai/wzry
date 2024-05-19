@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { $concise } from "@/utils";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
+  /** loading宽度 */
   width: string;
+  /** loading主题色是否为白色 */
   white?: boolean;
 }
+
 withDefaults(defineProps<Props>(), {
   white: false,
 });
-
-const { getImgLink } = $concise;
 </script>
 
 <template>
@@ -22,8 +23,8 @@ const { getImgLink } = $concise;
       width: width,
     }"
   >
-    <img :src="getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
-    <img :src="getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
+    <img :src="_getImgLink('logo_inside')" alt="" class="inside" @dragstart.prevent />
+    <img :src="_getImgLink('logo_outside')" alt="" class="outside" @dragstart.prevent />
   </div>
 </template>
 

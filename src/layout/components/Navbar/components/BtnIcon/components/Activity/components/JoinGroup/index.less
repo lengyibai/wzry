@@ -1,0 +1,71 @@
+.join-group {
+  flex-shrink: 0;
+  height: calc(1750px + 100vh);
+
+  .activity-item {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    perspective: 62.5rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      box-shadow: 0 0 20rem 5rem #000 inset;
+      background-color: var(--black-25);
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .title {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      font-size: 5rem;
+      text-shadow: var(--t-shadow-f);
+      transition: 0.25s ease-out;
+    }
+
+    .reward {
+      position: absolute;
+      left: 2rem;
+      bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      margin-right: 2rem;
+      perspective: 62.5rem;
+      transform-style: preserve-3d;
+
+      .prop {
+        transition: 0.25s ease-out;
+      }
+    }
+
+    .tip {
+      .global_self-center();
+
+      position: absolute;
+      width: 50%;
+      padding: 2rem;
+      font-size: 2.5rem;
+      text-shadow: 0 0.125rem 0.25rem #000;
+    }
+
+    .qr-code {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      width: 12.5rem;
+      height: 12.5rem;
+      transition: 0.25s ease-out;
+    }
+  }
+}

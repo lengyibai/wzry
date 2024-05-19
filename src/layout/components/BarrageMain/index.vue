@@ -5,22 +5,24 @@ import _cloneDeep from "lodash/cloneDeep";
 import { useBarrages } from "./hooks/useBarrages";
 import { vDrag } from "./directives/drag";
 
-import { BarrageStore } from "@/store";
-import { $imageView, $tip, $tool } from "@/utils";
 import { vBlurLoad, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
-
-const $barrageStore = BarrageStore();
+import { $imageView, $tip } from "@/utils/busTransfer";
+import { _shuffleArray } from "@/utils/tool";
 
 const barragesRef = ref<HTMLElement>();
 const barrageInfoRef = ref<HTMLElement>();
 
-const { barrage_info, init, show_card } = useBarrages();
+const { barrages, getBarrages, barrage_info, init, show_card } = useBarrages();
 
-/* 查看图片 */
+/** @description 查看图片
+ * @param e 事件对象
+ * @param blur 模糊图片
+ * @param big 大图片
+ */
 const handleView = (e: Event, blur: string, big: string) => {
   $imageView({
-    event: e,
+    parent: e.target as HTMLElement,
     type: "DEFAULT",
     bigImage: big,
     blurImage: blur,
@@ -29,23 +31,20 @@ const handleView = (e: Event, blur: string, big: string) => {
 };
 
 watch(
-  () => $barrageStore.barrages,
+  () => barrages.value,
   (v) => {
     //监听弹幕数量，重新装填弹幕时会重新初始化弹幕
     if (v.length > 0) {
       nextTick(() => {
         if (!barragesRef.value || !barrageInfoRef.value) return;
-        init($tool.shuffleArray(_cloneDeep(v)), barragesRef.value, barrageInfoRef.value);
+        init(_shuffleArray(_cloneDeep(v)), barragesRef.value, barrageInfoRef.value);
       });
     }
-  },
-  {
-    deep: true,
   },
 );
 
 setTimeout(() => {
-  $barrageStore.getBarrages();
+  getBarrages();
   $tip({
     align: "left-top",
     text: SCENE_TIP.kr53,
@@ -83,7 +82,9 @@ setTimeout(() => {
             </div>
             <div class="voice-text">——{{ barrage_info.voiceText }}</div>
             <img
-              v-blur-load="barrage_info.skinPoster"
+              v-blur-load="{
+                img: barrage_info.skinPoster,
+              }"
               v-mouse-tip="{
                 text: MOUSE_TIP.o12u,
               }"

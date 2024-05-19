@@ -1,11 +1,11 @@
 /**
  * v-particle-effect
- * 从下往上的粒子特效
+ * 从从上往下及下往上的粒子特效
  */
 import type { Directive, DirectiveBinding } from "vue";
 import _debounce from "lodash/debounce";
 
-import { $tool } from "@/utils";
+import { _random } from "@/utils/tool";
 
 interface ElType extends HTMLElement {
   /** 启用 */
@@ -27,6 +27,10 @@ interface Params {
   enable: boolean;
   /** 是否从上到下 */
   down: boolean;
+  /** 速度，默认1000 */
+  speed: number;
+  /** 粒子消失区间 */
+  interval: number[];
 }
 
 /** @description 粒子特效 */
@@ -39,20 +43,26 @@ export class AnimateMove {
   private count!: number;
   /** 粒子颜色 */
   private colors!: string[];
+  /** 粒子消失区间 */
+  private interval!: number[];
   /** 粒子尺寸 */
   private size!: number;
+  /** 粒子尺寸 */
+  private speed!: number;
   /** 是否从上到下 */
   private down = false;
   /** 生成粒子计时器 */
   private timer!: NodeJS.Timeout;
 
   constructor(parent: HTMLElement, config: Params) {
-    const { count, colors, size, down } = config;
+    const { count, colors, size, down, speed, interval } = config;
     this.parent = parent;
     this.count = count;
     this.size = size;
     this.colors = colors;
     this.down = down;
+    this.speed = speed;
+    this.interval = interval;
 
     this.init();
   }
@@ -62,9 +72,9 @@ export class AnimateMove {
       /* 创建粒子 */
       for (let index = 0; index < this.count; index++) {
         const box = document.createElement("div");
-        const index = $tool.random(0, this.colors.length - 1);
+        const index = _random(0, this.colors.length - 1);
         const colors = this.colors[index];
-        const status = $tool.random(0, 1);
+        const status = _random(0, 1);
 
         box.style.cssText = `
           position: absolute;
@@ -103,9 +113,9 @@ export class AnimateMove {
   /** @description 播放动画 */
   private playAnimate(circle: HTMLElement) {
     //设置随机位置
-    const x = $tool.random(0, 100);
-    const size = $tool.random(this.size / 3, this.size);
-    const duration = (size * 1000) / 3;
+    const x = _random(0, 100);
+    const size = _random(this.size / 3, this.size);
+    const duration = (size * this.speed) / 3;
 
     circle.style.transition = "";
     circle.style.width = size / 16 + "rem";
@@ -128,7 +138,7 @@ export class AnimateMove {
         opacity ${duration * 0.5}ms linear,
         transform ${duration * 0.5}ms ease-out`;
 
-      const end = $tool.random(35, 100);
+      const end = _random(this.interval[0], this.interval[1]);
       if (this.down) {
         circle.style.opacity = "1";
         circle.style.bottom = -end + "%";
@@ -137,7 +147,7 @@ export class AnimateMove {
       }
 
       circle.style.transform = "translateZ(0)";
-      circle.style.left = $tool.random(x - 5, x + 5) + "%";
+      circle.style.left = _random(x - 5, x + 5) + "%";
 
       setTimeout(() => {
         circle.style.opacity = "0";
@@ -166,6 +176,8 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
         size = 8,
         enable = true,
         down = false,
+        speed = 1000,
+        interval = [35, 100],
       } = binding.value || {};
 
       if (!enable) return;
@@ -176,10 +188,13 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
         size,
         enable,
         down,
+        speed,
+        interval,
       });
     };
     el._fn(binding);
   },
+
   updated(el, binding) {
     if (binding?.value?.enable === false) {
       el._particle?.destroy();
@@ -190,6 +205,7 @@ const vParticleEffect: Directive<ElType, Partial<Params>> = {
       el._enable = true;
     }
   },
+
   unmounted(el) {
     el._particle?.destroy();
   },

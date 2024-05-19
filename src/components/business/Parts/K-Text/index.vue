@@ -1,5 +1,6 @@
 <script setup lang="ts">
 interface Props {
+  /** 文字 */
   text: string;
 }
 defineProps<Props>();

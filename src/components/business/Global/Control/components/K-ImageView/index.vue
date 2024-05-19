@@ -4,14 +4,16 @@ import { ref } from "vue";
 import { ScaleFLIPImage } from "./helper/ImageView";
 import VerticalScreen from "./components/VerticalScreen/index.vue";
 import LandscapeScreen from "./components/LandscapeScreen/index.vue";
+import { ImageView } from "./interface";
 
-import { $bus, $tool } from "@/utils";
-import { KLoadingIcon } from "@/components/business";
 import { AudioStore } from "@/store";
-import { MOUSE_TIP } from "@/config";
+import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { useResponsive } from "@/hooks";
-import type { ImageViewParams } from "@/utils/interface";
+import { KLoadingIcon } from "@/components/business";
+import { GAME_HERO, KVP_HERO } from "@/api";
+import { $bus } from "@/utils/eventBus";
+import { _AudioPlayer, _downloadImage } from "@/utils/tool";
 
 const $audioStore = AudioStore();
 
@@ -20,7 +22,7 @@ const { under_960 } = useResponsive();
 let scaleFLIPImage: ScaleFLIPImage;
 
 const mainRef = ref<HTMLElement>();
-const info = ref<ImageViewParams>();
+const info = ref<ImageView>();
 
 /** 是否显示主页面 */
 const show = ref(false);
@@ -33,20 +35,67 @@ const playing = ref(false);
 /** 语音时长 */
 const duration = ref(0);
 
-$bus.on("img-view", (v) => {
+$bus.on("img-view", async (v) => {
+  const { type, id } = v;
+
+  if (type === "SKIN" && id) {
+    const hero = (await GAME_HERO.getHeroKvp())[id];
+    const skin = (await GAME_HERO.getSkinKvp())[id];
+
+    //如果找不到皮肤，则为原皮
+    if (skin) {
+      const { posterBig, posterBlur, name, heroName, hero } = skin;
+      const voices = (await GAME_HERO.getSkinVoice(hero, name)).voice;
+      const heroAvatar = (await KVP_HERO.getHeroAvatarKvp())[hero];
+
+      info.value = {
+        ...v,
+        bigImage: posterBig,
+        blurImage: posterBlur,
+        heroAvatar,
+        heroName,
+        voices,
+      };
+
+      handlePlay(voices[0].link, 0);
+    } else {
+      const { posterBig, posterBlur, name, avatar } = hero;
+      const voices = (await GAME_HERO.getSkinVoice(id, "原皮")).voice;
+
+      info.value = {
+        ...v,
+        bigImage: posterBig,
+        blurImage: posterBlur,
+        heroAvatar: avatar,
+        heroName: name,
+        voices,
+      };
+
+      handlePlay(voices[0].link, 0);
+    }
+  } else {
+    info.value = v;
+  }
+
   status.value = "loading";
   show.value = true;
   close.value = false;
-  info.value = v;
-  scaleFLIPImage = new ScaleFLIPImage(v.event, mainRef.value!, v.bigImage, v.blurImage, () => {
-    status.value = "finish";
-  });
+
+  scaleFLIPImage = new ScaleFLIPImage(
+    info.value.parent,
+    mainRef.value!,
+    info.value.bigImage!,
+    info.value.blurImage!,
+    () => {
+      status.value = "finish";
+    },
+  );
 });
 
 /** 当前播放索引 */
 const current_index = ref(-1);
 /** 语音播放器 */
-const audioPlayer = new $tool.AudioPlayer({
+const audioPlayer = new _AudioPlayer({
   volume: 0.25,
   end() {
     current_index.value = -1;
@@ -81,7 +130,7 @@ const handleHide = () => {
 
 /* 下载图片 */
 const handleDownload = () => {
-  $tool.downloadImage(info.value!.bigImage, info.value!.skinName!);
+  _downloadImage(info.value!.bigImage!, info.value!.skinName!);
 };
 </script>
 
@@ -101,7 +150,7 @@ const handleDownload = () => {
           </transition>
         </div>
 
-        <transition name="close" appear>
+        <transition name="right-top-close" appear>
           <div
             v-show="show"
             v-mouse-tip="{
@@ -113,7 +162,7 @@ const handleDownload = () => {
         </transition>
 
         <!-- 下载图片或查看语音 -->
-        <template v-if="show && info?.type === 'HERO'">
+        <template v-if="show && info?.type === 'SKIN'">
           <VerticalScreen
             v-if="under_960"
             :current-index="current_index"
@@ -137,14 +186,14 @@ const handleDownload = () => {
           <div v-show="show" class="tool">
             <i
               v-mouse-tip="{
-                text: MOUSE_TIP.n1w6,
+                text: $mouseTipText('n1w6', { v: '放大' }),
               }"
               class="iconfont wzry-fangda"
               @click="scaleFLIPImage.zoomIn"
             ></i>
             <i
               v-mouse-tip="{
-                text: MOUSE_TIP.nz58,
+                text: $mouseTipText('n1w6', { v: '缩小' }),
               }"
               class="iconfont wzry-suoxiao"
               @click="scaleFLIPImage.zoomOut"

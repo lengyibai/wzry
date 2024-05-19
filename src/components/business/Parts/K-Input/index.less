@@ -1,11 +1,12 @@
-.form-input {
-  --border-color: #fff;
-  --color: #fff;
+.k-input {
+  --align: center;
+  --border-color: var(--theme-border-color-two);
+  --color: var(--theme-font-color-three);
+  --font-size: 1.75rem;
   --padding-left: 0;
-  --font-size: 1.625rem;
-  --width: initial;
-  --align: left;
-  --placeholder-color: initial;
+  --padding-right: 0;
+  --placeholder-color: var(--theme-font-color-one);
+  --width: 17em;
 
   position: relative;
   display: flex;
@@ -15,6 +16,7 @@
     width: 100%;
     padding: 0 0.25em;
     padding-left: var(--padding-left);
+    padding-right: var(--padding-right);
     border: none;
     border-color: var(--border-color);
     border-bottom-style: solid;
@@ -41,7 +43,6 @@
     height: 1px;
     background-color: var(--red);
     transition: all 0.5s;
-    transform: translateY(1px);
   }
 
   .focus {
@@ -74,4 +75,15 @@
 .tip-enter-active,
 .tip-leave-active {
   transition: all 0.25s;
+}
+
+/* 输入框线条 */
+.border-leave-active,
+.border-enter-active {
+  transition: all 0.5s;
+}
+
+.border-enter-from,
+.border-leave-active {
+  width: 0% !important;
 }

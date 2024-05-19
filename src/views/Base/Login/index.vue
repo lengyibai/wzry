@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { storeToRefs } from "pinia";
 
 import RegLogin from "./components/RegLogin/index.vue";
 import Notice from "./components/Notice/index.vue";
@@ -8,19 +7,14 @@ import Team from "./components/Team/index.vue";
 import ToolBar from "./components/ToolBar/index.vue";
 import DownLoad from "./components/DownLoad/index.vue";
 
-import { SettingStore } from "@/store";
-import { $concise } from "@/utils";
 import { KVideo } from "@/components/business";
 import { useStaticResourceVersion } from "@/hooks";
+import { _getHtmlLink, _getImgLink, _getVideoLink } from "@/utils/concise";
 
-const $settingStore = SettingStore();
+const { video_home_version } = useStaticResourceVersion();
 
-const { config } = storeToRefs($settingStore);
-
-const { getImgLink, getVideoLink, getHtmlLink } = $concise;
-
-const { login_video_bg_version } = useStaticResourceVersion();
-
+/** 静音 */
+const muted = ref(false);
 /** 显示公告 */
 const show_notice = ref(false);
 /** 显示开黑 */
@@ -28,7 +22,7 @@ const show_team = ref(false);
 /** 数据下载完成 */
 const finish = ref(false);
 
-/* 隐藏注册登录盒子 */
+/** 隐藏注册登录盒子 */
 const hideRegLogin = computed(() => !finish.value || show_notice.value || show_team.value);
 
 /**
@@ -37,8 +31,13 @@ const hideRegLogin = computed(() => !finish.value || show_notice.value || show_t
  */
 const onToolType = (v: string) => {
   if (v === "readme") {
-    open(getHtmlLink("readme"));
+    open(_getHtmlLink("readme"));
   }
+
+  if (v === "sound") {
+    muted.value = !muted.value;
+  }
+
   show_notice.value = v === "notice";
   show_team.value = v === "team";
 };
@@ -51,7 +50,7 @@ setTimeout(() => {
 <template>
   <div class="login">
     <div class="login__logo">
-      <img :src="getImgLink('logo')" alt="" />
+      <img :src="_getImgLink('logo')" alt="" />
     </div>
 
     <!-- 登录注册盒子 -->
@@ -71,17 +70,17 @@ setTimeout(() => {
 
     <!-- 图片背景 -->
     <img
-      v-if="login_video_bg_version"
+      v-if="video_home_version"
       class="bg"
-      :src="$concise.getImgLink('/login_bg', 'jpg', login_video_bg_version)"
+      :src="_getImgLink('login_bg', video_home_version, 'jpg')"
       alt=""
     />
 
     <!-- 视频背景 -->
     <KVideo
-      v-if="finish && login_video_bg_version"
-      :link="getVideoLink('login_bg', login_video_bg_version)"
-      :muted="config.muted"
+      v-if="finish && video_home_version"
+      :link="_getVideoLink('login_bg', video_home_version)"
+      :muted="muted"
     />
   </div>
 </template>

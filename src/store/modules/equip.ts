@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { reactive, ref } from "vue";
 
-import { top, height } from "../helper";
+import { top, height } from "../helper/equipStore";
 import type { EquipStoreType } from "../interface";
 
-import { $tool } from "@/utils";
 import { GAME_EQUIP, KVP_EQUIP } from "@/api";
+import { _promiseTimeout } from "@/utils/tool";
 
 /** @description 装备相关 */
 const EquipStore = defineStore("equip", () => {
@@ -68,9 +68,11 @@ const EquipStore = defineStore("equip", () => {
     vertical_line,
   } = ExposeData;
 
-  /* 添加合成组 */
-  const addSynthetic = (synthetic: Remote.Equip.Synthetic) => {
-    /* 当点击的是第一列 */
+  /** @description 添加合成组
+   * @param synthetic 合成组
+   */
+  const addSynthetic = async (synthetic: Remote.Equip.Synthetic) => {
+    //当点击的是第一列
     if (active_array[1] === "1") {
       //获取第一列id组
       synthetic_id.value[0][0] = synthetic;
@@ -81,7 +83,7 @@ const EquipStore = defineStore("equip", () => {
       if (synthetic.to) {
         for (let i = 0; i < synthetic.to.length; i++) {
           const to = synthetic.to![i];
-          const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
+          const res = (await KVP_EQUIP.getEquipSyntheticKvp())[to.id];
           synthetic_id.value[1].push(res);
         }
       }
@@ -93,7 +95,7 @@ const EquipStore = defineStore("equip", () => {
       synthetic_id.value[2] = [];
       for (let i = 0; i < synthetic_id.value[1].length; i++) {
         const to = synthetic_id.value[1][i];
-        const res = KVP_EQUIP.getEquipSyntheticKvp()[to.id];
+        const res = (await KVP_EQUIP.getEquipSyntheticKvp())[to.id];
         res?.to &&
           synthetic_id.value[2].push(...res.to.map((item) => ({ id: item.id, name: item.value })));
         synthetic_id.value[2].sort((a, b) => a.id - b.id);
@@ -125,7 +127,7 @@ const EquipStore = defineStore("equip", () => {
       }
     }
 
-    /* 当点击的是第二列 */
+    //当点击的是第二列
     if (active_array[1] === "2") {
       //获取第二列id组
       synthetic_id.value[1][0] = synthetic;
@@ -136,7 +138,7 @@ const EquipStore = defineStore("equip", () => {
       if (synthetic.need) {
         for (let i = 0; i < synthetic.need.length; i++) {
           const need = synthetic.need![i];
-          const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
+          const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need.id];
           synthetic_id.value[0].push(res);
         }
       }
@@ -175,7 +177,7 @@ const EquipStore = defineStore("equip", () => {
       }
     }
 
-    /* 当点击的是第三列 */
+    //当点击的是第三列
     if (active_array[1] === "3") {
       //获取第二列id组
       synthetic_id.value[2][0] = synthetic;
@@ -184,7 +186,7 @@ const EquipStore = defineStore("equip", () => {
       synthetic_id.value[1] = [];
       for (let i = 0; i < synthetic.need!.length; i++) {
         const need = synthetic.need![i];
-        const res = KVP_EQUIP.getEquipSyntheticKvp()[need.id];
+        const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need.id];
         synthetic_id.value[1].push(res);
       }
 
@@ -198,7 +200,7 @@ const EquipStore = defineStore("equip", () => {
         const need = synthetic_id.value[1][i].need;
         if (need) {
           for (let i = 0; i < need?.length; i++) {
-            const res = KVP_EQUIP.getEquipSyntheticKvp()[need[i].id];
+            const res = (await KVP_EQUIP.getEquipSyntheticKvp())[need[i].id];
             synthetic_id.value[0].push(res);
           }
         }
@@ -230,7 +232,7 @@ const EquipStore = defineStore("equip", () => {
     }
   };
 
-  /* 清空合成组 */
+  /** @description 清空合成组 */
   const clearSynthetic = () => {
     vertical_line.value = [{}, { top: "0", height: "0" }, { top: "0", height: "0" }];
     synthetic_id.value = [[], [], []];
@@ -238,8 +240,8 @@ const EquipStore = defineStore("equip", () => {
 
   const ExposeMethods = {
     /** @description 获取装备列表 */
-    getEquipList() {
-      equip_list = GAME_EQUIP.getEquip();
+    async getEquipList() {
+      equip_list = await GAME_EQUIP.getEquip();
 
       //将装备分类
       equip_list.forEach((item: Game.Equip.Data) => {
@@ -248,12 +250,16 @@ const EquipStore = defineStore("equip", () => {
 
       ExposeMethods.setType("攻击");
     },
-    /** @description 存储列表所有装备Dom元素及相关信息 */
+    /** @description 存储列表所有装备Dom元素及相关信息
+     * @param data 装备Dom元素信息
+     */
     setEquipElement(data: EquipStoreType.Element) {
       equip_element.push(data);
     },
 
-    /** @description 设置装备类型 */
+    /** @description 设置装备类型
+     * @param type 装备类型
+     */
     async setType(type: Game.Equip.Category) {
       //避免重复点击调用
       if (category.value === type) return;
@@ -263,18 +269,18 @@ const EquipStore = defineStore("equip", () => {
       equip_list_column.value = type_list[type];
 
       //每次切换装备类型，延迟显示列表及详情
-      await $tool.promiseTimeout(() => {
-        category.value = type;
-        show_details.value = false;
-      }, 200);
+      await _promiseTimeout(200);
+      category.value = type;
+      show_details.value = false;
 
-      await $tool.promiseTimeout(() => {
-        this.setEquipActive(Number(type_index[type] + "11"));
-      }, 500);
+      await _promiseTimeout(500);
+      this.setEquipActive(Number(type_index[type] + "11"));
     },
 
-    /** @description 点击的装备id */
-    setEquipActive(id = 0) {
+    /** @description 点击的装备id
+     * @param id 装备id
+     */
+    async setEquipActive(id = 0) {
       clearSynthetic();
 
       //如果再次点击了装备，则重置
@@ -288,7 +294,7 @@ const EquipStore = defineStore("equip", () => {
       show_details.value = true;
       active_data.value = equip_list.find((item) => item.id === id);
 
-      const res = KVP_EQUIP.getEquipSyntheticKvp()[id];
+      const res = (await KVP_EQUIP.getEquipSyntheticKvp())[id];
       if (!res) return;
       active_array = res.id.toString().split("") || [];
       synthetic.value = res;

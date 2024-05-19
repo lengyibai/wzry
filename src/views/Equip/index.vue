@@ -20,7 +20,7 @@ const equipMainRef = ref<HTMLElement>();
 
 $equipStore.getEquipList();
 
-/* 点击筛选后触发返回顶部 */
+/** @description 点击筛选后触发返回顶部 */
 const onChangeFilter = () => {
   setTimeout(() => {
     equipMainRef.value?.scroll({ top: 0 });
@@ -34,15 +34,13 @@ onActivated(() => {
 
 <template>
   <div class="equip">
-    <transition name="fade" appear>
-      <div ref="equipMainRef" v-scroll-virtualization class="equip__main">
-        <!-- 装备详情 -->
-        <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
+    <div ref="equipMainRef" v-scroll-virtualization class="equip-main">
+      <!-- 装备详情 -->
+      <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 
-        <!-- 装备列表 -->
-        <EquipList ref="equipListRef" />
-      </div>
-    </transition>
+      <!-- 装备列表 -->
+      <EquipList ref="equipListRef" />
+    </div>
 
     <!-- 装备侧边栏 -->
     <FilterSidebar type="equip" @change="onChangeFilter" />

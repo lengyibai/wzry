@@ -1,15 +1,15 @@
 import { KVP_EPIGRAPH, KVP_TYPE, LOCAL_EPIGRAPH } from "@/api";
 
 /** @description 获取铭文列表 */
-export const getEpigraph = () => {
-  const epigraph_ids = LOCAL_EPIGRAPH.getEpigraphList();
-  const epigraph_color_kvp = KVP_EPIGRAPH.getEpigraphColorKvp();
-  const epigraph_effect_kvp = KVP_EPIGRAPH.getEpigraphEffectKvp();
-  const epigraph_image_kvp = KVP_EPIGRAPH.getEpigraphImageKvp();
-  const epigraph_name_kvp = KVP_EPIGRAPH.getEpigraphNameKvp();
-  const epigraph_type_kvp = KVP_EPIGRAPH.getEpigraphTypeKvp();
-  const type_epigraph_kvp = KVP_TYPE.getEpigraphKvp();
-  const type_epigraph_effect_kvp = KVP_TYPE.getEpigraphEffectKvp();
+export const getEpigraph = async () => {
+  const epigraph_ids = await LOCAL_EPIGRAPH.getEpigraphList();
+  const epigraph_color_kvp = await KVP_EPIGRAPH.getEpigraphColorKvp();
+  const epigraph_effect_kvp = await KVP_EPIGRAPH.getEpigraphEffectKvp();
+  const epigraph_image_kvp = await KVP_EPIGRAPH.getEpigraphImageKvp();
+  const epigraph_name_kvp = await KVP_EPIGRAPH.getEpigraphNameKvp();
+  const epigraph_type_kvp = await KVP_EPIGRAPH.getEpigraphTypeKvp();
+  const type_epigraph_kvp = await KVP_TYPE.getEpigraphKvp();
+  const type_epigraph_effect_kvp = await KVP_TYPE.getEpigraphEffectKvp();
 
   //整合数据
   const epigraph_list: Game.Epigraph.Data[] = [];

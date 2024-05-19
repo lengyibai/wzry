@@ -5,7 +5,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { EpigraphCollocationStore } from "./epigraphCollocation";
 
 import { GAME_EPIGRAPH } from "@/api";
-import { $tool } from "@/utils";
+import { _search } from "@/utils/tool";
 
 /** @description 铭文相关 */
 const EpigraphStore = defineStore("epigraph", () => {
@@ -25,13 +25,16 @@ const EpigraphStore = defineStore("epigraph", () => {
   };
   const { epigraph_list, filter_list, type, color, status } = ExposeData;
 
-  /* 设置铭文列表 */
+  /**
+   * @description 设置铭文列表
+   * @param data 铭文列表
+   */
   const setEpigraphList = (data: Game.Epigraph.Data[]) => {
     epigraph_list.value = data;
     ExposeMethods.setFilter("全部");
   };
 
-  /* 一键排序 */
+  /** @description 一键排序 */
   const sortAll = () => {
     /** 类型筛选 */
     const filterType = () => {
@@ -64,31 +67,39 @@ const EpigraphStore = defineStore("epigraph", () => {
   };
 
   const ExposeMethods = {
-    /** @description 设置显示铭文列表还是铭文搭配 */
+    /** @description 设置显示铭文列表还是铭文搭配
+     * @param v 设置铭文页显示组件类型
+     */
     setStatus(v: "LIST" | "COLLOCATION") {
       status.value = v;
     },
     /** @description 获取铭文列表 */
-    getEpigraph() {
-      const res = GAME_EPIGRAPH.getEpigraph();
+    async getEpigraph() {
+      const res = await GAME_EPIGRAPH.getEpigraph();
       setEpigraphList(res);
       $epigraphCollocationStore.setEpigraphListInventory(res);
     },
 
-    /** @description 筛选显示 */
+    /** @description 筛选显示
+     * @param v 铭文类型
+     */
     setFilter(v: Game.Epigraph.Category) {
       type.value = v;
       sortAll();
     },
 
-    /** @description 筛选颜色 */
+    /** @description 筛选颜色
+     * @param v 铭文颜色
+     */
     filterColor(v?: Game.Epigraph.Data["color"]) {
       if (color.value === v) return;
       color.value = v;
       sortAll();
     },
 
-    /** @description 搜索铭文 */
+    /** @description 搜索铭文
+     * @param v 铭文名称
+     */
     searchEpigraph(v: string) {
       /* 搜索铭文时重置下拉菜单 */
       type.value = "全部";
@@ -96,7 +107,7 @@ const EpigraphStore = defineStore("epigraph", () => {
 
       //如果搜索的值不为空，则进行搜索，否则重新排序
       if (v) {
-        filter_list.value = $tool.search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, [
+        filter_list.value = _search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, [
           "name",
         ]);
       }

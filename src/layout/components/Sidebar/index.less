@@ -3,25 +3,14 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  overflow: hidden;
   width: 15rem;
-  height: 100%;
+  height: calc(100% - 5rem);
+  margin-right: 1.25rem;
   transition: all 0.5s;
 
-  .slider {
-    position: absolute;
-    width: 100%;
-    height: 4.6875rem;
-    background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 10%, rgb(34 130 199 / 35%) 100%);
-    transition: all 0.5s;
-    transform: translateY(-0.625rem);
-    pointer-events: none;
-    -webkit-mask: linear-gradient(
-      transparent 0,
-      #000 0.9375rem,
-      #000 calc(100% - 0.9375rem),
-      transparent 100%
-    );
+  &-list {
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -37,7 +26,7 @@
 
     .iconfont {
       margin-right: 0.625rem;
-      color: var(--theme-font-color-four);
+      color: var(--theme-font-color-three);
       font-size: 3.125rem;
     }
 
@@ -45,13 +34,4 @@
       display: none;
     }
   }
-}
-
-.sidebar-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.sidebar-enter-active {
-  transition: 0.5s;
 }

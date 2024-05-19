@@ -1,0 +1,76 @@
+.hero-skin-head-img {
+  .global_flex-center();
+
+  position: relative;
+  width: 10.9375rem;
+  height: 10.9375rem;
+  transform: translateX(-80%) translateY(-200%) scale(3);
+  opacity: 0;
+
+  .show-skin {
+    .global_flex-center();
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: var(--d-shadow-d);
+
+    &.clone {
+      filter: blur(0.3125rem) brightness(150%);
+    }
+  }
+
+  .skin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 4.6875rem;
+    height: 4.6875rem;
+    transition: all 1s;
+    transform: translate(3.125rem, 3.125rem);
+    transform-origin: center center;
+
+    &.absent {
+      filter: grayscale(75%) brightness(35%);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      filter: var(--d-shadow-b);
+      pointer-events: none;
+    }
+  }
+}
+
+.into {
+  animation: into 1s forwards;
+
+  @keyframes into {
+    100% {
+      transform: translateX(-50%) translateY(-60%) scale(1);
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .hero-skin-head-img {
+    transform: translateX(0) translateY(-200%) scale(3);
+  }
+
+  .into {
+    @keyframes into {
+      100% {
+        transform: translateX(0) translateY(-60%) scale(1);
+        opacity: 1;
+      }
+    }
+  }
+}

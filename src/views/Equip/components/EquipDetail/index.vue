@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { KText } from "@/components/business";
+import { _getMiscLink } from "@/utils/concise";
 
 interface Props {
   /** 装备 */
@@ -38,7 +39,13 @@ const abbreviations: Record<string, string> = {
       <!-- 数值信息 -->
       <div class="info">
         <div v-for="(item, index) in equip.effect" :key="index" class="effect">
-          <div class="icon" :class="abbreviations[item.name]"></div>
+          <div
+            class="icon"
+            :style="{
+              backgroundImage: `url(${_getMiscLink('equip_effect')})`,
+            }"
+            :class="abbreviations[item.name]"
+          ></div>
           <span class="num">+{{ item.num }} <KText :text="item.name" /></span>
         </div>
       </div>

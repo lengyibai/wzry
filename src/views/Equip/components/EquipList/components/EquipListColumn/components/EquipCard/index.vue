@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { vBlurLoad, vAnimateNumber, vMouseTip } from "@/directives";
+import { vAnimateNumber, vMouseTip } from "@/directives";
 import { AudioStore, EquipStore } from "@/store";
+import { KLoadingRadiate } from "@/components/business";
 
 interface Props {
   /** 装备信息 */
@@ -18,7 +19,6 @@ const $props = defineProps<Props>();
 const $equipStore = EquipStore();
 const $audioStore = AudioStore();
 
-const iconRef = ref<HTMLElement>();
 const priceRef = ref<HTMLElement>();
 
 /** 获取点击的装备id */
@@ -26,7 +26,7 @@ const active_id = computed(() => $equipStore.active_id);
 /** 装备文字是否开启柔光 */
 const shine = computed(() => $props.leftLine || $props.rightLine);
 
-/* 查看装备详情 */
+/** @description 查看装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive($props.equip.id);
   $audioStore.play("n4r4");
@@ -36,12 +36,17 @@ const handleDetail = () => {
 <template>
   <div v-mouse-tip class="equip-card" @click="handleDetail">
     <!-- 选中圆圈 -->
-    <transition name="border-fade">
-      <div v-show="active_id === equip.id" class="border"></div>
+    <transition name="fade">
+      <div v-show="active_id === equip.id" class="round"></div>
     </transition>
 
     <!-- 装备图标 -->
-    <img ref="iconRef" v-blur-load="equip.icon" :src="equip.iconBlur" alt="" />
+    <KLoadingRadiate
+      class="k-loading-radiate"
+      :link="equip.icon"
+      width="4.6875rem"
+      height="4.6875rem"
+    />
 
     <!-- 左线 -->
     <transition name="left-line">

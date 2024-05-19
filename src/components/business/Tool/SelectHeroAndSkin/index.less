@@ -1,6 +1,12 @@
 .select-hero-and-skin {
   position: relative;
 
+  &.black {
+    .select-list {
+      background-color: var(--black);
+    }
+  }
+
   .select-box {
     position: relative;
     display: flex;
@@ -8,19 +14,9 @@
     align-items: center;
 
     .k-input {
-      --width: 17rem;
-      --font-size: 1.75rem;
-      --align: center;
-      --placeholder-color: var(--theme-font-color-two);
-      --border-color: var(--theme-border-color-two);
-      --color: var(--theme-font-color-four);
+      --padding-right: 2rem;
 
       margin-left: auto;
-      padding: 0.625rem;
-
-      &:deep(input) {
-        padding-right: 2rem;
-      }
     }
 
     .arrow {
@@ -46,7 +42,7 @@
     height: 18.75rem;
     border-radius: 0.3125rem;
     outline: 1px solid var(--theme-border-color-three);
-    background-color: var(--theme-el-color-seven);
+    background-color: var(--theme-el-color-five);
     transition: all 0.25s;
     transform: translateY(100%);
     transform-origin: top center;
@@ -56,7 +52,7 @@
       position: relative;
       width: 100%;
       padding: 0.9375rem;
-      color: var(--theme-font-color-seven);
+      color: var(--theme-font-color-five);
       text-align: left;
 
       .item {
@@ -65,7 +61,7 @@
       }
 
       &:hover {
-        color: var(--theme-font-color-three) !important;
+        color: var(--theme-font-color-two) !important;
         background-color: rgb(35 60 91 / 50%) !important;
 
         .item {

@@ -3,48 +3,13 @@
   display: flex;
   margin-bottom: 1.5625rem;
 
-  .border {
-    position: absolute;
-    left: 0;
-    z-index: 1;
-    overflow: hidden;
-    width: 4.6875rem;
-    height: 4.6875rem;
-    border: 0.3125rem solid #fef5b2;
-    border-radius: 50%;
-    box-shadow:
-      var(--shine-20) #fef5b2,
-      var(--shine-10) #fef5b2 inset;
-    pointer-events: none;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      border-style: solid;
-      border-width: 0.625rem;
-      transform: translateX(-50%);
-      box-sizing: border-box;
-    }
-
-    &::before {
-      top: -0.25rem;
-      border-color: #fff498 transparent transparent;
-    }
-
-    &::after {
-      bottom: -0.25rem;
-      border-color: transparent transparent #fff498;
-    }
+  .round {
+    .global_selected-shine-circle(4.6875rem);
   }
 
-  img {
-    width: 4.6875rem;
-    height: 4.6875rem;
+  .k-loading-radiate {
     margin-right: 0.3125rem;
     border: 0.1875rem solid var(--theme-border-color-one);
-    border-radius: 50%;
   }
 
   .left-line {
@@ -76,10 +41,9 @@
   }
 
   .box {
-    color: var(--theme-font-color-seven);
+    color: var(--theme-font-color-five);
     font-size: 1.25rem;
     text-shadow: var(--t-shadow-e);
-    line-height: 1.25;
 
     .name {
       font-size: inherit;
@@ -96,31 +60,18 @@
       transform: translateY(0.9375rem);
 
       .desc {
-        color: var(--theme-font-color-five);
+        color: var(--theme-font-color-four);
         font-size: 1rem;
         transition: inherit;
       }
 
       .price {
-        color: var(--theme-font-color-four);
+        color: var(--theme-font-color-three);
         font-size: 1rem;
         transition: inherit;
       }
     }
   }
-}
-
-.border-fade-enter-from,
-.border-fade-leave-to {
-  opacity: 0;
-}
-
-.border-fade-enter-active {
-  transition: all 0.25s;
-}
-
-.border-fade-leave-active {
-  transition: all 0.25s;
 }
 
 /* 左边 */

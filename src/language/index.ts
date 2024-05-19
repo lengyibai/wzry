@@ -24,7 +24,9 @@ const i18n = createI18n({
 
 const { setLocaleMessage, locale, t } = i18n.global;
 
-/** @description 设置语言 */
+/** @description 设置语言
+ * @param index 语言类型索引
+ */
 const setLanguage = (index: 0 | 1 | 2) => {
   const langs = ["zh", "en"];
   const lang = langs[index];

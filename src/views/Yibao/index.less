@@ -1,0 +1,28 @@
+.yi-bao {
+  .common_app-main-child();
+
+  flex-direction: column;
+
+  .top {
+    z-index: 1;
+    display: flex;
+    flex-grow: 1;
+    min-height: 0;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-right: 2rem;
+    }
+
+    .right {
+      display: flex;
+    }
+  }
+
+  .bottom {
+    flex-shrink: 0;
+    height: 9.375rem;
+  }
+}

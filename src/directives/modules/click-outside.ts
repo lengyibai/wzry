@@ -18,7 +18,11 @@ interface Params {
   outside: () => void;
 }
 
-/** 递归对比元素的祖先元素是否与指定元素相同 */
+/**
+ * @description 递归判断是否点击的父容器的元素
+ * @param el 容器元素
+ * @param clickEl 点击的元素
+ */
 const classNameInclude = (el: HTMLElement, clickEl: HTMLElement): boolean => {
   if (el === clickEl) return true;
   if (clickEl.parentElement) return classNameInclude(el, clickEl.parentElement);

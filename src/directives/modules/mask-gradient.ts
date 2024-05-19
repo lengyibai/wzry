@@ -27,7 +27,10 @@ const vMaskGradient: Directive<HTMLElement, Partial<Params>> = {
     const mask = document.createElement("div");
     mask.style.cssText = `
     position: absolute;
-    inset:0;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     background-image: linear-gradient(${rotate}, ${color} ${start}, transparent ${end});
     pointer-events: none;
     `;

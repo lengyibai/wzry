@@ -1,9 +1,7 @@
 import { defineStore } from "pinia";
 import _debounce from "lodash/debounce";
 
-import { $concise } from "@/utils";
-
-const { getAudioLink } = $concise;
+import { _getAudioLink } from "@/utils/concise";
 
 /** @description 点击音效 */
 const AudioStore = defineStore("audio", () => {
@@ -11,7 +9,7 @@ const AudioStore = defineStore("audio", () => {
   let volume = 0.5;
   /** 启用音效 */
   let status = true;
-  /* 音效类型 */
+  /** 音效类型 */
   const sound_type: Global.Audio.Key = {
     gz76: "atlas",
     bq69: "activity",
@@ -40,6 +38,22 @@ const AudioStore = defineStore("audio", () => {
     n4r4: "tab",
     rt25: "tip",
     p6q3: "warning",
+    o7r6: "raffle",
+    jo36: "raffle_obtain",
+    fz02: "knapsack",
+    h3w0: "store",
+    bg51: "receipt",
+    o3l2: "shop",
+    wm14: "activate",
+    //jy55: "",
+    //hy43: "",
+    //pk92: "",
+    //au63: "",
+    //gk90: "",
+    //e90x: "",
+    //kj35: "",
+    //zm31: "",
+    //dh38: "",
   };
 
   /**
@@ -47,11 +61,9 @@ const AudioStore = defineStore("audio", () => {
    * @param name 音效随机标识
    */
   const playAudio = (name: keyof Global.Audio.Key) => {
-    //播放器
     const audio = new Audio();
-    audio.src = getAudioLink(sound_type[name]);
+    audio.src = _getAudioLink(sound_type[name]);
     audio.volume = volume;
-
     audio.play().catch(() => {});
   };
 
@@ -61,12 +73,6 @@ const AudioStore = defineStore("audio", () => {
   }, 50);
 
   const ExposeMethods = {
-    /** @description 预加载所有音效 */
-    preload() {
-      Object.values(sound_type).forEach((v) => {
-        new Audio(getAudioLink(v)).preload = "auto";
-      });
-    },
     /**
      * @description: 调用播放
      * @param name 音效名
@@ -74,8 +80,13 @@ const AudioStore = defineStore("audio", () => {
     play(name: keyof Global.Audio.Key = "h2w0") {
       if (!status) return;
 
-      //悬浮音效防抖处理
-      if (name === "n4r4") {
+      /**
+       * fz02：背包页面在保存的时候会出现栈溢出，导致音量频繁触发
+       * n4r4：悬浮音效防抖处理
+       * n74s、p6q3、vw31 消息提醒防抖处理
+       * za86：滑动音效防抖处理
+       */
+      if (["fz02", "n4r4", "n74s", "p6q3", "vw31", "za86"].includes(name)) {
         debouncePlayAudio(name);
       } else {
         playAudio(name);
@@ -90,9 +101,8 @@ const AudioStore = defineStore("audio", () => {
       volume = (v / 100) * 0.75;
     },
 
-    /**
-     * @description: 关闭音效功能
-     * @param v false关闭
+    /** @description 设置音效功能开关
+     * @param v 开关状态
      */
     setAudio(v: boolean) {
       status = v;

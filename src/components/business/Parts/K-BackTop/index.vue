@@ -15,7 +15,7 @@ const $emit = defineEmits<{
 
 const backTopRef = ref<HTMLElement>();
 
-/* 返回顶部 */
+/** @description 返回顶部 */
 const handleBackTop = () => {
   $emit("back-top");
 };

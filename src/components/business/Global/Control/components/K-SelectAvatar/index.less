@@ -1,0 +1,26 @@
+.k-select-avatar {
+  .common_k-dialog-content-center();
+
+  .avatar-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    overflow: auto;
+    padding: 1rem;
+
+    .avatar {
+      .global_click-btn();
+
+      width: 100%;
+      border-radius: 50%;
+      box-shadow: var(--b-shadow-a);
+    }
+  }
+
+  .k-button {
+    --btn-rate: 0.9;
+    --font-size: 1.4rem;
+
+    margin-top: 1rem;
+  }
+}

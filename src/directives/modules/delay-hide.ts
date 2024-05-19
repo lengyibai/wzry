@@ -15,6 +15,7 @@ const vDelayHide: Directive<HTMLElement, Params> = {
   mounted(el, binding) {
     const { enter, leave } = binding.value;
     let timer: NodeJS.Timeout;
+
     el.addEventListener("mouseleave", () => {
       timer = setTimeout(leave, 1000);
     });

@@ -1,0 +1,21 @@
+.k-help {
+  .global_click-btn();
+  .global_flex-center();
+
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0.0625rem solid var(--theme-border-color-two);
+    background-color: var(--theme-el-color-five);
+    transform: rotate(45deg);
+  }
+
+  .text {
+    position: absolute;
+    color: var(--theme-font-color-one);
+  }
+}

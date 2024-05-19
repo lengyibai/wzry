@@ -1,0 +1,18 @@
+.prop {
+  .common_app-main-child();
+
+  .prop-main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.prop-card-enter-from {
+  transform: scale(0.5);
+  opacity: 0;
+}
+
+.prop-card-enter-active {
+  transition: all 0.5s cubic-bezier(0.5, 0.1, 0, 1.5);
+}

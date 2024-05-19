@@ -1,0 +1,73 @@
+.antenna {
+  --width: calc(15px * var(--rate));
+  --height: calc(75px * var(--rate));
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--width);
+  height: var(--width);
+  transform: rotate3d(1, 1, 1, 45deg);
+  transform-style: preserve-3d;
+
+  &.animate {
+    animation: rotate 10s infinite linear;
+
+    @keyframes rotate {
+      100% {
+        transform: rotate3d(1, 1, 1, 405deg);
+      }
+    }
+  }
+
+  &-side {
+    position: absolute;
+    width: var(--width);
+    height: var(--height);
+
+    &.antenna-front {
+      transform: translateZ(calc(var(--width) / 2));
+    }
+
+    &.antenna-back {
+      transform: rotateY(180deg) translateZ(calc(var(--width) / 2));
+    }
+
+    &.antenna-top {
+      width: var(--width);
+      height: var(--width);
+      transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+    }
+
+    &.antenna-bottom {
+      width: var(--width);
+      height: var(--width);
+      transform: rotateX(-90deg) translateZ(calc(var(--height) / 2));
+    }
+
+    &.antenna-left {
+      transform: rotateY(-90deg) translateZ(calc(var(--width) / 2));
+    }
+
+    &.antenna-right {
+      transform: rotateY(90deg) translateZ(calc(var(--width) / 2));
+    }
+  }
+
+  &.COLOR {
+    .antenna-side {
+      border: calc(1px * var(--rate)) solid var(--border-color);
+      background-color: var(--bg-color);
+      opacity: 0.5;
+    }
+  }
+
+  &.IMG {
+    .antenna-side {
+      background-image: var(--bg-img);
+      background-position: center center;
+      background-size: 300%;
+    }
+  }
+}

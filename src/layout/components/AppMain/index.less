@@ -1,15 +1,17 @@
 .app-main {
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
   max-width: 100%;
   height: calc(100vh - 4.6875rem - 3.125rem);
 }
 
-.app-main-enter-active {
-  transition: all 0.5s;
+.app-main-enter-from,
+.app-main-leave-to {
+  transform: translateX(10%);
+  opacity: 0;
 }
 
-.app-main-enter-from {
-  opacity: 0;
+.app-main-enter-active,
+.app-main-leave-active {
+  transition: all 0.5s;
 }

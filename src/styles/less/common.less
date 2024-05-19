@@ -1,4 +1,5 @@
-.epigraph-sidebar_title {
+/* 铭文搭配页右侧边栏 */
+.common_epigraph-sidebar-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,7 +9,7 @@
   box-shadow: var(--b-shadow-a);
   font-size: 2rem;
   line-height: 1.75;
-  background-image: linear-gradient(90deg, var(--theme-font-color-three) 0%, transparent 100%);
+  background-image: linear-gradient(90deg, var(--theme-font-color-two) 0%, transparent 100%);
 
   .label {
     text-shadow: var(--t-shadow-e);
@@ -18,14 +19,74 @@
     .global_light-btn();
 
     display: inline-block;
-    color: var(--theme-font-color-six);
+    color: var(--theme-font-color-four);
     font-size: 1.5rem;
   }
 }
 
-.app-main_child {
+/* 主页面结构 */
+.common_app-main-child {
   position: relative;
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+/* 主体居中的弹窗 */
+.common_k-dialog-content-center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 补给模式颜色 */
+.common_lottery-supply-mode-color {
+  &.green {
+    --color: var(--green);
+    --color1: #3bc922;
+    --color2: #2af598;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.blue {
+    --color: var(--blue);
+    --color1: #0093e9;
+    --color2: #00c6fb;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.orange {
+    --color: var(--orange);
+    --color1: #f76b1c;
+    --color2: #ff9500;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+
+  &.red {
+    --color: var(--red);
+    --color1: #ff2525;
+    --color2: #f76b1c;
+    --bg: linear-gradient(-45deg, var(--color) 0%, var(--color2) 80%);
+  }
+}
+
+/* 夺宝页主体布局 */
+.common_seize-treasures {
+  .common_app-main-child();
+
+  flex-direction: column;
+  padding: var(--gap-app-main-padding);
+  padding-top: 0;
+
+  .main {
+    display: flex;
+    overflow: hidden;
+
+    @media screen and (max-width: 960px) {
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+  }
 }

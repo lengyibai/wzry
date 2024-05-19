@@ -1,36 +1,21 @@
 .hero-card {
-  --rotate: 0deg;
+  .global_hover-border(0.1875rem,var(--blue));
 
   position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   overflow: hidden;
-  width: 100%;
-  border: 1px solid var(--white-25);
-  background-color: var(--black-25);
-  background-image: linear-gradient(
-    var(--rotate),
-    transparent 0%,
-    var(--white-75) 40%,
-    var(--white-75) 60%,
-    transparent 100%
-  );
-  transition: 0.25s;
+  aspect-ratio: 2/3;
 
   &:hover {
-    --rotate: 90deg;
-
-    box-shadow: var(--b-shadow-b);
-    transform: translateY(-0.625rem) scale(1.05);
-
     .bottom {
       .name {
         transform: translateX(-6.25rem);
         opacity: 0;
       }
 
-      .mark {
+      .hero-exp {
         transform: translateX(6.25rem);
         opacity: 0;
       }
@@ -42,8 +27,10 @@
       opacity: 0;
     }
 
-    .bg {
-      transform: scale(1.25);
+    .bg-box {
+      .bg {
+        transform: scale(1.25);
+      }
     }
 
     .select-mask {
@@ -106,13 +93,23 @@
     }
   }
 
-  .bg {
+  .bg-box {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: 0.25s;
-    pointer-events: none;
+    filter: grayscale(75%) brightness(35%);
+
+    &.have {
+      filter: initial;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      transition: 0.25s;
+      pointer-events: none;
+      object-fit: cover;
+    }
   }
 
   .bottom {
@@ -123,23 +120,23 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    padding: 0.9375rem;
+    padding: 0.625rem;
 
     .name {
-      width: fit-content;
+      width: 100%;
       margin-bottom: 0.3125rem;
+      padding-bottom: 0.15em;
       color: var(--white);
-      font-size: 1.875rem;
+      font-size: 1.5rem;
       text-shadow: var(--t-shadow-e);
       line-height: 1;
       transition: all 0.25s;
       transform: translate(0);
       opacity: 1;
+      border-bottom: 1px solid var(--white-25);
     }
 
-    .mark {
-      color: var(--white-75);
-      font-size: 1.25rem;
+    .hero-exp {
       transition: all 0.25s;
       transform: translate(0);
       opacity: 1;

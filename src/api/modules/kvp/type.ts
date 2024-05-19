@@ -1,8 +1,8 @@
 import { LOCAL_TYPE } from "@/api";
 
 /** @description 获取类型阵营键值表 */
-export const getCampKvp = () => {
-  const data = LOCAL_TYPE.getTypeCampList();
+export const getCampKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeCampList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -11,8 +11,8 @@ export const getCampKvp = () => {
 };
 
 /** @description 获取类型铭文键值表 */
-export const getEpigraphKvp = () => {
-  const data = LOCAL_TYPE.getTypeEpigraphList();
+export const getEpigraphKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeEpigraphList();
   const kvp: Record<number, Remote.DataType.Epigraph["value"]> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -21,8 +21,8 @@ export const getEpigraphKvp = () => {
 };
 
 /** @description 获取铭文效果键值表 */
-export const getEpigraphEffectKvp = () => {
-  const data = LOCAL_TYPE.getTypeEpigraphEffectList();
+export const getEpigraphEffectKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeEpigraphEffectList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -31,8 +31,8 @@ export const getEpigraphEffectKvp = () => {
 };
 
 /** @description 获取类型装备键值表 */
-export const getEquipKvp = () => {
-  const data = LOCAL_TYPE.getTypeEquipList();
+export const getEquipKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeEquipList();
   const kvp: Record<number, Game.Equip.Category> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -41,8 +41,8 @@ export const getEquipKvp = () => {
 };
 
 /** @description 获取类型装备效果键值表 */
-export const getEquipEffectKvp = () => {
-  const data = LOCAL_TYPE.getTypeEquipEffectList();
+export const getEquipEffectKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeEquipEffectList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -51,8 +51,8 @@ export const getEquipEffectKvp = () => {
 };
 
 /** @description 获取类型定位键值表 */
-export const getLocationKvp = () => {
-  const data = LOCAL_TYPE.getTypeLocationList();
+export const getLocationKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeLocationList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -61,8 +61,8 @@ export const getLocationKvp = () => {
 };
 
 /** @description 获取类型时期键值表 */
-export const getPeriodKvp = () => {
-  const data = LOCAL_TYPE.getTypePeriodList();
+export const getPeriodKvp = async () => {
+  const data = await LOCAL_TYPE.getTypePeriodList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -71,8 +71,8 @@ export const getPeriodKvp = () => {
 };
 
 /** @description 获取类型职业键值表 */
-export const getProfessionKvp = () => {
-  const data = LOCAL_TYPE.getTypeProfessionList();
+export const getProfessionKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeProfessionList();
   const kvp: Record<number, Game.Hero.Profession> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -81,8 +81,8 @@ export const getProfessionKvp = () => {
 };
 
 /** @description 获取类型种族键值表 */
-export const getRaceKvp = () => {
-  const data = LOCAL_TYPE.getTypeRaceList();
+export const getRaceKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeRaceList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;
@@ -91,8 +91,8 @@ export const getRaceKvp = () => {
 };
 
 /** @description 获取类型皮肤键值表 */
-export const getSkinKvp = () => {
-  const data = LOCAL_TYPE.getTypeSkinList();
+export const getSkinKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeSkinList();
   const kvp: Record<number, Remote.DataType.Skin> = {};
   data.forEach((item) => {
     kvp[item.id] = item;
@@ -101,8 +101,8 @@ export const getSkinKvp = () => {
 };
 
 /** @description 获取类型特长键值表 */
-export const getSpecialtyKvp = () => {
-  const data = LOCAL_TYPE.getTypeSpecialtyList();
+export const getSpecialtyKvp = async () => {
+  const data = await LOCAL_TYPE.getTypeSpecialtyList();
   const kvp: Record<number, string> = {};
   data.forEach((item) => {
     kvp[item.id] = item.value;

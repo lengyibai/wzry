@@ -1,0 +1,91 @@
+.eyes {
+  --rate: 1;
+
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: calc(135px * var(--rate));
+  filter: drop-shadow(0 calc(2px * var(--rate)) calc(3px * var(--rate)) var(--black));
+
+  &.small {
+    --rate: var(--yi-bao-scale-rate);
+  }
+
+  .eye {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: #eee;
+    clip-path: ellipse(40% 50% at 50% 50%);
+
+    &:nth-child(1) {
+      left: 10%;
+    }
+
+    &:nth-child(2) {
+      right: 10%;
+    }
+
+    .iris {
+      position: absolute;
+      width: 75%;
+      clip-path: ellipse(40% 50% at 50% 50%);
+      aspect-ratio: 1/1;
+      background-image: linear-gradient(
+        180deg,
+        var(--eye-bg-color-one) 35%,
+        var(--eye-bg-color-two) 100%
+      );
+      transition: 0.25s ease-out;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        width: 15%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        background-color: #eee;
+        transform: translateX(-50%);
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 15%;
+        right: 10%;
+        width: 30%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        background-color: var(--white);
+        transform: translateX(-50%);
+      }
+
+      .pupil {
+        position: absolute;
+        top: 25%;
+        right: 25%;
+        width: 50%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        background-color: var(--black-50);
+      }
+    }
+
+    &.eye-extrusion {
+      clip-path: ellipse(40% 30% at 50% 50%);
+
+      .iris {
+        width: 50%;
+        clip-path: ellipse(40% 50% at 50% 50%);
+      }
+    }
+  }
+}

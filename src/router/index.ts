@@ -1,28 +1,27 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { App } from "vue";
 
-import { isExist, isLogin } from "./modules/routeSheel";
+import { isExist } from "./modules/routeSheel";
 import { staticRouter, errorRouter } from "./modules/staticRouter";
 
-import { AuthStore, DeviceStore } from "@/store";
-import { $loading } from "@/utils";
-import { BASE_CONFIG } from "@/config/modules/base";
-import { LOCAL_KEY } from "@/config";
-import { useDataFinish } from "@/hooks";
+import { $loading } from "@/utils/loading";
+import { useDevice } from "@/hooks/modules/useDevice";
+import { ROUTE_PATH } from "@/config";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [...staticRouter, ...errorRouter],
 });
 
+/** 是否需要处理资源 */
+let need_load = true;
+/** 刷新页面时的路由地址 */
+let refresh_path = "";
 router.beforeEach(async (to, from, next) => {
-  const $authStore = AuthStore();
-  const $deviceStore = DeviceStore();
-
-  const user_info = !!localStorage.getItem(LOCAL_KEY.USER_DATA);
+  const { browser_status } = useDevice();
 
   //浏览器版本过低，则跳转400，400较为特殊，如果跳转400则直接放行
-  if (!$deviceStore.browser_status && to.path !== "/400") {
+  if (!browser_status && to.path !== "/400") {
     next("/400");
     return;
   }
@@ -42,39 +41,37 @@ router.beforeEach(async (to, from, next) => {
     return;
   }
 
-  //如果需要登录，但是没有用户信息，则跳转登录
-  if (isLogin(to.path) && !user_info) {
+  //如果来自登录页，则说明资源已经下载完毕(注：当前路由判断不能与下面路由判断交换位置)
+  if (from.path === "/login" && need_load) {
+    need_load = false;
+
+    //回到上一次访问页面
+    if (refresh_path && !["/login", "/400", "/403", "/404"].includes(refresh_path)) {
+      next(refresh_path);
+    } else {
+      next(ROUTE_PATH.HERO);
+    }
+
+    return;
+  }
+
+  //如果刷新页面，则去往登录页处理数据
+  if (to.path !== "/login" && need_load) {
+    refresh_path = to.path;
     next("/login");
     return;
   }
 
-  //如果本地有用户信息，且目标路由为免验证路由，则跳转首页
-  if (user_info && to.meta.noVerify) {
-    next(BASE_CONFIG.HOME_URL);
-    await useDataFinish.readPromise;
-    return;
-  }
-
-  //如果未登录，但是本地存在用户信息，且能匹配权限，则直接放行
-  if (user_info && !$authStore.user_status) {
-    $authStore.autoLogin();
-    await useDataFinish.readPromise;
-  }
-
-  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
-  if (!to.query.id && !from.query.id && to.path !== from.path) {
+  /* 避免地址栏增加参数 */
+  if (to.path !== from.path) {
     $loading.show(`正在加载${to.meta.title}页`);
   }
 
   next();
 });
 
-router.afterEach((to, from) => {
-  /* 点击英雄详情会静默切换路由用于记录参数，此时不显示loading */
-  if (!to.query.id && !from.query.id && to.path !== from.path) {
-    $loading.close();
-  }
-
+router.afterEach((to) => {
+  $loading.close();
   document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
 });
 

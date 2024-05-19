@@ -1,0 +1,99 @@
+.antennas {
+  --rate: 1;
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  transition: 0.25s;
+  transform-style: preserve-3d;
+  animation: rotate 0.5s infinite alternate-reverse;
+
+  @keyframes rotate {
+    0% {
+      transform: rotateX(10deg);
+    }
+
+    100% {
+      transform: rotateX(-10deg);
+    }
+  }
+
+  &.small {
+    --rate: var(--yi-bao-scale-rate);
+  }
+
+  .antenna {
+    --width: calc(30px * var(--rate));
+    --height: calc(300px * var(--rate));
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--width);
+    height: var(--width);
+    transition: 0.25s ease-out;
+    transform: rotateX(-45deg) translateY(calc(var(--height) / -2 + var(--width)))
+      translateZ(calc(var(--width) / 2));
+    transform-origin: center center;
+    transform-style: preserve-3d;
+
+    &:first-child {
+      left: 25%;
+    }
+
+    &:last-child {
+      right: 25%;
+    }
+
+    &-side {
+      position: absolute;
+      width: var(--width);
+      height: var(--height);
+
+      &.antenna-front {
+        transform: translateZ(calc(var(--width) / 2));
+      }
+
+      &.antenna-back {
+        transform: rotateY(180deg) translateZ(calc(var(--width) / 2));
+      }
+
+      &.antenna-top {
+        width: var(--width);
+        height: var(--width);
+        transform: rotateX(90deg) translateZ(calc(var(--height) / 2));
+      }
+
+      &.antenna-bottom {
+        width: var(--width);
+        height: var(--width);
+        transform: rotateX(-90deg) translateZ(calc(var(--height) / 2));
+      }
+
+      &.antenna-left {
+        transform: rotateY(-90deg) translateZ(calc(var(--width) / 2));
+      }
+
+      &.antenna-right {
+        transform: rotateY(90deg) translateZ(calc(var(--width) / 2));
+      }
+    }
+  }
+
+  &.color {
+    .antenna-side {
+      border: calc(3px * var(--rate)) solid var(--antenna-border-color);
+      background-color: var(--antenna-bg-color);
+      opacity: 0.5;
+    }
+  }
+
+  &.img {
+    .antenna-side {
+      background-image: var(--antenna-bg-img);
+      background-position: center center;
+      background-size: 300%;
+    }
+  }
+}

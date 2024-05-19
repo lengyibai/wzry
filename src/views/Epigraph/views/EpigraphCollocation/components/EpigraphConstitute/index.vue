@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { onBeforeUnmount, ref } from "vue";
-import { onMounted } from "vue";
-import { watch } from "vue";
-import { nextTick } from "vue";
-import { computed } from "vue";
+import { ref, computed, nextTick, watch, onMounted, onBeforeUnmount } from "vue";
 
 import { EpigraphCollocationStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { _classNameInclude } from "@/utils/tool";
+import { _getMiscLink } from "@/utils/concise";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
@@ -48,16 +46,12 @@ const mouse_tip = computed(() => {
   };
 });
 
-/* 递归判断父元素的类名是否包含指定类名 */
-const classNameInclude = (el: HTMLElement, className: string): HTMLElement | undefined => {
-  if (el.className.indexOf(className) !== -1) return el;
-  if (el.parentElement) return classNameInclude(el.parentElement, className);
-  return undefined;
-};
-
-/* 选择铭文槽位 */
+/** @description 选择铭文槽位
+ * @param item 铭文槽位
+ * @param color 铭文槽位颜色
+ * @param index 铭文槽位索引
+ */
 const handleSelect = (
-  e: Event,
   item: Game.Epigraph.Data | undefined,
   color: Remote.Epigraph.Color["value"],
   index: number,
@@ -66,22 +60,13 @@ const handleSelect = (
   shineRoundRef.value!.style.transform = "scale(2)";
   shineRoundRef.value!.style.opacity = "0.5";
 
-  const el = e.target as HTMLElement;
-  const find = classNameInclude(el, "epigraph")!;
-  const width = epigraphSuitRef.value?.offsetWidth || 0;
-
-  shine_position.value = {
-    left: find.offsetLeft - width * 0.013,
-    top: find.offsetTop - width * 0.014,
-  };
-
   setTimeout(() => {
     shineRoundRef.value!.style.transform = `scale(1)`;
     shineRoundRef.value!.style.opacity = "1";
   }, 250);
 };
 
-/* 光圈适配 */
+/** @description 光圈适配 */
 const shineRoundAdapter = () => {
   nextTick(() => {
     const v = fill_index.value;
@@ -91,7 +76,7 @@ const shineRoundAdapter = () => {
     }
 
     const el = doms[fill_color.value!][v];
-    const find = classNameInclude(el, "epigraph")!;
+    const find = _classNameInclude(el, "epigraph")!;
     const width = epigraphSuitRef.value?.offsetWidth || 0;
     shineRoundRef.value!.style.opacity = "1";
 
@@ -125,13 +110,20 @@ onBeforeUnmount(() => {
 
 <template>
   <transition name="move" appear>
-    <div ref="epigraphSuitRef" class="epigraph-suit">
+    <div
+      ref="epigraphSuitRef"
+      class="epigraph-suit"
+      :style="{
+        backgroundImage: `url(${_getMiscLink('epigraph_bg')})`,
+      }"
+    >
       <div
         ref="shineRoundRef"
         class="shine-round"
         :style="{
           left: shine_position.left + 'px',
           top: shine_position.top + 'px',
+          backgroundImage: `url(${_getMiscLink('epigraph_slot_shine')})`,
         }"
       ></div>
 
@@ -151,7 +143,10 @@ onBeforeUnmount(() => {
             },
           ]"
           class="epigraph"
-          @click="handleSelect($event, item, 'BLUE', index)"
+          :style="{
+            backgroundImage: `url(${_getMiscLink('epigraph_blue_slot')})`,
+          }"
+          @click="handleSelect(item, 'BLUE', index)"
         >
           <img :src="item?.img" alt="" />
         </div>
@@ -172,8 +167,11 @@ onBeforeUnmount(() => {
               active: fill_index === index && fill_color === 'GREEN',
             },
           ]"
+          :style="{
+            backgroundImage: `url(${_getMiscLink('epigraph_green_slot')})`,
+          }"
           class="epigraph"
-          @click="handleSelect($event, item, 'GREEN', index)"
+          @click="handleSelect(item, 'GREEN', index)"
         >
           <img :src="item?.img" alt="" />
         </div>
@@ -194,8 +192,11 @@ onBeforeUnmount(() => {
               active: fill_index === index && fill_color === 'RED',
             },
           ]"
+          :style="{
+            backgroundImage: `url(${_getMiscLink('epigraph_red_slot')})`,
+          }"
           class="epigraph"
-          @click="handleSelect($event, item, 'RED', index)"
+          @click="handleSelect(item, 'RED', index)"
         >
           <img :src="item?.img" alt="" />
         </div>

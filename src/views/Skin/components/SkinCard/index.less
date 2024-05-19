@@ -1,29 +1,14 @@
 .skin-card {
-  --rotate: 0deg;
+  .global_hover-border(0.1875rem,var(--blue));
 
   position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   overflow: hidden;
-  width: 100%;
-  border: 1px solid var(--white-25);
-  background-color: var(--black-25);
-  background-image: linear-gradient(
-    var(--rotate),
-    transparent 0%,
-    var(--white-75) 40%,
-    var(--white-75) 60%,
-    transparent 100%
-  );
-  transition: all 0.25s;
-  opacity: 1;
+  aspect-ratio: 2/1;
 
   &:hover {
-    --rotate: 90deg;
-
-    border: 1px solid var(--white-50);
-
     .bg {
       transform: scale(1.1);
     }
@@ -45,13 +30,23 @@
     }
   }
 
-  .bg {
+  .bg-box {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: 0.25s;
-    pointer-events: none;
+    filter: grayscale(75%) brightness(35%);
+
+    &.have {
+      filter: initial;
+    }
+
+    .bg {
+      width: 100%;
+      height: 100%;
+      transition: 0.25s;
+      pointer-events: none;
+      object-fit: cover;
+    }
   }
 
   .type {

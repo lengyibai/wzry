@@ -2,15 +2,37 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import dayjs from "dayjs";
 
-import { EpigraphCollocationStore, RouterStore, SettingStore } from "@/store";
-import { $input, $message, $privateTool, $tip, $tool } from "@/utils";
-import { BASE_CONFIG, CUSTOM_TIP, DEFAULT, LOCAL_KEY, MESSAGE_TIP } from "@/config";
+import { RouterStore } from "./router";
+import { LotteryStore } from "./lottery";
+import { SupplyStore } from "./supply";
+import { TimeStore } from "./time";
+import { MailStore } from "./mail";
+import { TaskStore } from "./task";
+import { KnapsackStore } from "./knapsack";
+import { MarkerStore } from "./marker";
+import { SettingStore } from "./setting";
+import { EpigraphCollocationStore } from "./epigraphCollocation";
+import { YibaoStore } from "./yibao";
+
+import { _timeGreet, _mergeConfig } from "@/utils/tool";
+import { _decryption, _encryption } from "@/utils/privateTool";
+import { $tip, $message, $input } from "@/utils/busTransfer";
+import { useUserConfigFinish, resetPromise } from "@/hooks";
 import { router } from "@/router";
+import { BASE_CONFIG, CUSTOM_TIP, DEFAULT, LOCAL_KEY, MESSAGE_TIP } from "@/config";
 
 /** @description 用户相关 */
 const AuthStore = defineStore("auth", () => {
   const $routerStore = RouterStore();
   const $settingStore = SettingStore();
+  const $knapsackStore = KnapsackStore();
+  const $lotteryStore = LotteryStore();
+  const $markerStore = MarkerStore();
+  const $supplyStore = SupplyStore();
+  const $timeStore = TimeStore();
+  const $mailStore = MailStore();
+  const $taskStore = TaskStore();
+  const $yibaoStore = YibaoStore();
   const $epigraphCollocationStore = EpigraphCollocationStore();
 
   /** 实时检测帐号状态 */
@@ -22,7 +44,7 @@ const AuthStore = defineStore("auth", () => {
     /** 用户登录状态 */
     user_status: ref(false),
     /** 用户相关信息 */
-    user_data: ref<Global.UserData>(DEFAULT.userDefaultInfo()),
+    user_data: ref<User.Data>(DEFAULT.userInfoDefault()),
   };
   const { user_status, user_data } = ExposeData;
 
@@ -30,9 +52,29 @@ const AuthStore = defineStore("auth", () => {
   const loginInto = () => {
     watching = true;
     user_status.value = true;
+    $mailStore.useUserMail(user_data.value.mail, user_data.value.mallMark);
+    $taskStore.useUserTask(user_data.value.taskFinish, user_data.value.taskStatus);
+    $supplyStore.useUserSupply(user_data.value.supply);
+    $lotteryStore.useUserLottery(user_data.value.lottery);
+    $knapsackStore.useUserKnapsack(user_data.value.knapsack);
+    $markerStore.useUserMarker(user_data.value.behaviorMarker);
     $settingStore.useUserSetting(user_data.value.settingConfig);
     $epigraphCollocationStore.useUserEpigraphSuit(user_data.value.epigraphSuit);
+    $yibaoStore.useUserYiBao(user_data.value.yibao);
+
+    //由于登录可能会推送每日签到福袋，所以需要获取到邮箱福袋配置才能推送
+    $mailStore.getAllMail().then(() => {
+      $timeStore.enableTime();
+
+      //更新登录时间
+      ExposeMethods.updateUserData({
+        lastLoginTime: dayjs().valueOf(),
+      });
+    });
+
     watchStatus();
+    useUserConfigFinish.readyDataResolve();
+    router.push(BASE_CONFIG.HOME_URL);
   };
 
   /** @description 实时检测帐号状态 */
@@ -54,31 +96,27 @@ const AuthStore = defineStore("auth", () => {
 
   const ExposeMethods = {
     /** @description 登录 */
-    login(form: Global.UserData) {
+    login(form: User.Data) {
       user_data.value = form;
       $routerStore.addRoutes(form.role);
-      router.push(BASE_CONFIG.HOME_URL);
-      localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(form));
+      localStorage.setItem(LOCAL_KEY.USER_DATA, _encryption(form));
       loginInto();
     },
 
     /** @description 自动登录 */
     autoLogin() {
       const local_user = localStorage.getItem(LOCAL_KEY.USER_DATA)!;
-      user_data.value = $privateTool.decryption(local_user);
-      $message(`${$tool.timeGreet}，${user_data.value.username}`);
+      user_data.value = _decryption(local_user);
+      $message(`${_timeGreet}，${user_data.value.username}`);
       loginInto();
     },
 
-    /** @description 修改用户数据 */
-    updateUserData(v: Partial<Global.UserData>) {
-      user_data.value = {
-        ...user_data.value,
-        ...v,
-      };
-
-      user_data.value.updateTime = dayjs().valueOf();
-      localStorage.setItem(LOCAL_KEY.USER_DATA, $privateTool.encryption(user_data.value));
+    /** @description 修改用户数据
+     * @param v 修改的数据
+     */
+    updateUserData(v: DeepPartial<User.Data>) {
+      user_data.value = _mergeConfig(v, user_data.value) as User.Data;
+      localStorage.setItem(LOCAL_KEY.USER_DATA, _encryption(user_data.value));
     },
 
     /** @description 设置二级密码 */
@@ -135,11 +173,18 @@ const AuthStore = defineStore("auth", () => {
       watching = false;
       user_status.value = false;
       is_check_sec_pwd = false;
-      user_data.value = DEFAULT.userDefaultInfo();
+      user_data.value = DEFAULT.userInfoDefault();
       $routerStore.removeRoutes();
+      $lotteryStore.resetStatus();
+      $supplyStore.interruptCountdown();
+      $timeStore.interrupt();
+      $mailStore.clearMail();
+      $taskStore.resetTask();
+      $yibaoStore.resetDefaultPart();
       localStorage.removeItem(LOCAL_KEY.USER_DATA);
-      router.replace("/login");
+      resetPromise();
       $message(MESSAGE_TIP.y2l2);
+      router.replace("/login");
     },
   };
 

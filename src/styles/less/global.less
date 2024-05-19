@@ -1,8 +1,167 @@
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--green);
+}
+
+.blue {
+  color: var(--blue);
+}
+
+.orange {
+  color: var(--orange);
+}
+
+.red,
+.green,
+.blue,
+.orange {
+  text-shadow: var(--t-shadow-e), var(--shine-10), var(--shine-35);
+}
+
+/* 渐变动画按钮背景 */
+.global_bg-gradient-animate(@gradient) {
+  position: relative;
+  border-radius: 3.125rem;
+  background: @gradient;
+  background-size: 400%;
+  animation: glow 8s linear infinite;
+
+  &.disabled {
+    animation: none;
+    filter: saturate(0.5) brightness(0.5);
+  }
+
+  &::before {
+    .global_fill-container();
+
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 3.125rem;
+    background: inherit;
+    filter: blur(1.25rem);
+  }
+
+  @keyframes glow {
+    0% {
+      background-position: 0%;
+    }
+
+    100% {
+      background-position: 400%;
+    }
+  }
+}
+
 /* 文字渐变 */
-.global_text-gradient {
+.global_text-gradient(@color1,@color,@deg) {
   color: transparent;
-  background: linear-gradient(115deg, #4d6b8f 0%, #8097bb 89%);
-  background-clip: text;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    color: transparent;
+    text-shadow: none;
+    background: linear-gradient(@deg, @color1 0%, @color 100%);
+    background-clip: text;
+  }
+}
+
+/* 边框渐变 */
+.global_border-gradient(@width,@color1,@color,@deg) {
+  border: @width solid;
+  border-image-source: linear-gradient(@deg, @color1 0%, @color 100%);
+  border-image-slice: 1;
+}
+
+/* 文字描边 */
+.global_text-outline(@thickness, @color, @border) {
+  position: relative;
+  z-index: 1;
+  color: @color;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    font-size: inherit;
+    font-family: inherit;
+    -webkit-text-stroke: @thickness @border;
+  }
+}
+
+/* 发光的选中边框 */
+.global_selected-shine-circle(@size) {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  width: @size;
+  height: @size;
+  border: 0.3125rem solid var(--theme-border-color-six);
+  border-radius: 50%;
+  box-shadow:
+    var(--shine-20) var(--theme-border-color-six),
+    var(--shine-10) var(--theme-border-color-six) inset;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    border-style: solid;
+    border-width: 0.625rem;
+    transform: translateX(-50%);
+  }
+
+  &::before {
+    top: -0.25rem;
+    border-color: #fff498 transparent transparent;
+  }
+
+  &::after {
+    bottom: -0.25rem;
+    border-color: transparent transparent #fff498;
+  }
+}
+
+/* 倒影 */
+.global_reflect(@gap,@percent) {
+  -webkit-box-reflect: below @gap
+    linear-gradient(transparent, transparent @percent, var(--black-25));
+}
+
+/* 图片光效，利用伪元素继承父元素背景再模糊处理 */
+.global_img-shine(@blur) {
+  position: relative;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: var(--d-shadow-d);
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    filter: blur(@blur) saturate(2) brightness(1.25);
+  }
+
+  &::after {
+    .global_fill-container();
+
+    content: "";
+    background: inherit;
+    filter: var(--d-shadow-b);
+  }
 }
 
 /* 溢出省略号显示单行 */
@@ -77,7 +236,6 @@
   }
 
   &:active {
-    transform-origin: bottom center;
     opacity: 0.5;
   }
 }
@@ -90,32 +248,14 @@
   }
 
   &:active {
-    transform: scale(0.95);
-    transform-origin: center;
+    transition: all 0.05s;
     filter: contrast(1) brightness(0.9);
-  }
-}
-
-/* 文字描边 */
-.global_text-outline(@thickness, @color, @border) {
-  position: relative;
-  z-index: 1;
-  color: @color;
-
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    z-index: -1;
-    font-size: inherit;
-    font-family: inherit;
-    inset: 0;
-    -webkit-text-stroke: @thickness @border;
   }
 }
 
 /*  条纹背景 */
 .global_stripes-bg {
-  --color: rgba(0 0 0 / 25%);
+  --color: rgba(0 0 0 / 50%);
   .global_fill-container();
 
   background-image: linear-gradient(
@@ -128,5 +268,110 @@
     transparent 75%,
     transparent
   );
-  background-size: 0.3125rem 0.3125rem;
+  background-size: 0.25rem 0.25rem;
+}
+
+/* 点状背景 */
+.global_dot-bg {
+  --color: rgba(0 0 0 / 50%);
+  .global_fill-container();
+
+  background-image: radial-gradient(circle, var(--color) 0%, var(--color) 50%, transparent 50%);
+  background-size: 0.1875rem 0.1875rem;
+}
+
+/* 黄色描述高亮 */
+.global_highlight-yellow-desc {
+  color: var(--theme-font-color-seven);
+}
+
+/* 黄色确认弹窗及Tip高亮 */
+.global_highlight-yellow-tip {
+  color: var(--theme-font-color-eight);
+}
+
+/* 从上到下白色字蓝色文字渐变 */
+.global_text-blue-gradient {
+  .global_text-gradient(var(--theme-font-color-three),var(--white),180deg);
+
+  text-shadow: var(--t-shadow-e);
+}
+
+/* 背景扫光 */
+.global_sweep-light {
+  --color: var(--black-50);
+
+  background-image: linear-gradient(
+    -45deg,
+    var(--color) 0%,
+    var(--color) 15%,
+    var(--theme-el-color-two) 50%,
+    var(--color) 85%,
+    var(--color) 100%
+  );
+  background-size: 200% 200%;
+  transform-origin: top center;
+  animation: energy 2s linear infinite;
+
+  @keyframes energy {
+    0% {
+      background-position: 210% 0;
+    }
+
+    100% {
+      background-position: 0;
+    }
+  }
+}
+
+/* 径向渐变边框 */
+.global_radial-border(@width,@size,@color) {
+  border-style: solid;
+  border-width: @width;
+  border-color: transparent;
+  border-image: radial-gradient(@size circle at var(--x) var(--y), @color 0, transparent 100%);
+  border-image-slice: 1;
+}
+
+/* 悬浮显示元素边框 */
+.global_hover-border(@width,@color) {
+  border: @width solid transparent;
+  transition: 0.5s;
+
+  &:hover {
+    border-color: var(--blue);
+  }
+}
+
+/* 狂野飙车卡片动画(伪元素专属) */
+.global_mask-animate-left-to-right {
+  overflow: hidden;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: into 0.5s 1s forwards;
+
+  @keyframes into {
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white);
+    transform: scaleX(1);
+    transform-origin: right center;
+    animation: width 0.5s 1.5s forwards;
+
+    @keyframes width {
+      100% {
+        transform: scaleX(0);
+      }
+    }
+  }
 }

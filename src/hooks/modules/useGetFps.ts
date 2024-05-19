@@ -11,7 +11,7 @@ const useGetFps = () => {
   };
   const { fps } = ExposeData;
 
-  /* 获取FPS */
+  /** @description 获取FPS */
   (function getFPS() {
     count++;
     const current = performance.now();

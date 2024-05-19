@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { nextTick } from "vue";
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 
 interface Props {
   /** 是否处于播放状态 */
@@ -16,6 +15,7 @@ interface Props {
   /** 水平对齐方式 */
   align?: "left" | "center";
 }
+
 withDefaults(defineProps<Props>(), {
   width: "100%",
   height: "100%",

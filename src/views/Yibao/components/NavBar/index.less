@@ -1,0 +1,39 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .title {
+    .global_text-blue-gradient();
+
+    font-size: 1.75rem;
+  }
+
+  .coins {
+    display: flex;
+
+    .jump,
+    .guess {
+      display: flex;
+      align-items: center;
+
+      .icon {
+        width: 1.875rem;
+        height: 1.875rem;
+        margin-right: 0.5rem;
+        filter: var(--d-shadow-b) drop-shadow(var(--shine-5) var(--white-25));
+      }
+
+      .k-long-num {
+        font-size: 1.5rem;
+        text-shadow: var(--t-shadow-e);
+        transform: translateY(0.1875rem);
+      }
+    }
+
+    .jump {
+      margin-right: 2rem;
+    }
+  }
+}

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { $tool } from "@/utils";
+import { _isPhone } from "@/utils/tool";
 
 const kScrollTipRef = ref<HTMLElement>();
 
-const text = $tool.isPhone ? "滑动下一页" : "滚动下一页";
+const text = _isPhone ? "滑动下一页" : "滚动下一页";
 
 defineExpose({
   _el: kScrollTipRef,

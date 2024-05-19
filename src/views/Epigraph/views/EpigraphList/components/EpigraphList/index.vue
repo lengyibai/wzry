@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onActivated, onDeactivated, onMounted } from "vue";
-import { onUnmounted } from "vue";
+import { ref, watch, nextTick, onActivated, onDeactivated, onMounted, onUnmounted } from "vue";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
@@ -27,7 +26,7 @@ const count = ref(4);
 /** 铭文列表 */
 const epigraph_list = ref<Game.Epigraph.Data[]>([]);
 
-/* 实时修改一行个数 */
+/** @description 实时修改一行个数 */
 const changeCount = () => {
   const v = document.documentElement.clientWidth;
   if (v > 2300) {
@@ -40,7 +39,7 @@ const changeCount = () => {
   }
 };
 
-/* 每次修改更新列表 */
+//每次修改更新列表
 watch(
   () => $epigraphStore.filter_list,
   (v: Game.Epigraph.Data[]) => {

@@ -27,17 +27,23 @@ const usePagingLoad = <T>() => {
   const { all_data, scroll, loading, finish, filter_list, show_list, page_count } = ExposeData;
 
   const ExposeMethods = {
-    /** @description 设置滚动坐标 */
+    /** @description 设置滚动坐标
+     * @param v 滚动坐标
+     */
     setScroll(v: number) {
       scroll.value = v;
     },
 
-    /** @description 设置全部数据 */
-    pushAllData(v: T) {
-      (all_data.value as T[]).push(v);
+    /** @description 设置全部数据
+     * @param v 全部数据
+     */
+    pushAllData(v: T[]) {
+      (all_data.value as T[]) = v;
     },
 
-    /** @description 设置筛选后的数据 */
+    /** @description 设置筛选后的数据
+     * @param v 筛选后的数据
+     */
     setFilterData(v: T[]) {
       (filter_list.value as T[]) = v;
     },

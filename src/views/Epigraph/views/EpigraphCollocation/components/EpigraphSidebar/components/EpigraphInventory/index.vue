@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { watch } from "vue";
+import { computed, nextTick, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
-import { computed, nextTick } from "vue";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
 import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
-import { $confirm } from "@/utils";
 import { KButton } from "@/components/business";
+import { $confirm } from "@/utils/busTransfer";
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
@@ -30,12 +28,17 @@ const mouse_tip = computed(() => {
   };
 });
 
-/* 关闭库存 */
+//切换颜色时回调顶部
+watch(fill_color, () => {
+  epigraphListRef.value!.scrollTop = 0;
+});
+
+/** @description 关闭库存 */
 const handleClose = () => {
   $epigraphCollocationStore.closeInventory();
 };
 
-/* 一键拆卸 */
+/** @description 一键拆卸 */
 const handleClear = () => {
   $confirm({
     text: CONFIRM_TIP.q7h5,
@@ -43,18 +46,13 @@ const handleClear = () => {
   });
 };
 
-/* 显示铭文套装 */
+/** @description 显示铭文套装 */
 const handleSuit = () => {
   $epigraphCollocationStore.closeInventory();
   nextTick(() => {
     $epigraphCollocationStore.setSidebarStatus("SUIT");
   });
 };
-
-/* 切换颜色时回调顶部 */
-watch(fill_color, () => {
-  epigraphListRef.value!.scrollTop = 0;
-});
 </script>
 
 <template>
@@ -72,15 +70,15 @@ watch(fill_color, () => {
         />
       </div>
       <div ref="epigraphListRef" v-scroll-virtualization class="epigraph-list">
-        <template v-for="(item, index) in $epigraphCollocationStore.current_inventory" :key="index">
-          <EpigraphCard
-            v-mouse-tip="{
-              text: mouse_tip(item.epigraph.id),
-            }"
-            :data="item.epigraph"
-            :count="item.count"
-          />
-        </template>
+        <EpigraphCard
+          v-for="item in $epigraphCollocationStore.current_inventory"
+          :key="item.epigraph.id"
+          v-mouse-tip="{
+            text: mouse_tip(item.epigraph.id),
+          }"
+          :data="item.epigraph"
+          :count="item.count"
+        />
       </div>
     </div>
 

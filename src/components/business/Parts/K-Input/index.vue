@@ -50,14 +50,14 @@ const legal = ref(true);
 /** 是否获取焦点 */
 const is_focus = ref(false);
 
-/* 获取焦点 */
+/** @description 获取焦点 */
 const focus = () => {
   is_focus.value = true;
   $emit("focus");
   $audioStore.play();
 };
 
-/* 失去焦点 */
+/** @description 失去焦点 */
 const blur = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   is_focus.value = false;
@@ -98,6 +98,7 @@ const blur = (e: Event) => {
   $emit("blur", v);
 };
 
+/** @description 输入触发 */
 const input = (e: Event) => {
   const el = e.target as HTMLInputElement;
   if ($props.max) {
@@ -108,7 +109,7 @@ const input = (e: Event) => {
 </script>
 
 <template>
-  <div class="form-input" :class="{ disabled: disabled }">
+  <div class="k-input" :class="{ disabled: disabled }">
     <input
       :type="type"
       :value="modelValue"

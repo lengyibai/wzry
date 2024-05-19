@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { SettingStore, AudioStore } from "@/store";
+import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 
@@ -9,13 +9,12 @@ const $emit = defineEmits<{
   clicks: [v: string];
 }>();
 
-const $settingStore = SettingStore();
 const $audioStore = AudioStore();
 
 const toolbarRef = ref<HTMLElement>();
 
 /** 静音 */
-const muted = computed(() => $settingStore.config.muted);
+const muted = ref(false);
 /** 静音图标 */
 const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 
@@ -26,12 +25,13 @@ const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-
 const handleTool = (v: string) => {
   if (v === "sound") {
     $audioStore.play("n4r4");
-    $settingStore.saveConfig({ muted: !muted.value });
-    return;
+    muted.value = !muted.value;
   }
+
   if (v === "readme") {
     $audioStore.play("n4r4");
   }
+
   $emit("clicks", v);
 };
 
@@ -103,7 +103,7 @@ defineExpose({
         @click="handleTool('team')"
       >
         <i class="iconfont wzry-youxi" />
-        <span class="text">开黑</span>
+        <span class="text">战绩</span>
       </div>
       <div class="base"></div>
     </div>

@@ -1,0 +1,47 @@
+.shop-window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .part {
+    .global_flex-center();
+
+    position: relative;
+    overflow: hidden;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-bottom: 0.5rem;
+    border: 0.1875rem solid var(--white-25);
+    transition: 0.5s;
+
+    &.active {
+      border-color: var(--theme-border-color-six);
+      box-shadow:
+        var(--shine-10) var(--theme-border-color-six),
+        var(--shine-10) var(--theme-border-color-six) inset;
+    }
+
+    .mask {
+      .global_fill-container();
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 0.5rem;
+      background-color: var(--black-50);
+
+      .wzry-lock {
+        position: absolute;
+        top: 0.3125rem;
+        right: 0.3125rem;
+        font-size: 1.625rem;
+      }
+    }
+  }
+
+  .name {
+    font-size: 1.25rem;
+    text-shadow: var(--t-shadow-e);
+  }
+}

@@ -22,19 +22,3 @@ export interface Get {
   /** 全字匹配 */
   full?: boolean;
 }
-
-/** @description 修改本地数据的参数 */
-export interface Patch extends Get {
-  /** 需要被修改的键名 */
-  k?: string;
-  /** 需要修改成什么 */
-  v: any;
-}
-
-/** @description 删除本地数据的参数 */
-export interface Del {
-  /** 用于获取本地存储的键名 */
-  name: string;
-  /** 数据id */
-  id: string;
-}

@@ -1,0 +1,31 @@
+.skin-toolbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  .filter-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.625rem;
+  }
+
+  .k-input {
+    margin-left: auto;
+    padding: 0.625rem;
+
+    @media screen and (max-width: 960px) {
+      margin-top: 1.5625rem;
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+
+    .filter-select {
+      justify-content: center;
+      margin-bottom: 1.5625rem;
+    }
+  }
+}

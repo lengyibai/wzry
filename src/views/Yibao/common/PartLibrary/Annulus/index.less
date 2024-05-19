@@ -1,0 +1,55 @@
+.annulus {
+  --rate: 1;
+  .global_flex-center();
+
+  position: absolute;
+  width: calc(75px * var(--rate));
+  height: calc(75px * var(--rate));
+  transform-style: preserve-3d;
+  transform: rotate3d(1, 1, 1, 45deg);
+
+  .circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: move 2s linear infinite;
+    animation-play-state: paused;
+    animation-delay: calc(0.5s * var(--i) * -1);
+
+    @keyframes move {
+      100% {
+        width: 0;
+        height: 0;
+        transform: translateZ(calc(75px * var(--rate)));
+      }
+    }
+  }
+
+  &.IMG {
+    .circle {
+      background-image: var(--bg-img);
+      background-size: 100% 100%;
+    }
+  }
+
+  &.COLOR {
+    .circle {
+      border: calc(3px * var(--rate)) solid var(--border-color);
+      border-radius: 50%;
+    }
+  }
+
+  &.animate {
+    animation: rotate 10s infinite linear;
+
+    @keyframes rotate {
+      100% {
+        transform: rotate3d(1, 1, 1, 405deg);
+      }
+    }
+
+    .circle {
+      animation-play-state: running;
+    }
+  }
+}

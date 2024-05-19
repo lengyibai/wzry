@@ -1,0 +1,128 @@
+.pay-order-detail {
+  .common_k-dialog-content-center();
+
+  position: relative;
+  width: 100%;
+
+  .pay-order-list {
+    flex-grow: 1;
+    overflow: auto;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+
+    .order-item {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      width: 100%;
+      padding: 0.5rem 0;
+      background-image: linear-gradient(to left, transparent 0%, var(--black-10) 50%);
+      transition: background-color 0.25s;
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+
+        .part-box {
+          .global_flex-center();
+
+          position: relative;
+          overflow: hidden;
+          width: 6.25rem;
+          height: 6.25rem;
+          margin-right: 1rem;
+          transition: 0.5s;
+        }
+
+        .part-name {
+          font-size: 1.75rem;
+          text-shadow: var(--t-shadow-e);
+        }
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+
+        .coin-icon {
+          width: 2.5rem;
+          height: 2.5rem;
+          margin-right: 0.5rem;
+          filter: var(--d-shadow-b);
+        }
+
+        .price {
+          font-size: 1.75rem;
+          text-shadow: var(--t-shadow-e);
+        }
+      }
+
+      .remove {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 2rem;
+        font-size: 2rem;
+        background-color: var(--red);
+        transition: 0.25s;
+        transform: translateX(101%);
+      }
+
+      &:hover {
+        .remove {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+
+  .pay-btn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .total-price {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .jump-coin,
+      .guess-coin {
+        display: flex;
+        align-items: center;
+
+        .coin-icon {
+          width: 2.1875rem;
+          height: 2.1875rem;
+          margin-right: 0.5rem;
+          filter: var(--d-shadow-b);
+        }
+
+        .price {
+          font-size: 1.75rem;
+          text-shadow: var(--t-shadow-e);
+          transform: translateY(0.1875rem);
+        }
+      }
+
+      .jump-coin {
+        margin-right: 2rem;
+      }
+    }
+
+    .btns {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+}

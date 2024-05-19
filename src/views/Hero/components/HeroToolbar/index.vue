@@ -16,90 +16,100 @@ const $emit = defineEmits<{
 
 const $heroStore = HeroStore();
 
-const { sort_type, attr_type, camp_type, misc_type, misc_sort } = storeToRefs($heroStore);
+const { sort_type, attr_type, camp_type, misc_type, misc_sort, have_type, exp_type } =
+  storeToRefs($heroStore);
 
-const select_attr = [
-  { label: "全部属性", value: "全部属性" },
-  { label: "非硬控", value: "非硬控" },
-  { label: "免控", value: "免控" },
-  { label: "回血", value: "回血" },
-  { label: "真伤", value: "真伤" },
-];
-const select_misc = [
-  { label: "全部筛选", value: "全部筛选" },
-  { label: "团控", value: "团控" },
-  { label: "无蓝条", value: "无蓝条" },
-  { label: "非人类", value: "非人类" },
-  { label: "多套技能", value: "多套技能" },
-];
-const select_sort = [
-  { label: "全部排序", value: "全部排序" },
-  { label: "身高", value: "身高" },
-  { label: "上手难度", value: "上手难度" },
-  { label: "皮肤数量", value: "皮肤数量" },
-  { label: "关系数量", value: "关系数量" },
-];
-const sort_types = [
-  { label: "正序", value: "正序" },
-  { label: "倒序", value: "倒序" },
-];
+const select_attr = ["全部属性", "非硬控", "免控", "回血", "真伤"];
+const select_misc = ["全部筛选", "团控", "无蓝条", "非人类", "多套技能"];
+const select_sort = ["全部排序", "身高", "上手难度", "皮肤数量", "关系数量"];
+const have_types = ["全部英雄", "未拥有", "已拥有"];
+const exp_types = ["全部熟练度", "由低到高", "由高到低"];
+const sort_types = ["正序", "倒序"];
 
 /** 搜索值 */
 const search_value = ref("");
 /** 阵营列表 */
-const select_camp = reactive<Global.General[]>([]);
+const select_camp = reactive<string[]>([]);
 
-/* 获取阵营列表 */
-LOCAL_TYPE.getTypeCampList().forEach((item) => {
-  select_camp.push({
-    label: item.value,
-    value: item.value,
+/** @description 获取阵营列表 */
+const getTypeCampList = async () => {
+  (await LOCAL_TYPE.getTypeCampList()).forEach((item) => {
+    select_camp.push(item.value);
   });
-});
+};
+getTypeCampList();
 
-/* 清空输入框 */
+/** @description 清空输入框 */
 const clearName = () => {
   search_value.value = "";
   $emit("change");
 };
 
-/* 阵营筛选 */
-const onSelectCamp = (v: string | number) => {
-  $heroStore.filterCamp(v as string);
+/** @description 阵营筛选
+ * @param index 阵营类型索引
+ */
+const onSelectCamp = (index: number) => {
+  $heroStore.filterCamp(select_camp[index]);
   clearName();
 };
 
-/* 属性筛选 */
-const onSelectAttr = (v: string | number) => {
-  $heroStore.filterAttr(v as string);
+/** @description 属性筛选
+ * @param index 属性类型索引
+ */
+const onSelectAttr = (index: number) => {
+  $heroStore.filterAttr(select_attr[index]);
   clearName();
 };
 
-/* 杂项筛选 */
-const onSelectMisc = (v: string | number) => {
-  $heroStore.filterMisc(v as string);
+/** @description 杂项筛选
+ * @param index 杂项类型索引
+ */
+const onSelectMisc = (index: number) => {
+  $heroStore.filterMisc(select_misc[index]);
   clearName();
 };
 
-/* 杂项排序 */
-const onSelectSort = (v: string | number) => {
-  $heroStore.sortMisc(v as string);
+/** @description 杂项排序
+ * @param index 杂项排序类型索引
+ */
+const onSelectSort = (index: number) => {
+  $heroStore.sortMisc(select_sort[index]);
   clearName();
 };
 
-/* 正序/倒序 */
-const onSortType = (v: string | number) => {
-  $heroStore.sortType(v as string);
+/** @description 是否拥有排序
+ * @param index 拥有类型索引
+ */
+const onHaveType = (index: number) => {
+  $heroStore.haveType(have_types[index]);
   clearName();
 };
 
-/* 性别切换 */
+/** @description 熟练度排序
+ * @param index 熟练度类型索引
+ */
+const onExpType = (index: number) => {
+  $heroStore.expType(exp_types[index]);
+  clearName();
+};
+
+/** @description 正序/倒序
+ * @param index 排序类型索引
+ */
+const onSortType = (index: number) => {
+  $heroStore.sortType(sort_types[index]);
+  clearName();
+};
+
+/** @description 性别切换
+ * @param name 性别标识符
+ */
 const onFilterGender = (name: Game.GenderId) => {
   $heroStore.filterGender(name);
   clearName();
 };
 
-/* 搜索英雄 */
+/** @description 搜索英雄 */
 const debounceSearch = _debounce(() => {
   $heroStore.searchHero(search_value.value);
   $emit("change");
@@ -118,22 +128,28 @@ defineExpose({
       <FilterTool
         min-width="9.6106rem"
         :sort-text="camp_type"
-        :data="select_camp"
+        :options="select_camp"
         list-height="26.5625rem"
         @select="onSelectCamp"
       />
 
       <!-- 自带属性筛选按钮 -->
-      <FilterTool :sort-text="attr_type" :data="select_attr" @select="onSelectAttr" />
+      <FilterTool :sort-text="attr_type" :options="select_attr" @select="onSelectAttr" />
 
       <!-- 杂项筛选按钮 -->
-      <FilterTool :sort-text="misc_type" :data="select_misc" @select="onSelectMisc" />
+      <FilterTool :sort-text="misc_type" :options="select_misc" @select="onSelectMisc" />
 
       <!-- 杂项排序按钮 -->
-      <FilterTool :sort-text="misc_sort" :data="select_sort" @select="onSelectSort" />
+      <FilterTool :sort-text="misc_sort" :options="select_sort" @select="onSelectSort" />
+
+      <!-- 熟练度排序 -->
+      <FilterTool :sort-text="exp_type" :options="exp_types" @select="onExpType" />
+
+      <!-- 拥有排序 -->
+      <FilterTool :sort-text="have_type" :options="have_types" @select="onHaveType" />
 
       <!-- 正序/倒序 -->
-      <FilterTool :sort-text="sort_type" :data="sort_types" @select="onSortType" />
+      <FilterTool :sort-text="sort_type" :options="sort_types" @select="onSortType" />
     </div>
 
     <!-- 只看性别 -->

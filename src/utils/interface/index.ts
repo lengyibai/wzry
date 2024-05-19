@@ -1,20 +1,14 @@
 /** @description 查看图片参数 */
 export interface ImageViewParams {
-  type: "DEFAULT" | "HERO";
+  type: "DEFAULT" | "SKIN";
   /** 点击的事件对象 */
-  event: Event;
-  /** 英雄名 */
-  heroName?: string;
-  /** 英雄头像 */
-  heroAvatar?: string;
-  /** 皮肤名称 */
-  skinName?: string;
-  /** 模糊图片 */
-  blurImage: string;
-  /** 大图 */
-  bigImage: string;
-  /** 语音列表 */
-  voices?: Remote.Voice.Data["voice"];
+  parent: HTMLElement;
+  /** 模糊图片(当type为SKIN时可以不填) */
+  blurImage?: string;
+  /** 大图(当type为SKIN时可以不填) */
+  bigImage?: string;
+  /** 皮肤ID(当type为SKIN时必填) */
+  id?: number;
 }
 
 /** @description 图片压缩参数 */
@@ -32,3 +26,15 @@ export type ImageOptimizerOptions = {
   /** 失败回调 */
   fail?: (error: ErrorEvent) => void;
 };
+
+/** @description Zip类型 */
+export type ZipType =
+  | "AUDIO"
+  | "IMAGE_ACTIVITY_BANNER"
+  | "IMAGE_BLUR"
+  | "IMAGE_HERO_AVATAR"
+  | "IMAGE_MINECRAFT"
+  | "IMAGE_MISC"
+  | "IMAGE_PROPS"
+  | "IMAGE_MINI_HERO"
+  | "VIDEO_HOME";

@@ -4,13 +4,11 @@ import { reactive, ref } from "vue";
 import type { HeroDetailStoreType } from "../interface";
 
 import { GAME_HERO } from "@/api";
-import { $concise } from "@/utils";
 import { DEFAULT } from "@/config";
+import { _getMiscLink } from "@/utils/concise";
 
 /** @description 英雄详情 */
 const HeroDetailStore = defineStore("heroDetail", () => {
-  const { getImgLink } = $concise;
-
   const ExposeData = {
     /** 英雄信息 */
     hero_info: ref<Game.Hero.Detail>(DEFAULT.heroDefault()),
@@ -35,7 +33,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       relation: "？",
       id: 0,
       heroName: "？",
-      avatar: getImgLink("unknown"),
+      avatar: _getMiscLink("unknown"),
     }),
   };
   const {
@@ -50,12 +48,16 @@ const HeroDetailStore = defineStore("heroDetail", () => {
   } = ExposeData;
 
   const ExposeMethods = {
-    /** @description 设置英雄数据 */
+    /** @description 设置英雄数据
+     * @param data 英雄详情数据
+     */
     setHeroInfo(data: Game.Hero.Detail) {
       hero_info.value = data;
     },
 
-    /** @description 设置滚动页名 */
+    /** @description 设置滚动页名
+     * @param name 页名
+     */
     setPageName(name: string) {
       page_name.value = name;
       scrollFns.forEach((item) => {
@@ -72,39 +74,52 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       scrollFns.push({ name: name, fn: fn });
     },
 
-    /** @description 移除需要滚动触发的函数 */
+    /** @description 移除需要滚动触发的函数
+     * @param name 函数标识符
+     */
     removeScrollFn(name: string) {
       const index = scrollFns.findIndex((item) => item.name === name);
       scrollFns.splice(index, 1);
     },
 
-    /** @description 设置技能索引 */
+    /** @description 设置技能索引
+     * @param index 技能索引
+     */
     setSkillIndex(index: number) {
       setTimeout(() => {
         skill_index.value = index;
       }, 500);
     },
 
-    /** @description 设置技能选择函数 */
-    setSkillSelectFn(fn: () => void) {
+    /** @description 设置技能选择函数
+     * @param fn 选择技能后触发的函数
+     */
+    setSkillSelectFn(fn: (index: number) => void) {
       skillSelectFn.value = fn;
     },
 
-    /** @description 设置需要切换皮肤触发的函数 */
+    /** @description 设置需要切换皮肤触发的函数
+     * @param fn 切换皮肤后触发的函数
+     */
     setSkinToggleFn(fn: HeroDetailStoreType.SkinToggleFn) {
       skinToggleFns.value.push(fn);
     },
 
-    /** @description 切换皮肤时触发 */
+    /** @description 切换皮肤时触发
+     * @param hero_id 英雄id
+     * @param skin_name 皮肤名称
+     */
     skinToggle(hero_id: number, skin_name: string) {
       skinToggleFns.value.forEach((item) => {
         item(hero_id, skin_name);
       });
     },
 
-    /** @description 设置关系信息 */
-    setRelationInfo(data: Game.Hero.RelationType) {
-      const res = GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
+    /** @description 设置关系信息
+     * @param data 关系信息
+     */
+    async setRelationInfo(data: Game.Hero.RelationType) {
+      const res = await GAME_HERO.getHeroRelationshipDesc(data.id, hero_info.value.id);
       relation_info.value = {
         ...data,
         reply: res.desc || "？",
@@ -113,12 +128,17 @@ const HeroDetailStore = defineStore("heroDetail", () => {
       };
     },
 
-    /** @description 获取设置皮肤语音 */
-    setSkinVoice(hero_id: number, skin_name: string) {
-      skin_voice.value = GAME_HERO.getSkinVoice(hero_id, skin_name).voice || [];
+    /** @description 获取设置皮肤语音
+     * @param hero_id 英雄id
+     * @param skin_name 皮肤名称
+     */
+    async setSkinVoice(hero_id: number, skin_name: string) {
+      skin_voice.value = (await GAME_HERO.getSkinVoice(hero_id, skin_name)).voice || [];
     },
 
-    /** @description 点击技能后触发 */
+    /** @description 点击技能后触发
+     * @param index 技能索引
+     */
     skillToggler(index: number) {
       skillSelectFn.value(index);
     },
@@ -135,7 +155,7 @@ const HeroDetailStore = defineStore("heroDetail", () => {
         relation: "？",
         id: 0,
         heroName: "？",
-        avatar: getImgLink("unknown"),
+        avatar: _getMiscLink("unknown"),
       };
     },
   };

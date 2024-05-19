@@ -1,0 +1,55 @@
+.receive-prop {
+  .global_fill-container();
+  .global_flex-center();
+
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: var(--black-25);
+  backdrop-filter: blur(1.875rem);
+
+  .title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .prop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    background-image: linear-gradient(90deg, transparent 0%, var(--white-10) 46%, transparent 100%);
+
+    .icon {
+      .global_img-shine(1.5625rem);
+
+      width: 4.6875rem;
+      height: 4.6875rem;
+      animation: global-jitter 0.35s 0.25s infinite linear;
+
+      &::after {
+        filter: brightness(1.15);
+      }
+    }
+
+    .count {
+      font-size: 2.5rem;
+    }
+  }
+
+  .btns {
+    display: flex;
+    gap: 1rem;
+
+    .k-button {
+      --btn-rate: 0.85;
+      --font-size: 1.25rem;
+
+      z-index: 1;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+.blush {
+  --rate: 1;
+
+  position: absolute;
+  top: 30%;
+  display: flex;
+  align-items: center;
+  height: calc(175px * var(--rate));
+
+  &.small {
+    --rate: var(--yi-bao-scale-rate);
+  }
+
+  &-left,
+  &-right {
+    height: 75%;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-image: radial-gradient(var(--blush-bg-color) 0%, transparent 70%);
+  }
+
+  &-left {
+    transform: translateX(-40%);
+  }
+
+  &-right {
+    transform: translateX(40%);
+  }
+}

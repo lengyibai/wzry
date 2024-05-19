@@ -2,13 +2,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 4.6875rem;
   padding: 0.75rem;
-  text-shadow: var(--t-shadow-e);
 
   span {
     margin-left: 0.625rem;
-    color: var(--theme-font-color-four);
+    color: transparent;
     font-size: 1.875rem;
     white-space: nowrap;
+    background: linear-gradient(
+      -45deg,
+      var(--theme-font-color-three) 0,
+      var(--theme-font-color-three) 25%,
+      var(--white) 50%,
+      var(--theme-font-color-three) 75%,
+      var(--theme-font-color-three) 100%
+    );
+    background-clip: text;
+    background-size: 200%;
+    animation: shine 2s linear infinite;
+
+    @keyframes shine {
+      0% {
+        background-position: 100%;
+      }
+
+      100% {
+        background-position: -100%;
+      }
+    }
   }
 }

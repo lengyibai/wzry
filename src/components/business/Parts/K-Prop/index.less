@@ -1,0 +1,31 @@
+.k-prop {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .icon-box {
+    .global_flex-center();
+
+    position: relative;
+    width: 6.5rem;
+    height: 6.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--white-10);
+    background-color: var(--black-25);
+
+    .icon {
+      max-width: 100%;
+      max-height: 100%;
+      filter: var(--d-shadow-b);
+    }
+
+    .num {
+      .global_text-outline(0.25rem,var(--white),var(--black));
+
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0;
+      font-size: 1.35rem;
+    }
+  }
+}

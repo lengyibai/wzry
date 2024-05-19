@@ -2,6 +2,12 @@
 import { computed } from "vue";
 
 import { AudioStore } from "@/store";
+import { t } from "@/language";
+
+interface Props {
+  text?: string;
+}
+withDefaults(defineProps<Props>(), { text: t("开启") });
 
 /** 是否锁定 */
 const modelValue = defineModel<boolean>({ required: true });
@@ -22,7 +28,7 @@ const toggle = () => {
 <template>
   <div class="k-check" @click="toggle">
     <div class="select" :class="[icon, { checked: modelValue }]"></div>
-    <span :class="{ active: modelValue }">{{ $t("开启") }}</span>
+    <span :class="{ active: modelValue }">{{ text }}</span>
   </div>
 </template>
 

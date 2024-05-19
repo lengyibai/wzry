@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   width: 11rem;
   height: 100%;
   transition: all 0.25s;
@@ -31,7 +32,7 @@
     display: flex;
     align-items: center;
     padding: 0.625rem 1.25rem;
-    color: var(--theme-font-color-four);
+    color: var(--theme-font-color-three);
     text-shadow: var(--t-shadow-e);
 
     &.active {
@@ -78,13 +79,4 @@
       transparent 100%
     );
   }
-}
-
-.sidebar-enter-from {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.sidebar-enter-active {
-  transition: 0.5s;
 }

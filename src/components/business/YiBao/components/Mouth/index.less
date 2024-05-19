@@ -1,0 +1,53 @@
+.mouth {
+  --rate: 1;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: calc(85px * var(--rate));
+  height: calc(50px * var(--rate));
+  transition: all 0.25s ease-out;
+  transform: translateY(calc(10px * var(--rate)));
+
+  &.small {
+    --rate: 0.3;
+  }
+
+  .hole {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    height: calc(45px * var(--rate));
+    border-radius: 50%;
+    box-shadow: 0 -0.125rem 0.1875rem 0 #000 inset;
+    background-color: var(--mouth-bg-color-one);
+    transition: all 0.25s ease-out;
+
+    .teeth {
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      width: calc(40px * var(--rate));
+      height: calc(40px * var(--rate));
+      border-radius: 50% 50% 47% 53% / 65% 65% 35% 35%;
+      box-shadow: 0 2px 3px 0 #000;
+      background-color: var(--white);
+      transform: translateY(-50%);
+    }
+
+    .tongue {
+      position: absolute;
+      bottom: 0;
+      width: calc(70px * var(--rate));
+      height: calc(25px * var(--rate));
+      border-radius: 50% 50% 47% 53% / 65% 65% 35% 35%;
+      background-color: var(--mouth-bg-color-two);
+      transition: all 0.25s ease-out;
+      transform: translateY(30%);
+    }
+  }
+}

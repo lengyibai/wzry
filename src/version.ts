@@ -34,7 +34,9 @@ const updateLocalVersion = () => {
   localStorage.setItem(LOCAL_KEY.AUTO_UPDATE_STATUS, "1");
 };
 
-/** @description 去掉版本号的小数点进行大小比较 */
+/** @description 去掉版本号的小数点进行大小比较
+ * @param version 带小数点的版本号
+ */
 const getVersionNumber = (version: string) => {
   return Number(version.replaceAll(".", ""));
 };

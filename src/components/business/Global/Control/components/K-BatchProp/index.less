@@ -1,0 +1,131 @@
+.k-batch-prop {
+  .common_k-dialog-content-center();
+
+  .prop-data {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    .prop-info {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+
+      .icon-box {
+        .global_flex-center();
+
+        position: relative;
+        flex-direction: column;
+        width: 6.25rem;
+        height: 6.25rem;
+        margin-right: 1rem;
+        padding: 0.25rem;
+        border: 0.1875rem solid var(--theme-border-color-four);
+        background-color: var(--black-25);
+
+        .icon {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .count {
+          .global_text-outline(0.1875rem,var(--white),var(--black));
+
+          position: absolute;
+          right: 0.2em;
+          bottom: 0;
+          font-size: 1.25rem;
+        }
+      }
+
+      .base {
+        transform: translateY(0.3125rem);
+
+        .name {
+          margin-bottom: 0.25rem;
+          font-size: 1.75rem;
+          text-shadow: var(--t-shadow-e);
+        }
+
+        .price {
+          display: flex;
+          align-items: center;
+          font-size: 1.25rem;
+
+          .text {
+            margin-right: 0.5rem;
+            color: var(--theme-font-color-five);
+            font-family: var(--font-f);
+            text-shadow: var(--t-shadow-d);
+          }
+
+          .num {
+            color: var(--theme-font-color-eight);
+            font-family: var(--font-f);
+            text-shadow: var(--t-shadow-d);
+          }
+        }
+      }
+    }
+
+    .prop-desc {
+      height: 3em;
+      padding: 0 1rem;
+      color: var(--theme-font-color-nine);
+      font-size: 1.125rem;
+      font-family: var(--font-f);
+      text-align: center;
+      text-shadow: var(--t-shadow-d);
+    }
+  }
+
+  .range {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    .desc {
+      display: flex;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      text-shadow: var(--t-shadow-d);
+
+      .text {
+        margin-right: 0.25rem;
+        font-family: var(--font-f);
+      }
+
+      .num {
+        display: flex;
+
+        .use {
+          color: var(--blue);
+          font-family: var(--font-f);
+        }
+
+        .total,
+        .use {
+          font-family: var(--font-f);
+        }
+      }
+    }
+  }
+
+  .k-button {
+    --btn-rate: 0.9;
+    --font-size: 1.4rem;
+
+    margin-top: auto;
+
+    .icon {
+      height: 2rem;
+      margin-right: 0.5rem;
+    }
+
+    .price {
+      font-size: 1.65rem;
+      transform: translateY(0.125rem);
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.annulus {
+  --rate: 1;
+  .global_flex-center();
+
+  position: absolute;
+  width: calc(200px * var(--rate));
+  height: calc(200px * var(--rate));
+  transform-style: preserve-3d;
+
+  &.small {
+    --rate: var(--yi-bao-scale-rate);
+  }
+
+  .circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: move 2s linear infinite;
+    animation-delay: calc(0.5s * var(--i));
+
+    @keyframes move {
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        width: 0;
+        height: 0;
+        transform: translateZ(calc(200px * var(--rate)));
+        opacity: 0;
+      }
+    }
+  }
+
+  &.img {
+    .circle {
+      background-image: var(--annulus-bg);
+      background-size: 100% 100%;
+    }
+  }
+
+  &.color {
+    .circle {
+      border: calc(10px * var(--rate)) solid var(--annulus-border-color);
+      border-radius: 50%;
+    }
+  }
+}

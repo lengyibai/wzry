@@ -2,18 +2,24 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { SettingStore } from "@/store";
-import { AudioVisual } from "@/utils/modules/tool";
-import { $concise, $tool } from "@/utils";
 import { API_DATA } from "@/api";
-
-const { getMusicLink } = $concise;
+import { $message } from "@/utils/busTransfer";
+import { _getMusicLink } from "@/utils/concise";
+import {
+  _shuffleArray,
+  _potEoPct,
+  _AudioVisual,
+  _loadAndRetryAudio,
+  _retryRequest,
+} from "@/utils/tool";
+import { $msgTipText } from "@/config/modules/message-tip";
 
 /** @description 音乐播放器 */
 const MusicStore = defineStore("music", () => {
   /** 音量 */
   let volume = 0;
   /** 音乐可视化 */
-  let audio_visual: AudioVisual;
+  let audio_visual: _AudioVisual;
   /** 进度条宽度设置 */
   let progress_timer: NodeJS.Timeout;
   /** 播放器 */
@@ -34,13 +40,18 @@ const MusicStore = defineStore("music", () => {
   const { musics, bgmIndex, progress, status, show_list } = ExposeData;
 
   //初始化音乐
-  (async function initMusic() {
-    const data = (await API_DATA.Music()).data;
-    musics.value = $tool.shuffleArray<Global.Music>(data);
+  _retryRequest({
+    promiseFn: API_DATA.Music,
+  })
+    .then((res) => {
+      musics.value = _shuffleArray<Global.Music>(res.data);
 
-    //允许音频可视化跨域
-    bgm.setAttribute("crossOrigin", "anonymous");
-  })();
+      //允许音频可视化跨域
+      bgm.setAttribute("crossOrigin", "anonymous");
+    })
+    .catch(() => {
+      $message($msgTipText("rc53", { v: "音乐列表" }), "error");
+    });
 
   const ExposeMethods = {
     /**
@@ -48,35 +59,52 @@ const MusicStore = defineStore("music", () => {
      * @param isReset 是否播放下一首
      */
     async play(isNext = true) {
-      if (isNext) {
-        bgm.src = getMusicLink(musics.value[bgmIndex.value].url);
+      const link = _getMusicLink(musics.value[bgmIndex.value].url);
+      if (isNext || !bgm.src) {
+        await _loadAndRetryAudio(link)
+          .then(() => {
+            bgm.src = link;
+          })
+          .catch(() => {
+            $message("音乐加载失败，已切换下一首", "error");
+            this.next();
+          });
       }
 
-      status.value = true;
-      bgm.volume = volume;
+      //已缓冲完毕
+      if (bgm.readyState === 4) {
+        status.value = true;
+        bgm.play();
+      }
 
-      try {
-        await bgm.play();
-        //播放成功后开始分析音频
-        audio_visual?.play();
-        //如果未启用音乐播放器，则暂停播放
-        if (!SettingStore().config.music) {
-          bgm.pause();
+      //需要等待音乐缓冲完毕后播放
+      bgm.oncanplaythrough = async () => {
+        status.value = true;
+        bgm.volume = volume;
+
+        try {
+          await bgm.play();
+          //播放成功后开始分析音频
+          audio_visual?.play();
+          //如果未启用音乐播放器，则暂停播放
+          if (!SettingStore().config.music) {
+            bgm.pause();
+          }
+
+          //实时设置播放进度
+          progress_timer = setInterval(() => {
+            progress.value = _potEoPct(bgm.currentTime / bgm.duration);
+          }, 500);
+
+          //播放结束后执行下一次播放
+          bgm.onended = this.next;
+        } catch (error) {
+          //播放失败后重试
+          setTimeout(() => {
+            this.play(false);
+          }, 1000);
         }
-
-        //实时设置播放进度
-        progress_timer = setInterval(() => {
-          progress.value = $tool.potEoPct(bgm.currentTime / bgm.duration);
-        }, 500);
-
-        //播放结束后执行下一次播放
-        bgm.onended = this.next;
-      } catch (error) {
-        //播放失败后重试
-        setTimeout(() => {
-          this.play(false);
-        }, 1000);
-      }
+      };
     },
 
     /** @description 上一首 */
@@ -144,9 +172,11 @@ const MusicStore = defineStore("music", () => {
       bgm.currentTime = 0;
     },
 
-    /** @description 音频可视化初始化 */
+    /** @description 音频可视化初始化
+     * @param canvas 音频可视化画布
+     */
     initAudioVisual(canvas: HTMLCanvasElement) {
-      audio_visual = new $tool.AudioVisual(bgm, canvas);
+      audio_visual = new _AudioVisual(bgm, canvas);
     },
 
     /** @description 重新创建播放器，解决音乐可视化音频标签被占用问题 */

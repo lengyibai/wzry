@@ -17,12 +17,12 @@ interface ElType extends HTMLElement {
 interface Params {
   /** 打字内容 */
   content: string;
-  /** 打字结束后触发 */
-  callback?: () => void;
   /** 频率 ms/字 */
   speed?: number;
   /** 延迟多少毫秒触发 */
   delay?: number;
+  /** 打字结束后触发 */
+  callback?: () => void;
 }
 
 const vTypewriterMultiple: Directive<ElType, Params> = {
@@ -59,6 +59,7 @@ const vTypewriterMultiple: Directive<ElType, Params> = {
     };
     el._startOutput(el, binding);
   },
+
   updated(el, binding) {
     if (binding.value.content === el._last_text) return;
     el._startOutput(el, binding);

@@ -1,17 +1,16 @@
 <script setup lang="ts">
+import KLoadingIcon from "../K-LoadingIcon/index.vue";
+
 import { useDialogControl } from "./hooks/useDialogControl";
 
-import { $concise } from "@/utils";
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
-import KLoadingIcon from "@/components/business/Parts/K-LoadingIcon/index.vue";
+import { _getMiscLink } from "@/utils/concise";
 
 interface Props {
-  /** 垂直对齐方式 */
-  align?: "flex-start" | "center" | "flex-end";
-  /** 内容宽度 */
-  ctxWidth?: string;
+  /** 弹窗比例 */
+  ratio?: number;
   /** 中间标题文字 */
   header?: string;
   /** 中间标题下描述 */
@@ -32,17 +31,19 @@ interface Props {
   loading?: boolean;
   /** 弹窗层级 */
   zIndex?: string;
+  /** 距离顶部 */
+  top?: string;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  align: "flex-start",
-  ctxWidth: "80%",
   showClose: true,
   autoClose: true,
   audio: true,
   width: "45rem",
   loading: false,
   zIndex: "var(--z-index-dialog)",
+  ratio: 0.55,
+  top: "6rem",
 });
 const $emit = defineEmits<{
   close: [];
@@ -54,13 +55,12 @@ const modelValue = defineModel<boolean>();
 
 const $audioStore = AudioStore();
 
-const { getImgLink } = $concise;
-
 const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
   $props.autoClose && $emit("close");
   modelValue.value = false;
 });
 
+/** @description 关闭弹窗 */
 const handleCloseDialog = () => {
   if ($props.autoClose) {
     $emit("before-close");
@@ -103,8 +103,8 @@ defineExpose({
           class="k-dialog"
           :style="{
             width: width,
-            height: `calc(${width} * 0.55)`,
-            backgroundImage: `url(${getImgLink('dialog')})`,
+            height: `calc(${width} * ${ratio})`,
+            backgroundImage: `url(${_getMiscLink('dialog')})`,
           }"
         >
           <!-- 左上标题 -->
@@ -130,8 +130,7 @@ defineExpose({
           <div
             class="content"
             :style="{
-              width: ctxWidth,
-              justifyContent: align,
+              top,
             }"
           >
             <transition-group name="fade">

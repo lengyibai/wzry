@@ -14,16 +14,17 @@
     width: 31.25rem;
     min-height: calc(31.25rem * 0.5989);
     padding-bottom: 1.5625rem;
-    background: url("@{IMGBED}/image/dialog.png") no-repeat center center;
+    background-position: center center;
     background-size: 100% 100%;
-    filter: var(--d-shadow-c);
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 0.375rem var(--black));
 
     .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       height: 5.625rem;
-      color: var(--theme-font-color-seven);
+      color: var(--theme-font-color-five);
       text-shadow: var(--t-shadow-e);
 
       .title {
@@ -34,7 +35,7 @@
       .soldier {
         --misc-rate: 0.83;
         .spirit_misc-soldier();
-        // height: 6.25rem;
+        //height: 6.25rem;
         transform: translateY(-50%) rotateY(180deg);
         filter: var(--d-shadow-b);
       }
@@ -49,7 +50,6 @@
       font-size: 1.5rem;
       text-indent: 2em;
       text-shadow: var(--t-shadow-e);
-      line-height: 1.25;
     }
 
     .btns {

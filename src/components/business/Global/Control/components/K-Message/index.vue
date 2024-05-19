@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import useMessage from "./hooks/useMessage";
+import { useMessage } from "./hooks/useMessage";
 
-import { $bus, $concise } from "@/utils";
+import { _getImgLink } from "@/utils/concise";
 
-const { msg, messages } = useMessage();
-
-const { getImgLink } = $concise;
+const { messages } = useMessage();
 
 /** 字体颜色 */
 const color: Record<Global.Message.Status, string> = {
@@ -13,7 +11,7 @@ const color: Record<Global.Message.Status, string> = {
   warning: "#e2c484",
   error: "#e28484",
 };
-const getImg = (src: string) => getImgLink(`msg_${src}`);
+const getImg = (src: string) => _getImgLink(`msg_${src}`);
 
 /** 消息类型提醒左中右图标 */
 const imgs: Record<Global.Message.Status, Record<"left" | "center" | "right", string>> = {
@@ -33,10 +31,6 @@ const imgs: Record<Global.Message.Status, Record<"left" | "center" | "right", st
     right: getImg("right_danger"),
   },
 };
-
-$bus.on("msg", (data) => {
-  msg(data.text, data.type);
-});
 </script>
 
 <template>

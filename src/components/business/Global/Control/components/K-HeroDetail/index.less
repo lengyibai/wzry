@@ -1,0 +1,70 @@
+.hero-detail {
+  .global_fill-container();
+
+  position: absolute;
+  z-index: var(--z-index-hero-detail);
+  overflow: hidden;
+  background-color: #000;
+
+  &__close {
+    --misc-rate: 1.25;
+    .spirit_misc-back();
+
+    position: absolute;
+    top: 0.625rem;
+    left: 0.625rem;
+    z-index: 2;
+    transition: all 0.5s;
+    transform: translateX(-110%);
+    opacity: 0;
+
+    &.show {
+      .global_light-btn();
+
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+/* 页面入场动画 */
+.clip-enter-active {
+  animation: clip-in 1s;
+}
+
+.clip-leave-active {
+  animation: clip-out 0.75s;
+}
+
+@keyframes clip-in {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 0 50%, 0 100%);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 100% 0, 0 50%, 0% 100%);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+}
+
+@keyframes clip-out {
+  0% {
+    clip-path: polygon(0 0, 0 50%, 0 100%, 50% 100%, 100% 100%, 100% 50%, 100% 0, 50% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 50% 50%, 0 100%, 50% 50%, 100% 100%, 50% 50%, 100% 0, 50% 50%);
+  }
+}
+
+/* 滚动索引入场动画 */
+.progress-enter-from {
+  transform: translateX(100%) translateY(-50%);
+}
+
+.progress-enter-active {
+  transition: all 0.5s;
+}

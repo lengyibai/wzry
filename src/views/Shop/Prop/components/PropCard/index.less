@@ -1,0 +1,57 @@
+.prop-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  border: 0.125rem solid;
+  border-image-source: linear-gradient(to bottom, transparent, var(--white-10));
+  border-image-slice: 1;
+
+  .icon {
+    .global_reflect(0,0);
+
+    position: relative;
+    height: 6.25rem;
+    margin-bottom: 1rem;
+    filter: var(--d-shadow-b);
+  }
+
+  .blur {
+    .global_self-center();
+
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    filter: blur(1.25rem);
+    pointer-events: none;
+    -webkit-mask: linear-gradient(180deg, transparent 0%, transparent 40%, #000 100%);
+  }
+
+  .name {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    text-shadow: var(--shine-15), var(--t-shadow-e);
+  }
+
+  .k-button {
+    --btn-rate: 0.75;
+    --font-size: 1.25rem;
+
+    z-index: 1;
+
+    .type {
+      height: 1.5625rem;
+      margin-right: 0.5rem;
+      filter: var(--d-shadow-e);
+    }
+
+    .price {
+      transform: translateY(0.125rem);
+    }
+  }
+}

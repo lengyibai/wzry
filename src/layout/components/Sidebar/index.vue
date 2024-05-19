@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { ref, onUnmounted } from "vue";
+import { onUnmounted } from "vue";
 
 import sideItem from "./components/SideItem/index.vue";
 import GameLogo from "./components/GameLogo/index.vue";
+import { formatSidebarRoutes } from "./helper";
 
-import { formatSidebarRoutes } from "@/router/helper/formatSidebarRoutes";
-import { CollapseStore, RouterStore } from "@/store";
+import { RouterStore } from "@/store";
+import { useCollapse } from "@/hooks";
+import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 
-const $collapseStore = CollapseStore();
 const $routerStore = RouterStore();
 
-/** 滑块坐标 */
-const top = ref(0);
-/** 显示滑块 */
-const show_slider = ref(false);
+const { collapse, setCollapse } = useCollapse();
+const { hide_all } = useHideLayout();
 
 /** 路由数据 */
 const options = $routerStore.routes;
@@ -21,19 +20,9 @@ const options = $routerStore.routes;
 /** 格式化后的路由数据 */
 const routes = formatSidebarRoutes(options);
 
-/* 设置坐标 */
-const onCoord = (v: number) => {
-  if (v === 0) {
-    show_slider.value = false;
-  } else {
-    top.value = v;
-    show_slider.value = true;
-  }
-};
-
 /* 监听浏览器尺寸设置侧边栏状态 */
 const sidebarStatus = () => {
-  $collapseStore.setCollapse(window.innerWidth < 960);
+  setCollapse(window.innerWidth < 960);
 };
 
 window.addEventListener("resize", sidebarStatus);
@@ -44,28 +33,15 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <transition name="sidebar" appear>
-    <div class="side-bar" :class="{ collapse: $collapseStore.collapse }">
+  <transition name="to-right" appear>
+    <div v-show="!hide_all" class="side-bar" :class="{ collapse: collapse }">
       <!-- 游戏logo -->
       <GameLogo />
 
       <!-- 侧边栏列表 -->
-      <sideItem
-        v-for="route in routes"
-        :key="route.path"
-        :route="route"
-        :coord="top"
-        @coord="onCoord"
-      />
-
-      <!-- 滑块 -->
-      <div
-        class="slider"
-        :style="{
-          top: top + 'px',
-          opacity: show_slider ? 1 : 0,
-        }"
-      ></div>
+      <div class="side-bar-list">
+        <sideItem v-for="route in routes" :key="route.path" height="4rem" :route="route" />
+      </div>
     </div>
   </transition>
 </template>

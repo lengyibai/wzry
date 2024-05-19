@@ -1,4 +1,9 @@
-/* 连接两个元素 */
+/**
+ * @description 给负责连接两个元素的线条设置线条
+ * @param circle1 第一个元素
+ * @param circle2 第二个元素
+ * @param line 线条元素
+ */
 export const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: HTMLElement) => {
   //计算两个圆的中心坐标
   const rect1 = circle1.getBoundingClientRect();

@@ -4,15 +4,15 @@
   position: relative;
   border: 2px solid var(--white-10);
   box-shadow: var(--b-shadow-c);
+  aspect-ratio: 2.5 / 1;
   background-color: var(--black-25);
   transition: 0.5s;
-  aspect-ratio: 2.5 / 1;
 
   &:hover {
-    border-color: var(--theme-border-color-seven);
+    border-color: var(--theme-border-color-five);
     box-shadow:
-      var(--shine-5) var(--theme-border-color-seven),
-      var(--shine-5) var(--theme-border-color-seven) inset;
+      var(--shine-5) var(--theme-border-color-five),
+      var(--shine-5) var(--theme-border-color-five) inset;
     transition: 0.1s;
   }
 
@@ -29,17 +29,17 @@
   }
 
   &.active {
-    border: 2px solid var(--theme-border-color-seven);
+    border: 2px solid var(--theme-border-color-five);
     box-shadow:
-      var(--shine-5) var(--theme-border-color-seven),
-      var(--shine-5) var(--theme-border-color-seven) inset;
+      var(--shine-5) var(--theme-border-color-five),
+      var(--shine-5) var(--theme-border-color-five) inset;
     animation: shine 2s infinite ease-in-out;
 
     @keyframes shine {
       50% {
         box-shadow:
-          var(--shine-15) var(--theme-border-color-seven),
-          var(--shine-15) var(--theme-border-color-seven) inset;
+          var(--shine-15) var(--theme-border-color-five),
+          var(--shine-15) var(--theme-border-color-five) inset;
       }
     }
   }
@@ -49,6 +49,7 @@
     align-items: center;
     flex-direction: column;
     margin-right: 1.5625rem;
+    pointer-events: none;
 
     img {
       width: 4rem;
@@ -69,6 +70,7 @@
     flex-direction: column;
     color: var(--white);
     text-shadow: var(--t-shadow-e);
+    pointer-events: none;
 
     .name {
       margin-bottom: 0.35rem;
@@ -85,7 +87,7 @@
         font-size: 1rem;
 
         .label {
-          color: var(--theme-font-color-four);
+          color: var(--theme-font-color-three);
         }
 
         .value {
@@ -128,7 +130,7 @@
     border: 0.1667vw solid var(--white-10);
 
     &.active {
-      border: 0.2vw solid var(--theme-border-color-seven);
+      border: 0.2vw solid var(--theme-border-color-five);
     }
 
     .left {
@@ -163,7 +165,7 @@
     border: 0.2084vw solid var(--white-10);
 
     &.active {
-      border: 0.25vw solid var(--theme-border-color-seven);
+      border: 0.25vw solid var(--theme-border-color-five);
     }
 
     .left {

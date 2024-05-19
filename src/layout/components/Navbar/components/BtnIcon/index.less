@@ -8,9 +8,61 @@
 
   .iconfont {
     margin-right: 0.625rem;
-    color: var(--theme-font-color-four);
+    color: var(--theme-font-color-three);
     font-size: 2.1875rem;
     text-shadow: var(--t-shadow-e);
+  }
+
+  .wzry-youxiang {
+    position: relative;
+
+    &.unread {
+      animation: unread 1.25s ease-in-out infinite;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 0.625rem;
+        height: 0.625rem;
+        background-color: var(--red);
+        transform: translateX(50%) rotate(45deg);
+      }
+
+      @keyframes unread {
+        0% {
+          transform: scale(1);
+        }
+
+        15% {
+          transform: scale(1.1);
+        }
+
+        30% {
+          transform: scale(1.1) rotate(10deg);
+        }
+
+        45% {
+          transform: scale(1.1) rotate(-10deg);
+        }
+
+        60% {
+          transform: scale(1.1) rotate(10deg);
+        }
+
+        75% {
+          transform: scale(1.1) rotate(-10deg);
+        }
+
+        85% {
+          transform: scale(1.1) rotate(0deg);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+    }
   }
 
   .wzry-setting {
@@ -24,10 +76,86 @@
     }
   }
 
-  .wzry-gengxinrizhi,
-  .wzry-todo {
-    display: inline-block;
-    transition: all 0.25s;
+  .wzry-task {
+    position: relative;
+
+    &.receive {
+      transform-origin: top center;
+      animation: receive 1.25s infinite;
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 0.625rem;
+        height: 0.625rem;
+        background-color: var(--red);
+        transform: translateX(50%) rotate(45deg);
+      }
+
+      @keyframes receive {
+        20% {
+          transform: rotate(15deg);
+        }
+
+        40% {
+          transform: rotate(-10deg);
+        }
+
+        60% {
+          transform: rotate(5deg);
+        }
+
+        80% {
+          transform: rotate(-5deg);
+        }
+
+        100% {
+          transform: rotate(0deg);
+        }
+      }
+    }
+  }
+
+  .wzry-huodong {
+    transform-origin: bottom center;
+    animation: activity 1.25s ease-in-out infinite;
+
+    @keyframes activity {
+      0% {
+        transform: scaleX(1);
+      }
+
+      30% {
+        transform: scale3d(1.2, 0.8, 1);
+      }
+
+      40% {
+        transform: scale3d(0.8, 1.2, 1);
+      }
+
+      50% {
+        transform: scale3d(1.1, 0.8, 1);
+      }
+
+      65% {
+        transform: scale3d(0.95, 1.05, 1);
+      }
+
+      75% {
+        transform: scale3d(1.05, 0.95, 1);
+      }
+
+      100% {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  .wzry-huodong,
+  .wzry-task,
+  .wzry-youxiang {
+    transition: 0.25s;
 
     &:hover {
       color: var(--white);

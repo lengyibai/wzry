@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, reactive } from "vue";
-import { watchEffect } from "vue";
+import { computed, reactive, watchEffect } from "vue";
 
 import KButton from "@/components/business/Parts/K-Button/index.vue";
 import { AuthStore } from "@/store";
 import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
-import { vMouseTip } from "@/directives";
-import { $input, $message, $privateTool } from "@/utils";
+import { vMouseTip, vScrollVirtualization } from "@/directives";
+import { $input, $message, $selectAvatar } from "@/utils/busTransfer";
+import { _selectAvatarCompress } from "@/utils/privateTool";
 
 const $emit = defineEmits<{
   close: [];
@@ -16,13 +16,26 @@ const $emit = defineEmits<{
 const status = defineModel<boolean>("status", { required: true });
 
 const $authStore = AuthStore();
+const { avatar, username, password, secondaryPassword } = $authStore.user_data;
 
 /** 用户信息 */
-const user_data = reactive({ ...$authStore.user_data });
+const user_data = reactive<Partial<User.Data>>({
+  avatar,
+  username,
+  password,
+  secondaryPassword,
+});
 
-/* 选择图片 */
+/* 选择头像 */
 const handleSelectAvatar = (e: Event) => {
-  $privateTool.selectAvatarCompress(e, (v) => {
+  _selectAvatarCompress(e, (v) => {
+    user_data.avatar = v;
+  });
+};
+
+/* 选择内置头像 */
+const handleSelectBuiltInAvatar = () => {
+  $selectAvatar((v) => {
     user_data.avatar = v;
   });
 };
@@ -47,6 +60,11 @@ const handleResetPwd = () => {
     placeholder: "请输入新密码",
     value: user_data.password,
     confirm: (v, close) => {
+      if (v === user_data.secondaryPassword) {
+        $message(MESSAGE_TIP.f1q2, "error");
+        return;
+      }
+
       user_data.password = v;
       close();
     },
@@ -60,6 +78,11 @@ const handleResetSecPwd = () => {
     placeholder: "请输入新二级密码",
     value: user_data.secondaryPassword,
     confirm: (v, close) => {
+      if (v === user_data.password) {
+        $message(MESSAGE_TIP.w89h, "error");
+        return;
+      }
+
       user_data.secondaryPassword = v;
       close();
     },
@@ -68,7 +91,12 @@ const handleResetSecPwd = () => {
 
 /** 是否修改了资料 */
 const edit_status = computed(() => {
-  return JSON.stringify(user_data) !== JSON.stringify($authStore.user_data);
+  return (
+    user_data.avatar !== $authStore.user_data.avatar ||
+    user_data.username !== $authStore.user_data.username ||
+    user_data.password !== $authStore.user_data.password ||
+    user_data.secondaryPassword !== $authStore.user_data.secondaryPassword
+  );
 });
 
 /* 保存个人信息 */
@@ -84,7 +112,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="edit-user-info">
+  <div v-scroll-virtualization class="edit-user-info">
     <!-- 头像 -->
     <div class="option avatar-select">
       <input
@@ -98,26 +126,45 @@ watchEffect(() => {
       <div class="avatar-box">
         <img v-if="user_data.avatar" :src="user_data.avatar" alt="" class="avatar" />
       </div>
-      <label for="file" class="label">
-        <KButton v-mouse-tip class="k-button">点击选择头像</KButton>
-      </label>
+
+      <div class="select-btn">
+        <label for="file">
+          <KButton
+            v-mouse-tip="{
+              text: MOUSE_TIP.ix29,
+            }"
+            class="k-button"
+          >
+            自定义头像
+          </KButton>
+        </label>
+        <KButton
+          v-mouse-tip="{
+            text: MOUSE_TIP.lb97,
+          }"
+          class="k-button"
+          @click="handleSelectBuiltInAvatar"
+        >
+          选择内置头像
+        </KButton>
+      </div>
     </div>
 
     <!-- 用户名 -->
     <div class="option">
       <div class="label">{{ user_data.username }}</div>
-      <KButton v-mouse-tip class="k-button" @click="handleRename">修改昵称</KButton>
+      <KButton v-mouse-tip @click="handleRename">修改昵称</KButton>
     </div>
 
     <!-- 密码 -->
     <div class="option">
-      <div class="label">{{ user_data.password.replace(/./g, "*") }}</div>
+      <div class="label">{{ user_data.password!.replace(/./g, "*") }}</div>
       <KButton v-mouse-tip class="k-button" @click="handleResetPwd">修改密码</KButton>
     </div>
 
     <!-- 二级密码 -->
     <div class="option">
-      <div class="label">{{ user_data.secondaryPassword.replace(/./g, "*") }}</div>
+      <div class="label">{{ user_data.secondaryPassword!.replace(/./g, "*") }}</div>
       <KButton v-mouse-tip class="k-button" @click="handleResetSecPwd">修改二级密码</KButton>
     </div>
   </div>

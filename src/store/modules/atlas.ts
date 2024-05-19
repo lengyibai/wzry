@@ -2,13 +2,15 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { $bus, $tool } from "@/utils";
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
+import { $bus } from "@/utils/eventBus";
+import { _search } from "@/utils/tool";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {
   const $usePagingLoad = usePagingLoad<Game.Hero.AloneAtlas>();
+  const { all_data, setFilterData, filter_list } = $usePagingLoad;
 
   const ExposeData = {
     /** 滚动坐标 */
@@ -35,7 +37,6 @@ const AtlasStore = defineStore("atlas", () => {
 
     /** 职业筛选 */
     const filterProfession = () => {
-      const { all_data, setFilterData } = $usePagingLoad;
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
         setFilterData([...all_data.value]);
@@ -49,8 +50,6 @@ const AtlasStore = defineStore("atlas", () => {
 
     /** 性别筛选 */
     const filterGender = () => {
-      const { filter_list, setFilterData } = $usePagingLoad;
-
       const boy: Game.Hero.AloneAtlas[] = [];
       const girl: Game.Hero.AloneAtlas[] = [];
 
@@ -88,12 +87,13 @@ const AtlasStore = defineStore("atlas", () => {
     /** @description 加载更多 */
     loadMore: $usePagingLoad.loadMore,
 
-    /* 获取图集列表 */
-    getAtlasList() {
-      const hero_atlas = GAME_HERO.getHeroAtlas();
+    /** @description 获取图集列表 */
+    async getAtlasList() {
+      const hero_atlas = await GAME_HERO.getHeroAtlas();
+      const data: Game.Hero.AloneAtlas[] = [];
 
       hero_atlas.forEach((hero) => {
-        $usePagingLoad.pushAllData({
+        data.push({
           id: hero.id,
           cover: hero.cover,
           coverBlur: hero.coverBlur,
@@ -108,8 +108,8 @@ const AtlasStore = defineStore("atlas", () => {
         });
 
         hero.skins.forEach((skin) => {
-          $usePagingLoad.pushAllData({
-            id: hero.id,
+          data.push({
+            id: skin.id,
             cover: skin.cover,
             coverBlur: skin.posterBlur,
             name: skin.name,
@@ -124,6 +124,7 @@ const AtlasStore = defineStore("atlas", () => {
         });
       });
 
+      $usePagingLoad.pushAllData(data);
       sortAll();
     },
 
@@ -157,9 +158,10 @@ const AtlasStore = defineStore("atlas", () => {
       sortAll();
     },
 
-    /** @description 搜索图集 */
+    /** @description 搜索图集
+     * @param name 搜索名称
+     */
     searchAtlas(name: string) {
-      /* 搜索英雄时重置下拉菜单 */
       sort_type.value = "倒序";
       profession.value = "全部";
       gender_type.value = 0;
@@ -168,7 +170,7 @@ const AtlasStore = defineStore("atlas", () => {
 
       //如果搜索的值不为空，则进行搜索，否则重新排序
       if (name) {
-        const data = $tool.search<Game.Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
+        const data = _search<Game.Hero.AloneAtlas>(_cloneDeep(all_data.value), name, [
           "name",
           "heroName",
         ]);

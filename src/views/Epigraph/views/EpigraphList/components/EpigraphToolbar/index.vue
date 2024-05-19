@@ -8,7 +8,7 @@ import { AudioStore, EpigraphStore } from "@/store";
 import { KButton, KInput } from "@/components/business";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { $focus, $tip } from "@/utils";
+import { $tip, $focus } from "@/utils/busTransfer";
 
 const $epigraphStore = EpigraphStore();
 const $audioStore = AudioStore();
@@ -18,24 +18,26 @@ const collocationBtnRef = ref<InstanceType<typeof KButton>>();
 /** 搜索值 */
 const search_value = ref("");
 
-/* 清空输入框 */
+/** @description 清空输入框 */
 const clearName = () => {
   search_value.value = "";
 };
 
-/* 进入铭文搭配 */
+/** @description 进入铭文搭配 */
 const handleCollocation = () => {
   $epigraphStore.setStatus("COLLOCATION");
   $audioStore.play("pj83");
 };
 
-/* 设置显示的铭文颜色 */
-const onFilterColor = (type?: Game.Epigraph.Data["color"]) => {
-  $epigraphStore.filterColor(type);
+/** @description 设置显示的铭文颜色
+ * @param color 铭文颜色
+ */
+const onFilterColor = (color?: Game.Epigraph.Data["color"]) => {
+  $epigraphStore.filterColor(color);
   clearName();
 };
 
-/* 搜索皮肤 */
+/** @description 搜索皮肤 */
 const debounceSearch = _debounce(() => {
   $epigraphStore.searchEpigraph(search_value.value);
 }, 500);
@@ -74,7 +76,8 @@ defineExpose({
         text: MOUSE_TIP.kb43,
         type: 'INPUT',
       }"
-      placeholder="英雄/皮肤"
+      class="k-input"
+      placeholder="铭文名称"
       :required="false"
       @input="debounceSearch"
     />

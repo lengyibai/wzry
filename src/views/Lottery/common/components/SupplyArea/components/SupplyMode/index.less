@@ -1,0 +1,213 @@
+.supply-mode {
+  .global_fill-container();
+
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  transition: 0.25s;
+  backdrop-filter: blur(1.875rem);
+
+  .title {
+    margin-bottom: 1rem;
+    color: var(--white-75);
+    font-size: 2.5rem;
+    text-shadow: var(--t-shadow-f);
+  }
+
+  .mode-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .mode {
+      --width: 0.1875rem;
+      .common_lottery-supply-mode-color();
+      .global_border-gradient(var(--width),var(--color1),var(--color2),-45deg);
+
+      position: relative;
+      overflow: hidden;
+      padding: 0 1rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.5rem;
+      box-shadow:
+        var(--b-shadow-c),
+        var(--b-shadow-c) inset;
+      color: var(--color);
+      font-size: 1.75rem;
+      text-shadow: var(--t-shadow-e);
+      transition: 0.5s;
+
+      &::before {
+        .global_fill-container();
+
+        content: "";
+        z-index: -1;
+        background-image: var(--bg);
+        transition: 0.25s;
+        transform: translateY(-100%);
+      }
+
+      &:hover {
+        color: var(--white);
+
+        &::before {
+          transform: translateY(0%);
+        }
+      }
+    }
+  }
+
+  .ready-start {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .desc {
+      .common_lottery-supply-mode-color();
+
+      margin-bottom: 1rem;
+      color: var(--color);
+      font-size: 2rem;
+      text-shadow: var(--t-shadow-e);
+    }
+
+    .tip {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: var(--white-50);
+      font-size: 2rem;
+      text-shadow: var(--t-shadow-e);
+
+      .text {
+        margin-right: 0.5rem;
+      }
+
+      .prop {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          width: 1.875rem;
+        }
+      }
+    }
+
+    .btns {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .k-button {
+        --btn-rate: 0.85;
+        --font-size: 1.5rem;
+
+        @media screen and (max-width: 93.75rem) {
+          --btn-rate: 0.9;
+        }
+
+        @media screen and (max-width: 87.5rem) {
+          --btn-rate: 0.85;
+        }
+
+        @media screen and (max-width: 81.25rem) {
+          --btn-rate: 0.8;
+        }
+
+        @media screen and (max-width: 75rem) {
+          --btn-rate: 0.75;
+        }
+
+        @media screen and (max-width: 60rem) {
+          --btn-rate: 1;
+        }
+
+        @media screen and (max-width: 45rem) {
+          --btn-rate: 0.85;
+        }
+
+        @media screen and (max-width: 30rem) {
+          --btn-rate: 0.75;
+        }
+      }
+    }
+  }
+
+  .supply-remain-num {
+    position: absolute;
+    left: 0.5rem;
+    bottom: 0.5rem;
+    display: flex;
+    color: var(--white-25);
+    font-size: 1.5rem;
+  }
+
+  @media screen and (max-width: 120rem) {
+    --rate: 1;
+
+    padding: calc(0.8333vw * var(--rate));
+    backdrop-filter: blur(calc(1.5625vw * var(--rate)));
+
+    .title {
+      margin-bottom: calc(0.8333vw * var(--rate));
+      font-size: calc(2.0833vw * var(--rate));
+    }
+
+    .mode-list {
+      gap: calc(0.8333vw * var(--rate));
+
+      .mode {
+        --width: calc(0.1563vw * var(--rate));
+
+        padding: 0 calc(0.8333vw * var(--rate));
+        padding-top: calc(0.625vw * var(--rate));
+        padding-bottom: calc(0.4167vw * var(--rate));
+        font-size: calc(1.4583vw * var(--rate));
+      }
+    }
+
+    .ready-start {
+      .desc {
+        margin-bottom: calc(0.8333vw * var(--rate));
+        font-size: calc(1.6667vw * var(--rate));
+      }
+
+      .tip {
+        margin-bottom: calc(0.8333vw * var(--rate));
+        font-size: calc(1.6667vw * var(--rate));
+
+        .text {
+          margin-right: calc(0.4167vw * var(--rate));
+        }
+
+        .prop {
+          .icon {
+            width: calc(1.5625vw * var(--rate));
+          }
+        }
+      }
+
+      .btns {
+        gap: calc(0.8333vw * var(--rate));
+
+        .k-button {
+          --font-size: calc(1.25vw * var(--rate));
+        }
+      }
+    }
+
+    .supply-remain-num {
+      left: calc(0.4167vw * var(--rate));
+      bottom: calc(0.4167vw * var(--rate));
+      font-size: calc(1.25vw * var(--rate));
+    }
+  }
+
+  @media screen and (max-width: 60rem) {
+    --rate: 2.25;
+  }
+}

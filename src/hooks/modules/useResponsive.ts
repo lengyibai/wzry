@@ -8,6 +8,7 @@ const ExposeData = {
 };
 const { under_960, under_1200 } = ExposeData;
 
+/** @description 响应式触发 */
 const change = () => {
   const w = window.innerWidth;
 
@@ -15,11 +16,14 @@ const change = () => {
   under_1200.value = w < 1200;
 };
 change();
+
 window.addEventListener("resize", change);
 
-/** @description 响应式条件 */
+/** @description 响应式条件触发 */
 const useResponsive = () => {
-  return ExposeData;
+  return {
+    ...ExposeData,
+  };
 };
 
 export { useResponsive };

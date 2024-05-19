@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KLogo from "@/components/business/Parts/K-Logo/index.vue";
+import { KLogo } from "@/components/business";
 
 interface Props {
   /** 列表是否加载完毕 */

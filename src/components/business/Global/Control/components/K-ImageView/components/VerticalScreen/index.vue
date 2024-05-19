@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { ImageView } from "../../interface";
+
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { KButton, KMarquee } from "@/components/business";
-import type { ImageViewParams } from "@/utils/interface";
 
 interface Props {
-  data: ImageViewParams;
+  data: ImageView;
   duration: number;
   currentIndex: number;
 }
@@ -28,7 +29,7 @@ const $emit = defineEmits<{
           v-for="(item, index) in data?.voices"
           :key="index"
           v-mouse-tip="{
-            text: MOUSE_TIP.lq42,
+            text: MOUSE_TIP.sg22,
           }"
           :class="{
             active: currentIndex === index,

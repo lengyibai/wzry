@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { $concise } from "@/utils";
+import { _getImgLink } from "@/utils/concise";
 
 interface Props {
+  /** 是否快速 */
   fast?: boolean;
+  /** 是否停止旋转 */
   stop?: boolean;
 }
 defineProps<Props>();
-
-const { getImgLink } = $concise;
 </script>
 
 <template>
   <div class="k-logo">
     <img
-      :src="getImgLink('logo_inside')"
+      :src="_getImgLink('logo_inside')"
       alt=""
       class="inside"
       :style="{
@@ -25,7 +25,7 @@ const { getImgLink } = $concise;
       @dragstart.prevent
     />
     <img
-      :src="getImgLink('logo_outside')"
+      :src="_getImgLink('logo_outside')"
       alt=""
       class="outside"
       :style="{

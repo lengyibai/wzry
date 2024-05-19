@@ -14,41 +14,179 @@
   transition: all 0.25s ease-out;
   transform-style: preserve-3d;
 
-  &__reg,
-  &__login {
-    .global_click-btn();
+  .logo-box {
+    z-index: 1;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-bottom: 0.9375rem;
+    animation: light 1.5s infinite alternate-reverse ease-out;
 
-    position: absolute;
-    display: flex;
-    align-items: center;
-    color: var(--white-50);
-    font-size: 1.125rem;
+    .logo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
 
-    .wzry-fanhui {
-      font-size: inherit;
+      @keyframes light {
+        100% {
+          transform: translate3d(0, -1.25rem, 15rem);
+          filter: drop-shadow(0 0 0.9375rem var(--theme-el-color-four));
+        }
+      }
+    }
+  }
+
+  .title {
+    .global_text-gradient(#f6dda5,#ffb700,155deg);
+
+    margin-bottom: 1.5rem;
+    font-size: 3.125rem;
+    font-weight: bold;
+    text-shadow: var(--shine-35) #ffd363;
+    white-space: nowrap;
+    transform: translateZ(6.25rem);
+  }
+
+  .label {
+    .global_flex-center();
+
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    color: var(--white-75);
+    background-color: var(--black-50);
+    transform: translateZ(5rem);
+
+    .wzry-chaka {
+      margin-right: 1rem;
+      font-size: 3rem;
     }
 
     .text {
-      line-height: 1.625rem;
+      .select {
+        font-size: 1.5rem;
+      }
+
+      .tip {
+        color: var(--white-50);
+        font-size: 1rem;
+        text-align: center;
+      }
     }
   }
 
-  &__reg {
-    top: 1.5625rem;
-    left: 1.5625rem;
+  .demo {
+    color: var(--blue);
+    font-size: 1.5rem;
+    text-shadow: var(--t-shadow-d), var(--shine-15), var(--shine-35);
+    background: linear-gradient(to right, var(--blue) 0%, var(--blue) 100%) no-repeat right bottom /
+      0 0.175rem;
+    transition: background-size 0.4s;
+    transform: translateZ(3rem);
 
-    .wzry-fanhui {
-      margin-right: 0.625rem;
+    &:hover {
+      background-position-x: left;
+      background-size: 100% 0.175rem;
     }
   }
 
-  &__login {
-    top: 1.5625rem;
-    right: 1.5625rem;
+  .card-info {
+    .global_flex-center();
 
-    .wzry-fanhui {
-      margin-left: 0.625rem;
-      transform: rotateY(180deg);
+    width: 100%;
+    height: 6.25rem;
+    margin: 0 3rem;
+    border-radius: 1rem;
+    background-image: linear-gradient(90deg, transparent 0%, var(--white-10) 50%, transparent 100%);
+    transform: translateZ(10rem);
+
+    &.del {
+      background-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgb(231 77 60 / 50%) 50%,
+        transparent 100%
+      );
+    }
+
+    .avatar {
+      width: 4rem;
+      height: 4rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .username {
+      font-size: 1.75rem;
+    }
+
+    .text {
+      font-size: 2rem;
+    }
+  }
+
+  .into-btn {
+    .global_reflect(0.625rem,0);
+
+    position: relative;
+    flex-direction: column;
+    width: 20rem;
+    height: 4.75rem;
+    margin: 1.5rem 0;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    transform: translateZ(5rem);
+
+    .global_flex-center();
+
+    &:hover {
+      .bg {
+        transition: all 0.25s;
+        filter: contrast(1.1) brightness(1.3);
+      }
+
+      span {
+        text-shadow: var(--shine-25) !important;
+      }
+    }
+
+    &:active {
+      box-shadow: initial;
+      transition: all 0.05s;
+      transform: scale(0.95);
+      transform-origin: bottom center;
+
+      .bg {
+        transition: all 0.05s;
+        filter: contrast(1) brightness(0.75);
+      }
+    }
+
+    .bg {
+      .global_fill-container();
+
+      transition: all 0.25s;
+    }
+
+    .text,
+    .desc {
+      z-index: 1;
+    }
+
+    .text {
+      color: var(--white);
+      font-size: 2rem;
+      text-shadow: var(--t-shadow-d);
+    }
+
+    .desc {
+      color: #895c36;
+      font-size: 1rem;
+      text-shadow: var(--shine-5) #8b5e37;
+      line-height: 0.875rem;
+      letter-spacing: 0.125rem;
     }
   }
 }

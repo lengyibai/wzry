@@ -6,7 +6,7 @@ import { vClickOutside, vMouseTip } from "@/directives";
 
 interface Props {
   /** 下拉列表 */
-  data: Global.General<string | number>[];
+  options: string[];
   /** 选中的名称 */
   sortText: string;
   /** 列表高度 */
@@ -20,34 +20,40 @@ withDefaults(defineProps<Props>(), {
   minWidth: "6.25rem",
 });
 const $emit = defineEmits<{
-  select: [v: string | number];
+  select: [v: number];
 }>();
 
 const $audioStore = AudioStore();
 
 /** 选择的值 */
-const current_value = ref("");
+const current_index = ref(-1);
 /** 下拉状态 */
 const status = ref(false);
 
-/* 显示列表 */
+/** @description 显示列表
+ * @param v 是否展开
+ */
 const handleDownUp = (v: boolean) => {
   return () => {
-    $audioStore.play("n4r4");
     status.value = v;
+    v && $audioStore.play("n4r4");
   };
 };
 
-/* 悬浮触发 */
-const handleEnterItem = (v: Global.General<string | number>) => {
-  current_value.value = v.label;
+/** @description 悬浮触发
+ * @param index 悬浮的索引
+ */
+const handleEnterItem = (index: number) => {
+  current_index.value = index;
 };
 
-/* 选择的值 */
-const handleSelect = (v: Global.General<string | number>) => {
+/** @description 选择的值
+ * @param index 选择的索引
+ */
+const handleSelect = (index: number) => {
   status.value = false;
-  current_value.value = v.label;
-  $emit("select", v.value);
+  current_index.value = index;
+  $emit("select", index);
   $audioStore.play();
 };
 </script>
@@ -71,20 +77,19 @@ const handleSelect = (v: Global.General<string | number>) => {
       class="select-list"
       :class="{ unfold: !status }"
       :style="{ minWidth: minWidth, height: listHeight }"
-      @click.stop
     >
       <div
-        v-for="item in data"
-        :key="item.value"
+        v-for="(item, index) in options"
+        :key="item"
         class="box"
         :class="{
-          active: current_value === item.label || sortText === item.label,
+          active: current_index === index || sortText === item,
         }"
-        @click="handleSelect(item)"
-        @mouseenter="handleEnterItem(item)"
-        @mouseleave="current_value = ''"
+        @click="handleSelect(index)"
+        @mouseenter="handleEnterItem(index)"
+        @mouseleave="current_index = -1"
       >
-        <div class="item">{{ item.label }}</div>
+        <div class="item">{{ item }}</div>
       </div>
     </div>
   </div>

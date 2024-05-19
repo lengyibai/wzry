@@ -1,8 +1,13 @@
 import { ref } from "vue";
 
 import { AudioStore } from "@/store/modules/audio";
+import { _promiseTimeout } from "@/utils/tool";
 
-const useDialogControl = (close: () => void) => {
+/**
+ * @description 弹窗管理
+ * @param closeFn 弹窗完全关闭后调用
+ */
+const useDialogControl = (closeFn: () => void) => {
   const $audioStore = AudioStore();
 
   const ExposeData = {
@@ -16,13 +21,18 @@ const useDialogControl = (close: () => void) => {
   const ExposeMethods = {
     /** @description 关闭 */
     handleClose() {
-      $audioStore.play("pj83");
-      show_dialog.value = false;
-      setTimeout(() => {
+      return new Promise<void>(async (resolve) => {
+        $audioStore.play("pj83");
+        show_dialog.value = false;
+
+        await _promiseTimeout(500);
         show_mask.value = false;
         $audioStore.play("ba09");
-        setTimeout(close, 350);
-      }, 500);
+
+        await _promiseTimeout(500);
+        closeFn();
+        resolve();
+      });
     },
   };
 

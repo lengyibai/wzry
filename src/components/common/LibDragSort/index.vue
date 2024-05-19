@@ -21,7 +21,11 @@ const fromIndex = ref<number | null>(null);
 /** 目标位置元素索引 */
 const enterIndex = ref<number | null>(null);
 
-/* 交换元素 */
+/** @description 交换元素
+ * @param arr 用于交换元素的数组
+ * @param index 索引
+ * @param target 目标位置索引
+ */
 const exchange = (arr: any, index: number, target: number) => {
   if (index > target) {
     arr.splice(target, 0, arr[index]);
@@ -32,7 +36,9 @@ const exchange = (arr: any, index: number, target: number) => {
   }
 };
 
-/* 拖拽开始触发 */
+/** @description 拖拽开始触发
+ * @param index 拖拽起始索引
+ */
 const dragstart = (index: number) => {
   fromIndex.value = index;
 };
@@ -43,14 +49,16 @@ const debounceDrop = _debounce(() => {
   fromIndex.value = enterIndex.value;
   isUpdate.value = true;
 }, 100);
-/* 拖拽到另一个元素上 */
+/** @description 拖拽到另一个元素上
+ * @param index 拖拽目标索引
+ */
 const dragenter = (index: number) => {
   if (fromIndex.value === null) return;
   enterIndex.value = index;
   debounceDrop();
 };
 
-/* 拖拽结束 */
+/** @description 拖拽结束 */
 const dragend = () => {
   if (isUpdate.value) {
     $emit("sort-data", arr.value as unknown as T[]);

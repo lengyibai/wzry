@@ -21,12 +21,14 @@ const comp_name = ref<CompKey>("GAIN");
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
-/* 铭文属性及铭文信息切换 */
+/** @description 铭文属性及铭文信息切换
+ * @param i 铭文展示组件索引
+ */
 const onSelect = (i: number) => {
   comp_name.value = keys[i];
 };
 
-/* 显示铭文套装 */
+/** @description 显示铭文套装 */
 const handleSuit = () => {
   $epigraphCollocationStore.setSidebarStatus("SUIT");
 };

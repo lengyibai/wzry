@@ -5,6 +5,10 @@
 import type { Directive } from "vue";
 
 interface Params {
+  /**
+   * @description 拖拽放置后调用
+   * @param file 拖拽放置的文件
+   */
   getFile: (file: File) => void;
   enter: () => void;
   leave: () => void;

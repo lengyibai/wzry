@@ -3,10 +3,11 @@ import { nextTick, ref } from "vue";
 
 import MusicList from "../MusicList/index.vue";
 
-import { MusicStore, SettingStore, DeviceStore } from "@/store";
-import { $focus, $tip } from "@/utils";
+import { MusicStore, SettingStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
+import { $tip, $focus } from "@/utils/busTransfer";
+import { useDevice } from "@/hooks";
 
 const $emit = defineEmits<{
   toggle: [v: string];
@@ -14,7 +15,8 @@ const $emit = defineEmits<{
 
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
-const $deviceStore = DeviceStore();
+
+const { vertical } = useDevice();
 
 const musicToolRef = ref<HTMLElement>();
 
@@ -31,14 +33,17 @@ nextTick(() => {
     btnFn: $focus.close,
   });
 });
-/* 点击按钮 */
+
+/** @description 点击按钮
+ * @param type 工具类型
+ */
 const handleTool = (type: string) => {
   $emit("toggle", type);
 };
 </script>
 
 <template>
-  <div ref="musicToolRef" class="music-tool" :class="{ center: $deviceStore.vertical }" @click.stop>
+  <div ref="musicToolRef" class="music-tool" :class="{ center: vertical }" @click.stop>
     <i
       v-mouse-tip="{
         text: MOUSE_TIP.q3k7,

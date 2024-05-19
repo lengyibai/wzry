@@ -13,18 +13,18 @@
     max-width: 90vw;
     background-size: 100% 100%;
 
-    .title {
+    & > .title {
       position: absolute;
-      top: 2.1875rem;
-      left: 4.375rem;
-      color: var(--theme-font-color-seven);
+      top: 5%;
+      left: 7%;
+      color: var(--theme-font-color-five);
       font-size: 1.875rem;
       text-shadow: var(--t-shadow-e);
     }
 
-    .header {
+    & > .header {
       position: absolute;
-      top: 3.125rem;
+      top: 8%;
       left: 50%;
       display: flex;
       align-items: center;
@@ -33,7 +33,6 @@
 
       span {
         &:first-child {
-          margin-bottom: 0.3125rem;
           color: var(--white);
           font-size: 2.1875rem;
           text-shadow: var(--t-shadow-e);
@@ -42,37 +41,33 @@
         &:last-child {
           color: var(--white-50);
           font-size: 0.875rem;
+          font-family: var(--font-f);
         }
       }
     }
 
-    .close {
+    & > .close {
       --misc-rate: 0.8;
       .spirit_misc-close();
 
       position: absolute;
-      top: 2rem;
-      right: 1.75rem;
+      top: 6%;
+      right: 3%;
       z-index: 2;
       filter: drop-shadow(0 0 0.1875rem #cce5ff);
     }
 
-    .content {
+    & > .content {
       position: absolute;
-      top: 52.5%;
-      left: 50%;
+      left: 10%;
+      right: 5%;
+      bottom: 2rem;
       display: flex;
       align-items: center;
       flex-direction: column;
-      width: 80%;
-      height: 70%;
-      transform: translate(-48%, -44%);
 
       .slot {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+        position: relative;
         width: 100%;
         height: 100%;
       }
@@ -80,10 +75,21 @@
   }
 }
 
+.fade-enter-active {
+  transition: 0.25s !important;
+}
+
 /* 由下而上 */
 .confirm-enter-from,
 .confirm-leave-active {
   transform: translateY(25%);
+  opacity: 0;
+}
+
+/* 由下而上 */
+.default-enter-from,
+.default-leave-active {
+  transform: scale(0.5);
   opacity: 0;
 }
 
@@ -95,11 +101,4 @@
 .confirm-leave-active,
 .default-leave-active {
   transition: all 0.5s cubic-bezier(1, -0.67, 1, 0.99);
-}
-
-/* 由下而上 */
-.default-enter-from,
-.default-leave-active {
-  transform: scale(0.5);
-  opacity: 0;
 }

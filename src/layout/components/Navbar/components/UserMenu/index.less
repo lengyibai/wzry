@@ -1,6 +1,10 @@
+.edit-user-info-dialog {
+  .common_k-dialog-content-center();
+}
+
 .user-menu {
   position: relative;
-  z-index: 2;
+  z-index: var(--z-index-user-card);
   display: flex;
   align-items: center;
   width: 3.125rem;
@@ -43,22 +47,60 @@
       .global_one-line();
 
       width: 100%;
-      margin-bottom: 0.3125rem;
-      color: var(--theme-font-color-six);
+      margin-bottom: 1rem;
+      color: var(--theme-font-color-four);
       font-size: 1.75rem;
       text-align: center;
       line-height: 1.3;
     }
 
-    .update-time {
+    .prop-num {
+      display: none;
+      align-items: center;
+      gap: 1rem;
+
+      .prop-item {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .icon {
+          width: 2rem;
+          height: 2rem;
+          margin-bottom: 0.5rem;
+          filter: var(--d-shadow-d);
+        }
+
+        .num {
+          font-size: 1.25rem;
+          text-shadow: var(--t-shadow-f);
+          transform: translateY(0.15rem);
+        }
+      }
+
+      @media screen and (max-width: 540px) {
+        display: flex;
+      }
+    }
+
+    .user-id {
       display: flex;
       align-items: center;
       flex-direction: column;
       color: var(--theme-color-three);
       font-size: 1rem;
 
-      .time {
+      .id {
         margin-bottom: 0.25em;
+      }
+
+      .wzry-fuzhi {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      @media screen and (max-width: 540px) {
+        display: none;
       }
     }
 
