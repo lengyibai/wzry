@@ -1,50 +1,18 @@
 {
   "data": {
-    "time": "2024-02-11 20:00",
-    "dataKey": [
-      "wzry_skin",
-      "wzry_skin_hero",
-      "wzry_skin_image",
-      "wzry_skin_name",
-      "wzry_skin_price",
-      "wzry_skin_type",
-      "wzry_type_skin",
-      "wzry_hero_skin",
-      "wzry_equip",
-      "wzry_equip_desc",
-      "wzry_equip_effect",
-      "wzry_equip_image",
-      "wzry_equip_level",
-      "wzry_equip_motivation",
-      "wzry_equip_name",
-      "wzry_equip_note",
-      "wzry_equip_price",
-      "wzry_equip_synthetic",
-      "wzry_equip_type"
-    ],
-    "voiceKey": ["anqila", "daqiao", "sunce", "sunshangxiang", "zhaoyun", "aobin"],
-    "dataLog": ["英雄相关", "英雄皮肤相关", "装备相关"],
+    "time": "YYYY-MM-DD HH:mm",
+    "dataKey": [],
+    "voiceKey": [],
+    "dataLog": [],
     "voiceLog": [],
     "distLog": {
       "surface": {
-        "new": [
-          "将登录调整为卡片文件登录",
-          "修改资料需要验证二级密码",
-          "支持修改二级密码",
-          "设置配置项及铭文套装数据存在卡片"
-        ],
-        "function": [
-          "二级密码验证过一次不再需要，除非刷新浏览器",
-          "移除繁体",
-          "优化断点续下进度条的准确性"
-        ],
-        "style": ["简化英雄详情语音列表入场动画及取消播放倾斜动画"],
-        "bug": [
-          "修复英雄详情页层级过低导致返回顶部在英雄详情上层",
-          "修复在没有登录时也会推送缺失数据的Tip"
-        ]
+        "new": [],
+        "function": [],
+        "style": [],
+        "bug": []
       },
-      "substrate": ["在数据请求结束后才会加载页面"]
+      "substrate": []
     }
   }
 }
