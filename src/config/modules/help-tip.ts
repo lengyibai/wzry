@@ -1,4 +1,3 @@
-import { NAME } from "./game-prop";
 import { LOTTERY_SUPPLY_LIMIT } from "./game-config";
 
 /** @description 帮助提示 */
