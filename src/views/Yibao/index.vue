@@ -1,12 +1,22 @@
 <script setup lang="ts">
+import { onActivated } from "vue";
+
 import YiBaoStage from "./components/YiBaoStage/index.vue";
 import MenuTool from "./components/MenuTool/index.vue";
 import PartList from "./components/PartList/index.vue";
 import PersonalizedMenu from "./components/PersonalizedMenu/index.vue";
 import NavBar from "./components/NavBar/index.vue";
 
+import { AudioStore } from "@/store";
+
 defineOptions({
   name: "YiBao",
+});
+
+const $audioStore = AudioStore();
+
+onActivated(() => {
+  $audioStore.play("jy55");
 });
 </script>
 

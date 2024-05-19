@@ -129,7 +129,8 @@ declare namespace Global {
       o3l2: string;
       /** 生效 */
       wm14: string;
-      //jy55: string;
+      /** 进入乂宝页面 */
+      jy55: string;
       //hy43: string;
       //pk92: string;
       //au63: string;

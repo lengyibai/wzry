@@ -45,7 +45,7 @@ const AudioStore = defineStore("audio", () => {
     bg51: "receipt",
     o3l2: "shop",
     wm14: "activate",
-    //jy55: "",
+    jy55: "yibao",
     //hy43: "",
     //pk92: "",
     //au63: "",
