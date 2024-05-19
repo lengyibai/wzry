@@ -92,7 +92,7 @@ const handleConfirm = () => {
           class="k-button"
           type="warning"
         >
-          <img :src="_getPropLink(GAME_PROP.ICON[config.key])" alt="" class="icon" />
+          <img :src="_getPropLink(GAME_PROP.ICON[config.type])" alt="" class="icon" />
           <div class="price">{{ config.price * count }}</div>
         </KButton>
       </div>
