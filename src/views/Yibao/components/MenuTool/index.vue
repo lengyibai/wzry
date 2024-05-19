@@ -34,29 +34,25 @@ const handleResetAllPart = () => {
   resetAllPartStyle();
 };
 
-onBeforeRouteLeave((to, _, next) => {
+onBeforeRouteLeave((to, from, next) => {
   if (pay_order.value.length) {
     handleCommitOrder();
     $message(MESSAGE_TIP.m21j, "error");
-    return false;
-  }
-
-  if (pay_order.value.length === 0 && is_change_part.value) {
+    next(false);
+  } else if (pay_order.value.length === 0 && is_change_part.value) {
     $confirm({
       text: "你还未保存部件装扮，是否保存？",
       confirm() {
         saveOwnedPart();
-        next(to.path);
+        next();
       },
       cancel() {
-        next(to.path);
+        next();
       },
     });
-
-    return false;
+  } else {
+    next();
   }
-
-  next();
 });
 </script>
 
