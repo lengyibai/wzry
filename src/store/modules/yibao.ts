@@ -413,6 +413,7 @@ const YibaoStore = defineStore("yibao", () => {
     resetPayPart() {
       YIBAO_PART.PART_KEY_LIST.forEach((key) => {
         this.setPayPart(key, true);
+        this.resetCurrentPartStyle(key);
       });
     },
 
