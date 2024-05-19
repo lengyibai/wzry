@@ -16,6 +16,7 @@ module.exports = {
     },
   ],
   rules: {
+    "custom-property-empty-line-before": null,
     "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
     "media-feature-range-notation": null, //将媒体查询max-width转换为width<=的形式
     "no-extra-semicolons": null, //禁止不必要的分号
@@ -103,6 +104,7 @@ module.exports = {
       "box-shadow",
       "outline",
       "resize",
+      "aspect-ratio",
       /* 字体相关的属性 */
       "color",
       "font-size",
