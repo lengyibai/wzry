@@ -6,3 +6,5 @@ dist
 node_modules
 public
 Test
+dev-dist
+auto-script
