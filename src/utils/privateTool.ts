@@ -186,9 +186,12 @@ export const _downloadZip = (
             await load();
           } else {
             //节流处理
-            await _promiseTimeout(type === "IMAGE_BLUR" ? 1 : 25, async () => {
-              await load();
-            });
+            await _promiseTimeout(
+              ["IMAGE_MINECRAFT", "IMAGE_BLUR"].includes(type) ? 1 : 25,
+              async () => {
+                await load();
+              },
+            );
           }
         }
 
