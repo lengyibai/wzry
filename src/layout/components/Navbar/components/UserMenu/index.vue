@@ -11,7 +11,7 @@ import { vCopy, vDelayHide, vIdEncipher, vMouseTip } from "@/directives";
 import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _exportCard } from "@/utils/privateTool";
-import { _formatKilobitNumber, _isPhone } from "@/utils/tool";
+import { _formatKilobitNumber } from "@/utils/tool";
 import { _getPropLink, _getMiscLink } from "@/utils/concise";
 
 const $authStore = AuthStore();
@@ -52,16 +52,11 @@ const handleEditInfo = () => {
 
 /* 退卡 */
 const handleExitCard = () => {
-  if (_isPhone) {
-    _exportCard(user_data.value);
-  }
+  _exportCard(user_data.value);
 
   $confirm({
-    text: _isPhone ? CONFIRM_TIP.wd31 : CONFIRM_TIP.nh44,
+    text: CONFIRM_TIP.wd31,
     confirm() {
-      if (!_isPhone) {
-        _exportCard(user_data.value);
-      }
       $authStore.exitCard();
     },
   });
