@@ -189,10 +189,6 @@ declare namespace Global {
       voiceKey: string[];
       /** 远程更新时间 */
       time: string;
-      /** 远程数据更新日志 */
-      dataLog: string[];
-      /** 远程语音更新日志 */
-      voiceLog: string[];
       /** 远程文件更新日志 */
       distLog: {
         /** 页面层 */

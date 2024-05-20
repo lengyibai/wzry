@@ -31,10 +31,10 @@ const VersionStore = defineStore("version", () => {
     /** 文件是否需要更新 */
     dist_status: ref(false),
     /** 更新日志汇总 */
-    update_log: ref<Omit<Global.Version.UpdateLog, "voiceKey" | "dataKey">>({
+    update_log: ref<Global.Version.UpdateLog>({
       time: "",
-      dataLog: [],
-      voiceLog: [],
+      dataKey: [],
+      voiceKey: [],
       distLog: {
         surface: {
           new: [],
@@ -125,14 +125,14 @@ const VersionStore = defineStore("version", () => {
               _retryRequest({
                 promiseFn: API_DATA.UpdateLog,
               }).then(async (res) => {
-                const { dataKey, voiceKey, dataLog, distLog, time, voiceLog } = res.data;
+                const { dataKey, voiceKey, distLog, time } = res.data;
 
                 data_status.value = true;
                 update_log.value = {
                   time,
-                  dataLog,
-                  voiceLog,
+                  dataKey,
                   distLog,
+                  voiceKey,
                 };
 
                 clearTimeout(version_timer);

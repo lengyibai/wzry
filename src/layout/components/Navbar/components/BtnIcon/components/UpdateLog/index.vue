@@ -88,8 +88,8 @@ const handleClose = () => {
         <!-- 数据更新 -->
         <h1>数据更新</h1>
         <div class="content">
-          <template v-if="update_log.dataLog.length">
-            <p v-for="(item, index) in update_log.dataLog" :key="index">《{{ item }}》</p>
+          <template v-if="update_log.dataKey.length">
+            <p v-for="(item, index) in update_log.dataKey" :key="index">《{{ item }}》</p>
           </template>
           <p v-else>暂无</p>
         </div>
@@ -97,8 +97,8 @@ const handleClose = () => {
         <!-- 语音更新 -->
         <h1>语音更新</h1>
         <div class="content">
-          <template v-if="update_log.voiceLog.length">
-            <p v-for="(item, index) in update_log.voiceLog" :key="index">《{{ item }}》</p>
+          <template v-if="update_log.voiceKey.length">
+            <p v-for="(item, index) in update_log.voiceKey" :key="index">《{{ item }}》</p>
           </template>
           <p v-else>暂无</p>
         </div>
