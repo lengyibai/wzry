@@ -142,6 +142,7 @@ $heroDetail.setScrollFn("skin", async (pageName) => {
     handleDrag(skinRef.value[0], false, 0);
     setPosition(skinRef.value[0]);
 
+    if (skins.value.length < 2) return;
     setTimeout(() => {
       if (_isPhone) {
         $tip({
