@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { useCollapse } from "@/hooks";
-import { AudioStore } from "@/store";
+import { useCollapse, usePlayAudio } from "@/hooks";
 
-const $audioStore = AudioStore();
-
+const { playAudio } = usePlayAudio();
 const { collapse, toggleCollapse } = useCollapse();
 
 /* 点击折叠按钮 */
 const handleToggle = () => {
-  $audioStore.play("d5e2");
+  playAudio("d5e2");
   toggleCollapse();
 };
 </script>

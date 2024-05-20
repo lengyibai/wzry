@@ -2,7 +2,6 @@ import { createPinia } from "pinia";
 import { App } from "vue";
 
 export * from "./modules/atlas";
-export * from "./modules/audio";
 export * from "./modules/auth";
 export * from "./modules/epigraph";
 export * from "./modules/epigraphCollocation";

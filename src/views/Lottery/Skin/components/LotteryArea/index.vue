@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
-import { AudioStore, LotteryStore } from "@/store";
+import { LotteryStore } from "@/store";
 import { GAME_PROP, MOUSE_TIP } from "@/config";
 import { KButton } from "@/components/business";
 import { vMouseTip } from "@/directives";
@@ -10,12 +10,12 @@ import { _promiseTimeout } from "@/utils/tool";
 import { useLotteryPlay } from "@/views/Lottery/common/hooks/useLotteryPlay";
 import { LOTTERY_AWARD } from "@/config/modules/game-config";
 import { _getPropLink } from "@/utils/concise";
+import { usePlayAudio } from "@/hooks";
 
-const $audioStore = AudioStore();
 const $lotteryStore = LotteryStore();
-
 const { skin_lucky } = storeToRefs($lotteryStore);
 
+const { playAudio } = usePlayAudio();
 const {
   getLotteryIndex,
   gift_index,
@@ -47,7 +47,7 @@ const handlePlay = () => {
   const play = () => {
     setTimeout(
       () => {
-        $audioStore.play("o7r6");
+        playAudio("o7r6");
         active_index.value++;
 
         //转满一圈重置索引
@@ -96,7 +96,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
   const play = () => {
     setTimeout(async () => {
       active_index.value++;
-      $audioStore.play("o7r6");
+      playAudio("o7r6");
 
       //转满一圈重置索引
       if (active_index.value === 12) {

@@ -2,9 +2,11 @@ import { ref } from "vue";
 
 import { ObtainInfo } from "../interface";
 
-import { AudioStore } from "@/store/modules/audio";
 import { KnapsackStore } from "@/store/modules/knapsack";
 import { _isArray } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
+
+const { playAudio } = usePlayAudio();
 
 /** 关闭弹窗函数 */
 let onClose: (() => void) | undefined;
@@ -21,7 +23,6 @@ const { show, show_bg, prop_list } = ExposeData;
 
 /** @description 获得物品弹窗 */
 const useObtain = () => {
-  const $audioStore = AudioStore();
   const $knapsackStore = KnapsackStore();
 
   const ExposeMethods = {
@@ -31,7 +32,7 @@ const useObtain = () => {
      */
     openObtain(article: ObtainInfo | ObtainInfo[], closeFn?: () => void) {
       onClose = closeFn;
-      $audioStore.play("jo36");
+      playAudio("jo36");
       show.value = true;
 
       if (!_isArray(article)) {
@@ -57,7 +58,7 @@ const useObtain = () => {
       show.value = false;
       show_bg.value = false;
       prop_list.value = undefined;
-      $audioStore.play("pj83");
+      playAudio("pj83");
       onClose?.();
     },
   };

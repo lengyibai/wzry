@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
+import { usePlayAudio } from "@/hooks";
 
 const $emit = defineEmits<{
   change: [v: Game.GenderId];
 }>();
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 const gender = ref<Game.GenderId>(0);
 
@@ -19,7 +19,7 @@ const gender = ref<Game.GenderId>(0);
 const handleSetGender = (v: Game.GenderId) => {
   gender.value = v;
   $emit("change", v);
-  $audioStore.play();
+  playAudio();
 };
 </script>
 

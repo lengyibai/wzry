@@ -3,18 +3,19 @@ import { ref } from "vue";
 import dayjs from "dayjs";
 
 import { AuthStore } from "./auth";
-import { AudioStore } from "./audio";
 import { TaskStore } from "./task";
 
 import { $confirmText, $msgTipText, GAME_CONFIG, MESSAGE_TIP } from "@/config";
 import { $confirm, $message } from "@/utils/busTransfer";
 import { _formatSeconds } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks/modules/usePlayAudio";
 
 /** @description 夺宝石补给 */
 const SupplyStore = defineStore("supply", () => {
   const $authStore = AuthStore();
-  const $audioStore = AudioStore();
   const $taskStore = TaskStore();
+
+  const { playAudio } = usePlayAudio();
 
   /** 英雄夺宝补给计时器 */
   let hero_timer: NodeJS.Timeout;
@@ -242,7 +243,7 @@ const SupplyStore = defineStore("supply", () => {
           if (seconds.value === 0) {
             clearInterval(timer);
             supplyStatus.value = "RECEIVE";
-            $audioStore.play("bg51");
+            playAudio("bg51");
           } else {
             seconds.value--;
           }

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { usePlayAudio } from "@/hooks";
 
 const $emit = defineEmits<{
   clicks: [v: string];
 }>();
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 const toolbarRef = ref<HTMLElement>();
 
@@ -24,12 +24,12 @@ const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-
  */
 const handleTool = (v: string) => {
   if (v === "sound") {
-    $audioStore.play("n4r4");
+    playAudio("n4r4");
     muted.value = !muted.value;
   }
 
   if (v === "readme") {
-    $audioStore.play("n4r4");
+    playAudio("n4r4");
   }
 
   $emit("clicks", v);

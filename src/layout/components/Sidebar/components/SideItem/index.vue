@@ -5,9 +5,8 @@ import { useRouter, useRoute } from "vue-router";
 import SideItem from "./index.vue";
 import type { RouteFormat } from "./interface";
 
-import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
-import { useCollapse } from "@/hooks";
+import { useCollapse, usePlayAudio } from "@/hooks";
 
 interface Props {
   route: any;
@@ -17,8 +16,8 @@ const $props = defineProps<Props>();
 
 const $router = useRouter();
 const $route = useRoute();
-const $audioStore = AudioStore();
 
+const { playAudio } = usePlayAudio();
 const { collapse, setCollapse } = useCollapse();
 
 const menuItemRef = ref<HTMLElement>();
@@ -64,7 +63,7 @@ const handleClickSide = () => {
     routes.length = 0;
   }
 
-  $audioStore.play();
+  playAudio();
 };
 </script>
 

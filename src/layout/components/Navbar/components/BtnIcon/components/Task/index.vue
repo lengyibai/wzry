@@ -7,13 +7,12 @@ import TaskList from "./components/TaskList/index.vue";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 /** 是否显示页面 */
 const modelValue = defineModel<boolean>({ required: true });
 
-const $audioStore = AudioStore();
-
+const { playAudio } = usePlayAudio();
 const { setHideStatus } = useHideLayout();
 
 const taskMainRef = ref<HTMLElement>();
@@ -33,7 +32,7 @@ const onCategory = (index: number) => {
 const handleHide = () => {
   show.value = false;
   setHideStatus(false);
-  $audioStore.play("p60v");
+  playAudio("p60v");
 
   setTimeout(() => {
     modelValue.value = false;
@@ -41,7 +40,7 @@ const handleHide = () => {
 };
 
 onMounted(() => {
-  $audioStore.play("kj62");
+  playAudio("kj62");
 });
 
 provide("close-task", handleHide);

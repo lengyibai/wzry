@@ -10,14 +10,15 @@ import HeroSkin from "./components/HeroSkin/index.vue";
 import HeroSkill from "./components/HeroSkill/index.vue";
 import { useHeroDetail } from "./hooks/useHeroDetail";
 
-import { HeroDetailStore, AudioStore } from "@/store";
+import { HeroDetailStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { _isPhone } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
 
-const $audioStore = AudioStore();
 const $heroDetailStore = HeroDetailStore();
 
+const { playAudio } = usePlayAudio();
 const { hero_data, show, show_close, show_progress } = useHeroDetail();
 
 /** 滚动索引标题 */
@@ -50,7 +51,7 @@ const onToggle = (index: number) => {
 
 /* 滚动立即触发 */
 const onScrollStart = () => {
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 
 /* 滚动结束触发 */
@@ -61,7 +62,7 @@ const onScrollEnd = (index: number) => {
 /* 隐藏自身 */
 const handleHide = () => {
   show.value = false;
-  $audioStore.play("p60v");
+  playAudio("p60v");
 };
 
 watch(show, (v) => {

@@ -2,7 +2,9 @@ import { ref } from "vue";
 
 import { SCENE_TIP } from "@/config/modules/scene-tip";
 import { SettingStore } from "@/store/modules/setting";
-import { AudioStore } from "@/store/modules/audio";
+import { usePlayAudio } from "@/hooks";
+
+const { playAudio } = usePlayAudio();
 
 /** 是否已开启队列状态 */
 let queue = false;
@@ -42,7 +44,6 @@ const { is_once, btn_text, content, disabled, show_tip, show_mask, align, need_m
 /** @description 小贴士 */
 const useTip = () => {
   const $settingStore = SettingStore();
-  const $audioStore = AudioStore();
 
   /** @description 设置是否显示tip */
   const setShowTip = async (v: boolean) => {
@@ -103,7 +104,7 @@ const useTip = () => {
       btn_text.value = btnText;
       content.value = text;
       setShowTip(true);
-      $audioStore.play("rt25");
+      playAudio("rt25");
       setTimeout(() => {
         createFn && createFn();
       });
@@ -125,7 +126,7 @@ const useTip = () => {
 
       queue = false;
       setShowTip(false);
-      $audioStore.play("ba09");
+      playAudio("ba09");
       noTipName && $settingStore.setNoTip(noTipName as keyof Global.Tip.Key);
 
       setTimeout(() => {

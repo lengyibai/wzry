@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 滚动索引 */
@@ -15,14 +15,12 @@ const $emit = defineEmits<{
   toggle: [v: number];
 }>();
 
-const $audioStore = AudioStore();
-
 /** @description 设置进度
  * @param index 进度索引
  */
 const handleToggle = (index: number) => {
   $emit("toggle", index);
-  $audioStore.play("n4r4");
+  usePlayAudio().playAudio("n4r4");
 };
 </script>
 

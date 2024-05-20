@@ -2,8 +2,10 @@ import { ref } from "vue";
 
 import { GAME_HERO } from "@/api";
 import { HeroDetailStore } from "@/store";
-import { AudioStore } from "@/store/modules/audio";
 import { _AudioPlayer } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
+
+const { playAudio } = usePlayAudio();
 
 /** 音频播放器 */
 const audioPlayer = new _AudioPlayer({
@@ -24,7 +26,6 @@ const { show, show_progress, show_close, hero_data } = ExposeData;
 
 /** @description 查看英雄详情 */
 const useHeroDetail = () => {
-  const $audioStore = AudioStore();
   const $heroDetailStore = HeroDetailStore();
 
   const ExposeMethods = {
@@ -43,7 +44,7 @@ const useHeroDetail = () => {
       $heroDetailStore.setHeroInfo(hero);
       hero_data.value = hero;
       show.value = true;
-      $audioStore.play("u4c5");
+      playAudio("u4c5");
       //延迟显示滚动索引
       setTimeout(() => {
         show_progress.value = true;

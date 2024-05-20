@@ -7,12 +7,13 @@ import { useRouter } from "vue-router";
 import SkinCard from "./components/SkinCard/index.vue";
 import SkinToolbar from "./components/SkinToolbar/index.vue";
 
-import { KingCrystalStore, AudioStore, KnapsackStore } from "@/store";
+import { KingCrystalStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _promiseTimeout } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "KingCrystal",
@@ -20,11 +21,12 @@ defineOptions({
 
 const $router = useRouter();
 
-const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
 const $kingCrystalStore = KingCrystalStore();
 
 const { scroll, finish, show_list, loading } = storeToRefs($kingCrystalStore);
+
+const { playAudio } = usePlayAudio();
 
 //实时修改一行个数
 const interval_count = [
@@ -107,7 +109,7 @@ const onBackTop = () => {
 };
 
 onActivated(async () => {
-  $audioStore.play("h3w0");
+  playAudio("h3w0");
   changeCount();
   skinListRef.value?._setPosition(scroll.value);
   window.addEventListener("resize", changeCount);

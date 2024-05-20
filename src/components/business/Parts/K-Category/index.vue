@@ -1,9 +1,9 @@
 <script setup lang="ts" generic="T extends string">
 import { onMounted, ref } from "vue";
 
-import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { _getMiscLink } from "@/utils/concise";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   options: T[];
@@ -25,7 +25,7 @@ const $emit = defineEmits<{
   tab: [v: number];
 }>();
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 const categoryRef = ref<HTMLElement>();
 
@@ -42,7 +42,7 @@ const width = ref(0);
 const handleToggle = (index: number) => {
   if (!categoryRef.value) return;
   current_index.value = index;
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
   $emit("tab", index);
 
   const parent_width = categoryRef.value.clientWidth;

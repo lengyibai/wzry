@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref, computed, onUnmounted } from "vue";
 
-import { AudioStore, HeroDetailStore } from "@/store";
+import { HeroDetailStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { $mouseTipText } from "@/config";
+import { usePlayAudio } from "@/hooks";
 
 const $emit = defineEmits<{
   "select-skill": [skills: Remote.Skill.Info];
 }>();
 
 const $heroDetail = HeroDetailStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 /** 主副技能索引 */
 let deputy_index = 0;
@@ -42,7 +44,7 @@ const handleSelectSkill = (index: number) => {
   $heroDetail.skillToggler(index);
   $heroDetail.setSkillIndex(index);
   $emit("select-skill", calcActiveSkill.value);
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 handleSelectSkill(0);
 
@@ -65,7 +67,7 @@ const handleToggleSkill = () => {
   });
 
   handleSelectSkill(current_index.value);
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 
 onUnmounted(() => {

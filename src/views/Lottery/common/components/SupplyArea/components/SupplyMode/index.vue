@@ -3,11 +3,12 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import { GAME_CONFIG, GAME_PROP } from "@/config";
-import { AudioStore, SupplyStore } from "@/store";
+import { SupplyStore } from "@/store";
 import { KButton } from "@/components/business";
 import { _getSupplyColor } from "@/utils/privateTool";
 import { _getPropLink } from "@/utils/concise";
 import { vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 补给站是英雄夺宝还是皮肤夺宝 */
@@ -15,9 +16,7 @@ interface Props {
 }
 const $props = defineProps<Props>();
 
-const $audioStore = AudioStore();
 const $supplyStore = SupplyStore();
-
 const { setTimeMode, startCountdown } = $supplyStore;
 const {
   hero_mode,
@@ -27,6 +26,8 @@ const {
   hero_supply_remain_num,
   skin_supply_remain_num,
 } = storeToRefs($supplyStore);
+
+const { playAudio } = usePlayAudio();
 
 /** 模式 */
 const mode = $props.type === "HERO" ? hero_mode : skin_mode;
@@ -51,12 +52,12 @@ const title = computed(() => {
  */
 const handleSelect = (index: number) => {
   setTimeMode($props.type, index);
-  $audioStore.play("v6p0");
+  playAudio("v6p0");
 };
 
 /** @description 开始倒计时 */
 const handleStart = () => {
-  $audioStore.play("pj83");
+  playAudio("pj83");
 };
 </script>
 

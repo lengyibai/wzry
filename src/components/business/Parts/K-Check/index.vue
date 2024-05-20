@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { AudioStore } from "@/store";
 import { t } from "@/language";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   text?: string;
@@ -12,7 +12,7 @@ withDefaults(defineProps<Props>(), { text: t("开启") });
 /** 是否锁定 */
 const modelValue = defineModel<boolean>({ required: true });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** 切换图标 */
 const icon = computed(() => {
@@ -21,7 +21,7 @@ const icon = computed(() => {
 
 const toggle = () => {
   modelValue.value = !modelValue.value;
-  $audioStore.play();
+  playAudio();
 };
 </script>
 

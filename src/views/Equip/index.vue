@@ -4,16 +4,18 @@ import { ref, onActivated } from "vue";
 import EquipList from "./components/EquipList/index.vue";
 import EquipDetail from "./components/EquipDetail/index.vue";
 
-import { EquipStore, AudioStore } from "@/store";
+import { EquipStore } from "@/store";
 import { FilterSidebar } from "@/components/business";
 import { vScrollVirtualization } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "Equip",
 });
 
 const $equipStore = EquipStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 const equipListRef = ref<HTMLElement>();
 const equipMainRef = ref<HTMLElement>();
@@ -28,7 +30,7 @@ const onChangeFilter = () => {
 };
 
 onActivated(() => {
-  $audioStore.play("ph23");
+  playAudio("ph23");
 });
 </script>
 

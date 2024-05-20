@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { AudioStore } from "@/store";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { usePlayAudio } from "@/hooks";
 
 const $emit = defineEmits<{
   change: [v?: Game.Epigraph.Data["color"]];
 }>();
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 const colors: Game.Epigraph.Data["color"][] = ["BLUE", "GREEN", "RED"];
 
@@ -21,7 +21,7 @@ const gender = ref<Game.Epigraph.Data["color"]>();
 const handleSetGender = (v?: Game.Epigraph.Data["color"]) => {
   gender.value = v;
   $emit("change", v);
-  $audioStore.play();
+  playAudio();
 };
 </script>
 

@@ -1,7 +1,9 @@
 import { reactive } from "vue";
 import dayjs from "dayjs";
 
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
+
+const { playAudio } = usePlayAudio();
 
 const ExposeData = {
   /** 消息队列 */
@@ -10,8 +12,6 @@ const ExposeData = {
 const { messages } = ExposeData;
 
 export const useMessage = () => {
-  const $audioStore = AudioStore();
-
   const ExposeMethods = {
     openMsg(text = "未设置提示", type: Global.Message.Status = "info") {
       /** 获取文字长度 */
@@ -27,7 +27,7 @@ export const useMessage = () => {
       };
 
       //播放指定名称的音效
-      $audioStore.play(msgName[type]);
+      playAudio(msgName[type]);
 
       //创建消息内容
       const msgText: Global.Message.Info = {

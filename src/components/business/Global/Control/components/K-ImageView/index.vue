@@ -6,18 +6,16 @@ import VerticalScreen from "./components/VerticalScreen/index.vue";
 import LandscapeScreen from "./components/LandscapeScreen/index.vue";
 import { ImageView } from "./interface";
 
-import { AudioStore } from "@/store";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { useResponsive } from "@/hooks";
+import { usePlayAudio, useResponsive } from "@/hooks";
 import { KLoadingIcon } from "@/components/business";
 import { GAME_HERO, KVP_HERO } from "@/api";
 import { $bus } from "@/utils/eventBus";
 import { _AudioPlayer, _downloadImage } from "@/utils/tool";
 
-const $audioStore = AudioStore();
-
 const { under_960 } = useResponsive();
+const { playAudio } = usePlayAudio();
 
 let scaleFLIPImage: ScaleFLIPImage;
 
@@ -119,7 +117,7 @@ const handlePlay = (voice: string, index: number) => {
 
 /* 关闭页面 */
 const handleHide = () => {
-  $audioStore.play("ba09");
+  playAudio("ba09");
   close.value = true;
 
   setTimeout(() => {

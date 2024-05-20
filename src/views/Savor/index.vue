@@ -6,12 +6,12 @@ import { computed, onActivated, onDeactivated, ref } from "vue";
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
 
-import { AtlasStore, AudioStore, KnapsackStore } from "@/store";
+import { AtlasStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop } from "@/components/business";
 import { LibWaterfall } from "@/components/common";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vBlurLoad, vMouseTip } from "@/directives";
-import { useHaveHeroSkin } from "@/hooks";
+import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
 import { $bus } from "@/utils/eventBus";
 
@@ -19,15 +19,15 @@ defineOptions({
   name: "Savor",
 });
 
-const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
 const $atlasStore = AtlasStore();
 
 const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
 
-const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
-
+const { playAudio } = usePlayAudio();
 const { count } = useWaterfallResponsive();
+
+const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
 const savorToolbarRef = ref<InstanceType<typeof SavorToolbar>>();
 
@@ -124,7 +124,7 @@ const debounceUpdateSizePosition = _debounce(() => {
 }, 500);
 
 onActivated(() => {
-  $audioStore.play("gz76");
+  playAudio("gz76");
   debounceUpdateSizePosition();
   waterfallRef.value?._setPosition(scroll.value);
   $bus.on("update-waterfall", debounceUpdateSizePosition);

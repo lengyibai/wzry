@@ -1,19 +1,21 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-import { AudioStore, AuthStore, MusicStore } from "@/store";
+import { AuthStore, MusicStore } from "@/store";
 import { setLanguage } from "@/language";
 import { DEFAULT } from "@/config";
-import { useCssClassToggle } from "@/hooks/modules/useCssClassToggle";
 import { useBarrages } from "@/layout/components/BarrageMain/hooks/useBarrages";
+import { useCssClassToggle, usePlayAudio } from "@/hooks";
 
 /** @description 设置相关 */
 const SettingStore = defineStore("setting", () => {
   const $authStore = AuthStore();
-  const $audioStore = AudioStore();
+
   const $musicStore = MusicStore();
 
+  const { setShine } = useCssClassToggle();
   const { setBarrage } = useBarrages();
+  const { setAudioVolume, setAudioSwitch } = usePlayAudio();
 
   const ExposeData = {
     config: ref<Global.SettingConfig>(DEFAULT.configDefault()),
@@ -37,10 +39,10 @@ const SettingStore = defineStore("setting", () => {
     /** @description 部分配置需手动生效 */
     takeEffect() {
       setLanguage(config.value.language);
-      $audioStore.setAudio(config.value.audio);
-      $audioStore.setVolume(config.value.audioVolume);
+      setAudioSwitch(config.value.audio);
+      setAudioVolume(config.value.audioVolume);
       $musicStore.setVolume(config.value.musicVolume);
-      useCssClassToggle().setShine(config.value.shine);
+      setShine(config.value.shine);
       setBarrage(config.value.barrage);
     },
 

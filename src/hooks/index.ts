@@ -14,3 +14,4 @@ export * from "./modules/useCollapse";
 export * from "./modules/useGetZip";
 export * from "./modules/useRadialBorder";
 export * from "./modules/useMouseTrackingEffect";
+export * from "./modules/usePlayAudio";

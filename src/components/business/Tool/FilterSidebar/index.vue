@@ -2,7 +2,6 @@
 import { computed, ref, watch } from "vue";
 
 import {
-  AudioStore,
   HeroStore,
   SkinStore,
   EquipStore,
@@ -11,7 +10,7 @@ import {
   SkinDebrisStore,
 } from "@/store";
 import { vMouseTip } from "@/directives";
-import { useCollapse } from "@/hooks";
+import { useCollapse, usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
@@ -28,11 +27,12 @@ const $emit = defineEmits<{
 const $heroStore = HeroStore();
 const $skinStore = SkinStore();
 const $atlasStore = AtlasStore();
-const $audioStore = AudioStore();
+
 const $equipStore = EquipStore();
 const $skinDebrisStore = SkinDebrisStore();
 const $heroDebrisStore = HeroDebrisStore();
 
+const { playAudio } = usePlayAudio();
 const { collapse, setCollapse } = useCollapse();
 
 const hero_type: { name: Game.Hero.Profession; icon: string }[] = [
@@ -94,7 +94,7 @@ const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
   }
 
   $emit("change");
-  $audioStore.play();
+  playAudio();
 };
 
 /** @description 设置滑块位置 */

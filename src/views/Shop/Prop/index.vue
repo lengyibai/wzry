@@ -3,16 +3,16 @@ import { onActivated, ref, onDeactivated } from "vue";
 
 import PropCard from "./components/PropCard/index.vue";
 
-import { AudioStore } from "@/store";
 import { LibGrid } from "@/components/common";
 import { _promiseTimeout } from "@/utils/tool";
 import { GAME_PROP } from "@/config";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "PropShop",
 });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 //实时修改一行个数
 const interval_count = [
@@ -45,7 +45,7 @@ const changeCount = () => {
 };
 
 onActivated(() => {
-  $audioStore.play("o3l2");
+  playAudio("o3l2");
 });
 
 onActivated(async () => {

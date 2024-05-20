@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { AudioStore } from "@/store";
 import { vClickOutside, vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 下拉列表 */
@@ -23,7 +23,7 @@ const $emit = defineEmits<{
   select: [v: number];
 }>();
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** 选择的值 */
 const current_index = ref(-1);
@@ -36,7 +36,7 @@ const status = ref(false);
 const handleDownUp = (v: boolean) => {
   return () => {
     status.value = v;
-    v && $audioStore.play("n4r4");
+    v && playAudio("n4r4");
   };
 };
 
@@ -54,7 +54,7 @@ const handleSelect = (index: number) => {
   status.value = false;
   current_index.value = index;
   $emit("select", index);
-  $audioStore.play();
+  playAudio();
 };
 </script>
 

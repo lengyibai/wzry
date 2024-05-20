@@ -6,20 +6,22 @@ import { storeToRefs } from "pinia";
 import SkinCard from "./components/SkinCard/index.vue";
 import SkinToolbar from "./components/SkinToolbar/index.vue";
 
-import { SkinStore, AudioStore } from "@/store";
+import { SkinStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { $imageView } from "@/utils/busTransfer";
 import { _promiseTimeout } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "Skin",
 });
 
-const $audioStore = AudioStore();
 const $skinStore = SkinStore();
 
 const { scroll, finish, show_list, loading } = storeToRefs($skinStore);
+
+const { playAudio } = usePlayAudio();
 
 //实时修改一行个数
 const interval_count = [
@@ -76,12 +78,12 @@ const onViewDetail = (e: Event, id: number) => {
     parent: e.target as HTMLElement,
     type: "SKIN",
   });
-  $audioStore.play("u4c5");
+  playAudio("u4c5");
 };
 
 /** @description 悬浮卡片 */
 const handleEnterCard = () => {
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 
 /** @description 返回顶部 */
@@ -99,7 +101,7 @@ onActivated(() => {
   changeCount();
   window.addEventListener("resize", changeCount);
 
-  $audioStore.play("gz43");
+  playAudio("gz43");
   skinListRef.value?._setPosition(scroll.value);
 });
 

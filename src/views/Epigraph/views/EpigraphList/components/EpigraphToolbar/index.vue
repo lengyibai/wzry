@@ -4,14 +4,16 @@ import _debounce from "lodash/debounce";
 
 import FilterColor from "./components/FilterColor/index.vue";
 
-import { AudioStore, EpigraphStore } from "@/store";
+import { EpigraphStore } from "@/store";
 import { KButton, KInput } from "@/components/business";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { $tip, $focus } from "@/utils/busTransfer";
+import { usePlayAudio } from "@/hooks";
 
 const $epigraphStore = EpigraphStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 const collocationBtnRef = ref<InstanceType<typeof KButton>>();
 
@@ -26,7 +28,7 @@ const clearName = () => {
 /** @description 进入铭文搭配 */
 const handleCollocation = () => {
   $epigraphStore.setStatus("COLLOCATION");
-  $audioStore.play("pj83");
+  playAudio("pj83");
 };
 
 /** @description 设置显示的铭文颜色

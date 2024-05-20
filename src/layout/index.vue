@@ -8,14 +8,13 @@ import Sidebar from "@/layout/components/Sidebar/index.vue";
 import Navbar from "@/layout/components/Navbar/index.vue";
 import AppMain from "@/layout/components/AppMain/index.vue";
 import Footbar from "@/layout/components/Footbar/index.vue";
-import { AudioStore } from "@/store";
 import { KVideo } from "@/components/business";
 import { _promiseTimeout } from "@/utils/tool";
 import { _getVideoLink } from "@/utils/concise";
-
-const $audioStore = AudioStore();
+import { usePlayAudio } from "@/hooks";
 
 const { status } = useBarrages();
+const { playAudio } = usePlayAudio();
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);
@@ -27,7 +26,7 @@ const show_foot_bar = ref(false);
 const show_app_main = ref(false);
 
 onMounted(async () => {
-  $audioStore.play("p53r");
+  playAudio("p53r");
 
   await _promiseTimeout(1000);
   show_sidebar.value = true;

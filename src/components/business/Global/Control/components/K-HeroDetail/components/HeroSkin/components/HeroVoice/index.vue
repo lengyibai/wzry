@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
 
-import { HeroDetailStore, AudioStore } from "@/store";
+import { HeroDetailStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { KMarquee } from "@/components/business";
 import { _AudioPlayer, _promiseTimeout } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
 
 const $heroDetail = HeroDetailStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 const voiceRef = ref<HTMLElement[]>();
 const voiceListRef = ref<HTMLElement>();
@@ -61,7 +63,7 @@ $heroDetail.setSkinToggleFn(async (hero_id: number, skin_name: string) => {
 
 /* 悬浮语音 */
 const handleEnter = () => {
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 
 /* 点击播放 */

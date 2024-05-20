@@ -6,10 +6,11 @@ import SupplyMode from "./components/SupplyMode/index.vue";
 import AnimateMove from "./components/AnimateMove/index.vue";
 import ReceiveProp from "./components/ReceiveProp/index.vue";
 
-import { AudioStore, SupplyStore } from "@/store";
+import { SupplyStore } from "@/store";
 import { CONFIRM_TIP } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 补给站是英雄夺宝还是皮肤夺宝 */
@@ -18,7 +19,8 @@ interface Props {
 const $props = defineProps<Props>();
 
 const $supplyStore = SupplyStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 const animateMoveRef = ref<InstanceType<typeof AnimateMove>>();
 
@@ -36,7 +38,7 @@ const handleSwitch = () => {
       confirm() {
         animateMoveRef.value!._clearAnimate();
         $supplyStore.stopCountdown($props.type);
-        $audioStore.play("pk92");
+        playAudio("pk92");
       },
     });
 
@@ -46,12 +48,12 @@ const handleSwitch = () => {
   //空闲反选
   if (supply_status.value !== "IDLE") {
     $supplyStore.setSupplyStatus($props.type, "IDLE");
-    $audioStore.play("pk92");
+    playAudio("pk92");
     return;
   }
 
   //选择模式
-  $audioStore.play();
+  playAudio();
   $supplyStore.setSupplyStatus($props.type, "SELECT");
 };
 </script>

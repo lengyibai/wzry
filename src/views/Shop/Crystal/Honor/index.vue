@@ -4,13 +4,14 @@ import { useRouter } from "vue-router";
 
 import SkinCard from "./components/SkinCard/index.vue";
 
-import { AudioStore, KnapsackStore } from "@/store";
+import { KnapsackStore } from "@/store";
 import { LibGrid } from "@/components/common";
 import { GAME_HERO } from "@/api";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _promiseTimeout } from "@/utils/tool";
 import { KEmpty } from "@/components/business";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "HonorCrystal",
@@ -18,8 +19,9 @@ defineOptions({
 
 const $router = useRouter();
 
-const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
+
+const { playAudio } = usePlayAudio();
 
 //实时修改一行个数
 const interval_count = [
@@ -95,7 +97,7 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 };
 
 onActivated(async () => {
-  $audioStore.play("h3w0");
+  playAudio("h3w0");
   changeCount();
   window.addEventListener("resize", changeCount);
 

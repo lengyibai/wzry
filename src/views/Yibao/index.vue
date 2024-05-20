@@ -7,16 +7,16 @@ import PartList from "./components/PartList/index.vue";
 import PersonalizedMenu from "./components/PersonalizedMenu/index.vue";
 import NavBar from "./components/NavBar/index.vue";
 
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "YiBao",
 });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 onActivated(() => {
-  $audioStore.play("jy55");
+  playAudio("jy55");
 });
 </script>
 

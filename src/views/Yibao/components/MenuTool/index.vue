@@ -6,17 +6,19 @@ import { onBeforeRouteLeave } from "vue-router";
 import PartOrderDetail from "./components/PartOrderDetail/index.vue";
 
 import { KButton } from "@/components/business";
-import { AudioStore, YibaoStore } from "@/store";
+import { YibaoStore } from "@/store";
 import { $confirm, $message } from "@/utils/busTransfer";
 import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { PARTS_KEY_NAME } from "@/config/modules/yibao-part";
+import { usePlayAudio } from "@/hooks";
 
 const $yibaoStore = YibaoStore();
-const $audioStore = AudioStore();
 
 const { pay_order, is_change_part, part_type } = storeToRefs($yibaoStore);
 const { saveOwnedPart, resetCurrentPartStyle, resetAllPartStyle } = $yibaoStore;
+
+const { playAudio } = usePlayAudio();
 
 /** 是否显示订单详情 */
 const show_order_detail = ref(false);
@@ -30,14 +32,14 @@ const handleCommitOrder = () => {
 const handleResetCurrent = () => {
   if (!is_change_part.value) return;
   resetCurrentPartStyle();
-  $audioStore.play("pj83");
+  playAudio("pj83");
 };
 
 /** @description 还原所有部件 */
 const handleResetAllPart = () => {
   if (!is_change_part.value) return;
   resetAllPartStyle();
-  $audioStore.play("pj83");
+  playAudio("pj83");
 };
 
 onBeforeRouteLeave((to, from, next) => {

@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { storeToRefs } from "pinia";
 
 import { $confirmText, GAME_PROP, MESSAGE_TIP, ROUTE_PATH } from "@/config";
-import { AudioStore, AuthStore, KnapsackStore, MailStore } from "@/store";
+import { AuthStore, KnapsackStore, MailStore } from "@/store";
 import { KButton, KEmpty } from "@/components/business";
 import { vAnimateNumber, vMouseTip } from "@/directives";
 import { $optional, $upgrade, $batchProp, $confirm, $message } from "@/utils/busTransfer";
@@ -14,7 +14,7 @@ import { _classNameInclude, _getNewDayTimestamp } from "@/utils/tool";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
 import { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
 import { _getPropLink } from "@/utils/concise";
-import { useRadialBorder } from "@/hooks";
+import { usePlayAudio, useRadialBorder } from "@/hooks";
 import { useDialogSwitch } from "@/layout/components/Navbar/components/BtnIcon/hooks/useDialogSwitch";
 
 defineOptions({
@@ -24,11 +24,13 @@ defineOptions({
 const $router = useRouter();
 
 const $knapsack = KnapsackStore();
-const $audioStore = AudioStore();
+
 const $authStore = AuthStore();
 const $mailStore = MailStore();
 
 const { knapsack } = storeToRefs($knapsack);
+
+const { playAudio } = usePlayAudio();
 
 const shineRoundRef = ref<HTMLElement>();
 const articleRefs = ref<HTMLElement[]>();
@@ -72,7 +74,7 @@ const handleSelect = (key: Game.PropKey) => {
 
   nextTick(() => {
     _article_key.value = key;
-    $audioStore.play("n4r4");
+    playAudio("n4r4");
   });
 };
 
@@ -183,7 +185,7 @@ const handleUseProp = (key: Game.PropKey) => {
 
           //扣除音效
           $knapsack.setGamePropNum(key, 1, "SUB");
-          $audioStore.play("wm14");
+          playAudio("wm14");
           $message(MESSAGE_TIP.ep96);
         },
       });
@@ -201,7 +203,7 @@ const handleUseProp = (key: Game.PropKey) => {
 
         //扣除音效及立即发放
         $knapsack.setGamePropNum(key, 1, "SUB");
-        $audioStore.play("wm14");
+        playAudio("wm14");
         $message(MESSAGE_TIP.fo08);
         $mailStore.sendGiftMail({
           title: title,
@@ -248,7 +250,7 @@ const handleUseProp = (key: Game.PropKey) => {
 
           //扣除音效
           $knapsack.setGamePropNum(key, 1, "SUB");
-          $audioStore.play("wm14");
+          playAudio("wm14");
           $message(MESSAGE_TIP.fo08);
         },
       });
@@ -266,7 +268,7 @@ const handleUseProp = (key: Game.PropKey) => {
 
         //扣除音效及立即发放
         $knapsack.setGamePropNum(key, 1, "SUB");
-        $audioStore.play("wm14");
+        playAudio("wm14");
       },
     });
 
@@ -325,7 +327,7 @@ onMounted(() => {
 onActivated(() => {
   window.addEventListener("resize", debounceShineRoundAdapter);
   debounceShineRoundAdapter();
-  $audioStore.play("fz02");
+  playAudio("fz02");
 });
 
 onDeactivated(() => {

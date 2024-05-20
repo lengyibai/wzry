@@ -5,20 +5,20 @@ import dayjs from "dayjs";
 import { Base64 } from "js-base64";
 
 import { _isPhone, _Parallax, _timeGreet, _blobTextToBlobObject } from "@/utils/tool";
-import { useDevice } from "@/hooks";
 import { MESSAGE_TIP, CONFIRM_TIP, DEFAULT, $msgTipText, MOUSE_TIP } from "@/config";
-import { AuthStore, AudioStore } from "@/store";
+import { AuthStore } from "@/store";
 import { $input, $message, $confirm } from "@/utils/busTransfer";
 import { _decryption } from "@/utils/privateTool";
 import { _getMiscLink } from "@/utils/concise";
 import { vDebounceClick, vDragAnalysis, vMouseTip, vParticleEffect } from "@/directives";
+import { useDevice, usePlayAudio } from "@/hooks";
 
 const { browser_name } = useDevice();
+const { playAudio } = usePlayAudio();
 
 const RegLoginRef = ref<HTMLElement>();
 
 const $authStore = AuthStore();
-const $audioStore = AudioStore();
 
 /** 是否处于读取状态*/
 const is_reading = ref(true);
@@ -133,7 +133,7 @@ const handleRegister = async () => {
 
   $message(MESSAGE_TIP.fh97);
   $authStore.login(form);
-  $audioStore.play("e84n");
+  playAudio("e84n");
 };
 
 /** @description 换卡 */
@@ -166,7 +166,7 @@ const debounceLogin = () => {
   }
 
   $authStore.login(user_data.value);
-  $audioStore.play("e84n");
+  playAudio("e84n");
 };
 </script>
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { AudioStore } from "@/store";
 import { BASE_CONFIG } from "@/config";
 import { vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 禁用 */
@@ -58,7 +58,7 @@ const $props = withDefaults(defineProps<Props>(), {
 /** 滑动值 */
 const modelValue = defineModel<number>({ required: true });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** 是否处于按下状态 */
 const down = ref(false);
@@ -77,7 +77,7 @@ const changeValue = (e: Event) => {
   const v = (e.target as HTMLInputElement).value;
   down.value = true;
   modelValue.value = parseFloat(v);
-  $audioStore.play("za86");
+  playAudio("za86");
 };
 
 /** @description 隐藏数字 */

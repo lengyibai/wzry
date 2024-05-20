@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 禁用 */
@@ -41,7 +41,7 @@ const $emit = defineEmits<{
 /** 输入的值 */
 const modelValue = defineModel<number | string>({ default: "" });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** 不合法提示 */
 const tip = ref("");
@@ -54,7 +54,7 @@ const is_focus = ref(false);
 const focus = () => {
   is_focus.value = true;
   $emit("focus");
-  $audioStore.play();
+  playAudio();
 };
 
 /** @description 失去焦点 */

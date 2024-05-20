@@ -4,11 +4,14 @@ import { onActivated } from "vue";
 import EpigraphList from "./views/EpigraphList/index.vue";
 import EpigraphCollocation from "./views/EpigraphCollocation/index.vue";
 
-import { EpigraphStore, AudioStore } from "@/store";
+import { EpigraphStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "Epigraph",
 });
+
+const { playAudio } = usePlayAudio();
 
 const comps = {
   LIST: EpigraphList,
@@ -16,12 +19,11 @@ const comps = {
 };
 
 const $epigraphStore = EpigraphStore();
-const $audioStore = AudioStore();
 
 $epigraphStore.getEpigraph();
 
 onActivated(() => {
-  $audioStore.play("h7t9");
+  playAudio("h7t9");
 });
 </script>
 

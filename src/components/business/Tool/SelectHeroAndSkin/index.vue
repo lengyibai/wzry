@@ -5,10 +5,10 @@ import _cloneDeep from "lodash/cloneDeep";
 import KInput from "../../Parts/K-Input/index.vue";
 
 import { LOCAL_HERO } from "@/api";
-import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { _search, _shuffleArray } from "@/utils/tool";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 禁用 */
@@ -36,7 +36,7 @@ const $emit = defineEmits<{
 /** 输入的值 */
 const modelValue = defineModel<string>({ required: true });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** 英雄名和皮肤列表(搜索预选) */
 let search_preselection: Global.General[] = [];
@@ -74,7 +74,7 @@ const handleSelect = (v: string) => {
     modelValue.value = v;
     $emit("change", v);
   }
-  $audioStore.play();
+  playAudio();
 };
 
 onMounted(async () => {

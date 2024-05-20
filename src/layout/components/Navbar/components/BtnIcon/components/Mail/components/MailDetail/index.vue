@@ -3,10 +3,11 @@ import { ref } from "vue";
 
 import { KButton, KDialog, KProp } from "@/components/business";
 import { GAME_PROP } from "@/config";
-import { AudioStore, MailStore } from "@/store";
+import { MailStore } from "@/store";
 import { $obtain } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
 import { vOverflowCenter } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 邮件信息 */
@@ -14,8 +15,9 @@ interface Props {
 }
 defineProps<Props>();
 
-const $audioStore = AudioStore();
 const $mailStore = MailStore();
+
+const { playAudio } = usePlayAudio();
 
 const KDialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -23,7 +25,7 @@ const KDialogRef = ref<InstanceType<typeof KDialog>>();
 const handleDelete = (id: string) => {
   KDialogRef.value?._close();
   $mailStore.delMail(id);
-  $audioStore.play("kh79");
+  playAudio("kh79");
 };
 
 /** @description 领取奖励 */

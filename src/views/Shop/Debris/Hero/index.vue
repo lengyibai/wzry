@@ -7,10 +7,10 @@ import { useRoute, useRouter } from "vue-router";
 import HeroCard from "./components/HeroCard/index.vue";
 import HeroToolbar from "./components/HeroToolbar/index.vue";
 
-import { AudioStore, HeroDebrisStore, KnapsackStore } from "@/store";
+import { HeroDebrisStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { usePagingLoad } from "@/hooks";
+import { usePagingLoad, usePlayAudio } from "@/hooks";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _promiseTimeout } from "@/utils/tool";
@@ -22,12 +22,12 @@ defineOptions({
 const $route = useRoute();
 const $router = useRouter();
 
-const $audioStore = AudioStore();
 const $knapsackStore = KnapsackStore();
 const $heroDebrisStore = HeroDebrisStore();
 
 const { scroll, show_list, finish, loading } = storeToRefs($heroDebrisStore);
 
+const { playAudio } = usePlayAudio();
 const { page_count } = usePagingLoad();
 
 /** 一行个数区间 */
@@ -72,7 +72,7 @@ const changeCount = () => {
 
 /** @description 悬浮卡片 */
 const debounceEnterCard = _debounce(() => {
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 }, 100);
 
 /** @description 滚动触发 */
@@ -138,7 +138,7 @@ onActivated(async () => {
   changeCount();
   window.addEventListener("resize", changeCount);
 
-  $audioStore.play("h3w0");
+  playAudio("h3w0");
   heroListRef.value?._setPosition(scroll.value);
 
   //显示英雄列表

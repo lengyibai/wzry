@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 import { ConfirmTip } from "../interface";
 
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 const ExposeData = {
   /** 是否显示 */
@@ -19,8 +19,6 @@ const { show, config } = ExposeData;
 
 /** @description 确认弹窗 */
 const useConfirm = () => {
-  const $audioStore = AudioStore();
-
   const ExposeMethods = {
     /**
      * @description 显示确认提示弹窗
@@ -29,7 +27,7 @@ const useConfirm = () => {
     openConfirm(v: ConfirmTip) {
       show.value = true;
       config.value = v;
-      $audioStore.play("cy87");
+      usePlayAudio().playAudio("cy87");
       config.value.close = v.close === undefined ? true : v.close;
     },
   };

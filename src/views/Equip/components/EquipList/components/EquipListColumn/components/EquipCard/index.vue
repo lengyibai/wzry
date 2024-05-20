@@ -2,8 +2,9 @@
 import { ref, computed } from "vue";
 
 import { vAnimateNumber, vMouseTip } from "@/directives";
-import { AudioStore, EquipStore } from "@/store";
+import { EquipStore } from "@/store";
 import { KLoadingRadiate } from "@/components/business";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 装备信息 */
@@ -17,7 +18,8 @@ interface Props {
 const $props = defineProps<Props>();
 
 const $equipStore = EquipStore();
-const $audioStore = AudioStore();
+
+const { playAudio } = usePlayAudio();
 
 const priceRef = ref<HTMLElement>();
 
@@ -29,7 +31,7 @@ const shine = computed(() => $props.leftLine || $props.rightLine);
 /** @description 查看装备详情 */
 const handleDetail = () => {
   $equipStore.setEquipActive($props.equip.id);
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 </script>
 

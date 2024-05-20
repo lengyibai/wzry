@@ -4,9 +4,9 @@ import KLoadingIcon from "../K-LoadingIcon/index.vue";
 import { useDialogControl } from "./hooks/useDialogControl";
 
 import { vMaskGradient, vMouseTip } from "@/directives";
-import { AudioStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { _getMiscLink } from "@/utils/concise";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 弹窗比例 */
@@ -53,8 +53,7 @@ const $emit = defineEmits<{
 /** 是否显示弹窗 */
 const modelValue = defineModel<boolean>();
 
-const $audioStore = AudioStore();
-
+const { playAudio } = usePlayAudio();
 const { show_dialog, show_mask, handleClose } = useDialogControl(() => {
   $props.autoClose && $emit("close");
   modelValue.value = false;
@@ -72,9 +71,9 @@ const handleCloseDialog = () => {
 
 if ($props.audio) {
   if ($props.up) {
-    $audioStore.play("e6b4");
+    playAudio("e6b4");
   } else {
-    $audioStore.play("u4c5");
+    playAudio("u4c5");
   }
 }
 

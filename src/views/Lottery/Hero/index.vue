@@ -6,16 +6,16 @@ import SupplyArea from "../common/components/SupplyArea/index.vue";
 
 import LotteryArea from "./components/LotteryArea/index.vue";
 
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "LotteryHero",
 });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 onActivated(() => {
-  $audioStore.play("bq69");
+  playAudio("bq69");
 });
 </script>
 

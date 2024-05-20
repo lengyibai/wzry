@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AudioStore } from "@/store";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   /** 整体宽度 */
@@ -15,14 +15,14 @@ withDefaults(defineProps<Props>(), {
 /** 索引号 */
 const modelValue = defineModel<number>({ required: true });
 
-const $audioStore = AudioStore();
+const { playAudio } = usePlayAudio();
 
 /** @description 选择
  * @param index 选项索引
  */
 const handleSelect = (index: number) => {
   modelValue.value = index;
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 </script>
 

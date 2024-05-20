@@ -7,10 +7,10 @@ import { onMounted } from "vue";
 import HeroCard from "./components/HeroCard/index.vue";
 import HeroToolbar from "./components/HeroToolbar/index.vue";
 
-import { AudioStore, HeroStore } from "@/store";
+import { HeroStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { usePagingLoad } from "@/hooks";
+import { usePagingLoad, usePlayAudio } from "@/hooks";
 import { $heroDetail } from "@/utils/busTransfer";
 import { _promiseTimeout } from "@/utils/tool";
 
@@ -18,11 +18,10 @@ defineOptions({
   name: "Hero",
 });
 
-const $audioStore = AudioStore();
 const $heroStore = HeroStore();
-
 const { scroll, show_list, finish, loading } = storeToRefs($heroStore);
 
+const { playAudio } = usePlayAudio();
 const { page_count } = usePagingLoad();
 
 /** 一行个数区间 */
@@ -71,7 +70,7 @@ const debounceScroll = _debounce((v: number) => {
 
 /** @description 悬浮卡片 */
 const handleEnterCard = () => {
-  $audioStore.play("n4r4");
+  playAudio("n4r4");
 };
 
 /** @description 查看详情
@@ -101,7 +100,7 @@ onActivated(() => {
   changeCount();
   window.addEventListener("resize", changeCount);
 
-  $audioStore.play("iv51");
+  playAudio("iv51");
   heroListRef.value?._setPosition(scroll.value);
 });
 

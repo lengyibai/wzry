@@ -3,25 +3,25 @@ import { ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import { setLanguage } from "@/language";
-import { AudioStore, MusicStore, SettingStore, VersionStore } from "@/store";
+import { MusicStore, SettingStore, VersionStore } from "@/store";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { CONFIRM_TIP, CUSTOM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
 import { $tip, $confirm, $message } from "@/utils/busTransfer";
-import { useCssClassToggle } from "@/hooks";
+import { useCssClassToggle, usePlayAudio } from "@/hooks";
 import { useBarrages } from "@/layout/components/BarrageMain/hooks/useBarrages";
 
 const $emit = defineEmits<{
   "update-log": [];
 }>();
 
-const $audioStore = AudioStore();
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
 const $versionStore = VersionStore();
 
 const { data_status, dist_status } = storeToRefs($versionStore);
 
+const { setAudioSwitch, setAudioVolume } = usePlayAudio();
 const { setBarrage } = useBarrages();
 
 const config = ref<Global.SettingConfig>({ ...$settingStore.config });
@@ -63,13 +63,13 @@ const onMusicProgress = () => {
 
 /* 开启音效 */
 const onAudio = (v: boolean) => {
-  $audioStore.setAudio(v);
+  setAudioSwitch(v);
   saveConfig();
 };
 
 /* 音效音量调节 */
 const onAudioVolume = (v: number) => {
-  $audioStore.setVolume(v);
+  setAudioVolume(v);
   saveConfig();
 };
 
