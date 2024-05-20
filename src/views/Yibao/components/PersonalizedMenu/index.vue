@@ -3,13 +3,16 @@ import { storeToRefs } from "pinia";
 
 import PartCollect from "../../common/PartCollect/index.vue";
 
-import { YibaoStore } from "@/store";
+import { AudioStore, YibaoStore } from "@/store";
 import { YIBAO_PART } from "@/config";
 import { vMouseTip } from "@/directives";
 
 const $yibaoStore = YibaoStore();
+const $audioStore = AudioStore();
+
 const { part_type } = storeToRefs($yibaoStore);
 const { setPartType } = $yibaoStore;
+const { play } = $audioStore;
 </script>
 
 <template>
@@ -20,7 +23,7 @@ const { setPartType } = $yibaoStore;
       :key="index"
       v-mouse-tip
       class="menu-item"
-      @click="setPartType(item)"
+      @click="play(), setPartType(item)"
     >
       <div
         class="part"

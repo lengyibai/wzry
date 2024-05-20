@@ -12,8 +12,11 @@ import { vMouseTip } from "@/directives";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 import { _calculateProgress } from "@/utils/tool";
+import { AudioStore } from "@/store";
 
 const modelValue = defineModel<boolean>({ required: true });
+
+const $audioStore = AudioStore();
 
 const { setHideStatus } = useHideLayout();
 const { hide_all } = useHideActivity();
@@ -102,6 +105,7 @@ const handleScroll = (e: Event) => {
 
 /* 滚动到指定位置 */
 const handleScrollTo = (scrollTop: number) => {
+  $audioStore.play("n4r4");
   activityContainerRef.value?.scroll({
     top: scrollTop - viewport_height,
     behavior: "smooth",
@@ -118,6 +122,7 @@ const debounceBackActivityTop = _debounce(() => {
 /* 关闭活动 */
 const closeActivity = () => {
   show.value = false;
+  $audioStore.play("pj83");
 
   setTimeout(() => {
     modelValue.value = false;
@@ -126,10 +131,8 @@ const closeActivity = () => {
   setHideStatus(false);
 };
 
-provide("activityContainerRef", activityContainerRef);
-provide("close-activity", closeActivity);
-
 onMounted(() => {
+  $audioStore.play("bq69");
   initPosition();
 
   window.addEventListener("resize", () => {
@@ -144,6 +147,9 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("resize", debounceBackActivityTop);
 });
+
+provide("activityContainerRef", activityContainerRef);
+provide("close-activity", closeActivity);
 </script>
 
 <template>

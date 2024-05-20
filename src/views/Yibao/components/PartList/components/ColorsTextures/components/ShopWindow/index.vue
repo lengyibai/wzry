@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { vMouseTip } from "@/directives";
+import { AudioStore } from "@/store";
 
 interface Props {
   /** 名称 */
@@ -12,10 +13,12 @@ interface Props {
   price: string;
 }
 defineProps<Props>();
+
+const $audioStore = AudioStore();
 </script>
 
 <template>
-  <div v-mouse-tip class="shop-window">
+  <div v-mouse-tip class="shop-window" @click="$audioStore.play('n4r4')">
     <div class="part" :class="{ active }">
       <slot></slot>
 

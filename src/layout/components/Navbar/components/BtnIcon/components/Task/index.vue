@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { provide, ref } from "vue";
+import { onMounted, provide, ref } from "vue";
 
 import TaskToolbar from "./components/TaskToolbar/index.vue";
 import TaskList from "./components/TaskList/index.vue";
@@ -7,8 +7,12 @@ import TaskList from "./components/TaskList/index.vue";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
+import { AudioStore } from "@/store";
 
+/** 是否显示页面 */
 const modelValue = defineModel<boolean>({ required: true });
+
+const $audioStore = AudioStore();
 
 const { setHideStatus } = useHideLayout();
 
@@ -29,11 +33,16 @@ const onCategory = (index: number) => {
 const handleHide = () => {
   show.value = false;
   setHideStatus(false);
+  $audioStore.play("p60v");
 
   setTimeout(() => {
     modelValue.value = false;
   }, 500);
 };
+
+onMounted(() => {
+  $audioStore.play("kj62");
+});
 
 provide("close-task", handleHide);
 </script>

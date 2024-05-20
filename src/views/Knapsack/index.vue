@@ -72,6 +72,7 @@ const handleSelect = (key: Game.PropKey) => {
 
   nextTick(() => {
     _article_key.value = key;
+    $audioStore.play("n4r4");
   });
 };
 

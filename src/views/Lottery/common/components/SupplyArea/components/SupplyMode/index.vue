@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
 import { GAME_CONFIG, GAME_PROP } from "@/config";
-import { SupplyStore } from "@/store";
+import { AudioStore, SupplyStore } from "@/store";
 import { KButton } from "@/components/business";
 import { _getSupplyColor } from "@/utils/privateTool";
 import { _getPropLink } from "@/utils/concise";
@@ -15,7 +15,9 @@ interface Props {
 }
 const $props = defineProps<Props>();
 
+const $audioStore = AudioStore();
 const $supplyStore = SupplyStore();
+
 const { setTimeMode, startCountdown } = $supplyStore;
 const {
   hero_mode,
@@ -49,6 +51,12 @@ const title = computed(() => {
  */
 const handleSelect = (index: number) => {
   setTimeMode($props.type, index);
+  $audioStore.play("v6p0");
+};
+
+/** @description 开始倒计时 */
+const handleStart = () => {
+  $audioStore.play("pj83");
 };
 </script>
 
@@ -82,7 +90,12 @@ const handleSelect = (index: number) => {
       </div>
 
       <div class="btns">
-        <KButton v-mouse-tip class="k-button" type="warning" @click="startCountdown(type)">
+        <KButton
+          v-mouse-tip
+          class="k-button"
+          type="warning"
+          @click="startCountdown(type), handleStart()"
+        >
           开始
         </KButton>
       </div>

@@ -6,13 +6,15 @@ import { onBeforeRouteLeave } from "vue-router";
 import PartOrderDetail from "./components/PartOrderDetail/index.vue";
 
 import { KButton } from "@/components/business";
-import { YibaoStore } from "@/store";
+import { AudioStore, YibaoStore } from "@/store";
 import { $confirm, $message } from "@/utils/busTransfer";
 import { MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { PARTS_KEY_NAME } from "@/config/modules/yibao-part";
 
 const $yibaoStore = YibaoStore();
+const $audioStore = AudioStore();
+
 const { pay_order, is_change_part, part_type } = storeToRefs($yibaoStore);
 const { saveOwnedPart, resetCurrentPartStyle, resetAllPartStyle } = $yibaoStore;
 
@@ -26,12 +28,16 @@ const handleCommitOrder = () => {
 
 /** @description 还原当前部件 */
 const handleResetCurrent = () => {
+  if (!is_change_part.value) return;
   resetCurrentPartStyle();
+  $audioStore.play("pj83");
 };
 
 /** @description 还原所有部件 */
 const handleResetAllPart = () => {
+  if (!is_change_part.value) return;
   resetAllPartStyle();
+  $audioStore.play("pj83");
 };
 
 onBeforeRouteLeave((to, from, next) => {

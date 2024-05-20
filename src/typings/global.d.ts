@@ -63,9 +63,9 @@ declare namespace Global {
     interface Key {
       /** 进入图集 */
       gz76: string;
-      /** 进入本地数据管理 */
+      /** 进入夺宝 */
       bq69: string;
-      /** 显示网站计划 */
+      /** 显示任务列表 */
       kj62: string;
       /** 返回，如从英雄详情左上角关闭 */
       p60v: string;
@@ -105,7 +105,7 @@ declare namespace Global {
       le78: string;
       /** 滑动选择 */
       za86: string;
-      /** 切换注册登录 */
+      /** （暂未使用）切换注册登录 */
       v6p0: string;
       /** 进入皮肤列表 */
       gz43: string;
@@ -131,8 +131,10 @@ declare namespace Global {
       wm14: string;
       /** 进入乂宝页面 */
       jy55: string;
-      //hy43: string;
-      //pk92: string;
+      /** 小返回 */
+      hy43: string;
+      /** 电视机关闭 */
+      pk92: string;
       //au63: string;
       //gk90: string;
       //e90x: string;

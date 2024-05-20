@@ -6,7 +6,7 @@ import SupplyMode from "./components/SupplyMode/index.vue";
 import AnimateMove from "./components/AnimateMove/index.vue";
 import ReceiveProp from "./components/ReceiveProp/index.vue";
 
-import { SupplyStore } from "@/store";
+import { AudioStore, SupplyStore } from "@/store";
 import { CONFIRM_TIP } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { vMouseTip } from "@/directives";
@@ -18,6 +18,7 @@ interface Props {
 const $props = defineProps<Props>();
 
 const $supplyStore = SupplyStore();
+const $audioStore = AudioStore();
 
 const animateMoveRef = ref<InstanceType<typeof AnimateMove>>();
 
@@ -26,6 +27,7 @@ const supply_status = computed(() => {
   return $props.type === "HERO" ? $supplyStore.hero_supply_status : $supplyStore.skin_supply_status;
 });
 
+/** @description 控制开关 */
 const handleSwitch = () => {
   //确认终止提醒
   if (supply_status.value === "RUNNING") {
@@ -34,6 +36,7 @@ const handleSwitch = () => {
       confirm() {
         animateMoveRef.value!._clearAnimate();
         $supplyStore.stopCountdown($props.type);
+        $audioStore.play("pk92");
       },
     });
 
@@ -43,10 +46,12 @@ const handleSwitch = () => {
   //空闲反选
   if (supply_status.value !== "IDLE") {
     $supplyStore.setSupplyStatus($props.type, "IDLE");
+    $audioStore.play("pk92");
     return;
   }
 
   //选择模式
+  $audioStore.play();
   $supplyStore.setSupplyStatus($props.type, "SELECT");
 };
 </script>

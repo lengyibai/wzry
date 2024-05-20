@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 import { KButton, KDialog, KProp } from "@/components/business";
 import { GAME_PROP } from "@/config";
-import { MailStore } from "@/store";
+import { AudioStore, MailStore } from "@/store";
 import { $obtain } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
 import { vOverflowCenter } from "@/directives";
@@ -14,14 +14,16 @@ interface Props {
 }
 defineProps<Props>();
 
+const $audioStore = AudioStore();
 const $mailStore = MailStore();
 
 const KDialogRef = ref<InstanceType<typeof KDialog>>();
 
-/** @description 确定 */
-const handleConfirm = (id: string) => {
+/** @description 删除 */
+const handleDelete = (id: string) => {
   KDialogRef.value?._close();
   $mailStore.delMail(id);
+  $audioStore.play("kh79");
 };
 
 /** @description 领取奖励 */
@@ -73,7 +75,7 @@ const handleReceive = (main: Game.Mail) => {
         >
           领取
         </KButton>
-        <KButton v-else class="k-button" @click="handleConfirm(mail.id)">删除</KButton>
+        <KButton v-else class="k-button" @click="handleDelete(mail.id)">删除</KButton>
       </div>
     </div>
   </KDialog>
