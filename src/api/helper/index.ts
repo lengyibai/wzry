@@ -5,9 +5,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import dayjs from "dayjs";
 
 import type { ResultData } from "@/api/interface";
+import { dayjs } from "@/utils/tool";
 
 const local = {
   baseURL: `${location.origin}/json`,

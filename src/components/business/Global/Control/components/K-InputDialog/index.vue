@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import { useInput } from "./hooks/useInput";
 
@@ -8,6 +7,7 @@ import { KButton, KDialog } from "@/components/business";
 import { vFocus, vMouseTip } from "@/directives";
 import { MESSAGE_TIP } from "@/config";
 import { $message } from "@/utils/busTransfer";
+import { _debounce } from "@/utils/tool";
 
 const { show, content, config } = useInput();
 

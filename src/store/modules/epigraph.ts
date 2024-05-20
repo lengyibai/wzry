@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { EpigraphCollocationStore } from "./epigraphCollocation";
 
 import { GAME_EPIGRAPH } from "@/api";
-import { _search } from "@/utils/tool";
+import { _cloneDeep, _search } from "@/utils/tool";
 
 /** @description 铭文相关 */
 const EpigraphStore = defineStore("epigraph", () => {

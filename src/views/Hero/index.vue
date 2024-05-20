@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import _debounce from "lodash/debounce";
 import { onDeactivated, onActivated, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
@@ -12,7 +11,7 @@ import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { usePagingLoad, usePlayAudio } from "@/hooks";
 import { $heroDetail } from "@/utils/busTransfer";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 
 defineOptions({
   name: "Hero",

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref, onUnmounted } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { RelationshipCircle } from "./helper/RelationshipCircle";
 
 import { HeroDetailStore } from "@/store";
 import { GAME_HERO } from "@/api";
+import { _cloneDeep } from "@/utils/tool";
 
 const $heroDetailStore = HeroDetailStore();
 
@@ -31,6 +31,7 @@ onMounted(() => {
     avatar: avatar,
     relationships: _relationships,
   } = $heroDetailStore.hero_info;
+
   const relationships = _cloneDeep(_relationships);
   relationships.unshift({
     id,

@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import { dayjs } from "./tool";
 
 import { BASE_CONFIG } from "@/config/modules/base";
 import { useGetZip } from "@/hooks";

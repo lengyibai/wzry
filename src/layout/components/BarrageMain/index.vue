@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { nextTick, ref, watch } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { useBarrages } from "./hooks/useBarrages";
 import { vDrag } from "./directives/drag";
@@ -8,7 +7,7 @@ import { vDrag } from "./directives/drag";
 import { vBlurLoad, vMouseTip } from "@/directives";
 import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { $imageView, $tip } from "@/utils/busTransfer";
-import { _shuffleArray } from "@/utils/tool";
+import { _cloneDeep, _shuffleArray } from "@/utils/tool";
 
 const barragesRef = ref<HTMLElement>();
 const barrageInfoRef = ref<HTMLElement>();

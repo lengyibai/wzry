@@ -1,7 +1,6 @@
-import dayjs from "dayjs";
-
 import { AuthStore, MailStore } from "@/store";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
+import { dayjs } from "@/utils/tool";
 
 /** @description 周卡相关领取推送与自动到期重置 */
 const useWeekCard = () => {

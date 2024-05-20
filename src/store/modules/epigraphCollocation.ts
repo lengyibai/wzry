@@ -1,13 +1,11 @@
 import { defineStore } from "pinia";
 import { ref, computed, watchEffect } from "vue";
-import dayjs from "dayjs";
-import _cloneDeep from "lodash/cloneDeep";
 
 import type { EpigraphCollocationStoreType } from "../interface";
 
 import { AuthStore } from "./auth";
 
-import { _typeSort } from "@/utils/tool";
+import { _cloneDeep, _typeSort, dayjs } from "@/utils/tool";
 
 /** @description 铭文搭配 */
 const EpigraphCollocationStore = defineStore("epigraphCollocation", () => {

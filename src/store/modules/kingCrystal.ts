@@ -1,12 +1,11 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { KnapsackStore } from "./knapsack";
 
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
-import { _search, _typeSort } from "@/utils/tool";
+import { _cloneDeep, _search, _typeSort } from "@/utils/tool";
 
 /** @description 王者水晶商城 */
 const KingCrystalStore = defineStore("kingCrystal", () => {

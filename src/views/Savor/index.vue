@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import _debounce from "lodash/debounce";
 import { computed, onActivated, onDeactivated, ref } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
@@ -14,6 +13,7 @@ import { vBlurLoad, vMouseTip } from "@/directives";
 import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
 import { $bus } from "@/utils/eventBus";
+import { _debounce } from "@/utils/tool";
 
 defineOptions({
   name: "Savor",

@@ -1,6 +1,7 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { ref, watch } from "vue";
-import _debounce from "lodash/debounce";
+
+import { _debounce } from "@/utils/tool";
 
 interface Props {
   data: T[];

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, provide, ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import JoinGroup from "./components/JoinGroup/index.vue";
 import PosterGuess from "./components/PosterGuess/index.vue";
@@ -11,7 +10,7 @@ import { ActivityInfo } from "./interface";
 import { vMouseTip } from "@/directives";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
-import { _calculateProgress } from "@/utils/tool";
+import { _calculateProgress, _debounce } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
 const modelValue = defineModel<boolean>({ required: true });

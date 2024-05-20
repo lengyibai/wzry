@@ -1,8 +1,8 @@
 import { ref, onMounted } from "vue";
 import { onScopeDispose } from "vue";
-import _debounce from "lodash/debounce";
 
 import { $bus } from "@/utils/eventBus";
+import { _debounce } from "@/utils/tool";
 
 /** @description 瀑布流响应式相关 */
 const useWaterfallResponsive = () => {

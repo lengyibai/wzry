@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import { storeToRefs } from "pinia";
-import _debounce from "lodash/debounce";
 
 import { HeroDebrisStore } from "@/store";
 import { FilterGender, FilterTool, KInput } from "@/components/business";
 import { LOCAL_TYPE } from "@/api";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
+import { _debounce } from "@/utils/tool";
 
 const $emit = defineEmits<{
   /** 用于筛选后返回顶部 */

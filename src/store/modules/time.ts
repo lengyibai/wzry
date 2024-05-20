@@ -1,5 +1,4 @@
 import { defineStore, storeToRefs } from "pinia";
-import dayjs from "dayjs";
 
 import { KnapsackStore } from "./knapsack";
 import { MailStore } from "./mail";
@@ -7,7 +6,7 @@ import { SupplyStore } from "./supply";
 import { AuthStore } from "./auth";
 import { TaskStore } from "./task";
 
-import { _checkTimeStamp } from "@/utils/tool";
+import { _checkTimeStamp, dayjs } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { MESSAGE_TIP } from "@/config";
 import { useSetMarker, useWeekCard } from "@/hooks";

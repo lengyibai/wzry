@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import FilterColor from "./components/FilterColor/index.vue";
 
@@ -10,6 +9,7 @@ import { MOUSE_TIP, SCENE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { $tip, $focus } from "@/utils/busTransfer";
 import { usePlayAudio } from "@/hooks";
+import { _debounce } from "@/utils/tool";
 
 const $epigraphStore = EpigraphStore();
 

@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { AuthStore } from "./auth";
 
@@ -13,6 +12,7 @@ import {
 } from "@/config/modules/default";
 import { smallYiBaoBody } from "@/components/business/YiBao/helper/yiBaoSmall";
 import { _getMinecraftLink } from "@/utils/concise";
+import { _cloneDeep } from "@/utils/tool";
 
 /** @description 乂宝装饰 */
 const YibaoStore = defineStore("yibao", () => {

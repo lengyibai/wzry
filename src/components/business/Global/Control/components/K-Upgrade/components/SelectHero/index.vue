@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { HeroUpgradeInfo } from "../../interface";
 
@@ -12,7 +11,7 @@ import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { GAME_HERO } from "@/api";
 import { KnapsackStore } from "@/store";
 import { useUserConfigFinish } from "@/hooks";
-import { _search } from "@/utils/tool";
+import { _cloneDeep, _search } from "@/utils/tool";
 
 const $emit = defineEmits<{
   change: [hero: HeroUpgradeInfo];

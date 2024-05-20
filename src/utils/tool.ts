@@ -1,9 +1,13 @@
-import dayjs from "dayjs";
 import Decimal from "decimal.js";
+import dayjs from "dayjs";
+import _cloneDeep from "lodash/cloneDeep";
+import _debounce from "lodash/debounce";
 
 import type { ImageOptimizerOptions } from "./interface";
 
 import { PINYIN } from "@/config/modules/pinyin";
+
+export { dayjs, _debounce, _cloneDeep };
 
 /** @description 判断是否为移动端 */
 export const _isPhone = (() => /mobile/i.test(navigator.userAgent))();

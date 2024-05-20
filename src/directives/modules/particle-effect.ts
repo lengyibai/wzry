@@ -3,9 +3,8 @@
  * 从从上往下及下往上的粒子特效
  */
 import type { Directive, DirectiveBinding } from "vue";
-import _debounce from "lodash/debounce";
 
-import { _random } from "@/utils/tool";
+import { _debounce, _random } from "@/utils/tool";
 
 interface ElType extends HTMLElement {
   /** 启用 */

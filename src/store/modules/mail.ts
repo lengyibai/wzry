@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import dayjs from "dayjs";
 
 import { AuthStore } from "./auth";
 
 import { API_DATA } from "@/api";
 import { MailStoreType } from "@/store/interface";
-import { _retryRequest } from "@/utils/tool";
+import { _retryRequest, dayjs } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { $msgTipText } from "@/config";
 

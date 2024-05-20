@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import dayjs from "dayjs";
 
 import { RouterStore } from "./router";
 import { LotteryStore } from "./lottery";
@@ -14,7 +13,7 @@ import { SettingStore } from "./setting";
 import { EpigraphCollocationStore } from "./epigraphCollocation";
 import { YibaoStore } from "./yibao";
 
-import { _timeGreet, _mergeConfig } from "@/utils/tool";
+import { _timeGreet, _mergeConfig, dayjs } from "@/utils/tool";
 import { _decryption, _encryption } from "@/utils/privateTool";
 import { $tip, $message, $input } from "@/utils/busTransfer";
 import { useUserConfigFinish, resetPromise } from "@/hooks";

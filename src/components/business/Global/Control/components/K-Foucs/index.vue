@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import { $bus } from "@/utils/eventBus";
+import { _debounce } from "@/utils/tool";
 
 let focus_el: HTMLElement | undefined;
 let ctx: CanvasRenderingContext2D | null;

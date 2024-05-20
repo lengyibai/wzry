@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import Annulus from "../../../../common/PartLibrary/Annulus/index.vue";
 import Antenna from "../../../../common/PartLibrary/Antenna/index.vue";
@@ -17,6 +16,7 @@ import { YibaoStore } from "@/store";
 import { YIBAO_PART } from "@/config";
 import { vScrollVirtualization } from "@/directives";
 import { _getMinecraftLink } from "@/utils/concise";
+import { _cloneDeep } from "@/utils/tool";
 
 interface Props {
   /** 当前部件key */

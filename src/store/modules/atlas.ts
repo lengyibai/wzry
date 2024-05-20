@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
 import { $bus } from "@/utils/eventBus";
-import { _search } from "@/utils/tool";
+import { _cloneDeep, _search } from "@/utils/tool";
 
 /** @description 图集 */
 const AtlasStore = defineStore("atlas", () => {

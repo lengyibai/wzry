@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onActivated, onDeactivated, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import _debounce from "lodash/debounce";
-import dayjs from "dayjs";
 import { storeToRefs } from "pinia";
 
 import { $confirmText, GAME_PROP, MESSAGE_TIP, ROUTE_PATH } from "@/config";
@@ -10,7 +8,7 @@ import { AuthStore, KnapsackStore, MailStore } from "@/store";
 import { KButton, KEmpty } from "@/components/business";
 import { vAnimateNumber, vMouseTip } from "@/directives";
 import { $optional, $upgrade, $batchProp, $confirm, $message } from "@/utils/busTransfer";
-import { _classNameInclude, _getNewDayTimestamp } from "@/utils/tool";
+import { _classNameInclude, _debounce, _getNewDayTimestamp, dayjs } from "@/utils/tool";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
 import { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
 import { _getPropLink } from "@/utils/concise";

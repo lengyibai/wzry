@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref, onUnmounted, computed } from "vue";
 import _throttle from "lodash/throttle";
-import dayjs from "dayjs";
 import { Base64 } from "js-base64";
 
-import { _isPhone, _Parallax, _timeGreet, _blobTextToBlobObject } from "@/utils/tool";
+import { _isPhone, _Parallax, _timeGreet, _blobTextToBlobObject, dayjs } from "@/utils/tool";
 import { MESSAGE_TIP, CONFIRM_TIP, DEFAULT, $msgTipText, MOUSE_TIP } from "@/config";
 import { AuthStore } from "@/store";
 import { $input, $message, $confirm } from "@/utils/busTransfer";

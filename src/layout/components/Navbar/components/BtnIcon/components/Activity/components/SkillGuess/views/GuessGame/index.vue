@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { inject, nextTick, onMounted, onUnmounted, ref } from "vue";
-import _debounce from "lodash/debounce";
 
 import { useHideSkillGuess } from "../../hooks/useHideSkillGuess";
 import { useHideActivity } from "../../../../hooks/useHideActivity";
@@ -16,7 +15,7 @@ import {
   SelectHeroAndSkin,
 } from "@/components/business";
 import { vMouseTip, vTypewriterSingle } from "@/directives";
-import { _exitFullScreen, _openFullScreen } from "@/utils/tool";
+import { _debounce, _exitFullScreen, _openFullScreen } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { KnapsackStore } from "@/store";
 import { GAME_PROP, MESSAGE_TIP } from "@/config";

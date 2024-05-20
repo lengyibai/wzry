@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import _debounce from "lodash/debounce";
 import { onMounted } from "vue";
 
 import { connectCircle } from "./helper/connectCircle";
 import { useMouseTip } from "./hooks/useMouseTip";
 
 import { vTypewriterMultiple } from "@/directives";
+import { _debounce } from "@/utils/tool";
 
 const { show, tip, type, downing, show_tip, disabled, is_click } = useMouseTip();
 

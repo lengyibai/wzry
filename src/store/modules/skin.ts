@@ -1,12 +1,11 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { KnapsackStore } from "./knapsack";
 
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
-import { _typeSort, _search } from "@/utils/tool";
+import { _typeSort, _search, _cloneDeep } from "@/utils/tool";
 
 /** @description 皮肤列表页 */
 const SkinStore = defineStore("skin", () => {

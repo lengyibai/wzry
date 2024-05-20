@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import _debounce from "lodash/debounce";
 
 import { SkinDebrisStore } from "@/store";
 import FilterGender from "@/components/business/Tool/FilterGender/index.vue";
@@ -9,6 +8,7 @@ import FilterTool from "@/components/business/Tool/FilterTool/index.vue";
 import { MOUSE_TIP } from "@/config";
 import { KInput } from "@/components/business";
 import { vMouseTip } from "@/directives";
+import { _debounce } from "@/utils/tool";
 
 const $emit = defineEmits<{
   /** 用于筛选后返回顶部 */

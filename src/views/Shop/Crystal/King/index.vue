@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onActivated, ref, onDeactivated } from "vue";
-import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
@@ -12,7 +11,7 @@ import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
 defineOptions({

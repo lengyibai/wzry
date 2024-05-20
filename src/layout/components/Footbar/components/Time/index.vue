@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import dayjs from "dayjs";
+import { dayjs } from "@/utils/tool";
 
 /** 当前时间 */
 const time = dayjs().format("YYYY.MM.DD");

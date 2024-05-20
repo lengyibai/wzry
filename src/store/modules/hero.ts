@@ -1,12 +1,11 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { KnapsackStore } from "./knapsack";
 
 import { usePagingLoad } from "@/hooks";
 import { GAME_HERO } from "@/api";
-import { _search } from "@/utils/tool";
+import { _cloneDeep, _search } from "@/utils/tool";
 
 /** @description 英雄列表页 */
 const HeroStore = defineStore("hero", () => {

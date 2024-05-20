@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { HeroSkinOptionalInfo, OptionalMode } from "../../interface";
 
@@ -13,7 +12,7 @@ import { GAME_HERO } from "@/api";
 import { KnapsackStore } from "@/store";
 import { usePagingLoad, useUserConfigFinish } from "@/hooks";
 import { $message, $obtain } from "@/utils/busTransfer";
-import { _search, _LoadMore } from "@/utils/tool";
+import { _search, _LoadMore, _cloneDeep } from "@/utils/tool";
 
 interface Props {
   /** 弹窗模式 */

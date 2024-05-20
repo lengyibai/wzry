@@ -1,7 +1,7 @@
 import { reactive } from "vue";
-import dayjs from "dayjs";
 
 import { usePlayAudio } from "@/hooks";
+import { dayjs } from "@/utils/tool";
 
 const { playAudio } = usePlayAudio();
 

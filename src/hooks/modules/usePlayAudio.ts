@@ -1,6 +1,5 @@
-import _debounce from "lodash/debounce";
-
 import { _getAudioLink } from "@/utils/concise";
+import { _debounce } from "@/utils/tool";
 
 /** 音量 */
 let volume = 0.5;

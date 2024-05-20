@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import _cloneDeep from "lodash/cloneDeep";
 
 import KInput from "../../Parts/K-Input/index.vue";
 
 import { LOCAL_HERO } from "@/api";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { _search, _shuffleArray } from "@/utils/tool";
+import { _cloneDeep, _search, _shuffleArray } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
 interface Props {

@@ -1,13 +1,12 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import dayjs from "dayjs";
 
 import { AuthStore } from "./auth";
 import { TaskStore } from "./task";
 
 import { $confirmText, $msgTipText, GAME_CONFIG, MESSAGE_TIP } from "@/config";
 import { $confirm, $message } from "@/utils/busTransfer";
-import { _formatSeconds } from "@/utils/tool";
+import { _formatSeconds, dayjs } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks/modules/usePlayAudio";
 
 /** @description 夺宝石补给 */

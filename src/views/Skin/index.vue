@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onActivated, ref, onDeactivated, onMounted } from "vue";
-import _debounce from "lodash/debounce";
 import { storeToRefs } from "pinia";
 
 import SkinCard from "./components/SkinCard/index.vue";
@@ -10,7 +9,7 @@ import { SkinStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
 import { $imageView } from "@/utils/busTransfer";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
 defineOptions({

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import _debounce from "lodash/debounce";
 import { onDeactivated, onActivated, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
@@ -13,7 +12,7 @@ import { LibGrid } from "@/components/common";
 import { usePagingLoad, usePlayAudio } from "@/hooks";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 
 defineOptions({
   name: "HeroDebrisShop",

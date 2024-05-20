@@ -1,7 +1,8 @@
-import _debounce from "lodash/debounce";
 import { ref } from "vue";
 
 import { MouseTip } from "../interface";
+
+import { _debounce } from "@/utils/tool";
 
 let timer: NodeJS.Timeout;
 

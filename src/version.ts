@@ -1,5 +1,6 @@
 import axios from "axios";
-import dayjs from "dayjs";
+
+import { dayjs } from "./utils/tool";
 
 import { LOCAL_KEY } from "@/config";
 
