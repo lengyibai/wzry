@@ -29,14 +29,12 @@ const i = $props.index;
 
 /** 计算百分比 */
 const percent = computed(() => {
-  return (data: TaskType) => {
-    //使用 reduce 计算 total 和 value 的总和
-    const total_sum = _accumulate(data.schedule, "total");
-    const value_sum = _accumulate(data.schedule, "value");
+  //使用 reduce 计算 total 和 value 的总和
+  const total_sum = _accumulate($props.data.schedule, "total");
+  const value_sum = _accumulate($props.data.schedule, "value");
 
-    //计算百分比
-    return value_sum === 0 ? 0 : _decimal([value_sum, total_sum, 100], ["/", "*"], 0);
-  };
+  //计算百分比
+  return value_sum === 0 ? 0 : _decimal([value_sum, total_sum, 100], ["/", "*"], 0);
 });
 
 /* 点击任务按钮 */
@@ -54,7 +52,7 @@ const handleClickTask = (data: TaskType) => {
   <div
     class="task-card"
     :class="{
-      active: !data.receive && percent(data) >= 100,
+      active: !data.receive && percent >= 100,
     }"
   >
     <!-- 左边 -->
@@ -96,7 +94,7 @@ const handleClickTask = (data: TaskType) => {
             <div class="label">进度：</div>
             <div class="content">
               <div class="percentage">
-                <span class="value">{{ percent(data) }}</span>
+                <span class="value">{{ percent }}</span>
                 <span>%</span>
               </div>
 
@@ -121,15 +119,15 @@ const handleClickTask = (data: TaskType) => {
 
           <!-- 前往及领取按钮 -->
           <div
-            v-if="data.path || percent(data) >= 100"
+            v-if="data.path || percent >= 100"
             v-mouse-tip
             :class="{
-              receive: percent(data) >= 100,
+              receive: percent >= 100,
             }"
             class="btn"
             @click="handleClickTask(data)"
           >
-            {{ percent(data) < 100 ? "前往" : "领取" }}
+            {{ percent < 100 ? "前往" : "领取" }}
           </div>
         </div>
       </div>
