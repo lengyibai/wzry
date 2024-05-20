@@ -88,7 +88,7 @@ const TaskStore = defineStore("task", () => {
 
     /** @description 设置任务数据记录
      * @param key 任务状态键名
-     * @param v 任务状态值
+     * @param scheduleValue 任务状态值
      * @param restore 是否应用于恢复用户配置
      */
     setTaskStatus(key: keyof Game.Task, scheduleValue: number, restore: boolean = false) {
@@ -104,7 +104,6 @@ const TaskStore = defineStore("task", () => {
         //设置任务进度
         const setTaskSchedule = (info: TaskStoreType.TaskSchedule) => {
           const { taskId, data, once } = info;
-          //每日消费
           if (task.id === taskId) {
             data.forEach((item) => {
               if (key === item.key) {
