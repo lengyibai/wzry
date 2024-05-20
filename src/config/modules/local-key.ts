@@ -15,99 +15,99 @@ const LOCAL_KEY = {
   /** 记住用户信息 */
   REMEMBER_USER: "remember_user",
 
-  /** 铭文列表 */
-  EPIGRAPH: "铭文列表",
+  /** 铭文表 */
+  EPIGRAPH: "铭文表",
   /** 铭文颜色 */
   EPIGRAPH_COLOR: "铭文颜色",
-  /** 铭文效果列表 */
-  EPIGRAPH_EFFECT: "铭文效果列表",
-  /** 铭文图片列表 */
-  EPIGRAPH_IMAGE: "铭文图片列表",
-  /** 铭文名称列表 */
-  EPIGRAPH_NAME: "铭文名称列表",
-  /** 铭文类型列表 */
-  EPIGRAPH_TYPE: "铭文类型列表",
+  /** 铭文效果表 */
+  EPIGRAPH_EFFECT: "铭文效果表",
+  /** 铭文图片表 */
+  EPIGRAPH_IMAGE: "铭文图片表",
+  /** 铭文名称表 */
+  EPIGRAPH_NAME: "铭文名称表",
+  /** 铭文类型表 */
+  EPIGRAPH_TYPE: "铭文类型表",
 
-  /** 装备列表 */
-  EQUIP: "装备列表",
-  /** 装备描述列表 */
-  EQUIP_DESC: "装备描述列表",
-  /** 装备效果列表 */
-  EQUIP_EFFECT: "装备效果列表",
-  /** 装备图片列表 */
-  EQUIP_IMAGE: "装备图片列表",
-  /** 装备等级列表 */
-  EQUIP_LEVEL: "装备等级列表",
-  /** 装备动机列表 */
-  EQUIP_MOTIVATION: "装备动机列表",
-  /** 装备名称列表 */
-  EQUIP_NAME: "装备名称列表",
-  /** 装备备注列表 */
-  EQUIP_NOTE: "装备备注列表",
-  /** 装备价格列表 */
-  EQUIP_PRICE: "装备价格列表",
-  /** 装备合成列表 */
-  EQUIP_SYNTHETIC: "装备合成列表",
-  /** 装备类型列表 */
-  EQUIP_TYPE: "装备类型列表",
+  /** 装备表 */
+  EQUIP: "装备表",
+  /** 装备描述表 */
+  EQUIP_DESC: "装备描述表",
+  /** 装备效果表 */
+  EQUIP_EFFECT: "装备效果表",
+  /** 装备图片表 */
+  EQUIP_IMAGE: "装备图片表",
+  /** 装备等级表 */
+  EQUIP_LEVEL: "装备等级表",
+  /** 装备动机表 */
+  EQUIP_MOTIVATION: "装备动机表",
+  /** 装备名称表 */
+  EQUIP_NAME: "装备名称表",
+  /** 装备备注表 */
+  EQUIP_NOTE: "装备备注表",
+  /** 装备价格表 */
+  EQUIP_PRICE: "装备价格表",
+  /** 装备合成表 */
+  EQUIP_SYNTHETIC: "装备合成表",
+  /** 装备类型表 */
+  EQUIP_TYPE: "装备类型表",
 
-  /** 英雄列表 */
-  HERO: "英雄列表",
-  /** 英雄属性列表 */
-  HERO_PRICE: "英雄价格列表",
-  /** 英雄属性列表 */
-  HERO_ATTR: "英雄属性列表",
-  /** 英雄阵营列表 */
-  HERO_CAMP: "英雄阵营列表",
-  /** 英雄性别列表 */
-  HERO_GENDER: "英雄性别列表",
-  /** 英雄头像列表 */
-  HERO_AVATAR: "英雄头像列表",
-  /** 英雄身高列表 */
-  HERO_HEIGHT: "英雄身高列表",
-  /** 英雄简述列表 */
-  HERO_RESUME: "英雄简述列表",
-  /** 英雄身份列表 */
-  HERO_IDENTITY: "英雄身份列表",
-  /** 英雄图片列表 */
-  HERO_IMAGE: "英雄图片列表",
-  /** 英雄定位列表 */
-  HERO_LOCATION: "英雄定位列表",
-  /** 英雄代号列表 */
-  HERO_MARK: "英雄代号列表",
-  /** 英雄名称列表 */
-  HERO_NAME: "英雄名称列表",
-  /** 英雄时期列表 */
-  HERO_PERIOD: "英雄时期列表",
-  /** 英雄拼音列表 */
-  HERO_PINYIN: "英雄拼音列表",
-  /** 英雄职业列表 */
-  HERO_PROFESSION: "英雄职业列表",
-  /** 英雄种族列表 */
-  HERO_RACE: "英雄种族列表",
-  /** 英雄关系列表 */
-  HERO_RELATIONSHIP: "英雄关系列表",
-  /** 英雄技能单位列表 */
-  HERO_SKILL_UNIT: "英雄技能单位列表",
-  /** 英雄皮肤列表 */
-  HERO_SKIN: "英雄皮肤列表",
-  /** 英雄特长列表 */
-  HERO_SPECIALTY: "英雄特长列表",
-  /** 技能列表 */
-  HERO_SKILL: "技能列表",
+  /** 英雄表 */
+  HERO: "英雄表",
+  /** 英雄属性表 */
+  HERO_PRICE: "英雄价格表",
+  /** 英雄属性表 */
+  HERO_ATTR: "英雄属性表",
+  /** 英雄阵营表 */
+  HERO_CAMP: "英雄阵营表",
+  /** 英雄性别表 */
+  HERO_GENDER: "英雄性别表",
+  /** 英雄头像表 */
+  HERO_AVATAR: "英雄头像表",
+  /** 英雄身高表 */
+  HERO_HEIGHT: "英雄身高表",
+  /** 英雄简述表 */
+  HERO_RESUME: "英雄简述表",
+  /** 英雄身份表 */
+  HERO_IDENTITY: "英雄身份表",
+  /** 英雄图片表 */
+  HERO_IMAGE: "英雄图片表",
+  /** 英雄定位表 */
+  HERO_LOCATION: "英雄定位表",
+  /** 英雄代号表 */
+  HERO_MARK: "英雄代号表",
+  /** 英雄名称表 */
+  HERO_NAME: "英雄名称表",
+  /** 英雄时期表 */
+  HERO_PERIOD: "英雄时期表",
+  /** 英雄拼音表 */
+  HERO_PINYIN: "英雄拼音表",
+  /** 英雄职业表 */
+  HERO_PROFESSION: "英雄职业表",
+  /** 英雄种族表 */
+  HERO_RACE: "英雄种族表",
+  /** 英雄关系表 */
+  HERO_RELATIONSHIP: "英雄关系表",
+  /** 英雄技能单位表 */
+  HERO_SKILL_UNIT: "英雄技能单位表",
+  /** 英雄皮肤表 */
+  HERO_SKIN: "英雄皮肤表",
+  /** 英雄特长表 */
+  HERO_SPECIALTY: "英雄特长表",
+  /** 技能表 */
+  HERO_SKILL: "技能表",
 
-  /** 皮肤列表 */
-  SKIN: "皮肤列表",
-  /** 皮肤英雄列表 */
-  SKIN_HERO: "皮肤英雄列表",
-  /** 皮肤图片列表 */
-  SKIN_IMAGE: "皮肤图片列表",
-  /** 皮肤名称列表 */
-  SKIN_NAME: "皮肤名称列表",
-  /** 皮肤价格列表 */
-  SKIN_PRICE: "皮肤价格列表",
-  /** 皮肤类型列表 */
-  SKIN_TYPE: "皮肤类型列表",
+  /** 皮肤表 */
+  SKIN: "皮肤表",
+  /** 皮肤英雄表 */
+  SKIN_HERO: "皮肤英雄表",
+  /** 皮肤图片表 */
+  SKIN_IMAGE: "皮肤图片表",
+  /** 皮肤名称表 */
+  SKIN_NAME: "皮肤名称表",
+  /** 皮肤价格表 */
+  SKIN_PRICE: "皮肤价格表",
+  /** 皮肤类型表 */
+  SKIN_TYPE: "皮肤类型表",
 
   /** 类型阵营表 */
   TYPE_CAMP: "类型阵营表",
