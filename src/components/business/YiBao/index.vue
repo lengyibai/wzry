@@ -2,7 +2,6 @@
 import { onMounted, ref } from "vue";
 import { provide } from "vue";
 import { storeToRefs } from "pinia";
-import { useRoute } from "vue-router";
 
 import Eyes from "./components/Eyes/index.vue";
 import Blush from "./components/Blush/index.vue";
@@ -13,8 +12,7 @@ import Wing from "./components/Wing/index.vue";
 import { bigYiBaoBody } from "./helper/yiBaoBig";
 import { smallYiBaoBody } from "./helper/yiBaoSmall";
 
-import { YibaoStore } from "@/store";
-import { ROUTE_PATH } from "@/config";
+import { AuthStore, YibaoStore } from "@/store";
 
 interface Props {
   /** 小乂宝还是大乂宝 */
@@ -22,9 +20,9 @@ interface Props {
 }
 const $props = defineProps<Props>();
 
-const $route = useRoute();
-
 const $yibaoStore = YibaoStore();
+const $authStore = AuthStore();
+
 const { temp_part_detail } = storeToRefs($yibaoStore);
 
 const yiBaoMoveBoxRefs = ref<HTMLElement>();
@@ -51,12 +49,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    v-show="$route.path !== ROUTE_PATH.LOGIN"
-    ref="yiBaoMoveBoxRefs"
-    class="yi-bao-move-box"
-    :class="type"
-  >
+  <div v-show="$authStore.user_status" ref="yiBaoMoveBoxRefs" class="yi-bao-move-box" :class="type">
     <div ref="yiBaoRotateBoxRefs" class="yi-bao-rotate-box">
       <div
         ref="yiBaoRefs"
