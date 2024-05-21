@@ -130,7 +130,7 @@ const useLotteryPlay = (type: "HERO" | "SKIN") => {
           confirm() {
             setTimeout(() => {
               play();
-            }, 1010);
+            }, 1250);
           },
         });
         return true;
@@ -143,7 +143,7 @@ const useLotteryPlay = (type: "HERO" | "SKIN") => {
           confirm() {
             setTimeout(() => {
               play();
-            }, 1010);
+            }, 1250);
           },
         });
         return true;
