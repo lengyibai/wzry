@@ -95,7 +95,7 @@ const play = (voice: string, index: number) => {
         ref="voiceRef"
         :key="item.link"
         v-mouse-tip="{
-          text: MOUSE_TIP.lq42,
+          text: MOUSE_TIP.sg22,
         }"
         class="voice"
         :style="{
