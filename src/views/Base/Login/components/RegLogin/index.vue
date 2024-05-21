@@ -92,6 +92,16 @@ const readFile = (e: Event | File) => {
       try {
         user_data.value = _decryption(content);
 
+        if (import.meta.env.DEV && !user_data.value.isDev) {
+          $message($msgTipText("mg14", { v: "生产" }), "error");
+          return;
+        }
+
+        if (!import.meta.env.DEV && user_data.value.isDev) {
+          $message($msgTipText("mg14", { v: "开发" }), "error");
+          return;
+        }
+
         const handleInput = () => {
           $input({
             title: "读取召唤师卡",
@@ -151,16 +161,6 @@ const debounceLogin = () => {
   if (!user_data.value) return;
   if (user_data.value.isInvalid) {
     $message(MESSAGE_TIP.uf04, "error");
-    return;
-  }
-
-  if (import.meta.env.DEV && !user_data.value.isDev) {
-    $message($msgTipText("mg14", { v: "生产" }), "error");
-    return;
-  }
-
-  if (!import.meta.env.DEV && user_data.value.isDev) {
-    $message($msgTipText("mg14", { v: "开发" }), "error");
     return;
   }
 
