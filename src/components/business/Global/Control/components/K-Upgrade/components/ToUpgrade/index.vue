@@ -51,26 +51,26 @@ const handleUpgrade = () => {
   const currentExp = $knapsackStore.hero_list[$props.hero.id].exp;
   const awards = upgradeGift(currentExp, target_exp.value);
 
-  //升级赠送
-  if (awards.length > 0) {
-    const obtain = awards.map((item) => {
-      const key = item.key as Game.PropKey;
-
-      return {
-        name: GAME_PROP.NAME[key],
-        key,
-        num: item.count,
-        icon: _getPropLink(GAME_PROP.ICON[key]),
-      };
-    });
-
-    $obtain(obtain);
-  }
-
   //扣除道具
   $knapsackStore
     .setGamePropNum($props.propType, count.value, "SUB")
     .then(() => {
+      //升级赠送
+      if (awards.length > 0) {
+        const obtain = awards.map((item) => {
+          const key = item.key as Game.PropKey;
+
+          return {
+            name: GAME_PROP.NAME[key],
+            key,
+            num: item.count,
+            icon: _getPropLink(GAME_PROP.ICON[key]),
+          };
+        });
+
+        $obtain(obtain);
+      }
+
       //升级英雄
       $knapsackStore.upgradeHero(
         $props.hero.id,
