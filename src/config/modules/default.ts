@@ -243,7 +243,7 @@ export const configDefault: () => Global.SettingConfig = () => ({
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  barrage: true,
+  barrage: false,
   musicProgress: false,
   speed: 1,
   shine: true,
