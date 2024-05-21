@@ -5,8 +5,8 @@ import { useBarrages } from "./hooks/useBarrages";
 import { vDrag } from "./directives/drag";
 
 import { vBlurLoad, vMouseTip } from "@/directives";
-import { MOUSE_TIP, SCENE_TIP } from "@/config";
-import { $imageView, $tip } from "@/utils/busTransfer";
+import { MOUSE_TIP } from "@/config";
+import { $imageView } from "@/utils/busTransfer";
 import { _cloneDeep, _shuffleArray } from "@/utils/tool";
 
 const barragesRef = ref<HTMLElement>();
@@ -44,10 +44,6 @@ watch(
 
 setTimeout(() => {
   getBarrages();
-  $tip({
-    align: "left-top",
-    text: SCENE_TIP.kr53,
-  });
 }, 3000);
 </script>
 

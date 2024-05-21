@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { nextTick, ref } from "vue";
-
 import MusicList from "../MusicList/index.vue";
 
-import { MusicStore, SettingStore } from "@/store";
+import { MusicStore } from "@/store";
 import { vMouseTip } from "@/directives";
-import { MOUSE_TIP, SCENE_TIP } from "@/config";
-import { $tip, $focus } from "@/utils/busTransfer";
+import { MOUSE_TIP } from "@/config";
 import { useDevice } from "@/hooks";
 
 const $emit = defineEmits<{
@@ -14,25 +11,8 @@ const $emit = defineEmits<{
 }>();
 
 const $musicStore = MusicStore();
-const $settingStore = SettingStore();
 
 const { vertical } = useDevice();
-
-const musicToolRef = ref<HTMLElement>();
-
-nextTick(() => {
-  if (!$settingStore.config.music) return;
-
-  $tip({
-    text: SCENE_TIP.d7o5,
-    align: "right-top",
-    color: false,
-    createFn() {
-      $focus.show(musicToolRef.value!);
-    },
-    btnFn: $focus.close,
-  });
-});
 
 /** @description 点击按钮
  * @param type 工具类型
@@ -43,7 +23,7 @@ const handleTool = (type: string) => {
 </script>
 
 <template>
-  <div ref="musicToolRef" class="music-tool" :class="{ center: vertical }" @click.stop>
+  <div class="music-tool" :class="{ center: vertical }" @click.stop>
     <i
       v-mouse-tip="{
         text: MOUSE_TIP.q3k7,
