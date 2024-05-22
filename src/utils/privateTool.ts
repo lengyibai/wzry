@@ -3,7 +3,7 @@ import JSZip from "jszip";
 import { AxiosProgressEvent } from "axios";
 
 import { $message } from "./busTransfer";
-import { _imageOptimizer, _mergeConfig, _promiseTimeout, _saveFiles } from "./tool";
+import { _imageOptimizer, _mergeConfig, _saveFiles } from "./tool";
 import { ZipType } from "./interface";
 
 import { DEFAULT, GAME_CONFIG, MESSAGE_TIP } from "@/config";
@@ -182,17 +182,7 @@ export const _downloadZip = (
             }
           };
 
-          if (import.meta.env.DEV) {
-            await load();
-          } else {
-            //节流处理
-            await _promiseTimeout(
-              ["IMAGE_MINECRAFT", "IMAGE_BLUR"].includes(type) ? 1 : 25,
-              async () => {
-                await load();
-              },
-            );
-          }
+          await load();
         }
 
         status.decompression_finish = true;
