@@ -11,7 +11,7 @@ const auto_update_status = localStorage.getItem(LOCAL_KEY.AUTO_UPDATE_STATUS) ||
 
 axios
   .get(
-    `${location.origin}/${
+    `${location.origin}${
       import.meta.env.VITE_REMOTE_API_PATH
     }/json/version.json?t=${dayjs().unix()}`,
   )

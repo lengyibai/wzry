@@ -10,7 +10,7 @@ import type { ResultData } from "@/api/interface";
 import { dayjs } from "@/utils/tool";
 
 const local = {
-  baseURL: `${location.origin}/${import.meta.env.VITE_REMOTE_API_PATH}/json`,
+  baseURL: `${location.origin}${import.meta.env.VITE_REMOTE_API_PATH}/json`,
   timeout: 1000 * 600,
 };
 
