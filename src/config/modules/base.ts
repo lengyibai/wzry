@@ -5,5 +5,5 @@ export const BASE_CONFIG = {
   /** 数据token过期时间(秒) */
   OVERDUE_DATA_TIME: 259200, //3天
   /** 图床链接 */
-  IMGBED: "https://files.lyb.im/wzry-material",
+  IMGBED: "https://lengyibai.github.io/wzry-material",
 };

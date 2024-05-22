@@ -5,6 +5,8 @@ interface ImportMetaEnv {
   VITE_REMOTE_API_URL: string;
   /** 远程静态资源地址 */
   VITE_RESOURCE_URL: string;
+  /** 部署地址前缀 */
+  VITE_REMOTE_API_PATH: string;
 }
 
 interface ImportMeta {

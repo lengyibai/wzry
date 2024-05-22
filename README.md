@@ -104,5 +104,5 @@
 
 > 如果你觉得我的代码写得不错，对你有一定帮助，欢迎赞助
 
-<img src="https://files.lyb.im/wzry-material/image/wx.png" style="width:300px" alt="微信收款码" />
-<img src="https://files.lyb.im/wzry-material/image/zfb.png" style="width:300px" alt="支付宝收款码" />
+<img src="https://lengyibai.github.io/wzry-material/image/wx.png" style="width:300px" alt="微信收款码" />
+<img src="https://lengyibai.github.io/wzry-material/image/zfb.png" style="width:300px" alt="支付宝收款码" />

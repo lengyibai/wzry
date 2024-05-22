@@ -17,7 +17,7 @@
   width: calc(26.0417vw / 2 * var(--rate));
   height: calc(24.2188vw / 2 * var(--rate));
   background-size: calc(52.0833vw / 2 * var(--rate)) calc(48.4375vw / 2 * var(--rate));
-  background-image: url("https://files.lyb.im/wzry-material/image/white_logo.png");
+  background-image: url("https://lengyibai.github.io/wzry-material/image/white_logo.png");
 }
 .spirit_into-1 {
   background-position: 0 0;
@@ -51,7 +51,9 @@
   }
 }
 .body .loading .box {
-  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
+  animation:
+    into-scale 3s forwards ease-out,
+    into-opacity 2s forwards;
 }
 @keyframes into-opacity {
   0% {

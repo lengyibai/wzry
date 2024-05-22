@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => {
   const getViteEnv = (target: string): any => env[target];
 
   return {
-    base: "./",
+    base: "/wztj/",
     plugins: [
       vue(),
       basicSSL(), //手机端可能需要注释掉才能下载召唤师卡
