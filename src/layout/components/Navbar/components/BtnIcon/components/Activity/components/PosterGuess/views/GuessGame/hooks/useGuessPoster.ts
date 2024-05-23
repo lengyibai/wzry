@@ -5,8 +5,8 @@ import { useCloseToStore } from "../../../../../common/hooks/useCloseToStore";
 import { LOCAL_HERO, KVP_HERO } from "@/api";
 import { _formatSeconds, _promiseTimeout, _random } from "@/utils/tool";
 import { AuthStore, KnapsackStore } from "@/store";
-import { $confirm, $message, $obtain } from "@/utils/busTransfer";
-import { $msgTipText, CONFIRM_TIP, GAME_CONFIG, GAME_PROP } from "@/config";
+import { $message, $obtain, $tip } from "@/utils/busTransfer";
+import { $msgTipText, GAME_CONFIG, GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
 import { useSetMarker } from "@/hooks";
 
@@ -269,9 +269,12 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => void) => {
       saveConfig();
       setTimeout(() => {
         $knapsackStore.setGamePropNum("GUESS_CARD", 1, "SUB");
-        $confirm({
-          text: CONFIRM_TIP.ee02,
-          confirm: () => {
+        $tip({
+          text: "由于上一次未正常退出竞猜，已扣除一张竞猜券。",
+          align: "right-bottom",
+          color: false,
+          btnText: "确定",
+          btnFn() {
             setTimeout(() => {
               //当竞猜券恰好被扣完，则退出竞猜并前往道具商店
               if (useCloseToStore(closeActivity)) return;
