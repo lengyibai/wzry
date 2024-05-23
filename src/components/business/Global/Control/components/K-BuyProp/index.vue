@@ -21,7 +21,7 @@ const count = ref(1);
 
 /** @description 确定 */
 const handleConfirm = () => {
-  if (!config.value) return;
+  if (!config.value || count.value < 1) return;
 
   const price = config.value.price * count.value;
 
@@ -83,12 +83,15 @@ const handleConfirm = () => {
             <span class="text">购买次数</span>
             <span class="num">{{ count }}</span>
           </div>
-          <KRange v-model="count" :min="1" :show-num="false" />
+          <KRange v-model="count" :show-num="false" />
         </div>
         <KButton
           v-if="config"
-          v-mouse-tip
+          v-mouse-tip="{
+            disabled: count < 1,
+          }"
           v-debounce-click="handleConfirm"
+          :disabled="count < 1"
           class="k-button"
           type="warning"
         >

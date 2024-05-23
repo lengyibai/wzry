@@ -49,6 +49,8 @@ const prop_num = computed(() => {
 
 /** @description 领取 */
 const handleReceive = async () => {
+  if (count.value < 1) return;
+
   /** 用于存储格式化后的奖品数据 */
   const obtain: ObtainInfo[] = [];
   /** 随机皮肤秘宝系列 */
@@ -203,9 +205,17 @@ const handleReceive = async () => {
               <span class="total">/{{ prop_num }}</span>
             </div>
           </div>
-          <KRange v-model="count" :min="1" :max="prop_num" :show-num="false" />
+          <KRange v-model="count" :max="prop_num" :show-num="false" />
         </div>
-        <KButton v-mouse-tip v-debounce-click="handleReceive" class="k-button" type="warning">
+        <KButton
+          v-mouse-tip="{
+            disabled: count < 1,
+          }"
+          v-debounce-click="handleReceive"
+          :disabled="count < 1"
+          class="k-button"
+          type="warning"
+        >
           确定
         </KButton>
       </div>

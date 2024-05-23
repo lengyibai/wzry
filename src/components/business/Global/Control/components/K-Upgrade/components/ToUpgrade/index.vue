@@ -48,6 +48,8 @@ const handleBack = () => {
 
 /* 确定升级 */
 const handleUpgrade = () => {
+  if (count.value < 1) return;
+
   const currentExp = $knapsackStore.hero_list[$props.hero.id].exp;
   const awards = upgradeGift(currentExp, target_exp.value);
 
@@ -181,13 +183,20 @@ const handleUpgrade = () => {
     </div>
     <KRange
       v-model="count"
-      :min="1"
       :max="$knapsackStore.articles[propType]"
       :show-num="false"
       width="20rem"
     />
   </div>
-  <KButton v-debounce-click="handleUpgrade" v-mouse-tip type="warning" class="k-button">
+  <KButton
+    v-debounce-click="handleUpgrade"
+    v-mouse-tip="{
+      disabled: count < 1,
+    }"
+    :disabled="count < 1"
+    type="warning"
+    class="k-button"
+  >
     确定
   </KButton>
 </template>
