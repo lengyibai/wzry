@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { $imageView } from "@/utils/busTransfer";
 import { _getMiscLink } from "@/utils/concise";
+
+/** 是否显示跑马灯 */
+const show = ref(true);
 
 /** @description 查看二维码 */
 const handleQrCode = (e: Event) => {
@@ -11,6 +16,10 @@ const handleQrCode = (e: Event) => {
     blurImage: _getMiscLink("activity_group_code"),
   });
 };
+
+setTimeout(() => {
+  show.value = false;
+}, 1000 * 60);
 </script>
 
 <template>
