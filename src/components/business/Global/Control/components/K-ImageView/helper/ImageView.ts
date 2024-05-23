@@ -38,7 +38,7 @@ export class ScaleFLIPImage {
   private async createImage() {
     await _promiseTimeout();
     this.img = document.createElement("img");
-    this.img.style.width = "75%";
+    this.img.style.height = "75%";
     this.img.style.maxWidth = this.parent.offsetWidth + "px";
     this.img.style.position = "absolute";
     this.img.style.transition = "0.5s";
@@ -57,7 +57,6 @@ export class ScaleFLIPImage {
     this.img.style.opacity = "1";
     this.img.style.transformOrigin = "center center";
     this.img.style.transform = `translate(-50%,-50%) scale(${this.scale})`;
-    this.img.style.backgroundColor = "#1a1a1a";
 
     await _promiseTimeout(750);
     this.img.style.transition = "initial";
