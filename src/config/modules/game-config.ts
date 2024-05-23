@@ -14,8 +14,8 @@ export const EXP_NAME: Record<string, string[]> = {
 
 /** @description 升级包对应经验 */
 export const UPGRADE_EXP = {
-  HERO_EXP_ONE: 25,
-  HERO_EXP_TWO: 50,
+  HERO_EXP_ONE: 50,
+  HERO_EXP_TWO: 100,
 } as const;
 
 /** @description 英雄等级区间 */
@@ -40,99 +40,79 @@ export const LOTTERY_AWARD: Record<
     { id: 7, type: "HERO_EXP_ONE", num: 1 },
     { id: 2, type: "HERO_CHEST_RANDOM" },
     { id: 5, type: "HERO_DEBRIS", num: 1 },
-    { id: 8, type: "GOLD", num: 20 },
+    { id: 8, type: "GOLD", num: 25 },
     { id: 3, type: "HERO_TREASURE" },
-    { id: 9, type: "GOLD", num: 40 },
+    { id: 9, type: "GOLD", num: 50 },
     { id: 6, type: "HERO_EXP_TWO", num: 1 },
-    { id: 10, type: "GOLD", num: 60 },
+    { id: 10, type: "GOLD", num: 75 },
   ],
   SKIN: [
     { id: 1, type: "HONOR_CRYSTAL" },
     { id: 2, type: "SKIN_BRAVE_TREASURE" },
     { id: 6, type: "SKIN_DEBRIS", num: 3 },
-    { id: 9, type: "DIAMOND", num: 40 },
+    { id: 9, type: "DIAMOND", num: 100 },
     { id: 3, type: "SKIN_EPIC_TREASURE" },
     { id: 7, type: "SKIN_DEBRIS", num: 2 },
-    { id: 10, type: "DIAMOND", num: 30 },
+    { id: 10, type: "DIAMOND", num: 75 },
     { id: 4, type: "SKIN_LEGEND_TREASURE" },
     { id: 8, type: "SKIN_DEBRIS", num: 1 },
-    { id: 11, type: "DIAMOND", num: 20 },
+    { id: 11, type: "DIAMOND", num: 50 },
     { id: 5, type: "SKIN_LIMIT_TREASURE" },
-    { id: 12, type: "DIAMOND", num: 10 },
+    { id: 12, type: "DIAMOND", num: 25 },
   ],
 } as const;
 
 /** @description 夺宝水晶赠送区间，注：值为索引号，不能等于最大值 */
 export const LOTTERY_CRYSTAL_INTERVAL = {
-  hero: [150, 200],
-  skin: [150, 200],
+  hero: [50, 150],
+  skin: [100, 190],
 };
 
 /** @description 夺宝补给模式 */
 export const LOTTERY_SUPPLY_MODE: Game.LotterySupply.Mode[] = [
   {
-    label: "30秒/1个",
-    seconds: 30,
+    label: "15秒/1个",
+    seconds: 15,
     count: 1,
   },
   {
-    label: "1分钟/2个",
+    label: "1分钟/5个",
     seconds: 60,
-    count: 2,
-  },
-  {
-    label: "3分钟/5个",
-    seconds: 3 * 60,
     count: 5,
   },
   {
-    label: "5分钟/7个",
+    label: "3分钟/12个",
+    seconds: 3 * 60,
+    count: 12,
+  },
+  {
+    label: "5分钟/20个",
     seconds: 5 * 60,
-    count: 7,
+    count: 20,
   },
   {
-    label: "10分钟/15个",
+    label: "10分钟/35个",
     seconds: 10 * 60,
-    count: 15,
+    count: 35,
   },
   {
-    label: "20分钟/30个",
+    label: "20分钟/60个",
     seconds: 20 * 60,
-    count: 30,
+    count: 60,
   },
   {
-    label: "30分钟/40个",
+    label: "30分钟/75个",
     seconds: 30 * 60,
-    count: 40,
-  },
-  {
-    label: "1小时/50个",
-    seconds: 1 * 60 * 60,
-    count: 50,
-  },
-  {
-    label: "2小时/75个",
-    seconds: 3 * 60 * 60,
     count: 75,
   },
   {
-    label: "3小时/100个",
-    seconds: 3 * 60 * 60,
-    count: 100,
-  },
-  {
-    label: "5小时/125个",
-    seconds: 5 * 60 * 60,
+    label: "1小时/125个",
+    seconds: 1 * 60 * 60,
     count: 125,
   },
   {
-    label: "7小时/150个",
-    seconds: 7 * 60 * 60,
-    count: 150,
-  },
-  {
-    label: "9小时/200个",
-    seconds: 9 * 60 * 60,
+    label: "2小时/200个",
+    seconds: 3 * 60 * 60,
     count: 200,
   },
 ];
@@ -454,23 +434,23 @@ export const TASK_LIST: () => TaskType[] = () => [
     props: [
       {
         key: "HERO_TREASURE",
-        num: 7,
+        num: 3,
       },
       {
         key: "SKIN_BRAVE_TREASURE",
-        num: 7,
+        num: 4,
       },
       {
         key: "SKIN_EPIC_TREASURE",
-        num: 7,
+        num: 3,
       },
       {
         key: "SKIN_LEGEND_TREASURE",
-        num: 7,
+        num: 1,
       },
       {
         key: "SKIN_LIMIT_TREASURE",
-        num: 7,
+        num: 2,
       },
     ],
     schedule: [
@@ -519,11 +499,11 @@ export const TASK_LIST: () => TaskType[] = () => [
     props: [
       {
         key: "HERO_LOTTERY_STONE",
-        num: 200,
+        num: 100,
       },
       {
         key: "SKIN_LOTTERY_STONE",
-        num: 200,
+        num: 100,
       },
     ],
     schedule: [

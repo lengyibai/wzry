@@ -167,7 +167,7 @@ const handleUseProp = (key: Game.PropKey) => {
     const time_key =
       type === "HERO" ? "heroLotteryStoneWeekCardExpireTime" : "skinLotteryStoneWeekCardExpireTime";
     /** 开卡推送邮箱标题 */
-    const title = type === "HERO" ? "英雄夺宝石周卡发放" : "皮肤夺宝石周卡发放";
+    const title = type === "HERO" ? "英雄夺宝石周卡奖励发放" : "皮肤夺宝石周卡奖励发放";
 
     //如果已经有夺宝石周卡正在生效，则提示是否延续
     if ($authStore.user_data[time_key] !== 0) {

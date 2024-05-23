@@ -6,7 +6,7 @@ import { GAME_PROP } from "@/config";
 import { MailStore } from "@/store";
 import { $obtain } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
-import { vOverflowCenter } from "@/directives";
+import { vMouseTip, vOverflowCenter } from "@/directives";
 import { usePlayAudio } from "@/hooks";
 
 interface Props {
@@ -71,6 +71,7 @@ const handleReceive = (mail: Game.Mail) => {
 
         <KButton
           v-if="mail.type === 'GIFT'"
+          v-mouse-tip
           type="warning"
           class="k-button"
           @click="handleReceive(mail)"

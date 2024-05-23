@@ -24,7 +24,7 @@ const { hide_all, setHideStatus } = useHidePosterGuess();
 const props: { key: Game.PropKey; num: string }[] = [
   {
     key: "GUESS_COIN",
-    num: "9~25",
+    num: "20~40",
   },
 ];
 

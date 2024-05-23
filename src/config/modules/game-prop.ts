@@ -144,7 +144,7 @@ export const DESC: Record<Game.PropKey, string> = {
   HERO_EXP_ONE:
     "通过英雄夺宝及商城-道具商店购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡",
   HERO_EXP_TWO:
-    "通过英雄夺宝及道具商店金币购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡",
+    "通过英雄夺宝及商城-道具商店金币购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡",
   DOUBLE_GOLD:
     "通过商城-道具商店购买获得，使用后在夺宝时获得的金币数量翻倍，有效时间：24小时，重复使用此卡不会叠加奖励，只会延续时长",
   DOUBLE_EXP:
@@ -156,8 +156,7 @@ export const DESC: Record<Game.PropKey, string> = {
   SKIN_LOTTERY_STONE:
     "通过皮肤夺宝石补给站获得，当英雄夺宝币用完后，可使用该道具增加一次英雄夺宝次数",
   HERO_LOTTERY_WEEK: `通过商城-道具商店购买获得，使用此卡后，从当日0点开始，每日通过邮箱发放英雄夺宝石*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE}，并赠送英雄夺宝币*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.COIN}，重复使用此卡不会叠加奖励，只会延续时长。`,
-  SKIN_LOTTERY_WEEK:
-    "`通过商城-道具商店购买获得，使用此卡后，从当日0点开始，每日通过邮箱发放皮肤夺宝石*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE}，并赠送皮肤夺宝币*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.COIN}，重复使用此卡不会叠加奖励，只会延续时长。`",
+  SKIN_LOTTERY_WEEK: `通过商城-道具商店购买获得，使用此卡后，从当日0点开始，每日通过邮箱发放皮肤夺宝石*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE}，并赠送皮肤夺宝币*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.COIN}，重复使用此卡不会叠加奖励，只会延续时长。`,
   SKIN_CARD_INITIAL: "通过英雄满级后获得，可用于兑换任意英雄的伴生皮肤",
   HERO_TREASURE: `通过英雄夺宝获得，打开后随机获得以下奖励之一：${getPropChanceNum(
     HERO_TREASURE_CHANCE,
@@ -231,13 +230,19 @@ export const PRICE: GoodsInfo[] = [
   {
     way: "DIAMOND",
     key: "HERO_LOTTERY_STONE",
-    price: 50,
+    price: 100,
     num: 1,
   },
   {
     way: "GOLD",
     key: "SKIN_LOTTERY_STONE",
-    price: 100,
+    price: 200,
+    num: 1,
+  },
+  {
+    way: "DIAMOND",
+    key: "GUESS_CARD",
+    price: 50,
     num: 1,
   },
 ];

@@ -24,7 +24,7 @@ const { hide_all, setHideStatus } = useHideSkillGuess();
 const props: { key: Game.PropKey; num: string }[] = [
   {
     key: "GUESS_COIN",
-    num: "9~25",
+    num: "20~40",
   },
 ];
 

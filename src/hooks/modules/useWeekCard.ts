@@ -45,7 +45,7 @@ const useWeekCard = () => {
   /** 发放奖励 */
   if (hero_time !== 0 && hero_time > dayjs().valueOf()) {
     sendGiftMailForWeekCard(
-      "英雄夺宝石周卡发放",
+      "英雄夺宝石周卡奖励发放",
       "HERO_LOTTERY_STONE",
       "HERO_LOTTERY_COIN",
       LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE,
@@ -56,7 +56,7 @@ const useWeekCard = () => {
   /** 发放奖励 */
   if (skin_time !== 0 && skin_time > dayjs().valueOf()) {
     sendGiftMailForWeekCard(
-      "皮肤夺宝石周卡发放",
+      "皮肤夺宝石周卡奖励发放",
       "SKIN_LOTTERY_STONE",
       "SKIN_LOTTERY_COIN",
       LOTTERY_STONE_WEEK_CARD_GRANT.SKIN.STONE,
