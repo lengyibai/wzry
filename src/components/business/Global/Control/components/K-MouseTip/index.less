@@ -61,7 +61,6 @@
         var(--white-25) 66%
       );
       background-size: 200% 200%;
-      transition: height 0.25s;
       transform: translateZ(0);
       transform-origin: top center;
       animation: energy 0.5s linear infinite;
@@ -140,11 +139,9 @@
         font-size: 1.125rem;
         white-space: nowrap;
         background-color: var(--black-75);
-        transition: opacity 0.25s;
         opacity: 0;
 
         &.show {
-          transition: opacity 0.25s 0.25s;
           opacity: 1;
         }
       }

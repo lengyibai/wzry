@@ -2,10 +2,6 @@ import { ref } from "vue";
 
 import { MouseTip } from "../interface";
 
-import { _debounce } from "@/utils/tool";
-
-let timer: NodeJS.Timeout;
-
 const ExposeData = {
   /** 是否显示 */
   show: ref(true),
@@ -28,22 +24,15 @@ const { show, tip, type, downing, show_tip, disabled, is_click } = ExposeData;
 const useMouseTip = () => {
   const ExposeMethods = {
     /** @description 鼠标悬浮提示 */
-    openMouseTip: _debounce((v: MouseTip) => {
+    openMouseTip: (v: MouseTip) => {
       if (downing.value) return;
-      //解决某些元素销毁时会直接隐藏掉正常显示的Tip
-      show.value = false;
-      show_tip.value = false;
       is_click.value = false;
-
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        show.value = true;
-        show_tip.value = v.show;
-        tip.value = v.text || "";
-        type.value = v.type || "NORMAL";
-        disabled.value = !!v.disabled;
-      }, 100);
-    }, 100),
+      show.value = true;
+      show_tip.value = v.show;
+      tip.value = v.text || "";
+      type.value = v.type || "NORMAL";
+      disabled.value = !!v.disabled;
+    },
   };
 
   return {
