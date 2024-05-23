@@ -134,11 +134,6 @@ const debounceStopGuess = _debounce(() => {
 onMounted(() => {
   _openFullScreen();
   setTimeout(() => {
-    if (window.innerWidth !== window.screen.width) {
-      debounceStopGuess();
-      return;
-    }
-
     window.addEventListener("resize", debounceStopGuess);
     window.addEventListener("mouseleave", debounceStopGuess);
   }, 1000);
@@ -295,7 +290,12 @@ onUnmounted(() => {
 
         <!-- Tip -->
         <transition name="to-top" appear>
-          <div class="tip">电脑端只能在全屏下答题，一旦识别非全屏，将自动退出竞猜并扣除竞猜券</div>
+          <div class="tips">
+            <div class="tip">在技能图标未加载的状态下，按键盘ESC键(退出键)可退出竞猜</div>
+            <div class="tip">
+              电脑端只能在全屏下答题，一旦识别非全屏，将自动退出竞猜并扣除竞猜券
+            </div>
+          </div>
         </transition>
       </div>
     </transition>
