@@ -6,8 +6,9 @@ import { AuthStore } from "./auth";
 import { API_DATA } from "@/api";
 import { MailStoreType } from "@/store/interface";
 import { _retryRequest, dayjs } from "@/utils/tool";
-import { $message } from "@/utils/busTransfer";
-import { $msgTipText } from "@/config";
+import { $message, $obtain, $tip } from "@/utils/busTransfer";
+import { $msgTipText, GAME_PROP } from "@/config";
+import { _getPropLink } from "@/utils/concise";
 
 /** @description 邮件相关 */
 const MailStore = defineStore("mail", () => {
@@ -49,14 +50,13 @@ const MailStore = defineStore("mail", () => {
 
     /** @description 请求公共邮件 */
     async getAllMail() {
-      //请求公共邮件
       await _retryRequest({
         promiseFn: API_DATA.Mail,
       })
         .then((res) => {
           //循环处理判断邮箱列表
           res.data.forEach((item) => {
-            const { mark, title, type, key, desc, userIds, props, sendTime } = item;
+            const { mark, title, type, key, desc, props } = item;
 
             //签到类型邮件单独处理
             if (key === "SIGN") {
@@ -75,38 +75,31 @@ const MailStore = defineStore("mail", () => {
               return;
             }
 
-            const mail = {
-              id: `${type}_${key}_${title}_${dayjs().valueOf().toString()}`,
-              read: false,
-              time: dayjs().valueOf(),
-              desc,
-              key,
-              mark,
-              props,
-              title,
-              type,
-            };
+            //单独处理新手大礼包
+            if (key === "NEW" && !mail_mark.value.includes(mark)) {
+              $tip({
+                text: "欢迎你注册王者图鉴，开发者为你精心准备了一份新手大礼包，让你更快地体验网站里的一些玩法，祝你体验愉快！",
+                align: "right-bottom",
+                color: false,
+                btnText: "领取",
+                btnFn() {
+                  const obtain = item.props!.map(({ num, key }) => {
+                    return {
+                      name: GAME_PROP.NAME[key],
+                      num: num,
+                      key: key,
+                      icon: _getPropLink(GAME_PROP.ICON[key]),
+                    };
+                  });
 
-            //是否在推送名单内
-            if (userIds && userIds.length && !userIds.includes($authStore.user_data.id)) return;
+                  $obtain(obtain);
 
-            //是否已经领取或参与过
-            if (mail_mark.value.includes(mark)) return;
-
-            //是否已收到推送
-            if (mail_list.value.some((item) => item.mark === mark)) {
-              const v = mail_list.value.find((item) => item.mark === mark);
-
-              //如果邮件存在临时更新，则替换邮件内容，仅在未读状态能成功替换
-              if (v!.time < sendTime) {
-                const index = mail_list.value.findIndex((item) => item.mark === mark);
-                mail_list.value[index] = mail;
-              }
-
+                  mail_mark.value.push(mark);
+                  saveMailData();
+                },
+              });
               return;
             }
-
-            mail_list.value.unshift(mail);
           });
 
           saveMailData();
@@ -121,7 +114,6 @@ const MailStore = defineStore("mail", () => {
       sign_mails.value = [];
 
       //签到之前需要读取远程签到配置
-      await this.getAllMail();
       sign_mails.value.forEach((item) => {
         const { key, type, title } = item;
         mail_list.value.unshift({
@@ -178,9 +170,7 @@ const MailStore = defineStore("mail", () => {
      */
     setMailRead(id: string) {
       const index = mail_list.value.findIndex((item) => item.id === id);
-      const mark = mail_list.value[index].mark;
       mail_list.value[index].read = true;
-      mark && mail_mark.value.push(mark);
 
       saveMailData();
     },
