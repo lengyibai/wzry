@@ -29,8 +29,8 @@ const handleDelete = (id: string) => {
 };
 
 /** @description 领取奖励 */
-const handleReceive = (main: Game.Mail) => {
-  const obtain = main.props!.map(({ num, key }) => {
+const handleReceive = (mail: Game.Mail) => {
+  const obtain = mail.props!.map(({ num, key }) => {
     return {
       name: GAME_PROP.NAME[key],
       num: num,
@@ -42,7 +42,7 @@ const handleReceive = (main: Game.Mail) => {
   $obtain(obtain);
 
   KDialogRef.value?._close();
-  $mailStore.delMail(main.id);
+  $mailStore.delMail(mail.id);
 };
 </script>
 
