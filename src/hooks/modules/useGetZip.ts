@@ -7,6 +7,7 @@ import { $msgTipText } from "@/config/modules/message-tip";
 import { _downloadZip } from "@/utils/privateTool";
 import { ZipType } from "@/utils/interface";
 import { RESOURCE_NAME } from "@/config/modules/resource-name";
+import { $message } from "@/utils/busTransfer";
 
 const zip_key_name: Record<ZipType, string> = {
   AUDIO: "音效包",
@@ -126,7 +127,7 @@ const useGetZip = () => {
           resolve();
         })
         .catch(() => {
-          alert($msgTipText("rc53", { v: zip_key_name[type] }));
+          $message($msgTipText("rc53", { v: zip_key_name[type] }), "error");
         });
     });
   };
