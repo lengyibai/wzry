@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, provide, ref } from "vue";
 
-import JoinGroup from "./components/JoinGroup/index.vue";
 import PosterGuess from "./components/PosterGuess/index.vue";
 import SkillGuess from "./components/SkillGuess/index.vue";
 import { useHideActivity } from "./hooks/useHideActivity";
@@ -23,7 +22,6 @@ const { hide_all } = useHideActivity();
 const viewport_height = window.innerHeight;
 
 const activityContainerRef = ref<HTMLElement>();
-const joinGroupRef = ref<InstanceType<typeof JoinGroup>>();
 const posterGuessRef = ref<InstanceType<typeof PosterGuess>>();
 const skillGuessRef = ref<InstanceType<typeof SkillGuess>>();
 
@@ -42,7 +40,7 @@ const current_activity = ref<ActivityInfo>();
 /* 初始化坐标 */
 const initPosition = () => {
   //封装元素顶部距离父元素顶部高度与元素底部距离父元素顶部高度
-  const position = (ref: typeof joinGroupRef) => {
+  const position = (ref: typeof posterGuessRef) => {
     if (!ref.value || !ref.value._el) {
       return {
         top: 0,
@@ -58,14 +56,8 @@ const initPosition = () => {
 
   page_list.value = [
     {
-      label: "快到群里来",
-      start: 0,
-      end: position(joinGroupRef).bottom,
-      height: joinGroupRef.value!._el!.offsetHeight,
-    },
-    {
       label: "海报竞猜",
-      start: position(posterGuessRef).top,
+      start: 0,
       end: position(posterGuessRef).bottom,
       height: posterGuessRef.value!._el!.offsetHeight,
     },
@@ -138,7 +130,7 @@ onMounted(() => {
   });
 
   setTimeout(() => {
-    handleScrollTo(joinGroupRef.value!._el!.offsetHeight);
+    handleScrollTo(posterGuessRef.value!._el!.offsetHeight);
   }, 500);
 });
 
@@ -168,7 +160,6 @@ provide("close-activity", closeActivity);
 
         <!-- 活动列表 -->
         <div ref="activityContainerRef" class="activity-container" @scroll="handleScroll">
-          <JoinGroup ref="joinGroupRef" />
           <PosterGuess ref="posterGuessRef" />
           <SkillGuess ref="skillGuessRef" />
         </div>
