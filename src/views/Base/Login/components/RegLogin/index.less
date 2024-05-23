@@ -76,18 +76,9 @@
   }
 
   .demo {
-    color: var(--blue);
-    font-size: 1.5rem;
-    text-shadow: var(--t-shadow-d), var(--shine-15), var(--shine-35);
-    background: linear-gradient(to right, var(--blue) 0%, var(--blue) 100%) no-repeat right bottom /
-      0 0.175rem;
-    transition: background-size 0.4s;
-    transform: translateZ(3rem);
+    .global_hover-underline();
 
-    &:hover {
-      background-position-x: left;
-      background-size: 100% 0.175rem;
-    }
+    font-size: 1.5rem;
   }
 
   .card-info {
