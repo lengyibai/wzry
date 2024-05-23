@@ -1,0 +1,38 @@
+.notice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+  height: 100%;
+  -webkit-mask: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+
+  .content {
+    position: absolute;
+    left: 100%;
+    display: flex;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    transform: translateY(0.1875rem);
+    animation: normal move 30s linear infinite;
+
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    .qr-code {
+      .global_hover-underline();
+    }
+
+    @keyframes move {
+      0% {
+        left: 100%;
+      }
+
+      100% {
+        left: 0;
+        transform: translateX(-100%) translateY(0.1875rem) translateZ(0);
+      }
+    }
+  }
+}
