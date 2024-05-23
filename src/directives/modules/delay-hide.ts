@@ -17,7 +17,7 @@ const vDelayHide: Directive<HTMLElement, Params> = {
     let timer: NodeJS.Timeout;
 
     el.addEventListener("mouseleave", () => {
-      timer = setTimeout(leave, 1000);
+      timer = setTimeout(leave, 500);
     });
 
     el.addEventListener("mouseenter", () => {
