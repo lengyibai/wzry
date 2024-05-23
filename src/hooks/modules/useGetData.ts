@@ -4,7 +4,7 @@ import { useIndexedDB } from "./useIndexedDB";
 
 import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
 import { $msgTipText, $tipText, REQUEST } from "@/config";
-import { $message, $tip } from "@/utils/busTransfer";
+import { $tip } from "@/utils/busTransfer";
 import { ResultData } from "@/api/interface";
 import { _retryRequest } from "@/utils/tool";
 
@@ -80,7 +80,7 @@ const useGetData = () => {
           await setData(item[0], res.data, "BASE");
         })
         .catch(() => {
-          $message($msgTipText("rc53", { v: item[0] }), "error");
+          alert($msgTipText("rc53", { v: item[0] }));
         })
         .finally(() => {
           index.value++;
@@ -122,7 +122,7 @@ const useGetData = () => {
           await setData(item[0], res.data, "VOICE");
         })
         .catch(() => {
-          $message($msgTipText("rc53", { v: item[0] + "语音" }), "error");
+          alert($msgTipText("rc53", { v: item[0] + "语音" }));
         })
         .finally(() => {
           index.value++;
