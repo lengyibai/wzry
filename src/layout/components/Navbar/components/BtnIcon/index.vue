@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 import SettingDialog from "./components/SettingDialog/index.vue";
 import UpdateLog from "./components/UpdateLog/index.vue";
@@ -9,9 +9,8 @@ import Activity from "./components/Activity/index.vue";
 import { useDialogSwitch } from "./hooks/useDialogSwitch";
 
 import { MailStore, TaskStore, VersionStore } from "@/store";
-import { MOUSE_TIP, SCENE_TIP } from "@/config";
+import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { $tip, $focus } from "@/utils/busTransfer";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 
 const $versionStore = VersionStore();
@@ -20,8 +19,6 @@ const $taskStore = TaskStore();
 
 const { setHideStatus } = useHideLayout();
 const { show_activity, setActivityShow } = useDialogSwitch();
-
-const settingRef = ref<HTMLElement>();
 
 /** 是否显示设置弹窗 */
 const show_setting = ref(false);
@@ -48,22 +45,6 @@ const handleActivity = () => {
   setHideStatus(true);
   setActivityShow(true);
 };
-
-onMounted(() => {
-  setTimeout(() => {
-    show_update.value = true;
-
-    $tip({
-      text: SCENE_TIP.mu63,
-      align: "left-bottom",
-      color: false,
-      createFn() {
-        $focus.show(settingRef.value!);
-      },
-      btnFn: $focus.close,
-    });
-  }, 3000);
-});
 </script>
 
 <template>
@@ -81,7 +62,6 @@ onMounted(() => {
     />
     <!-- 设置 -->
     <i
-      ref="settingRef"
       v-mouse-tip="{
         text: MOUSE_TIP.er37,
       }"
