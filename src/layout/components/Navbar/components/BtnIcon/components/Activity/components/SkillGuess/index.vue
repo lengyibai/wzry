@@ -159,11 +159,7 @@ defineExpose({
       <!-- 领奖描述 -->
       <transition name="fade">
         <div v-show="!hide_all" ref="tipRef" class="tip">
-          你需要前往
-          <span class="green">道具商店</span>
-          购买并使用
-          <span class="orange">竞猜券</span>
-          参加活动，系统将
+          系统将
           <span class="green">随机选择一位英雄</span>
           的
           <span class="green">随机一个技能图标</span>
@@ -186,12 +182,7 @@ defineExpose({
           ，都将视为
           <span class="red">“这道题不会而放弃作答”</span>
           ，下次参与竞猜将
-          <span class="red">自动扣除竞猜券</span>
-          ，但允许在
-          <span class="green">游戏LOGO</span>
-          旋转时
-          <span class="blue">关闭或刷新</span>
-          浏览器。
+          <span class="red">自动扣除竞猜券</span>。
         </div>
       </transition>
 
