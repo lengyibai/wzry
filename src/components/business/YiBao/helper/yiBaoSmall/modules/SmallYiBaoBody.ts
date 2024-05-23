@@ -107,7 +107,7 @@ class SmallYiBaoBody {
 
     setTimeout(() => {
       this.moveFollowMouse();
-    }, 250);
+    }, 150);
 
     this.jumpAnimation = this.body_dom.animate(
       [
@@ -118,7 +118,7 @@ class SmallYiBaoBody {
         { transformOrigin: "bottom center" },
       ],
       {
-        duration: 750,
+        duration: 500,
       },
     );
 

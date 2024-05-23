@@ -570,3 +570,6 @@ export const TASK_LIST: () => TaskType[] = () => [
 
 /** @description 每日竞猜限制次数 */
 export const GUESS_COUNT_LIMIT = 25;
+
+/** @description 跳跳币需要跳跃领取的次数 */
+export const JUMP_COIN_RECEIVE_CLAIM = 5;

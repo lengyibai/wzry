@@ -473,8 +473,8 @@ const YibaoStore = defineStore("yibao", () => {
     if (!jump_reward.value) return;
 
     jump_count.value++;
-    if (jump_count.value >= 10) {
-      receive_coin.value += 10;
+    if (jump_count.value >= 5) {
+      receive_coin.value += 20;
       jump_count.value = 0;
       saveYiBaoData();
     }

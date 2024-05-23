@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { _getPropLink } from "@/utils/concise";
 import { KButton } from "@/components/business";
 import { YibaoStore } from "@/store";
-import { GAME_PROP } from "@/config";
+import { GAME_CONFIG, GAME_PROP } from "@/config";
 import { $obtain } from "@/utils/busTransfer";
 import { vMouseTip } from "@/directives";
 
@@ -39,7 +39,7 @@ const handleReceive = () => {
     >
       领取
     </KButton>
-    <div class="desc">还需跳跃{{ 10 - jump_count }}次</div>
+    <div class="desc">还需跳跃{{ GAME_CONFIG.JUMP_COIN_RECEIVE_CLAIM - jump_count }}次</div>
   </div>
 </template>
 
