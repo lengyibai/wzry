@@ -260,10 +260,6 @@ declare namespace Global {
     title: string;
     /** 内容 */
     desc: string;
-    /** 用户ID */
-    userIds: string[];
-    /** 推送时间 */
-    sendTime: number;
     /** 赠送的道具列表 */
     props: {
       /** 道具Key */
