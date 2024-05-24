@@ -38,7 +38,7 @@ const handlePay = (data: BuyProp) => {
         })
       "
     >
-      <img :src="_getPropLink(GAME_PROP.ICON[data.way])" alt="" class="type" />
+      <img :src="_getPropLink(GAME_PROP.ICON[data.way])" alt="" class="icon" />
       <div class="price">{{ data.price }}</div>
     </KButton>
   </div>

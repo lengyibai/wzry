@@ -66,6 +66,10 @@
   .content {
     display: flex;
     align-items: center;
-    filter: var(--d-shadow-e);
+    text-shadow: var(--t-shadow-d);
+
+    :deep(.icon) {
+      filter: var(--d-shadow-e);
+    }
   }
 }
