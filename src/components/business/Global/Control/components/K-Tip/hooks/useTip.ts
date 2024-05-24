@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 import { SCENE_TIP } from "@/config/modules/scene-tip";
 import { SettingStore } from "@/store/modules/setting";
-import { usePlayAudio } from "@/hooks";
+import { usePlayAudio } from "@/hooks/modules/usePlayAudio";
 
 const { playAudio } = usePlayAudio();
 
