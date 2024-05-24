@@ -18,12 +18,14 @@ const useIndexedDB = () => {
       getItem: <T>(key: string) => BaseDatabase.getItem<T>(key),
       removeItem: (key: string) => BaseDatabase.removeItem(key),
       setItem: (key: string, data: unknown) => BaseDatabase.setItem(key, data),
+      clear: () => BaseDatabase.clear(),
     },
     /** @description 语音数据操作 */
     VoiceData: {
       getItem: <T>(key: string) => VoiceDatabase.getItem<T>(key),
       removeItem: (key: string) => VoiceDatabase.removeItem(key),
       setItem: (key: string, data: unknown) => VoiceDatabase.setItem(key, data),
+      clear: () => VoiceDatabase.clear(),
     },
   };
 
