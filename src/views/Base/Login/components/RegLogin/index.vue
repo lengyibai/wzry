@@ -3,7 +3,7 @@ import { ref, onUnmounted, computed } from "vue";
 import _throttle from "lodash/throttle";
 import { Base64 } from "js-base64";
 
-import { _isPhone, _Parallax, _timeGreet, _blobTextToBlobObject, dayjs } from "@/utils/tool";
+import { _isPhone, _Parallax, _timeGreet, _blobTextToBase64, dayjs } from "@/utils/tool";
 import { MESSAGE_TIP, CONFIRM_TIP, DEFAULT, $msgTipText, MOUSE_TIP } from "@/config";
 import { AuthStore } from "@/store";
 import { $input, $message, $confirm } from "@/utils/busTransfer";
@@ -135,7 +135,7 @@ const readFile = (e: Event | File) => {
 /** @description 一键注册卡片 */
 const handleRegister = async () => {
   const form = DEFAULT.userInfoDefault();
-  form.avatar = await _blobTextToBlobObject(_getMiscLink("head"));
+  form.avatar = await _blobTextToBase64(_getMiscLink("head"));
   form.username = "召唤师";
   form.password = "123456";
   form.id = Base64.encode(dayjs().valueOf().toString());

@@ -6,7 +6,7 @@ import { useSelectAvatar } from "./hooks/useSelectAvatar";
 import { KDialog } from "@/components/business";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { _getHeroAvatarLink } from "@/utils/concise";
-import { _blobTextToBlobObject } from "@/utils/tool";
+import { _blobTextToBase64 } from "@/utils/tool";
 
 const { show, confirmCallback } = useSelectAvatar();
 
@@ -14,7 +14,7 @@ const dialogRef = ref<InstanceType<typeof KDialog>>();
 
 /** @description 选择的头像 */
 const handleSelectAvatar = async (blob: string) => {
-  const base64 = await _blobTextToBlobObject(blob);
+  const base64 = await _blobTextToBase64(blob);
   confirmCallback.value?.(base64);
   dialogRef.value?._close();
 };

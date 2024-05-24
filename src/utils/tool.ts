@@ -812,10 +812,10 @@ export const _calculateProgress = (value: number, milestones: number[]) => {
   return (schedule_num - 1) * step + (progressInRange / range) * step;
 };
 
-/** @description 将Blob标识符转换成Blob对象
+/** @description 将Blob标识符转换成Base64
  * @param blob Blob标识符
  */
-export const _blobTextToBlobObject = (blob: string): Promise<string> => {
+export const _blobTextToBase64 = (blob: string): Promise<string> => {
   return new Promise((resolve) => {
     fetch(blob)
       .then((response) => {
@@ -832,6 +832,15 @@ export const _blobTextToBlobObject = (blob: string): Promise<string> => {
         reader.readAsDataURL(blob);
       });
   });
+};
+
+/** @description 将Base64转成JSON并转成对象，前提是Base64源数据为对象 */
+export const _base64ToObject = (base64: string) => {
+  const base64Data = base64.replace(/^data:text\/plain;base64,/, "");
+  const arrayBuffer = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0)).buffer;
+  const decoder = new TextDecoder("utf-8");
+  const jsonString = decoder.decode(arrayBuffer);
+  return JSON.parse(jsonString);
 };
 
 /** @description 开启全屏 */
