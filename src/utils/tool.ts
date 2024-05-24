@@ -174,7 +174,8 @@ export const _pinyin = (str: string) => {
   return [result.toLowerCase(), abbreviation];
 };
 
-/** @description 正则搜索
+/**
+ * @description 正则搜索
  * @param data 需要搜索的数据
  * @param value 搜索的值
  * @param keys 搜索的键名
@@ -187,37 +188,38 @@ export const _search = <T>(
   highlight = false,
 ): T[] => {
   const arr: T[] = [];
-  const fn = (item: any, key: string): void | undefined => {
-    const reg = new RegExp(item.toString().toLowerCase(), "i");
-    arr.push(
-      ...data.filter((item: any) => {
-        item[key] = item[key].toString();
-        const pin_yin: string[] = _pinyin(item[key]);
-        if (pin_yin.some((py) => reg.test(py) || reg.test(item[key]))) {
-          if (highlight && value !== "") {
-            item[key] = item[key].replace(
-              reg,
-              (match: string) => `<i style="color:var(--blue)">${match}</i>`,
-            );
-          }
-          return true;
+
+  // 根据给定的值和键名进行搜索
+  const fn = (searchValue: string, key: string): void => {
+    const reg = new RegExp(searchValue.toLowerCase(), "i"); // 创建正则表达式
+    data.forEach((item: any) => {
+      item[key] = item[key].toString(); // 确保属性为字符串
+      const pin_yin: string[] = _pinyin(item[key]); // 将属性值转为拼音数组
+      if (pin_yin.some((py) => reg.test(py) || reg.test(item[key]))) {
+        // 匹配拼音或属性值
+        if (highlight && searchValue) {
+          item[key] = item[key].replace(
+            reg,
+            (match: string) => `<i style="color:var(--blue)">${match}</i>`,
+          ); // 高亮匹配部分
         }
-      }),
-    );
+        arr.push(item);
+      }
+    });
   };
 
   if (Array.isArray(keys)) {
-    keys.forEach((key: string) => fn(value || "", key));
+    keys.forEach((key: string) => fn(value as string, key)); // 遍历键名进行搜索
   } else if (Array.isArray(value)) {
-    value.forEach((val: any) => {
+    value.forEach((val: string) => {
       if (Array.isArray(keys)) {
-        keys.forEach((key: string) => fn(val || "", key));
+        keys.forEach((key: string) => fn(val, key)); // 遍历值和键名进行搜索
       } else {
-        fn(val || "", keys);
+        fn(val, keys); // 单个键名和多个值进行搜索
       }
     });
   } else {
-    fn(value || "", keys);
+    fn(value, keys); // 单个值和单个键名进行搜索
   }
 
   return arr;
