@@ -92,6 +92,22 @@ defineExpose({
       <div class="base"></div>
     </div>
 
+    <!-- 更新日志 -->
+    <div class="tool">
+      <div class="line"></div>
+      <div
+        v-mouse-tip="{
+          text: MOUSE_TIP.fr70,
+        }"
+        class="box elastic"
+        @click="handleTool('update')"
+      >
+        <i class="iconfont wzry-updateLog" />
+        <span class="text">更新</span>
+      </div>
+      <div class="base"></div>
+    </div>
+
     <!-- 开黑 -->
     <div class="tool">
       <div class="line"></div>

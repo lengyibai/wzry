@@ -183,27 +183,18 @@ declare namespace Global {
 
     /** @description 更新日志 */
     interface UpdateLog {
-      /** 数据要更新的key */
-      dataKey: string[];
-      /** 语音要更新的key */
-      voiceKey: string[];
       /** 远程更新时间 */
       time: string;
       /** 远程文件更新日志 */
-      distLog: {
-        /** 页面层 */
-        surface: {
-          /** 新增特性 */
-          new: string[];
-          /** 功能优化 */
-          function: string[];
-          /** 样式优化 */
-          style: string[];
-          /** BUG修复 */
-          bug: string[];
-        };
-        /** 代码层 */
-        substrate: string[];
+      updateLog: {
+        /** 新增特性 */
+        new: { time: string; log: string }[];
+        /** 功能优化 */
+        function: { time: string; log: string }[];
+        /** 样式优化 */
+        style: { time: string; log: string }[];
+        /** BUG修复 */
+        bug: { time: string; log: string }[];
       };
     }
 
@@ -227,6 +218,10 @@ declare namespace Global {
       imageMiniHeroVersion: string;
       /** 主页视频列表 */
       videoHomeVersion: string;
+      /** 数据包 */
+      jsonDataVersion: string;
+      /** 语音包 */
+      jsonVoiceVersion: string;
     }
   }
 

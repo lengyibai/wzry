@@ -2,18 +2,16 @@
 import { ref } from "vue";
 
 import SettingDialog from "./components/SettingDialog/index.vue";
-import UpdateLog from "./components/UpdateLog/index.vue";
 import Mail from "./components/Mail/index.vue";
 import Task from "./components/Task/index.vue";
 import Activity from "./components/Activity/index.vue";
 import { useDialogSwitch } from "./hooks/useDialogSwitch";
 
-import { MailStore, TaskStore, VersionStore } from "@/store";
+import { MailStore, TaskStore } from "@/store";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 
-const $versionStore = VersionStore();
 const $mailStore = MailStore();
 const $taskStore = TaskStore();
 
@@ -22,17 +20,10 @@ const { show_activity, setActivityShow } = useDialogSwitch();
 
 /** 是否显示设置弹窗 */
 const show_setting = ref(false);
-/** 是否显示日志弹窗 */
-const show_update = ref(false);
 /** 是否显示邮箱 */
 const show_mail = ref(false);
 /** 是否显示任务页 */
 const show_task = ref(false);
-
-/* 显示更新日志 */
-const onUpdateLog = () => {
-  $versionStore.setShowLog(true);
-};
 
 /** @description 显示任务页 */
 const handleTask = () => {
@@ -93,10 +84,7 @@ const handleActivity = () => {
       <Mail v-if="show_mail" v-model="show_mail" />
 
       <!-- 设置弹窗 -->
-      <SettingDialog v-if="show_setting" v-model="show_setting" @update-log="onUpdateLog" />
-
-      <!-- 更新日志 -->
-      <UpdateLog v-if="$versionStore.show_update && show_update" />
+      <SettingDialog v-if="show_setting" v-model="show_setting" />
     </teleport>
 
     <!-- 活动页 -->

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { storeToRefs } from "pinia";
 
 import { setLanguage } from "@/language";
-import { MusicStore, SettingStore, VersionStore } from "@/store";
+import { MusicStore, SettingStore } from "@/store";
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { CONFIRM_TIP, CUSTOM_TIP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { KDialog, KButton, KRange, KSelect, KCheck } from "@/components/business";
@@ -11,15 +10,8 @@ import { $tip, $confirm, $message } from "@/utils/busTransfer";
 import { useCssClassToggle, usePlayAudio } from "@/hooks";
 import { useBarrages } from "@/layout/components/BarrageMain/hooks/useBarrages";
 
-const $emit = defineEmits<{
-  "update-log": [];
-}>();
-
 const $musicStore = MusicStore();
 const $settingStore = SettingStore();
-const $versionStore = VersionStore();
-
-const { data_status, dist_status } = storeToRefs($versionStore);
 
 const { setAudioSwitch, setAudioVolume } = usePlayAudio();
 const { setBarrage } = useBarrages();
@@ -124,11 +116,6 @@ const handleResetConfig = () => {
       config.value = $settingStore.config;
     },
   });
-};
-
-/* 查看更新日志 */
-const handleUpdateLog = () => {
-  $emit("update-log");
 };
 </script>
 
@@ -264,25 +251,6 @@ const handleUpdateLog = () => {
           >
             {{ $t("恢复") }}
           </KButton>
-        </div>
-
-        <!-- 更新及版本信息 -->
-        <div class="update-version">
-          <span class="update-log" @click="handleUpdateLog">更新日志</span>
-          <div class="version">
-            <p :class="{ old: data_status }">
-              {{ $t("数据") }}：{{ $versionStore.local_data_version }}
-            </p>
-            <p v-if="data_status" :class="{ new: data_status }">
-              {{ $t("登录后更新") }}：{{ $versionStore.remote_data_version }}
-            </p>
-            <p :class="{ old: dist_status }">
-              {{ $t("网页") }}：{{ $versionStore.local_dist_version }}
-            </p>
-            <p v-if="dist_status" :class="{ new: dist_status }">
-              {{ $t("登录后更新") }}：{{ $versionStore.remote_dist_version }}
-            </p>
-          </div>
         </div>
       </div>
 

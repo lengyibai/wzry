@@ -6,24 +6,45 @@ import Notice from "./components/Notice/index.vue";
 import Team from "./components/Team/index.vue";
 import ToolBar from "./components/ToolBar/index.vue";
 import DownLoad from "./components/DownLoad/index.vue";
+import UpdateLog from "./components/UpdateLog/index.vue";
 
 import { KVideo } from "@/components/business";
 import { useStaticResourceVersion } from "@/hooks";
 import { _getHtmlLink, _getImgLink, _getVideoLink } from "@/utils/concise";
+import { VersionStore } from "@/store";
 
-const { video_home_version } = useStaticResourceVersion();
+const $versionStore = VersionStore();
+
+const { video_home_version, load } = useStaticResourceVersion();
 
 /** 静音 */
 const muted = ref(false);
 /** 显示公告 */
 const show_notice = ref(false);
+/** 显示更新日志 */
+const show_update = ref(false);
 /** 显示开黑 */
 const show_team = ref(false);
+/** 显示下载进度 */
+const show_download = ref(false);
 /** 数据下载完成 */
 const finish = ref(false);
 
 /** 隐藏注册登录盒子 */
 const hideRegLogin = computed(() => !finish.value || show_notice.value || show_team.value);
+
+$versionStore
+  .getVersion()
+  .then(() => {
+    show_download.value = true;
+  })
+  .catch(load);
+
+/** @description 关闭更新弹窗 */
+const onCloseUpdateDialog = () => {
+  show_download.value = true;
+  show_update.value = false;
+};
 
 /**
  * 点击右上角工具栏
@@ -40,6 +61,7 @@ const onToolType = (v: string) => {
 
   show_notice.value = v === "notice";
   show_team.value = v === "team";
+  show_update.value = v === "update";
 };
 
 setTimeout(() => {
@@ -66,7 +88,12 @@ setTimeout(() => {
     <Team v-if="show_team" v-model="show_team" />
 
     <!-- 下载进度 -->
-    <DownLoad v-if="!finish" v-model:finish="finish" />
+    <DownLoad v-if="!finish && show_download" v-model:finish="finish" />
+
+    <!-- 更新日志 -->
+    <teleport to="body">
+      <UpdateLog v-if="$versionStore.show_update || show_update" @close="onCloseUpdateDialog" />
+    </teleport>
 
     <!-- 图片背景 -->
     <img
