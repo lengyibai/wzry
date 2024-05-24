@@ -127,6 +127,8 @@ const readFile = (e: Event | File) => {
     };
 
     reader.readAsText(file);
+  } else {
+    $message(MESSAGE_TIP.ai11, "error");
   }
 };
 
