@@ -47,6 +47,9 @@ const useGetZip = () => {
   } = useStaticResourceVersion();
 
   const ExposeData = {
+    /** 压缩包名称键值列表 */
+    zip_key_name,
+
     /** 音效包列表 */
     audio_links,
     /** 活动Banner图包列表 */
@@ -68,6 +71,8 @@ const useGetZip = () => {
 
     /** 当前下载的zip名称 */
     zip_name: ref(""),
+    /** 完成索引 */
+    downloaded_index: ref(0),
     /** zip总大小KB */
     zip_size: ref("正在计算..."),
     /** zip已下载大小KB */
@@ -83,6 +88,7 @@ const useGetZip = () => {
   };
   const {
     zip_name,
+    downloaded_index,
     zip_size,
     zip_downloaded_size,
     zip_download_progress,
@@ -138,46 +144,63 @@ const useGetZip = () => {
       await load();
 
       await getZip(audio_links, `${RESOURCE_NAME.ZIP_AUDIO}?t=${audio_version.value}`, "AUDIO");
+      downloaded_index.value = 1;
+
       await getZip(
         image_activity_banner_links,
         `${RESOURCE_NAME.ZIP_IMAGE_ACTIVITY_BANNER}?t=${image_activity_banner_version.value}`,
         "IMAGE_ACTIVITY_BANNER",
       );
+      downloaded_index.value = 2;
+
       await getZip(
         image_blur_links,
         `${RESOURCE_NAME.ZIP_IMAGE_BLUR}?t=${image_blur_version.value}`,
         "IMAGE_BLUR",
       );
+      downloaded_index.value = 3;
+
       await getZip(
         image_hero_avatar_links,
         `${RESOURCE_NAME.ZIP_IMAGE_HERO_AVATAR}?t=${image_hero_avatar_version.value}`,
         "IMAGE_HERO_AVATAR",
       );
+      downloaded_index.value = 4;
+
       await getZip(
         image_minecraft_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MINECRAFT}?t=${image_minecraft_version.value}`,
         "IMAGE_MINECRAFT",
       );
+      downloaded_index.value = 5;
+
       await getZip(
         image_misc_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MISC}?t=${image_misc_version.value}`,
         "IMAGE_MISC",
       );
+      downloaded_index.value = 6;
+
       await getZip(
         image_props_links,
         `${RESOURCE_NAME.ZIP_IMAGE_PROPS}?t=${image_props_version.value}`,
         "IMAGE_PROPS",
       );
+      downloaded_index.value = 7;
+
       await getZip(
         image_mini_hero_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MINI_HERO}?t=${image_mini_hero_version.value}`,
         "IMAGE_MINI_HERO",
       );
+      downloaded_index.value = 8;
+
       await getZip(
         video_home_links,
         `${RESOURCE_NAME.ZIP_VIDEO_HOME}?t=${video_home_version.value}`,
         "VIDEO_HOME",
       );
+      downloaded_index.value = 9;
 
       zip_download_finish.value = true;
       zip_decompression_finish.value = true;

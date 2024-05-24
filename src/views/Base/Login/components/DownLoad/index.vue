@@ -13,7 +13,9 @@ const $authStore = AuthStore();
 
 const { type: data_type, getData, progress: data_progress } = useGetData();
 const {
+  zip_key_name,
   zip_name,
+  downloaded_index,
   zip_size,
   zip_downloaded_size,
   zip_download_progress,
@@ -77,6 +79,20 @@ load();
 
 <template>
   <div class="down-load">
+    <div class="download-list">
+      <div class="title">压缩包素材下载列表</div>
+      <div
+        v-for="(item, index) in Object.values(zip_key_name)"
+        :key="index"
+        class="download-item"
+        :class="{
+          downloaded: downloaded_index > index,
+          downloading: zip_name === item,
+        }"
+      >
+        {{ index + 1 }}、{{ item }}
+      </div>
+    </div>
     <div class="down-load__bar">
       <div
         class="progress"

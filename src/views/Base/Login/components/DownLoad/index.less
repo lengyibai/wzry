@@ -8,6 +8,37 @@
   padding: 0.625rem 10.9375rem;
   background-color: rgb(20 35 60 / 90%);
 
+  .download-list {
+    position: absolute;
+    top: 0;
+    padding: 1rem;
+    border-radius: 1rem 1rem 0 0;
+    color: var(--white-50);
+    background-color: var(--black-50);
+    transform: translateY(-100%);
+
+    .title {
+      margin-bottom: 0.5rem;
+      color: var(--white);
+      font-size: 2rem;
+      text-shadow: var(--t-shadow-e);
+    }
+
+    .download-item {
+      font-size: 1.5rem;
+      text-shadow: var(--t-shadow-e);
+      line-height: 1.5;
+
+      &.downloading {
+        color: var(--green);
+      }
+
+      &.downloaded {
+        color: var(--blue) !important;
+      }
+    }
+  }
+
   &__bar {
     position: relative;
     width: 100%;
