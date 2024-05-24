@@ -38,8 +38,7 @@ export class ScaleFLIPImage {
   private async createImage() {
     await _promiseTimeout();
     this.img = document.createElement("img");
-    this.img.style.height = "75%";
-    this.img.style.maxWidth = this.parent.offsetWidth + "px";
+    this.img.style.height = this.parent.offsetHeight + "px";
     this.img.style.position = "absolute";
     this.img.style.transition = "0.5s";
     this.img.style.opacity = "0";
@@ -51,7 +50,13 @@ export class ScaleFLIPImage {
     this.overlay.appendChild(this.img);
 
     await _promiseTimeout(16.7);
-    this.img.style.maxWidth = "75%";
+    if (window.innerWidth > window.innerHeight) {
+      this.img.style.height = `75%`;
+    } else {
+      this.img.style.width = `75%`;
+      this.img.style.height = "";
+    }
+
     this.img.style.left = `50%`;
     this.img.style.top = `50%`;
     this.img.style.opacity = "1";
