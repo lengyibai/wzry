@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { useGetData, useGetZip } from "@/hooks";
+import { useGetZip } from "@/hooks";
 import { _promiseTimeout } from "@/utils/tool";
 import { AuthStore } from "@/store";
 import { LOCAL_KEY } from "@/config";
@@ -11,7 +11,6 @@ const finish = defineModel<boolean>("finish", { required: true });
 
 const $authStore = AuthStore();
 
-const { type: data_type, getData, progress: data_progress } = useGetData();
 const {
   zip_key_name,
   zip_name,
@@ -52,21 +51,13 @@ const download_info = computed(() => {
       if (status === "进度信息") return c;
     }
 
-    //数据最后下载
-    a = data_progress.value;
-    b = data_type.value;
-    c = data_progress.value;
-
-    if (status === "进度条") return a;
-    if (status === "下载内容") return b;
-    if (status === "进度信息") return c;
+    if (status === "下载内容") return "加载完毕，祝你体验愉快。";
   };
 });
 
 /** @description 下载数据 */
 const load = async () => {
   await getZipList();
-  await getData();
   await _promiseTimeout(1000);
   finish.value = true;
 
@@ -80,7 +71,7 @@ load();
 <template>
   <div class="down-load">
     <div class="download-list">
-      <div class="title">压缩包素材下载列表</div>
+      <div class="title">下载列表</div>
       <div
         v-for="(item, index) in Object.values(zip_key_name)"
         :key="index"

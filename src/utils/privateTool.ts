@@ -140,6 +140,8 @@ export const _downloadZip = (
     reg = /\.(mp3)$/i;
   } else if (type === "VIDEO_HOME") {
     reg = /\.(mp4)$/i;
+  } else if (["JSON_DATA", "JSON_VOICE"].includes(type)) {
+    reg = /\.(json)$/i;
   }
 
   return new Promise<Record<string, string>>((resolve, reject) => {
@@ -169,12 +171,12 @@ export const _downloadZip = (
           const load = async () => {
             const zipEntry = zip.files[fileName];
 
-            //如果文件不是文件夹且文件名以图片扩展结尾
+            //如果文件不是文件夹且文件名以指定扩展结尾
             if (!zipEntry.dir && fileName.match(reg)) {
               const originalFileName = fileName.replace(reg, "");
-              const imgBlob = await zip.files[fileName].async("blob");
-              const imgUrl = URL.createObjectURL(imgBlob);
-              links[originalFileName] = imgUrl;
+              const blob = await zip.files[fileName].async("blob");
+              const url = URL.createObjectURL(blob);
+              links[originalFileName] = url;
               finish_files++;
               status.decompression_progress =
                 Math.round((finish_files / file_names.length) * 100) + "%";

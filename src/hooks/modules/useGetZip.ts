@@ -1,13 +1,16 @@
 import { Ref, ref } from "vue";
 
 import { useStaticResourceVersion } from "./useStaticResourceVersion";
+import { useIndexedDB } from "./useIndexedDB";
 
-import { API_DATA } from "@/api";
+import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
 import { $msgTipText } from "@/config/modules/message-tip";
 import { _downloadZip } from "@/utils/privateTool";
 import { ZipType } from "@/utils/interface";
 import { RESOURCE_NAME } from "@/config/modules/resource-name";
 import { $message } from "@/utils/busTransfer";
+import { LOCAL_KEY } from "@/config";
+import { _base64ToObject, _blobTextToBase64 } from "@/utils/tool";
 
 const zip_key_name: Record<ZipType, string> = {
   AUDIO: "音效包",
@@ -19,6 +22,8 @@ const zip_key_name: Record<ZipType, string> = {
   IMAGE_PROPS: "道具图包",
   IMAGE_MINI_HERO: "迷你英雄图包",
   VIDEO_HOME: "主页视频",
+  JSON_DATA: "数据包",
+  JSON_VOICE: "语音包",
 };
 
 const audio_links = ref<Record<string, string>>({});
@@ -33,6 +38,7 @@ const video_home_links = ref<Record<string, string>>({});
 
 /** @description 获取音效压缩包并解压设置音效列表 */
 const useGetZip = () => {
+  const { BaseData, VoiceData } = useIndexedDB();
   const {
     audio_version,
     image_activity_banner_version,
@@ -43,6 +49,8 @@ const useGetZip = () => {
     image_props_version,
     image_mini_hero_version,
     video_home_version,
+    json_data_version,
+    json_voice_version,
     load,
   } = useStaticResourceVersion();
 
@@ -97,11 +105,12 @@ const useGetZip = () => {
     zip_decompression_finish,
   } = ExposeData;
 
-  /** @description 获取zip公共函数 */
-  const getZip = (links: Ref<Record<string, string>>, apiUrl: string, type: ZipType) => {
+  /** @description 获取素材zip公共函数 */
+  const getMaterialZip = (links: Ref<Record<string, string>>, apiUrl: string, type: ZipType) => {
     zip_name.value = zip_key_name[type];
 
     return new Promise<void>((resolve) => {
+      //如果已经存在数据，则跳过下载，这种情况在退卡时会遇到
       if (Object.keys(links.value).length) {
         resolve();
         return;
@@ -138,69 +147,159 @@ const useGetZip = () => {
     });
   };
 
+  /** @description 获取数据zip公共函数 */
+  const getDataZip = (apiUrl: string, type: ZipType) => {
+    zip_name.value = zip_key_name[type];
+
+    return new Promise<void>(async (resolve) => {
+      //如果已经存在数据，则跳过下载，这种情况在退卡时会遇到
+      const data = await BaseData.getItem(LOCAL_KEY.hero);
+      const voice = await VoiceData.getItem("鬼谷子");
+
+      if (type === "JSON_DATA" && data) {
+        resolve();
+        return;
+      }
+
+      if (type === "JSON_VOICE" && voice) {
+        resolve();
+        return;
+      }
+
+      //下载Zip
+      _downloadZip(apiUrl, API_DATA.ZipDatabase, type, (v) => {
+        const {
+          size,
+          downloaded_size,
+          download_progress,
+          download_finish,
+          decompression_progress,
+          decompression_finish,
+        } = v;
+
+        if (zip_download_finish.value && zip_decompression_finish.value) return;
+
+        zip_size.value = size;
+        zip_downloaded_size.value = downloaded_size;
+        zip_download_progress.value = download_progress;
+
+        zip_download_finish.value = download_finish;
+        zip_decompression_progress.value = decompression_progress;
+        zip_decompression_finish.value = decompression_finish;
+      })
+        .then(async (json) => {
+          const data: Record<string, string> = {};
+
+          if (type === "JSON_DATA") {
+            for (const key in json) {
+              const k = key as keyof typeof LOCAL_KEY;
+              const base64 = await _blobTextToBase64(json[key]);
+              data[key] = _base64ToObject(base64).data;
+              await BaseData.setItem(LOCAL_KEY[k], data[key]);
+            }
+          } else {
+            const hero_id_kvp = await LOCAL_HERO.getHeroList();
+            const hero_name_kvp = await KVP_HERO.getHeroNameKvp();
+            const hero_pinyin_kvp = await KVP_HERO.getHeroPinyinKvp();
+            const pinyin_name: Record<string, string> = {};
+
+            //创建拼音、英雄名键值对
+            hero_id_kvp.forEach((item) => {
+              pinyin_name[hero_pinyin_kvp[item]] = hero_name_kvp[item];
+            });
+
+            //通过创建的键值对，对应存储到本地
+            for (const key in json) {
+              const base64 = await _blobTextToBase64(json[key]);
+              data[key] = _base64ToObject(base64).data;
+              await VoiceData.setItem(pinyin_name[key], data[key]);
+            }
+          }
+
+          resolve();
+        })
+        .catch(() => {
+          $message($msgTipText("rc53", { v: zip_key_name[type] }), "error");
+        });
+    });
+  };
+
   const ExposeMethods = {
     /** @description 获取Zip列表 */
     async getZipList() {
       await load();
 
-      await getZip(audio_links, `${RESOURCE_NAME.ZIP_AUDIO}?t=${audio_version.value}`, "AUDIO");
+      await getMaterialZip(
+        audio_links,
+        `${RESOURCE_NAME.ZIP_AUDIO}?t=${audio_version.value}`,
+        "AUDIO",
+      );
       downloaded_index.value = 1;
 
-      await getZip(
+      await getMaterialZip(
         image_activity_banner_links,
         `${RESOURCE_NAME.ZIP_IMAGE_ACTIVITY_BANNER}?t=${image_activity_banner_version.value}`,
         "IMAGE_ACTIVITY_BANNER",
       );
       downloaded_index.value = 2;
 
-      await getZip(
+      await getMaterialZip(
         image_blur_links,
         `${RESOURCE_NAME.ZIP_IMAGE_BLUR}?t=${image_blur_version.value}`,
         "IMAGE_BLUR",
       );
       downloaded_index.value = 3;
 
-      await getZip(
+      await getMaterialZip(
         image_hero_avatar_links,
         `${RESOURCE_NAME.ZIP_IMAGE_HERO_AVATAR}?t=${image_hero_avatar_version.value}`,
         "IMAGE_HERO_AVATAR",
       );
       downloaded_index.value = 4;
 
-      await getZip(
+      await getMaterialZip(
         image_minecraft_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MINECRAFT}?t=${image_minecraft_version.value}`,
         "IMAGE_MINECRAFT",
       );
       downloaded_index.value = 5;
 
-      await getZip(
+      await getMaterialZip(
         image_misc_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MISC}?t=${image_misc_version.value}`,
         "IMAGE_MISC",
       );
       downloaded_index.value = 6;
 
-      await getZip(
+      await getMaterialZip(
         image_props_links,
         `${RESOURCE_NAME.ZIP_IMAGE_PROPS}?t=${image_props_version.value}`,
         "IMAGE_PROPS",
       );
       downloaded_index.value = 7;
 
-      await getZip(
+      await getMaterialZip(
         image_mini_hero_links,
         `${RESOURCE_NAME.ZIP_IMAGE_MINI_HERO}?t=${image_mini_hero_version.value}`,
         "IMAGE_MINI_HERO",
       );
       downloaded_index.value = 8;
 
-      await getZip(
+      await getMaterialZip(
         video_home_links,
         `${RESOURCE_NAME.ZIP_VIDEO_HOME}?t=${video_home_version.value}`,
         "VIDEO_HOME",
       );
       downloaded_index.value = 9;
+
+      await getDataZip(`${RESOURCE_NAME.ZIP_JSON_DATA}?t=${json_data_version.value}`, "JSON_DATA");
+      downloaded_index.value = 10;
+
+      await getDataZip(
+        `${RESOURCE_NAME.ZIP_JSON_VOICE}?t=${json_voice_version.value}`,
+        "JSON_VOICE",
+      );
+      downloaded_index.value = 11;
 
       zip_download_finish.value = true;
       zip_decompression_finish.value = true;

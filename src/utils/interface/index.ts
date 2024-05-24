@@ -37,4 +37,6 @@ export type ZipType =
   | "IMAGE_MISC"
   | "IMAGE_PROPS"
   | "IMAGE_MINI_HERO"
-  | "VIDEO_HOME";
+  | "VIDEO_HOME"
+  | "JSON_DATA"
+  | "JSON_VOICE";
