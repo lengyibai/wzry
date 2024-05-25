@@ -25,11 +25,13 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
+        padding-bottom: 1rem;
         text-shadow: var(--t-shadow-d);
+        border-bottom: 1px solid var(--white-10);
 
-        &:first-child {
-          padding-bottom: 1rem;
-          border-bottom: 1px solid var(--white-10);
+        &:last-child {
+          padding-bottom: initial;
+          border-bottom: initial;
         }
 
         .time {
