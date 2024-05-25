@@ -67,7 +67,11 @@ const onClose = () => {
         <h1>二、功能优化</h1>
         <template v-if="update_log.updateLog.function.length">
           <div class="log-list">
-            <div v-for="(item, index) in update_log.updateLog.new" :key="index" class="log-item">
+            <div
+              v-for="(item, index) in update_log.updateLog.function"
+              :key="index"
+              class="log-item"
+            >
               <div class="time">·{{ item.time }}</div>
               <p v-for="(log, index) in item.log" :key="index" class="text">
                 {{ index + 1 }}、{{ log }}
@@ -80,7 +84,7 @@ const onClose = () => {
         <h1>三、样式优化</h1>
         <template v-if="update_log.updateLog.style.length">
           <div class="log-list">
-            <div v-for="(item, index) in update_log.updateLog.new" :key="index" class="log-item">
+            <div v-for="(item, index) in update_log.updateLog.style" :key="index" class="log-item">
               <div class="time">·{{ item.time }}</div>
               <p v-for="(log, index) in item.log" :key="index" class="text">
                 {{ index + 1 }}、{{ log }}
@@ -91,9 +95,10 @@ const onClose = () => {
         <p v-else class="empty">暂无</p>
 
         <h1>四、BUG修复</h1>
+        {{ update_log.updateLog }}
         <template v-if="update_log.updateLog.bug.length">
           <div class="log-list">
-            <div v-for="(item, index) in update_log.updateLog.new" :key="index" class="log-item">
+            <div v-for="(item, index) in update_log.updateLog.bug" :key="index" class="log-item">
               <div class="time">·{{ item.time }}</div>
               <p v-for="(log, index) in item.log" :key="index" class="text">
                 {{ index + 1 }}、{{ log }}
