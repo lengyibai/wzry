@@ -287,7 +287,7 @@ export const _imageOptimizer = (obj: ImageOptimizerOptions) => {
   function dataURLtoFile(dataURL: string, filename: string) {
     const arr = dataURL.split(",");
     const mime = arr[0].match(/:(.*?);/)![1];
-    const bstr = atob(arr[1]);
+    const bstr = window.atob(arr[1]);
     const n = bstr.length;
     const u8arr = new Uint8Array(n);
     for (let i = 0; i < n; i++) {
@@ -837,7 +837,7 @@ export const _blobTextToBase64 = (blob: string): Promise<string> => {
 /** @description 将Base64转成JSON并转成对象，前提是Base64源数据为对象 */
 export const _base64ToObject = (base64: string) => {
   const base64Data = base64.replace(/^data:text\/plain;base64,/, "");
-  const arrayBuffer = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0)).buffer;
+  const arrayBuffer = Uint8Array.from(window.atob(base64Data), (c) => c.charCodeAt(0)).buffer;
   const decoder = new TextDecoder("utf-8");
   const jsonString = decoder.decode(arrayBuffer);
   return JSON.parse(jsonString);
@@ -845,13 +845,19 @@ export const _base64ToObject = (base64: string) => {
 
 /** @description 开启全屏 */
 export const _openFullScreen = () => {
-  const docElm = document.documentElement as any;
+  const docElm = document.documentElement as HTMLElement & {
+    requestFullscreen?: () => Promise<void>;
+    mozRequestFullScreen?: () => Promise<void>;
+    webkitRequestFullscreen?: () => Promise<void>;
+    msRequestFullscreen?: () => Promise<void>;
+  };
+
   if (docElm.requestFullscreen) {
     docElm.requestFullscreen();
-  } else if (docElm.moRequestFullScreen) {
+  } else if (docElm.mozRequestFullScreen) {
     docElm.mozRequestFullScreen();
-  } else if (docElm.webkitRequestFullScreen) {
-    docElm.webkitRequestFullScreen();
+  } else if (docElm.webkitRequestFullscreen) {
+    docElm.webkitRequestFullscreen();
   } else if (docElm.msRequestFullscreen) {
     docElm.msRequestFullscreen();
   }
@@ -859,13 +865,19 @@ export const _openFullScreen = () => {
 
 /** @description 退出全屏 */
 export const _exitFullScreen = () => {
-  const doc = document as any;
+  const doc = document as Document & {
+    exitFullscreen?: () => Promise<void>;
+    mozCancelFullScreen?: () => Promise<void>;
+    webkitExitFullscreen?: () => Promise<void>;
+    msExitFullscreen?: () => Promise<void>;
+  };
+
   if (doc.exitFullscreen) {
     doc.exitFullscreen();
   } else if (doc.mozCancelFullScreen) {
     doc.mozCancelFullScreen();
-  } else if (doc.webkitCancelFullScreen) {
-    doc.webkitCancelFullScreen();
+  } else if (doc.webkitExitFullscreen) {
+    doc.webkitExitFullscreen();
   } else if (doc.msExitFullscreen) {
     doc.msExitFullscreen();
   }
@@ -888,7 +900,7 @@ export const _base64toFile = (base64Data: string, filename: string) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, data] = base64Data.split(";base64,");
-  const byteCharacters = atob(data);
+  const byteCharacters = window.atob(data);
   const byteArrays = [];
   for (let offset = 0; offset < byteCharacters.length; offset += 512) {
     const slice = byteCharacters.slice(offset, offset + 512);
