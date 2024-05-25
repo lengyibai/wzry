@@ -1,24 +1,22 @@
-/** @description 隐藏侧边栏及顶部栏底部栏等，只留视频背景 */
-
 import { ref } from "vue";
 
-const hide_all = ref(false);
+const ExposeData = {
+  /** 用于隐藏活动部件 */
+  hide_activity_part: ref(false),
+};
+const { hide_activity_part } = ExposeData;
 
-const useHideActivity = () => {
-  const ExposeData = {
-    /** 是否隐藏全部 */
-    hide_all,
-  };
-
+/** @description 当进入游戏时需要做的操作 */
+const useIntoGame = () => {
   const ExposeMethods = {
-    /** @description 设置隐藏状态 */
-    setHideStatus(v: boolean) {
+    /** @description 设置隐藏活动页面部件
+     * @param v true: 隐藏活动部件，false: 显示活动部件
+     */
+    setHideActivityPart(v: boolean) {
       if (v) {
-        hide_all.value = v;
+        hide_activity_part.value = v;
       } else {
-        setTimeout(() => {
-          hide_all.value = v;
-        }, 500);
+        hide_activity_part.value = v;
       }
     },
   };
@@ -29,4 +27,4 @@ const useHideActivity = () => {
   };
 };
 
-export { useHideActivity };
+export { useIntoGame };

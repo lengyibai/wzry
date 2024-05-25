@@ -3,8 +3,8 @@ import { ref, onMounted, Ref, computed } from "vue";
 import { inject } from "vue";
 
 import { ScrollAnimate } from "../../common/helper/scroll-animate";
-import { useHideActivity } from "../../hooks/useHideActivity";
 import { useCloseToStore } from "../../common/hooks/useCloseToStore";
+import { useIntoGame } from "../../hooks/useHideActivity";
 
 import GuessGame from "./views/GuessGame/index.vue";
 import { useHidePosterGuess } from "./hooks/useHidePosterGuess";
@@ -18,8 +18,8 @@ import { vMouseTip } from "@/directives";
 
 const $authStore = AuthStore();
 
-const $useHideActivity = useHideActivity();
-const { hide_all, setHideStatus } = useHidePosterGuess();
+const { setHideActivityPart } = useIntoGame();
+const { hide_poster_guess_part, setHidePosterGuessPart } = useHidePosterGuess();
 
 const props: { key: Game.PropKey; num: string }[] = [
   {
@@ -35,8 +35,8 @@ const activityContainerRef = inject<Ref<HTMLElement>>("activityContainerRef")!;
 const posterGuessRef = ref<HTMLElement>();
 const titleRef = ref<HTMLElement>();
 const tipRef = ref<HTMLElement>();
-const propRefs = ref<InstanceType<typeof KProp>[]>();
 const startRef = ref<HTMLElement>();
+const propRefs = ref<InstanceType<typeof KProp>[]>();
 
 /** 是否显示竞猜游戏 */
 const show_guess = ref(false);
@@ -55,8 +55,8 @@ const handleStart = () => {
   $confirm({
     text: CONFIRM_TIP.vj93,
     confirm: () => {
-      setHideStatus(true);
-      $useHideActivity.setHideStatus(true);
+      setHidePosterGuessPart(true);
+      setHideActivityPart(true);
       setTimeout(() => {
         show_guess.value = true;
       }, 1000);
@@ -139,12 +139,12 @@ defineExpose({
 
       <!-- 标题 -->
       <transition name="to-right">
-        <div v-show="!hide_all" ref="titleRef" class="title">海报竞猜</div>
+        <div v-show="!hide_poster_guess_part" ref="titleRef" class="title">海报竞猜</div>
       </transition>
 
       <!-- 赠送物品 -->
       <transition name="to-right">
-        <div v-show="!hide_all" class="reward">
+        <div v-show="!hide_poster_guess_part" class="reward">
           <KProp
             v-for="(item, index) in props"
             ref="propRefs"
@@ -158,7 +158,7 @@ defineExpose({
 
       <!-- 领奖描述 -->
       <transition name="fade">
-        <div v-show="!hide_all" ref="tipRef" class="tip">
+        <div v-show="!hide_poster_guess_part" ref="tipRef" class="tip">
           系统将给出一幅
           <span class="green">随机皮肤海报</span>
           ，海报通过
@@ -191,7 +191,7 @@ defineExpose({
       </transition>
 
       <transition name="to-left">
-        <div v-show="!hide_all" ref="startRef" class="start">
+        <div v-show="!hide_poster_guess_part" ref="startRef" class="start">
           <div v-mouse-tip class="btn" @click="handleStart">开始竞猜</div>
           <div class="tip">今日剩余竞猜次数：{{ GAME_CONFIG.GUESS_COUNT_LIMIT - guess_count }}</div>
         </div>

@@ -4,7 +4,7 @@ import { inject } from "vue";
 
 import { ScrollAnimate } from "../../common/helper/scroll-animate";
 import { useCloseToStore } from "../../common/hooks/useCloseToStore";
-import { useHideActivity } from "../../hooks/useHideActivity";
+import { useIntoGame } from "../../hooks/useHideActivity";
 
 import { useHideSkillGuess } from "./hooks/useHideSkillGuess";
 import GuessGame from "./views/GuessGame/index.vue";
@@ -18,8 +18,8 @@ import { vMouseTip } from "@/directives";
 
 const $authStore = AuthStore();
 
-const $useHideActivity = useHideActivity();
-const { hide_all, setHideStatus } = useHideSkillGuess();
+const { setHideActivityPart } = useIntoGame();
+const { hide_skill_guess_part, setHideSkillGuessPart } = useHideSkillGuess();
 
 const props: { key: Game.PropKey; num: string }[] = [
   {
@@ -55,8 +55,8 @@ const handleStart = () => {
   $confirm({
     text: CONFIRM_TIP.vj93,
     confirm: () => {
-      setHideStatus(true);
-      $useHideActivity.setHideStatus(true);
+      setHideSkillGuessPart(true);
+      setHideActivityPart(true);
       setTimeout(() => {
         show_guess.value = true;
       }, 1000);
@@ -139,12 +139,12 @@ defineExpose({
 
       <!-- 标题 -->
       <transition name="to-right">
-        <div v-show="!hide_all" ref="titleRef" class="title">技能竞猜</div>
+        <div v-show="!hide_skill_guess_part" ref="titleRef" class="title">技能竞猜</div>
       </transition>
 
       <!-- 赠送物品 -->
       <transition name="to-right">
-        <div v-show="!hide_all" class="reward">
+        <div v-show="!hide_skill_guess_part" class="reward">
           <KProp
             v-for="(item, index) in props"
             ref="propRefs"
@@ -158,7 +158,7 @@ defineExpose({
 
       <!-- 领奖描述 -->
       <transition name="fade">
-        <div v-show="!hide_all" ref="tipRef" class="tip">
+        <div v-show="!hide_skill_guess_part" ref="tipRef" class="tip">
           系统将
           <span class="green">随机选择一位英雄</span>
           的
@@ -187,7 +187,7 @@ defineExpose({
       </transition>
 
       <transition name="to-left">
-        <div v-show="!hide_all" ref="startRef" class="start">
+        <div v-show="!hide_skill_guess_part" ref="startRef" class="start">
           <div v-mouse-tip class="btn" @click="handleStart">开始竞猜</div>
           <div class="tip">今日剩余竞猜次数：{{ GAME_CONFIG.GUESS_COUNT_LIMIT - guess_count }}</div>
         </div>

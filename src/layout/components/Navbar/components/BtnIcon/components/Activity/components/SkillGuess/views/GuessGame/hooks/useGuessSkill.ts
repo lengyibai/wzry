@@ -15,7 +15,7 @@ import { useSetMarker } from "@/hooks";
  * @param closeActivity 关闭当前游戏及活动
  * @param closeGame 关闭当前游戏
  */
-const useGuessSkill = (closeActivity: () => void, closeGame: () => void) => {
+const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>) => {
   const $knapsackStore = KnapsackStore();
   const $authStore = AuthStore();
 
@@ -320,7 +320,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => void) => {
           btnFn() {
             setTimeout(() => {
               //当竞猜券恰好被扣完，则退出竞猜并前往道具商店
-              if (useCloseToStore(closeActivity)) return;
+              if (useCloseToStore(closeActivity, closeGame)) return;
               randomSkill();
             }, 1000);
           },

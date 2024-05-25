@@ -3,8 +3,8 @@ import { onMounted, onBeforeUnmount, provide, ref } from "vue";
 
 import PosterGuess from "./components/PosterGuess/index.vue";
 import SkillGuess from "./components/SkillGuess/index.vue";
-import { useHideActivity } from "./hooks/useHideActivity";
 import { ActivityInfo } from "./interface";
+import { useIntoGame } from "./hooks/useHideActivity";
 
 import { vMouseTip } from "@/directives";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
@@ -16,7 +16,7 @@ const modelValue = defineModel<boolean>({ required: true });
 
 const { playAudio } = usePlayAudio();
 const { setHideStatus } = useHideLayout();
-const { hide_all } = useHideActivity();
+const { hide_activity_part } = useIntoGame();
 
 /** 全屏模式下滚动到指定位置计算存在误差，需要记录非全屏下的视口高度 */
 const viewport_height = window.innerHeight;
@@ -28,7 +28,7 @@ const skillGuessRef = ref<InstanceType<typeof SkillGuess>>();
 /** 活动列表 */
 const page_list = ref<ActivityInfo[]>([]);
 
-/** 是否显示 */
+/** 是否显示活动页 */
 const show = ref(true);
 /** 当前进度 */
 const progress = ref(0);
@@ -112,8 +112,6 @@ const debounceBackActivityTop = _debounce(() => {
 /* 关闭活动 */
 const closeActivity = () => {
   show.value = false;
-  playAudio("pj83");
-
   setTimeout(() => {
     modelValue.value = false;
   }, 500);
@@ -149,7 +147,7 @@ provide("close-activity", closeActivity);
         <!-- 关闭按钮 -->
         <transition name="tool" appear>
           <div
-            v-show="show && !hide_all"
+            v-show="!hide_activity_part"
             v-mouse-tip="{
               text: MOUSE_TIP.mk66,
             }"
@@ -166,7 +164,7 @@ provide("close-activity", closeActivity);
 
         <!-- 活动进度 -->
         <transition name="tool" appear>
-          <div v-show="show && !hide_all" class="progress">
+          <div v-show="!hide_activity_part" class="progress">
             <div class="title-list">
               <div
                 v-for="(item, index) in page_list"
