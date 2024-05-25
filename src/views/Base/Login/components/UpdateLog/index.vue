@@ -95,7 +95,6 @@ const onClose = () => {
         <p v-else class="empty">暂无</p>
 
         <h1>四、BUG修复</h1>
-        {{ update_log.updateLog }}
         <template v-if="update_log.updateLog.bug.length">
           <div class="log-list">
             <div v-for="(item, index) in update_log.updateLog.bug" :key="index" class="log-item">
