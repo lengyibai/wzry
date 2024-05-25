@@ -2,8 +2,8 @@
 import { inject, onMounted, onUnmounted, ref } from "vue";
 
 import { useHidePosterGuess } from "../../hooks/useHidePosterGuess";
-import { useHideActivity } from "../../../../hooks/useHideActivity";
 import { useCloseToStore } from "../../../../common/hooks/useCloseToStore";
+import { useIntoGame } from "../../../../hooks/useHideActivity";
 
 import { useGuessPoster } from "./hooks/useGuessPoster";
 
@@ -15,7 +15,7 @@ import {
   SelectHeroAndSkin,
 } from "@/components/business";
 import { vMouseTip, vTypewriterSingle } from "@/directives";
-import { _debounce, _exitFullScreen, _openFullScreen } from "@/utils/tool";
+import { _debounce, _exitFullScreen, _openFullScreen, _promiseTimeout } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { KnapsackStore } from "@/store";
 import { GAME_PROP, MESSAGE_TIP } from "@/config";
@@ -25,8 +25,8 @@ const modelValue = defineModel<boolean>({ required: true });
 
 const $knapsackStore = KnapsackStore();
 
-const $useHidePosterGuess = useHidePosterGuess();
-const $useHideActivity = useHideActivity();
+const { setHidePosterGuessPart } = useHidePosterGuess();
+const { setHideActivityPart } = useIntoGame();
 
 /** 关闭活动 */
 const closeActivity = inject<() => void>("close-activity")!;
@@ -60,28 +60,19 @@ const typewriterCallback = () => {
   show_btn.value = true;
 };
 
-/* 是否关闭游戏 */
-function handleClose() {
+/* 关闭游戏 */
+async function handleClose() {
   show.value = false;
 
-  setTimeout(() => {
-    modelValue.value = false;
-    $useHidePosterGuess.setHideStatus(false);
-    $useHideActivity.setHideStatus(false);
-  }, 500);
+  await _promiseTimeout(500);
+  modelValue.value = false;
+  setHidePosterGuessPart(false);
+  setHideActivityPart(false);
 }
-
-/* 是否关闭游戏及活动 */
-const closeAll = () => {
-  handleClose();
-  setTimeout(() => {
-    closeActivity();
-  }, 1500);
-};
 
 /* 是否进入下一题 */
 const handleNext = () => {
-  if (useCloseToStore(closeAll)) return;
+  if (useCloseToStore(closeActivity, handleClose)) return;
   if (!show_btn.value) return;
   show_btn.value = false;
   randomPoster();
@@ -110,13 +101,13 @@ onMounted(() => {
   _openFullScreen();
   setTimeout(() => {
     window.addEventListener("resize", debounceStopGuess);
-    window.addEventListener("mouseleave", debounceStopGuess);
+    document.documentElement.addEventListener("mouseleave", debounceStopGuess);
   }, 1000);
 });
 
 onUnmounted(() => {
   window.removeEventListener("resize", debounceStopGuess);
-  window.removeEventListener("mouseleave", debounceStopGuess);
+  document.documentElement.removeEventListener("mouseleave", debounceStopGuess);
   _exitFullScreen();
 });
 </script>
