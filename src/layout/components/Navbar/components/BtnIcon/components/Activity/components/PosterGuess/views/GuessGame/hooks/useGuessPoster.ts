@@ -2,7 +2,7 @@ import { onScopeDispose, ref } from "vue";
 
 import { useCloseToStore } from "../../../../../common/hooks/useCloseToStore";
 
-import { LOCAL_HERO, KVP_HERO } from "@/api";
+import { LOCAL_HERO, KVP_HERO, LOCAL_TYPE } from "@/api";
 import { _formatSeconds, _promiseTimeout, _random } from "@/utils/tool";
 import { AuthStore, KnapsackStore } from "@/store";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
@@ -44,13 +44,11 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
   /** 需要过滤的皮肤ID */
   let skin_ids: number[] = [];
   /** 需要过滤的情侣皮肤类型ID */
-  const filter_types: number[] = [
-    11, 21, 24, 44, 45, 68, 69, 81, 93, 94, 96, 97, 108, 112, 113, 116, 117,
-  ];
+  let filter_types: number[] = [];
   /** 需要过滤的同封面皮肤ID
-   * 心灵骇客/战警、猫狗日记、乒乓鲁班
+   * 乒乓鲁班
    */
-  const filter_sames: number[] = [1423, 1663, 5102, 1913, 1127, 5252];
+  const filter_sames: number[] = [1127, 5252];
 
   const ExposeData = {
     /** 当前输入的答案 */
@@ -98,6 +96,11 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
     guessing,
     guess_count,
   } = ExposeData;
+
+  //筛选情侣皮肤ID
+  LOCAL_TYPE.getTypeSkinList().then((res) => {
+    filter_types = res.filter((item) => item.alias === "情侣").map((item) => item.id);
+  });
 
   /* 保存配置 */
   const saveConfig = () => {
