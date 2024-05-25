@@ -100,9 +100,9 @@
 
 > 此项目一直在更新优化，没有开发时间统计
 
-## 支持
+## 一块钱
 
-> 如果你觉得我的代码写得不错，对你有一定帮助，欢迎赞助
+> 如果你觉得我的代码写得不错，对你有一定帮助，欢迎赞赏一块钱，是的，只要一块钱。
 
 <img src="https://lengyibai.github.io/wzry-material/image/wx.png" style="width:300px" alt="微信收款码" />
 <img src="https://lengyibai.github.io/wzry-material/image/zfb.png" style="width:300px" alt="支付宝收款码" />
