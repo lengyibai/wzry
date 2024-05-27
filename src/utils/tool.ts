@@ -2,11 +2,12 @@ import Decimal from "decimal.js";
 import dayjs from "dayjs";
 import _cloneDeep from "lodash/cloneDeep";
 import _debounce from "lodash/debounce";
+import _throttle from "lodash/throttle";
 import { match as _pinyinMatch } from "pinyin-pro";
 
 import type { ImageOptimizerOptions } from "./interface";
 
-export { dayjs, _debounce, _cloneDeep };
+export { dayjs, _debounce, _cloneDeep, _throttle };
 
 /** @description 判断是否为移动端 */
 export const _isPhone = (() => /mobile/i.test(navigator.userAgent))();
@@ -939,23 +940,6 @@ export const _adjustCoordinates = (
 
   return currentCoord;
 };
-
-/** @description 视差动画 */
-export class _Parallax {
-  fn: (x: number, y: number) => void = () => {};
-
-  constructor(fn: (x: number, y: number) => void) {
-    this.fn = fn;
-  }
-
-  move(e: MouseEvent | Touch): void {
-    const { innerWidth: w, innerHeight: h } = window;
-    const x = Number(((e.pageX - w / 2) / (w / 2)).toFixed(2));
-    const y = Number(((e.pageY - h / 2) / (h / 2)).toFixed(2));
-
-    this.fn(x, y);
-  }
-}
 
 /** @description 音频可视化 */
 export class _AudioVisual {

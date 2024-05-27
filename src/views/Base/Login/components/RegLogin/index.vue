@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { ref, onUnmounted, computed } from "vue";
-import _throttle from "lodash/throttle";
+import { ref, computed } from "vue";
 import { Base64 } from "js-base64";
 
-import { _isPhone, _Parallax, _timeGreet, _blobTextToBase64, dayjs } from "@/utils/tool";
+import { _isPhone, _timeGreet, _blobTextToBase64, dayjs } from "@/utils/tool";
 import { MESSAGE_TIP, CONFIRM_TIP, DEFAULT, $msgTipText, MOUSE_TIP } from "@/config";
 import { AuthStore } from "@/store";
 import { $input, $message, $confirm } from "@/utils/busTransfer";
 import { _decryption } from "@/utils/privateTool";
 import { _getMiscLink } from "@/utils/concise";
 import { vDebounceClick, vDragAnalysis, vMouseTip, vParticleEffect } from "@/directives";
-import { useDevice, usePlayAudio } from "@/hooks";
+import { useParallax, usePlayAudio } from "@/hooks";
 
-const { browser_name } = useDevice();
 const { playAudio } = usePlayAudio();
 
 const RegLoginRef = ref<HTMLElement>();
@@ -28,24 +26,13 @@ const show_del = ref(false);
 /** 用户数据 */
 const user_data = ref<User.Data>();
 
-//视差动画(如果为移动端或为safari浏览器则取消)
-if (!_isPhone || browser_name === "safari") {
-  const parallax = new _Parallax((x: number, y: number) => {
-    if (!RegLoginRef.value) return;
-    RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${
-      -x * 10
-    }deg)`;
-  });
-
-  const _throttleMove = _throttle((e: MouseEvent) => {
-    parallax.move(e);
-  }, 50);
-
-  window.addEventListener("mousemove", _throttleMove);
-  onUnmounted(() => {
-    window.removeEventListener("mousemove", _throttleMove);
-  });
-}
+//鼠标移动视差动画
+useParallax((x: number, y: number) => {
+  if (!RegLoginRef.value) return;
+  RegLoginRef.value.style.transform = `translate(-50%, -50%) rotateX(${y * 10}deg) rotateY(${
+    -x * 10
+  }deg)`;
+});
 
 /** 当前标题 */
 const title = computed(() => {
