@@ -14,18 +14,10 @@ const SkinDebrisStore = defineStore("skinDebris", () => {
   const $usePagingLoad = usePagingLoad<Game.Hero.Skin>();
 
   const ExposeData = {
-    /** 英雄列表 */
-    all_data: $usePagingLoad.all_data,
-    /** 是否处于加载中 */
-    loading: $usePagingLoad.loading,
     /** 滚动坐标 */
     scroll: $usePagingLoad.scroll,
-    /** 暂无更多 */
-    finish: $usePagingLoad.finish,
     /** 筛选后的数据列表 */
     filter_list: $usePagingLoad.filter_list,
-    /** 展示的数据列表 */
-    show_list: $usePagingLoad.show_list,
 
     /** 职业类型 */
     profession: ref<Game.Hero.Profession>("全部"),
@@ -43,7 +35,6 @@ const SkinDebrisStore = defineStore("skinDebris", () => {
     skin_type_list: ref<string[]>([]),
   };
   const {
-    all_data,
     filter_list,
     gender_type,
     profession,
@@ -89,6 +80,8 @@ const SkinDebrisStore = defineStore("skinDebris", () => {
 
     /** 职业筛选 */
     const filterProfession = () => {
+      const { all_data } = $usePagingLoad;
+
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
         $usePagingLoad.setFilterData([...all_data.value]);

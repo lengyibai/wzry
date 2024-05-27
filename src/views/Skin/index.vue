@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated, onMounted } from "vue";
+import { onActivated, ref, onDeactivated, nextTick } from "vue";
 import { storeToRefs } from "pinia";
 
 import SkinCard from "./components/SkinCard/index.vue";
@@ -7,10 +7,10 @@ import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { SkinStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
-import { LibGrid } from "@/components/common";
 import { $imageView } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
+import { LibVirtualList } from "@/components/common";
 
 defineOptions({
   name: "Skin",
@@ -18,9 +18,11 @@ defineOptions({
 
 const $skinStore = SkinStore();
 
-const { scroll, finish, show_list, loading } = storeToRefs($skinStore);
+const { scroll, filter_list } = storeToRefs($skinStore);
 
 const { playAudio } = usePlayAudio();
+
+const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
 //实时修改一行个数
 const interval_count = [
@@ -31,7 +33,6 @@ const interval_count = [
 ];
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
-const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
@@ -62,9 +63,18 @@ const debounceScroll = _debounce((v: number) => {
   back_top.value = v > 250;
 }, 250);
 
+/** @description 页面筛选隐藏显示动画 */
+const onFilterChange = () => {
+  debounceScroll(0);
+  show_skin_list.value = false;
+  nextTick(() => {
+    show_skin_list.value = true;
+  });
+};
+
 /** @description 点击侧边栏触发 */
 const onSidebarChange = () => {
-  debounceScroll(0);
+  onFilterChange();
   skinToolbarRef.value?._clearName();
 };
 
@@ -87,21 +97,20 @@ const handleEnterCard = () => {
 
 /** @description 返回顶部 */
 const onBackTop = () => {
-  skinListRef.value?._setPosition(0, true);
+  virtualListRef.value?._setPosition(0, false);
 };
 
-onMounted(async () => {
+onActivated(async () => {
+  changeCount();
+  playAudio("gz43");
+  window.addEventListener("resize", changeCount);
+
+  virtualListRef.value?._setPosition(scroll.value);
+  virtualListRef.value?._updateStatus();
+
   //显示皮肤列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
-});
-
-onActivated(() => {
-  changeCount();
-  window.addEventListener("resize", changeCount);
-
-  playAudio("gz43");
-  skinListRef.value?._setPosition(scroll.value);
 });
 
 onDeactivated(() => {
@@ -113,38 +122,32 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="to-bottom" appear>
-        <SkinToolbar ref="skinToolbarRef" @change="debounceScroll(0)" />
+        <SkinToolbar ref="skinToolbarRef" @change="onFilterChange" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <LibGrid
-        v-if="show_list.length && show_skin_list"
-        ref="skinListRef"
-        :finish="finish"
-        gap="1rem"
-        :loading="loading"
-        :count="count"
-        :scroll-top="scroll"
-        @load-more="$skinStore.loadMore"
-        @scroll="debounceScroll"
-      >
-        <transition-group name="skin-card" appear>
+      <transition name="fade">
+        <LibVirtualList
+          v-if="filter_list.length && show_skin_list"
+          ref="virtualListRef"
+          :data="filter_list"
+          :column-count="count"
+          @scroll="debounceScroll"
+          v-slot="{ data }"
+        >
           <div
-            v-for="(item, index) in show_list"
+            v-for="item in data"
             :key="item.id"
-            :style="{
-              'transition-delay': (index % (count * 2)) * 0.1 + 's',
-            }"
             @mouseenter="handleEnterCard"
             @touchstart="handleEnterCard"
           >
             <skinCard :data="item" @view="onViewDetail" />
           </div>
-        </transition-group>
-      </LibGrid>
+        </LibVirtualList>
+      </transition>
 
-      <KEmpty v-if="show_list.length === 0" tip="你还没有拥有皮肤" />
+      <KEmpty v-if="filter_list.length === 0" tip="你还没有拥有皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->

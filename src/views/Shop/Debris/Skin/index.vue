@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated } from "vue";
+import { onActivated, ref, onDeactivated, nextTick } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
@@ -8,7 +8,7 @@ import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { SkinDebrisStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
-import { LibGrid } from "@/components/common";
+import { LibVirtualList } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
@@ -23,7 +23,7 @@ const $router = useRouter();
 const $knapsackStore = KnapsackStore();
 const $skinDebrisStore = SkinDebrisStore();
 
-const { scroll, finish, show_list, loading } = storeToRefs($skinDebrisStore);
+const { scroll, filter_list } = storeToRefs($skinDebrisStore);
 
 const { playAudio } = usePlayAudio();
 
@@ -37,7 +37,7 @@ const interval_count = [
 ];
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
-const skinListRef = ref<InstanceType<typeof LibGrid>>();
+const libVirtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
 /** 一行显示的数目 */
 const count = ref(0);
@@ -68,15 +68,24 @@ const debounceScroll = _debounce((v: number) => {
   back_top.value = v > 250;
 }, 250);
 
+/** @description 页面筛选隐藏显示动画 */
+const onFilterChange = () => {
+  debounceScroll(0);
+  show_skin_list.value = false;
+  nextTick(() => {
+    show_skin_list.value = true;
+  });
+};
+
 /** @description 点击侧边栏触发 */
 const onSidebarChange = () => {
-  debounceScroll(0);
+  onFilterChange();
   skinToolbarRef.value?._clearName();
 };
 
 /** @description 返回顶部 */
 const onBackTop = () => {
-  skinListRef.value?._setPosition(0, true);
+  libVirtualListRef.value?._setPosition(0, false);
 };
 
 /** @description 兑换 */
@@ -105,10 +114,12 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 };
 
 onActivated(async () => {
-  playAudio("h3w0");
-  skinListRef.value?._setPosition(scroll.value);
   changeCount();
+  playAudio("h3w0");
   window.addEventListener("resize", changeCount);
+
+  libVirtualListRef.value?._setPosition(scroll.value);
+  libVirtualListRef.value?._updateStatus();
 
   //显示英雄列表
   await _promiseTimeout(250);
@@ -124,38 +135,33 @@ onDeactivated(() => {
   <div class="skin">
     <div class="skin-main">
       <transition name="to-bottom" appear>
-        <SkinToolbar ref="skinToolbarRef" @change="debounceScroll(0)" />
+        <SkinToolbar ref="skinToolbarRef" @change="onFilterChange" />
       </transition>
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <transition name="card-list">
-        <LibGrid
-          v-if="show_list.length && show_skin_list"
-          ref="skinListRef"
-          :finish="finish"
-          gap="1rem"
-          :loading="loading"
-          :count="count"
-          :scroll-top="scroll"
-          @load-more="$skinDebrisStore.loadMore"
+        <LibVirtualList
+          v-if="filter_list.length && show_skin_list"
+          ref="libVirtualListRef"
+          :data="filter_list"
+          :column-count="count"
           @scroll="debounceScroll"
+          v-slot="{ data }"
         >
-          <transition-group name="skin-card" appear>
-            <div
-              v-for="(item, index) in show_list"
-              :key="item.id"
-              class="skin-card"
-              :style="{
-                'transition-delay': (index % (count * 2)) * 0.1 + 's',
-              }"
-            >
-              <SkinCard :data="item" @exchange="onExchange" />
-            </div>
-          </transition-group>
-        </LibGrid>
+          <div
+            v-for="(item, index) in data"
+            :key="item.id"
+            class="skin-card"
+            :style="{
+              'transition-delay': (index % (count * 2)) * 0.1 + 's',
+            }"
+          >
+            <SkinCard :data="item" @exchange="onExchange" />
+          </div>
+        </LibVirtualList>
       </transition>
-      <KEmpty v-if="show_list.length === 0" tip="暂无可兑换皮肤" />
+      <KEmpty v-if="filter_list.length === 0" tip="暂无可兑换皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->
