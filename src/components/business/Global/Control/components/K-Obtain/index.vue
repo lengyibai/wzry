@@ -2,7 +2,7 @@
 import { useObtain } from "./hooks/useObtain";
 
 import { KButton } from "@/components/business";
-import { vMaskGradient, vParticleEffect, vScrollVirtualization } from "@/directives";
+import { vMaskGradient, vMouseTip, vParticleEffect, vScrollVirtualization } from "@/directives";
 
 const { show, prop_list, show_bg, closeObtain } = useObtain();
 </script>
@@ -55,7 +55,7 @@ const { show, prop_list, show_bg, closeObtain } = useObtain();
             </div>
           </div>
         </div>
-        <KButton class="k-button" @click="closeObtain">确定</KButton>
+        <KButton v-mouse-tip class="k-button" @click="closeObtain">确定</KButton>
       </div>
     </transition>
   </teleport>

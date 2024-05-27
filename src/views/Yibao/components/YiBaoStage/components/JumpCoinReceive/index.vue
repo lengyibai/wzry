@@ -32,7 +32,9 @@ const handleReceive = () => {
       <span class="num">×{{ receive_coin }}</span>
     </div>
     <KButton
-      v-mouse-tip
+      v-mouse-tip="{
+        disabled: receive_coin === 0,
+      }"
       type="warning"
       class="k-button"
       :disabled="receive_coin === 0"
