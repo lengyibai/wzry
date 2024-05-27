@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useFps } from "@vueuse/core";
 
 import { AuthStore } from "@/store";
-import { useGetFps, useDevice, useCollapse } from "@/hooks";
+import { useDevice, useCollapse } from "@/hooks";
 import { _browserV } from "@/utils/tool";
 
 const $authStore = AuthStore();
 
-const { fps } = useGetFps();
+const fps = useFps({
+  every: 100,
+});
 const { collapse } = useCollapse();
 const { width, height, browser_status, browser_name } = useDevice();
 
