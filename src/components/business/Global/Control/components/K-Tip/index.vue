@@ -4,7 +4,7 @@ import { useTip } from "./hooks/useTip";
 import { KButton } from "@/components/business";
 import { vMouseTip, vTypewriterMultiple } from "@/directives";
 import { MOUSE_TIP } from "@/config";
-import { _getMiscLink } from "@/utils/concise";
+import { _getImgLink } from "@/utils/concise";
 
 const {
   show_tip,
@@ -56,7 +56,7 @@ const position = {
             :style="[
               position[align],
               {
-                backgroundImage: `url(${_getMiscLink('dialog')})`,
+                backgroundImage: `url(${_getImgLink('dialog')})`,
               },
             ]"
           >
