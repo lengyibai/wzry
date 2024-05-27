@@ -18,6 +18,7 @@ module.exports = {
   },
   plugins: ["import"],
   rules: {
+    eqeqeq: "warn", //要求使用 === 和 !==
     "no-var": "warn", //不允许使用 var 关键字
     "prefer-const": "warn", //要求使用 const 声明那些声明后不再被修改的变量
     "@typescript-eslint/no-var-requires": "warn", //不允许使用 require() 函数导入模块
