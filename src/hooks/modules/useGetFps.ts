@@ -2,7 +2,7 @@ import { ref } from "vue";
 
 /** @description 获取屏幕帧率 */
 const useGetFps = () => {
-  let start = 0;
+  let start = performance.now();
   let count = 0;
 
   const ExposeData = {
@@ -15,8 +15,7 @@ const useGetFps = () => {
   (function getFPS() {
     count++;
     const current = performance.now();
-    if (start === undefined) start = current;
-    if (current - start >= 500) {
+    if (current - start >= 1000) {
       fps.value = count;
       start = current;
       count = 0;
