@@ -2,10 +2,9 @@ import Decimal from "decimal.js";
 import dayjs from "dayjs";
 import _cloneDeep from "lodash/cloneDeep";
 import _debounce from "lodash/debounce";
+import { match as _pinyinMatch } from "pinyin-pro";
 
 import type { ImageOptimizerOptions } from "./interface";
-
-import { PINYIN } from "@/config/modules/pinyin";
 
 export { dayjs, _debounce, _cloneDeep };
 
@@ -152,28 +151,6 @@ export const _frameInterval = (fn: () => void, fre = 0) => {
  */
 export const _isArray = (data: any) => Object.prototype.toString.call(data) === "[object Array]";
 
-/** @description 中文转拼音
- * @param str 需要转换的中文字符串
- */
-export const _pinyin = (str: string) => {
-  if (typeof str !== "string") return str;
-  let result = "";
-  let abbreviation = "";
-  const reg = /[a-zA-Z0-9]/;
-  for (const val of str) {
-    let name = "";
-    for (const key in PINYIN) {
-      if (PINYIN[key].includes(val)) {
-        name = key;
-        abbreviation += name[0].toLowerCase();
-        break;
-      }
-    }
-    result += reg.test(val) ? val : name;
-  }
-  return [result.toLowerCase(), abbreviation];
-};
-
 /**
  * @description 正则搜索
  * @param data 需要搜索的数据
@@ -194,8 +171,8 @@ export const _search = <T>(
     const reg = new RegExp(searchValue.toLowerCase(), "i"); // 创建正则表达式
     data.forEach((item: any) => {
       item[key] = item[key].toString(); // 确保属性为字符串
-      const pin_yin: string[] = _pinyin(item[key]); // 将属性值转为拼音数组
-      if (pin_yin.some((py) => reg.test(py) || reg.test(item[key]))) {
+
+      if (_pinyinMatch(item[key], searchValue, { precision: "start" })) {
         // 匹配拼音或属性值
         if (highlight && searchValue) {
           item[key] = item[key].replace(

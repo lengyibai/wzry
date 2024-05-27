@@ -1,7 +1,6 @@
 export * from "./modules/scene-tip";
 export * from "./modules/route-path";
 export * from "./modules/resource-name";
-export * from "./modules/pinyin";
 export * from "./modules/mouse-tip";
 export * from "./modules/message-tip";
 export * from "./modules/local-key";

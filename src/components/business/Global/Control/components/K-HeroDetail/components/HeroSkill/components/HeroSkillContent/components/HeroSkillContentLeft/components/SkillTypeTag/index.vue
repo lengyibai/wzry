@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { _pinyin } from "@/utils/tool";
+import { pinyin } from "pinyin-pro";
 
 interface Props {
   /** 技能类型 */
@@ -10,7 +10,7 @@ const $props = withDefaults(defineProps<Props>(), {
   type: "",
 });
 
-const name = _pinyin($props.type)[0];
+const name = pinyin($props.type, { toneType: "none", v: true, separator: "" });
 </script>
 
 <template>
