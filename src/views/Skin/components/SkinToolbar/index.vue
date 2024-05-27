@@ -17,7 +17,7 @@ const { price_type, skin_type, skin_type_list, same_name, same_name_list, have_t
   storeToRefs($skinStore);
 
 const select_price = ["全部价格", "免费", "由低到高", "由高到低"];
-const have_types = ["全部英雄", "未拥有", "已拥有"];
+const have_types = ["全部皮肤", "未拥有", "已拥有"];
 
 /** 搜索值 */
 const search_value = ref("");
