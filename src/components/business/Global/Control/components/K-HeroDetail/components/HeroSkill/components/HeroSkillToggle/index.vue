@@ -33,7 +33,7 @@ $heroDetail.setScrollFn("skinIcon", (pageName) => {
       $tip({
         align: "right-top",
         color: false,
-        text: $tipText("le13", { h: $heroDetail.hero_info.name, c: length == 3 ? "三" : "两" }),
+        text: $tipText("le13", { h: $heroDetail.hero_info.name, c: length === 3 ? "三" : "两" }),
         createFn() {
           $focus.show(toggleRef.value!);
         },

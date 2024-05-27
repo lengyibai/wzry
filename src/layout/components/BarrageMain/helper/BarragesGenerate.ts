@@ -62,7 +62,7 @@ export class BarragesGenerate {
       clearTimeout(this.readyTimer);
 
       //离开当前窗口停止生成
-      if (document.visibilityState == "hidden") {
+      if (document.visibilityState === "hidden") {
         this.enable = false;
         return;
       }

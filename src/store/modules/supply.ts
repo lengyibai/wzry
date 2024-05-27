@@ -125,7 +125,7 @@ const SupplyStore = defineStore("supply", () => {
       //监听浏览器状态
       window.addEventListener("visibilitychange", () => {
         //当重新进入网页时，重新计算剩余时间并启动倒计时
-        if (document.visibilityState == "visible") {
+        if (document.visibilityState === "visible") {
           hero_seconds.value = getSurplusTime(hero_start_time.value, hero_mode.value!);
           skin_seconds.value = getSurplusTime(skin_start_time.value, skin_mode.value!);
           this.enableCountdown("HERO");

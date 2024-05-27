@@ -231,22 +231,22 @@ export const _search = <T>(
  * @param rev 是否降序
  */
 export const _typeSort = <T>(data: any[], key: string, rev = true): T[] => {
-  const num = typeof key == "boolean" ? (key ? 1 : -1) : rev ? 1 : -1;
+  const num = typeof key === "boolean" ? (key ? 1 : -1) : rev ? 1 : -1;
   return data.sort(((a: any, b: any) => {
-    if (typeof data[0] == "object") {
-      if (typeof a[key] == "number") {
+    if (typeof data[0] === "object") {
+      if (typeof a[key] === "number") {
         return (a[key] - b[key]) * num;
       }
-      if (typeof a[key] == "string") {
+      if (typeof a[key] === "string") {
         return a[key].toString().localeCompare(b[key].toString()) * num;
       }
     }
 
-    if (typeof a == "number") {
+    if (typeof a === "number") {
       return (a - b) * num;
     }
 
-    if (typeof a == "string") {
+    if (typeof a === "string") {
       return a.toString().localeCompare(b.toString()) * num;
     }
   }) as () => any);
