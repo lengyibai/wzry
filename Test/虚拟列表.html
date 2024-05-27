@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>冷弋白的网页</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      height: 100vh;
+      /* 占满浏览器窗口高度 */
+      overflow-y: auto;
+    }
+
+    #padding {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .item {
+      height: 200px;
+      /* 调整子元素高度 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: 1px solid #fff;
+      background-color: #999;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container" onscroll="requestAnimationFrame(onScroll)">
+    <div id="padding"></div>
+  </div>
+  <script>
+    /** 定义总项目数量 */
+    const totalItems = 999999;
+    /** 每个项目的高度 */
+    const itemHeight = 200;
+    /** 列数 */
+    const columnCount = 3;
+    /** 缓冲行数 */
+    const bufferLineCount = 3;
+    /** 获取容器元素 */
+    const container = document.getElementById('container');
+    /** 获取填充元素 */
+    const padding = document.getElementById('padding');
+    /** 上次滚动位置 */
+    let lastScrollTop = 0;
+    /** 可见项目数量 */
+    const visibleCount = Math.ceil(window.innerHeight / itemHeight) * columnCount;
+    /** 创建项目数组 */
+    const items = Array.from({ length: totalItems }, (_, i) => `Item ${ i + 1 }`);
+
+    /** 渲染项目 */
+    const renderItems = () => {
+      /** 获取滚动位置 */
+      const scrollTop = container.scrollTop;
+      /** 计算开始索引 */
+      const startIdx = Math.max(0, Math.floor(scrollTop / itemHeight) * columnCount - bufferLineCount * columnCount);
+      /** 计算结束索引 */
+      const endIdx = Math.min(totalItems, startIdx + visibleCount + bufferLineCount * columnCount * 2);
+      /** 创建文档片段 */
+      const fragment = document.createDocumentFragment();
+      /** 添加项目到片段 */
+      for (let i = startIdx; i < endIdx; i++) {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.textContent = items[i];
+        fragment.appendChild(item);
+      }
+
+
+      /** 计算顶部填充高度 */
+      const topPadding = Math.floor(startIdx / columnCount) * itemHeight;
+      /** 计算底部填充高度 */
+      const bottomPadding = Math.floor((totalItems - endIdx) / columnCount) * itemHeight;
+      /** 设置顶部填充 */
+      padding.style.paddingTop = `${ topPadding }px`;
+      /** 设置底部填充 */
+      padding.style.paddingBottom = `${ bottomPadding }px`;
+      /** 清空填充容器 */
+      padding.innerHTML = '';
+      /** 添加项目到填充容器 */
+      padding.appendChild(fragment);
+      /** 更新上次滚动位置 */
+      lastScrollTop = scrollTop;
+    };
+
+    /** 滚动事件处理 */
+    const onScroll = () => {
+      /** 获取当前滚动位置 */
+      const scrollTop = container.scrollTop;
+      /** 判断是否需要重新渲染 */
+      if (Math.abs(scrollTop - lastScrollTop) >= itemHeight * bufferLineCount / bufferLineCount) {
+        renderItems();
+      }
+    };
+    /** 添加滚动事件监听 */
+    container.addEventListener('scroll', onScroll);
+    /** 初始渲染 */
+    renderItems();
+  </script>
+</body>
+
+</html>
