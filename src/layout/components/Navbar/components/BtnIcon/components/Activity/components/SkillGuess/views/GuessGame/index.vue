@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { inject, nextTick, onMounted, onUnmounted, ref } from "vue";
+import { useFullscreen } from "@vueuse/core";
 
 import { useHideSkillGuess } from "../../hooks/useHideSkillGuess";
 import { useCloseToStore } from "../../../../common/hooks/useCloseToStore";
@@ -15,7 +16,7 @@ import {
   SelectHeroAndSkin,
 } from "@/components/business";
 import { vMouseTip, vTypewriterSingle } from "@/directives";
-import { _debounce, _exitFullScreen, _openFullScreen, _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { KnapsackStore } from "@/store";
 import { GAME_PROP, MESSAGE_TIP } from "@/config";
@@ -25,6 +26,7 @@ const modelValue = defineModel<boolean>({ required: true });
 
 const $knapsackStore = KnapsackStore();
 
+const { enter: _enterFullScreen, exit: _exitFullScreen } = useFullscreen();
 const { setHideSkillGuessPart } = useHideSkillGuess();
 const { setHideActivityPart } = useIntoGame();
 
@@ -123,7 +125,7 @@ const debounceStopGuess = _debounce(() => {
 }, 100);
 
 onMounted(() => {
-  _openFullScreen();
+  _enterFullScreen();
   setTimeout(() => {
     window.addEventListener("resize", debounceStopGuess);
     document.documentElement.addEventListener("mouseleave", debounceStopGuess);

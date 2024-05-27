@@ -820,46 +820,6 @@ export const _base64ToObject = (base64: string) => {
   return JSON.parse(jsonString);
 };
 
-/** @description 开启全屏 */
-export const _openFullScreen = () => {
-  const docElm = document.documentElement as HTMLElement & {
-    requestFullscreen?: () => Promise<void>;
-    mozRequestFullScreen?: () => Promise<void>;
-    webkitRequestFullscreen?: () => Promise<void>;
-    msRequestFullscreen?: () => Promise<void>;
-  };
-
-  if (docElm.requestFullscreen) {
-    docElm.requestFullscreen();
-  } else if (docElm.mozRequestFullScreen) {
-    docElm.mozRequestFullScreen();
-  } else if (docElm.webkitRequestFullscreen) {
-    docElm.webkitRequestFullscreen();
-  } else if (docElm.msRequestFullscreen) {
-    docElm.msRequestFullscreen();
-  }
-};
-
-/** @description 退出全屏 */
-export const _exitFullScreen = () => {
-  const doc = document as Document & {
-    exitFullscreen?: () => Promise<void>;
-    mozCancelFullScreen?: () => Promise<void>;
-    webkitExitFullscreen?: () => Promise<void>;
-    msExitFullscreen?: () => Promise<void>;
-  };
-
-  if (doc.exitFullscreen) {
-    doc.exitFullscreen();
-  } else if (doc.mozCancelFullScreen) {
-    doc.mozCancelFullScreen();
-  } else if (doc.webkitExitFullscreen) {
-    doc.webkitExitFullscreen();
-  } else if (doc.msExitFullscreen) {
-    doc.msExitFullscreen();
-  }
-};
-
 /**
  * @description 将base64图片转成File文件类型
  * @param base64Data base64数据
