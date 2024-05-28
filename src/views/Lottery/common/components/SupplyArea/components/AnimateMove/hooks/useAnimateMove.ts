@@ -1,19 +1,22 @@
-import { ref, Ref, computed } from "vue";
+import { ref, computed } from "vue";
 
 import { GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
 
 /** @description loading动画 */
-const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
+const useAnimateMove = () => {
   /** 道具图片 */
   const imgs: string[] = [];
-  /** 图片展示索引 */
-  const index = ref(0);
   /** 动画定时器 */
   const timer: Record<"left" | "top", (NodeJS.Timeout | number)[]> = {
     left: [0, 0],
     top: [0, 0],
   };
+
+  const circularRef = ref<HTMLElement>();
+
+  /** 图片展示索引 */
+  const index = ref(0);
 
   /** 移动的道具图片 */
   const img = computed(() => imgs[index.value]);
@@ -35,14 +38,14 @@ const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
    * @param duration 持续时间
    */
   const moveElement = (type: "left" | "top", duration: number) => {
-    if (!el.value) return;
+    if (!circularRef.value) return;
     setRandom();
 
-    el.value.style[type] = `calc(100% - ${el.value.offsetWidth / 16}rem)`;
+    circularRef.value.style[type] = `calc(100% - ${circularRef.value.offsetWidth / 16}rem)`;
     timer[type][0] = setTimeout(() => {
-      if (!el.value) return;
+      if (!circularRef.value) return;
       setRandom();
-      el.value.style[type] = "0%";
+      circularRef.value.style[type] = "0%";
       timer[type][1] = setTimeout(() => {
         moveElement(type, duration);
       }, duration);
@@ -53,8 +56,8 @@ const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
 
   /** @description 开始动画 */
   const startAnimate = () => {
-    el.value!.style.left = "0%";
-    el.value!.style.top = "0%";
+    circularRef.value!.style.left = "0%";
+    circularRef.value!.style.top = "0%";
     setTimeout(() => {
       xMove();
       yMove();
@@ -70,6 +73,7 @@ const useAnimateMove = (el: Ref<HTMLElement | undefined>) => {
 
   return {
     img,
+    circularRef,
     startAnimate,
     clearAnimate,
   };

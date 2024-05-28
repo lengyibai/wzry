@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onActivated, onDeactivated, ref, watch } from "vue";
+import { computed, onActivated, onDeactivated, watch } from "vue";
 
 import { useAnimateMove } from "./hooks/useAnimateMove";
 
@@ -14,9 +14,7 @@ const $props = defineProps<Props>();
 
 const $supplyStore = SupplyStore();
 
-const circularRef = ref<HTMLElement>();
-
-const { img, startAnimate, clearAnimate } = useAnimateMove(circularRef);
+const { circularRef, img, startAnimate, clearAnimate } = useAnimateMove();
 
 /** 倒计时数字列表 */
 const nums = computed(() => {
