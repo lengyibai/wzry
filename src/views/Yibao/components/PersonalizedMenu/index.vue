@@ -17,7 +17,6 @@ const { playAudio } = usePlayAudio();
 
 <template>
   <div class="personalized-menu">
-    <!-- 圆环 -->
     <div
       v-for="(item, index) in YIBAO_PART.PART_KEY_LIST"
       :key="index"
