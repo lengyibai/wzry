@@ -48,7 +48,7 @@
     /** 列数 */
     const columnCount = 3;
     /** 缓冲行数 */
-    const bufferLineCount = 3;
+    const bufferLineCount = 1;
     /** 获取容器元素 */
     const container = document.getElementById('container');
     /** 获取填充元素 */
@@ -65,9 +65,9 @@
       /** 获取滚动位置 */
       const scrollTop = container.scrollTop;
       /** 计算开始索引 */
-      const startIdx = Math.max(0, Math.floor(scrollTop / itemHeight) * columnCount - bufferLineCount * columnCount);
+      const startIdx = Math.max(0, Math.floor(scrollTop / itemHeight) * columnCount - bufferLineCount * 2 * columnCount);
       /** 计算结束索引 */
-      const endIdx = Math.min(totalItems, startIdx + visibleCount + bufferLineCount * columnCount * 2);
+      const endIdx = Math.min(totalItems, startIdx + visibleCount + bufferLineCount * 2 * columnCount * 2);
       /** 创建文档片段 */
       const fragment = document.createDocumentFragment();
       /** 添加项目到片段 */
@@ -100,7 +100,7 @@
       /** 获取当前滚动位置 */
       const scrollTop = container.scrollTop;
       /** 判断是否需要重新渲染 */
-      if (Math.abs(scrollTop - lastScrollTop) >= itemHeight * bufferLineCount / bufferLineCount) {
+      if (Math.abs(scrollTop - lastScrollTop) >= itemHeight) {
         renderItems();
       }
     };
