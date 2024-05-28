@@ -1,7 +1,7 @@
 /** @description 小贴士配置，注意：只要是使用了这里的内容，已读后都不再提示 */
 const SCENE_TIP: Record<keyof Global.Tip.Key, string> = {
   d7o5: "底部工具栏可以切换音乐！",
-  mu63: "",
+  mu63: "别忽略了这里可以切换为Minecraft贴图哦！",
   f1y0: "别忘了进入铭文搭配页。",
   cl60: "按住方案卡片拖拽可排序。",
   ma67: "",

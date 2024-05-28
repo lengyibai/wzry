@@ -7,8 +7,8 @@ import ColorsTextures from "./components/ColorsTextures/index.vue";
 import { KnapsackStore, YibaoStore } from "@/store";
 import { KButton, KSelect } from "@/components/business";
 import { _getPropLink } from "@/utils/concise";
-import { $confirmText, $msgTipText, MESSAGE_TIP, YIBAO_PART } from "@/config";
-import { $confirm, $message } from "@/utils/busTransfer";
+import { $confirmText, $msgTipText, MESSAGE_TIP, SCENE_TIP, YIBAO_PART } from "@/config";
+import { $tip, $focus, $confirm, $message } from "@/utils/busTransfer";
 import { bigYiBaoBody } from "@/components/business/YiBao/helper/yiBaoBig";
 
 const $yibaoStore = YibaoStore();
@@ -16,8 +16,10 @@ const $knapsackStore = KnapsackStore();
 
 const { articles } = storeToRefs($knapsackStore);
 const { part_type, part_style_type, part_selected } = storeToRefs($yibaoStore);
-const { setPartStyle, buyAlonePart } = $yibaoStore;
+const { setPartStyle, buyAlonePart, setPartType } = $yibaoStore;
 const { setGamePropNum } = $knapsackStore;
+
+const kSelectRef = ref<InstanceType<typeof KSelect>>();
 
 const index = ref(0);
 
@@ -32,8 +34,8 @@ const part_key_name = {
 };
 
 /** @description 设置部件类型 */
-const onSetPartStyle = () => {
-  setPartStyle(index.value === 0 ? "COLOR" : "IMG");
+const onSetPartStyle = (i: number) => {
+  setPartStyle(i === 0 ? "COLOR" : "IMG");
 };
 
 /** @description 单个购买 */
@@ -73,6 +75,25 @@ const handleBuyAlonePart = async () => {
 watchEffect(() => {
   index.value = part_style_type.value === "COLOR" ? 0 : 1;
 });
+
+setTimeout(() => {}, 3000);
+
+//延迟五秒是因为乂宝入场动画
+setTimeout(() => {
+  $tip({
+    align: "right-bottom",
+    color: false,
+    text: SCENE_TIP.mu63,
+    createFn() {
+      $focus.show(kSelectRef.value!._el!);
+    },
+    btnFn() {
+      $focus.close();
+      setPartType("side");
+      setPartStyle("IMG");
+    },
+  });
+}, 5000);
 </script>
 
 <template>
@@ -83,6 +104,7 @@ watchEffect(() => {
       </span>
       <KSelect
         v-if="YIBAO_PART.PART_SUPPORT_IMG.includes(part_type)"
+        ref="kSelectRef"
         v-model="index"
         width="7rem"
         :option="['配色', '贴图']"
