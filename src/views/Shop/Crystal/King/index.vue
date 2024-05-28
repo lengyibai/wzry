@@ -8,7 +8,7 @@ import SkinToolbar from "./components/SkinToolbar/index.vue";
 
 import { KingCrystalStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
-import { LibGrid } from "@/components/common";
+import { LibVirtualList } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
@@ -23,7 +23,7 @@ const $router = useRouter();
 const $knapsackStore = KnapsackStore();
 const $kingCrystalStore = KingCrystalStore();
 
-const { scroll, finish, show_list, loading } = storeToRefs($kingCrystalStore);
+const { scroll, filter_list } = storeToRefs($kingCrystalStore);
 
 const { playAudio } = usePlayAudio();
 const { line_num } = useChangeListLineNum(4, [
@@ -34,7 +34,7 @@ const { line_num } = useChangeListLineNum(4, [
 ]);
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
-const skinListRef = ref<InstanceType<typeof LibGrid>>();
+const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
 /** 显示列表 */
 const show_skin_list = ref(false);
@@ -86,12 +86,13 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 
 /** @description 返回顶部 */
 const onBackTop = () => {
-  skinListRef.value?._setPosition(0, true);
+  virtualListRef.value?._setPosition(0, false);
 };
 
 onActivated(async () => {
   playAudio("h3w0");
-  skinListRef.value?._setPosition(scroll.value);
+  virtualListRef.value?._setPosition(scroll.value);
+  virtualListRef.value?._updateStatus();
 
   //显示英雄列表
   await _promiseTimeout(250);
@@ -108,34 +109,29 @@ onActivated(async () => {
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <transition name="card-list">
-        <LibGrid
-          v-if="show_list.length && show_skin_list"
-          ref="skinListRef"
-          :finish="finish"
-          gap="1rem"
-          :loading="loading"
-          :count="line_num"
-          :scroll-top="scroll"
-          @load-more="$kingCrystalStore.loadMore"
+      <transition name="fade">
+        <LibVirtualList
+          v-if="filter_list.length && show_skin_list"
+          ref="virtualListRef"
+          :data="filter_list"
+          :column-count="line_num"
           @scroll="debounceScroll"
+          v-slot="{ data }"
         >
-          <transition-group name="skin-card" appear>
-            <div
-              v-for="(item, index) in show_list"
-              :key="item.id"
-              ref="skinCardRefs"
-              class="skin-card"
-              :style="{
-                'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
-              }"
-            >
-              <SkinCard :data="item" @exchange="onExchange" />
-            </div>
-          </transition-group>
-        </LibGrid>
+          <div
+            v-for="(item, index) in data"
+            :key="item.id"
+            ref="skinCardRefs"
+            class="skin-card"
+            :style="{
+              'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
+            }"
+          >
+            <SkinCard :data="item" @exchange="onExchange" />
+          </div>
+        </LibVirtualList>
       </transition>
-      <KEmpty v-if="show_list.length === 0" tip="暂无可兑换皮肤" />
+      <KEmpty v-if="filter_list.length === 0" tip="暂无可兑换皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->
