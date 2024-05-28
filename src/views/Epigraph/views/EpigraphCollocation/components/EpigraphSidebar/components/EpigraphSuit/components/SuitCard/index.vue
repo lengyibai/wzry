@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 
 import { KButton } from "@/components/business";
 import type { EpigraphCollocationStoreType } from "@/store/interface";
 import { EpigraphCollocationStore } from "@/store";
-import { useResponsive } from "@/hooks";
 import { vMouseTip } from "@/directives";
 import { $confirmText, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { $input, $message, $confirm } from "@/utils/busTransfer";
@@ -18,7 +18,7 @@ const $props = defineProps<Props>();
 
 const $epigraphCollocationStore = EpigraphCollocationStore();
 
-const { under_1200 } = useResponsive();
+const under_1200 = useMediaQuery("(max-width: 1200px)");
 
 /** 套装铭文列表 */
 const epigraph_list = computed(() => {

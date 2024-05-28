@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 
 import { ScaleFLIPImage } from "./helper/ImageView";
 import VerticalScreen from "./components/VerticalScreen/index.vue";
@@ -8,13 +9,13 @@ import { ImageView } from "./interface";
 
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { usePlayAudio, useResponsive } from "@/hooks";
+import { usePlayAudio } from "@/hooks";
 import { KLoadingIcon } from "@/components/business";
 import { GAME_HERO, KVP_HERO } from "@/api";
 import { $bus } from "@/utils/eventBus";
 import { _AudioPlayer, _downloadImage } from "@/utils/tool";
 
-const { under_960 } = useResponsive();
+const under_960 = useMediaQuery("(max-width: 960px)");
 const { playAudio } = usePlayAudio();
 
 let scaleFLIPImage: ScaleFLIPImage;

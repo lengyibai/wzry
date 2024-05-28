@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 
 import HeroTitle from "./components/HeroTitle/index.vue";
 import HeroBasic from "./components/HeroBasic/index.vue";
@@ -7,9 +8,8 @@ import HeroAttributes from "./components/HeroAttributes/index.vue";
 import HeroResume from "./components/HeroResume/index.vue";
 
 import { KScrollTip } from "@/components/business";
-import { useResponsive } from "@/hooks";
 
-const { under_1200 } = useResponsive();
+const under_1200 = useMediaQuery("(max-width: 1200px)");
 
 const downRef = ref<InstanceType<typeof KScrollTip>>();
 

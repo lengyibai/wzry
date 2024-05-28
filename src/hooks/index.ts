@@ -1,5 +1,4 @@
 export * from "./modules/usePagingLoad";
-export * from "./modules/useResponsive";
 export * from "./modules/useStaticResourceVersion";
 export * from "./modules/useHaveHeroSkin";
 export * from "./modules/useUserConfigFinish";
