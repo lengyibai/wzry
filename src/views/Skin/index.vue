@@ -28,9 +28,8 @@ const { line_num } = useChangeListLineNum(4, [
   [720, 1],
 ]);
 
-const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
-
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
+const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
 /** 显示列表 */
 const show_skin_list = ref(false);
