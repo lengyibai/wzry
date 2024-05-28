@@ -11,12 +11,12 @@ interface Props {
   columnCount: number;
   /** 间隔 */
   gap?: string;
-  /** 缓冲数量 */
+  /** 间隔多少行后更新列表 */
   bufferLineCount?: number;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
-  bufferLineCount: 2,
+  bufferLineCount: 1,
   gap: "1rem",
 });
 const $emit = defineEmits<{
@@ -56,7 +56,9 @@ const renderItems = () => {
 
   const data = $props.data;
   const column_count = $props.columnCount;
-  const bufferLineCount = $props.bufferLineCount;
+
+  //由于间隔行数包含可视区上和可视区下面的缓冲，所需实际使用需要 * 2
+  const bufferLineCount = $props.bufferLineCount * 2;
 
   /** 获取滚动位置 */
   const scrollTop = virtualListRef.value.scrollTop;
@@ -68,7 +70,7 @@ const renderItems = () => {
   /** 计算结束索引 */
   const endIdx = Math.min(
     data.length,
-    startIdx + visibleCount.value + bufferLineCount * 2 * column_count,
+    startIdx + visibleCount.value + bufferLineCount * column_count * 2,
   );
 
   /** 新的渲染数据列表 */
@@ -101,22 +103,7 @@ const handleScroll = (e: Event) => {
   $emit("scroll", scrollTop);
 
   /** 判断是否需要重新渲染 */
-  if (
-    Math.abs(scrollTop - lastScrollTop) >=
-    (itemHeight.value * $props.bufferLineCount) / $props.bufferLineCount
-  ) {
-    renderItems();
-  }
-};
-
-/** @description 检测底部是否有一行元素 */
-const checkBottomRow = () => {
-  if (!virtualListRef.value) return;
-
-  const { scrollHeight, scrollTop, offsetHeight } = virtualListRef.value;
-  const isBottomRowVisible = scrollHeight - scrollTop - offsetHeight <= itemHeight.value;
-
-  if (isBottomRowVisible) {
+  if (Math.abs(scrollTop - lastScrollTop) >= itemHeight.value) {
     renderItems();
   }
 };
@@ -138,14 +125,12 @@ watch(
 
 onMounted(() => {
   window.addEventListener("resize", debounceUpdateStatus);
-  virtualListRef.value!.addEventListener("scroll", checkBottomRow);
   renderItems();
   nextTick(debounceUpdateStatus);
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("resize", debounceUpdateStatus);
-  virtualListRef.value!.removeEventListener("scroll", checkBottomRow);
 });
 
 defineExpose({
