@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated, nextTick } from "vue";
+import { onActivated, ref, nextTick } from "vue";
 import { storeToRefs } from "pinia";
 
 import SkinCard from "./components/SkinCard/index.vue";
@@ -9,7 +9,7 @@ import { SkinStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { $imageView } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
-import { usePlayAudio } from "@/hooks";
+import { useChangeListLineNum, usePlayAudio } from "@/hooks";
 import { LibVirtualList } from "@/components/common";
 
 defineOptions({
@@ -21,41 +21,23 @@ const $skinStore = SkinStore();
 const { scroll, filter_list } = storeToRefs($skinStore);
 
 const { playAudio } = usePlayAudio();
-
-const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
-
-//实时修改一行个数
-const interval_count = [
+const { line_num } = useChangeListLineNum(4, [
   [2000, 4],
   [1600, 3],
   [1400, 2],
   [720, 1],
-];
+]);
+
+const virtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
 
-/** 一行显示的数目 */
-const count = ref(0);
 /** 显示列表 */
 const show_skin_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
 $skinStore.getSkin();
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = document.documentElement.clientWidth;
-
-  if (v >= 2000) {
-    count.value = 4;
-  }
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-});
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -101,9 +83,7 @@ const onBackTop = () => {
 };
 
 onActivated(async () => {
-  debounceChangeCount();
   playAudio("gz43");
-  window.addEventListener("resize", debounceChangeCount);
 
   virtualListRef.value?._setPosition(scroll.value);
   virtualListRef.value?._updateStatus();
@@ -111,10 +91,6 @@ onActivated(async () => {
   //显示皮肤列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
@@ -132,7 +108,7 @@ onDeactivated(() => {
           v-if="filter_list.length && show_skin_list"
           ref="virtualListRef"
           :data="filter_list"
-          :column-count="count"
+          :column-count="line_num"
           @scroll="debounceScroll"
           v-slot="{ data }"
         >

@@ -1,44 +1,28 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onActivated, onDeactivated } from "vue";
+import { ref, watch, nextTick } from "vue";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { LibGrid } from "@/components/common";
 import { EpigraphStore } from "@/store";
-import { _debounce } from "@/utils/tool";
+import { useChangeListLineNum } from "@/hooks";
 
 const $epigraphStore = EpigraphStore();
 
-/** 一行个数区间 */
-const interval_count = [
+const { line_num } = useChangeListLineNum(5, [
   [2300, 5],
   [2000, 4],
   [1600, 3],
   [1110, 2],
   [550, 1],
-];
+]);
 
 const epigraphListRef = ref<InstanceType<typeof LibGrid>>();
 
 /** 淡入显示列表 */
 const show = ref(false);
-/** 一行的个数 */
-const count = ref(4);
 /** 铭文列表 */
 const epigraph_list = ref<Game.Epigraph.Data[]>([]);
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = document.documentElement.clientWidth;
-  if (v > 2300) {
-    count.value = 5;
-  }
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-}, 100);
 
 //每次修改更新列表
 watch(
@@ -52,15 +36,6 @@ watch(
   },
   { deep: true, immediate: true },
 );
-
-onActivated(() => {
-  debounceChangeCount();
-  window.addEventListener("resize", debounceChangeCount);
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
-});
 </script>
 
 <template>
@@ -71,7 +46,7 @@ onDeactivated(() => {
         ref="epigraphListRef"
         :load-more="false"
         gap="0.9375rem"
-        :count="count"
+        :count="line_num"
       >
         <transition-group name="card" appear>
           <EpigraphCard

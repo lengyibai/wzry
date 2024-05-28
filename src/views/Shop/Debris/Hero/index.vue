@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onDeactivated, onActivated, ref, watch } from "vue";
+import { onActivated, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 
@@ -9,7 +9,7 @@ import HeroToolbar from "./components/HeroToolbar/index.vue";
 import { HeroDebrisStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KEmpty } from "@/components/business";
 import { LibGrid } from "@/components/common";
-import { usePagingLoad, usePlayAudio } from "@/hooks";
+import { useChangeListLineNum, usePagingLoad, usePlayAudio } from "@/hooks";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
@@ -28,9 +28,7 @@ const { scroll, show_list, finish, loading } = storeToRefs($heroDebrisStore);
 
 const { playAudio } = usePlayAudio();
 const { page_count } = usePagingLoad();
-
-/** 一行个数区间 */
-const interval_count = [
+const { line_num } = useChangeListLineNum(9, [
   [2200, 8],
   [1800, 7],
   [1600, 6],
@@ -38,13 +36,11 @@ const interval_count = [
   [1024, 4],
   [720, 3],
   [480, 2],
-];
+]);
 
 const heroToolbarRef = ref<InstanceType<typeof HeroToolbar>>();
 const heroListRef = ref<InstanceType<typeof LibGrid>>();
 
-/** 一行显示的数目 */
-const count = ref(0);
 /** 显示英雄详情 */
 const show_HeroDetail = ref(false);
 /** 显示列表 */
@@ -53,21 +49,6 @@ const show_hero_list = ref(false);
 const back_top = ref(false);
 
 $heroDebrisStore.getHeroList();
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = window.innerWidth;
-
-  if (v >= 2200) {
-    count.value = 9;
-  }
-
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-}, 100);
 
 /** @description 悬浮卡片 */
 const debounceEnterCard = _debounce(() => {
@@ -134,19 +115,12 @@ watch(
 );
 
 onActivated(async () => {
-  debounceChangeCount();
-  window.addEventListener("resize", debounceChangeCount);
-
   playAudio("h3w0");
   heroListRef.value?._setPosition(scroll.value);
 
   //显示英雄列表
   await _promiseTimeout(250);
   show_hero_list.value = true;
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
@@ -165,7 +139,7 @@ onDeactivated(() => {
         :finish="finish"
         :loading="loading"
         gap="1rem"
-        :count="count"
+        :count="line_num"
         @scroll="debounceScroll"
         @load-more="$heroDebrisStore.loadMore"
       >

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated, nextTick } from "vue";
+import { onActivated, ref, nextTick } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
@@ -12,7 +12,7 @@ import { LibVirtualList } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
-import { usePlayAudio } from "@/hooks";
+import { useChangeListLineNum, usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "SkinDebrisShop",
@@ -26,41 +26,23 @@ const $skinDebrisStore = SkinDebrisStore();
 const { scroll, filter_list } = storeToRefs($skinDebrisStore);
 
 const { playAudio } = usePlayAudio();
-
-//实时修改一行个数
-const interval_count = [
+const { line_num } = useChangeListLineNum(6, [
   [2400, 5],
   [2000, 4],
   [1600, 3],
   [1400, 2],
   [720, 1],
-];
+]);
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
 const libVirtualListRef = ref<GenericComponentInstanceType<typeof LibVirtualList>>();
 
-/** 一行显示的数目 */
-const count = ref(0);
 /** 显示列表 */
 const show_skin_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
 $skinDebrisStore.getSkin();
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = document.documentElement.clientWidth;
-
-  if (v >= 2400) {
-    count.value = 6;
-  }
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-}, 100);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -114,9 +96,7 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 };
 
 onActivated(async () => {
-  debounceChangeCount();
   playAudio("h3w0");
-  window.addEventListener("resize", debounceChangeCount);
 
   libVirtualListRef.value?._setPosition(scroll.value);
   libVirtualListRef.value?._updateStatus();
@@ -124,10 +104,6 @@ onActivated(async () => {
   //显示英雄列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
@@ -145,7 +121,7 @@ onDeactivated(() => {
           v-if="filter_list.length && show_skin_list"
           ref="libVirtualListRef"
           :data="filter_list"
-          :column-count="count"
+          :column-count="line_num"
           @scroll="debounceScroll"
           v-slot="{ data }"
         >
@@ -154,7 +130,7 @@ onDeactivated(() => {
             :key="item.id"
             class="skin-card"
             :style="{
-              'transition-delay': (index % (count * 2)) * 0.1 + 's',
+              'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
             }"
           >
             <SkinCard :data="item" @exchange="onExchange" />

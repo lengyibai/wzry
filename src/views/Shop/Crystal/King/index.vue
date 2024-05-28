@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated } from "vue";
+import { onActivated, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 
@@ -12,7 +12,7 @@ import { LibGrid } from "@/components/common";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
-import { usePlayAudio } from "@/hooks";
+import { useChangeListLineNum, usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "KingCrystal",
@@ -26,40 +26,22 @@ const $kingCrystalStore = KingCrystalStore();
 const { scroll, finish, show_list, loading } = storeToRefs($kingCrystalStore);
 
 const { playAudio } = usePlayAudio();
-
-//实时修改一行个数
-const interval_count = [
+const { line_num } = useChangeListLineNum(4, [
   [2000, 4],
   [1600, 3],
   [1400, 2],
   [720, 1],
-];
+]);
 
 const skinToolbarRef = ref<InstanceType<typeof SkinToolbar>>();
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
-/** 一行显示的数目 */
-const count = ref(0);
 /** 显示列表 */
 const show_skin_list = ref(false);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
 $kingCrystalStore.getSkin();
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = document.documentElement.clientWidth;
-
-  if (v >= 2000) {
-    count.value = 4;
-  }
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-}, 100);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -109,17 +91,11 @@ const onBackTop = () => {
 
 onActivated(async () => {
   playAudio("h3w0");
-  debounceChangeCount();
   skinListRef.value?._setPosition(scroll.value);
-  window.addEventListener("resize", debounceChangeCount);
 
   //显示英雄列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
@@ -139,7 +115,7 @@ onDeactivated(() => {
           :finish="finish"
           gap="1rem"
           :loading="loading"
-          :count="count"
+          :count="line_num"
           :scroll-top="scroll"
           @load-more="$kingCrystalStore.loadMore"
           @scroll="debounceScroll"
@@ -151,7 +127,7 @@ onDeactivated(() => {
               ref="skinCardRefs"
               class="skin-card"
               :style="{
-                'transition-delay': (index % (count * 2)) * 0.1 + 's',
+                'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
               }"
             >
               <SkinCard :data="item" @exchange="onExchange" />

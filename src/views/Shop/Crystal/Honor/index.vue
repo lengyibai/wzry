@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, onDeactivated, computed } from "vue";
+import { onActivated, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 import SkinCard from "./components/SkinCard/index.vue";
@@ -9,9 +9,9 @@ import { LibGrid } from "@/components/common";
 import { GAME_HERO } from "@/api";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
-import { _debounce, _promiseTimeout } from "@/utils/tool";
+import { _promiseTimeout } from "@/utils/tool";
 import { KEmpty } from "@/components/business";
-import { usePlayAudio } from "@/hooks";
+import { useChangeListLineNum, usePlayAudio } from "@/hooks";
 
 defineOptions({
   name: "HonorCrystal",
@@ -22,20 +22,16 @@ const $router = useRouter();
 const $knapsackStore = KnapsackStore();
 
 const { playAudio } = usePlayAudio();
-
-//实时修改一行个数
-const interval_count = [
+const { line_num } = useChangeListLineNum(5, [
   [2400, 5],
   [2000, 4],
   [1600, 3],
   [1400, 2],
   [720, 1],
-];
+]);
 
 const skinListRef = ref<InstanceType<typeof LibGrid>>();
 
-/** 一行显示的数目 */
-const count = ref(0);
 /** 显示列表 */
 const show_skin_list = ref(false);
 /** 皮肤列表 */
@@ -53,20 +49,6 @@ const getSkinList = async () => {
   skin_list.value = await GAME_HERO.getSkinList();
 };
 getSkinList();
-
-/** @description 实时修改一行个数 */
-const debounceChangeCount = _debounce(() => {
-  const v = document.documentElement.clientWidth;
-
-  if (v >= 2400) {
-    count.value = 5;
-  }
-  for (const [a, b] of interval_count) {
-    if (v < a) {
-      count.value = b;
-    }
-  }
-}, 100);
 
 /** @description 兑换
  * @param e 事件对象
@@ -98,16 +80,10 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 
 onActivated(async () => {
   playAudio("h3w0");
-  debounceChangeCount();
-  window.addEventListener("resize", debounceChangeCount);
 
   //显示英雄列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
-});
-
-onDeactivated(() => {
-  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
@@ -119,7 +95,7 @@ onDeactivated(() => {
           v-if="collection_list.length && show_skin_list"
           ref="skinListRef"
           gap="1rem"
-          :count="count"
+          :count="line_num"
           :load-more="false"
         >
           <transition-group name="skin-card" appear>
@@ -128,7 +104,7 @@ onDeactivated(() => {
               :key="item.id"
               class="skin-card"
               :style="{
-                'transition-delay': (index % (count * 2)) * 0.1 + 's',
+                'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
               }"
             >
               <SkinCard :data="item" @exchange="onExchange" />

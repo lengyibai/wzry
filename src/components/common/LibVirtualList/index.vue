@@ -114,7 +114,7 @@ const debounceUpdateStatus = _debounce(() => {
   if (!child_el) return;
   itemHeight.value = child_el.offsetHeight;
   renderItems();
-}, 100);
+}, 500);
 
 watch(
   () => $props.data,
