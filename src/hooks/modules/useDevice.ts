@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { _browserV } from "@/utils/tool";
+import { _browserV, _debounce } from "@/utils/tool";
 
 const ExposeData = {
   /** 浏览器名称 */
@@ -25,14 +25,14 @@ ExposeData.browser_status = ["chrome", "firefox"].includes(browser_name)
   : browser_version >= 15;
 
 /** @description 判断手机是否竖屏 */
-const tip = () => {
+const debounceTip = _debounce(() => {
   vertical.value = window.innerWidth < window.innerHeight;
   width.value = window.innerWidth;
   height.value = window.innerHeight;
-};
-tip();
+}, 250);
+debounceTip();
 
-window.addEventListener("resize", tip);
+window.addEventListener("resize", debounceTip);
 
 /** @description 浏览器信息 */
 const useDevice = () => {

@@ -49,7 +49,7 @@ const back_top = ref(false);
 $skinDebrisStore.getSkin();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2400) {
@@ -60,7 +60,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -114,9 +114,9 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 };
 
 onActivated(async () => {
-  changeCount();
+  debounceChangeCount();
   playAudio("h3w0");
-  window.addEventListener("resize", changeCount);
+  window.addEventListener("resize", debounceChangeCount);
 
   libVirtualListRef.value?._setPosition(scroll.value);
   libVirtualListRef.value?._updateStatus();
@@ -127,7 +127,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

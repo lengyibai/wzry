@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onActivated, onDeactivated, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onActivated, onDeactivated, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 
@@ -317,10 +317,6 @@ watch(article_num, () => {
 
 //当道具列表新增道具时，更新光圈位置
 watch(() => knapsack.value.length, debounceShineRoundAdapter);
-
-onMounted(() => {
-  debounceShineRoundAdapter();
-});
 
 onActivated(() => {
   window.addEventListener("resize", debounceShineRoundAdapter);

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, nextTick, onActivated, onDeactivated, onMounted, onUnmounted } from "vue";
+import { ref, watch, nextTick, onActivated, onDeactivated } from "vue";
 
 import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { LibGrid } from "@/components/common";
 import { EpigraphStore } from "@/store";
+import { _debounce } from "@/utils/tool";
 
 const $epigraphStore = EpigraphStore();
 
@@ -27,7 +28,7 @@ const count = ref(4);
 const epigraph_list = ref<Game.Epigraph.Data[]>([]);
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
   if (v > 2300) {
     count.value = 5;
@@ -37,7 +38,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 //每次修改更新列表
 watch(
@@ -52,19 +53,14 @@ watch(
   { deep: true, immediate: true },
 );
 
-const addEventListener = () => {
-  changeCount();
-  window.addEventListener("resize", changeCount);
-};
+onActivated(() => {
+  debounceChangeCount();
+  window.addEventListener("resize", debounceChangeCount);
+});
 
-const removeEventListener = () => {
-  window.removeEventListener("resize", changeCount);
-};
-
-onMounted(addEventListener);
-onActivated(addEventListener);
-onUnmounted(removeEventListener);
-onDeactivated(removeEventListener);
+onDeactivated(() => {
+  window.removeEventListener("resize", debounceChangeCount);
+});
 </script>
 
 <template>

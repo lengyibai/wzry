@@ -1,5 +1,7 @@
 import { ref } from "vue";
 
+import { _debounce } from "@/utils/tool";
+
 const ExposeData = {
   /** 低于960px */
   under_960: ref(false),
@@ -9,15 +11,15 @@ const ExposeData = {
 const { under_960, under_1200 } = ExposeData;
 
 /** @description 响应式触发 */
-const change = () => {
+const debounceTrigger = _debounce(() => {
   const w = window.innerWidth;
 
   under_960.value = w < 960;
   under_1200.value = w < 1200;
-};
-change();
+}, 100);
+debounceTrigger();
 
-window.addEventListener("resize", change);
+window.addEventListener("resize", debounceTrigger);
 
 /** @description 响应式条件触发 */
 const useResponsive = () => {

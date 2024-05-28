@@ -55,7 +55,7 @@ const back_top = ref(false);
 $heroDebrisStore.getHeroList();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = window.innerWidth;
 
   if (v >= 2200) {
@@ -67,7 +67,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 /** @description 悬浮卡片 */
 const debounceEnterCard = _debounce(() => {
@@ -134,8 +134,8 @@ watch(
 );
 
 onActivated(async () => {
-  changeCount();
-  window.addEventListener("resize", changeCount);
+  debounceChangeCount();
+  window.addEventListener("resize", debounceChangeCount);
 
   playAudio("h3w0");
   heroListRef.value?._setPosition(scroll.value);
@@ -146,7 +146,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

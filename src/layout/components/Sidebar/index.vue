@@ -8,6 +8,7 @@ import { formatSidebarRoutes } from "./helper";
 import { RouterStore } from "@/store";
 import { useCollapse } from "@/hooks";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
+import { _debounce } from "@/utils/tool";
 
 const $routerStore = RouterStore();
 
@@ -20,15 +21,15 @@ const options = $routerStore.routes;
 /** 格式化后的路由数据 */
 const routes = formatSidebarRoutes(options);
 
-/* 监听浏览器尺寸设置侧边栏状态 */
-const sidebarStatus = () => {
+/** @description 监听浏览器尺寸设置侧边栏状态 */
+const debounceSidebarStatus = _debounce(() => {
   setCollapse(window.innerWidth < 960);
-};
+}, 250);
 
-window.addEventListener("resize", sidebarStatus);
+window.addEventListener("resize", debounceSidebarStatus);
 
 onUnmounted(() => {
-  window.removeEventListener("resize", sidebarStatus);
+  window.removeEventListener("resize", debounceSidebarStatus);
 });
 </script>
 

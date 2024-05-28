@@ -44,7 +44,7 @@ const back_top = ref(false);
 $skinStore.getSkin();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2000) {
@@ -55,7 +55,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+});
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -101,9 +101,9 @@ const onBackTop = () => {
 };
 
 onActivated(async () => {
-  changeCount();
+  debounceChangeCount();
   playAudio("gz43");
-  window.addEventListener("resize", changeCount);
+  window.addEventListener("resize", debounceChangeCount);
 
   virtualListRef.value?._setPosition(scroll.value);
   virtualListRef.value?._updateStatus();
@@ -114,7 +114,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

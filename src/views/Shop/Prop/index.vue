@@ -4,7 +4,7 @@ import { onActivated, ref, onDeactivated } from "vue";
 import PropCard from "./components/PropCard/index.vue";
 
 import { LibGrid } from "@/components/common";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { GAME_PROP } from "@/config";
 import { usePlayAudio } from "@/hooks";
 
@@ -31,7 +31,7 @@ const count = ref(0);
 const show_prop_list = ref(false);
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2400) {
@@ -42,15 +42,15 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 onActivated(() => {
   playAudio("o3l2");
 });
 
 onActivated(async () => {
-  changeCount();
-  window.addEventListener("resize", changeCount);
+  debounceChangeCount();
+  window.addEventListener("resize", debounceChangeCount);
 
   //显示英雄列表
   await _promiseTimeout(250);
@@ -58,7 +58,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

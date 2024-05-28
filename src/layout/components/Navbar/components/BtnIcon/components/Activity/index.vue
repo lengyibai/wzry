@@ -102,7 +102,7 @@ const handleScrollTo = (scrollTop: number) => {
   });
 };
 
-/* 全屏或退出全屏时，滚动到当前活动的顶部 */
+/** @description 当浏览器窗口改变时纠正位置 */
 const debounceBackActivityTop = _debounce(() => {
   if (current_activity.value) {
     handleScrollTo(current_activity.value.end);
@@ -123,9 +123,7 @@ onMounted(() => {
   playAudio("bq69");
   initPosition();
 
-  window.addEventListener("resize", () => {
-    debounceBackActivityTop();
-  });
+  window.addEventListener("resize", debounceBackActivityTop);
 
   setTimeout(() => {
     handleScrollTo(posterGuessRef.value!._el!.offsetHeight);

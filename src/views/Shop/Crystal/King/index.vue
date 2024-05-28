@@ -48,7 +48,7 @@ const back_top = ref(false);
 $kingCrystalStore.getSkin();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2000) {
@@ -59,7 +59,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -109,9 +109,9 @@ const onBackTop = () => {
 
 onActivated(async () => {
   playAudio("h3w0");
-  changeCount();
+  debounceChangeCount();
   skinListRef.value?._setPosition(scroll.value);
-  window.addEventListener("resize", changeCount);
+  window.addEventListener("resize", debounceChangeCount);
 
   //显示英雄列表
   await _promiseTimeout(250);
@@ -119,7 +119,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

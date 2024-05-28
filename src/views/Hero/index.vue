@@ -47,7 +47,7 @@ const back_top = ref(false);
 $heroStore.getHeroList();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = window.innerWidth;
 
   if (v >= 2200) {
@@ -59,7 +59,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -96,15 +96,15 @@ onMounted(async () => {
 });
 
 onActivated(() => {
-  changeCount();
-  window.addEventListener("resize", changeCount);
+  debounceChangeCount();
+  window.addEventListener("resize", debounceChangeCount);
 
   playAudio("iv51");
   heroListRef.value?._setPosition(scroll.value);
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 

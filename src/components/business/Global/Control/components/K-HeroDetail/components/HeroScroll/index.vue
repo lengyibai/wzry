@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { nextTick, onUnmounted, onMounted, ref, watch } from "vue";
 
+import { _debounce } from "@/utils/tool";
+
 interface Props {
   /** 滚动时长 */
   duration?: number;
@@ -17,16 +19,19 @@ const $emit = defineEmits<{
   end: [v: number];
 }>();
 
-/** 滚动索引 */
+/** 滚动索引号 */
 const modelValue = defineModel({ default: 0 });
 
+/** 滚动索引号 */
 let index = 0;
 
 const heroScrollRef = ref<HTMLElement>();
 
-/* 滚动触发 */
-const change = async (i: number) => {
-  index = i === -1 ? 0 : i;
+/** @description 滚动到指定索引
+ * @param i 索引号
+ */
+const scrollIndex = async (i: number) => {
+  index = i - 1 === -1 ? 0 : i - 1;
   await nextTick();
   const direction = $props.direction === "y";
   try {
@@ -40,11 +45,6 @@ const change = async (i: number) => {
   }, $props.duration);
 };
 
-/* 改变宽度时纠正滚动位置 */
-const resetPosition = () => {
-  change(modelValue.value - 1);
-};
-
 const $debounceDelay = (() => {
   let timer: NodeJS.Timeout;
   return (callback = () => {}, wait = 800) => {
@@ -56,7 +56,7 @@ const $debounceDelay = (() => {
 watch(
   modelValue,
   () => {
-    change(modelValue.value - 1);
+    scrollIndex(modelValue.value);
   },
   {
     immediate: true,
@@ -149,10 +149,14 @@ onMounted(() => {
   };
 });
 
-window.addEventListener("resize", resetPosition);
+/* 改变宽度时纠正滚动位置 */
+const debounceScrollIndex = _debounce(() => {
+  scrollIndex(modelValue.value);
+}, 500);
+window.addEventListener("resize", debounceScrollIndex);
 
 onUnmounted(() => {
-  window.removeEventListener("resize", resetPosition);
+  window.removeEventListener("resize", debounceScrollIndex);
 });
 </script>
 

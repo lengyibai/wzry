@@ -9,7 +9,7 @@ import { LibGrid } from "@/components/common";
 import { GAME_HERO } from "@/api";
 import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
-import { _promiseTimeout } from "@/utils/tool";
+import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { KEmpty } from "@/components/business";
 import { usePlayAudio } from "@/hooks";
 
@@ -55,7 +55,7 @@ const getSkinList = async () => {
 getSkinList();
 
 /** @description 实时修改一行个数 */
-const changeCount = () => {
+const debounceChangeCount = _debounce(() => {
   const v = document.documentElement.clientWidth;
 
   if (v >= 2400) {
@@ -66,7 +66,7 @@ const changeCount = () => {
       count.value = b;
     }
   }
-};
+}, 100);
 
 /** @description 兑换
  * @param e 事件对象
@@ -98,8 +98,8 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
 
 onActivated(async () => {
   playAudio("h3w0");
-  changeCount();
-  window.addEventListener("resize", changeCount);
+  debounceChangeCount();
+  window.addEventListener("resize", debounceChangeCount);
 
   //显示英雄列表
   await _promiseTimeout(250);
@@ -107,7 +107,7 @@ onActivated(async () => {
 });
 
 onDeactivated(() => {
-  window.removeEventListener("resize", changeCount);
+  window.removeEventListener("resize", debounceChangeCount);
 });
 </script>
 
