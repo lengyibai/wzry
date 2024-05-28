@@ -7,7 +7,6 @@ export * from "./modules/useWeekCard";
 export * from "./modules/useIndexedDB";
 export * from "./modules/useCssClassToggle";
 export * from "./modules/useDevice";
-export * from "./modules/useCollapse";
 export * from "./modules/useGetZip";
 export * from "./modules/useRadialBorder";
 export * from "./modules/useMouseTrackingEffect";

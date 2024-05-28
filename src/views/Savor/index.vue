@@ -14,6 +14,7 @@ import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
 import { $bus } from "@/utils/eventBus";
 import { _debounce } from "@/utils/tool";
+import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 
 defineOptions({
   name: "Savor",
@@ -26,6 +27,9 @@ const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
 
 const { playAudio } = usePlayAudio();
 const { count } = useWaterfallResponsive();
+useCollapse(() => {
+  debounceUpdateSizePosition();
+});
 
 const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
 
@@ -92,21 +96,27 @@ const handleRelated = (e: Event, type: Game.Hero.AloneAtlas["type"], id: number)
   }
 };
 
+/** @description 更新元素的坐标及尺寸 */
+const debounceUpdateSizePosition = _debounce(() => {
+  waterfallRef.value?._updateSizePosition();
+}, 500);
+
+/** @description 通过给图片设置监听事件，图片加载自动调用updateSizePosition，适用于生成了新的图片时调用 */
 const debounceWatchImgLoad = _debounce(() => {
   waterfallRef.value?._watchImgLoad();
 }, 500);
-
-/** @description 加载更多 */
-const onLoadMore = () => {
-  $atlasStore.loadMore();
-  debounceWatchImgLoad();
-};
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
   $atlasStore.setScroll(v);
   back_top.value = v > 250;
 }, 250);
+
+/** @description 加载更多 */
+const onLoadMore = () => {
+  $atlasStore.loadMore();
+  debounceWatchImgLoad();
+};
 
 /** @description 返回顶部 */
 const onBackTop = () => {
@@ -118,10 +128,6 @@ const onSidebarChange = () => {
   debounceScroll(0);
   savorToolbarRef.value?._clearName();
 };
-
-const debounceUpdateSizePosition = _debounce(() => {
-  waterfallRef.value?._updateSizePosition();
-}, 500);
 
 onActivated(() => {
   playAudio("gz76");

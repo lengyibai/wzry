@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Logo3D from "./components/Logo3D/index.vue";
+import { useCollapse } from "../../hooks/useCollapse";
 
-import { useCollapse } from "@/hooks";
+import Logo3D from "./components/Logo3D/index.vue";
 
 const { collapse } = useCollapse();
 

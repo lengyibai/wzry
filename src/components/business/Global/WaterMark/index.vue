@@ -3,8 +3,9 @@ import { ref } from "vue";
 import { useFps } from "@vueuse/core";
 
 import { AuthStore } from "@/store";
-import { useDevice, useCollapse } from "@/hooks";
+import { useDevice } from "@/hooks";
 import { _browserV } from "@/utils/tool";
+import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 
 const $authStore = AuthStore();
 

@@ -2,11 +2,13 @@
 import { reactive, ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 
+import { useCollapse } from "../../hooks/useCollapse";
+
 import SideItem from "./index.vue";
 import type { RouteFormat } from "./interface";
 
 import { vMouseTip } from "@/directives";
-import { useCollapse, usePlayAudio } from "@/hooks";
+import { usePlayAudio } from "@/hooks";
 
 interface Props {
   route: any;

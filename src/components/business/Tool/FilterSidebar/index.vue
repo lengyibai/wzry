@@ -10,7 +10,8 @@ import {
   SkinDebrisStore,
 } from "@/store";
 import { vMouseTip } from "@/directives";
-import { useCollapse, usePlayAudio } from "@/hooks";
+import { usePlayAudio } from "@/hooks";
+import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 
 interface Props {
   /** 用于不同列表的筛选类型 */

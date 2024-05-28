@@ -1,18 +1,15 @@
 <script setup lang="ts">
-import { onUnmounted } from "vue";
-
 import sideItem from "./components/SideItem/index.vue";
 import GameLogo from "./components/GameLogo/index.vue";
 import { formatSidebarRoutes } from "./helper";
+import { useCollapse } from "./hooks/useCollapse";
 
 import { RouterStore } from "@/store";
-import { useCollapse } from "@/hooks";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
-import { _debounce } from "@/utils/tool";
 
 const $routerStore = RouterStore();
 
-const { collapse, setCollapse } = useCollapse();
+const { collapse } = useCollapse();
 const { hide_all } = useHideLayout();
 
 /** 路由数据 */
@@ -20,17 +17,6 @@ const options = $routerStore.routes;
 
 /** 格式化后的路由数据 */
 const routes = formatSidebarRoutes(options);
-
-/** @description 监听浏览器尺寸设置侧边栏状态 */
-const debounceSidebarStatus = _debounce(() => {
-  setCollapse(window.innerWidth < 960);
-}, 250);
-
-window.addEventListener("resize", debounceSidebarStatus);
-
-onUnmounted(() => {
-  window.removeEventListener("resize", debounceSidebarStatus);
-});
 </script>
 
 <template>

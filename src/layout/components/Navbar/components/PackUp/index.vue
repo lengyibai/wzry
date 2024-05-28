@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { useCollapse, usePlayAudio } from "@/hooks";
+import { usePlayAudio } from "@/hooks";
+import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 
 const { playAudio } = usePlayAudio();
 const { collapse, toggleCollapse } = useCollapse();
