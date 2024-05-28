@@ -101,6 +101,8 @@ export default defineConfig(({ mode }) => {
             wzry_dayjs: ["dayjs"],
             wzry_axios: ["axios"],
             wzry_i18n: ["vue-i18n"],
+            wzry_pinyin_pro: ["pinyin-pro"],
+            wzry_vueuse: ["@vueuse/core"],
           },
           chunkFileNames: "assets/js/wzry-[name]-[hash].js",
           entryFileNames: "assets/js/wzry-[name]-[hash].js",
