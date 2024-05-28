@@ -6,7 +6,7 @@ import { LOCAL_HERO, KVP_HERO, LOCAL_TYPE } from "@/api";
 import { _formatSeconds, _promiseTimeout, _random } from "@/utils/tool";
 import { AuthStore, KnapsackStore } from "@/store";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
-import { $msgTipText, GAME_CONFIG, GAME_PROP } from "@/config";
+import { $msgTipText, CUSTOM_TIP, GAME_CONFIG, GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
 import { useSetMarker } from "@/hooks";
 
@@ -273,7 +273,7 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
       setTimeout(() => {
         $knapsackStore.setGamePropNum("GUESS_CARD", 1, "SUB");
         $tip({
-          text: "由于上一次未正常退出竞猜，已扣除一张竞猜券。",
+          text: CUSTOM_TIP.j33c,
           align: "right-bottom",
           color: false,
           btnText: "确定",

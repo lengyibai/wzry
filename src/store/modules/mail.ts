@@ -7,7 +7,7 @@ import { API_DATA } from "@/api";
 import { MailStoreType } from "@/store/interface";
 import { _retryRequest, dayjs } from "@/utils/tool";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
-import { $msgTipText, GAME_PROP } from "@/config";
+import { $msgTipText, CUSTOM_TIP, GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
 
 /** @description 邮件相关 */
@@ -78,9 +78,8 @@ const MailStore = defineStore("mail", () => {
             //单独处理新手大礼包
             if (key === "NEW" && !mail_mark.value.includes(mark)) {
               $tip({
-                text: "欢迎你注册王者图鉴，开发者为你精心准备了一份新手大礼包，让你更快地体验网站里的一些玩法，祝你体验愉快！",
+                text: CUSTOM_TIP.yn35,
                 align: "right-bottom",
-                color: false,
                 btnText: "领取",
                 btnFn() {
                   const obtain = item.props!.map(({ num, key }) => {
