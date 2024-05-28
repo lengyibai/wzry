@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import { usePlayAudio } from "@/hooks";
 
 interface Props {
@@ -17,6 +19,8 @@ const modelValue = defineModel<number>({ required: true });
 
 const { playAudio } = usePlayAudio();
 
+const kSelectRef = ref<HTMLElement>();
+
 /** @description 选择
  * @param index 选项索引
  */
@@ -24,10 +28,14 @@ const handleSelect = (index: number) => {
   modelValue.value = index;
   playAudio("n4r4");
 };
+
+defineExpose({
+  _el: kSelectRef,
+});
 </script>
 
 <template>
-  <div class="k-select">
+  <div ref="kSelectRef" class="k-select">
     <div
       v-for="(item, index) in option"
       :key="index"
