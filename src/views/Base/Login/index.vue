@@ -10,7 +10,7 @@ import UpdateLog from "./components/UpdateLog/index.vue";
 
 import { KVideo } from "@/components/business";
 import { useStaticResourceVersion } from "@/hooks";
-import { _getHtmlLink, _getImgLink, _getVideoLink } from "@/utils/concise";
+import { _getImgLink, _getVideoLink } from "@/utils/concise";
 import { VersionStore } from "@/store";
 
 const $versionStore = VersionStore();
@@ -52,7 +52,7 @@ const onCloseUpdateDialog = () => {
  */
 const onToolType = (v: string) => {
   if (v === "readme") {
-    open(_getHtmlLink("readme"));
+    open("https://juejin.cn/post/7373937820177940518");
   }
 
   if (v === "sound") {
