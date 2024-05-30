@@ -5,7 +5,7 @@
   z-index: var(--z-index-obtain);
   display: flex;
   flex-direction: column;
-  background-color: var(--black-75);
+  background-color: rgb(0 0 0 / 90%);
 
   .title {
     .global_text-gradient(#73b2ff,var(--white),-180deg);
@@ -44,6 +44,30 @@
     transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.27);
     transform: scale(1);
     opacity: 1;
+
+    &::before,
+    &::after {
+      --rotate: 0deg;
+
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 20%;
+      height: 100%;
+      background-image: linear-gradient(var(--rotate), transparent 0%, var(--black-75) 100%);
+    }
+
+    &::before {
+      --rotate: -90deg;
+
+      left: 0;
+    }
+
+    &::after {
+      --rotate: 90deg;
+
+      right: 0;
+    }
 
     &.hide {
       transform: scale(0.25);
