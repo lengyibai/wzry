@@ -66,26 +66,30 @@ const usePagingLoad = <T>() => {
 
     /** @description 加载更多 */
     loadMore() {
-      //处于加载中或列表加载完毕时禁止触发加载更多，避免消耗
-      if (loading.value || finish.value) return;
-
-      loading.value = true;
-      setTimeout(() => {
-        if (page_total > page) {
-          const getCurrentPageData = filter_list.value.slice(
-            page * page_count,
-            (page + 1) * page_count,
-          );
-          show_list.value.push(...getCurrentPageData);
-          page += 1;
-
-          //如果当前页获取的个数低于每页个数，则意味着列表加载完毕
-          finish.value = getCurrentPageData.length < page_count;
-        } else {
-          finish.value = true;
+      return new Promise<void>((resolve, reject) => {
+        //处于加载中或列表加载完毕时禁止触发加载更多，避免消耗
+        if (loading.value || finish.value) {
+          reject();
+          return;
         }
-        loading.value = false;
-      }, 500);
+
+        loading.value = true;
+
+        setTimeout(() => {
+          if (page_total > page) {
+            const getCurrentPageData = filter_list.value.slice(
+              page * page_count,
+              (page + 1) * page_count,
+            );
+            show_list.value.push(...getCurrentPageData);
+            page += 1;
+          } else if (filter_list.value.length === show_list.value.length) {
+            finish.value = true;
+          }
+          loading.value = false;
+          resolve();
+        }, 250);
+      });
     },
   };
 
