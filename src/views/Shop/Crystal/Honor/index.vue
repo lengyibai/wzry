@@ -55,7 +55,7 @@ getSkinList();
  * @param data 皮肤数据
  */
 const onExchange = (e: Event, data: Game.Hero.Skin) => {
-  if ($knapsackStore.articles.SKIN_DEBRIS >= Number(data.debris)) {
+  if ($knapsackStore.articles.HONOR_CRYSTAL > 0) {
     $confirm({
       text: $confirmText("r36m", {
         name: `${data.heroName}-${data.name}`,
@@ -70,9 +70,9 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
     });
   } else {
     $confirm({
-      text: $confirmText("p89n", { prop: GAME_PROP.NAME["HERO_DEBRIS"] }),
+      text: $confirmText("p89n", { prop: GAME_PROP.NAME["HONOR_CRYSTAL"] }),
       confirm() {
-        $router.push(ROUTE_PATH.PROP_SHOP);
+        $router.push(ROUTE_PATH.SKIN_LOTTERY);
       },
     });
   }
