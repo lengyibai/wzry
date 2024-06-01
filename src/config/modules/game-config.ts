@@ -647,3 +647,6 @@ export const GUESS_COUNT_LIMIT = 25;
 
 /** @description 跳跳币需要跳跃领取的次数 */
 export const JUMP_COIN_RECEIVE_CLAIM = 5;
+
+/** @description 竞猜币答题奖励区间 */
+export const GUESS_COIN_REWARD_RANGE = [24, 75];

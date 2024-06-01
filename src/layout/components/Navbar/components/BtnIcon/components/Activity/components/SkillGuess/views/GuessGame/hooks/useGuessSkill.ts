@@ -50,7 +50,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
     /** 当前选择答题的技能索引 */
     skill_index: ref(-1),
     /** 当前可领取的竞猜币 */
-    guess_coin: ref(25),
+    guess_coin: ref(GAME_CONFIG.GUESS_COIN_REWARD_RANGE[1]),
     /** 今日已竞猜次数 */
     guess_count: ref(0),
     /** 答案状态 0-回答中 1-回答正确 2-回答错误 */
@@ -142,9 +142,9 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
 
       seconds--;
 
-      //从16秒开始每减少一秒，竞猜币减少两枚
-      if (guess_coin.value > 10 && seconds <= 16) {
-        guess_coin.value -= 2;
+      //从16秒开始每减少一秒，竞猜币减少三枚
+      if (guess_coin.value > GAME_CONFIG.GUESS_COIN_REWARD_RANGE[0] && seconds <= 16) {
+        guess_coin.value -= 3;
       }
 
       countdown.value = _formatSeconds(seconds, "SEC");
@@ -261,7 +261,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
         answer_status.value = 1;
         status_text.value = "回答正确，是否继续答题？";
       } else {
-        guess_coin.value = 25;
+        guess_coin.value = GAME_CONFIG.GUESS_COIN_REWARD_RANGE[1];
         answer_status.value = 2;
         status_text.value = "回答错误，已扣除竞猜券，是否继续答题？";
         $knapsackStore.setGamePropNum("GUESS_CARD", 1, "SUB");
@@ -283,7 +283,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
         },
         () => {
           show_receive.value = false;
-          guess_coin.value = 25;
+          guess_coin.value = GAME_CONFIG.GUESS_COIN_REWARD_RANGE[1];
         },
       );
     },

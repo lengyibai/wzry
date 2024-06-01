@@ -24,7 +24,7 @@ const { hide_poster_guess_part, setHidePosterGuessPart } = useHidePosterGuess();
 const props: { key: Game.PropKey; num: string }[] = [
   {
     key: "GUESS_COIN",
-    num: "20~40",
+    num: `${GAME_CONFIG.GUESS_COIN_REWARD_RANGE[0]}~${GAME_CONFIG.GUESS_COIN_REWARD_RANGE[1]}`,
   },
 ];
 
