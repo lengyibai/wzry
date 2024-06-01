@@ -10,8 +10,8 @@ import { useHideSkillGuess } from "./hooks/useHideSkillGuess";
 import GuessGame from "./views/GuessGame/index.vue";
 
 import { KProp } from "@/components/business";
-import { $msgTipText, CONFIRM_TIP, GAME_CONFIG } from "@/config";
-import { $confirm, $message } from "@/utils/busTransfer";
+import { $msgTipText, GAME_CONFIG } from "@/config";
+import { $message } from "@/utils/busTransfer";
 import { _getActivityBannerLink } from "@/utils/concise";
 import { AuthStore } from "@/store";
 import { vMouseTip } from "@/directives";
@@ -52,16 +52,11 @@ const handleStart = () => {
   }
   if (useCloseToStore(closeActivity)) return;
 
-  $confirm({
-    text: CONFIRM_TIP.vj93,
-    confirm: () => {
-      setHideSkillGuessPart(true);
-      setHideActivityPart(true);
-      setTimeout(() => {
-        show_guess.value = true;
-      }, 1000);
-    },
-  });
+  setHideSkillGuessPart(true);
+  setHideActivityPart(true);
+  setTimeout(() => {
+    show_guess.value = true;
+  }, 1000);
 };
 
 onMounted(() => {
@@ -162,8 +157,10 @@ defineExpose({
           系统将
           <span class="green">随机选择一位英雄</span>
           的
-          <span class="green">随机一个技能图标</span>
-          ，你有
+          <span class="green">技能图标</span>
+          ，你需要从中挑选一个
+          <span class="green">技能图标</span>
+          作答，你有
           <span class="blue">20秒</span>
           时间输入该技能属于哪个
           <span class="green">英雄的名字</span>
@@ -175,14 +172,11 @@ defineExpose({
           <span class="orange">用时越少，发放越多</span>
           ，竞猜券在
           <span class="red">回答错误</span>
+          或
+          <span class="red">放弃作答</span>
           时
           <span class="red">扣除</span>
-          。并且在没有完成回答且回答正确的情况下
-          <span class="red">退出竞猜</span>
-          ，都将视为
-          <span class="red">“这道题不会而放弃作答”</span>
-          ，下次参与竞猜将
-          <span class="red">自动扣除竞猜券</span>。
+          。
         </div>
       </transition>
 

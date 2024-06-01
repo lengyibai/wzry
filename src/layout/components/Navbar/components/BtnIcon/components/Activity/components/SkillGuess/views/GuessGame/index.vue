@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, nextTick, onMounted, onUnmounted, ref } from "vue";
-import { useFullscreen } from "@vueuse/core";
+import { inject, nextTick, ref, watch } from "vue";
+import { useMagicKeys } from "@vueuse/core";
 
 import { useHideSkillGuess } from "../../hooks/useHideSkillGuess";
 import { useCloseToStore } from "../../../../common/hooks/useCloseToStore";
@@ -16,7 +16,7 @@ import {
   SelectHeroAndSkin,
 } from "@/components/business";
 import { vMouseTip, vTypewriterSingle } from "@/directives";
-import { _debounce, _promiseTimeout } from "@/utils/tool";
+import { _promiseTimeout } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { KnapsackStore } from "@/store";
 import { GAME_PROP, MESSAGE_TIP } from "@/config";
@@ -26,9 +26,9 @@ const modelValue = defineModel<boolean>({ required: true });
 
 const $knapsackStore = KnapsackStore();
 
-const { enter: _enterFullScreen, exit: _exitFullScreen } = useFullscreen();
 const { setHideSkillGuessPart } = useHideSkillGuess();
 const { setHideActivityPart } = useIntoGame();
+const { escape } = useMagicKeys();
 
 /** 关闭活动 */
 const closeActivity = inject<() => void>("close-activity")!;
@@ -77,12 +77,12 @@ const handleSubmitAnswer = () => {
   });
 };
 
-/* 打字结束后触发 */
+/** @description 打字结束后触发 */
 const typewriterCallback = () => {
   show_btn.value = true;
 };
 
-/* 关闭游戏 */
+/** @description 关闭游戏 */
 async function handleClose() {
   show.value = false;
 
@@ -92,7 +92,7 @@ async function handleClose() {
   modelValue.value = false;
 }
 
-/* 是否进入下一题 */
+/** @description 是否进入下一题 */
 const handleNext = () => {
   if (useCloseToStore(closeActivity, handleClose)) return;
   if (!show_btn.value) return;
@@ -109,33 +109,23 @@ const handleNext = () => {
   }, 500);
 };
 
-/* 关闭竞猜 */
-const debounceStopGuess = _debounce(() => {
-  if (guessing.value) {
-    $message(MESSAGE_TIP.z0r7, "error");
-  } else {
-    $message(MESSAGE_TIP.g3h9);
-
-    //非正常退出自动领取奖励
-    if (show_receive.value) {
-      receiveGuessCoin();
-    }
+/** @description 退出竞猜 */
+const exitGuess = () => {
+  //退出自动领取奖励
+  if (show_receive.value) {
+    receiveGuessCoin();
   }
   handleClose();
-}, 100);
+};
 
-onMounted(() => {
-  _enterFullScreen();
-  setTimeout(() => {
-    window.addEventListener("resize", debounceStopGuess);
-    document.documentElement.addEventListener("mouseleave", debounceStopGuess);
-  }, 1000);
-});
+watch(escape, (v) => {
+  if (!v) return;
+  if (guessing.value) {
+    $message(MESSAGE_TIP.da62, "error");
+    return;
+  }
 
-onUnmounted(() => {
-  window.removeEventListener("resize", debounceStopGuess);
-  document.documentElement.removeEventListener("mouseleave", debounceStopGuess);
-  _exitFullScreen();
+  exitGuess();
 });
 </script>
 
@@ -284,10 +274,8 @@ onUnmounted(() => {
         <!-- Tip -->
         <transition name="to-top" appear>
           <div class="tips">
-            <div class="tip">在技能图标未加载的状态下，按键盘ESC键(退出键)可退出竞猜</div>
-            <div class="tip">
-              电脑端只能在全屏下答题，一旦识别非全屏，将自动退出竞猜并扣除竞猜券
-            </div>
+            <div class="tip">按键盘ESC键(退出键)可退出竞猜</div>
+            <div class="tip">在竞猜过程中关闭或刷新浏览器，下次竞猜将自动扣除竞猜券</div>
           </div>
         </transition>
       </div>

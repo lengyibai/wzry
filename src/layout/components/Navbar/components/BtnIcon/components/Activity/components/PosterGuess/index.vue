@@ -10,8 +10,8 @@ import GuessGame from "./views/GuessGame/index.vue";
 import { useHidePosterGuess } from "./hooks/useHidePosterGuess";
 
 import { KProp } from "@/components/business";
-import { $confirm, $message } from "@/utils/busTransfer";
-import { $msgTipText, CONFIRM_TIP, GAME_CONFIG } from "@/config";
+import { $message } from "@/utils/busTransfer";
+import { $msgTipText, GAME_CONFIG } from "@/config";
 import { _getActivityBannerLink } from "@/utils/concise";
 import { AuthStore } from "@/store";
 import { vMouseTip } from "@/directives";
@@ -52,16 +52,11 @@ const handleStart = () => {
   }
   if (useCloseToStore(closeActivity)) return;
 
-  $confirm({
-    text: CONFIRM_TIP.vj93,
-    confirm: () => {
-      setHidePosterGuessPart(true);
-      setHideActivityPart(true);
-      setTimeout(() => {
-        show_guess.value = true;
-      }, 1000);
-    },
-  });
+  setHidePosterGuessPart(true);
+  setHideActivityPart(true);
+  setTimeout(() => {
+    show_guess.value = true;
+  }, 1000);
 };
 
 onMounted(() => {
@@ -179,14 +174,11 @@ defineExpose({
           <span class="orange">用时越少，发放越多</span>
           ，竞猜券在
           <span class="red">回答错误</span>
+          或
+          <span class="red">放弃作答</span>
           时
           <span class="red">扣除</span>
-          。并且在没有完成回答且回答正确的情况下
-          <span class="red">退出竞猜</span>
-          ，都将视为
-          <span class="red">“这道题不会而放弃作答”</span>
-          ，下次参与竞猜将
-          <span class="red">自动扣除竞猜券</span>。
+          。
         </div>
       </transition>
 
