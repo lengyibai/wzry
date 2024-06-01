@@ -2,25 +2,36 @@
 import { computed, nextTick, onBeforeUnmount } from "vue";
 import { onMounted, ref, watch } from "vue";
 
-import { _debounce } from "@/utils/tool";
+import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
+import { _LoadMore, _debounce } from "@/utils/tool";
 
 interface Props {
   /** 数据列表 */
   data: T[];
   /** 一行的数目 */
   columnCount: number;
+  /** 是否暂无更多 */
+  finish?: boolean;
+  /** 是否启用加载更多 */
+  loadMore?: boolean;
+  /** 是否处于加载中 */
+  loading?: boolean;
   /** 间隔 */
   gap?: string;
-  /** 间隔多少行后更新列表 */
+  /** 间隔多少行后更新列表，当遇到分页加载场景时，元素{bufferLineCount}行高度必须小于分页触发的高度，当分页数据加载完毕，会触发renderItems函数更新缓冲数量，bufferLineCount数值过大会导致多次触发，产生列表抖动并造成renderItems频繁错误触发，也可以选择列表滚动到底部后加载更多 */
   bufferLineCount?: number;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
+  loadMore: true,
+  finish: false,
+  loading: false,
   bufferLineCount: 1,
   gap: "1rem",
 });
 const $emit = defineEmits<{
   scroll: [v: number];
+  "load-more": [];
 }>();
 
 /** 上次滚动位置 */
@@ -127,6 +138,21 @@ onMounted(() => {
   window.addEventListener("resize", debounceUpdateStatus);
   renderItems();
   nextTick(debounceUpdateStatus);
+
+  if (!$props.loadMore) return;
+  new _LoadMore(
+    {
+      parent: virtualListRef.value!,
+      loadHeight: 1,
+    },
+    {
+      load() {
+        //处于加载中或全部加载完毕禁止再次触发
+        if ($props.loading || $props.finish) return;
+        $emit("load-more");
+      },
+    },
+  );
 });
 
 onBeforeUnmount(() => {
@@ -151,6 +177,7 @@ defineExpose({
     >
       <slot :data="renderedData"></slot>
     </div>
+    <KLoadMore v-if="loadMore" :loading="loading" :finish="finish" />
   </div>
 </template>
 
