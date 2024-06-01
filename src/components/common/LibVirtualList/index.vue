@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-import { computed, nextTick, onBeforeUnmount } from "vue";
+import { computed, nextTick, onActivated, onBeforeUnmount, onDeactivated } from "vue";
 import { onMounted, ref, watch } from "vue";
 
 import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
@@ -122,6 +122,7 @@ const handleScroll = (e: Event) => {
 /** @description 更新状态 */
 const debounceUpdateStatus = _debounce(() => {
   const child_el = fillListRef.value!.children[0] as HTMLElement;
+
   if (!child_el) return;
   itemHeight.value = child_el.offsetHeight;
   renderItems();
@@ -153,6 +154,14 @@ onMounted(() => {
       },
     },
   );
+});
+
+onActivated(() => {
+  debounceUpdateStatus();
+});
+
+onDeactivated(() => {
+  window.removeEventListener("resize", debounceUpdateStatus);
 });
 
 onBeforeUnmount(() => {
