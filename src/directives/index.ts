@@ -18,3 +18,4 @@ export * from "./modules/copy";
 export * from "./modules/wave-diffuse";
 export * from "./modules/debounce-click";
 export * from "./modules/overflow-center";
+export * from "./modules/card-into-animate";
