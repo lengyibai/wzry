@@ -14,10 +14,16 @@ const SkinDebrisStore = defineStore("skinDebris", () => {
   const $usePagingLoad = usePagingLoad<Game.Hero.Skin>();
 
   const ExposeData = {
+    /** 是否处于加载中 */
+    loading: $usePagingLoad.loading,
     /** 滚动坐标 */
     scroll: $usePagingLoad.scroll,
+    /** 暂无更多 */
+    finish: $usePagingLoad.finish,
     /** 筛选后的数据列表 */
     filter_list: $usePagingLoad.filter_list,
+    /** 展示的数据列表 */
+    show_list: $usePagingLoad.show_list,
 
     /** 职业类型 */
     profession: ref<Game.Hero.Profession>("全部"),

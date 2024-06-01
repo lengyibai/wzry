@@ -113,6 +113,7 @@ const MailStore = defineStore("mail", () => {
       sign_mails.value = [];
 
       //签到之前需要读取远程签到配置
+      await this.getAllMail();
       sign_mails.value.forEach((item) => {
         const { key, type, title } = item;
         mail_list.value.unshift({

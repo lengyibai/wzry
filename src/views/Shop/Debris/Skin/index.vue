@@ -13,6 +13,7 @@ import { $confirmText, GAME_PROP, ROUTE_PATH } from "@/config";
 import { $confirm } from "@/utils/busTransfer";
 import { _debounce, _promiseTimeout } from "@/utils/tool";
 import { useChangeListLineNum, usePlayAudio } from "@/hooks";
+import { vCardIntoAnimate } from "@/directives";
 
 defineOptions({
   name: "SkinDebrisShop",
@@ -23,7 +24,7 @@ const $router = useRouter();
 const $knapsackStore = KnapsackStore();
 const $skinDebrisStore = SkinDebrisStore();
 
-const { scroll, filter_list } = storeToRefs($skinDebrisStore);
+const { scroll, show_list, finish, loading } = storeToRefs($skinDebrisStore);
 
 const { playAudio } = usePlayAudio();
 const { line_num } = useChangeListLineNum(6, [
@@ -95,13 +96,17 @@ const onExchange = (e: Event, data: Game.Hero.Skin) => {
   }
 };
 
+/** @description 加载更多 */
+const onLoadMore = () => {
+  $skinDebrisStore.loadMore().then(() => {
+    libVirtualListRef.value?._updateStatus();
+  });
+};
+
 onActivated(async () => {
   playAudio("h3w0");
-
   libVirtualListRef.value?._setPosition(scroll.value);
-  libVirtualListRef.value?._updateStatus();
 
-  //显示英雄列表
   await _promiseTimeout(250);
   show_skin_list.value = true;
 });
@@ -118,16 +123,20 @@ onActivated(async () => {
 
       <transition name="card-list">
         <LibVirtualList
-          v-if="filter_list.length && show_skin_list"
+          v-if="show_list.length && show_skin_list"
           ref="libVirtualListRef"
-          :data="filter_list"
+          :data="show_list"
           :column-count="line_num"
+          :loading="loading"
+          :finish="finish"
           @scroll="debounceScroll"
+          @load-more="onLoadMore"
           v-slot="{ data }"
         >
           <div
             v-for="(item, index) in data"
             :key="item.id"
+            v-card-into-animate
             class="skin-card"
             :style="{
               'transition-delay': (index % (line_num * 2)) * 0.1 + 's',
@@ -137,7 +146,7 @@ onActivated(async () => {
           </div>
         </LibVirtualList>
       </transition>
-      <KEmpty v-if="filter_list.length === 0" tip="暂无可兑换皮肤" />
+      <KEmpty v-if="show_list.length === 0" tip="暂无可兑换皮肤" />
     </div>
 
     <!--右侧职业分类侧边栏-->
