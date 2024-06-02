@@ -94,11 +94,15 @@ export class ScaleFLIPImage {
   /* 绑定事件 */
   private bindEvents() {
     this.overlay.addEventListener("wheel", (event) => {
+      const relativeSpeed = Math.min(100, Math.max(Math.abs(event.deltaX), Math.abs(event.deltaY)));
+
+      const scrollSpeed = relativeSpeed * 0.01;
+
       if (event.deltaY > 0) {
-        this.scale /= 1.25;
+        this.scale /= 1 + scrollSpeed;
         if (this.scale < 0.25) this.scale = 0.25;
       } else {
-        this.scale *= 1.25;
+        this.scale *= 1 + scrollSpeed;
         if (this.scale > 20) this.scale = 20;
       }
       this.img.style.transform = `scale(${this.scale}) translate(${this.x}px, ${this.y}px)`;
