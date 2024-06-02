@@ -4,6 +4,8 @@ import { storeToRefs } from "pinia";
 import { KnapsackStore } from "@/store";
 import { _getPropLink } from "@/utils/concise";
 import { KLongNum } from "@/components/business";
+import { GAME_PROP } from "@/config";
+import { vMouseTip } from "@/directives";
 
 const $knapsackStore = KnapsackStore();
 const { articles } = storeToRefs($knapsackStore);
@@ -13,13 +15,25 @@ const { articles } = storeToRefs($knapsackStore);
   <div class="nav-bar">
     <div class="title" data-text="我的乂宝">我的乂宝</div>
     <div class="coins">
-      <div class="jump">
+      <div
+        v-mouse-tip="{
+          type: 'TIP',
+          text: GAME_PROP.DESC.JUMP_COIN,
+        }"
+        class="jump"
+      >
         <img class="icon" :src="_getPropLink('jump_coin')" alt="" />
-        <KLongNum class="k-long-num" :value="articles.JUMP_COIN" />
+        <KLongNum class="k-long-num" font-size="1.5rem" :value="articles.JUMP_COIN" />
       </div>
-      <div class="guess">
+      <div
+        v-mouse-tip="{
+          type: 'TIP',
+          text: GAME_PROP.DESC.GUESS_COIN,
+        }"
+        class="guess"
+      >
         <img class="icon" :src="_getPropLink('guess_coin')" alt="" />
-        <KLongNum class="k-long-num" :value="articles.GUESS_COIN" />
+        <KLongNum class="k-long-num" font-size="1.5rem" :value="articles.GUESS_COIN" />
       </div>
     </div>
   </div>

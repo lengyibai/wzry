@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
+import { vMouseTip } from "@/directives";
 
 interface Props {
   /** 道具键名 */
@@ -20,7 +21,14 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="propRef" class="k-prop">
+  <div
+    ref="propRef"
+    v-mouse-tip="{
+      type: 'TIP',
+      text: GAME_PROP.DESC[propKey],
+    }"
+    class="k-prop"
+  >
     <div class="icon-box">
       <img :src="_getPropLink(GAME_PROP.ICON[propKey])" alt="" class="icon" />
       <div class="num" :data-text="num">{{ num }}</div>

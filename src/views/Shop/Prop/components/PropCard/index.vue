@@ -23,7 +23,14 @@ const handlePay = (data: BuyProp) => {
 <template>
   <div v-mask-gradient class="prop-card">
     <img class="blur" :src="_getPropLink(GAME_PROP.ICON[data.key])" />
-    <img class="icon" :src="_getPropLink(GAME_PROP.ICON[data.key])" />
+    <img
+      v-mouse-tip="{
+        type: 'TIP',
+        text: GAME_PROP.DESC[data.key],
+      }"
+      class="icon"
+      :src="_getPropLink(GAME_PROP.ICON[data.key])"
+    />
     <div class="name">{{ GAME_PROP.NAME[data.key] }}×{{ data.num }}</div>
     <KButton
       v-mouse-tip
