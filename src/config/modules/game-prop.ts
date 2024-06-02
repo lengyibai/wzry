@@ -131,38 +131,38 @@ export const ICON: Record<Game.PropKey, string> = {
 
 /** @description 游戏道具Key对应描述 */
 export const DESC: Record<Game.PropKey, string> = {
-  GOLD: "通过英雄夺宝获得，可用于道具商店购买道具",
-  DIAMOND: "通过皮肤夺宝获得，可用于道具商店购买道具",
-  HERO_DEBRIS: "通过英雄夺宝获得，可用于商城-碎片商店兑换英雄",
-  SKIN_DEBRIS: "通过皮肤夺宝获得，可用于商城-碎片商店兑换皮肤",
+  GOLD: "通过英雄夺宝获得，可用于道具商店购买道具。",
+  DIAMOND: "通过皮肤夺宝获得，可用于道具商店购买道具。",
+  HERO_DEBRIS: "通过英雄夺宝获得，可用于商城-碎片商店兑换英雄。",
+  SKIN_DEBRIS: "通过皮肤夺宝获得，可用于商城-碎片商店兑换皮肤。",
   BLESSING_BAG: `通过每日登录邮箱领取福袋，打开后获得以下奖励：${getPropChanceNum(
     BLESSING_BAG_CHANCE,
     NAME,
-  )}`,
-  KING_CRYSTAL: "通过英雄夺宝获得，可用于商城-水晶商店兑换皮肤",
-  HONOR_CRYSTAL: "通过皮肤夺宝获得，可用于商城-水晶商店兑换皮肤",
+  )}。`,
+  KING_CRYSTAL: "通过英雄夺宝获得，可用于商城-水晶商店兑换皮肤。",
+  HONOR_CRYSTAL: "通过皮肤夺宝获得，可用于商城-水晶商店兑换皮肤。",
   HERO_EXP_ONE:
-    "通过英雄夺宝及商城-道具商店购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡",
+    "通过英雄夺宝及商城-道具商店购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡。",
   HERO_EXP_TWO:
-    "通过英雄夺宝及商城-道具商店金币购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡",
+    "通过英雄夺宝及商城-道具商店金币购买获得，可用于提升英雄熟练度，熟练度达到一定等级可领取英雄的伴生皮肤卡。",
   DOUBLE_GOLD:
-    "通过商城-道具商店购买获得，使用后在夺宝时获得的金币数量翻倍，有效时间：24小时，重复使用此卡不会叠加奖励，只会延续时长",
+    "通过商城-道具商店购买获得，使用后在夺宝时获得的金币数量翻倍，有效时间：24小时，重复使用此卡不会叠加奖励，只会延续时长。",
   DOUBLE_EXP:
-    "通过商城-道具商店购买获得，使用后在夺宝时获得的经验宝箱数量翻倍，有效时间：24小时，重复使用此卡不会叠加奖励，只会延续时长",
-  HERO_LOTTERY_COIN: "通过每日登录邮箱领取英雄夺宝币，可用于英雄夺宝，夺宝币当日有效，次日归零",
-  SKIN_LOTTERY_COIN: "通过每日登录邮箱领取英雄夺宝币，可用于皮肤夺宝，夺宝币当日有效，次日归零",
+    "通过商城-道具商店购买获得，使用后在夺宝时获得的经验宝箱数量翻倍，有效时间：24小时，重复使用此卡不会叠加奖励，只会延续时长。",
+  HERO_LOTTERY_COIN: "通过每日登录邮箱领取英雄夺宝币，可用于英雄夺宝，夺宝币当日有效，次日归零。",
+  SKIN_LOTTERY_COIN: "通过每日登录邮箱领取英雄夺宝币，可用于皮肤夺宝，夺宝币当日有效，次日归零。",
   HERO_LOTTERY_STONE:
-    "通过英雄夺宝石补给站获得，当英雄夺宝币用完后，可使用该道具增加一次英雄夺宝次数",
+    "通过英雄夺宝石补给站、夺宝石周卡获得，当英雄夺宝币用完后，可使用夺宝石增加一次英雄夺宝次数。",
   SKIN_LOTTERY_STONE:
-    "通过皮肤夺宝石补给站获得，当英雄夺宝币用完后，可使用该道具增加一次英雄夺宝次数",
+    "通过皮肤夺宝石补给站、夺宝石周卡获得，当英雄夺宝币用完后，可使用夺宝石增加一次英雄夺宝次数。",
   HERO_LOTTERY_WEEK: `通过商城-道具商店购买获得，使用此卡后，从当日0点开始，每日通过邮箱发放英雄夺宝石*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE}，并赠送英雄夺宝币*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.COIN}，重复使用此卡不会叠加奖励，只会延续时长。`,
   SKIN_LOTTERY_WEEK: `通过商城-道具商店购买获得，使用此卡后，从当日0点开始，每日通过邮箱发放皮肤夺宝石*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.STONE}，并赠送皮肤夺宝币*${LOTTERY_STONE_WEEK_CARD_GRANT.HERO.COIN}，重复使用此卡不会叠加奖励，只会延续时长。`,
   SKIN_CARD_INITIAL: "通过英雄满级后获得，可用于兑换任意英雄的伴生皮肤",
   HERO_TREASURE: `通过英雄夺宝获得，打开后随机获得以下奖励之一：${getPropChanceNum(
     HERO_TREASURE_CHANCE,
     NAME,
-  )}`,
-  HERO_CHEST_RANDOM: "通过英雄夺宝获得，打开后随机获得一个英雄",
+  )}。`,
+  HERO_CHEST_RANDOM: "通过英雄夺宝获得，打开后随机获得一个英雄。",
   SKIN_BRAVE_TREASURE: `通过皮肤夺宝获得，打开后随机获得以下奖励之一：${getPropChanceNum(
     SKIN_BRAVE_TREASURE_CHANCE,
     NAME,
@@ -179,14 +179,14 @@ export const DESC: Record<Game.PropKey, string> = {
     SKIN_LIMIT_TREASURE_CHANCE,
     NAME,
   )}，皮肤秘宝品质越高，获得的稀有道具概率越高。`,
-  HERO_CHEST_OPTIONAL: "通过英雄秘宝获得，打开后自选一个英雄",
-  SKIN_CHEST_BRAVE_OPTIONAL: "通过皮肤夺宝获得，打开后自选一款勇者皮肤",
-  SKIN_CHEST_EPIC_OPTIONAL: "通过皮肤夺宝获得，打开后自选一个史诗皮肤",
-  SKIN_CHEST_LEGEND_OPTIONAL: "通过皮肤夺宝获得，打开后自选一个款传说皮肤",
-  SKIN_CHEST_LIMIT_OPTIONAL: "通过皮肤夺宝获得，打开后自选一款限定皮肤",
-  GUESS_CARD: "通过商城-道具商店购买获得，用于参加竞猜活动",
-  GUESS_COIN: "通过参与竞猜活动，答对题目获得，用于兑换乂宝部件装扮",
-  JUMP_COIN: "通过乂宝跳跃获得，用于兑换乂宝纯色风格的部件",
+  HERO_CHEST_OPTIONAL: "通过英雄秘宝获得，打开后自选一个英雄。",
+  SKIN_CHEST_BRAVE_OPTIONAL: "通过皮肤夺宝获得，打开后自选一款勇者皮肤。",
+  SKIN_CHEST_EPIC_OPTIONAL: "通过皮肤夺宝获得，打开后自选一个史诗皮肤。",
+  SKIN_CHEST_LEGEND_OPTIONAL: "通过皮肤夺宝获得，打开后自选一个款传说皮肤。",
+  SKIN_CHEST_LIMIT_OPTIONAL: "通过皮肤夺宝获得，打开后自选一款限定皮肤。",
+  GUESS_CARD: "通过商城-道具商店购买获得，用于参加竞猜活动。",
+  GUESS_COIN: "通过参与竞猜活动，答对题目获得，用于兑换乂宝部件装扮。",
+  JUMP_COIN: "通过乂宝跳跃获得，用于兑换乂宝纯色风格的部件。",
 };
 
 /** @description 道具价格表 */
