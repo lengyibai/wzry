@@ -77,6 +77,7 @@ const MailStore = defineStore("mail", () => {
 
             //单独处理新手大礼包
             if (key === "NEW" && !mail_mark.value.includes(mark)) {
+              mail_mark.value.push(mark);
               $tip({
                 text: CUSTOM_TIP.yn35,
                 align: "right-bottom",
@@ -93,7 +94,6 @@ const MailStore = defineStore("mail", () => {
 
                   $obtain(obtain);
 
-                  mail_mark.value.push(mark);
                   saveMailData();
                 },
               });
