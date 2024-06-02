@@ -44,18 +44,14 @@ const handleBuyAlonePart = async () => {
   const type = part_selected.value.type;
   const price = Number(part_selected.value.price);
 
-  if (type === "COLOR") {
-    if (price <= articles.value.JUMP_COIN) {
-      setGamePropNum("JUMP_COIN", price, "SUB");
-    } else {
-      $message($msgTipText("wa83", { v: "跳跳币" }), "error");
-    }
-  } else {
-    if (price <= articles.value.GUESS_COIN) {
-      setGamePropNum("GUESS_COIN", price, "SUB");
-    } else {
-      $message($msgTipText("wa83", { v: "竞猜币" }), "error");
-    }
+  if (type === "COLOR" && price > articles.value.JUMP_COIN) {
+    $message($msgTipText("wa83", { v: "跳跳币" }), "error");
+    return;
+  }
+
+  if (type === "IMG" && price > articles.value.GUESS_COIN) {
+    $message($msgTipText("wa83", { v: "竞猜币" }), "error");
+    return;
   }
 
   $confirm({
@@ -65,6 +61,8 @@ const handleBuyAlonePart = async () => {
       part: `${YIBAO_PART.PART_KEY_INFO[id].name}-${YIBAO_PART.PARTS_KEY_NAME[part_type.value]}`,
     }),
     confirm() {
+      setGamePropNum(type === "COLOR" ? "JUMP_COIN" : "GUESS_COIN", price, "SUB");
+
       buyAlonePart();
       bigYiBaoBody.playChangePartAnimation();
       $message(MESSAGE_TIP.dl57);
