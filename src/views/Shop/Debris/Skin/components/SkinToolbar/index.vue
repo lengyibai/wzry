@@ -6,7 +6,7 @@ import { SkinDebrisStore } from "@/store";
 import FilterGender from "@/components/business/Tool/FilterGender/index.vue";
 import FilterTool from "@/components/business/Tool/FilterTool/index.vue";
 import { MOUSE_TIP } from "@/config";
-import { KInput } from "@/components/business";
+import { KInput, KPropNum } from "@/components/business";
 import { vMouseTip } from "@/directives";
 import { _debounce } from "@/utils/tool";
 
@@ -76,6 +76,8 @@ defineExpose({
 
 <template>
   <div class="skin-toolbar">
+    <KPropNum prop-key="SKIN_DEBRIS" height="3rem" margin-right="1rem" />
+
     <div class="filter-select">
       <!-- 价格排序 -->
       <FilterTool :options="select_price" :sort-text="price_type" @select="onPriceSort" />

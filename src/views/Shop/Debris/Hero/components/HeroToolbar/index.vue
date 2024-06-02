@@ -3,7 +3,7 @@ import { ref, reactive } from "vue";
 import { storeToRefs } from "pinia";
 
 import { HeroDebrisStore } from "@/store";
-import { FilterGender, FilterTool, KInput } from "@/components/business";
+import { FilterGender, FilterTool, KInput, KPropNum } from "@/components/business";
 import { LOCAL_TYPE } from "@/api";
 import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
@@ -15,6 +15,7 @@ const $emit = defineEmits<{
 }>();
 
 const $heroDebrisStore = HeroDebrisStore();
+
 const { price_type } = storeToRefs($heroDebrisStore);
 
 const select_price = ["全部价格", "由低到高", "由高到低"];
@@ -70,6 +71,8 @@ defineExpose({
 
 <template>
   <div class="hero-toolbar">
+    <KPropNum prop-key="HERO_DEBRIS" height="3rem" margin-right="1rem" />
+
     <div class="filter-select">
       <!-- 价格排序 -->
       <FilterTool :options="select_price" :sort-text="price_type" @select="onPriceSort" />

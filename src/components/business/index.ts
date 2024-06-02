@@ -15,6 +15,7 @@ import KProp from "./Parts/K-Prop/index.vue";
 import KHelp from "./Parts/K-Help/index.vue";
 import KEmpty from "./Parts/K-Empty/index.vue";
 import KSelect from "./Parts/K-Select/index.vue";
+import KPropNum from "./Parts/K-Prop-Num/index.vue";
 import KLongNum from "./Parts/K-LongNum/index.vue";
 import KLoadingRadiate from "./Parts/K-LoadingRadiate/index.vue";
 import KText from "./Parts/K-Text/index.vue";
@@ -46,6 +47,7 @@ export {
   KLogo,
   KLongNum,
   KProp,
+  KPropNum,
   KCategory,
   KEmpty,
   KLoadingRadiate,

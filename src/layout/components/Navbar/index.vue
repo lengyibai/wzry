@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import PackUp from "./components/PackUp/index.vue";
-import PropNum from "./components/PropNum/index.vue";
 import UserMenu from "./components/UserMenu/index.vue";
 import BtnIcon from "./components/BtnIcon/index.vue";
 import Notice from "./components/Notice/index.vue";
 
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
+import { KPropNum } from "@/components/business";
 
 const { hide_all } = useHideLayout();
 </script>
@@ -22,7 +22,8 @@ const { hide_all } = useHideLayout();
 
       <div class="navbar__right">
         <!-- 道具数量 -->
-        <PropNum />
+        <KPropNum prop-key="GOLD" height="2.25rem" margin-right="1.5rem" shine />
+        <KPropNum prop-key="DIAMOND" height="2.25rem" margin-right="1.5rem" shine />
 
         <!-- 用户菜单 -->
         <UserMenu />

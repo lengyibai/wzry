@@ -11,20 +11,17 @@ import { useGuessPoster } from "./hooks/useGuessPoster";
 import {
   KButton,
   KLoadingIcon,
-  KLongNum,
+  KPropNum,
   KScrollCountdown,
   SelectHeroAndSkin,
 } from "@/components/business";
 import { vMouseTip, vTypewriterSingle } from "@/directives";
 import { _promiseTimeout } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
-import { KnapsackStore } from "@/store";
 import { GAME_PROP, MESSAGE_TIP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
 
 const modelValue = defineModel<boolean>({ required: true });
-
-const $knapsackStore = KnapsackStore();
 
 const { escape } = useMagicKeys();
 const { setHidePosterGuessPart } = useHidePosterGuess();
@@ -110,14 +107,15 @@ watch(escape, (v) => {
       <div v-show="show" class="guess-game">
         <!-- 剩余道具 -->
         <div class="guess-prop">
-          <div class="prop">
-            <img :src="_getPropLink(GAME_PROP.ICON['GUESS_CARD'])" alt="" class="icon" />
-            <div class="num">{{ $knapsackStore.articles.GUESS_CARD }}</div>
-          </div>
-          <div class="prop">
-            <img :src="_getPropLink(GAME_PROP.ICON['GUESS_COIN'])" alt="" class="icon" />
-            <KLongNum class="k-long-num" :value="$knapsackStore.articles.GUESS_COIN" />
-          </div>
+          <KPropNum
+            prop-key="GUESS_CARD"
+            font-size="3rem"
+            height="3.5rem"
+            margin-right="2rem"
+            gap="1rem"
+            shine
+          />
+          <KPropNum prop-key="GUESS_COIN" gap="1rem" font-size="3rem" height="3.5rem" shine />
         </div>
 
         <!-- 出题区 -->

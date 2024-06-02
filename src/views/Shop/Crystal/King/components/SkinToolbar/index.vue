@@ -7,7 +7,7 @@ import FilterGender from "@/components/business/Tool/FilterGender/index.vue";
 import FilterTool from "@/components/business/Tool/FilterTool/index.vue";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
-import { KInput } from "@/components/business";
+import { KInput, KPropNum } from "@/components/business";
 import { _debounce } from "@/utils/tool";
 
 const $emit = defineEmits<{
@@ -59,6 +59,8 @@ defineExpose({
 
 <template>
   <div class="skin-toolbar">
+    <KPropNum prop-key="KING_CRYSTAL" height="3rem" margin-right="1rem" />
+
     <div class="filter-select">
       <!-- 皮肤类型筛选 -->
       <FilterTool

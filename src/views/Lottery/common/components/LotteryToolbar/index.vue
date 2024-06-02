@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-
-import { KHelp } from "@/components/business";
+import { KHelp, KPropNum } from "@/components/business";
 import { $helpText, GAME_CHANCE, GAME_CONFIG, GAME_PROP } from "@/config";
-import { vAnimateNumber, vMouseTip } from "@/directives";
-import { KnapsackStore } from "@/store";
+import { vMouseTip } from "@/directives";
 import { $help } from "@/utils/busTransfer";
-import { _getPropLink } from "@/utils/concise";
 import { LOTTERY_CRYSTAL_INTERVAL } from "@/config/modules/game-config";
 
 interface Props {
@@ -14,9 +10,6 @@ interface Props {
   type: "HERO" | "SKIN";
 }
 const $props = defineProps<Props>();
-
-const $knapsackStore = KnapsackStore();
-const { articles } = storeToRefs($knapsackStore);
 
 /** 标题 */
 const title = $props.type === "HERO" ? "英雄" : "皮肤";
@@ -87,31 +80,14 @@ const handleHelp = () => {
     <KHelp v-mouse-tip margin-left="1rem" @click="handleHelp" />
 
     <div class="prop-num">
-      <!-- 剩余夺宝币 -->
-      <div class="coin">
-        <img :src="_getPropLink(GAME_PROP.ICON[coin_key[type]])" alt="" class="icon" />
-        <div
-          v-animate-number="{
-            num: articles[coin_key[type]],
-            duration: 2000,
-            once: false,
-          }"
-          class="num"
-        ></div>
-      </div>
-
-      <!-- 剩余夺宝石 -->
-      <div class="rock">
-        <img :src="_getPropLink(GAME_PROP.ICON[stone_key[type]])" alt="" class="icon" />
-        <div
-          v-animate-number="{
-            num: articles[stone_key[type]],
-            duration: 2000,
-            once: false,
-          }"
-          class="num"
-        ></div>
-      </div>
+      <KPropNum
+        :prop-key="coin_key[type]"
+        gap="0.75rem"
+        height="3rem"
+        font-size="2.25rem"
+        margin-right="2rem"
+      />
+      <KPropNum :prop-key="stone_key[type]" gap="0.75rem" height="3rem" font-size="2.25rem" />
     </div>
   </div>
 </template>
