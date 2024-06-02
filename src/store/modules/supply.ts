@@ -20,6 +20,8 @@ const SupplyStore = defineStore("supply", () => {
   let hero_timer: NodeJS.Timeout;
   /** 皮肤夺宝补给计时器 */
   let skin_timer: NodeJS.Timeout;
+  /** 是否已退出登录 */
+  let is_logout = false;
 
   const ExposeData = {
     /** 英雄夺宝今日剩余补给数量 */
@@ -99,6 +101,7 @@ const SupplyStore = defineStore("supply", () => {
      * @param v 用户补给数据
      */
     useUserSupply(v: User.Data["supply"]) {
+      is_logout = false;
       const updateSupply = (type: "HERO" | "SKIN") => {
         const supply_data = v[type.toLowerCase() as "hero" | "skin"];
         const supply_remain_num = type === "HERO" ? hero_supply_remain_num : skin_supply_remain_num;
@@ -124,6 +127,8 @@ const SupplyStore = defineStore("supply", () => {
 
       //监听浏览器状态
       window.addEventListener("visibilitychange", () => {
+        if (is_logout) return;
+
         //当重新进入网页时，重新计算剩余时间并启动倒计时
         if (document.visibilityState === "visible") {
           hero_seconds.value = getSurplusTime(hero_start_time.value, hero_mode.value!);
@@ -290,6 +295,7 @@ const SupplyStore = defineStore("supply", () => {
 
     /** @description 中止倒计时，用于退出登录时调用 */
     interruptCountdown() {
+      is_logout = true;
       clearInterval(hero_timer);
       clearInterval(skin_timer);
     },
