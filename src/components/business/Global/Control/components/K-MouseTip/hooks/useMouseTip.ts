@@ -16,7 +16,7 @@ const ExposeData = {
   /** 是否已经点击过了 */
   is_click: ref(false),
   /** tip类型 */
-  type: ref<"NORMAL" | "INPUT">("NORMAL"),
+  type: ref<MouseTip["type"]>("NORMAL"),
 };
 const { show, tip, type, downing, show_tip, disabled, is_click } = ExposeData;
 

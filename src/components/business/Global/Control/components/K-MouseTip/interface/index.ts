@@ -6,5 +6,5 @@ export interface MouseTip {
   /** 是否处于禁用状态 */
   disabled?: boolean;
   /** 当前悬浮类型 */
-  type?: "NORMAL" | "INPUT";
+  type?: "NORMAL" | "INPUT" | "TIP";
 }

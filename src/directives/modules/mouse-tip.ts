@@ -6,6 +6,7 @@
 import type { Directive } from "vue";
 
 import { $mouseTip } from "@/utils/busTransfer";
+import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
 
 interface ElType extends HTMLElement {
   /** tip内容 */
@@ -22,7 +23,7 @@ interface Params {
   /** 是否处于禁用状态 */
   disabled?: boolean;
   /** 当前悬浮类型 */
-  type?: "NORMAL" | "INPUT";
+  type?: MouseTip["type"];
 }
 
 const vMouseTip: Directive<ElType, Params> = {

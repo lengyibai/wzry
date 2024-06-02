@@ -83,6 +83,10 @@
         height: 6.25rem;
       }
 
+      &.tip {
+        --color: var(--green);
+      }
+
       &.disabled {
         --color: var(--red);
       }
@@ -149,12 +153,12 @@
   }
 
   .round-box {
-    --color: var(--white);
+    --color: var(--white-50);
 
     position: absolute;
     width: 3.125rem;
     height: 3.125rem;
-    border: 2px solid var(--white-50);
+    border: 2px solid var(--color);
     transition: 0.25s ease-out;
     transform: translate(calc(-50% - 0.1875rem), calc(-50% - 0.1875rem));
 
@@ -169,6 +173,12 @@
         transition: border-radius 0.5s;
         animation: normal 0.75s calc(var(--i) * 0.25s) infinite linear;
       }
+    }
+
+    &.tip {
+      --color: var(--green);
+
+      border-color: var(--color) !important;
     }
 
     &.disabled {
