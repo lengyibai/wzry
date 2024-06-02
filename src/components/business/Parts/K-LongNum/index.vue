@@ -5,8 +5,14 @@ import { _formatKilobitNumber } from "@/utils/tool";
 interface Props {
   /** 长数字 */
   value: number;
+  /** 字体大小 */
+  fontSize: string;
+  /** 阴影 */
+  textShadow?: string;
 }
-defineProps<Props>();
+withDefaults(defineProps<Props>(), {
+  textShadow: "var(--t-shadow-e)",
+});
 </script>
 
 <template>
@@ -18,6 +24,23 @@ defineProps<Props>();
       once: false,
     }"
     class="k-long-num"
+    :style="{
+      fontSize,
+      textShadow,
+    }"
   ></div>
-  <div v-else class="k-long-num">{{ _formatKilobitNumber(value) }}</div>
+  <div
+    v-else
+    class="k-long-num"
+    :style="{
+      fontSize,
+      textShadow,
+    }"
+  >
+    {{ _formatKilobitNumber(value) }}
+  </div>
 </template>
+
+<style scoped lang="less">
+@import url("./index.less");
+</style>
