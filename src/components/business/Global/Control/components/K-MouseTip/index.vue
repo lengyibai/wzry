@@ -4,6 +4,7 @@ import { onMounted } from "vue";
 
 import { connectCircle } from "./helper/connectCircle";
 import { useMouseTip } from "./hooks/useMouseTip";
+import { vPreventOverflow } from "./directives/prevent-overflow";
 
 import { _debounce } from "@/utils/tool";
 
@@ -158,6 +159,7 @@ eval(
             <!-- tip框 -->
             <div
               ref="tipRef"
+              v-prevent-overflow
               class="tip"
               :class="{
                 show: show_tip && !is_click,
