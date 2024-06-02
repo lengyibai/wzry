@@ -123,7 +123,7 @@ const TaskStore = defineStore("task", () => {
 
                   //如果是用户使用用户任务数据，则使用用户的进度
                   if (restore) {
-                    userTask.schedule[index].value = scheduleValue;
+                    userTask.schedule[index].value = Math.min(scheduleValue, total);
                   }
 
                   //如果当前进度小于总值
