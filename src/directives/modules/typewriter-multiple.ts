@@ -1,7 +1,6 @@
 /**
  * v-typewriter-multiple
  * 多行打字机
- * 注：只能使用v-html填充内容，否则会使用上一次的文本
  */
 import type { Directive, DirectiveBinding } from "vue";
 

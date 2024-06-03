@@ -1,6 +1,6 @@
 /**
  * v-blur-load
- * 模糊加载图片
+ * 图片先加载模糊图，再加载大图
  */
 
 import type { Directive, DirectiveBinding } from "vue";

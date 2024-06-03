@@ -1,6 +1,6 @@
 /**
  * v-click-outside
- * 自动获取焦点
+ * 点击元素外面时触发
  */
 import type { Directive } from "vue";
 

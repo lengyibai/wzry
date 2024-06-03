@@ -1,6 +1,6 @@
 /**
  * v-text-hover-color
- * 底部渐变
+ * 悬浮文字时，文字变色效果及底部线条
  */
 import type { Directive } from "vue";
 

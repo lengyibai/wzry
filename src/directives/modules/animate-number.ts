@@ -1,6 +1,6 @@
 /**
  * v-animate-number
- * 数字滚动
+ * 数字改变动画
  */
 
 import type { Directive, DirectiveBinding } from "vue";

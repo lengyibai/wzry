@@ -1,6 +1,6 @@
 /**
  * v-mouse-tip
- * 鼠标悬浮提示，配合K-MouseTip使用
+ * 鼠标悬浮提示
  */
 
 import type { Directive } from "vue";
