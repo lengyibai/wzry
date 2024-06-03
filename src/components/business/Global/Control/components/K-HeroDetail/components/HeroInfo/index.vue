@@ -11,8 +11,6 @@ import { KScrollTip } from "@/components/business";
 
 const under_1200 = useMediaQuery("(max-width: 1200px)");
 
-const downRef = ref<InstanceType<typeof KScrollTip>>();
-
 /** 控制页面元素显示 */
 const into = ref(true);
 </script>
@@ -36,7 +34,7 @@ const into = ref(true);
     </div>
 
     <!-- 可滚动提示 -->
-    <KScrollTip ref="downRef" />
+    <KScrollTip />
   </div>
 </template>
 

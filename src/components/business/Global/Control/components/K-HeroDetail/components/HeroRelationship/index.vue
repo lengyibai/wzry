@@ -30,7 +30,7 @@ setScrollFn("skinIcon", (pageName) => {
     </template>
 
     <!-- 可滚动提示 -->
-    <KScrollTip ref="downRef" />
+    <KScrollTip />
   </div>
 </template>
 
