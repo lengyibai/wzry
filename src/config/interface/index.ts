@@ -36,6 +36,20 @@ export type TreasureChance = Partial<
   >
 >;
 
+/** @description 任务进度类型 */
+export interface TaskSchedule {
+  /** 任务列表单个任务ID */
+  taskId: string;
+  /** 任务进度是否为单次，而不是累加 */
+  once: boolean;
+  data: {
+    /** 任务列表单个任务下的子任务需要匹配的任务状态Key，来获取任务状态数据 */
+    key: keyof Game.Task;
+    /** 任务列表单个任务下的子任务的标题 */
+    label: string;
+  }[];
+}
+
 /** @description 道具键名对应的埋点键名 */
 export type PropRelateMarker = Partial<Record<Game.PropKey, keyof User.Data["behaviorMarker"]>>;
 

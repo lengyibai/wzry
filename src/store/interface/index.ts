@@ -66,22 +66,6 @@ export namespace MailStoreType {
   }
 }
 
-/** @description 任务相关 */
-export namespace TaskStoreType {
-  export interface TaskSchedule {
-    /** 任务列表单个任务ID */
-    taskId: string;
-    /** 是否为单次任务 */
-    once: boolean;
-    data: {
-      /** 任务列表单个任务下的子任务需要匹配的任务状态Key，来获取任务状态数据 */
-      key: keyof Game.Task;
-      /** 任务列表单个任务下的子任务的标题 */
-      label: string;
-    }[];
-  }
-}
-
 /** @description 乂宝相关 */
 export namespace YiBaoStoreType {
   /** @description 部件类型ID对应详情 */
