@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { KLogo } from "@/components/business";
+import Logo from "./components/Logo/index.vue";
 
 interface Props {
   /** 列表是否加载完毕 */
@@ -17,7 +17,7 @@ defineProps<Props>();
       hide: !(loading || finish),
     }"
   >
-    <KLogo fast :stop="finish" />
+    <Logo fast :stop="finish" />
     <div class="text">{{ finish ? "暂无更多" : "加载中..." }}</div>
   </div>
 </template>

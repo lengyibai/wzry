@@ -2,7 +2,6 @@ import Control from "./Global/Control/index.vue";
 import WaterMark from "./Global/WaterMark/index.vue";
 import KBackTop from "./Parts/K-BackTop/index.vue";
 import KButton from "./Parts/K-Button/index.vue";
-import KLogo from "./Parts/K-Logo/index.vue";
 import KCheck from "./Parts/K-Check/index.vue";
 import KDialog from "./Parts/K-Dialog/index.vue";
 import KInput from "./Parts/K-Input/index.vue";
@@ -44,7 +43,6 @@ export {
   KLoadingIcon,
   KMarquee,
   KRange,
-  KLogo,
   KLongNum,
   KProp,
   KPropNum,
