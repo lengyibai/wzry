@@ -1,4 +1,4 @@
-import { useMouseTrackingEffect } from "@/hooks/modules/useMouseTrackingEffect";
+import { useMouseTrackingEffect } from "../../../hooks/useMouseTrackingEffect";
 
 /** @description 虹膜类 */
 class SmallYiBaoIris {

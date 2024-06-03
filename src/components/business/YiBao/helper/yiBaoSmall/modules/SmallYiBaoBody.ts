@@ -1,4 +1,5 @@
-import { useMouseTrackingEffect } from "@/hooks/modules/useMouseTrackingEffect";
+import { useMouseTrackingEffect } from "../../../hooks/useMouseTrackingEffect";
+
 import { _adjustCoordinates, _getCoordsAngle, _getCoordsDistance } from "@/utils/tool";
 
 /** @description 身体类 */
