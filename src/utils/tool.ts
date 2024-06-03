@@ -467,21 +467,21 @@ export const _mergeConfig = <T>(config: T, initialConfig: T) => {
 };
 
 /**
- * @description 传入时间戳与当前时间判断
+ * @description 传入时间戳与当前时间判断是否为同一天或同一周
  * @param timestamp 毫秒时间戳
- * @returns 0-同一天 1-新的一天 -1时间戳大于当前时间
+ * @param unit 判断单位 'day' 或 'week'
+ * @returns 0-同一单位时间 1-新单位时间 -1时间戳大于当前时间
  */
-export const _checkTimeStamp = (timestamp: number) => {
-  const inputDay = dayjs(timestamp).startOf("day");
-  const currentDay = dayjs().startOf("day");
+export const _checkTimeStamp = (timestamp: number, unit: "day" | "week") => {
+  const inputTime = dayjs(timestamp).startOf(unit);
+  const currentTime = dayjs().startOf(unit);
 
-  //比较两个日期
-  if (inputDay.isSame(currentDay)) {
-    return 0; //同一天
-  } else if (inputDay.isBefore(currentDay)) {
-    return 1; //时间戳为前一天
+  if (inputTime.isSame(currentTime)) {
+    return 0; // 同一单位时间
+  } else if (inputTime.isBefore(currentTime)) {
+    return 1; // 新单位时间
   } else {
-    return -1; //时间戳大于当前时间
+    return -1; // 时间戳大于当前时间
   }
 };
 
