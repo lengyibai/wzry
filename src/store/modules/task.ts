@@ -5,12 +5,12 @@ import { taskSort } from "../helper/taskStore";
 
 import { AuthStore } from "./auth";
 
-import type { TaskType } from "@/config/interface";
+import type { TaskSchedule, TaskType } from "@/config/interface";
 import { DEFAULT, GAME_CONFIG, GAME_PROP } from "@/config";
 import { $obtain } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
-import type { TaskStoreType } from "@/store/interface";
 import { _accumulate, _decimal } from "@/utils/tool";
+import { TASK_KV_LIST } from "@/config/modules/game-config";
 
 /** @description 任务相关 */
 const TaskStore = defineStore("task", () => {
@@ -92,35 +92,48 @@ const TaskStore = defineStore("task", () => {
      * @param restore 是否应用于恢复用户配置
      */
     setTaskStatus(key: keyof Game.Task, scheduleValue: number, restore: boolean = false) {
-      //设置任务状态
+      //判断是否应用于恢复用户配置，如果是，则直接赋值，否则追加进度
       if (restore) {
-        (task_status.value[key] as number) = scheduleValue as number;
+        task_status.value[key] = scheduleValue;
       } else {
-        (task_status.value[key] as number) += scheduleValue as number;
+        task_status.value[key] += scheduleValue;
       }
 
       //设置进度值
-      task_list.value.forEach((task) => {
-        //设置任务进度
-        const setTaskSchedule = (info: TaskStoreType.TaskSchedule) => {
+      task_list.value.forEach((userTask) => {
+        const setTaskSchedule = (info: TaskSchedule) => {
           const { taskId, data, once } = info;
-          if (task.id === taskId) {
-            data.forEach((item) => {
-              if (key === item.key) {
-                const index = task.schedule.findIndex((schedule) => schedule.label === item.label);
-                const total = task.schedule[index].total;
-                let value = task.schedule[index].value;
 
-                //是否为使用用户任务配置时调用，是则直接赋值
-                if (restore) {
-                  task.schedule[index].value = scheduleValue > total ? total : scheduleValue;
-                } else if (value < total) {
-                  //是否为单次任务
-                  if (once) {
-                    task.schedule[index].value = 1;
-                  } else {
-                    value += scheduleValue;
-                    task.schedule[index].value = value > total ? total : value;
+          //将用户的任务ID与任务配置ID匹配
+          if (userTask.id === taskId) {
+            //循环任务配置表的配置数据
+            data.forEach((item) => {
+              //将需要追加的任务数据Key与任务数据Key匹配
+              if (key === item.key) {
+                //将用户进度数据的label与任务配置数据的label匹配查找索引号
+                const index = userTask.schedule.findIndex((schedule) => {
+                  return schedule.label === item.label;
+                });
+
+                if (index !== -1) {
+                  /** 获取用户任务进度总值 */
+                  const total = userTask.schedule[index].total;
+                  /** 获取用户任务当前进度值 */
+                  const value = userTask.schedule[index].value;
+
+                  //如果是用户使用用户任务数据，则使用用户的进度
+                  if (restore) {
+                    userTask.schedule[index].value = scheduleValue;
+                  }
+
+                  //如果当前进度小于总值
+                  else if (value < total) {
+                    //如果任务是以次计算
+                    if (once) {
+                      userTask.schedule[index].value = 1;
+                    } else {
+                      userTask.schedule[index].value += scheduleValue;
+                    }
                   }
                 }
               }
@@ -128,205 +141,7 @@ const TaskStore = defineStore("task", () => {
           }
         };
 
-        //在线奖励
-        setTaskSchedule({
-          once: false,
-          taskId: "de89",
-          data: [
-            {
-              key: "today_online_duration",
-              label: "今日已在线",
-            },
-          ],
-        });
-
-        //每日消费
-        setTaskSchedule({
-          once: true,
-          taskId: "qw27",
-          data: [
-            {
-              key: "today_gold_consume",
-              label: "今日已消费金币",
-            },
-            {
-              key: "today_diamond_consume",
-              label: "今日已消费钻石",
-            },
-          ],
-        });
-
-        //每日夺宝
-        setTaskSchedule({
-          once: true,
-          taskId: "mx25",
-          data: [
-            {
-              key: "today_hero_lottery",
-              label: "今日英雄夺宝",
-            },
-            {
-              key: "today_skin_lottery",
-              label: "今日皮肤夺宝",
-            },
-          ],
-        });
-
-        //双倍的诱惑
-        setTaskSchedule({
-          once: true,
-          taskId: "r88v",
-          data: [
-            {
-              key: "today_double_gold_card",
-              label: "今日已使用双倍金币卡",
-            },
-            {
-              key: "today_double_exp_card",
-              label: "今日已使用双倍经验卡",
-            },
-          ],
-        });
-
-        //每日补给
-        setTaskSchedule({
-          once: true,
-          taskId: "sp37",
-          data: [
-            {
-              key: "today_hero_supply",
-              label: "今日英雄夺宝补给领取",
-            },
-            {
-              key: "today_skin_supply",
-              label: "今日皮肤夺宝补给领取",
-            },
-          ],
-        });
-
-        //英雄夺宝达人
-        setTaskSchedule({
-          once: false,
-          taskId: "d1b7",
-          data: [
-            {
-              key: "today_hero_coin",
-              label: "今日已消耗夺宝币",
-            },
-            {
-              key: "today_hero_stone",
-              label: "今日已消耗夺宝石",
-            },
-          ],
-        });
-
-        //皮肤夺宝达人
-        setTaskSchedule({
-          once: false,
-          taskId: "q35i",
-          data: [
-            {
-              key: "today_skin_coin",
-              label: "今日已消耗夺宝币",
-            },
-            {
-              key: "today_skin_stone",
-              label: "今日已消耗夺宝石",
-            },
-          ],
-        });
-
-        //免费英雄夺宝石
-        setTaskSchedule({
-          once: false,
-          taskId: "o1u8",
-          data: [
-            {
-              key: "today_hero_supply",
-              label: "今日已获取夺宝石",
-            },
-          ],
-        });
-
-        //免费皮肤夺宝石
-        setTaskSchedule({
-          once: false,
-          taskId: "vk13",
-          data: [
-            {
-              key: "today_skin_supply",
-              label: "今日已获取夺宝石",
-            },
-          ],
-        });
-
-        //本周在线时长
-        setTaskSchedule({
-          once: false,
-          taskId: "q20y",
-          data: [
-            {
-              key: "week_online_duration",
-              label: "本周已在线",
-            },
-          ],
-        });
-
-        //本周本周登录天数
-        setTaskSchedule({
-          once: false,
-          taskId: "a21l",
-          data: [
-            {
-              key: "week_login_day",
-              label: "本周已登录",
-            },
-          ],
-        });
-
-        //天天领取夺宝石
-        setTaskSchedule({
-          once: true,
-          taskId: "a6b9",
-          data: [
-            {
-              key: "week_hero_stone_card",
-              label: "本周英雄夺宝石周卡",
-            },
-            {
-              key: "week_skin_stone_card",
-              label: "本周皮肤夺宝石周卡",
-            },
-          ],
-        });
-
-        //一块都没有了
-        setTaskSchedule({
-          once: false,
-          taskId: "pc22",
-          data: [
-            {
-              key: "week_zero_supply",
-              label: "本周用完某日英雄或皮肤夺宝石补给站额度",
-            },
-          ],
-        });
-
-        //夺宝狂魔
-        setTaskSchedule({
-          once: false,
-          taskId: "om70",
-          data: [
-            {
-              key: "week_hero_coin",
-              label: "本周消耗英雄夺宝币",
-            },
-            {
-              key: "week_skin_coin",
-              label: "本周消耗皮肤夺宝币",
-            },
-          ],
-        });
+        TASK_KV_LIST().forEach((task) => setTaskSchedule(task));
       });
 
       saveTaskStatus();

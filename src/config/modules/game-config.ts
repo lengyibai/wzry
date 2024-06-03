@@ -1,4 +1,4 @@
-import { TaskType } from "../interface";
+import { TaskSchedule, TaskType } from "../interface";
 
 import { ROUTE_PATH } from "./route-path";
 
@@ -544,6 +544,100 @@ export const TASK_LIST: () => TaskType[] = () => [
         value: 0,
         total: 25 * 7,
       },
+    ],
+  },
+];
+
+/** @description 今日及本周任务列表键值匹配 */
+export const TASK_KV_LIST: () => TaskSchedule[] = () => [
+  {
+    once: false,
+    taskId: "de89",
+    data: [{ key: "today_online_duration", label: "今日已在线" }],
+  },
+  {
+    once: true,
+    taskId: "qw27",
+    data: [
+      { key: "today_gold_consume", label: "今日已消费金币" },
+      { key: "today_diamond_consume", label: "今日已消费钻石" },
+    ],
+  },
+  {
+    once: false,
+    taskId: "mx25",
+    data: [
+      { key: "today_hero_lottery", label: "今日英雄夺宝" },
+      { key: "today_skin_lottery", label: "今日皮肤夺宝" },
+    ],
+  },
+  {
+    once: true,
+    taskId: "r88v",
+    data: [
+      { key: "today_double_gold_card", label: "今日已使用双倍金币卡" },
+      { key: "today_double_exp_card", label: "今日已使用双倍经验卡" },
+    ],
+  },
+  {
+    once: true,
+    taskId: "sp37",
+    data: [
+      { key: "today_hero_supply", label: "今日英雄夺宝补给领取" },
+      { key: "today_skin_supply", label: "今日皮肤夺宝补给领取" },
+    ],
+  },
+  {
+    once: false,
+    taskId: "d1b7",
+    data: [
+      { key: "today_hero_coin", label: "今日已消耗夺宝币" },
+      { key: "today_hero_stone", label: "今日已消耗夺宝石" },
+    ],
+  },
+  {
+    once: false,
+    taskId: "q35i",
+    data: [
+      { key: "today_skin_coin", label: "今日已消耗夺宝币" },
+      { key: "today_skin_stone", label: "今日已消耗夺宝石" },
+    ],
+  },
+  {
+    once: false,
+    taskId: "o1u8",
+    data: [{ key: "today_hero_supply", label: "今日已获取夺宝石" }],
+  },
+  {
+    once: false,
+    taskId: "vk13",
+    data: [{ key: "today_skin_supply", label: "今日已获取夺宝石" }],
+  },
+  {
+    once: false,
+    taskId: "q20y",
+    data: [{ key: "week_online_duration", label: "本周已在线" }],
+  },
+  { once: false, taskId: "a21l", data: [{ key: "week_login_day", label: "本周已登录" }] },
+  {
+    once: true,
+    taskId: "a6b9",
+    data: [
+      { key: "week_hero_stone_card", label: "本周英雄夺宝石周卡" },
+      { key: "week_skin_stone_card", label: "本周皮肤夺宝石周卡" },
+    ],
+  },
+  {
+    once: false,
+    taskId: "pc22",
+    data: [{ key: "week_zero_supply", label: "本周用完某日英雄或皮肤夺宝石补给站额度" }],
+  },
+  {
+    once: false,
+    taskId: "om70",
+    data: [
+      { key: "week_hero_coin", label: "本周消耗英雄夺宝币" },
+      { key: "week_skin_coin", label: "本周消耗皮肤夺宝币" },
     ],
   },
 ];
