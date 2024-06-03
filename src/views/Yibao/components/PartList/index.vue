@@ -110,7 +110,7 @@ setTimeout(() => {
       />
     </div>
 
-    <ColorsTextures :mode="part_style_type" :part-key="part_type" />
+    <ColorsTextures />
 
     <div class="pay-status">
       <KButton

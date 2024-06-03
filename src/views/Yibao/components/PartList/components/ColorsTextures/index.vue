@@ -18,16 +18,8 @@ import { vScrollVirtualization } from "@/directives";
 import { _getMinecraftLink } from "@/utils/concise";
 import { _cloneDeep } from "@/utils/tool";
 
-interface Props {
-  /** 当前部件key */
-  partKey: Game.YiBao.PartType;
-  /** 当前模式 */
-  mode: Game.YiBao.StyleType;
-}
-const $props = defineProps<Props>();
-
 const $yibaoStore = YibaoStore();
-const { owned_part_id, temp_part_detail } = storeToRefs($yibaoStore);
+const { owned_part_id, temp_part_detail, part_style_type, part_type } = storeToRefs($yibaoStore);
 const { setAnnulusId, setAntennaId, setBlushId, setEyeId, setMouthId, setSideId, setWingId } =
   $yibaoStore;
 
@@ -50,14 +42,14 @@ const ownedSort = () => {
 };
 
 //当前选中的ID
-const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
+const current_id = computed(() => temp_part_detail.value[part_type.value].id);
 </script>
 
 <template>
   <div v-scroll-virtualization class="colors-textures">
     <!-- 圆环 -->
-    <template v-if="partKey === 'annulus'">
-      <template v-if="mode === 'COLOR'">
+    <template v-if="part_type === 'annulus'">
+      <template v-if="part_style_type === 'COLOR'">
         <ShopWindow
           v-for="(item, index) in ownedSort()(YIBAO_PART.ANNULUS_COLOR)"
           :key="index"
@@ -86,8 +78,8 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 天线 -->
-    <template v-if="partKey === 'antenna'">
-      <template v-if="mode === 'COLOR'">
+    <template v-if="part_type === 'antenna'">
+      <template v-if="part_style_type === 'COLOR'">
         <ShopWindow
           v-for="(item, index) in ownedSort()(YIBAO_PART.ANTENNA_COLOR)"
           :key="index"
@@ -121,7 +113,7 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 腮红 -->
-    <template v-if="partKey === 'blush'">
+    <template v-if="part_type === 'blush'">
       <ShopWindow
         v-for="(item, index) in ownedSort()(YIBAO_PART.BLUSH_COLOR)"
         :key="index"
@@ -136,7 +128,7 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 眼睛 -->
-    <template v-if="partKey === 'eye'">
+    <template v-if="part_type === 'eye'">
       <ShopWindow
         v-for="(item, index) in ownedSort()(YIBAO_PART.EYE_COLOR)"
         :key="index"
@@ -151,7 +143,7 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 嘴巴 -->
-    <template v-if="partKey === 'mouth'">
+    <template v-if="part_type === 'mouth'">
       <ShopWindow
         v-for="(item, index) in ownedSort()(YIBAO_PART.MOUTH_COLOR)"
         :key="index"
@@ -166,8 +158,8 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 六面 -->
-    <template v-if="partKey === 'side'">
-      <template v-if="mode === 'COLOR'">
+    <template v-if="part_type === 'side'">
+      <template v-if="part_style_type === 'COLOR'">
         <ShopWindow
           v-for="(item, index) in ownedSort()(YIBAO_PART.SIDE_COLOR)"
           :key="index"
@@ -196,8 +188,8 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
     </template>
 
     <!-- 羽翅 -->
-    <template v-if="partKey === 'wing'">
-      <template v-if="mode === 'COLOR'">
+    <template v-if="part_type === 'wing'">
+      <template v-if="part_style_type === 'COLOR'">
         <ShopWindow
           v-for="(item, index) in ownedSort()(YIBAO_PART.WING_COLOR)"
           :key="index"
@@ -225,7 +217,7 @@ const current_id = computed(() => temp_part_detail.value[$props.partKey].id);
       </template>
     </template>
 
-    <div v-if="mode === 'IMG'" class="tip">想要更多贴图可在群内发送贴图名称</div>
+    <div v-if="part_style_type === 'IMG'" class="tip">想要更多贴图可在群内发送贴图名称</div>
   </div>
 </template>
 
