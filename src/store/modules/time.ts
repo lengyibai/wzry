@@ -53,9 +53,9 @@ const TimeStore = defineStore("time", () => {
    */
   const checkSign = (user_data: User.Data) => {
     //是否已经是新的一天
-    const new_day = _checkTimeStamp(user_data.lastLoginTime) === 1;
+    const new_day = _checkTimeStamp(user_data.lastLoginTime, "day") === 1;
     //是否已经是新的一周
-    const new_week = dayjs().day() === 1;
+    const new_week = _checkTimeStamp(user_data.lastLoginTime, "week") === 1;
 
     if (new_day) newDay();
     if (new_week) newWeek();
