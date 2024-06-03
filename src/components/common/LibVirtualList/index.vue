@@ -123,7 +123,9 @@ const checkBottomRow = () => {
 
 /** @description 更新状态 */
 const debounceUpdateStatus = _debounce(() => {
-  itemHeight.value = (fillListRef.value!.children[0] as HTMLElement).offsetHeight;
+  const child_el = fillListRef.value!.children[0] as HTMLElement;
+  if (!child_el) return;
+  itemHeight.value = child_el.offsetHeight;
   renderItems();
 }, 100);
 
