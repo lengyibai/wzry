@@ -1,0 +1,897 @@
+{
+  "src": {
+    "api": {
+      "desc": "数据处理位置",
+      "list": {
+        "helper": {
+          "desc": "数据处理位置",
+          "list": ["index.ts：请求拦截器相关", "transfer.ts：查询本地版数据库封装"]
+        },
+        "modules": {
+          "list": {
+            "game": {
+              "desc": "游戏数据合并汇总",
+              "list": ["epigraph.ts：铭文", "equip.ts：装备", "hero.ts：英雄"]
+            },
+            "kvp": {
+              "desc": "将数据通过键名为id，值为数据的形式来通过id获取数据",
+              "list": [
+                "epigraph.ts：铭文",
+                "equip.ts：装备",
+                "hero.ts：英雄",
+                "type.ts：铭文、装备、英雄相关数据的类型"
+              ]
+            },
+            "local": {
+              "desc": "查询本地指定的数据",
+              "list": [
+                "epigraph.ts：铭文",
+                "equip.ts：装备",
+                "hero.ts：英雄",
+                "type.ts：铭文、装备、英雄相关数据的类型"
+              ]
+            },
+            "remote": {
+              "desc": "获取远程指定json数据"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "desc": "全局组件",
+      "list": {
+        "business": {
+          "desc": "业务组件",
+          "list": {
+            "Global": {
+              "desc": "全局显示组件",
+              "list": {
+                "Control": {
+                  "desc": "可控制隐藏显示的组件",
+                  "list": {
+                    "K-BatchProp": {
+                      "desc": "批量使用道具"
+                    },
+                    "K-BuyProp": {
+                      "desc": "购买道具"
+                    },
+                    "K-Confirm": {
+                      "desc": "确认弹窗"
+                    },
+                    "K-Foucs": {
+                      "desc": "全屏变暗，只有指定元素变lan亮，与Tip小贴士混合使用"
+                    },
+                    "K-Help": {
+                      "desc": "帮助或提示弹窗，点击一些地方的感叹号或者问号弹出"
+                    },
+                    "K-HeroDetail": {
+                      "desc": "英雄详情",
+                      "list": {
+                        "components": {
+                          "desc": "子组件",
+                          "list": {
+                            "HeroInfo": {
+                              "desc": "英雄信息",
+                              "list": {
+                                "HeroAttributes": {
+                                  "desc": "英雄属性"
+                                },
+                                "HeroBasic": {
+                                  "desc": "英雄左上角基本信息"
+                                },
+                                "HeroResume": {
+                                  "desc": "英雄简述"
+                                },
+                                "HeroTitle": {
+                                  "desc": "顶部标题"
+                                }
+                              }
+                            },
+                            "HeroParallax": {
+                              "desc": "带有背景图包裹页面的组件，滚动页面时，背景有奇妙的效果"
+                            },
+                            "HeroProgress": {
+                              "desc": "右边页面进度索引"
+                            },
+                            "HeroRelationship": {
+                              "desc": "英雄关系网",
+                              "list": {
+                                "HeroRelationDesc": "英雄右上角和左下角描述",
+                                "HeroRelationshipAtlas": "中间英雄关系集合"
+                              }
+                            },
+                            "HeroScroll": {
+                              "desc": "全屏滚动组件"
+                            },
+                            "HeroSkill": {
+                              "desc": "英雄技能页",
+                              "list": {
+                                "HeroSkillContent": {
+                                  "desc": "英雄技能内容"
+                                },
+                                "HeroSkillIcon": {
+                                  "desc": "英雄技能图标"
+                                },
+                                "HeroSkillToggle": {
+                                  "desc": "右下角副技能切换按钮"
+                                }
+                              }
+                            },
+                            "HeroSkin": {
+                              "desc": "英雄皮肤语音页",
+                              "list": {
+                                "HeroBgImg": {
+                                  "desc": "皮肤背景海报图"
+                                },
+                                "HeroSkinHeadImg": {
+                                  "desc": "右下角皮肤头像"
+                                },
+                                "HeroSkinName": {
+                                  "desc": "底部皮肤名称"
+                                },
+                                "HeroSkinPrice": {
+                                  "desc": "右上角皮肤价格"
+                                },
+                                "HeroSkinType": {
+                                  "desc": "中间皮肤类型"
+                                },
+                                "HeroVoice": {
+                                  "desc": "左侧皮肤语音"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "K-ImageView": {
+                      "desc": "查看大图",
+                      "list": {
+                        "LandscapeScreen": {
+                          "desc": "横版下载原图和播放语音"
+                        },
+                        "VerticalScreen": {
+                          "desc": "竖版下载原图和播放语音"
+                        }
+                      }
+                    },
+                    "K-InputDialog": {
+                      "desc": "弹出弹窗提供输入"
+                    },
+                    "K-Loading": {
+                      "desc": "全屏loading效果"
+                    },
+                    "K-Message": {
+                      "desc": "顶部消息提示"
+                    },
+                    "K-MouseTip": {
+                      "desc": "鼠标悬浮提示"
+                    },
+                    "K-Obtain": {
+                      "desc": "道具领取成功弹窗"
+                    },
+                    "K-Optional": {
+                      "desc": "自选英雄、皮肤弹窗"
+                    },
+                    "K-Phone": {
+                      "desc": "禁止手机端访问蒙版"
+                    },
+                    "K-SelectAvatar": {
+                      "desc": "修改资料时，选择内置头像"
+                    },
+                    "K-Tip": {
+                      "desc": "场景小贴士，出现在左上、右上、左下、右下的位置"
+                    },
+                    "K-Upgrad": {
+                      "desc": "升级英雄熟练度弹窗，使用经验宝箱时弹出",
+                      "list": {
+                        "SelectHero": {
+                          "desc": "选择英雄"
+                        },
+                        "ToUpgrade": {
+                          "desc": "升级英雄"
+                        }
+                      }
+                    }
+                  }
+                },
+                "WaterMark": {
+                  "desc": "全局显示的水印"
+                }
+              }
+            },
+            "Parts": {
+              "desc": "小部件",
+              "list": {
+                "K-BackTop": {
+                  "desc": "返回顶部"
+                },
+                "K-Button": {
+                  "desc": "红、黄、蓝按钮"
+                },
+                "K-Category": {
+                  "desc": "自选弹窗、铭文列表顶部的分类栏目"
+                },
+                "K-Check": {
+                  "desc": "选中开关，如设置内的开启和关闭按钮"
+                },
+                "K-Dialog": {
+                  "desc": "公共弹窗"
+                },
+                "K-Empty": {
+                  "desc": "空状态"
+                },
+                "K-Help": {
+                  "desc": "帮助按钮"
+                },
+                "K-HeroExp": {
+                  "desc": "英雄熟练度图标"
+                },
+                "K-HoverDesc": {
+                  "desc": "悬浮查看详情小窗，如任务页"
+                },
+                "K-Input": {
+                  "desc": "线条输入框"
+                },
+                "K-LoadingIcon": {
+                  "desc": "局部loading动画"
+                },
+                "K-LoadingRadiate": {
+                  "desc": "放射loading，如装备页装备图标"
+                },
+                "K-LoadMore": {
+                  "desc": "加载更多"
+                },
+                "K-LongNum": {
+                  "desc": "长数字处理组件，当大于等于1000时，会缩写为1k，低于1000时，数字改变会出现数字动画"
+                },
+                "K-Marquee": {
+                  "desc": "单次跑马灯，如语音播放"
+                },
+                "K-Prop": {
+                  "desc": "道具图标及数量展示框"
+                },
+                "K-Prop-Num": {
+                  "desc": "道具图标在左，数量在右的展示框"
+                },
+                "K-Range": {
+                  "desc": "滑动选择器"
+                },
+                "K-ScrollCountdown": {
+                  "desc": "数字滚动倒计时，如夺宝石补给站"
+                },
+                "K-ScrollTip": {
+                  "desc": "可滚动提示，如英雄详情页底部滚动下一页"
+                },
+                "K-Select": {
+                  "desc": "选择按钮，如设置内中英切换"
+                },
+                "K-Text": {
+                  "desc": "内部文字改变时会有变动偏移动画"
+                },
+                "K-Vide": {
+                  "desc": "视频背景"
+                }
+              }
+            },
+            "Tool": {
+              "FilterGender": {
+                "desc": "筛选性别"
+              },
+              "FilterSidebar": {
+                "desc": "右侧边栏职业、类型筛选"
+              },
+              "FilterTool": {
+                "desc": "下拉筛选列表"
+              },
+              "SelectHeroAndSkin": {
+                "desc": "搜索下拉选择英雄及皮肤"
+              }
+            },
+            "YiBao": {
+              "desc": "乂宝相关",
+              "list": {
+                "components": {
+                  "desc": "乂宝部件",
+                  "list": {
+                    "Annulus": {
+                      "desc": "左右圆环"
+                    },
+                    "Antenna": {
+                      "desc": "天线"
+                    },
+                    "Blush": {
+                      "desc": "脸颊"
+                    },
+                    "Eyes": {
+                      "desc": "眼睛"
+                    },
+                    "Mouth": {
+                      "desc": "嘴巴"
+                    },
+                    "Wing": {
+                      "desc": "羽翅"
+                    }
+                  }
+                },
+                "helper": {
+                  "list": {
+                    "yiBaoBig": {
+                      "desc": "乂宝页左侧的乂宝",
+                      "list": [
+                        "BigYiBaoBody.ts：控制身体",
+                        "BigYiBaoEyes.ts：控制眼睛",
+                        "BigYiBaoIris.ts：控制虹膜",
+                        "BigYibaoKeyframes.ts：跳动动画函数",
+                        "BigYiBaoMouth.ts：控制嘴巴"
+                      ]
+                    },
+                    "yiBaoSmall": {
+                      "desc": "跟随鼠标移动的乂宝",
+                      "list": [
+                        "smallYiBaoBody.ts：控制身体",
+                        "smallYiBaoEyes.ts：控制眼睛",
+                        "smallYiBaoIris.ts：控制虹膜",
+                        "smallYiBaoMouth.ts：控制嘴巴"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "common": {
+          "desc": "外来组件",
+          "list": {
+            "LibDragSort": {
+              "desc": "拖拽排序"
+            },
+            "LibGrid": {
+              "desc": "基于Grid布局扩展"
+            },
+            "LibVirtualList": {
+              "desc": "虚拟列表"
+            },
+            "LibWaterfall": {
+              "desc": "瀑布流布局"
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "desc": "配置项",
+      "list": {
+        "base.ts": {
+          "desc": "基础配置"
+        },
+        "confirm-tip.ts": {
+          "desc": "确认弹窗文本"
+        },
+        "default.ts": {
+          "desc": "默认值"
+        },
+        "game-chance.ts": {
+          "desc": "夺宝、开箱概率"
+        },
+        "game-config.ts": {
+          "desc": "游戏基础配置"
+        },
+        "game-prop.ts": {
+          "desc": "游戏道具"
+        },
+        "help-tip.ts": {
+          "desc": "帮助弹窗文本"
+        },
+        "local-key.ts": {
+          "desc": "本地存储及数据库存储Key"
+        },
+        "marker-config.ts": {
+          "desc": "用户统计信息字段Key"
+        },
+        "message-tip.ts": {
+          "desc": "消息提示文本"
+        },
+        "mouse-tip.ts": {
+          "desc": "鼠标悬浮提示文本"
+        },
+        "resource-name.ts": {
+          "desc": "JSON数据及Zip资源名称"
+        },
+        "route-path.ts": {
+          "desc": "路由地址"
+        },
+        "scene-tip.ts": {
+          "desc": "场景小贴士文本"
+        },
+        "yibao-part.ts": {
+          "desc": "乂宝部件及价格"
+        }
+      }
+    },
+    "directives": {
+      "desc": "自定义指令",
+      "list": {
+        "animate-number.ts": {
+          "desc": "数字改变动画"
+        },
+        "blur-load.ts": {
+          "desc": "图片先加载模糊图，再加载大图"
+        },
+        "card-into-animate.ts": {
+          "desc": "卡片入场动画"
+        },
+        "click-outside.ts": {
+          "desc": "点击元素外面时触发"
+        },
+        "copy.ts": {
+          "desc": "复制传递的值"
+        },
+        "debounce-click.ts": {
+          "desc": "防抖点击，点击后会立即触发，接下来一秒内的点击会被忽略"
+        },
+        "delay-hide.ts": {
+          "desc": "鼠标离开元素延迟隐藏"
+        },
+        "drag-analysis.ts": {
+          "desc": "拖拽解析"
+        },
+        "focus.ts": {
+          "desc": "自动获取焦点"
+        },
+        "id-encipher.ts": {
+          "desc": "id加密，截取中间六位，两边添加三个星号"
+        },
+        "lazy-load.ts": {
+          "desc": "当图片在可视区停留250ms才会加载"
+        },
+        "mask-gradient.ts": {
+          "desc": "底部渐变"
+        },
+        "mouse-tip.ts": {
+          "desc": "鼠标悬浮提示"
+        },
+        "overflow-center.ts": {
+          "desc": "容器可滚动时，内部靠上、靠左对齐，不可滚动时，居中对齐"
+        },
+        "particle-effect.ts": {
+          "desc": "从从上往下及下往上的粒子特效"
+        },
+        "scroll-virtualization.ts": {
+          "desc": "滚动列表顶部和底部虚化"
+        },
+        "sweep-light.ts": {
+          "desc": "卡片扫光"
+        },
+        "text-hover-color.ts": {
+          "desc": "悬浮文字时，文字变色效果及底部线条"
+        },
+        "typewriter-multiple.ts": {
+          "desc": "多行打字机"
+        },
+        "typewriter-single.ts": {
+          "desc": "单行打字机"
+        },
+        "wave-diffuse.ts": {
+          "desc": "点击水波效果"
+        }
+      }
+    },
+    "hooks": {
+      "useChangeListLineNum.ts": {
+        "desc": "根据宽度区间改变列表行个数"
+      },
+      "useCssClassToggle.ts": {
+        "desc": "css切换类名"
+      },
+      "useDevice.ts": {
+        "desc": "浏览器信息"
+      },
+      "useGetZip.ts": {
+        "desc": "获取音效压缩包并解压设置音效列表"
+      },
+      "useHaveHeroSkin.ts": {
+        "desc": "判断是否存在该英雄或皮肤"
+      },
+      "useIndexedDB.ts": {
+        "desc": "使用浏览器数据库"
+      },
+      "usePagingLoad.ts": {
+        "desc": "分页加载"
+      },
+      "useParallax.ts": {
+        "desc": "鼠标视差动画"
+      },
+      "usePlayAudio.ts": {
+        "desc": "播放音效"
+      },
+      "useRadialBorder.ts": {
+        "desc": "使用径向渐变实现window日历边框"
+      },
+      "useSetMarker.ts": {
+        "desc": "设置埋点Key数量"
+      },
+      "useStaticResourceVersion.ts": {
+        "desc": "静态资源版本"
+      },
+      "useUserConfigFinish.ts": {
+        "desc": "读取用户配置完毕"
+      },
+      "useWeekCard.ts": {
+        "desc": "周卡相关领取推送与自动到期重置"
+      }
+    },
+    "layout": {
+      "AppMain": {
+        "desc": "路由切换页面"
+      },
+      "BarrageMain": {
+        "desc": "弹幕区域"
+      },
+      "Footbar": {
+        "desc": "底部音乐播放器",
+        "list": {
+          "Copyright": {
+            "desc": "作者"
+          },
+          "MusicList": {
+            "desc": "音乐列表"
+          },
+          "MusicPlay": {
+            "desc": "音乐进度"
+          },
+          "MusicTool": {
+            "desc": "音乐工具"
+          },
+          "Time": {
+            "desc": "左侧时间"
+          }
+        }
+      },
+      "Navbar": {
+        "desc": "顶部导航栏",
+        "list": {
+          "BtnIcon": {
+            "desc": "按钮组",
+            "list": {
+              "Activity": {
+                "desc": "竞猜活动",
+                "list": {
+                  "PosterGuess": {
+                    "desc": "海报竞猜"
+                  },
+                  "SkillGuess": {
+                    "desc": "技能竞猜"
+                  }
+                }
+              },
+              "Mail": {
+                "desc": "邮箱"
+              },
+              "SettingDialog": {
+                "desc": "设置"
+              },
+              "Task": {
+                "desc": "任务"
+              }
+            }
+          },
+          "Notice": {
+            "desc": "公告跑马灯"
+          },
+          "PackUp": {
+            "desc": "折叠侧边栏按钮"
+          },
+          "UserMenu": {
+            "desc": "用户头像"
+          }
+        }
+      },
+      "Sidebar": {
+        "desc": "左侧边栏"
+      }
+    },
+    "store": [
+      "atlas.ts：图集相关",
+      "auth.ts：用户相关",
+      "epigraph.ts：铭文相关",
+      "epigraphCollocation.ts：铭文搭配相关",
+      "equip.ts：装备相关",
+      "hero.ts：英雄相关",
+      "heroDebris.ts：英雄碎片商店相关",
+      "heroDetail.ts：英雄详情相关",
+      "kingCrystal.ts：王者水晶相关",
+      "knapsack.ts：背包相关",
+      "lottery.ts：夺宝相关",
+      "mail.ts：邮箱相关",
+      "marker.ts：埋点相关",
+      "music.ts：音乐播放器相关",
+      "router.ts：路由相关",
+      "setting.ts：设置相关",
+      "skin.ts：皮肤相关",
+      "skinDebris.ts：皮肤碎片商店相关",
+      "supply.ts：夺宝补给站相关",
+      "task.ts：任务相关",
+      "time.ts：时间处理相关",
+      "version.ts：版本更新相关",
+      "yibao.ts：乂宝相关"
+    ],
+    "style": [
+      "animate.less：Vue动画",
+      "beautify.less：个性化样式",
+      "clear.less：清除默认样式",
+      "common.less：公共css",
+      "config.less：配置项",
+      "global.less：全局CSS",
+      "spirit.less：精灵图",
+      "toggle.less：CSS变量切换",
+      "variable.les：CSS变量"
+    ],
+    "typings": [
+      "env.d.ts：杂项",
+      "game.d.ts：游戏相关类型",
+      "global.d.ts：功能类型",
+      "remote.d.ts：远程数据类型",
+      "tool.d.ts：工具类型",
+      "user.d.ts：用户相关类型",
+      "vite-env.d.ts：VITE配置"
+    ],
+    "utils": [
+      "busTransfer.ts：事件总线分发",
+      "concise.ts：获取静态资源",
+      "eventBus.ts：事件总线",
+      "loading.ts：全屏loading",
+      "privateTool.ts：项目私有工具函数",
+      "tool.ts：公共工具函数"
+    ],
+    "views": {
+      "Base": {
+        "desc": "未登录时",
+        "list": {
+          "Error": {
+            "desc": "错误页面"
+          },
+          "Login": {
+            "desc": "登录页面",
+            "list": {
+              "DownLoad": {
+                "desc": "下载组件"
+              },
+              "Notice": {
+                "desc": "公告弹窗"
+              },
+              "RegLogin": {
+                "desc": "注册登录"
+              },
+              "Team": {
+                "desc": "战绩弹窗"
+              },
+              "ToolBar": {
+                "desc": "工具栏"
+              },
+              "UpdateLog": {
+                "desc": "更新日志"
+              }
+            }
+          }
+        }
+      },
+      "Epigraph": {
+        "desc": "铭文页面",
+        "list": {
+          "EpigraphCollocation": {
+            "desc": "铭文搭配页",
+            "list": {
+              "EpigraphConstitute": {
+                "desc": "铭文搭配"
+              },
+              "EpigraphSidebar": {
+                "desc": "侧边栏",
+                "list": {
+                  "EpigraphEffect": {
+                    "desc": "铭文搭配属性效果"
+                  },
+                  "EpigraphInventory": {
+                    "desc": "铭文库存列表"
+                  },
+                  "EpigraphSuit": {
+                    "desc": "铭文套装列表"
+                  }
+                }
+              }
+            }
+          },
+          "EpigraphList": {
+            "desc": "铭文列表页",
+            "list": {
+              "EpigraphList": "铭文列表",
+              "EpigraphToolbar": "铭文工具栏"
+            }
+          }
+        }
+      },
+      "Equip": {
+        "desc": "装备页",
+        "list": {
+          "EquipDetail": {
+            "desc": "装备详情页"
+          },
+          "EquipList": {
+            "desc": "装备栏目页",
+            "list": {
+              "EquipListColumn": {
+                "desc": "单列装备"
+              }
+            }
+          }
+        }
+      },
+      "Hero": {
+        "desc": "英雄列表页",
+        "list": {
+          "HeroCard": {
+            "desc": "英雄卡片"
+          },
+          "HeroToolbar": {
+            "desc": "英雄工具栏"
+          }
+        }
+      },
+      "Knapsack": {
+        "desc": "背包页"
+      },
+      "Lottery": {
+        "desc": "夺宝页",
+        "list": {
+          "common": {
+            "desc": "英雄夺宝和皮肤夺宝公共部分",
+            "list": {
+              "LotteryToolbar": {
+                "desc": "夺宝工具栏"
+              },
+              "SupplyArea": {
+                "desc": "补给站区域",
+                "list": {
+                  "AnimateMove": {
+                    "desc": "道具动画移动"
+                  },
+                  "ReceiveProp": {
+                    "desc": "领取夺宝石页"
+                  },
+                  "SupplyMode": {
+                    "desc": "选择补给模式"
+                  }
+                }
+              }
+            }
+          },
+          "Hero": {
+            "desc": "英雄夺宝",
+            "list": {
+              "LotteryArea": {
+                "desc": "夺宝区域"
+              }
+            }
+          },
+          "Skin": {
+            "desc": "皮肤夺宝",
+            "list": {
+              "LotteryArea": {
+                "desc": "夺宝区域"
+              }
+            }
+          }
+        }
+      },
+      "Savor": {
+        "desc": "图集页",
+        "list": {
+          "SavorToolbar": {
+            "desc": "图集工具栏"
+          }
+        }
+      },
+      "Shop": {
+        "desc": "商城页",
+        "list": {
+          "Crystal": {
+            "desc": "水晶商店",
+            "list": {
+              "Honor": {
+                "desc": "荣耀水晶商店"
+              },
+              "King": {
+                "desc": "王者水晶商店"
+              }
+            }
+          },
+          "Debris": {
+            "desc": "碎片商店",
+            "list": {
+              "Hero": {
+                "desc": "英雄碎片商店"
+              },
+              "Skin": {
+                "desc": "皮肤碎片商店"
+              }
+            }
+          },
+          "Prop": {
+            "desc": "道具商店",
+            "list": {
+              "PropCard": {
+                "desc": "道具卡片"
+              }
+            }
+          }
+        }
+      },
+      "Skin": {
+        "desc": "皮肤列表页",
+        "list": {
+          "SkinCard": {
+            "desc": "皮肤卡片"
+          },
+          "SkinToolbar": {
+            "desc": "皮肤工具栏"
+          }
+        }
+      },
+      "Yibao": {
+        "desc": "乂宝页",
+        "list": {
+          "common": {
+            "desc": "公共部分",
+            "list": {
+              "PartCollect": {
+                "desc": "用于订单列表和有测部件切换工具栏，展示现在已搭配的部件样式"
+              },
+              "PartLibrary": {
+                "desc": "部件库，用于将部件单独展示"
+              }
+            }
+          },
+          "components": {
+            "MenuTool": {
+              "desc": "左侧工具栏按钮",
+              "list": {
+                "PartOrderDetail": {
+                  "desc": "订单详情"
+                }
+              }
+            },
+            "NavBar": {
+              "desc": "左侧导航栏"
+            },
+            "PartList": {
+              "desc": "右侧部件列表",
+              "list": {
+                "ColorsTextures": {
+                  "desc": "个性化部件列表",
+                  "list": {
+                    "ShopWindow": {
+                      "desc": "用于包裹部件的正方形容器"
+                    }
+                  }
+                }
+              }
+            },
+            "PersonalizedMenu": {
+              "desc": "部件类别选择菜单"
+            },
+            "YiBaoStage": {
+              "desc": "乂宝位置",
+              "list": {
+                "JumpCoinReceive": {
+                  "desc": "领取跳跳币"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
