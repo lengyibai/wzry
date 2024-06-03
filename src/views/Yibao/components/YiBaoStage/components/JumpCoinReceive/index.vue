@@ -14,6 +14,7 @@ const { resetJumpCoinReceive } = $yibaoStore;
 
 /** @description 领取跳跳币 */
 const handleReceive = () => {
+  if (receive_coin.value === 0) return;
   $obtain({
     icon: _getPropLink("jump_coin"),
     name: GAME_PROP.NAME["JUMP_COIN"],
