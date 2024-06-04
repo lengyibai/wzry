@@ -331,8 +331,6 @@ declare namespace Global {
     createTime: number;
     /** 上次登录时间 */
     lastLoginTime: number;
-    /** 卡片是否作废 */
-    isInvalid: boolean;
     /** 英雄夺宝石周卡到期时间戳 */
     heroLotteryStoneWeekCardExpireTime: 0;
     /** 皮肤夺宝石周卡到期时间戳 */

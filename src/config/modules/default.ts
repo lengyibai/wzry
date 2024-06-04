@@ -49,7 +49,6 @@ export const userInfoDefault: () => User.Data = () => ({
   skinLotteryStoneWeekCardExpireTime: 0,
   doubleGoldCardExpireTime: 0,
   doubleExpCardExpireTime: 0,
-  isInvalid: false,
   isDev: false,
   guess: {
     poster: {

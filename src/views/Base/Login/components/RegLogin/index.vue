@@ -148,10 +148,6 @@ const handleExit = () => {
 /** @description 登录 */
 const debounceLogin = () => {
   if (!user_data.value) return;
-  if (user_data.value.isInvalid) {
-    $message(MESSAGE_TIP.uf04, "error");
-    return;
-  }
 
   $authStore.login(user_data.value);
   playAudio("e84n");
