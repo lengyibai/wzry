@@ -8,6 +8,7 @@ import {
   AtlasStore,
   HeroDebrisStore,
   SkinDebrisStore,
+  KingCrystalStore,
 } from "@/store";
 import { vMouseTip } from "@/directives";
 import { usePlayAudio } from "@/hooks";
@@ -15,7 +16,7 @@ import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 
 interface Props {
   /** 用于不同列表的筛选类型 */
-  type: "hero" | "heroDebris" | "skin" | "skinDebris" | "equip" | "atlas";
+  type: "hero" | "heroDebris" | "skin" | "skinDebris" | "kingCrystal" | "equip" | "atlas";
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -28,8 +29,8 @@ const $emit = defineEmits<{
 const $heroStore = HeroStore();
 const $skinStore = SkinStore();
 const $atlasStore = AtlasStore();
-
 const $equipStore = EquipStore();
+const $kingCrystalStore = KingCrystalStore();
 const $skinDebrisStore = SkinDebrisStore();
 const $heroDebrisStore = HeroDebrisStore();
 
@@ -60,7 +61,7 @@ const top = ref(0);
 
 /** 动态list */
 const list = computed(() =>
-  ["hero", "heroDebris", "skin", "skinDebris", "atlas"].includes($props.type)
+  ["hero", "heroDebris", "skin", "skinDebris", "atlas", "kingCrystal"].includes($props.type)
     ? hero_type
     : equip_type,
 );
@@ -72,6 +73,7 @@ const filter_type = computed(() => {
     heroDebris: $heroDebrisStore.profession,
     skin: $skinStore.profession,
     skinDebris: $skinDebrisStore.profession,
+    kingCrystal: $kingCrystalStore.profession,
     atlas: $atlasStore.profession,
     equip: $equipStore.category,
   };
@@ -85,6 +87,7 @@ const handleSelect = (name: Game.Hero.Profession | Game.Equip.Category) => {
     heroDebris: () => $heroDebrisStore.setProfessional(name as Game.Hero.Profession),
     skin: () => $skinStore.setProfessional(name as Game.Hero.Profession),
     skinDebris: () => $skinDebrisStore.setProfessional(name as Game.Hero.Profession),
+    kingCrystal: () => $kingCrystalStore.setProfessional(name as Game.Hero.Profession),
     atlas: () => $atlasStore.setProfessional(name as Game.Hero.Profession),
     equip: () => $equipStore.setType(name as Game.Equip.Category),
   };
