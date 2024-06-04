@@ -27,6 +27,11 @@ const TimeStore = defineStore("time", () => {
 
   /** @description 当时间为第二天的时候执行 */
   const newDay = () => {
+    //新的一天需要重新设置上次登录时间，避免刷新页面后再次判断为新的一天
+    $authStore.updateUserData({
+      lastLoginTime: dayjs().valueOf(),
+    });
+
     $message(MESSAGE_TIP.xu03);
     $mailStore.sign();
     $supplyStore.sign();
@@ -35,10 +40,6 @@ const TimeStore = defineStore("time", () => {
     $knapsackStore.clearCoin();
     addStatusMarkerNum("VISIT_DAY");
 
-    //新的一天需要重新设置上次登录时间，避免刷新页面后再次判断为新的一天
-    $authStore.updateUserData({
-      lastLoginTime: dayjs().valueOf(),
-    });
     useWeekCard();
   };
 

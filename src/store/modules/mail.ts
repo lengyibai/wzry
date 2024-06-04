@@ -15,6 +15,8 @@ const MailStore = defineStore("mail", () => {
   const $authStore = AuthStore();
 
   const ExposeData = {
+    /** 远程邮件配置 */
+    mail_config: ref<Global.Mail[]>([]),
     /** 邮箱列表 */
     mail_list: ref<Game.Mail[]>([]),
     /** 由于签到邮件每日发放，需要单独处理 */
@@ -22,7 +24,7 @@ const MailStore = defineStore("mail", () => {
     /** 邮件标记，不再推送的活动 */
     mail_mark: ref<string[]>([]),
   };
-  const { mail_list, mail_mark, sign_mails } = ExposeData;
+  const { mail_config, mail_list, mail_mark, sign_mails } = ExposeData;
 
   const ExposeComputed = {
     /** 是否存在未读消息 */
@@ -54,58 +56,62 @@ const MailStore = defineStore("mail", () => {
         promiseFn: API_DATA.Mail,
       })
         .then((res) => {
-          //循环处理判断邮箱列表
-          res.data.forEach((item) => {
-            const { mark, title, type, key, desc, props } = item;
-
-            //签到类型邮件单独处理
-            if (key === "SIGN") {
-              sign_mails.value.push({
-                ...item,
-                id: `${type}_${key}_${title}_${dayjs().valueOf().toString()}`,
-                read: false,
-                time: dayjs().valueOf(),
-                desc,
-                key,
-                props,
-                title,
-                type,
-              });
-
-              return;
-            }
-
-            //单独处理新手大礼包
-            if (key === "NEW" && !mail_mark.value.includes(mark)) {
-              mail_mark.value.push(mark);
-              $tip({
-                text: CUSTOM_TIP.yn35,
-                align: "right-bottom",
-                btnText: "领取",
-                btnFn() {
-                  const obtain = item.props!.map(({ num, key }) => {
-                    return {
-                      name: GAME_PROP.NAME[key],
-                      num: num,
-                      key: key,
-                      icon: _getPropLink(GAME_PROP.ICON[key]),
-                    };
-                  });
-
-                  $obtain(obtain);
-
-                  saveMailData();
-                },
-              });
-              return;
-            }
-          });
-
-          saveMailData();
+          mail_config.value = res.data;
         })
         .catch(() => {
           $message($msgTipText("rc53", { v: "公共邮件" }), "error");
         });
+    },
+
+    /** @description 读取邮箱配置 */
+    readMailConfig() {
+      //循环处理判断邮箱列表
+      mail_config.value.forEach((item) => {
+        const { mark, title, type, key, desc, props } = item;
+
+        //签到类型邮件单独处理
+        if (key === "SIGN") {
+          sign_mails.value.push({
+            ...item,
+            id: `${type}_${key}_${title}_${dayjs().valueOf().toString()}`,
+            read: false,
+            time: dayjs().valueOf(),
+            desc,
+            key,
+            props,
+            title,
+            type,
+          });
+
+          return;
+        }
+
+        //单独处理新手大礼包
+        if (key === "NEW" && !mail_mark.value.includes(mark)) {
+          $tip({
+            text: CUSTOM_TIP.yn35,
+            align: "right-bottom",
+            btnText: "领取",
+            btnFn() {
+              const obtain = item.props!.map(({ num, key }) => {
+                return {
+                  name: GAME_PROP.NAME[key],
+                  num: num,
+                  key: key,
+                  icon: _getPropLink(GAME_PROP.ICON[key]),
+                };
+              });
+
+              $obtain(obtain);
+              saveMailData();
+              mail_mark.value.push(mark);
+            },
+          });
+          return;
+        }
+      });
+
+      saveMailData();
     },
 
     /** @description 签到福袋 */
@@ -113,7 +119,7 @@ const MailStore = defineStore("mail", () => {
       sign_mails.value = [];
 
       //签到之前需要读取远程签到配置
-      await this.getAllMail();
+      this.readMailConfig();
       sign_mails.value.forEach((item) => {
         const { key, type, title } = item;
         mail_list.value.unshift({

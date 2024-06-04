@@ -13,7 +13,7 @@ import { SettingStore } from "./setting";
 import { EpigraphCollocationStore } from "./epigraphCollocation";
 import { YibaoStore } from "./yibao";
 
-import { _timeGreet, _mergeConfig, dayjs } from "@/utils/tool";
+import { _timeGreet, _mergeConfig } from "@/utils/tool";
 import { _decryption, _encryption } from "@/utils/privateTool";
 import { $tip, $message, $input } from "@/utils/busTransfer";
 import { useUserConfigFinish, resetPromise } from "@/hooks";
@@ -64,11 +64,6 @@ const AuthStore = defineStore("auth", () => {
     //由于登录可能会推送每日签到福袋，所以需要获取到邮箱福袋配置才能推送
     $mailStore.getAllMail().then(() => {
       $timeStore.enableTime();
-
-      //更新登录时间
-      ExposeMethods.updateUserData({
-        lastLoginTime: dayjs().valueOf(),
-      });
     });
 
     watchStatus();

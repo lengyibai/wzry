@@ -82,5 +82,5 @@ window.addEventListener("mouseup", (e) => {
   </teleport>
 
   <!-- 禁止手机查看 -->
-  <KPhone />
+  <!-- <KPhone /> -->
 </template>
