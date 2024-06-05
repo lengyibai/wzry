@@ -281,7 +281,6 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
           text: CUSTOM_TIP.j33c,
           align: "right-bottom",
           color: false,
-          btnText: "确定",
           btnFn() {
             setTimeout(() => {
               //当竞猜券恰好被扣完，则退出竞猜并前往道具商店
