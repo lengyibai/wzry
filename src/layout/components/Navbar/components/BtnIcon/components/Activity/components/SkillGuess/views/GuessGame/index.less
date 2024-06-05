@@ -7,19 +7,32 @@
   flex-direction: column;
   background-color: var(--black-75);
 
+  .guess-prop {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+
   .guess-skill {
     --size: 7.5rem;
 
     position: relative;
     display: flex;
     justify-content: center;
+    width: 100%;
+    max-width: 50rem;
     height: var(--size);
+    margin-bottom: 1.5rem;
     gap: var(--size);
-    margin: 1rem;
-    margin-bottom: 3rem;
+
+    @media screen and (max-width: 800px) {
+      gap: 1rem;
+    }
 
     .skill {
       position: relative;
+      flex-shrink: 0;
       overflow: hidden;
       width: var(--size);
       height: var(--size);
@@ -69,7 +82,7 @@
     flex-direction: column;
     overflow: hidden;
     height: 0;
-    margin: 0 2rem 2rem;
+    margin: 0 2rem 1rem;
     transition: 1s;
 
     &::before {
@@ -90,24 +103,24 @@
 
     .hero-name {
       margin-bottom: 0.5rem;
-      font-size: 3rem;
+      font-size: 2.25rem;
     }
 
     .skill-name {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       color: var(--white-50);
-      font-size: 2rem;
+      font-size: 1.75rem;
     }
 
     .desc {
-      font-size: 2rem;
+      font-size: 1.5rem;
     }
   }
 
   .submit {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     .commit {
       .global_flex-center();
@@ -132,7 +145,7 @@
       justify-content: center;
       align-items: center;
       width: 75%;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       padding: 1rem 0;
 
       .icon {
@@ -211,10 +224,9 @@
     }
   }
 
-  .guess-prop {
+  .exit-guess {
     position: absolute;
-    right: 2rem;
-    bottom: 2rem;
+    bottom: 5rem;
     display: flex;
   }
 

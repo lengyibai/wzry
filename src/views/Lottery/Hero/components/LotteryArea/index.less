@@ -212,7 +212,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    width: 75%;
+    width: 85%;
     margin-top: 0.5rem;
     padding: 0.5rem;
     background-color: var(--black-50);
@@ -258,27 +258,27 @@
       }
 
       @media screen and (max-width: 960px) {
-        --btn-rate: 1.25;
+        --btn-rate: 1.35;
       }
 
       @media screen and (max-width: 750px) {
-        --btn-rate: 1;
+        --btn-rate: 1.2;
       }
 
       @media screen and (max-width: 640px) {
-        --btn-rate: 0.9;
+        --btn-rate: 1.35;
       }
 
-      @media screen and (max-width: 520px) {
-        --btn-rate: 0.8;
+      @media screen and (max-width: 540px) {
+        --btn-rate: 1.2;
       }
 
       @media screen and (max-width: 480px) {
-        --btn-rate: 0.75;
+        --btn-rate: 1;
       }
 
       @media screen and (max-width: 380px) {
-        --btn-rate: 0.65;
+        --btn-rate: 0.85;
       }
     }
   }
@@ -366,17 +366,74 @@
   }
 
   @media screen and (max-width: 960px) {
-    --rate: 2;
+    --rate: 1.75;
 
     width: 100%;
     margin-right: 0;
 
     .fix-position {
-      .turntable {
-        .award {
-          &-item {
-            --top: calc(11.4583vw * 2);
-          }
+      width: 75%;
+    }
+
+    .base {
+      width: 100%;
+      padding: calc(1vw * var(--rate));
+      gap: calc(1vw * var(--rate));
+
+      &::before {
+        width: calc(15vw * var(--rate));
+        height: calc(17.9167vw * var(--rate));
+      }
+
+      .k-button {
+        --font-size: calc(1.5vw * var(--rate));
+
+        .icon {
+          height: calc(2.25vw * var(--rate));
+        }
+
+        .num {
+          margin-right: calc(0.4167vw * var(--rate));
+          font-size: calc(1.5vw * var(--rate));
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 750px) {
+    --rate: 1.65;
+  }
+
+  @media screen and (max-width: 640px) {
+    --rate: 2.5;
+
+    width: 100%;
+    margin-right: 0;
+
+    .fix-position {
+      width: 100%;
+    }
+
+    .base {
+      width: 100%;
+      padding: calc(1vw * var(--rate));
+      gap: calc(1vw * var(--rate));
+
+      &::before {
+        width: calc(15vw * var(--rate));
+        height: calc(17.9167vw * var(--rate));
+      }
+
+      .k-button {
+        --font-size: calc(1.5vw * var(--rate));
+
+        .icon {
+          height: calc(2.25vw * var(--rate));
+        }
+
+        .num {
+          margin-right: calc(0.4167vw * var(--rate));
+          font-size: calc(1.5vw * var(--rate));
         }
       }
     }

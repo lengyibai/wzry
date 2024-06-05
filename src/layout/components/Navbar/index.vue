@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useMediaQuery } from "@vueuse/core";
+
 import PackUp from "./components/PackUp/index.vue";
 import UserMenu from "./components/UserMenu/index.vue";
 import BtnIcon from "./components/BtnIcon/index.vue";
@@ -8,6 +10,7 @@ import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 import { KPropNum } from "@/components/business";
 
 const { hide_all } = useHideLayout();
+const under_750 = useMediaQuery("(max-width: 750px)");
 </script>
 
 <template>
@@ -22,8 +25,10 @@ const { hide_all } = useHideLayout();
 
       <div class="navbar__right">
         <!-- 道具数量 -->
-        <KPropNum prop-key="GOLD" height="2.25rem" margin-right="1.5rem" shine />
-        <KPropNum prop-key="DIAMOND" height="2.25rem" margin-right="1.5rem" shine />
+        <template v-if="!under_750">
+          <KPropNum prop-key="GOLD" height="2.25rem" margin-right="1.5rem" shine />
+          <KPropNum prop-key="DIAMOND" height="2.25rem" margin-right="1.5rem" shine />
+        </template>
 
         <!-- 用户菜单 -->
         <UserMenu />

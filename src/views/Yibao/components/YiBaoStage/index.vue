@@ -29,7 +29,7 @@ onMounted(() => {
       <KCheck v-model="is_drag" v-mouse-tip text="拖拽浏览" @update:model-value="onDownDrag" />
     </div>
     <JumpCoinReceive />
-    <YiBao type="big" />
+    <YiBao type="big" class="big-yi-bao" />
   </div>
 </template>
 

@@ -10,7 +10,7 @@ import type { ImageOptimizerOptions } from "./interface";
 export { dayjs, _debounce, _cloneDeep, _throttle };
 
 /** @description 判断是否为移动端 */
-export const _isPhone = (() => /mobile/i.test(navigator.userAgent))();
+export const _isPhone = (() => /mobile|Android|iPhone/i.test(navigator.userAgent))();
 
 /** @description 获取浏览器版本 */
 export const _browserV = (() => {

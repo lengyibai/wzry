@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { storeToRefs } from "pinia";
+import { useMediaQuery } from "@vueuse/core";
 
 import EditUserInfo from "./components/EditUserInfo/index.vue";
 import UserMarker from "./components/UserMarker/index.vue";
@@ -18,6 +19,8 @@ const $authStore = AuthStore();
 const $knapsackStore = KnapsackStore();
 
 const { articles } = storeToRefs($knapsackStore);
+
+const under_750 = useMediaQuery("(max-width: 750px)");
 
 const dialogRef = ref<InstanceType<typeof KDialog>>();
 
@@ -103,7 +106,7 @@ const onCloseConfirmEditInfo = () => {
         />
       </div>
 
-      <div class="prop-num">
+      <div v-if="under_750" class="prop-num">
         <div class="prop-item">
           <img class="icon" :src="_getPropLink('gold')" alt="" />
           <div class="num">{{ _formatKilobitNumber(articles.GOLD) }}</div>

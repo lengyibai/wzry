@@ -49,7 +49,7 @@ const useCollapse = (callback?: (status: boolean) => void) => {
     is_registered = true;
 
     const debounceSidebarStatus = _debounce(() => {
-      collapse.value = window.innerWidth < 960;
+      collapse.value = window.innerWidth < 640;
       triggerCollapse();
     }, 250);
 

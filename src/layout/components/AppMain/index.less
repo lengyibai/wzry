@@ -1,8 +1,11 @@
 .app-main {
   position: relative;
-  overflow: hidden;
   max-width: 100%;
   height: calc(100vh - 4.6875rem - 3.125rem);
+
+  @media screen and (max-width: 640px) {
+    min-width: calc(100vw - 6.25rem);
+  }
 }
 
 .app-main-enter-from,

@@ -97,8 +97,8 @@ setTimeout(() => {
 <template>
   <div class="part-list">
     <div class="title">
-      <span class="label" :data-text="`${part_key_name[part_type]}部件`">
-        {{ part_key_name[part_type] }}部件
+      <span class="label" :data-text="part_key_name[part_type]">
+        {{ part_key_name[part_type] }}
       </span>
       <KSelect
         v-if="YIBAO_PART.PART_SUPPORT_IMG.includes(part_type)"

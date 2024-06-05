@@ -44,4 +44,30 @@
       text-shadow: var(--t-shadow-e);
     }
   }
+
+  @media screen and (max-width: 960px) {
+    --size: 1;
+
+    justify-content: center;
+    flex-direction: row;
+    height: initial;
+    border-right: initial;
+
+    .menu-item {
+      margin-bottom: 0;
+
+      &:not(:last-child) {
+        margin-right: calc(1.75vw * var(--size));
+      }
+
+      .part {
+        width: calc(8vw * var(--size));
+        height: calc(8vw * var(--size));
+      }
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    --size: 1.1;
+  }
 }

@@ -71,7 +71,7 @@ defineExpose({
 
 <template>
   <div class="hero-toolbar">
-    <KPropNum prop-key="HERO_DEBRIS" height="3rem" margin-right="1rem" />
+    <KPropNum prop-key="HERO_DEBRIS" height="3rem" class="k-prop-num" margin-right="1rem" />
 
     <div class="filter-select">
       <!-- 价格排序 -->

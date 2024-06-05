@@ -17,7 +17,7 @@ import KOptional from "./components/K-Optional/index.vue";
 import KHeroDetail from "./components/K-HeroDetail/index.vue";
 import KHelp from "./components/K-Help/index.vue";
 import KSelectAvatar from "./components/K-SelectAvatar/index.vue";
-import KPhone from "./components/K-Phone/index.vue";
+// import KPhone from "./components/K-Phone/index.vue";
 
 import { $bus } from "@/utils/eventBus";
 import { _isPhone } from "@/utils/tool";
@@ -44,7 +44,7 @@ window.addEventListener("mouseup", (e) => {
   <KImageView />
 
   <!-- 跟随鼠标点、圆、线 -->
-  <KMouseTip v-if="!_isPhone" />
+  <KMouseTip />
 
   <!-- 弹窗输入内容 -->
   <KInputDialog />
@@ -77,7 +77,7 @@ window.addEventListener("mouseup", (e) => {
   <KSelectAvatar />
 
   <!-- 乂宝 -->
-  <teleport to="body">
+  <teleport v-if="!_isPhone" to="body">
     <KYiBao type="small" />
   </teleport>
 

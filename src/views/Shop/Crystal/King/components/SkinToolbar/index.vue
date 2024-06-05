@@ -59,7 +59,7 @@ defineExpose({
 
 <template>
   <div class="skin-toolbar">
-    <KPropNum prop-key="KING_CRYSTAL" height="3rem" margin-right="1rem" />
+    <KPropNum prop-key="KING_CRYSTAL" class="k-prop-num" height="3rem" margin-right="1rem" />
 
     <div class="filter-select">
       <!-- 皮肤类型筛选 -->

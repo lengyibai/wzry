@@ -1,28 +1,27 @@
 .yi-bao {
   .common_app-main-child();
 
-  flex-direction: column;
-
-  .top {
-    z-index: 1;
+  .left {
     display: flex;
+    flex-direction: column;
     flex-grow: 1;
-    min-height: 0;
+    margin-right: 2rem;
+  }
+
+  .right {
+    display: flex;
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+    padding-right: 0.5rem;
 
     .left {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      margin-right: 2rem;
+      margin-right: 0;
     }
 
     .right {
-      display: flex;
+      flex-direction: column;
     }
-  }
-
-  .bottom {
-    flex-shrink: 0;
-    height: 9.375rem;
   }
 }

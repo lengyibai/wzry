@@ -169,4 +169,48 @@
       }
     }
   }
+
+  @media screen and (max-width: 1350px) {
+    align-items: center;
+    flex-direction: column;
+    height: initial;
+    padding: 2rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &.active {
+      .global_sweep-light();
+    }
+
+    .left {
+      align-items: center;
+      flex-direction: column;
+      height: initial;
+      margin-right: 0;
+
+      .info {
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .right {
+      flex-direction: column;
+
+      .props {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .schedule-status {
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
 }

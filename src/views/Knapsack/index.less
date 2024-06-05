@@ -1,5 +1,6 @@
 .knapsack {
   display: flex;
+  width: 100%;
   height: 100%;
   padding: 1rem;
 
@@ -125,6 +126,7 @@
     }
 
     .desc {
+      margin-bottom: 2rem;
       color: var(--theme-font-color-three);
       font-size: 1.5rem;
       text-shadow: var(--t-shadow-e);
@@ -135,6 +137,23 @@
       --font-size: 2rem;
 
       margin-top: auto;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column-reverse;
+
+    .article-list,
+    .article-detail {
+      width: 100%;
+    }
+
+    .article-list {
+      justify-content: center;
+    }
+
+    .article-detail {
+      padding-top: 0;
     }
   }
 }

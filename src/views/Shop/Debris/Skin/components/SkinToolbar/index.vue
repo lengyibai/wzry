@@ -76,7 +76,7 @@ defineExpose({
 
 <template>
   <div class="skin-toolbar">
-    <KPropNum prop-key="SKIN_DEBRIS" height="3rem" margin-right="1rem" />
+    <KPropNum prop-key="SKIN_DEBRIS" class="k-prop-num" height="3rem" margin-right="1rem" />
 
     <div class="filter-select">
       <!-- 价格排序 -->

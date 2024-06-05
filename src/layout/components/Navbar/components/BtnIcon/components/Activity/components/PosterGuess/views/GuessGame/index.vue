@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, watch } from "vue";
-import { useMagicKeys } from "@vueuse/core";
+import { inject, ref } from "vue";
 
 import { useHidePosterGuess } from "../../hooks/useHidePosterGuess";
 import { useCloseToStore } from "../../../../common/hooks/useCloseToStore";
@@ -23,7 +22,6 @@ import { _getPropLink } from "@/utils/concise";
 
 const modelValue = defineModel<boolean>({ required: true });
 
-const { escape } = useMagicKeys();
 const { setHidePosterGuessPart } = useHidePosterGuess();
 const { setHideActivityPart } = useIntoGame();
 
@@ -47,6 +45,7 @@ const {
   show_status,
   status_text,
   submitAnswer,
+  setIsExit,
 } = useGuessPoster(closeActivity, handleClose);
 
 /** 是否显示 */
@@ -83,22 +82,19 @@ const handleNext = () => {
 
 /* 退出竞猜 */
 const exitGuess = () => {
+  if (guessing.value) {
+    $message(MESSAGE_TIP.da62, "error");
+    return;
+  }
+
+  setIsExit();
+
   //退出自动领取奖励
   if (show_receive.value) {
     receiveGuessCoin();
   }
   handleClose();
 };
-
-watch(escape, (v) => {
-  if (!v) return;
-  if (guessing.value) {
-    $message(MESSAGE_TIP.da62, "error");
-    return;
-  }
-
-  exitGuess();
-});
 </script>
 
 <template>
@@ -109,13 +105,13 @@ watch(escape, (v) => {
         <div class="guess-prop">
           <KPropNum
             prop-key="GUESS_CARD"
-            font-size="3rem"
-            height="3.5rem"
-            margin-right="2rem"
+            height="3rem"
+            font-size="2rem"
             gap="1rem"
+            margin-right="1.5rem"
             shine
           />
-          <KPropNum prop-key="GUESS_COIN" gap="1rem" font-size="3rem" height="3.5rem" shine />
+          <KPropNum prop-key="GUESS_COIN" height="3rem" font-size="2rem" gap="1rem" shine />
         </div>
 
         <!-- 出题区 -->
@@ -226,10 +222,15 @@ watch(escape, (v) => {
           </div>
         </transition>
 
+        <transition name="to-top">
+          <KButton v-if="!guessing" type="error" class="exit-guess" @click="exitGuess">
+            退出竞猜
+          </KButton>
+        </transition>
+
         <!-- Tip -->
         <transition name="to-top" appear>
           <div class="tips">
-            <div class="tip">按键盘ESC键(退出键)可退出竞猜</div>
             <div class="tip">在竞猜过程中关闭或刷新浏览器，下次竞猜将自动扣除竞猜券</div>
           </div>
         </transition>

@@ -15,4 +15,19 @@
     flex-direction: column;
     gap: 1rem;
   }
+
+  @media screen and (max-width: 960px) {
+    padding-bottom: 0;
+
+    .big-yi-bao {
+      transform: scale(0.75) translateY(-50%);
+      transform-origin: center bottom;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .big-yi-bao {
+      transform: scale(0.5) translateY(-50%);
+    }
+  }
 }

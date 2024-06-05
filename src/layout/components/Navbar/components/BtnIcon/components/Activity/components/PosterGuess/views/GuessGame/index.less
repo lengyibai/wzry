@@ -8,20 +8,21 @@
   background-color: var(--black-75);
 
   .guess-prop {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
+    position: relative;
     display: flex;
+    justify-content: center;
+    margin: 1rem 0;
   }
 
   .guess-poster {
     position: relative;
-    width: 40rem;
-    height: 18.375rem;
+    width: 90%;
+    max-width: 40rem;
     margin: 1rem;
     border: 0.625rem ridge var(--blue);
-    box-sizing: content-box;
+    aspect-ratio: 2350/1080;
     background-color: var(--black);
+    box-sizing: content-box;
 
     &.red {
       border-color: var(--red);
@@ -176,13 +177,18 @@
     position: absolute;
     bottom: 5rem;
     display: flex;
-    align-items: flex-end;
 
     .text {
       color: var(--blue);
       font-size: 3rem;
       transform: translateY(0.3125rem);
     }
+  }
+
+  .exit-guess {
+    position: absolute;
+    bottom: 5rem;
+    display: flex;
   }
 
   .tips {

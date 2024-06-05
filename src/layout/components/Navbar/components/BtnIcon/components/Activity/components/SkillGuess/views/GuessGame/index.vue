@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { inject, nextTick, ref, watch } from "vue";
-import { useMagicKeys } from "@vueuse/core";
+import { inject, nextTick, ref } from "vue";
 
 import { useHideSkillGuess } from "../../hooks/useHideSkillGuess";
 import { useCloseToStore } from "../../../../common/hooks/useCloseToStore";
@@ -25,7 +24,6 @@ const modelValue = defineModel<boolean>({ required: true });
 
 const { setHideSkillGuessPart } = useHideSkillGuess();
 const { setHideActivityPart } = useIntoGame();
-const { escape } = useMagicKeys();
 
 /** 关闭活动 */
 const closeActivity = inject<() => void>("close-activity")!;
@@ -52,6 +50,7 @@ const {
   skill,
   status_text,
   submitAnswer,
+  setIsExit,
 } = useGuessSkill(closeActivity, handleClose);
 
 /** 技能索引格式化 */
@@ -70,7 +69,7 @@ const handleSubmitAnswer = () => {
   nextTick(() => {
     //通过获取滚动高度，设置技能描述高度实现动画
     const height = answerRef.value!.scrollHeight;
-    answerRef.value!.style.height = height / 16 + "rem";
+    answerRef.value!.style.height = height + "px";
   });
 };
 
@@ -108,28 +107,38 @@ const handleNext = () => {
 
 /** @description 退出竞猜 */
 const exitGuess = () => {
+  if (guessing.value) {
+    $message(MESSAGE_TIP.da62, "error");
+    return;
+  }
+
+  setIsExit();
+
   //退出自动领取奖励
   if (show_receive.value) {
     receiveGuessCoin();
   }
   handleClose();
 };
-
-watch(escape, (v) => {
-  if (!v) return;
-  if (guessing.value) {
-    $message(MESSAGE_TIP.da62, "error");
-    return;
-  }
-
-  exitGuess();
-});
 </script>
 
 <template>
   <teleport to="body">
     <transition name="fade" appear>
       <div v-show="show" class="guess-game">
+        <!-- 剩余道具 -->
+        <div class="guess-prop">
+          <KPropNum
+            prop-key="GUESS_CARD"
+            height="3rem"
+            font-size="2rem"
+            gap="1rem"
+            margin-right="1.5rem"
+            shine
+          />
+          <KPropNum prop-key="GUESS_COIN" height="3rem" font-size="2rem" gap="1rem" shine />
+        </div>
+
         <!-- 出题区 -->
         <div class="guess-skill">
           <transition-group name="fade-a">
@@ -256,26 +265,15 @@ watch(escape, (v) => {
           </div>
         </transition>
 
-        <!-- 剩余道具 -->
-        <div class="guess-prop">
-          <!-- 剩余道具 -->
-          <div class="guess-prop">
-            <KPropNum
-              prop-key="GUESS_CARD"
-              height="3.5rem"
-              font-size="3rem"
-              gap="1rem"
-              margin-right="2rem"
-              shine
-            />
-            <KPropNum prop-key="GUESS_COIN" gap="1rem" height="3.5rem" font-size="3rem" shine />
-          </div>
-        </div>
+        <transition name="to-top">
+          <KButton v-if="!guessing" type="error" class="exit-guess" @click="exitGuess">
+            退出竞猜
+          </KButton>
+        </transition>
 
         <!-- Tip -->
         <transition name="to-top" appear>
           <div class="tips">
-            <div class="tip">按键盘ESC键(退出键)可退出竞猜</div>
             <div class="tip">在竞猜过程中关闭或刷新浏览器，下次竞猜将自动扣除竞猜券</div>
           </div>
         </transition>

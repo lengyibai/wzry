@@ -251,6 +251,11 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
     setShowStatus(v: boolean) {
       show_status.value = v;
     },
+
+    /** @description 设置已退出竞猜 */
+    setIsExit() {
+      is_destroyed = false;
+    },
   };
   const { randomPoster } = ExposeMethods;
 

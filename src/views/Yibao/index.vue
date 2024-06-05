@@ -22,22 +22,20 @@ onActivated(() => {
 
 <template>
   <div class="yi-bao">
-    <div class="top">
-      <transition name="to-right-opacity" appear>
-        <div class="left">
-          <NavBar />
-          <YiBaoStage />
-          <MenuTool />
-        </div>
-      </transition>
+    <transition name="to-right-opacity" appear>
+      <div class="left">
+        <NavBar />
+        <YiBaoStage />
+        <MenuTool />
+      </div>
+    </transition>
 
-      <transition name="to-left-opacity" appear>
-        <div class="right">
-          <PartList />
-          <PersonalizedMenu />
-        </div>
-      </transition>
-    </div>
+    <transition name="to-left-opacity" appear>
+      <div class="right">
+        <PartList />
+        <PersonalizedMenu />
+      </div>
+    </transition>
   </div>
 </template>
 

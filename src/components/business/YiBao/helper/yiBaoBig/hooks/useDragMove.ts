@@ -8,38 +8,58 @@ const useDragMove = (el: HTMLElement) => {
   let downX = 0;
   let downY = 0;
 
-  const rotate = (e: MouseEvent) => {
-    const moveX = e.clientX;
-    const moveY = e.clientY;
+  const rotate = (moveX: number, moveY: number) => {
     x = moveX - downX + X;
     y = downY - moveY + Y;
     el.style.transform = "rotateX(" + y / sensitive + "deg) rotateY(" + x / sensitive + "deg)";
   };
 
-  /** @description 鼠标抬起清除移动事件 */
-  const mouseup = () => {
+  /** @description 鼠标一定是事件 */
+  const onMouseMove = (e: MouseEvent) => {
+    rotate(e.clientX, e.clientY);
+  };
+
+  /** @description 手指触发移动事件 */
+  const onTouchMove = (e: TouchEvent) => {
+    const touch = e.touches[0];
+    rotate(touch.clientX, touch.clientY);
+  };
+
+  /** @description 抬起事件清除移动事件 */
+  const handleUp = () => {
     X = x;
     Y = y;
-    window.removeEventListener("mousemove", rotate);
+    window.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("touchmove", onTouchMove);
   };
-  window.addEventListener("mouseup", mouseup);
+  window.addEventListener("mouseup", handleUp);
+  window.addEventListener("touchend", handleUp);
 
   /** @description 按下移动动画 */
-  const move = (e: MouseEvent) => {
-    downX = e.clientX;
-    downY = e.clientY;
-    window.addEventListener("mousemove", rotate);
+  const handleMove = (e: MouseEvent | TouchEvent) => {
+    if (e instanceof MouseEvent) {
+      downX = e.clientX;
+      downY = e.clientY;
+      window.addEventListener("mousemove", onMouseMove);
+    } else {
+      const touch = e.touches[0];
+      downX = touch.clientX;
+      downY = touch.clientY;
+      window.addEventListener("touchmove", onTouchMove);
+    }
   };
 
   const ExposeMethods = {
     /** @description 启用按下拖动 */
     enableDragMove() {
-      el.addEventListener("mousedown", move);
+      el.addEventListener("mousedown", handleMove);
+      el.addEventListener("touchstart", handleMove);
     },
 
     /** @description 禁用按下拖动 */
     disableDragMove() {
-      el.removeEventListener("mousedown", move);
+      el.removeEventListener("mousedown", handleMove);
+      el.removeEventListener("touchstart", handleMove);
       el.style.transform = "";
       x = 0;
       y = 0;

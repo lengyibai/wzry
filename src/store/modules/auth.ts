@@ -69,6 +69,13 @@ const AuthStore = defineStore("auth", () => {
     watchStatus();
     useUserConfigFinish.readyDataResolve();
     router.push(BASE_CONFIG.HOME_URL);
+
+    //竖版提示
+    if (window.innerWidth < window.innerHeight) {
+      $tip({
+        text: CUSTOM_TIP.wi79,
+      });
+    }
   };
 
   /** @description 实时检测帐号状态 */

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
+import { useMediaQuery } from "@vueuse/core";
+import { computed } from "vue";
 
 import PartCollect from "../../common/PartCollect/index.vue";
 
@@ -13,6 +15,13 @@ const { part_type } = storeToRefs($yibaoStore);
 const { setPartType } = $yibaoStore;
 
 const { playAudio } = usePlayAudio();
+
+const under_640 = useMediaQuery("(max-width: 640px)");
+
+const rate = computed(() => {
+  if (under_640.value) return 0.65;
+  return 0.75;
+});
 </script>
 
 <template>
@@ -30,7 +39,7 @@ const { playAudio } = usePlayAudio();
           active: part_type === item,
         }"
       >
-        <PartCollect :rate="0.75" :part-key="item" />
+        <PartCollect :rate="rate" :part-key="item" />
       </div>
     </div>
   </div>

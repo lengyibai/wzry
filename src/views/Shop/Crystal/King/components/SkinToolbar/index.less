@@ -13,19 +13,23 @@
   .k-input {
     margin-left: auto;
     padding: 0.625rem;
-
-    @media screen and (max-width: 960px) {
-      margin-top: 1.5625rem;
-      margin-left: 0;
-    }
   }
 
   @media screen and (max-width: 960px) {
     flex-direction: column;
 
+    .k-prop-num {
+      margin-bottom: 1rem;
+    }
+
     .filter-select {
       justify-content: center;
       margin-bottom: 1.5625rem;
+    }
+
+    .k-input {
+      margin-top: 1.5625rem;
+      margin-left: 0;
     }
   }
 }

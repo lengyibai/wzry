@@ -16,4 +16,16 @@
     text-align: center;
     grid-column: span 4;
   }
+
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 960px) {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 200px;
+    align-content: initial;
+  }
 }

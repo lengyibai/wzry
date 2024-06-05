@@ -6,7 +6,7 @@ import { storeToRefs } from "pinia";
 import { $confirmText, GAME_PROP, MESSAGE_TIP, ROUTE_PATH } from "@/config";
 import { AuthStore, KnapsackStore, MailStore } from "@/store";
 import { KButton, KEmpty } from "@/components/business";
-import { vAnimateNumber, vMouseTip } from "@/directives";
+import { vAnimateNumber, vMouseTip, vScrollVirtualization } from "@/directives";
 import { $optional, $upgrade, $batchProp, $confirm, $message } from "@/utils/busTransfer";
 import { _classNameInclude, _debounce, _getNewDayTimestamp, dayjs } from "@/utils/tool";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
@@ -332,7 +332,7 @@ onDeactivated(() => {
 <template>
   <div class="knapsack" @mouseenter="enableRadialBorder" @mouseleave="disableRadialBorder">
     <transition name="to-right-opacity" appear>
-      <div v-if="!is_empty" class="article-list">
+      <div v-if="!is_empty" v-scroll-virtualization class="article-list">
         <div
           ref="shineRoundRef"
           class="shine-round"

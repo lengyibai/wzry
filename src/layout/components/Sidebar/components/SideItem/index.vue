@@ -50,14 +50,14 @@ watch(
 const handleClickSide = () => {
   show.value = !show.value;
 
-  //如果低于960px，则折叠侧边栏
-  if (window.innerWidth < 960) {
-    setCollapse(true);
-  }
-
   //如果当前组件没有子路由，则直接跳转
   if (!$props.route.children) {
     $router.push($props.route.path);
+
+    //如果低于6400px，则折叠侧边栏
+    if (window.innerWidth < 640) {
+      setCollapse(true);
+    }
     return;
   } /* 如果父级菜单已经展开，则生成子菜单 */ else if (show.value) {
     routes.push(...$props.route.children);
