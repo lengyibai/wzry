@@ -34,7 +34,7 @@ const onComponentMounted = () => {
     <div v-show="!hide_all" class="app-main">
       <router-view v-slot="{ Component }">
         <KeepAlive :include="keep_alive">
-          <component :is="Component" @vue:mounted="onComponentMounted" />
+          <component :is="Component" :visible="!hide_all" @vue:mounted="onComponentMounted" />
         </KeepAlive>
       </router-view>
     </div>

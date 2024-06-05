@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onActivated, ref, nextTick } from "vue";
+import { onActivated, ref, nextTick, watch } from "vue";
 import { storeToRefs } from "pinia";
 
 import SkinCard from "./components/SkinCard/index.vue";
@@ -16,6 +16,12 @@ import { vCardIntoAnimate } from "@/directives";
 defineOptions({
   name: "Skin",
 });
+
+interface Props {
+  /** 为了解决虚拟列表更新问题，进入活动页或任务页时，页面会隐藏，再次进入列表可能会无法加载 */
+  visible: boolean;
+}
+const $props = defineProps<Props>();
 
 const $skinStore = SkinStore();
 const { scroll, show_list, finish, loading } = storeToRefs($skinStore);
@@ -87,6 +93,17 @@ const handleEnterCard = () => {
 const onBackTop = () => {
   libVirtualListRef.value?._setPosition(0, false);
 };
+
+watch(
+  () => $props.visible,
+  (v) => {
+    show_skin_list.value = v;
+
+    nextTick(() => {
+      libVirtualListRef.value?._setPosition(scroll.value);
+    });
+  },
+);
 
 onActivated(async () => {
   playAudio("gz43");
