@@ -5,6 +5,7 @@ import { useGetZip } from "@/hooks";
 
 /** @description 获取远程音效链接
  * @param name 音频名称
+ * @returns 音效链接
  */
 export const _getAudioLink = (name: string) => {
   return useGetZip().audio_links.value[name];
@@ -12,14 +13,15 @@ export const _getAudioLink = (name: string) => {
 
 /** @description 获取远程音乐链接
  * @param name 音频名称
+ * @returns 音乐链接
  */
-export const _getMusicLink = (name: string) => `${BASE_CONFIG.IMGBED}/music/${name}.mp3`;
+export const _getMusicLink = (name: string):string => `${BASE_CONFIG.IMGBED}/music/${name}.mp3`;
 
 /** @description 获取主页视频链接
  * @param name 音频名称
  * @param version 版本号
  */
-export const _getVideoLink = (name: string, version = "0") => {
+export const _getVideoLink = (name: string, version = "0"):string => {
   const links = useGetZip().video_home_links;
   const url = links.value[name];
 
@@ -31,7 +33,7 @@ export const _getVideoLink = (name: string, version = "0") => {
 /** @description 获取远程HTML链接
  * @param name HTML名称
  */
-export const _getHtmlLink = (name: string) =>
+export const _getHtmlLink = (name: string):string =>
   `${BASE_CONFIG.IMGBED}/html/${name}.html?t=${dayjs().unix()}`;
 
 /** @description 获取非压缩包图片链接
@@ -39,7 +41,7 @@ export const _getHtmlLink = (name: string) =>
  * @param version 版本号
  * @param suffix 图片后缀
  */
-export const _getImgLink = (name: string, version = "0", suffix = "png") => {
+export const _getImgLink = (name: string, version = "0", suffix = "png"):string => {
   return `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}?temp=${version}`;
 };
 
