@@ -1101,7 +1101,7 @@ export class _LoadMore {
     const y = this.el.scrollTop;
     this.scroll && this.scroll(y);
 
-    //就算距离底部的距离
+    //计算距离底部的距离
     const d = this.el.scrollHeight - this.el.clientHeight - y;
 
     //注意：当所有数据加载完成，在进入加载高度时会持续触发，需要在加载更多方法里通过总页数>当前页数来进行限制触发
