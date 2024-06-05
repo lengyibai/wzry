@@ -4,7 +4,6 @@ const SCENE_TIP: Record<keyof Global.Tip.Key, string> = {
   mu63: "这里可以切换为Minecraft贴图哦！",
   f1y0: "别忘了进入铭文搭配页。",
   cl60: "按住方案卡片拖拽可排序。",
-  ma67: "",
   kr53: "",
 
   /**
@@ -16,6 +15,7 @@ const SCENE_TIP: Record<keyof Global.Tip.Key, string> = {
    * 移动端专属
    */
   lp57: "手指按住边缘头像，拖动到中心位置并松开(点击头像也可以)。",
+  ma67: "手机端无法展示跟随鼠标跳跃的小乂宝，因此你无法获取跳跳币。",
 };
 
 /** @description 自定义/动态Tip */
