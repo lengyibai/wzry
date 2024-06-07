@@ -1,4 +1,5 @@
 import { YiBaoStoreType } from "@/store/interface";
+import { _isPhone } from "@/utils/tool";
 
 /** @description 默认英雄信息 */
 export const heroDefault: () => Game.Hero.Detail = () => ({
@@ -242,11 +243,11 @@ export const configDefault: () => Global.SettingConfig = () => ({
   audioVolume: 50,
   music: true,
   musicVolume: 50,
-  barrage: false,
+  barrage: !_isPhone,
   musicProgress: false,
   speed: 1,
   shine: true,
-  particle: true,
+  particle: false,
   language: 0,
   noTips: {
     f1y0: false,
