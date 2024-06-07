@@ -116,6 +116,11 @@ export const getSkinList = async () => {
   return await get<number[]>(LOCAL_KEY.skin);
 };
 
+/** @description 获取同框皮肤列表 */
+export const getSkinSameList = async () => {
+  return await get<number[]>(LOCAL_KEY.skinSame);
+};
+
 /** @description 获取皮肤所属英雄列表 */
 export const getSkinHeroList = async () => {
   return await get<Remote.Skin.Hero[]>(LOCAL_KEY.skinHero);

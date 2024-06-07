@@ -58,6 +58,7 @@ const LOCAL_KEY = {
   heroSpecialty: "英雄特长表",
 
   skin: "皮肤表",
+  skinSame: "同框皮肤表",
   skinHero: "皮肤英雄表",
   skinImage: "皮肤图片表",
   skinName: "皮肤名称表",
