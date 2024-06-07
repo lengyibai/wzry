@@ -7,7 +7,7 @@
   height: 25%;
 
   :deep(.barrage-animate) {
-    --border-color: var(--theme-color-four);
+    --border-color: var(--black);
     --color: var(--white);
     .global_text-outline(0.1875rem,var(--color),var(--border-color));
 
@@ -27,15 +27,11 @@
       z-index: 102 !important;
       background-position-x: left;
       background-size: 100% 0.25rem;
-      animation-play-state: paused !important;
+      animation-play-state: paused;
     }
 
     &.lyb {
-      --border-color: var(--black);
-      --color: var(--white);
-
-      background: linear-gradient(to right, var(--white-50), var(--white)) no-repeat right bottom /
-        0 0.25rem;
+      background-image: linear-gradient(to right, var(--white-50), var(--white));
 
       &:hover {
         --color: var(--white-75);
@@ -43,16 +39,19 @@
     }
 
     &.nan {
+      --border-color: #4b87ff;
+
+      background-image: linear-gradient(to right, rgb(134 155 213 / 50%), var(--border-color));
+
       &:hover {
-        --color: var(--blue);
+        --color: #4b55c9;
       }
     }
 
     &.nv {
       --border-color: #d58692;
 
-      background: linear-gradient(to right, rgb(213 134 146 / 50%), var(--border-color)) no-repeat
-        right bottom / 0 0.25rem;
+      background-image: linear-gradient(to right, rgb(213 134 146 / 50%), var(--border-color));
 
       &:hover {
         --color: #c9564b;
