@@ -1,40 +1,23 @@
 module.exports = {
-  extends: [
-    "stylelint-config-standard",
-    "stylelint-config-recommended-less",
-    "stylelint-config-standard-vue",
-  ],
+  extends: ["stylelint-config-standard"],
   plugins: ["stylelint-order"],
   overrides: [
     {
-      files: ["**/*.(less|css|vue|html)"],
+      files: ["**/*.(less|vue)"],
       customSyntax: "postcss-less",
     },
     {
-      files: ["**/*.(html|vue)"],
+      files: ["**/*.(vue)"],
       customSyntax: "postcss-html",
     },
   ],
   rules: {
-    "custom-property-empty-line-before": null,
-    "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
-    "media-feature-range-notation": null, //将媒体查询max-width转换为width<=的形式
-    "no-extra-semicolons": null, //禁止不必要的分号
-    "media-query-no-invalid": null, //禁止在媒体查询中使用不合法的表达式
-    "font-family-no-missing-generic-family-keyword": null,
-    "selector-class-pattern": null, //禁止在类名中使用下划线
-    "declaration-block-trailing-semicolon": null, //禁止在声明块的结尾使用分号
-    "declaration-colon-newline-after": null, //禁止在声明后使用空格或换行符
+    "selector-class-pattern": null, //必须使用中划线命名
+    "font-family-no-missing-generic-family-keyword": null, //禁止在字体族名称中使用缺少的通用系列关键字
     "no-descending-specificity": null, //禁止在特定的选择器和规则集中使用降序的选择器和规则集
-    "property-no-vendor-prefix": null, //禁止使用浏览器前缀
-    //选择器伪元素未知时进行检查
-    "selector-pseudo-element-no-unknown": [
-      true,
-      {
-        /** 忽略的伪元素列表中添加了 "v-deep" */
-        ignorePseudoElements: ["v-deep"],
-      },
-    ],
+    "media-feature-range-notation": null, //将媒体查询max-width转换为width<=的形式
+    "declaration-block-no-redundant-longhand-properties": null, //使用合并一些属性
+    "property-no-vendor-prefix": null, //禁止在属性中使用供应商前缀
     /** 选择器伪类未知时进行检查 */
     "selector-pseudo-class-no-unknown": [
       true,
