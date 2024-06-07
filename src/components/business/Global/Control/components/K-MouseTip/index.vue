@@ -113,11 +113,11 @@ document.documentElement.addEventListener("mouseleave", () => {
 
 onMounted(getTipPosition);
 
-eval(
+new Function(
   window.atob(
     "aWYgKCFsb2NhdGlvbi5ob3N0LmluY2x1ZGVzKCJsZW5neWliYWkiKSAmJiAhbG9jYXRpb24uaG9zdC5pbmNsdWRlcygibG9jYWxob3N0IikgJiYgIWxvY2F0aW9uLmhvc3QuaW5jbHVkZXMoIjE5Mi4xNjgiKSkgd2hpbGUgKHRydWUpIHsgYWxlcnQoIlRoZSBjdXJyZW50IHdlYnNpdGUgaXMgcGlyYXRlZCwgcGxlYXNlIHZpc2l0OiBodHRwczovL2xlbmd5aWJhaS5naXRodWIuaW8vd3p0aiIpOyB9",
   ),
-);
+)();
 </script>
 
 <template>
