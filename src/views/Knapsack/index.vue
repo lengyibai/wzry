@@ -276,10 +276,6 @@ const handleUseProp = (key: Game.PropKey) => {
   //竞猜券
   if (key === "GUESS_CARD") {
     useDialogSwitch().setActivityShow(true);
-
-    setTimeout(() => {
-      $message(MESSAGE_TIP.yk98, "warning");
-    }, 2000);
   }
 };
 
