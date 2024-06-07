@@ -15,9 +15,11 @@ import { $message } from "@/utils/busTransfer";
 import { _getActivityBannerLink } from "@/utils/concise";
 import { AuthStore } from "@/store";
 import { vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 const $authStore = AuthStore();
 
+const { playAudio } = usePlayAudio();
 const { setHideActivityPart } = useIntoGame();
 const { hide_skill_guess_part, setHideSkillGuessPart } = useHideSkillGuess();
 
@@ -52,6 +54,7 @@ const handleStart = () => {
   }
   if (useCloseToStore(closeActivity)) return;
 
+  playAudio("pj83");
   setHideSkillGuessPart(true);
   setHideActivityPart(true);
   setTimeout(() => {

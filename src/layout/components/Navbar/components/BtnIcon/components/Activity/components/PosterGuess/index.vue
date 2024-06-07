@@ -15,9 +15,11 @@ import { $msgTipText, GAME_CONFIG } from "@/config";
 import { _getActivityBannerLink } from "@/utils/concise";
 import { AuthStore } from "@/store";
 import { vMouseTip } from "@/directives";
+import { usePlayAudio } from "@/hooks";
 
 const $authStore = AuthStore();
 
+const { playAudio } = usePlayAudio();
 const { setHideActivityPart } = useIntoGame();
 const { hide_poster_guess_part, setHidePosterGuessPart } = useHidePosterGuess();
 
@@ -52,6 +54,7 @@ const handleStart = () => {
   }
   if (useCloseToStore(closeActivity)) return;
 
+  playAudio("pj83");
   setHidePosterGuessPart(true);
   setHideActivityPart(true);
   setTimeout(() => {

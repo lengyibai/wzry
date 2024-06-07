@@ -8,7 +8,7 @@ import { AuthStore, KnapsackStore } from "@/store";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
 import { $msgTipText, CUSTOM_TIP, GAME_CONFIG, GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
-import { useSetMarker } from "@/hooks";
+import { usePlayAudio, useSetMarker } from "@/hooks";
 
 /**
  * @description 技能竞猜
@@ -20,6 +20,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
   const $authStore = AuthStore();
 
   const { addStatusMarkerNum } = useSetMarker();
+  const { playAudio } = usePlayAudio();
 
   /** 剩余秒数 */
   let seconds = 20;
@@ -250,6 +251,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
         addStatusMarkerNum("SKILL_GUESS_WRONG_COUNT");
       }
 
+      playAudio("pj83");
       await _promiseTimeout(2000);
 
       show_status.value = true;
@@ -295,7 +297,7 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
 
     /** @description 设置已退出竞猜 */
     setIsExit() {
-      is_destroyed = false;
+      is_destroyed = true;
     },
   };
   const { randomSkill } = ExposeMethods;

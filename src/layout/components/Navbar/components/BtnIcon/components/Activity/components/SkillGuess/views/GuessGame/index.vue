@@ -19,11 +19,13 @@ import { _promiseTimeout } from "@/utils/tool";
 import { $message } from "@/utils/busTransfer";
 import { GAME_PROP, MESSAGE_TIP, MOUSE_TIP } from "@/config";
 import { _getPropLink, _getMiscLink } from "@/utils/concise";
+import { usePlayAudio } from "@/hooks";
 
 const modelValue = defineModel<boolean>({ required: true });
 
 const { setHideSkillGuessPart } = useHideSkillGuess();
 const { setHideActivityPart } = useIntoGame();
+const { playAudio } = usePlayAudio();
 
 /** 关闭活动 */
 const closeActivity = inject<() => void>("close-activity")!;
@@ -118,7 +120,9 @@ const exitGuess = () => {
   if (show_receive.value) {
     receiveGuessCoin();
   }
+
   handleClose();
+  playAudio("pj83");
 };
 </script>
 

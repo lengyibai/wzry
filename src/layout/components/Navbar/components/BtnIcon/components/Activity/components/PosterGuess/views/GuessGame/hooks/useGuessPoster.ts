@@ -8,7 +8,7 @@ import { AuthStore, KnapsackStore } from "@/store";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
 import { $msgTipText, CUSTOM_TIP, GAME_CONFIG, GAME_PROP } from "@/config";
 import { _getPropLink } from "@/utils/concise";
-import { useSetMarker } from "@/hooks";
+import { usePlayAudio, useSetMarker } from "@/hooks";
 
 /**
  * @description 海报竞猜
@@ -20,6 +20,7 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
   const $authStore = AuthStore();
 
   const { addStatusMarkerNum } = useSetMarker();
+  const { playAudio } = usePlayAudio();
 
   /** 当前皮肤ID */
   let skin_id = 0;
@@ -201,6 +202,7 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
         addStatusMarkerNum("POSTER_GUESS_WRONG_COUNT");
       }
 
+      playAudio("pj83");
       await _promiseTimeout(2000);
 
       show_status.value = true;
@@ -246,7 +248,7 @@ const useGuessPoster = (closeActivity: () => void, closeGame: () => Promise<void
 
     /** @description 设置已退出竞猜 */
     setIsExit() {
-      is_destroyed = false;
+      is_destroyed = true;
     },
   };
   const { randomPoster } = ExposeMethods;
