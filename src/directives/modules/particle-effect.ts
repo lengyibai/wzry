@@ -121,7 +121,7 @@ export class AnimateMove {
     circle.style.height = size / 16 + "rem";
     circle.style.bottom = "0";
     circle.style.left = x + "%";
-    circle.style.transform = `translateY(100%) translateZ(0) rotate(${540 - size * 60}deg)`;
+    circle.style.transform = `translateY(100%) rotate(${540 - size * 60}deg)`;
 
     if (this.down) {
       circle.style.opacity = "0";
@@ -145,12 +145,12 @@ export class AnimateMove {
         circle.style.bottom = end + "%";
       }
 
-      circle.style.transform = "translateZ(0)";
+      circle.style.transform = "";
       circle.style.left = _random(x - 5, x + 5) + "%";
 
       setTimeout(() => {
         circle.style.opacity = "0";
-        circle.style.transform = `translateZ(0) rotate(${720 - size * 60}deg) scale(0.25)`;
+        circle.style.transform = `rotate(${720 - size * 60}deg) scale(0.25)`;
       }, duration * 0.5);
     }, 100);
   }

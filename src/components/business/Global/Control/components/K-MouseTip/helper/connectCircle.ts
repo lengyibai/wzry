@@ -30,7 +30,7 @@ export const connectCircle = (circle1: HTMLElement, circle2: HTMLElement, line: 
   //设置线条的位置和角度
   setTimeout(() => {
     line.style.width = `${length}px`;
-    line.style.transform = `translateZ(0) rotate(${angle}deg)`;
+    line.style.transform = `rotate(${angle}deg)`;
     line.style.top = `${y1}px`;
     line.style.left = `${x1}px`;
   });

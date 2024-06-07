@@ -142,7 +142,7 @@ export class BarragesGenerate {
     barrage.style.top = gap;
     barrage.style.zIndex = (brightness * 100).toFixed(0);
     barrage.style.filter = `brightness(${brightness >= 1 ? 1 : brightness})`;
-    barrage.style.transform = `translateX(100%) translateZ(0) scale(${15 / speed})`;
+    barrage.style.transform = `translateX(100%) scale(${15 / speed})`;
     barrage.style.animationDuration = speed + "s";
     barrage.classList.add("barrage-animate");
     barrage.innerHTML = data.text;
@@ -188,7 +188,7 @@ export class BarragesGenerate {
 
     barrage.style.top = gap;
     barrage.style.zIndex = "101";
-    barrage.style.transform = `translateX(100%) translateZ(0)`;
+    barrage.style.transform = `translateX(100%)`;
     barrage.style.animationDuration = (move_time > 20 ? 20 : move_time < 15 ? 15 : move_time) + "s";
     barrage.classList.add("barrage-animate");
     barrage.innerHTML = text;

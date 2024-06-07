@@ -6,7 +6,7 @@ import Logo3D from "./components/Logo3D/index.vue";
 const { collapse } = useCollapse();
 
 /** 是否为生产环境 */
-const is_prod = import.meta.env.PROD;
+const is_prod = true;
 
 /** @description 开始确认刷新计时 */
 const handleStartTime = () => {
