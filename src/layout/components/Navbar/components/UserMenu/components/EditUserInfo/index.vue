@@ -46,6 +46,7 @@ const handleRename = () => {
     title: "修改昵称",
     placeholder: "请输入新昵称",
     value: user_data.username,
+    type:'password',
     confirm: (v, close) => {
       user_data.username = v;
       close();
