@@ -6,7 +6,6 @@ export interface InputConfig {
   title: string;
   /** 输入框提示 */
   placeholder: string;
-  type:string;
   /** 关闭回调 */
   close?: () => void;
   /**

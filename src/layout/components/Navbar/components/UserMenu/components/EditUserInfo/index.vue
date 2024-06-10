@@ -46,7 +46,6 @@ const handleRename = () => {
     title: "修改昵称",
     placeholder: "请输入新昵称",
     value: user_data.username,
-    type:'password',
     confirm: (v, close) => {
       user_data.username = v;
       close();
@@ -56,6 +55,7 @@ const handleRename = () => {
 
 /** 修改密码 */
 const handleResetPwd = () => {
+  // 确认成功之后修改密码
   $input({
     title: "修改密码",
     placeholder: "请输入新密码",
