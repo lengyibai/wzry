@@ -55,19 +55,28 @@ const handleRename = () => {
 
 /** 修改密码 */
 const handleResetPwd = () => {
-  // 确认成功之后修改密码
+  // 确认旧密码
   $input({
-    title: "修改密码",
-    placeholder: "请输入新密码",
-    value: user_data.password,
+    title: "确认旧密码",
+    placeholder: "请输入旧密码",
+    value: "",
     confirm: (v, close) => {
-      if (v === user_data.secondaryPassword) {
-        $message(MESSAGE_TIP.f1q2, "error");
-        return;
+      if (v === user_data.password) {
+        // close();
+        // 旧密码验证通过后，输入新密码
+        $input({
+          title: "设置新密码",
+          placeholder: "请输入新密码",
+          value: "",
+          confirm: (p, close) => {
+            user_data.password = p;
+            $message("修改密码成功！！");
+            close();
+          },
+        });
+      } else {
+        $message("旧密码不正确，请重试", "error");
       }
-
-      user_data.password = v;
-      close();
     },
   });
 };
