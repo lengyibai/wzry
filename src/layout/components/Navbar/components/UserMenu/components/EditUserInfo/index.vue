@@ -93,7 +93,6 @@ const handleResetSecPwd = () => {
     value: "",
     confirm: (v, close) => {
       if (v === user_data.secondaryPassword) {
-        // close();
         // 旧密码验证通过后，输入新密码
         $input({
           title: "设置二级新密码",
