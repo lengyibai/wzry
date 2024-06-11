@@ -69,6 +69,10 @@ const handleResetPwd = () => {
           placeholder: "请输入新密码",
           value: "",
           confirm: (p, close) => {
+            if (user_data.password === p) {
+              $message("新密码与旧密码重复");
+              return;
+            }
             user_data.password = p;
             $message("修改密码成功！！");
             close();
@@ -84,17 +88,30 @@ const handleResetPwd = () => {
 /** 修改二级密码 */
 const handleResetSecPwd = () => {
   $input({
-    title: "修改二级密码",
-    placeholder: "请输入新二级密码",
-    value: user_data.secondaryPassword,
+    title: "确认二级旧密码",
+    placeholder: "请输入二级旧密码",
+    value: "",
     confirm: (v, close) => {
-      if (v === user_data.password) {
-        $message(MESSAGE_TIP.w89h, "error");
-        return;
+      if (v === user_data.secondaryPassword) {
+        // close();
+        // 旧密码验证通过后，输入新密码
+        $input({
+          title: "设置二级新密码",
+          placeholder: "请输入二级新密码",
+          value: "",
+          confirm: (p, close) => {
+            if (user_data.secondaryPassword === p) {
+              $message("新密码与旧密码重复");
+              return;
+            }
+            user_data.secondaryPassword = p;
+            $message("修改密码成功！！");
+            close();
+          },
+        });
+      } else {
+        $message("旧密码不正确，请重试", "error");
       }
-
-      user_data.secondaryPassword = v;
-      close();
     },
   });
 };
