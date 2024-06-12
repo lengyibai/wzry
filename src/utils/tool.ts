@@ -258,9 +258,11 @@ export const _imageOptimizer = (obj: ImageOptimizerOptions) => {
   if (!files) return;
 
   const name = files.name;
+  const extension = name.split(".").pop()!.toLowerCase();
   const ratio = obj.ratio || 1;
   const maxSize = obj.maxSize || 1024;
   const width = obj.width || 10000;
+  const mimeType = files.type;
 
   function dataURLtoFile(dataURL: string, filename: string) {
     const arr = dataURL.split(",");
@@ -303,14 +305,16 @@ export const _imageOptimizer = (obj: ImageOptimizerOptions) => {
           context!.drawImage(image, 0, 0, image.width, image.height);
         }
 
-        const dataUrl = canvas.toDataURL("image/jpeg", ratio);
-        const file = dataURLtoFile(dataUrl, name);
+        const dataUrl = canvas.toDataURL(mimeType, ratio);
+        const newName = `${name.split(".")[0]}.${extension}`;
+        const file = dataURLtoFile(dataUrl, newName);
         obj.success(formData(file), file, dataUrl);
         canvas.remove();
       };
       image.onerror = obj.fail as any;
     } else {
-      const file = dataURLtoFile(result, name);
+      const newName = `${name.split(".")[0]}.${extension}`;
+      const file = dataURLtoFile(result, newName);
       obj.success(formData(file), file, result);
       canvas.remove();
     }
