@@ -425,7 +425,7 @@ export const _downloadImage = (link: string, name: string) => {
     });
 };
 
-/** @description 配置合并，如果当前配置有但初始配置没有的属性，则会删除该属性，反之添加
+/** @description 配置合并，如果当前配置有但初始配置没有的属性
  * @param config 当前配置
  * @param initialConfig 初始配置
  */
