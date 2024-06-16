@@ -51,9 +51,7 @@
   }
 }
 .body .loading .box {
-  animation:
-    into-scale 3s forwards ease-out,
-    into-opacity 2s forwards;
+  animation: into-scale 3s forwards ease-out, into-opacity 2s forwards;
 }
 @keyframes into-opacity {
   0% {
@@ -258,4 +256,11 @@
     transform: translateX(calc(3vw * var(--rate)));
     opacity: 0;
   }
+}
+.body .tip {
+  position: absolute;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.25);
+  top: 1rem;
+  font-size: calc(2vw * var(--rate));
 }
