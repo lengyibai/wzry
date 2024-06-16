@@ -6,6 +6,7 @@ import { useCollapse } from "./hooks/useCollapse";
 
 import { RouterStore } from "@/store";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
+import { vScrollVirtualization } from "@/directives";
 
 const $routerStore = RouterStore();
 
@@ -26,7 +27,7 @@ const routes = formatSidebarRoutes(options);
       <GameLogo />
 
       <!-- 侧边栏列表 -->
-      <div class="side-bar-list">
+      <div v-scroll-virtualization class="side-bar-list">
         <sideItem v-for="route in routes" :key="route.path" height="4rem" :route="route" />
       </div>
     </div>
