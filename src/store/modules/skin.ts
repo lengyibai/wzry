@@ -20,6 +20,8 @@ const SkinStore = defineStore("skin", () => {
     scroll: $usePagingLoad.scroll,
     /** 暂无更多 */
     finish: $usePagingLoad.finish,
+    /** 皮肤列表 */
+    all_data: $usePagingLoad.all_data,
     /** 筛选后的数据列表 */
     filter_list: $usePagingLoad.filter_list,
     /** 展示的数据列表 */
@@ -43,6 +45,7 @@ const SkinStore = defineStore("skin", () => {
     skin_type_list: ref<string[]>([]),
   };
   const {
+    all_data,
     filter_list,
     gender_type,
     profession,
@@ -91,8 +94,6 @@ const SkinStore = defineStore("skin", () => {
 
     /** 职业筛选 */
     const filterProfession = () => {
-      const { all_data } = $usePagingLoad;
-
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
         $usePagingLoad.setFilterData([...all_data.value]);
@@ -213,8 +214,7 @@ const SkinStore = defineStore("skin", () => {
     /** @description 获取皮肤列表并设置皮肤类型图片及类型命 */
     async getSkin() {
       const skin_list = await GAME_HERO.getSkinList();
-
-      $usePagingLoad.all_data.value = skin_list;
+      $usePagingLoad.pushAllData(skin_list);
 
       sortAll();
       getSameName(skin_list);
@@ -302,7 +302,7 @@ const SkinStore = defineStore("skin", () => {
 
       if (name) {
         const data = _search(
-          _cloneDeep($usePagingLoad.all_data.value),
+          _cloneDeep(all_data.value),
           name,
           ["name", "heroName", "category"],
           true,

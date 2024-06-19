@@ -20,6 +20,8 @@ const HeroDebrisStore = defineStore("heroDebris", () => {
     loading: $usePagingLoad.loading,
     /** 滚动坐标 */
     scroll: $usePagingLoad.scroll,
+    /** 英雄列表 */
+    all_data: $usePagingLoad.all_data,
     /** 展示的英雄列表 */
     show_list: $usePagingLoad.show_list,
 
@@ -30,7 +32,7 @@ const HeroDebrisStore = defineStore("heroDebris", () => {
     /** 当前性别排序类型 */
     gender_type: ref<Game.GenderId>(0),
   };
-  const { profession, price_type, gender_type } = ExposeData;
+  const { all_data, profession, price_type, gender_type } = ExposeData;
 
   /** @description 一键排序 */
   const sortAll = () => {
@@ -40,9 +42,9 @@ const HeroDebrisStore = defineStore("heroDebris", () => {
     const filterProfession = () => {
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
-        $usePagingLoad.setFilterData([...$usePagingLoad.all_data.value]);
+        $usePagingLoad.setFilterData([...all_data.value]);
       } else {
-        const data = $usePagingLoad.all_data.value.filter((item: Game.Hero.Data) => {
+        const data = all_data.value.filter((item: Game.Hero.Data) => {
           return item.profession.includes(profession.value!);
         });
 
@@ -148,12 +150,7 @@ const HeroDebrisStore = defineStore("heroDebris", () => {
       gender_type.value = 0;
 
       if (name) {
-        const data = _search<Game.Hero.Data>(
-          _cloneDeep($usePagingLoad.all_data.value),
-          name,
-          "name",
-          true,
-        );
+        const data = _search<Game.Hero.Data>(_cloneDeep(all_data.value), name, "name", true);
         $usePagingLoad.setFilterData(data);
       } else {
         sortAll();

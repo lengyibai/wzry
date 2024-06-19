@@ -20,6 +20,8 @@ const KingCrystalStore = defineStore("kingCrystal", () => {
     scroll: $usePagingLoad.scroll,
     /** 暂无更多 */
     finish: $usePagingLoad.finish,
+    /** 皮肤列表 */
+    all_data: $usePagingLoad.all_data,
     /** 筛选后的数据列表 */
     filter_list: $usePagingLoad.filter_list,
     /** 展示的数据列表 */
@@ -34,7 +36,7 @@ const KingCrystalStore = defineStore("kingCrystal", () => {
     /** 统计皮肤类型列表 */
     skin_type_list: ref<string[]>([]),
   };
-  const { filter_list, gender_type, profession, skin_type, skin_type_list } = ExposeData;
+  const { all_data, filter_list, gender_type, profession, skin_type, skin_type_list } = ExposeData;
 
   /**
    * @description 统计皮肤类型列表
@@ -52,8 +54,6 @@ const KingCrystalStore = defineStore("kingCrystal", () => {
 
     /** 职业筛选 */
     const filterProfession = () => {
-      const { all_data } = $usePagingLoad;
-
       if (profession.value === "全部") {
         //为了解决排序拷贝问题
         $usePagingLoad.setFilterData([...all_data.value]);
@@ -120,7 +120,7 @@ const KingCrystalStore = defineStore("kingCrystal", () => {
           !$knapsackStore.skin_list.includes(item.id),
       );
 
-      $usePagingLoad.all_data.value = skin_list;
+      $usePagingLoad.pushAllData(skin_list);
 
       sortAll();
       getSkinType(skin_list);
@@ -168,7 +168,7 @@ const KingCrystalStore = defineStore("kingCrystal", () => {
 
       if (name) {
         const data = _search(
-          _cloneDeep($usePagingLoad.all_data.value),
+          _cloneDeep(all_data.value),
           name,
           ["name", "heroName", "category"],
           true,

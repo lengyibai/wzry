@@ -269,7 +269,8 @@ const HeroStore = defineStore("hero", () => {
 
     /** @description 初次获取英雄列表并设置相关信息 */
     async getHeroList() {
-      all_data.value = await GAME_HERO.getHeroDataList();
+      const data = await GAME_HERO.getHeroDataList();
+      $usePagingLoad.pushAllData(data);
       this.setProfessional("全部");
     },
 
