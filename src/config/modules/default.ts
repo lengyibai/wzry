@@ -241,7 +241,7 @@ export const configDefault: () => Global.SettingConfig = () => ({
   tip: true,
   audio: true,
   audioVolume: 50,
-  music: true,
+  music: false,
   musicVolume: 50,
   barrage: !_isPhone,
   musicProgress: false,
