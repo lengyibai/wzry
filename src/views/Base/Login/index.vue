@@ -18,7 +18,7 @@ const $versionStore = VersionStore();
 const { video_home_version, load } = useStaticResourceVersion();
 
 /** 静音 */
-const muted = ref(false);
+const muted = ref(true);
 /** 显示公告 */
 const show_notice = ref(false);
 /** 显示更新日志 */
