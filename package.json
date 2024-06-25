@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node auto-script/update-time.js",
     "type-check": "vue-tsc",
-    "eslint": "eslint . --ext \"src/**/*.{vue,ts}\"",
+    "eslint": "eslint \"src/**/*.{vue,ts}\"",
     "spell-check": "cspell \"src/**/*.*\"",
     "stylelint": "stylelint \"src/**/*.{vue,less}\"",
     "prettier": "prettier --write \"src/**/*.{vue,ts,less}\"",
