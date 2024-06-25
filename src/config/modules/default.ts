@@ -249,6 +249,7 @@ export const configDefault: () => Global.SettingConfig = () => ({
   shine: true,
   particle: false,
   language: 0,
+  lotteryAnimation: true,
   noTips: {
     f1y0: false,
     mu63: false,

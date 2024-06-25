@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 
-import { LotteryStore } from "@/store";
+import { LotteryStore, SettingStore } from "@/store";
 import { GAME_PROP, MOUSE_TIP } from "@/config";
 import { KButton } from "@/components/business";
 import { vMouseTip } from "@/directives";
@@ -13,6 +13,8 @@ import { _getPropLink } from "@/utils/concise";
 import { usePlayAudio } from "@/hooks";
 
 const $lotteryStore = LotteryStore();
+const $settingStore = SettingStore();
+
 const { skin_lucky } = storeToRefs($lotteryStore);
 
 const { playAudio } = usePlayAudio();
@@ -33,6 +35,9 @@ const {
 
 /** 当前旋转索引 */
 const active_index = ref(-1);
+
+/** @description 是否开启夺宝动画 */
+const lottery_animation = computed(() => $settingStore.config.lotteryAnimation);
 
 /** @description 开始夺宝 */
 const handlePlay = () => {
@@ -90,40 +95,44 @@ const handlePlay = () => {
 const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
   if (checkMultipleNotCount(type, handlePlay)) return;
 
-  /** 存储三次转到的奖品 */
+  /** 存储五次转到的奖品 */
   const awards_index: number[] = [];
   //循环转圈
   const play = () => {
-    setTimeout(async () => {
-      active_index.value++;
-      playAudio("o7r6");
+    setTimeout(
+      async () => {
+        active_index.value++;
 
-      //转满一圈重置索引
-      if (active_index.value === 12) {
-        active_index.value = 0;
-      }
+        if (lottery_animation.value) playAudio("o7r6");
 
-      //转到奖品后，并且低于三个，停留半秒继续旋转
-      if (gift_index.value === active_index.value && awards_index.length < 5) {
-        //增加幸运值的时候顺便扣除了夺宝币，只有夺宝石为0的时候会扣除
-        $lotteryStore.setLuckValue("SKIN");
-
-        //如果抽到了荣耀水晶，则重置状态
-        if (LOTTERY_AWARD.SKIN[gift_index.value].type === "HONOR_CRYSTAL") {
-          $lotteryStore.resetSkinLuck();
+        //转满一圈重置索引
+        if (active_index.value === 12) {
+          active_index.value = 0;
         }
 
-        awards_index.push(gift_index.value);
-        await _promiseTimeout(500, getLotteryIndex);
+        //转到奖品后，并且低于五个，停留半秒继续旋转
+        if (gift_index.value === active_index.value && awards_index.length < 5) {
+          //增加幸运值的时候顺便扣除了夺宝币，只有夺宝石为0的时候会扣除
+          $lotteryStore.setLuckValue("SKIN");
 
-        //当奖品达到5个时，停止夺宝并结算奖励
-        if (awards_index.length >= 5) {
-          calcMultipleReward(awards_index);
-          return;
+          //如果抽到了荣耀水晶，则重置状态
+          if (LOTTERY_AWARD.SKIN[gift_index.value].type === "HONOR_CRYSTAL") {
+            $lotteryStore.resetSkinLuck();
+          }
+
+          awards_index.push(gift_index.value);
+          await _promiseTimeout(lottery_animation.value ? 500 : 0, getLotteryIndex);
+
+          //当奖品达到5个时，停止夺宝并结算奖励
+          if (awards_index.length >= 5) {
+            calcMultipleReward(awards_index);
+            return;
+          }
         }
-      }
-      play();
-    }, 50);
+        play();
+      },
+      lottery_animation.value ? 50 : 0,
+    );
   };
   play();
 };

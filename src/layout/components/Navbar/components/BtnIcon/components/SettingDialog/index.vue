@@ -48,11 +48,6 @@ const onBarrage = (v: boolean) => {
   saveConfig();
 };
 
-/* 支持控制音乐进度 */
-const onMusicProgress = () => {
-  saveConfig();
-};
-
 /* 开启音效 */
 const onAudio = (v: boolean) => {
   setAudioSwitch(v);
@@ -68,11 +63,6 @@ const onAudioVolume = (v: number) => {
 /* 柔光 */
 const onShine = (v: boolean) => {
   useCssClassToggle().setShine(v);
-  saveConfig();
-};
-
-/* 粒子特效 */
-const onParticle = () => {
   saveConfig();
 };
 
@@ -167,7 +157,7 @@ const handleResetConfig = () => {
           <KCheck v-model="config.music" v-mouse-tip @update:model-value="onMusic" />
         </div>
 
-        <!-- 音乐进度控制 -->
+        <!-- 弹幕语音 -->
         <div class="option">
           <div class="label">
             {{ $t("弹幕语音") }}
@@ -181,6 +171,20 @@ const handleResetConfig = () => {
           />
         </div>
 
+        <!-- 夺宝动画 -->
+        <div class="option">
+          <div class="label">
+            {{ $t("夺宝动画") }}
+          </div>
+          <KCheck
+            v-model="config.lotteryAnimation"
+            v-mouse-tip="{
+              text: MOUSE_TIP.fc15,
+            }"
+            @update:model-value="saveConfig"
+          />
+        </div>
+
         <!-- 音乐进度控制 -->
         <div class="option">
           <div class="label">
@@ -191,7 +195,7 @@ const handleResetConfig = () => {
             v-mouse-tip="{
               text: MOUSE_TIP.pd85,
             }"
-            @update:model-value="onMusicProgress"
+            @update:model-value="saveConfig"
           />
         </div>
 
@@ -219,7 +223,7 @@ const handleResetConfig = () => {
             v-mouse-tip="{
               text: MOUSE_TIP.ph48,
             }"
-            @update:model-value="onParticle"
+            @update:model-value="saveConfig"
           />
         </div>
 

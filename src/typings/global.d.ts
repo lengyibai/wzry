@@ -290,6 +290,8 @@ declare namespace Global {
     barrage: boolean;
     /** 音乐进度控制 */
     musicProgress: boolean;
+    /** 夺宝动画 */
+    lotteryAnimation: boolean;
     /** 语言 */
     language: 0 | 1 | 2;
     /** 柔光 */

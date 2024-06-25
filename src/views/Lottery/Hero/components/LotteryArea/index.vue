@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import { useLotteryPlay } from "@/views/Lottery/common/hooks/useLotteryPlay";
-import { AuthStore, LotteryStore } from "@/store";
+import { AuthStore, LotteryStore, SettingStore } from "@/store";
 import { GAME_PROP, MOUSE_TIP } from "@/config";
 import { KButton } from "@/components/business";
 import { vMouseTip } from "@/directives";
@@ -13,6 +13,7 @@ import { _promiseTimeout } from "@/utils/tool";
 
 const $lotteryStore = LotteryStore();
 const $authStore = AuthStore();
+const $settingStore = SettingStore();
 
 const { setLuckValue, resetHeroLuck } = $lotteryStore;
 
@@ -38,6 +39,9 @@ const {
 const deg = ref();
 /** 旋转时间 */
 const duration = ref(0);
+
+/** @description 是否开启夺宝动画 */
+const lottery_animation = computed(() => $settingStore.config.lotteryAnimation);
 
 /** @description 开始夺宝 */
 const handlePlay = async () => {
@@ -83,7 +87,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
       gift_index.value * 36 +
       360 * 1;
 
-    await _promiseTimeout(1000);
+    await _promiseTimeout(lottery_animation.value ? 1000 : 0);
     setLuckValue("HERO");
 
     //如果抽到了王者水晶，则重置状态
@@ -97,7 +101,7 @@ const handlePlayFive = (type: "FREE" | "DEDUCTION") => {
 
     //如果奖品低于5个，则继续
     if (awards_index.length < 5) {
-      setTimeout(play, 250);
+      setTimeout(play, lottery_animation.value ? 250 : 0);
       return;
     }
 

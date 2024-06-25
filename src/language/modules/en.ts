@@ -47,6 +47,7 @@ const en = {
   音效: "Sound",
   音乐: "Music",
   弹幕语音: "Barrage Voice",
+  夺宝动画: "Lottery Animation",
   音乐进度控制: "Music Schedule",
   元素发光: "Element Shine",
   粒子特效: "Particle Effects",
