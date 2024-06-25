@@ -1,8 +1,13 @@
 {
   "data": {
-    "time": "YYYY-MM-DD HH:mm",
+    "time": "2024-06-25 19:40",
     "updateLog": {
-      "new": [],
+      "new": [
+        {
+          "time": "2024-06-25",
+          "log": ["设置增加夺宝动画开关"]
+        }
+      ],
       "function": [
         {
           "time": "2024-06-24",
