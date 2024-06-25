@@ -112,7 +112,7 @@ export const LOTTERY_SUPPLY_MODE: Game.LotterySupply.Mode[] = [
   },
   {
     label: "2小时/200个",
-    seconds: 3 * 60 * 60,
+    seconds: 2 * 60 * 60,
     count: 200,
   },
 ];
