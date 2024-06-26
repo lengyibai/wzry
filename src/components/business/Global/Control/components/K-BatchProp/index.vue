@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import { ObtainInfo } from "../K-Obtain/interface";
+import type { ObtainInfo } from "../K-Obtain/interface";
 
 import { useBatchProp } from "./hooks/useBatchProp";
-import { ChanceInfo } from "./interface";
+import type { ChanceInfo } from "./interface";
 
+import { _getPropLink } from "@/utils/concise";
+import { _shuffleArray, _random } from "@/utils/tool";
+import { $message, $obtain } from "@/utils/busTransfer";
+import { $msgTipText, GAME_CHANCE, GAME_PROP } from "@/config";
+import { GAME_HERO, LOCAL_HERO } from "@/api";
+import { KButton, KDialog, KRange } from "@/components/business";
 import { KnapsackStore } from "@/store";
 import { vDebounceClick, vMouseTip } from "@/directives";
-import { KButton, KDialog, KRange } from "@/components/business";
-import { TreasureChance } from "@/config/interface";
-import { GAME_HERO, LOCAL_HERO } from "@/api";
-import { $msgTipText, GAME_CHANCE, GAME_PROP } from "@/config";
-import { $message, $obtain } from "@/utils/busTransfer";
-import { _shuffleArray, _random } from "@/utils/tool";
-import { _getPropLink } from "@/utils/concise";
+import type { TreasureChance } from "@/config/interface";
 
 const $knapsackStore = KnapsackStore();
 

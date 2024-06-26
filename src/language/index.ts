@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import { App } from "vue";
+import type { App } from "vue";
 
 import zh from "./modules/zh";
 import en from "./modules/en";

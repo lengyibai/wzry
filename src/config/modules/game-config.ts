@@ -1,4 +1,4 @@
-import { TaskSchedule, TaskType } from "../interface";
+import type { TaskSchedule, TaskType } from "../interface";
 
 import { ROUTE_PATH } from "./route-path";
 

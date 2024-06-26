@@ -1,16 +1,16 @@
-import { Ref, ref } from "vue";
+import { type Ref, ref } from "vue";
 
 import { useStaticResourceVersion } from "./useStaticResourceVersion";
 import { useIndexedDB } from "./useIndexedDB";
 
-import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
-import { $msgTipText } from "@/config/modules/message-tip";
-import { _downloadZip } from "@/utils/privateTool";
-import { ZipType } from "@/utils/interface";
-import { RESOURCE_NAME } from "@/config/modules/resource-name";
-import { $message } from "@/utils/busTransfer";
-import { LOCAL_KEY } from "@/config";
 import { _base64ToObject, _blobTextToBase64 } from "@/utils/tool";
+import { _downloadZip } from "@/utils/privateTool";
+import { $message } from "@/utils/busTransfer";
+import { $msgTipText } from "@/config/modules/message-tip";
+import { API_DATA, KVP_HERO, LOCAL_HERO } from "@/api";
+import { LOCAL_KEY } from "@/config";
+import { RESOURCE_NAME } from "@/config/modules/resource-name";
+import type { ZipType } from "@/utils/interface";
 
 const zip_key_name: Record<ZipType, string> = {
   AUDIO: "音效包",

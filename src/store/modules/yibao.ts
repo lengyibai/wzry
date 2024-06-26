@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 
 import { AuthStore } from "./auth";
 
-import { YiBaoStoreType } from "@/store/interface";
+import type { YiBaoStoreType } from "@/store/interface";
 import { YIBAO_PART } from "@/config";
 import {
   yiBaoPartConfigDefault,

@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { MouseTip } from "../interface";
+import type { MouseTip } from "../interface";
 
 const ExposeData = {
   /** 是否显示 */

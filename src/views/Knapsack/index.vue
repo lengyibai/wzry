@@ -10,7 +10,7 @@ import { vAnimateNumber, vMouseTip, vScrollVirtualization } from "@/directives";
 import { $optional, $upgrade, $batchProp, $confirm, $message } from "@/utils/busTransfer";
 import { _classNameInclude, _debounce, _getNewDayTimestamp, dayjs } from "@/utils/tool";
 import { LOTTERY_STONE_WEEK_CARD_GRANT } from "@/config/modules/game-config";
-import { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
+import type { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
 import { _getPropLink } from "@/utils/concise";
 import { usePlayAudio, useRadialBorder } from "@/hooks";
 import { useDialogSwitch } from "@/layout/components/Navbar/components/BtnIcon/hooks/useDialogSwitch";

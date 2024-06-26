@@ -1,5 +1,5 @@
 import { createPinia } from "pinia";
-import { App } from "vue";
+import type { App } from "vue";
 
 export * from "./modules/atlas";
 export * from "./modules/auth";

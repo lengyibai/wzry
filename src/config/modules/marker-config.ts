@@ -1,4 +1,4 @@
-import { PropRelateMarker, StatusRelateMarker } from "../interface";
+import type { PropRelateMarker, StatusRelateMarker } from "../interface";
 
 /** @description 埋点中文名 */
 export const MARKER_LABEL: Record<keyof User.Data["behaviorMarker"], string> = {

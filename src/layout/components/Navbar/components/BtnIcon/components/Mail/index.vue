@@ -13,7 +13,7 @@ import { MailStore } from "@/store";
 import { useRadialBorder } from "@/hooks";
 import { $obtain } from "@/utils/busTransfer";
 import { GAME_PROP, MOUSE_TIP } from "@/config";
-import { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
+import type { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
 
 const $mailStore = MailStore();
 const { mail_list } = storeToRefs($mailStore);

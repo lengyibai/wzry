@@ -3,12 +3,12 @@ import { computed, ref } from "vue";
 
 import { AuthStore } from "./auth";
 
-import { API_DATA } from "@/api";
-import { MailStoreType } from "@/store/interface";
+import { _getPropLink } from "@/utils/concise";
 import { _retryRequest, dayjs } from "@/utils/tool";
 import { $message, $obtain, $tip } from "@/utils/busTransfer";
 import { $msgTipText, CUSTOM_TIP, GAME_PROP } from "@/config";
-import { _getPropLink } from "@/utils/concise";
+import { API_DATA } from "@/api";
+import type { MailStoreType } from "@/store/interface";
 
 /** @description 邮件相关 */
 const MailStore = defineStore("mail", () => {

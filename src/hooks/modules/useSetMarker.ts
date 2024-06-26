@@ -1,6 +1,6 @@
-import { MarkerStatusKey } from "@/config/interface";
 import { MARKER_PROP_KEY_SUB, MARKER_STATUS_KEY } from "@/config/modules/marker-config";
 import { MarkerStore } from "@/store/modules/marker";
+import type { MarkerStatusKey } from "@/config/interface";
 
 /** @description 设置埋点Key数量 */
 export const useSetMarker = () => {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 
-import { HeroSkinOptionalInfo, OptionalMode } from "../../interface";
+import type { HeroSkinOptionalInfo, OptionalMode } from "../../interface";
 
 import HeroSkinCard from "./components/HeroSkinCard/index.vue";
 

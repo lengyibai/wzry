@@ -7,7 +7,7 @@ import { KnapsackStore } from "@/store/modules/knapsack";
 import { CONFIRM_TIP, GAME_PROP, MESSAGE_TIP } from "@/config";
 import { $confirm, $message, $obtain } from "@/utils/busTransfer";
 import { LotteryStore } from "@/store/modules/lottery";
-import { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
+import type { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
 import { AuthStore, SupplyStore } from "@/store";
 import { LOTTERY_AWARD } from "@/config/modules/game-config";
 import { _getPropLink } from "@/utils/concise";

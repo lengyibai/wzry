@@ -1,26 +1,26 @@
 import type { ImageViewParams } from "./interface";
 import { $bus } from "./eventBus";
 
-import type { InputConfig } from "@/components/business/Global/Control/components/K-InputDialog/interface";
-import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";
-import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
-import { useTip } from "@/components/business/Global/Control/components/K-Tip/hooks/useTip";
-import { BuyProp } from "@/components/business/Global/Control/components/K-BuyProp/interface";
-import { HelpParams } from "@/components/business/Global/Control/components/K-Help/interface";
-import { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
-import { useBuyProp } from "@/components/business/Global/Control/components/K-BuyProp/hooks/useBuyProp";
-import { useOptional } from "@/components/business/Global/Control/components/K-Optional/hooks/useOptional";
 import { useBatchProp } from "@/components/business/Global/Control/components/K-BatchProp/hooks/useBatchProp";
+import { useBuyProp } from "@/components/business/Global/Control/components/K-BuyProp/hooks/useBuyProp";
+import { useConfirm } from "@/components/business/Global/Control/components/K-Confirm/hooks/useConfirm";
+import { useHelp } from "@/components/business/Global/Control/components/K-Help/hooks/useHelp";
 import { useHeroDetail } from "@/components/business/Global/Control/components/K-HeroDetail/hooks/useHeroDetail";
 import { useInput } from "@/components/business/Global/Control/components/K-InputDialog/hooks/useInput";
-import { useHelp } from "@/components/business/Global/Control/components/K-Help/hooks/useHelp";
-import { useUpgrade } from "@/components/business/Global/Control/components/K-Upgrade/hook/useUpgrade";
-import { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
-import { useObtain } from "@/components/business/Global/Control/components/K-Obtain/hooks/useObtain";
-import { useConfirm } from "@/components/business/Global/Control/components/K-Confirm/hooks/useConfirm";
 import { useMessage } from "@/components/business/Global/Control/components/K-Message/hooks/useMessage";
 import { useMouseTip } from "@/components/business/Global/Control/components/K-MouseTip/hooks/useMouseTip";
+import { useObtain } from "@/components/business/Global/Control/components/K-Obtain/hooks/useObtain";
+import { useOptional } from "@/components/business/Global/Control/components/K-Optional/hooks/useOptional";
 import { useSelectAvatar } from "@/components/business/Global/Control/components/K-SelectAvatar/hooks/useSelectAvatar";
+import { useTip } from "@/components/business/Global/Control/components/K-Tip/hooks/useTip";
+import { useUpgrade } from "@/components/business/Global/Control/components/K-Upgrade/hook/useUpgrade";
+import type { BuyProp } from "@/components/business/Global/Control/components/K-BuyProp/interface";
+import type { ConfirmTip } from "@/components/business/Global/Control/components/K-Confirm/interface";
+import type { HelpParams } from "@/components/business/Global/Control/components/K-Help/interface";
+import type { InputConfig } from "@/components/business/Global/Control/components/K-InputDialog/interface";
+import type { MouseTip } from "@/components/business/Global/Control/components/K-MouseTip/interface";
+import type { ObtainInfo } from "@/components/business/Global/Control/components/K-Obtain/interface";
+import type { OptionalMode } from "@/components/business/Global/Control/components/K-Optional/interface";
 
 /** @description 元素聚焦 */
 export const $focus = {

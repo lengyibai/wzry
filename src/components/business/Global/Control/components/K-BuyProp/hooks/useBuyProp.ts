@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { BuyProp } from "../interface";
+import type { BuyProp } from "../interface";
 
 const ExposeData = {
   /** 是否显示 */

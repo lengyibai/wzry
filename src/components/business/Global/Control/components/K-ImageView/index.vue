@@ -5,7 +5,7 @@ import { useMediaQuery } from "@vueuse/core";
 import { ScaleFLIPImage } from "./helper/ImageView";
 import VerticalScreen from "./components/VerticalScreen/index.vue";
 import LandscapeScreen from "./components/LandscapeScreen/index.vue";
-import { ImageView } from "./interface";
+import type { ImageView } from "./interface";
 
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";

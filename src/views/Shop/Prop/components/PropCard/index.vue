@@ -2,10 +2,10 @@
 import { vMaskGradient, vMouseTip } from "@/directives";
 import { KButton } from "@/components/business";
 import { GAME_PROP } from "@/config";
-import { BuyProp } from "@/components/business/Global/Control/components/K-BuyProp/interface";
-import { GoodsInfo } from "@/config/interface";
-import { $buyProp } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
+import { $buyProp } from "@/utils/busTransfer";
+import type { BuyProp } from "@/components/business/Global/Control/components/K-BuyProp/interface";
+import type { GoodsInfo } from "@/config/interface";
 
 interface Props {
   /** 商品数据 */

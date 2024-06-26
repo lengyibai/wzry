@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { HeroUpgradeInfo } from "../../interface";
+import type { HeroUpgradeInfo } from "../../interface";
 
 import { upgradeGift } from "./helper";
 

@@ -1,13 +1,13 @@
 import { Base64 } from "js-base64";
 import JSZip from "jszip";
-import { AxiosProgressEvent } from "axios";
+import type { AxiosProgressEvent } from "axios";
 
 import { $message } from "./busTransfer";
 import { _imageOptimizer, _mergeConfig, _saveFiles } from "./tool";
-import { ZipType } from "./interface";
+import type { ZipType } from "./interface";
 
 import { DEFAULT, GAME_CONFIG, MESSAGE_TIP } from "@/config";
-import { ResultData } from "@/api/interface";
+import type { ResultData } from "@/api/interface";
 import { useIndexedDB } from "@/hooks";
 
 /** @description 选择并压缩头像 */

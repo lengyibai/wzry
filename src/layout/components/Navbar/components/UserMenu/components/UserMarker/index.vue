@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip } from "@/directives";
 import { MarkerStore } from "@/store";
-import { MarkerStoreType } from "@/store/interface";
+import type { MarkerStoreType } from "@/store/interface";
 import { _getMiniHeroLink } from "@/utils/concise";
 import { _formatSecondsToChinese, _random } from "@/utils/tool";
 

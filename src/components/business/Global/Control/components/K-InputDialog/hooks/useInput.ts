@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { InputConfig } from "../interface";
+import type { InputConfig } from "../interface";
 
 const ExposeData = {
   /** 是否显示 */

@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { HelpParams } from "../interface";
+import type { HelpParams } from "../interface";
 
 const ExposeData = {
   /** 是否显示 */

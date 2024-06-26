@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ImageView } from "../../interface";
+import type { ImageView } from "../../interface";
 
 import { MOUSE_TIP } from "@/config";
 import { vMouseTip, vScrollVirtualization } from "@/directives";

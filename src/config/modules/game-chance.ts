@@ -1,4 +1,4 @@
-import { TreasureChance } from "../interface";
+import type { TreasureChance } from "../interface";
 
 /** @description 每日福袋概率 */
 export const BLESSING_BAG_CHANCE: TreasureChance = {

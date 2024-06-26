@@ -3,7 +3,7 @@
  * 按下拖拽
  */
 
-import { Directive } from "vue";
+import type { Directive } from "vue";
 
 interface ElType extends HTMLElement {
   /** 鼠标按下事件 */

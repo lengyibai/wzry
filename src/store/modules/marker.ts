@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
-import { MarkerStoreType } from "../interface";
+import type { MarkerStoreType } from "../interface";
 
 import { AuthStore } from "./auth";
 

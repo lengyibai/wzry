@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { HeroUpgradeInfo } from "../../interface";
+import type { HeroUpgradeInfo } from "../../interface";
 
 import HeroCard from "./components/HeroCard/index.vue";
 

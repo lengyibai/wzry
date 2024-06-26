@@ -1,4 +1,4 @@
-import { Ref, onActivated, onDeactivated, onScopeDispose } from "vue";
+import { type Ref, onActivated, onDeactivated, onScopeDispose } from "vue";
 
 /** @description 使用径向渐变实现window日历边框 */
 const useRadialBorder = <T extends Ref<HTMLElement[] | undefined>>(els: T) => {

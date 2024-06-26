@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { ConfirmTip } from "../interface";
+import type { ConfirmTip } from "../interface";
 
 import { usePlayAudio } from "@/hooks";
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HeroSkinOptionalInfo, OptionalMode } from "../../../../interface";
+import type { HeroSkinOptionalInfo, OptionalMode } from "../../../../interface";
 
 import { KLoadingRadiate } from "@/components/business";
 

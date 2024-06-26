@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { ObtainInfo } from "../interface";
+import type { ObtainInfo } from "../interface";
 
 import { KnapsackStore } from "@/store/modules/knapsack";
 import { _isArray } from "@/utils/tool";

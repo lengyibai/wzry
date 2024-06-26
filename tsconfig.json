@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
+    "verbatimModuleSyntax": true,
     "baseUrl": "./",
     "allowJs": true,
     "isolatedModules": true,

@@ -1,9 +1,9 @@
 import axios, {
-  AxiosInstance,
   AxiosError,
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+  type InternalAxiosRequestConfig,
 } from "axios";
 
 import type { ResultData } from "@/api/interface";

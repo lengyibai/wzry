@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HeroUpgradeInfo } from "../../../../interface";
+import type { HeroUpgradeInfo } from "../../../../interface";
 
 import { KHeroExp, KLoadingRadiate } from "@/components/business";
 

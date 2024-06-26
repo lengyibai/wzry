@@ -1,4 +1,4 @@
-import { AxiosProgressEvent } from "axios";
+import type { AxiosProgressEvent } from "axios";
 
 import { $LocaleHttp, $RemoteHttp, $ResourceHttp } from "@/api/helper";
 import { RESOURCE_NAME } from "@/config/modules/resource-name";

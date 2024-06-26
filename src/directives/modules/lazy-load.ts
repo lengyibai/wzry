@@ -2,7 +2,7 @@
  * v-lazy-load
  * 当图片在可视区停留250ms才会加载
  */
-import { Directive } from "vue";
+import type { Directive } from "vue";
 
 import { _getMiscLink } from "@/utils/concise";
 import { _loadAndRetryImage } from "@/utils/tool";

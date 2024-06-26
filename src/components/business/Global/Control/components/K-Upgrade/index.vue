@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 
 import SelectHero from "./components/SelectHero/index.vue";
 import ToUpgrade from "./components/ToUpgrade/index.vue";
-import { HeroUpgradeInfo } from "./interface";
+import type { HeroUpgradeInfo } from "./interface";
 import { useUpgrade } from "./hook/useUpgrade";
 
 import { KDialog } from "@/components/business";

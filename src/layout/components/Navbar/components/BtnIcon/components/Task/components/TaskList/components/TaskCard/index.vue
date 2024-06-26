@@ -2,7 +2,7 @@
 import { useRouter } from "vue-router";
 import { computed, inject } from "vue";
 
-import { TaskType } from "@/config/interface";
+import type { TaskType } from "@/config/interface";
 import { TaskStore } from "@/store";
 import { _getMiniHeroLink } from "@/utils/concise";
 import { KHelp, KHoverDesc, KProp } from "@/components/business";

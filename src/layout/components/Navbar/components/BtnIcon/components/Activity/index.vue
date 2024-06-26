@@ -3,7 +3,7 @@ import { onMounted, onBeforeUnmount, provide, ref } from "vue";
 
 import PosterGuess from "./components/PosterGuess/index.vue";
 import SkillGuess from "./components/SkillGuess/index.vue";
-import { ActivityInfo } from "./interface";
+import type { ActivityInfo } from "./interface";
 import { useIntoGame } from "./hooks/useHideActivity";
 
 import { vMouseTip } from "@/directives";

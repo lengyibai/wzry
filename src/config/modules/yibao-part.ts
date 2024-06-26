@@ -1,4 +1,4 @@
-import { YiBaoPartKeyInfo } from "../interface";
+import type { YiBaoPartKeyInfo } from "../interface";
 
 /** @description 圆环 */
 export const ANNULUS_COLOR = [

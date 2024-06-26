@@ -1,4 +1,4 @@
-import { YiBaoStoreType } from "@/store/interface";
+import type { YiBaoStoreType } from "@/store/interface";
 import { _isPhone } from "@/utils/tool";
 
 /** @description 默认英雄信息 */

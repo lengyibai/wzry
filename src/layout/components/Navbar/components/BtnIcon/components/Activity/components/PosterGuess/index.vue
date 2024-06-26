@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, Ref, computed } from "vue";
+import { ref, onMounted, computed, type Ref } from "vue";
 import { inject } from "vue";
 
 import { ScrollAnimate } from "../../common/helper/scroll-animate";

@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-import { OptionalMode } from "../interface";
+import type { OptionalMode } from "../interface";
 
 const ExposeData = {
   /** 是否显示弹窗 */

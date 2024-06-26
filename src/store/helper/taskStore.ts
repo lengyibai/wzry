@@ -1,4 +1,4 @@
-import { TaskType } from "@/config/interface";
+import type { TaskType } from "@/config/interface";
 import { _accumulate } from "@/utils/tool";
 
 /** @description 任务列表排序
