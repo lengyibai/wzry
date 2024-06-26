@@ -8,6 +8,7 @@ import { ZipType } from "./interface";
 
 import { DEFAULT, GAME_CONFIG, MESSAGE_TIP } from "@/config";
 import { ResultData } from "@/api/interface";
+import { useIndexedDB } from "@/hooks";
 
 /** @description 选择并压缩头像 */
 export const _selectAvatarCompress = (e: Event | File, cb: (v: string) => void) => {
@@ -87,16 +88,19 @@ export const _getSupplyColor = (time: number) => {
 };
 
 /** @description 下载压缩包
+ * @param apiUrl 压缩包API地址
  * @param request 请求函数
+ * @param version 压缩包版本
  * @param type 下载类型
  * @param callback 下载成功后回调
  */
 export const _downloadZip = (
-  url: string,
+  apiUrl: string,
   request: (
     url: string,
     onDownloadProgress: (progressEvent: AxiosProgressEvent) => void,
-  ) => Promise<ResultData<any>>,
+  ) => Promise<ResultData<Blob>>,
+  version: string,
   type: ZipType,
   callback: (v: {
     size: string;
@@ -107,6 +111,7 @@ export const _downloadZip = (
     decompression_finish: boolean;
   }) => void,
 ) => {
+  const { ZipDatabase } = useIndexedDB();
   /** KB单位 */
   const BYTES_IN_KB = 1024;
   /** 图片链接 */
@@ -145,7 +150,7 @@ export const _downloadZip = (
   }
 
   return new Promise<Record<string, string>>((resolve, reject) => {
-    request(url, (e) => {
+    request(`${apiUrl}?t=${version}`, (e) => {
       /** 已下载大小 */
       const downloaded_size = e.loaded / BYTES_IN_KB;
       /** 总大小 */
@@ -162,9 +167,12 @@ export const _downloadZip = (
 
         /** 用于计算解压进度 */
         let finish_files = 0;
-        /** 本地是否存在用户信息 */
         const zip = await JSZip.loadAsync(res.data);
         const file_names = Object.keys(zip.files);
+        const blob_cache: { version: string; data: { key: string; blob: Blob }[] } = {
+          version,
+          data: [],
+        };
 
         //遍历文件名列表
         for (const fileName of file_names) {
@@ -176,6 +184,13 @@ export const _downloadZip = (
               const originalFileName = fileName.replace(reg, "");
               const blob = await zip.files[fileName].async("blob");
               const url = URL.createObjectURL(blob);
+
+              //记录解压后的Blob数据
+              blob_cache.data.push({
+                key: originalFileName,
+                blob,
+              });
+
               links[originalFileName] = url;
               finish_files++;
               status.decompression_progress =
@@ -183,9 +198,10 @@ export const _downloadZip = (
               callback(status);
             }
           };
-
           await load();
         }
+
+        ZipDatabase.setItem(type, blob_cache);
 
         status.decompression_finish = true;
         status.size = "正在计算...";

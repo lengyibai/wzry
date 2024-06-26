@@ -38,7 +38,7 @@ const video_home_links = ref<Record<string, string>>({});
 
 /** @description 获取音效压缩包并解压设置音效列表 */
 const useGetZip = () => {
-  const { BaseData, VoiceData } = useIndexedDB();
+  const { BaseData, VoiceData, ZipDatabase } = useIndexedDB();
   const {
     audio_version,
     image_activity_banner_version,
@@ -105,19 +105,48 @@ const useGetZip = () => {
     zip_decompression_finish,
   } = ExposeData;
 
-  /** @description 获取素材zip公共函数 */
-  const getMaterialZip = (links: Ref<Record<string, string>>, apiUrl: string, type: ZipType) => {
+  /** @description 获取素材zip公共函数
+   * @param links 压缩包链接列表
+   * @param apiUrl 压缩包API地址
+   * @param version 压缩包版本
+   * @param type 压缩包类型
+   */
+  const getMaterialZip = (
+    links: Ref<Record<string, string>>,
+    apiUrl: string,
+    version: string,
+    type: ZipType,
+  ) => {
     zip_name.value = zip_key_name[type];
 
-    return new Promise<void>((resolve) => {
-      //如果已经存在数据，则跳过下载，这种情况在退卡时会遇到
+    return new Promise<void>(async (resolve) => {
+      //退卡时跳过下载
       if (Object.keys(links.value).length) {
         resolve();
         return;
       }
 
+      //判断本地是否存在压缩包缓存
+      const blob_group = await ZipDatabase.getItem<{
+        version: string;
+        data: { key: string; blob: Blob }[];
+      }>(type);
+      if (blob_group) {
+        //如果本地缓存版本和服务器压缩包版本一致，则直接使用本地缓存数据
+        if (Number(blob_group.version) === Number(version)) {
+          blob_group.data.forEach((item) => {
+            const url = URL.createObjectURL(item.blob);
+            links.value[item.key] = url;
+          });
+          resolve();
+          return;
+        } else {
+          ZipDatabase.removeItem(type);
+        }
+      }
+
       //下载Zip
-      _downloadZip(apiUrl, API_DATA.ZipResource, type, (v) => {
+      _downloadZip(apiUrl, API_DATA.ZipResource, version, type, (v) => {
         const {
           size,
           downloaded_size,
@@ -147,8 +176,12 @@ const useGetZip = () => {
     });
   };
 
-  /** @description 获取数据zip公共函数 */
-  const getDataZip = (apiUrl: string, type: ZipType) => {
+  /** @description 获取数据zip公共函数
+   * @param apiUrl 压缩包API地址
+   * @param version 压缩包版本
+   * @param type 压缩包类型
+   */
+  const getDataZip = (apiUrl: string, version: string, type: ZipType) => {
     zip_name.value = zip_key_name[type];
 
     return new Promise<void>(async (resolve) => {
@@ -167,7 +200,7 @@ const useGetZip = () => {
       }
 
       //下载Zip
-      _downloadZip(apiUrl, API_DATA.ZipDatabase, type, (v) => {
+      _downloadZip(apiUrl, API_DATA.ZipDatabase, version, type, (v) => {
         const {
           size,
           downloaded_size,
@@ -229,76 +262,77 @@ const useGetZip = () => {
     async getZipList() {
       await load();
 
-      await getMaterialZip(
-        audio_links,
-        `${RESOURCE_NAME.ZIP_AUDIO}?t=${audio_version.value}`,
-        "AUDIO",
-      );
+      await getMaterialZip(audio_links, RESOURCE_NAME.ZIP_AUDIO, audio_version.value, "AUDIO");
       downloaded_index.value = 1;
 
       await getMaterialZip(
         image_activity_banner_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_ACTIVITY_BANNER}?t=${image_activity_banner_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_ACTIVITY_BANNER,
+        image_activity_banner_version.value,
         "IMAGE_ACTIVITY_BANNER",
       );
       downloaded_index.value = 2;
 
       await getMaterialZip(
         image_blur_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_BLUR}?t=${image_blur_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_BLUR,
+        image_blur_version.value,
         "IMAGE_BLUR",
       );
       downloaded_index.value = 3;
 
       await getMaterialZip(
         image_hero_avatar_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_HERO_AVATAR}?t=${image_hero_avatar_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_HERO_AVATAR,
+        image_hero_avatar_version.value,
         "IMAGE_HERO_AVATAR",
       );
       downloaded_index.value = 4;
 
       await getMaterialZip(
         image_minecraft_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_MINECRAFT}?t=${image_minecraft_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_MINECRAFT,
+        image_minecraft_version.value,
         "IMAGE_MINECRAFT",
       );
       downloaded_index.value = 5;
 
       await getMaterialZip(
         image_misc_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_MISC}?t=${image_misc_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_MISC,
+        image_misc_version.value,
         "IMAGE_MISC",
       );
       downloaded_index.value = 6;
 
       await getMaterialZip(
         image_props_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_PROPS}?t=${image_props_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_PROPS,
+        image_props_version.value,
         "IMAGE_PROPS",
       );
       downloaded_index.value = 7;
 
       await getMaterialZip(
         image_mini_hero_links,
-        `${RESOURCE_NAME.ZIP_IMAGE_MINI_HERO}?t=${image_mini_hero_version.value}`,
+        RESOURCE_NAME.ZIP_IMAGE_MINI_HERO,
+        image_mini_hero_version.value,
         "IMAGE_MINI_HERO",
       );
       downloaded_index.value = 8;
 
       await getMaterialZip(
         video_home_links,
-        `${RESOURCE_NAME.ZIP_VIDEO_HOME}?t=${video_home_version.value}`,
+        RESOURCE_NAME.ZIP_VIDEO_HOME,
+        video_home_version.value,
         "VIDEO_HOME",
       );
       downloaded_index.value = 9;
 
-      await getDataZip(`${RESOURCE_NAME.ZIP_JSON_DATA}?t=${json_data_version.value}`, "JSON_DATA");
+      await getDataZip(RESOURCE_NAME.ZIP_JSON_DATA, json_data_version.value, "JSON_DATA");
       downloaded_index.value = 10;
 
-      await getDataZip(
-        `${RESOURCE_NAME.ZIP_JSON_VOICE}?t=${json_voice_version.value}`,
-        "JSON_VOICE",
-      );
+      await getDataZip(RESOURCE_NAME.ZIP_JSON_VOICE, json_voice_version.value, "JSON_VOICE");
       downloaded_index.value = 11;
 
       zip_download_finish.value = true;

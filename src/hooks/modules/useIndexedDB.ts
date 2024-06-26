@@ -10,6 +10,11 @@ const VoiceDatabase = localforage.createInstance({
   name: "王者图鉴语音数据",
 });
 
+/** @description 压缩包解压数据库 */
+const ZipDatabase = localforage.createInstance({
+  name: "王者图鉴解压数据",
+});
+
 /** @description 使用浏览器数据库 */
 const useIndexedDB = () => {
   const ExposeMethods = {
@@ -26,6 +31,13 @@ const useIndexedDB = () => {
       removeItem: (key: string) => VoiceDatabase.removeItem(key),
       setItem: (key: string, data: unknown) => VoiceDatabase.setItem(key, data),
       clear: () => VoiceDatabase.clear(),
+    },
+    /** @description 压缩包解压的数据操作 */
+    ZipDatabase: {
+      getItem: <T>(key: string) => ZipDatabase.getItem<T>(key),
+      removeItem: (key: string) => ZipDatabase.removeItem(key),
+      setItem: (key: string, data: unknown) => ZipDatabase.setItem(key, data),
+      clear: () => ZipDatabase.clear(),
     },
   };
 
