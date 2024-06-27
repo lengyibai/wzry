@@ -6,8 +6,6 @@ import { KnapsackStore } from "@/store/modules/knapsack";
 import { _isArray } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
-const { playAudio } = usePlayAudio();
-
 /** 关闭弹窗函数 */
 let onClose: (() => void) | undefined;
 
@@ -24,6 +22,8 @@ const { show, show_bg, prop_list } = ExposeData;
 /** @description 获得物品弹窗 */
 const useObtain = () => {
   const $knapsackStore = KnapsackStore();
+
+  const { playAudio } = usePlayAudio();
 
   const ExposeMethods = {
     /** @description 显示弹窗

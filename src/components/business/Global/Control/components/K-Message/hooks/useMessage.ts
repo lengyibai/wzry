@@ -3,8 +3,6 @@ import { reactive } from "vue";
 import { usePlayAudio } from "@/hooks";
 import { dayjs } from "@/utils/tool";
 
-const { playAudio } = usePlayAudio();
-
 const ExposeData = {
   /** 消息队列 */
   messages: reactive<Global.Message.Info[]>([]),
@@ -12,6 +10,8 @@ const ExposeData = {
 const { messages } = ExposeData;
 
 export const useMessage = () => {
+  const { playAudio } = usePlayAudio();
+
   const ExposeMethods = {
     openMsg(text = "未设置提示", type: Global.Message.Status = "info") {
       /** 获取文字长度 */

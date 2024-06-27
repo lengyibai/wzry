@@ -5,8 +5,6 @@ import { HeroDetailStore } from "@/store";
 import { _AudioPlayer } from "@/utils/tool";
 import { usePlayAudio } from "@/hooks";
 
-const { playAudio } = usePlayAudio();
-
 /** 音频播放器 */
 const audioPlayer = new _AudioPlayer({
   volume: 0.25,
@@ -27,6 +25,8 @@ const { show, show_progress, show_close, hero_data } = ExposeData;
 /** @description 查看英雄详情 */
 const useHeroDetail = () => {
   const $heroDetailStore = HeroDetailStore();
+
+  const { playAudio } = usePlayAudio();
 
   const ExposeMethods = {
     /** @description 显示弹窗 */

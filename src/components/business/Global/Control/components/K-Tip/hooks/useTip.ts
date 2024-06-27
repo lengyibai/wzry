@@ -4,8 +4,6 @@ import { SCENE_TIP } from "@/config/modules/scene-tip";
 import { SettingStore } from "@/store/modules/setting";
 import { usePlayAudio } from "@/hooks/modules/usePlayAudio";
 
-const { playAudio } = usePlayAudio();
-
 /** 是否已开启队列状态 */
 let queue = false;
 /** 用于触发下一个tip */
@@ -44,6 +42,8 @@ const { is_once, btn_text, content, disabled, show_tip, show_mask, align, need_m
 /** @description 小贴士 */
 const useTip = () => {
   const $settingStore = SettingStore();
+
+  const { playAudio } = usePlayAudio();
 
   /** @description 设置是否显示tip */
   const setShowTip = async (v: boolean) => {
