@@ -209,7 +209,7 @@ const exitGuess = () => {
             }"
             @click="handleSubmitAnswer"
           >
-            提交答案
+            {{ answer === "" ? "放弃作答" : "提交答案" }}
           </div>
         </div>
 
