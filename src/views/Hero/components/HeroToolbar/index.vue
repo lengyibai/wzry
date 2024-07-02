@@ -16,7 +16,7 @@ const $emit = defineEmits<{
 
 const $heroStore = HeroStore();
 
-const { sort_type, attr_type, camp_type, misc_type, misc_sort, have_type, exp_type } =
+const { sort_type, attr_type, camp_type, misc_type, misc_sort, have_type, exp_type, gender_type } =
   storeToRefs($heroStore);
 
 const select_attr = ["全部属性", "非硬控", "免控", "回血", "真伤"];
@@ -153,7 +153,7 @@ defineExpose({
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="onFilterGender" />
+    <FilterGender v-model="gender_type" @update:model-value="onFilterGender" />
 
     <!-- 搜索 -->
     <KInput

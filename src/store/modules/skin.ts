@@ -236,7 +236,6 @@ const SkinStore = defineStore("skin", () => {
      * @param type 性别标识符
      */
     filterGender(type: Game.GenderId) {
-      if (gender_type.value === type) return;
       gender_type.value = type;
       sortAll();
     },

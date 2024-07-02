@@ -13,7 +13,7 @@ const $emit = defineEmits<{
 }>();
 
 const $skinStore = SkinStore();
-const { price_type, skin_type, skin_type_list, same_name, same_name_list, have_type } =
+const { price_type, skin_type, skin_type_list, same_name, same_name_list, have_type, gender_type } =
   storeToRefs($skinStore);
 
 const select_price = ["全部价格", "免费", "由低到高", "由高到低"];
@@ -103,7 +103,7 @@ defineExpose({
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="onFilterGender" />
+    <FilterGender v-model="gender_type" @update:model-value="onFilterGender" />
 
     <!-- 搜索 -->
     <SelectHeroAndSkin v-model="search_value" @change="onSearch" />

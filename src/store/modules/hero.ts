@@ -309,7 +309,6 @@ const HeroStore = defineStore("hero", () => {
      * @param name 性别标识符
      */
     filterGender(name: Game.GenderId) {
-      if (gender_type.value === name) return;
       gender_type.value = name;
       sortAll();
     },

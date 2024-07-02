@@ -1,24 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 import { vMouseTip } from "@/directives";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { usePlayAudio } from "@/hooks";
 
-const $emit = defineEmits<{
-  change: [v: Game.GenderId];
-}>();
+const gender = defineModel<Game.GenderId>({ required: true });
 
 const { playAudio } = usePlayAudio();
-
-const gender = ref<Game.GenderId>(0);
 
 /** @description 选择触发
  * @param v 性别值
  */
 const handleSetGender = (v: Game.GenderId) => {
   gender.value = v;
-  $emit("change", v);
   playAudio();
 };
 </script>

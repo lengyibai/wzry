@@ -11,7 +11,7 @@ const $emit = defineEmits<{
 }>();
 
 const $atlasStore = AtlasStore();
-const { sort_type } = storeToRefs($atlasStore);
+const { sort_type, gender_type } = storeToRefs($atlasStore);
 
 const sort_types = ["正序", "倒序"];
 
@@ -60,7 +60,7 @@ defineExpose({
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="onFilterGender" />
+    <FilterGender v-model="gender_type" @update:model-value="onFilterGender" />
 
     <!-- 搜索 -->
     <SelectHeroAndSkin v-model="search_value" @change="onSearch" />

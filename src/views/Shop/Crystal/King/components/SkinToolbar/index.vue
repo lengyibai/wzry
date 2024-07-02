@@ -17,7 +17,7 @@ const $emit = defineEmits<{
 
 const $kingCrystalStore = KingCrystalStore();
 
-const { skin_type, skin_type_list } = storeToRefs($kingCrystalStore);
+const { skin_type, skin_type_list, gender_type } = storeToRefs($kingCrystalStore);
 const { filterSkinType, filterGender, searchSkin } = $kingCrystalStore;
 
 /** 搜索值 */
@@ -73,7 +73,7 @@ defineExpose({
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="onFilterGender" />
+    <FilterGender v-model="gender_type" @update:model-value="onFilterGender" />
 
     <!-- 搜索 -->
     <KInput

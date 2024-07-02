@@ -16,7 +16,7 @@ const $emit = defineEmits<{
 
 const $heroDebrisStore = HeroDebrisStore();
 
-const { price_type } = storeToRefs($heroDebrisStore);
+const { price_type, gender_type } = storeToRefs($heroDebrisStore);
 
 const select_price = ["全部价格", "由低到高", "由高到低"];
 
@@ -79,7 +79,7 @@ defineExpose({
     </div>
 
     <!-- 只看性别 -->
-    <FilterGender @change="onFilterGender" />
+    <FilterGender v-model="gender_type" @update:model-value="onFilterGender" />
 
     <!-- 搜索 -->
     <KInput
