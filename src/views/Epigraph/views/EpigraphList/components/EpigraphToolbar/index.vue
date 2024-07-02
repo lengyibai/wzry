@@ -69,7 +69,7 @@ defineExpose({
       进入铭文搭配
     </KButton>
     <!-- 筛选铭文颜色 -->
-    <FilterColor @change="onFilterColor" />
+    <FilterColor v-model="$epigraphStore.color" @update:model-value="onFilterColor" />
 
     <!-- 搜索 -->
     <KInput

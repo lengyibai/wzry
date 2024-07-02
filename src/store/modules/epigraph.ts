@@ -91,7 +91,6 @@ const EpigraphStore = defineStore("epigraph", () => {
      * @param v 铭文颜色
      */
     filterColor(v?: Game.Epigraph.Data["color"]) {
-      if (color.value === v) return;
       color.value = v;
       sortAll();
     },
@@ -103,13 +102,7 @@ const EpigraphStore = defineStore("epigraph", () => {
       /* 搜索铭文时重置下拉菜单 */
       type.value = "全部";
       color.value = undefined;
-
-      //如果搜索的值不为空，则进行搜索，否则重新排序
-      if (v) {
-        filter_list.value = _search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, [
-          "name",
-        ]);
-      }
+      filter_list.value = _search<Game.Epigraph.Data>(_cloneDeep(epigraph_list.value), v, ["name"]);
     },
   };
 

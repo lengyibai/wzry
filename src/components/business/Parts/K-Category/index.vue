@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends string">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 import { vMouseTip } from "@/directives";
 import { _getMiscLink } from "@/utils/concise";
@@ -21,16 +21,12 @@ withDefaults(defineProps<Props>(), {
   auto: true,
 });
 
-const $emit = defineEmits<{
-  tab: [v: number];
-}>();
+const current_index = defineModel<number>({ required: true });
 
 const { playAudio } = usePlayAudio();
 
 const categoryRef = ref<HTMLElement>();
 
-/** 当前点击的分类索引 */
-const current_index = ref(0);
 /** 线条x坐标 */
 const left = ref(0);
 /** 线条宽度 */
@@ -40,11 +36,14 @@ const width = ref(0);
  * @param index 分类索引
  */
 const handleToggle = (index: number) => {
-  if (!categoryRef.value) return;
   current_index.value = index;
   playAudio("n4r4");
-  $emit("tab", index);
+  handleResize(index);
+};
 
+/** @description 调整线条位置 */
+const handleResize = (index: number) => {
+  if (!categoryRef.value) return;
   const parent_width = categoryRef.value.clientWidth;
   const el = categoryRef.value!.children[index + 1] as HTMLElement;
   const x = el.getBoundingClientRect().x;
@@ -58,6 +57,8 @@ const handleToggle = (index: number) => {
   width.value = el.offsetWidth;
   categoryRef.value.scroll({ behavior: "smooth", left: scroll_left });
 };
+
+watch(current_index, handleResize);
 
 onMounted(() => {
   handleToggle(0);
@@ -88,7 +89,7 @@ onMounted(() => {
       :style="{
         width: titleWidth,
       }"
-      :class="{ active: current_index === index, auto: auto }"
+      :class="{ active: current_index === index, auto }"
       @click="handleToggle(index)"
     >
       <span>{{ item }}</span>
