@@ -141,7 +141,7 @@ const handleSelect = (hero: HeroUpgradeInfo) => {
       :data="item"
       @click="handleSelect(item)"
     />
-    <KEmpty v-if="hero_list.length === 0" tip="你还没有英雄" />
+    <KEmpty v-if="show_list.length === 0" tip="暂无可升级英雄" />
   </div>
 </template>
 
