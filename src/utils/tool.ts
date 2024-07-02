@@ -165,6 +165,10 @@ export const _search = <T>(
   keys: string | string[],
   highlight = false,
 ): T[] => {
+  if (!Array.isArray(value) && value === "") {
+    return data;
+  }
+
   const arr: T[] = [];
 
   // 根据给定的值和键名进行搜索
