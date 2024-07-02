@@ -353,9 +353,6 @@
             },
             "LibVirtualList": {
               "desc": "虚拟列表"
-            },
-            "LibWaterfall": {
-              "desc": "瀑布流布局"
             }
           }
         }
