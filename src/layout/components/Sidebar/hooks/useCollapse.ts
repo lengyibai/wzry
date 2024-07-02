@@ -20,11 +20,11 @@ const useCollapse = (callback?: (status: boolean) => void) => {
   const event_id = dayjs().valueOf();
 
   /** @description 折叠状态发生改变时调用事件池 */
-  const triggerCollapse = () => {
+  const triggerCollapse = _debounce(() => {
     for (const [_, fn] of eventPool) {
       fn(collapse.value);
     }
-  };
+  }, 250);
   const ExposeMethods = {
     /** @description 切换折叠 */
     toggleCollapse() {
@@ -48,13 +48,13 @@ const useCollapse = (callback?: (status: boolean) => void) => {
   if (!is_registered) {
     is_registered = true;
 
-    const debounceSidebarStatus = _debounce(() => {
+    const sidebarStatus = () => {
       collapse.value = window.innerWidth < 640;
       triggerCollapse();
-    }, 250);
+    };
 
-    debounceSidebarStatus();
-    window.addEventListener("resize", debounceSidebarStatus);
+    sidebarStatus();
+    window.addEventListener("resize", sidebarStatus);
   }
 
   onScopeDispose(() => {
