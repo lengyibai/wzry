@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, provide, ref } from "vue";
 
-import TaskToolbar from "./components/TaskToolbar/index.vue";
 import TaskList from "./components/TaskList/index.vue";
 
 import { vMouseTip, vScrollVirtualization } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 import { usePlayAudio } from "@/hooks";
+import { KCategory } from "@/components/business";
 
 /** 是否显示页面 */
 const modelValue = defineModel<boolean>({ required: true });
@@ -15,9 +15,12 @@ const modelValue = defineModel<boolean>({ required: true });
 const { playAudio } = usePlayAudio();
 const { setHideStatus } = useHideLayout();
 
+/** 任务选项 */
+const task_options = ["今日任务", "本周任务"];
+
 const taskMainRef = ref<HTMLElement>();
 
-/** 当前选择的任务类型 */
+/** 当前选择的任务类型索引 */
 const category_index = ref(0);
 /** 是否显示 */
 const show = ref(true);
@@ -62,8 +65,14 @@ provide("close-task", handleHide);
       </transition>
 
       <transition name="tool" appear>
-        <div v-show="show" class="tool">
-          <TaskToolbar @change="onCategory" />
+        <div v-show="show" class="tool-bar">
+          <KCategory
+            v-model="category_index"
+            :auto="false"
+            title-width="9.375rem"
+            :options="task_options"
+            @update:model-value="onCategory"
+          />
         </div>
       </transition>
 

@@ -16,9 +16,20 @@
     left: 0.625rem;
   }
 
-  .tool {
+  .tool-bar {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0.4rem;
+      width: 100%;
+      height: 1px;
+      background-color: var(--theme-border-color-two);
+    }
   }
 
   .task-main {
