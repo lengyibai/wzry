@@ -58,6 +58,7 @@ useUserConfigFinish.readPromise.then(async () => {
 
 /* 搜索英雄 */
 const handleSearch = () => {
+  tab_index.value = 0;
   show_list.value = _search<HeroUpgradeInfo>(
     _cloneDeep(hero_list.value),
     search_value.value,
@@ -74,6 +75,7 @@ const onSelectAttr = (index: number) => {
 
 /* 点击tab栏 */
 const onTab = (index: number) => {
+  search_value.value = "";
   tab_index.value = index;
   sortAll();
 };
@@ -123,7 +125,13 @@ const handleSelect = (hero: HeroUpgradeInfo) => {
         @input="handleSearch"
       />
     </div>
-    <KCategory v-if="hero_list.length" line :options="options" @tab="onTab" />
+    <KCategory
+      v-if="hero_list.length"
+      v-model="tab_index"
+      line
+      :options="options"
+      @update:model-value="onTab"
+    />
   </div>
   <div v-scroll-virtualization class="hero-list">
     <HeroCard

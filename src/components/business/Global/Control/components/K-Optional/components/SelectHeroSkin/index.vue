@@ -114,6 +114,7 @@ useUserConfigFinish.readPromise.then(async () => {
 
 /* 搜索英雄/皮肤 */
 const handleSearch = () => {
+  tab_index.value = 0;
   const search_keys = ["hero_name"];
 
   //如果为领取皮肤，则支持皮肤搜索
@@ -133,6 +134,7 @@ const handleSearch = () => {
 
 /* 点击tab栏 */
 const onTab = (index: number) => {
+  search_value.value = "";
   tab_index.value = index;
   heroListRef.value!.scrollTop = 0;
   sortAll();
@@ -223,7 +225,7 @@ onMounted(() => {
         @input="handleSearch"
       />
     </div>
-    <KCategory line :options="options" @tab="onTab" />
+    <KCategory v-model="tab_index" line :options="options" @update:model-value="onTab" />
   </div>
   <div ref="heroListRef" v-scroll-virtualization class="hero-list">
     <HeroSkinCard
