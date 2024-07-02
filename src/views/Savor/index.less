@@ -6,83 +6,95 @@
     flex-direction: column;
     flex-grow: 1;
 
-    .atlas-card {
-      position: absolute;
-      left: 50%;
-      overflow: hidden;
-      min-width: 6.25rem;
-      border-radius: 0.9375rem;
-      transition: 0.5s;
-      transform: translateX(-50%) scale(0.1);
-      opacity: 0;
-      filter: grayscale(75%) brightness(35%);
+    .waterfall-box {
+      position: relative;
+      flex-grow: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding-right: 1rem;
 
-      &.active {
-        transition: 0.1s;
-        filter: grayscale(0%) brightness(100%);
-      }
-
-      .hero-name,
-      .skin-name {
-        position: absolute;
-        z-index: 1;
-        transition: 0.25s;
-      }
-
-      .hero-name {
-        top: 0.5em;
-        left: 0.5em;
-        font-size: 2.25rem;
-        text-shadow: var(--t-shadow-e);
-        letter-spacing: 0.25em;
-        writing-mode: vertical-lr;
-      }
-
-      .skin-name {
-        right: 0.5em;
-        bottom: 0.5em;
-        font-size: 1.25rem;
-        text-shadow: var(--t-shadow-d);
-      }
-
-      .bg {
+      .waterfall {
+        position: relative;
         width: 100%;
         height: 100%;
-        transition: 0.25s;
-        object-fit: cover;
-        transform: scale(1.1);
 
-        &:hover {
-          transform: scale(1.25);
+        .atlas-card {
+          position: absolute;
+          left: 0;
+          overflow: hidden;
+          min-width: 6.25rem;
+          border-radius: 0.9375rem;
+          transition: 0.25s;
+          filter: grayscale(75%) brightness(35%);
+
+          &.active {
+            transition: 0.1s;
+            filter: grayscale(0%) brightness(100%);
+          }
+
+          .hero-name,
+          .skin-name {
+            position: absolute;
+            z-index: 1;
+            transition: 0.25s;
+          }
+
+          .hero-name {
+            top: 0.5em;
+            left: 0.5em;
+            font-size: 2.25rem;
+            text-shadow: var(--t-shadow-e);
+            letter-spacing: 0.25em;
+            writing-mode: vertical-lr;
+          }
+
+          .skin-name {
+            right: 0.5em;
+            bottom: 0.5em;
+            font-size: 1.25rem;
+            text-shadow: var(--t-shadow-d);
+          }
+
+          .bg {
+            width: 100%;
+            height: 100%;
+            transition: 0.25s;
+            object-fit: cover;
+            transform: scale(1.1);
+
+            &:hover {
+              transform: scale(1.25);
+            }
+          }
+
+          @media screen and (width < 500px) {
+            width: calc(50% - 0.75rem);
+          }
+
+          @media screen and (width >= 500px) {
+            width: calc(33.33% - 0.9rem);
+          }
+
+          @media screen and (width >= 1000px) {
+            width: calc(25% - 0.9rem);
+          }
+
+          @media screen and (width >= 1500px) {
+            width: calc(20% - 0.75rem);
+          }
+
+          @media screen and (width >= 2000px) {
+            width: calc(16.66% - 0.75rem);
+          }
+
+          @media screen and (width >= 2500px) {
+            width: calc(14.28% - 0.65rem);
+          }
+
+          @media screen and (width >= 3000px) {
+            width: calc(12%);
+          }
         }
-      }
-
-      @media screen and (width < 500px) {
-        width: calc(50% - 0.75rem);
-      }
-
-      @media screen and (width >= 500px) {
-        width: calc(33.33% - 0.9rem);
-      }
-
-      @media screen and (width >= 1000px) {
-        width: calc(25% - 0.9rem);
-      }
-
-      @media screen and (width >= 1500px) {
-        width: calc(20% - 0.75rem);
-      }
-
-      @media screen and (width >= 2000px) {
-        width: calc(16.66% - 0.75rem);
-      }
-
-      @media screen and (width >= 2500px) {
-        width: calc(14.28% - 0.65rem);
-      }
-
-      @media screen and (width >= 3000px) {
-        width: calc(12%);
       }
     }
   }

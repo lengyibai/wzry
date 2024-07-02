@@ -8,8 +8,6 @@ type EventData = {
   loading: { text?: string; show: boolean };
   /** 全局手指抬起事件 */
   mouseup: Event;
-  /** 瀑布流监听图片加载 */
-  "watch-waterfall": any;
   /** 瀑布流更新图片大小及坐标 */
   "update-waterfall": any;
   /** 查看图片 */

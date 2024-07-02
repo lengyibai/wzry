@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { computed, onActivated, onDeactivated, ref } from "vue";
+import { computed, onActivated, onDeactivated, onMounted, ref, watch } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
+import { useWaterfall } from "./hooks/useWaterfall";
 
 import { AtlasStore, KnapsackStore } from "@/store";
-import { FilterSidebar, KBackTop } from "@/components/business";
-import { LibWaterfall } from "@/components/common";
+import { FilterSidebar, KBackTop, KLoadMore } from "@/components/business";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
 import { vBlurLoad, vMouseTip } from "@/directives";
 import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
-import { $bus } from "@/utils/eventBus";
-import { _debounce } from "@/utils/tool";
+import { _LoadMore, _debounce } from "@/utils/tool";
 import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
+import { $bus } from "@/utils/eventBus";
 
 defineOptions({
   name: "Savor",
@@ -26,12 +26,20 @@ const $atlasStore = AtlasStore();
 const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
 
 const { playAudio } = usePlayAudio();
-const { count } = useWaterfallResponsive();
+const { count } = useWaterfallResponsive(() => {
+  debounceUpdatePosition();
+});
+const { updatePosition, children_position } = useWaterfall({
+  count,
+  gap: 15,
+  num: computed(() => show_list.value.length),
+});
 useCollapse(() => {
-  debounceUpdateSizePosition();
+  debounceUpdatePosition();
 });
 
-const waterfallRef = ref<InstanceType<typeof LibWaterfall>>();
+const waterfallBoxRef = ref<HTMLElement>();
+const waterfallRef = ref<HTMLElement>();
 
 const savorToolbarRef = ref<InstanceType<typeof SavorToolbar>>();
 
@@ -96,15 +104,15 @@ const handleRelated = (e: Event, type: Game.Hero.AloneAtlas["type"], id: number)
   }
 };
 
-/** @description 更新元素的坐标及尺寸 */
-const debounceUpdateSizePosition = _debounce(() => {
-  waterfallRef.value?._updateSizePosition();
-}, 500);
+/** @description 更新元素的坐标 */
+const debounceUpdatePosition = _debounce(() => {
+  updatePosition();
 
-/** @description 通过给图片设置监听事件，图片加载自动调用updateSizePosition，适用于生成了新的图片时调用 */
-const debounceWatchImgLoad = _debounce(() => {
-  waterfallRef.value?._watchImgLoad();
-}, 500);
+  waterfallRef.value!.style.height = "0";
+  setTimeout(() => {
+    waterfallRef.value!.style.height = waterfallRef.value!.scrollHeight + "px";
+  }, 250);
+}, 250);
 
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
@@ -115,31 +123,58 @@ const debounceScroll = _debounce((v: number) => {
 /** @description 加载更多 */
 const onLoadMore = () => {
   $atlasStore.loadMore();
-  debounceWatchImgLoad();
+};
+
+/** @description 滚动指定位置 */
+const setPosition = (top: number, animate = false) => {
+  waterfallBoxRef.value?.scroll({ top, behavior: animate ? "smooth" : "auto" });
 };
 
 /** @description 返回顶部 */
 const onBackTop = () => {
-  waterfallRef.value?._setPosition(0, true);
+  setPosition(0, true);
 };
 
 /** @description 点击侧边栏触发 */
 const onSidebarChange = () => {
-  debounceScroll(0);
+  setPosition(0);
+  debounceUpdatePosition();
   savorToolbarRef.value?._clearName();
 };
 
+watch(() => show_list.value.length, debounceUpdatePosition);
+
+onMounted(() => {
+  new _LoadMore(
+    {
+      parent: waterfallBoxRef.value!,
+      loadHeight: 10,
+    },
+    {
+      load() {
+        //处于加载中或全部加载完毕禁止再次触发
+        if (loading.value || finish.value) return;
+        onLoadMore();
+      },
+      scroll: (v) => {
+        debounceScroll(v);
+      },
+    },
+  );
+});
+
 onActivated(() => {
   playAudio("gz76");
-  debounceUpdateSizePosition();
-  waterfallRef.value?._setPosition(scroll.value);
-  $bus.on("update-waterfall", debounceUpdateSizePosition);
-  $bus.on("watch-waterfall", debounceWatchImgLoad);
+  debounceUpdatePosition();
+  setPosition(scroll.value);
+  $bus.on("update-waterfall", () => {
+    setPosition(0);
+    debounceUpdatePosition();
+  });
 });
 
 onDeactivated(() => {
   $bus.off("update-waterfall");
-  $bus.off("watch-waterfall");
 });
 </script>
 
@@ -152,47 +187,49 @@ onDeactivated(() => {
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <LibWaterfall
-        v-if="show_list.length"
-        ref="waterfallRef"
-        :count="count"
-        :loading="loading"
-        :finish="finish"
-        :scroll-top="scroll"
-        @load-more="onLoadMore"
-        @scroll="debounceScroll"
-      >
-        <div
-          v-for="item in show_list"
-          :key="item.poster"
-          v-mouse-tip="{
-            disabled: hoverDesc(item.type, item.id).disabled,
-            text: hoverDesc(item.type, item.id).text,
-          }"
-          :class="{
-            active: hero_id === item.id,
-          }"
-          class="atlas-card"
-          @mouseenter="handleLight(item.id, item.posterBlur)"
-          @mouseup="handleRelated($event, item.type, item.id)"
-          @touchstart="handleLight(item.id, item.posterBlur)"
-          @mouseleave="hero_id = 0"
-        >
-          <div v-if="item.type === 'HERO'" class="hero-name">
-            {{ item.name }}
-          </div>
-          <div v-if="item.type === 'SKIN'" class="skin-name">
-            {{ item.name }}
-          </div>
-          <img
-            v-blur-load="{
-              img: item.cover,
-            }"
-            class="bg"
-            :src="item.coverBlur"
-          />
+      <div ref="waterfallBoxRef" class="waterfall-box">
+        <div ref="waterfallRef" class="waterfall">
+          <template v-if="show_list.length">
+            <div
+              v-for="(item, index) in show_list"
+              :id="'item-' + index"
+              :key="item.poster"
+              v-mouse-tip="{
+                disabled: hoverDesc(item.type, item.id).disabled,
+                text: hoverDesc(item.type, item.id).text,
+              }"
+              :style="{
+                left: children_position[index]?.left + 'px',
+                top: children_position[index]?.top + 'px',
+              }"
+              :class="{
+                active: hero_id === item.id,
+              }"
+              class="atlas-card"
+              @mouseenter="handleLight(item.id, item.posterBlur)"
+              @mouseup="handleRelated($event, item.type, item.id)"
+              @touchstart="handleLight(item.id, item.posterBlur)"
+              @mouseleave="hero_id = 0"
+            >
+              <div v-if="item.type === 'HERO'" class="hero-name">
+                {{ item.name }}
+              </div>
+              <div v-if="item.type === 'SKIN'" class="skin-name">
+                {{ item.name }}
+              </div>
+              <img
+                v-blur-load="{
+                  img: item.cover,
+                }"
+                class="bg"
+                :src="item.coverBlur"
+              />
+            </div>
+          </template>
         </div>
-      </LibWaterfall>
+
+        <KLoadMore :loading="loading" class="load-more" :finish="finish" />
+      </div>
     </div>
 
     <!--右侧职业分类侧边栏-->

@@ -1,11 +1,8 @@
 import { ref, onMounted } from "vue";
 import { onScopeDispose } from "vue";
 
-import { $bus } from "@/utils/eventBus";
-import { _debounce } from "@/utils/tool";
-
 /** @description 瀑布流响应式相关 */
-const useWaterfallResponsive = () => {
+const useWaterfallResponsive = (updatePosition: () => void) => {
   const ExposeData = {
     /** 一行个数 */
     count: ref(2),
@@ -32,18 +29,17 @@ const useWaterfallResponsive = () => {
       count.value = 2;
     }
 
-    $bus.emit("update-waterfall");
+    updatePosition();
   };
 
   onMounted(() => {
     setCount();
   });
 
-  const debounceSetCount = _debounce(setCount, 250);
-  window.addEventListener("resize", debounceSetCount);
+  window.addEventListener("resize", setCount);
 
   onScopeDispose(() => {
-    window.removeEventListener("resize", debounceSetCount);
+    window.removeEventListener("resize", setCount);
   });
 
   return {

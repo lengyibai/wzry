@@ -78,7 +78,7 @@ const AtlasStore = defineStore("atlas", () => {
     filterGender();
     sortType();
     $usePagingLoad.resetPage();
-    $bus.emit("watch-waterfall");
+    $bus.emit("update-waterfall");
   };
   const ExposeMethods = {
     /** @description 设置滚动坐标 */
@@ -175,7 +175,7 @@ const AtlasStore = defineStore("atlas", () => {
         ]);
         setFilterData(data);
 
-        $bus.emit("watch-waterfall");
+        $bus.emit("update-waterfall");
       } else {
         sortAll();
       }
