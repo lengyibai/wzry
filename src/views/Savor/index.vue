@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { computed, onActivated, onDeactivated, onMounted, ref, watch } from "vue";
+import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, watch } from "vue";
 
 import SavorToolbar from "./components/SavorToolbar/index.vue";
 import { useWaterfallResponsive } from "./hooks/useWaterfallResponsive";
-import { useWaterfall } from "./hooks/useWaterfall";
+import { useNewWaterfall } from "./hooks/useNewWaterfall";
 
 import { AtlasStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KLoadMore } from "@/components/business";
@@ -13,7 +13,6 @@ import { vBlurLoad, vMouseTip } from "@/directives";
 import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
 import { _LoadMore, _debounce } from "@/utils/tool";
-import { useCollapse } from "@/layout/components/Sidebar/hooks/useCollapse";
 import { $bus } from "@/utils/eventBus";
 
 defineOptions({
@@ -26,20 +25,16 @@ const $atlasStore = AtlasStore();
 const { show_list, scroll, finish, loading } = storeToRefs($atlasStore);
 
 const { playAudio } = usePlayAudio();
-const { count } = useWaterfallResponsive(() => {
-  debounceUpdatePosition();
-});
-const { updatePosition, children_position } = useWaterfall({
-  count,
-  gap: 15,
-  num: computed(() => show_list.value.length),
-});
-useCollapse(() => {
-  debounceUpdatePosition();
-});
+const { count } = useWaterfallResponsive();
 
 const waterfallBoxRef = ref<HTMLElement>();
-const waterfallRef = ref<HTMLElement>();
+const columnRefs = ref<HTMLElement[]>();
+
+const { column_data, recalculateColumnData, onLoadImage } = useNewWaterfall<Game.Hero.AloneAtlas>(
+  show_list,
+  columnRefs,
+  count,
+);
 
 const savorToolbarRef = ref<InstanceType<typeof SavorToolbar>>();
 
@@ -48,7 +43,9 @@ const hero_id = ref(0);
 /** 是否显示返回顶部 */
 const back_top = ref(false);
 
-$atlasStore.getAtlasList();
+$atlasStore.getAtlasList().then(() => {
+  recalculateColumnData();
+});
 
 /** 悬浮卡片描述 */
 const hoverDesc = computed(() => {
@@ -104,16 +101,6 @@ const handleRelated = (e: Event, type: Game.Hero.AloneAtlas["type"], id: number)
   }
 };
 
-/** @description 更新元素的坐标 */
-const debounceUpdatePosition = _debounce(() => {
-  updatePosition();
-
-  waterfallRef.value!.style.height = "0";
-  setTimeout(() => {
-    waterfallRef.value!.style.height = waterfallRef.value!.scrollHeight + "px";
-  }, 250);
-}, 250);
-
 /** @description 滚动触发 */
 const debounceScroll = _debounce((v: number) => {
   $atlasStore.setScroll(v);
@@ -123,6 +110,7 @@ const debounceScroll = _debounce((v: number) => {
 /** @description 加载更多 */
 const onLoadMore = () => {
   $atlasStore.loadMore();
+  recalculateColumnData();
 };
 
 /** @description 滚动指定位置 */
@@ -138,13 +126,14 @@ const onBackTop = () => {
 /** @description 点击侧边栏触发 */
 const onSidebarChange = () => {
   setPosition(0);
-  debounceUpdatePosition();
+  recalculateColumnData();
   savorToolbarRef.value?._clearName();
 };
 
-watch(() => show_list.value.length, debounceUpdatePosition);
+watch(() => show_list.value.length, recalculateColumnData);
 
 onMounted(() => {
+  recalculateColumnData();
   new _LoadMore(
     {
       parent: waterfallBoxRef.value!,
@@ -165,11 +154,9 @@ onMounted(() => {
 
 onActivated(() => {
   playAudio("gz76");
-  debounceUpdatePosition();
   setPosition(scroll.value);
   $bus.on("update-waterfall", () => {
     setPosition(0);
-    debounceUpdatePosition();
   });
 });
 
@@ -188,44 +175,51 @@ onDeactivated(() => {
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
       <div ref="waterfallBoxRef" class="waterfall-box">
-        <div ref="waterfallRef" class="waterfall">
-          <template v-if="show_list.length">
-            <div
-              v-for="(item, index) in show_list"
-              :id="'item-' + index"
-              :key="item.poster"
-              v-mouse-tip="{
-                disabled: hoverDesc(item.type, item.id).disabled,
-                text: hoverDesc(item.type, item.id).text,
-              }"
-              :style="{
-                left: children_position[index]?.left + 'px',
-                top: children_position[index]?.top + 'px',
-              }"
-              :class="{
-                active: hero_id === item.id,
-              }"
-              class="atlas-card"
-              @mouseenter="handleLight(item.id, item.posterBlur)"
-              @mouseup="handleRelated($event, item.type, item.id)"
-              @touchstart="handleLight(item.id, item.posterBlur)"
-              @mouseleave="hero_id = 0"
-            >
-              <div v-if="item.type === 'HERO'" class="hero-name">
-                {{ item.name }}
-              </div>
-              <div v-if="item.type === 'SKIN'" class="skin-name">
-                {{ item.name }}
-              </div>
-              <img
-                v-blur-load="{
-                  img: item.cover,
+        <div class="waterfall-scroll">
+          <div
+            v-for="num in count"
+            ref="columnRefs"
+            :key="num"
+            class="waterfall"
+            :style="{
+              width: `${100 / count}%`,
+            }"
+          >
+            <template v-if="show_list.length">
+              <div
+                v-for="(item, index) in column_data[num]"
+                :id="'item-' + index"
+                :key="item.poster"
+                v-mouse-tip="{
+                  disabled: hoverDesc(item.type, item.id).disabled,
+                  text: hoverDesc(item.type, item.id).text,
                 }"
-                class="bg"
-                :src="item.coverBlur"
-              />
-            </div>
-          </template>
+                :class="{
+                  active: hero_id === item.id,
+                }"
+                class="atlas-card"
+                @mouseenter="handleLight(item.id, item.posterBlur)"
+                @mouseup="handleRelated($event, item.type, item.id)"
+                @touchstart="handleLight(item.id, item.posterBlur)"
+                @mouseleave="hero_id = 0"
+              >
+                <div v-if="item.type === 'HERO'" class="hero-name">
+                  {{ item.name }}
+                </div>
+                <div v-if="item.type === 'SKIN'" class="skin-name">
+                  {{ item.name }}
+                </div>
+                <img
+                  v-blur-load="{
+                    img: item.cover,
+                  }"
+                  class="bg"
+                  :src="item.coverBlur"
+                  @load="onLoadImage"
+                />
+              </div>
+            </template>
+          </div>
         </div>
 
         <KLoadMore :loading="loading" class="load-more" :finish="finish" />

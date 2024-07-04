@@ -2,10 +2,10 @@ import { ref, onMounted } from "vue";
 import { onScopeDispose } from "vue";
 
 /** @description 瀑布流响应式相关 */
-const useWaterfallResponsive = (updatePosition: () => void) => {
+const useWaterfallResponsive = () => {
   const ExposeData = {
     /** 一行个数 */
-    count: ref(2),
+    count: ref(4),
   };
   const { count } = ExposeData;
 
@@ -28,19 +28,17 @@ const useWaterfallResponsive = (updatePosition: () => void) => {
     } else if (w < 500) {
       count.value = 2;
     }
-
-    updatePosition();
   };
 
-  onMounted(() => {
-    setCount();
-  });
+  // onMounted(() => {
+  //   setCount();
+  // });
 
-  window.addEventListener("resize", setCount);
+  // window.addEventListener("resize", setCount);
 
-  onScopeDispose(() => {
-    window.removeEventListener("resize", setCount);
-  });
+  // onScopeDispose(() => {
+  //   window.removeEventListener("resize", setCount);
+  // });
 
   return {
     ...ExposeData,
