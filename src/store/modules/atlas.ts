@@ -99,6 +99,7 @@ const AtlasStore = defineStore("atlas", () => {
           poster: hero.poster,
           name: hero.name,
           heroName: "",
+          heroId: hero.id,
           type: "HERO",
           profession: hero.profession,
           gender: hero.gender,
@@ -109,6 +110,7 @@ const AtlasStore = defineStore("atlas", () => {
         hero.skins.forEach((skin) => {
           data.push({
             id: skin.id,
+            heroId: hero.id,
             cover: skin.cover,
             coverBlur: skin.posterBlur,
             name: skin.name,

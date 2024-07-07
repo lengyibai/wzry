@@ -9,7 +9,7 @@ import { useWaterfall } from "./hooks/useWaterfall";
 import { AtlasStore, KnapsackStore } from "@/store";
 import { FilterSidebar, KBackTop, KLoadMore } from "@/components/business";
 import { $mouseTipText, MOUSE_TIP } from "@/config";
-import { vBlurLoad, vMouseTip } from "@/directives";
+import { vBlurLoad, vMouseTip, vScrollVirtualization } from "@/directives";
 import { useHaveHeroSkin, usePlayAudio } from "@/hooks";
 import { $imageView } from "@/utils/busTransfer";
 import { _LoadMore, _debounce } from "@/utils/tool";
@@ -187,7 +187,7 @@ onDeactivated(() => {
 
       <KBackTop :active="back_top" @back-top="onBackTop" />
 
-      <div ref="waterfallBoxRef" class="waterfall-box">
+      <div ref="waterfallBoxRef" v-scroll-virtualization class="waterfall-box">
         <div ref="waterfallRef" class="waterfall">
           <template v-if="show_list.length">
             <div
@@ -203,12 +203,12 @@ onDeactivated(() => {
                 top: children_position[index]?.top + 'px',
               }"
               :class="{
-                active: hero_id === item.id,
+                active: hero_id === item.heroId,
               }"
               class="atlas-card"
-              @mouseenter="handleLight(item.id, item.posterBlur)"
-              @mouseup="handleRelated($event, item.type, item.id)"
-              @touchstart="handleLight(item.id, item.posterBlur)"
+              @mouseenter="handleLight(item.heroId, item.posterBlur)"
+              @mouseup="handleRelated($event, item.type, item.heroId)"
+              @touchstart="handleLight(item.heroId, item.posterBlur)"
               @mouseleave="hero_id = 0"
             >
               <div v-if="item.type === 'HERO'" class="hero-name">

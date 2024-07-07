@@ -211,6 +211,8 @@ declare namespace Game {
       type: "HERO" | "SKIN";
       /** 英雄名 */
       heroName: string;
+      /** 英雄ID */
+      heroId: number;
     }
   }
 
