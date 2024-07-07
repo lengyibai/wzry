@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { ref, watchEffect } from "vue";
+import { onMounted, ref, watchEffect } from "vue";
 
 import ColorsTextures from "./components/ColorsTextures/index.vue";
 
@@ -74,10 +74,7 @@ watchEffect(() => {
   index.value = part_style_type.value === "COLOR" ? 0 : 1;
 });
 
-setTimeout(() => {}, 3000);
-
-//延迟五秒是因为乂宝入场动画
-setTimeout(() => {
+onMounted(() => {
   $tip({
     align: "right-bottom",
     color: false,
@@ -91,7 +88,7 @@ setTimeout(() => {
       setPartStyle("IMG");
     },
   });
-}, 5000);
+});
 </script>
 
 <template>
