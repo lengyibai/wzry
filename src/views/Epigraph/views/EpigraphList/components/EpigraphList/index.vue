@@ -39,27 +39,23 @@ watch(
 </script>
 
 <template>
-  <div>
-    <transition name="card-list">
-      <LibGrid
-        v-if="show && epigraph_list.length"
-        ref="epigraphListRef"
-        :load-more="false"
-        gap="0.9375rem"
-        :count="line_num"
-      >
-        <transition-group name="card" appear>
-          <EpigraphCard
-            v-for="(item, index) in epigraph_list"
-            :key="item.id"
-            :data="item"
-            class="epigraph-card"
-            :style="{
-              'transition-delay': 0.025 * index + 's',
-            }"
-          />
-        </transition-group>
-      </LibGrid>
-    </transition>
-  </div>
+  <LibGrid
+    v-if="show && epigraph_list.length"
+    ref="epigraphListRef"
+    :load-more="false"
+    gap="0.9375rem"
+    :count="line_num"
+  >
+    <transition-group name="card" appear>
+      <EpigraphCard
+        v-for="(item, index) in epigraph_list"
+        :key="item.id"
+        :data="item"
+        class="epigraph-card"
+        :style="{
+          'transition-delay': 0.025 * index + 's',
+        }"
+      />
+    </transition-group>
+  </LibGrid>
 </template>

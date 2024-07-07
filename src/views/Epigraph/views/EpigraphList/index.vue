@@ -4,7 +4,6 @@ import { computed, ref } from "vue";
 import EpigraphToolbar from "./components/EpigraphToolbar/index.vue";
 import EpigraphList from "./components/EpigraphList/index.vue";
 
-import { vScrollVirtualization } from "@/directives";
 import { KCategory } from "@/components/business";
 import { EpigraphStore } from "@/store";
 
@@ -50,9 +49,7 @@ const current_index = computed({
   </transition>
 
   <!-- 铭文列表 -->
-  <div v-scroll-virtualization class="epigraph-main">
-    <EpigraphList />
-  </div>
+  <EpigraphList />
 </template>
 
 <style scoped lang="less">
