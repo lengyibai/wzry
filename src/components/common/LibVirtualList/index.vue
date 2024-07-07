@@ -4,6 +4,7 @@ import { onMounted, ref, watch } from "vue";
 
 import KLoadMore from "@/components/business/Parts/K-LoadMore/index.vue";
 import { _LoadMore, _debounce } from "@/utils/tool";
+import { vScrollVirtualization } from "@/directives";
 
 interface Props {
   /** 数据列表 */
@@ -175,7 +176,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="virtualListRef" class="lib-virtual-list" @scroll="handleScroll">
+  <div ref="virtualListRef" v-scroll-virtualization class="lib-virtual-list" @scroll="handleScroll">
     <div
       ref="fillListRef"
       class="fill-list"
