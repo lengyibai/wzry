@@ -24,8 +24,10 @@ const ExposeData = {
   image_props_version: ref(""),
   /** 迷你英雄图包列表 */
   image_mini_hero_version: ref(""),
-  /** 主页视频列表 */
+  /** 主页视频 */
   video_home_version: ref(""),
+  /** 登录页视频 */
+  video_login_version: ref(""),
   /** 数据包 */
   json_data_version: ref(""),
   /** 语音包 */
@@ -43,6 +45,7 @@ const {
   image_props_version,
   image_mini_hero_version,
   video_home_version,
+  video_login_version,
   json_data_version,
   json_voice_version,
 } = ExposeData;
@@ -63,6 +66,7 @@ const useStaticResourceVersion = () => {
           imagePropsVersion,
           imageMiniHeroVersion,
           videoHomeVersion,
+          videoLoginVersion,
           jsonDataVersion,
           jsonVoiceVersion,
         } = res.data;
@@ -76,6 +80,7 @@ const useStaticResourceVersion = () => {
         image_props_version.value = imagePropsVersion;
         image_mini_hero_version.value = imageMiniHeroVersion;
         video_home_version.value = videoHomeVersion;
+        video_login_version.value = videoLoginVersion;
         json_data_version.value = jsonDataVersion;
         json_voice_version.value = jsonVoiceVersion;
 

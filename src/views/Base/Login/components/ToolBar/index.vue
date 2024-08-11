@@ -14,7 +14,7 @@ const { playAudio } = usePlayAudio();
 const toolbarRef = ref<HTMLElement>();
 
 /** 静音 */
-const muted = ref(true);
+const muted = ref(false);
 /** 静音图标 */
 const icon = computed(() => (muted.value ? "wzry-jingyin-mianxing" : "wzry-laba-mianxing"));
 

@@ -11,10 +11,11 @@ import Footbar from "@/layout/components/Footbar/index.vue";
 import { KVideo } from "@/components/business";
 import { _promiseTimeout } from "@/utils/tool";
 import { _getVideoLink } from "@/utils/concise";
-import { usePlayAudio } from "@/hooks";
+import { usePlayAudio, useStaticResourceVersion } from "@/hooks";
 
 const { status } = useBarrages();
 const { playAudio } = usePlayAudio();
+const { video_home_version } = useStaticResourceVersion();
 
 /** 显示侧边栏 */
 const show_sidebar = ref(false);
@@ -65,7 +66,12 @@ onMounted(async () => {
     </div>
 
     <!-- 视频背景 -->
-    <KVideo :link="_getVideoLink('bg')" muted />
+    <KVideo
+      v-if="video_home_version"
+      style="filter: brightness(0.35)"
+      :link="_getVideoLink('bg', video_home_version)"
+      muted
+    />
   </div>
 </template>
 

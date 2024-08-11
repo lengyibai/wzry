@@ -216,8 +216,10 @@ declare namespace Global {
       imagePropsVersion: string;
       /** 迷你英雄图包列表 */
       imageMiniHeroVersion: string;
-      /** 主页视频列表 */
+      /** 主页视频 */
       videoHomeVersion: string;
+      /** 登录页视频 */
+      videoLoginVersion: string;
       /** 数据包 */
       jsonDataVersion: string;
       /** 语音包 */

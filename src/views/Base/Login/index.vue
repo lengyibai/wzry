@@ -15,10 +15,10 @@ import { VersionStore } from "@/store";
 
 const $versionStore = VersionStore();
 
-const { video_home_version, load } = useStaticResourceVersion();
+const { video_login_version, load } = useStaticResourceVersion();
 
 /** 静音 */
-const muted = ref(true);
+const muted = ref(false);
 /** 显示公告 */
 const show_notice = ref(false);
 /** 显示更新日志 */
@@ -97,16 +97,17 @@ setTimeout(() => {
 
     <!-- 图片背景 -->
     <img
-      v-if="video_home_version"
+      v-if="video_login_version"
       class="bg"
-      :src="_getImgLink('login_bg', video_home_version, 'jpg')"
+      :src="_getImgLink('login_bg', video_login_version, 'jpg')"
       alt=""
     />
 
     <!-- 视频背景 -->
     <KVideo
-      v-if="finish && video_home_version"
-      :link="_getVideoLink('login_bg', video_home_version)"
+      v-if="finish && video_login_version"
+      class="video"
+      :link="_getVideoLink('login_bg', video_login_version)"
       :muted="muted"
     />
   </div>
