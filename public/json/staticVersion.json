@@ -2,14 +2,15 @@
   "data": {
     "audioVersion": "1716140931000",
     "imageActivityBannerVersion": "1716128725000",
-    "imageBlurVersion": "1716214254000",
+    "imageBlurVersion": "1723397536000",
     "imageHeroAvatarVersion": "1716128725000",
     "imageMinecraftVersion": "1716128725000",
     "imageMiscVersion": "1716128725000",
     "imagePropsVersion": "1716128725000",
     "imageMiniHeroVersion": "1716128725000",
-    "videoHomeVersion": "1720110309000",
-    "jsonDataVersion": "1717757371000",
-    "jsonVoiceVersion": "1716920044000"
+    "videoHomeVersion": "1723397536000",
+    "videoLoginVersion": "1723397536000",
+    "jsonDataVersion": "1723397536000",
+    "jsonVoiceVersion": "1723397536000"
   }
 }
