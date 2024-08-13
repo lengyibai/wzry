@@ -249,8 +249,8 @@ declare namespace Global {
   interface Mail {
     /** 由于ID是请求成功之后生成的，所以只能通过标记来作为唯一性 */
     mark: string;
-    /** 邮件独有类型 SIGN-签到 NEW-新手大礼包  SIGN-每日签到 COIN-每日夺宝币 DEFAULT-站内手动推送  */
-    key: "SIGN" | "NEW" | "COIN" | "DEFAULT";
+    /** 邮件独有类型 SIGN-签到 NEW-新手大礼包  SIGN-每日签到 COIN-每日夺宝币 DEFAULT-站内手动推送 OUTSIDE-站外推送 */
+    key: "SIGN" | "NEW" | "COIN" | "DEFAULT" | "OUTSIDE";
     /** 邮件类型 GIFT-可领取的 MSG-通知 */
     type: "GIFT" | "MSG";
     /** 标题 */
