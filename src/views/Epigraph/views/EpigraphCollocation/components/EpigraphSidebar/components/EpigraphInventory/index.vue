@@ -6,7 +6,7 @@ import EpigraphCard from "./components/EpigraphCard/index.vue";
 
 import { EpigraphCollocationStore } from "@/store";
 import { CONFIRM_TIP, MOUSE_TIP } from "@/config";
-import { vMouseTip, vScrollVirtualization } from "@/directives";
+import { vMouseTip } from "@/directives";
 import { KButton } from "@/components/business";
 import { $confirm } from "@/utils/busTransfer";
 
@@ -69,16 +69,18 @@ const handleSuit = () => {
           @click="handleClose"
         />
       </div>
-      <div ref="epigraphListRef" v-scroll-virtualization class="epigraph-list">
-        <EpigraphCard
-          v-for="item in $epigraphCollocationStore.current_inventory"
-          :key="item.epigraph.id"
-          v-mouse-tip="{
-            text: mouse_tip(item.epigraph.id),
-          }"
-          :data="item.epigraph"
-          :count="item.count"
-        />
+      <div ref="epigraphListRef" class="epigraph-list">
+        <div class="list">
+          <EpigraphCard
+            v-for="item in $epigraphCollocationStore.current_inventory"
+            :key="item.epigraph.id"
+            v-mouse-tip="{
+              text: mouse_tip(item.epigraph.id),
+            }"
+            :data="item.epigraph"
+            :count="item.count"
+          />
+        </div>
       </div>
     </div>
 

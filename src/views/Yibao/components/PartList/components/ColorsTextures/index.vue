@@ -14,7 +14,6 @@ import ShopWindow from "./components/ShopWindow/index.vue";
 
 import { YibaoStore } from "@/store";
 import { YIBAO_PART } from "@/config";
-import { vScrollVirtualization } from "@/directives";
 import { _getMinecraftLink } from "@/utils/concise";
 import { _cloneDeep } from "@/utils/tool";
 
@@ -46,7 +45,7 @@ const current_id = computed(() => temp_part_detail.value[part_type.value].id);
 </script>
 
 <template>
-  <div v-scroll-virtualization class="colors-textures">
+  <div class="colors-textures">
     <!-- 圆环 -->
     <template v-if="part_type === 'annulus'">
       <template v-if="part_style_type === 'COLOR'">

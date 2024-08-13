@@ -8,6 +8,7 @@ import { EquipStore } from "@/store";
 import { FilterSidebar } from "@/components/business";
 import { vScrollVirtualization } from "@/directives";
 import { usePlayAudio } from "@/hooks";
+import { _isPhone } from "@/utils/tool";
 
 defineOptions({
   name: "Equip",
@@ -36,7 +37,7 @@ onActivated(() => {
 
 <template>
   <div class="equip">
-    <div ref="equipMainRef" v-scroll-virtualization class="equip-main">
+    <div ref="equipMainRef" v-scroll-virtualization="!_isPhone" class="equip-main">
       <!-- 装备详情 -->
       <EquipDetail :show="$equipStore.show_details" :equip="$equipStore.active_data" />
 

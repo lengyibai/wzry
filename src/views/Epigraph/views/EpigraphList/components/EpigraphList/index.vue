@@ -42,6 +42,7 @@ watch(
   <LibGrid
     v-if="show && epigraph_list.length"
     ref="epigraphListRef"
+    :virtualization="false"
     :load-more="false"
     gap="0.9375rem"
     :count="line_num"
