@@ -6,9 +6,11 @@
   overflow: auto;
   width: 30%;
   height: 100%;
+  padding: 1.25rem;
   padding-left: 1.25rem;
   transition: all 0.25s;
   opacity: 0;
+  border-left: 1px solid var(--white-10);
 
   &.show {
     transition: all 0.5s;
@@ -19,6 +21,7 @@
     margin-bottom: 1em;
     color: var(--theme-font-color-five);
     font-size: 1.625rem;
+    text-shadow: var(--t-shadow-f);
   }
 
   .info {
@@ -34,6 +37,7 @@
 
         margin-bottom: 0.3125rem;
         background-size: calc(3.5625rem * var(--size)) calc(46.875rem * var(--size));
+        filter: var(--d-shadow-e);
       }
 
       .num {
@@ -41,6 +45,7 @@
         color: var(--theme-font-color-five);
         font-size: 1rem;
         font-family: var(--font-f);
+        text-shadow: var(--t-shadow-d);
         line-height: 1;
       }
 
@@ -144,12 +149,14 @@
         margin-bottom: 0.3125rem;
         color: var(--white);
         font-family: var(--font-f);
+        text-shadow: var(--t-shadow-d);
       }
 
       .desc,
       .time {
         color: var(--theme-font-color-three);
         font-family: var(--font-f);
+        text-shadow: var(--t-shadow-d);
       }
     }
   }
@@ -165,10 +172,11 @@
 
   @media screen and (width <= 1120px) {
     left: 0;
+    z-index: 2;
     width: 100%;
     height: initial;
     padding: 0.625rem;
-    background-color: var(--black-25);
-    backdrop-filter: blur(0.3125rem);
+    background-color: var(--black-50);
+    backdrop-filter: blur(0.5rem);
   }
 }

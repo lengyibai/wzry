@@ -7,7 +7,7 @@
   box-shadow: var(--b-shadow-c);
   font-size: 1.25rem;
   text-shadow: var(--t-shadow-d);
-  background-image: linear-gradient(180deg, var(--theme-el-color-five) 0%, #263657 100%);
+  background-image: linear-gradient(180deg, rgb(19 35 60 / 75%) 0%, rgb(38 54 87 / 25%) 100%);
 
   .title {
     color: var(--theme-font-color-three);
@@ -31,17 +31,22 @@
   .select-list {
     position: absolute;
     left: 0;
-    bottom: -1rem;
+    bottom: -0.5rem;
     z-index: 3;
     overflow: auto;
     width: 100%;
     border-radius: 0.3125rem;
     outline: 1px solid var(--theme-border-color-three);
-    background-color: var(--theme-el-color-five);
+    background-color: rgb(19 35 60 / 75%);
     transition: all 0.25s;
+    backdrop-filter: blur(0.625rem);
     transform: translateY(100%);
     transform-origin: top center;
     overscroll-behavior: contain;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &.unfold {
       transform: translateY(100%) scaleY(0);
@@ -57,7 +62,7 @@
 
       &.active {
         color: var(--white) !important;
-        background-color: #347cb6 !important;
+        background-color: rgb(37 102 155 / 50%) !important;
 
         &::after {
           .global_fill-container();
@@ -69,7 +74,7 @@
         }
 
         .item {
-          text-shadow: var(--shine-15) !important;
+          text-shadow: var(--shine-10) !important;
         }
       }
 

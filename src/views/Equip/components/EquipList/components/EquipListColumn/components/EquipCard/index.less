@@ -10,6 +10,12 @@
   .k-loading-radiate {
     margin-right: 0.3125rem;
     border: 0.1875rem solid var(--theme-border-color-one);
+    opacity: var(--hero-skin-card-opacity);
+  }
+
+  .left-line,
+  .right-line {
+    opacity: 0.75;
   }
 
   .left-line {
@@ -19,6 +25,7 @@
     width: 1.25rem;
     height: 0.1875rem;
     box-shadow:
+      var(--b-shadow-c),
       var(--shine-10) var(--blue),
       var(--shine-20) var(--blue);
     background-color: var(--blue);
@@ -33,6 +40,7 @@
     width: calc(100% - 4.6875rem - 1.25rem);
     height: 0.1875rem;
     box-shadow:
+      var(--b-shadow-c),
       var(--shine-10) var(--blue),
       var(--shine-20) var(--blue);
     background-color: var(--blue);
@@ -51,7 +59,7 @@
       transform: translateY(0.9375rem);
 
       &.shine {
-        text-shadow: var(--shine-10);
+        text-shadow: var(--t-shadow-e), var(--shine-10);
       }
     }
 

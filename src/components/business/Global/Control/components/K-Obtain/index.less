@@ -5,7 +5,8 @@
   z-index: var(--z-index-obtain);
   display: flex;
   flex-direction: column;
-  background-color: rgb(0 0 0 / 90%);
+  background-color: var(--black-50);
+  backdrop-filter: blur(1rem);
 
   .title {
     .global_text-gradient(#73b2ff,var(--white),-180deg);
@@ -213,6 +214,7 @@
           margin-bottom: 0.5rem;
           padding: 0.75rem;
           background-color: rgb(77 107 143 / 50%);
+          filter: var(--d-shadow-b);
 
           &::before {
             content: " ";
@@ -244,6 +246,7 @@
             z-index: 1;
             max-width: 100%;
             max-height: 100%;
+            filter: var(--d-shadow-b);
           }
 
           .num {

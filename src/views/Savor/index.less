@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding: 1.25rem;
 
     .waterfall-box {
       position: relative;
@@ -29,7 +30,12 @@
 
           &.active {
             transition: 0.1s;
+            opacity: 1;
             filter: grayscale(0%) brightness(100%);
+
+            .bg {
+              opacity: 1;
+            }
           }
 
           .hero-name,
@@ -61,6 +67,7 @@
             transition: 0.25s;
             object-fit: cover;
             transform: scale(1.1);
+            opacity: var(--hero-skin-card-opacity);
 
             &:hover {
               transform: scale(1.25);

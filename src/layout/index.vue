@@ -68,7 +68,7 @@ onMounted(async () => {
     <!-- 视频背景 -->
     <KVideo
       v-if="video_home_version"
-      style="filter: brightness(0.35)"
+      style="filter: brightness(0.75)"
       :link="_getVideoLink('bg', video_home_version)"
       muted
     />

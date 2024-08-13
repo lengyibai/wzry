@@ -15,16 +15,33 @@
     color: var(--theme-font-color-three);
     font-size: 1.25rem;
     text-shadow: var(--t-shadow-e);
+    opacity: 0.5;
 
     &:hover {
       color: var(--blue);
       text-shadow: var(--shine-10);
+      opacity: 1;
 
       .name,
       .iconfont {
         transition: all 0s !important;
         pointer-events: none;
       }
+    }
+
+    &.active {
+      position: relative;
+      left: 0;
+      color: var(--white);
+      text-shadow: var(--shine-10);
+      background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 10%, rgb(34 130 199 / 35%) 100%);
+      opacity: 1;
+      -webkit-mask: linear-gradient(
+        transparent 0,
+        #000 0.9375rem,
+        #000 calc(100% - 0.9375rem),
+        transparent 100%
+      );
     }
 
     .iconfont {
@@ -61,20 +78,6 @@
   .menu-item .arrow {
     display: none;
   }
-}
-
-.active {
-  position: relative;
-  left: 0;
-  color: var(--white) !important;
-  text-shadow: var(--shine-10) !important;
-  -webkit-mask: linear-gradient(
-    transparent 0,
-    #000 0.9375rem,
-    #000 calc(100% - 0.9375rem),
-    transparent 100%
-  );
-  background-image: linear-gradient(225deg, rgb(34 58 94 / 0%) 10%, rgb(34 130 199 / 35%) 100%);
 }
 
 .arrow-active {

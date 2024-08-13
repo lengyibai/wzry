@@ -3,7 +3,7 @@ import { onMounted, provide, ref } from "vue";
 
 import TaskList from "./components/TaskList/index.vue";
 
-import { vMouseTip, vScrollVirtualization } from "@/directives";
+import { vMouseTip } from "@/directives";
 import { MOUSE_TIP } from "@/config";
 import { useHideLayout } from "@/layout/common/hooks/useHideLayout";
 import { usePlayAudio } from "@/hooks";
@@ -77,7 +77,7 @@ provide("close-task", handleHide);
       </transition>
 
       <transition name="main" appear>
-        <div v-show="show" ref="taskMainRef" v-scroll-virtualization class="task-main">
+        <div v-show="show" ref="taskMainRef" class="task-main">
           <TaskList :tab-index="category_index" />
         </div>
       </transition>

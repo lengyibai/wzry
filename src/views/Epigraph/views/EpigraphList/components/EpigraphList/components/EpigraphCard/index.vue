@@ -11,7 +11,7 @@ defineProps<Props>();
 <template>
   <div
     v-mask-gradient="{
-      color: 'rgb(62 123 194)',
+      color: 'rgb(0 59 124)',
       start: '-50%',
       end: '50%',
       rotate: '345deg',
