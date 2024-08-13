@@ -72,7 +72,7 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to) => {
   $loading.close();
-  document.title = `${to.meta.title || "正在进入"}-王者图鉴`;
+  document.title = `${to.meta.title || "正在进入"}-王者荣耀图鉴`;
 });
 
 const setupRouter = (app: App) => {
