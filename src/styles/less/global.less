@@ -138,6 +138,26 @@
     linear-gradient(transparent, transparent @percent, var(--black-25));
 }
 
+/* 上下起伏倒影动画 */
+.global_up-down-reflect-animate() {
+  @property --gap {
+    syntax: "<length>";
+    initial-value: 14px;
+    inherits: false;
+  }
+  .global_reflect(var(--gap),0);
+
+  animation: move 1.5s ease-in-out infinite alternate-reverse;
+
+  @keyframes move {
+    100% {
+      --gap: 0px;
+
+      transform: translateY(0.5rem);
+    }
+  }
+}
+
 /* 图片光效，利用伪元素继承父元素背景再模糊处理 */
 .global_img-shine(@blur) {
   position: relative;
