@@ -9,12 +9,22 @@
 
   .content {
     position: absolute;
-    left: 100%;
     display: flex;
     font-size: 1.5rem;
     white-space: nowrap;
     transform: translateY(0.1875rem);
-    animation: normal move 30s linear infinite;
+    animation: move 30s linear infinite;
+
+    @keyframes move {
+      0% {
+        left: 100%;
+      }
+
+      100% {
+        left: 0;
+        transform: translateX(-100%) translateY(0.1875rem);
+      }
+    }
 
     &:hover {
       animation-play-state: paused;
@@ -22,21 +32,21 @@
 
     .qr-code {
       .global_hover-underline();
-    }
 
-    @keyframes move {
-      0% {
-        left: 100%;
+      animation: breath 0.5s infinite ease-in-out alternate-reverse;
+
+      &:hover {
+        animation-play-state: paused;
       }
 
-      75% {
-        left: 0;
-        transform: translateX(-100%) translateY(0.1875rem);
-      }
+      @keyframes breath {
+        0% {
+          transform: scale(0.8);
+        }
 
-      100% {
-        left: 0;
-        transform: translateX(-100%) translateY(0.1875rem);
+        100% {
+          transform: scale(1.2);
+        }
       }
     }
   }

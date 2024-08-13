@@ -16,7 +16,7 @@ const handleQrCode = (e: Event) => {
 <template>
   <div class="notice">
     <div class="content">
-      欢迎加群讨论技术及体验反馈，
+      欢迎加群讨论技术和体验反馈，
       <span class="qr-code" @click="handleQrCode">→点击此处←</span>
       查看群
       <span class="green">二维码</span>，如果你在体验过程中遇到
