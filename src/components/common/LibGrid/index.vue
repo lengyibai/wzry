@@ -16,6 +16,8 @@ interface Props {
   loadMore?: boolean;
   /** 是否处于加载中 */
   loading?: boolean;
+  /** 是否启用列表虚化 */
+  virtualization?: boolean;
 }
 
 const $props = withDefaults(defineProps<Props>(), {
@@ -23,6 +25,7 @@ const $props = withDefaults(defineProps<Props>(), {
   loadMore: true,
   finish: false,
   loading: false,
+  virtualization: true,
 });
 const $emit = defineEmits<{
   "load-more": [];
@@ -65,7 +68,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="LibGridRef" v-scroll-virtualization class="lib-grid">
+  <div ref="LibGridRef" v-scroll-virtualization="virtualization" class="lib-grid">
     <div
       class="lib-grid_content"
       :style="{
