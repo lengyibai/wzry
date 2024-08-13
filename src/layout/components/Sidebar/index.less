@@ -4,13 +4,17 @@
   flex-direction: column;
   flex-shrink: 0;
   width: 15rem;
-  height: calc(100% - 5rem);
-  margin-right: 1.25rem;
+  height: calc(100% - 3rem);
   transition: all 0.5s;
+  border-right: 1px solid var(--white-10);
 
   &-list {
     overflow-x: hidden;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 

@@ -1,7 +1,6 @@
 .epigraph-inventory {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   width: 100%;
   height: 100%;
   padding-bottom: 1rem;
@@ -18,15 +17,15 @@
     }
 
     .epigraph-list {
-      display: grid;
-      flex-grow: 1;
       overflow: auto;
       margin: 1.25rem;
       padding-right: 1.25rem;
-      align-content: flex-start;
-      grid-auto-flow: row dense;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 1.25rem;
+
+      .list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1.25rem;
+      }
     }
   }
 
@@ -47,7 +46,9 @@
   @media screen and (max-width: 1200px) {
     .inventory {
       .epigraph-list {
-        grid-template-columns: repeat(1, 1fr);
+        .list {
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
     }
   }
@@ -55,10 +56,13 @@
   @media screen and (max-width: 960px) {
     .inventory {
       .epigraph-list {
-        grid-template-columns: repeat(2, 1fr);
         margin: 1rem;
-        grid-gap: 1rem;
         padding-right: 1rem;
+
+        .list {
+          grid-template-columns: repeat(2, 1fr);
+          grid-gap: 1rem;
+        }
       }
     }
   }
