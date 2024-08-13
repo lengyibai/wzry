@@ -69,6 +69,22 @@ const MailStore = defineStore("mail", () => {
       mail_config.value.forEach((item) => {
         const { mark, title, type, key, desc, props } = item;
 
+        //站外推送邮件单独处理
+        if (key === "OUTSIDE" && !mail_mark.value.includes(mark)) {
+          mail_list.value.unshift({
+            key: "OUTSIDE",
+            title,
+            desc,
+            time: dayjs().valueOf(),
+            type,
+            id: `MSG_OUTSIDE_${title}_${dayjs().valueOf().toString()}`,
+            read: false,
+          });
+
+          mail_mark.value.push(mark);
+          return;
+        }
+
         //签到类型邮件单独处理
         if (key === "SIGN") {
           sign_mails.value.push({
