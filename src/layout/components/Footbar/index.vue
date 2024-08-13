@@ -31,6 +31,8 @@ const music_progress = computed(() => $settingStore.config.musicProgress);
 
 nextTick(() => {
   $musicStore.initAudioVisual(canvasRef.value!);
+  if (!$settingStore.config.music) return;
+  $musicStore.play();
 });
 
 /** @description 通过获取点击的坐标，计算出播放进度 */
