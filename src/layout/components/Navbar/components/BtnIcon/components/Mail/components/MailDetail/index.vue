@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 import { KButton, KDialog, KProp } from "@/components/business";
-import { GAME_PROP } from "@/config";
+import { CONFIRM_TIP, GAME_PROP } from "@/config";
 import { MailStore } from "@/store";
-import { $obtain } from "@/utils/busTransfer";
+import { $confirm, $obtain } from "@/utils/busTransfer";
 import { _getPropLink } from "@/utils/concise";
 import { vMouseTip, vOverflowCenter } from "@/directives";
 import { usePlayAudio } from "@/hooks";
@@ -23,9 +23,14 @@ const KDialogRef = ref<InstanceType<typeof KDialog>>();
 
 /** @description 删除 */
 const handleDelete = (id: string) => {
-  KDialogRef.value?._close();
-  $mailStore.delMail(id);
-  playAudio("kh79");
+  $confirm({
+    text: CONFIRM_TIP.vj93,
+    async confirm() {
+      KDialogRef.value?._close();
+      $mailStore.delMail(id);
+      playAudio("kh79");
+    },
+  });
 };
 
 /** @description 领取奖励 */
@@ -78,7 +83,7 @@ const handleReceive = (mail: Game.Mail) => {
         >
           领取
         </KButton>
-        <KButton v-else class="k-button" @click="handleDelete(mail.id)">删除</KButton>
+        <KButton v-else type="error" class="k-button" @click="handleDelete(mail.id)">删除</KButton>
       </div>
     </div>
   </KDialog>
