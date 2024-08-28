@@ -14,8 +14,13 @@ import { usePlayAudio, useSetMarker } from "@/hooks";
  * @description 技能竞猜
  * @param closeActivity 关闭当前游戏及活动
  * @param closeGame 关闭当前游戏
+ * @param showSkillDesc 显示技能描述
  */
-const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>) => {
+const useGuessSkill = (
+  closeActivity: () => void,
+  closeGame: () => Promise<void>,
+  showSkillDesc: () => void,
+) => {
   const $knapsackStore = KnapsackStore();
   const $authStore = AuthStore();
 
@@ -239,13 +244,14 @@ const useGuessSkill = (closeActivity: () => void, closeGame: () => Promise<void>
 
     /**
      * @description 提交答案
-     * @param answer 英雄名称
      */
     async submitAnswer() {
       if (!running.value) return;
       const is_right = answer.value === kvp_hero_names[hero_id];
       reveal.value = true;
       running.value = false;
+
+      showSkillDesc();
 
       if (!is_right) {
         addStatusMarkerNum("SKILL_GUESS_WRONG_COUNT");

@@ -53,7 +53,7 @@ const {
   status_text,
   submitAnswer,
   setIsExit,
-} = useGuessSkill(closeActivity, handleClose);
+} = useGuessSkill(closeActivity, handleClose, showSkillDesc);
 
 /** 技能索引格式化 */
 const format_num = ["被动", "一", "二", "三", "四"];
@@ -65,14 +65,19 @@ const show = ref(true);
 /** 是否显示按钮 */
 const show_btn = ref(false);
 
-/* 提交答案 */
-const handleSubmitAnswer = () => {
-  submitAnswer();
+/** @description 提交答案后展开技能描述 */
+function showSkillDesc() {
   nextTick(() => {
     //通过获取滚动高度，设置技能描述高度实现动画
     const height = answerRef.value!.scrollHeight;
     answerRef.value!.style.height = height + "px";
   });
+}
+
+/* 提交答案 */
+const handleSubmitAnswer = () => {
+  submitAnswer();
+  showSkillDesc();
 };
 
 /** @description 打字结束后触发 */
