@@ -32,9 +32,8 @@ const useWaterfall = (obj: Params) => {
       };
 
       for (let i = 0; i < num.value; i++) {
-        const { offsetWidth: el_width, offsetHeight: el_height } = document.querySelector(
-          `#item-${i}`,
-        ) as HTMLElement;
+        const { offsetWidth: el_width, offsetHeight: el_height } =
+          (document.querySelector(`#item-${i}`) as HTMLElement) || {};
         children_position.value[i] ??= {
           left: 0,
           top: 0,
