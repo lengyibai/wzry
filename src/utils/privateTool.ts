@@ -149,68 +149,56 @@ export const _downloadZip = (
     reg = /\.(json)$/i;
   }
 
-  return new Promise<Record<string, string>>((resolve, reject) => {
-    request(`${apiUrl}?t=${version}`, (e) => {
-      /** 已下载大小 */
-      const downloaded_size = e.loaded / BYTES_IN_KB;
-      /** 总大小 */
-      const total_size = e.total! / BYTES_IN_KB;
+  return request(`${apiUrl}?t=${version}`, (e) => {
+    /** 已下载大小 */
+    const downloaded_size = e.loaded / BYTES_IN_KB;
+    /** 总大小 */
+    const total_size = e.total! / BYTES_IN_KB;
 
-      status.size = total_size.toFixed(0) + "KB";
-      status.downloaded_size = downloaded_size.toFixed(0) + "KB";
-      status.download_progress = Math.round((e.loaded * 100) / e.total!) + "%";
-      callback(status);
-    })
-      .then(async (res) => {
-        status.download_finish = true;
-        status.decompression_progress = "0%";
+    status.size = total_size.toFixed(0) + "KB";
+    status.downloaded_size = downloaded_size.toFixed(0) + "KB";
+    status.download_progress = Math.round((e.loaded * 100) / e.total!) + "%";
+    callback(status);
+  }).then(async (res) => {
+    status.download_finish = true;
+    status.decompression_progress = "0%";
 
-        /** 用于计算解压进度 */
-        let finish_files = 0;
-        const zip = await JSZip.loadAsync(res.data);
-        const file_names = Object.keys(zip.files);
-        const blob_cache: { version: string; data: { key: string; blob: Blob }[] } = {
-          version,
-          data: [],
-        };
+    /** 用于计算解压进度 */
+    let finish_files = 0;
+    const zip = await JSZip.loadAsync(res.data);
+    const file_names = Object.keys(zip.files);
+    const blob_cache: { version: string; data: { key: string; blob: Blob }[] } = {
+      version,
+      data: [],
+    };
 
-        //遍历文件名列表
-        for (const fileName of file_names) {
-          const load = async () => {
-            const zipEntry = zip.files[fileName];
+    const tasks = file_names
+      .filter((file_name) => !zip.files[file_name].dir)
+      .filter((file_name) => file_name.match(reg))
+      .map(async (file_name) => {
+        const key = file_name.replace(reg, "");
+        const blob = await zip.files[file_name].async("blob");
+        const url = URL.createObjectURL(blob);
 
-            //如果文件不是文件夹且文件名以指定扩展结尾
-            if (!zipEntry.dir && fileName.match(reg)) {
-              const originalFileName = fileName.replace(reg, "");
-              const blob = await zip.files[fileName].async("blob");
-              const url = URL.createObjectURL(blob);
+        //记录解压后的Blob数据
+        blob_cache.data.push({ key, blob });
 
-              //记录解压后的Blob数据
-              blob_cache.data.push({
-                key: originalFileName,
-                blob,
-              });
-
-              links[originalFileName] = url;
-              finish_files++;
-              status.decompression_progress =
-                Math.round((finish_files / file_names.length) * 100) + "%";
-              callback(status);
-            }
-          };
-          await load();
-        }
-
-        ZipDatabase.setItem(type, blob_cache);
-
-        status.decompression_finish = true;
-        status.size = "正在计算...";
-        status.downloaded_size = "0KB";
-        status.download_progress = "0%";
-        status.download_finish = false;
+        links[key] = url;
+        finish_files++;
+        status.decompression_progress = Math.round((finish_files / file_names.length) * 100) + "%";
         callback(status);
-        resolve(links);
-      })
-      .catch(reject);
+      });
+
+    await Promise.all(tasks);
+
+    ZipDatabase.setItem(type, blob_cache);
+
+    status.decompression_finish = true;
+    status.size = "正在计算...";
+    status.downloaded_size = "0KB";
+    status.download_progress = "0%";
+    status.download_finish = false;
+    callback(status);
+    return links;
   });
 };
