@@ -1,0 +1,286 @@
+[33mcommit de33d5cdf2f3091db176317449bf1a4ea285e1ac[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpassword[m[33m)[m
+Author: Biu <2239106170@qq.com>
+Date:   Sat Jun 8 20:00:23 2024 +0800
+
+    '修改密码的时候*显示'
+
+[33mcommit 02fa59bfb327d7310341604933132c244886bfcf[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 02:33:56 2024 +0800
+
+    visual: 优化弹幕颜色
+
+[33mcommit bcaa52da87a6d290828bd4e8002fc4afa4994f80[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 02:05:41 2024 +0800
+
+    misc: 调整规则
+
+[33mcommit 0909d746c273168c456693558592129189d5b79f[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 02:05:29 2024 +0800
+
+    misc: 增加忽略文件
+
+[33mcommit c78ddd547beec62f9b86a94a2bf55abf24e3960e[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 02:04:57 2024 +0800
+
+    misc: 依赖升级
+
+[33mcommit 6bbbca6ec21fa19038e2966ddbe601c806955022[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 02:04:35 2024 +0800
+
+    style: 格式化
+
+[33mcommit a191863e5e23c2e01fde73a9dcc437990eff2401[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Sat Jun 8 01:36:57 2024 +0800
+
+    style: 代码格式化
+
+[33mcommit 387f4b666e07e112c41fa682bca7c79878422a66[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 23:29:20 2024 +0800
+
+    perf: 替代函数
+
+[33mcommit 54df5daf229fb7cba52a3ad680289a6bd3c3d648[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 23:21:59 2024 +0800
+
+    sup: 竞猜相关音效补全
+
+[33mcommit cfc9dbf249f10de777ef9f7cf469db0771b3f1fa[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 22:51:47 2024 +0800
+
+    remove: 移除不必要的提示
+
+[33mcommit 9830a559905dacd470a4ecb3769663289c16b5a0[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 22:50:31 2024 +0800
+
+    cancel: 取消GPU欺骗
+
+[33mcommit c17a6b80acaf9fdc7128d42a9c807087dad754f4[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 20:56:14 2024 +0800
+
+    update: 文件更新
+
+[33mcommit 68c464a2a9495c6f578b3d195cfcf33e83b2a0c8[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 20:54:41 2024 +0800
+
+    perf: 通过同框皮肤海报ID列表来筛除
+
+[33mcommit b0a2c0381a93be6e4a758f797e167b31142f3b82[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 20:53:54 2024 +0800
+
+    feat: 增加同框皮肤海报ID列表获取
+
+[33mcommit 9cd95d6f2a916e7f5e06ac8f5f31350d970a0c7e[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 20:52:43 2024 +0800
+
+    perf: 默认开启弹幕
+
+[33mcommit e69ee0a15ab6eadc8e7f3e5d5da4fb8e006faf23[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 02:47:59 2024 +0800
+
+    rename: 提交规范重命名
+
+[33mcommit eb1230a6509233c8c480c869a2d8a33b4acab3e9[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 02:47:18 2024 +0800
+
+    cancel: 取消技能描述
+
+[33mcommit 74eafa13db3f6155a02ba89f2d07fa64115e51eb[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 02:46:35 2024 +0800
+
+    sup: 补全鼠标悬浮提示
+
+[33mcommit 3f303a359b73cbb7671c5ff8156ce71e3c4a1a5f[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 02:36:16 2024 +0800
+
+    feat: 增加提示
+
+[33mcommit d2b8f6489c68a539a97324a2cd12f2a1280f7eee[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Fri Jun 7 02:03:09 2024 +0800
+
+    doc: 文档更新
+
+[33mcommit 60cdef8e0ef0c0d74c73cc44f45199065110b789[m
+Merge: 3c24ee28 ba0a892d
+Author: 冷弋白 <74140255+lengyibai@users.noreply.github.com>
+Date:   Wed Jun 5 18:18:11 2024 +0800
+
+    Merge pull request #13 from 15700064961/annota_modify_0605
+    
+    annota: 注释修改
+
+[33mcommit 3c24ee282d95f36b8b409908a58019c24a7e0b94[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 18:17:03 2024 +0800
+
+    update: 文件更新
+
+[33mcommit ba0a892ddf7953b27a933323090e48d1c9edf4c4[m
+Author: chihuosheng <zhangjh@gancao.com>
+Date:   Wed Jun 5 17:48:46 2024 +0800
+
+    annota: 注释修改
+
+[33mcommit e60ee956591c2921312a17499651323c9441c1f2[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 17:47:55 2024 +0800
+
+    feat: 移动端提示无法获取跳跳币
+
+[33mcommit d7110e31a75bfc61094f524bd204f963d38177a6[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 17:16:20 2024 +0800
+
+    remove: 移除多余参数
+
+[33mcommit f8f0b13454a294a075684dfe457e473f72eb433d[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 17:14:57 2024 +0800
+
+    visual: 初步适配手机端
+
+[33mcommit dfe947e00795e3eef9edb42187dc12881f30b3ab[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 17:11:22 2024 +0800
+
+    fix: 修复关闭任务页或活动页后，虚拟列表偶现列表消失
+
+[33mcommit d65547f7fdd459cbed4fbff10f7b5e6771fefbb1[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Wed Jun 5 01:04:50 2024 +0800
+
+    fix: 补全王者水晶侧边栏筛选
+
+[33mcommit 3413e6d288261e28035caa69a86f285e155c4b32[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 15:37:42 2024 +0800
+
+    remove: 移除卡片作废判断
+
+[33mcommit 680b6ad0a9ed07f2fb697741c3d176e3b46b2123[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 15:36:41 2024 +0800
+
+    perf: 优化邮箱签到流程
+
+[33mcommit 016c571fc2913aa4039cf55b405866f723b66cef[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:40:13 2024 +0800
+
+    cancel: ColorsTextures取消使用props
+
+[33mcommit 6cf2549efb53976f2b8a14e855b427442a3dcafd[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:35:42 2024 +0800
+
+    feat: 增加目录简述
+
+[33mcommit 1ff00e64f670c24c069e3aec4430db0a31519f8d[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:35:21 2024 +0800
+
+    delete: 删除历史遗留组件
+
+[33mcommit 6a202e46b58c7e42968c41ba0772e535110e092f[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:35:06 2024 +0800
+
+    text: 调整自定义指令描述
+
+[33mcommit 93d29e4d2f5c48981cf85b76ce04085a588d5032[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:34:51 2024 +0800
+
+    move: 移动useMouseTrackingEffect文件位置
+
+[33mcommit ae0898b563b133920d9aaa1af9a578b675d5d489[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:34:10 2024 +0800
+
+    style: 移除无用代码
+
+[33mcommit 2e875449b1b5f2c6a0b240c57047b684790af765[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:33:30 2024 +0800
+
+    move: 移动logo动画组件位置
+
+[33mcommit d958254ee7812f50e019f40c9adf158ad0696215[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Tue Jun 4 01:32:45 2024 +0800
+
+    style: 移除无用代码
+
+[33mcommit 11d7f8e6979e579f69866b3676c56baad81631e9[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:45:33 2024 +0800
+
+    perf: 优化图片滚轮放大
+
+[33mcommit 70741373ee2315dab2a7f69159a83dd69ec5e626[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:35:17 2024 +0800
+
+    update: 文件更新
+
+[33mcommit aae04b649fc695fc9a5d86f2ca40a90fd46c651b[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:32:34 2024 +0800
+
+    text: 给描述增加句号
+
+[33mcommit 7005986fef51f3f49f167d6d9b6a8e785613fff4[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:32:20 2024 +0800
+
+    feat: 移除KLongNum组件上的类名
+
+[33mcommit 546d3cc5860d21fc3a7680ccf19cc3ef7ebe1cdd[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:31:31 2024 +0800
+
+    feat: 增加并使用KPropNum
+
+[33mcommit 201c6f4b8d56c035c6441590961a3f9a5ca55752[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:30:27 2024 +0800
+
+    feat: 增加道具悬浮描述
+
+[33mcommit 884370b45b7ca606783a464bf729d3f38ea6f2c8[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:28:06 2024 +0800
+
+    visual: 微调字体行距
+
+[33mcommit b65c8a8a147697268ea29ef8311fec790560100f[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:27:52 2024 +0800
+
+    feat: 增加字体大小和阴影
+
+[33mcommit 529fba70960ee9e9f70d04ef186beb716638a913[m
+Author: lengyibai <1329670984@qq.com>
+Date:   Mon Jun 3 02:27:28 2024 +0800
+
+    perf: 优化提示框的动态长度
+
+[33mcommit 69fef
