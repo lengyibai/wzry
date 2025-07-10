@@ -76,7 +76,7 @@ const handleSwitch = () => {
       ></i>
     </transition>
 
-    <div class="text">夺宝石补给站</div>
+    <div v-show="supply_status === 'IDLE'" class="text">夺宝石补给站</div>
 
     <!-- 模式选择 -->
     <transition name="fade">
