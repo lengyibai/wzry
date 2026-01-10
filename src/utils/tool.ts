@@ -813,8 +813,7 @@ export const _blobTextToBase64 = (blob: string): Promise<string> => {
       .then((blob) => {
         const reader = new FileReader();
         reader.onloadend = () => {
-          const result = reader.result!.toString();
-          resolve(result.replace(/^data:.*;base64,/, ""));
+          resolve(reader.result!.toString());
         };
         reader.readAsDataURL(blob);
       });
