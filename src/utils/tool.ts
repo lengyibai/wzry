@@ -813,7 +813,8 @@ export const _blobTextToBase64 = (blob: string): Promise<string> => {
       .then((blob) => {
         const reader = new FileReader();
         reader.onloadend = () => {
-          resolve(reader.result!.toString());
+          const result = reader.result!.toString();
+          resolve(result.replace(/^data:.*;base64,/, ""));
         };
         reader.readAsDataURL(blob);
       });
@@ -1008,7 +1009,7 @@ export class _AudioVisual {
         return;
       }
       //让分析器节点分析出数据到数组中
-      this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
+      this.analyser.getByteFrequencyData(this.dataArray as Uint8Array<ArrayBuffer>);
       /** 条的数量 */
       const len = this.dataArray.length;
       const barWidth = width / len; //条的宽度
