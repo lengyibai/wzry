@@ -1,16 +1,16 @@
 {
   "data": {
-    "audioVersion": "1716140931000",
-    "imageActivityBannerVersion": "1716128725000",
-    "imageBlurVersion": "1723397536000",
-    "imageHeroAvatarVersion": "1716128725000",
-    "imageMinecraftVersion": "1716128725000",
-    "imageMiscVersion": "1716128725000",
-    "imagePropsVersion": "1716128725000",
-    "imageMiniHeroVersion": "1716128725000",
-    "videoHomeVersion": "1723397536000",
-    "videoLoginVersion": "1723397536000",
-    "jsonDataVersion": "1723397536000",
-    "jsonVoiceVersion": "1723397536000"
+    "audioVersion": "1768036483000",
+    "imageActivityBannerVersion": "1768036483000",
+    "imageBlurVersion": "1768036483000",
+    "imageHeroAvatarVersion": "1768036483000",
+    "imageMinecraftVersion": "1768036483000",
+    "imageMiscVersion": "1768036483000",
+    "imagePropsVersion": "1768036483000",
+    "imageMiniHeroVersion": "1768036483000",
+    "videoHomeVersion": "1768036483000",
+    "videoLoginVersion": "1768036483000",
+    "jsonDataVersion": "1768036483000",
+    "jsonVoiceVersion": "1768036483000"
   }
 }

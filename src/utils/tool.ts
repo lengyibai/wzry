@@ -837,6 +837,7 @@ export const _base64ToObject = (base64: string) => {
  */
 export const _base64toFile = (base64Data: string, filename: string) => {
   const mimeTypes: Record<string, string> = {
+    webp: "image/webp",
     jpg: "image/jpeg",
     jpeg: "image/jpeg",
     png: "image/png",

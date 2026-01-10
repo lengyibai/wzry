@@ -205,9 +205,9 @@ export class BarragesGenerate {
       text: "点击下面的图片可以查看大图，图中文件：src/components/business/Global/Control/components/K-HeroDetail/index.vue",
       avatar: _getImgLink("lyb"),
       link: _getAudioLink("ji"),
-      link_big: _getImgLink("code_bg_big", "1", "jpg"),
-      link_small: _getImgLink("code_bg_small", "1", "jpg"),
-      link_blur: _getImgLink("code_bg_blur", "1", "jpg"),
+      link_big: _getImgLink("code_bg_big", "1768036405000", "webp"),
+      link_small: _getImgLink("code_bg_small", "1768036405000", "webp"),
+      link_blur: _getImgLink("code_bg_blur", "1768036405000", "webp"),
     });
 
     setTimeout(() => {

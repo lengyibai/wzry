@@ -21,7 +21,7 @@ export const _selectAvatarCompress = (e: Event | File, cb: (v: string) => void) 
 
   if (!file) return;
 
-  if (![".png", ".jpg", ".jpeg"].some((item) => file.name.endsWith(item))) {
+  if (![".png", ".jpg", ".jpeg", "webp"].some((item) => file.name.endsWith(item))) {
     $message(MESSAGE_TIP.a2k3, "error");
     return;
   }
@@ -140,7 +140,7 @@ export const _downloadZip = (
       "IMAGE_MINI_HERO",
     ].includes(type)
   ) {
-    reg = /\.(jpg|png)$/i;
+    reg = /\.(jpg|png|webp)$/i;
   } else if (type === "AUDIO") {
     reg = /\.(mp3)$/i;
   } else if (type === "VIDEO_HOME") {

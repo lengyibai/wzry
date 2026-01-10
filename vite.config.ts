@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
         // Workbox 配置
         workbox: {
           // 匹配需要被缓存的文件
-          globPatterns: ["**/*.js", "**/*.html", "**/*.css", "**/*.svg", "**/*.png"],
+          globPatterns: ["**/*.js", "**/*.html", "**/*.css", "**/*.svg", "**/*.png", "**/*.webp"],
         },
         manifest: {
           related_applications: [

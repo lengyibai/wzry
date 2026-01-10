@@ -19,7 +19,7 @@ export const _getMusicLink = (name: string) => `${BASE_CONFIG.IMGBED}/music/${na
  * @param name 音频名称
  * @param version 版本号
  */
-export const _getVideoLink = (name: string, version = "0") => {
+export const _getVideoLink = (name: string, version = "1768036405000") => {
   const links = useGetZip().video_home_links;
   const url = links.value[name];
 
@@ -39,7 +39,7 @@ export const _getHtmlLink = (name: string) =>
  * @param version 版本号
  * @param suffix 图片后缀
  */
-export const _getImgLink = (name: string, version = "0", suffix = "png") => {
+export const _getImgLink = (name: string, version = "1768036405000", suffix = "webp") => {
   return `${BASE_CONFIG.IMGBED}/image/${name}.${suffix}?temp=${version}`;
 };
 
@@ -54,7 +54,7 @@ export const _getActivityBannerLink = (name: string) => {
  * @param name 图片名称
  */
 export const _getBlurImgLink = (name: string) => {
-  const key = name.replace(/\/(heros|epigraphs)\//, "").replace(/\.(png|jpg)$/i, "");
+  const key = name.replace(/\/(heros|epigraphs)\//, "").replace(/\.(png|jpg|webp)$/i, "");
   const url = useGetZip().image_blur_links.value[key];
   return url;
 };

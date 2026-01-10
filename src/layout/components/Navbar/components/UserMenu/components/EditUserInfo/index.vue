@@ -119,7 +119,7 @@ watchEffect(() => {
         v-show="false"
         id="file"
         type="file"
-        accept="png,jpg,jpeg"
+        accept="png,jpg,jpeg,webp"
         @change="handleSelectAvatar"
       />
 

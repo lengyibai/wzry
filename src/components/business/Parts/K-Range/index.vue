@@ -49,7 +49,7 @@ const $props = withDefaults(defineProps<Props>(), {
   showDot: true,
   trackColor: "var(--theme-el-color-one)",
   showIcon: true,
-  icon: BASE_CONFIG.IMGBED + "/image/range_icon.png",
+  icon: BASE_CONFIG.IMGBED + "/image/range_icon.webp",
   showNum: true,
   step: 1,
   showStep: true,

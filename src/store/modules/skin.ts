@@ -165,7 +165,7 @@ const SkinStore = defineStore("skin", () => {
           const isNum = list.filter((item) => !isNaN(Number(item.price)));
 
           //筛选出荣耀典藏
-          const strange = list.filter((item) => item.type.toString().indexOf("26.png") !== -1);
+          const strange = list.filter((item) => item.type.toString().indexOf("26.webp") !== -1);
           return [...strange, ...isNum].sort((a, b) => Number(b.price) - Number(a.price));
         },
       };

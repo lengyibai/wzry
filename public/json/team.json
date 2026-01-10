@@ -1,20 +1,20 @@
 {
   "data": [
-    ["/teams/w0.jpg", "/teams/w0_v.jpg"],
-    ["/teams/w1.jpg", "/teams/w1_v.jpg"],
-    ["/teams/w2.jpg", "/teams/w2_v.jpg"],
-    ["/teams/w3.jpg", "/teams/w3_v.jpg"],
-    ["/teams/w4.jpg", "/teams/w4_v.jpg"],
-    ["/teams/w5.jpg", "/teams/w5_v.jpg"],
-    ["/teams/w6.jpg", "/teams/w6_v.jpg"],
-    ["/teams/w7.jpg", "/teams/w7_v.jpg"],
-    ["/teams/w8.jpg", "/teams/w8_v.jpg"],
-    ["/teams/w9.jpg", "/teams/w9_v.jpg"],
-    ["/teams/w10.jpg", "/teams/w10_v.jpg"],
-    ["/teams/w11.jpg", "/teams/w11_v.jpg"],
-    ["/teams/h1.jpg", "/teams/h1_v.jpg"],
-    ["/teams/h2.jpg", "/teams/h2_v.jpg"],
-    ["/teams/h3.jpg", "/teams/h3_v.jpg"],
-    ["/teams/h4.jpg", "/teams/h4_v.jpg"]
+    ["/teams/w0.webp", "/teams/w0_v.webp"],
+    ["/teams/w1.webp", "/teams/w1_v.webp"],
+    ["/teams/w2.webp", "/teams/w2_v.webp"],
+    ["/teams/w3.webp", "/teams/w3_v.webp"],
+    ["/teams/w4.webp", "/teams/w4_v.webp"],
+    ["/teams/w5.webp", "/teams/w5_v.webp"],
+    ["/teams/w6.webp", "/teams/w6_v.webp"],
+    ["/teams/w7.webp", "/teams/w7_v.webp"],
+    ["/teams/w8.webp", "/teams/w8_v.webp"],
+    ["/teams/w9.webp", "/teams/w9_v.webp"],
+    ["/teams/w10.webp", "/teams/w10_v.webp"],
+    ["/teams/w11.webp", "/teams/w11_v.webp"],
+    ["/teams/h1.webp", "/teams/h1_v.webp"],
+    ["/teams/h2.webp", "/teams/h2_v.webp"],
+    ["/teams/h3.webp", "/teams/h3_v.webp"],
+    ["/teams/h4.webp", "/teams/h4_v.webp"]
   ]
 }
