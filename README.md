@@ -130,8 +130,10 @@
 
 > Github部署的网站，需要科学上网，勉强适配手机，但为了更好地体验，推荐使用使用电脑横屏浏览。
 
-- 访问地址：https://lengyibai.github.io/wztj
+- 访问地址：https://lengyibai.github.io/wzry
 - Github仓库：https://github.com/lengyibai/wzry
+
+推送到 `main` 分支后，GitHub Actions 会自动执行依赖安装、Vite 构建并发布到 GitHub Pages；也可以在 Actions 页面手动运行 `Deploy to GitHub Pages`。首次启用时，请在仓库 `Settings > Pages` 中将 `Build and deployment > Source` 设为 `GitHub Actions`。
 
 ⭐求Star⭐求Star⭐求Star⭐
 

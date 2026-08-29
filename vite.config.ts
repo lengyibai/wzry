@@ -9,9 +9,12 @@ import basicSSL from "@vitejs/plugin-basic-ssl";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const getViteEnv = (target: string): any => env[target];
+  // GitHub Pages 项目站点需要以仓库名作为基础路径；通过环境变量覆盖可适配不同部署位置。
+  const configuredBase = process.env.VITE_BASE_PATH || env.VITE_BASE_PATH || "/";
+  const base = configuredBase.endsWith("/") ? configuredBase : `${configuredBase}/`;
 
   return {
-    base: "/wztj/",
+    base,
     plugins: [
       vue(),
       basicSSL(), //手机端可能需要注释掉才能下载召唤师卡
