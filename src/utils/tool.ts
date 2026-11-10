@@ -822,7 +822,7 @@ export const _blobTextToBase64 = (blob: string): Promise<string> => {
 
 /** @description 将Base64转成JSON并转成对象，前提是Base64源数据为对象 */
 export const _base64ToObject = (base64: string) => {
-  const base64Data = base64.replace(/^data:text\/plain;base64,/, "");
+  const base64Data = base64.replace(/^data:[^,]*;base64,/i, "");
   const arrayBuffer = Uint8Array.from(window.atob(base64Data), (c) => c.charCodeAt(0)).buffer;
   const decoder = new TextDecoder("utf-8");
   const jsonString = decoder.decode(arrayBuffer);
